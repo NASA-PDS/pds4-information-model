@@ -1,0 +1,423 @@
+; Thu Nov 21 15:56:24 PST 2013
+; 
+;+ (version "3.4.7")
+;+ (build "Build 620")
+
+([2D] of  Group_Facet1
+
+	(facet1 "2D"))
+
+([astrometry] of  Group_Facet1
+
+	(facet1 "astrometry"))
+
+([Atmospheres] of  Discipline_Facets
+
+	(discipline_name "Atmospheres")
+	(has_Group_Facet1
+		[Structure]
+		[Meteorology]))
+
+([Background] of  Group_Facet2
+
+	(facet2 "Background"))
+
+([Color] of  Group_Facet1
+
+	(facet1 "Color"))
+
+([Color+Movie] of  Group_Facet1
+
+	(facet1 "Color Movie"))
+
+([Cosmic+Ray] of  Group_Facet2
+
+	(facet2 "Cosmic Ray"))
+
+([Dust+Study] of  Group_Facet1
+
+	(facet1 "Dust Study"))
+
+([Dynamical+Properties] of  Group_Facet1
+
+	(facet1 "Dynamical Properties"))
+
+([Electric] of  Group_Facet1
+
+	(facet1 "Electric"))
+
+([Electrons] of  Group_Facet1
+
+	(facet1 "Electrons"))
+
+([Energetic] of  Group_Facet2
+
+	(facet2 "Energetic"))
+
+([Fields] of  Discipline_Facets
+
+	(discipline_name "Fields")
+	(has_Group_Facet1
+		[Electric]
+		[Magnetic])
+	(has_Group_Facet2
+		[Background]
+		[Waves]))
+
+([Flux+Measurements] of  Discipline_Facets
+
+	(discipline_name "Flux Measurements")
+	(has_Group_Facet1
+		[Photometry]
+		[Polarimetry]))
+
+([Gas+Study] of  Group_Facet1
+
+	(facet1 "Gas Study"))
+
+([Grayscale] of  Group_Facet1
+
+	(facet1 "Grayscale"))
+
+([Historical+Reference] of  Group_Facet1
+
+	(facet1 "Historical Reference"))
+
+([Imaging] of  Discipline_Facets
+
+	(discipline_name "Imaging")
+	(has_Group_Facet1
+		[Grayscale]
+		[Color]
+		[Movie]
+		[Color+Movie]))
+
+([Ions] of  Group_Facet1
+
+	(facet1 "Ions"))
+
+([Lightcurve] of  Group_Facet1
+
+	(facet1 "Lightcurve"))
+
+([Linear] of  Group_Facet1
+
+	(facet1 "Linear"))
+
+([Magnetic] of  Group_Facet1
+
+	(facet1 "Magnetic"))
+
+([Meteoritics] of  Group_Facet1
+
+	(facet1 "Meteoritics"))
+
+([Meteorology] of  Group_Facet1
+
+	(facet1 "Meteorology"))
+
+([Movie] of  Group_Facet1
+
+	(facet1 "Movie"))
+
+([Neutrals] of  Group_Facet1
+
+	(facet1 "Neutrals"))
+
+([Particles] of  Discipline_Facets
+
+	(discipline_name "Particles")
+	(has_Group_Facet1
+		[Ions]
+		[Electrons]
+		[Neutrals])
+	(has_Group_Facet2
+		[Cosmic+Ray]
+		[Solar+Energetic]
+		[Energetic]
+		[Plasma]))
+
+([Photometry] of  Group_Facet1
+
+	(facet1 "Photometry"))
+
+([Physical+Properties] of  Group_Facet1
+
+	(facet1 "Physical Properties"))
+
+([Plasma] of  Group_Facet2
+
+	(facet2 "Plasma"))
+
+([Polarimetry] of  Group_Facet1
+
+	(facet1 "Polarimetry"))
+
+([Product_Image_Grayscale_1_Identification_Area] of  Identification_Area
+
+	(logical_identifier "MPFL-M-IMP-2-EDR-V1.0:PDS4_IMG_IMAGE_GRAYSCALE_ID")
+	(title "MARS PATHFINDER LANDER Experiment")
+	(version_id "1.0"))
+
+([Production+Rates] of  Group_Facet1
+
+	(facet1 "Production Rates"))
+
+([Ring+Compositional+Map] of  Group_Facet1
+
+	(facet1 "Ring Compositional Map"))
+
+([Ring+Occultation+Profile] of  Group_Facet1
+
+	(facet1 "Ring Occultation Profile"))
+
+([Ring+Thermal+Map] of  Group_Facet1
+
+	(facet1 "Ring Thermal Map"))
+
+([Ring-Moon+Systems] of  Discipline_Facets
+
+	(discipline_name "Ring-Moon Systems")
+	(has_Group_Facet1
+		[Satellite+Astrometry]
+		[Ring+Compositional+Map]
+		[Ring+Occultation+Profile]
+		[Ring+Thermal+Map]))
+
+([Satellite+Astrometry] of  Group_Facet1
+
+	(facet1 "Satellite Astrometry"))
+
+([Shape+Model] of  Group_Facet1
+
+	(facet1 "Shape Model"))
+
+([Small+Bodies] of  Discipline_Facets
+
+	(discipline_name "Small Bodies")
+	(has_Group_Facet1
+		[Dynamical+Properties]
+		[Lightcurve]
+		[Meteoritics]
+		[Physical+Properties]
+		[Production+Rates]
+		[Shape+Model]
+		[Taxonomy]
+		[Dust+Study]
+		[Historical+Reference]
+		[Gas+Study]))
+
+([Solar+Energetic] of  Group_Facet2
+
+	(facet2 "Solar Energetic"))
+
+([Spectral+Cube] of  Group_Facet1
+
+	(facet1 "Spectral Cube"))
+
+([Spectral+Image] of  Group_Facet1
+
+	(facet1 "Spectral Image"))
+
+([Spectroscopy] of  Discipline_Facets
+
+	(discipline_name "Spectroscopy")
+	(has_Group_Facet1
+		[2D]
+		[Linear]
+		[Spectral+Cube]
+		[Spectral+Image]
+		[Tabulated]))
+
+([Structure] of  Group_Facet1
+
+	(facet1 "Structure"))
+
+([Tabulated] of  Group_Facet1
+
+	(facet1 "Tabulated"))
+
+([Target.Calibration_Object] of  Classification_Hierarchy
+
+	(description "Calibration is the validation of specific measurement techniques and equipment. A Calibration Object provides a known magnitude or correctness for comparison with another measurement.")
+	(superclass_name "Target")
+	(targetclass_name "Calibration_Object"))
+
+([Target.Dust] of  Classification_Hierarchy
+
+	(description "Dust is a general name for minute solid particles with diameters less than 20 thou (500 micrometres). Cosmic dust is widely present in space, where gas and dust clouds are primary precursors for planetary systems.")
+	(superclass_name "Target")
+	(targetclass_name "Dust"))
+
+([Target.Feature] of  Classification_Hierarchy
+
+	(description "A feature is a distinct property or piece. In geographic information systems, feature data comprises information about an entity with a geographic location")
+	(superclass_name "Target")
+	(targetclass_name "Feature"))
+
+([Target.Region] of  Classification_Hierarchy
+
+	(description "The portion of space measured by an instrument at the time of an observation. A region is distinguished by certain natural features or physical characteristics.")
+	(superclass_name "Target")
+	(targetclass_name "Region"))
+
+([Target.Ring] of  Classification_Hierarchy
+
+	(description "A planetary ring is a ring of cosmic dust and other small particles orbiting around a planet in a flat disc-shaped region.")
+	(superclass_name "Target")
+	(targetclass_name "Ring"))
+
+([Target.Solar_System_Body] of  Classification_Hierarchy
+
+	(description "A body in the Solar System. The solar system consists of the Sun and those celestial objects bound to it by gravity.")
+	(superclass_name "Target")
+	(targetclass_name "Solar_System_Body"))
+
+([Target.Solar_System_Body.Asteroid] of  Classification_Hierarchy
+
+	(description "Asteroids, sometimes called minor planets or planetoids, are small Solar System bodies in orbit around the Sun, especially in the inner Solar System; they are smaller than planets but larger than meteoroids.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Asteroid"))
+
+([Target.Solar_System_Body.Comet] of  Classification_Hierarchy
+
+	(description "A comet is a Small Solar System Body that orbits the Sun. When close enough to the Sun, a comet exhibits a visible coma (fuzzy \"atmosphere\"), and sometimes a tail, both because of the effects of solar radiation upon the comet's nucleus. Comet nuclei are themselves loose collections of ice, dust and small rocky particles, ranging from a few kilometers to tens of kilometers across.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Comet"))
+
+([Target.Solar_System_Body.Dwarf_Planet] of  Classification_Hierarchy
+
+	(description "A Dwarf Planet  is a trans-Neptunian dwarf planet or an object that is likely to be such a body.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Dwarf_Planet"))
+
+([Target.Solar_System_Body.Dwarf_Planet.Pluto] of  Classification_Hierarchy
+
+	(description "Pluto, formal designation 134340 Pluto, is the second-largest known dwarf planet in the Solar System (after Eris) and the tenth-largest body observed directly orbiting the Sun. Originally classified as a planet, Pluto is now considered the largest member of a distinct population called the Kuiper belt.")
+	(superclass_name "Dwarf_Planet")
+	(targetclass_name "Pluto"))
+
+([Target.Solar_System_Body.Planet] of  Classification_Hierarchy
+
+	(description "A planet is a celestial body orbiting a star or stellar remnant that is massive enough to be rounded by its own gravity, is not massive enough to cause thermonuclear fusion, and has cleared its neighbouring region of planetesimals.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Planet"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant] of  Classification_Hierarchy
+
+	(description "A gas giant is a large planet that is not primarily composed of rock or other solid matter.")
+	(superclass_name "Planet")
+	(targetclass_name "Gas_Giant"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant.Ice_Giant] of  Classification_Hierarchy
+
+	(description "An ice giant is a gas giant that is mostly composed of water, ammonia, and methane.")
+	(superclass_name "Gas_Giant")
+	(targetclass_name "Ice_Giant"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant.Ice_Giant.Neptune] of  Classification_Hierarchy
+
+	(description "Neptune is the eighth and outermost-known planet from the Sun in the Solar System.")
+	(superclass_name "Ice_Giant")
+	(targetclass_name "Neptune"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant.Ice_Giant.Uranus] of  Classification_Hierarchy
+
+	(description "Uranus is the seventh planet from the Sun, and the third-largest and fourth most massive planet in the Solar System.")
+	(superclass_name "Ice_Giant")
+	(targetclass_name "Uranus"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant.Jupiter] of  Classification_Hierarchy
+
+	(description "Jupiter is the fifth planet from the Sun and the largest planet within the Solar System. Jupiter is a traditional gas giant and is composed primarily of hydrogen and helium.")
+	(superclass_name "Gas_Giant")
+	(targetclass_name "Jupiter"))
+
+([Target.Solar_System_Body.Planet.Gas_Giant.Saturn] of  Classification_Hierarchy
+
+	(description "Saturn is the sixth planet from the Sun and the second largest planet in the Solar System, after Jupiter. Saturn is a traditional gas giant and is composed primarily of hydrogen and helium.")
+	(superclass_name "Gas_Giant")
+	(targetclass_name "Saturn"))
+
+([Target.Solar_System_Body.Planet.Terrestrial] of  Classification_Hierarchy
+
+	(description "A terrestrial planet, telluric planet, rocky planet or inner planet is a planet that is primarily composed of silicate rocks.")
+	(superclass_name "Planet")
+	(targetclass_name "Terrestrial"))
+
+([Target.Solar_System_Body.Planet.Terrestrial.Earth] of  Classification_Hierarchy
+
+	(description "Earth is the third planet from the Sun, and the largest of the terrestrial planets in the Solar System in terms of diameter, mass and density.")
+	(superclass_name "Terrestrial")
+	(targetclass_name "Earth"))
+
+([Target.Solar_System_Body.Planet.Terrestrial.Mars] of  Classification_Hierarchy
+
+	(description "Mars is the fourth planet from the Sun in the Solar System.")
+	(superclass_name "Terrestrial")
+	(targetclass_name "Mars"))
+
+([Target.Solar_System_Body.Planet.Terrestrial.Mercury] of  Classification_Hierarchy
+
+	(description "Mercury is the innermost and smallest planet in the Solar System,[8] orbiting the Sun once every 87.969 days.")
+	(superclass_name "Terrestrial")
+	(targetclass_name "Mercury"))
+
+([Target.Solar_System_Body.Planet.Terrestrial.Venus] of  Classification_Hierarchy
+
+	(description "Venus is the second-closest planet to the Sun, orbiting it every 224.7 Earth days.")
+	(superclass_name "Terrestrial")
+	(targetclass_name "Venus"))
+
+([Target.Solar_System_Body.Satellite] of  Classification_Hierarchy
+
+	(description "A natural satellite or moon is a celestial body that orbits a planet or smaller body, which is called the primary.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Satellite"))
+
+([Target.Solar_System_Body.Satellite.Deimos] of  Classification_Hierarchy
+
+	(description "Deimos is the smaller and outer of Mars’ two moons.")
+	(superclass_name "Satellite")
+	(targetclass_name "Deimos"))
+
+([Target.Solar_System_Body.Satellite.Phobos] of  Classification_Hierarchy
+
+	(description "Phobos is the larger and closer of two small moons of Mars.")
+	(superclass_name "Satellite")
+	(targetclass_name "Phobos"))
+
+([Target.Solar_System_Body.Sun] of  Classification_Hierarchy
+
+	(description "The Sun is the star at the center of the Solar System.")
+	(superclass_name "Solar_System_Body")
+	(targetclass_name "Sun"))
+
+([Target.Solar_Wind] of  Classification_Hierarchy
+
+	(description "The solar wind is a stream of charged particles ejected from the upper atmosphere of the sun. It consists mostly of electrons and protons with energies usually between 10 and 100 eV.")
+	(superclass_name "Target")
+	(targetclass_name "Solar_Wind"))
+
+([Target.Star] of  Classification_Hierarchy
+
+	(description "A star is a massive, luminous ball of plasma that is held together by gravity.")
+	(superclass_name "Target")
+	(targetclass_name "Star"))
+
+([Taxonomy] of  Group_Facet1
+
+	(facet1 "Taxonomy"))
+
+([upper_091022_Instance_4] of  %3APAL-CONSTRAINT
+)
+
+([upper_091228_Instance_15] of  %3APAL-CONSTRAINT
+)
+
+([upper_110812b_Class0] of  %3APAL-CONSTRAINT
+)
+
+([Waves] of  Group_Facet2
+
+	(facet2 "Waves"))

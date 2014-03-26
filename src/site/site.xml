@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+  Copyright 2014, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+-->
+
+<project name="Model">
+  <bannerLeft>
+    <src>images/pds4_logo.png</src>
+    <href>http://pds-cm.jpl.nasa.gov/pds4/</href>
+  </bannerLeft>
+
+  <bannerRight>
+    <name>Model</name>
+  </bannerRight>
+
+  <body>
+    <links>
+      <item name="Model" href="http://pds-cm.jpl.nasa.gov/pds4/model/index.html" />
+    </links>
+
+    <menu name="Software Documentation">
+      <item name="About Model" href="index.html"/>
+      <item name="Architecture" href="docs/model-arch.pdf"/>
+    </menu>
+
+    <menu ref="modules"/>
+
+    <menu ref="reports"/>
+  </body>
+</project>

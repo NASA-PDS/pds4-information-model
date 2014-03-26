@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2010-2013, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+  
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>gov.nasa.pds.2010</groupId>
+    <artifactId>model</artifactId>
+    <version>1.6.0-dev</version>
+  </parent>
+
+  <groupId>gov.nasa.pds.2010.model</groupId>
+  <artifactId>model-dmdocument</artifactId>
+  <packaging>war</packaging>
+
+  <name>Model DM-Document</name>
+  <description>
+    TBD
+  </description>
+  <url>http://pds-cm.jpl.nasa.gov/pds4/model/model-dmdocument/</url>
+
+  <licenses>
+    <license>
+      <name>California Institute of Technology</name>
+      <url>file:///${basedir}/LICENSE.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <build>
+    <testSourceDirectory>src/test</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <excludes/>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+            <phase>compile</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/api</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}</directory>
+                  <filtering>false</filtering>
+                  <includes>
+                    <include>index.html</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+  <repositories>
+    <!-- Hosts the PDS and OODT artifacts. -->
+    <repository>
+      <id>pds-repo</id>
+      <name>PDS Maven Repository</name>
+      <url>http://pds-cm.jpl.nasa.gov/maven2</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <!-- Project Information and Reports inherited from parent. -->
+  <reporting>
+    <!-- Project Reports not inherited from parent. -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
