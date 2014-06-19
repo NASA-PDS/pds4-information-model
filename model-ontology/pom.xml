@@ -16,27 +16,57 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>gov.nasa.pds.2010</groupId>
-    <artifactId>model</artifactId>
+    <parent>
+        <groupId>gov.nasa.pds.2010</groupId>
+        <artifactId>model</artifactId>
+        <version>1.6.0-dev</version>
+    </parent>
+
+    <groupId>gov.nasa.pds.2010.model</groupId>
+    <artifactId>model-ontology</artifactId>
     <version>1.6.0-dev</version>
-  </parent>
+    <packaging>jar</packaging>
 
-  <groupId>gov.nasa.pds.2010.model</groupId>
-  <artifactId>model-ontology</artifactId>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <name>Model Ontology</name>
-  <description>
-    The PDS4 Model Ontology…
-  </description>
-  <url>http://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
 
-  <licenses>
-    <license>
-      <name>California Institute of Technology</name>
-      <url>file:///${basedir}/LICENSE.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+      <name>Model Ontology</name>
+      <description>
+        The PDS4 Model Ontology…
+      </description>
+      <url>http://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
 
+    <licenses>
+        <license>
+            <name>California Institute of Technology</name>
+            <url>file:///${basedir}/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>gov.nasa.pds.2010</groupId>
+                <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
+                <version>1.6.0-dev</version>
+                <configuration>
+                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generateDocumentation</goal>
+<!--                             <goal>generateClasses</goal>
+                            <goal>genreateAttributes</goal>
+ -->                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
