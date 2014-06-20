@@ -78,9 +78,11 @@ public class WriteSpecification extends Object {
 //    prlatex = new PrintWriter(new FileWriter("latexipt.tex", false));
 //    prhtml = new PrintWriter(new FileWriter("index.html", false));
 //    prdocbook = new PrintWriter(new FileWriter("PDS4docbook.xml", false));
-	    prlatex = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "latexipt.tex", false));
-	    prhtml = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "index.html", false));
-	    prdocbook = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "PDS4docbook.xml", false));
+		File targetDir = new File(DMDocument.outputDirPath);
+		targetDir.mkdirs();
+	    prlatex = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "/latexipt.tex", false));
+	    prhtml = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "/index.html", false));
+	    prdocbook = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "/PDS4docbook.xml", false));
 
 //	Start writing the latex document                
 
