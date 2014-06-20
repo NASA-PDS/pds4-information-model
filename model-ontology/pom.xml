@@ -61,9 +61,9 @@
                         <phase>compile</phase>
                         <goals>
                             <goal>generateDocumentation</goal>
-<!--                             <goal>generateClasses</goal>
-                            <goal>genreateAttributes</goal>
- -->                        </goals>
+                            <goal>generateClasses</goal>
+                            <goal>generateAttributes</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
