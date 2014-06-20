@@ -34,6 +34,8 @@ class WriteDDProductAttrDefinitions extends Object{
 			AttrDefn lAttr = (AttrDefn) i.next();
 			uId = DMDocument.registrationAuthorityIdentifierValue + ":" + lAttr.classNameSpaceIdNC + ":" + lAttr.className + ":" + lAttr.attrNameSpaceIdNC + ":" + lAttr.title;
 			uIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lAttr.classNameSpaceIdNC + "_" + lAttr.className + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title;
+			File targetDir = new File(DMDocument.outputDirPath + "SchemaElemDef");
+			targetDir.mkdirs();
 			prDDReg = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaElemDef/" + uIdFileName + "_" + InfoModel.lab_version_id + ".xml", false));
 			printDDRegFile(prDDReg, todaysDate, uId, lAttr);
 			prDDReg.close();

@@ -18,9 +18,13 @@ class WikiLabelSchema extends Object {
 		String classTitle = lClass.title;
 		if (ddType.compareTo("unabridged") == 0) {
 //			prWikiDD = new PrintWriter(new FileWriter("SchemaWikiDD/WS_" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));
+			File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDD");
+            targetDir.mkdirs();
 			prWikiDD = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDD/WS_" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));
 		} else if (ddType.compareTo("unabridged2") == 0) {
 //			prWikiDD = new PrintWriter(new FileWriter("SchemaWikiDDA3/WS_" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));				
+			File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDDA3");
+			targetDir.mkdirs();
 			prWikiDD = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDDA3/WS_" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));				
 		}
 

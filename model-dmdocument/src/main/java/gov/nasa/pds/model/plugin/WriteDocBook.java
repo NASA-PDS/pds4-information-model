@@ -40,6 +40,8 @@ class WriteDocBook extends Object {
 	
 //	print DocBook File
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
+        File targetDir = new File(DMDocument.outputDirPath + "DocBook");
+        targetDir.mkdirs();
 		PrintWriter prDocBook = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "DocBook/" + "PDS4IMDocBook" + "_" + lSchemaFileDefn.lab_version_id + ".xml", false));
 
 		writeHeader (prDocBook);

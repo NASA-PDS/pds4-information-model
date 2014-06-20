@@ -16,6 +16,8 @@ class WriteCoreXMLSchemaLabel extends Object {
 		String lFileIdUpper = lFileId.toUpperCase();		
 		
 //		lFileSpecIdNE = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_" +  lFileIdUpper + "_" + InfoModel.lab_version_id;
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaXML4");
+		targetDir.mkdirs();
 		lFileSpecIdNE = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_" +  lFileIdUpper + "_" + lSchemaFileDefn.lab_version_id;
 		if (DMDocument.LDDToolFlag) {
 			lFileSpecIdNE = DMDocument.LDDToolOutputFileNameNE + "_" +  lSchemaFileDefn.fileNameNC + "_" + lSchemaFileDefn.lab_version_id;

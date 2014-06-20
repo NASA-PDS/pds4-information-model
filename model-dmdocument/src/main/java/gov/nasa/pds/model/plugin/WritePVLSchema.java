@@ -14,6 +14,9 @@ class WritePVLSchema extends Object {
 	public void writePVLLabel (PDSObjDefn lClass, String todaysDate) throws java.io.IOException  {
 //		System.out.println("\ndebug  starting writePVLLabel");
 		
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaPVL");
+		targetDir.mkdirs();
+
 		String classTitle = lClass.title;
 	    prPVL = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaPVL/" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));
 

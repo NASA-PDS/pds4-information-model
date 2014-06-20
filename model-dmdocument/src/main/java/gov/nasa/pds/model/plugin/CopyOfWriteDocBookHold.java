@@ -26,6 +26,8 @@ class CopyOfWriteDocBookHold extends Object {
 //	print DocBook File
 	public void writeDocBook () throws java.io.IOException {
 //		PrintWriter prDocBook = new PrintWriter(new FileWriter("DocBook/" + "PDS4IMDocBook.xml", false));
+		File targetDir = new File(DMDocument.outputDirPath + "DocBook");
+		targetDir.mkdirs();
 		PrintWriter prDocBook = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "DocBook/" + "PDS4IMDocBook.xml", false));
 		writeDBHdr (docLevel, prDocBook);
 		docLevel++;

@@ -26,6 +26,8 @@ class WriteDDProductClassDefinitions extends Object{
 			uId = DMDocument.registrationAuthorityIdentifierValue + ":" + lClass.nameSpaceIdNC + ":" + lClass.title;
 			uIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lClass.nameSpaceIdNC + "_" + lClass.title;
 //			prDDReg = new PrintWriter(new FileWriter("SchemaClassDef/" + uIdFileName + "_" + InfoModel.lab_version_id + ".xml", false));
+			File targetDir = new File(DMDocument.outputDirPath + "SchemaClassDef");
+			targetDir.mkdirs();
 			prDDReg = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaClassDef/" + uIdFileName + "_" + InfoModel.lab_version_id + ".xml", false));
 			writeDDProductClassDefnFile(prDDReg, todaysDate, uId, lClass);
 			prDDReg.close();

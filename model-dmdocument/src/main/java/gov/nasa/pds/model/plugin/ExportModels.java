@@ -90,6 +90,8 @@ public class ExportModels extends Object {
 //		write11179DDPinsFile.writePINSFile ();	
 //		write11179DDPinsFile.writePINSFile (DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179" + ".pins");	
 //		write11179DDPinsFile.writePINSFile (DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_" + InfoModel.masterTodaysDateyymmdd + ".pins");	
+		File targetDir = new File(DMDocument.outputDirPath + "Model_DataDictionary");
+		targetDir.mkdirs();
 		write11179DDPinsFile.writePINSFile (DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen" + ".pins");	
 		write11179DDPinsFile.writePINSFile (DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_" + DMDocument.masterTodaysDateyymmdd + ".pins");	
 		

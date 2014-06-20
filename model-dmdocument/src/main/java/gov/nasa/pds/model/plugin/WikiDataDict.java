@@ -27,6 +27,8 @@ class WikiDataDict extends Object {
 //	write the Intro to a wiki file
 	public void writeIntroWikiDD () throws java.io.IOException {
 //		prIntroWiki = new PrintWriter(new FileWriter("SchemaWikiDD/" + "pds4ddintro" + ".txt", false));
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDD");
+		targetDir.mkdirs();
 		prIntroWiki = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDD/" + "pds4ddintro" + ".txt", false));
 //		System.out.println("\ndebug  starting writeIntroWiki");
 		prIntroWiki.println("h4. PDS4 Data Design Working Group");
@@ -51,6 +53,8 @@ class WikiDataDict extends Object {
 //	write the Intro to a wiki file
 	public void writeIntroWikiDDA3 () throws java.io.IOException {
 //		prIntroWiki = new PrintWriter(new FileWriter("SchemaWikiDDA3/" + "pds4ddintro" + ".txt", false));
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDDA3");
+		targetDir.mkdirs();
 		prIntroWiki = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDDA3/" + "pds4ddintro" + ".txt", false));
 //		System.out.println("\ndebug  starting writeIntroWiki");
 		prIntroWiki.println("h4. PDS4 Data Design Working Group");
@@ -76,6 +80,8 @@ class WikiDataDict extends Object {
 //	write the data types to a wiki file
 	public void writeDataTypesWikiFiles () throws java.io.IOException {
 //		prDataTypesWiki = new PrintWriter(new FileWriter("SchemaWikiDDA3/" + "pds4datatypes" + ".txt", false));
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDDA3");
+		targetDir.mkdirs();
 		prDataTypesWiki = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDDA3/" + "pds4datatypes" + ".txt", false));
 		writeDataTypesWiki (InfoModel.masterDataTypesArr, prDataTypesWiki);
 		prDataTypesWiki.close();

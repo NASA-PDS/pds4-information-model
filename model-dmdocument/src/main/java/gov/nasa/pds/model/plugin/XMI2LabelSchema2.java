@@ -32,6 +32,8 @@ class XMI2LabelSchema2 extends Object {
 //		System.out.println("\ndebug XMIFile");		
 		
 //	    prXML = new PrintWriter(new FileWriter("SchemaXMI/" + "XMI" + "_" + InfoModel.lab_version_id + "_wNames.xmi", false));
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaXMI");
+		targetDir.mkdirs();
 	    prXML = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaXMI/" + "XMI" + "_" + InfoModel.lab_version_id + "_wNames.xmi", false));
 	    
 		writeXMIHdr (todaysDate);

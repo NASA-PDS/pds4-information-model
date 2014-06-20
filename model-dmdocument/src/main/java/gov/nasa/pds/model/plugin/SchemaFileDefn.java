@@ -1,5 +1,6 @@
 package gov.nasa.pds.model.plugin;
 import java.util.ArrayList;
+import java.io.File;
 
 public class SchemaFileDefn {
 	// identifier is the namespace id, without colon, and in caps; it must be unique within the PDS
@@ -50,6 +51,8 @@ public class SchemaFileDefn {
 		fileNameUC = id.toUpperCase();					// forced upper case
 		fileNameNC = id;								// no change
 //		fileExtension = "xsd";
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaXML4");
+		targetDir.mkdirs();
 		directoryPath = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_";		
 		stewardArr = new ArrayList <String>();
 	} 

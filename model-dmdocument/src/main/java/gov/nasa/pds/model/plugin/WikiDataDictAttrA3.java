@@ -26,6 +26,8 @@ class WikiDataDictAttrA3 extends Object{
 //	print the ISO 11179 DD Wiki - Abridged
 //  This version of the Abridge is close to the unabridged but with Product Classes added and DCE and CD removed.
 	public void printISO11179DDWiki (boolean isAbridged) throws java.io.IOException {
+		File targetDir = new File(DMDocument.outputDirPath + "SchemaWikiDDA3");
+		targetDir.mkdirs();
 		PrintWriter prDDWiki = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaWikiDDA3/" + "PDS4DDWikiAttr.txt", false));
 		printAttrISODEWiki (isAbridged, prDDWiki);
 		printMiscISO (isAbridged, prDDWiki);
