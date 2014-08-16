@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2010-2013, by the California Institute of Technology.
+  Copyright 2010-2014, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -36,7 +36,7 @@
       <description>
         The PDS4 Model Ontology…
       </description>
-      <url>http://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
+      <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
 
     <licenses>
         <license>

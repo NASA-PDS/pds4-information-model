@@ -17,7 +17,7 @@
 <project name="Model">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>http://pds-cm.jpl.nasa.gov/pds4/</href>
+    <href>https://pds-cm.jpl.nasa.gov/pds4/</href>
   </bannerLeft>
 
   <bannerRight>
@@ -26,7 +26,7 @@
 
   <body>
     <links>
-      <item name="Model" href="http://pds-cm.jpl.nasa.gov/pds4/model/index.html" />
+      <item name="Model" href="https://pds-cm.jpl.nasa.gov/pds4/model/index.html" />
     </links>
 
     <menu name="Software Documentation">
