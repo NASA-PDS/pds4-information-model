@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2010, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+
+  $Id: index.xml 7527 2010-07-29 23:38:59Z shardman $
+-->
+
+<document>
+  <properties>
+    <title>About Model Ontology</title>
+    <author email="Sean.Hardman@jpl.nasa.gov">Sean Hardman</author>
+  </properties>
+
+  <body>
+    <section name="About Model Ontology">
+      <p>The PDS4 Model Ontology component encapsulates the Protégé ontology instances
+        for the PDS4 information and data model.  This package uses the Maven plugin
+        "pds-model-dmdocument-maven-plugin" to generate documentation and other
+        artifcats from the ontology and packages this output (including generated,
+        DM documentation, classes and attribute definitions) into a JAR file.
+      </p>
+      <p>To generate the output artifacts:</p>
+      <ol>
+        <li>Place the Protégé output ontology instances in the <code>src/ontology</code> directory.
+          (The output must go into a <code>Data</code> subdirectory beneath <code>src/ontology</code>
+          due to the way the DM-Document plugin assumes things work).
+        </li>
+        <li>Commit these changes to revision control (with <code>svn commit</code>, for example).</li>
+        <li>Run <code>mvn jar:jar</code> to generate a <code>target/model-ontology-VERSION.jar</code> file
+          that contains all of the generate artifacts.
+        </li>
+      </ol>
+
+      <p>Please send comments, change requests and bug reports to the <a href="mailto:pds_operator@jpl.nasa.gov">PDS Operator</a> at pds_operator@jpl.nasa.gov.
+      </p>
+    </section>
+  </body>
+</document>

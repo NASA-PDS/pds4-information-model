@@ -33,7 +33,8 @@
 
     <name>PDS Model DM-Document Maven Plugin</name>
     <description>
-        TBD
+        The Model DM-Document component provides Maven plugins that generate DM
+        documents and other artifacts from ontologies.
     </description>
     <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-dmdocument/</url>
 

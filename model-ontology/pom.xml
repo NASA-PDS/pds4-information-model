@@ -32,11 +32,14 @@
     </properties>
 
 
-      <name>Model Ontology</name>
-      <description>
-        The PDS4 Model Ontology…
-      </description>
-      <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
+    <name>Model Ontology</name>
+    <description>
+        The PDS4 Model Ontology component conains the Protégé ontology instances
+        for the PDS4 information and data model, and uses the Maven plugin
+        "pds-model-dmdocument-maven-plugin" to generate documentation and other
+        artifcats from the ontology into a generated JAR file.
+    </description>
+    <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
 
     <licenses>
         <license>

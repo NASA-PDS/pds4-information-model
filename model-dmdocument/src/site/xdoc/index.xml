@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  Copyright 2010, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+
+  $Id: index.xml 7527 2010-07-29 23:38:59Z shardman $
+-->
+
+<document>
+  <properties>
+    <title>About DM-Document</title>
+    <author email='Sean.Hardman@jpl.nasa.gov'>Sean Hardman</author>
+  </properties>
+
+  <body>
+    <section name='About DM-Document'>
+      <p>This component is a Maven plugin that takes output from <a href='http://protege.stanford.edu/'>Protégé</a>
+        in the form of ontology instance files and from that generates DM-documents and other artifacts
+        that can be used to do report, chronicle, detail, and describe the PDS ontology in a number
+        of formats.
+      </p>
+      <p>To use this component, you reference it from a Maven project that has ontology files and a <code>pom.xml</code>
+        configured with a <code>build</code> section to execute the plugin on the ontology files.  Typically, you
+        will install your ontology files in <code>PROJECT-BASEDIR/src/ontology/Data</code>.  Then, add the following
+        <code>build</code> section to <code>pom.xml</code>:
+      </p>
+      <pre><![CDATA[<build>
+    <plugins>
+        <plugin>
+            <groupId>gov.nasa.pds.2010</groupId>
+            <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
+            <version>1.6.0-dev</version>
+            <configuration>
+                <ontologySrc>${basedir}/src/ontology</ontologySrc>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>default-compile</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>generateDocumentation</goal>
+                        <goal>generateClasses</goal>
+                        <goal>generateAttributes</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+]]></pre>
+      <p>The above tells Maven to use the plugin called "pds-model-dmdocument-maven-plugin" version "1.6.0-dev",
+        produced by the group "gov.nasa.pds.2010".  Maven should use this plugin during the <code>compile</code> phase
+        of software generation.  During the compile phase, we ask the plugin to create documentation files
+        (with the <code>generateDocumentation</code> goal), to generate class files
+        (with the <code>generateClasses</code> goal),
+        and generate attribute definitions (with the <code>generateAttributes</code> goal).  The results will go into
+        the project's JAR file (assuming the POM's packaging is set to <code>jar</code>).
+      </p>
+      <p>To generate these artifacts, you can then run <code>mvn jar:jar</code>.  The artifacts will be generated and
+        bundled up into the project's <code>.jar</code> file in the <code>target</code> subdirectory.
+      </p>
+
+      <p>Please send comments, change requests and bug reports to the <a href='mailto:pds_operator@jpl.nasa.gov'>PDS Operator</a> at pds_operator@jpl.nasa.gov.
+      </p>
+    </section>
+  </body>
+</document>
