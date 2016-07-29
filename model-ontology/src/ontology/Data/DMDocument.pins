@@ -1,7 +1,7 @@
-; Wed Nov 06 15:44:03 PST 2013
+; Wed Oct 07 15:42:26 PDT 2015
 ; 
-;+ (version "3.4.7")
-;+ (build "Build 620")
+;+ (version "3.5")
+;+ (build "Build 663")
 
 ([1000-Introduction] of  Section
 
@@ -1423,69 +1423,133 @@
 	(subSecTOCFlag "true")
 	(title "SBN Discipline Classes"))
 
-([5900-DiscMSNModel] of  Section
+([5900-DiscGeomModel] of  Section
 
-	(description "This section provides the sets of classes associated with the disciplines.")
-	(identifier "5900-DiscMSNModel")
+	(description "This section provides the sets of classes associated with the Geometry discipline.")
+	(identifier "5900-DiscGeomModel")
 	(imageCaption "none")
 	(imageFileName "none")
-	(includeFlag "false")
+	(includeFlag "true")
 	(latexFormat "1")
 	(secSubType "contentHDR")
 	(secTOCFlag "true")
 	(secType "text")
 	(selectConstraint "none")
 	(subSecTOCFlag "false")
-	(title "Mission Discipline Classes"))
+	(title "Geometry Discipline Classes"))
 
-([5910-DiscMSNClassHierarchy] of  Section
+([5901-DiscGeomClassHierarchy] of  Section
 
 	(description "\\newline \\newline The discipline class hierarchy is illustrated in the following diagram. This diagram presents the subclassOf relation for each class using a hierarchical (tree) format, providing a visual representation of the classes in relation to their parent classes.")
-	(has_Model_Content [DiscMSNContent])
-	(identifier "5910-DiscMSNClassHierarchy")
+	(has_Model_Content [DiscGeomContent])
+	(identifier "5901-DiscGeomClassHierarchy")
 	(imageCaption "none")
 	(imageFileName "none")
-	(includeFlag "false")
+	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "hierarchy")
-	(Section_Model_Content_Id "DiscMSNContent")
+	(Section_Model_Content_Id "DiscGeomContent")
 	(secTOCFlag "false")
 	(secType "model")
 	(selectConstraint "0520")
 	(subSecTOCFlag "false")
-	(title "Mission Discipline Class Hierarchy"))
+	(title "Geometry Discipline Class Hierarchy"))
 
-([5920-DiscMSNUMLModel] of  Section
+([5902-DiscGeomUMLModel] of  Section
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
-	(identifier "5920-DiscMSNUMLModel")
+	(identifier "5902-DiscGeomUMLModel")
 	(imageCaption "Discipline UML Class Diagram")
-	(imageFileName "MsnClass")
-	(includeFlag "false")
+	(imageFileName "none")
+	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
 	(secTOCFlag "false")
 	(secType "text")
 	(selectConstraint "none")
 	(subSecTOCFlag "false")
-	(title "Mission Discipline UML Class Diagram"))
+	(title "Geometry Discipline UML Class Diagram"))
 
-([5930-DiscMSNObjectModel] of  Section
+([5903-DiscGeomObjectModel] of  Section
 
 	(description "The following sections present the discipline classes in a table format. The table includes the class hierarchy, class attributes, and class associations. The class attributes and associations listed include both those used to define the class and those inherited from parent classes. Cardinalities are provided where appropriate.")
-	(has_Model_Content [DiscMSNContent])
-	(identifier "5930-DiscMSNObjectModel")
+	(has_Model_Content [DiscGeomContent])
+	(identifier "5903-DiscGeomObjectModel")
 	(imageCaption "none")
 	(imageFileName "none")
-	(includeFlag "false")
+	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "table")
-	(Section_Model_Content_Id "DiscMSNContent")
+	(Section_Model_Content_Id "DiscGeomContent")
 	(secTOCFlag "false")
 	(secType "model")
 	(selectConstraint "0520")
 	(subSecTOCFlag "true")
-	(title "Mission Discipline Classes"))
+	(title "Geometry Discipline Classes"))
+
+([5910-DiscCartModel] of  Section
+
+	(description "This section provides the sets of classes associated with the Cartography discipline.")
+	(identifier "5910-DiscCartModel")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "true")
+	(latexFormat "1")
+	(secSubType "contentHDR")
+	(secTOCFlag "true")
+	(secType "text")
+	(selectConstraint "none")
+	(subSecTOCFlag "false")
+	(title "Cartography Discipline Classes"))
+
+([5911-DiscCartClassHierarchy] of  Section
+
+	(description "\\newline \\newline The discipline class hierarchy is illustrated in the following diagram. This diagram presents the subclassOf relation for each class using a hierarchical (tree) format, providing a visual representation of the classes in relation to their parent classes.")
+	(has_Model_Content [DiscCartContent])
+	(identifier "5911-DiscCartClassHierarchy")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "true")
+	(latexFormat "0")
+	(secSubType "hierarchy")
+	(Section_Model_Content_Id "DiscCartContent")
+	(secTOCFlag "false")
+	(secType "model")
+	(selectConstraint "0520")
+	(subSecTOCFlag "false")
+	(title "Cartography Discipline Class Hierarchy"))
+
+([5912-DiscCartUMLModel] of  Section
+
+	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
+	(identifier "5912-DiscCartUMLModel")
+	(imageCaption "Discipline UML Class Diagram")
+	(imageFileName "none")
+	(includeFlag "true")
+	(latexFormat "0")
+	(secSubType "content")
+	(secTOCFlag "false")
+	(secType "text")
+	(selectConstraint "none")
+	(subSecTOCFlag "false")
+	(title "Cartography Discipline UML Class Diagram"))
+
+([5913-DiscCartObjectModel] of  Section
+
+	(description "The following sections present the discipline classes in a table format. The table includes the class hierarchy, class attributes, and class associations. The class attributes and associations listed include both those used to define the class and those inherited from parent classes. Cardinalities are provided where appropriate.")
+	(has_Model_Content [DiscCartContent])
+	(identifier "5913-DiscCartObjectModel")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "true")
+	(latexFormat "0")
+	(secSubType "table")
+	(Section_Model_Content_Id "DiscCartContent")
+	(secTOCFlag "false")
+	(secType "model")
+	(selectConstraint "0520")
+	(subSecTOCFlag "true")
+	(title "Cartography Discipline Classes"))
 
 ([6100-DataTypeModel] of  Section
 
@@ -1664,6 +1728,70 @@
 	(subSecTOCFlag "false")
 	(title "Glossary"))
 
+([9x00-DiscMSNModel] of  Section
+
+	(description "This section provides the sets of classes associated with the disciplines.")
+	(identifier "5900-DiscMSNModel")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "false")
+	(latexFormat "1")
+	(secSubType "contentHDR")
+	(secTOCFlag "true")
+	(secType "text")
+	(selectConstraint "none")
+	(subSecTOCFlag "false")
+	(title "Mission Discipline Classes"))
+
+([9x10-DiscMSNClassHierarchy] of  Section
+
+	(description "\\newline \\newline The discipline class hierarchy is illustrated in the following diagram. This diagram presents the subclassOf relation for each class using a hierarchical (tree) format, providing a visual representation of the classes in relation to their parent classes.")
+	(has_Model_Content [DiscMSNContent])
+	(identifier "5910-DiscMSNClassHierarchy")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "false")
+	(latexFormat "0")
+	(secSubType "hierarchy")
+	(Section_Model_Content_Id "DiscMSNContent")
+	(secTOCFlag "false")
+	(secType "model")
+	(selectConstraint "0520")
+	(subSecTOCFlag "false")
+	(title "Mission Discipline Class Hierarchy"))
+
+([9x20-DiscMSNUMLModel] of  Section
+
+	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
+	(identifier "5920-DiscMSNUMLModel")
+	(imageCaption "Discipline UML Class Diagram")
+	(imageFileName "MsnClass")
+	(includeFlag "false")
+	(latexFormat "0")
+	(secSubType "content")
+	(secTOCFlag "false")
+	(secType "text")
+	(selectConstraint "none")
+	(subSecTOCFlag "false")
+	(title "Mission Discipline UML Class Diagram"))
+
+([9x30-DiscMSNObjectModel] of  Section
+
+	(description "The following sections present the discipline classes in a table format. The table includes the class hierarchy, class attributes, and class associations. The class attributes and associations listed include both those used to define the class and those inherited from parent classes. Cardinalities are provided where appropriate.")
+	(has_Model_Content [DiscMSNContent])
+	(identifier "5930-DiscMSNObjectModel")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "false")
+	(latexFormat "0")
+	(secSubType "table")
+	(Section_Model_Content_Id "DiscMSNContent")
+	(secTOCFlag "false")
+	(secType "model")
+	(selectConstraint "0520")
+	(subSecTOCFlag "true")
+	(title "Mission Discipline Classes"))
+
 ([DataDictionaryContent] of  Section_Model_Content
 
 	(description "DataDictionaryContent")
@@ -1698,6 +1826,15 @@
 	(name_space_id "atm:")
 	(title "DiscATMContent"))
 
+([DiscCartContent] of  Section_Model_Content
+
+	(description "DiscCartContent")
+	(identifier "DiscCartContent")
+	(Include_Class_Id "#24")
+	(Model_Identifier "UpperModel")
+	(name_space_id "geom:")
+	(title "DiscCartContent"))
+
 ([DiscGEOContent] of  Section_Model_Content
 
 	(description "DiscGEOContent")
@@ -1705,6 +1842,15 @@
 	(Model_Identifier "UpperModel")
 	(name_space_id "geo:")
 	(title "DiscGEOContent"))
+
+([DiscGeomContent] of  Section_Model_Content
+
+	(description "DiscGeomContent")
+	(identifier "DiscGeomContent")
+	(Include_Class_Id "#23")
+	(Model_Identifier "UpperModel")
+	(name_space_id "geom:")
+	(title "DiscGeomContent"))
 
 ([DiscIMGContent] of  Section_Model_Content
 
@@ -1797,7 +1943,7 @@
 	(identifier "0100-PDS4 Information Model Specification")
 	(subtitle "Final")
 	(title "PDS4 Information Model Specification")
-	(version "1.1.0.1"))
+	(version "1.5.1.0"))
 
 ([ProdModelContentLabel] of  Section_Model_Content
 

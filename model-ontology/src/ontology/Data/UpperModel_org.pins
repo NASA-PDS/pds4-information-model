@@ -1,0 +1,255 @@
+; Wed Oct 21 18:39:56 PDT 2015
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([2D] of  Group_Facet1
+
+	(facet1 "2D"))
+
+([astrometry] of  Group_Facet1
+
+	(facet1 "astrometry"))
+
+([Atmospheres] of  Discipline_Facets
+
+	(discipline_name "Atmospheres")
+	(has_Group_Facet1
+		[Structure]
+		[Meteorology]))
+
+([Background] of  Group_Facet2
+
+	(facet2 "Background"))
+
+([Color] of  Group_Facet1
+
+	(facet1 "Color"))
+
+([Color+Movie] of  Group_Facet1
+
+	(facet1 "Color Movie"))
+
+([Cosmic+Ray] of  Group_Facet2
+
+	(facet2 "Cosmic Ray"))
+
+([Dust+Study] of  Group_Facet1
+
+	(facet1 "Dust Study"))
+
+([Dynamical+Properties] of  Group_Facet1
+
+	(facet1 "Dynamical Properties"))
+
+([Electric] of  Group_Facet1
+
+	(facet1 "Electric"))
+
+([Electrons] of  Group_Facet1
+
+	(facet1 "Electrons"))
+
+([Energetic] of  Group_Facet2
+
+	(facet2 "Energetic"))
+
+([Fields] of  Discipline_Facets
+
+	(discipline_name "Fields")
+	(has_Group_Facet1
+		[Electric]
+		[Magnetic])
+	(has_Group_Facet2
+		[Background]
+		[Waves]))
+
+([Flux+Measurements] of  Discipline_Facets
+
+	(discipline_name "Flux Measurements")
+	(has_Group_Facet1
+		[Photometry]
+		[Polarimetry]))
+
+([Gas+Study] of  Group_Facet1
+
+	(facet1 "Gas Study"))
+
+([Grayscale] of  Group_Facet1
+
+	(facet1 "Grayscale"))
+
+([Historical+Reference] of  Group_Facet1
+
+	(facet1 "Historical Reference"))
+
+([Imaging] of  Discipline_Facets
+
+	(discipline_name "Imaging")
+	(has_Group_Facet1
+		[Grayscale]
+		[Color]
+		[Movie]
+		[Color+Movie]))
+
+([Ions] of  Group_Facet1
+
+	(facet1 "Ions"))
+
+([Lightcurve] of  Group_Facet1
+
+	(facet1 "Lightcurve"))
+
+([Linear] of  Group_Facet1
+
+	(facet1 "Linear"))
+
+([Magnetic] of  Group_Facet1
+
+	(facet1 "Magnetic"))
+
+([Meteoritics] of  Group_Facet1
+
+	(facet1 "Meteoritics"))
+
+([Meteorology] of  Group_Facet1
+
+	(facet1 "Meteorology"))
+
+([Movie] of  Group_Facet1
+
+	(facet1 "Movie"))
+
+([Neutrals] of  Group_Facet1
+
+	(facet1 "Neutrals"))
+
+([Particles] of  Discipline_Facets
+
+	(discipline_name "Particles")
+	(has_Group_Facet1
+		[Ions]
+		[Electrons]
+		[Neutrals])
+	(has_Group_Facet2
+		[Cosmic+Ray]
+		[Solar+Energetic]
+		[Energetic]
+		[Plasma]))
+
+([Photometry] of  Group_Facet1
+
+	(facet1 "Photometry"))
+
+([Physical+Properties] of  Group_Facet1
+
+	(facet1 "Physical Properties"))
+
+([Plasma] of  Group_Facet2
+
+	(facet2 "Plasma"))
+
+([Polarimetry] of  Group_Facet1
+
+	(facet1 "Polarimetry"))
+
+([Product_Image_Grayscale_1_Identification_Area] of  Identification_Area
+
+	(logical_identifier "MPFL-M-IMP-2-EDR-V1.0:PDS4_IMG_IMAGE_GRAYSCALE_ID")
+	(title "MARS PATHFINDER LANDER Experiment")
+	(version_id "1.0"))
+
+([Production+Rates] of  Group_Facet1
+
+	(facet1 "Production Rates"))
+
+([Ring+Compositional+Map] of  Group_Facet1
+
+	(facet1 "Ring Compositional Map"))
+
+([Ring+Occultation+Profile] of  Group_Facet1
+
+	(facet1 "Ring Occultation Profile"))
+
+([Ring+Thermal+Map] of  Group_Facet1
+
+	(facet1 "Ring Thermal Map"))
+
+([Ring-Moon+Systems] of  Discipline_Facets
+
+	(discipline_name "Ring-Moon Systems")
+	(has_Group_Facet1
+		[Satellite+Astrometry]
+		[Ring+Compositional+Map]
+		[Ring+Occultation+Profile]
+		[Ring+Thermal+Map]))
+
+([Satellite+Astrometry] of  Group_Facet1
+
+	(facet1 "Satellite Astrometry"))
+
+([Shape+Model] of  Group_Facet1
+
+	(facet1 "Shape Model"))
+
+([Small+Bodies] of  Discipline_Facets
+
+	(discipline_name "Small Bodies")
+	(has_Group_Facet1
+		[Dynamical+Properties]
+		[Lightcurve]
+		[Meteoritics]
+		[Physical+Properties]
+		[Production+Rates]
+		[Shape+Model]
+		[Taxonomy]
+		[Dust+Study]
+		[Historical+Reference]
+		[Gas+Study]))
+
+([Solar+Energetic] of  Group_Facet2
+
+	(facet2 "Solar Energetic"))
+
+([Spectral+Cube] of  Group_Facet1
+
+	(facet1 "Spectral Cube"))
+
+([Spectral+Image] of  Group_Facet1
+
+	(facet1 "Spectral Image"))
+
+([Spectroscopy] of  Discipline_Facets
+
+	(discipline_name "Spectroscopy")
+	(has_Group_Facet1
+		[2D]
+		[Linear]
+		[Spectral+Cube]
+		[Spectral+Image]
+		[Tabulated]))
+
+([Structure] of  Group_Facet1
+
+	(facet1 "Structure"))
+
+([Tabulated] of  Group_Facet1
+
+	(facet1 "Tabulated"))
+
+([Taxonomy] of  Group_Facet1
+
+	(facet1 "Taxonomy"))
+
+([upper_091022_Instance_4] of  %3APAL-CONSTRAINT
+)
+
+([upper_091228_Instance_15] of  %3APAL-CONSTRAINT
+)
+
+([upper_110812b_Class0] of  %3APAL-CONSTRAINT
+)
+
+([Waves] of  Group_Facet2
+
+	(facet2 "Waves"))
