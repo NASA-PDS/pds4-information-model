@@ -10,6 +10,7 @@ import java.util.*;
 class Write11179DDPinsFile extends Object{
 	
 	ArrayList <String> adminRecUsedArr, adminRecTitleArr;
+	// good	PrintWriter prDDPins;
 	PrintWriter prDDPins;
 
 	public Write11179DDPinsFile () {
@@ -17,12 +18,15 @@ class Write11179DDPinsFile extends Object{
 	}
 
 	// write the PINS file
-//	public void writePINSFile () throws java.io.IOException {
 	public void writePINSFile (String lFileName) throws java.io.IOException {
-	    prDDPins = new PrintWriter(new FileWriter(lFileName, false));
-//	    prDDPins = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "dd11179_" + InfoModel.masterTodaysDateyymmdd + ".pins", false));
-//	    prDDPins = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179" + ".pins", false));
-		printPDDPHdr();
+//		FileWriter fw = new FileWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+//		To specify these values yourself, construct an OutputStreamWriter on a FileOutputStream.	    
+// good	    FileOutputStream specFileOutputStream = new FileOutputStream(new File(lFileName));
+// good	    prDDPins = new PrintWriter(new OutputStreamWriter (specFileOutputStream, "UTF-8"));
+
+		prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
+		
+	    printPDDPHdr();
 		printPDDPBody ();
 		printPDDPFtr();
 		prDDPins.close();
@@ -112,12 +116,24 @@ class Write11179DDPinsFile extends Object{
 						if (lPermValue != null) {
 				 			int lHashCodeI = lPermValue.value.hashCode();
 							String lHashCodeS = Integer.toString(lHashCodeI);
-							String tPermValue = "Pattern";
+							
+							
+// v1.3	- fix pattern for data types.		
+/*							if (lAttr.title.compareTo("pattern") != 0) {
+								String tPermValue = lPermValue.value;
+								if (tPermValue.indexOf("[0001-9999]") > -1) {
+									tPermValue = InfoModel.replaceString(tPermValue, "[0001-9999]", "[0-9]{4}");
+						 			lHashCodeI = tPermValue.hashCode();
+									lHashCodeS = Integer.toString(lHashCodeI);
+								}
+							}							
+							*/
+							
+// v1.3
+/*							String tPermValue = "Pattern";
 							if (lAttr.title.compareTo("pattern") != 0) {
 								tPermValue = InfoModel.replaceString(lPermValue.value, " ", "_");
-							}
-// 999
-//							String pvIdentifier =  "pv." + lAttr.dataIdentifier + "_" + lHashCodeS;	// permissible value
+							} */
 							String pvIdentifier =  "pv." + lAttr.dataIdentifier + "." + lHashCodeS;	// permissible value
 							prDDPins.print("    [" + pvIdentifier + "]");
 						}
@@ -163,18 +179,30 @@ class Write11179DDPinsFile extends Object{
 			if (lAttr.isEnumerated) {				
 				for (Iterator<PermValueDefn> j = lAttr.permValueArr.iterator(); j.hasNext();) {
 					PermValueDefn lPermValue = (PermValueDefn) j.next();
-//					prDDPins.print(lfc);
 					if (lPermValue != null) {
 			 			int lHashCodeI = lPermValue.value.hashCode();
 						String lHashCodeS = Integer.toString(lHashCodeI);
-						String tPermValue = "Pattern";
+						
+// v1.3	- fix pattern for data types.
+						/*
+						String tPermValue = lPermValue.value;
+						String tPermValueMeaning = lPermValue.value_meaning;
+
+						if (lAttr.title.compareTo("pattern") != 0) {
+							if (tPermValue.indexOf("[0001-9999]") > -1) {
+								tPermValue = InfoModel.replaceString(tPermValue, "[0001-9999]", "[0-9]{4}");
+								tPermValueMeaning = InfoModel.replaceString(tPermValueMeaning, "[0001-9999]", "[0-9]{4}");
+					 			lHashCodeI = tPermValue.hashCode();
+								lHashCodeS = Integer.toString(lHashCodeI);
+							}
+						}
+						*/
+						
+// v1.3						
+/*						String tPermValue = "Pattern";
 						if (lAttr.title.compareTo("pattern") != 0) {
 							tPermValue = InfoModel.replaceString(lPermValue.value, " ", "_");
-						}
-
-// 999						
-//						String pvIdentifier =  "pv." + lAttr.dataIdentifier + "_" + lHashCodeS;	// permissible value
-//						String vmIdentifier =  "vm." + lAttr.dataIdentifier + "_" + lHashCodeS;
+						} */
 						String pvIdentifier =  "pv." + lAttr.dataIdentifier + "." + lHashCodeS;	// permissible value
 						String vmIdentifier =  "vm." + lAttr.dataIdentifier + "." + lHashCodeS;
 						prDDPins.println("([" + pvIdentifier + "] of PermissibleValue");
@@ -183,13 +211,14 @@ class Write11179DDPinsFile extends Object{
 						prDDPins.println("  (endDate \"" + DMDocument.endDateValue + "\")");
 						prDDPins.println("  (usedIn [" + vmIdentifier + "])");
 						prDDPins.println("  (value \"" + InfoModel.escapeProtegeString(lPermValue.value) + "\"))");
+// v1.3					prDDPins.println("  (value \"" + InfoModel.escapeProtegeString(tPermValue) + "\"))");
 						prDDPins.println(" ");
 						prDDPins.println("([" + vmIdentifier + "] of ValueMeaning");
 						prDDPins.println("  (beginDate \"" + DMDocument.beginDatePDS4Value + "\")");
 						prDDPins.println("  (containing1 [" + lAttr.evdDataIdentifier + "])");
 						prDDPins.println("  (endDate \"" + DMDocument.endDateValue + "\")");
 						prDDPins.println("  (description \"" + InfoModel.escapeProtegeString(lPermValue.value_meaning) + "\"))");
-//						prDDPins.println("  (description \"" + "TBD_Value_Meaning" + "\"))");
+// v1.3						prDDPins.println("  (description \"" + InfoModel.escapeProtegeString(tPermValueMeaning) + "\"))");
 						prDDPins.println(" ");
 					}
 				}
@@ -217,9 +246,8 @@ class Write11179DDPinsFile extends Object{
 
 	// Print the the Protege Pins CD
 	public  void printPDDPCD (PrintWriter prDDPins) {
-		
-		ArrayList <IndexDefn> lSortedCDArr = getCDAssocs ();
-		for (Iterator<IndexDefn> i = lSortedCDArr.iterator(); i.hasNext();) {
+		ArrayList <IndexDefn> lCDAttrArr = new ArrayList <IndexDefn> (InfoModel.cdAttrMap.values());
+		for (Iterator<IndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
 			IndexDefn lIndex = (IndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "CD_" + gIdentifier;
@@ -278,10 +306,8 @@ class Write11179DDPinsFile extends Object{
 	
 	// Print the the Protege Pins DEC
 	public  void printPDDPDEC (PrintWriter prDDPins) {
-		
-		ArrayList <IndexDefn> lSortedDECArr = getDECAssocs ();
-		
-		for (Iterator<IndexDefn> i = lSortedDECArr.iterator(); i.hasNext();) {
+		ArrayList <IndexDefn> lDECAttrArr = new ArrayList <IndexDefn> (InfoModel.decAttrMap.values());
+		for (Iterator<IndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
 			IndexDefn lIndex = (IndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "DEC_" + gIdentifier;
@@ -306,7 +332,6 @@ class Write11179DDPinsFile extends Object{
 			for (Iterator<String> j = lIndex.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
 				String lCD = (String) j.next();
 				prDDPins.print(lfc);
-//3				prDDPins.print("    [" + "CD." + DMDocument.registrationAuthorityIdentifierValue + "." + lCD + "]");
 				prDDPins.print("    [" + "CD_" + lCD + "]");
 				lfc = "\n";
 			}
@@ -338,12 +363,11 @@ class Write11179DDPinsFile extends Object{
 	// Print the the Protege Pins TE
 	public  void printPDDPTE (PrintWriter prDDPins) {
 		// print the Terminological Entry
-//		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
-//		for (Iterator<AttrDefn> i = InfoModel.getMasterMOFAttrIdMap().iterator(); i.hasNext();) {
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+///		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
+///		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
+			if (lAttr.isUsedInClass && lAttr.isAttribute) {
 				// print TE section
 				prDDPins.println("([" + lAttr.teDataIdentifier + "] of TerminologicalEntry");
 				prDDPins.println("  (administeredItemContext [NASA_PDS])");
@@ -487,8 +511,8 @@ class Write11179DDPinsFile extends Object{
 		TreeMap <String, AttrDefn> lTreeMap = new TreeMap <String, AttrDefn>();
 		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
-				String sortKey = lAttr.title + ":" + lAttr.steward + "." + lAttr.className + ":" + lAttr.classSteward;
+			if (lAttr.isUsedInClass && lAttr.isAttribute) {
+				String sortKey = lAttr.title + ":" + lAttr.steward + "." + lAttr.parentClassTitle + ":" + lAttr.classSteward;
 				sortKey = sortKey.toUpperCase();
 				lTreeMap.put(sortKey, lAttr);
 			}
@@ -505,88 +529,14 @@ class Write11179DDPinsFile extends Object{
 		TreeMap <String, AttrDefn> lTreeMap = new TreeMap <String, AttrDefn>();
 		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
-//			if (lAttr.isUsedInModel) {
+//			if (lAttr.isUsedInClass) {
 			if (true) {
-				String sortKey = lAttr.title + ":" + lAttr.steward + "." + lAttr.className + ":" + lAttr.classSteward;
+				String sortKey = lAttr.title + ":" + lAttr.steward + "." + lAttr.parentClassTitle + ":" + lAttr.classSteward;
 				sortKey = sortKey.toUpperCase();
 				lTreeMap.put(sortKey, lAttr);
 			}
 		}
 		ArrayList <AttrDefn> lSortedAttrArr = new ArrayList <AttrDefn> (lTreeMap.values());		
 		return lSortedAttrArr; 
-	}	
-	
-	
-	// Get the Protege Pins CD Assocs
-	public  ArrayList <IndexDefn> getCDAssocs () {
-		TreeMap <String, IndexDefn> lTreeMap = new TreeMap <String, IndexDefn>();
-		
-		// get Attribute for the VD info
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
-//				String sortKey = lAttr.dataConcept.toUpperCase();
-				String sortKey = lAttr.dataConcept;
-				IndexDefn lIndex = lTreeMap.get(sortKey);
-				if (lIndex == null) {
-					lIndex = new IndexDefn(sortKey);
-					lTreeMap.put(sortKey, lIndex);
-				}
-//				lIndex.identifier1Arr.add(lAttr);
-				lIndex.identifier1Map.put(lAttr.identifier, lAttr);
-			}
-		}
-		
-		// get DEC
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
-//				String sortKey = lAttr.dataConcept.toUpperCase();
-				String sortKey = lAttr.dataConcept;
-				IndexDefn lIndex = lTreeMap.get(sortKey);
-				if (! lIndex.identifier2Arr.contains(lAttr.classConcept)) {
-					lIndex.identifier2Arr.add(lAttr.classConcept);
-				}
-			}
-		}
-		ArrayList <IndexDefn> lSortedCDArr = new ArrayList <IndexDefn> (lTreeMap.values());	
-		return lSortedCDArr;
-	}
-	
-	// Get the Protege Pins DEC Assocs
-	public  ArrayList <IndexDefn> getDECAssocs () {
-		TreeMap <String, IndexDefn> lTreeMap = new TreeMap <String, IndexDefn>();
-		
-		// get Attribute for the DE info
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-//			if (lAttr.isUsedInModel && lAttr.propType.compareTo("ATTRIBUTE") == 0) {
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
-//				String sortKey = lAttr.classConcept.toUpperCase();
-				String sortKey = lAttr.classConcept;
-				IndexDefn lIndex = lTreeMap.get(sortKey);
-				if (lIndex == null) {
-					lIndex = new IndexDefn(sortKey);
-					lTreeMap.put(sortKey, lIndex);
-				}
-//				lIndex.identifier1Arr.add(lAttr);
-				lIndex.identifier1Map.put(lAttr.identifier, lAttr);
-			}
-		}
-		// get DEC
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-//			if (lAttr.isUsedInModel && lAttr.propType.compareTo("ATTRIBUTE") == 0) {
-			if (lAttr.isUsedInModel && lAttr.isAttribute) {
-//				String sortKey = lAttr.classConcept.toUpperCase();
-				String sortKey = lAttr.classConcept;
-				IndexDefn lIndex = lTreeMap.get(sortKey);
-				if (! lIndex.identifier2Arr.contains(lAttr.dataConcept)) {
-					lIndex.identifier2Arr.add(lAttr.dataConcept);
-				}
-			}
-		}
-		ArrayList <IndexDefn> lSortedDECArr = new ArrayList <IndexDefn> (lTreeMap.values());
-		return lSortedDECArr;
 	}
 }	

@@ -99,10 +99,22 @@ public class XMLDocParserDomMDPTNConfig extends Object
 		NodeList nl = lElem.getElementsByTagName("Field");
 		if(nl != null && nl.getLength() > 0) {
 			
-			// get the use flag
+			// get the config file record type
 			Element el = (Element)nl.item(0);
 			if(el == null) {
 				System.out.println("error - null item(0)");
+				return;
+			}
+			String lConfigFileRecType = el.getFirstChild().getNodeValue();
+			if (lConfigFileRecType  == null) {
+				System.out.println("error - null lConfigFileRecType");
+				return;
+			}			
+			
+			// get the use flag
+			el = (Element)nl.item(1);
+			if(el == null) {
+				System.out.println("error - null item(1)");
 				return;
 			}
 			String lFlagValue = el.getFirstChild().getNodeValue();
@@ -110,7 +122,6 @@ public class XMLDocParserDomMDPTNConfig extends Object
 				System.out.println("error - null lFlagValue");
 				return;
 			}
-
 //			System.out.println("\ndebug lFlagValue:" + lFlagValue);
 			yFlag = false;
 			if (lFlagValue.compareTo("Y") == 0) {
@@ -118,9 +129,9 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			}
 
 			// get the name
-			el = (Element)nl.item(1);
+			el = (Element)nl.item(2);
 			if(el == null) {
-				System.out.println("error - null item(1)");
+				System.out.println("error - null item(2)");
 				return;
 			}
 			String lNameValue = el.getFirstChild().getNodeValue();
@@ -131,9 +142,9 @@ public class XMLDocParserDomMDPTNConfig extends Object
 //			System.out.println("debug lNameValue:" + lNameValue);
 			
 			// get the disposition
-			el = (Element)nl.item(2);
+			el = (Element)nl.item(3);
 			if(el == null) {
-				System.out.println("error - null item(2)");
+				System.out.println("error - null item(3)");
 				return;
 			}
 			String lDispValue = el.getFirstChild().getNodeValue();
@@ -143,9 +154,9 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			}
 
 			// get the section
-			el = (Element)nl.item(3);
+			el = (Element)nl.item(4);
 			if(el == null) {
-				System.out.println("error - null item(3)");
+				System.out.println("error - null item(4)");
 				return;
 			}
 			String lSection = el.getFirstChild().getNodeValue();
@@ -155,14 +166,26 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			}
 			
 			// get the internal namespace
-			el = (Element)nl.item(4);
+			el = (Element)nl.item(5);
 			if(el == null) {
-				System.out.println("error - null item(4)");
+				System.out.println("error - null item(5)");
 				return;
 			}
 			String lIntNSId = el.getFirstChild().getNodeValue();
 			if (lIntNSId == null) {
 				System.out.println("error - null lIntNSId");
+				return;
+			}
+			
+			// get the internal steward
+			el = (Element)nl.item(6);
+			if(el == null) {
+				System.out.println("error - null item(6)");
+				return;
+			}
+			String lSteward = el.getFirstChild().getNodeValue();
+			if (lSteward == null) {
+				System.out.println("error - null lSteward");
 				return;
 			}
 			
@@ -173,6 +196,7 @@ public class XMLDocParserDomMDPTNConfig extends Object
 					classDisposition.disposition = lDispValue ;
 					classDisposition.section = lSection;
 					classDisposition.intNSId = lIntNSId;
+					classDisposition.intSteward = lSteward;
 					classDispositionMap.put(lNameValue, classDisposition);
 //					System.out.println("\ndebug classDispositionMap lNameValue:" + lNameValue);
 //					System.out.println("debug classDispositionMap classDisposition.identifier:" + classDisposition.identifier);
@@ -192,7 +216,7 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			}
 		}
 	}
-		
+	
 	private String getTextValue(Element ele, String tagName) {
 		String textVal = "TBD_Ingest_LDD";
 		NodeList nl = ele.getElementsByTagName(tagName);

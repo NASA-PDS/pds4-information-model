@@ -1,13 +1,51 @@
-package gov.nasa.pds.model.plugin;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class AAAUsefulCode {
 	
-	
 	/*	
-
+	 * 
+	if (DMDocument.debugFlag) System.out.println("debug getLocalDD Done");
+	if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles Done");
+		
 	System.out.println("debug xxx yyy.identifier:" + yyy.identifier);
+
+	System.out.println(">>error   - Association for Attribute is missing - Sort - lAttr.identifier:" + lAttr.identifier);
+	System.out.println(">>warning - get class using valArr - lAttr.identifier:" + lAttr.identifier + " - using first found:" + lClassMember.identifier + " - " + lClassMember.identifier);
 
 	InfoModel.printObjectDebug (1, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.rtqbb.Band_Bin_Set_RTQBB130614"));
 
+	String lClassId = InfoModel.getClassIdentifier ("pds", value);
+	PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+
+	String lClassId = InfoModel.getClassIdentifier (lNameSpaceIdNC, DMDocument.LDDToolSingletonClassTitle);
+	DMDocument.LDDToolSingletonClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+
+
+
+
+		// add attributes to master
+		for (Iterator <AttrDefn> i = tempMasterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (! InfoModel.masterMOFAttrIdMap.containsKey(lAttr.identifier)) {
+//				System.out.println("Debug - Adding to Master - Attribute - lAttr.identifier:" + lAttr.identifier);
+				InfoModel.masterMOFAttrMap.put(lAttr.rdfIdentifier, lAttr);
+				InfoModel.masterMOFAttrIdMap.put(lAttr.identifier, lAttr);
+				InfoModel.masterMOFAttrTitleMap.put(lAttr.title, lAttr);
+				InfoModel.masterMOFAttrArr.add(lAttr);
+			} else {
+				System.out.println(">>warning - Found duplicate attribute - lAttr.identifier:" + lAttr.identifier);
+			}
+		}
+		
+		// list attributes
+		System.out.println("\ndebug dump attribute dictionary");
+		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
+		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+		}
+		return;		
+		
 
 	// list Units keySet		
 	ArrayList <String> lUnitKeyArr = new ArrayList <String> (InfoModel.masterUnitOfMeasureMap.keySet());

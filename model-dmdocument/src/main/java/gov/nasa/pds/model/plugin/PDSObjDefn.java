@@ -3,9 +3,9 @@ import java.util.*;
 
 public class PDSObjDefn extends Object {
 
-	String rdfIdentifier;							// url, namespace, name -- used for object dictionary (hashmap)
-	String identifier; 								// no url, namespace, name
-	String title;  									// no url, no namespace, name
+	String rdfIdentifier;							// url, namespace, title -- used for object dictionary (hashmap)
+	String identifier; 								// no url, namespace, title (Is used as funcational equivalent of attr.nsTitle)
+	String title;  									// no url, no namespace, title
 	String versionId;								// the version of this class
 	String registrationStatus;						// ISO 11179 item registration status
 	String anchorString;							// "class_" + lClass.nameSpaceIdNC + "_" + lClass.title
@@ -19,7 +19,7 @@ public class PDSObjDefn extends Object {
 	String description;
 	String docSecType;								// class type = title
 	String subClassOfTitle;							// title
-	String subClassOfIdentifier;					// identifier
+	String subClassOfIdentifier;					// namespace + title
 	String rootClass;								// RDF identifier
 	String baseClassName;							// Fundamental structure class title
 	String localIdentifier;							// used temporarily for ingest of LDD
@@ -38,37 +38,27 @@ public class PDSObjDefn extends Object {
 	boolean isChoice;								// class requires xs:choice
 	boolean isAny;									// class requires xs:any
 	boolean includeInThisSchemaFile;
-	boolean isFromLDD;									// has been ingested from Ingest_LDD
-	boolean isReferencedFromLDD;						// is a class in the master that is referenced from an LDD
+	boolean isFromLDD;								// has been ingested from Ingest_LDD
+	boolean isReferencedFromLDD;					// is a class in the master that is referenced from an LDD
+	boolean isLDDElement;							// an XML schema element will be created for this class
 	
 	TreeMap <String, TermEntryDefn> termEntryMap;
 	
 	ArrayList <AttrDefn> hasSlot;
-
-	ArrayList <String> superClasses;  
 	ArrayList <String> subClasses; 
-
 	PDSObjDefn subClassOfInst;
-	PDSObjDefn rootClassInst; 
 	ArrayList <PDSObjDefn> superClass; 
 	ArrayList <PDSObjDefn> subClass; 
 	
-	ArrayList <String> ownedAttrTitle; 
-	ArrayList <String> ownedAssocTitle; 
-	ArrayList <String> inheritedAttrTitle; 
-	ArrayList <String> inheritedAssocTitle; 
-
-	ArrayList <String> ownedAttrId; 
-	ArrayList <String> inheritedAttrId; 
-	ArrayList <String> ownedAssocId; 
-	ArrayList <String> inheritedAssocId; 	
+	ArrayList <String> ownedAttrNSTitle; 
+	ArrayList <String> ownedAssocNSTitle; 
+	ArrayList <String> inheritedAttrNSTitle; 
+	ArrayList <String> inheritedAssocNSTitle; 	
 	
 	ArrayList <AttrDefn> ownedAttribute; 
 	ArrayList <AttrDefn> inheritedAttribute; 
 	ArrayList <AttrDefn> ownedAssociation; 
 	ArrayList <AttrDefn> inheritedAssociation; 
-	
-	AttrDefn lddBaseAssoc;								// this Assoc temporarily contains the superclass of this LDD class
 	
 	ArrayList <AttrDefn> allAttrAssocArr; 
 	ArrayList <AttrDefn> ownedAttrAssocNOArr;
@@ -76,9 +66,7 @@ public class PDSObjDefn extends Object {
 	ArrayList <AttrDefn> ownedAttrAssocAssertArr;		// all enumerated attributes, from this.class through to all superclasses.
 	ArrayList <String> ownedAttrAssocAssertTitleArr;	// all enumerated attributes, required to eliminate duplicates
 	
-	ArrayList <AssocDefn> allAssocArr;					// all associations *** NEW ***
-	ArrayList <AssocDefn> LDDAssocArr;					// LDD associations
-
+	ArrayList <AssocDefn> PropertyArr;					// Class Properties
 	
 	public PDSObjDefn (String rdfId) {
 		identifier = "TBD_identifier"; 
@@ -97,8 +85,8 @@ public class PDSObjDefn extends Object {
 		role = "TBD_role";
 		description = "TBD_description"; 
 		docSecType = "TBD_type"; 
-		subClassOfTitle = "TBD_super_class_title";
-		subClassOfIdentifier = "TBD_super_class_identifier";
+		subClassOfTitle = "TBD_subClassOfTitle";
+		subClassOfIdentifier = "TBD_subClassOfIdentifier";
 		rootClass = "TBD_root_class";
 		baseClassName = "TBD_base_class_name";
 		localIdentifier = "TBD_localIdentifier";
@@ -118,29 +106,19 @@ public class PDSObjDefn extends Object {
 		includeInThisSchemaFile = false;
 		isFromLDD = false;
 		isReferencedFromLDD = false;
+		isLDDElement = false;
 		
 		termEntryMap = new TreeMap <String, TermEntryDefn> ();
-
 		hasSlot = new ArrayList <AttrDefn> ();
-		
-		superClasses = new ArrayList <String> (); 
 		subClasses = new ArrayList <String> ();  
-
 		subClassOfInst = null;
-		rootClassInst = null;
-
 		superClass = new ArrayList <PDSObjDefn> (); 
 		subClass = new ArrayList <PDSObjDefn> (); 
 				
-		ownedAttrTitle = new ArrayList <String> (); 
-		ownedAssocTitle = new ArrayList <String> (); 
-		inheritedAttrTitle = new ArrayList <String> (); 
-		inheritedAssocTitle = new ArrayList <String> (); 
- 
-		ownedAttrId = new ArrayList <String> (); 
-		inheritedAttrId = new ArrayList <String> (); 
-		ownedAssocId = new ArrayList <String> (); 
-		inheritedAssocId = new ArrayList <String> (); 
+		ownedAttrNSTitle = new ArrayList <String> (); 
+		ownedAssocNSTitle = new ArrayList <String> (); 
+		inheritedAttrNSTitle = new ArrayList <String> (); 
+		inheritedAssocNSTitle = new ArrayList <String> (); 
 		
 		ownedAttribute = new ArrayList <AttrDefn> (); 
 		inheritedAttribute = new ArrayList <AttrDefn> (); 
@@ -153,10 +131,8 @@ public class PDSObjDefn extends Object {
 		ownedAttrAssocAssertArr = new ArrayList <AttrDefn> ();
 		ownedAttrAssocAssertTitleArr = new ArrayList <String> ();
 		
-		allAssocArr = new ArrayList <AssocDefn> ();
-		LDDAssocArr = new ArrayList <AssocDefn> ();
+		PropertyArr = new ArrayList <AssocDefn> ();
 	}  	
-	
 	
 	//	get the name in the indicated language; use the attribute title as a default
 	public String nameInLanguage (String lLanguage) {

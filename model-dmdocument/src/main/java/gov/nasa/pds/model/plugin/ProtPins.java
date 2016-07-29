@@ -24,7 +24,6 @@ class ProtPins extends Object{
 	/**
 	 * Transform a token array (parsed Protege .pins file) into logical entities (e.g. dictionary attributes).
 	 */
-//	public void getProtInst (String rdfPrefix, String lSteward, String fname) throws Throwable {
 	public void getProtInst (String rdfPrefix, String lNameSpaceIdNC, String fname) throws Throwable {
 //		this.gSteward = lSteward;
 		gNameSpaceIdNC = lNameSpaceIdNC;
@@ -56,8 +55,10 @@ class ProtPins extends Object{
 				}
 				break;
 			case 1: // Instance Name
-//				System.out.println("debug1 instance name:" + token);
-				String title = token;
+//				System.out.println("debug ProtPins - instance name - token:" + token);
+// 444				String title = token;
+				String lToken = InfoModel.unEscapeProtegeString(token);
+				String title = lToken;
 				String rdfIdentifier = gNameSpaceIdNC + "." + title;
 				String identifier = gNameSpaceIdNC + "."  + title;
 				lInst = new InstDefn(rdfIdentifier); 
@@ -87,8 +88,12 @@ class ProtPins extends Object{
 				break;
 			case 3: // a slot
 				genSlotValArray = new ArrayList <String> ();
-				lInst.genSlotMap.put(token, genSlotValArray);
-				lAttrName = token;
+// 444				
+//				lInst.genSlotMap.put(token, genSlotValArray);
+//				lAttrName = token;
+				String lToken2 = InfoModel.unEscapeProtegeString(token);
+				lInst.genSlotMap.put(lToken2, genSlotValArray);
+				lAttrName = lToken2;
 //				System.out.println("\ndebug ProtPins.getInstances gSteward:" + gSteward + "  lInst.title:" + lInst.title + "  lAttrName:" + lAttrName);				
 				type = 4;
 				break;
@@ -98,11 +103,11 @@ class ProtPins extends Object{
 				} else if ((token.compareTo("[") == 0) || (token.compareTo("]") == 0)) {
 					type = 4;
 				} else {
-					genSlotValArray.add(InfoModel.unEscapeProtegeString(token));
-					lAttrVal = InfoModel.unEscapeProtegeString(token);
-//					System.out.println("                            lInst.title:" + lInst.title + "  lAttrName:" + lAttrName + "  lAttrVal:" + lAttrVal);
+					String lToken3 = InfoModel.unEscapeProtegeString(token);
+					genSlotValArray.add(lToken3);
+					lAttrVal = lToken3;
 				}
-				break;
+				break; 
 			}
 		}
 	}

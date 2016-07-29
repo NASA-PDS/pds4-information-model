@@ -11,14 +11,27 @@ class WriteDocBook extends Object {
 	TreeMap <String, AttrClassificationDefn> attrClassificationMap;
 	ArrayList <AttrClassificationDefn> attrClassificationArr;
 	
+// Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
+	
 	public WriteDocBook () {
 		// class structures
 		classClassificationMap = new TreeMap <String, ClassClassificationDefn> ();
+		attrClassificationMap = new TreeMap <String, AttrClassificationDefn> ();
+		
+		// get the current namespaces
+		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefn (lSchemaFileDefn.identifier));
+			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefn (lSchemaFileDefn.identifier));		}
+
+		/*
 		ArrayList <String> lNamespaceIdArr = new ArrayList <String> (DMDocument.masterClassStewardMap.values());
 		for (Iterator <String> i = lNamespaceIdArr.iterator(); i.hasNext();) {
 			String lNamespaceId = (String) i.next();
 			classClassificationMap.put(lNamespaceId, new ClassClassificationDefn (lNamespaceId));
-		}	
+		} */
+		
 		classClassificationMap.put("pds.product", new ClassClassificationDefn ("pds.product"));
 		classClassificationMap.put("pds.pds3", new ClassClassificationDefn ("pds.pds3"));
 		classClassificationMap.put("pds.support", new ClassClassificationDefn ("pds.support"));
@@ -26,12 +39,13 @@ class WriteDocBook extends Object {
 		classClassificationMap.put("other", new ClassClassificationDefn ("other"));
 		classClassificationArr = new ArrayList <ClassClassificationDefn> (classClassificationMap.values());
 
-		// attribute structures
+/*		// attribute structures
 		attrClassificationMap = new TreeMap <String, AttrClassificationDefn> ();
 		for (Iterator <String> i = lNamespaceIdArr.iterator(); i.hasNext();) {
 			String lNamespaceId = (String) i.next();
 			attrClassificationMap.put(lNamespaceId, new AttrClassificationDefn (lNamespaceId));
-		}	
+		}	*/
+		
 		attrClassificationMap.put("other", new AttrClassificationDefn ("other"));
 		attrClassificationArr = new ArrayList <AttrClassificationDefn> (attrClassificationMap.values());
 		
@@ -40,10 +54,9 @@ class WriteDocBook extends Object {
 	
 //	print DocBook File
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-        File targetDir = new File(DMDocument.outputDirPath + "DocBook");
-        targetDir.mkdirs();
-		PrintWriter prDocBook = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "DocBook/" + "PDS4IMDocBook" + "_" + lSchemaFileDefn.lab_version_id + ".xml", false));
-
+//		??? DMDocument.masterPDSSchemaFileDefn
+		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
+		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		writeHeader (prDocBook);
 		writeClassSection ("pds",prDocBook);
         writeAttrSection ("pds", prDocBook); // will  need to iterate for each namespace
@@ -151,6 +164,20 @@ class WriteDocBook extends Object {
 	        prDocBook.println("");
 		}		
 		
+        
+		lClassClassificationDefn = classClassificationMap.get("disp");
+		if (lClassClassificationDefn != null) {
+			prDocBook.println("        <chapter>");
+			prDocBook.println("           <title>Classes in the Display namespace.</title>");
+			prDocBook.println("           <para>This dictionary describes how to display Array data on a display device.</para>");
+			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
+				PDSObjDefn lClass = (PDSObjDefn) j.next();
+				writeClass (lClass, prDocBook);						
+			}
+			prDocBook.println("        </chapter>");
+	        prDocBook.println("");
+		}		
+		
         prDocBook.println("      <!-- =====================Part2 End=========================== -->");
         prDocBook.println("");
 	}
@@ -213,7 +240,7 @@ class WriteDocBook extends Object {
         prDocBook.println("            <thead>");
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">" + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
-//        prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");
+//        prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");        
         prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue(lClass.versionId) + "</entry>");
         prDocBook.println("                </row>");
         prDocBook.println("            </thead>");
@@ -230,15 +257,12 @@ class WriteDocBook extends Object {
         prDocBook.println("");
         
         // write hierarchy
- 		ArrayList <String> lHierClassArr = new ArrayList <String> ();
- 		lHierClassArr.addAll(lClass.superClasses);
- 		lHierClassArr.add(lClass.rdfIdentifier);
+ 		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (lClass.superClass);
+ 		lClassArr.add(lClass);
  		lValueString = "";
  		lValueDel = "";
-		for (Iterator <String> i = lHierClassArr.iterator(); i.hasNext();) {
-			String lClassRDFId = (String) i.next();
-			PDSObjDefn lHierClass = (PDSObjDefn) InfoModel.masterMOFClassMap.get(lClassRDFId);
-//			lValueString += lValueDel + lHierClass.title;
+		for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
+			PDSObjDefn lHierClass = (PDSObjDefn) i.next();
 			lValueString += lValueDel + getClassLink(lHierClass);
 			lValueDel = " :: "; 
 		}
@@ -312,11 +336,10 @@ class WriteDocBook extends Object {
 				if (lAttr.isAttribute) continue;
 	            lValueString = "None";
 	            lValueDel = "";
-	    		if ( ! (lAttr.valArr == null || lAttr.valArr.size() == 0)) {
+	    		if (! (lAttr.valClassArr == null || lAttr.valClassArr.isEmpty())) {
 	    			lValueString = "";
-	    			for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-	    				String lValue = (String) k.next();
-	    				PDSObjDefn lCompClass = InfoModel.masterMOFClassTitleMap.get(lValue);
+	    			for (Iterator<PDSObjDefn> k = lAttr.valClassArr.iterator(); k.hasNext();) {				
+	    				PDSObjDefn lCompClass = (PDSObjDefn) k.next();
 	    				if (lCompClass == null) continue;
 	    				lValueString += lValueDel + getClassLink(lCompClass);
 	    				lValueDel = ", ";
@@ -332,14 +355,12 @@ class WriteDocBook extends Object {
 		}
 
         // write the references
- 		ArrayList <String> lTitleArr = getClassReferences (lClass.title);
+ 		ArrayList <PDSObjDefn> lRefClassArr = getClassReferences (lClass);
  		lValueString = "";
  		lValueDel = "";
- 		if (lTitleArr.size() > 0) {
- 			for (Iterator <String> i = lTitleArr.iterator(); i.hasNext();) {
- 				String lTitle = (String) i.next();
- 				PDSObjDefn lRefClass = (PDSObjDefn) InfoModel.masterMOFClassTitleMap.get(lTitle);
-// 				lValueString += lValueDel + lRefClass.title;
+ 		if (! (lRefClassArr == null || lRefClassArr.isEmpty())) {
+ 			for (Iterator <PDSObjDefn> i = lRefClassArr.iterator(); i.hasNext();) {
+ 				PDSObjDefn lRefClass = (PDSObjDefn) i.next();
  				lValueString += lValueDel + getClassLink(lRefClass);
  				lValueDel = ", ";
  			}
@@ -357,7 +378,7 @@ class WriteDocBook extends Object {
     	prDocBook.println("</sect1> ");
         return;
 	}	
-		
+				
 	private void writeAttrSection (String lNameSpaceId, PrintWriter prDocBook) {
         prDocBook.println("");	
         prDocBook.println("      <!-- =====================Part3 Begin=========================== -->");
@@ -418,7 +439,6 @@ class WriteDocBook extends Object {
 	        prDocBook.println("");
 		}
 		
-		
 		lAttrClassificationDefn = attrClassificationMap.get("img");
 		if (lAttrClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
@@ -432,13 +452,25 @@ class WriteDocBook extends Object {
 	        prDocBook.println("");
 		}
 		
+		
+		lAttrClassificationDefn = attrClassificationMap.get("disp");
+		if (lAttrClassificationDefn != null) {
+			prDocBook.println("        <chapter>");
+			prDocBook.println("           <title>Attributes in the Display namespace.</title>");
+			prDocBook.println("           <para>These attributes are used by the classes defined for the Display namespace.</para>");
+			for (Iterator <AttrDefn> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+				writeAttr (lAttr, prDocBook);						
+			}
+			prDocBook.println("        </chapter>");
+	        prDocBook.println("");
+		}
+		
         prDocBook.println("      <!-- =====================Part3 End=========================== -->");
         prDocBook.println("");
 	}
 	
 	private void writeAttr (AttrDefn lAttr, PrintWriter prDocBook) {
-		PDSObjDefn lParentClass = InfoModel.masterMOFClassTitleMap.get(lAttr.className);
-		if  (lParentClass == null) lParentClass = InfoModel.masterMOFUserClass;
         String lRegistrationStatus = "Active";
         String lRegistrationStatusInsert = "";
         if (lAttr.registrationStatus.compareTo("Retired") == 0) {
@@ -447,7 +479,8 @@ class WriteDocBook extends Object {
         }
 	    prDocBook.println("<sect1>");
 //	    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  " + getValue(lAttr.className) + "</title>");
-	    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  " + getClassLink(lParentClass) + lRegistrationStatusInsert + "</title>");
+//	    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  " + getClassLink(lParentClass) + lRegistrationStatusInsert + "</title>");
+	    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  " + getClassLink(lAttr.attrParentClass) + lRegistrationStatusInsert + "</title>");
 	    prDocBook.println("");
 	    prDocBook.println("<para>");
 	    prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
@@ -468,17 +501,25 @@ class WriteDocBook extends Object {
 	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" + getPrompt("Description: ") + getValue(lAttr.description) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
-	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.attrNameSpaceIdNC) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.steward) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.attrNameSpaceIdNC) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceId ()) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.steward) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
 //	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getValueBreak(lAttr.className) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lParentClass) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lParentClass) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lAttr.attrParentClass) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Type: ") + getDataTypeLink(lAttr.valueType) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
-	    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ") + getValueReplaceTBDWithNone(lAttr.minimum_value) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ") + getValueReplaceTBDWithNone(lAttr.maximum_value) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ") + getValueReplaceTBDWithNone(lAttr.minimum_characters) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lAttr.maximum_characters) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ") + getValueReplaceTBDWithNone(lAttr.minimum_value) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ") + getValueReplaceTBDWithNone(lAttr.maximum_value) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ") + getValueReplaceTBDWithNone(lAttr.minimum_characters) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lAttr.maximum_characters) + "</entry>");
+
+	    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ") + getValueReplaceTBDWithNone(lAttr.getMinimumValue2 (true, false)) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ") + getValueReplaceTBDWithNone(lAttr.getMaximumValue2 (true, false)) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ") + getValueReplaceTBDWithNone(lAttr.getMinimumCharacters2 (true, false)) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lAttr.getMaximumCharacters2 (true, false)) + "</entry>");
 	    prDocBook.println("                </row>");
 	    
 	    
@@ -492,7 +533,8 @@ class WriteDocBook extends Object {
 	    prDocBook.println("                <row>");
 	    prDocBook.println("                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Nillable: ") + lAttr.isNilable + "</entry>");            
-	    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.pattern) + "</entry>");
+//	    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.pattern) + "</entry>");
+	    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.getPattern(true)) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("");
 	    
@@ -521,7 +563,6 @@ class WriteDocBook extends Object {
 				
 				String lValueMeaning = lPermValueDefn.value_meaning;
 				if (lAttr.title.compareTo("pattern") == 0 && lValueMeaning.indexOf("TBD") == 0) lValueMeaning = "";
-								
 	 	        prDocBook.println("                <row>");
 		        prDocBook.println("                    <entry></entry>"); 
 		        prDocBook.println("                    <entry>" + getValueAnchor(lAttr, lPermValueDefn.value) + getValueBreak (lPermValueDefn.value) + getValue(lDependClause) + lRegistrationStatusInsert + "</entry>");
@@ -562,13 +603,14 @@ class WriteDocBook extends Object {
 	
 	public void getAttrClassification (AttrDefn lAttr) {
 //		if (lAttr.isDataType || lAttr.isUnitOfMeasure) return; 
-		if (! (lAttr.isUsedInModel && lAttr.isAttribute)) return;
+		if (! (lAttr.isUsedInClass && lAttr.isAttribute)) return;
 		
 //		System.out.println("debug getAttrClassification lAttr.identifier:" + lAttr.identifier);
 //		System.out.println("debug getAttrClassification lAttr.attrNameSpaceIdNC:" + lAttr.attrNameSpaceIdNC);
 		
 		// classify the class by namespace and other criteria
-		String lAttrId = lAttr.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.className + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
+//		String lAttrId = lAttr.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
+		String lAttrId = lAttr.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
 		AttrClassificationDefn lAttrClassificationDefn = attrClassificationMap.get(lAttr.attrNameSpaceIdNC);
 		if (lAttrClassificationDefn != null) {
 //			lAttrClassificationDefn.attrMap.put(lAttr.identifier, lAttr);	
@@ -594,7 +636,6 @@ class WriteDocBook extends Object {
 		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
 			if (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
-//			if (!(lClass.isDataType && lClass.subClassOfTitle.compareTo("Character_Data_Type") == 0)) continue;
 			if (!lClass.isDataType) continue;
 			sortDataTypeMap.put(lClass.title, lClass);
 		}	
@@ -603,12 +644,12 @@ class WriteDocBook extends Object {
 			
 //		Write the data types
 		String lSchemaBaseType = "None", lMinChar = "None", lMaxChar = "None", lMinVal = "None", lMaxVal = "None";
-		ArrayList <String> lPatternArr = new ArrayList <String> ();
+		ArrayList <PermValueDefn> lPermValueArr = null;
 		for (Iterator<PDSObjDefn> i = sortDataTypeArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
 			
 			lSchemaBaseType = "None"; lMinChar = "None"; lMaxChar = "None"; lMinVal = "None"; lMaxVal = "None";
-			lPatternArr = new ArrayList <String> ();
+			lPermValueArr = null;
 
 			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
@@ -639,11 +680,8 @@ class WriteDocBook extends Object {
 
 				}
 				if (lAttr.title.compareTo("pattern") == 0) {
-					if (lAttr.valArr == null || lAttr.valArr.size() == 0) lPatternArr.add("None");
-					else for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-							String lPattern = (String) k.next();
-							lPatternArr.add(lPattern);
-					}
+					lPermValueArr = lAttr.permValueArr;
+					if (lPermValueArr == null || lPermValueArr.size() == 0) lPermValueArr = null;
 				}
 			}
 					
@@ -681,7 +719,7 @@ class WriteDocBook extends Object {
             prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lMaxChar) + "</entry>");
             prDocBook.println("                </row>");
 
-            if (lPatternArr.size() == 0) {
+            if (lPermValueArr == null) {
                 prDocBook.println("                <row>");
                 prDocBook.println("                    <entry>" + "</entry>");
                 prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getPrompt("No Pattern") + "</entry>");
@@ -691,11 +729,12 @@ class WriteDocBook extends Object {
                 prDocBook.println("                    <entry>" + "</entry>");
             	prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getPrompt("Pattern") + "</entry>");           	
 	            prDocBook.println("                </row>");
-    			for (Iterator <String> k = lPatternArr.iterator(); k.hasNext();) {
-    				String lPattern = (String) k.next();
+// v1.3	            
+    			for (Iterator <PermValueDefn> k = lPermValueArr.iterator(); k.hasNext();) {
+    				PermValueDefn lPattern = (PermValueDefn) k.next();
     	            prDocBook.println("                <row>");
                     prDocBook.println("                    <entry>" + "</entry>");
-    	            prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getValue(lPattern) + "</entry>");
+    	            prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getValue(lPattern.value) + "</entry>");
     	            prDocBook.println("                </row>");
     			}
             }
@@ -719,7 +758,6 @@ class WriteDocBook extends Object {
 		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
 			if (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
-//			if (!(lClass.isUnitOfMeasure && lClass.subClassOfTitle.compareTo("Unit_Of_Measure") == 0)) continue;
 			if (! lClass.isUnitOfMeasure) continue;
 			sortUnitsMap.put(lClass.title, lClass);
 		}	
@@ -800,13 +838,14 @@ class WriteDocBook extends Object {
 		prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
-//		prDocBook.println("        <title>PDS4 Data Dictionary - Abridged - V.1.1.0.0</title>");
 		prDocBook.println("        <title>PDS4 Data Dictionary</title>");
-		prDocBook.println("        <subtitle>Abridged - Version " + InfoModel.ont_version_id + "</subtitle>");
+//		prDocBook.println("        <subtitle>Abridged - Version " + InfoModel.ont_version_id + "</subtitle>");
+		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <author>");
 		prDocBook.println("            <orgname>PDS4 Data Design Working Group</orgname>");
 		prDocBook.println("        </author>");
-		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + InfoModel.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
+//		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + InfoModel.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
+		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");
 //		prDocBook.println("    <part>");
@@ -870,14 +909,14 @@ class WriteDocBook extends Object {
 		prDocBook.println("                <para>Following are some definitions of essential terms used throughout this document.</para>");
 		prDocBook.println("                <itemizedlist>");
 		prDocBook.println("                    <listitem>");
-   		prDocBook.println("                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, ‘color’ and ‘length’ are possible attributes. </para>");
+		prDocBook.println("                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, �color� and �length� are possible attributes. </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic — a template from which individual members of the family may be constructed.");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic � a template from which individual members of the family may be constructed.");
 		prDocBook.println("                        </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of ‘conceptual objects’ include the Cassini mission and NASA’s strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of �conceptual objects� include the Cassini mission and NASA�s strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used in the PDS archive to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
@@ -886,7 +925,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data — for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data � for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para><emphasis role=\"italic\">Formal</emphasis> as used in the definition of attributes that are names indicates that an established procedure was involved in creating the name.</para>");
@@ -901,7 +940,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("                        <para><emphasis role=\"italic\">Logical</emphasis> as used in the definition of logical identifier indicates that the identifier logically groups a set of objects. </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of ‘physical objects’ include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of �physical objects� include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">resource</emphasis> is the target (referent) of any Uniform Resource Identifier; the thing to which a URI points.</para>");
@@ -943,28 +982,36 @@ class WriteDocBook extends Object {
 	}
 			
 	private String getValueAnchor(AttrDefn lAttr, String lValue) {
-		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.className + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
 		int lAnchorI = lAnchor.hashCode();
 		lAnchor = "N" + Integer.toString(lAnchorI);
 		return "<anchor xml:id=\"" + lAnchor + "\"/>";
 	}
 	
 	private String getValueLink(AttrDefn lAttr, String lValue) {
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.className + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 		return "<link linkend=\"" + lLink + "\">" + getValueBreak(lValue) + "</link>";
 	}
 	
 	private String getAttrAnchor(AttrDefn lAttr) {
-		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.className + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
 		int lAnchorI = lAnchor.hashCode();
 		lAnchor = "N" + Integer.toString(lAnchorI);
 		return "<anchor xml:id=\"" + lAnchor + "\"/>";
 	}
 
 	private String getAttrLink(AttrDefn lAttr) {
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.className + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 		String lRegistrationStatusInsert = "";
@@ -1011,21 +1058,20 @@ class WriteDocBook extends Object {
 		return pCardMin + ".." + pCardMax;
 	}
 
-//	Get the references for a class
-	
-	private ArrayList <String> getClassReferences (String classId) {
-		ArrayList <String> refClassIds = new ArrayList <String> ();
+//	return all classes that reference this class 
+	private ArrayList <PDSObjDefn> getClassReferences (PDSObjDefn lTargetClass) {
+		ArrayList <PDSObjDefn> refClassArr = new ArrayList <PDSObjDefn> ();
 		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
 			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
 				for (Iterator <AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
-					if (lAttr != null && lAttr.valArr != null) {
-						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-							String val = (String) k.next();
-							if (classId.compareTo(val) == 0) {
-								if (! refClassIds.contains(lClass.title)) {
-									refClassIds.add(lClass.title);
+				    if (! (lAttr.valClassArr == null || lAttr.valClassArr.isEmpty())) {
+		    			for (Iterator<PDSObjDefn> k = lAttr.valClassArr.iterator(); k.hasNext();) {				
+		    				PDSObjDefn lCompClass = (PDSObjDefn) k.next();
+							if (lTargetClass == lCompClass) {
+								if (! refClassArr.contains(lClass)) {
+									refClassArr.add(lClass);
 								}
 							}
 						}
@@ -1033,12 +1079,12 @@ class WriteDocBook extends Object {
 				}
 				for (Iterator <AttrDefn> j = lClass.inheritedAssociation.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
-					if (lAttr != null && lAttr.valArr != null) {
-						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-							String val = (String) k.next();
-							if (classId.compareTo(val) == 0) {
-								if (! refClassIds.contains(lClass.title)) {
-									refClassIds.add(lClass.title);
+				    if (! (lAttr.valClassArr == null || lAttr.valClassArr.isEmpty())) {
+		    			for (Iterator<PDSObjDefn> k = lAttr.valClassArr.iterator(); k.hasNext();) {				
+		    				PDSObjDefn lCompClass = (PDSObjDefn) k.next();
+							if (lTargetClass == lCompClass) {
+								if (! refClassArr.contains(lClass)) {
+									refClassArr.add(lClass);
 								}
 							}
 						}
@@ -1046,7 +1092,7 @@ class WriteDocBook extends Object {
 				}
 			}
 		}
-		return refClassIds;
+		return refClassArr;
 	}	
 	
 	/**

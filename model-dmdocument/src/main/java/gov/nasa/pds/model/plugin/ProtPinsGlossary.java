@@ -23,17 +23,17 @@ class ProtPinsGlossary extends Object{
 		Iterator <String> iter1 = set1.iterator();
 		while(iter1.hasNext()) {
 			String instRDFId = (String) iter1.next();		
-//		System.out.println("debug instRDFId:" + instRDFId);
 			InstDefn localInst = (InstDefn) tDict.get(instRDFId);
-//			AttrDefn attrClass = new AttrDefn(localInst.identifier);
 			AttrDefn attrClass = new AttrDefn(localInst.rdfIdentifier);
 			attrClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 			attrClass.subModelId = subModelId;
-			attrClass.title = localInst.title;
-//			attrClass.rdfIdentifier = localInst.rdfIdentifier;
+			attrClass.title = InfoModel.unEscapeProtegeString(localInst.title);
 			attrClass.genAttrMap = localInst.genSlotMap;
 			ArrayList attrdescarr = (ArrayList) attrClass.genAttrMap.get("column_desc");
-			attrClass.description = (String) attrdescarr.get(0);
+			String lDescription = (String) attrdescarr.get(0);
+			lDescription =  InfoModel.unEscapeProtegeString(lDescription);
+			attrClass.description = lDescription;
+			
 			glossMap.put(attrClass.rdfIdentifier, attrClass);
 			glossTitleIdMap.put(attrClass.title, attrClass.rdfIdentifier);
 		}

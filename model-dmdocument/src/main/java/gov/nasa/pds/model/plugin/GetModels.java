@@ -20,7 +20,7 @@ public class GetModels extends Object {
 	
 	public GetModels () {
 		
-		//	set up the Tex markers
+		//	set up the Tex markers *** delete the following. ***
 		texSectionFormats = new ArrayList <String>();
 		texSectionFormats.add("\\section");
 		texSectionFormats.add("\\subsection");
@@ -47,7 +47,7 @@ public class GetModels extends Object {
 		
 		InfoModel.ont_version_id = DMDocument.docInfo.version; 			// 1.0.0.0[b]
 		DMDocument.administrationRecordValue = "DD_" + DMDocument.docInfo.version;
-		String lLabVersion = InfoModel.ont_version_id;
+		String lLabVersion = InfoModel.ont_version_id;		
 		lLabVersion = replaceString(lLabVersion, ".", "");		// 1000[b]
 		if (lLabVersion.length() > 4) {
 			InfoModel.lab_version_id = lLabVersion.substring(0,5);	// 1000B from Beta
@@ -87,10 +87,37 @@ public class GetModels extends Object {
 		// get the master object dictionary
 		getMasterObjectDict();
 		
-		// Print the master list of objects
+		// debug print the master list of objects
 //		System.out.println("\n ================================ Master Class Array Dump ========================================");
 //		InfoModel.printObjectAllDebug(111, InfoModel.masterMOFClassArr);
-//		InfoModel.writePermissibleValues ("debug - GetModels 1", InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.Discipline_Facets.discipline_name"));
+		
+// 		Display one object
+//		InfoModel.printObjectDebug (555, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.geom.Camera_Model_Parameters"));
+
+// 444		
+		// debug print the master list of rules
+//		System.out.println("\n ================================ Master Rule Array Dump ========================================");
+//		ArrayList <RuleDefn> dumpRuleDefnArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleMap.values());
+//		System.out.println("<<<RuleDump Begin - getModels>>>");
+//		InfoModel.printRulesAllDebug (222, dumpRuleDefnArr);
+//		System.out.println("<<<RuleDump End - getModels>>>");
+		
+		MasterInfoModel.checkSameNameOverRide ();
+		
+		// debug print permissible values
+//		InfoModel.writePermissibleValues ("debug - GetModels 1", InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.unit_id"));
+		
+		System.out.println("\n>>info    - Counts");
+		System.out.println(">>info    - Classes: " + InfoModel.masterMOFClassArr.size());
+		System.out.println(">>info    - Attributes: " + InfoModel.masterMOFAttrMap.size());
+		System.out.println(">>info    - Rules: " + InfoModel.schematronRuleArr.size());
+		System.out.println(" ");
+
+		
+		
+		
+		if (DMDocument.debugFlag) System.out.println("debug getModels Done");
+		
 	}
 	
 /**********************************************************************************************************
@@ -98,24 +125,76 @@ public class GetModels extends Object {
 ***********************************************************************************************************/
 	
 	void getMasterObjectDict () throws Throwable {
-		LDDParser lLDDParser = new LDDParser ();
-//		System.out.println("\ndebug --- get the master object dictionary");
-		
 		// initialize master object dictionary with classes from the individual protege models
 		initMasterObjectDict ();
 		
-// 8889	
+// 999		System.out.println("\n>>info    - Master Attribute Map Sizes - InfoModel.masterMOFAttrMap.size():" + InfoModel.masterMOFAttrMap.size());
+// 999		System.out.println(">>info                                 - InfoModel.masterMOFAttrIdMap.size():" + InfoModel.masterMOFAttrIdMap.size());
+// 999		System.out.println(">>info                                 - InfoModel.masterMOFAttrArr.size():" + InfoModel.masterMOFAttrArr.size());
+// 999		System.out.println(" ");
+
+		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
+		
+		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
+			DMDocument.LDDToolSingletonClass = InfoModel.masterMOFUserClass;
+			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
+		} else {
+			String lClassId = InfoModel.getClassIdentifier ("pds", DMDocument.LDDToolSingletonClassTitle);
+			PDSObjDefn lLDDToolSingletonClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+			if (lLDDToolSingletonClass != null) {
+				DMDocument.LDDToolSingletonClass = lLDDToolSingletonClass;
+				System.out.println(">>info    - getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
+			} else {
+				System.out.println(">>error   - getMasterObjectDict - Could not find LDDToolSingletonClass - lClassId:" + lClassId);
+			}
+		}
+		
+		// set the attrParentClass (attributes parent class) from the class name (temp fix)
+		DMDocument.masterInfoModel.setAttrParentClass (false); // master run (LDD run is below)
+		
 		// update the class orders from the 11179 data dictionary
 		ISO79MDR.getClassOrder();
 		
-		// get the protege Upper Model - .pins file - Science Facets for  example
+		// parse UpperModel.pins file and get Science Facets for example
 		ProtPinsModel protPinsUpperModel  = new ProtPinsModel ();
 		protPinsUpperModel.getProtPinsModel(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "UpperModel.pins");
-						
-		// if this is an LDD Tool run, parse the LDD
-		if (DMDocument.LDDToolFlag) {
-			lLDDParser.getLocalDD();
+
+		// get custom rules from UpperModel.pins file
+		protPinsUpperModel.getRulesPins ();
+		
+// 444 copy in parsed rules from uppermodel.pins
+		// clear customized rules provide by JAVA code
+//		InfoModel.schematronRuleMap.clear();
+//		InfoModel.schematronRuleIdMap.clear();
+		
+		ArrayList <RuleDefn> testRuleDefnArr = new ArrayList <RuleDefn> (protPinsUpperModel.testRuleDefnMap.values());
+		for (Iterator <RuleDefn> i = testRuleDefnArr.iterator(); i.hasNext();) {
+			RuleDefn lRule = (RuleDefn) i.next();
+			InfoModel.schematronRuleMap.put(lRule.rdfIdentifier, lRule);
+			InfoModel.schematronRuleIdMap.put(lRule.identifier, lRule);
 		}
+		InfoModel.schematronRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());		
+		
+		// get list of USER attributes (owned attributes)
+		// This must be done before LDD parsing since it needs the USER attributes
+		// The attributes are updated later (data type, etc)
+		DMDocument.masterInfoModel.getUserClassAttrIdMap();
+		
+		// if this is an LDD Tool run, parse the LDD(s)
+		if (DMDocument.LDDToolFlag) {
+			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
+				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+				LDDParser lLDDParser = new LDDParser ();
+				DMDocument.LDDModelArr.add(lLDDParser);
+				DMDocument.primaryLDDModel = lLDDParser; 		// last in array is the primary.
+				lLDDParser.gSchemaFileDefn = lSchemaFileDefn;	// the schema definition file for this LDDParser.
+				lLDDParser.getLocalDD();
+			}
+		}		
+		
+		// set the attrParentClass (attributes parent class) from the class name (temp fix)
+		DMDocument.masterInfoModel.setAttrParentClass (true); // LDD run (master run is above)
+
 		
 		// set up master unitsOfMeasure map
 		DMDocument.masterInfoModel.setMasterUnitOfMeasure ();
@@ -131,21 +210,29 @@ public class GetModels extends Object {
 			
 		//	iterate through the classes and get all subclasses				
 		DMDocument.masterInfoModel.getSubClasses ();	
-				
+		
 		// get the attribute and associations for each class; also get the owned attribute array (culled of overrides)
-		DMDocument.masterInfoModel.getAttrAssocArr ();
+		DMDocument.masterInfoModel.getAttrAssocArr ();		
 		
 		//	fix the namespaces				
 //		DMDocument.masterInfoModel.fixNameSpaces ();
+				
+		//	set the attribute isUsedInClass flag				
+		setMasterAttrisUsedInClassFlag ();	
 		
-		//	validate the association classes				
-		DMDocument.masterInfoModel.validateClassAssocs ();
-				
-		//	set the attribute isUsedInModel flag				
-		setMasterAttrIsUsedInModelFlag ();
-				
 		// ******* overwrite master attributes from the 11179 DD *******
 		ISO79MDR.OverwriteFrom11179DataDict();		
+		
+		// overwrite any LDD attributes from the cloned USER attributes
+		// this is not really needed since the definitions are in the external class
+		// the error resulted from checkSameNameOverRide - maybe code needs to added here to 
+		// ignore USER clones.
+		if (DMDocument.LDDToolFlag) {
+			for (Iterator <LDDParser> i = DMDocument.LDDModelArr.iterator(); i.hasNext();) {
+				LDDParser lLDDParser = (LDDParser) i.next();
+				lLDDParser.OverwriteFrom11179DataDict();
+			}
+		}
 		
 		// ******* overwrite completed - start final cleanup *******
 		
@@ -178,7 +265,7 @@ public class GetModels extends Object {
 		DMDocument.masterInfoModel.SetMasterAttrXMLBaseDataTypeFromDataType ();
 		
 		// set data type and unit of measure flags
-		DMDocument.masterInfoModel.setMasterDataTypeAndUnitOfMeasureFlagsAttr ();
+// 445		DMDocument.masterInfoModel.setMasterDataTypeAndUnitOfMeasureFlagsAttr ();
 		
 		// validate the data types
 		DMDocument.masterInfoModel.ValidateAttributeDataTypes ();
@@ -189,15 +276,61 @@ public class GetModels extends Object {
 		// set the attribute override flag	
 		DMDocument.masterInfoModel.sethasAttributeOverride1 (InfoModel.masterMOFAttrArr);
 		DMDocument.masterInfoModel.sethasAttributeOverride2 (InfoModel.masterMOFAttrArr);
+		
+		// get the valClassArr using valArr; for assocs (AttrDefn)
+		DMDocument.masterInfoModel.getValClassArr();
+		
+// 		all updates to class and attributes have been made; extracts can now be done.
+
+		// Get the attribute's CD and DEC values
+		DMDocument.masterInfoModel.getCDDECIndexes ();
 				
+		// Get the attribute's DEC values
+//		DMDocument.masterInfoModel.getDECAssocs ();
+		
+		// get the USER attributes (not owned attributes)
+		DMDocument.masterInfoModel.getUserSingletonClassAttrIdMap();
+		
+		// get the LDDToolSingletonClass, the class for LDD singleton attributes (Discipline or Mission)
+		// *** TBD ***
+		if (DMDocument.LDDToolFlag) {
+			String lClassIdentifier;
+			if (DMDocument.LDDToolMissionGovernanceFlag) {
+				lClassIdentifier = InfoModel.getClassIdentifier("pds", "Mission_Area");
+			} else {
+				lClassIdentifier = InfoModel.getClassIdentifier("pds", "Discipline_Area");
+			}
+			PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassIdentifier);
+			if (lClass != null) {
+				InfoModel.LDDToolSingletonClass = lClass;
+			} else {
+				InfoModel.LDDToolSingletonClass = InfoModel.masterMOFUserClass;				
+			}
+		}
+		
+		// generate the schematron rules (does not include custom rules)
+		GenSchematronRules genSchematronRules = new GenSchematronRules ();
+		genSchematronRules.genSchematronRules();
+					
 		// setup 11179 classes from master attributes
 		ISO79MDR.ISO11179MDRSetup(DMDocument.masterInfoModel);					
-		
+				
 		// if this is an LDD Tool run, validate and write reports for the parsed LDD
 		if (DMDocument.LDDToolFlag) {
-			lLDDParser.validateLDDAttributes();
-			lLDDParser.writeLocalDDFiles();
+//			InfoModel.printOneAttributeIdentifier ("0001_NASA_PDS_1.disp.Color_Display_Settings.pds.comment");						
+			for (Iterator <LDDParser> i = DMDocument.LDDModelArr.iterator(); i.hasNext();) {
+				LDDParser lLDDParser = (LDDParser) i.next();
+				lLDDParser.finishCloneOfLDDUserAttributes();
+				lLDDParser.validateLDDAttributes();
+			}
+			DMDocument.primaryLDDModel.writeLocalDDFiles(DMDocument.masterLDDSchemaFileDefn);
 		}
+		
+		// set the class version identifiers (stop gap until class are stored in OWL
+		DMDocument.masterInfoModel.setClassVersionIds ();
+//		DMDocument.masterInfoModel.dumpClassVersionIds ();
+
+		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");
 	}
 
 /**********************************************************************************************************
@@ -205,90 +338,194 @@ public class GetModels extends Object {
 ***********************************************************************************************************/
 	
 	void initMasterObjectDict () {
-//		System.out.println("\ndebug --- init the master object dictionary");
+		// setup the class array and maps
+		initMasterClassDict();
 		
-			//	iterate through the section for section content		
-			for (Iterator <String> i = DMDocument.docInfo.sectionArray.iterator(); i.hasNext();) {
-				String secId = (String) i.next();
-				SectionDefn secInfo = (SectionDefn) DMDocument.docInfo.sectionMap.get(secId);
-				
-//				System.out.println("debug initMasterObjectDict - checking document section secId:" + secId);
-				if (! secInfo.includeFlag) { continue; }
-				if (secInfo.secSubType.compareTo("table") == 0) {
-//					System.out.println("      - checking document secInfo.title:" + secInfo.title);					
-					//	iterate through the section content for the models
-					for (Iterator <String> j = secInfo.sectionModelContentId.iterator(); j.hasNext();) {
-						String lContId = (String) j.next();
-						if (lContId.compareTo("2170-Operational_Product_Content") == 0) {
-							Set <String> set1 = DMDocument.docInfo.sectionContentMap.keySet();
-							Iterator <String> iter1 = set1.iterator();
-							while(iter1.hasNext()) {
-								String lId = (String) iter1.next();
-								SectionContentDefn lSect = (SectionContentDefn) DMDocument.docInfo.sectionContentMap.get(lId);
-							}
-						}
-						SectionContentDefn content = (SectionContentDefn) DMDocument.docInfo.sectionContentMap.get(lContId);
-						lModelInfo = (ModelDefn) DMDocument.docInfo.modelMap.get(content.modelId);
-						ProtPontModel lmodel = (ProtPontModel) lModelInfo.objectid;
-						
-/*						// get the attribute maps for the top level slot class; for LDD referencing
-						DMDocument.topLevelDictMap = lmodel.attrDict;
-						DMDocument.topLevelDictArr = new ArrayList <AttrDefn> (DMDocument.topLevelDictMap.values());
-						DMDocument.topLevelDictMapId = new TreeMap <String, AttrDefn> ();
-						for (Iterator <AttrDefn> k = DMDocument.topLevelDictArr.iterator(); k.hasNext();) {
-							AttrDefn lAttr = (AttrDefn) k.next();
-							DMDocument.topLevelDictMapId.put(lAttr.identifier, lAttr);
-						}
-						*/
+		// build the remaining class maps and array (sorted by identifier)
+		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
+		for (Iterator<PDSObjDefn> j = lClassArr.iterator(); j.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) j.next();
+			InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
+//			InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);			
+		}
+		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
+		
+		// setup the association and attribute (AttrDefn) master maps
+		// also set up the Property (AssocDefn) combined master map
+		initMasterAssocDict();
+		initMasterAttrDict();
+		
+		// build the remaining attribute (attr and assoc) maps and array (sorted by identifier)
+		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrMap.values());
+		for (Iterator<AttrDefn> j = lAttrArr.iterator(); j.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) j.next();
+			InfoModel.masterMOFAttrIdMap.put(lAttr.identifier, lAttr);
+		}
+		InfoModel.masterMOFAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
+		
+		// build the remaining property maps and array (sorted by identifier)
+//		ArrayList <AssocDefn> lPropArr = new ArrayList <AssocDefn> (InfoModel.masterMOFPropMap.values());
+//		for (Iterator<AssocDefn> j = lPropArr.iterator(); j.hasNext();) {
+//			AssocDefn lProp = (AssocDefn) j.next();
+//			InfoModel.masterMOFPropIdMap.put(lProp.identifier, lProp);
+//		}
+//		InfoModel.masterMOFPropArr = new ArrayList <AssocDefn> (InfoModel.masterMOFPropIdMap.values());
+		
+		// build the remaining association maps and array (sorted by identifier)
+		ArrayList <AssocDefn> lAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocMap.values());
+		for (Iterator<AssocDefn> j = lAssocArr.iterator(); j.hasNext();) {
+			AssocDefn lAssoc = (AssocDefn) j.next();
+			InfoModel.masterMOFAssocIdMap.put(lAssoc.identifier, lAssoc);
+		}
+		InfoModel.masterMOFAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocIdMap.values());
 
-						// iterate through the model for the class definition
-						Set <String> set1 = lmodel.objDict.keySet();
-						Iterator <String> iter1 = set1.iterator();
-						while(iter1.hasNext()) {
-							String lClassId = (String) iter1.next();
-							PDSObjDefn lClass = (PDSObjDefn) lmodel.objDict.get(lClassId);
-							if (lClass.isMasterClass) {
-								if (! InfoModel.masterMOFClassArr.contains(lClass)) {
-									InfoModel.masterMOFClassArr.add(lClass);
-									InfoModel.masterMOFClassMap.put(lClass.rdfIdentifier, lClass);
-									InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
-									InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);
-//									System.out.println("\ndebug  Adding Class to Master lClass.dentifier:" + lClass.identifier);
-//									System.out.println("                                lClass.rdfIdentifier:" + lClass.rdfIdentifier);
-//									System.out.println("                                lClass.title:" + lClass.title);
-//									DMDocument.masterInfoModel.updMasterAttrMap(lmodel, lClass);
-									DMDocument.masterInfoModel.addMasterAttrAssocMap(lmodel, lClass);
-								}
-							}
+	}		
+
+	void initMasterClassDict () {
+		//	iterate through the section for section content		
+		for (Iterator <String> i = DMDocument.docInfo.sectionArray.iterator(); i.hasNext();) {
+			String secId = (String) i.next();
+			SectionDefn secInfo = (SectionDefn) DMDocument.docInfo.sectionMap.get(secId);
+			if (! secInfo.includeFlag) { continue; }
+			if (secInfo.secSubType.compareTo("table") == 0) {
+//				System.out.println("      - checking document secInfo.title:" + secInfo.title);					
+				//	iterate through the section content for the models
+				for (Iterator <String> j = secInfo.sectionModelContentId.iterator(); j.hasNext();) {
+					String lContId = (String) j.next();
+					SectionContentDefn content = (SectionContentDefn) DMDocument.docInfo.sectionContentMap.get(lContId);
+					lModelInfo = (ModelDefn) DMDocument.docInfo.modelMap.get(content.modelId);
+					ProtPontModel lmodel = (ProtPontModel) lModelInfo.objectid;
+
+					// iterate through the model for the class definitions
+					ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (lmodel.objDict.values());
+					for (Iterator <PDSObjDefn> k = lClassArr.iterator(); k.hasNext();) {
+						PDSObjDefn lClass = (PDSObjDefn) k.next();
+						if (! lClass.isMasterClass) continue;
+						if (! InfoModel.masterMOFClassMap.containsKey(lClass.rdfIdentifier)) {
+							InfoModel.masterMOFClassMap.put(lClass.rdfIdentifier, lClass);
+						} else {
+//							System.out.println(">>error    - Duplicate Found - ADDING class lClass.rdfIdentifier:" + lClass.rdfIdentifier);
 						}
 					}
-				}	
-			}			
-		}		
+				}
+			}	
+		}			
+	}	
+	
+	// init the master attribute and property maps
+	public void initMasterAttrDict () {
+		// iterate through the classes
+		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) i.next();
 		
+			//	get non-INSTANCE attributes - i.e. standard attributes
+			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+				
+				// add attributes
+				if (! InfoModel.masterMOFAttrMap.containsKey(lAttr.rdfIdentifier)) {
+					InfoModel.masterMOFAttrMap.put(lAttr.rdfIdentifier, lAttr);
+				} else {
+					System.out.println(">>error    - Duplicate Found - ADDING Attribute lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
+				}
+								
+				// add MOF Properties (type attribute)
+				if (InfoModel.masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
+					AssocDefn lAssoc = new AssocDefn ();
+					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
+					lAssoc.identifier = lAttr.identifier;		
+					lAssoc.title = lAttr.title;
+					lAssoc.className = lAttr.parentClassTitle;
+					lAssoc.attrNameSpaceId = lAttr.attrNameSpaceId;
+					lAssoc.attrNameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+					lAssoc.classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
+//					lAssoc.classOrder = lClassOrderStr;
+					lAssoc.isAttribute = lAttr.isAttribute; // true
+					lAssoc.cardMin = lAttr.cardMin;
+					lAssoc.cardMax = lAttr.cardMax;
+					lAssoc.cardMinI = lAttr.cardMinI; 
+					lAssoc.cardMaxI = lAttr.cardMaxI;
+					lAssoc.referenceType = "attribute_of";
+					InfoModel.masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
+				}
+			}
+		}
+	}	
+	
+	// init the master attribute and property maps
+	public void initMasterAssocDict () {
+		// iterate through the classes
+		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) i.next();
+			
+		    // get INSTANCE attributes - i.e. associations
+			for (Iterator<AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+				
+				// add associations
+				if (! InfoModel.masterMOFAttrMap.containsKey(lAttr.rdfIdentifier)) {
+					InfoModel.masterMOFAttrMap.put(lAttr.rdfIdentifier, lAttr);
+				}
+								
+				// add MOF properties (type association)
+				if (InfoModel.masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
+					AssocDefn lAssoc = new AssocDefn ();
+					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
+					lAssoc.identifier = lAttr.identifier;			
+					lAssoc.title = lAttr.title;
+					lAssoc.className = lAttr.parentClassTitle;
+					lAssoc.attrNameSpaceId = lAttr.attrNameSpaceId;
+					lAssoc.attrNameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+					lAssoc.classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
+//					lAssoc.classOrder = lClassOrderStr;
+					lAssoc.isAttribute = lAttr.isAttribute;	// false
+					lAssoc.cardMin = lAttr.cardMin;
+					lAssoc.cardMax = lAttr.cardMax;
+					lAssoc.cardMinI = lAttr.cardMinI; 
+					lAssoc.cardMaxI = lAttr.cardMaxI;
+					lAssoc.referenceType = lAttr.title;
+					InfoModel.masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
+					
+					// add the child classes
+					for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
+						String lTitle = (String) k.next();
+						if (lTitle == null) continue;
+						String lClassMemberIdentifier = InfoModel.getClassIdentifier(lAttr.attrNameSpaceIdNC, lTitle);
+						PDSObjDefn lClassMember = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lClassMemberIdentifier);
+						if (lClassMember != null) {
+							lAssoc.childClassArr.add (lClassMember);
+						} else {
+							System.out.println(">>error   - Could not find the class referenced in an association - Name:" + lTitle+ "   Class:" + lClass.title);
+						}
+					}
+				}
+			}	
+		}
+	}	
+			
 	/**
-	*  set the isUsedInModel flag
+	*  set the isUsedInClass flag
 	*/
-	public void setMasterAttrIsUsedInModelFlag () {
+	public void setMasterAttrisUsedInClassFlag () {
 
 //		iterate through the classes 			
 		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
 			for (Iterator <AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
-				lAttr.isUsedInModel = true;
+				lAttr.isUsedInClass = true;
 			}
 			for (Iterator <AttrDefn> j = lClass.inheritedAttribute.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
-				lAttr.isUsedInModel = true;
+				lAttr.isUsedInClass = true;
 			}
 			for (Iterator <AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
-				lAttr.isUsedInModel = true;
+				lAttr.isUsedInClass = true;
 			}
 			for (Iterator <AttrDefn> j = lClass.inheritedAssociation.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
-				lAttr.isUsedInModel = true;
+				lAttr.isUsedInClass = true;
 			}
 		}
 		

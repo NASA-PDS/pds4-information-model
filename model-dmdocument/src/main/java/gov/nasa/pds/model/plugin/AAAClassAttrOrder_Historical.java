@@ -1,4 +1,3 @@
-package gov.nasa.pds.model.plugin;
 
 public class AAAClassAttrOrder_Historical {
 	

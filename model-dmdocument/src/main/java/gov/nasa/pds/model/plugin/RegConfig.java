@@ -37,8 +37,8 @@ class RegConfig extends Object {
 
 //	write the Registry Information Model Configuration file  - JSON
 	public void writeRegRIM (String todaysDate) throws java.io.IOException {
-//		System.out.println("\ndebug  starting writeRegRIM");
-		PrintWriter prRIM1 = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "PDS4RIM1.txt", false));
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRIM1;
+		PrintWriter prRIM1 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
 		String delimiter = "";
 		prRIM1.println("[");
@@ -103,9 +103,8 @@ class RegConfig extends Object {
 	
 //	write the Registry Information Model Configuration file  - JSON and XML
 	public void writeRegRIM3 (String todaysDate)  throws java.io.IOException {
-//		System.out.println("\ndebug  starting writeRegRIM3");
-		
-		PrintWriter prRIM = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "PDS4RIM3.txt", false));
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRIM3;
+		PrintWriter prRIM = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
 		prRIM.println("<?xml version = \"1.0\" encoding = \"UTF-8\"?>");
 	    prRIM.println("<!-- $Header:-->");
@@ -247,7 +246,6 @@ class RegConfig extends Object {
 	
 //	write the Registry Information Model Configuration file  -  XML
 	public void writeRegRIM4 (String todaysDate)  throws java.io.IOException {
-//		System.out.println("\ndebug  starting writeRegRIM4");
 		
 		TreeMap <String, PDSObjDefn> lSortClassMap = new TreeMap <String, PDSObjDefn> ();
 		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
@@ -257,8 +255,8 @@ class RegConfig extends Object {
 			}
 		}
 		ArrayList <PDSObjDefn> lSortedClassArr = new ArrayList <PDSObjDefn> (lSortClassMap.values());
-		
-		PrintWriter prRIM = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "PDS4RIM4.txt", false));
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRIM4;
+		PrintWriter prRIM = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
 		prRIM.println("<?xml version = \"1.0\" encoding = \"UTF-8\"?>");
 	    prRIM.println("<PDS4Configuration xmlns=\"http://registry.pds.nasa.gov\">");

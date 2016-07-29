@@ -6,6 +6,8 @@ import java.util.*;
  */
 class ProtPinsModel extends Object {
 	ProtPins protPinsInst;
+// 444	
+	TreeMap <String, RuleDefn> testRuleDefnMap = new TreeMap <String, RuleDefn> ();
 	TreeMap <String, SFGroupFacetDefn> lSFGroupFacetDefnMap;
 	
 	public ProtPinsModel () {
@@ -103,8 +105,7 @@ class ProtPinsModel extends Object {
 		}
 
 		// iterate through the discipline facets and update the permissible values for the associated attributes
-		String lAttrIdPrefix = DMDocument.registrationAuthorityIdentifierValue + "." + "pds" + ".";
-		String lAttrId = lAttrIdPrefix + "Discipline_Facets" + "." + "discipline_name";
+		String lAttrId = InfoModel.getAttrIdentifier ("pds", "Discipline_Facets", "pds", "discipline_name");
 		AttrDefn lAttrDiscipline = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 		if (lAttrDiscipline == null) {
 			System.out.println("debug getProtPinsModel ERROR Missing discipline_name - lAttrId:" + lAttrId);
@@ -122,7 +123,7 @@ class ProtPinsModel extends Object {
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet1Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 //				System.out.println("debug getProtPinsModel UPDATE FACET1 lSFGroupFacet.identifier:" + lSFGroupFacet.identifier);
-				lAttrId = lAttrIdPrefix + "Group_Facet1" + "." + "facet1";
+				lAttrId = InfoModel.getAttrIdentifier ("pds", "Group_Facet1", "pds", "facet1");			
 				AttrDefn lAttrFacet = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 //				if (lAttrDiscipline == null) {
 				if (lAttrFacet == null) {
@@ -137,9 +138,8 @@ class ProtPinsModel extends Object {
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet2Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 //				System.out.println("debug getProtPinsModel UPDATE FACET2 lSFGroupFacet.identifier:" + lSFGroupFacet.identifier);
-				lAttrId = lAttrIdPrefix + "Group_Facet2" + "." + "facet2";
+				lAttrId = InfoModel.getAttrIdentifier ("pds", "Group_Facet2", "pds", "facet2");			
 				AttrDefn lAttrFacet = InfoModel.masterMOFAttrIdMap.get(lAttrId);
-//				if (lAttrDiscipline == null) {
 				if (lAttrFacet == null) {
 					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);
 					continue;
@@ -150,6 +150,92 @@ class ProtPinsModel extends Object {
 			}
 		} 
 		return;
+	}
+
+	public void getRulesPins () {
+// 444		TreeMap <String, RuleDefn> testRuleDefnMap = new TreeMap <String, RuleDefn> ();
+
+		// extract all the rule instances from the instance dictionary
+		TreeMap <String, InstDefn> ruleInstDefnMap = new TreeMap <String, InstDefn> ();	
+		ArrayList <InstDefn> lInstDefnArr = new ArrayList <InstDefn> (protPinsInst.instDict.values());
+		for (Iterator <InstDefn> i = lInstDefnArr.iterator(); i.hasNext();) {
+			InstDefn lInst = (InstDefn) i.next();			
+			if ( ! ((lInst.className.compareTo("Schematron_Rule") == 0) || (lInst.className.compareTo("Schematron_Assert")) == 0)) continue;
+			ruleInstDefnMap.put(lInst.title, lInst);	
+		}
+		
+		// process the rule instances
+		ArrayList <InstDefn> ruleInstDefnArr = new ArrayList <InstDefn> (ruleInstDefnMap.values());
+		for (Iterator <InstDefn> i = ruleInstDefnArr.iterator(); i.hasNext();) {
+			InstDefn lRuleInst = (InstDefn) i.next();
+						
+			HashMap <String, ArrayList<String>> lInstSlotMap = lRuleInst.genSlotMap;
+			if (lRuleInst.className.compareTo("Schematron_Rule") == 0) {
+//				InfoModel.schematronRuleNewArr.add(lRule);
+				
+				// first singleton attributes of rule
+				String lIdentifier = getValueSingleton ("identifier", lInstSlotMap);
+				RuleDefn lRule = new RuleDefn (lIdentifier);
+				lRule.setRDFIdentifier ();
+				testRuleDefnMap.put(lRule.rdfIdentifier, lRule);
+				lRule.type = getValueSingleton ("type", lInstSlotMap);
+				lRule.roleId = getValueSingleton ("roleId", lInstSlotMap);
+				lRule.xpath = getValueSingleton ("xpath", lInstSlotMap);
+				lRule.attrTitle = getValueSingleton ("attrTitle", lInstSlotMap);
+				lRule.attrNameSpaceNC = getValueSingleton ("attrNameSpaceNC", lInstSlotMap);
+				lRule.classTitle = getValueSingleton ("classTitle", lInstSlotMap);
+				lRule.classNameSpaceNC = getValueSingleton ("classNameSpaceNC", lInstSlotMap);
+				lRule.classSteward = getValueSingleton ("classSteward", lInstSlotMap);
+				String lAlwaysInclude = getValueSingleton ("alwaysInclude", lInstSlotMap);
+				lRule.alwaysInclude = true;
+				if (lAlwaysInclude.compareTo("false") == 0) lRule.alwaysInclude = false;
+				String lIsMissionOnly = getValueSingleton ("isMissionOnly", lInstSlotMap);
+				lRule.isMissionOnly = true;
+				if (lIsMissionOnly.compareTo("false") == 0) lRule.isMissionOnly = false;
+// 444				
+//				lRule.letAssignArr = getValueArray ("schematronAssign", lInstSlotMap);
+				ArrayList <String> lAssignArr = getValueArray ("schematronAssign", lInstSlotMap);
+				if (lAssignArr != null) lRule.letAssignArr = lAssignArr;
+				ArrayList <String> lAssignPatternArr = getValueArray ("schematronAssignPattern", lInstSlotMap);
+				if (lAssignPatternArr != null) lRule.letAssignPatternArr = lAssignPatternArr;
+				
+				// get the Assert Statements
+				ArrayList<String> lAssertIdArr = getValueArray ("has_Schematron_Assert", lInstSlotMap);
+				for (Iterator <String> j = lAssertIdArr.iterator(); j.hasNext();) {
+					String lAssertId = (String) j.next();
+					InstDefn lAssertInst = ruleInstDefnMap.get(lAssertId);
+					if (lAssertInst != null) {
+						AssertDefn2 lAssertDefn = new AssertDefn2 (lAssertInst.rdfIdentifier);
+						lRule.assertArr.add(lAssertDefn);
+						lAssertDefn.identifier = getValueSingleton ("identifier", lAssertInst.genSlotMap);
+						lAssertDefn.attrTitle = getValueSingleton ("attrTitle", lAssertInst.genSlotMap);
+						lAssertDefn.assertType = getValueSingleton ("assertType", lAssertInst.genSlotMap);
+						lAssertDefn.assertMsg = getValueSingleton ("assertMsg", lAssertInst.genSlotMap);
+						lAssertDefn.assertStmt = getValueSingleton ("assertStmt", lAssertInst.genSlotMap);
+						lAssertDefn.specMesg = getValueSingleton ("specMesg", lAssertInst.genSlotMap);
+// 444						
+//						lAssertDefn.testValArr = getValueArray ("testValArr", lAssertInst.genSlotMap);
+						ArrayList <String> lValArr = getValueArray ("testValArr", lAssertInst.genSlotMap);
+						if (lValArr != null) lAssertDefn.testValArr = lValArr;
+					} else {
+						System.out.println(">>error   - " + "getRulesPins - Assert Statement Not Found - lAssertId:" + lAssertId);
+					}
+				}
+			}
+		}
+	}	
+	
+	private String getValueSingleton (String lKey, HashMap <String, ArrayList<String>> lInstSlotMap) {
+		ArrayList<String> lValArr = lInstSlotMap.get(lKey); 
+		if (lValArr == null || lValArr.isEmpty()) return "TBD_" + lKey;
+		if (lValArr.size() > 1) System.out.println(">>error   - getSingletonValue - ProtPinsModel - lKey:" + lKey);
+		return lValArr.get(0);
+	}
+	
+	private ArrayList<String> getValueArray (String lKey, HashMap <String, ArrayList<String>> lInstSlotMap) {
+		ArrayList<String> lValArr = lInstSlotMap.get(lKey); 
+		if (lValArr == null || lValArr.isEmpty()) return null;
+		return lValArr;
 	}
 	
 	// get a string value from map
@@ -167,27 +253,6 @@ class ProtPinsModel extends Object {
 		}
 		return oVal;
 		// returns the original value
-	}
-
-	// get a string value from map
-	static public String getStringValueUpdate (boolean isEscaped, HashMap <String, ArrayList<String>> lMap, String lMetaAttrName, String oVal) {
-//		System.out.println("debug getStringValue - lMetaAttrName:" + lMetaAttrName);
-		ArrayList<String> lValArr = lMap.get(lMetaAttrName); 
-		if (lValArr != null) {
-			int lValArrSize = lValArr.size();
-			if (lValArrSize == 1) {
-				String lVal = (String) lValArr.get(0);
-				if (! ((lVal == null) || ((lVal.compareTo("")) == 0) || ((lVal.indexOf("TBD")) == 0))) {
-					if (isEscaped) {
-						lVal = InfoModel.unEscapeProtegePatterns(lVal);
-					}
-					if (lVal.compareTo(oVal) != 0) {
-						return lVal;
-					}
-				}
-			}
-		}
-		return null;
 	}
 }
 

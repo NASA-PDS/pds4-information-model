@@ -48,16 +48,10 @@ class XMI2LabelSchema extends Object {
 
 //	write the XML File
 	public void getXMIElements () {
-		
-//		System.out.println("\ndebug getXMIElements");		
-			    
 		// Iterate through all classes
-		int count = 0;
 		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();	
-//			if (count++ > 100) { break; };
 			XMIClass lXMIClass = new XMIClass ();
-//			System.out.println("\ndebug getXMIElements lClass.title:" + lClass.title);
 			lXMIClass.title = lClass.title;
 			lXMIClass.id = lClass.title;
 			lXMIClass.generalizationId = lClass.title + getNextUUID();
@@ -72,7 +66,6 @@ class XMI2LabelSchema extends Object {
 				AttrDefn lAttr = (AttrDefn) j.next();
 				XMIProp lXMIProp = new XMIProp ();
 				lXMIProp.id = lAttr.title + getNextUUID();
-//				System.out.println("     lXMIProp.id:" + lXMIProp.id);
 				lXMIProp.title = lAttr.title;
 				lXMIProp.cardMin = lAttr.cardMin;
 				lXMIProp.cardMax = lAttr.cardMax;
@@ -82,14 +75,11 @@ class XMI2LabelSchema extends Object {
 			// get associations for this class
 			for (Iterator<AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
 				AttrDefn lAssoc = (AttrDefn) j.next();
-				ArrayList <String> lClassTitleArr = lAssoc.valArr; 
-				for (Iterator<String> k = lClassTitleArr.iterator(); k.hasNext();) {
-					String lClassTitle = k.next();
-					PDSObjDefn lClass2 = (PDSObjDefn) InfoModel.masterMOFClassTitleMap.get(lClassTitle);
+				for (Iterator<PDSObjDefn> k = lAssoc.valClassArr.iterator(); k.hasNext();) {
+					PDSObjDefn lClass2 = k.next();
 					if (lClass2 != null) {
 						XMIAssoc lXMIAssoc = new XMIAssoc ();						
 						lXMIAssoc.id = lAssoc.title + getNextUUID();
-//						System.out.println("     lXMIAssoc.id:" + lXMIAssoc.id);
 						lXMIAssoc.title = lAssoc.title;
 						lXMIAssoc.fromAssocPropId = lAssoc.title + getNextUUID();
 						lXMIAssoc.fromAssocClassTitle = lXMIClass.title;
@@ -116,21 +106,16 @@ class XMI2LabelSchema extends Object {
 
 			// get association (created by the 'from' class)
 			String xmiId = (String) iter1.next();
-//			System.out.println("\ndebug resolve association xmiId:" + xmiId);
 			XMIAssoc lXMIAssoc = XMIAssocMap.get(xmiId);
 			
 			// get 'to' class for association
 			String lToClassTitle = lXMIAssoc.toAssocClassTitle;
-//			System.out.println("    lToClassTitle:" + lToClassTitle);
 			String lCId2 = XMIClassTitleIdMap.get(lToClassTitle);   // *** missing to class - Tagged_Digital_Object
-//			System.out.println("    lCId2:" + lCId2);
 			if (lCId2 != null) {			
 				XMIClass lXMIClass2 = XMIClassMap.get(lCId2);
-//				System.out.println("    lXMIClass2.id:" + lXMIClass2.id);
 				if (lXMIClass2 != null) {
 					// create 'to' property association
 					lXMIAssoc.toAssocPropId = lXMIAssoc.title  + getNextUUID();
-//					System.out.println("    lXMIAssoc.toAssocPropId:" + lXMIAssoc.toAssocPropId);
 				
 					// add the original association to the 'to' class
 					lXMIClass2.xmiAssocArr.add(lXMIAssoc);	
@@ -141,13 +126,8 @@ class XMI2LabelSchema extends Object {
 
 //	write the XML File
 	public void writeXMIFile (String todaysDate) throws java.io.IOException {
-		
-//		System.out.println("\ndebug XMIFile");		
-		
-//	    prXML = new PrintWriter(new FileWriter("SchemaXMI/" + "XMI" + "_" + InfoModel.lab_version_id + "_clean.xmi", false));    
-		File targetDir = new File(DMDocument.outputDirPath + "SchemaXMI");
-		targetDir.mkdirs();
-	    prXML = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaXMI/" + "XMI" + "_" + InfoModel.lab_version_id + "_clean.xmi", false));    
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI;
+	    prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));    
 		writeXMIHdr (todaysDate);
 		
 		/**
@@ -248,7 +228,8 @@ class XMI2LabelSchema extends Object {
 //		System.out.println("\ndebug writeXMIHdr");		
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
 		prXML.println("  <!-- Generated from the PDS4 Information Model -->");
-		prXML.println("  <!-- Version: " + InfoModel.ont_version_id + " -->");
+//		prXML.println("  <!-- Version: " + InfoModel.ont_version_id + " -->");
+		prXML.println("  <!-- Version: " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " -->");
 		prXML.println("  <!-- Generated: " + todaysDate + " -->");
 		prXML.println("  <xmi:XMI xmi:version=\"2.1\" xmlns:uml=\"http://schema.omg.org/spec/UML/2.0\" xmlns:xmi=\"http://schema.omg.org/spec/XMI/2.1\">");
 		prXML.println("    <xmi:Documentation xmi:Exporter=\"PDS4InfoModelExporter\" xmi:ExporterVersion=\"0.0.9\"/>");

@@ -2,10 +2,10 @@ package gov.nasa.pds.model.plugin;
 import java.util.*;
 
 public class AttrDefn extends Object {
-
 	String rdfIdentifier;							// url, namespace, name
 	String uid;										// unique identifier for rdfIdentifier
 	String identifier; 								// no url, namespace, name (one pair for class, two pair for attribute)
+	String nsTitle;									// namespace + title
 	String sort_identifier;							// lAttr.title + "_" + lAttr.steward + "_" + lAttr.className + "_" + lAttr.classSteward
 	String attrAnchorString;						// "attribute", lAttr.attrNameSpaceIdNC, lAttr.title, lAttr.classNameSpaceIdNC, lAttr.className
 	String title;  									// no url, no namespace, name
@@ -20,17 +20,21 @@ public class AttrDefn extends Object {
 	String classNameSpaceIdNC;
 	String submitter;								// submitter for attribute
 	String subModelId;								// identifier of submodel within the registration authority's model.
-	String className;								// class that this attribute is a member of
+//	String className;								// class that this attribute is a member of
+	String parentClassTitle;						// class that this attribute is a member of
+	PDSObjDefn attrParentClass; 					// class instance that this attribute is a member of
 	String classConcept;							// for DEC
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
 	String description;
 	String lddLocalIdentifier;						// LDD local identifier
+	AttrDefn lddUserAttribute;						// the USER attribute used to initialize the LDD attribute
 
 	String xmlBaseDataType;							// the XML base data type
 	String protValType;								// value type from protege model
 	String propType;								// Instance or Attribute
 	String valueType;								// Master value type 
+	String groupName;								// the choice group name
 	String cardMin;
 	String cardMax;
 	int cardMinI;
@@ -46,23 +50,25 @@ public class AttrDefn extends Object {
 	String default_unit_id;			//
 	String unit_of_measure_precision;	//
 		
-	String type;
+//	String type;
 	boolean isAttribute;			// true->attribute; false->association
 	boolean isOwnedAttribute;		// true->attribute is owned by this class, as opposed to inherited
 	boolean isPDS4;					// true->PDS4 keyword used in Protege
-	boolean isUnitOfMeasure;
-	boolean isDataType;
+// 445	boolean isUnitOfMeasure;
+// 445	boolean isDataType;
 	boolean isEnumerated;
-	boolean isUsedInModel;
+	boolean isUsedInClass;			// attribute is used in a class
 	boolean isRestrictedInSubclass;
 	boolean isMeta;
 	boolean hasAttributeOverride;
 	boolean isNilable;
 	boolean isChoice;				// Association or Instance attributes that require a class choice
+	boolean isAny;					// Association or Instance attribute that allows a class any
 	boolean isFromLDD;				// attribute came from an LDD
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
 	
 	ArrayList <String> valArr;
+	ArrayList <PDSObjDefn> valClassArr;	// classes for for assoc (AttrDefn) valArr
 	ArrayList <String> allowedUnitId;	// the unit ids allowed from the set of measurement units.
 	HashMap <String, ArrayList<String>> genAttrMap; 
 	ArrayList <PermValueDefn> permValueArr;
@@ -77,6 +83,8 @@ public class AttrDefn extends Object {
 	String evdDataIdentifier;					// enumerated value domain
 	String necdDataIdentifier;					// non enumerated conceptual domain 
 	String nevdDataIdentifier;					// non enumerated value domain
+	String pvDataIdentifier;					// permissible value
+	String vmDataIdentifier;					// value meaning
 	
 	String desDataIdentifier;					// designation 
 	String defDataIdentifier;					// definition
@@ -134,6 +142,7 @@ public class AttrDefn extends Object {
 		rdfIdentifier = rdfId; 
 		uid = "TBD_uid";
 		identifier = "TBD_identifier"; 
+		nsTitle = "TBD_nsTitle"; 
 		sort_identifier = "TBD_sort_identifier";
 		attrAnchorString = "TBD_attrAnchorString";
 		title = "TBD_title";  
@@ -148,17 +157,20 @@ public class AttrDefn extends Object {
 		attrNameSpaceIdNC = "TBD_attrNameSpaceIdNC";
 		submitter = "TBD_submitter";
 		subModelId = "TBD_submodel_identifier";
-		className = "TBD_className"; 
+		parentClassTitle = "TBD_parentClassTitle";
+		attrParentClass = null;
 		classConcept = "TBD_classConcept"; 
 		dataConcept = "TBD_dataConcept"; 
 		classWord = "TBD_classWord"; 
 		description = "TBD_description"; 
 		lddLocalIdentifier = "TBD_lddLocalIdentifier";
+		lddUserAttribute = null;
 
 		xmlBaseDataType = "TBD_XML_Base_Data_Type";
 		protValType = "TBD_Protege_Value_type";
 		propType = "TBD_slot_type";
 		valueType = "TBD_value_type";
+		groupName = "TBD_groupName";
 		cardMin = "TBD_cardMin";
 		cardMax = "TBD_cardMax";
 		cardMinI = -99999;
@@ -174,23 +186,25 @@ public class AttrDefn extends Object {
 		default_unit_id = "TBD_default_unit_id";
 		unit_of_measure_precision = "TBD_unit_of_measure_precision";
 		
-		type = "TBD_type";
+//		type = "TBD_type";
 		isAttribute = true;
 		isOwnedAttribute = false;
 		isPDS4 = false;
-		isUnitOfMeasure = false;
-		isDataType = false;
+// 445		isUnitOfMeasure = false;
+// 445		isDataType = false;
 		isEnumerated = false;
-		isUsedInModel = false;
+		isUsedInClass = false;
 		isRestrictedInSubclass = false;
 		isMeta = false;
 		hasAttributeOverride = false;
 		isNilable = false;
 		isChoice = false;
+		isAny = false;
 		isFromLDD = false;
 		hasRetiredValue = false;
 
 		valArr = new ArrayList <String> (); 
+		valClassArr = new ArrayList <PDSObjDefn> (); 
 		allowedUnitId = new ArrayList <String> ();
 		permValueArr = new ArrayList <PermValueDefn> ();
 		permValueExtArr = new ArrayList <PermValueExtDefn> ();
@@ -203,6 +217,8 @@ public class AttrDefn extends Object {
 		necdDataIdentifier = "TBD_necdDataIdentifier";			// non enumerated conceptual domain 
 		evdDataIdentifier = "TBD_evdDataIdentifier";			// enumerated value domain
 		nevdDataIdentifier = "TBD_nevdDataIdentifier";			// non enumerated value domain
+		pvDataIdentifier = "TBD_pvDataIdentifier";				// permissible value
+		vmDataIdentifier = "TBD_vmDataIdentifier";				// value meaning
 
 		desDataIdentifier = "TBD_desDataIdentifier";			// designation 
 		defDataIdentifier = "TBD_defDataIdentifier";			// definition
@@ -222,8 +238,14 @@ public class AttrDefn extends Object {
 		containedIn1Arr = new ArrayList <String>();	    // VD -> containedIn1 -> VM/PV;   aka has_VM
 		genClassArr = null;
 		sysClassArr = null;
-	} 
+	}
 	
+	// set the attribute's identifier
+	public void setAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+		identifier = InfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassTitle, lAttrNameSpaceIdNC, lAttrTitle);	
+		nsTitle = InfoModel.getAttrNSTitle(lAttrNameSpaceIdNC, lAttrTitle);	
+	}
+			
 	public void set11179Attr (String lDataIdentifier) {
 		// Data Element Identifiers	
 		dataIdentifier = lDataIdentifier;
@@ -233,6 +255,8 @@ public class AttrDefn extends Object {
 		necdDataIdentifier = "NECD." + lDataIdentifier;			// non enumerated conceptual domain 
 		evdDataIdentifier = "EVD." + lDataIdentifier;			// enumerated value domain
 		nevdDataIdentifier = "NEVD." + lDataIdentifier;			// non enumerated value domain
+		pvDataIdentifier = "PV." + lDataIdentifier;				// permissible value
+		vmDataIdentifier = "VM." + lDataIdentifier;				// value meaning
 
 		desDataIdentifier = "DES." + lDataIdentifier;			// designation 
 		defDataIdentifier = "DEF." + lDataIdentifier;			// definition
@@ -254,102 +278,76 @@ public class AttrDefn extends Object {
 		}
 		return "TBD_value_type";
 	}
-	
+		
 	//	get the minimum_characters for printing. Use the data type for a default.
-	public String getMinimumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
+	public String getMinimumCharacters2 (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.minimum_characters;
-		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			if (forceBound && lValue.compareTo("-2147483648") == 0) {
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_minimum_characters";
+			lValue = lDataType.minimum_characters;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0) {
 				return "Unbounded";
 			}
-			return lValue;
 		}
-		if (useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
-			if (lDataType != null) {
-				lValue = lDataType.minimum_characters;
-				if (! (lValue.indexOf("TBD") == 0)) {
-					if (forceBound && lValue.compareTo("-2147483648") == 0) {
-						return "Unbounded";
-					}
-					return lValue;
-				}
-			}
-		}
-		return "TBD_minimum_characters";
+		if (lValue.compareTo("") == 0) return "TBD_minimum_characters";
+		return lValue;
 	}
 	
 	//	get the maximum_characters for printing. Use the data type for a default.
-	public String getMaximumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
+	public String getMaximumCharacters2 (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.maximum_characters;
-		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			if (forceBound && lValue.compareTo("2147483647") == 0) {
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_maximum_characters";
+			lValue = lDataType.maximum_characters;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0) {
 				return "Unbounded";
 			}
-			return lValue;
 		}
-		if (useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
-			if (lDataType != null) {
-				lValue = lDataType.maximum_characters;
-				if (! (lValue.indexOf("TBD") == 0)) {
-					if (forceBound && lValue.compareTo("2147483647") == 0) {
-						return "Unbounded";
-					}
-					return lValue;
-				}
-			}
-		}
-		return "TBD_maximum_characters";
+		if (lValue.compareTo("") == 0) return "TBD_maximum_characters";
+		return lValue;
 	}
 	
 	//	get the minimum_value for printing. Use the data type for a default.
-	public String getMinimumValue (boolean useDataTypeForUNK, boolean forceBound) {
+	public String getMinimumValue2 (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.minimum_value;
-		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			if (forceBound && (lValue.compareTo("-2147483648") == 0 || lValue.compareTo("-INF") == 0)) {
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_minimum_value";
+			lValue = lDataType.minimum_value;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0 || lValue.compareTo("-INF") == 0) {
 				return "Unbounded";
 			}
-			return lValue;
 		}
-		if (useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
-			if (lDataType != null) {
-				lValue = lDataType.minimum_value;
-				if (! (lValue.indexOf("TBD") == 0)) {
-					if (forceBound && (lValue.compareTo("-2147483648") == 0 || lValue.compareTo("-INF") == 0)) {
-						return "Unbounded";
-					}
-					return lValue;
-				}
-			}
-		}
-		return "TBD_minimum_value";
+		if (lValue.compareTo("") == 0) return "TBD_minimum_value";
+		return lValue;
 	}
 	
 	//	get the maximum_value for printing. Use the data type for a default.
-	public String getMaximumValue (boolean useDataTypeForUNK, boolean forceBound) {
+	public String getMaximumValue2 (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.maximum_value;
-		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			if (forceBound && (lValue.compareTo("2147483647") == 0 || lValue.compareTo("4294967295") == 0 || lValue.compareTo("INF") == 0)) {
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_maximum_value";
+			lValue = lDataType.maximum_value;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0 || lValue.compareTo("4294967295") == 0 || lValue.compareTo("INF") == 0) {
 				return "Unbounded";
 			}
-			return lValue;	
 		}
-		if (useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
-			if (lDataType != null) {
-				lValue = lDataType.maximum_value;
-				if (! (lValue.indexOf("TBD") == 0)) {
-					if (forceBound && (lValue.compareTo("2147483647") == 0 || lValue.compareTo("4294967295") == 0 || lValue.compareTo("INF") == 0)) {
-						return "Unbounded";
-					}
-					return lValue;
-				}
-			}
-		}
-		return "TBD_maximum_value";
+		if (lValue.compareTo("") == 0) return "TBD_maximum_value";
+		return lValue;
 	}
+	
+// ========================================================	
 	
 	//	get the format for printing. Use the data type for a default.
 	public String getFormat (boolean useDataTypeForUNK) {
@@ -369,27 +367,21 @@ public class AttrDefn extends Object {
 		return "TBD_format";
 	}
 	
-	//	get pattern for printing.
+	
+	//	get the maximum_value for printing. Use the data type for a default.
 	public String getPattern (boolean useDataTypeForUNK) {
 		String lValue = this.pattern;
-		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			return InfoModel.unEscapeProtegeString(lValue);
-		}
-		if (useDataTypeForUNK) {
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
 			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
-			if (lDataType != null) {
-				ArrayList <String> lPatternArr = lDataType.pattern;
-				if (lPatternArr != null && ! lPatternArr.isEmpty()) {
-					lValue = lPatternArr.get(0);
-					if (! (lValue.indexOf("TBD") == 0)) {
-						return lValue;
-					}
-				}
-			}
+			if (lDataType == null) return "TBD_pattern";
+			if (lDataType.pattern.isEmpty()) return "TBD_pattern";
+			if (lDataType.pattern.size() > 1) return "TBD_pattern";
+			lValue = lDataType.pattern.get(0);
 		}
-		return "TBD_pattern";
-	}
-	
+		if (lValue.compareTo("") == 0) return "TBD_pattern";
+		return lValue;
+	}	
+
 	//	get the unit_of_measure_type for printing.
 	public String getUnitOfMeasure (boolean forceBound) {
 		String lValue = this.unit_of_measure_type;
@@ -412,7 +404,8 @@ public class AttrDefn extends Object {
 		String lUnitsValueString = "";
 
 		// get the unit of measure type
-		String lUnitIdId = DMDocument.registrationAuthorityIdentifierValue + "." + "pds" + "." + lUnitOfMeasureType + "." + "unit_id";
+		String lUnitIdId = InfoModel.getAttrIdentifier ("pds", lUnitOfMeasureType, "pds", "unit_id");
+
 		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
 		if (lAttr == null) return null;
 

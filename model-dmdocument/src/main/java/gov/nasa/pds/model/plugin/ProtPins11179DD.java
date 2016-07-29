@@ -79,6 +79,27 @@ class ProtPins11179DD extends Object {
 				String lVal = (String) lValArr.get(0);
 				if (! ((lVal == null) || ((lVal.compareTo("")) == 0) || ((lVal.indexOf("TBD")) == 0))) {
 					if (isEscaped) {
+						lVal = InfoModel.unEscapeProtegeString(lVal);
+					}
+					if (lVal.compareTo(oVal) != 0) {
+						return lVal;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	// get a string value from map
+	static public String getStringValueUpdatePattern (boolean isEscaped, HashMap <String, ArrayList<String>> lMap, String lMetaAttrName, String oVal) {
+//		System.out.println("debug getStringValue - lMetaAttrName:" + lMetaAttrName);
+		ArrayList<String> lValArr = lMap.get(lMetaAttrName); 
+		if (lValArr != null) {
+			int lValArrSize = lValArr.size();
+			if (lValArrSize == 1) {
+				String lVal = (String) lValArr.get(0);
+				if (! ((lVal == null) || ((lVal.compareTo("")) == 0) || ((lVal.indexOf("TBD")) == 0))) {
+					if (isEscaped) {
 						lVal = InfoModel.unEscapeProtegePatterns(lVal);
 					}
 					if (lVal.compareTo(oVal) != 0) {

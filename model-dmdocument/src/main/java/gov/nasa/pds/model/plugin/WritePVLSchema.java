@@ -11,19 +11,15 @@ class WritePVLSchema extends Object {
 	}
 
 //  write PVL schemas
-	public void writePVLLabel (PDSObjDefn lClass, String todaysDate) throws java.io.IOException  {
-//		System.out.println("\ndebug  starting writePVLLabel");
-		
-		File targetDir = new File(DMDocument.outputDirPath + "SchemaPVL");
-		targetDir.mkdirs();
-
+	public void writePVLLabel (PDSObjDefn lClass, String todaysDate) throws java.io.IOException  {		
 		String classTitle = lClass.title;
-	    prPVL = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaPVL/" + classTitle + "_" + InfoModel.lab_version_id + ".txt", false));
+	    prPVL = new PrintWriter(new FileWriter(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelPVL + classTitle + ".txt", false));
 
 	    PVLStmt = "#PDS4#\n";
 		prPVL.println(PVLStmt);
 		
-	    PVLStmt = "/* ******* Label Template - " + lClass.title + "_" + InfoModel.ont_version_id + " - " + todaysDate + " ******* */";						
+//	    PVLStmt = "/* ******* Label Template - " + lClass.title + "_" + InfoModel.ont_version_id + " - " + todaysDate + " ******* */";						
+	    PVLStmt = "/* ******* Label Template - " + lClass.title + "_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - " + todaysDate + " ******* */";						
 		prPVL.println(PVLStmt);
 		
 		//	get the classes, starting with the first		

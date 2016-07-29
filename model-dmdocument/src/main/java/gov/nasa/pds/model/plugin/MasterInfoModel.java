@@ -4,41 +4,57 @@ import java.util.*;
 class MasterInfoModel extends InfoModel{ 
 	static String attrNameClassWord;
 	
-	
 	public MasterInfoModel () {
 		// initialize the class structures
 		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> ();
 		InfoModel.masterMOFClassMap = new TreeMap <String, PDSObjDefn> ();
 		InfoModel.masterMOFClassIdMap = new TreeMap <String, PDSObjDefn> ();
-		InfoModel.masterMOFClassTitleMap = new TreeMap <String, PDSObjDefn> ();
+//		InfoModel.masterMOFClassTitleMap = new TreeMap <String, PDSObjDefn> ();
 		
-		// create the USER class - the root of all classes
-		String lTitle = "USER";
-		String lClassRdfIdentifier = DMDocument.rdfPrefix + lTitle + "." + getNextUId();
+		// create the USER class - the root of all classes and all namespaces
+		String lTitle = DMDocument.masterUserClassName;
+		String lClassNameSpaceIdNC = DMDocument.masterUserClassNamespaceIdNC;
+		String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + lClassNameSpaceIdNC + "." + lTitle + "." + getNextUId();
 		PDSObjDefn lClass = new PDSObjDefn(lClassRdfIdentifier);
-		lClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + "pds" + "." + lTitle;
-		lClass.isUSERClass = true;
+		lClass.identifier = InfoModel.getClassIdentifier(lClassNameSpaceIdNC, lTitle);
+		lClass.nameSpaceIdNC = lClassNameSpaceIdNC;
+		lClass.nameSpaceId = lClassNameSpaceIdNC + ":";
+		lClass.subClassOfTitle = "N/A";
+		lClass.subClassOfIdentifier = "N/A";
+		lClass.rootClass = "N/A";
+		lClass.baseClassName = "N/A";
+		lClass.description = "The root class.";
+		lClass.steward = "pds";
 		lClass.title = lTitle;
+		lClass.isUSERClass = true;
 		lClass.docSecType = lTitle;
 		lClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 		lClass.subModelId = "ROOT";
+		lClass.docSecType = lTitle;
+
 		InfoModel.masterMOFUserClass = lClass;
 		InfoModel.masterMOFClassArr.add(lClass);
 		InfoModel.masterMOFClassMap.put(lClass.rdfIdentifier, lClass);
 		InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
-		InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);		
+//		InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);		
 		
 		// initialize the attribute structures
 		InfoModel.masterMOFAttrMap = new TreeMap <String, AttrDefn> (); 
 		InfoModel.masterMOFAttrIdMap = new TreeMap <String, AttrDefn> (); 
-		InfoModel.masterMOFAttrTitleMap = new TreeMap <String, AttrDefn> (); 
-		InfoModel.masterMOFAttrArr = new ArrayList <AttrDefn> (); 
+		InfoModel.masterMOFAttrArr = new ArrayList <AttrDefn> ();
+		InfoModel.userClassAttrIdMap = new TreeMap <String, AttrDefn> ();
+		InfoModel.userSingletonClassAttrIdMap = new TreeMap <String, AttrDefn> ();
 		
+		// initialize the Property structures
+//		InfoModel.masterMOFPropMap = new TreeMap <String, AssocDefn> (); 
+//		InfoModel.masterMOFPropIdMap = new TreeMap <String, AssocDefn> (); 
+//		InfoModel.masterMOFPropArr = new ArrayList <AssocDefn> (); 
+
 		// initialize the association structures
 		InfoModel.masterMOFAssocMap = new TreeMap <String, AssocDefn> (); 
 		InfoModel.masterMOFAssocIdMap = new TreeMap <String, AssocDefn> (); 
 		InfoModel.masterMOFAssocArr = new ArrayList <AssocDefn> (); 
-		
+				
 		// initialize the global data types
 		InfoModel.masterDataTypeMap = new TreeMap <String, PDSObjDefn> ();
 		InfoModel.masterDataTypeMap2 = new TreeMap <String, DataTypeDefn> ();
@@ -46,89 +62,21 @@ class MasterInfoModel extends InfoModel{
 		// initialize the global unitOfMeasure
 		InfoModel.masterUnitOfMeasureMap = new TreeMap <String, UnitDefn> ();
 
+		// initialize the global property map
+		InfoModel.masterPropertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
+		InfoModel.masterPropertyMapsArr = new ArrayList <PropertyMapsDefn> (); 	
+
 		return;
 	}
 	
-/**********************************************************************************************************
-	Update the master attribute map with the attributes from each individual class.
-***********************************************************************************************************/
-	
-	public void addMasterAttrAssocMap (ProtPontModel lModelxxx, PDSObjDefn lClass) {
-
-	    // get INSTANCE attributes - i.e. associations
-		for (Iterator<AttrDefn> i = lClass.ownedAssociation.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			
-			// add associations
-			if (! InfoModel.masterMOFAttrMap.containsKey(lAttr.rdfIdentifier)) {
-//				System.out.println("debug addMasterAttrAssocMap - ADDING Association lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);				
-				InfoModel.masterMOFAttrMap.put(lAttr.rdfIdentifier, lAttr);
-				InfoModel.masterMOFAttrIdMap.put(lAttr.identifier, lAttr);
-				InfoModel.masterMOFAttrTitleMap.put(lAttr.title, lAttr);
-				InfoModel.masterMOFAttrArr.add(lAttr);
-			}
-			
-			// add MOF properties (type association)
-			if (masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
-//				AssocDefn lAssoc = new AssocDefn (lAttr.rdfIdentifier);
-				AssocDefn lAssoc = new AssocDefn ();
-				lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
-				lAssoc.identifier = lAttr.identifier;
-//				lAssoc.classOrder = lClassOrderStr;
-				lAssoc.isAttribute = lAttr.isAttribute;	// false
-				lAssoc.cardMin = lAttr.cardMin;
-				lAssoc.cardMax = lAttr.cardMax;
-				lAssoc.cardMinI = lAttr.cardMinI; 
-				lAssoc.cardMaxI = lAttr.cardMaxI;
-				lAssoc.parentClass = lClass;
-				lAssoc.referenceType = lAttr.title;
-				masterMOFAssocArr.add(lAssoc);
-				masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
-				masterMOFAssocIdMap.put(lAttr.identifier, lAssoc);
-			}
-		}	
-		
-		//	get non-INSTANCE attributes - i.e. standard attributes
-		for (Iterator<AttrDefn> i = lClass.ownedAttribute.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			
-			// add attributes
-			if (! InfoModel.masterMOFAttrMap.containsKey(lAttr.rdfIdentifier)) {
-//				System.out.println("debug addMasterAttrAssocMap - ADDING Attribute lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
-				InfoModel.masterMOFAttrMap.put(lAttr.rdfIdentifier, lAttr);
-				InfoModel.masterMOFAttrIdMap.put(lAttr.identifier, lAttr);
-				InfoModel.masterMOFAttrTitleMap.put(lAttr.title, lAttr);
-				InfoModel.masterMOFAttrArr.add(lAttr);
-			}
-			
-			// add MOF Properties (type attribute)
-			if (masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
-//				AssocDefn lAssoc = new AssocDefn (lAttr.rdfIdentifier);
-				AssocDefn lAssoc = new AssocDefn ();
-				lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
-				lAssoc.identifier = lAttr.identifier;
-//				lAssoc.classOrder = lClassOrderStr;
-				lAssoc.isAttribute = lAttr.isAttribute; // true
-				lAssoc.cardMin = lAttr.cardMin;
-				lAssoc.cardMax = lAttr.cardMax;
-				lAssoc.cardMinI = lAttr.cardMinI; 
-				lAssoc.cardMaxI = lAttr.cardMaxI;
-				lAssoc.parentClass = lClass;
-				lAssoc.referenceType = "attribute_of";
-				masterMOFAssocArr.add(lAssoc);
-				masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
-				masterMOFAssocIdMap.put(lAttr.identifier, lAssoc);
-			}
-		}
-	}
-		
 /**********************************************************************************************************
 	Set the DEC and CD for each attribute.
 ***********************************************************************************************************/
 	
 	public void GetMasterDECMaps () {		
 		//set the DEC maps
-		AttrDefn lAttr = InfoModel.masterMOFAttrTitleMap.get("attribute_concept");
+		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Attribute_Full.pds.attribute_concept");
+
 		if (lAttr == null) {
 			System.out.println("***error*** system attribute - attribute_concept - MISSING");
 			return;
@@ -149,61 +97,135 @@ class MasterInfoModel extends InfoModel{
 		}
 	}
 		
-		public void GetMasterCDMaps () {		
-			//set the CD maps
-			AttrDefn lAttr = InfoModel.masterMOFAttrTitleMap.get("conceptual_domain");
-			if (lAttr == null) {
-				System.out.println("***error*** system attribute - conceptual_domain - MISSING");
-				return;
-			}
-			if (lAttr.valArr == null) {
-				System.out.println("***error*** - system attribute - conceptual_domain - NO PERMISSIBLE VALUES");
-				return;
-			}
-			if (lAttr.valArr.size() < 1) {
-				System.out.println("***error*** - system attribute - conceptual_domain - NO PERMISSIBLE VALUES");
-				return;
-			}
-			for (Iterator <String> i = lAttr.valArr.iterator(); i.hasNext();) {
-				String lCDTitle = (String) i.next();
-				String lCDId = "CD_" + lCDTitle;
-				InfoModel.cdID2CDTitleMap.put(lCDId, lCDTitle);
-				InfoModel.cdTitle2CDIDMap.put(lCDTitle, lCDId);
-			}
+	public void GetMasterCDMaps () {		
+		//set the CD maps
+		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.conceptual_domain");
+
+		if (lAttr == null) {
+			System.out.println("***error*** system attribute - conceptual_domain - MISSING");
+			return;
 		}
+		if (lAttr.valArr == null) {
+			System.out.println("***error*** - system attribute - conceptual_domain - NO PERMISSIBLE VALUES");
+			return;
+		}
+		if (lAttr.valArr.size() < 1) {
+			System.out.println("***error*** - system attribute - conceptual_domain - NO PERMISSIBLE VALUES");
+			return;
+		}
+		for (Iterator <String> i = lAttr.valArr.iterator(); i.hasNext();) {
+			String lCDTitle = (String) i.next();
+			String lCDId = "CD_" + lCDTitle;
+			InfoModel.cdID2CDTitleMap.put(lCDId, lCDTitle);
+			InfoModel.cdTitle2CDIDMap.put(lCDTitle, lCDId);
+		}
+	}
 				
 /**********************************************************************************************************
-		Set Attributes' attributes from the dataType
+		General Update Routines
 ***********************************************************************************************************/
+	
+	//	set the attrParentClass (attributes parent class) from the class name (temp fix)
+	public void setAttrParentClass (boolean forLDD) {		
+//		System.out.println("\n\n\n\ndebug setAttrParentClass");
+		// for each PDS4 attribute set the attrParentClass
+		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+//			System.out.println("\ndebug setAttrParentClass lAttr.identifier:" + lAttr.identifier);
+			if (forLDD && ! lAttr.isFromLDD) continue;
+			if (! forLDD && lAttr.isFromLDD) continue;
+			String lClassId = InfoModel.getClassIdentifier (lAttr.classNameSpaceIdNC, lAttr.parentClassTitle);
+			PDSObjDefn lParentClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+			if (lParentClass != null) {
+				lAttr.attrParentClass = lParentClass;
+//				System.out.println("debug setAttrParentClass FOUND - lAttr.attrParentClass.title:" + lAttr.attrParentClass.title);
+			} else {
+				boolean classNotFound = true;
+				for (Iterator<PDSObjDefn> k = InfoModel.masterMOFClassArr.iterator(); k.hasNext();) {
+					lParentClass = (PDSObjDefn) k.next();
+					if (lParentClass.title.compareTo(lAttr.parentClassTitle) == 0) {
+//						System.out.println("debug getValClassArr FOUND Using Scan - lClassMember.identifier:" + lClassMember.identifier);
+						if (classNotFound) {
+							classNotFound = false;
+							lAttr.attrParentClass = lParentClass;
+							System.out.println(">>warning - set attributes parent class - lAttr.identifier:" + lAttr.identifier + " - using first found - lClassMember.identifier:" + lParentClass.identifier);
+						} else {
+							System.out.println(">>warning - set attributes parent class - lAttr.identifier:" + lAttr.identifier + " - also found - lClassMember.identifier:" + lParentClass.identifier);
+						}
+					}
+				}
+				if (classNotFound) {
+					lAttr.attrParentClass = InfoModel.masterMOFUserClass;
+					System.out.println(">>warning - set attributes parent class - lAttr.identifier:" + lAttr.identifier + " - parent class not found, using USER - lClassMember.identifier:" + lParentClass.identifier);
+				}
+			}
+		}
+	}	
+	
+	//	get the valClassArr from the valArr for each association (AttrDefn)
+	public void getValClassArr () {		
+		// for each PDS4 attribute set the meta attribute from the data type
+		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (lAttr.isAttribute) continue;		// ignore, not an association
+			if (lAttr.valArr == null || lAttr.valArr.isEmpty()) continue;			
+//			System.out.println("\ndebug getValClassArr - Association - lAttr.identifier:" + lAttr.identifier);
+			for (Iterator<String> j = lAttr.valArr.iterator(); j.hasNext();) {
+				String lTitle = (String) j.next();
+//				String lClassMemberIdentifier = InfoModel.getClassIdentifier(lAttr.classNameSpaceIdNC, lTitle);
+				String lClassMemberIdentifier = InfoModel.getClassIdentifier(lAttr.attrNameSpaceIdNC, lTitle);
+//				System.out.println("debug getValClassArr - lClassMemberIdentifier:" + lClassMemberIdentifier);
+				PDSObjDefn lClassMember = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lClassMemberIdentifier);
+				if (lClassMember != null) {
+					lAttr.valClassArr.add(lClassMember);
+//					System.out.println("debug getValClassArr FOUND Using Namespace -" + lAttr.attrNameSpaceIdNC + "- lClassMember.identifier:" + lClassMember.identifier);
+				} else {
+					PDSObjDefn firstClassFound = null;
+					for (Iterator<PDSObjDefn> k = InfoModel.masterMOFClassArr.iterator(); k.hasNext();) {
+						lClassMember = (PDSObjDefn) k.next();
+						if (lClassMember.title.compareTo(lTitle) == 0) {
+//							System.out.println("debug getValClassArr FOUND Using Scan - lClassMember.identifier:" + lClassMember.identifier);
+							if (firstClassFound == null) {
+								firstClassFound = lClassMember;
+								System.out.println(">>warning - get class using attribute value array - lAttr.identifier:" + lAttr.identifier + " - using first found - lClassMember.identifier:" + lClassMember.identifier);
+							} else {
+								System.out.println(">>warning - get class using attribute value array - lAttr.identifier:" + lAttr.identifier + " - also found - lClassMember.identifier:" + lClassMember.identifier);
+							}
+						}
+					}
+					if (firstClassFound != null) lAttr.valClassArr.add(firstClassFound);
+				}
+			}
+		}
+	}	
 
-		public void SetMasterAttrXMLBaseDataTypeFromDataType () {		
-			
-			// for each PDS4 attribute set the meta attribute from the data type
-//			for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr2.iterator(); i.hasNext();) {
-			for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttrI = (AttrDefn) i.next();
-				if (lAttrI.isPDS4) {
-//					System.out.println("\ndebug set other attributes - found PDS4 attribute attrId:" + attrId);
-					String lTitle = lAttrI.valueType;					
-					PDSObjDefn lClass = (PDSObjDefn) masterMOFClassTitleMap.get(lTitle);
-					if (lClass != null) {
-						// iterate through owned attributes
-						for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
-							AttrDefn lAttr = (AttrDefn) j.next();
-							
-							// set the xmlBaseDataType
-							if (lAttr.title.compareTo("xml_schema_base_type") == 0) {
-								String lVal = InfoModel.getSingletonValueUpdate(lAttr.valArr, lAttrI.xmlBaseDataType);
-								if (lVal != null) {
-									lAttrI.xmlBaseDataType =  lVal;
-								}
+	//	Set Master Attribute XML Base Data Type From the Data Type	
+	public void SetMasterAttrXMLBaseDataTypeFromDataType () {		
+		// for each PDS4 attribute set the meta attribute from the data type
+		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttrI = (AttrDefn) i.next();
+			if (lAttrI.isPDS4) {
+//				System.out.println("\ndebug set other attributes - found PDS4 attribute attrId:" + attrId);
+				String lTitle = lAttrI.valueType;					
+				String lClassId = InfoModel.getClassIdentifier("pds", lTitle);
+				PDSObjDefn lClass = (PDSObjDefn) masterMOFClassIdMap.get(lClassId);
+				if (lClass != null) {
+					for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
+						AttrDefn lAttr = (AttrDefn) j.next();
+						
+						// set the xmlBaseDataType
+						if (lAttr.title.compareTo("xml_schema_base_type") == 0) {
+							String lVal = InfoModel.getSingletonValueUpdate(lAttr.valArr, lAttrI.xmlBaseDataType);
+							if (lVal != null) {
+								lAttrI.xmlBaseDataType =  lVal;
 							}
 						}
 					}
 				}
 			}
-		}		
-
+		}
+	}
+	
 	// general master attribute fixup
 	// anchorString; sort_identifier; sorts valArr; get DEC
 	// requires final attribute and class namespaces; final valArr;
@@ -213,7 +235,7 @@ class MasterInfoModel extends InfoModel{
 			AttrDefn lAttr = (AttrDefn) i.next();
 			
 			// set attributes anchor string
-			lAttr.attrAnchorString = ("attribute_" + lAttr.classNameSpaceIdNC + "_" + lAttr.className + "_" + lAttr.attrNameSpaceIdNC + "_"  + lAttr.title).toLowerCase();
+			lAttr.attrAnchorString = ("attribute_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_"  + lAttr.title).toLowerCase();
 
 			// set attributes sort identifier
 			int lLength = lAttr.title.length();
@@ -222,11 +244,11 @@ class MasterInfoModel extends InfoModel{
 			}
 			String lPaddedAttrTitle = lAttr.title + lBlanks.substring(0, 30 - lLength);
 			
-			lLength = lAttr.className.length();
+			lLength = lAttr.parentClassTitle.length();
 			if (lLength >= 30) {
 				lLength = 30;
 			}
-			String lPaddedClassTitle = lAttr.className + lBlanks.substring(0, 30 - lLength);
+			String lPaddedClassTitle = lAttr.parentClassTitle + lBlanks.substring(0, 30 - lLength);
 			
 			lAttr.sort_identifier = lPaddedAttrTitle + "_" + lAttr.steward + "_" + lPaddedClassTitle + "_" + lAttr.classSteward;
 
@@ -240,12 +262,15 @@ class MasterInfoModel extends InfoModel{
 	public void getAttributePermValuesExtended () {
 
 		// get an array of the schematron pattern statements
-		ArrayList <RuleDefn> lAssertArrArr = new ArrayList <RuleDefn> (schematronRuleMap.values());				
-		for (Iterator<RuleDefn> i = lAssertArrArr.iterator(); i.hasNext();) {
+//		ArrayList <RuleDefn> lAssertArrArr = new ArrayList <RuleDefn> (schematronRuleIdMap.values());				
+//		for (Iterator<RuleDefn> i = lAssertArrArr.iterator(); i.hasNext();) {
+//		for (Iterator<RuleDefn> i = schematronRuleArr.iterator(); i.hasNext();) {
+		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (schematronRuleMap.values());				
+		for (Iterator<RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
 			RuleDefn lRule = (RuleDefn) i.next();
 //			System.out.println("\ndebug getAttributePermValuesExtended lRule.identifier:" + lRule.identifier);
 			// get the affected attribute
-			String lAttrId = DMDocument.registrationAuthorityIdentifierValue + "." + lRule.attrNameSpaceNC + "." + lRule.classTitle + "." + lRule.attrTitle;
+			String lAttrId = InfoModel.getAttrIdentifier (lRule.classNameSpaceNC, lRule.classTitle, lRule.attrNameSpaceNC, lRule.attrTitle);			
 			AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 			if (lAttr != null) {
 			// for each rule get assert statement
@@ -327,6 +352,7 @@ class MasterInfoModel extends InfoModel{
 						// the data type does not exist, add it
 						lDataType = new DataTypeDefn (lClass.title);
 						lDataType.title = lDataType.identifier;
+						lDataType.nameSpaceIdNC = lClass.nameSpaceIdNC;
 						lDataType.type = lDataType.identifier;
 						InfoModel.masterDataTypeMap2.put(lDataType.title, lDataType);						
 						// for each attribute of the class
@@ -396,6 +422,12 @@ class MasterInfoModel extends InfoModel{
 									lDataType.pattern =  lVal;
 								}
 							} */
+							if (lAttr.title.compareTo("pattern") == 0) {								
+								for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
+									String lValue = (String) k.next();
+									lDataType.pattern.add(lValue);
+								}
+							}
 						}
 					}
 				}
@@ -408,14 +440,14 @@ class MasterInfoModel extends InfoModel{
 	public void setRegistrationStatus () {
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
-//			System.out.println("debug setRegistrationStatus Value Calc lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
+	//		System.out.println("debug setRegistrationStatus lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
+			// is it a value
 			if (lDeprecatedDefn.value.compareTo("") != 0) {
-				String lId = DMDocument.registrationAuthorityIdentifierValue + "." + lDeprecatedDefn.nameSpaceIdNC + "." + lDeprecatedDefn.className + "." + lDeprecatedDefn.attrName;
+				String lId = InfoModel.getAttrIdentifier (lDeprecatedDefn.classNameSpaceIdNC, lDeprecatedDefn.className, lDeprecatedDefn.attrNameSpaceIdNC, lDeprecatedDefn.attrName);
 				AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lId);
-//				AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lDeprecatedDefn.identifier);
 				if (lAttr != null) {
 					lAttr.hasRetiredValue = true;
-//					System.out.println("debug setRegistrationStatus Object FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
+	//				System.out.println("debug setRegistrationStatus Object FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
 					for (Iterator<PermValueDefn> j = lAttr.permValueArr.iterator(); j.hasNext();) {
 						PermValueDefn lPermValue = (PermValueDefn) j.next();
 						if (lPermValue.value.compareTo(lDeprecatedDefn.value) == 0) {
@@ -423,19 +455,20 @@ class MasterInfoModel extends InfoModel{
 						}
 					}
 				} else {
-					System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.value:" + lDeprecatedDefn.value);
+// 999					System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.value:" + lDeprecatedDefn.value);
 				}
 			} else {
-				// found attribute or object
+				// is it a class
 				PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lDeprecatedDefn.identifier);
 				if (lClass != null) {
 					lClass.registrationStatus = "Retired";
 				} else {
+					// is it an attribute
 					AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lDeprecatedDefn.identifier);
 					if (lAttr != null) {
 						lAttr.registrationStatus = "Retired";
 					} else {
-						System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
+// 999						System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
 					}
 				}				
 			}
@@ -487,7 +520,7 @@ class MasterInfoModel extends InfoModel{
 	}	
 	
 //	set data type and unit of measure flags in attributes	
-	public void setMasterDataTypeAndUnitOfMeasureFlagsAttr () {
+	public void setMasterDataTypeAndUnitOfMeasureFlagsAttrxxx () {
 		// iterate through the classes
 		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
@@ -495,13 +528,13 @@ class MasterInfoModel extends InfoModel{
 			if (lClass.isDataType) {
 				for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
-					lAttr.isDataType = true;
+// 445					lAttr.isDataType = true;
 				}
 			}
 			if (lClass.isUnitOfMeasure) {
 				for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
-					lAttr.isUnitOfMeasure = true;
+// 445					lAttr.isUnitOfMeasure = true;
 				}
 			}
 		}
@@ -535,46 +568,6 @@ class MasterInfoModel extends InfoModel{
 					}
 				}
 
-/*
-				if (lAttr.isEnumerated) {continue;}
-				if (! lAttr.isUsedInModel) {continue;}
-				DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(lAttr.valueType);
-				if (lDataType != null) {
-					boolean allEqualflag = true;
-					System.out.println("\ndebug  ValidateAttributeDataTypes Checking Attribute lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
-					if (lAttr.minimum_value.indexOf("TBD") != 0) {
-						if (lAttr.minimum_value.compareTo(lDataType.minimum_value) != 0) {
-							allEqualflag = false;
-						}
-					}
-					if (lAttr.maximum_value.indexOf("TBD") != 0) {
-						if (lAttr.maximum_value.compareTo(lDataType.maximum_value) != 0) {
-							allEqualflag = false;
-						}
-					}
-					if (lAttr.minimum_characters.indexOf("TBD") != 0) {
-						if (lAttr.minimum_characters.compareTo(lDataType.minimum_characters) != 0) {
-							allEqualflag = false;
-						}
-					}
-					if (lAttr.maximum_characters.indexOf("TBD") != 0) {
-						if (lAttr.maximum_characters.compareTo(lDataType.maximum_characters) != 0) {
-							allEqualflag = false;
-						}
-					}
-					if (allEqualflag) {
-						System.out.println("debug  ValidateAttributeDataTypes FIX ATTRIBUTE lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
-						System.out.println("debug ValidatedAttributeDataTypes lAttr.minimum_value:" + lAttr.minimum_value);
-						System.out.println("debug ValidatedAttributeDataTypes lAttr.maximum_value:" + lAttr.maximum_value);
-						System.out.println("debug ValidatedAttributeDataTypes lAttr.minimum_characters:" + lAttr.minimum_characters);
-						System.out.println("debug ValidatedAttributeDataTypes lAttr.maximum_characters:" + lAttr.maximum_characters);
-						System.out.println("debug ValidatedAttributeDataTypes lDataType..minimum_value:" + lDataType.minimum_value);
-						System.out.println("debug ValidatedAttributeDataTypes lDataType.maximum_value:" + lDataType.maximum_value);
-						System.out.println("debug ValidatedAttributeDataTypes lDataType.minimum_characters:" + lDataType.minimum_characters);
-						System.out.println("debug ValidatedAttributeDataTypes lDataType.maximum_characters:" + lDataType.maximum_characters);
-					}
-				}
-				*/
 			}
 		}
 	}	
@@ -669,7 +662,7 @@ class MasterInfoModel extends InfoModel{
 				
 				// all remaining attributes have overrides, i.e. different constraints than those in the data type
 //				lAttr.hasAttributeOverride = true;
-				lSortAttrMap.put(lAttr.title + "_" + lAttr.className + lAttr.attrNameSpaceId, lAttr);
+				lSortAttrMap.put(lAttr.title + "_" + lAttr.parentClassTitle + lAttr.attrNameSpaceId, lAttr);
 			}
 		}
 
@@ -753,13 +746,47 @@ class MasterInfoModel extends InfoModel{
 					}
 					if (! isEquivalentAll) {
 						System.out.println(">>error   - sethasAttributeOverride - attribute is not equivalent - Setting unique name - attribute identifier:" + lAttr1.identifier);
-						lAttr1.XMLSchemaName = lAttr1.className + "_" + lAttr1.title;
+						lAttr1.XMLSchemaName = lAttr1.parentClassTitle + "_" + lAttr1.title;
 					}
 				}
 			}
 		}
 		return;
 	}	
+	
+//	Get User Class Attributes Id Map
+//  The attributes are not cloned, they are simply added to the InfoModel.userClassAttrIdMap
+//  with the identifier for the map using "attrNameSpaceIdNC.USER" + "attrNameSpaceIdNC.title"
+//  e.g. pds.USER.pds.comment or disp.USER.disp.name
+//  There is a many-to-one map so only one attribute survives, however all have same definition
+	public void getUserClassAttrIdMap () {
+		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) i.next();
+			if (! lClass.isMasterClass) continue;
+			if (lClass.title.indexOf("PDS3") > -1) continue;   // kludge until boolean is set up
+			for (Iterator <AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+
+				// the namespace of the USER class for any attribute is the same as the namespace of the attribute
+//				String lUserAttrIdentifier = InfoModel.getAttrIdentifier (lAttr.attrNameSpaceIdNC, "USER", lAttr.attrNameSpaceIdNC, lAttr.title);
+				String lUserAttrIdentifier = InfoModel.getAttrIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName, lAttr.attrNameSpaceIdNC, lAttr.title);
+				InfoModel.userClassAttrIdMap.put(lUserAttrIdentifier, lAttr);
+			}
+		}
+		return;
+	}
+	
+//	Get User Class Attributes Id Map (not owned)	
+	public void getUserSingletonClassAttrIdMap () {
+		for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (! lAttr.isAttribute) continue;
+			if (lAttr.isUsedInClass) continue;
+			if (lAttr.title.compareTo("%3ANAME") == 0) continue;
+			InfoModel.userSingletonClassAttrIdMap.put(lAttr.identifier, lAttr);	
+		}
+		return;
+	}
 	
 	/**********************************************************************************************************
 		Routines for Finalizing the Ontology
@@ -773,15 +800,17 @@ class MasterInfoModel extends InfoModel{
 		*  get the subClassOf identifier and instances for each class, using the title
 		*/
 		public void getSubClassOf () {
-	
 	//		iterate through the classes and get the subClassOf			
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
-				if (lClass.isUSERClass) {continue;}
-//				System.out.println("debug - lClass.identifier:" + lClass.identifier + " - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
-				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassTitleMap.get(lClass.subClassOfTitle);
+				if (lClass.isUSERClass) continue;
+//				System.out.println("\ndebug - lClass.identifier:" + lClass.identifier);					
+//				System.out.println("debug - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
+//				System.out.println("debug - lClass.subClassOfIdentifier:" + lClass.subClassOfIdentifier);					
+				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassIdMap.get(lClass.subClassOfIdentifier);
 				if (lSupClass != null) {
 					lClass.subClassOfInst = lSupClass;
+					lClass.subClassOfTitle = lSupClass.title;
 					lClass.subClassOfIdentifier = lSupClass.identifier;
 				} else {
 					System.out.println("***error*** - missing superClass in master while trying to set subClassOf - lClass.identifier:" + lClass.identifier + " - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
@@ -824,8 +853,8 @@ class MasterInfoModel extends InfoModel{
 					ind++;
 				}
 				if (targInd > -1) {
+					lClass.ownedAttrNSTitle.remove(targInd);
 					lClass.ownedAttribute.remove(targInd);
-					lClass.ownedAttrId.remove(targInd);				
 				}
 			} 
 		}
@@ -834,13 +863,12 @@ class MasterInfoModel extends InfoModel{
 		*  fix the inheritance for all child classes
 		*/
 		public void fixInheritance (String lDocSecType, PDSObjDefn lParentClass,  ArrayList <PDSObjDefn> lSuperClass) {
-//			System.out.println("\ndebug getInheritedAttributes lParentClass.title:" + lParentClass.title);
 			if (lParentClass.title.compareTo("USER") != 0) {
 				lSuperClass.add(lParentClass);
 			}
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lChildClass = (PDSObjDefn) i.next();
-				if (lChildClass.subClassOfTitle.compareTo(lParentClass.title) == 0) {
+				if (lChildClass.subClassOfIdentifier.compareTo(lParentClass.identifier) == 0) {
  
 					// if top level class get the class type that indicates the info model spec document section
 					if (lParentClass.title.compareTo("USER") == 0) {
@@ -857,13 +885,8 @@ class MasterInfoModel extends InfoModel{
 					getInheritedAssociations (lChildClass, lParentClass);
 					getRestrictedAssociations (lChildClass, lParentClass);
 					
-					// get the class hierarchy, i.e. all superclasses
+					// set the super class
 					lChildClass.superClass = lSuperClass;
-					for (Iterator<PDSObjDefn> j = lSuperClass.iterator(); j.hasNext();) {
-						PDSObjDefn lClass = (PDSObjDefn) j.next();
-						lChildClass.superClasses.add(lClass.rdfIdentifier);
-					}
-//					Collections.reverse(lChildClass.superClasses);
 					
 					// get the base class
 					getBaseClass (lChildClass, lParentClass);
@@ -885,7 +908,7 @@ class MasterInfoModel extends InfoModel{
 			//	check if all owned and inherited attributes are in the super class
 			for (Iterator<AttrDefn> i = lClass.ownedAttribute.iterator(); i.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) i.next();
-				if (! (lSuperClass.ownedAttrTitle.contains(lAttr.title) || lSuperClass.inheritedAttrTitle.contains(lAttr.title))) {
+				if (! (lSuperClass.ownedAttrNSTitle.contains(lAttr.nsTitle) || lSuperClass.inheritedAttrNSTitle.contains(lAttr.nsTitle))) {
 					return true;
 				}
 			}
@@ -893,13 +916,13 @@ class MasterInfoModel extends InfoModel{
 			//	check if all owned and inherited associations are in the super class
 			for (Iterator<AttrDefn> i = lClass.ownedAssociation.iterator(); i.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) i.next();
-				if (! (lSuperClass.ownedAssocTitle.contains(lAttr.title) || lSuperClass.inheritedAssocTitle.contains(lAttr.title))) {
+				if (! (lSuperClass.ownedAssocNSTitle.contains(lAttr.nsTitle) || lSuperClass.inheritedAssocNSTitle.contains(lAttr.nsTitle))) {
 					return true;
 				}
 			}
 			return false;
 		}
-
+				
 		static public boolean isRestrictedClass (PDSObjDefn lClass, PDSObjDefn lSuperClass) {
 			//	check if any owned attributes is in the super class (owned or inherited)
 			if (lSuperClass == null) {
@@ -1042,10 +1065,9 @@ class MasterInfoModel extends InfoModel{
 			//	inherit all owned attributes of the parent class
 			for (Iterator<AttrDefn> i = lParentClass.ownedAttribute.iterator(); i.hasNext();) {
 				AttrDefn lParentAttr = (AttrDefn) i.next();
-				if (! lChildClass.ownedAttrTitle.contains(lParentAttr.title)) {				// not already owned
-					if (! lChildClass.inheritedAttrTitle.contains(lParentAttr.title)) {		// not in inherited attribute list
-						lChildClass.inheritedAttrTitle.add(lParentAttr.title);				// add to inherited
-						lChildClass.inheritedAttrId.add(lParentAttr.identifier);
+				if (! lChildClass.ownedAttrNSTitle.contains(lParentAttr.nsTitle)) {				// not already owned
+					if (! lChildClass.inheritedAttrNSTitle.contains(lParentAttr.nsTitle)) {		// not in inherited attribute list
+						lChildClass.inheritedAttrNSTitle.add(lParentAttr.nsTitle);			// add to inherited
 						lChildClass.inheritedAttribute.add(lParentAttr);
 					}
 				}
@@ -1053,10 +1075,9 @@ class MasterInfoModel extends InfoModel{
 			//	inherit all inherited attributes of the parent class
 			for (Iterator<AttrDefn> i = lParentClass.inheritedAttribute.iterator(); i.hasNext();) {
 				AttrDefn lParentAttr = (AttrDefn) i.next();
-				if (! lChildClass.ownedAttrTitle.contains(lParentAttr.title)) {				// not already owned
-					if (! lChildClass.inheritedAttrTitle.contains(lParentAttr.title)) {		// not in inherited attribute list
-						lChildClass.inheritedAttrTitle.add(lParentAttr.title);				// add to inherited
-						lChildClass.inheritedAttrId.add(lParentAttr.identifier);
+				if (! lChildClass.ownedAttrNSTitle.contains(lParentAttr.nsTitle)) {				// not already owned
+					if (! lChildClass.inheritedAttrNSTitle.contains(lParentAttr.nsTitle)) {		// not in inherited attribute list
+						lChildClass.inheritedAttrNSTitle.add(lParentAttr.nsTitle);			// add to inherited
 						lChildClass.inheritedAttribute.add(lParentAttr);
 					}
 				}
@@ -1070,9 +1091,9 @@ class MasterInfoModel extends InfoModel{
 			//	check all the owned attributes of the child class against both owned and inherited attributes of parent class
 			for (Iterator<AttrDefn> i = lChildClass.ownedAttribute.iterator(); i.hasNext();) {
 				AttrDefn lChildOwnedAttr = (AttrDefn) i.next();								
-				if (lParentClass.ownedAttrTitle.contains(lChildOwnedAttr.title)) {					// restricted attribute
+				if (lParentClass.ownedAttrNSTitle.contains(lChildOwnedAttr.nsTitle)) {					// restricted attribute
 					lChildOwnedAttr.isRestrictedInSubclass = true;
-				}	else if (lParentClass.inheritedAttrTitle.contains(lChildOwnedAttr.title)) {		// restricted attribute
+				}	else if (lParentClass.inheritedAttrNSTitle.contains(lChildOwnedAttr.nsTitle)) {		// restricted attribute
 					lChildOwnedAttr.isRestrictedInSubclass = true;								// set isRestricted to true
 				} 
 			} 
@@ -1085,10 +1106,9 @@ class MasterInfoModel extends InfoModel{
 			//	inherit all owned associations of the parent class
 			for (Iterator<AttrDefn> i = lParentClass.ownedAssociation.iterator(); i.hasNext();) {
 				AttrDefn lParentAssoc = (AttrDefn) i.next();								
-				if (! lChildClass.ownedAssocTitle.contains(lParentAssoc.title)) {			// not already owned
-					if (! lChildClass.inheritedAssocTitle.contains(lParentAssoc.title)) {	// not in inherited association list
-						lChildClass.inheritedAssocTitle.add(lParentAssoc.title);			// add to inherited
-						lChildClass.inheritedAssocId.add(lParentAssoc.identifier);
+				if (! lChildClass.ownedAssocNSTitle.contains(lParentAssoc.nsTitle)) {			// not already owned
+					if (! lChildClass.inheritedAssocNSTitle.contains(lParentAssoc.nsTitle)) {	// not in inherited association list
+						lChildClass.inheritedAssocNSTitle.add(lParentAssoc.nsTitle);			// add to inherited
 						lChildClass.inheritedAssociation.add(lParentAssoc);
 					}
 				}
@@ -1096,10 +1116,9 @@ class MasterInfoModel extends InfoModel{
 			//	inherit all inherited associations of the parent class
 			for (Iterator<AttrDefn> i = lParentClass.inheritedAssociation.iterator(); i.hasNext();) {
 				AttrDefn lParentAssoc = (AttrDefn) i.next();								
-				if (! lChildClass.ownedAssocTitle.contains(lParentAssoc.title)) {			// not already owned
-					if (! lChildClass.inheritedAssocTitle.contains(lParentAssoc.title)) {	// not in inherited association list
-						lChildClass.inheritedAssocTitle.add(lParentAssoc.title);			// add to inherited
-						lChildClass.inheritedAssocId.add(lParentAssoc.identifier);
+				if (! lChildClass.ownedAssocNSTitle.contains(lParentAssoc.nsTitle)) {			// not already owned
+					if (! lChildClass.inheritedAssocNSTitle.contains(lParentAssoc.nsTitle)) {	// not in inherited association list
+						lChildClass.inheritedAssocNSTitle.add(lParentAssoc.nsTitle);			// add to inherited
 						lChildClass.inheritedAssociation.add(lParentAssoc);
 					}
 				}
@@ -1113,14 +1132,14 @@ class MasterInfoModel extends InfoModel{
 			//	check all the owned associations of the child class against both owned and inherited associations of parent class
 			for (Iterator<AttrDefn> i = lChildClass.ownedAssociation.iterator(); i.hasNext();) {
 				AttrDefn lChildOwnedAssoc = (AttrDefn) i.next();								
-				if (lParentClass.ownedAssocTitle.contains(lChildOwnedAssoc.title)) {			// restricted association
+				if (lParentClass.ownedAssocNSTitle.contains(lChildOwnedAssoc.nsTitle)) {			// restricted association
 					lChildOwnedAssoc.isRestrictedInSubclass = true;
-				}	else if (lParentClass.inheritedAssocTitle.contains(lChildOwnedAssoc.title)) {		// restricted association
+				}	else if (lParentClass.inheritedAssocNSTitle.contains(lChildOwnedAssoc.nsTitle)) {		// restricted association
 					lChildOwnedAssoc.isRestrictedInSubclass = true;								// set isRestricted to true
 				} 
 			} 
 		}
-
+		
 		/**
 		*  get the Base Class
 		*/
@@ -1134,7 +1153,6 @@ class MasterInfoModel extends InfoModel{
 					if (fundStrucName != null) {
 						lChildClass.baseClassName = fundStrucName;
 					}
-//					getSuperClasses (lChildClass, lSuperClass);
 				}
 			} else {
 				lChildClass.rootClass = lParentClass.rdfIdentifier;
@@ -1149,6 +1167,7 @@ class MasterInfoModel extends InfoModel{
 		/**
 		*  Get all subClasses
 		*/
+		
 		public void getSubClasses () {
 			//  foreach object class
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
@@ -1156,9 +1175,9 @@ class MasterInfoModel extends InfoModel{
 				for (Iterator<PDSObjDefn> j = masterMOFClassArr.iterator(); j.hasNext();) {
 					PDSObjDefn lClass2 = (PDSObjDefn) j.next();	
 					if (lClass.rdfIdentifier.compareTo(lClass2.rdfIdentifier) != 0) {		// don't check itself
-						for (Iterator<String> k = lClass2.superClasses.iterator(); k.hasNext();) {
-							String lId = (String) k.next();
-							if (lClass.rdfIdentifier.compareTo(lId) == 0) {
+						for (Iterator<PDSObjDefn> k = lClass2.superClass.iterator(); k.hasNext();) {
+							PDSObjDefn lClass3 = (PDSObjDefn) k.next();
+							if (lClass.rdfIdentifier.compareTo(lClass3.rdfIdentifier) == 0) {
 								if (! k.hasNext()) {
 									if (! lClass.subClasses.contains(lClass2.rdfIdentifier)) {
 										lClass.subClasses.add(lClass2.rdfIdentifier);
@@ -1171,7 +1190,7 @@ class MasterInfoModel extends InfoModel{
 				}
 			}
 		}
-		
+					
 		/**
 		*  for each class, get all class attributes and associations from the class and its superclasses, top down
 		*/
@@ -1179,33 +1198,13 @@ class MasterInfoModel extends InfoModel{
 			//  for each class initialize the class.ownedAttrAssocArr array with sorted and owned attributes and associations
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
-								
-				ArrayList <AttrDefn> lSortedAttrArr = getSortedAssocAttrArr (lClass.ownedAttribute);
-				lClass.ownedAttrAssocArr.addAll(lSortedAttrArr);			
-				
-				// get the owned associations
-				lSortedAttrArr = getSortedAssocAttrArr (lClass.ownedAssociation);
+
+				// sort all owned attributes and associations (AttrDefn)
+				ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (lClass.ownedAttribute);
+				lAttrArr.addAll(lClass.ownedAssociation);
+				ArrayList <AttrDefn> lSortedAttrArr = getSortedAssocAttrArr (lAttrArr);
 				lClass.ownedAttrAssocArr.addAll(lSortedAttrArr);
-				
-				// update the associations
-				for (Iterator<AttrDefn> j = lClass.ownedAttrAssocArr.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();
-					AssocDefn lAssoc = masterMOFAssocMap.get(lAttr.rdfIdentifier);
-					if (lAssoc == null) continue;
-					if (lAssoc.isAttribute) {
-						lAssoc.childAttrArr.add(lAttr);
-					} else {
-						lAssoc.tempChildAssocArr.add(lAttr);
-						for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
-							String lTitle = (String) k.next();
-							if (lTitle == null) continue;
-							PDSObjDefn lClassMember = (PDSObjDefn) InfoModel.masterMOFClassTitleMap.get(lTitle);
-							lAssoc.childClassArr.add (lClassMember);
-						}
-					}
-					lClass.allAssocArr.add(lAssoc);
-				}
-								
+											
 				// get the enumerated attributes for asserts
 				for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
@@ -1215,7 +1214,6 @@ class MasterInfoModel extends InfoModel{
 					}
 				}
 			}
-			
 			// for each class get its superclasses 
 			// also capture the enumerated attributes from bottom up through the hierarchy
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
@@ -1238,8 +1236,17 @@ class MasterInfoModel extends InfoModel{
 				// get the super classes
 				// get the titles of attributes with enumerated lists for assertions;
 				// get the overridden attributes in the hierarchy, super classes only.
+				// also check for cycles in superClass hieararchy
+				
 				PDSObjDefn lSuperClass = lClass.subClassOfInst;
 				while (lSuperClass != null) {
+					if (! superClassArr.contains(lSuperClass)) {
+						superClassArr.add(lSuperClass);
+					} else {
+						System.out.println(">>error   - Found cycle in superclass hierarchy - SuperClass.title:" + lSuperClass.title);
+						break;
+					}
+					
 					// get the enumerated attributes in bottom up order
 					for (Iterator<AttrDefn> j = lSuperClass.ownedAttribute.iterator(); j.hasNext();) {
 						AttrDefn lAttr = (AttrDefn) j.next();
@@ -1259,7 +1266,6 @@ class MasterInfoModel extends InfoModel{
 					}
 										
 					// get next superclass
-					superClassArr.add(lSuperClass);
 					lSuperClass = lSuperClass.subClassOfInst;
 				}
 				
@@ -1286,7 +1292,7 @@ class MasterInfoModel extends InfoModel{
 						}
 					}
 				}
-								
+				
 				// using the original owned attr/assoc array create the owned attr/assoc array with overrides removed
 				// and add the local classes attr/assocs
 				for (Iterator<AttrDefn> k = lClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
@@ -1298,38 +1304,141 @@ class MasterInfoModel extends InfoModel{
 					}
 				}
 			}
+			
+			if (DMDocument.debugFlag) System.out.println("debug getAttrAssocArr Done");
 		}	
-				
+
 		/**
-		*  Validate Class Associations
+		*  set the class version identifiers
 		*/
-		public void validateClassAssocs () {
-			//  foreach object class
-			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
-				PDSObjDefn lClass = (PDSObjDefn) i.next();	
-				
-				//	get all owned associations
-				for (Iterator<AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
-					AttrDefn lAssoc = (AttrDefn) j.next();
-					ArrayList <String> lvalarr = lAssoc.valArr;	
-					if (! lvalarr.isEmpty()) {
-						
-						// get all associated classes
-						for (Iterator<String> k = lvalarr.iterator(); k.hasNext();) {
-							String lctitle = (String) k.next();
-							PDSObjDefn lclass = (PDSObjDefn) InfoModel.masterMOFClassTitleMap.get(lctitle);
-							if (lclass == null) {
-								System.out.println(">>error   - validate associations - missing class lctitle:" + lctitle);
-							}
-						}
-					}
+		public void setClassVersionIds () {
+			//	set the class version identifiers
+			
+			Set <String> set = DMDocument.classVersionId.keySet();
+			Iterator <String> iter = set.iterator();
+			while(iter.hasNext()) {
+				String lClassName = (String) iter.next();
+				String lClassId = InfoModel.getClassIdentifier("pds", lClassName);
+//				System.out.println("\ndebug setClassVersionIds lClassName:" + lClassName);
+				PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+				if (lClass != null) {
+//					System.out.println("debug setClassVersionIds FOUND lClass.identifier:" + lClass.identifier);		
+					String lClassVersionId = DMDocument.classVersionId.get(lClassName);
+//					System.out.println("debug setClassVersionIds SETTING lClassVersionId:" + lClassVersionId);		
+					lClass.versionId = lClassVersionId;
+				} else {
+					System.out.println("debug setClassVersionIds NOT FOUND lClassId:" + lClassId);						
 				}
+			}
+		}
+		
+		public void dumpClassVersionIds () {
+			//	set the class version identifiers
+			 ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
+			for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
+				PDSObjDefn lClass = (PDSObjDefn) i.next();
+				System.out.println("debug dumpClassVersionIds  lClass.identifier:" + lClass.identifier);		
+				System.out.println("debug dumpClassVersionIds  lClass.versionId:" + lClass.versionId);		
 			}
 		}
 		
 	/**********************************************************************************************************
 		miscellaneous routines
 	***********************************************************************************************************/
+		
+		/**
+		*  Check for attributes with the same ns:title but different constraints.
+		*  (attributes with the same ns:title can be used in two or more classes
+		*   this check ensures that they all have the same values for the meta-attributes
+		*   Description alone is allowed to be different
+		*   *** Different constraints would cause multiple simpleType definitions ***
+		*/		
+		static public void checkSameNameOverRide () {
+			System.out.println(">>info    - Checking for attribute consistency - checkSameNameOverRide");
+		
+			// sort the attributes
+			TreeMap <String, AttrDefn> lAttrMap = new TreeMap <String, AttrDefn> ();
+			for (Iterator<AttrDefn> i = masterMOFAttrArr.iterator(); i.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) i.next();	
+				// *** temporary fix - needs to be thought out ***
+				if (lAttr.isFromLDD) continue;
+				lAttrMap.put(lAttr.title + "-" + lAttr.identifier, lAttr);
+			}
+			ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (lAttrMap.values());
+			
+			// check the attributes against all other attributes
+			for (int i = 0; i < lAttrArr.size(); i++) {
+				AttrDefn lAttr1 = lAttrArr.get(i);
+				if (! lAttr1.isAttribute) continue;
+				for (int j = i + 1; j < lAttrArr.size(); j++) {
+					AttrDefn lAttr2 = lAttrArr.get(j);
+					if (! lAttr2.isAttribute) continue;
+					
+					// only check attributes with the same titles
+//					if (! (lAttr1.title.compareTo(lAttr2.title) == 0)) continue;
+					if (! (lAttr1.nsTitle.compareTo(lAttr2.nsTitle) == 0)) continue;
+					
+					// don't check the meta-attributes
+					if (lAttr1.title.compareTo("minimum_characters") == 0) continue;
+					if (lAttr1.title.compareTo("maximum_characters") == 0) continue;
+					if (lAttr1.title.compareTo("minimum_value") == 0) continue;
+					if (lAttr1.title.compareTo("maximum_value") == 0) continue;
+					if (lAttr1.title.compareTo("xml_schema_base_type") == 0) continue;
+					if (lAttr1.title.compareTo("formation_rule") == 0) continue;
+					if (lAttr1.title.compareTo("character_constraint") == 0) continue;
+					if (lAttr1.title.compareTo("value") == 0) continue;
+					if (lAttr1.title.compareTo("unit_id") == 0) continue;
+					if (lAttr1.title.compareTo("pattern") == 0) continue;
+					
+					// check what is left
+					checkForOverRideDetail (lAttr1, lAttr2);
+				}
+			}	
+		}
+		
+		static public void checkForOverRideDetail (AttrDefn lAttr1, AttrDefn lAttr2) {
+			boolean isFound = false;
+			
+			if (lAttr1.valueType.compareTo(lAttr2.valueType) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.valueType:" + lAttr1.valueType + "   lAttr2.valueType:" + lAttr2.valueType);
+			}
+			if (lAttr1.minimum_characters.compareTo(lAttr2.minimum_characters) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.minimum_characters:" + lAttr1.minimum_characters + "   lAttr2.minimum_characters:" + lAttr2.minimum_characters);
+			}
+			if (lAttr1.maximum_characters.compareTo(lAttr2.maximum_characters) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.maximum_characters:" + lAttr1.maximum_characters + "   lAttr2.maximum_characters:" + lAttr2.maximum_characters);
+			}
+			if (lAttr1.minimum_value.compareTo(lAttr2.minimum_value) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.minimum_value:" + lAttr1.minimum_value + "   lAttr2.minimum_value:" + lAttr2.minimum_value);
+			}
+			if (lAttr1.maximum_value.compareTo(lAttr2.maximum_value) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.maximum_value:" + lAttr1.maximum_value + "   lAttr2.maximum_value:" + lAttr2.maximum_value);
+			}
+			if (lAttr1.pattern.compareTo(lAttr2.pattern) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.pattern:" + lAttr1.pattern + "   lAttr2.pattern:" + lAttr2.pattern);
+			}
+			if (lAttr1.default_unit_id.compareTo(lAttr2.default_unit_id) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.default_unit_id:" + lAttr1.default_unit_id + "   lAttr2.default_unit_id:" + lAttr2.default_unit_id);
+			}
+			if (lAttr1.format.compareTo(lAttr2.format) != 0) {
+				isFound = true;
+				if (DMDocument.debugFlag) System.out.println(">>warning - checkForOverRideDetail lAttr1.format:" + lAttr1.format + "   lAttr2.format:" + lAttr2.format);
+			}
+			if (isFound) {
+				if (DMDocument.debugFlag) System.out.println("debug checkForOverRideDetail lAttr1.identifier:" + lAttr1.identifier);
+				if (DMDocument.debugFlag) System.out.println("debug checkForOverRideDetail lAttr2.identifier:" + lAttr2.identifier);
+				if (DMDocument.debugFlag) System.out.println(" ");
+			}
+			return;
+		}		
+		
 		
 		// clone an array list
 		static public ArrayList <PDSObjDefn> clonePDSObjDefnArrayList (ArrayList <PDSObjDefn> lArrayList) {

@@ -1,4 +1,5 @@
 package gov.nasa.pds.model.plugin;
+
 import java.util.ArrayList;
 
 public class SFGroupFacetDefn {

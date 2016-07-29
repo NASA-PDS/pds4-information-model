@@ -7,6 +7,7 @@ public class DispDefn {
 	String disposition;
 	String section;
 	String intNSId;									// namespace id - internally assigned namespace id
+	String intSteward;
 
 	
 	public DispDefn (String id) {
@@ -16,5 +17,6 @@ public class DispDefn {
 //		section = "TBD_section";
 		section = "TBD_section";
 		intNSId = "TBD_intNSID";
+		intSteward = "TBD_intSteward";
 	} 
 }

@@ -1,4 +1,5 @@
 package gov.nasa.pds.model.plugin;
+
 public class SortAssocDefn {
 	PDSObjDefn lClass;
 	String cmin;

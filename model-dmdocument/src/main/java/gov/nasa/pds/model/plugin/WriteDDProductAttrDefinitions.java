@@ -9,63 +9,57 @@ import java.util.*;
 
 //class WriteDDProductAttrDefinitions extends ISO11179MDR{
 class WriteDDProductAttrDefinitions extends Object{
-	
 	ArrayList <String> adminRecUsedArr, adminRecTitleArr;
 	PrintWriter prDDReg;
-	
-	ArrayList <String> gAttributeConceptArr;
-	ArrayList <String> gConceptualDomainArr;
-	
-	String uId, uIdFileName;
-
 	public WriteDDProductAttrDefinitions () {
 		return;
 	}
 
 	// write the Data Element Product files
-	public void writeDDRegFiles (String todaysDate) throws java.io.IOException {
+	public void writeDDRegFiles (SchemaFileDefn lSchemaFileDefn, String todaysDate) throws java.io.IOException {
 		// get the permissible values for attribute concept
-		
-		gAttributeConceptArr = (InfoModel.masterMOFAttrTitleMap.get("attribute_concept")).valArr;
-		gConceptualDomainArr = (InfoModel.masterMOFAttrTitleMap.get("conceptual_domain")).valArr;
-		
-		// cycle once for each data element
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			uId = DMDocument.registrationAuthorityIdentifierValue + ":" + lAttr.classNameSpaceIdNC + ":" + lAttr.className + ":" + lAttr.attrNameSpaceIdNC + ":" + lAttr.title;
-			uIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lAttr.classNameSpaceIdNC + "_" + lAttr.className + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title;
-			File targetDir = new File(DMDocument.outputDirPath + "SchemaElemDef");
-			targetDir.mkdirs();
-			prDDReg = new PrintWriter(new FileWriter(DMDocument.outputDirPath + "SchemaElemDef/" + uIdFileName + "_" + InfoModel.lab_version_id + ".xml", false));
-			printDDRegFile(prDDReg, todaysDate, uId, lAttr);
-			prDDReg.close();
+
+		// cycle through classes to get only the used attributes
+		for (Iterator<PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) i.next();
+			for (Iterator<AttrDefn> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+				if (lAttr.title.compareTo("%3ANAME") == 0) continue;
+				if (! lAttr.isAttribute) continue;
+				String lLID = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
+				lLID = "urn:nasa:pds:" + "context:" + "attribute:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
+				lLID = lLID.toLowerCase();
+				String lUIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title;
+//				String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xml";
+				String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml";
+				prDDReg = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
+				printDDRegFile(lSchemaFileDefn, prDDReg, todaysDate, lLID, lAttr);
+				prDDReg.close();
+			}
 		}
 	}	
 	
 	// Print the Element Definition Header
-	public void printDDRegFile (PrintWriter prDDReg, String todaysDate, String uId, AttrDefn lAttr) {
+	public void printDDRegFile (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDReg, String todaysDate, String lLID, AttrDefn lAttr) {
 		prDDReg.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "\"");
+//		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "\"");
+		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "\"");
 		prDDReg.println(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + " PDS4_PDS_" + InfoModel.lab_version_id + ".xsd\">");
+//		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
+		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
 		prDDReg.println("    <Identification_Area>");
-		prDDReg.println("        <logical_identifier>urn:nasa:pds:" + uId + "</logical_identifier>");
+		prDDReg.println("        <logical_identifier>" + lLID + "</logical_identifier>");
 		prDDReg.println("        <version_id>" + lAttr.versionIdentifierValue + "</version_id>");
 		prDDReg.println("        <title>" + lAttr.title + "</title>");
-		prDDReg.println("        <information_model_version>" + InfoModel.ont_version_id + "</information_model_version>");
+//		prDDReg.println("        <information_model_version>" + InfoModel.ont_version_id + "</information_model_version>");
+		prDDReg.println("        <information_model_version>" + lSchemaFileDefn.ont_version_id + "</information_model_version>");
 		prDDReg.println("        <product_class>Product_Attribute_Definition</product_class>");
 		prDDReg.println("    </Identification_Area>");
-//		prDDReg.println("    <Reference_List>");
-//		prDDReg.println("        <Internal_Reference>");
-//		prDDReg.println("            <lid_reference>" + "urn:nasa:pds:pds4_data_dictionary_" + InfoModel.lab_version_id + "</lid_reference>");
-//		prDDReg.println("            <reference_type>member_of</reference_type>");
-//		prDDReg.println("        </Internal_Reference>");
-//		prDDReg.println("    </Reference_List>");
 		prDDReg.println("    <DD_Attribute_Full>");
 		prDDReg.println("        <name>" + lAttr.title + "</name>");
 		prDDReg.println("        <version_id>" + lAttr.versionIdentifierValue + "</version_id>");
-		prDDReg.println("        <class_name>" + lAttr.className + "</class_name>");
-		prDDReg.println("        <local_identifier>" + "urn:nasa:pds:" + uId + "</local_identifier>");
+		prDDReg.println("        <class_name>" + lAttr.parentClassTitle + "</class_name>");
+		prDDReg.println("        <local_identifier>" + lLID + "</local_identifier>");
 		prDDReg.println("        <steward_id>" + lAttr.steward + "</steward_id>");
 		prDDReg.println("        <type>" + "PDS4" + "</type>");
 		prDDReg.println("        <namespace_id>" + lAttr.attrNameSpaceIdNC + "</namespace_id>");
@@ -74,8 +68,8 @@ class WriteDDProductAttrDefinitions extends Object{
 		prDDReg.println("        <definition>" + lAttr.description + "</definition>");
 		prDDReg.println("        <registered_by>" + lAttr.registeredByValue + "</registered_by>");
 		prDDReg.println("        <registration_authority_id>" + lAttr.registrationAuthorityIdentifierValue + "</registration_authority_id>");
-
-		prDDReg.println("        <attribute_concept>" + lAttr.classConcept + "</attribute_concept>");
+		if (lAttr.classConcept.indexOf("TBD") != 0)
+			prDDReg.println("        <attribute_concept>" + lAttr.classConcept + "</attribute_concept>");
 		
 		prDDReg.println("        <Terminological_Entry>");
 		prDDReg.println("            <name>" + lAttr.title + "</name>");
@@ -92,16 +86,21 @@ class WriteDDProductAttrDefinitions extends Object{
 			pEnumFlag = "true";
 		}
 		prDDReg.println("            <enumeration_flag>" + pEnumFlag + "</enumeration_flag>");
-		prDDReg.println("            <value_data_type>" + lAttr.valueType + "</value_data_type>");					
-		prDDReg.println("            <formation_rule>" + lAttr.getFormat (true) + "</formation_rule>");
-		prDDReg.println("            <minimum_characters>" + lAttr.getMinimumCharacters (true, true) + "</minimum_characters>");
-		prDDReg.println("            <maximum_characters>" + lAttr.getMaximumCharacters (true, true) + "</maximum_characters>");
-		prDDReg.println("            <minimum_value>" + lAttr.getMinimumValue (true, true)+ "</minimum_value>");
-		prDDReg.println("            <maximum_value>" + lAttr.getMaximumValue (true, true) + "</maximum_value>");
+		prDDReg.println("            <value_data_type>" + lAttr.valueType + "</value_data_type>");	
+		String lFormat = lAttr.getFormat (true);
+		if (lFormat.indexOf("TBD") != 0)
+			prDDReg.println("            <formation_rule>" + lFormat + "</formation_rule>");
+		prDDReg.println("            <minimum_characters>" + lAttr.getMinimumCharacters2 (true, true) + "</minimum_characters>");
+		prDDReg.println("            <maximum_characters>" + lAttr.getMaximumCharacters2 (true, true) + "</maximum_characters>");
+		prDDReg.println("            <minimum_value>" + lAttr.getMinimumValue2 (true, true)+ "</minimum_value>");
+		prDDReg.println("            <maximum_value>" + lAttr.getMaximumValue2 (true, true) + "</maximum_value>");
 //		prDDReg.println("            <pattern>" + InfoModel.unEscapeProtegeChar(lAttr.getPattern(true)) + "</pattern>");
-		prDDReg.println("            <pattern>" + InfoModel.unEscapeProtegeString(lAttr.getPattern(true)) + "</pattern>");
-		prDDReg.println("            <unit_of_measure_type>" + lAttr.getUnitOfMeasure (true) + "</unit_of_measure_type>");			
-		prDDReg.println("            <conceptual_domain>" + lAttr.dataConcept + "</conceptual_domain>");
+		String lPattern = InfoModel.unEscapeProtegeString(lAttr.getPattern(true));
+		if (lPattern.indexOf("TBD") != 0)
+			prDDReg.println("            <pattern>" + lPattern + "</pattern>");
+		prDDReg.println("            <unit_of_measure_type>" + lAttr.getUnitOfMeasure (true) + "</unit_of_measure_type>");
+		if (lAttr.dataConcept.indexOf("TBD") != 0)
+			prDDReg.println("            <conceptual_domain>" + lAttr.dataConcept + "</conceptual_domain>");
 		prDDReg.println("            <specified_unit_id>" + lAttr.getDefaultUnitId (true) + "</specified_unit_id>");
 		
 		if (lAttr.isEnumerated) {
@@ -111,7 +110,7 @@ class WriteDDProductAttrDefinitions extends Object{
 					prDDReg.println("            <DD_Permissible_Value_Full>");
 					prDDReg.println("                <value>" + lPermValue.value + "</value>");
 					if (lPermValue.value_meaning.indexOf("TBD") != 0) {
-						prDDReg.println("                <value_meaning>" + lPermValue.value_meaning + "</value_meaning>");
+						prDDReg.println("                <value_meaning>" + InfoModel.escapeXMLChar(lPermValue.value_meaning) + "</value_meaning>");
 					}
 					prDDReg.println("                <value_begin_date>" + DMDocument.beginDatePDS4Value + "T00:00:00Z" + "</value_begin_date>");
 					prDDReg.println("                <value_end_date>" + DMDocument.endDateValue + "T00:00:00Z" + "</value_end_date>");
@@ -119,7 +118,6 @@ class WriteDDProductAttrDefinitions extends Object{
 				}
 			}
 		}
-
 //		prDDReg.println("            <conceptual_domain>" + lAttr.dataConcept + "</conceptual_domain>");
 
 		prDDReg.println("        </DD_Value_Domain_Full>");
@@ -221,7 +219,6 @@ class WriteDDProductAttrDefinitions extends Object{
 				prDDReg.println("	\"" + lVal + "\" )");
 			}
 			prDDReg.println("))");
-
 		}
 		
 		// print data types

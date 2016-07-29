@@ -10,7 +10,8 @@ import java.util.*;
  */
 public class ProtFramesParser extends Object
 {
-	Reader PBReader;
+	InputStreamReader PBReader;
+	
 	char iptChar;
 	int intIptChar;
 	public ArrayList<String> tokenArr;
@@ -36,7 +37,8 @@ public class ProtFramesParser extends Object
 	public boolean parse(String fname) throws Throwable {
 		
 		try {
-			PBReader = new FileReader(fname);
+			PBReader = new InputStreamReader (new FileInputStream(new File(fname)), "UTF-8");
+			
 			System.out.println(">>info    - Found required file: " + fname);
 		} catch (Exception e) {
 			System.out.println(">>error   - Could not find required file: " + fname);     
@@ -136,33 +138,33 @@ public class ProtFramesParser extends Object
 						iptChar = (char) intIptChar;
 						charcnt++;
 						if (iptChar == '"') {					// Protege Quote Escaped
-			        tokenBuf.append('"');
-					    tokenBufCharCnt++;
+							tokenBuf.append('"');
+							tokenBufCharCnt++;
 						} else if (iptChar == '\\') {	// Protege Backslash Escaped
-			        tokenBuf.append('\\');
-					    tokenBufCharCnt++;
+							tokenBuf.append('\\');
+							tokenBufCharCnt++;
 					  } else {
-			        tokenBuf.append('\\');
-					    tokenBufCharCnt++;
-			        tokenBuf.append(iptChar);
-					    tokenBufCharCnt++;
+						  tokenBuf.append('\\');
+						  tokenBufCharCnt++;
+						  tokenBuf.append(iptChar);
+						  tokenBufCharCnt++;
 					  }
-					} else if (iptChar == '?') {			// MS Word Escape for special quotes and apostrophes
+					} else if (iptChar == '�') {			// MS Word Escape for special quotes and apostrophes
 						intIptChar = PBReader.read();
 						charcnt++;
 						intIptChar = PBReader.read();
 						charcnt++;
 						iptChar = (char) intIptChar;
-						if (iptChar == '?') {						// MS Word character designator for apostrophes
-			        tokenBuf.append('\'');
-					    tokenBufCharCnt++;
+						if (iptChar == '�') {						// MS Word character designator for apostrophes
+							tokenBuf.append('\'');
+							tokenBufCharCnt++;
 					  } else {
-			        tokenBuf.append('"');
-					    tokenBufCharCnt++;
+						  tokenBuf.append('"');
+						  tokenBufCharCnt++;
 					  }
 			    } else if ((Character.isDefined(iptChar) && !Character.isWhitespace(iptChar)) || intIptChar == ' ') {
-			       tokenBuf.append(iptChar);
-					   tokenBufCharCnt++;
+			    		tokenBuf.append(iptChar);
+			    		tokenBufCharCnt++;
 			    }
 			    break;
 			}
@@ -172,12 +174,7 @@ public class ProtFramesParser extends Object
 	
 	private void saveToken(StringBuffer tsbuf, String ttype) {
 		String ts;
-		
 		ts = tsbuf.toString();
-//		System.out.println("debug ProtFramesParser saveToken - ttype:" + ttype + " token:" + ts);
-		ts = replaceString (ts, "%28", "(");	// replace Protege Escaped Characters
-		ts = replaceString (ts, "%29", ")");
-		ts = replaceString (ts, "%2F", "/");
 		tokenArr.add(ts);
 		tokenType.add(ttype);
 	}
@@ -193,23 +190,5 @@ public class ProtFramesParser extends Object
 			System.out.println("debug token:" + ts1 + "   tokentype:" + tt);
 		}		
 	}
-
-	/**
-		* Replace string with string (gleaned from internet)
-		*/
-	
-	static String replaceString (String str, String pattern, String replace) {
-			int s = 0;
-			int e = 0;
-			StringBuffer result = new StringBuffer();
-			
-			while ((e = str.indexOf(pattern, s)) >= 0) {
-				result.append(str.substring(s, e));
-				result.append(replace);
-				s = e+pattern.length();
-			}
-			result.append(str.substring(s));
-			return result.toString();
-	 }
 }
 					

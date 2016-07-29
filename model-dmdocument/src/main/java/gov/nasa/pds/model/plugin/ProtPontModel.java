@@ -21,20 +21,6 @@ class ProtPontModel extends InfoModel{
 		attrDict = new HashMap<String, AttrDefn>();
 		className = "";
 		classNameSpaceIdNC = "";
-		
-		// create the USER class - the root of all classes
-		String title = "USER";
-		String lClassRdfIdentifier = DMDocument.rdfPrefix + title + "." + getNextUId();
-		className = title;
-		classNameSpaceIdNC = "pds";
-
-		objClass = new PDSObjDefn(lClassRdfIdentifier);
-		objClass.title = title;
-		objClass.docSecType = title;
-		objClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
-		objClass.subModelId = "ROOT";
-		objDict.put(objClass.rdfIdentifier, objClass);
-		InfoModel.user = objClass;
 		return;
 	}
 	
@@ -54,7 +40,6 @@ class ProtPontModel extends InfoModel{
 	private void getOntology(String subModelId, Iterator<String> tokenIter) {
 		int type = 0;
 		int nestlevel = 0;
-		objDict = new HashMap<String, PDSObjDefn>();
 		
 		while (tokenIter.hasNext()) {
 			String token = (String) tokenIter.next();
@@ -97,65 +82,27 @@ class ProtPontModel extends InfoModel{
 //				if (className.compareTo("%3ACLIPS_TOP_LEVEL_SLOT_CLASS") == 0) className = DMDocument.TopLevelAttrClassName;
 				String lClassRdfIdentifier = DMDocument.rdfPrefix + className + "." + getNextUId();
 				objClass = new PDSObjDefn(lClassRdfIdentifier);
-//				objClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + className;
 				objClass.title = className;
 //				objClass.versionId = InfoModel.identifier_version_id;
 				objClass.versionId = DMDocument.classVersionIdDefault;
 				objClass.docSecType = className;
 				objClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 				objClass.subModelId = subModelId;
-				
-				// get disposition identifier
-				String lDispId = objClass.subModelId + "." + DMDocument.registrationAuthorityIdentifierValue + "." + className;
-				DispDefn lDispDefn = DMDocument.masterClassDispoMap2.get(lDispId);
-				if (lDispDefn != null) {
-					objClass.section = lDispDefn.section;
-					String lDisp = lDispDefn.disposition;
-					String lStewardInd = lDisp.substring(0, 1);
-					String lSteward = DMDocument.masterClassStewardMap.get(lStewardInd);
-					objClass.steward = lSteward;
-					classNameSpaceIdNC = lDispDefn.intNSId;
-					objClass.nameSpaceIdNC = classNameSpaceIdNC;
-					objClass.nameSpaceId = classNameSpaceIdNC + ":";
-					objClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + classNameSpaceIdNC + "." + className;
-					objClass.isMasterClass = true;
-					if (lDisp.indexOf("V") > -1) {
-						objClass.isVacuous = true;
-					}
-					if (lDisp.indexOf("S") > -1) {
-						objClass.isSchema1Class = true;
-					}
-					if (lDisp.indexOf("R") > -1) {
-						objClass.isRegistryClass = true;
-					}
-					if (lDisp.indexOf("T") > -1) {
-						objClass.isTDO = true;
-					}
-					if (lDisp.indexOf("d") > -1) {
-						objClass.isDataType = true;
-					}
-					if (lDisp.indexOf("u") > -1) {
-						objClass.isUnitOfMeasure = true;
-					}
-					if (lDisp.indexOf("E") > -1) {
-						objClass.versionId = "1.1.0.0";
-					} else if (lDisp.indexOf("F") > -1) {
-						objClass.versionId = "1.n.0.0";
-					}
-//					} else {
-//						objClass.versionId = "1.1.0.0";
-//					}
 
-					objDict.put(objClass.rdfIdentifier, objClass);
-					objArr.add(objClass);
-//					System.out.println("\ndebug ProtPontModel objClass.rdfIdentifier:" + objClass.rdfIdentifier);					
+				// get disposition for the class
+				PDSObjDefn lClassWDisp = DMDocument.getClassDisposition (objClass, className, true);
+				if (lClassWDisp != null) {
+					classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
+					objDict.put(lClassWDisp.rdfIdentifier, lClassWDisp);
+					objArr.add(lClassWDisp);
+//					System.out.println("\ndebug ProtPontModel lClassWDisp.rdfIdentifier:" + lClassWDisp.rdfIdentifier);					
 					attrClass = new AttrDefn("TBD");
 					String token1 = (String) tokenIter.next();
 					if (token1.compareTo("(") != 0) {
-						objClass.description = token1;
+						lClassWDisp.description = InfoModel.unEscapeProtegeString(token1);
 					}
 				} else {
-					objClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + "tbd" + "." + className;
+					objClass.identifier = InfoModel.getClassIdentifier("tbd", className);
 					if (! DMDocument.LDDToolFlag) {
 						System.out.println(">>warning - Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1." + objClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
 					}
@@ -164,6 +111,11 @@ class ProtPontModel extends InfoModel{
 				break;
 			case 2: // subClassOf -- these are converted to rdfIdentifiers by getSubClassOf
 				objClass.subClassOfTitle = token;
+				if (token.compareTo(DMDocument.masterUserClassName) != 0) {
+					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier("pds", token);
+				} else {
+					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterUserClassNamespaceIdNC, token);
+				}
 				type = 0;
 				break;
 			case 3: // single-slot
@@ -172,7 +124,12 @@ class ProtPontModel extends InfoModel{
 				String lSsRdfIdentifier = DMDocument.rdfPrefix + objClass.title + "." + attrTitle + "." + luid1;			
 				attrClass = new AttrDefn(lSsRdfIdentifier);
 				attrClass.uid = luid1;
-				attrClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + classNameSpaceIdNC + "." + className + "." + attrTitle;
+				attrClass.title = attrTitle;
+				attrClass.parentClassTitle = className;
+				attrClass.classNameSpaceIdNC = classNameSpaceIdNC;
+				attrClass.attrNameSpaceIdNC = classNameSpaceIdNC;
+				attrClass.attrNameSpaceId = attrClass.attrNameSpaceIdNC + ":";
+				attrClass.setAttrIdentifier (classNameSpaceIdNC, className, classNameSpaceIdNC, attrTitle);
 				attrClass.set11179Attr(attrClass.identifier);
 				attrClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 				attrClass.subModelId = subModelId;
@@ -180,15 +137,10 @@ class ProtPontModel extends InfoModel{
 				attrClass.cardMinI = 0;
 				attrClass.cardMax = "1";
 				attrClass.cardMaxI = 1;
-				attrClass.title = attrTitle;
-				attrClass.className = className;
-				attrClass.attrNameSpaceIdNC = classNameSpaceIdNC;
-				attrClass.attrNameSpaceId = attrClass.attrNameSpaceIdNC + ":";
 				attrClass.classSteward = objClass.steward;
 				attrClass.steward = attrClass.classSteward;
-				
-				attrClass.classNameSpaceIdNC = classNameSpaceIdNC;
 				attrClass.isPDS4 = true;
+				attrClass = resolveAttrNamespace (attrClass);
 				objClass.hasSlot.add(attrClass);
 				attrDict.put(attrClass.rdfIdentifier, attrClass);
 //				System.out.println("debug ProtPontModel singleSlot attrClass.rdfIdentifier:" + attrClass.rdfIdentifier);
@@ -199,8 +151,13 @@ class ProtPontModel extends InfoModel{
 				String luid2 = getNextUId();
 				String lMsRdfIdentifier = DMDocument.rdfPrefix + objClass.title + "." + attrTitle + "." + luid2;
 				attrClass = new AttrDefn(lMsRdfIdentifier);
-				attrClass.uid = luid2;
-				attrClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + classNameSpaceIdNC + "." + className + "." + attrTitle;
+				attrClass.uid = luid2;		
+				attrClass.title = attrTitle;
+				attrClass.parentClassTitle = className;
+				attrClass.classNameSpaceIdNC = classNameSpaceIdNC;
+				attrClass.attrNameSpaceIdNC = classNameSpaceIdNC;
+				attrClass.attrNameSpaceId = attrClass.attrNameSpaceIdNC + ":";				
+				attrClass.setAttrIdentifier (classNameSpaceIdNC, className, classNameSpaceIdNC, attrTitle);
 				attrClass.set11179Attr(attrClass.identifier);
 				attrClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 				attrClass.subModelId = subModelId;
@@ -208,15 +165,11 @@ class ProtPontModel extends InfoModel{
 				attrClass.cardMinI = 0;
 				attrClass.cardMax = "*";
 				attrClass.cardMaxI = 9999999;
-				attrClass.title = attrTitle;
-				attrClass.attrNameSpaceIdNC = classNameSpaceIdNC;
-				attrClass.attrNameSpaceId = attrClass.attrNameSpaceIdNC + ":";
 				attrClass.classSteward = objClass.steward;
 				attrClass.steward = attrClass.classSteward;
-				
-				attrClass.className = className;
-				attrClass.classNameSpaceIdNC = classNameSpaceIdNC;
 				attrClass.isPDS4 = true;
+				attrClass = resolveAttrNamespace (attrClass);
+				
 				objClass.hasSlot.add(attrClass);
 				attrDict.put(attrClass.rdfIdentifier, attrClass);
 //				System.out.println("debug ProtPontModel multiSlot attrClass.rdfIdentifier:" + attrClass.rdfIdentifier);
@@ -227,16 +180,14 @@ class ProtPontModel extends InfoModel{
 					attrClass.propType = "INSTANCE";
 					attrClass.protValType = "CLASS";
 					attrClass.isAttribute = false;
-					objClass.ownedAssocTitle.add(attrClass.title);
-					objClass.ownedAssocId.add(attrClass.identifier);
+					objClass.ownedAssocNSTitle.add(attrClass.nsTitle);
 					objClass.ownedAssociation.add(attrClass);
 				} else {
 					attrClass.propType = "ATTRIBUTE";
 					attrClass.protValType = token.toLowerCase();
 					attrClass.isAttribute = true;
 					attrClass.isOwnedAttribute = true;
-					objClass.ownedAttrTitle.add(attrClass.title);
-					objClass.ownedAttrId.add(attrClass.identifier);
+					objClass.ownedAttrNSTitle.add(attrClass.nsTitle);
 					objClass.ownedAttribute.add(attrClass);
 				}
 				type = 0;
@@ -247,6 +198,7 @@ class ProtPontModel extends InfoModel{
 				} else {
 					if (token.indexOf("XSChoice%23") > -1) {
 						attrClass.isChoice= true;
+						attrClass.groupName = token;
 					} else {
 						attrClass.valArr.add(token);
 						attrClass.isEnumerated = true;
@@ -260,6 +212,7 @@ class ProtPontModel extends InfoModel{
 				} else {
 					if (token.indexOf("XSChoice#") > -1) {
 						attrClass.isChoice= true;
+						attrClass.groupName = token;
 					} else {
 						attrClass.valArr.add(token);
 						attrClass.isEnumerated = true;
@@ -284,7 +237,8 @@ class ProtPontModel extends InfoModel{
 				type = 0;
 				break;
 			case 9: // comment
-				attrClass.description = token;
+//				attrClass.description = token;
+				attrClass.description = InfoModel.unEscapeProtegeString(token);
 				type = 0;
 				break;
 			case 10: // role
@@ -302,4 +256,19 @@ class ProtPontModel extends InfoModel{
 			}
 		}
 	}
+	
+	/**
+	 *   resolveAttrNamespace - temporary method to resolve attribute namespaces
+	 *   Plan on using OWL version so that namespaces can be specified in Protege.
+	 */
+	public AttrDefn resolveAttrNamespace (AttrDefn lAttr) {
+		String lNameSpaceIdNC = InfoModel.attrNamespaceResolutionMap.get(lAttr.classNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title);
+		if (lNameSpaceIdNC != null) {
+			lAttr.attrNameSpaceIdNC = lNameSpaceIdNC;
+			lAttr.attrNameSpaceId = lAttr.attrNameSpaceIdNC + ":";
+			lAttr.setAttrIdentifier (lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.attrNameSpaceIdNC, lAttr.title);
+			lAttr.set11179Attr(lAttr.identifier);
+		}
+		return lAttr;
+	}	
 }
