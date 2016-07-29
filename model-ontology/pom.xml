@@ -51,6 +51,37 @@
 
     <build>
         <plugins>
+<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>process-resources</phase>
+                    <configuration>
+                        <tasks>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/pvl"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/DD"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/xmi"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/rdf"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/csv"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/JSON"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/skos"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/owl"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/defnAttr"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/defnClass"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/rim"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/Extract"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/SchemaXML4"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/Model_DataDictionary"/>
+                        </tasks>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+         </plugin>
             <plugin>
                 <groupId>gov.nasa.pds.2010</groupId>
                 <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
