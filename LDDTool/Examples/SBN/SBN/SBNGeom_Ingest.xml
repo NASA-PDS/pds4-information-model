@@ -1,0 +1,1754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/Users/Anne/Documents/OxygenXMLEditor/OREx/Schemas/PDS4_PDS_1201.sch"?>
+
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 file:/C:/Users/Anne/Documents/OxygenXMLEditor/OREx/Schemas/PDS4_PDS_1201.xsd">
+    <name>SBN Geometry Dictionary for O-REx</name>
+    <ldd_version_id>1.0</ldd_version_id>
+    <full_name>Anne Raugh</full_name>
+    <steward_id>SBN</steward_id>
+    <namespace_id>sbngeom</namespace_id>
+    <last_modification_date_time>2014-05-30T00:00:00</last_modification_date_time>
+    
+    <!-- Scalar Attributes -->
+    
+    <DD_Attribute>
+        <name>body_positive_pole_clock_angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>body_positive_pole_clock_angle</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            In the displayed image, the angle of the direction of the positive
+            rotation pole of the associated body, measured at the center of the 
+            image, clockwise from the positive vertical           
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>celestial_north_clock_angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>celestial_north_clock_angle</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            In the displayed image, the angle of the direction of the north 
+            celestial pole, measured at the center of the image, clockwise 
+            from the positive vertical
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>comment</name>
+        <version_id>1.0</version_id>
+        <local_identifier>comment</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Free-format text for miscellaneous comments to the end user about
+            the associated attributes or their values.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Text_Preserved</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>coordinate_system_origin</name>
+        <version_id>1.0</version_id>
+        <local_identifier>coordinate_system_origin</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            One of a set of predefined strings that indicates the origin
+            of a coordinate system used for the association coordinates
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>true</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <DD_Permissible_Value>
+                <value>spacecraft</value>
+                <value_meaning>
+                    The coordinate system origin is at the center of mass of the spacecraft.
+                </value_meaning>
+            </DD_Permissible_Value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>declination</name>
+        <version_id>1.0</version_id>
+        <local_identifier>declination</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Declination in the associated celestrial reference frame
+            and coordinate system
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>-90.0</minimum_value>
+            <maximum_value>90.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>distance</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Absolute value of the linear distance between two associated points
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+            <specified_unit_id>km</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>ecliptic_latitude</name>
+        <version_id>1.0</version_id>
+        <local_identifier>ecliptic_latitude</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Ecliptic latitude in the associated reference frame and
+            coordinate system
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>-90.0</minimum_value>
+            <maximum_value>90.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>ecliptic_longitude</name>
+        <version_id>1.0</version_id>
+        <local_identifier>ecliptic_longitude</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Ruagh</submitter_name>
+        <definition>
+            Ecliptic longitude in the associated reference frame and
+            coordinate system
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>ecliptic_north_clock_angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>ecliptic_north_clock_angle</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            In the displayed image, the angle of the direction of the north 
+            ecliptic pole, measured at the center of the image, clockwise 
+            from the positive vertical           
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>geometry_reference_time</name>
+        <version_id>1.0</version_id>
+        <local_identifier>geometry_reference_time</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This is the UTC time at which all the geometric values following were
+            calculated, unless an attribute within a class specifies otherwise.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Date_Time</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>horizontal_display_axis</name>
+        <version_id>1.0</version_id>
+        <local_identifier>horizontal_display_axis</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The horizontal_display_axis attribute
+            identifies, by name, the axis of an Array (or Array subclass)
+            that is intended to be displayed in the horizontal or "sample"
+            dimension on a display device. The value of this attribute must
+            match the value of one, and only one, axis_name attribute in an
+            Axis_Array class of the associated Array.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>horizontal_display_direction</name>
+        <version_id>1.0</version_id>
+        <local_identifier>horizontal_display_direction</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The horizontal_display_direction attribute
+            specifies the direction across the screen of a display device
+            that data along the horizontal axis of an Array is supposed to
+            be displayed.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>true</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <DD_Permissible_Value>
+                <value>Left to Right</value>
+                <value_meaning>
+                    The image should be drawn so that the (0,0) pixel is located on the
+                    left edge of the displayed image, and subsequent columns should be
+                    drawn to the right.
+                </value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Right to Left</value>
+                <value_meaning>
+                    The image should be drawn so that the (0,0) pixel is located on the
+                    right edge of the displayed image, and subsequent columns should be
+                    drawn to the left.
+                </value_meaning>
+            </DD_Permissible_Value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>light_time_flag</name>
+        <version_id>1.0</version_id>
+        <local_identifier>light_time_flag</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Flag indicating whether a light travel time correction has been
+            applied to the associated values. A value of "true" indicates it
+            has been applied; "false" indicates no correction has been applied.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Boolean</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>phase_angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>phase_angle</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Angle, measured at the target, from the position of the source of 
+            illumination to the line of sight
+            
+            [Note: This definition is not sufficiently specific.  It does not
+                   include direction of measurement or range of valid values.
+                   And the primary to secondary indication is a guess.]
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>reference_frame_id</name>
+        <version_id>1.0</version_id>
+        <local_identifier>reference_frame_id</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            An abbreviation for the reference frame for corresponding
+            vector components
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>true</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <DD_Permissible_Value>
+                <value>J2000</value>
+                <value_meaning>
+                    The coordinates are given in the J2000 reference epoch and equinox.
+                </value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>ICRF</value>
+                <value_meaning>
+                    The coordinates are given in the International Celestial Reference Frame.
+                </value_meaning>
+            </DD_Permissible_Value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>right_ascension</name>
+        <version_id>1.0</version_id>
+        <local_identifier>right_ascension</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Right ascension in the associated celestial reference frame
+            and coordinate system
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>solar_elongation</name>
+        <version_id>1.0</version_id>
+        <local_identifier>solar_elongation</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The angle between the line of sight to the center of the specified
+            target in the associated image and the direction of the sun as seen
+            by the observer 
+            
+            [ Note: This definition is not sufficiently specific. ]
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>-180.0</minimum_value>
+            <maximum_value>180.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>spacecraft_geocentric_distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>spacecraft_geocentric_distance</local_identifier>
+        <nillable_flag>0</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Distance from the center of the Earth to the center of mass of the spacecraft
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+            <specified_unit_id>km</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>spacecraft_heliocentric_distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>spacecraft_heliocentric_distance</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Distance from the center of the sun to the center of mass of the spacecraft
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+            <specified_unit_id>km</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+           
+    <DD_Attribute>
+        <name>stellar_aberration_flag</name>
+        <version_id>1.0</version_id>
+        <local_identifier>stellar_aberration_flag</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This flag indicates whether a correction for stellar aberration
+            has been applied to the associated coordinates.  A value of "true"
+            indicates that the correction has been applied; "false" indicates
+            no correction for aberration has beem applied.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Boolean</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>sun_direction_clock_angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>sun_direction_clock_angle</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            In the displayed image, the angle of the direction vector to the
+            sun projected onto the plane of the image, measured at the center 
+            of the image, clockwise from the positive vertical
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <minimum_value>0.0</minimum_value>
+            <maximum_value>360.0</maximum_value>
+            <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+            <specified_unit_id>deg</specified_unit_id>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>target_LID</name>
+        <version_id>1.0</version_id>
+        <local_identifier>target_LID</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The logical identifier (LID) in the PDS4 repository of a
+            context object describing the target
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_LID</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>target_NAIF_ID</name>
+        <version_id>1.0</version_id>
+        <local_identifier>target_NAIF_ID</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The NAIF SPK-ID of the target body, if any
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Integer</value_data_type>
+            <minimum_value>0</minimum_value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>target_name</name>
+        <version_id>1.0</version_id>
+        <local_identifier>target_name</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The name of the target of interest.  For planets, minor planets,
+            and similar observational targets, this should be a name string that
+            includes at least two forms of identification whenever possible, to
+            help with disambiguation in the archive indices.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <minimum_characters>2</minimum_characters>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>vertical_display_axis</name>
+        <version_id>1.0</version_id>
+        <local_identifier>vertical_display_axis</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The vertical_display_axis attribute identifies,
+            by name, the axis of an Array (or Array subclass) that is
+            intended to be displayed in the vertical or "line" dimension on
+            a display device. The value of this attribute must match the
+            value of one, and only one, axis_name attribute in an
+            Axis_Array class of the associated Array.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>vertical_display_direction</name>
+        <version_id>1.0</version_id>
+        <local_identifier>vertical_display_direction</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            The vertical_display_direction attribute
+            specifies the direction along the screen of a display device
+            that data along the vertical axis of an Array is supposed to be
+            displayed.
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>true</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <DD_Permissible_Value>
+                <value>Top to Bottom</value>
+                <value_meaning>
+                    The image should be drawn so that the (0,0) pixel is located at 
+                    the top of the displayed image, and subsequent rows are drawn 
+                    downward.
+                </value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Bottom to Top</value>
+                <value_meaning>
+                    The image should be drawn so that the (0,0) pixel is located at
+                    the bottom of the displayed image, and subsequent rows are drawn
+                    upward.
+                </value_meaning>
+            </DD_Permissible_Value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>Vx</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Vx</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            X component of the associated velocity vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Velocity</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>Vy</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Vy</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Y component of the associated velocity vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Velocity</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>Vz</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Vz</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Z component of the associated velocity vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Velocity</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>x</name>
+        <version_id>1.0</version_id>
+        <local_identifier>x</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            X-component of a Cartesian distance vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>y</name>
+        <version_id>1.0</version_id>
+        <local_identifier>y</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Y component of a Cartesion distance vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <DD_Attribute>
+        <name>z</name>
+        <version_id>1.0</version_id>
+        <local_identifier>z</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Z component of a Cartesion distance vector
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
+    <!-- Builder classes (used inside other classes) -->
+    
+    <!-- First-order Builder Classes (attributes only) -->
+    
+    <DD_Class>
+        <name>Celestial_Coordinates</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Celestial_Coordinates</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class specifies right ascension and declination in a
+            specific reference frame and coordinate system.
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>coordinate_system_origin</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>right_ascension</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>declination</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Display_Direction</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Display_Direction</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class mimics the Display_Direction class in the Display dictionary.
+            It's here until I figure out how to include that class directly.
+        </definition>
+        <DD_Association>
+            <local_identifier>comment</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>horizontal_display_axis</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>horizontal_display_direction</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>vertical_display_axis</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>vertical_display_direction</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Ecliptic_Coordinates</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Ecliptic_Coordinates</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class specifies ecliptic latitude and longitude in a
+            specified reference frame and coordinate system.
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>coordinate_system_origin</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>ecliptic_longitude</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>ecliptic_latitude</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Earth_Position_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Earth_Position_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Position vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft 
+            to the center of mass of the earth
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>x</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>y</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>z</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Earth_Velocity_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Earth_Velocity_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Velocity vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft
+            to the center of mass of the earth
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vx</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vy</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vz</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Sun_Position_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Sun_Position_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Position vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft 
+            to the center of mass of the sun
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>x</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>y</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>z</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Sun_Velocity_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Sun_Velocity_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Velocity vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft
+            to the center of mass of the sun
+        </definition>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vx</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vy</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vz</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Target_Specification</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Target_Specification</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class provides a number of ways to identify a single,
+            specific target.  In general, any or all of them may be used.
+        </definition>
+        <DD_Association>
+            <local_identifier>target_name</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>target_NAIF_ID</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>target_LID</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <!-- Second-order Builder Classes (attributes and/or First-Order classes) -->
+    
+    <DD_Class>
+        <name>Earth_to_Target_Position_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Earth_to_Target_Position_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Position vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the earth to 
+            the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>x</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>y</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>z</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Earth_to_Target_Velocity_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Earth_to_Target_Velocity_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Velocity vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the earth to 
+            the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vx</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vy</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vz</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Illumination_Angles</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Illumination_Angles</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class collects illumination angles relevant to the specified
+            target.
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>solar_elongation</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>phase_angle</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Image_Center_Coordinates</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Image_Center_Coordinates</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class provides coordinates of the center of the image in
+            various reference frames and coordinate systems.
+        </definition>
+        <DD_Association>
+            <local_identifier>Celestial_Coordinates</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Ecliptic_Coordinates</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Target_Distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Target_Distance</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Linear distance measured from the center of the spacecraft to 
+            the center of the associated target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>distance</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Target_Position_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Target_Position_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Position vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft 
+            to the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>x</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>y</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>z</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_to_Target_Velocity_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_to_Target_Velocity_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Velocity vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the spacecraft
+            to the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vx</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vy</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vz</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Sun_to_Target_Position_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Sun_to_Target_Position_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Position vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the sun to 
+            the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>x</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>y</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>z</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Sun_to_Target_Velocity_Vector_Cartesian</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Sun_to_Target_Velocity_Vector_Cartesian</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Velocity vector in Cartesian coordinates, in the specified reference 
+            frame and coordinate system, from the center of mass of the sun to 
+            the center of mass of the specified target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>reference_frame_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>light_time_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stellar_aberration_flag</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vx</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vy</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Vz</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Target_Geocentric_Distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Target_Geocentric_Distance</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Linear distance from the center of the earth to the
+            center of mass of the associated target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>distance</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Target_Heliocentric_Distance</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Target_Heliocentric_Distance</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Linear distance from the center of the sun to the
+            center of mass of the associated target
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>distance</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Target_Pole_Clock_Angle</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Target_Pole_Clock_Angle</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class specifies a target and the clock angle for the positive
+            rotation pole of that target as seen in the associated image, when 
+            it is properly displayed.
+        </definition>
+        <DD_Association>
+            <local_identifier>Target_Specification</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>body_positive_pole_clock_angle</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <!-- Third-Order Builder Classes (contain at least one Second-Order Class) -->
+    
+    <DD_Class>
+        <name>Clock_Angles</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Clock_Angles</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class contains clock angles specifying key directions in the 
+            associated image when it is displayed correctly.
+        </definition>
+        <DD_Association>
+            <local_identifier>celestial_north_clock_angle</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>ecliptic_north_clock_angle</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>sun_direction_clock_angle</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Target_Pole_Clock_Angle</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Distances</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Distances</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            Various distance measurements relevant to the product observation
+        </definition>
+        <DD_Association>
+            <local_identifier>spacecraft_geocentric_distance</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>spacecraft_heliocentric_distance</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Target_Distance</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Target_Geocentric_Distance</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Target_Heliocentric_Distance</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Earth_Vectors</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Earth_Vectors</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class collects vectors that have their origin at the center of 
+            mass of the Earth.
+        </definition>
+        <DD_Association>
+            <local_identifier>Earth_to_Target_Position_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Earth_to_Target_Velocity_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_Vectors</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_Vectors</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class collects vectors with their origin at the center of
+            mass of the spacecraft.
+        </definition>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Target_Position_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Target_Velocity_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Sun_Position_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Sun_Velocity_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Earth_Position_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_to_Earth_Velocity_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Sun_Vectors</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Sun_Vectors</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class collects vectors with their origin at the center of
+            mass of the Sun.
+        </definition>
+        <DD_Association>
+            <local_identifier>Sun_to_Target_Position_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Sun_to_Target_Velocity_Vector_Cartesian</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>*</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <!-- Major Classes (high-order grouping classes) -->
+    
+    <DD_Class>
+        <name>Image_Display_Geometry</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Image_Display_Geometry</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class incorporates the Display Dictionary display class and
+            includes orientation atttributes for key directions as they appear
+            in the correctly displayed image.
+        </definition>
+        <DD_Association>
+            <local_identifier>Display_Direction</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Image_Center_Coordinates</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Clock_Angles</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <DD_Class>
+        <name>Spacecraft_Geometry</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Spacecraft_Geometry</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This class combines a number of classes related to the geometry of
+            a spacecraft-based observation.
+        </definition>
+        <DD_Association>
+            <local_identifier>Illumination_Angles</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Distances</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_Vectors</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Sun_Vectors</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Earth_Vectors</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+    
+    <!-- Anchor Class (highest order) -->
+    
+    <DD_Class>
+        <name>Geometry</name>
+        <version_id>1.0</version_id>
+        <local_identifier>Geometry</local_identifier>
+        <submitter_name>Anne Raugh</submitter_name>
+        <definition>
+            This master class contains all the geometry dictionary classes and should be
+            included directly in observational product levels in the "Mission_Area".
+        </definition>
+        <DD_Association>
+            <local_identifier>geometry_reference_time</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Image_Display_Geometry</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>Spacecraft_Geometry</local_identifier>
+            <reference_type>component_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+</Ingest_LDD>

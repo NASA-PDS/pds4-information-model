@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 file:/C:/AA7Ontologies/A01PDS4/Document/SchemaXML4/PDS4_PDS_1400.xsd">
+    <name>name0</name>
+    <ldd_version_id>ldd_version_id0</ldd_version_id>
+    <full_name>full_name0</full_name>
+    <steward_id>pds</steward_id>
+    <namespace_id>pds</namespace_id>
+    <comment>PDS Query Model for Mission Science Data Collections - Each query model consists of a set of property maps. 
+        Each property map names a PDS4 attribute to be harvested from a PDS4 label and made available to be used as a search
+        parameter. The map also indicates the search type desired, either a facet- and/or a field/text-based search. </comment>
+    <last_modification_date_time>2014-03-19</last_modification_date_time>
+
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Collection.pds.collection_type</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Collection.pds.collection_type</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <instance_id>... xpath to label, if a reference is needed to an instance of this attribute in a label</instance_id>
+        <description>This Property Map indicates that the attribute Collection.pds.collection_type can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Collection Type</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>collectionType</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Investigation_Area.pds.type</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Investigation_Area.pds.type</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Investigation_Area.pds.type can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Investigation Type</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>investigationType</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Identification_Area.pds.product_class</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Identification_Area.pds.product_class</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Identification_Area.pds.product_class can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Product Class</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>productClass</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Primary_Result_Summary.pds.purpose</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.purpose</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Primary_Result_Summary.pds.purpose can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Purpose</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>purpose</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Time_Coordinates.pds.start_date_time</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Time_Coordinates.pds.start_date_time</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Time_Coordinates.pds.start_date_time can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>startDateTime</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Time_Coordinates.pds.stop_date_time</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Time_Coordinates.pds.stop_date_time</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Time_Coordinates.pds.stop_date_time can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>stopDateTime</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Target_Identification.pds.name</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Target_Identification.pds.name</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Target_Identification.pds.name can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>targetName</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Target_Identification.pds.type</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Target_Identification.pds.type</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Target_Identification.pds.type can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Target Type</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>targetType</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Investigation_Area.pds.name</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Investigation_Area.pds.name</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Investigation_Area.pds.name can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>investigationName</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Observing_System.pds.name</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Observing_System.pds.name</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Observing_System.pds.name can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>observingSystemName</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Observing_System_Component.pds.name</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Observing_System_Component.pds.name</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Observing_System_Component.pds.name can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>observingSystemComponentName</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Observing_System_Component.pds.type</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Observing_System_Component.pds.type</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Observing_System_Component.pds.type can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Observing System Component Type</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>observingSystemComponentType</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Primary_Result_Summary.pds.processing_level</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.processing_level</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Primary_Result_Summary.pds.processing_level can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Processing Level</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>processsingLevel</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Science_Facets.pds.domain</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Science_Facets.pds.domain</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Science_Facets.pds.domain can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Science Domain</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>scienceDomain</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Science_Facets.pds.wavelength_range</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Science_Facets.pds.wavelength_range</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Science_Facets.pds.wavelength_range can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Wavelength Range</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>wavelengthRange</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Science_Facets.pds.discipline_name</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Science_Facets.pds.discipline_name</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Science_Facets.pds.discipline_name can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Science Discipline Name</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>scienceDisciplineName</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Collection.pds.description</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Collection.pds.description</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Collection.pds.description can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>collectionDescription</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Product_Context.pds.Instrument.pds.type</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Product_Context.pds.Instrument.pds.type</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Product_Context.pds.Instrument.pds.type can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>instrumentType</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Identification_Area.pds.logical_identifier</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Identification_Area.pds.logical_identifier can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>logicalIdentifier</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Identification_Area.pds.version_id</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Identification_Area.pds.version_id</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Identification_Area.pds.version_id can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>versionId</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Science_Facets.pds.facet1</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Science_Facets.pds.facet1</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Science_Facets.pds.facet1 can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Science Facet 1</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>scienceFacet1</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Science_Facets.pds.facet2</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Science_Facets.pds.facet2</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Science_Facets.pds.facet2 can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Science Facet 2</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>scienceFacet2</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Primary_Result_Summary.pds.description</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.description</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Primary_Result_Summary.pds.description can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>primaryResultSummary</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Target_Identification.pds.description</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Target_Identification.pds.description</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Target_Identification.pds.description can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>targetDescription</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Identification_Area.pds.title</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Identification_Area.pds.title</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Identification_Area.pds.title can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>title</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.system.pds.archive_status</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.system.pds.archive_status</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.system.pds.archive_status can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Facet</property_name>
+            <property_value>Archive Status</property_value>
+        </Property_Map_Entry>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>archiveStatus</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Citation_Information.pds.keyword</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Citation_Information.pds.keyword</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Citation_Information.pds.keyword can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>citationKeyword</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+        <identifier>0001_NASA_PDS_1.pds.Property_Map.pds.QueryModel.MissionScienceDataCollection.pds.Citation_Information.pds.description</identifier>
+        <title>Query Model for mission science data collections.</title>
+        <steward_id>pds</steward_id>
+        <namespace_id>pds</namespace_id>
+        <model_object_id>0001_NASA_PDS_1.pds.Citation_Information.pds.description</model_object_id>
+        <model_object_type>Attribute</model_object_type>
+        <description>This Property Map indicates that the attribute pds.Citation_Information.pds.description can be used as either a facet or a field.</description>
+        <Property_Map_Entry>
+            <property_name>Field</property_name>
+            <property_value>citationDescription</property_value>
+        </Property_Map_Entry>
+    </Property_Map>
+    
+    
+</Ingest_LDD>

@@ -1,0 +1,60 @@
+>>info    - LDDTOOL Version: 0.2.0.3
+>>info    - Date: Tue Dec 01 14:59:11 PST 2015
+>>info    - JAVAHOME: C:/Program Files/Java/jre7
+>>info    - PARENT_DIR: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/..
+>>info    - SCRIPT_DIR: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/
+>>info    - LIB_DIR: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../lib
+>>info    - Found input file: insight_ingest_ldd.xml
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/MDPTNConfigClassDisp.xml
+
+>>info    - Configured Steward/NameSpaceId Pairs
+>>info    - cart - cart
+>>info    - geo - geom
+>>info    - img - disp
+>>info    - img - img
+>>info    - img - pds
+>>info    - ops - pds
+>>info    - pds - pds
+>>info    - rings - rings
+
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/dd11179.pins
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/DMDocument.pins
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/Glossary.pins
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/UpperModel.pont
+>>info    - getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:Discipline_Area
+>>info    - Found required file: C:/AA7Ontologies/A01PDS4/Document/LDDTool/bin/../Data/UpperModel.pins
+
+>>info    - Generate Schematron Rules - Custom Rule Counts - Before generation
+>>info    - Rule count for Arr: 54
+>>info    - Rule count for Map: 54
+>>info    - Rule count for Id Map: 54
+   WARNING  Header:  - New namespace id has been specified:insight
+   INFO     Attribute: <release_number> - The default minimum value provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <software_name> - The default minimum characters provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <software_name> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <software_version_id> - The default minimum characters provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <software_version_id> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <software_version_id> - This local attribute has a duplicate in the PDS4 data dictionary.
+   INFO     Attribute: <sol_number> - The default minimum value provided by the attribute's data type is being overridden with 0
+   INFO     Attribute: <spacecraft_clock_start_count> - The default minimum characters provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <spacecraft_clock_start_count> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <spacecraft_clock_stop_count> - The default minimum characters provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <spacecraft_clock_stop_count> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <start_local_mean_solar_time> - The default minimum characters provided by the attribute's data type is being overridden with 8
+   INFO     Attribute: <start_local_mean_solar_time> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <start_local_true_solar_time> - The default minimum characters provided by the attribute's data type is being overridden with 8
+   INFO     Attribute: <start_local_true_solar_time> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <start_sol_number> - The default minimum value provided by the attribute's data type is being overridden with 0
+   INFO     Attribute: <start_solar_longitude> - The default minimum value provided by the attribute's data type is being overridden with 0
+   INFO     Attribute: <start_solar_longitude> - The default maximum value provided by the attribute's data type is being overridden with 360
+   INFO     Attribute: <stop_local_mean_solar_time> - The default minimum characters provided by the attribute's data type is being overridden with 8
+   INFO     Attribute: <stop_local_mean_solar_time> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <stop_local_true_solar_time> - The default minimum characters provided by the attribute's data type is being overridden with 8
+   INFO     Attribute: <stop_local_true_solar_time> - The default maximum characters provided by the attribute's data type is being overridden with 255
+   INFO     Attribute: <stop_sol_number> - The default minimum value provided by the attribute's data type is being overridden with 0
+   INFO     Attribute: <stop_solar_longitude> - The default minimum value provided by the attribute's data type is being overridden with 0
+   INFO     Attribute: <stop_solar_longitude> - The default maximum value provided by the attribute's data type is being overridden with 360
+   INFO     Attribute: <instrument_clock_start_count> - The default minimum characters provided by the attribute's data type is being overridden with 1
+   INFO     Attribute: <instrument_clock_start_count> - The default maximum characters provided by the attribute's data type is being overridden with 255
+>>info    - Checking for attribute consistency - checkSameNameOverRide
+>>info    - LDDTOOL Exit

@@ -1,0 +1,1292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- PDS4 XML/Schema for Name Space Id:cart  Version:1.1.0.0 - Tue Apr 07 13:27:46 PDT 2015 -->
+  <!-- Generated from the PDS4 Information Model Version 1.4.0.0 - System Build 5b -->
+  <!-- *** This PDS4 product schema is an operational deliverable. *** -->
+  <!-- CIsbell added upperleft_corner x/y definition - Mon Apr 13 2015 -->
+
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://pds.nasa.gov/pds4/cart/v1"
+    xmlns:cart="http://pds.nasa.gov/pds4/cart/v1"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="1.4.0.0">
+ 
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="PDS4_PDS_1400.xsd"/>
+ 
+  <xs:annotation>
+    <xs:documentation>Contains classes and attributes used to describe
+      cartographic products. This information is largely adapted from
+      the FGDC "Content Standard for Digital Geospatial
+      Metadata".</xs:documentation>
+  </xs:annotation>
+ 
+    <xs:element name="Bounding_Coordinates" type="cart:Bounding_Coordinates"> </xs:element>
+    <xs:element name="Cartography" type="cart:Cartography"> </xs:element>
+    <xs:element name="Coordinate_Representation" type="cart:Coordinate_Representation"> </xs:element>
+    <xs:element name="Distance_and_Bearing_Representation" type="cart:Distance_and_Bearing_Representation"> </xs:element>
+    <xs:element name="Equirectangular" type="cart:Equirectangular"> </xs:element>
+    <xs:element name="Geodetic_Model" type="cart:Geodetic_Model"> </xs:element>
+    <xs:element name="Geographic" type="cart:Geographic"> </xs:element>
+    <xs:element name="Grid_Coordinate_System" type="cart:Grid_Coordinate_System"> </xs:element>
+    <xs:element name="Horizontal_Coordinate_System_Definition" type="cart:Horizontal_Coordinate_System_Definition"> </xs:element>
+    <xs:element name="Lambert_Conformal_Conic" type="cart:Lambert_Conformal_Conic"> </xs:element>
+    <xs:element name="Local" type="cart:Local"> </xs:element>
+    <xs:element name="Local_Planar" type="cart:Local_Planar"> </xs:element>
+    <xs:element name="Map_Projection" type="cart:Map_Projection"> </xs:element>
+    <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+    <!--   
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+  <xs:element name="Map_Projection_Base" type="cart:Map_Projection_Base"> </xs:element>
+-->  
+    <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+    <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+    <xs:element name="Oblique_Line_Point_Group" type="cart:Oblique_Line_Point_Group"> </xs:element>
+    <xs:element name="Oblique_Mercator" type="cart:Oblique_Mercator"> </xs:element>
+    <xs:element name="Planar" type="cart:Planar"> </xs:element>
+    <xs:element name="Planar_Coordinate_Information" type="cart:Planar_Coordinate_Information"> </xs:element>
+    <xs:element name="Polar_Stereographic" type="cart:Polar_Stereographic"> </xs:element>
+    <xs:element name="Polyconic" type="cart:Polyconic"> </xs:element>
+    <xs:element name="Sinusoidal" type="cart:Sinusoidal"> </xs:element>
+    <xs:element name="Spatial_Domain" type="cart:Spatial_Domain"> </xs:element>
+    <xs:element name="Spatial_Reference_Information" type="cart:Spatial_Reference_Information"> </xs:element>
+    <xs:element name="State_Plane_Coordinate_System" type="cart:State_Plane_Coordinate_System"> </xs:element>
+    <!--
+    <xs:element name="TBD_Ingest_LDD" type="cart:TBD_Ingest_LDD"> </xs:element>
+-->  
+    <xs:element name="Transverse_Mercator" type="cart:Transverse_Mercator"> </xs:element>
+    <xs:element name="Universal_Polar_Stereographic" type="cart:Universal_Polar_Stereographic"> </xs:element>
+    <xs:element name="Universal_Transverse_Mercator" type="cart:Universal_Transverse_Mercator"> </xs:element>
+    
+
+  <xs:complexType name="Bounding_Coordinates">
+    <xs:annotation>
+      <xs:documentation>The Bounding_Coordinates class defines the
+        limits of coverage of a set of data expressed by latitude and
+        longitude values in the order western-most, eastern-most,
+        northern-most, and southern-most.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="west_bounding_coordinate" type="cart:west_bounding_coordinate" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="east_bounding_coordinate" type="cart:east_bounding_coordinate" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="north_bounding_coordinate" type="cart:north_bounding_coordinate" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="south_bounding_coordinate" type="cart:south_bounding_coordinate" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Cartography">
+    <xs:annotation>
+      <xs:documentation>The Cartography class provides a description of
+        how a 3D sphere, spheroid, or elliptical spheroid or the
+        celestial sphere is mapped onto a plane.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Spatial_Domain" type="cart:Spatial_Domain" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Spatial_Reference_Information" type="cart:Spatial_Reference_Information" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Coordinate_Representation">
+    <xs:annotation>
+      <xs:documentation>The Coordinate_Representation class provides the
+        method of encoding the position of a point by measuring its
+        distance from perpendicular reference axes (the "coordinate
+        pair" and "row and column" methods).</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="abscissa_resolution" type="cart:abscissa_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ordinate_resolution" type="cart:ordinate_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Distance_and_Bearing_Representation">
+    <xs:annotation>
+      <xs:documentation>The Distance_and_Bearing_Representation class
+        provides a method of encoding the position of a point by
+        measuring its distance and direction (azimuth angle) from
+        another point.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="distance_resolution" type="cart:distance_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="bearing_resolution" type="cart:bearing_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="bearing_reference_direction" type="cart:bearing_reference_direction" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="bearing_reference_meridian" type="cart:bearing_reference_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:bearing_reference_direction = ('North', 'South')"/> -->
+    <!-- <xs:assert test="cart:bearing_reference_meridian = ('Assumed', 'Astronomic', 'Geodetic', 'Grid', 'Magnetic')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Equirectangular">
+    <xs:annotation>
+      <xs:documentation>The Equirectangular class contains parameters
+        for the Equirectangular projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Geo_Transformation">
+    <xs:annotation>
+      <xs:documentation>The upperleft_corner_x and upperleft_corner_y attributes
+        provide the projection x and y values, in meters, relative to the map
+        projection origin, at sample 0.5 and line 0.5 (upper left corner of 
+        pixel 1,1 within image array).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="upperleft_corner_x" type="cart:upperleft_corner_x" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="upperleft_corner_y" type="cart:upperleft_corner_y" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Geodetic_Model">
+    <xs:annotation>
+      <xs:documentation>The Geodetic_Model class provides parameters
+        describing the shape of the planet.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="horizontal_datum_name" type="cart:horizontal_datum_name" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ellipsoid_name" type="cart:ellipsoid_name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_name" type="cart:reference_frame_name" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="semi_major_radius" type="cart:semi_major_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="semi_minor_radius" type="cart:semi_minor_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="polar_radius" type="cart:polar_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="longitude_direction" type="cart:longitude_direction" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:horizontal_datum_name = ('North American Datum of 1927', 'North American Datum of 1983')"/> -->
+    <!-- <xs:assert test="cart:ellipsoid_name = ('Carke 1866', 'Geodetic Reference System 80')"/> -->
+    <!-- <xs:assert test="cart:longitude_direction = ('Positive East', 'Positive West')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Geographic">
+    <xs:annotation>
+      <xs:documentation>The Geographic class provides information about
+        the quantities of latitude and longitude which define the
+        position of a point on a planetary body's surface with respect
+        to a reference spheroid.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="latitude_resolution" type="cart:latitude_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="longitude_resolution" type="cart:longitude_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Grid_Coordinate_System">
+    <xs:annotation>
+      <xs:documentation>The Grid_Coordinate_System class defines a
+        plane-rectangular coordinate system usually based on, and
+        mathematically adjusted to, a map projection so that geographic
+        positions can be readily transformed to and from plane
+        coordinates.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="grid_coordinate_system_name" type="cart:grid_coordinate_system_name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Universal_Transverse_Mercator" type="cart:Universal_Transverse_Mercator" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Universal_Polar_Stereographic" type="cart:Universal_Polar_Stereographic" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="State_Plane_Coordinate_System" type="cart:State_Plane_Coordinate_System" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:grid_coordinate_system_name = ('ARC Coordinate System', 'Other Grid System', 'State Plane Coordinate System 1927', 'State Plane Coordinate System 1983', 'Universal Polar Stereographic', 'Universal Transverse Mercator')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Horizontal_Coordinate_System_Definition">
+    <xs:annotation>
+      <xs:documentation>The Horizontal_Coordinate_System_Definition
+        class provides the reference frame or system from which linear
+        or angular quantities are measured and assigned to the position
+        that a point occupies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="Geographic" type="cart:Geographic"> </xs:element>
+        <xs:element name="Local" type="cart:Local"> </xs:element>
+        <xs:element name="Planar" type="cart:Planar"> </xs:element>
+      </xs:choice>
+      <xs:element name="Geodetic_Model" type="cart:Geodetic_Model" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Lambert_Conformal_Conic">
+    <xs:annotation>
+      <xs:documentation>The Lambert_Conformal_Conic class contains
+        parameters for the Lambert Conformal Conic
+        projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Local">
+    <xs:annotation>
+      <xs:documentation>The Local class provides a description of any
+        coordinate system that is not aligned with the surface of the
+        planet.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="local_description" type="cart:local_description" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="local_georeference_information" type="cart:local_georeference_information" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Local_Planar">
+    <xs:annotation>
+      <xs:documentation>The Local_Planar class defines any right-handed
+        planar coordinate system of which the z-axis coincides with a
+        plumb line through the origin that locally is aligned with the
+        surface of the planet.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="local_planar_description" type="cart:local_planar_description" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="local_planar_georeference_information" type="cart:local_planar_georeference_information" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Map_Projection">
+    <xs:annotation>
+      <xs:documentation>The Map_Projection class provides the systematic
+        representation of all or part of the surface of a planet on a
+        plane or developable surface.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="map_projection_name" type="cart:map_projection_name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="Equirectangular" type="cart:Equirectangular"> </xs:element>
+        <xs:element name="Lambert_Conformal_Conic" type="cart:Lambert_Conformal_Conic"> </xs:element>
+        <xs:element name="Oblique_Mercator" type="cart:Oblique_Mercator"> </xs:element>
+        <xs:element name="Polar_Stereographic" type="cart:Polar_Stereographic"> </xs:element>
+        <xs:element name="Polyconic" type="cart:Polyconic"> </xs:element>
+        <xs:element name="Sinusoidal" type="cart:Sinusoidal"> </xs:element>
+        <xs:element name="Transverse_Mercator" type="cart:Transverse_Mercator"> </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:map_projection_name = ('Albers Conical Equal Area', 'Azimuthal Equidistant', 'Equidistant Conic', 'Equirectangular', 'General Vertical Near-sided Projection', 'Gnomonic', 'Lambert Azimuthal Equal Area', 'Lambert Conformal Conic', 'Mercator', 'Miller Cylindrical', 'Oblique Mercator', 'Orothographic', 'Polar Stereographic', 'Polyconic', 'Robinson', 'Sinusoidal', 'Space Oblique Mercator', 'Stereographic', 'Transverse Mercator', 'van der Grinten')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Map_Projection_Base">
+    <xs:annotation>
+      <xs:documentation>An abstract class that serves as the parent
+        class to all the map projections.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="2">
+        <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+        <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+      </xs:choice>
+      <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+        <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+      </xs:choice>
+      <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Oblique_Line_Azimuth">
+    <xs:annotation>
+      <xs:documentation>The Oblique_Line_Azimuth class defines the
+        method used to describe the line along which an oblique mercator
+        map projection is centered using the map projection origin and
+        an azimuth.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="azimuthal_angle" type="cart:azimuthal_angle" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="azimuth_measure_point_longitude" type="cart:azimuth_measure_point_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Oblique_Line_Point">
+    <xs:annotation>
+      <xs:documentation>The Oblique_Line_Point class defines the method
+        used to describe the line along which an oblique mercator map
+        projection is centered using two points near the limits of the
+        mapped region that define the center line.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Oblique_Line_Point_Group" type="cart:Oblique_Line_Point_Group" minOccurs="2" maxOccurs="2"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Oblique_Line_Point_Group">
+    <xs:annotation>
+      <xs:documentation>The Oblique_Line_Point_Group class provides the
+        coordinates in latitude and longitude of one end point of the
+        line along which an oblique mercator map projection is
+        centered.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="oblique_line_latitude" type="cart:oblique_line_latitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="oblique_line_longitude" type="cart:oblique_line_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Oblique_Mercator">
+    <xs:annotation>
+      <xs:documentation>The Oblique_Mercator class contains parameters
+        for the Oblique Mercator projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Planar">
+    <xs:annotation>
+      <xs:documentation>The Planar class provides the quantities of
+        distances, or distances and angles, which define the position of
+        a point on a reference plane to which the surface of a planet
+        has been projected.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="Grid_Coordinate_System" type="cart:Grid_Coordinate_System"> </xs:element>
+        <xs:element name="Local_Planar" type="cart:Local_Planar"> </xs:element>
+        <xs:element name="Map_Projection" type="cart:Map_Projection"> </xs:element>
+      </xs:choice>
+      <xs:element name="Planar_Coordinate_Information" type="cart:Planar_Coordinate_Information" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Geo_Transformation" type="cart:Geo_Transformation" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Planar_Coordinate_Information">
+    <xs:annotation>
+      <xs:documentation>The Planar_Coordinate_Information class provides
+        information about the coordinate system developed on the planar
+        surface.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="planar_coordinate_encoding_method" type="cart:planar_coordinate_encoding_method" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="Coordinate_Representation" type="cart:Coordinate_Representation"> </xs:element>
+        <xs:element name="Distance_and_Bearing_Representation" type="cart:Distance_and_Bearing_Representation"> </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:planar_coordinate_encoding_method = ('Coordinate Pair', 'Distance and Bearing', 'Row and Column')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Polar_Stereographic">
+    <xs:annotation>
+      <xs:documentation>The Polar_Stereographic class contains
+        parameters for the Polar Stereographic
+        projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Polyconic">
+    <xs:annotation>
+      <xs:documentation>The Polyconic class contains parameters for the
+        Polyconic projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Sinusoidal">
+    <xs:annotation>
+      <xs:documentation>The Sinusoidal class contains parameters for the
+        Sinusoidal projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spatial_Domain">
+    <xs:annotation>
+      <xs:documentation>The Spatial_Domain class describes the
+        geographic areal domain of the data set.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Bounding_Coordinates" type="cart:Bounding_Coordinates" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Spatial_Reference_Information">
+    <xs:annotation>
+      <xs:documentation>The Spatial_Reference_Information class provides
+        a description of the reference frame for, and the means to
+        encode, coordinates in a data set.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Horizontal_Coordinate_System_Definition" type="cart:Horizontal_Coordinate_System_Definition" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="State_Plane_Coordinate_System">
+    <xs:annotation>
+      <xs:documentation>The State_Plane_Coordinate_System class defines
+        a plane-rectangular coordinate system established for each state
+        in the United States by the National Geodetic
+        Survey.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="spcs_zone_identifier" type="cart:spcs_zone_identifier" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element name="Lambert_Conformal_Conic" type="cart:Lambert_Conformal_Conic"> </xs:element>
+        <xs:element name="Oblique_Mercator" type="cart:Oblique_Mercator"> </xs:element>
+        <xs:element name="Polyconic" type="cart:Polyconic"> </xs:element>
+        <xs:element name="Transverse_Mercator" type="cart:Transverse_Mercator"> </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Transverse_Mercator">
+    <xs:annotation>
+      <xs:documentation>The Transverse_Mercator class contains
+        parameters for the Transverse Mercator
+        projection.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:restriction base="cart:Map_Projection_Base">
+        <xs:sequence>
+          <xs:element name="straight_vertical_longitude_from_pole" type="cart:straight_vertical_longitude_from_pole" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="2">
+            <xs:element name="standard_parallel" type="cart:standard_parallel" minOccurs="0" maxOccurs="1"> </xs:element>
+            <xs:element name="scale_factor_at_projection_origin" type="cart:scale_factor_at_projection_origin" minOccurs="0" maxOccurs="1"> </xs:element>
+          </xs:choice>
+          <xs:element name="scale_factor_at_center_line" type="cart:scale_factor_at_center_line" minOccurs="0" maxOccurs="1"> </xs:element>
+          <xs:element name="scale_factor_at_central_meridian" type="cart:scale_factor_at_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:element name="longitude_of_central_meridian" type="cart:longitude_of_central_meridian" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:element name="Oblique_Line_Azimuth" type="cart:Oblique_Line_Azimuth"> </xs:element>
+            <xs:element name="Oblique_Line_Point" type="cart:Oblique_Line_Point"> </xs:element>
+          </xs:choice>
+          <xs:element name="latitude_of_projection_origin" type="cart:latitude_of_projection_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Universal_Polar_Stereographic">
+    <xs:annotation>
+      <xs:documentation>The Universal_Polar_Stereographic class defines
+        a grid system based on the polar stereographic projection,
+        applied to the planet's polar regions north of 84 degrees north
+        and south of 80 degrees south.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ups_zone_identifier" type="cart:ups_zone_identifier" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Polar_Stereographic" type="cart:Polar_Stereographic" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="cart:ups_zone_identifier = ('A', 'B', 'Y', 'Z')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Universal_Transverse_Mercator">
+    <xs:annotation>
+      <xs:documentation>The Universal_Transverse_Mercator class defines
+        a grid system based on the transverse mercator projection,
+        applied between latitudes 84 degrees north and 80 degrees south
+        on the planet's surface.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="utm_zone_number" type="cart:utm_zone_number" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Transverse_Mercator" type="cart:Transverse_Mercator" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:annotation>
+      <xs:documentation>This section contains the simpleTypes that provide more constraints
+        than those at the base data type level. The simpleTypes defined here build on the base data
+        types. This is another component of the common dictionary and therefore falls within the
+        pds namespace.
+      </xs:documentation>
+    </xs:annotation>
+
+  <xs:simpleType name="abscissa_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="abscissa_resolution">
+    <xs:annotation>
+      <xs:documentation>The abscissa_resolution attribute provides the
+        (nominal) minimum distance between the "x" or column values of
+        two adjacent points.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:abscissa_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Map_Scale" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="azimuth_measure_point_longitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="180.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="azimuth_measure_point_longitude">
+    <xs:annotation>
+      <xs:documentation>The azimuth_measure_point_longitude attribute
+        provides the longitude of the map projection
+        origin.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:azimuth_measure_point_longitude_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="azimuthal_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="azimuthal_angle">
+    <xs:annotation>
+      <xs:documentation>The azimuthal_angle attribute provides the angle
+        measured clockwise from north, and expressed in
+        degrees.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:azimuthal_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="bearing_reference_direction">
+    <xs:annotation>
+      <xs:documentation>The bearing_reference_direction attribute
+        specifies the direction from which the bearing is
+        measured.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="5"/>
+     <xs:maxLength value="5"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="bearing_reference_meridian">
+    <xs:annotation>
+      <xs:documentation>The bearing_reference_meridian attribute
+        specifies the axis from which the bearing is
+        measured.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="4"/>
+     <xs:maxLength value="10"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="bearing_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="bearing_resolution">
+    <xs:annotation>
+      <xs:documentation>The bearing_resolution attribute provides the
+        minimum angle measurable between two points.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:bearing_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="distance_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="distance_resolution">
+    <xs:annotation>
+      <xs:documentation>The distance_resolution attribute provides the
+        minimum distance measurable between two points, expressed in
+        Planar Distance Units of measure.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:distance_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Map_Scale" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="east_bounding_coordinate_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="360.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="east_bounding_coordinate">
+    <xs:annotation>
+      <xs:documentation>The east_bounding_coordinate attribute provides
+        the eastern-most coordinate of the limit of coverage expressed
+        in longitude.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:east_bounding_coordinate_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ellipsoid_name">
+    <xs:annotation>
+      <xs:documentation>The ellipsoid_name attribute provides the
+        identification given to established representations of a
+        planet's shape.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="grid_coordinate_system_name">
+    <xs:annotation>
+      <xs:documentation>The grid_coordinate_system_name attribute
+        provides the name of the grid coordinate
+        system.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="horizontal_datum_name">
+    <xs:annotation>
+      <xs:documentation>The horizontal_datum_name attribute provides the
+        identification given to reference system used for defining the
+        coordinates of points.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="latitude_of_projection_origin_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="latitude_of_projection_origin">
+    <xs:annotation>
+      <xs:documentation>The latitude_of_projection_origin attribute
+        defines the defines the latitude chosen as the origin of
+        rectangular coordinates for a map projection.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:latitude_of_projection_origin_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="latitude_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="latitude_resolution">
+    <xs:annotation>
+      <xs:documentation>The latitude_resolution attribute indicates the
+        minimum difference between two adjacent latitude values
+        expressed in angular units of measure.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:latitude_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="local_description">
+    <xs:annotation>
+      <xs:documentation>The local_description attribute provides a
+        description of the coordinate system and its orientation to the
+        surface of a planet.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="local_georeference_information">
+    <xs:annotation>
+      <xs:documentation>The local_description attribute provides a
+        description of the information provided to register the local
+        system to a planet (e.g. control points, satellite ephemeral
+        data, inertial navigation data).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="local_planar_description">
+    <xs:annotation>
+      <xs:documentation>The local_planar_description attribute provides
+        a description of the local planar system.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="local_planar_georeference_information">
+    <xs:annotation>
+      <xs:documentation>The local_planar_georeference_information
+        attribute provides a description of the information provided to
+        register the local planar system to a planet (e.g. control
+        points, satellite ephemeral data, inertial navigation
+        data).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="longitude_direction">
+    <xs:annotation>
+      <xs:documentation>The longitude_direction attribute identifies the
+        direction of longitude (e.g. POSITIVE_EAST or POSITIVE_WEST) for
+        a planet. The IAU definition for direction of positive longitude
+        is adopted. Typically, for planets with prograde rotations,
+        positive longitude direction is to the west. For planets with
+        retrograde rotations, positive longitude direction is to the
+        east. Note: The longitude_direction attribute should be used for
+        planetographc systems, but not for
+        planetocentric.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="13"/>
+     <xs:maxLength value="13"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="longitude_of_central_meridian_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="180.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="longitude_of_central_meridian">
+    <xs:annotation>
+      <xs:documentation>The longitude_of_central_meridian attribute
+        defines the line of longitude at the center of a map projection
+        generally used as the basis for constructing the
+        projection.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:longitude_of_central_meridian_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="longitude_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="longitude_resolution">
+    <xs:annotation>
+      <xs:documentation>The longitude_resolution attribute indicates the
+        minimum difference between two adjacent longitude values
+        expressed in angular units of measure.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:longitude_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="map_projection_name">
+    <xs:annotation>
+      <xs:documentation>The map_projection_name attribute provides the
+        name of the map projection.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="north_bounding_coordinate_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="north_bounding_coordinate">
+    <xs:annotation>
+      <xs:documentation>The north_bounding_coordinate attribute provides
+        the northern-most coordinate of the limit of coverage expressed
+        in latitude.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:north_bounding_coordinate_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="oblique_line_latitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="oblique_line_latitude">
+    <xs:annotation>
+      <xs:documentation>The oblique_line_latitude attribute provides the
+        latitude of a point defining the oblique line.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:oblique_line_latitude_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="oblique_line_longitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="180.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="oblique_line_longitude">
+    <xs:annotation>
+      <xs:documentation>The oblique_line_longitude attribute provides
+        the longitude of a point defining the oblique
+        line.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:oblique_line_longitude_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ordinate_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ordinate_resolution">
+    <xs:annotation>
+      <xs:documentation>The ordinate_resolution attribute provides the
+        (nominal) minimum distance between the "y" or row values of two
+        adjacent points.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:ordinate_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Map_Scale" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="planar_coordinate_encoding_method">
+    <xs:annotation>
+      <xs:documentation>The planar_coordinate_encoding_method attribute
+        indicates the means used to represent horizontal
+        positions.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="polar_radius_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="polar_radius">
+    <xs:annotation>
+      <xs:documentation>The polar_radius attribute provides the value of
+        the semiminor axis of the ellipsoid that defines the approximate
+        shape of a target body. The polar radius is normal to the plane
+        defined by the semi-major and semi-minor axes.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:polar_radius_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Length" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="reference_frame_name">
+    <xs:annotation>
+      <xs:documentation> The name of the referenced frame.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="scale_factor_at_center_line">
+    <xs:annotation>
+      <xs:documentation>The scale_factor_at_center_line attribute
+        provides a multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance along the
+        center line.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="scale_factor_at_central_meridian">
+    <xs:annotation>
+      <xs:documentation>The scale_factor_at_central_meridian attribute
+        provides a multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance along the
+        central meridian.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="scale_factor_at_projection_origin">
+    <xs:annotation>
+      <xs:documentation> The scale_factor_at_projection_origin attribute
+        provides a multiplier for reducing a distance obtained from a
+        map by computation or scaling to the actual distance at the
+        projection origin. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Real">
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="semi_major_radius_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="semi_major_radius">
+    <xs:annotation>
+      <xs:documentation>The semi_major_axis attribute provides the
+        radius of the equatorial axis of the
+        ellipsoid.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:semi_major_radius_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Length" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="semi_minor_radius_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="semi_minor_radius">
+    <xs:annotation>
+      <xs:documentation>The semi_minor_radius attribute provides the
+        value of the intermediate axis of the ellipsoid that defines the
+        approximate shape of a target body. The semi-minor axis is
+        usually in the equatorial plane.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:semi_minor_radius_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Length" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="south_bounding_coordinate_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="south_bounding_coordinate">
+    <xs:annotation>
+      <xs:documentation>The south_bounding_coordinate attribute provides
+        the southern-most coordinate of the limit of coverage expressed
+        in latitude.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:south_bounding_coordinate_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="spcs_zone_identifier">
+    <xs:annotation>
+      <xs:documentation>The spcs_zone_identifier attribute identifies
+        the SPCS zone.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+    	<xs:pattern value='[0-9][0-9][0-9][0-9]'/>
+     <xs:minLength value="4"/>
+     <xs:maxLength value="4"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="standard_parallel_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="standard_parallel">
+    <xs:annotation>
+      <xs:documentation>The standard_parallel attribute defines the line
+        of constant latitude at which the surface of the planet and the
+        plane or developable surface intersect.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:standard_parallel_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="straight_vertical_longitude_from_pole_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="180.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="straight_vertical_longitude_from_pole">
+    <xs:annotation>
+      <xs:documentation>The straight_vertical_longitude_from_pole
+        attribute provides the longitude oriented straight up from the
+        North or South Pole.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:straight_vertical_longitude_from_pole_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="upperleft_corner_x_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="upperleft_corner_x">
+    <xs:annotation>
+      <xs:documentation> The upperleft_corner_x and upperleft_corner_y
+        attributes provide the projection x and y values, in meters,
+        relative to the map projection origin, at sample 0.5 and line
+        0.5 (upper left corner of pixel 1,1 within image array).
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:upperleft_corner_x_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Length" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="upperleft_corner_y_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="upperleft_corner_y">
+    <xs:annotation>
+      <xs:documentation> The upperleft_corner_x and upperleft_corner_y
+        attributes provide the projection x and y values, in meters,
+        relative to the map projection origin, at sample 0.5 and line
+        0.5 (upper left corner of pixel 1,1 within image array).
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:upperleft_corner_y_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Length" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ups_zone_identifier">
+    <xs:annotation>
+      <xs:documentation>The ups_zone_identifier attribute provides an
+        identifier for the UPS zone.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="utm_zone_number">
+    <xs:annotation>
+      <xs:documentation>The utm_zone_number attribute provides the
+        identifier for the UTM zone.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Integer">
+     <xs:minInclusive value="-60"/>
+     <xs:maxInclusive value="60"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="west_bounding_coordinate_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="360.0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="west_bounding_coordinate">
+    <xs:annotation>
+      <xs:documentation>The west_bounding_coordinate attribute provides
+        the western-most coordinate of the limit of coverage expressed
+        in longitude.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="cart:west_bounding_coordinate_WO_Units">
+        <xs:attribute name="unit" type="pds:Units_of_Angle" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

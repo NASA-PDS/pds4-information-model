@@ -1,0 +1,392 @@
+<Ingest_LDD
+    xmlns="http://pds.nasa.gov/pds4/pds/v1">
+    <name>InSight Mission Dictionary</name>
+    <ldd_version_id>0.4</ldd_version_id>
+    <full_name>Susan Slavney</full_name>
+    <steward_id>geo</steward_id>
+    <namespace_id>insight</namespace_id>
+    <comment>Draft</comment>
+    <last_modification_date_time>2014-04-29T16:25</last_modification_date_time>
+    <DD_Attribute>
+        <name>mission_phase_name</name>
+        <version_id>0.1</version_id>
+        <local_identifier>mission_phase_name</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The mission_phase_name identifies a time period within the mission.</definition>
+        <comment>Let's omit this if no one thinks it is useful. --SS </comment>
+        <DD_Value_Domain>
+            <enumeration_flag>true</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+            <DD_Permissible_Value>
+                <value>Pre-launch</value>
+                <value_meaning>The pre-launch mission phase is from the beginning of the mission through time of launch.</value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Launch</value>
+                <value_meaning>The launch mission phase is from the time of launch through the time of escape from Earth's orbit.</value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Cruise</value>
+                <value_meaning>The cruise mission phase is from the time of escape from Earth's orbit through the time of entry into Mars' orbit.</value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>EDL</value>
+                <value_meaning>The EDL mission phase is from the time of entry into Mars' orbit through descent and landing on the surface.</value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Primary</value>
+                <value_meaning>The primary mission phase is from the time of landing on Mars through one Mars year of operations.</value_meaning>
+            </DD_Permissible_Value>
+            <DD_Permissible_Value>
+                <value>Extended</value>
+                <value_meaning>The extended mission phase covers the time of mission operations following the end of the primary mission.</value_meaning>
+            </DD_Permissible_Value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>observation_id</name>
+        <version_id>0.1</version_id>
+        <local_identifier>observation_id</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The observation_id uniquely identifies an Insight science observation.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <formation_rule>TBD</formation_rule>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>product_type</name>
+        <version_id>0.1</version_id>
+        <local_identifier>product_type</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The product_type identifies a group of data products within a collection 
+            that have some property in common, such as processing level, resolution, or 
+            instrument-specific setting. Examples: "EDR", "RDR", "C1-MIDR", "Housekeeping", 
+            "Raw Counts", "Targeted RDR", "Gamma Ray Spectra".</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>release_number</name>
+        <version_id>0.1</version_id>
+        <local_identifier>release_number</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Release_number is the number of a scheduled release of InSight data 
+            from PDS. The first Insight data release is Release 1. The release_number for 
+            a given product is always the first release in which it appears, and does not 
+            change if the product is revised later.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Integer</value_data_type>
+            <minimum_value>1</minimum_value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>sequence_id</name>
+        <version_id>0.1</version_id>
+        <local_identifier>sequence_id</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The sequence_id identifies the Insight planning sequence associated 
+            with a science product.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <formation_rule>TBD</formation_rule>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>sequence_version_id</name>
+        <version_id>0.1</version_id>
+        <local_identifier>sequence_version_id</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The sequence_version_id identifies the version of an Insight planning 
+            sequence associated with a science product.</definition>
+        <comment>From the "faux" camera label. Will this be useful? --SS </comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <formation_rule>TBD</formation_rule>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>spacecraft_clock_start_count</name>
+        <version_id>0.1</version_id>
+        <local_identifier>spacecraft_clock_start_count</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The spacecraft_clock_start_count is the value of the spacecraft clock 
+            at the beginning of an observation.</definition>
+        <comment>Where to explain format, e.g. "1/nnnnnnnnn.mmm"? Has format been defined yet?</comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <minimum_characters>1</minimum_characters>
+            <maximum_characters>255</maximum_characters>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>spacecraft_clock_stop_count</name>
+        <version_id>0.1</version_id>
+        <local_identifier>spacecraft_clock_stop_count</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The spacecraft_clock_stop_count is the value of the spacecraft clock 
+            at the end of an observation.</definition>
+        <comment>Where to explain format, e.g. "1/nnnnnnnnn.mmm"? Has format been defined yet?</comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+            <minimum_characters>1</minimum_characters>
+            <maximum_characters>255</maximum_characters>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>software_name</name>
+        <version_id>0.1</version_id>
+        <local_identifier>software_name</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Software_name identifies the processing software used to generate 
+            a data product.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+            <minimum_characters>1</minimum_characters>
+            <maximum_characters>255</maximum_characters>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>software_version_id</name>
+        <version_id>0.1</version_id>
+        <local_identifier>software_version_id</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Software_version_id identifies the version of the processing software 
+            used to generate a data product.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+            <minimum_characters>1</minimum_characters>
+            <maximum_characters>255</maximum_characters>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>sol_number</name>
+        <version_id>0.1</version_id>
+        <local_identifier>sol_number</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Sol_number is the number of the Mars day on which an observation was 
+            acquired. Landing day is Sol 0.</definition>
+        <comment>See comment for start_sol_number.</comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Integer</value_data_type>
+            <minimum_value>0</minimum_value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>start_sol_number</name>
+        <version_id>0.1</version_id>
+        <local_identifier>start_sol_number</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Start_sol_number is the number of the Mars day on which a multiple-day 
+            observation was begun. Landing day is Sol 0.</definition>
+        <comment>Start/stop_sol_number are provided as an alternative to sol_number for 
+            observations that cross one or more sol boundaries. </comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Integer</value_data_type>
+            <minimum_value>0</minimum_value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>stop_sol_number</name>
+        <version_id>0.1</version_id>
+        <local_identifier>stop_sol_number</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Stop_sol_number is the number of the Mars day on which a multiple-day 
+            observation was ended. Landing day is Sol 0.</definition>
+        <comment>Start/stop_sol_number are provided as an alternative to sol_number for 
+            observations that cross one or more sol boundaries.</comment>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Integer</value_data_type>
+            <minimum_value>0</minimum_value>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>start_local_mean_solar_time</name>
+        <version_id>0.1</version_id>
+        <local_identifier>start_local_mean_solar_time</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Start_local_mean_solar_time is the local mean solar time, as defined 
+            in the main PDS4 data dictionary, at the beginning of an observation.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>stop_local_mean_solar_time</name>
+        <version_id>0.1</version_id>
+        <local_identifier>stop_local_mean_solar_time</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Stop_local_mean_solar_time is the local mean solar time, as defined 
+            in the main PDS4 data dictionary, at the end of an observation.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>start_solar_longitude</name>
+        <version_id>0.1</version_id>
+        <local_identifier>start_solar_longitude</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Start_solar_longitude is the solar longitude, as defined in the main 
+            PDS4 data dictionary, at the beginning of an observation.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Attribute>
+        <name>stop_solar_longitude</name>
+        <version_id>0.1</version_id>
+        <local_identifier>stop_solar_longitude</local_identifier>
+        <nillable_flag>false</nillable_flag>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>Stop_solar_longitude is the solar longitude, as defined in the main 
+            PDS4 data dictionary, at the end of an observation.</definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+        </DD_Value_Domain>
+    </DD_Attribute>
+    <DD_Class>
+        <name>Observation_Information</name>
+        <version_id>0.1</version_id>
+        <local_identifier>Observation_Information</local_identifier>
+        <submitter_name>Susan Slavney</submitter_name>
+        <definition>The Observation_Information class provides information about a 
+            science observation.</definition>
+        <abstract_flag>false</abstract_flag>
+        <DD_Association>
+            <local_identifier>release_number</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>mission_phase_name</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>product_type</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>spacecraft_clock_start_count</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>spacecraft_clock_stop_count</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>1</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>sol_number</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>start_sol_number</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stop_sol_number</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>start_local_mean_solar_time</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stop_local_mean_solar_time</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>start_solar_longitude</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>stop_solar_longitude</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>observation_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>sequence_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>sequence_version_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>software_name</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+        <DD_Association>
+            <local_identifier>software_version_id</local_identifier>
+            <reference_type>attribute_of</reference_type>
+            <minimum_occurrences>0</minimum_occurrences>
+            <maximum_occurrences>1</maximum_occurrences>
+        </DD_Association>
+    </DD_Class>
+</Ingest_LDD>

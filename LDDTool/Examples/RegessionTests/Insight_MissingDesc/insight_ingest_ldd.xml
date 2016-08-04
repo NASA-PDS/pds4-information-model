@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model 
+    href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1500.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- 4/29/14 GEO/SHS Added product_type, start/stop_local_mean_solar_time, start/stop_solar_longitude
+     4/30/14 GEO/SHS 
+     5/22/14 GEO/EAG Added new class and attributes for the SEIS SEED label
+     11/17/14 IMG/EDR Updated to PDS4_PDS_1301 schema;
+                      updated version number to 0.4.0.1 to match filename;
+                      changed url for master schema and Schematron files from 
+                        http://pds.nasa.gov/pds4/schema/released/pds/v1 to http://pds.nasa.gov/pds4/pds/v1;
+                      dropped "Dictionary" from the name of the dictionary, since this is redundant;
+                      updated last_modification_date_time to 11/17/14;
+                      alphabetized Observation_Information attribute definitions;
+                      added formation_rule to DD_Value_Domain for spacecraft_clock_start/stop_count 
+                        and instrument_clock_start_count;
+                      added enumerated value list for product_type;
+                      added min/max_chars for start/stop_local_mean_solar_time to match main DD;
+                      added Units_of_Angle and min/max_value to start/stop_solar_longitude to match main DD;
+                      added expected_transmission_path, flight_software_mode, flight_software_version_id, 
+                        local_mean_solar_time_sol, local_true_solar_time_sol, sequence_execution_count, 
+                        spacecraft_clock_count_partition, telemetry_source_host_name,
+                        telemetry_source_name
+     12/17/14 GEO/SHS Converged Geo's version and Elizabeth's version
+     06/18/15 GEO/SHS Revised to remove attributes that have been moved to IMG LDD:
+                      expected_transmission_path, flight_software_mode, flight_software_version_id,
+                      sequence_execution_count, telemetry_source_host_name, telemetry_source_name
+     09/16/15 IMG/JHP Removed those attributes from 06/18/15 revision from the Observation_Information class
+     10/07/15 GEO/SHS Made spacecraft_clock_start/stop_count optional;
+                      added product_type values for RISE.
+     10/15/15 GEO/SHS Changed enumerated values (that Geo had made up) for mission_phase_name to those used 
+                      by MIPL, according to Payam Zamani.
+     10/28/15 GEO/SHS Changed name of dictionary file to PDS4_INSIGHT_1000 for posting at EN. 
+                      Added enumerated values for product_type for IDC and ICC (camera) products, supplied 
+                      by Jordan Padams, Imaging Node.
+     10/30/15 GEO/SHS Updated to PDS4_PDS_1500 schema.
+-->
+
+<!-- TBD List
+     Attributes local_mean/true_solar_time_sol refer to a count of sols, not a time. Change the name to better reflect the meaning?
+     Attribute mission_phase_name can be omitted if there is agreement among PDS and teams that it is not useful.
+       If mission_phase_name is retained, the valid values need to be verified for InSight.
+     Attribute observation_id can be omitted if there is agreement among PDS and teams that it is not useful.
+       If observation_id is retained, it needs a formation rule.
+     Attribute sequence_id can be omitted if there is agreement among PDS and teams that it is not useful.
+       If sequence_id is retained, it needs a formation rule.
+       If sequence_id is omitted, does that mean other sequence* attributes should also be omitted?
+     Attribute sequence_version_id can be omitted if there is agreement among PDS and teams that it is not useful.
+       If sequence_version_id is retained, it needs a formation rule.
+     Attributes spacecraft_clock_start/stop_count formation rule needs to be verified for InSight. 
+       If spacecraft_clock_start/stop_count includes the partition, do we need a separate attribute spacecraft_clock_count_partition?
+     Need a method to specify that either sol_number or the pair start/stop_sol_number is required.
+     Attribute channel_name valid values need to be verified for InSight SEIS.
+     Attribute instrument_clock_start_count needs a formation rule for InSight SEIS.
+
+     Add attributes and classes for APSS and MAG, if any.
+-->
+
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 
+                        http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1500.xsd">
+  <name>InSight Mission</name>
+  <ldd_version_id>0.5.1.2</ldd_version_id>
+  <full_name>Susan Slavney</full_name>
+  <steward_id>geo</steward_id>
+  <namespace_id>insight</namespace_id>
+  <comment>Draft</comment>
+  <last_modification_date_time>2015-10-27T16:09</last_modification_date_time>
+
+  <!-- Begin definitions of attributes in the InSight Mission Data Dictionary. -->
+  <!-- Attribute Definitions for the Observation_Information class
+        In alphabetical order, the attributes are:
+    
+        local_mean_solar_time_sol               Not in main DD
+        local_true_solar_time_sol               Not in main DD
+        mission_phase_name                      Not in main DD
+        observation_id                          Not in main DD
+        product_type                            Not in main DD
+        release_number                          Not in main DD
+        sequence_id                             Not in main DD
+        sequence_version_id                     Not in main DD
+        software name                           Not in main DD
+        software version                        Not in main DD
+        sol_number                              Not in main DD
+        spacecraft_clock_count_partition        Not in main DD
+        spacecraft_clock_start_count            Not in main DD
+        spacecraft_clock_stop_count             Not in main DD
+        start_local_mean_solar_time             Based on definition in main DD
+        start_local_true_solar_time             Based on definition in main DD        
+        start_sol_number                        Not in main DD
+        start_solar_longitude                   Based on definition in main DD
+        stop_local_mean_solar_time              Based on definition in main DD
+        stop_local_true_solar_time              Based on definition in main DD
+        stop_sol_number                         Not in main DD
+        stop_solar_longitude                    Based in definition in main DD
+        
+        -->
+
+  <DD_Attribute>
+    <name>local_mean_solar_time_sol</name>
+    <version_id>0.1</version_id>
+    <local_identifier>local_mean_solar_time_sol</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Amy Culver</submitter_name>
+    <definition>The local_mean_solar_time_sol element specifies the number of solar days elapsed
+      since a reference day (e.g. the day on which a landing vehicle set down) for local mean solar
+      time (LMST). Days are measured in rotations of the planet in question from midnight to
+      midnight. The reference day is '0', as Landing day is Sol 0. If before Landing day, then value
+      will be less than or equal to '0'and can be negative.</definition>
+    <comment>Definition was adapted from PDS3 PSDD definition for msl:local_true_solar_time_sol and
+      needs to be verified. -- EDR</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>local_true_solar_time_sol</name>
+    <version_id>0.1</version_id>
+    <local_identifier>local_true_solar_time_sol</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Amy Culver</submitter_name>
+    <definition>The local_true_solar_time_sol element specifies the number of solar days elapsed
+      since a reference day (e.g. the day on which a landing vehicle set down) for local true solar
+      time (LTST). Days are measured in rotations of the planet in question from midnight to
+      midnight. The reference day is '0', as Landing day is Sol 0. If before Landing day, then value
+      will be less than or equal to '0'and can be negative.</definition>
+    <comment>Definition taken from PDS3 PSDD (msl:local_true_solar_time_sol) and may need updating.
+      (Particularly need to verify reference day.) -- EDR</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>mission_phase_name</name>
+    <version_id>0.1</version_id>
+    <local_identifier>mission_phase_name</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The mission_phase_name identifies a time period within the mission.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <!-- Keep enumerated values in alphabetical order to avoid duplicates. -->
+      <DD_Permissible_Value>
+        <value>ATLO</value>
+        <value_meaning>The ATLO mission phase (Assembly, Test, and Launch Operations) is the 
+          time of spacecraft and instrument assembly and test. During this phase data products 
+          are generated using flight hardware. They are usually not part of the final PDS 
+          archive but may be used for testing and peer review.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>CRUISE</value>
+        <value_meaning>The cruise mission phase is from the time of escape from Earth's orbit
+          through the time of entry into Mars' orbit. Some data products may be generated
+          during this time, including instrument checkout data.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DEVELOPMENT</value>
+        <value_meaning>The development mission phase refers to the period of data processing 
+          software development and testing, before instruments are integrated with the spacecraft.
+          Data products generated during this phase are usually not part of the final PDS archive
+          but may be used for testing and peer review.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SURFACE MISSION</value>
+        <value_meaning>The surface mission phase is the time from arrival at Mars through the
+          end of surface operations, including the primary mission and any extended missions 
+          that may take place.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TEST</value>
+        <value_meaning>The test mission phase is not a time period but a placeholder for the 
+          mission_phase_name value, used for data products generating during all project tests
+          such as ORTs, SVTs and thread tests. Data products generated in this way are usually 
+          not part of the final PDS archive but may be used for testing and peer review.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>observation_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>observation_id</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The observation_id uniquely identifies an Insight science observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>TBD</formation_rule>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>product_type</name>
+    <version_id>0.1</version_id>
+    <local_identifier>product_type</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The product_type identifies a group of data products within a collection that have
+      some property in common, such as processing level, resolution, or instrument-specific setting.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <!-- Keep enumerated values in alphabetical order to avoid duplicates. -->
+      <DD_Permissible_Value>
+        <value>ARK</value>
+        <value_meaning>Insight Camera data. Arm Reachability Mask</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ARM</value>
+        <value_meaning>Insight Camera data. Arm Reachability</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ARO</value>
+        <value_meaning>Insight Camera data. Arm Reachability with overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>BAY</value>
+        <value_meaning>Insight Camera data. Bayer pattern (identical to EDR except for Bayer pattern extract)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>CLM</value>
+        <value_meaning>Insight Camera data. Color-calibrated image, masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>CLR</value>
+        <value_meaning>Insight Camera data. Color-calibrated image</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DDD</value>
+        <value_meaning>Insight Camera data. Stereo Delta Disparity (2-band, true disparity offset)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DDL</value>
+        <value_meaning>Insight Camera data. Stereo Delta Disparity Line (single-band)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DDS</value>
+        <value_meaning>Insight Camera data. Stereo Delta Disparity Sample (single-band)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DEM</value>
+        <value_meaning>Insight Camera data. Digital Elevation Model. Identical to ZZZ except positive is up.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DFF</value>
+        <value_meaning>Insight Camera data. Stereo First-stage Disparity Final</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DFL</value>
+        <value_meaning>Insight Camera data. Stereo First-stage Disparity Line</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DFS</value>
+        <value_meaning>Insight Camera data. Stereo First-stage Disparity Sample</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSE</value>
+        <value_meaning>Insight Camera data. Stereo Disparity Error Metric</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSG</value>
+        <value_meaning>Insight Camera data. Stereo Disparity Grid</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSL</value>
+        <value_meaning>Insight Camera data. Stereo Disparity of Lines (single-band)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSP</value>
+        <value_meaning>Insight Camera data. Stereo Disparity Final</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSR</value>
+        <value_meaning>Insight Camera data. Stereo Disparity Raw</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DSS</value>
+        <value_meaning>Insight Camera data. Stereo Disparity of Samples (single-band)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>EDR</value>
+        <value_meaning>Experiment Data Record. Lowest processing level</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>EJP</value>
+        <value_meaning>Insight Camera data. Original JPEG as received from the lander.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ERP</value>
+        <value_meaning>Insight Camera data. Reference Pixel</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>GUH</value>
+        <value_meaning>Insight Camera data. Overall goodness map for HP3</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>GUS</value>
+        <value_meaning>Insight Camera data. Overall goodness map for SEIS/WTS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>IEF</value>
+        <value_meaning>Insight Camera data. Incidence, Emission, Phase angles Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>IEP</value>
+        <value_meaning>Insight Camera data. Incidence, Emission, Phase angles</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ILC</value>
+        <value_meaning>Insight Camera data. Inverse lookup table (ILUT) with corrections such as de-spike</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ILM</value>
+        <value_meaning>Insight Camera data. Inverse Lookup Tabel (ILT), masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ILP</value>
+        <value_meaning>Insight Camera data. Inverse lookup table (ILUT) with pointing correction applied</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ILT</value>
+        <value_meaning>Insight Camera data. Inverse lookup table (ILUT)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>IOF</value>
+        <value_meaning>Insight Camera data. Rad-corrected IOF radiance factor, float</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>IOI</value>
+        <value_meaning>Insight Camera data. Rad-corrected IOF radiance factor, integer</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ION</value>
+        <value_meaning>DSN TRK 2-23 ionosphere calibration data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>LIN</value>
+        <value_meaning>Insight Camera data. CAHV-linearized (identical to EDR except for Geometry type)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>MAR</value>
+        <value_meaning>Insight Camera data. Arm Reachability Mask File</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>MDS</value>
+        <value_meaning>Insight Camera data. Stereo Disparity Mask File</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>MSK</value>
+        <value_meaning>Insight Camera data. Image Mask File</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>MXY</value>
+        <value_meaning>Insight Camera data. XYZ Mask File</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RAD</value>
+        <value_meaning>Insight Camera data. Rad-corrected absolute radiance units, integer</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RAD-raw</value>
+        <value_meaning>HP3 raw radiometer data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RAF</value>
+        <value_meaning>Insight Camera data. Rad-corrected absolute radiance units, float</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RAS</value>
+        <value_meaning>Insight Camera data. Rad-corrected absolute radiance units, scaled to 12-bit</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RDM</value>
+        <value_meaning>Insight Camera data. Rad-corrected radiance (RAD), masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RDR</value>
+        <value_meaning>Reduced Data Record, a general term for any processing level above EDR.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RIE</value>
+        <value_meaning>Insight Camera data. Rad-corrected for Instrument Effects only, integer DN</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RIF</value>
+        <value_meaning>Insight Camera data. Rad-corrected for Instrument Effects only, float</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNE</value>
+        <value_meaning>Insight Camera data. Range Error Metric</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNF</value>
+        <value_meaning>Insight Camera data. Range Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNG</value>
+        <value_meaning>Insight Camera data. Range from Camera</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNM</value>
+        <value_meaning>Insight Camera data. Range from Camera, Masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNO</value>
+        <value_meaning>Insight Camera data. Range with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RNR</value>
+        <value_meaning>Insight Camera data. Range from Rover Nav frame origin</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RSM</value>
+        <value_meaning>Insight Camera data. Rad-corrected scaled radiance (RAS), masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RUH</value>
+        <value_meaning>Insight Camera data. Surface Roughness map for HP3</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RUS</value>
+        <value_meaning>Insight Camera data. Surface Roughness map for SEIS/WTS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SHD</value>
+        <value_meaning>Insight Camera data. Slope Heading Map</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SHO</value>
+        <value_meaning>Insight Camera data. Slope Heading with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SLO</value>
+        <value_meaning>Insight Camera data. Slope with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SLP</value>
+        <value_meaning>Insight Camera data. Slope</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SMG</value>
+        <value_meaning>Insight Camera data. Slope Magnitude</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SMO</value>
+        <value_meaning>Insight Camera data. Slope Magnitude with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SNO</value>
+        <value_meaning>Insight Camera data. Slope Northerly Tilt with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SNT</value>
+        <value_meaning>Insight Camera data. Slope Northerly Tilt</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>STATIL-raw</value>
+        <value_meaning>HP3 raw static tilt data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TAU</value>
+        <value_meaning>Insight Camera data. Tau report</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TDS</value>
+        <value_meaning>Insight Camera data. Delta Tilt map for SEIS/WTS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TEM-raw</value>
+        <value_meaning>HP3 raw temperature data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TFH</value>
+        <value_meaning>Insight Camera data. Tilt map for HP3</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TFS</value>
+        <value_meaning>Insight Camera data. Tilt map for SEIS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TFW</value>
+        <value_meaning>Insight Camera data. Tilt map for WTS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TLM-raw</value>
+        <value_meaning>HP3 raw tether length monitor data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TNF</value>
+        <value_meaning>DSN TRK 2-34 tracking and navigation data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TRO</value>
+        <value_meaning>DSN TRK 2-23 troposphere calibration data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UIH</value>
+        <value_meaning>Insight Camera data. Instrument Normal for HP3.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UIS</value>
+        <value_meaning>Insight Camera data. Instrument Normal for SEIS.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UIW</value>
+        <value_meaning>Insight Camera data. Instrument Normal for WTS.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UUF</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) U-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UUU</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) U-band</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVF</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVO</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVP</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) Projected onto Plane</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVS</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) for Slope computations</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVT</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) Angle ('T' for theta) between Normal and Plane</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>UVW</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VVF</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) V-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VVV</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) V-band</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>WEA</value>
+        <value_meaning>DSN TRK 2-24 weather data</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>WSH</value>
+        <value_meaning>Insight Camera data. Workspace boundary for HP3</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>WSS</value>
+        <value_meaning>Insight Camera data. Workspace boundary for SEIS and WTS</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>WWF</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) W-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>WWW</value>
+        <value_meaning>Insight Camera data. Surface Normal (UVW) W-band</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XXF</value>
+        <value_meaning>Insight Camera data. XYZ X-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XXX</value>
+        <value_meaning>Insight Camera data. XYZ X-band</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYE</value>
+        <value_meaning>Insight Camera data. XYZ Error Metric</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYF</value>
+        <value_meaning>Insight Camera data. XYZ Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYM</value>
+        <value_meaning>Insight Camera data. XYZ Masked</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYO</value>
+        <value_meaning>Insight Camera data. XYZ with Overlay</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYR</value>
+        <value_meaning>Insight Camera data. XYZ expressed in Rover Nav frame</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>XYZ</value>
+        <value_meaning>Insight Camera data. XYZ expressed in Site frame</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>YYF</value>
+        <value_meaning>Insight Camera data. XYZ Y-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>YYY</value>
+        <value_meaning>Insight Camera data. XYZ Y-band</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ZIH</value>
+        <value_meaning>Insight Camera data. Instrument Z for HP3.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ZIS</value>
+        <value_meaning>Insight Camera data. Instrument Z for SEIS.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ZIW</value>
+        <value_meaning>Insight Camera data. Instrument Z for WTS.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ZZF</value>
+        <value_meaning>Insight Camera data. XYZ Z-band Filled</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ZZZ</value>
+        <value_meaning>Insight Camera data. XYZ Z-band</value_meaning>
+      </DD_Permissible_Value>
+            
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>release_number</name>
+    <version_id>0.1</version_id>
+    <local_identifier>release_number</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Release_number is the number of a scheduled release of InSight data from PDS. The
+      first Insight data release is Release 1. The release_number for a given product is always the
+      first release in which it appears, and does not change if the product is revised
+      later.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sequence_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>sequence_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The sequence_id identifies the Insight planning sequence associated with a science
+      product.</definition>
+    <comment>Will this be useful? --SS </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>TBD</formation_rule>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sequence_version_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>sequence_version_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The sequence_version_id identifies the version of an Insight planning sequence
+      associated with a science product.</definition>
+    <comment>Will this be useful? --SS </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>TBD</formation_rule>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>software_name</name>
+    <version_id>0.1</version_id>
+    <local_identifier>software_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Software_name identifies the processing software used to generate a data
+      product.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>software_version_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>software_version_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Software_version_id identifies the version of the processing software used to
+      generate a data product.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sol_number</name>
+    <version_id>0.1</version_id>
+    <local_identifier>sol_number</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Sol_number is the number of the Mars day on which an observation was acquired.
+      Landing day is Sol 0.</definition>
+    <comment>See comment for start_sol_number.</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>spacecraft_clock_count_partition</name>
+    <version_id>0.1</version_id>
+    <local_identifier>spacecraft_clock_count_partition</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Amy Culver</submitter_name>
+    <definition>The spacecraft_clock_count_partition provides the clock partition active for the
+      spacecraft_clock_start_count and spacecraft_clock_stop_count attributes.</definition>
+    <comment>Definition taken from PDS3 dictionary; may need updating. -- EDR</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>spacecraft_clock_start_count</name>
+    <version_id>0.1</version_id>
+    <local_identifier>spacecraft_clock_start_count</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The spacecraft_clock_start_count is the value of the spacecraft clock at the
+      beginning of an observation.</definition>
+    <comment>Formation rule needs to be verified for InSight. --SS </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>Value should be of the form: 1/nnnnnnnnn.mmm</formation_rule>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>spacecraft_clock_stop_count</name>
+    <version_id>0.1</version_id>
+    <local_identifier>spacecraft_clock_stop_count</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The spacecraft_clock_stop_count is the value of the spacecraft clock at the end of
+      an observation.</definition>
+    <comment>Formation rule needs to be verified for InSight. --SS </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>Value should be of the form: 1/nnnnnnnnn.mmm</formation_rule>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>start_local_mean_solar_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>start_local_mean_solar_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Start_local_mean_solar_time is the local mean solar time, as defined in the main
+      PDS4 data dictionary, at the beginning of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>8</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>start_local_true_solar_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>start_local_true_solar_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Start_local_true_solar_time is the local true solar time, as defined in the main
+      PDS4 data dictionary, at the beginning of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>8</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>start_sol_number</name>
+    <version_id>0.1</version_id>
+    <local_identifier>start_sol_number</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Start_sol_number is the number of the Mars day on which a multiple-day observation
+      was begun. Landing day is Sol 0.</definition>
+    <comment>Start/stop_sol_number are provided as an alternative to sol_number for observations
+      that cross one or more sol boundaries. </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>start_solar_longitude</name>
+    <version_id>0.1</version_id>
+    <local_identifier>start_solar_longitude</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Start_solar_longitude is the solar longitude, as defined in the main PDS4 data
+      dictionary, at the beginning of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>360</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>stop_local_mean_solar_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>stop_local_mean_solar_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Stop_local_mean_solar_time is the local mean solar time, as defined in the main PDS4
+      data dictionary, at the end of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>8</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>stop_local_true_solar_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>stop_local_true_solar_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Stop_local_true_solar_time is the local true solar time, as defined in the main PDS4
+      data dictionary, at the end of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>8</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>stop_sol_number</name>
+    <version_id>0.1</version_id>
+    <local_identifier>stop_sol_number</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Stop_sol_number is the number of the Mars day on which a multiple-day observation
+      was ended. Landing day is Sol 0.</definition>
+    <comment>Start/stop_sol_number are provided as an alternative to sol_number for observations
+      that cross one or more sol boundaries.</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>stop_solar_longitude</name>
+    <version_id>0.1</version_id>
+    <local_identifier>stop_solar_longitude</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>Stop_solar_longitude is the solar longitude, as defined in the main PDS4 data
+      dictionary, at the end of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>360</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!-- End Attribute Definitions for the Observation_Information class -->
+
+
+  <!-- Attribute Definitions for the SEIS_Instrument_Parameters class
+        In alphabetical order, the attributes are:
+
+        channel_name
+        instrument_clock_start_time 
+        measurement_duration
+        measurement_type
+        sampling_rate
+    -->
+
+  <DD_Attribute>
+    <name>channel_name</name>
+    <version_id>0.1</version_id>
+    <local_identifier>channel_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>The SEED data products for the SEIS instrument contain data from a single instrument
+      channel. The channel_name identifies which SEIS channel data are included in the SEED
+      file.</definition>
+    <comment>The enumeration values and meaning can be revised. --EG </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <!-- Keep enumerated values in alphabetical order to avoid duplicates. -->
+      <DD_Permissible_Value>
+        <value>SP_1</value>
+        <value_meaning>The SP 1 channel records data from the first axis of the SP
+          seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SP_2</value>
+        <value_meaning>The SP 2 channel records data from the first axis of the SP
+          seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SP_3</value>
+        <value_meaning>The SP 3 channel records data from the first axis of the SP
+          seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_1_Position</value>
+        <value_meaning>The VBB 1 position channel records position data from the first axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_1_Temperature</value>
+        <value_meaning>The VBB 1 temperature channel records temperature data from the first axis of
+          the VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_1_Velocity</value>
+        <value_meaning>The VBB 1 velocity channel records velocity data from the first axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_2_Position</value>
+        <value_meaning>The VBB 2 position channel records position data from the second axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_2_Temperature</value>
+        <value_meaning>The VBB 2 temperature channel records temperature data from the second axis
+          of the VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_2_Velocity</value>
+        <value_meaning>The VBB 2 velocity channel records velocity data from the second axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_3_Position</value>
+        <value_meaning>The VBB 3 position channel records position data from the third axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_3_Temperature</value>
+        <value_meaning>The VBB 3 temperature channel records temperature data from the third axis of
+          the VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_3_Velocity</value>
+        <value_meaning>The VBB 3 velocity channel records velocity data from the third axis of the
+          VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_clock_start_count</name>
+    <version_id>0.1</version_id>
+    <local_identifier>instrument_clock_start_count</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>The instrument_clock_start_count is the value of the instrument clock at the
+      beginning of an observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <formation_rule>tbd</formation_rule>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>measurement_duration</name>
+    <version_id>0.1</version_id>
+    <local_identifier>measurement_duration</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>Measurement_duration indicates the length of time covered by a given
+      measurement.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>measurement_type</name>
+    <version_id>0.1</version_id>
+    <local_identifier>measurement_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>Measurement_type indicates the seismometer (VBB or SP) and whether the data were
+      collected in continuous or event mode used in a measurement.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <!-- Keep enumerated values in alphabetical order to avoid duplicates. -->
+      <DD_Permissible_Value>
+        <value>SP_Event</value>
+        <value_meaning>Event mode data from the SP seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_Continuous</value>
+        <value_meaning>Continuous mode data from the VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>VBB_Event</value>
+        <value_meaning>Event mode data from the VBB seismometer.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sampling_rate</name>
+    <version_id>0.1</version_id>
+    <local_identifier>sampling_rate</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>Sampling_rate specifics the rate (samples/time) that data from an instrument were
+      sampled and recorded.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!-- End Attribute Definitions for the SEIS_Instrument_Parameters class -->
+
+
+  <!-- Class Definitions -->
+  <!-- Observation_Information Class Definition -->
+  <!-- Attributes are in the order required in the label:
+         release_number
+         mission_phase_name
+         product_type
+         spacecraft_clock_start_count
+         spacecraft_clock_stop_count
+         spacecraft_clock_count_partition
+         sol_number OR (start_sol_number AND stop_sol_number)
+         start_local_mean_solar_time
+         stop_local_mean_solar_time
+         local_mean_solar_time_sol
+         local_true_solar_time_sol
+         start_solar_longitude
+         stop_solar_longitude
+         observation_id
+         sequence_id
+         sequence_version_id
+         software_name
+         software_version_id 
+    -->
+
+  <DD_Class>
+    <name>Observation_Information</name>
+    <version_id>0.1</version_id>
+    <local_identifier>Observation_Information</local_identifier>
+    <submitter_name>Susan Slavney</submitter_name>
+    <definition>The Observation_Information class provides information about a science
+      observation.</definition>
+    <abstract_flag>false</abstract_flag>
+    <DD_Association>
+      <local_identifier>release_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>mission_phase_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>product_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>spacecraft_clock_start_count</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>spacecraft_clock_stop_count</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>spacecraft_clock_count_partition</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>sol_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+      <!-- We will need a rule to specify that either sol_number or the 
+                start/stop_sol pair is required. -SS -->
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>start_sol_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>stop_sol_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>start_local_mean_solar_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>stop_local_mean_solar_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>start_local_true_solar_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>stop_local_true_solar_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>local_mean_solar_time_sol</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>local_true_solar_time_sol</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>start_solar_longitude</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>stop_solar_longitude</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>observation_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>sequence_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>sequence_version_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>software_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>software_version_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+  <!-- End of Observation_Information Class Definition -->
+
+
+  <!-- SEIS_Instrument_Parameters Class Definition -->
+  <!-- Attributes are in the order required in the label:
+         channel_name
+         measurement_type
+         sampling_rate
+         measurement_duration
+         instrument_clock_start_count
+    -->
+
+  <DD_Class>
+    <name>SEIS_Instrument_Parameters</name>
+    <version_id>0.1</version_id>
+    <local_identifier>SEIS_Instrument_Parameters</local_identifier>
+    <submitter_name>Ed Guinness</submitter_name>
+    <definition>Attributes specific to the InSight Seismometer data products</definition>
+    <DD_Association>
+      <local_identifier>channel_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>measurement_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>sampling_rate</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>measurement_duration</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>instrument_clock_start_count</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+  <!-- End of SEIS_Instrument_Parameters Class Definition -->
+
+</Ingest_LDD>

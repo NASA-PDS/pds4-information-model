@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- PDS4 XML/Schema for Name Space Id:rings  Version:1.1.0.0 - Wed Jul 31 14:31:35 EDT 2013 -->
+  <!-- Generated from the PDS4 Information Model Version 1.0.0.0 - System Build 3b -->
+  <!-- *** This PDS4 product schema is an operational deliverable. *** -->
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://pds.nasa.gov/pds4/rings/v1"
+    xmlns:rings="http://pds.nasa.gov/pds4/rings/v1"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="1.1.0.0">
+ 
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1000.xsd"/>
+
+  <xs:element name="Radio_Occultation" type="rings:Radio_Occultation">
+    <xs:annotation>
+      <xs:documentation>
+        This element is the PDS4 Radio_Occultation XML Schema.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Radio_Occultation_Support" type="rings:Radio_Occultation_Support">
+    <xs:annotation>
+      <xs:documentation>
+        This element is the PDS4 Radio_Occultation_Support XML Schema.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Rings_Supplement" type="rings:Rings_Supplement">
+    <xs:annotation>
+      <xs:documentation>
+        This element is the PDS4 Rings_Supplement XML Schema.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Stellar_Occultation" type="rings:Stellar_Occultation">
+    <xs:annotation>
+      <xs:documentation>
+        This element is the PDS4 Stellar_Occultation XML Schema.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="Radio_Occultation">
+    <xs:annotation>
+      <xs:documentation> This class is required for all radio ring occultations </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ring_observation_id" nillable="true" type="rings:ring_observation_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="orbit_number" nillable="true" type="rings:orbit_number" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="SCLK_start_time" type="pds:ASCII_Short_String_Collapsed" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="SCLK_stop_time" type="pds:ASCII_Short_String_Collapsed" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="occultation_type" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="dsn_station_number" type="pds:ASCII_Integer" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="source_pds3_id" nillable="true" type="rings:source_pds3_id" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="frequency_band" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_occultation_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_profile_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="planetary_occultation_flag" type="rings:planetary_occultation_flag" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="wavelength" type="rings:wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_wavelength" type="rings:minimum_wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_time_utc" nillable="true" type="rings:reference_time_utc" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_wavelength" type="rings:maximum_wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="radial_resolution" type="rings:radial_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="radial_sampling_interval" type="rings:radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_radial_sampling_interval" type="rings:minimum_radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_radial_sampling_interval" type="rings:maximum_radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_event_start_tdb" type="rings:observed_event_start_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_event_stop_tdb" type="rings:observed_event_stop_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="spacecraft_event_start_time_utc" nillable="true" type="rings:spacecraft_event_start_time_utc" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="spacecraft_event_stop_time_utc" nillable="true" type="rings:spacecraft_event_stop_time_utc" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_start_time_utc" nillable="true" type="rings:ring_event_start_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_stop_time_utc" nillable="true" type="rings:ring_event_stop_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_start_tdb" type="rings:ring_event_start_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_stop_tdb" type="rings:ring_event_stop_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="earth_received_start_time_utc" type="rings:earth_received_start_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="earth_received_stop_time_utc" type="rings:earth_received_stop_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_ring_radius" type="rings:minimum_ring_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_ring_radius" type="rings:maximum_ring_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_ring_longitude" type="rings:minimum_ring_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_ring_longitude" type="rings:maximum_ring_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_observed_ring_azimuth" type="rings:minimum_observed_ring_azimuth" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_observed_ring_azimuth" type="rings:maximum_observed_ring_azimuth" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_ring_elevation" type="rings:observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_observed_ring_elevation" type="rings:minimum_observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_observed_ring_elevation" type="rings:maximum_observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="light_source_incidence_angle" type="rings:light_source_incidence_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_light_source_incidence_angle" type="rings:minimum_light_source_incidence_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_light_source_incidence_angle" type="rings:maximum_light_source_incidence_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="lowest_detectable_opacity" type="pds:ASCII_Real" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="highest_detectable_opacity" type="pds:ASCII_Real" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="along_track_timing_offset" type="rings:along_track_timing_offset" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="rings:occultation_type = ('Radio', 'Solar', 'Stellar')"/> -->
+    <!-- <xs:assert test="rings:frequency_band = ('C', 'D', 'E', 'F', 'G', 'H', 'K', 'Ka', 'Ku', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y')"/> -->
+    <!-- <xs:assert test="rings:ring_occultation_direction = ('Both', 'Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:ring_profile_direction = ('Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:planetary_occultation_flag = ('N', 'Y')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Radio_Occultation_Support">
+    <xs:annotation>
+      <xs:documentation> This class is required for all radio ring occultation calibration and geometry supplemental files. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ring_observation_id" nillable="true" type="rings:ring_observation_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="orbit_number" nillable="true" type="rings:orbit_number" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="spice_filename" type="pds:ASCII_Short_String_Collapsed" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="occultation_type" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="dsn_station_number" type="pds:ASCII_Integer" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="frequency_band" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_occultation_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_profile_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="planetary_occultation_flag" type="rings:planetary_occultation_flag" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="sampling_parameter_name" nillable="true" type="rings:sampling_parameter_name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="sampling_parameter_unit" nillable="true" type="rings:sampling_parameter_unit" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="sampling_parameter_interval" nillable="true" type="rings:sampling_parameter_interval" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_time_utc" nillable="true" type="rings:reference_time_utc" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_observed_event_time" type="rings:minimum_observed_event_time" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_observed_event_time" type="rings:maximum_observed_event_time" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="rings:occultation_type = ('Radio', 'Solar', 'Stellar')"/> -->
+    <!-- <xs:assert test="rings:frequency_band = ('C', 'D', 'E', 'F', 'G', 'H', 'K', 'Ka', 'Ku', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y')"/> -->
+    <!-- <xs:assert test="rings:ring_occultation_direction = ('Both', 'Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:ring_profile_direction = ('Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:planetary_occultation_flag = ('N', 'Y')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Rings_Supplement">
+    <xs:annotation>
+      <xs:documentation> This class is required for all Rings Node currated data products </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ring_observation_id" nillable="true" type="rings:ring_observation_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="source_pds3_id" nillable="true" type="rings:source_pds3_id" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Stellar_Occultation">
+    <xs:annotation>
+      <xs:documentation> This class is required for all stellar ring occultations </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ring_observation_id" nillable="true" type="rings:ring_observation_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="orbit_number" nillable="true" type="rings:orbit_number" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="SCLK_start_time" type="pds:ASCII_Short_String_Collapsed" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="SCLK_stop_time" type="pds:ASCII_Short_String_Collapsed" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="occultation_type" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="source_pds3_id" nillable="true" type="rings:source_pds3_id" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="ring_occultation_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="star_name" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_profile_direction" type="pds:ASCII_Short_String_Collapsed" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="planetary_occultation_flag" type="rings:planetary_occultation_flag" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="wavelength" type="rings:wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_wavelength" type="rings:minimum_wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_wavelength" type="rings:maximum_wavelength" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="radial_resolution" type="rings:radial_resolution" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="radial_sampling_interval" type="rings:radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_radial_sampling_interval" type="rings:minimum_radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_radial_sampling_interval" type="rings:maximum_radial_sampling_interval" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_event_start_tdb" type="rings:observed_event_start_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_event_stop_tdb" type="rings:observed_event_stop_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_start_time_utc" nillable="true" type="rings:ring_event_start_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_stop_time_utc" nillable="true" type="rings:ring_event_stop_time_utc" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_start_tdb" type="rings:ring_event_start_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ring_event_stop_tdb" type="rings:ring_event_stop_tdb" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_ring_radius" type="rings:minimum_ring_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_ring_radius" type="rings:maximum_ring_radius" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="sub_stellar_ring_azimuth" type="rings:sub_stellar_ring_azimuth" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_ring_longitude" type="rings:minimum_ring_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="sub_stellar_clock_angle" type="rings:sub_stellar_clock_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_ring_longitude" type="rings:maximum_ring_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_observed_ring_azimuth" type="rings:minimum_observed_ring_azimuth" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_observed_ring_azimuth" type="rings:maximum_observed_ring_azimuth" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="observed_ring_elevation" type="rings:observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="minimum_observed_ring_elevation" type="rings:minimum_observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="maximum_observed_ring_elevation" type="rings:maximum_observed_ring_elevation" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="light_source_incidence_angle" type="rings:light_source_incidence_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="lowest_detectable_opacity" type="pds:ASCII_Real" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="highest_detectable_opacity" type="pds:ASCII_Real" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="rings:occultation_type = ('Radio', 'Solar', 'Stellar')"/> -->
+    <!-- <xs:assert test="rings:ring_occultation_direction = ('Both', 'Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:ring_profile_direction = ('Egress', 'Ingress', 'Multiple')"/> -->
+    <!-- <xs:assert test="rings:planetary_occultation_flag = ('N', 'Y')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+    <xs:annotation>
+      <xs:documentation>This section contains the simpleTypes that provide more constraints
+        than those at the base data type level. The simpleTypes defined here build on the base data
+        types. This is another component of the common dictionary and therefore falls within the
+        pds namespace.
+      </xs:documentation>
+    </xs:annotation>
+
+  <xs:simpleType name="along_track_timing_offset_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="along_track_timing_offset">
+    <xs:simpleContent>
+      <xs:extension base="rings:along_track_timing_offset_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="earth_received_start_time_utc_WO_Units">
+    <xs:restriction base="pds:ASCII_Date_Time_UTC">
+  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSZ/YYYY-DOYTHH:MM:SS.SSSZ" -->
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="earth_received_start_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="rings:earth_received_start_time_utc_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="earth_received_stop_time_utc_WO_Units">
+    <xs:restriction base="pds:ASCII_Date_Time_UTC">
+  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSZ/YYYY-DOYTHH:MM:SS.SSSZ" -->
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="earth_received_stop_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="rings:earth_received_stop_time_utc_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="light_source_incidence_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="light_source_incidence_angle">
+    <xs:simpleContent>
+      <xs:extension base="rings:light_source_incidence_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_light_source_incidence_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_light_source_incidence_angle">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_light_source_incidence_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_observed_event_time_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_observed_event_time">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_observed_event_time_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_observed_ring_azimuth_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_observed_ring_azimuth">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_observed_ring_azimuth_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_observed_ring_elevation_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_observed_ring_elevation">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_observed_ring_elevation_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_radial_sampling_interval_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_radial_sampling_interval">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_radial_sampling_interval_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_ring_longitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_ring_longitude">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_ring_longitude_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_ring_radius_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_ring_radius">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_ring_radius_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="maximum_wavelength_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="maximum_wavelength">
+    <xs:simpleContent>
+      <xs:extension base="rings:maximum_wavelength_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_light_source_incidence_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_light_source_incidence_angle">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_light_source_incidence_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_observed_event_time_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_observed_event_time">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_observed_event_time_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_observed_ring_azimuth_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_observed_ring_azimuth">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_observed_ring_azimuth_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_observed_ring_elevation_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_observed_ring_elevation">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_observed_ring_elevation_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_radial_sampling_interval_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_radial_sampling_interval">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_radial_sampling_interval_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_ring_longitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_ring_longitude">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_ring_longitude_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_ring_radius_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_ring_radius">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_ring_radius_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="minimum_wavelength_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="minimum_wavelength">
+    <xs:simpleContent>
+      <xs:extension base="rings:minimum_wavelength_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="observed_event_start_tdb_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="observed_event_start_tdb">
+    <xs:simpleContent>
+      <xs:extension base="rings:observed_event_start_tdb_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="observed_event_stop_tdb_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="observed_event_stop_tdb">
+    <xs:simpleContent>
+      <xs:extension base="rings:observed_event_stop_tdb_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="observed_ring_elevation_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90"/>
+     <xs:maxInclusive value="90"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="observed_ring_elevation">
+    <xs:simpleContent>
+      <xs:extension base="rings:observed_ring_elevation_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="orbit_number">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Short_String_Collapsed">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="planetary_occultation_flag">
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="radial_resolution_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="radial_resolution">
+    <xs:simpleContent>
+      <xs:extension base="rings:radial_resolution_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="radial_sampling_interval_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="radial_sampling_interval">
+    <xs:simpleContent>
+      <xs:extension base="rings:radial_sampling_interval_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="reference_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Date_Time_UTC">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ring_event_start_tdb_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ring_event_start_tdb">
+    <xs:simpleContent>
+      <xs:extension base="rings:ring_event_start_tdb_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ring_event_start_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Date_Time_UTC">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ring_event_stop_tdb_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Time -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ring_event_stop_tdb">
+    <xs:simpleContent>
+      <xs:extension base="rings:ring_event_stop_tdb_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ring_event_stop_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Date_Time_UTC">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ring_observation_id">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Short_String_Collapsed">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="sampling_parameter_interval">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Real">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="sampling_parameter_name">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Short_String_Collapsed">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="sampling_parameter_unit">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Short_String_Collapsed">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="source_pds3_id">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Short_String_Collapsed">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="spacecraft_event_start_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Date_Time_UTC">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="spacecraft_event_stop_time_utc">
+    <xs:simpleContent>
+      <xs:extension base="pds:ASCII_Date_Time_UTC">
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="sub_stellar_clock_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="sub_stellar_clock_angle">
+    <xs:simpleContent>
+      <xs:extension base="rings:sub_stellar_clock_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="sub_stellar_ring_azimuth_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0"/>
+     <xs:maxInclusive value="360"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="sub_stellar_ring_azimuth">
+    <xs:simpleContent>
+      <xs:extension base="rings:sub_stellar_ring_azimuth_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="wavelength_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="wavelength">
+    <xs:simpleContent>
+      <xs:extension base="rings:wavelength_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

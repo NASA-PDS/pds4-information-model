@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="13.1">
+  <meta>
+    <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+    <options>
+      <serialized version="13.1" xml:space="preserve">
+        <map>
+          <entry>
+            <String>catalogs.v5</String>
+            <String-array>
+              <String>${pdu}/catalog_1100.xml</String>
+            </String-array>
+          </entry>
+          <entry>
+            <String>key.xml.catalog.option.pane</String>
+            <Boolean>true</Boolean>
+          </entry>
+          <entry>
+            <String>prefer</String>
+            <String>system</String>
+          </entry>
+          <entry>
+            <String>process.namespaces.through.uri.mapping.for.xml.schema</String>
+            <Boolean>true</Boolean>
+          </entry>
+        </map>
+      </serialized>
+    </options>
+  </meta>
+  <projectTree name="PDS4_DISP_1100.xpr">
+    <folder path="./"/>
+  </projectTree>
+</project>

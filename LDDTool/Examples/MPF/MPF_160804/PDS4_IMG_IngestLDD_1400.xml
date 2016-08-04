@@ -1,0 +1,3107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model
+    href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1400.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+  <!-- PDS4 Local Data Dictionary Extended Ingest File        -->
+  <!-- Authors: Ron Joyner, Jordan Padams                     -->
+  <!-- v1.4.0.0 developed in coordination with MPF dictionary -->
+
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1400.xsd ">
+
+  <name>Imaging</name>
+  <ldd_version_id>1.4.0.0</ldd_version_id>
+  <full_name>Ronald Joyner / J. Padams</full_name>
+  <steward_id>img</steward_id>
+  <namespace_id>img</namespace_id>
+  <comment>
+  	This dictionary contains high level classes and attributes used in imaging
+  	and spectrometer products.  It also contains classes with attributes used
+  	during active mission operations.  Many of these classes are designed to be
+  	extended into local mission dictionaries.
+ 	</comment>
+  <last_modification_date_time>2015-06-23T22:49:15Z</last_modification_date_time>
+
+  <!--                                                 -->
+  <!-- Attributes: Instrument_Compression_Parameters   -->
+  <!--                                                 -->
+  <DD_Attribute>
+    <name>instrument_compression_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The instrument_compression_name attribute
+      identifies the type of on-board compression used for data
+      storage and transmission. Note: The instrument_compression_mode
+      usually has a one-to-one correspondence with the
+      instrument_compression_name.                                         
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>instrument_compression_mode</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_mode</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The instrument_compression_mode element identifies the method used for on-board          
+      compression of data.
+      
+      Note: For MPF, the modes were assigned to the corresponding                  
+      inst_cmprs_names as follows:                                                 
+      
+      1 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/QUALITY                      
+      2 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/RATIO                        
+      3 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/QUALITY                   
+      4 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/RATIO                     
+      5 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/QUALITY/LCT                  
+      6 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/RATIO/LCT                    
+      7 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/QUALITY/LCT               
+      8 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/RATIO/LCT                 
+      9 RICE ADAPTIVE VARIABLE-LENGTH CODING (RICE)   
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>instrument_compression_rate</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_rate</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The instrument_compression_rate element provides the average number of bits needed       
+      to represent a pixel for an on-board compressed image.                                          
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>instrument_compression_ratio</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_ratio</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The inst_cmprs_ratio element provides the ratio of the size, in bytes,       
+      of the original uncompressed data file to its compressed form.                                            
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>instrument_compression_quality</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_quality</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The instrument_compression_quality element is a JPEG specific variable which             
+      identifies the resultant or targeted image quality index for on-board        
+      data compression.
+      
+      Note: For MPF, if an odd IMP inst_cmprs_mode was used for                    
+      on-board compression, the inst_cmprs_quality indicated the                   
+      desired image quality index. If an odd inst_cmprs_mode was                   
+      used, this indicates the resultant image quality used to                     
+      reach the desired on-board compression factor.  
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>quantization_table_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.quantization_table_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The quantization_table_id attribute identifies the reference table          
+      used for quantization in the frequency domain for on-board transform         
+      compression.  This name or code should be specific enough to allow the       
+      user of the data to have sufficient information to reference the             
+      quantization table used to compress the data.    
+      
+      Standard values: 
+      - UNIFORM                                                                           
+      - UNK                                                                               
+      - VG2                                                                               
+      - VG3   
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>ac_quantization_table_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.ac_quantization_table_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The ac_quantization_table_id attribute provides
+      the index used to select the JPEG AC-Huffman Luminance Bits
+      lookup table for compression.     
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>antiblooming_state_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.antiblooming_state_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+				The antiblooming_state_flag attribute indicates
+        whether antiblooming was used for this image. Blooming occurs
+        when photons from an individual cell in a CCD array overflow
+        into surrounding cells. Antiblooming measures are used to
+        either prevent or correct for this effect.   
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>bad_pixel_replacement_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.bad_pixel_replacement_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+				The bad_pixel_replacement_flag attribute
+        indicates whether or not bad pixel replacement processing was
+        completed.
+        
+        Note: For MPF, if set to TRUE, certain pixels in the image were 
+        replaced based on a bad pixel table.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+      <DD_Permissible_Value>
+        <value>true</value>
+        <value_meaning>
+        	TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>false</value>
+        <value_meaning>
+        	TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>blemish_protection_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.blemish_protection_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+			The blemish_protection_flag attribute indicates
+      whether the blemish protection was on or
+      off.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>dark_current_correction_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.dark_current_correction_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+				The dark_current_correction_flag attribute
+        indicates whether or not a dark current correction was applied
+        to an image.
+        
+        Note: For MPF, this correction was applied to the image on board 
+        the spacecraft, before the image was transmitted to Earth.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>dc_quantization_table_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.dc_quantization_table_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The dc_quantization_table_id attribute provides
+       the index used to select the JPEG DC-Huffman Luminance Bits
+       lookup table for compression.     
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>decomposition_stages</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.decomposition_stages</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The decomposition_stages attribute identifies
+      the number of stages of wavelet
+      decompositions.    
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>error_pixels</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.error_pixels</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The error_pixels attribute provides the number of pixels that are outside      
+      a valid DN range, after all decompression and post decompression             
+      processing has been completed                                                
+    </definition>
+    <Terminological_Entry>
+      <name>ERROR_PIXELS</name>
+      <definition>
+        The error_pixels attribute provides the number of pixels that are outside      
+        a valid DN range, after all decompression and post decompression             
+        processing has been completed         
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_block_size_x</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_block_size_x</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+         The instrument_compression_block_size_x attribute provides the line dimension of a pixel block 
+         for on-board compression. If the instrument_compression_block_size_y attribute is not included,
+         the block is assumed to be square. 
+    </definition>
+    <Terminological_Entry>
+      <name>inst_cmprs_blk_size</name>
+      <definition>
+        The inst_cmprs_blk_size element provides the dimensions of a pixel block 
+        for on-board compression. This value may be a two dimensional array, where 
+        the first value is the line dimension of the block, and the second value 
+        is the sample dimension of the block. Otherwise, the block is assumed to be square.
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_block_size_y</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_block_size_y</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The instrument_compression_block_size_y attribute provides the sample dimension of a 
+      pixel block for on-board compression.
+    </definition>
+    <Terminological_Entry>
+      <name>inst_cmprs_blk_size</name>
+      <definition>
+        The inst_cmprs_blk_size element provides the dimensions of a pixel block 
+        for on-board compression. This value may be a two dimensional array, where 
+        the first value is the line dimension of the block, and the second value 
+        is the sample dimension of the block. Otherwise, the block is assumed to be square.
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_blocks</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_blocks</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The inst_cmprs_blocks attribute provides the number of blocks used to          
+      spatially segment a data product prior to compression.                                             
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_BLOCKS</name>
+      <definition>
+        The inst_cmprs_blocks attribute provides the number of blocks used to          
+        spatially segment a data product prior to compression.       
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_parameter</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_parameter</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The instrument_compression_parameter attribute is a JPEG specific variable which specifies on-board 
+      compression determination by image quality or by compression factor, based on a 
+      selected on-board compression mode.
+    </definition>
+    <Terminological_Entry>
+      <name>inst_cmprs_param</name>
+      <definition>
+        The inst_cmprs_param element is a JPEG specific variable which specifies on-board 
+        compression determination by image quality or by compression factor, based on a 
+        selected on-board compression mode.
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_segments</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_segments</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The instrument_compression_segments element identifies the number of segments into       
+      which the image was partitioned for the error containment purposes. For      
+      ICER compression, the data within each segment is compressed independently,  
+      so that data loss across segments is compartmentalized or contained across   
+      segments.                                             
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEGMENTS</name>
+      <definition>
+        The INST_CMPRS_SEGMENTS element identifies the number of segments into       
+        which the image was partitioned for the error containment purposes. For      
+        ICER compression, the data within each segment is compressed independently,  
+        so that data loss across segments is compartmentalized or contained across   
+        segments.         
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>32</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_compression_quantization_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_quantization_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The instrument_compression_quantization_type attribute indicates the method of quantization 
+      used for the output of transform coders.    
+    </definition>
+
+    <Terminological_Entry>
+      <name>inst_cmprs_quantz_type</name>
+      <definition>
+        The inst_cmprs_quantz_type element indicates the method of quantization 
+        used for the output of transform coders.    
+      </definition>
+      <language>English</language>
+      <preferred_flag>true</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!-- 20150715:  not associated with any class
+                     - replaced by: instrument_compression_quantization_type
+   -->
+  <DD_Attribute>
+    <name>instrument_compression_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.instrument_compression_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The instrument_compression_type attribute identifies the type of on-board compression
+      used for data storage and transmission. Note that inst_cmprs_name provides
+      the full name of a compression algorithm (ex. Rice Adaptive Variable-
+      Length Coding), whereas the inst_cmprs_type gives a simple indicator of
+      the type of compression (ex. LOSSLESS). 
+      
+      Note: For Cassini, the LOSSY compression scheme was Discrete Cosine Transform, 
+      the LOSSLESS compression scheme was RICE, and NOTCOMP meant no compression 
+      scheme was used.
+    </definition>
+
+    <Terminological_Entry>
+      <name>inst_cmprs_type</name>
+      <definition>
+        The inst_cmprs_type element identifies the type of on-board compression
+        used for data storage and transmission. Note that inst_cmprs_name provides
+        the full name of a compression algorithm (ex. Rice Adaptive Variable-
+        Length Coding), whereas the inst_cmprs_type gives a simple indicator of
+        the type of compression (ex. LOSSLESS). 
+        
+        Note: For Cassini, the LOSSY compression scheme was Discrete Cosine Transform, 
+              the LOSSLESS compression scheme was RICE, and NOTCOMP meant no compression 
+              scheme was used.
+      </definition>
+      <language>English</language>
+      <preferred_flag>true</preferred_flag>
+    </Terminological_Entry>
+
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <!--                                                                                -->
+  <!-- Attributes: Instrument_Compression_Parameters.Instrument_Compression_Segment   -->
+  <!--                                                                                -->
+
+  <DD_Attribute>
+    <name>segment_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The segment_number attribute identifies which
+      compression segment is described in the current
+      Instrument_Compression_Segment class.                                        
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <maximum_value>32</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>segment_quality</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_quality</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+			The segment_quality attribute identifies the
+      quality level for the ICER compression segment identified by
+      segment_number.                                      
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>segment_first_line</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_first_line</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The segment_first_line attribute identifies the
+      line within a source image that corresponds to the first line
+      of the compression segment identified by segment_number.                                            
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEG_FIRST_LINE</name>
+      <definition>
+        The INST_CMPRS_SEG_FIRST_LINE element is an array of values which each nth   
+        element identifies the line within a source image that corresponds to the    
+        first line the nth compression segment applies.         
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>-1</minimum_value>
+      <maximum_value>1024</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>segment_first_sample</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_first_sample</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The segment_first_sample attribute identifies
+      the sample within a source image that corresponds to the first
+      sample of the compression segment identified by segment_number.                                        
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEG_FIRST_LINE_SAMP</name>
+      <definition>
+        The INST_CMPRS_SEG_FIRST_LINE_SAMP element is an array of values which       
+        each nth element identifies the line sample within a source image that       
+        corresponds to the first line sample the nth compression segment applies.        
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>-1</minimum_value>
+      <maximum_value>1024</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>segment_lines</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_lines</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The segment_lines attribute identifies the
+      total number of data instances along the vertical axis defined
+      by the compression segment identified by segment_number.                                      
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEG_LINES</name>
+      <definition>
+        The INST_CMPRS_SEG_LINES element is an array of elements in which the nth    
+        element identifies the total number of data instances along the vertical     
+        axis the nth compression segment defines.           
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>-1</minimum_value>
+      <maximum_value>1024</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>segment_samples</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_samples</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+			The segment_samples attribute identifies the
+      total number of data instances along the horizontal axis
+      defined by the compression segment identified by
+      segment_number.                                     
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEG_SAMPLES</name>
+      <definition>
+        The INST_CMPRS_SEG_SAMPLES element is an array of elements in which the nth  
+        element identifies the total number of data instances along the horzontal    
+        axis the nth compression segment defines.             
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>-1</minimum_value>
+      <maximum_value>1024</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>segment_missing_pixels</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_missing_pixels</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+      The segment_missing_pixels attribute identifies
+      the total number of missing pixels defined by the compression
+      segment identified by segment_number.                                   
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEG_MISSING_PIXELS</name>
+      <definition>
+        The INST_CMPRS_SEG_MISSING_PIXELS element identifies an array of           
+        elements in which the nth element identifies the total number              
+        of missing pixels defined by the nth compression segment.          
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>segment_status</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.segment_status</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+			The segment_status attribute provides a bit
+      mask which provides the status of decoding for the compression
+      segment identified by segment_number.                                   
+    </definition>
+    <Terminological_Entry>
+      <name>INST_CMPRS_SEGMENT_STATUS </name>
+      <definition>
+        The INST_CMPRS_SEGMENT_STATUS element provides a bit mask                    
+        which provides the status of decoding the nth segment.           
+      </definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>shutter_effect_correction_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.shutter_effect_correction_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>     
+			The shutter_effect_correction_flag attribute
+      indicates whether or not a shutter effect correction was
+      applied to the image. The shutter effect correction involves
+      the removal from the image of the shutter, or fixed-pattern.
+      
+      Note: For MPF, this correction was applied to the image on board the spacecraft, 
+      before the image was transmitted to Earth.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <!--                                  -->
+  <!-- Attributes: Command_Parameters   -->
+  <!--                                  -->
+
+  <DD_Attribute>
+    <name>command_sequence_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.command_sequence_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E. Rye</submitter_name>
+    <definition>The command_sequence_number attribute provides a numeric identifier for a sequence of commands sent to a spacecraft or instrument.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>download_priority</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.download_priority</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+       The download_priority attribute specifies which data to download based on order of importance.    
+     </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>100</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!--                                  -->
+  <!-- Attributes: Subframe_Parameters  -->
+  <!--                                  -->
+
+  <DD_Attribute>
+    <name>command_source_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.command_source_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The command_source_id attribute specifies the
+      flight software element that was the source of a particular
+      command.   
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>subframe_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.subframe_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The SUBFRAME_TYPE element specifies the method of subframing performed on    
+      the NONE indicates no subframing requested. SW_ONLY indicates software       
+      processsing HW_COND specifies hardware only if compatible. HW_SW indicates   
+      the of hardware then software. SUBFRM_SUN specifies the subframe around the  
+      sun.     
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>first_line</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.first_line</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth Rye</submitter_name>
+    <definition>The first_line attribute indicates the line within a source image that corresponds to the first line in a sub-image.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>first_sample</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.first_sample</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth Rye</submitter_name>
+    <definition>
+      The first_sample attribute indicates the sample
+      within a source image that corresponds to the first sample in a
+      sub-image.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <DD_Attribute>
+    <name>image_observation_type</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.image_observation_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The image_observation_type element identifies the type or                    
+      purpose of an observation that may be associated with an                     
+      image. Image observation types include limb, black sky,                      
+      spacecraft calibration, or other image attribute that may be                 
+      used for identification. Observation types should  not                       
+      include features, regions, or standard target names.    
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+
+      <DD_Permissible_Value>
+        <value>BLACK_SKY</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DARK_CURRENT</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>DARK_STRIP</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>FLAT_FIELD</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>HISTOGRAM</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>LIMB</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>NULL_STRIP</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>REGULAR</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>SUMMATION</value>
+        <value_meaning>
+          TBD
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>frame_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.frame_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The frame_id element provides an identification for a                        
+      particular instrument measurement frame.  A frame consists                   
+      of a sequence of measurements made over a specified time                     
+      interval, and may include measurements from different                        
+      instrument modes.  These sequences repeat from cycle to                      
+      cycle and sometimes within a cycle.     
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+
+      <DD_Permissible_Value>
+        <value>LEFT</value>
+        <value_meaning>
+          Left frame transmitted to Earth
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>RIGHT</value>
+        <value_meaning>
+          Right frame transmitted to Earth
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>BOTH</value>
+        <value_meaning>
+          Both left and right frames transmitted to Earth
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>HALFL</value>
+        <value_meaning>
+          The left image only was transferred into the frame buffer
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>lines</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.lines</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth Rye</submitter_name>
+    <definition>
+      The lines element indicates the total number of data                         
+      instances along the vertical axis of an image.                               
+      Note:  In PDS label convention, the number of lines is                       
+      stored in a 32-bit integer field.  The minimum value of 0                    
+      indicates no data received. 
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>samples</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.samples</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth Rye</submitter_name>
+    <definition>
+      The samples attribute indicates the number of
+      picture elements along the horizontal axis of an image or
+      sub-image.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!--                                  -->
+  <!-- Attributes: Telemetry_Parameters -->
+  <!--                                  -->
+
+  <DD_Attribute>
+    <name>downlink_telemetry_protocol_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.downlink_telemetry_protocol_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The downlink_telemetry_protocol_type attribute specifies the protocol used by the source of a telemetry stream for creating telemetry data products.</definition>
+    <Terminological_Entry>
+      <name>TELEMETRY_SOURCE_TYPE</name>
+      <definition>The TELEMETRY_SOURCE_TYPE element classifies the source of the telemetry used in creation of this data set.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>MSL:TELEMETRY_SOURCE_TYPE</name>
+      <definition>The MSL:TELEMETRY_SOURCE_TYPE element specifies the classification of the source of the telemetry used in creating this data set.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+      <!--
+      <DD_Permissible_Value>
+        <value>SFDU</value>
+        <value_meaning>Standard Formatted Data Unit; used by Cassini, Phoenix, Insight</value_meaning>
+      </DD_Permissible_Value>
+-->
+      <DD_Permissible_Value>
+        <value>Data Product</value>
+        <value_meaning>Data Product file delivery protocol; used by MER and MSL.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>CFDP</value>
+        <value_meaning>CCSDS File Delivery Protocol; used by MRO, Juno</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>telemetry_application_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.telemetry_application_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The telemetry_application_id attribute identifies the process, or source, which created the data.  This can include information such as an identification of the instrument which generated the telemetry stream, its operating mode at the time of data acquisition, and any onboard compression of the data.</definition>
+    <Terminological_Entry>
+      <name>TELEMETRY_FORMAT_ID</name>
+      <definition>The TELEMETRY_FORMAT_ID element supplies a telemetry format code.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>APPLICATION_PROCESS_ID</name>
+      <definition>The APPLICATION_PROCESS_ID identifies the process, or source, which created the data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>APPLICATION_PACKET_ID</name>
+      <definition>The application_packet_id element identifies the telemetry packet queue to which the data were directed.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>TELEMETRY_APPLICATION_ID</name>
+      <definition>The TELEMETRY_APPLICATION_ID element is used to link a data product (file) to a given application or structure description, when multiple formats exist within a single telemetry format.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>telemetry_application_name</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.telemetry_application_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The telemetry_application_name attribute provides the name associated with the source or process which created the data.</definition>
+    <Terminological_Entry>
+      <name>APPLICATION_PROCESS_NAME</name>
+      <definition>The APPLICATION_PROCESS_NAME element provides the name associated with the source or process which created the data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>APPLICATION_PACKET_NAME</name>
+      <definition>The application_packet_name element provides the name associated with the telemetry packet queue to which data were directed.
+
+Note:  For Mars Pathfinder, the queues were distinguished on the basis of type and priority of data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>telemetry_application_subtype_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.telemetry_application_subtype_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The telemetry_application_subtype_id attribute provides further distinction (i.e., greater specificity) among telemetry_application_id types.</definition>
+    <Terminological_Entry>
+      <name>APPLICATION_PROCESS_SUBTYPE_ID</name>
+      <definition>The APPLICATION_PROCESS_SUBTYPE_ID element identifies the source or subprocess that created the data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>TELEMETRY_FMT_EXTENSION_TYPE</name>
+      <definition>The TELEMETRY_FMT_EXTENSION_TYPE element provides additional information about what kind of telemetry was collected during scene looks versus calibration looks. Valid values are:
+	LONG (Scene: Long Telemetry, Calibration: Long Telemetry)
+	SHORT (Scene: Short Telemetry, Calibration: Short Telemetry)
+	MIXED (Scene: Short Telemetry, Calibration: Long Telemetry)</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>telemetry_provider_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.telemetry_provider_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The telemetry_provider_id attribute identifies the organization or subsystem that supplied the telemetry data product to the producer of the raw (EDR) PDS data product.  This is typically (but not always) the organization responsible for reassembling packetized data into a single product.</definition>
+    <Terminological_Entry>
+      <name>TELEMETRY_PROVIDER_ID</name>
+      <definition>The TELEMETRY_PROVIDER_ID element identifies the provider and or version of the telemetry data used in the generation of this data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>TELEMETRY_PROVIDER_TYPE</name>
+      <definition>The TELEMETRY_PROVIDER_TYPE element classifies the source of the telemetry used in creation of this data set.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <maximum_characters>20</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+      <DD_Permissible_Value>
+        <value>MPCS</value>
+        <value_meaning>Mission data Processing and Control System (used by MSL)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>FDM</value>
+        <value_meaning>Front end Data Manager (used by JUNO and MRO)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TTACS</value>
+        <value_meaning>Test Telemetry And Command Subsystem</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>TDS</value>
+        <value_meaning>The DSN's Telemetry Data (or Delivery) System (alternately, "Telemetry Data Staging")</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>earth_received_start_date_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.earth_received_start_date_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The earth_received_start_date_time attribute provides the earliest time at which any component telemetry data for a particular product was received.</definition>
+    <Terminological_Entry>
+      <name>EARTH_RECEIVED_START_TIME</name>
+      <definition>The earth_received_start_time element provides the beginning time at which telemetry was received during a time period of interest.  This should be represented in UTC system format. See also earth_received_time.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <Terminological_Entry>
+      <name>EARTH_RECEIVED_TIME</name>
+      <definition>The earth_received_time element provides the time at which telemetry was received on earth. This should be represented in the UTC system format.  For real time data, the difference between this time and the spacecraft_event_time is the signal travel time from the spacecraft to earth.
+
+Formation rule: YYYY-MM-DDThh:mm:ss[.fff]</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Date_Time_YMD_UTC</value_data_type>
+      <formation_rule>yyyy-mm-ddThh:mm:ss.sssZ</formation_rule>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>earth_received_stop_date_time</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.earth_received_stop_date_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The earth_received_stop_date_time attribute provides the latest time at which any component telemetry data for a particular product was received.</definition>
+    <Terminological_Entry>
+      <name>EARTH_RECEIVED_STOP_TIME</name>
+      <definition>The earth_received_stop_time element provides the ending time for receiving telemetry  during a time period of interest.  This should be represented in the UTC system format. See also earth_received_time.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Date_Time_YMD_UTC</value_data_type>
+      <formation_rule>yyyy-mm-ddThh:mm:ss.sssZ</formation_rule>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>crosstrack_summing</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.crosstrack_summing</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The crosstrack_summing attribute provides the number of detector pixel values in the crosstrack direction that have been averaged to produce the final output pixel.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <maximum_value>127</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>downtrack_summing</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.downtrack_summing</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The downtrack_summing attribute provides the number of detector pixel values in the downtrack direction that have been averaged to produce the final output pixel.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <maximum_value>127</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>exposure_count</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.exposure_count</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The exposure count attribute provides the maximum number of exposures taken during a specified interval.  The value is dependent on exposure type.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>exposure_duration</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.exposure_duration</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The exposure_duration attribute provides the value of the time interval between the opening and closing of an instrument aperture (such as a camera shutter).</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_Time</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>exposure_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.exposure_type</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The exposure_type attribute indicates the exposure setting on a camera.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <maximum_characters>15</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <DD_Attribute>
+    <name>auto_exposure_data_cut</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.auto_exposure_data_cut</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The auto_exposure_data_cut element provides the DN value which a specified fraction of pixels is permitted to exceed. The fraction is specified using the auto_exposure_pixel_fraction keyword.  
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>auto_exposure_pixel_fraction</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.auto_exposure_pixel_fraction</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The auto_exposure_pixel_fraction attribute provides the percentage
+      of pixels whose value is higher than the auto_exposure_data_cut keyword. Note: For
+      Mars Pathfinder, this field is only applicable if the exposure type is set to AUTO
+      or INCREMENTAL.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.0</minimum_value>
+      <maximum_value>100.0</maximum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>instrument_mode_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.instrument_mode_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The instrument_mode_id element provides an instrument-dependent designation of operating mode. This may be simply a number, letter or code, or a word such as 'normal', 'full resolution', 'near encounter', or 'fixed grating'.     
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!--
+   not used in any Class
+   
+  <DD_Attribute>
+    <name>first_line_sample</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.first_line_sample</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth Rye</submitter_name>
+    <definition>The first_line_sample attribute indicates the sample within a source image that corresponds to the first sample in a sub-image.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+-->
+
+  <DD_Attribute>
+    <name>gain_mode_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.gain_mode_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The gain_mode_id attribute identifies the gain state of an instrument.  Gain is a constant value which is multiplied with an instrument's output signal to increase or decrease the level of that output.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>light_flood_state_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.light_flood_state_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The light_flood_state_flag attribute indicates the mode (on or off) of light flooding for an instrument.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>2</minimum_characters>
+      <maximum_characters>3</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+      <DD_Permissible_Value>
+        <value>On</value>
+        <value_meaning>The light flooding is "on" for the instrument.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Off</value>
+        <value_meaning>The light flooding is "off" for the instrument.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>offset_mode_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.offset_mode_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The offset_mode_id attribute identifies the analog value that is subtracted from the video signal prior to the analog/digital converters.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>packet_creation_sclk</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.packet_creation_sclk</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The packet_creation_sclk attribute specifies the value of the spacecraft clock at the time that data was packetized on board a spacecraft.  This value is not always co-incident with the data acquisition time.</definition>
+    <Terminological_Entry>
+      <name>PACKET_CREATION_SCLK</name>
+      <definition>The PACKET_CREATION_SCLK specifies the value of the spacecraft clock at the time that data was packetized on board a spacecraft. This value is not always co-incident with the data acquisition time.
+
+Note: for MPF and M98, this value was stored in the primary telemetry packet header of the first packet of a data file, and was the reference used for requesting the data packets from the TDS (Telemetry Delivery System).</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>packet_creation_date_time</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.packet_creation_date_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The packet_creation_date_time attribute specifies the time, in standard UTC format, that data was packetized on board a spacecraft.  This value is not always co-incident with the data acquisition time.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Date_Time_YMD</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>expected_packets</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.expected_packets</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The expected_packets attribute provides the total number of telemetry packets which constitute a complete data product, i.e., a data product without missing data.</definition>
+    <Terminological_Entry>
+      <name>EXPECTED_PACKETS</name>
+      <definition>The expected_packets element provides the total number of telemetry packets which constitute a complete data product, i.e., a data product without missing data.</definition>
+      <language>English</language>
+      <preferred_flag>false</preferred_flag>
+    </Terminological_Entry>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>received_packets</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.received_packets</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The received_packets attribute provides the total number of telemetry packets which constitute a reconstructed data product, cf. expected_packets.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>missing_packet_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.missing_packet_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The missing_packet_flag attribute indicates whether or not there were telemetry packets that were expected but not received.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+      <DD_Permissible_Value>
+        <value>0</value>
+        <value_meaning>All telemetry packets that were expected were received.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>false</value>
+        <value_meaning>All telemetry packets that were expected were received.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>1</value>
+        <value_meaning>Some telemetry packets that were expected were not received.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>true</value>
+        <value_meaning>Some telemetry packets that were expected were not received.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>packet_map_mask</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.packet_map_mask</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The packet_map_mask attribute is a binary or hexadecimal number identifying which of a data file's expected packets were actually received.  The digits correspond positionally with the relative packet numbers of the data file.  The bits are to be read left to right; i.e., the first (left-most) digit of the number corresponds to the first packet of the data file.  A bit value of 1 indicates that the packet was received; a value of 0 indicates that it was not received.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Numeric_Base16</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>pixel_averaging_height</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.pixel_averaging_height</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+    	The pixel_averaging_height attribute provides
+      the vertical dimension, in pixels, of the area over which
+      pixels were averaged prior to image compression.
+    	</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  <DD_Attribute>
+    <name>pixel_averaging_width</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.pixel_averaging_width</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+			The pixel_averaging_width attribute provides
+      the horizontal dimension, in pixels, of the area over which
+      pixels were averaged prior to image compression.
+    	</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <DD_Attribute>
+    <name>temperature_raw</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.temperature_raw</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The temperature_raw attribute provides the raw, uncalibrated, temperature of some point on an instrument or other device.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>temperature_calibrated</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.temperature_calibrated</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The temperature_calibrated attribute provides the temperature, in the specified units, of some point on an instrument or other device.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>-273.15</minimum_value>
+      <unit_of_measure_type>Units_of_Temperature</unit_of_measure_type>
+      <specified_unit_id>degC</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>raw_count</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.raw_count</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+        The raw_count attribute provides the value of
+        some parameter measured by a spacecraft or instrument sensor in
+        the raw units reported by that sensor. The value may or may not
+        be unitless, depending on what is being
+        measured.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>filter_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.filter_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The filter_name attribute provides the commonly-used name of the instrument filter through which an image or measurement was acquired or which is associated with a given instrument mode.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>filter_id</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.filter_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+			The filter_id attribute provides a short string
+      identifier for an instrument filter through which an image or
+      measurement was acquired or which is associated with a given
+      instrument mode.
+    	</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>16</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>flat_field_correction_flag</name>
+    <version_id>0.1</version_id>
+    <local_identifier>img.flat_field_correction_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+			The flat_field_correction_flag attribute
+      indicates whether or not a flat field correction was applied to
+      an image.
+      
+      Note: For MPF, this correction was applied to the image on board 
+      the spacecraft, before the image was transmitted to Earth.
+    	</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>filter_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.filter_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The filter_number attribute provides the numeric identifier of an instrument filter through which an image or measurement was acquired or which is associated with a given instrument mode.  Within the bin class of a spectral data object, it identifies the filter through which data in the given band were acquired.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>center_filter_wavelength</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.center_filter_wavelength</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The center_filter_wavelength attribute provides the mid_point wavelength value between the minimum and maximum instrument filter wavelength values.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>full_width_half_maximum</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.full_width_half_maximum</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The full_width_half_maximum attribute describes the width of a "bump" on a curve or function.  It is given by the distance between points on the curve at which the function reaches half of its maximum value.</definition>
+    <comment>Weisstein, Eric W. "Full Width at Half Maximum." From MathWorld--A Wolfram Web Resource. http://mathworld.wolfram.com/FullWidthatHalfMaximum.html</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0</minimum_value>
+      <unit_of_measure_type>Units_of_Length</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>producer_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.producer_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The producer_id attribute provides a short name or acronym identifying the organization or team which produced a product. Ex. "LRO_LROC_TEAM", "MIPL of JPL"</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>producer_full_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.producer_full_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The producer_full_name attribute provides the complete name for a person and includes titles and suffixes.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>127</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>producer_institution_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.producer_institution_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The producer_institution_name attribute identifies a university, research center, national space agency, or other institution associated with the production of a PDS archive.  This is generally an institution associated with the Producer_Name.  Ex. "Max Planck Institute", "NASA/Goddard Space Flight Center"</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>version_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.version_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The version_id attribute provides the version of the software program.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>user_id</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.user_id</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>A short identifier used to run a computer process.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>60</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>host_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.host_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The name of a computer on which a process was run.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>60</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <!--                              -->
+  <!-- Class: aaaBucket             -->
+  <!--                              -->
+
+  <!--                              -->
+  <!-- Class: Command_Parameters    -->
+  <!--                              -->
+
+  <DD_Class>
+    <name>Command_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Command_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Command_Parameters class contains attributes used to identify or describe the commands sent to a spacecraft to perform one or more actions resulting in the acquisition of the current data product.</definition>
+    <DD_Association>
+      <local_identifier>pds.name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.description</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.command_sequence_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.download_priority</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <!--                              -->
+  <!-- Class: Telemetry_Parameters  -->
+  <!--                              -->
+
+  <DD_Class>
+    <name>Telemetry_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Telemetry_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Telemetry_Parameters class contains downlink-related attributes used primarily during mission operations.</definition>
+    <DD_Association>
+      <local_identifier>img.downlink_telemetry_protocol_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.telemetry_application_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.telemetry_application_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.telemetry_application_subtype_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.telemetry_provider_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.earth_received_start_date_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.earth_received_stop_date_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.Packet_Parameters</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    <Terminological_Entry>
+      <name>Telemetry_Parameters</name>
+      <definition>The Telemetry_Parameters class contains downlink-related attributes used primarily during mission operations.</definition>
+      <language>English</language>
+      <preferred_flag>true</preferred_flag>
+    </Terminological_Entry>
+  </DD_Class>
+
+  <!--                                                                  -->
+  <!-- Class: Imaging_Instrument_Parameters.Data_Correction_Parameters  -->
+  <!--                                                                  -->
+
+  <DD_Class>
+    <name>Data_Correction_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Data_Correction_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+        The Data_Correction_Parameters class describes
+        data processing steps applied to data, either on-board a
+        spacecraft or after receipt of the data on the ground, to
+        remove artifacts introduced into the data by the
+        instrument.
+    </definition>
+    <DD_Association>
+      <local_identifier>img.antiblooming_state_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.bad_pixel_replacement_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.blemish_protection_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.dark_current_correction_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.flat_field_correction_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.gain_mode_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.light_flood_state_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.offset_mode_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.shutter_effect_correction_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <!--                                                             -->
+  <!-- Class: Imaging_Instrument_Parameters.Downsample_Parameters  -->
+  <!--                                                             -->
+
+  <DD_Class>
+    <name>Downsample_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Downsample_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The Downsample_Parameters class contains
+      attributes related to the compression or reduction in
+      resolution of data through sub-sampling.
+    </definition>
+    <DD_Association>
+      <local_identifier>img.crosstrack_summing</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.downtrack_summing</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.pixel_averaging_height</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.pixel_averaging_width</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <!--                                                           -->
+  <!-- Class: Imaging_Instrument_Parameters.Subframe_Parameters  -->
+  <!--                                                           -->
+
+  <DD_Class>
+    <name>Subframe_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Subframe_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The Subframe_Parameters class describes the
+      position and other optional characteristics of an image
+      subframe, relative to the original image.
+    </definition>
+    <DD_Association>
+      <local_identifier>pds.name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.description</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.command_source_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.subframe_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.first_line</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.first_sample</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.lines</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.samples</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+
+  <!--                                         -->
+  <!-- Class: Imaging_Instrument_Parameters    -->
+  <!--                                         -->
+
+  <DD_Class>
+    <name>Imaging_Instrument_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Imaging_Instrument_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Imaging_Instrument_Parameters class contains attributes providing the values of any dynamic physical or operating characteristics of an instrument.</definition>
+
+    <DD_Association>
+      <local_identifier>img.Data_Correction_Parameters</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.Downsample_Parameters</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.exposure_count</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.exposure_duration</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.exposure_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.auto_exposure_data_cut</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.auto_exposure_pixel_fraction</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_mode_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.Filter</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.first_line</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.first_sample</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.image_observation_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.frame_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.Device_Temperature</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.Subframe_Parameters</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+
+
+    <!-- not used in sample label 
+    <DD_Association>
+      <local_identifier>img.exposure_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+      
+    <DD_Association>
+      <local_identifier>img.first_line_sample</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>  
+-->
+
+    <DD_Association>
+      <local_identifier>img.gain_mode_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.light_flood_state_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <!-- 20150715: deleted    
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    -->
+  </DD_Class>
+
+  <!--                                         -->
+  <!-- Class: Processing_History               -->
+  <!--                                         -->
+
+  <DD_Class>
+    <name>Processing_History</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Processing_History</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Processing_History class provides a listing of the programs used to create the current product.</definition>
+    <DD_Association>
+      <local_identifier>img.Process</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Packet_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Packet_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Packet_Parameters class contains parameters describing the packetized telemetry data.</definition>
+    <DD_Association>
+      <local_identifier>img.packet_creation_sclk</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.packet_creation_date_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.expected_packets</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.received_packets</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.missing_packet_flag</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.packet_map_mask</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Device_Temperature</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Device_Temperature</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Device_Temperature class provides the temperature of some point on an instrument or other device.</definition>
+    <DD_Association>
+      <local_identifier>pds.name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.temperature_raw</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.raw_count</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.temperature_calibrated</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <!-- 20150715: deleted      
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    -->
+  </DD_Class>
+
+  <DD_Class>
+    <name>Filter</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Filter</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Filter class describes the filter associated with a particular observation.  The filter may be identified by name, identifier, number or some combination of these.</definition>
+    <DD_Association>
+      <local_identifier>img.filter_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.filter_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.filter_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.center_filter_wavelength</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.full_width_half_maximum</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.comment</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <!-- 20150715: deleted          
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    -->
+  </DD_Class>
+
+  <DD_Class>
+    <name>Process</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Process</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Process class describes an action taken upon a product, typically by a software program.</definition>
+    <DD_Association>
+      <local_identifier>img.Process_Owner</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.Software</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Process_Owner</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Process_Owner</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Process_Owner class describes the individual and/or organization that made changes to a product.</definition>
+    <DD_Association>
+      <local_identifier>img.producer_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.producer_full_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.producer_institution_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Software</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Software</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>The Software class identifies the software program used to make changes to a product.</definition>
+    <DD_Association>
+      <local_identifier>pds.name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.version_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.description</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.user_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.host_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.start_date_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>pds.stop_date_time</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <!--                                                        -->
+  <!-- Class: Instrument_Compression_Parameters               -->
+  <!--                                                        -->
+
+  <DD_Class>
+    <name>Instrument_Compression_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Instrument_Compression_Parameters</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      The Instrument_Compression_Parameters class
+      contains attributes describing onboard compression
+      parameters.
+    </definition>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_name</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_mode</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_rate</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_ratio</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_quality</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_quantization_type</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.quantization_table_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.ac_quantization_table_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.dc_quantization_table_id</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.decomposition_stages</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <local_identifier>img.error_pixels</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_segments</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.Instrument_Compression_Segment</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+
+    <!-- 201507015: added -->
+    <DD_Association>
+      <local_identifier>img.instrument_compression_block_size_x</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_block_size_y</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_blocks</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.instrument_compression_parameter</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <!--                                                                         -->
+  <!-- Class: Instrument_Compression_Parameters.Instrument_Compression_Segment -->
+  <!--                                                                         -->
+  <DD_Class>
+    <name>Instrument_Compression_Segment</name>
+    <version_id>1.0</version_id>
+    <local_identifier>img.Instrument_Compression_Segment</local_identifier>
+    <submitter_name>Elizabeth D. Rye</submitter_name>
+    <definition>
+      This class provides attributes describing each
+      segment into which data was partitioned for error containment
+      purposes as part of the compression process.
+    </definition>
+    <DD_Association>
+      <local_identifier>img.segment_number</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_first_line</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_first_sample</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_lines</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_samples</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_missing_pixels</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_quality</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <local_identifier>img.segment_status</local_identifier>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <!-- 20150715: deleted          
+    <DD_Association>
+      <local_identifier>XSAny#</local_identifier>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    -->
+  </DD_Class>
+
+  <!-- ======================================================================== -->
+  <!-- BEGIN:  Schematron Rule definition                                       -->
+  <!-- ======================================================================== -->
+
+  <!-- Begin assert statements for schematron - Enumerated Values -->
+  <!-- <xs:assert test="img:missing_packet_flag = ('0', '1', 'false', 'true')"/> -->
+  <!-- End assert statements for schematron - Enumerated Values -->
+
+  <!--
+   Rule replaced by enumerated values
+
+	<DD_Rule>
+		<local_identifier>missing_packet_flag</local_identifier>
+		<rule_context>img:missing_packet_flag</rule_context>
+		<DD_Rule_Statement>
+			<rule_type>Assert</rule_type>
+			<rule_test>
+				. = ('0', '1', 'false', 'true')				
+			</rule_test>
+			<rule_message>
+        The attribute img:missing_packet_flag must be equal to one of the following values '0', '1', 'false', 'true'.
+			</rule_message>
+		</DD_Rule_Statement>
+	</DD_Rule>
+-->
+
+  <!-- Begin assert statements for schematron - Enumerated Values -->
+  <!-- <xs:assert test="img:downlink_telemetry_protocol_type = ('CFDP', 'Data Product', 'SFDU')"/> -->
+  <!--   20150630: per CCB removed SFDU from enumerated list  -->
+  <!-- End assert statements for schematron - Enumerated Values -->
+  <!--
+   Rule replaced by enumerated values
+   
+	<DD_Rule>
+		<local_identifier>downlink_telemetry_protocol_type</local_identifier>
+		<rule_context>img:downlink_telemetry_protocol_type</rule_context>
+		<DD_Rule_Statement>
+			<rule_type>Assert</rule_type>
+			<rule_test>
+				. = ('CFDP', 'Data Product')				
+			</rule_test>
+			<rule_message>
+        The attribute img:missing_packet_flag must be equal to one of the following values 'CFDP', 'Data Product'.
+			</rule_message>
+		</DD_Rule_Statement>
+	</DD_Rule>
+-->
+
+  <!-- Begin assert statements for schematron - Enumerated Values -->
+  <!-- <xs:assert test="img:telemetry_provider_id = ('FDM', 'MPCS', 'TDS', 'TTACS')"/> -->
+  <!-- End assert statements for schematron - Enumerated Values -->
+  <!--
+   Rule replaced by enumerated values
+
+	<DD_Rule>
+		<local_identifier>telemetry_provider_id</local_identifier>
+		<rule_context>img:telemetry_provider_id</rule_context>
+		<DD_Rule_Statement>
+			<rule_type>Assert</rule_type>
+			<rule_test>
+				. = ('FDM', 'MPCS', 'TDS', 'TTACS')				
+			</rule_test>
+			<rule_message>
+        The attribute img:missing_packet_flag must be equal to one of the following values 'FDM', 'MPCS', 'TDS', 'TTACS'.
+			</rule_message>
+		</DD_Rule_Statement>
+	</DD_Rule>
+-->
+
+  <!-- ======================================================================== -->
+  <!-- BEGIN:  Property Maps definition                                         -->
+  <!-- ======================================================================== -->
+
+  <Property_Maps>
+    <identifier>img_property_map_definitions</identifier>
+    <namespace_id>img</namespace_id>
+
+    <!--                                                 -->
+    <!-- Property Maps: Instrument_Compression_Parameters   -->
+    <!--                                                 -->
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_block_size_x</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_block_size_x</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_block_size_x definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_BLK_SIZE</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_block_size_y</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_block_size_y</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_block_size_y definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_BLK_SIZE</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_name</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_name</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_name definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_NAME</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_mode</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_mode</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_mode definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_MODE</property_value>
+      </Property_Map_Entry>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For MPF, the modes were assigned to the corresponding                  
+          inst_cmprs_names as follows:                                                 
+          
+          1 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/QUALITY                      
+          2 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/RATIO                        
+          3 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/QUALITY                   
+          4 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/RATIO                     
+          5 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/QUALITY/LCT                  
+          6 JPEG DISCRETE COSINE TRANSFORM (DCT); HUFFMAN/RATIO/LCT                    
+          7 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/QUALITY/LCT               
+          8 JPEG DISCRETE COSINE TRANSFORM (DCT); ARITHMETIC/RATIO/LCT                 
+          9 RICE ADAPTIVE VARIABLE-LENGTH CODING (RICE)
+        </property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_rate</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_rate</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_rate definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_RATE</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_ratio</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_ratio</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_ratio definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_RATIO</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.instrument_compression_quality</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.instrument_compression_quality</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_compression_quality definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_QUALITY</property_value>
+      </Property_Map_Entry>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For MPF, if an odd IMP inst_cmprs_mode was used for                    
+          on-board compression, the inst_cmprs_quality indicated the                   
+          desired image quality index. If an odd inst_cmprs_mode was                   
+          used, this indicates the resultant image quality used to                     
+          reach the desired on-board compression factor. </property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.quantization_table_id</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.quantization_table_id</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG quantization_table_id definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>INST_CMPRS_QUANTZ_TBL_ID</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Instrument_Compression_Parameters.img.antiblooming_state_flag</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Instrument_Compression_Parameters.img.antiblooming_state_flag</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG antiblooming_state_flag definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>ANTIBLOOMING_STATE_FLAG</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    
+    <!--                                                    -->
+    <!-- Property Maps: Imaging_Instrument_Parameters       -->
+    <!--                                                    -->
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Imaging_Instrument_Parameters.img.instrument_mode_id</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Imaging_Instrument_Parameters.img.instrument_mode_id</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG instrument_mode_id definitions</description>
+      <Property_Map_Entry>
+        <property_name>PDS3 Keyword</property_name>
+        <property_value>FRAME_ID</property_value>
+      </Property_Map_Entry>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For the Mars Pathfinder IMP camera, this was represented by the FRAME_ID keyword.
+          The IMP camera nominally operated in a mode where both the left and right images were exposed and
+          transferred into the frame buffer simultaneously. Then either the RIGHT, LEFT, or BOTH frames were
+          transmitted to Earth. For even shorter shutter times, the left image only was transferred into the
+          frame buffer (HALFL). The presence of BOTH in this field indicated that the image should have been
+          part of a stereo pair. Note that this usage of frame_id has been replaced on later missions by 
+          instrument_mode_id.</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+    
+    <!--                                                    -->
+    <!-- Property Maps: Data_Correction_Parameters          -->
+    <!--                                                    -->
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Data_Correction_Parameters.img.dark_current_correction_flag</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Data_Correction_Parameters.img.dark_current_correction_flag</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG dark_current_correction_flag definitions</description>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For Mars Pathfinder, this correction was applied to the image on board 
+          the spacecraft, before the image was transmitted to Earth.</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Data_Correction_Parameters.img.flat_field_correction_flag</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Data_Correction_Parameters.img.flat_field_correction_flag</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG flat_field_correction_flag definitions</description>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For Mars Pathfinder, this correction was applied to the image on board 
+          the spacecraft, before the image was transmitted to Earth.</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Data_Correction_Parameters.img.bad_pixel_replacement_flag</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Data_Correction_Parameters.img.bad_pixel_replacement_flag</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG bad_pixel_replacement_flag definitions</description>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For Mars Pathfinder, if set to TRUE, certain pixels in the image were 
+          replaced based on a bad pixel table.</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+
+    <Property_Map>
+      <identifier>0001_NASA_PDS_1.pds.Property_Map.img.Data_Correction_Parameters.img.shutter_effect_correction_flag</identifier>
+      <model_object_id>0001_NASA_PDS_1.img.Data_Correction_Parameters.img.shutter_effect_correction_flag</model_object_id>
+      <model_object_type>Attribute</model_object_type>
+      <instance_id>xpath to an XML label instance if needed</instance_id>
+      <description>IMG shutter_effect_correction_flag definitions</description>
+      <Property_Map_Entry>
+        <property_name>Nuance</property_name>
+        <property_value>For Mars Pathfinder, this correction was applied to the image on board the spacecraft, 
+          before the image was transmitted to Earth.</property_value>
+      </Property_Map_Entry>
+    </Property_Map>
+  </Property_Maps>
+
+</Ingest_LDD>

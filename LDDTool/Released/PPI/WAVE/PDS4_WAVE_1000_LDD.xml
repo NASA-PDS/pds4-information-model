@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model
+    href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1400.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- PDS4 Local Data Dictionary Ingest File -->
+
+<Ingest_LDD
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 
+        http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1400.xsd ">
+
+	<name>Wave</name>
+	<ldd_version_id>1.0.0.0</ldd_version_id>
+	<full_name>Todd King</full_name>
+	<steward_id>ppi</steward_id>
+	<namespace_id>wave</namespace_id>
+	<comment>The Wave dictionary contains classes that describe the composition of multidimensional wave data consisting of Array (and Array subclass) data objects.</comment>
+	<last_modification_date_time>2015-03-02T12:00:00Z</last_modification_date_time>
+
+	<DD_Attribute>
+		<name>axis_number</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.axis_number</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The index of the axis. The first axis is numbered as 1.</definition>
+		<DD_Value_Domain>
+			<enumeration_flag>false</enumeration_flag>
+			<value_data_type>ASCII_Integer</value_data_type>
+			<unit_of_measure_type>Units_of_None</unit_of_measure_type>
+			<minimum_value>1</minimum_value>
+		</DD_Value_Domain>
+	</DD_Attribute>
+
+	<DD_Attribute>
+		<name>face_axis</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.face_axis</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The axis number that defines one axis of a face plane.</definition>
+		<DD_Value_Domain>
+			<enumeration_flag>false</enumeration_flag>
+			<value_data_type>ASCII_Integer</value_data_type>
+			<unit_of_measure_type>Units_of_None</unit_of_measure_type>
+			<minimum_value>1</minimum_value>
+		</DD_Value_Domain>
+	</DD_Attribute>
+
+	<DD_Attribute> 
+		<name>local_reference_type</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.local_reference_type</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The local_reference_type attribute provides the name of an association between an entity identified by a local_identifier_reference and another corresponding entity identified by a local_identifier</definition>
+		<DD_Value_Domain>
+			<enumeration_flag>true</enumeration_flag>
+			<value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+			<unit_of_measure_type>Units_of_None</unit_of_measure_type>
+			<DD_Permissible_Value>
+				<value>wave_observation_to_observation_values</value>
+				<value_meaning>A reference to the array containing the primary observation data.</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>wave_observation_to_axis_values</value>
+				<value_meaning>A reference to the array containing the data values for an axis of primary observation data.</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>wave_observation_to_face_values</value>
+				<value_meaning>A reference to the array containing the data values for a face of primary observation data.</value_meaning>
+			</DD_Permissible_Value>
+		</DD_Value_Domain>
+	</DD_Attribute>
+
+	<DD_Class>
+		<name>Axis_Values</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Axis_Values</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Axis_Values class describes the values which are associated with the elements along an axis of a observation data array.</definition>
+		<DD_Association>
+			<local_identifier>wave.Local_Internal_Reference</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.axis_number</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+	<DD_Class>
+		<name>Face_Values</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Face_Values</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Face_Values class describes the values which are associated with the elements on the face of a observation data array.</definition>
+		<DD_Association>
+			<local_identifier>wave.Local_Internal_Reference</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.Face_Plane</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+	<DD_Class>
+		<name>Face_Plane</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Face_Plane</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Face_Plane class describes a plane which is defined by two axes.</definition>
+		<DD_Association>
+			<local_identifier>wave.face_axis</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>2</minimum_occurrences>
+			<maximum_occurrences>2</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+
+	<DD_Class>
+		<name>Local_Internal_Reference</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Local_Internal_Reference</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Local_Internal_Reference class is used to cross-reference other classes or objects within the product.</definition>
+		<DD_Association>
+			<local_identifier>pds.local_identifier_reference</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.local_reference_type</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>pds.comment</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+	<DD_Class>
+		<name>Wave_Observation</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Wave_Observation</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Wave_Observation describes the data of a observation and the values which are associated with the elements along an axis or on the face of a observation data array.</definition>
+		<DD_Association>
+			<local_identifier>pds.name</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>pds.local_identifier</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>pds.description</local_identifier>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.Primary_Values</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.Axis_Values</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>*</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<local_identifier>wave.Face_Values</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>*</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+	<DD_Class>
+		<name>Primary_Values</name>
+		<version_id>0.1</version_id>
+		<local_identifier>wave.Primary_Values</local_identifier>
+		<submitter_name>Todd King</submitter_name>
+		<definition>The Primary_Values class describes the values which are the primary observation data array.</definition>
+		<DD_Association>
+			<local_identifier>wave.Local_Internal_Reference</local_identifier>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+
+</Ingest_LDD>

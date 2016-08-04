@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- PDS4 XML/Schema for Name Space Id:sbngeom  Version:1.0.0.0 - Sun Jun 08 16:13:16 PDT 2014 -->
+  <!-- Generated from the PDS4 Information Model Version 1.3.0.0 - System Build 5a -->
+  <!-- *** This PDS4 product schema is an operational deliverable. *** -->
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://pds.nasa.gov/pds4/sbngeom/v1"
+    xmlns:sbngeom="http://pds.nasa.gov/pds4/sbngeom/v1"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="1.0.0.0">
+ 
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1201.xsd"/>
+ 
+  <xs:annotation>
+    <xs:documentation>This XML schema file has been generated from the
+      PDS4 Information Model.</xs:documentation>
+  </xs:annotation>
+ 
+  <xs:element name="Celestial_Coordinates" type="sbngeom:Celestial_Coordinates"> </xs:element>
+  <xs:element name="Clock_Angles" type="sbngeom:Clock_Angles"> </xs:element>
+  <xs:element name="Display_Direction" type="sbngeom:Display_Direction"> </xs:element>
+  <xs:element name="Distances" type="sbngeom:Distances"> </xs:element>
+  <xs:element name="Earth_Vectors" type="sbngeom:Earth_Vectors"> </xs:element>
+  <xs:element name="Earth_to_Target_Position_Vector_Cartesian" type="sbngeom:Earth_to_Target_Position_Vector_Cartesian"> </xs:element>
+  <xs:element name="Earth_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Earth_to_Target_Velocity_Vector_Cartesian"> </xs:element>
+  <xs:element name="Ecliptic_Coordinates" type="sbngeom:Ecliptic_Coordinates"> </xs:element>
+  <xs:element name="Geometry" type="sbngeom:Geometry"> </xs:element>
+  <xs:element name="Illumination_Angles" type="sbngeom:Illumination_Angles"> </xs:element>
+  <xs:element name="Image_Center_Coordinates" type="sbngeom:Image_Center_Coordinates"> </xs:element>
+  <xs:element name="Image_Display_Geometry" type="sbngeom:Image_Display_Geometry"> </xs:element>
+  <xs:element name="Spacecraft_Geometry" type="sbngeom:Spacecraft_Geometry"> </xs:element>
+  <xs:element name="Spacecraft_Vectors" type="sbngeom:Spacecraft_Vectors"> </xs:element>
+  <xs:element name="Spacecraft_to_Earth_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Earth_Position_Vector_Cartesian"> </xs:element>
+  <xs:element name="Spacecraft_to_Earth_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Earth_Velocity_Vector_Cartesian"> </xs:element>
+  <xs:element name="Spacecraft_to_Sun_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Sun_Position_Vector_Cartesian"> </xs:element>
+  <xs:element name="Spacecraft_to_Sun_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Sun_Velocity_Vector_Cartesian"> </xs:element>
+  <xs:element name="Spacecraft_to_Target_Distance" type="sbngeom:Spacecraft_to_Target_Distance"> </xs:element>
+  <xs:element name="Spacecraft_to_Target_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Target_Position_Vector_Cartesian"> </xs:element>
+  <xs:element name="Spacecraft_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Target_Velocity_Vector_Cartesian"> </xs:element>
+  <xs:element name="Sun_Vectors" type="sbngeom:Sun_Vectors"> </xs:element>
+  <xs:element name="Sun_to_Target_Position_Vector_Cartesian" type="sbngeom:Sun_to_Target_Position_Vector_Cartesian"> </xs:element>
+  <xs:element name="Sun_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Sun_to_Target_Velocity_Vector_Cartesian"> </xs:element>
+  <xs:element name="Target_Geocentric_Distance" type="sbngeom:Target_Geocentric_Distance"> </xs:element>
+  <xs:element name="Target_Heliocentric_Distance" type="sbngeom:Target_Heliocentric_Distance"> </xs:element>
+  <xs:element name="Target_Pole_Clock_Angle" type="sbngeom:Target_Pole_Clock_Angle"> </xs:element>
+  <xs:element name="Target_Specification" type="sbngeom:Target_Specification"> </xs:element>
+
+  <xs:complexType name="Celestial_Coordinates">
+    <xs:annotation>
+      <xs:documentation> This class specifies right ascension and
+        declination in a specific reference frame and coordinate system.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="coordinate_system_origin" type="sbngeom:coordinate_system_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="right_ascension" type="sbngeom:right_ascension" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="declination" type="sbngeom:declination" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- <xs:assert test="sbngeom:coordinate_system_origin = ('spacecraft')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Clock_Angles">
+    <xs:annotation>
+      <xs:documentation> This class contains clock angles specifying
+        key directions in the associated image when it is displayed
+        correctly. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="celestial_north_clock_angle" type="sbngeom:celestial_north_clock_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="ecliptic_north_clock_angle" type="sbngeom:ecliptic_north_clock_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="sun_direction_clock_angle" type="sbngeom:sun_direction_clock_angle" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Target_Pole_Clock_Angle" type="sbngeom:Target_Pole_Clock_Angle" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Display_Direction">
+    <xs:annotation>
+      <xs:documentation> This class mimics the Display_Direction class
+        in the Display dictionary. It's here until I figure out how to
+        include that class directly. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="comment" type="sbngeom:comment" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="horizontal_display_axis" type="sbngeom:horizontal_display_axis" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="horizontal_display_direction" type="sbngeom:horizontal_display_direction" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="vertical_display_axis" type="sbngeom:vertical_display_axis" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="vertical_display_direction" type="sbngeom:vertical_display_direction" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:horizontal_display_direction = ('Left to Right', 'Right to Left')"/> -->
+    <!-- <xs:assert test="sbngeom:vertical_display_direction = ('Bottom to Top', 'Top to Bottom')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Distances">
+    <xs:annotation>
+      <xs:documentation> Various distance measurements relevant to the
+        product observation </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="spacecraft_geocentric_distance" type="sbngeom:spacecraft_geocentric_distance" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="spacecraft_heliocentric_distance" type="sbngeom:spacecraft_heliocentric_distance" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Spacecraft_to_Target_Distance" type="sbngeom:Spacecraft_to_Target_Distance" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Target_Geocentric_Distance" type="sbngeom:Target_Geocentric_Distance" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Target_Heliocentric_Distance" type="sbngeom:Target_Heliocentric_Distance" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Earth_Vectors">
+    <xs:annotation>
+      <xs:documentation> This class collects vectors that have their
+        origin at the center of mass of the Earth. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Earth_to_Target_Position_Vector_Cartesian" type="sbngeom:Earth_to_Target_Position_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Earth_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Earth_to_Target_Velocity_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Earth_to_Target_Position_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Position vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the earth to the center of mass of the
+        specified target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="x" type="sbngeom:x" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="y" type="sbngeom:y" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="z" type="sbngeom:z" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Earth_to_Target_Velocity_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Velocity vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the earth to the center of mass of the
+        specified target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vx" type="sbngeom:Vx" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vy" type="sbngeom:Vy" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vz" type="sbngeom:Vz" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Ecliptic_Coordinates">
+    <xs:annotation>
+      <xs:documentation> This class specifies ecliptic latitude and
+        longitude in a specified reference frame and coordinate system.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="coordinate_system_origin" type="sbngeom:coordinate_system_origin" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ecliptic_longitude" type="sbngeom:ecliptic_longitude" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="ecliptic_latitude" type="sbngeom:ecliptic_latitude" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- <xs:assert test="sbngeom:coordinate_system_origin = ('spacecraft')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Geometry">
+    <xs:annotation>
+      <xs:documentation>  This master class contains all the geometry dictionary classes and should be included directly in observational product levels in the "Mission_Area".  </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <!-- When creating a specific XML schema, remove the 'xs:any' element. You may insert any described nondigital object, one or more times. -->
+      <xs:any namespace="##other" processContents="strict" minOccurs="0" maxOccurs="unbounded" />
+      <!-- <xs:element name="Any_NonDigital_Object" type="pds:Any_NonDigital_Object" minOccurs="0" maxOccurs="unbounded"> </xs:element> -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Illumination_Angles">
+    <xs:annotation>
+      <xs:documentation> This class collects illumination angles
+        relevant to the specified target. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="solar_elongation" type="sbngeom:solar_elongation" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="phase_angle" type="sbngeom:phase_angle" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Image_Center_Coordinates">
+    <xs:annotation>
+      <xs:documentation> This class provides coordinates of the center
+        of the image in various reference frames and coordinate systems.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Celestial_Coordinates" type="sbngeom:Celestial_Coordinates" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Ecliptic_Coordinates" type="sbngeom:Ecliptic_Coordinates" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Image_Display_Geometry">
+    <xs:annotation>
+      <xs:documentation>  This class incorporates the Display Dictionary display class and includes orientation atttributes for key directions as they appear in the correctly displayed image.  </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <!-- When creating a specific XML schema, remove the 'xs:any' element. You may insert any described nondigital object, one or more times. -->
+      <xs:any namespace="##other" processContents="strict" minOccurs="0" maxOccurs="unbounded" />
+      <!-- <xs:element name="Any_NonDigital_Object" type="pds:Any_NonDigital_Object" minOccurs="0" maxOccurs="unbounded"> </xs:element> -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_Geometry">
+    <xs:annotation>
+      <xs:documentation>  This class combines a number of classes related to the geometry of a spacecraft-based observation.  </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <!-- When creating a specific XML schema, remove the 'xs:any' element. You may insert any described nondigital object, one or more times. -->
+      <xs:any namespace="##other" processContents="strict" minOccurs="0" maxOccurs="unbounded" />
+      <!-- <xs:element name="Any_NonDigital_Object" type="pds:Any_NonDigital_Object" minOccurs="0" maxOccurs="unbounded"> </xs:element> -->
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_Vectors">
+    <xs:annotation>
+      <xs:documentation> This class collects vectors with their origin
+        at the center of mass of the spacecraft. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Spacecraft_to_Target_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Target_Position_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Spacecraft_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Target_Velocity_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Spacecraft_to_Sun_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Sun_Position_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Spacecraft_to_Sun_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Sun_Velocity_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Spacecraft_to_Earth_Position_Vector_Cartesian" type="sbngeom:Spacecraft_to_Earth_Position_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Spacecraft_to_Earth_Velocity_Vector_Cartesian" type="sbngeom:Spacecraft_to_Earth_Velocity_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Earth_Position_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Position vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the
+        earth </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="x" type="sbngeom:x" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="y" type="sbngeom:y" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="z" type="sbngeom:z" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Earth_Velocity_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Velocity vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the
+        earth </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vx" type="sbngeom:Vx" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vy" type="sbngeom:Vy" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vz" type="sbngeom:Vz" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Sun_Position_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Position vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the sun
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="x" type="sbngeom:x" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="y" type="sbngeom:y" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="z" type="sbngeom:z" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Sun_Velocity_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Velocity vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the sun
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vx" type="sbngeom:Vx" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vy" type="sbngeom:Vy" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vz" type="sbngeom:Vz" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Target_Distance">
+    <xs:annotation>
+      <xs:documentation> Linear distance measured from the center of
+        the spacecraft to the center of the associated target
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="distance" nillable="true" type="sbngeom:distance" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Target_Position_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Position vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the
+        specified target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="x" type="sbngeom:x" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="y" type="sbngeom:y" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="z" type="sbngeom:z" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Spacecraft_to_Target_Velocity_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Velocity vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the spacecraft to the center of mass of the
+        specified target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vx" type="sbngeom:Vx" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vy" type="sbngeom:Vy" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vz" type="sbngeom:Vz" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Sun_Vectors">
+    <xs:annotation>
+      <xs:documentation> This class collects vectors with their origin
+        at the center of mass of the Sun. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Sun_to_Target_Position_Vector_Cartesian" type="sbngeom:Sun_to_Target_Position_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Sun_to_Target_Velocity_Vector_Cartesian" type="sbngeom:Sun_to_Target_Velocity_Vector_Cartesian" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Sun_to_Target_Position_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Position vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the sun to the center of mass of the specified
+        target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="x" type="sbngeom:x" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="y" type="sbngeom:y" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="z" type="sbngeom:z" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Sun_to_Target_Velocity_Vector_Cartesian">
+    <xs:annotation>
+      <xs:documentation> Velocity vector in Cartesian coordinates, in
+        the specified reference frame and coordinate system, from the
+        center of mass of the sun to the center of mass of the specified
+        target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="reference_frame_id" type="sbngeom:reference_frame_id" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="light_time_flag" type="sbngeom:light_time_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="stellar_aberration_flag" type="sbngeom:stellar_aberration_flag" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vx" type="sbngeom:Vx" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vy" type="sbngeom:Vy" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Vz" type="sbngeom:Vz" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="sbngeom:reference_frame_id = ('ICRF', 'J2000')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Target_Geocentric_Distance">
+    <xs:annotation>
+      <xs:documentation> Linear distance from the center of the earth
+        to the center of mass of the associated target
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="distance" nillable="true" type="sbngeom:distance" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Target_Heliocentric_Distance">
+    <xs:annotation>
+      <xs:documentation> Linear distance from the center of the sun to
+        the center of mass of the associated target </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="distance" nillable="true" type="sbngeom:distance" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Target_Pole_Clock_Angle">
+    <xs:annotation>
+      <xs:documentation> This class specifies a target and the clock
+        angle for the positive rotation pole of that target as seen in
+        the associated image, when it is properly displayed.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Target_Specification" type="sbngeom:Target_Specification" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="body_positive_pole_clock_angle" type="sbngeom:body_positive_pole_clock_angle" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Target_Specification">
+    <xs:annotation>
+      <xs:documentation> This class provides a number of ways to
+        identify a single, specific target. In general, any or all of
+        them may be used. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="target_name" type="sbngeom:target_name" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="target_NAIF_ID" type="sbngeom:target_NAIF_ID" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="target_LID" type="sbngeom:target_LID" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:annotation>
+      <xs:documentation>This section contains the simpleTypes that provide more constraints
+        than those at the base data type level. The simpleTypes defined here build on the base data
+        types. This is another component of the common dictionary and therefore falls within the
+        pds namespace.
+      </xs:documentation>
+    </xs:annotation>
+
+  <xs:simpleType name="Vx_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Velocity -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Vx">
+    <xs:annotation>
+      <xs:documentation> X component of the associated velocity vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:Vx_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="Vy_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Velocity -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Vy">
+    <xs:annotation>
+      <xs:documentation> Y component of the associated velocity vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:Vy_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="Vz_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Velocity -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Vz">
+    <xs:annotation>
+      <xs:documentation> Z component of the associated velocity vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:Vz_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="body_positive_pole_clock_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="body_positive_pole_clock_angle">
+    <xs:annotation>
+      <xs:documentation> In the displayed image, the angle of the
+        direction of the positive rotation pole of the associated body,
+        measured at the center of the image, clockwise from the positive
+        vertical </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:body_positive_pole_clock_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="celestial_north_clock_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="celestial_north_clock_angle">
+    <xs:annotation>
+      <xs:documentation> In the displayed image, the angle of the
+        direction of the north celestial pole, measured at the center of
+        the image, clockwise from the positive vertical
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:celestial_north_clock_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="comment">
+    <xs:annotation>
+      <xs:documentation> Free-format text for miscellaneous comments to
+        the end user about the associated attributes or their values.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="coordinate_system_origin">
+    <xs:annotation>
+      <xs:documentation> One of a set of predefined strings that
+        indicates the origin of a coordinate system used for the
+        association coordinates </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="declination_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="declination">
+    <xs:annotation>
+      <xs:documentation> Declination in the associated celestrial
+        reference frame and coordinate system </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:declination_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="distance_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="distance">
+    <xs:annotation>
+      <xs:documentation> Absolute value of the linear distance between
+        two associated points </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:distance_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <xs:attribute name="nilReason" type="pds:nil_reason" use="optional" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ecliptic_latitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-90.0"/>
+     <xs:maxInclusive value="90.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ecliptic_latitude">
+    <xs:annotation>
+      <xs:documentation> Ecliptic latitude in the associated reference
+        frame and coordinate system </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:ecliptic_latitude_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ecliptic_longitude_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ecliptic_longitude">
+    <xs:annotation>
+      <xs:documentation> Ecliptic longitude in the associated reference
+        frame and coordinate system </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:ecliptic_longitude_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ecliptic_north_clock_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ecliptic_north_clock_angle">
+    <xs:annotation>
+      <xs:documentation> In the displayed image, the angle of the
+        direction of the north ecliptic pole, measured at the center of
+        the image, clockwise from the positive vertical
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:ecliptic_north_clock_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="horizontal_display_axis">
+    <xs:annotation>
+      <xs:documentation> The horizontal_display_axis attribute
+        identifies, by name, the axis of an Array (or Array subclass)
+        that is intended to be displayed in the horizontal or "sample"
+        dimension on a display device. The value of this attribute must
+        match the value of one, and only one, axis_name attribute in an
+        Axis_Array class of the associated Array. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="horizontal_display_direction">
+    <xs:annotation>
+      <xs:documentation> The horizontal_display_direction attribute
+        specifies the direction across the screen of a display device
+        that data along the horizontal axis of an Array is supposed to be
+        displayed. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="light_time_flag">
+    <xs:annotation>
+      <xs:documentation> Flag indicating whether a light travel time
+        correction has been applied to the associated values. A value of
+        "true" indicates it has been applied; "false" indicates no
+        correction has been applied. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Boolean">
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="phase_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="phase_angle">
+    <xs:annotation>
+      <xs:documentation> Angle, measured at the target, from the
+        position of the source of illumination to the line of sight
+        [Note: This definition is not sufficiently specific. It does not
+        include direction of measurement or range of valid values. And
+        the primary to secondary indication is a guess.]
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:phase_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="reference_frame_id">
+    <xs:annotation>
+      <xs:documentation> An abbreviation for the reference frame for
+        corresponding vector components </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="right_ascension_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="right_ascension">
+    <xs:annotation>
+      <xs:documentation> Right ascension in the associated celestial
+        reference frame and coordinate system </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:right_ascension_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="solar_elongation_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="-180.0"/>
+     <xs:maxInclusive value="180.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="solar_elongation">
+    <xs:annotation>
+      <xs:documentation> The angle between the line of sight to the
+        center of the specified target in the associated image and the
+        direction of the sun as seen by the observer [ Note: This
+        definition is not sufficiently specific. ] </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:solar_elongation_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="spacecraft_geocentric_distance_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="spacecraft_geocentric_distance">
+    <xs:annotation>
+      <xs:documentation> Distance from the center of the Earth to the
+        center of mass of the spacecraft </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:spacecraft_geocentric_distance_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="spacecraft_heliocentric_distance_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="spacecraft_heliocentric_distance">
+    <xs:annotation>
+      <xs:documentation> Distance from the center of the sun to the
+        center of mass of the spacecraft </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:spacecraft_heliocentric_distance_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="stellar_aberration_flag">
+    <xs:annotation>
+      <xs:documentation> This flag indicates whether a correction for
+        stellar aberration has been applied to the associated
+        coordinates. A value of "true" indicates that the correction has
+        been applied; "false" indicates no correction for aberration has
+        beem applied. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Boolean">
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sun_direction_clock_angle_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <xs:minInclusive value="0.0"/>
+     <xs:maxInclusive value="360.0"/>
+     <!-- unit_of_measure_type=Units_of_Angle -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="sun_direction_clock_angle">
+    <xs:annotation>
+      <xs:documentation> In the displayed image, the angle of the
+        direction vector to the sun projected onto the plane of the
+        image, measured at the center of the image, clockwise from the
+        positive vertical </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:sun_direction_clock_angle_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="target_LID">
+    <xs:annotation>
+      <xs:documentation> The logical identifier (LID) in the PDS4
+        repository of a context object describing the target
+        </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_LID">
+  <!-- format="urn:nasa:pds:xxxx" -->
+     <xs:minLength value="14"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="target_NAIF_ID">
+    <xs:annotation>
+      <xs:documentation> The NAIF SPK-ID of the target body, if any
+        </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Integer">
+     <xs:minInclusive value="0"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="target_name">
+    <xs:annotation>
+      <xs:documentation> The name of the target of interest. For
+        planets, minor planets, and similar observational targets, this
+        should be a name string that includes at least two forms of
+        identification whenever possible, to help with disambiguation in
+        the archive indices. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="2"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="vertical_display_axis">
+    <xs:annotation>
+      <xs:documentation> The vertical_display_axis attribute
+        identifies, by name, the axis of an Array (or Array subclass)
+        that is intended to be displayed in the vertical or "line"
+        dimension on a display device. The value of this attribute must
+        match the value of one, and only one, axis_name attribute in an
+        Axis_Array class of the associated Array. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="vertical_display_direction">
+    <xs:annotation>
+      <xs:documentation> The vertical_display_direction attribute
+        specifies the direction along the screen of a display device that
+        data along the vertical axis of an Array is supposed to be
+        displayed. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="x_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="x">
+    <xs:annotation>
+      <xs:documentation> X-component of a Cartesian distance vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:x_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="y_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="y">
+    <xs:annotation>
+      <xs:documentation> Y component of a Cartesion distance vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:y_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="z_WO_Units">
+    <xs:restriction base="pds:ASCII_Real">
+     <!-- unit_of_measure_type=Units_of_Length -->
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="z">
+    <xs:annotation>
+      <xs:documentation> Z component of a Cartesion distance vector
+        </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="sbngeom:z_WO_Units">
+        <xs:attribute name="unit" type="pds:ASCII_Short_String_Collapsed" use="required" />
+        <!-- specified_unit_id=TBD_default_unit_id -->
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

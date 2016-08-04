@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- PDS4 XML/Schema for Name Space Id:alt  Version:0.0.0.1 - Thu Apr 02 14:29:23 PDT 2015 -->
+  <!-- Generated from the PDS4 Information Model Version 1.4.0.0 - System Build 5b -->
+  <!-- *** This PDS4 product schema is an operational deliverable. *** -->
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://pds.nasa.gov/pds4/alt/v0"
+    xmlns:alt="http://pds.nasa.gov/pds4/alt/v0"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="0.0.0.1">
+ 
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1400.xsd"/>
+ 
+  <xs:annotation>
+    <xs:documentation>The Alternate dictionary contains classes that
+      describe sets of data values which are interchangeable with each
+      other.</xs:documentation>
+  </xs:annotation>
+ 
+  <xs:element name="Alternate_Values" type="alt:Alternate_Values"> </xs:element>
+
+  <xs:complexType name="Alternate_Values">
+    <xs:annotation>
+      <xs:documentation>The Alternate_Values describes a direct
+        one-to-one relationship of arrays of data values. Each data
+        array must have the same dimensionality and number of
+        elements.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="pds:name" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="local_identifier" type="pds:local_identifier" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="description" type="pds:description" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Data_Values" type="alt:Data_Values" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Data_Values">
+    <xs:annotation>
+      <xs:documentation>The Data_Values class describes the values
+        stored in a data array.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Local_Internal_Reference" type="alt:Local_Internal_Reference" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Local_Internal_Reference">
+    <xs:annotation>
+      <xs:documentation>The Local_Internal_Reference class is used to
+        cross-reference other classes or objects within the
+        product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="local_identifier_reference" type="pds:local_identifier_reference" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="local_reference_type" type="alt:local_reference_type" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="comment" type="pds:comment" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="alt:local_reference_type = ('data_values_to_data_values')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+    <xs:annotation>
+      <xs:documentation>This section contains the simpleTypes that provide more constraints
+        than those at the base data type level. The simpleTypes defined here build on the base data
+        types. This is another component of the common dictionary and therefore falls within the
+        pds namespace.
+      </xs:documentation>
+    </xs:annotation>
+
+  <xs:simpleType name="local_reference_type">
+    <xs:annotation>
+      <xs:documentation>The local_reference_type attribute provides the
+        name of an association between an entity identified by a
+        local_identifier_reference and another corresponding entity
+        identified by a local_identifier</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

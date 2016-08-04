@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!-- PDS4 XML/Schema for Name Space Id:multi  Version:0.0.0.1 - Mon Mar 02 14:44:43 PST 2015 -->
+  <!-- Generated from the PDS4 Information Model Version 1.4.0.0 - System Build 5b -->
+  <!-- *** This PDS4 product schema is an operational deliverable. *** -->
+  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://pds.nasa.gov/pds4/multi/v0"
+    xmlns:multi="http://pds.nasa.gov/pds4/multi/v0"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="0.0.0.1">
+ 
+    <xs:import namespace="http://pds.nasa.gov/pds4/pds/v1" schemaLocation="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1301.xsd"/>
+ 
+  <xs:annotation>
+    <xs:documentation>The Multi dictionary contains classes that
+      describe the composition of multidimensional data consisting of
+      Array (and Array subclass) data objects.</xs:documentation>
+  </xs:annotation>
+ 
+  <xs:element name="Axis_Values" type="multi:Axis_Values"> </xs:element>
+  <xs:element name="Face_Values" type="multi:Face_Values"> </xs:element>
+  <xs:element name="Local_Internal_Reference" type="multi:Local_Internal_Reference"> </xs:element>
+  <xs:element name="Multidimensional_Observation" type="multi:Multidimensional_Observation"> </xs:element>
+  <xs:element name="Primary_Values" type="multi:Primary_Values"> </xs:element>
+
+  <xs:complexType name="Axis_Values">
+    <xs:annotation>
+      <xs:documentation>The Axis_Values class describes the values
+        which are associated with the elements along an axis of a
+        observation data array.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Local_Internal_Reference" type="multi:Local_Internal_Reference" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="axis_number" type="multi:axis_number" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Face_Values">
+    <xs:annotation>
+      <xs:documentation>The Face_Values class describes the values
+        which are associated with the elements on the face of a
+        observation data array.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Local_Internal_Reference" type="multi:Local_Internal_Reference" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="face_plane" type="multi:face_plane" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Local_Internal_Reference">
+    <xs:annotation>
+      <xs:documentation>The Local_Internal_Reference class is used to
+        cross-reference other classes or objects within the
+        product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="local_identifier_reference" type="multi:local_identifier_reference" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="local_reference_type" type="multi:local_reference_type" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="comment" type="multi:comment" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+    <!-- Begin assert statements for schematron - Enumerated Values -->
+    <!-- <xs:assert test="multi:local_reference_type = ('multidimensional_observation_to_axis_values', 'multidimensional_observation_to_face_values', 'multidimensional_observation_to_observation_values')"/> -->
+    <!-- End assert statements for schematron - Enumerated Values -->
+  </xs:complexType>
+
+  <xs:complexType name="Multidimensional_Observation">
+    <xs:annotation>
+      <xs:documentation>The Multidimensional_Observation describes the
+        data of a observation and the values which are associated with
+        the elements along an axis or on the face of a observation data
+        array.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="multi:name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="description" type="multi:description" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Primary_Values" type="multi:Primary_Values" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Axis_Values" type="multi:Axis_Values" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="Face_Values" type="multi:Face_Values" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Primary_Values">
+    <xs:annotation>
+      <xs:documentation>The Primary_Values class describes the values
+        which are the primary observation data array.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Local_Internal_Reference" type="multi:Local_Internal_Reference" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:annotation>
+      <xs:documentation>This section contains the simpleTypes that provide more constraints
+        than those at the base data type level. The simpleTypes defined here build on the base data
+        types. This is another component of the common dictionary and therefore falls within the
+        pds namespace.
+      </xs:documentation>
+    </xs:annotation>
+
+  <xs:simpleType name="axis_number">
+    <xs:annotation>
+      <xs:documentation>The index of the axis. The first axis is
+        numbered as 1.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Integer" />
+  </xs:simpleType>
+
+  <xs:simpleType name="comment">
+    <xs:annotation>
+      <xs:documentation>The comment attribute is a character string
+        expressing one or more remarks or thoughts relevant to the
+        object.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="description">
+    <xs:annotation>
+      <xs:documentation>The description attribute provides a statement,
+        picture in words, or account that describes or is otherwise
+        relevant to the object.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:UTF8_Text_Preserved">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="face_plane">
+    <xs:annotation>
+      <xs:documentation>The axis number pair that defines the face
+        plane.</xs:documentation>
+    </xs:annotation>
+	<xs:list itemType="pds:ASCII_Integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="local_identifier_reference">
+    <xs:annotation>
+      <xs:documentation>The local_identifier_reference attribute
+        provides the local_identifier of the digital object described by
+        the referencing class. Note that a local_identifier attribute,
+        with the same value as this local_identifier_reference, must be
+        present within the label.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="local_reference_type">
+    <xs:annotation>
+      <xs:documentation>The local_reference_type attribute provides the
+        name of an association between an entity identified by a
+        local_identifier_reference and another corresponding entity
+        identified by a local_identifier</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="name">
+    <xs:annotation>
+      <xs:documentation>The name attribute provides a word or
+        combination of words by which the object is
+        known.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:UTF8_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
