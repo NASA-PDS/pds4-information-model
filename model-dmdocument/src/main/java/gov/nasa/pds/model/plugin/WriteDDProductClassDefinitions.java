@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -47,7 +47,6 @@ class WriteDDProductClassDefinitions extends Object{
 //		prDDReg.println("        <version_id>" + InfoModel.identifier_version_id + "</version_id>");
 		prDDReg.println("        <version_id>" + lSchemaFileDefn.identifier_version_id + "</version_id>");
 		prDDReg.println("        <title>" + lClass.title + "</title>");
-//		prDDReg.println("        <information_model_version>" + InfoModel.ont_version_id + "</information_model_version>");
 		prDDReg.println("        <information_model_version>" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</information_model_version>");
 		prDDReg.println("        <product_class>Product_Class_Definition</product_class>");
 		prDDReg.println("    </Identification_Area>");

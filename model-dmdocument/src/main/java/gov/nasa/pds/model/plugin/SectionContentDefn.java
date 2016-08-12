@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
 
 public class SectionContentDefn extends Object {

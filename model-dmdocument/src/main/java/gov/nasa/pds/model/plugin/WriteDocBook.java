@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -839,12 +839,10 @@ class WriteDocBook extends Object {
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
 		prDocBook.println("        <title>PDS4 Data Dictionary</title>");
-//		prDocBook.println("        <subtitle>Abridged - Version " + InfoModel.ont_version_id + "</subtitle>");
 		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <author>");
 		prDocBook.println("            <orgname>PDS4 Data Design Working Group</orgname>");
 		prDocBook.println("        </author>");
-//		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + InfoModel.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");

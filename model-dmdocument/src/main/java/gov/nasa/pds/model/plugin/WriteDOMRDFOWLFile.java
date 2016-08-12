@@ -3,22 +3,40 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Writes the PDS4 DD content to a RDF/OWL file 
+ * Writes the PDS4 DD content to a RDF/OWL file using DOM
  *   
  */
 
-class WriteRDFOWLFile extends Object{
-	TreeMap <String, AttrDefn> lRefAttrArr = new TreeMap <String, AttrDefn>();
+class WriteDOMRDFOWLFile extends Object{
+	ArrayList <DOMAttr> gDOMAttrArr = new ArrayList <DOMAttr> ();
+	ArrayList <String> gClassIdArr = new ArrayList <String> ();
+	ArrayList <String> gAttrIdArr = new ArrayList <String> ();
+	ArrayList <String> gPermValIdArr = new ArrayList <String> ();
+	ArrayList <String> gDataTypeIdArr = new ArrayList <String> ();
+	ArrayList <String> gUnitIdArr = new ArrayList <String> ();
 	ArrayList <String> adminRecUsedArr, adminRecTitleArr;
+//	ArrayList <String> topLevelClassArr;
 	PrintWriter prDDPins;
 
-	public WriteRDFOWLFile () {
+	public WriteDOMRDFOWLFile () {
+/*		topLevelClassArr = new ArrayList <String> ();
+		topLevelClassArr.add("Data_Object");
+		topLevelClassArr.add("Tagged_Digital_Object");
+		topLevelClassArr.add("Tagged_Digital_Child");
+		topLevelClassArr.add("Tagged_NonDigital_Object");
+		topLevelClassArr.add("Tagged_NonDigital_Child");
+		topLevelClassArr.add("Data_Type");
+		topLevelClassArr.add("Unit_Of_Measure");
+		topLevelClassArr.add("Product");
+		topLevelClassArr.add("Product_Components");	*/
 		return;
 	}
 
 	// write the RDF/OWL file
 	public void writeOWLFile (String lFileName) throws java.io.IOException {
 		prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+//		System.out.println("debug WriteDOMRDFOWLFile lFileName:" + lFileName);
+
 		printPDDPHdr();
 		printPDDPBody ();
 		printPDDPFtr();
@@ -27,44 +45,124 @@ class WriteRDFOWLFile extends Object{
 	
 	// Print the RDF/OWL Header
 	public void printPDDPHdr () {
-//		prDDPins.println("@prefix skos: <http://www.w3.org/2004/02/skos/core#> .");
-//		prDDPins.println("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .");
-//		prDDPins.println("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .");
-//		prDDPins.println("@prefix owl: <http://www.w3.org/2002/07/owl#> .");
-//		prDDPins.println("@prefix dct: <http://purl.org/dc/terms/> .");
-//		prDDPins.println("@prefix foaf: <http://xmlns.com/foaf/0.1/> .");
-//		prDDPins.println("@prefix pds: <http://pds.jpl.nasa.gov/pds4/schema/develop/pds/skos/> .");
-		
+		prDDPins.println("<?xml version=\"1.0\"?>");
 		prDDPins.println("<rdf:RDF");
+		prDDPins.println("   xmlns=\"http://pds.nasa.gov/ontologies/1700/pds/\"");
+		prDDPins.println("   xml:base=\"http://pds.nasa.gov/ontologies/1700/pds/\"");
 		prDDPins.println("   xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"");
 		prDDPins.println("   xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"");
 		prDDPins.println("   xmlns:owl=\"http://www.w3.org/2002/07/owl#\"");
+
+		prDDPins.println("   xmlns:xml=\"http://www.w3.org/XML/1998/namespace\"");
+		prDDPins.println("   xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"");
+		prDDPins.println("   xmlns:skos=\"http://www.w3.org/2004/02/skos/core#\"");
+		prDDPins.println("   xmlns:foaf=\"http://xmlns.com/foaf/0.1/\"");
+		
 		prDDPins.println("   xmlns:dc=\"http://purl.org/dc/elements/1.1/\">");
-		prDDPins.println("   xmlns:pds=\"http://pds.nasa.gov/pds4/pds#\">");
+//		prDDPins.println("   xmlns:pds=\"http://pds.nasa.gov/pds4/pds\">");
 		prDDPins.println(" ");
-		prDDPins.println("   <owl:Ontology rdf:about=\"http://pds.nasa.gov/pds4/pds\">");
-//		prDDPins.println("      <dc:title>PDS4 Information Model V1.5.0.0</dc:title>");
-//		prDDPins.println("      <dc:description>The ontology for the PDS4 Information Model V1.5.0.0</dc:description>");
+		prDDPins.println("   <owl:Ontology rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/\">");
 		prDDPins.println("      <dc:title>PDS4 Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</dc:title>");
 		prDDPins.println("      <dc:description>The ontology for the PDS4 Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</dc:description>");
 		prDDPins.println("   </owl:Ontology>");
 		prDDPins.println(" ");
-	}
-	
-	// Format the Boolean String for RDF/OWL
-	public String formBooleanValue(boolean lBoolean) {
-		String rString = "" + lBoolean;
-		return formValue(rString);
-	}
+		prDDPins.println(" ");		
+		
+		prDDPins.println("   <!-- ");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("   //");
+		prDDPins.println("   // Object Properties");
+		prDDPins.println("   //");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("      -->");
+		prDDPins.println(" ");
+		prDDPins.println(" ");
+	    
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_a -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\">");
+		prDDPins.println("      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#TransitiveProperty\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");	    
+		prDDPins.println(" ");
 
-	// Format the String for RDF/OWL
-	public String formValue(String lString) {
-		String rString = lString;
-		if (rString == null) rString = "null";
-		if (rString.indexOf("TBD") == 0) rString = "null";
-		rString = InfoModel.escapeJSONChar(rString);
-		rString = "\"" + rString + "\"";
-		return rString;
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_attribute -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_attribute\">");
+		prDDPins.println("      <rdfs:subPropertyOf rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");		
+
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_permissible_value -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_permissible_value\">");
+		prDDPins.println("      <rdfs:subPropertyOf rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");		
+
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_class -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_class\">");
+		prDDPins.println("      <rdfs:subPropertyOf rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");		
+
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_data_type -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_data_type\">");
+		prDDPins.println("      <rdfs:subPropertyOf rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");		
+
+		prDDPins.println("   <!-- http://pds.nasa.gov/ontologies/1700/pds/has_measurement_unit -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:ObjectProperty rdf:about=\"http://pds.nasa.gov/ontologies/1700/pds/has_measurement_unit\">");
+		prDDPins.println("      <rdfs:subPropertyOf rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_a\"/>");
+		prDDPins.println("   </owl:ObjectProperty>");
+		prDDPins.println(" ");	
+		
+		prDDPins.println("   <!-- PDS4 Disjoints: http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.___Top Level___ -->");
+		prDDPins.println("   <rdf:Description>");
+		prDDPins.println("      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#AllDisjointClasses\"/>");
+		prDDPins.println("      <owl:members rdf:parseType=\"Collection\">");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.all.USER\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Data_Object\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Data_Type\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Product\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Product_Components\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Tagged_Digital_Child\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Tagged_Digital_Object\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Tagged_NonDigital_Child\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Tagged_NonDigital_Object\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Unit_Of_Measure\"/>");
+		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Attribute\"/>");
+// 777		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Permissible_Value\"/>");
+		prDDPins.println("      </owl:members>");
+		prDDPins.println("   </rdf:Description>");
+		
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Class: http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Attribute" + " -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Attribute" + "\">");
+		prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.all.USER" + "\"/>");	
+		prDDPins.println("      <dc:title>" + "Attribute" + "</dc:title>");
+		prDDPins.println("      <dc:description>" + "The Attribute class is the parent of all PDS4 attributes." + "</dc:description>");
+		prDDPins.println("      <rdfs:label>"  + "0001_NASA_PDS_1.pds.Attribute" +  "</rdfs:label>");
+		prDDPins.println("      <rdfs:comment>The definition of class " + "0001_NASA_PDS_1.pds.Attribute" + ".</rdfs:comment>");
+		prDDPins.println("   </owl:Class>");		
+		
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Class: http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Permissible_Value" + " -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Permissible_Value" + "\">");
+		prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.all.USER" + "\"/>");	
+		prDDPins.println("      <dc:title>" + "Permissible_Value" + "</dc:title>");
+		prDDPins.println("      <dc:description>" + "The Permissible_Value class is the parent of all PDS4 Permissible Values." + "</dc:description>");
+		prDDPins.println("      <rdfs:label>"  + "0001_NASA_PDS_1.pds.Permissible_Value" +  "</rdfs:label>");
+		prDDPins.println("      <rdfs:comment>The definition of class " + "0001_NASA_PDS_1.pds.Permissible_Value" + ".</rdfs:comment>");
+		prDDPins.println("   </owl:Class>");		
 	}
 
 	// Print the RDF/OWL Footer
@@ -74,68 +172,287 @@ class WriteRDFOWLFile extends Object{
 	
 //	print the RDF/OWL body
 	public  void printPDDPBody () {
-		printClass (prDDPins);
-//		printAttr (prDDPins);
+		prDDPins.println(" ");
+		prDDPins.println("   <!-- ");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("   //");
+		prDDPins.println("   // Object Classes");
+		prDDPins.println("   //");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("      -->");
+		printClasses (prDDPins);
+
+		prDDPins.println(" ");
+		prDDPins.println("   <!-- ");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("   //");
+		prDDPins.println("   // Object Attributes");
+		prDDPins.println("   //");
+		prDDPins.println("   ///////////////////////////////////////////////////////////////////////////////////////");
+		prDDPins.println("      -->");
+
+		printAttributes (prDDPins);	
+		printDisjoints ("Attributes", gAttrIdArr, prDDPins);
+// 777		printDisjoints ("Permanent Values", gPermValIdArr, prDDPins);
+		
+		printDataTypes (prDDPins);
+		printUnits (prDDPins);
 	}
 	
-	// Print the classes
-	public  void printClass (PrintWriter prDDPins) {
-		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
-		for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.title.indexOf("PDS3") > -1) continue;
-			if (lClass.isDataType) continue;
-			if (lClass.isUnitOfMeasure) continue;
-			if (lClass.isUSERClass) continue;
-			if (lClass.title.compareTo("Product_Components") == 0) continue;
-			if (! (lClass.nameSpaceIdNC.compareTo("pds") == 0 && lClass.steward.compareTo("pds") == 0)) continue;
-			
-			prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lClass.title + "\">");
-			
-			// write the superclass
-			if (! (lClass.subClassOfTitle.indexOf("TBD") == 0 || lClass.subClassOfTitle.indexOf("TNDO") == 0))  
-				prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lClass.subClassOfTitle + "\"/>");	
-			
-			prDDPins.println("      <rdfs:label>"  + lClass.title +  "</rdfs:label>");
-			prDDPins.println("      <rdfs:comment>The definition of class " + lClass.title + ".</rdfs:comment>");
-			prDDPins.println("   </owl:Class>");
-			prDDPins.println(" ");
-			
-/*
-			// write the superclass
-			if (! (lClass.subClassOfTitle.indexOf("TBD") == 0 || lClass.subClassOfTitle.indexOf("TNDO") == 0))  
-				prDDPins.println("  " + "skos:broader" + " " +  "pds:" + lClass.subClassOfTitle + ";");	
-			
-			// write the subclasses
-			for (Iterator<PDSObjDefn> j = lClass.subClass.iterator(); j.hasNext();) {
-				PDSObjDefn lSubClass = (PDSObjDefn) j.next();
-				if (lSubClass.title.compareTo("Product_Components") == 0) continue;
-				prDDPins.println("  " + "skos:narrower" + " " +  "pds:" + lSubClass.title + ";");	
-			}
-			
-			// write and save the member attributes
-			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
-				lRefAttrArr.put(lAttr.attrNameSpaceId + lAttr.title, lAttr);
-				prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lAttr.title + ";");
-			}
-			
-			// write and save the member class
-			for (Iterator<AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
-				if (lAttr.title.compareTo("data_object") == 0) continue;
-				for (Iterator<PDSObjDefn> k = lAttr.valClassArr.iterator(); k.hasNext();) {
-					PDSObjDefn lCompClass = (PDSObjDefn) k.next();
-					prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lCompClass.title + ";");
-				}
-			}
-*/
+	// write the PDS4 classes as OWL classes 
+	public  void printClasses (PrintWriter prDDPins) {
+		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassIdMap.values());
+		for (Iterator<DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lDOMClass = (DOMClass) i.next();	
+//			System.out.println("debug WriteDOMRDFOWLFile - printClasses 1 - lDOMClass.identifier:" + lDOMClass.identifier + " - lDOMClass.nameSpaceIdNC:" + lDOMClass.nameSpaceIdNC + " - lDOMClass.steward:" + lDOMClass.steward);
+			if (lDOMClass.identifier.indexOf("PDS3") > -1) continue;
+//			if (lDOMClass.registrationStatus.compareTo("Retired") == 0) continue;
+//			if (lDOMClass.isDataType) continue;
+//			if (lDOMClass.isUnitOfMeasure) continue;
+//			if (lDOMClass.isUSERClass) continue;
+//			if (lDOMClass.title.compareTo("Product_Components") == 0) continue;
+			if (! ((lDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass.steward.compareTo("pds") == 0 || lDOMClass.steward.compareTo("ops") == 0))) continue;			
+//			System.out.println("debug WriteDOMRDFOWLFile - printClasses 2 - FILTERED - lDOMClass.identifier:" + lDOMClass.identifier + " - lDOMClass.nameSpaceIdNC:" + lDOMClass.nameSpaceIdNC + " - lDOMClass.steward:" + lDOMClass.steward);
+			printClass (lDOMClass, prDDPins);
 		}
+	}
+	
+	// write a single PDS4 classes as an OWL class 
+	public  void printClass (DOMClass lDOMClass, PrintWriter prDDPins) {
+//		System.out.println("debug WriteDOMRDFOWLFile - printClass- lDOMClass.identifier:" + lDOMClass.identifier);
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Class: http://pds.nasa.gov/pds4/pds#" + lDOMClass.identifier + " -->");
+		prDDPins.println(" ");
+
+		// write PDS4 class as an owl:Class definition
+		prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lDOMClass.identifier + "\">");
+		
+		// write the superclass as a property  
+		if (lDOMClass.subClassOf != null && lDOMClass.subClassOf.title.indexOf("TBD") != 0)  
+			prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMClass.subClassOf.identifier + "\"/>");	
+		
+		prDDPins.println("      <dc:title>" + lDOMClass.title + "</dc:title>");
+		prDDPins.println("      <dc:description>" + formValue(lDOMClass.definition) + "</dc:description>");
+		
+		prDDPins.println("      <rdfs:label>"  + lDOMClass.identifier +  "</rdfs:label>");
+		prDDPins.println("      <rdfs:comment>The definition of class " + lDOMClass.identifier + ".</rdfs:comment>");
+		
+		// write the PDS4 attributes as "has_attribute" properties on PDS4 classes (assume PDS4 attributes are defined as classes.  
+		for (Iterator<DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) j.next();
+			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
+				DOMAttr lDOMAttr = (DOMAttr) k.next();
+				gDOMAttrArr.add(lDOMAttr);
+				gAttrIdArr.add(lDOMAttr.identifier);
+				prDDPins.println("      <rdfs:subClassOf>");
+				prDDPins.println("         <owl:Restriction>");
+				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_attribute\"/>");
+				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMAttr.identifier + "\"/>");
+				prDDPins.println("         </owl:Restriction>");
+				prDDPins.println("      </rdfs:subClassOf>");
+			}
+		}
+		
+		// write the PDS4 associations as "has_class" properties on PDS4 classes  
+		for (Iterator<DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) j.next();
+			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
+				DOMClass lHasDOMClass = (DOMClass) k.next();
+				if (lHasDOMClass.identifier.indexOf("PDS3") > -1) continue;
+				if (! ((lHasDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lHasDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lHasDOMClass.steward.compareTo("pds") == 0 || lHasDOMClass.steward.compareTo("ops") == 0))) continue;			
+				prDDPins.println("      <rdfs:subClassOf>");
+				prDDPins.println("         <owl:Restriction>");
+				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_class\"/>");
+				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lHasDOMClass.identifier + "\"/>");
+				prDDPins.println("         </owl:Restriction>");
+				prDDPins.println("      </rdfs:subClassOf>");
+			}
+		}
+		prDDPins.println("   </owl:Class>");
+
+		// write the disjoints (subclasses) for a single class
+		gClassIdArr = new ArrayList <String> ();
+		if (lDOMClass.subClassHierArr.size() > 1) {
+			for (Iterator<DOMClass> i = lDOMClass.subClassHierArr.iterator(); i.hasNext();) {
+				DOMClass lDisjointDOMClass = (DOMClass) i.next();
+				if (lDisjointDOMClass.identifier.indexOf("PDS3") > -1) continue;
+				if (! ((lDisjointDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lDisjointDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDisjointDOMClass.steward.compareTo("pds") == 0 || lDisjointDOMClass.steward.compareTo("ops") == 0))) continue;			
+				gClassIdArr.add(lDisjointDOMClass.identifier);
+			}
+			printDisjoints (lDOMClass.identifier, gClassIdArr, prDDPins);
+		}
+	}
+	
+	// write the PDS4 attributes as OWL classes 
+	public  void printAttributes (PrintWriter prDDPins) {
+		for (Iterator<DOMAttr> i = gDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
+//			System.out.println("debug WriteDOMRDFOWLFile - printAtributes 1 - lDOMAttr.identifier:" + lDOMAttr.identifier + " - lDOMAttr.nameSpaceIdNC:" + lDOMAttr.nameSpaceIdNC + " - lDOMAttr.steward:" + lDOMAttr.steward);
+//			if (! ((lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 || lDOMAttr.nameSpaceIdNC.compareTo("all") == 0) && (lDOMAttr.steward.compareTo("pds") == 0 || lDOMAttr.steward.compareTo("ops") == 0))) continue;			
+			if (lDOMAttr.title.indexOf("ANAME") > -1) continue;
+			printAttr (lDOMAttr, prDDPins);
+			gAttrIdArr.add(lDOMAttr.identifier);
+		}
+	}
+
+	// write a single PDS4 attribute as an OWL class 
+	public  void printAttr (DOMAttr lDOMAttr, PrintWriter prDDPins) {
+		ArrayList <DOMPermValDefn> lDOMClassAttrPermValArr = new ArrayList <DOMPermValDefn> ();
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Attribute: http://pds.nasa.gov/pds4/pds#" + lDOMAttr.identifier + " -->");
+		prDDPins.println(" ");
+
+		// write statement to define PDS4 attribute as an owl:Class definition
+		prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lDOMAttr.identifier + "\">");
+		prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Attribute" + "\"/>");
+		
+		prDDPins.println("      <dc:title>" + lDOMAttr.title + "</dc:title>");
+		prDDPins.println("      <dc:description>" + formValue(lDOMAttr.definition) + "</dc:description>");
+		
+		prDDPins.println("      <rdfs:label>"  + lDOMAttr.identifier +  "</rdfs:label>");
+		prDDPins.println("      <rdfs:comment>The definition of class " + lDOMAttr.identifier + ".</rdfs:comment>");
+				
+		// write the permissible values as properties
+		for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			for (Iterator<ISOClassOAIS11179> j = lDOMProp.hasDOMClass.iterator(); j.hasNext();) {
+				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
+//				System.out.println("debug WriteDOMRDFOWLFile - permissible values 1 - lDOMPermValDefn.identifier:" + lDOMPermValDefn.identifier + " - lDOMPermValDefn.nameSpaceIdNC:" + lDOMPermValDefn.nameSpaceIdNC + " - lDOMPermValDefn.steward:" + lDOMPermValDefn.steward);
+				if (lDOMPermValDefn.identifier.indexOf("PDS3") > -1) {
+					if (lDOMPermValDefn.identifier.indexOf("Product") > -1) continue;
+				}
+				if (! ((lDOMPermValDefn.nameSpaceIdNC.compareTo("pds") == 0 || lDOMPermValDefn.nameSpaceIdNC.compareTo("all") == 0) && (lDOMPermValDefn.steward.compareTo("pds") == 0 || lDOMPermValDefn.steward.compareTo("ops") == 0))) continue;											
+//				System.out.println("debug WriteDOMRDFOWLFile - permissible values 2 - FILTERED - lDOMPermValDefn.identifier:" + lDOMPermValDefn.identifier + " - lDOMPermValDefn.nameSpaceIdNC:" + lDOMPermValDefn.nameSpaceIdNC + " - lDOMPermValDefn.steward:" + lDOMPermValDefn.steward);
+// 777				prDDPins.println("      <rdfs:subClassOf>");
+//				prDDPins.println("         <owl:Restriction>");
+//				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_permissible_value\"/>");
+//				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMPermValDefn.identifier + "\"/>");
+//				prDDPins.println("         </owl:Restriction>");
+//				prDDPins.println("      </rdfs:subClassOf>");
+				lDOMClassAttrPermValArr.add(lDOMPermValDefn);
+				gPermValIdArr.add(lDOMPermValDefn.identifier);
+			}
+		}
+		
+		// write the "has_data_type properties
+		String lIdentifier = InfoModel.getClassIdentifier("pds", lDOMAttr.valueType);
+//		System.out.println("debug printAttr datatype lIdentifier:" + lIdentifier);
+		DOMDataType lDOMDataType = InfoModel.masterDOMDataTypeIdMap.get(lIdentifier);
+		if (lDOMDataType != null) {
+			prDDPins.println("      <rdfs:subClassOf>");
+			prDDPins.println("         <owl:Restriction>");
+			prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_data_type\"/>");
+			prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMDataType.identifier + "\"/>");
+			prDDPins.println("         </owl:Restriction>");
+			prDDPins.println("      </rdfs:subClassOf>");
+		}
+		
+		// write the "has_measurement_units properties
+		lIdentifier = InfoModel.getClassIdentifier("pds", lDOMAttr.unit_of_measure_type);
+//		System.out.println("debug printAttr unit lIdentifier:" + lIdentifier);
+		DOMUnit lDOMUnit = InfoModel.masterDOMUnitIdMap.get(lIdentifier);
+		if (lDOMUnit != null) {
+			prDDPins.println("      <rdfs:subClassOf>");
+			prDDPins.println("         <owl:Restriction>");
+			prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_measurement_unit\"/>");
+			prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMUnit.identifier + "\"/>");
+			prDDPins.println("         </owl:Restriction>");
+			prDDPins.println("      </rdfs:subClassOf>");
+		}
+		prDDPins.println("   </owl:Class>");
+		
+		// write the permissible values as OWL classes
+// 777		for (Iterator<DOMPermValDefn> j = lDOMClassAttrPermValArr.iterator(); j.hasNext();) {
+//			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
+//			printPermValue (lDOMPermValDefn, prDDPins);
+//		}
+	}	
+
+	// write a single permissible value as a OWL class
+	public  void printPermValue (DOMPermValDefn lDOMPermValDefn, PrintWriter prDDPins) {
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Permissible Value: http://pds.nasa.gov/pds4/pds#" + lDOMPermValDefn.identifier + " -->");
+		prDDPins.println(" ");
+
+		// write statement to define PDS4 permissible value as an owl:Class definition
+		prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lDOMPermValDefn.identifier + "\">");
+		prDDPins.println("      <rdfs:subClassOf rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + "0001_NASA_PDS_1.pds.Permissible_Value" + "\"/>");
+		prDDPins.println("      <dc:title>" + lDOMPermValDefn.value + "</dc:title>");
+		prDDPins.println("      <dc:description>" + formValue(lDOMPermValDefn.value_meaning) + "</dc:description>");
+		prDDPins.println("      <rdfs:label>"  + lDOMPermValDefn.identifier +  "</rdfs:label>");
+		prDDPins.println("      <rdfs:comment>The definition of class " + lDOMPermValDefn.identifier + ".</rdfs:comment>");
+		prDDPins.println("   </owl:Class>");
+		prDDPins.println(" ");
+	}	
+	
+	// write the Data Types as OWL classes
+	public  void printDataTypes (PrintWriter prDDPins) {
+		for (Iterator<DOMDataType> i = InfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+			DOMDataType lDOMDataType = (DOMDataType) i.next();
+			gDataTypeIdArr.add(lDOMDataType.identifier);
+			prDDPins.println(" ");
+			prDDPins.println(" ");		    
+			prDDPins.println("   <!-- PDS4 Data Type: http://pds.nasa.gov/pds4/pds#" + lDOMDataType.identifier + " -->");
+			prDDPins.println(" ");
+
+			// write statement to define PDS4 data type as an owl:Class definition
+			prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lDOMDataType.identifier + "\">");
+			prDDPins.println("      <dc:title>" + lDOMDataType.title + "</dc:title>");
+			prDDPins.println("      <dc:description>" + formValue(lDOMDataType.definition) + "</dc:description>");
+			prDDPins.println("      <rdfs:label>"  + lDOMDataType.identifier +  "</rdfs:label>");
+			prDDPins.println("      <rdfs:comment>The definition of class " + lDOMDataType.identifier + ".</rdfs:comment>");
+			prDDPins.println("   </owl:Class>");
+		}
+	}
+	
+	// write the Units as OWL classes
+	public  void printUnits (PrintWriter prDDPins) {
+		for (Iterator<DOMUnit> i = InfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
+			DOMUnit lDOMUnit = (DOMUnit) i.next();
+			gUnitIdArr.add(lDOMUnit.identifier);
+			prDDPins.println(" ");
+			prDDPins.println(" ");		    
+			prDDPins.println("   <!-- PDS4 Data Type: http://pds.nasa.gov/pds4/pds#" + lDOMUnit.identifier + " -->");
+			prDDPins.println(" ");
+
+			// write statement to define PDS4 data type as an owl:Class definition
+			prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lDOMUnit.identifier + "\">");
+			prDDPins.println("      <dc:title>" + lDOMUnit.title + "</dc:title>");
+			prDDPins.println("      <dc:description>" + formValue(lDOMUnit.definition) + "</dc:description>");
+			prDDPins.println("      <rdfs:label>"  + lDOMUnit.identifier +  "</rdfs:label>");
+			prDDPins.println("      <rdfs:comment>The definition of class " + lDOMUnit.identifier + ".</rdfs:comment>");
+			prDDPins.println("   </owl:Class>");
+		}
+	}
+
+	// write a set of disjoints
+	public  void printDisjoints (String lTitle, ArrayList <String> lClassIdArr, PrintWriter prDDPins) {		
+		prDDPins.println(" ");
+		prDDPins.println(" ");		    
+		prDDPins.println("   <!-- PDS4 Disjoints: http://pds.nasa.gov/pds4/pds#" + "___" + lTitle + "___" + " -->");
+		prDDPins.println(" ");
+		prDDPins.println("   <rdf:Description>");
+		prDDPins.println("      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#AllDisjointClasses\"/>");
+		prDDPins.println("      <owl:members rdf:parseType=\"Collection\">");
+
+		// write the subclasses 
+		for (Iterator<String> i = lClassIdArr.iterator(); i.hasNext();) {
+			String lClassId = (String) i.next();
+			prDDPins.println("         <rdf:Description rdf:about=\"" + "http://pds.nasa.gov/pds4/pds#" + lClassId + "\"/>");
+		}
+		prDDPins.println("      </owl:members>");
+		prDDPins.println("   </rdf:Description>");
 	}		
 
+	
+// = = = = = = = = 	
+	
 	// Print the Attributes
-	public  void printAttr (PrintWriter prDDPins) {
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (lRefAttrArr.values());
+	public  void printAttrxxxx (PrintWriter prDDPins) {
+		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> ();
 		
 		// write the attributes
 		for (Iterator<AttrDefn> j = lAttrArr.iterator(); j.hasNext();) {
@@ -144,41 +461,10 @@ class WriteRDFOWLFile extends Object{
 			PDSObjDefn lClass = lAttr.attrParentClass;
 			prDDPins.println("\npds:" + lAttr.title + " " + "rdf:type" + " " + "owl:ObjectProperty;");	
 			prDDPins.println("  " + "a" + " " + "skos:Concept;");	
-			prDDPins.println("  " + "skos:prefLabel" + " " +  " \"" + InfoModel.escapeXMLChar(lAttr.title) + "\"@en;");	
-			prDDPins.println("  " + "skos:definition" + " " +  " \"" + InfoModel.escapeXMLChar(lAttr.description) + "\"@en;");	
+			prDDPins.println("  " + "skos:prefLabel" + " " +  " \"" + formValue(lAttr.title) + "\"@en;");	
+			prDDPins.println("  " + "skos:definition" + " " +  " \"" + formValue(lAttr.description) + "\"@en;");	
 //			prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lClass.title + ";");	
 			prDDPins.println("  " + "skos:historyNote" + " " +  " \"" + "PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "  Class Version "  + lClass.versionId + "\"@en.");	
-		}
-	}		
-	
-
-	// Print the Attributes
-	public  void printAttrxxxyyy (PrintWriter prDDPins) {
-		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
-		for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.title.indexOf("PDS3") > -1) continue;
-			if (lClass.isDataType) continue;
-			if (lClass.isUnitOfMeasure) continue;
-			if (lClass.isUSERClass) continue;
-
-			// filter out abstract classes used for organization. (leave in Table_Base, Record, etc)
-			if (lClass.title.compareTo("Product_Components") == 0) continue;
-
-			// filter out all non Common classes
-			if (! (lClass.nameSpaceIdNC.compareTo("pds") == 0 && lClass.steward.compareTo("pds") == 0)) continue;
-
-			// write the attributes
-			for (Iterator<AttrDefn> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
-				if (! lAttr.isAttribute) continue;
-				prDDPins.println("\npds:" + lAttr.title + " " + "rdf:type" + " " + "owl:Property;");	
-				prDDPins.println("  " + "a" + " " + "skos:Concept;");	
-				prDDPins.println("  " + "skos:prefLabel" + " " +  " \"" + InfoModel.escapeXMLChar(lAttr.title) + "\"@en;");	
-				prDDPins.println("  " + "skos:definition" + " " +  " \"" + InfoModel.escapeXMLChar(lAttr.description) + "\"@en;");	
-				prDDPins.println("  " + "skos:historyNote" + " " +  " \"" + "PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "  Class Version "  + lClass.versionId + "\"@en.");	
-				prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lClass.title);	
-			}								
 		}
 	}		
 	
@@ -315,7 +601,7 @@ class WriteRDFOWLFile extends Object{
 	}
 
 	// Print the Units
-	public  void printUnits (PrintWriter prDDPins) {
+	public  void printUnitsxxx (PrintWriter prDDPins) {
 		boolean isFirst = true;
 		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
 			UnitDefn lUnit = (UnitDefn) i.next();
@@ -636,5 +922,21 @@ class WriteRDFOWLFile extends Object{
 			prDDPins.println("  (dataTypeName \"" + lDataType.title + "\")");
 			prDDPins.println("  (dataTypeSchemaReference \"TBD_dataTypeSchemaReference\"))");
 		}
+	}
+	
+	// Format the Boolean String for RDF/OWL
+	public String formBooleanValue(boolean lBoolean) {
+		String rString = "" + lBoolean;
+		return formValue(rString);
+	}
+
+	// Format the String for RDF/OWL
+	public String formValue(String lString) {
+		String rString = lString;
+		if (rString == null) rString = "null";
+		if (rString.indexOf("TBD") == 0) rString = "null";
+		rString = InfoModel.escapeXMLChar(rString);
+//		rString = "\"" + rString + "\"";
+		return rString;
 	}
 }	

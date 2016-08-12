@@ -1,5 +1,4 @@
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 public class ModelDefn extends Object {
 
 	String identifier; // e.g.UpperPontModel 

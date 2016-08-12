@@ -1,3 +1,4 @@
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -7,7 +8,7 @@ public class AAAUsefulCode {
 	 * 
 	if (DMDocument.debugFlag) System.out.println("debug getLocalDD Done");
 	if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles Done");
-		
+	
 	System.out.println("debug xxx yyy.identifier:" + yyy.identifier);
 
 	System.out.println(">>error   - Association for Attribute is missing - Sort - lAttr.identifier:" + lAttr.identifier);

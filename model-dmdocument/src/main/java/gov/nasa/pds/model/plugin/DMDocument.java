@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -40,6 +40,7 @@ public class DMDocument extends Object {
 	
 	// configuration file variables
 	static String infoModelVersionId = "0.0.0.0";
+	static String infoModelVersionIdNoDots = "0000";
 	static String schemaLabelVersionId = "0.0";
 	static String pds4BuildId = "0a";
 	
@@ -68,6 +69,7 @@ public class DMDocument extends Object {
 	// 1.5.0.0 - 1.9  - 1.9  - Build 6a
 	// 1.5.1.0 - 1.9  - 1.9  - Build 6b - not released
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b
+	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
 	
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
@@ -81,14 +83,15 @@ public class DMDocument extends Object {
 	// 1.4.1.0 - 1.8  - 1.8  - Build 5b 
 	// 1.5.0.0 - 1.9  - 1.9  - Build 6a 
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b 
+	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
 
 //	static String LDDToolVersionId  = "0.1.9.0a2";
-//	static String LDDToolVersionId  = "0.2.0.1";
-	static String LDDToolVersionId  = "0.2.0.3";
+//	static String LDDToolVersionId  = "0.2.0.3";
+	static String LDDToolVersionId  = "0.2.1.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -114,9 +117,9 @@ public class DMDocument extends Object {
 	static String LDDToolSingletonClassTitle = "USER";
 	static PDSObjDefn LDDToolSingletonClass = null;
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
-	static TreeMap <String, String> LDDToolSchemaVersionMapDots;		// this will need to be changed after every release.
-	static TreeMap <String, String> LDDToolSchemaVersionMapNoDots;	    // this will need to be changed after every release.
-	static TreeMap <String, String> LDDToolSchemaVersionNSMap;		       // this will need to be changed after every release.
+	static TreeMap <String, String> LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
+	static TreeMap <String, String> LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
+	static TreeMap <String, String> LDDToolSchemaVersionNSMap = new TreeMap <String, String> ();
 
 	// Master Model
 	static MasterInfoModel masterInfoModel;
@@ -194,6 +197,9 @@ public class DMDocument extends Object {
 	static String Literal_DEPRECATED = " *Deprecated*";
 	static boolean deprecatedAdded;
 	
+	// the set of classes and attributes that will be externalized (defined as xs:Element)	
+	static ArrayList <String> exposedElementArr;
+
 	// class version identifiers (only updated classes; v1.0.0.0 is assumed)
 	static TreeMap <String, String> classVersionId;
 	
@@ -218,21 +224,9 @@ public class DMDocument extends Object {
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
 		LDDToolMissionGovernanceFlag = false;
-		LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
-	//	LDDToolSchemaVersionMapNoDots.put ("pds", "1510");
-	//	LDDToolSchemaVersionMapNoDots.put ("disp", "1510");
-		LDDToolSchemaVersionMapNoDots.put ("pds", "1600");
-		LDDToolSchemaVersionMapNoDots.put ("disp", "1600");
-		
-		LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
-	//	LDDToolSchemaVersionMapDots.put ("pds", "1.5.1.0");
-	//	LDDToolSchemaVersionMapDots.put ("disp", "1.5.1.0");
-		LDDToolSchemaVersionMapDots.put ("pds", "1.6.0.0");
-		LDDToolSchemaVersionMapDots.put ("disp", "1.6.0.0");
-		
-		LDDToolSchemaVersionNSMap = new TreeMap <String, String> ();
-		LDDToolSchemaVersionNSMap.put ("pds", "1");
-		LDDToolSchemaVersionNSMap.put ("disp", "1");
+//		LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
+//		LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
+//		LDDToolSchemaVersionNSMap = new TreeMap <String, String> ();
 
 		// get dates
 		rTodaysDate = new Date();
@@ -250,7 +244,6 @@ public class DMDocument extends Object {
 		endDateValue = "2019-12-31";
 		futureDateValue = "2019-12-31";
 		versionIdentifierValue = "TBD_versionIdentifierValue";
-//		versionIdentifierValue = InfoModel.identifier_version_id;
 		administrationRecordValue = "TBD_administrationRecordValue"; // set in GetModels
 		stewardValue = "Steward_PDS";
 		submitterValue = "Submitter_PDS";
@@ -307,6 +300,70 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin", "pds", "Band_Bin", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth Based", "pds", "Instrument_Host", "pds", "type", "Earth Based", false));
+
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Accelerometer", "pds", "Instrument", "pds", "type", "Accelerometer", false));                            
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle Detector", "pds", "Instrument", "pds", "type", "Alpha Particle Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle X-Ray Spectrometer", "pds", "Instrument", "pds", "type", "Alpha Particle X-Ray Spectrometer", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Altimeter", "pds", "Instrument", "pds", "type", "Altimeter", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Anemometer", "pds", "Instrument", "pds", "type", "Anemometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Atomic Force Microscope", "pds", "Instrument", "pds", "type", "Atomic Force Microscope", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Barometer", "pds", "Instrument", "pds", "type", "Barometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Biology Experiments", "pds", "Instrument", "pds", "type", "Biology Experiments", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Bolometer", "pds", "Instrument", "pds", "type", "Bolometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Camera", "pds", "Instrument", "pds", "type", "Camera", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Cosmic Ray Detector", "pds", "Instrument", "pds", "type", "Cosmic Ray Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Drilling Tool", "pds", "Instrument", "pds", "type", "Drilling Tool", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Dust Detector", "pds", "Instrument", "pds", "type", "Dust Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Electrical Probe", "pds", "Instrument", "pds", "type", "Electrical Probe", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Energetic Particle Detector", "pds", "Instrument", "pds", "type", "Energetic Particle Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Gamma Ray Detector", "pds", "Instrument", "pds", "type", "Gamma Ray Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Gas Analyzer", "pds", "Instrument", "pds", "type", "Gas Analyzer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Grinding Tool", "pds", "Instrument", "pds", "type", "Grinding Tool", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Hygrometer", "pds", "Instrument", "pds", "type", "Hygrometer", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Imager", "pds", "Instrument", "pds", "type", "Imager", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Imaging Spectrometer", "pds", "Instrument", "pds", "type", "Imaging Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Inertial Measurement Unit", "pds", "Instrument", "pds", "type", "Inertial Measurement Unit", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Infrared Spectrometer", "pds", "Instrument", "pds", "type", "Infrared Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Laser Induced Breakdown Spectrometer", "pds", "Instrument", "pds", "type", "Laser Induced Breakdown Spectrometer", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Magnetometer", "pds", "Instrument", "pds", "type", "Magnetometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Mass Spectrometer", "pds", "Instrument", "pds", "type", "Mass Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Microwave Spectrometer", "pds", "Instrument", "pds", "type", "Microwave Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Moessbauer Spectrometer", "pds", "Instrument", "pds", "type", "Moessbauer Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Naked Eye", "pds", "Instrument", "pds", "type", "Naked Eye", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Neutral Particle Detector", "pds", "Instrument", "pds", "type", "Neutral Particle Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Neutron Detector", "pds", "Instrument", "pds", "type", "Neutron Detector", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Photometer", "pds", "Instrument", "pds", "type", "Photometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Analyzer", "pds", "Instrument", "pds", "type", "Plasma Analyzer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Detector", "pds", "Instrument", "pds", "type", "Plasma Detector", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Wave Spectrometer", "pds", "Instrument", "pds", "type", "Plasma Wave Spectrometer", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Polarimeter", "pds", "Instrument", "pds", "type", "Polarimeter", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radar", "pds", "Instrument", "pds", "type", "Radar", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Science", "pds", "Instrument", "pds", "type", "Radio Science", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Spectrometer", "pds", "Instrument", "pds", "type", "Radio Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Telescope", "pds", "Instrument", "pds", "type", "Radio Telescope", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radiometer", "pds", "Instrument", "pds", "type", "Radiometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Reflectometer", "pds", "Instrument", "pds", "type", "Reflectometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Robotic Arm", "pds", "Instrument", "pds", "type", "Robotic Arm", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Spectrograph Imager", "pds", "Instrument", "pds", "type", "Spectrograph Imager", false));
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Spectrometer", "pds", "Instrument", "pds", "type", "Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermal Imager", "pds", "Instrument", "pds", "type", "Thermal Imager", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermal Probe", "pds", "Instrument", "pds", "type", "Thermal Probe", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermometer", "pds", "Instrument", "pds", "type", "Thermometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Ultraviolet Spectrometer", "pds", "Instrument", "pds", "type", "Ultraviolet Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Weather Station", "pds", "Instrument", "pds", "type", "Weather Station", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Wet Chemistry Laboratory", "pds", "Instrument", "pds", "type", "Wet Chemistry Laboratory", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Detector", "pds", "Instrument", "pds", "type", "X-ray Detector", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Diffraction Spectrometer", "pds", "Instrument", "pds", "type", "X-ray Diffraction Spectrometer", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Fluorescence Spectrometer", "pds", "Instrument", "pds", "type", "X-ray Fluorescence Spectrometer", false));
+
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Calibration", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Open Cluster", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Globular Cluster", false));
+
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Globular Cluster", false));
+	    
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.data_regime", "pds", "Primary_Result_Summary", "pds", "data_regime", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.type", "pds", "Primary_Result_Summary", "pds", "type", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.processing_level_id", "pds", "Primary_Result_Summary", "pds", "processing_level_id", "", false));
@@ -325,6 +382,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Checksum_Manifest.record_delimiter", "pds", "Checksum_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.record_delimiter", "pds", "Inventory", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Transfer_Manifest.record_delimiter", "pds", "Transfer_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Uniformly_Sampled.sampling_parameters", "pds", "Uniformly_Sampled", "pds", "sampling_parameters", "", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "comma", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "horizontal tab", false));
@@ -376,7 +434,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.team_name", "pds", "PDS_Affiliate", "pds", "team_name", "Navigation Ancillary Information Facility", false));
 //		deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Binary.encoding_standard_id", "pds", "Encoded_Binary", "pds", "encoding_standard_id", "CCSDS Communications Protocols", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Binary.encoding_standard_id", "pds", "Encoded_Binary", "pds", "encoding_standard_id", "CCSDS Space Communications Protocols", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Image.encoding_standard_id", "pds", "Encoded_Image", "pds", "encoding_standard_id", "J2C", false));
+//		deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Image.encoding_standard_id", "pds", "Encoded_Image", "pds", "encoding_standard_id", "J2C", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Software.version_id", "pds", "Software", "pds", "version_id", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.version_id", "pds", "Instrument_Host", "pds", "version_id", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.instrument_host_version_id", "pds", "Instrument_Host", "pds", "instrument_host_version_id", "", false));
@@ -432,6 +490,12 @@ public class DMDocument extends Object {
 			deprecatedAttrValueArr.add(lIdentifier);
 //			System.out.println("debug deprecatedObjects2 Class lIdentifier:" + lIdentifier);
 		}
+		
+		// the set of classes and attributes that will be externalized (defined as xs:Element)
+		exposedElementArr = new ArrayList <String> ();
+		exposedElementArr.add("Internal_Reference");
+		exposedElementArr.add("Local_Internal_Reference");
+		exposedElementArr.add("External_Reference");
 		
 		// class version ids
 		classVersionId = new TreeMap <String, String> ();
@@ -535,28 +599,41 @@ public class DMDocument extends Object {
     	    Properties props = new Properties();
     	    props.load(reader);
     	    configInputStr = props.getProperty("infoModelVersionId");
-    	    if (configInputStr != null) infoModelVersionId = configInputStr;
-    	    System.out.println("debug dmDocument - infoModelVersionId:" + infoModelVersionId);
+//    	    if (configInputStr != null) infoModelVersionId = configInputStr;
+    	    if (configInputStr != null) {
+    	    	infoModelVersionId = configInputStr;
+    	    	infoModelVersionIdNoDots = replaceString(infoModelVersionId, ".", "");
+    			LDDToolSchemaVersionMapNoDots.put ("pds", infoModelVersionIdNoDots);
+    			LDDToolSchemaVersionMapNoDots.put ("disp", infoModelVersionIdNoDots);
+    			LDDToolSchemaVersionMapDots.put ("pds", infoModelVersionId);
+    			LDDToolSchemaVersionMapDots.put ("disp", infoModelVersionId);
+    			LDDToolSchemaVersionNSMap.put ("pds", "1");
+    			LDDToolSchemaVersionNSMap.put ("disp", "1");
+//   	  	   System.out.println("debug dmDocument - infoModelVersionId:" + infoModelVersionId);
+//  	  	   System.out.println("debug dmDocument - infoModelVersionIdNoDots:" + infoModelVersionIdNoDots);
+//   	  	   System.out.println("debug dmDocument - LDDToolSchemaVersionMapDots.get:" + LDDToolSchemaVersionMapDots.get("pds"));
+//   	  	   System.out.println("debug dmDocument - LDDToolSchemaVersionMapNoDots.get:" + LDDToolSchemaVersionMapNoDots.get("pds"));
+    	    }
     	    configInputStr = props.getProperty("schemaLabelVersionId");
     	    if (configInputStr != null) schemaLabelVersionId = configInputStr;
-    	    System.out.println("debug dmDocument - schemaLabelVersionId:" + schemaLabelVersionId);
+//    	    System.out.println("debug dmDocument - schemaLabelVersionId:" + schemaLabelVersionId);
     	    configInputStr= props.getProperty("pds4BuildId");
     	    if (configInputStr != null) pds4BuildId = configInputStr;
-    	    System.out.println("debug dmDocument - pds4BuildId:" + pds4BuildId);
+//    	    System.out.println("debug dmDocument - pds4BuildId:" + pds4BuildId);
     	    
     	    configInputStr= props.getProperty("imSpecDocTitle");
     	    if (configInputStr != null) imSpecDocTitle = configInputStr;
-    	    System.out.println("debug dmDocument - imSpecDocTitle:" + imSpecDocTitle);
+//    	    System.out.println("debug dmDocument - imSpecDocTitle:" + imSpecDocTitle);
     	    configInputStr= props.getProperty("imSpecDocAuthor");
     	    if (configInputStr != null) imSpecDocAuthor = configInputStr;
-    	    System.out.println("debug dmDocument - imSpecDocAuthor:" + imSpecDocAuthor);
+//    	    System.out.println("debug dmDocument - imSpecDocAuthor:" + imSpecDocAuthor);
     	    configInputStr= props.getProperty("imSpecDocSubTitle");
     	    if (configInputStr != null) imSpecDocSubTitle = configInputStr;
-    	    System.out.println("debug dmDocument - imSpecDocSubTitle:" + imSpecDocSubTitle);
+//    	    System.out.println("debug dmDocument - imSpecDocSubTitle:" + imSpecDocSubTitle);
     	    
     	    configInputStr= props.getProperty("debugFlag");
     	    if (configInputStr != null && configInputStr.compareTo("true") == 0) debugFlag = true;
-    	    System.out.println("debug dmDocument - debugFlag:" + debugFlag);
+//    	    System.out.println("debug dmDocument - debugFlag:" + debugFlag);
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
@@ -657,21 +734,10 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
 		SchemaFileDefn lSchemaFileDefn;
 		lSchemaFileDefn = new SchemaFileDefn("pds");
-//		lSchemaFileDefn.versionId = "1.1.0.0";
-//		lSchemaFileDefn.versionId = "1.1.0.1";
-//		lSchemaFileDefn.versionId = "1.2.0.0";
-//		lSchemaFileDefn.versionId = "1.2.0.1";
-//		lSchemaFileDefn.versionId = "1.3.0.0";
-//		lSchemaFileDefn.versionId = "1.3.0.1";
-//		lSchemaFileDefn.versionId = "1.4.0.0";
-//		lSchemaFileDefn.versionId = "1.4.0.1";
-//		lSchemaFileDefn.versionId = "1.4.1.0";
-//		lSchemaFileDefn.versionId = "1.5.0.0";
-//		lSchemaFileDefn.versionId = "1.5.1.0";
 		lSchemaFileDefn.versionId = infoModelVersionId;
-//		lSchemaFileDefn.labelVersionId = "1.9";
-//		lSchemaFileDefn.labelVersionId = "1.10";
 		lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
+		lSchemaFileDefn.lddName = "Common Dictionary";
+		lSchemaFileDefn.sourceFileName = "N/A";
 		lSchemaFileDefn.isMaster = true;
 		lSchemaFileDefn.stewardArr.add("pds");
 		lSchemaFileDefn.stewardArr.add("img");
@@ -695,6 +761,12 @@ public class DMDocument extends Object {
 		// get the models
 		GetModels lGetModels = new GetModels();
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
+		
+//		System.out.println("\ndebug DMDocument - GetDomClasses ");
+		if (! DMDocument.LDDToolFlag) {
+			GetDomClasses lGetDomClasses = new GetDomClasses ();
+			lGetDomClasses.convert();
+		}
 		
 		// export the models
 		if (! DMDocument.LDDToolFlag) {
@@ -979,8 +1051,8 @@ public class DMDocument extends Object {
 		
 		// Schema file Definitions by namespaceid
 		lSchemaFileDefn = new SchemaFileDefn("atm");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("atm");
@@ -988,8 +1060,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("geo");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("geo");
@@ -997,7 +1069,7 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("img");
-		lSchemaFileDefn.versionId = "1.6.0.0";
+		lSchemaFileDefn.versionId = "1.7.0.0";
 		lSchemaFileDefn.labelVersionId = "1.17";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
@@ -1014,8 +1086,8 @@ public class DMDocument extends Object {
 		*/
 		
 		lSchemaFileDefn = new SchemaFileDefn("naif");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("naif");
@@ -1023,8 +1095,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("ppi");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("ppi");
@@ -1032,8 +1104,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("rings");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("rings");
@@ -1041,8 +1113,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("rs");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("rs");
@@ -1050,8 +1122,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("sbn");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("sbn");
@@ -1059,8 +1131,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 /*		lSchemaFileDefn = new SchemaFileDefn("msn");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = false;
 		lSchemaFileDefn.stewardArr.add("msn");
@@ -1068,8 +1140,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		*/
 		
 		lSchemaFileDefn = new SchemaFileDefn("disp");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("img");
@@ -1078,8 +1150,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
 
 		lSchemaFileDefn = new SchemaFileDefn("geom");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("geo");
@@ -1088,8 +1160,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
 		
 		lSchemaFileDefn = new SchemaFileDefn("cart");
-		lSchemaFileDefn.versionId = "1.6.0.0";
-		lSchemaFileDefn.labelVersionId = "1.10";
+		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("cart");

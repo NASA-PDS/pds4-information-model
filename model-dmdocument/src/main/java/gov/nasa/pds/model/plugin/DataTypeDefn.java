@@ -1,8 +1,9 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
 
 public class DataTypeDefn {
 	String identifier;
+	String pds4Identifier;
 	String title;
 	String nameSpaceIdNC;
 	String type;
@@ -19,6 +20,7 @@ public class DataTypeDefn {
 	
 	public DataTypeDefn (String id) {
 		identifier = id;
+		pds4Identifier = "TBD_pds4Identifier";
 		title = "TBD_title";
 		nameSpaceIdNC = "TBD_nameSpaceIdNC";
 		type = "TBD_type";

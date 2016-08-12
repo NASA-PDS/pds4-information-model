@@ -1,7 +1,8 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class DomDataType extends ISOClassOAIS11179 {
+public class DOMDataType extends ISOClassOAIS11179 {
 	String type;
 	String character_constraint;
 	String formation_rule;
@@ -14,7 +15,7 @@ public class DomDataType extends ISOClassOAIS11179 {
 	
 	ArrayList <String> pattern; 
 	
-	public DomDataType () {
+	public DOMDataType () {
 		type = "TBD_type";
 		character_constraint   = "TBD_character_constraint";       
 		formation_rule	       = "TBD_formation_rule"; 
@@ -135,6 +136,41 @@ public class DomDataType extends ISOClassOAIS11179 {
 	public void setPattern(ArrayList<String> pattern) {
 		this.pattern = pattern;
 	}
+	
+	public void createDOMDataTypeSingletons (DataTypeDefn lDataTypeDefn) {
+//		System.out.println("debug - createDOMClassSingletons - Phase 1 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
+//		rdfIdentifier = "TBD"; 							
+//		identifier = "TBD"; 
+		versionId = "TBD"; 
+//		sequenceId= "TBD";
+		
+		title = lDataTypeDefn.title;
+//		definition = lUnitDefn.description;
+		
+//		registrationStatus = lUnitDefn.registrationStatus; 
+//		isDeprecated = lUnitDefn.isDeprecated;
+		
+		regAuthId = "pds"; 
+		steward = "pds"; 
+		nameSpaceId = "pds"; 
+		nameSpaceIdNC = "pds"; 
+		
+		type = lDataTypeDefn.type;
+		character_constraint = lDataTypeDefn.character_constraint;
+		formation_rule = lDataTypeDefn.formation_rule;
+		maximum_characters = lDataTypeDefn.maximum_characters;
+		maximum_value = lDataTypeDefn.maximum_value;
+		minimum_characters = lDataTypeDefn.minimum_characters;
+		minimum_value = lDataTypeDefn.minimum_value;
+		xml_schema_base_type = lDataTypeDefn.xml_schema_base_type;
+		character_encoding = lDataTypeDefn.character_encoding; 	 	
+
+		for (Iterator <String> i = lDataTypeDefn.pattern.iterator(); i.hasNext();) {
+			String lPattern = (String) i.next();
+			this.pattern.add(lPattern);
+		}
+		return;
+	}	
 	
 	
 		

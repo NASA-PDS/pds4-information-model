@@ -1,29 +1,33 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.TreeMap;
 
 public class ISOClass extends Object {
-	String rdfIdentifier;							// url, namespace, title -- used for object dictionary (hashmap)
-	String identifier; 								// no url, namespace, title (Is used as funcational equivalent of attr.nsTitle)
-	String title;  									// no url, no namespace, title
-	String versionId;								// the version of this class
-	String sequenceId;								// an sequenced identifier for uniqueness
-	String registrationStatus;						// ISO 11179 item registration status
-	String regAuthId;								// registration authority identifier
-	String definition;								// a definition
-	boolean isDeprecated;							// class is deprecated
+	String rdfIdentifier;						// url, namespace, title -- used for object dictionary (hashmap)
+	String identifier; 							// no url, namespace, title (Is used as functional equivalent of attr.nsTitle)
+	String versionId;							// the version of this class
+	String sequenceId;							// an sequenced identifier for uniqueness
+
+	String title;  								// no url, no namespace, title
+	String definition;							// a definition
+
+	String registrationStatus;					// ISO 11179 item registration status
+	boolean isDeprecated;						// class is deprecated
 	
-	TreeMap <String, String> altNameMap;			// names in alternate natural languages
-	TreeMap <String, String> altDefnMap;			// descriptions in alternate natural languages
-	TreeMap <String, String> modHistoryMap;			// modification history 
+	TreeMap <String, String> altNameMap;		// names in alternate natural languages
+	TreeMap <String, String> altDefnMap;		// descriptions in alternate natural languages
+	TreeMap <String, String> modHistoryMap;		// modification history 
 
 	public ISOClass () {
 		rdfIdentifier = "TBD_rdfIdentifier"; 
 		identifier = "TBD_identifier"; 
-		title = "TBD_title"; 
 		versionId = "0.1";
-		sequenceId = InfoModel.getNextUId();
-		registrationStatus = "Candidate";
+//		sequenceId = InfoModel.getNextUId();
+		sequenceId = "TBD_sequenceId";
+
+		title = "TBD_title"; 
 		definition = "TBD_definition"; 
+
+		registrationStatus = "Candidate";
 		isDeprecated = false;
 		
 		altNameMap = new TreeMap <String, String> ();
@@ -37,18 +41,26 @@ public class ISOClass extends Object {
 		return rdfIdentifier;
 	}
 	
-	public void setRDFIdentifier(String lTitle) {
-		this.title = lTitle;
-		this.identifier = lTitle;
-		this.rdfIdentifier = DMDocument.rdfPrefix + "." + this.title + "." + this.sequenceId;
+//	public void setRDFIdentifier(String lTitle) {
+//		this.title = lTitle;
+//		this.identifier = lTitle;
+//		this.rdfIdentifier = DMDocument.rdfPrefix + "." + this.title + "." + this.sequenceId;
+//	}
+	
+	public void setRDFIdentifier (String lTitle) {
+		this.rdfIdentifier = DMDocument.rdfPrefix + "." + this.title + "." + InfoModel.getNextUId();;
 	}
 	
 	public String getIdentifier() {
 		return identifier;
 	}
 	
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
+//	public void setIdentifier(String identifier) {
+//		this.identifier = identifier;
+//	}
+	
+	public void setIdentifier(String lNameSpaceIdNC, String lTitle) {
+		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle;
 	}
 	
 	public String getTitle() {

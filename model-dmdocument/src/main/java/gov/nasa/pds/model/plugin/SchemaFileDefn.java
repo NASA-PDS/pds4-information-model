@@ -1,9 +1,10 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
 
 public class SchemaFileDefn {
 	// identifier is the namespace id, without colon, and in caps; it must be unique within the PDS
 	String identifier;
+	String lddName;
 
 	// each namespace has a version identifier - model version id
 	String versionId;
@@ -48,6 +49,7 @@ public class SchemaFileDefn {
 	String relativeFileSpecDDProtPinsSN;	// short name - used for DD diff comparisons
 	String relativeFileSpecModelRulePins;		
 	String relativeFileSpecModelJSON;	
+	String relativeFileSpecDOMModelJSON;	
 	String relativeFileSpecModelRDF;
 	String relativeFileSpecOWLRDF;			
 	String relativeFileSpecSKOSTTL;			
@@ -84,6 +86,7 @@ public class SchemaFileDefn {
 	public SchemaFileDefn (String id) {
 		identifier = id;
 		versionId = "0.0.0.0.n";
+		lddName = "TBD_lddName";
 		labelVersionId = "0.0";
 		stewardId = "TBD_stewardId";
 		nameSpaceIdNC = id;
@@ -107,6 +110,7 @@ public class SchemaFileDefn {
 		relativeFileSpecDDProtPinsSN = "relativeFileSpecDDProtPinsSN";	
 		relativeFileSpecModelRulePins = "TBD_relativeFileSpecModelRulePins";	
 		relativeFileSpecModelJSON = "TBD_relativeFileSpecModelJSON";	
+		relativeFileSpecDOMModelJSON = "TBD_relativeFileSpecDOMModelJSON";	
 		relativeFileSpecModelRDF = "TBD_relativeFileSpecModelRDF";
 		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";		
 		relativeFileSpecSKOSTTL = "TBD_relativeFileSpecSKOSTTL";		
@@ -185,6 +189,7 @@ public class SchemaFileDefn {
 			relativeFileNameSchematron = "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + "export/JSON/" + "PDS4_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + "PDS4_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + "_DOM" + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id;			
 		} else if (! DMDocument.LDDSyncFileNameFlag) {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
@@ -193,6 +198,7 @@ public class SchemaFileDefn {
 			relativeFileNameSchematron = LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".sch";			
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".JSON";
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + "_DOM" + ".JSON";
 			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".pont";
 			relativeFileSpecReportTXT = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".txt";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			

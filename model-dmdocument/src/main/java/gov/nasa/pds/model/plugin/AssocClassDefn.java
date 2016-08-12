@@ -1,5 +1,4 @@
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 class AssocClassDefn extends Object{
 	String identifier;
 	int cardMin; 

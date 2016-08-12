@@ -1,6 +1,6 @@
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
+
 public class InstDefn extends Object {
 
 	// note that the master11179DataDict Map key = className + "." title

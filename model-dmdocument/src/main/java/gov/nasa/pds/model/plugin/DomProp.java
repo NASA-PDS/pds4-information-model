@@ -1,21 +1,58 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
+import java.util.ArrayList;
 
-public class DomProp extends ISOClassOAIS11179 {
+public class DOMProp extends ISOClassOAIS11179 {
 	
 	String cardMin;
 	String cardMax;
 	int cardMinI;
 	int cardMaxI;
 	String classOrder;						// the order of the attribute or association within a class
-	DomClass hasDomClass;
+	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows both PDS4 classes, attributes, etc
 	
-	public DomProp () {
+	String localIdentifier;					// local_identifier (the or first local identifier in the Association set)
+    													// needed only for display
+	String className;
+	String classNameSpaceIdNC;
+	String groupName;							// the choice group name
+	String referenceType;
+	Boolean isAttribute;						// true->attribute; false->association
+	Boolean isChoice;							// allows an xs:choice
+	Boolean isAny;								// allows an xs:any
+	Boolean isSet;								// is a set of either attributes or associations (AttrDefn)
+
+	// LDD Attributes
+	String enclLocalIdentifier;				// local_identifier of enclosing class
+	String minimumOccurrences;
+	String maximumOccurrences;
+	
+//  PDSObjDefn parentClass;					// parent class // **** deprecate
+//  ArrayList <PDSObjDefn> childClassArr;	// all child classes for this association (if necessary for choice)
+//  AttrDefn childAssoc;					  // the one association (AttrDefn) equivalent to this association (AssocDefn)
+//  ArrayList <String> localIdentifierArr;	// local identifier array
+
+	public DOMProp () {
 		cardMin = "0"; 
 		cardMax = "0";
 		cardMinI = 0; 
 		cardMaxI = 0;
 		classOrder = "9999";
-		hasDomClass = null;
+		hasDOMClass = new ArrayList <ISOClassOAIS11179> ();
+		
+		localIdentifier = "TBD_localIdentifier";
+		className = "TBD_className";
+		classNameSpaceIdNC = "TBD_classNameSpaceIdNC";
+		groupName = "TBD_groupName";
+		referenceType = "TBD_referenceType";
+		isAttribute = false;
+		isChoice = false;
+		isAny = false;
+		isSet = false;
+
+		enclLocalIdentifier = "TBD_enclLocalIdentifier";
+		minimumOccurrences = "TBD_minimumOccurrences";
+		maximumOccurrences = "TBD_maximumOccurrences";
+		
 		return;
 	}	
 	
@@ -63,5 +100,99 @@ public class DomProp extends ISOClassOAIS11179 {
 	public void setClassOrder(String classOrder) {
 		this.classOrder = classOrder;
 	}
+	
+	public void createDOMPropSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
+//		System.out.println("debug - createDOMPropSingletons - Phase 4 - lOldProp.rdfIdentifier: " + lOldProp.rdfIdentifier);							
+		rdfIdentifier = lOldProp.rdfIdentifier; 							
+//		System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
+		identifier = lOldProp.identifier; 
+		versionId = lAttr.versionId;
+		sequenceId = lAttr.uid; 
 
+		title = lAttr.title;
+		definition =  lAttr.description;
+		
+		registrationStatus = lAttr.registrationStatus; 
+//		isDeprecated = lAttr.isDeprecated; 
+		
+		regAuthId = lAttr.regAuthId; 
+		steward = lAttr.steward; 
+		nameSpaceId = lOldProp.attrNameSpaceId;
+		nameSpaceIdNC = lOldProp.attrNameSpaceIdNC;
+		
+		classOrder = lOldProp.classOrder;
+		cardMin = lOldProp.cardMin;
+		cardMax = lOldProp.cardMax;
+		cardMinI = lOldProp.cardMinI; 
+		cardMaxI = lOldProp.cardMaxI;
+		
+		// others from PDS3
+
+		localIdentifier = lOldProp.localIdentifier;
+
+		className = lOldProp.className;
+		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
+		groupName = lOldProp.groupName;
+		referenceType = lOldProp.referenceType;
+		isAttribute = lOldProp.isAttribute;
+		isChoice = lOldProp.isChoice;
+		isAny = lOldProp.isAny;
+		isSet = lOldProp.isSet;
+		
+		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
+		minimumOccurrences = lOldProp.minimumOccurrences;
+		maximumOccurrences = lOldProp.maximumOccurrences;
+			
+//		PDSObjDefn parentClass;
+//		<PDSObjDefn> childClassArr;
+//		AttrDefn childAssoc;
+//		ArrayList <String> localIdentifierArr;
+	}
+	
+	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
+//		System.out.println("debug - initDOMPermValProp lDOMPermValDefn.rdfIdentifier: " + lDOMPermValDefn.rdfIdentifier);							
+		rdfIdentifier = lDOMPermValDefn.rdfIdentifier; 														
+		identifier = lDOMPermValDefn.identifier; 
+		versionId = lDOMPermValDefn.versionId;
+		sequenceId = lDOMPermValDefn.sequenceId; 
+
+		title = lDOMPermValDefn.title;
+		definition =  lDOMPermValDefn.definition;
+		
+		registrationStatus = lDOMPermValDefn.registrationStatus; 
+		isDeprecated = lDOMPermValDefn.isDeprecated; 
+		
+		regAuthId = lDOMPermValDefn.regAuthId; 
+		steward = lDOMPermValDefn.steward; 
+		nameSpaceId = lDOMPermValDefn.nameSpaceId;
+		nameSpaceIdNC = lDOMPermValDefn.nameSpaceIdNC;
+		
+//		classOrder = lDOMPermValDefn.classOrder;
+//		cardMin = lOldProp.cardMin;
+//		cardMax = lOldProp.cardMax;
+//		cardMinI = lOldProp.cardMinI; 
+//		cardMaxI = lOldProp.cardMaxI;
+		
+		// others from PDS3
+
+//		localIdentifier = lOldProp.localIdentifier;
+
+//		className = lOldProp.className;
+//		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
+//		groupName = lOldProp.groupName;
+//		referenceType = lOldProp.referenceType;
+//		isAttribute = lOldProp.isAttribute;
+//		isChoice = lOldProp.isChoice;
+//		isAny = lOldProp.isAny;
+//		isSet = lOldProp.isSet;
+	
+//		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
+//		minimumOccurrences = lOldProp.minimumOccurrences;
+//		maximumOccurrences = lOldProp.maximumOccurrences;
+			
+//		PDSObjDefn parentClass;
+//		<PDSObjDefn> childClassArr;
+//		AttrDefn childAssoc;
+//		ArrayList <String> localIdentifierArr;
+	}
 }

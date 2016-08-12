@@ -3,22 +3,22 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Writes the PDS4 DD content to a JSON file 
+ * Writes the PDS4 DOM DD content to a JSON file 
  *   
  */
 
-class Write11179DDJSONFile extends Object{
+class WriteDOMDDJSONFile extends Object{
 	
 	ArrayList <String> adminRecUsedArr, adminRecTitleArr;
 	PrintWriter prDDPins;
 
-	public Write11179DDJSONFile () {
+	public WriteDOMDDJSONFile () {
 		return;
 	}
 
 	// write the JSON file
 	public void writeJSONFile (String lFileName) throws java.io.IOException {
-	    prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+	   prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		printPDDPHdr();
 		printPDDPBody ();
 		printPDDPFtr();
@@ -85,9 +85,9 @@ class Write11179DDJSONFile extends Object{
 	// Print the classes
 	public  void printClass (PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
-		for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassIdMap.values());
+		for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.title.indexOf("PDS3") > -1) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
 			delimiter1 = ", ";
@@ -98,153 +98,163 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lClass.nameSpaceIdNC) + " ,");	
 			prDDPins.println("            " + formValue("steward") + ": " + formValue(lClass.steward) + " ,");	
 			prDDPins.println("            " + formValue("versionId") + ": " + formValue(lClass.versionId) + " ,");	
-			prDDPins.println("            " + formValue("description") + ": " + formValue(lClass.description));		
+			prDDPins.println("            " + formValue("description") + ": " + formValue(lClass.definition));		
 			printAssoc (lClass, prDDPins);
 			prDDPins.println("          }");
 			prDDPins.println("        }");
 		}
 	}		
 
+
 	// Print the Associations
-	public  void printAssoc (PDSObjDefn lClass, PrintWriter prDDPins) {
-		ArrayList <AssocDefn> lClassAssocArr = new ArrayList <AssocDefn> ();
-		ArrayList <AssocDefn> lAttrAssocArr = new ArrayList <AssocDefn> ();
-		TreeMap <String, AssocDefn> lAssocDefnMap = new TreeMap <String, AssocDefn> ();
+	public  void printAssoc (DOMClass lClass, PrintWriter prDDPins) {
 		if (lClass.allAttrAssocArr.isEmpty()) return;
-		
-		// separate the attributes from the associations (classes) 
-		for (Iterator<AttrDefn> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
-			AttrDefn lRelAttr = (AttrDefn) i.next();
-			AssocDefn lAssoc = InfoModel.masterMOFAssocIdMap.get(lRelAttr.identifier);
-			if (lAssoc != null) {
-				AssocDefn lTempAssoc = new AssocDefn ();
-				lTempAssoc.createAssocSingletons (lAssoc);
-				if (lRelAttr.isAttribute) {
-					lTempAssoc.childAttrArr.add(lRelAttr);
-//					lAttrAssocArr.add(lTempAssoc);
-					String sortTagPre = "";
-					if (lTempAssoc.groupName.indexOf("TBD") != 0) sortTagPre = lTempAssoc.groupName;
-					String sortTag = sortTagPre +  "-"  + lTempAssoc.identifier;
-//					System.out.println("debug printAssoc sortTag:" + sortTag);
-					lAssocDefnMap.put(sortTag, lTempAssoc);
-				} else {
-					for (Iterator<PDSObjDefn> j = lRelAttr.valClassArr.iterator(); j.hasNext();) {
-						PDSObjDefn lRelClass = (PDSObjDefn) j.next();
-						lTempAssoc.childClassArr.add(lRelClass);
-					}
-					lClassAssocArr.add(lTempAssoc);
-				}
-			}
-		}
-		
-		// get attribute associations - needed to group "choice" blocks
-		ArrayList <AssocDefn> lAssocDefnArr = new ArrayList <AssocDefn> (lAssocDefnMap.values());
-		String lPrevSortTag = "FirstOfItsName";
-		AssocDefn lPrevAssoc = null;
-		for (Iterator<AssocDefn> i = lAssocDefnArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			if (lPrevSortTag.compareTo(lAssoc.groupName) == 0) {
-				if (lAssoc.groupName.indexOf("TBD") == 0) {
-					lAttrAssocArr.add(lAssoc);
-				} else {
-					lPrevAssoc.childAttrArr.add(lAssoc.childAttrArr.get(0)); // there is always only one
-				}
-			} else {
-				lPrevSortTag = lAssoc.groupName;
-				lPrevAssoc = lAssoc;
-				lAttrAssocArr.add(lAssoc);
-			}
-		}
-		
+				
 		// sort by classOrder
-		TreeMap <String, AssocDefn> lAttrAssocMap = new TreeMap <String, AssocDefn> ();
-		for (Iterator<AssocDefn> i = lAttrAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			String lSortOrder = lAssoc.classOrder + "-" + lAssoc.identifier;
-			lAttrAssocMap.put(lSortOrder, lAssoc);
+		TreeMap <String, DOMProp> lClassAssocMap = new TreeMap <String, DOMProp> ();
+		for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			String lPropType = "C";
+			if (lProp.isAttribute) lPropType = "A";
+			String lSortOrder = lPropType + lProp.classOrder + "-" + lProp.identifier;
+			lClassAssocMap.put(lSortOrder, lProp);
 		}
-		lAttrAssocArr = new ArrayList <AssocDefn> (lAttrAssocMap.values());
-		
+		ArrayList <DOMProp> lClassAssocArr = new ArrayList <DOMProp> (lClassAssocMap.values());		
+
 		// write attribute List
 		prDDPins.println("              , " + formValue("associationList") + ": [");	
 		String delimiter1 = "  ";
-		for (Iterator<AssocDefn> i = lAttrAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
+		for (Iterator<DOMProp> i = lClassAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if(! lDOMProp.hasDOMClass.isEmpty()) {
+				if (lDOMProp.isAttribute) {
+					prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+					delimiter1 = ", ";
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(true) + " ,");	
+					prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
+					prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
+//					prDDPins.println("                " + formValue("groupName") + ": " + formValue(lAssoc.groupName) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
+					prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
+					prDDPins.println("                " + formValue("attributeId") + ": [");				
+					String delimiter2 = "";						
+					for (Iterator<ISOClassOAIS11179> j = lDOMProp.hasDOMClass.iterator(); j.hasNext();) {
+						ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
+						if (lISOClass instanceof DOMAttr) {
+							DOMAttr lDOMAttr = (DOMAttr) lISOClass;	
+							prDDPins.print(delimiter2);
+							prDDPins.print("                  " + formValue(lDOMAttr.identifier));	
+							delimiter2 = ",\n";
+						}
+					}
+					prDDPins.print("\n");
+					prDDPins.println("                 ]");
+					prDDPins.println("              }");
+					prDDPins.println("            }");
+				} else {
+					prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+					delimiter1 = ", ";		
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
+					prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
+					prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
+//					prDDPins.println("                " + formValue("groupName") + ": " + formValue(lAssoc.groupName) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
+					prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
+					prDDPins.println("                " + formValue("classId") + ": [");	
+					String delimiter2 = "";
+					for (Iterator<ISOClassOAIS11179> j = lDOMProp.hasDOMClass.iterator(); j.hasNext();) {
+						ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
+						if (lISOClass instanceof DOMClass) {
+							DOMClass lDOMClass = (DOMClass) lISOClass;	
+							prDDPins.print(delimiter2);
+							prDDPins.print("                   " + formValue(lDOMClass.identifier));
+							delimiter2 = ",\n";
+						}
+					}
+					prDDPins.print("\n");
+					prDDPins.println("                 ]");
+					prDDPins.println("              }");
+					prDDPins.println("            }");				
+				}
+			}
+		}
+		prDDPins.println("           ]");
+	}
+	
+	// Print the Properties
+	public  void printAssocxxx (DOMClass lClass, PrintWriter prDDPins) {
+		String delimiter1 = "  ";
+		if (lClass.allAttrAssocArr.isEmpty()) return;
+		prDDPins.println("              , " + formValue("associationList") + ": [");				
+		for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+//			System.out.println("debug printAssoc lDOMProp.hasDOMClass.size():" + lDOMProp.hasDOMClass.size());
+//			prDDPins.println("           , {" + formValue("association") + ": {");				
 			prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
 			delimiter1 = ", ";
-			prDDPins.println("                " + formValue("identifier") + ": " + formValue(lAssoc.identifier) + " ,");	
-			prDDPins.println("                " + formValue("title") + ": " + formValue(lAssoc.title) + " ,");	
-			prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(true) + " ,");	
-			prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lAssoc.isChoice) + " ,");	
-			prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lAssoc.isAny) + " ,");	
-//			prDDPins.println("                " + formValue("groupName") + ": " + formValue(lAssoc.groupName) + " ,");	
-			prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lAssoc.cardMin) + " ,");	
-			prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lAssoc.cardMax) + " ,");	
-			prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lAssoc.classOrder) + " ,");	
-			prDDPins.println("                " + formValue("attributeId") + ": [");				
-			String delimiter2 = "";
-			for (Iterator<AttrDefn> j = lAssoc.childAttrArr.iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
-				prDDPins.print(delimiter2);
-//				prDDPins.print("                  " + formValue(lAttr.identifier) + delimiter2);	
-				prDDPins.print("                  " + formValue(lAttr.identifier));	
-				delimiter2 = ",\n";
+			
+// ***BUG*** - more than one attribute is allowed
+// This bug has been left in since we are using a DIFF of the before DOM and after DOM JSON files
+// to test for code conversion compatibility.
+			
+			if(! lDOMProp.hasDOMClass.isEmpty()) {
+				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lDOMProp.hasDOMClass.get(0);
+				if (lISOClass instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lISOClass;			
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(lDOMAttr.isAttribute) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
+					prDDPins.println("              }");
+					prDDPins.println("            }");
+				} else if (lISOClass instanceof DOMClass) {	
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
+					prDDPins.println("              }");
+					prDDPins.println("            }");
+				}
 			}
-			prDDPins.print("\n");
-			prDDPins.println("                 ]");
-			prDDPins.println("              }");
-			prDDPins.println("            }");
-
-		}
-		
-		// sort by classOrder
-		TreeMap <String, AssocDefn> lClassAssocMap = new TreeMap <String, AssocDefn> ();
-		for (Iterator<AssocDefn> i = lClassAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			String lSortOrder = lAssoc.classOrder + "-" + lAssoc.identifier;
-			lClassAssocMap.put(lSortOrder, lAssoc);
-		}
-		lClassAssocArr = new ArrayList <AssocDefn> (lClassAssocMap.values());		
-		
-		// write the class list
-//		delimiter1 = "  ";
-		for (Iterator<AssocDefn> i = lClassAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
-			delimiter1 = ", ";		
-			prDDPins.println("                " + formValue("identifier") + ": " + formValue(lAssoc.identifier) + " ,");	
-			prDDPins.println("                " + formValue("title") + ": " + formValue(lAssoc.title) + " ,");	
-			prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
-			prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lAssoc.isChoice) + " ,");	
-			prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lAssoc.isAny) + " ,");	
-//			prDDPins.println("                " + formValue("groupName") + ": " + formValue(lAssoc.groupName) + " ,");	
-			prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lAssoc.cardMin) + " ,");	
-			prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lAssoc.cardMax) + " ,");	
-			prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lAssoc.classOrder) + " ,");	
-			prDDPins.println("                " + formValue("classId") + ": [");	
-			String delimiter2 = "";
-			for (Iterator<PDSObjDefn> j = lAssoc.childClassArr.iterator(); j.hasNext();) {
-				PDSObjDefn lRelClass = (PDSObjDefn) j.next();
-				prDDPins.print(delimiter2);
-				prDDPins.print("                   " + formValue(lRelClass.identifier));
-				delimiter2 = ",\n";
-			}
-			prDDPins.print("\n");
-			prDDPins.println("                 ]");
-			prDDPins.println("              }");
-			prDDPins.println("            }");				
+/*			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
+				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) k.next();
+				if (lISOClass instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lISOClass;			
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(lDOMAttr.isAttribute) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
+					prDDPins.println("              }");
+					prDDPins.println("            }");
+				} else if (lISOClass instanceof DOMClass) {	
+					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
+					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
+					prDDPins.println("              }");
+					prDDPins.println("            }");
+				}
+			} */
 		}
 		prDDPins.println("           ]");
 	}
 	
 	// Print the the Protege Pins DE
-	public  void printAttr (PrintWriter prDDPins) {
+	public void printAttr (PrintWriter prDDPins) {
 		// print the data elements
 		String delimiter1 = "  ";
-///		ArrayList <AttrDefn> lAttrArr = new ArrayList (InfoModel.masterMOFAttrIdMap.values());
-///		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
+		for (Iterator<DOMAttr> i = InfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
 			if (! (lAttr.isUsedInClass && lAttr.isAttribute)) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
 			delimiter1 = ", ";
@@ -252,18 +262,18 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lAttr.identifier) + " ,");	
 			prDDPins.println("            " + formValue("title") + ": " + formValue(lAttr.title) + " ,");	
 			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");	
-			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lAttr.attrNameSpaceIdNC) + " ,");	
+			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lAttr.nameSpaceIdNC) + " ,");	
 			prDDPins.println("            " + formValue("steward") + ": " + formValue(lAttr.steward) + " ,");	
 			prDDPins.println("            " + formValue("versionId") + ": " + formValue(lAttr.versionIdentifierValue) + " ,");	
-			prDDPins.println("            " + formValue("description") + ": " + formValue(lAttr.description) + " ,");	
+			prDDPins.println("            " + formValue("description") + ": " + formValue(lAttr.definition) + " ,");	
 			prDDPins.println("            " + formValue("isNillable") + ": " + formBooleanValue(lAttr.isNilable) + " ,");	
 			prDDPins.println("            " + formValue("isEnumerated") + ": " + formBooleanValue(lAttr.isEnumerated) + " ,");	
 			prDDPins.println("            " + formValue("dataType") + ": " + formValue(lAttr.valueType) + " ,");	
 			prDDPins.println("            " + formValue("dataTypeId") + ": " + formValue(lAttr.getValueTypeIdentifier()) + " ,");	
-			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lAttr.getMinimumCharacters2(true,true)) + " ,");			
-			prDDPins.println("            " + formValue("maximumCharacters") + ": " + formValue(lAttr.getMaximumCharacters2(true,true)) + " ,");	
-			prDDPins.println("            " + formValue("minimumValue") + ": " + formValue(lAttr.getMinimumValue2(true,true)) + " ,");	
-			prDDPins.println("            " + formValue("maximumValue") + ": " + formValue(lAttr.getMaximumValue2(true,true)) + " ,");	
+			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lAttr.getMinimumCharacters(true,true)) + " ,");			
+			prDDPins.println("            " + formValue("maximumCharacters") + ": " + formValue(lAttr.getMaximumCharacters(true,true)) + " ,");	
+			prDDPins.println("            " + formValue("minimumValue") + ": " + formValue(lAttr.getMinimumValue(true,true)) + " ,");	
+			prDDPins.println("            " + formValue("maximumValue") + ": " + formValue(lAttr.getMaximumValue(true,true)) + " ,");	
 			prDDPins.println("            " + formValue("pattern") + ": " + formValue(lAttr.getPattern(true)) + " ,");	
 			prDDPins.println("            " + formValue("unitOfMeasure") + ": " + formValue(lAttr.getUnitOfMeasure(false)) + " ,");	
 			prDDPins.println("            " + formValue("unitOfMeasureId") + ": " + formValue(lAttr.getUnitOfMeasureIdentifier()) + " ,");	
@@ -276,18 +286,20 @@ class Write11179DDJSONFile extends Object{
 	}
 
 	// Print the Permissible Values and Value Meanings
-	public  void printPermValues (AttrDefn lAttr, PrintWriter prDDPins) {
-		if (lAttr.permValueArr.isEmpty()) return;
+	public  void printPermValues (DOMAttr lAttr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-		prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");
-		for (Iterator<PermValueDefn> i = lAttr.permValueArr.iterator(); i.hasNext();) {
-			PermValueDefn lPermValueDefn = (PermValueDefn) i.next();
-//			prDDPins.println("            , {" + formValue("PermissibleValue") + ": {");					
+//		if (lAttr.permValueArr.isEmpty()) return;
+		if (lAttr.domPermValueArr.isEmpty()) return;
+		prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");				
+		for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMClass.isEmpty()) continue;
+			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMClass.get(0);
 			prDDPins.println("            " + delimiter1 + "{" + formValue("PermissibleValue") + ": {");				
 			delimiter1 = ", ";
 //			prDDPins.println("            , {" + formValue("PermissibleValue") + ": {");					
-			prDDPins.println("                  " + formValue("value") + ": " + formValue(lPermValueDefn.value) + " ,");	
-			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lPermValueDefn.value_meaning));	
+			prDDPins.println("                  " + formValue("value") + ": " + formValue(lDOMPermValDefn.value) + " ,");	
+			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lDOMPermValDefn.value_meaning));	
 			prDDPins.println("                }");
 			prDDPins.println("             }");
 		}
@@ -299,7 +311,6 @@ class Write11179DDJSONFile extends Object{
 		String delimiter1 = "  ";
 		for (Iterator<DataTypeDefn> i = InfoModel.masterDataTypesArr2.iterator(); i.hasNext();) {
 			DataTypeDefn lDataType = (DataTypeDefn) i.next();
-//			prDDPins.println("      , {" + formValue("DataType") + ": {");			
 			prDDPins.println("      " + delimiter1 + "{" + formValue("DataType") + ": {");				
 			delimiter1 = ", ";
 //			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lDataType.identifier) + " ,");	
@@ -324,11 +335,9 @@ class Write11179DDJSONFile extends Object{
 		prDDPins.println("          , " + formValue("patternList") + ": [");	
 		for (Iterator<String> i = lDataType.pattern.iterator(); i.hasNext();) {
 			String lValue = (String) i.next();
-//			prDDPins.println("            , {" + formValue("Pattern") + ": {");	
-//			prDDPins.println("            , {" + formValue("") + ": {");					
 			prDDPins.println("            " + delimiter1 + "{" + formValue("Pattern") + ": {");				
 			delimiter1 = ", ";
-
+//			prDDPins.println("            , {" + formValue("Pattern") + ": {");					
 			prDDPins.println("                  " + formValue("value") + ": " + formValue(lValue) + " ,");		
 			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue("TBD"));		
 			prDDPins.println("              }");
@@ -342,7 +351,6 @@ class Write11179DDJSONFile extends Object{
 		String delimiter1 = "  ";
 		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
 			UnitDefn lUnit = (UnitDefn) i.next();
-//			prDDPins.println("      , {" + formValue("Unit") + ": {");			
 			prDDPins.println("      " + delimiter1 + "{" + formValue("Unit") + ": {");				
 			delimiter1 = ", ";
 //			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lUnit.identifier) + " ,");	
@@ -364,11 +372,9 @@ class Write11179DDJSONFile extends Object{
 		prDDPins.println("          , " + formValue("unitIdList") + ": [");	
 		for (Iterator<String> i = lUnit.unit_id.iterator(); i.hasNext();) {
 			String lValue = (String) i.next();
-//			prDDPins.println("            , {" + formValue("UnitId") + ": {");
-//			prDDPins.println("            , {" + formValue("UnitId") + ": {");					
 			prDDPins.println("            " + delimiter1 + "{" + formValue("UnitId") + ": {");				
 			delimiter1 = ", ";
-
+//			prDDPins.println("            , {" + formValue("UnitId") + ": {");					
 			prDDPins.println("                  " + formValue("value") + ": " + formValue(lValue) + " ,");		
 			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue("TBD"));		
 			prDDPins.println("                }");
@@ -382,7 +388,6 @@ class Write11179DDJSONFile extends Object{
 			String delimiter1 = "  ";
 			for (Iterator<PropertyMapsDefn> i = InfoModel.masterPropertyMapsArr.iterator(); i.hasNext();) {
 				PropertyMapsDefn lPropertyMaps = (PropertyMapsDefn) i.next();
-//				prDDPins.println("      , {" + formValue("PropertyMaps") + ": {");			
 				prDDPins.println("      " + delimiter1 + "{" + formValue("PropertyMaps") + ": {");				
 				delimiter1 = ", ";
 				prDDPins.println("            " + formValue("identifier") + ": " + formValue(lPropertyMaps.rdfIdentifier) + " ,");		
@@ -404,7 +409,6 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("          , " + formValue("propertyMapList") + ": [");	
 			for (Iterator<PropertyMapDefn> i = lPropertyMaps.propertyMapArr.iterator(); i.hasNext();) {
 				PropertyMapDefn lPropertyMap = (PropertyMapDefn) i.next();
-//				prDDPins.println("            , {" + formValue("PropertyMap") + ": {");			
 				prDDPins.println("            " + delimiter1 + "{" + formValue("PropertyMap") + ": {");				
 				delimiter1 = ", ";
 				prDDPins.println("                  " + formValue("identifier") + ": " + formValue(lPropertyMap.identifier) + " ,");		
@@ -428,7 +432,6 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("                , " + formValue("propertyMapEntryList") + ": [");	
 			for (Iterator<PropertyMapEntryDefn> i = lPropertyMap.propertyMapEntryArr.iterator(); i.hasNext();) {
 				PropertyMapEntryDefn lPropertyMapEntry = (PropertyMapEntryDefn) i.next();
-//				prDDPins.println("                  , {" + formValue("PropertyMapEntry") + ": {");					
 				prDDPins.println("                  " + delimiter1 + "{" + formValue("PropertyMapEntry") + ": {");				
 				delimiter1 = ", ";
 				prDDPins.println("                        " + formValue("property_name") + ": " + formValue(lPropertyMapEntry.property_name) + " ,");		
@@ -441,9 +444,9 @@ class Write11179DDJSONFile extends Object{
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
 //		System.out.println("debug printPDDPPR");
-		ArrayList <AssocDefn> lSortedAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocIdMap.values());
-		for (Iterator<AssocDefn> i = lSortedAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
+		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (InfoModel.masterDOMPropIdMap.values());
+		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lAssoc = (DOMProp) i.next();
 			String prDataIdentifier = "PR." + lAssoc.identifier;
 //			System.out.println("debug printPDDPPR - prDataIdentifier:" + prDataIdentifier);
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
@@ -576,10 +579,8 @@ class Write11179DDJSONFile extends Object{
 	// Print the the Protege Pins TE
 	public  void printPDDPTE (PrintWriter prDDPins) {
 		// print the Terminological Entry
-///		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
-///		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
+		for (Iterator<DOMAttr> i = InfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
 			if (lAttr.isUsedInClass && lAttr.isAttribute) {
 				// print TE section
 				prDDPins.println("([" + lAttr.teDataIdentifier + "] of TerminologicalEntry");
@@ -590,7 +591,7 @@ class Write11179DDJSONFile extends Object{
 		
 				// print definition section
 				prDDPins.println("([" + lAttr.defDataIdentifier + "] of Definition");
-				prDDPins.println("  (definitionText \"" + InfoModel.escapeProtegeString(lAttr.description) + "\")");
+				prDDPins.println("  (definitionText \"" + InfoModel.escapeProtegeString(lAttr.definition) + "\")");
 				prDDPins.println("  (isPreferred \"" + "TRUE" + "\"))");
 				
 				// print designation section

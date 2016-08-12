@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -329,6 +329,16 @@ public class GetModels extends Object {
 		// set the class version identifiers (stop gap until class are stored in OWL
 		DMDocument.masterInfoModel.setClassVersionIds ();
 //		DMDocument.masterInfoModel.dumpClassVersionIds ();
+		
+		// set exposed flag
+		for (Iterator <String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
+			String lElementName = (String) i.next();
+			String lIdentifier = InfoModel.getClassIdentifier ("pds", lElementName);
+			PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lIdentifier);
+			if (lClass != null) lClass.isExposed = true;
+//			System.out.println("debug DMDocument EXPOSE lIdentifier:" + lIdentifier);
+//			System.out.println("debug DMDocument EXPOSE lClass.isExposed:" + lClass.isExposed);
+		}
 
 		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");
 	}
@@ -432,7 +442,8 @@ public class GetModels extends Object {
 				// add MOF Properties (type attribute)
 				if (InfoModel.masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
 					AssocDefn lAssoc = new AssocDefn ();
-					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
+					lAssoc.createAssocSingletonsFromAttr(lAttr);
+/*					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
 					lAssoc.identifier = lAttr.identifier;		
 					lAssoc.title = lAttr.title;
 					lAssoc.className = lAttr.parentClassTitle;
@@ -444,7 +455,7 @@ public class GetModels extends Object {
 					lAssoc.cardMin = lAttr.cardMin;
 					lAssoc.cardMax = lAttr.cardMax;
 					lAssoc.cardMinI = lAttr.cardMinI; 
-					lAssoc.cardMaxI = lAttr.cardMaxI;
+					lAssoc.cardMaxI = lAttr.cardMaxI; */
 					lAssoc.referenceType = "attribute_of";
 					InfoModel.masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
 				}
@@ -470,7 +481,8 @@ public class GetModels extends Object {
 				// add MOF properties (type association)
 				if (InfoModel.masterMOFAssocMap.get(lAttr.rdfIdentifier) == null) {
 					AssocDefn lAssoc = new AssocDefn ();
-					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
+					lAssoc.createAssocSingletonsFromAttr(lAttr);
+/*					lAssoc.rdfIdentifier = lAttr.rdfIdentifier;
 					lAssoc.identifier = lAttr.identifier;			
 					lAssoc.title = lAttr.title;
 					lAssoc.className = lAttr.parentClassTitle;
@@ -482,7 +494,7 @@ public class GetModels extends Object {
 					lAssoc.cardMin = lAttr.cardMin;
 					lAssoc.cardMax = lAttr.cardMax;
 					lAssoc.cardMinI = lAttr.cardMinI; 
-					lAssoc.cardMaxI = lAttr.cardMaxI;
+					lAssoc.cardMaxI = lAttr.cardMaxI; */
 					lAssoc.referenceType = lAttr.title;
 					InfoModel.masterMOFAssocMap.put(lAttr.rdfIdentifier, lAssoc);
 					

@@ -1,5 +1,4 @@
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 public class DeprecatedDefn {
 	String identifier;
 	String title;

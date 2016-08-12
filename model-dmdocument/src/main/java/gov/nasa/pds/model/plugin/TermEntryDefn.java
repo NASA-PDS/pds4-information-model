@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 public class TermEntryDefn {
 	String name;
 	String definition;

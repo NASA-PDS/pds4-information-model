@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -37,7 +37,7 @@ class XML4LabelSchema extends Object {
        	// write the Product Class Elements
     	if (lSchemaFileDefn.isMaster) {
 //    		System.out.println("debug writeXMLSchemaFiles *** Master *** lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
-    		writeProductElementDefinition (classHierMap, prXML);    		
+    		writeElementDefinition (classHierMap, prXML);    		
     	}
 
 		// for non-LDDTool runs, write the Class Elements for all schemas except the master schema 
@@ -187,6 +187,22 @@ class XML4LabelSchema extends Object {
 		prXML.println("  <!-- PDS4 XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
 		prXML.println("  <!-- Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
 		prXML.println("  <!-- *** This PDS4 product schema is an operational deliverable. *** -->");
+		if (DMDocument.LDDToolFlag) {
+			prXML.println("  <!--                                                                           -->");
+			prXML.println("  <!--               Dictionary Stack                                            -->");
+			String lEntry = DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - " + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + " - " + DMDocument.masterPDSSchemaFileDefn.lddName + " - " + DMDocument.masterPDSSchemaFileDefn.sourceFileName + "                                   ";
+			lEntry = lEntry.substring(0, 73);
+			prXML.println("  <!-- " + lEntry + " -->");
+
+			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
+				SchemaFileDefn lFileInfo = (SchemaFileDefn) i.next();
+//				lEntry = lFileInfo.sourceFileName + " - " + lFileInfo.ont_version_id;
+				lEntry = lFileInfo.ont_version_id + " - " + lFileInfo.nameSpaceId + " - " + lFileInfo.lddName + " - " + lFileInfo.sourceFileName + "                                   ";
+				lEntry = lEntry.substring(0, 73);
+				prXML.println("  <!-- " + lEntry + " -->");
+			}
+			prXML.println("  <!--                                                                           -->");
+		}
 		prXML.println("  <" + pNS + "schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"");
 		
 		// write namespace statements
@@ -238,8 +254,15 @@ class XML4LabelSchema extends Object {
 		
 		prXML.println(" ");		
 		prXML.println("  <" + pNS + "annotation>");		
-		prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
-		prXML.println("  </" + pNS + "annotation>");		
+		if (! DMDocument.LDDToolFlag) {
+			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
+		} else {
+			// change made to allow Mitch's comments to wrap properly.
+			prXML.println("    <" + pNS + "documentation>");		
+			prXML.println(lSchemaFileDefn.comment);		
+			prXML.println("    </" + pNS + "documentation>");
+		}
+		prXML.println("  </" + pNS + "annotation>");
 	}
 	
 //	write the XML Schema File Footer
@@ -470,7 +493,11 @@ class XML4LabelSchema extends Object {
 					if (lCompClass.title.compareTo("Discipline_Facets") == 0)
 						writeXMLClassDisciplineFacet (lClass, prXML);
 					else
-						prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lCompClass.title + "\"" + " type=\"" + lCompClass.nameSpaceId  + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+//						prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lCompClass.title + "\"" + " type=\"" + lCompClass.nameSpaceId  + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+						if (! lCompClass.isExposed)
+							prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lCompClass.title + "\"" + " type=\"" + lCompClass.nameSpaceId  + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+						else
+							prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lCompClass.nameSpaceId + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 				}							
 			}
 		}
@@ -884,12 +911,13 @@ class XML4LabelSchema extends Object {
     	prXML.println(" ");
 	}
 	
-	public void writeProductElementDefinition (TreeMap <String, PDSObjDefn> lClassHierMap, PrintWriter prXML) throws java.io.IOException {
+	public void writeElementDefinition (TreeMap <String, PDSObjDefn> lClassHierMap, PrintWriter prXML) throws java.io.IOException {
 		prXML.println(" ");
 		ArrayList <PDSObjDefn> lSortedClassArr = new ArrayList <PDSObjDefn> (lClassHierMap.values());
 		for (Iterator<PDSObjDefn> i = lSortedClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.isRegistryClass) {
+//			if (lClass.isRegistryClass) {
+			if (lClass.isRegistryClass || lClass.isExposed) {
 				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"pds:" + lClass.title + "\">" + " </" + pNS + "element>");
 			}
 		}

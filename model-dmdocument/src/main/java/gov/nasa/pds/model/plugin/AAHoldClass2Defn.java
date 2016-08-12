@@ -1,23 +1,22 @@
 package gov.nasa.pds.model.plugin; 
 import java.util.*;
 
-public class PDSObjDefn extends Object {
+public class AAHoldClass2Defn extends ClassDefn {
 
-	String rdfIdentifier;							// url, namespace, title -- used for object dictionary (hashmap)
-	String uid;										// unique identifier for rdfIdentifier
-	String identifier; 								// no url, namespace, title (Is used as funcational equivalent of attr.nsTitle)
-	String title;  									// no url, no namespace, title
-	String versionId;								// the version of this class
-	String registrationStatus;						// ISO 11179 item registration status
-	String anchorString;							// "class_" + lClass.nameSpaceIdNC + "_" + lClass.title
-	String regAuthId;								// registration authority identifier
-	String steward;									// steward
-	String nameSpaceId;								// namespace id - assigned namespace id with colon
-	String nameSpaceIdNC;							// namespace id - assigned namespace id No Colon
+//	String rdfIdentifier;							// url, namespace, title -- used for object dictionary (hashmap)
+//	String identifier; 								// no url, namespace, title (Is used as funcational equivalent of attr.nsTitle)
+//	String title;  									// no url, no namespace, title
+//	String versionId;								// the version of this class
+//	String registrationStatus;						// ISO 11179 item registration status
+//	String anchorString;							// "class_" + lClass.nameSpaceIdNC + "_" + lClass.title
+//	String regAuthId;								// registration authority identifier
+//	String steward;									// steward
+//	String nameSpaceId;								// namespace id - assigned namespace id with colon
+//	String nameSpaceIdNC;							// namespace id - assigned namespace id No Colon
 	String section;									// section of the info model specification document for  this class
 	String subModelId;								// identifier of submodel within the registration authority's model.
 	String role;									// abstract or concrete
-	String description;
+//	String description;
 	String docSecType;								// class type = title
 	String subClassOfTitle;							// title
 	String subClassOfIdentifier;					// namespace + title
@@ -30,7 +29,6 @@ public class PDSObjDefn extends Object {
 	boolean isMasterClass;							// will be included in the master class map
 	boolean isSchema1Class;							// will have a schema type 1 created
 	boolean isRegistryClass;						// will be included in registry configuration file
-	boolean isExposed;								// the class or attribute will be exposed using xs:Element
 	boolean isUsedInModel;
 	boolean isVacuous;								// a vacuous class is empty and therefore not to be included in schemas
 	boolean isUnitOfMeasure;
@@ -40,17 +38,16 @@ public class PDSObjDefn extends Object {
 	boolean isChoice;								// class requires xs:choice
 	boolean isAny;									// class requires xs:any
 	boolean includeInThisSchemaFile;
-	boolean isFromLDD;								// has been ingested from Ingest_LDD
-	boolean isReferencedFromLDD;					// is a class in the master that is referenced from an LDD
-	boolean isLDDElement;							// an XML schema element will be created for this class
+	boolean isFromLDD;									// has been ingested from Ingest_LDD
+	boolean isReferencedFromLDD;						// is a class in the master that is referenced from an LDD
 	
 	TreeMap <String, TermEntryDefn> termEntryMap;
 	
 	ArrayList <AttrDefn> hasSlot;
 	ArrayList <String> subClasses; 
-	PDSObjDefn subClassOfInst;
-	ArrayList <PDSObjDefn> superClass; 
-	ArrayList <PDSObjDefn> subClass; 
+	AAHoldClass2Defn subClassOfInst;
+	ArrayList <AAHoldClass2Defn> superClass; 
+	ArrayList <AAHoldClass2Defn> subClass; 
 	
 	ArrayList <String> ownedAttrNSTitle; 
 	ArrayList <String> ownedAssocNSTitle; 
@@ -70,23 +67,22 @@ public class PDSObjDefn extends Object {
 	
 	ArrayList <AssocDefn> PropertyArr;					// Class Properties
 	
-	public PDSObjDefn (String rdfId) {
-		identifier = "TBD_identifier"; 
-		uid = "TBD_uid";
-		rdfIdentifier = rdfId; 
-		title = "TBD_title"; 
-//		versionId = "TBD_versionId";
-		versionId = DMDocument.classVersionIdDefault;
-		registrationStatus = "TBD_registrationStatus";
-		anchorString = "TBD_anchorString";
-		regAuthId = "TBD_registration_authority_identifier";
-		steward = "TBD_steward";
-		nameSpaceId = "TBD_namespaceid";
-		nameSpaceIdNC = "TBD_namespaceidNC";
+	public AAHoldClass2Defn (String rdfId) {
+		super (rdfId);
+//		identifier = "TBD_identifier"; 
+//		rdfIdentifier = rdfId; 
+//		title = "TBD_title"; 
+//		versionId = DMDocument.classVersionIdDefault;
+//		registrationStatus = "TBD_registrationStatus";
+//		anchorString = "TBD_anchorString";
+//		regAuthId = "TBD_registration_authority_identifier";
+//		steward = "TBD_steward";
+//		nameSpaceId = "TBD_namespaceid";
+//		nameSpaceIdNC = "TBD_namespaceidNC";
 		section = "TBD_section";
 		subModelId = "TBD_submodel_identifier";
 		role = "TBD_role";
-		description = "TBD_description"; 
+//		description = "TBD_description"; 
 		docSecType = "TBD_type"; 
 		subClassOfTitle = "TBD_subClassOfTitle";
 		subClassOfIdentifier = "TBD_subClassOfIdentifier";
@@ -98,7 +94,6 @@ public class PDSObjDefn extends Object {
 		isMasterClass = false;
 		isSchema1Class = false;
 		isRegistryClass = false;
-		isExposed = false;
 		isUsedInModel = false;
 		isVacuous = false;
 		isUnitOfMeasure = false;
@@ -110,14 +105,13 @@ public class PDSObjDefn extends Object {
 		includeInThisSchemaFile = false;
 		isFromLDD = false;
 		isReferencedFromLDD = false;
-		isLDDElement = false;
 		
 		termEntryMap = new TreeMap <String, TermEntryDefn> ();
 		hasSlot = new ArrayList <AttrDefn> ();
 		subClasses = new ArrayList <String> ();  
 		subClassOfInst = null;
-		superClass = new ArrayList <PDSObjDefn> (); 
-		subClass = new ArrayList <PDSObjDefn> (); 
+		superClass = new ArrayList <AAHoldClass2Defn> (); 
+		subClass = new ArrayList <AAHoldClass2Defn> (); 
 				
 		ownedAttrNSTitle = new ArrayList <String> (); 
 		ownedAssocNSTitle = new ArrayList <String> (); 
@@ -137,7 +131,7 @@ public class PDSObjDefn extends Object {
 		
 		PropertyArr = new ArrayList <AssocDefn> ();
 	}  	
-	
+		
 	//	get the name in the indicated language; use the attribute title as a default
 	public String nameInLanguage (String lLanguage) {
 		if (lLanguage == null) return this.title;

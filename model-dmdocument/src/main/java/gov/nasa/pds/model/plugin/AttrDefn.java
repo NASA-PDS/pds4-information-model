@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
 
 public class AttrDefn extends Object {
@@ -278,7 +278,23 @@ public class AttrDefn extends Object {
 		}
 		return "TBD_value_type";
 	}
+	
+	//	get the identifier for this value type
+	public String getValueTypeIdentifier () {
 		
+		// check if there is a value type
+		String lValueType = this.valueType;
+		if ((lValueType.indexOf("TBD") == 0) || (lValueType.compareTo("") == 0)) return null;
+
+		// get the data type
+		String llValueTypeId = InfoModel.getClassIdentifier ("pds", lValueType);
+
+		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(llValueTypeId);
+		if (lClass == null) return null;
+
+		return lClass.identifier;
+	}	
+	
 	//	get the minimum_characters for printing. Use the data type for a default.
 	public String getMinimumCharacters2 (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.minimum_characters;
@@ -393,7 +409,23 @@ public class AttrDefn extends Object {
 		}
 		return "TBD_unit_of_measure_type";			
 	}
+	
+	//	get the identifier for this Unit Of Measure
+	public String getUnitOfMeasureIdentifier () {
+		
+		// check if there is a UnitOfMeasure
+		String lUnitOfMeasure = this.unit_of_measure_type;
+		if ((lUnitOfMeasure.indexOf("TBD") == 0) || (lUnitOfMeasure.compareTo("") == 0)) return null;
 
+		// get the unit of measure type
+		String lUnitOfMeasureId = InfoModel.getClassIdentifier ("pds", lUnitOfMeasure);
+
+		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lUnitOfMeasureId);
+		if (lClass == null) return null;
+
+		return lClass.identifier;
+	}	
+	
 	//	get the units for this unit_of_measure_type.
 	public String getUnits (boolean needsQuotes) {
 		

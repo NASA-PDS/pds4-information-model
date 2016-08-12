@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
 
 /**
@@ -80,9 +80,12 @@ class ProtPontModel extends InfoModel{
 			case 1: // class name
 				className = token;
 //				if (className.compareTo("%3ACLIPS_TOP_LEVEL_SLOT_CLASS") == 0) className = DMDocument.TopLevelAttrClassName;
-				String lClassRdfIdentifier = DMDocument.rdfPrefix + className + "." + getNextUId();
+				String luid3 = getNextUId();
+//				String lClassRdfIdentifier = DMDocument.rdfPrefix + className + "." + getNextUId();
+				String lClassRdfIdentifier = DMDocument.rdfPrefix + className + "." + luid3;
 				objClass = new PDSObjDefn(lClassRdfIdentifier);
 				objClass.title = className;
+				objClass.uid = luid3;
 //				objClass.versionId = InfoModel.identifier_version_id;
 				objClass.versionId = DMDocument.classVersionIdDefault;
 				objClass.docSecType = className;

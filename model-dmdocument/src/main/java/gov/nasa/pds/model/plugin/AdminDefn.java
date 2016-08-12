@@ -1,5 +1,4 @@
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 public class AdminDefn {
 	String identifier;
 	String title;

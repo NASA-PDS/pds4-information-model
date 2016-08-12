@@ -1,25 +1,17 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeMap;
 
-public class DomAttr extends ISOClassOAIS11179 {
-	String rdfIdentifier;							// url, namespace, name
+public class DOMAttr extends ISOClassOAIS11179 {
 	String uid;										// unique identifier for rdfIdentifier
-	String identifier; 								// no url, namespace, name (one pair for class, two pair for attribute)
 	String nsTitle;									// namespace + title
 	String sort_identifier;							// lAttr.title + "_" + lAttr.steward + "_" + lAttr.className + "_" + lAttr.classSteward
 	String attrAnchorString;						// "attribute", lAttr.attrNameSpaceIdNC, lAttr.title, lAttr.classNameSpaceIdNC, lAttr.className
-	String title;  									// no url, no namespace, name
-	String versionId;								// version id
-	String registrationStatus;						// ISO 11179 item registration status
 	String XMLSchemaName;							// Title or Class_Title
 	String regAuthId;								// registration authority identifier
-	String steward;									// steward for attribute
 	String classSteward;							// steward for attribute's class
-	String attrNameSpaceId;
-	String attrNameSpaceIdNC;
 	String classNameSpaceIdNC;
 	String submitter;								// submitter for attribute
 	String subModelId;								// identifier of submodel within the registration authority's model.
@@ -28,7 +20,6 @@ public class DomAttr extends ISOClassOAIS11179 {
 	String classConcept;							// for DEC
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
-	String description;
 	String lddLocalIdentifier;						// LDD local identifier
 	AttrDefn lddUserAttribute;						// the USER attribute used to initialize the LDD attribute
 
@@ -66,6 +57,8 @@ public class DomAttr extends ISOClassOAIS11179 {
 	boolean isAny;					// Association or Instance attribute that allows a class any
 	boolean isFromLDD;				// attribute came from an LDD
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
+	
+	ArrayList <DOMProp> domPermValueArr;
 	
 	ArrayList <String> valArr;
 	ArrayList <PDSObjDefn> valClassArr;	// classes for for assoc (AttrDefn) valArr
@@ -106,23 +99,14 @@ public class DomAttr extends ISOClassOAIS11179 {
 	ArrayList <String> genClassArr;
 	ArrayList <String> sysClassArr;	
 	
-	public DomAttr () {
-		rdfIdentifier = "TBD_identifier"; 
+	public DOMAttr () {
 		uid = "TBD_uid";
-		identifier = "TBD_identifier"; 
 		nsTitle = "TBD_nsTitle"; 
 		sort_identifier = "TBD_sort_identifier";
 		attrAnchorString = "TBD_attrAnchorString";
-		title = "TBD_title";  
-		versionId = "TBD_versionId";
-		registrationStatus = "TBD_registrationStatus";
 		XMLSchemaName = "TBD_XMLSchemaName";
-		regAuthId = "TBD_registration_authority_identifier";
-		steward = "TBD_steward";
 		classSteward = "TBD_classSteward";
 		classNameSpaceIdNC = "TBD_classNameSpaceId";
-		attrNameSpaceId = "TBD_attrNameSpaceId";
-		attrNameSpaceIdNC = "TBD_attrNameSpaceIdNC";
 		submitter = "TBD_submitter";
 		subModelId = "TBD_submodel_identifier";
 		parentClassTitle = "TBD_parentClassTitle";
@@ -130,7 +114,6 @@ public class DomAttr extends ISOClassOAIS11179 {
 		classConcept = "TBD_classConcept"; 
 		dataConcept = "TBD_dataConcept"; 
 		classWord = "TBD_classWord"; 
-		description = "TBD_description"; 
 		lddLocalIdentifier = "TBD_lddLocalIdentifier";
 		lddUserAttribute = null;
 
@@ -168,6 +151,7 @@ public class DomAttr extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		hasRetiredValue = false;
 
+		domPermValueArr = new ArrayList <DOMProp> ();
 		valArr = new ArrayList <String> (); 
 		valClassArr = new ArrayList <PDSObjDefn> (); 
 		allowedUnitId = new ArrayList <String> ();
@@ -204,26 +188,36 @@ public class DomAttr extends ISOClassOAIS11179 {
 		sysClassArr = null;
 	}
 	
-	public void initDomAttr (AttrDefn lOldAttr) {
-		initDomAttrSingletons (lOldAttr);
+	public void setIdentifier(String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2) {
+		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle + "." + lNameSpaceIdNC2 + "." + lTitle2;
 	}
+
 	
-	public void initDomAttrSingletons (AttrDefn lOldAttr) {
+	public void createDOMAttrSingletons (AttrDefn lOldAttr) {
+//		System.out.println("debug - createDOMAttrSingletons - Phase 3 - lOldAttr.rdfIdentifier: " + lOldAttr.rdfIdentifier);							
 		rdfIdentifier = lOldAttr.rdfIdentifier; 
-		uid = lOldAttr.uid; 
 		identifier = lOldAttr.identifier; 
+		versionId = lOldAttr.versionId; 
+		sequenceId = lOldAttr.uid; 
+		
+		title = lOldAttr.title; 
+		definition = lOldAttr.description;
+		
+		registrationStatus = lOldAttr.registrationStatus; 
+//		isDeprecated = lOldAttr.isDeprecated; 
+		
+		regAuthId = lOldAttr.regAuthId; 
+		steward = lOldAttr.steward; 
+		nameSpaceId = lOldAttr.attrNameSpaceId;
+		nameSpaceIdNC = lOldAttr.attrNameSpaceIdNC;
+
+		uid = lOldAttr.uid; 
 		nsTitle = lOldAttr.nsTitle; 
 		sort_identifier = lOldAttr.sort_identifier; 
 		attrAnchorString = lOldAttr.attrAnchorString; 
-		title = lOldAttr.title; 
-		versionId = lOldAttr.versionId; 
-		registrationStatus = lOldAttr.registrationStatus; 
+
 		XMLSchemaName = lOldAttr.XMLSchemaName; 
-		regAuthId = lOldAttr.regAuthId; 
-		steward = lOldAttr.steward; 
 		classSteward = lOldAttr.classSteward; 
-		attrNameSpaceId = lOldAttr.attrNameSpaceId;
-		attrNameSpaceIdNC = lOldAttr.attrNameSpaceIdNC;
 		classNameSpaceIdNC = lOldAttr.classNameSpaceIdNC;
 		submitter = lOldAttr.submitter; 
 		subModelId = lOldAttr.subModelId; 
@@ -232,7 +226,7 @@ public class DomAttr extends ISOClassOAIS11179 {
 		classConcept = lOldAttr.classConcept; 
 		dataConcept = lOldAttr.dataConcept; 
 		classWord = lOldAttr.classWord; 
-		description = lOldAttr.description;
+
 		lddLocalIdentifier = lOldAttr.lddLocalIdentifier; 
 //		 AttrDefn lddUserAttribute = lOldAttr.lddUserAttribute; 
 		 
@@ -273,13 +267,6 @@ public class DomAttr extends ISOClassOAIS11179 {
 		
 		InitStringArr (this.valArr, lOldAttr.valArr);
 		InitStringArr (this.allowedUnitId, lOldAttr.allowedUnitId);
-/*		InitStringArr (this.x, lOldAttr.x);   *** TBD ***
-		InitStringArr (this.x, lOldAttr.x);
-		InitStringArr (this.x, lOldAttr.x);
-		InitStringArr (this.x, lOldAttr.x);
-		InitStringArr (this.x, lOldAttr.x);
-		InitStringArr (this.x, lOldAttr.x); */
-
 		
 /*		
 		 ArrayList <String> valArr = lOldAttr.valArr;
@@ -327,6 +314,7 @@ public class DomAttr extends ISOClassOAIS11179 {
 	
 	// copy a string array
 	public void InitStringArr (ArrayList <String> lDomStrArr, ArrayList <String> lPDSStrArr) {
+		if (lPDSStrArr == null) return;
 		for (Iterator <String> i = lPDSStrArr.iterator(); i.hasNext();) {
 			String lOldStr = (String) i.next();
 			if (lOldStr != null)
@@ -336,5 +324,256 @@ public class DomAttr extends ISOClassOAIS11179 {
 		}
 	}
 	
+	//	get the value type for printing. 
+	public String getValueType (boolean forceBound) {
+		String lValue = this.valueType;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		if (forceBound) {
+			return "ASCII_Short_String_Collapsed";
+		}
+		return "TBD_value_type";
+	}
 	
+	
+	//	get the identifier for this value type
+	public String getValueTypeIdentifier () {
+		
+		// check if there is a value type
+		String lValueType = this.valueType;
+		if ((lValueType.indexOf("TBD") == 0) || (lValueType.compareTo("") == 0)) return null;
+
+		// get the data type
+		String llValueTypeId = InfoModel.getClassIdentifier ("pds", lValueType);
+
+		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(llValueTypeId);
+		if (lClass == null) return null;
+
+		return lClass.identifier;
+	}	
+		
+	//	get the minimum_characters for printing. Use the data type for a default.
+	public String getMinimumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
+		String lValue = this.minimum_characters;
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_minimum_characters";
+			lValue = lDataType.minimum_characters;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0) {
+				return "Unbounded";
+			}
+		}
+		if (lValue.compareTo("") == 0) return "TBD_minimum_characters";
+		return lValue;
+	}
+	
+	//	get the maximum_characters for printing. Use the data type for a default.
+	public String getMaximumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
+		String lValue = this.maximum_characters;
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_maximum_characters";
+			lValue = lDataType.maximum_characters;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0) {
+				return "Unbounded";
+			}
+		}
+		if (lValue.compareTo("") == 0) return "TBD_maximum_characters";
+		return lValue;
+	}
+	
+	//	get the minimum_value for printing. Use the data type for a default.
+	public String getMinimumValue (boolean useDataTypeForUNK, boolean forceBound) {
+		String lValue = this.minimum_value;
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_minimum_value";
+			lValue = lDataType.minimum_value;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0 || lValue.compareTo("-INF") == 0) {
+				return "Unbounded";
+			}
+		}
+		if (lValue.compareTo("") == 0) return "TBD_minimum_value";
+		return lValue;
+	}
+	
+	//	get the maximum_value for printing. Use the data type for a default.
+	public String getMaximumValue (boolean useDataTypeForUNK, boolean forceBound) {
+		String lValue = this.maximum_value;
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_maximum_value";
+			lValue = lDataType.maximum_value;
+		}
+		if (forceBound) {
+			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0 || lValue.compareTo("4294967295") == 0 || lValue.compareTo("INF") == 0) {
+				return "Unbounded";
+			}
+		}
+		if (lValue.compareTo("") == 0) return "TBD_maximum_value";
+		return lValue;
+	}
+
+	//	get the format for printing. Use the data type for a default.
+	public String getFormat (boolean useDataTypeForUNK) {
+		String lValue = this.format;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		if (useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType != null) {
+				lValue = lDataType.formation_rule;
+				if (! (lValue.indexOf("TBD") == 0)) {
+					return lValue;
+				}
+			}
+		}
+		return "TBD_format";
+	}
+	
+	//	get the maximum_value for printing. Use the data type for a default.
+	public String getPattern (boolean useDataTypeForUNK) {
+		String lValue = this.pattern;
+		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
+			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			if (lDataType == null) return "TBD_pattern";
+			if (lDataType.pattern.isEmpty()) return "TBD_pattern";
+			if (lDataType.pattern.size() > 1) return "TBD_pattern";
+			lValue = lDataType.pattern.get(0);
+		}
+		if (lValue.compareTo("") == 0) return "TBD_pattern";
+		return lValue;
+	}	
+
+	//	get the unit_of_measure_type for printing.
+	public String getUnitOfMeasure (boolean forceBound) {
+		String lValue = this.unit_of_measure_type;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return InfoModel.unEscapeProtegeString(lValue);
+		}
+		if (forceBound) {
+			return "Units_of_None";
+		}
+		return "TBD_unit_of_measure_type";			
+	}
+	
+	//	get the identifier for this Unit Of Measure
+	public String getUnitOfMeasureIdentifier () {
+		
+		// check if there is a UnitOfMeasure
+		String lUnitOfMeasure = this.unit_of_measure_type;
+		if ((lUnitOfMeasure.indexOf("TBD") == 0) || (lUnitOfMeasure.compareTo("") == 0)) return null;
+
+		// get the unit of measure type
+		String lUnitOfMeasureId = InfoModel.getClassIdentifier ("pds", lUnitOfMeasure);
+
+		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lUnitOfMeasureId);
+		if (lClass == null) return null;
+
+		return lClass.identifier;
+	}
+
+	//	get the units for this unit_of_measure_type.
+	public String getUnits (boolean needsQuotes) {
+		
+		// check if there is a unit of measure type
+		String lUnitOfMeasureType = this.unit_of_measure_type;
+		if ((lUnitOfMeasureType.indexOf("TBD") == 0) || (lUnitOfMeasureType.compareTo("") == 0)) return null;
+
+		String lUnitsValueString = "";
+
+		// get the unit of measure type
+		String lUnitIdId = InfoModel.getAttrIdentifier ("pds", lUnitOfMeasureType, "pds", "unit_id");
+
+		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
+		if (lAttr == null) return null;
+
+		// check if there are any permissible values
+		if ((lAttr.permValueArr == null || lAttr.permValueArr.isEmpty()))  return null;
+		
+		// create the value string
+		String lDel = "";
+		for (Iterator <PermValueDefn> k = lAttr.permValueArr.iterator(); k.hasNext();) {
+			PermValueDefn lPermValueDefn = (PermValueDefn) k.next();
+			String lValue = lPermValueDefn.value;
+			if (needsQuotes) {
+				lValue = "'" + lValue + "'";
+			}
+			lUnitsValueString += lDel + lValue;
+			lDel = ", ";
+		}
+		return lUnitsValueString;
+	}
+		
+	//	get the default_unit_id (specified unit) for printing.
+	public String getDefaultUnitId (boolean forceBound) {
+		String lValue = this.default_unit_id;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return InfoModel.unEscapeProtegeString(lValue);
+		}
+		if (forceBound) {
+			return "none";
+		}
+		return "TBD_default_unit_id";
+	}	
+	
+	//	get the steward for printing.
+	public String getSteward () {
+		String lValue = this.steward;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		return "TBD_steward";
+	}	
+	
+	//	get the name space id for printing.
+	public String getNameSpaceId () {
+		String lValue = this.nameSpaceIdNC;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		return "TBD_namespace_id";
+	}
+	
+	//	get the classConcept for printing.
+	public String getClassConcept () {
+		String lValue = this.classConcept;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		return "TBD_class_concept";
+	}
+	
+	//	get the dataConcept for printing.
+	public String getDataConcept () {
+		String lValue = this.dataConcept;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		return "TBD_data_concept";
+	}
+	
+	//	get the name in the indicated language; use the attribute title as a default
+	public String getNameInLanguage (String lLanguage) {
+		if (lLanguage == null) return this.title;
+		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
+		if (lTermEntry == null) return this.title;
+		return lTermEntry.name;
+	}
+	
+	//	get the name in the indicated language; use the attribute description as a default
+	public String getDefinitionInLanguage (String lLanguage) {
+		if (lLanguage == null) return this.definition;
+		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
+		if (lTermEntry == null) return this.definition;
+		return lTermEntry.definition;
+	}	
 }

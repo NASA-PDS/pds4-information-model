@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 
 public class ISOClassOAIS extends ISOClass {
 	boolean isDigital = false;

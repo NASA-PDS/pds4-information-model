@@ -1,9 +1,9 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
 
 public class AssocDefn {
 	String rdfIdentifier;					// url, namespace, name
-	String uid;								// unique identifier for rdfIdentifier
+//	String uid;								// unique identifier for rdfIdentifier
 	String identifier;
 	String localIdentifier;					// local_identifier (the or first local identifier in the Association set)
 	                                        // needed only for display
@@ -27,7 +27,8 @@ public class AssocDefn {
 	boolean isSet;							// is a set of either attributes or associations (AttrDefn)
 	
 	PDSObjDefn parentClass;					// parent class // **** deprecate
-//	ArrayList <AttrDefn> childAttrArr;		// all child attributes for this association (if necessary for choice)
+	ArrayList <AttrDefn> childAttrArr;		// all child attributes for this association (if necessary for choice)
+//	ArrayList <AttrDefn> childAttrArr2;		// for choice grouping in prep for DOMProp
 	ArrayList <PDSObjDefn> childClassArr;	// all child classes for this association (if necessary for choice)
 	AttrDefn childAssoc;					// the one association (AttrDefn) equivalent to this association (AssocDefn)
 	ArrayList <String> localIdentifierArr;	// local identifier array
@@ -39,7 +40,7 @@ public class AssocDefn {
 	
 	public AssocDefn () { 
 		rdfIdentifier = "TBD_rdfIdentifier"; 
-		uid = "TBD_uid";
+//		uid = "TBD_uid";
 		identifier = "TBD_identifier";
 		localIdentifier = "TBD_localIdentifier";			// local_identifier from Association
 		title = "TBD_title";
@@ -62,7 +63,8 @@ public class AssocDefn {
 		isAny = false;
 		isSet = false;
 
-//		childAttrArr = new ArrayList <AttrDefn> ();				// all child attributes for this association (choice)
+		childAttrArr = new ArrayList <AttrDefn> ();				// all child attributes for this association (choice)
+//		childAttrArr2 = new ArrayList <AttrDefn> ();				// all child attributes for this association (choice)
 		childClassArr = new ArrayList <PDSObjDefn> ();			// all child classes for this association (choice)
 		childAssoc = null;										// the one association (AttrDefn) equivalent to this association (AssocDefn)
 		localIdentifierArr = new ArrayList <String> ();
@@ -71,4 +73,48 @@ public class AssocDefn {
 		maximumOccurrences = "TBD_maximumOccurrences";
 		minimumOccurrences = "TBD_minimumOccurrences";
 	} 
+	
+	public void createAssocSingletons (AssocDefn lOldProp) {
+//		System.out.println("debug - createDOMPropSingletons - Phase 4 - lOldProp.rdfIdentifier: " + lOldProp.rdfIdentifier);							
+		rdfIdentifier = lOldProp.rdfIdentifier; 							
+//		System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
+		identifier = lOldProp.identifier; 
+		title = lOldProp.title;
+//		isDeprecated = lAttr.isDeprecated; 
+		classOrder = lOldProp.classOrder;
+		cardMin = lOldProp.cardMin;
+		cardMax = lOldProp.cardMax;
+		cardMinI = lOldProp.cardMinI; 
+		cardMaxI = lOldProp.cardMaxI;
+		className = lOldProp.className;
+		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
+		groupName = lOldProp.groupName;
+		referenceType = lOldProp.referenceType;
+		isAttribute = lOldProp.isAttribute;
+		isChoice = lOldProp.isChoice;
+		isAny = lOldProp.isAny;
+		isSet = lOldProp.isSet;
+	}
+	
+	public void createAssocSingletonsFromAttr (AttrDefn lOldAttr) {
+//		System.out.println("debug - createAssocSingletonsFromAttr - Phase 4 - lOldAttr.rdfIdentifier: " + lOldAttr.rdfIdentifier);							
+		rdfIdentifier = lOldAttr.rdfIdentifier; 							
+//		System.out.println("debug - createDOMClassSincreateAssocSingletonsFromAttrgletons rdfIdentifier: " + rdfIdentifier);							
+		identifier = lOldAttr.identifier; 
+		title = lOldAttr.title;
+//		isDeprecated = lAttr.isDeprecated; 
+		cardMin = lOldAttr.cardMin;
+		cardMax = lOldAttr.cardMax;
+		cardMinI = lOldAttr.cardMinI; 
+		cardMaxI = lOldAttr.cardMaxI;
+		attrNameSpaceId = lOldAttr.attrNameSpaceId;
+		attrNameSpaceIdNC = lOldAttr.attrNameSpaceIdNC;
+		className = lOldAttr.parentClassTitle;
+		classNameSpaceIdNC = lOldAttr.classNameSpaceIdNC;
+		groupName = lOldAttr.groupName;
+//		referenceType = lOldAttr.referenceType; //lAssoc.referenceType = "attribute_of";
+		isAttribute = lOldAttr.isAttribute;
+		isChoice = lOldAttr.isChoice;
+		isAny = lOldAttr.isAny;
+	}
 }

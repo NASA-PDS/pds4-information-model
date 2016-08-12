@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -28,7 +28,7 @@ class WriteCoreXMLSchemaLabel extends Object {
 		// write the XML file header
 		prSchematron.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		prSchematron.println("  <!-- PDS4 XML product label for " + "PDS4" + " V" + DMDocument.LDDToolSchemaVersionMapDots.get("pds") + "  " + DMDocument.masterTodaysDate + " -->");
-		prSchematron.println("  <!-- Generated from the PDS4 Information Model V" + InfoModel.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prSchematron.println("  <!-- Generated from the PDS4 Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
 		prSchematron.println("  <!-- *** This PDS4 XML product label is an operational deliverable. *** -->");
 		prSchematron.println("<?xml-model href=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds") + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.LDDToolSchemaVersionMapNoDots.get("pds") + ".sch\"");		
 		prSchematron.println("  schematypens=\"http://purl.oclc.org/dsdl/schematron\"?>");

@@ -1,11 +1,12 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 
 public class ISOClassOAIS11179 extends ISOClassOAIS {
-	String anchorString;							// "class_" + lClass.nameSpaceIdNC + "_" + lClass.title
 	String regAuthId;								// registration authority identifier
 	String steward;									// steward
 	String nameSpaceId;								// namespace id - assigned namespace id with colon
 	String nameSpaceIdNC;							// namespace id - assigned namespace id No Colon
+
+	String anchorString;							// "class_" + lClass.nameSpaceIdNC + "_" + lClass.title
 	
 	boolean isUsedInModel;
 	boolean isAbstract;
@@ -13,11 +14,12 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 
 	
 	public ISOClassOAIS11179 () {
-		anchorString = "TBD_anchorString";
 		regAuthId = "TBD_registration_authority_identifier";
 		steward = "TBD_steward";
 		nameSpaceId = "TBD_namespaceid";
 		nameSpaceIdNC = "TBD_namespaceidNC";
+		
+		anchorString = "TBD_anchorString";
 		
 		isUsedInModel = false;
 		isAbstract = false;

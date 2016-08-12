@@ -1,7 +1,7 @@
-// import org.apache.commons.lang.WordUtils;
-package gov.nasa.pds.model.plugin;
-
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
+// import org.apache.commons.lang.WordUtils;
+
 /*
  ** Read RDF XML from a file and write it to standard out
  */
@@ -65,6 +65,34 @@ public abstract class InfoModel extends Object {
 	// global 11179 data dictionary
 	static TreeMap <String, InstDefn> master11179DataDict;
 
+	// ==========================================================
+	// New DOM Classes
+	
+	// global classes
+	static ArrayList <DOMClass> masterDOMClassArr;
+	static TreeMap <String, DOMClass> masterDOMClassMap;
+	static TreeMap <String, DOMClass> masterDOMClassIdMap;
+
+	// global attributes
+	static ArrayList <DOMAttr> masterDOMAttrArr;
+	static TreeMap <String, DOMAttr> masterDOMAttrMap;
+	static TreeMap <String, DOMAttr> masterDOMAttrIdMap;
+
+	// global Properties
+	static ArrayList <DOMProp> masterDOMPropArr;
+	static TreeMap <String, DOMProp> masterDOMPropMap;
+	static TreeMap <String, DOMProp> masterDOMPropIdMap;
+	
+	// global Data Types
+	static ArrayList <DOMDataType> masterDOMDataTypeArr;
+	static TreeMap <String, DOMDataType> masterDOMDataTypeMap;
+	static TreeMap <String, DOMDataType> masterDOMDataTypeIdMap;
+	
+	// global Units
+	static ArrayList <DOMUnit> masterDOMUnitArr;
+	static TreeMap <String, DOMUnit> masterDOMUnitMap;
+	static TreeMap <String, DOMUnit> masterDOMUnitIdMap;
+	
 	// global science discipline facet map 
 //	static TreeMap <String, InstDefn> masterProtPinsUpperModel;
 	static TreeMap <String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap <String, SFDisciplineFacetDefn> ();
@@ -481,12 +509,17 @@ public abstract class InfoModel extends Object {
 		
 		// setup major loop for transfering the string in the input buffer to a wrapped string in the output buffer 
 		int indent = 0;
-		char lfcr = '\n';
+//		char lfcr = '\n';
+		char cr = '\r';
+		char lf = '\n';
 		boolean isFirst = true;
 		while (lInputBuffOffset1 < lStringLength) {
 			// insert linefeed (except first time)
 			if (isFirst) isFirst = false;
-			else lOutputStringBuff.insert(lOutputBuffOffset++, lfcr);
+			else { 
+				lOutputStringBuff.insert(lOutputBuffOffset++, cr);
+				lOutputStringBuff.insert(lOutputBuffOffset++, lf);
+			}
 			
 //			System.out.println("\ndebug wrapText -insert blanks- lInputBuffOffset1:" + lInputBuffOffset1);
 			

@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -18,7 +18,6 @@ class WritePVLSchema extends Object {
 	    PVLStmt = "#PDS4#\n";
 		prPVL.println(PVLStmt);
 		
-//	    PVLStmt = "/* ******* Label Template - " + lClass.title + "_" + InfoModel.ont_version_id + " - " + todaysDate + " ******* */";						
 	    PVLStmt = "/* ******* Label Template - " + lClass.title + "_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - " + todaysDate + " ******* */";						
 		prPVL.println(PVLStmt);
 		

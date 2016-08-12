@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -34,7 +34,8 @@ class WritePropMapsSchema extends Object {
 		prDDPins.println("  {");
 		prDDPins.println("    " + formValue("dataDictionary") + ": {");
 		prDDPins.println("      " + formValue("Title") + ": " + formValue("PDS4 Data Dictionary") + " ,");
-		prDDPins.println("      " + formValue("Version") + ": " +  formValue(InfoModel.ont_version_id) + " ,");
+//		prDDPins.println("      " + formValue("Version") + ": " +  formValue(InfoModel.ont_version_id) + " ,");
+		prDDPins.println("      " + formValue("Version") + ": " +  formValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + " ,");
 		prDDPins.println("      " + formValue("Date") + ": " +  formValue(DMDocument.sTodaysDate) + " ,");
 		prDDPins.println("      " + formValue("Description") + ": " + formValue("This document is a dump of the contents of the PDS4 Data Dictionary") + " ,");
 	}

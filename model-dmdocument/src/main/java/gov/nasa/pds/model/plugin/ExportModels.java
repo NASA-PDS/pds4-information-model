@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -106,7 +106,12 @@ public class ExportModels extends Object {
 		
 		// write the 11179 JSON file
 		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);	
+		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
+		
+		if (! DMDocument.LDDToolFlag) {
+			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+			writeDOMDDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON);	
+		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 		
 		// write the LOD SKOS file
@@ -115,8 +120,12 @@ public class ExportModels extends Object {
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - SKOS Done");
 		
 		// write the RDF/OWL file
-		WriteRDFOWLFile writeRDFOWLFile = new WriteRDFOWLFile ();
-		writeRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);	
+//		WriteRDFOWLFile writeRDFOWLFile = new WriteRDFOWLFile ();
+//		writeRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);	
+		if (! DMDocument.LDDToolFlag) {
+			WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
+			writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);	
+		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - RDF/OWL Done");
 				
 		// write the 11179 DD Data Element Definition XML Files
@@ -198,6 +207,10 @@ public class ExportModels extends Object {
 				String lFileName = lSchemaFileDefn.relativeFileSpecModelJSON;	
 				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
 				write11179DDJSONFile.writeJSONFile (lFileName);	
+				
+// DOM				
+//				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+//				writeDOMDDJSONFile.writeJSONFile (lFileName);	
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 			}
 

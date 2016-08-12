@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -287,12 +287,12 @@ public class LDDParser extends Object
 		//get the basics
 
 		// local DD attributes
-		lFullName = getTextValue(docEle,"full_name");				
+		lFullName = getTextValue(docEle,"full_name");	
 		lLastModificationDateTime = getTextValue(docEle,"last_modification_date_time");				
 		lComment = getTextValue(docEle,"comment");
 		if (lComment == null) lComment = "TBD_comment";
 //		lComment = lComment.replaceAll("\\s+"," ");
-		lComment = InfoModel.cleanCharString(lComment);
+//		lComment = InfoModel.cleanCharString(lComment);  -- removed to allow Mitch's geometry comment to wrap properly.
 
 		
 		// get namespace
@@ -310,6 +310,8 @@ public class LDDParser extends Object
 		if (lLDDName == null || (lLDDName.indexOf("TBD") == 0)) {
 			lLDDName = "TBD_LDD_name";
 		}
+		lSchemaFileDefn.lddName = lLDDName;
+
 		
 		lLDDVersionId = getTextValue(docEle,"ldd_version_id");
 		if (! (lLDDVersionId == null || (lLDDVersionId.indexOf("TBD") == 0))) {
@@ -830,11 +832,11 @@ public class LDDParser extends Object
 				String lLocalIdentifier = "TBD_lLocalIdentifier";	
 				if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
 					lLocalIdentifier = lValue;
-				}
-//				System.out.println("\ndebug getRule lLocalIdentifier:" + lLocalIdentifier);
-				
+				}				
 				RuleDefn lRule = new RuleDefn (lLocalIdentifier);	
-				lRule.setRDFIdentifier();		
+				lRule.setRDFIdentifier();	
+//				System.out.println("\ndebug getRule lRule.rdfIdentifier:" + lRule.rdfIdentifier);
+
 				RuleDefn lRule2 = (RuleDefn) ruleMap.get(lRule.rdfIdentifier);
 				if (lRule2 == null) {
 					ruleMap.put(lRule.rdfIdentifier, lRule);
@@ -846,6 +848,7 @@ public class LDDParser extends Object
 					if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
 						lRule.xpath = lValue;
 					}
+//					System.out.println("debug getRule lRule.xpath:" + lRule.xpath);
 					// get the let assign values
 					lValueArr = getXMLValueArr ("rule_assign", el);
 					if (! (lValueArr == null || lValueArr.isEmpty())) {
@@ -853,11 +856,14 @@ public class LDDParser extends Object
 					}
 					
 					// get the rule statements
-					AssertDefn2 lAssertDefn = new AssertDefn2 ("Rule");
-					lRule.assertArr.add(lAssertDefn);
+//					AssertDefn2 lAssertDefn = new AssertDefn2 ("Rule");
+//					lRule.assertArr.add(lAssertDefn);
 					ArrayList <Element> lElementStmtArr = getElement ("DD_Rule_Statement", el);
 					for (Iterator <Element> j = lElementStmtArr.iterator(); j.hasNext();) {
 						Element lElement = (Element) j.next();
+						
+						AssertDefn2 lAssertDefn = new AssertDefn2 ("Rule");
+						lRule.assertArr.add(lAssertDefn);
 						
 						lValue = getTextValue(lElement,"rule_type");
 						if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
@@ -892,6 +898,7 @@ public class LDDParser extends Object
 							lAssertDefn.testValArr = lValueArr;
 						}
 					}
+//					System.out.println("debug getRule lRule.assertArr.size():" + lRule.assertArr.size());
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.util.*;
 
 class MasterInfoModel extends InfoModel{ 
@@ -351,6 +351,7 @@ class MasterInfoModel extends InfoModel{
 					if (lDataType == null) {
 						// the data type does not exist, add it
 						lDataType = new DataTypeDefn (lClass.title);
+						lDataType.pds4Identifier = InfoModel.getClassIdentifier("pds", lClass.title);
 						lDataType.title = lDataType.identifier;
 						lDataType.nameSpaceIdNC = lClass.nameSpaceIdNC;
 						lDataType.type = lDataType.identifier;
@@ -487,6 +488,7 @@ class MasterInfoModel extends InfoModel{
 					if (lUnit == null) {
 						// the unit does not exist, add it
 						lUnit = new UnitDefn (lClass.title);
+						lUnit.pds4Identifier = InfoModel.getClassIdentifier("pds", lClass.title);
 						lUnit.title = lUnit.identifier;
 						lUnit.type = lUnit.identifier;
 						InfoModel.masterUnitOfMeasureMap.put(lUnit.title, lUnit);
@@ -1327,7 +1329,7 @@ class MasterInfoModel extends InfoModel{
 //					System.out.println("debug setClassVersionIds SETTING lClassVersionId:" + lClassVersionId);		
 					lClass.versionId = lClassVersionId;
 				} else {
-					System.out.println("debug setClassVersionIds NOT FOUND lClassId:" + lClassId);						
+//					System.out.println("debug setClassVersionIds NOT FOUND lClassId:" + lClassId);						
 				}
 			}
 		}

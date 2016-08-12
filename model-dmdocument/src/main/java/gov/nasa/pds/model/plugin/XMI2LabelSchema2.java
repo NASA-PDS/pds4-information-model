@@ -1,4 +1,4 @@
-package gov.nasa.pds.model.plugin;
+package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -119,7 +119,6 @@ class XMI2LabelSchema2 extends Object {
 //		System.out.println("\ndebug writeXMIHdr");		
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
 		prXML.println("  <!-- Generated from the PDS4 Information Model -->");
-//		prXML.println("  <!-- Version: " + InfoModel.ont_version_id + " -->");
 		prXML.println("  <!-- Version: " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " -->");
 		prXML.println("  <!-- Generated: " + todaysDate + " -->");
 		prXML.println("  <xmi:XMI xmi:version=\"2.1\" xmlns:uml=\"http://schema.omg.org/spec/UML/2.0\" xmlns:xmi=\"http://schema.omg.org/spec/XMI/2.1\">");
