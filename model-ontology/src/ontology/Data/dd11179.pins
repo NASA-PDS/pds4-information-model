@@ -1,4 +1,4 @@
-; Thu Mar 17 09:47:31 PDT 2016
+; Wed Aug 10 08:25:22 PDT 2016
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -674,6 +674,8 @@
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component.pds.checksum_manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component.pds.transfer_manifest_checksum]
+		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_label_checksum]
+		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_lidvid]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.full_name]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.ldd_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name]
@@ -683,6 +685,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.naif_instrument_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.serial_number]
+		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.subtype]
 		[EVD.0001_NASA_PDS_1.pds.Instrument.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.naif_host_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.name]
@@ -943,6 +946,9 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value]
+		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description]
+		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name]
+		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.maximum_occurrences]
@@ -956,7 +962,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.DD_Rule.pds.rule_context]
 		[EVD.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type]
 		[EVD.0001_NASA_PDS_1.pds.Discipline_Facets.pds.discipline_name]
-		[NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language]
+		[EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language]
 		[NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
@@ -967,8 +973,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet1.pds.subfacet1]
 		[EVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.facet2]
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.subfacet2]
-		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_label_checksum]
-		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_lidvid]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
@@ -1766,6 +1770,48 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Agency.pds.name])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Airborne.pds.description] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Airborne.pds.description")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Airborne.pds.description])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Airborne.pds.name] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Airborne.pds.name")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Airborne.pds.name])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Airborne.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Airborne.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Airborne.pds.type])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.Alias.pds.alternate_id] of  DataElement
@@ -6816,7 +6862,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
+	(representing [EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
@@ -8500,6 +8546,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Instrument.pds.serial_number])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Instrument.pds.subtype])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Instrument.pds.subtype])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.Instrument.pds.type] of  DataElement
@@ -16299,6 +16359,9 @@
 		[DE.0001_NASA_PDS_1.pds.ASCII_Time.pds.formation_rule]
 		[DE.0001_NASA_PDS_1.pds.ASCII_VID.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_VID.pds.formation_rule]
+		[DE.0001_NASA_PDS_1.pds.Airborne.pds.description]
+		[DE.0001_NASA_PDS_1.pds.Airborne.pds.name]
+		[DE.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Array_1D.pds.axes]
 		[DE.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Axis_Array.pds.unit]
@@ -16362,6 +16425,7 @@
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
 		[DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
+		[DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype]
 		[DE.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
 		[DE.0001_NASA_PDS_1.pds.Local_Internal_Reference.pds.comment]
 		[DE.0001_NASA_PDS_1.pds.Local_Internal_Reference.pds.local_identifier_reference]
@@ -16973,6 +17037,21 @@
 ([DEF.0001_NASA_PDS_1.pds.Agency.pds.name] of  Definition
 
 	(definitionText "The name attribute provides a word or combination of words by which the Agency is known.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Airborne.pds.description] of  Definition
+
+	(definitionText "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Airborne.pds.name] of  Definition
+
+	(definitionText "The name attribute provides a word or combination of words by which the object is known.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Airborne.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Alias.pds.alternate_id] of  Definition
@@ -18927,7 +19006,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Binary.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data  value. The standard POSIX string formats are used.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Binary.pds.field_length] of  Definition
@@ -18972,7 +19051,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data  value. The standard POSIX string formats are used.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.name] of  Definition
@@ -19017,7 +19096,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data  value. The standard POSIX string formats are used.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.field_length] of  Definition
@@ -19062,7 +19141,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data  value. The standard POSIX string formats are used.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.maximum_field_length] of  Definition
@@ -19378,6 +19457,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Instrument.pds.serial_number] of  Definition
 
 	(definitionText "The serial number element provides the assigned manufacturer%47s serial number.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  Definition
+
+	(definitionText "The subtype attribute is a special type included within the general type. It provides more specific clarifying and%2For supplemental information as to the nature of the type.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Instrument.pds.type] of  Definition
@@ -22195,6 +22279,21 @@
 	(designationName "name")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Airborne.pds.description] of  Designation
+
+	(designationName "description")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Airborne.pds.name] of  Designation
+
+	(designationName "name")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Airborne.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Alias.pds.alternate_id] of  Designation
 
 	(designationName "alternate_id")
@@ -24598,6 +24697,11 @@
 ([DES.0001_NASA_PDS_1.pds.Instrument.pds.serial_number] of  Designation
 
 	(designationName "serial_number")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  Designation
+
+	(designationName "subtype")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Instrument.pds.type] of  Designation
@@ -27398,6 +27502,31 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Agency.pds.name])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Airborne.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Airborne.pds.type.-624194762]
+		[pv.0001_NASA_PDS_1.pds.Airborne.pds.type.1325796367]
+		[pv.0001_NASA_PDS_1.pds.Airborne.pds.type.-1354638945])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Airborne.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -31102,6 +31231,28 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Document_Edition.pds.language.60895824])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([EVD.0001_NASA_PDS_1.pds.Document_File.pds.document_standard_id] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -31629,7 +31780,8 @@
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1903465915]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1904389435]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1905312956]
-		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1906236477])
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1906236477]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -31712,6 +31864,7 @@
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2054786646]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.705592201]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.25490031]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1992781934]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.969249754]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-401171923]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.389090035]
@@ -31719,25 +31872,30 @@
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2011082565]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2106570716]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2106069105]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2141906]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1038432628]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1235580824]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.802875130]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-353548491]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1723663795]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1051042624]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1887400406]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-424062634]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-2101383529]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.508102971]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1481449226]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-634921422]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1228146833]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.411652059]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1909314692]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.506439391]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-927959504]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.321624310]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1923981101]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1464916488]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.444441063]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.980794123]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-749198304]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1498372279]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1998687684]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-223586076]
@@ -31747,9 +31905,14 @@
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-954538241]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-52709000]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1862092485]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.142264948]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2003941518]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.942267735]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1291940935]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.451975424]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1794709643]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.386346934]
+		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1108293864]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1701550945]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093]
 		[pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2091361120]
@@ -31917,7 +32080,10 @@
 
 	(administrationRecord [DD_1.5.1.0])
 	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-625191086]
+		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-624194762]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1713282037]
+		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1325796367]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.565760707]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-906018809]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.802704339]
@@ -31925,6 +32091,7 @@
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1464916488]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1790220026]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1793261318]
+		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1354638945]
 		[pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1505176374])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type")
 	(datatype [ASCII_Short_String_Collapsed])
@@ -32704,10 +32871,13 @@
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-279973669]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-1205780022]
+		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-927070460]
+		[pv.0001_NASA_PDS_1.pds.Target.pds.type.1346577377]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.65290704]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2141906]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.1726936790]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-1214642834]
+		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2125565744]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.866833498]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-319210924]
@@ -32753,10 +32923,13 @@
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-279973669]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1205780022]
+		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-927070460]
+		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1346577377]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.65290704]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2141906]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1726936790]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1214642834]
+		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2125565744]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.866833498]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-319210924]
@@ -36061,6 +36234,48 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Agency.pds.description])
 	(representedBy2 [CD_Text])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Airborne.pds.description])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Airborne.pds.name])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -40435,27 +40650,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
-([NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
-	(representedBy2 [CD_TBD_dataConcept])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
 ([NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -40907,7 +41101,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
+	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Binary.pds.field_format])
@@ -41075,7 +41269,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
+	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Bit.pds.field_format])
@@ -41243,7 +41437,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
+	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Character.pds.field_format])
@@ -41411,7 +41605,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
+	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.field_format])
@@ -42633,6 +42827,27 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Instrument.pds.serial_number])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Instrument.pds.subtype")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -50044,6 +50259,33 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
 
+([PR.0001_NASA_PDS_1.pds.Airborne.pds.description] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1030")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Airborne.pds.description")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Airborne.pds.name] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1010")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Airborne.pds.name")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Airborne.pds.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Airborne.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
 ([PR.0001_NASA_PDS_1.pds.Alias.pds.alternate_id] of  Property
 
 	(administrationRecord [DD_1.5.1.0])
@@ -55422,6 +55664,15 @@
 	(administrationRecord [DD_1.5.1.0])
 	(classOrder "1050")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.serial_number")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1025")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.subtype")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
@@ -61246,6 +61497,30 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Agency.pds.name.580818153])
 	(value "National Aeronautics and Space Administration"))
 
+([pv.0001_NASA_PDS_1.pds.Airborne.pds.type.-1354638945] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Airborne.pds.type.-1354638945])
+	(value "Suborbital Rocket"))
+
+([pv.0001_NASA_PDS_1.pds.Airborne.pds.type.-624194762] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Airborne.pds.type.-624194762])
+	(value "Aircraft"))
+
+([pv.0001_NASA_PDS_1.pds.Airborne.pds.type.1325796367] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Airborne.pds.type.1325796367])
+	(value "Balloon"))
+
 ([pv.0001_NASA_PDS_1.pds.Array.pds.axis_index_order.-1365745102] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -65037,6 +65312,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Display_2D_Image.pds.sample_display_direction.78959100])
 	(value "Right"))
 
+([pv.0001_NASA_PDS_1.pds.Document_Edition.pds.language.60895824] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Document_Edition.pds.language.60895824])
+	(value "English"))
+
 ([pv.0001_NASA_PDS_1.pds.Document_File.pds.document_standard_id.-2126809915] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -66789,6 +67072,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1906236477])
 	(value "1.6.0.0"))
 
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998])
+	(value "1.7.0.0"))
+
 ([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-1116763337] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67061,6 +67352,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093])
 	(value "Spectrometer"))
 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1108293864] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1108293864])
+	(value "Spectrograph"))
+
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1432181135] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67132,6 +67431,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1984005638])
 	(value "X-ray Fluorescence Spectrometer"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1992781934] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1992781934])
+	(value "Atmospheric Sciences"))
 
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-203004505] of  PermissibleValue
 
@@ -67205,6 +67512,22 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-634921422])
 	(value "Infrared Spectrometer"))
 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-749198304] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-749198304])
+	(value "Particle Detector"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-927959504] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-927959504])
+	(value "Microscope"))
+
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-954538241] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67229,6 +67552,22 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1038432628])
 	(value "Dust Detector"))
 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1051042624] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1051042624])
+	(value "Gravimeter"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1228146833] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1228146833])
+	(value "Interferometer"))
+
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1235580824] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67236,6 +67575,22 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1235580824])
 	(value "Electrical Probe"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1291940935] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1291940935])
+	(value "Regolith Properties"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.142264948] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.142264948])
+	(value "Radio-Radar"))
 
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1423700168] of  PermissibleValue
 
@@ -67284,6 +67639,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1692900745])
 	(value "Wet Chemistry Laboratory"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1794709643] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1794709643])
+	(value "Seismometer"))
 
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.1862092485] of  PermissibleValue
 
@@ -67357,6 +67720,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.2106570716])
 	(value "Cosmic Ray Detector"))
 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.2141906] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.2141906])
+	(value "Dust"))
+
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.25490031] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67372,6 +67743,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.321624310])
 	(value "Microwave Spectrometer"))
+
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.386346934] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.type.386346934])
+	(value "Small Bodies Sciences"))
 
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.389090035] of  PermissibleValue
 
@@ -67693,6 +68072,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1149257897])
 	(value "Literature Search"))
 
+([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1354638945] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1354638945])
+	(value "Suborbital Rocket"))
+
 ([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1505176374] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67709,6 +68096,22 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1793261318])
 	(value "Spacecraft"))
 
+([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-624194762] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-624194762])
+	(value "Aircraft"))
+
+([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-625191086] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-625191086])
+	(value "Airborne"))
+
 ([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-906018809] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -67716,6 +68119,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-906018809])
 	(value "Instrument"))
+
+([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1325796367] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1325796367])
+	(value "Balloon"))
 
 ([pv.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1464916488] of  PermissibleValue
 
@@ -69085,6 +69496,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-1644150754])
 	(value "Plasma Stream"))
 
+([pv.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837])
+	(value "Exoplanet System"))
+
 ([pv.0001_NASA_PDS_1.pds.Target.pds.type.-1901896264] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -69149,6 +69568,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-812771377])
 	(value "Planetary Nebula"))
 
+([pv.0001_NASA_PDS_1.pds.Target.pds.type.-927070460] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-927070460])
+	(value "Calibration Field"))
+
 ([pv.0001_NASA_PDS_1.pds.Target.pds.type.1063912270] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -69164,6 +69591,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.1063917694])
 	(value "Meteoroid"))
+
+([pv.0001_NASA_PDS_1.pds.Target.pds.type.1346577377] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.1346577377])
+	(value "Calibrator"))
 
 ([pv.0001_NASA_PDS_1.pds.Target.pds.type.1726936790] of  PermissibleValue
 
@@ -69301,6 +69736,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1644150754])
 	(value "Plasma Stream"))
 
+([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target_Identification.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837])
+	(value "Exoplanet System"))
+
 ([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1901896264] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -69365,6 +69808,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-812771377])
 	(value "Planetary Nebula"))
 
+([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-927070460] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target_Identification.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-927070460])
+	(value "Calibration Field"))
+
 ([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1063912270] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -69380,6 +69831,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1063917694])
 	(value "Meteoroid"))
+
+([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1346577377] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target_Identification.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1346577377])
+	(value "Calibrator"))
 
 ([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1726936790] of  PermissibleValue
 
@@ -71843,6 +72302,27 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Agency.pds.name])
 	(designation [DES.0001_NASA_PDS_1.pds.Agency.pds.name])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Airborne.pds.description] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Airborne.pds.description])
+	(designation [DES.0001_NASA_PDS_1.pds.Airborne.pds.description])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Airborne.pds.name] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Airborne.pds.name])
+	(designation [DES.0001_NASA_PDS_1.pds.Airborne.pds.name])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Airborne.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Airborne.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Airborne.pds.type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Alias.pds.alternate_id] of  TerminologicalEntry
@@ -75210,6 +75690,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Instrument.pds.serial_number])
 	(designation [DES.0001_NASA_PDS_1.pds.Instrument.pds.serial_number])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Instrument.pds.subtype] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Instrument.pds.subtype])
+	(designation [DES.0001_NASA_PDS_1.pds.Instrument.pds.subtype])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Instrument.pds.type] of  TerminologicalEntry
@@ -79326,6 +79813,24 @@
 	(description "The Agency has name National Aeronautics and Space Administration")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Airborne.pds.type.-1354638945] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A Suborbital Rocket is an instrument-carrying rocket designed to take measurements and perform scientific experiments during its sub-orbital flight.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Airborne.pds.type.-624194762] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An airborne observatory carried on a powered, heavier than air vessel supporting observations, measurements, and scientific experiments during flight.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Airborne.pds.type.1325796367] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A balloon-borne observatory, typically consisting of a gondola structure carrying one or more telescopes and instruments, borne aloft by an unpowered or minimially powered lighter-than-atmosphere balloon for a limited observing period.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Array.pds.axis_index_order.-1365745102] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -82170,6 +82675,12 @@
 	(description "The preferred orientation of samples within an line for viewing on a display device is Right")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Document_Edition.pds.language.60895824] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The text in the Document Edition is in English.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Document_File.pds.document_standard_id.-2126809915] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -83484,6 +83995,12 @@
 	(description "Information Model version 1.6.0.0 was released on March 31, 2016.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Information Model version 1.7.0.0 was released on September 30, 2016.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-1116763337] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -83685,7 +84202,13 @@
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An instrument used to measure properties over a specific portion of a spectrum - for example, a mass spectrometer measures the number of particles in discrete mass ranges, and a radio spectrometer measures the amount of electromagnetic radiation as a function of frequency or wavelength.")
+	(description "An instrument that measures a spectrum, reporting intensity as a function of wavelength, frequency, energy, momentum, or mass.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1108293864] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument that separates light into a frequency spectrum and records the signal using a camera.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1432181135] of  ValueMeaning
@@ -83703,7 +84226,7 @@
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1536973474] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An instrument that measures the polarization of electromagnetic radiation.")
+	(description "An instrument used to measure the angle of rotation caused by passing polarized electromagnetic radiation through an optically active substance.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1701550945] of  ValueMeaning
@@ -83742,6 +84265,12 @@
 	(description "An instrument that measures the emission of secondary X-rays to determine the elemental composition of a sample that has been irradiated with primary X-rays.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1992781934] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A top level category for atmospheric science instruments.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-203004505] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -83757,7 +84286,7 @@
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-2101383529] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An instrument that records and stores digital images %28compare %47camera%47%29.")
+	(description "An instrument that records and stores digital images.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-223586076] of  ValueMeaning
@@ -83796,6 +84325,18 @@
 	(description "An instrument that measures the spectral distribution of infrared radiation.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-749198304] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument that detects and%2For measures charged particles.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-927959504] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument used to view objects that are too small to be seen by the naked eye.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-954538241] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -83814,10 +84355,34 @@
 	(description "An instrument that detects and%2For measures dust.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1051042624] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument that measures the local gravitational field.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1228146833] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument used to measure small displacements, refractive index changes and surface irregularities using interferometry.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1235580824] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "An in situ instrument that measures electrical properties %28e.g., conductivity%29 of a medium into which it is inserted.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1291940935] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A top level category for the science instruments associated with the Geosciences.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.142264948] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument used to conduct measurements at radio frequencies.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1423700168] of  ValueMeaning
@@ -83847,13 +84412,19 @@
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1498372279] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An instrument that measures radiation intensity %28e.g., of visible light%29, sometimes with the goal of inferring optical properties of materials illuminated by the source and observed by the photometer.")
+	(description "An instrument that measures radiation intensity %28e.g., of visible light%29, sometimes with the goal of inferring optical properties of materials.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1692900745] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "An instrument that mixes soil samples with solutions to measure material properties such as pH, conductivity, oxidation-reduction potential, etc.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1794709643] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument that measure motion of the ground.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.1862092485] of  ValueMeaning
@@ -83910,6 +84481,12 @@
 	(description "An instrument that detects and%2For measures cosmic rays.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.2141906] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An instrument that detects and%2For measures dust.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.25490031] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -83920,6 +84497,12 @@
 
 	(beginDate "2009-06-09")
 	(description "An instrument that measures the spectral distribution of microwave radiation.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.386346934] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A top level category for the science instruments associated with Small Bodies.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.389090035] of  ValueMeaning
@@ -83967,7 +84550,7 @@
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.705592201] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An instrument that measures its own altitude above a reference level %28for example, a locally flat surface on the Earth%29")
+	(description "An instrument that measures its own altitude above a reference surface.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.78717670] of  ValueMeaning
@@ -84162,6 +84745,12 @@
 	(description "The observing system component is a literature search")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1354638945] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A Suborbital Rocket is an instrument-carrying rocket designed to take measurements and perform scientific experiments during its sub-orbital flight.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-1505176374] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -84174,10 +84763,28 @@
 	(description "The observing system component is a spacecraft")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-624194762] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "An airborne observatory carried on a powered, heavier than air vessel supporting observations, measurements, and scientific experiments during flight.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-625191086] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The physical object that transports a platform by or through air.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.-906018809] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "The observing system component is an instrument")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1325796367] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A balloon-borne observatory, typically consisting of a gondola structure carrying one or more telescopes and instruments, borne aloft by an unpowered or minimially powered lighter-than-atmosphere balloon for a limited observing period.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Observing_System_Component.pds.type.1464916488] of  ValueMeaning
@@ -85206,6 +85813,12 @@
 	(description "Target is classified as a plasma stream.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a target that is a star or stellar system (binary, trinary, etc.) with a known or suspected planetary system around it.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1901896264] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -85245,13 +85858,19 @@
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-650649921] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The target is classified as a planetary system")
+	(description "This type indicates a target consisting of a primary body and its satellite(s), ring(s), or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-812771377] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "The target is classified as a planetary nebula")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Target.pds.type.-927070460] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a star field observed to be used for calibration purposes. Typically, this will correspond to a field defined in a published work like the Landolt photometric catalog.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.1063912270] of  ValueMeaning
@@ -85264,6 +85883,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The target is classified as a meteoroid")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Target.pds.type.1346577377] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a piece of equipment specifically designed to generate a signal to be used for calibration.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.1726936790] of  ValueMeaning
@@ -85368,6 +85993,12 @@
 	(description "Target is classified as a plasma stream.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a target that is a star or stellar system (binary, trinary, etc.) with a known or suspected planetary system around it.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1901896264] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -85407,13 +86038,19 @@
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-650649921] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The target is classified as a planetary system")
+	(description "This type indicates a target consisting of a primary body and its satellite(s), ring(s), or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-812771377] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "The target is classified as a planetary nebula")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-927070460] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a star field observed to be used for calibration purposes. Typically, this will correspond to a field defined in a published work like the Landolt photometric catalog.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1063912270] of  ValueMeaning
@@ -85426,6 +86063,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The target is classified as a meteoroid")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1346577377] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This type indicates a piece of equipment specifically designed to generate a signal to be used for calibration.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.1726936790] of  ValueMeaning

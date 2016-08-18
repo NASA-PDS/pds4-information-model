@@ -1,4 +1,4 @@
-; Thu Mar 17 09:33:04 PDT 2016
+; Tue Aug 09 19:04:52 PDT 2016
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -150,21 +150,21 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.101] of  Schematron_Assert
 
-	(assertMsg "Display Dictionary: In the disp:Local_Internal_Reference class, the value of the disp:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area.")
-	(assertStmt "disp:local_identifier_reference = //pds:*/pds:*/(pds:Array|pds:Array_2D|pds:Array_2D_Image|pds:Array_2D_Map|pds:Array_2D_Spectrum|pds:Array_3D|pds:Array_3D_Image|pds:Array_3D_Movie|pds:Array_3D_Spectrum)/pds:local_identifier")
+	(assertMsg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area.")
+	(assertStmt "pds:local_identifier_reference = //pds:*/pds:*/(pds:Array|pds:Array_2D|pds:Array_2D_Image|pds:Array_2D_Map|pds:Array_2D_Spectrum|pds:Array_3D|pds:Array_3D_Image|pds:Array_3D_Movie|pds:Array_3D_Spectrum)/pds:local_identifier")
 	(assertType "RAW")
 	(attrTitle "local_identifier_reference")
 	(identifier "local_identifier_reference")
-	(specMesg "Display Dictionary: In the disp:Local_Internal_Reference class, the value of the disp:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area."))
+	(specMesg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.102] of  Schematron_Assert
 
-	(assertMsg "Display_Dictionary: In the disp:Local_Internal_Reference class, the value of the disp:local_reference_type must be 'display_settings_to_array'.")
-	(assertStmt "disp:local_reference_type = ('display_settings_to_array')")
+	(assertMsg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'.")
+	(assertStmt "pds:local_reference_type = ('display_settings_to_array')")
 	(assertType "RAW")
 	(attrTitle "local_reference_type")
 	(identifier "local_reference_type")
-	(specMesg "Display_Dictionary: In the disp:Local_Internal_Reference class, the value of the disp:local_reference_type must be 'display_settings_to_array'."))
+	(specMesg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
 
@@ -309,7 +309,8 @@
 		"name=\"lidvid_required_colons\" value=\"6\""
 		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
 		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
-		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\"")
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\"")
 	(type "TBD_type")
 	(xpath "pds:Bundle_Member_Entry"))
 
@@ -333,21 +334,21 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.103] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_ros\"/>")
-	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_ros) else true()")
+	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/>")
+	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_jaxa) or starts-with(pds:lid_reference, $urn_ros) else true()")
 	(assertType "RAW")
 	(attrTitle "lid_reference")
 	(identifier "lid_reference")
-	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', or 'urn:ros:rssa:'."))
+	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', or 'urn:ros:rssa:'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.104] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_ros\"/>")
-	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_ros) else true()")
+	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/>")
+	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_jaxa) or starts-with(pds:lidvid_reference, $urn_ros) else true()")
 	(assertType "RAW")
 	(attrTitle "lidvid_reference")
 	(identifier "lidvid_reference")
-	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', or 'urn:ros:rssa:'."))
+	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', or 'urn:ros:rssa:'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.105] of  Schematron_Assert
 
@@ -625,7 +626,8 @@
 	(schematronAssign
 		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
 		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
-		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\"")
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\"")
 	(type "TBD_type")
 	(xpath "pds:Identification_Area"))
 
@@ -649,12 +651,12 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_ros\"/>")
-	(assertStmt "if (pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_ros) else true()")
+	(assertMsg "The value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/>")
+	(assertStmt "if (pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The value of the attribute logical_identifier must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', or 'urn:ros:rssa:'."))
+	(specMesg "The value of the attribute logical_identifier must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', or 'urn:ros:rssa:'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104] of  Schematron_Assert
 
@@ -692,7 +694,8 @@
 		"name=\"lidvid_max_required_colons\" value=\"7\""
 		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
 		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
-		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\"")
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\"")
 	(type "TBD_type")
 	(xpath "pds:Internal_Reference"))
 
@@ -725,21 +728,21 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.104] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_ros\"/>")
-	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_ros) else true()")
+	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/>")
+	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_jaxa) or starts-with(pds:lid_reference, $urn_ros) else true()")
 	(assertType "RAW")
 	(attrTitle "lid_reference")
 	(identifier "lid_reference")
-	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:' or 'urn:ros:rssa:'."))
+	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:' or 'urn:ros:rssa:'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.105] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_ros\"/>")
-	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_ros) else true()")
+	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/>")
+	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_jaxa) or starts-with(pds:lidvid_reference, $urn_ros) else true()")
 	(assertType "RAW")
 	(attrTitle "lidvid_reference")
 	(identifier "lidvid_reference")
-	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:' or 'urn:ros:rssa:'."))
+	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:' or 'urn:ros:rssa:'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.106] of  Schematron_Assert
 
@@ -958,7 +961,8 @@
 		"is_instrument_host"
 		"is_other"
 		"is_facility"
-		"is_telescope"))
+		"is_telescope"
+		"is_airborne"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_AIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002527] of  Schematron_Rule
 
@@ -1432,7 +1436,13 @@
 		"target_to_document"
 		"target_to_instrument"
 		"target_to_instrument_host"
-		"target_to_investigation"))
+		"target_to_investigation"
+		"instrument_to_telescope"
+		"instrument_to_observatory"
+		"instrument_to_facility"
+		"telescope_to_observatory"
+		"telescope_to_facility"
+		"telescope_to_airborne"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539] of  Schematron_Rule
 
