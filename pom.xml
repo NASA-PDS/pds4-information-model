@@ -24,7 +24,7 @@
 
   <groupId>gov.nasa.pds.2010</groupId>
   <artifactId>model</artifactId>
-  <version>1.6.0-dev</version>
+  <version>1.7.0.0-dev</version>
   <packaging>pom</packaging>
 
   <name>Model</name>

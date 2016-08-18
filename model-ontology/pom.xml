@@ -19,12 +19,12 @@
     <parent>
         <groupId>gov.nasa.pds.2010</groupId>
         <artifactId>model</artifactId>
-        <version>1.6.0-dev</version>
+        <version>1.7.0.0-dev</version>
     </parent>
 
     <groupId>gov.nasa.pds.2010.model</groupId>
     <artifactId>model-ontology</artifactId>
-    <version>1.6.0-dev</version>
+    <version>1.7.0.0-dev</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -85,7 +85,7 @@
             <plugin>
                 <groupId>gov.nasa.pds.2010</groupId>
                 <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-                <version>1.6.0-dev</version>
+                <version>1.7.0.0-dev</version>
                 <configuration>
                     <ontologySrc>${basedir}/src/ontology</ontologySrc>
                 </configuration>

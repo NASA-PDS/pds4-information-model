@@ -19,12 +19,12 @@
     <parent>
         <groupId>gov.nasa.pds.2010</groupId>
         <artifactId>model</artifactId>
-        <version>1.6.0-dev</version>
+        <version>1.7.0.0-dev</version>
     </parent>
 
     <groupId>gov.nasa.pds.2010.model</groupId>
     <artifactId>LDDTool</artifactId>
-    <version>1.6.0-dev</version>
+    <version>1.7.0.0-dev</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -197,7 +197,7 @@
                    <artifactItem>
                      <groupId>gov.nasa.pds.2010</groupId>
                      <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-                     <version>1.6.0-dev</version>
+                     <version>1.7.0.0-dev</version>
                      <type>jar</type>
                      <overWrite>true</overWrite>
                      <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
@@ -240,7 +240,7 @@
    <dependency>
       <groupId>gov.nasa.pds.2010</groupId>
       <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-      <version>1.6.0-dev</version>
+      <version>1.7.0.0-dev</version>
    </dependency>
  </dependencies>
 
