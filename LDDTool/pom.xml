@@ -112,14 +112,6 @@
             </resource>
             <resource>
                 <filtering>false</filtering>
-                <targetPath>Data</targetPath>
-                <directory>Data</directory>
-                <excludes>
-                    <exclude>**/*.bak</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
                 <targetPath>bin</targetPath>
                 <directory>bin</directory>
                 <includes>
@@ -199,6 +191,32 @@
                </configuration>
              </execution>
            </executions>
+         </plugin>
+
+         <!-- copy the data files from the model-ontology directory -->
+         <plugin>
+             <artifactId>maven-resources-plugin</artifactId>
+             <executions>
+                 <execution>
+                     <id>copy-data</id>
+                     <phase>generate-resources</phase>
+                     <goals>
+                         <goal>copy-resources</goal>
+                     </goals>
+                     <configuration>
+                         <outputDirectory>${project.build.directory}/classes/Data</outputDirectory>
+                         <overwrite>true</overwrite>
+                         <resources>
+                             <resource>
+                                 <directory>../model-ontology/src/ontology/Data</directory>
+                                 <includes>
+                                     <include>*.*</include>
+                                 </includes>
+                             </resource>
+                         </resources>
+                     </configuration>
+                 </execution>
+             </executions>
          </plugin>
         </plugins>
     </build>
