@@ -95,8 +95,6 @@
                         <phase>compile</phase>
                         <goals>
                             <goal>generateDocumentation</goal>
-                            <goal>generateClasses</goal>
-                            <goal>generateAttributes</goal>
                         </goals>
                     </execution>
                 </executions>
