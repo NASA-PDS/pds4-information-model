@@ -97,7 +97,7 @@
             <resource>
                 <filtering>false</filtering>
                 <targetPath>Examples</targetPath>
-                <directory>Examples</directory>
+                <directory>src/main/resources/Examples</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -105,7 +105,7 @@
             <resource>
                 <filtering>false</filtering>
                 <targetPath>Schemas</targetPath>
-                <directory>Schemas</directory>
+                <directory>src/main/resources/Schemas</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -113,7 +113,7 @@
             <resource>
                 <filtering>false</filtering>
                 <targetPath>bin</targetPath>
-                <directory>bin</directory>
+                <directory>src/main/resources/bin</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -121,15 +121,7 @@
             <resource>
                 <filtering>false</filtering>
                 <targetPath>doc</targetPath>
-                <directory>doc</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>runapp</targetPath>
-                <directory>runapp</directory>
+                <directory>src/main/resources/doc</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -139,7 +131,6 @@
                 <targetPath>${project.build.directory}/classes</targetPath>
                 <directory>${basedir}</directory>
                 <includes>
-                    <include>runapp.bat</include>
                     <include>AAREADME.txt</include>
                 </includes>
             </resource>
