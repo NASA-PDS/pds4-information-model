@@ -134,10 +134,19 @@
                     <include>AAREADME.txt</include>
                 </includes>
             </resource>
+            <resource>
+                <filtering>false</filtering>
+                <targetPath>${project.build.directory}/classes</targetPath>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>LICENSE.txt</include>
+                </includes>
+            </resource>
     </resources>
 
         <plugins>
             <!-- create the export directory -->
+<!--
             <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
@@ -155,6 +164,7 @@
                 </execution>
             </executions>
          </plugin>
+-->
             <!-- fine the executible jar and rename -->
          <plugin>
            <groupId>org.apache.maven.plugins</groupId>
