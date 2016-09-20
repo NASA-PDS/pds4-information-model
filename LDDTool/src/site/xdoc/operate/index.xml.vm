@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  Copyright 2009-2013, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+
+  $Id: index.xml.vm 12278 2013-10-15 00:29:51Z shardman $
+-->
+
+<document>
+  <properties>
+    <title>Operation</title>
+    <author email="Michael.Cayanan@jpl.nasa.gov">Michael Cayanan</author>
+    <author email="Sean.Hardman@jpl.nasa.gov">Sean Hardman</author>
+  </properties>
+
+  <body>
+    <section name="Operation">
+      <p>This document describes how to run the LDDTool program. 
+      </p>
+
+      <p>Note: The command-line examples in this section have been broken into multiple lines for readability. The commands should be reassembled into a single line prior to execution.
+      </p>
+    </section>
+
+    <section name="Tool Execution">
+<p>The execution steps are as follows:</p>
+   <ol>
+       <li>The input XML document is parsed and the contents are validated against the master database.</li>
+      <li>The validated contents are integrated into the master database.</li>
+      <li>The XML Schema and Schematron files are written.</li>
+      <li>The process report and spreadsheet are written.</li>
+   </ol>
+
+      <subsection name="Command-Line Options">
+        <p>The following table describes the command-line options available.
+        </p>
+
+        <p>Valid options are:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Command-Line Option</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>-p, --PDS4 
+              </td>
+              <td>Set the context to PDS4.
+              </td>
+            </tr>
+            <tr>
+              <td>-l, --LDD 
+              </td>
+              <td>Process a local data dictionary input file.
+              </td>
+            </tr>
+            <tr>
+              <td>-a, --attribute
+              </td>
+              <td>Write definitions for attribute elements.
+              </td>
+            </tr>
+            <tr>
+              <td>-c, --class
+              </td>
+              <td>Write definitions for class elements.
+              </td>
+            </tr>
+            <tr>
+              <td>-J, --JASON</td>
+              <td>Write the master data dictionary to a JASON formatted file.
+              </td>
+            </tr>
+            <tr>
+              <td>-m, --merge </td>
+              <td>Generate file to merge the local dictionary into the master dictionary.</td>
+            </tr>
+            <tr>
+              <td>-m, --Mission
+              </td>
+              <td>Indicates mission level governance (includes msn directory specification).
+              </td>
+            </tr>
+            <tr>
+              <td>-n, --nuance
+              </td>
+              <td>Write nuance property maps to LDD schema annotation in JASON.
+              </td>
+            </tr> 
+            <tr>
+              <td>-s, --sync
+              </td>
+              <td>Use local namespace + information model version as output file names.
+              </td>
+            </tr> 
+            <tr>
+              <td>-1, --IM Spec
+              </td>
+              <td>Write the Information Model Specification with LDD.
+              </td>
+            </tr> 
+            <tr>
+              <td>-v, --version
+              </td>
+              <td>Returns the LDDTool version number.
+              </td>
+            </tr> 
+            <tr>
+              <td>-h, --help
+              </td>
+              <td>Print this message.
+              </td>
+            </tr> 
+          </tbody>
+        </table>
+
+      </subsection>
+
+      <subsection name="Execute LDDTool">
+<source>
+<b>If the host platform is a Mac or Unix system, type the following commands: </b>
+
+cd  ./LDDTool/bin
+
+lddtool -lp [inputfilename] > lddtool.log
+
+<b>If the host platform is a Windows system, type the following commands: </b>
+
+cd .\LDDTool\bin
+
+lddtool.bat -lp [inputfilename] > lddtool.log
+
+<b>Note:</b>  The input file to LDDTool is an XML document that contains a completed
+       local data dictionary template. This file must conform to the
+       PDS4 Ingest_LDDTool schema.
+
+       The output files written by LDDTool are:
+                  - an XML Schema file (.xsd),
+                  - a Schematron file (.sch),
+                  - a process report file (.txt),
+                  - a spreadsheet file (.csv) containing the local data dictionary information.
+       All output files are generated in the current directory. 
+       They bear the same name as the input file name.
+        </source>
+
+      </subsection>
+
+
+    </section>
+  </body>
+</document>

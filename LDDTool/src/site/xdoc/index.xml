@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  Copyright 2009-2016, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+
+  $Id: index.xml 14938 2016-09-23 17:08:28Z shardman $
+-->
+
+<document>
+  <properties>
+    <title>About LDDTool</title>
+    <author email="Sean.Hardman@jpl.nasa.gov">Sean Hardman</author>
+  </properties>
+
+  <body>
+    <section name="About LDDTool">
+      <p>The PDS4 LDDTool parses a local data dictionary definition file and generates PDS4 data standard files.
+         A local data dictionary at the discipline level is required to be ingested. A dictionary at the mission level can optionally be ingested.
+         These new dictionaries augment the common model and have their own stewards and unique namespaces.
+         The audience includes personnel at PDS discipline and data nodes, principal investigators and their staffs, and ground data system engineers.
+         The tool will be most useful to people who have prior experience with the PDS Information Model and modeling practices. 
+      </p>
+
+
+      <p>Please send comments, change requests and bug reports to the <a href="mailto:pds_operator@jpl.nasa.gov">PDS Operator</a> at pds_operator@jpl.nasa.gov.
+      </p>
+    </section>
+  </body>
+</document>
