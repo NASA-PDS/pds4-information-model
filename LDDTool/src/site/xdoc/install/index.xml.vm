@@ -65,9 +65,9 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.72-b04, mixed mode)
       </p>
 
       <source>
-% unzip ${project.artifactId}-${project.version}.zip
+% unzip ${project.artifactId}-${project.version}-bin.zip
 or
-% tar -xzvf ${project.artifactId}-${project.version}.tar.gz
+% tar -xzvf ${project.artifactId}-${project.version}-bin.tar.gz
       </source>
 
       <p>Note: Depending on the platform, the native version of <i>tar</i> may produce an error when attempting to unpack the distribution file because many of the file paths are greater than 100 characters. If available, the GNU version of tar will resolve this problem. If that is not available or cannot be installed, the zipped package will work just fine in a UNIX environment.
@@ -94,7 +94,7 @@ or
           </p>
         </li>
         <li><b>lib/</b><br/>
-          <p>This directory contains the dependent jar files for the tool along with the executable jar file (${project.artifactId}-${project.version}.jar) containing the LDDTool software.
+          <p>This directory contains the executable jar files for the tool.
           </p>
         </li>
         <li><b>Data/</b><br/>
