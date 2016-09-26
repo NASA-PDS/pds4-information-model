@@ -21,12 +21,10 @@
         <artifactId>model</artifactId>
         <version>1.7.0.0-dev</version>
     </parent>
-
     <groupId>gov.nasa.pds.2010.model</groupId>
     <artifactId>LDDTool</artifactId>
     <version>1.7.0.0-dev</version>
     <packaging>jar</packaging>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -118,30 +116,6 @@
                     <include>**/*</include>
                 </includes>
             </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>doc</targetPath>
-                <directory>src/main/resources/doc</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>${project.build.directory}/classes</targetPath>
-                <directory>${basedir}</directory>
-                <includes>
-                    <include>AAREADME.txt</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>${project.build.directory}/classes</targetPath>
-                <directory>${basedir}</directory>
-                <includes>
-                    <include>LICENSE.txt</include>
-                </includes>
-            </resource>
     </resources>
 
         <plugins>
@@ -219,6 +193,26 @@
                  </execution>
              </executions>
          </plugin>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-archive</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/tar-assembly.xml</descriptor>
+                <descriptor>src/main/assembly/zip-assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
         </plugins>
     </build>
 
