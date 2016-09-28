@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2010-2016, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+  
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>gov.nasa.pds.2010</groupId>
+        <artifactId>model</artifactId>
+        <version>1.7.0.0-dev</version>
+    </parent>
+
+    <groupId>gov.nasa.pds.2010.model</groupId>
+    <artifactId>model-ontology</artifactId>
+    <version>1.7.0.0-dev</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <name>Model Ontology</name>
+    <description>
+        The PDS4 Model Ontology component conains the Protégé ontology instances
+        for the PDS4 information and data model, and uses the Maven plugin
+        "pds-model-dmdocument-maven-plugin" to generate documentation and other
+        artifcats from the ontology into a generated JAR file.
+    </description>
+    <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
+
+    <licenses>
+        <license>
+            <name>California Institute of Technology</name>
+            <url>file:///${basedir}/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <build>
+        <plugins>
+<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>process-resources</phase>
+                    <configuration>
+                        <tasks>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/pvl"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/DD"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/xmi"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/rdf"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/csv"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/JSON"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/skos"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/owl"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/defnAttr"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/defnClass"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/export/rim"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/Extract"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/SchemaXML4"/>
+                            <mkdir dir="${project.build.directory}/classes/ontology/Model_DataDictionary"/>
+                        </tasks>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+         </plugin>
+            <plugin>
+                <groupId>gov.nasa.pds.2010</groupId>
+                <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
+                <version>1.7.0.0-dev</version>
+                <configuration>
+                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generateDocumentation</goal>
+                            <goal>generateClasses</goal>
+                            <goal>generateAttributes</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

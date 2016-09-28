@@ -1,4 +1,4 @@
-; Tue Aug 09 19:04:52 PDT 2016
+; Wed Sep 28 10:46:43 PDT 2016
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1368,6 +1368,11 @@
 ;+		(comment "The data type unit of measurement name attribute provides the unit of measure used with a value.")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot start_orbit_number
+;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot instrument_version_id
 ;+		(comment "The Instrument_Version_Id element identifies the specific model of an instrument used to obtain data. For example, this keyword could be used to distinguish between an engineering model of a camera used to acquire test data, and a flight model of a camera used to acquire science data during a mission.")
 		(type STRING)
@@ -2138,6 +2143,11 @@
 	(multislot reference_association_type
 ;+		(comment "The reference_association_type attribute provides the name of the association used in a reference.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot stop_orbit_number
+;+		(comment "The stop_orbit_number attribute provides the last in a series of numbers that represent s set of orbital revolutions of one body around another.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot associated_Coordinate_System
 ;+		(comment "The associated_Coordinate_System association is a relationship to Coordinate System.")
@@ -7694,10 +7704,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot subtype
+	(multislot subtype
 ;+		(comment "The subtype attribute is a special type included within the general type. It provides more specific clarifying and/or supplemental information as to the nature of the type.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Target "The Target class provides a description of a physical object that is the object of data collection."
@@ -7713,7 +7722,6 @@
 ;+		(comment "The type attribute classifies a target according to its size and properties.")
 		(type STRING)
 ;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field")
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -7888,7 +7896,7 @@
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the Agency is known.")
 		(type STRING)
-;+		(value "National Aeronautics and Space Administration" "European Space Agency")
+;+		(value "National Aeronautics and Space Administration" "European Space Agency" "Japan Aerospace Exploration Agency" "Roscosmos State Corporation for Space Activities")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -10087,37 +10095,37 @@
 ;+		(allowed-classes Local_Internal_Reference)
 		(create-accessor read-write)))
 
-(defclass Mission_Information_Commons "The Mission Information Commons class provides a set of optional attributes that have their value sets defined by a particular mission."
+(defclass Mission_Information "The Mission Information class provides a set of optional attributes that have their value sets defined by the mission."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot mission_phase_identifier
 ;+		(comment "The mission_phase_identifier attribute provides an identifier for a mission phase.")
 		(type STRING)
-;+		(value "XSChoice#2")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spacecraft_clock_stop_count
 ;+		(comment "The spacecraft_clock_stop_count attribute provides the value of the spacecraft clock at the end of a time period of interest.")
 		(type STRING)
-;+		(value "XSChoice#2")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spacecraft_clock_start_count
 ;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
 		(type STRING)
-;+		(value "XSChoice#2")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot orbit_number
-;+		(comment "The orbit_number attribute provides the number of the orbital revolution of one body around another.")
+	(single-slot stop_orbit_number
+;+		(comment "The stop_orbit_number attribute provides the last in a series of numbers that represent s set of orbital revolutions of one body around another.")
 		(type STRING)
-;+		(value "XSChoice#2")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mission_phase_name
 ;+		(comment "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
 		(type STRING)
-;+		(value "XSChoice#2")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start_orbit_number
+;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -10405,7 +10413,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -10511,7 +10519,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -11030,28 +11038,6 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Voltage "Units_of_Voltage is a magnitude of voltage."
-	(is-a Unit_Of_Measure)
-	(role concrete)
-	(single-slot type
-;+		(comment "The type attribute classifies units of voltage according to the quantity being measured (voltage).")
-		(type STRING)
-;+		(value "Voltage")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot specified_unit_id
-;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
-		(type STRING)
-;+		(value "V")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot unit_id
-;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
-		(type STRING)
-;+		(value "V" "mV")
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
 (defclass Units_of_Volume "Units_of_Volume is a magnitude of volume."
 	(is-a Unit_Of_Measure)
 	(role concrete)
@@ -11071,6 +11057,28 @@
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
 ;+		(value "L" "m**3")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Voltage "Units_of_Voltage is a magnitude of voltage."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute classifies units of voltage according to the quantity being measured (voltage).")
+		(type STRING)
+;+		(value "Voltage")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "V")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "V" "mV")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -11225,6 +11233,138 @@
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
 ;+		(value "A" "mA")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Scale_Linear "The class Units_of_Pixel_Scale_Linear provides the units in which a pixel scale is defined in a linear context. Pixel scale, in terms of linear units, is the inverse distance represented by one pixel in an image, typically expressed as pixel per unit length (0.125 pixel/m , 0.5 pixel/km)."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Scale")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "pixel/km")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "pixel/km" "pixel/m" "pixel/mm")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Scale_Angular "The class Units_of_Pixel_Scale_Angular provides the units in which a pixel scale is defined in an angular context. Pixel scale, in terms of angular units, indicates the angular size of a pixel typically expressed as pixel per unit angle (e.g., 0.125 pixel/deg , 0.5 pixel/arcsec)."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Scale")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "pixel/deg")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "pixel/deg" "pixel/arcsec" "pixel/radian")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Resolution_Linear "The class Units_of_Pixel_Resolution_Linear provides the units in which pixel resolution is defined in an linear context. Linear pixel resolution, the inverse of linear pixel scale, indicates the linear size of a pixel typically expressed in terms of a length per single pixel (e.g., 6.5 m/pixel, 1.0 km/pixel)."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Resolution")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "km/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "km/pixel" "m/pixel" "mm/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Resolution_Angular "The class Units_of_Pixel_Resolution_Angular provides the units in which pixel resolution is defined in an angular context. Angular pixel resolution, the inverse of angular pixel scale, indicates the angular size subtended by a single pixel (e.g., 6.5 deg/pixel, 1.0 arcsec/pixel)."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Resolution")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "deg/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "deg/pixel" "arcsec/pixel" "radian/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Scale_Map "The class Units_of_Pixel_Scale_Map provides the units for pixel scale in a cartographic context. Map pixel scale is the inverse distance represented by one pixel in a digital map, expressed as pixel per unit length in terms of surface distance. For example, 4 pixel/deg image on Venus = 4 pixel/deg image on Mars = 1440x720 pixels. Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Scale")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "pixel/deg")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "pixel/deg")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Pixel_Resolution_Map "The class Units_of_Pixel_Resolution_Map provides the units for pixel resolution in a cartographic context. Map pixel resolution indicates the size of a pixel in a digital map expressed in terms of surface distance per single pixel. This value is dependent on the definition of the map projection or radius to the object. (e.g., 6.5 m/pixel, 1.0 km/pixel) Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Resolution")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "km/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "km/pixel" "m/pixel" "mm/pixel" "deg/pixel")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 

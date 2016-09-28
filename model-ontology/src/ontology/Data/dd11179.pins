@@ -1,4 +1,4 @@
-; Wed Aug 10 08:25:22 PDT 2016
+; Tue Sep 27 17:05:32 PDT 2016
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -363,6 +363,12 @@
 		[NEVD.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_provider_id]
 		[NEVD.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_name]
 		[EVD.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number]
+		[NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_encoding]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.maximum_characters]
@@ -931,6 +937,12 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representing2
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type]
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id]
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type]
+		[EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id]
 		[NEVD.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.color_display_axis]
 		[NEVD.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_axis]
 		[EVD.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_direction]
@@ -1022,6 +1034,18 @@
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.unit_id]
@@ -1337,6 +1361,90 @@
 	(registrationStatus Preferred)
 	(unresolvedIssue "Issues still being determined.")
 	(untilDate "2019-12-31"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(steward [img])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band] of  DataElement
 
@@ -1742,6 +1850,90 @@
 	(steward [img])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number])
+	(steward [msn])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.Agency.pds.description] of  DataElement
@@ -12552,6 +12744,174 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Optical_Path_Length.pds.unit_id])
 	(versionIdentifier "1.5"))
 
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(versionIdentifier "1.5"))
+
 ([DE.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  DataElement
 
 	(administrationRecord [DD_1.5.1.0])
@@ -16287,6 +16647,12 @@
 	(administrationRecord [DD_1.5.1.0])
 	(dataIdentifier "DEC_TBD_classConcept")
 	(expressing
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id]
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type]
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id]
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id]
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type]
+		[DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id]
 		[DE.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band]
 		[DE.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.color_display_axis]
 		[DE.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.green_channel_band]
@@ -16304,6 +16670,12 @@
 		[DE.0001_NASA_PDS_1.disp.Movie_Display_Settings.disp.loop_flag]
 		[DE.0001_NASA_PDS_1.disp.Movie_Display_Settings.disp.time_display_axis]
 		[DE.0001_NASA_PDS_1.disp.Movie_Display_Settings.pds.comment]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number]
+		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number]
 		[DE.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_encoding]
 		[DE.0001_NASA_PDS_1.pds.ASCII_DOI.pds.character_constraint]
@@ -16484,6 +16856,18 @@
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.unit_id]
@@ -16884,6 +17268,36 @@
 	(terminologicalEntry [TE.Value])
 	(versionIdentifier "1.5"))
 
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band] of  Definition
 
 	(definitionText "The blue_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the blue channel of a display device. The first band along the band axis has band number 1.")
@@ -17027,6 +17441,36 @@
 ([DEF.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type] of  Definition
 
 	(definitionText "The telemetry_source_type attribute classifies the source of the telemetry used in creation of this data collection.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  Definition
+
+	(definitionText "The mission_phase_identifier attribute provides an identifier for a mission phase.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  Definition
+
+	(definitionText "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  Definition
+
+	(definitionText "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  Definition
+
+	(definitionText "The spacecraft_clock_stop_count attribute provides the value of the spacecraft clock at the end of a time period of interest.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  Definition
+
+	(definitionText "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  Definition
+
+	(definitionText "The stop_orbit_number attribute provides the last in a series of numbers that represent s set of orbital revolutions of one body around another.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Agency.pds.description] of  Definition
@@ -20889,6 +21333,66 @@
 	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  Definition
 
 	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
@@ -22124,6 +22628,36 @@
 	(definitionText "TBD_DEC_Definition")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band] of  Designation
 
 	(designationName "blue_channel_band")
@@ -22267,6 +22801,36 @@
 ([DES.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type] of  Designation
 
 	(designationName "telemetry_source_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  Designation
+
+	(designationName "mission_phase_identifier")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  Designation
+
+	(designationName "mission_phase_name")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  Designation
+
+	(designationName "spacecraft_clock_start_count")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  Designation
+
+	(designationName "spacecraft_clock_stop_count")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  Designation
+
+	(designationName "start_orbit_number")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  Designation
+
+	(designationName "stop_orbit_number")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Agency.pds.description] of  Designation
@@ -26129,6 +26693,66 @@
 	(designationName "unit_id")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  Designation
 
 	(designationName "specified_unit_id")
@@ -27364,6 +27988,142 @@
 	(designationName "Value")
 	(isPreferred TRUE))
 
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id.1203016601])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type.393434316])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-2050785475]
+		[pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.1203016601]
+		[pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-594095516]
+		[pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.393669975])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id.-140902147])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type.79698218])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id.-140902147])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([EVD.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_direction] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -27489,7 +28249,9 @@
 	(administrationRecord [DD_1.5.1.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Agency.pds.name.-598354000]
-		[pv.0001_NASA_PDS_1.pds.Agency.pds.name.580818153])
+		[pv.0001_NASA_PDS_1.pds.Agency.pds.name.-361578825]
+		[pv.0001_NASA_PDS_1.pds.Agency.pds.name.580818153]
+		[pv.0001_NASA_PDS_1.pds.Agency.pds.name.-545259579])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Agency.pds.name")
 	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -30933,6 +31695,10 @@
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.226075012]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.226110416]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1146070753]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1284866112]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.74848519]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1176052196]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1658032043]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1980463395]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-735911205]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1577228805]
@@ -31058,6 +31824,7 @@
 
 	(administrationRecord [DD_1.5.1.0])
 	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-2051163880]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1381086729]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1592553669]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1520884562]
@@ -31071,6 +31838,10 @@
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.226075012]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.226110416]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1146070753]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1284866112]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.74848519]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1176052196]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1658032043]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1980463395]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-735911205]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1577228805]
@@ -33973,6 +34744,282 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id.-2050785475])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type.393434316])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2050785475]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id.1203016601])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type.393434316])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.1203016601]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.-594095516]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.393669975])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id.-140902147])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type.79698218])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1506700184]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-140902147]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1035684406])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id.-143092341])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type.79698218])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092341]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-558805212]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092279])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([EVD.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -35711,6 +36758,9 @@
 	(countryIdentifier "USA")
 	(languageIdentifier "English"))
 
+([msn] of  %3AUNDEFINED
+)
+
 ([NASA_PDS] of  Context
 
 	(dataIdentifier "NASA_PDS"))
@@ -36212,6 +37262,132 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_name])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -41101,7 +42277,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
+	(pattern "%%5B%5C%2B,-%5D?%5B0-9%5D%2B%28%5C.%28%5B0-9%5D%2B%29%29?%5BdoxfeEs%5D")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Binary.pds.field_format])
@@ -41269,7 +42445,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
+	(pattern "%%5B%5C%2B,-%5D?%5B0-9%5D%2B%28%5C.%28%5B0-9%5D%2B%29%29?%5BdoxfeEs%5D")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Bit.pds.field_format])
@@ -41437,7 +42613,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
+	(pattern "%%5B%5C%2B,-%5D?%5B0-9%5D%2B%28%5C.%28%5B0-9%5D%2B%29%29?%5BdoxfeEs%5D")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Character.pds.field_format])
@@ -41605,7 +42781,7 @@
 	(maximumValue "TBD_maximum_value")
 	(minimumCharacterQuantity "TBD_minimum_characters")
 	(minimumValue "TBD_minimum_value")
-	(pattern "^%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]$")
+	(pattern "%%5B%5C%2B,-%5D?%5B0-9%5D%2B%28%5C.%28%5B0-9%5D%2B%29%29?%5BdoxfeEs%5D")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.field_format])
@@ -49935,6 +51111,60 @@
 	(contactPhone "818.354.6135")
 	(contactTitle "PDS_Standards_Coordinator"))
 
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
 ([PR.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band] of  Property
 
 	(administrationRecord [DD_1.5.1.0])
@@ -50228,6 +51458,60 @@
 	(administrationRecord [DD_1.5.1.0])
 	(classOrder "1120")
 	(dataIdentifier "PR.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1010")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1050")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1060")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1030")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1040")
+	(dataIdentifier "PR.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
@@ -59520,6 +60804,114 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
 
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
 ([PR.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  Property
 
 	(administrationRecord [DD_1.5.1.0])
@@ -61401,6 +62793,78 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
 
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id.1203016601] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id.1203016601])
+	(value "km%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type.393434316] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type.393434316])
+	(value "Resolution"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-2050785475] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-2050785475])
+	(value "deg%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-594095516] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-594095516])
+	(value "m%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.1203016601] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.1203016601])
+	(value "km%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.393669975] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.393669975])
+	(value "mm%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id.-140902147] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id.-140902147])
+	(value "pixel%2Fdeg"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type.79698218] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type.79698218])
+	(value "Scale"))
+
+([pv.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id.-140902147] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id.-140902147])
+	(value "pixel%2Fdeg"))
+
 ([pv.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_direction.-1575193616] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -61480,6 +62944,22 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type.2542116])
 	(value "SFDU"))
+
+([pv.0001_NASA_PDS_1.pds.Agency.pds.name.-361578825] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Agency.pds.name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Agency.pds.name.-361578825])
+	(value "Japan Aerospace Exploration Agency"))
+
+([pv.0001_NASA_PDS_1.pds.Agency.pds.name.-545259579] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Agency.pds.name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Agency.pds.name.-545259579])
+	(value "Roscosmos State Corporation for Space Activities"))
 
 ([pv.0001_NASA_PDS_1.pds.Agency.pds.name.-598354000] of  PermissibleValue
 
@@ -64184,6 +65664,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.1970626406])
 	(value "Assert"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1176052196] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1176052196])
+	(value "Units_of_Pixel_Scale_Angular"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1381086729] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -64288,6 +65776,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1146070753])
 	(value "Units_of_Optical_Path_Length"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1284866112] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1284866112])
+	(value "Units_of_Pixel_Resolution_Angular"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1430039925] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -64311,6 +65807,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1576884010])
 	(value "Units_of_Frame_Rate"))
+
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1658032043] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1658032043])
+	(value "Units_of_Pixel_Scale_Linear"))
 
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1788177884] of  PermissibleValue
 
@@ -64391,6 +65895,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.55474118])
 	(value "Units_of_Voltage"))
+
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.74848519] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.74848519])
+	(value "Units_of_Pixel_Resolution_Linear"))
 
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.869486319] of  PermissibleValue
 
@@ -64768,6 +66280,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.conceptual_domain.897930612])
 	(value "Short_String"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1176052196] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1176052196])
+	(value "Units_of_Pixel_Scale_Angular"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1381086729] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -64832,6 +66352,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1980463395])
 	(value "Units_of_Pressure"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-2051163880] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-2051163880])
+	(value "Units_of_Acceleration"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-426039356] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -64864,6 +66392,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1146070753])
 	(value "Units_of_Optical_Path_Length"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1284866112] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1284866112])
+	(value "Units_of_Pixel_Resolution_Angular"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1430039925] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -64887,6 +66423,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1576884010])
 	(value "Units_of_Frame_Rate"))
+
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1658032043] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1658032043])
+	(value "Units_of_Pixel_Scale_Linear"))
 
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1788177884] of  PermissibleValue
 
@@ -64967,6 +66511,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.55474118])
 	(value "Units_of_Voltage"))
+
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.74848519] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.74848519])
+	(value "Units_of_Pixel_Resolution_Linear"))
 
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.869486319] of  PermissibleValue
 
@@ -70512,6 +72064,166 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Optical_Path_Length.pds.unit_id.-991769794])
 	(value "airmass"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id.-2050785475] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id.-2050785475])
+	(value "deg%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type.393434316] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type.393434316])
+	(value "Resolution"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2050785475] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2050785475])
+	(value "deg%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696])
+	(value "radian%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550])
+	(value "arcsec%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id.1203016601] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id.1203016601])
+	(value "km%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type.393434316] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type.393434316])
+	(value "Resolution"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.-594095516] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.-594095516])
+	(value "m%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.1203016601] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.1203016601])
+	(value "km%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.393669975] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.393669975])
+	(value "mm%2Fpixel"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id.-140902147] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id.-140902147])
+	(value "pixel%2Fdeg"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type.79698218] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type.79698218])
+	(value "Scale"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1035684406] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1035684406])
+	(value "pixel%2Fradian"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-140902147] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-140902147])
+	(value "pixel%2Fdeg"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1506700184] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1506700184])
+	(value "pixel%2Farcsec"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id.-143092341] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id.-143092341])
+	(value "pixel%2Fkm"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type.79698218] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type.79698218])
+	(value "Scale"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092279] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092279])
+	(value "pixel%2Fmm"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092341] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092341])
+	(value "pixel%2Fkm"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-558805212] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-558805212])
+	(value "pixel%2Fm"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id.97299] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -72087,6 +73799,48 @@
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
 
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(designation [DES.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.disp.Color_Display_Settings.disp.blue_channel_band] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -72288,6 +74042,48 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type])
 	(designation [DES.0001_NASA_PDS_1.img.Telemetry_Parameters.img.telemetry_source_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_identifier])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.mission_phase_name])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_start_count])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.spacecraft_clock_stop_count])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.start_orbit_number])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number])
+	(designation [DES.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
@@ -77694,6 +79490,90 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Optical_Path_Length.pds.unit_id])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -79552,6 +81432,64 @@
 	(precision "TBD_precision")
 	(unitId "airmass"))
 
+([Units_of_Pixel_Resolution_Angular] of  UnitOfMeasure
+
+	(defaultUnitId "deg%2Fpixel")
+	(measureName "Units_of_Pixel_Resolution_Angular")
+	(precision "TBD_precision")
+	(unitId
+		"deg%2Fpixel"
+		"arcsec%2Fpixel"
+		"radian%2Fpixel"))
+
+([Units_of_Pixel_Resolution_Linear] of  UnitOfMeasure
+
+	(defaultUnitId "km%2Fpixel")
+	(measureName "Units_of_Pixel_Resolution_Linear")
+	(precision "TBD_precision")
+	(unitId
+		"km%2Fpixel"
+		"m%2Fpixel"
+		"mm%2Fpixel"))
+
+([Units_of_Pixel_Resolution_Map] of  UnitOfMeasure
+
+	(defaultUnitId "km%2Fpixel")
+	(measureName "Units_of_Pixel_Resolution_Map")
+	(precision "TBD_precision")
+	(unitId
+		"km%2Fpixel"
+		"m%2Fpixel"
+		"mm%2Fpixel"
+		"deg%2Fpixel"))
+
+([Units_of_Pixel_Scale_Angular] of  UnitOfMeasure
+
+	(defaultUnitId "pixel%2Fdeg")
+	(measureName "Units_of_Pixel_Scale_Angular")
+	(precision "TBD_precision")
+	(unitId
+		"pixel%2Fdeg"
+		"pixel%2Farcsec"
+		"pixel%2Fradian"))
+
+([Units_of_Pixel_Scale_Linear] of  UnitOfMeasure
+
+	(defaultUnitId "pixel%2Fkm")
+	(measureName "Units_of_Pixel_Scale_Linear")
+	(precision "TBD_precision")
+	(unitId
+		"pixel%2Fkm"
+		"pixel%2Fm"
+		"pixel%2Fmm"))
+
+([Units_of_Pixel_Scale_Map] of  UnitOfMeasure
+
+	(defaultUnitId "pixel%2Fdeg")
+	(measureName "Units_of_Pixel_Scale_Map")
+	(precision "TBD_precision")
+	(unitId "pixel%2Fdeg"))
+
 ([Units_of_Pressure] of  UnitOfMeasure
 
 	(defaultUnitId "bar")
@@ -79741,6 +81679,60 @@
 
 	(dataTypeName "UTF8_Text_Preserved"))
 
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.specified_unit_id.1203016601] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Map maximum, minimum, and permissible values are given in the unit km%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.type.393434316] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Map is classified as being of type Resolution.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-2050785475] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is deg%2Fpixel where %47deg%47 is interpreted as a surface distance measured in degrees of latitude or longitude")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.-594095516] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is m%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.1203016601] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is km%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Resolution_Map.cart.unit_id.393669975] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is mm%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.specified_unit_id.-140902147] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Map maximum, minimum, and permissible values are given in the unit pixel%2Fdeg")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.type.79698218] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Map is classified as being of type Scale.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.cart.Units_of_Pixel_Scale_Map.cart.unit_id.-140902147] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Map is pixel%2Fdeg where %47deg%47 is interpreted as a surface distance measured in degrees of latitude or longitude")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_direction.-1575193616] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -79799,6 +81791,18 @@
 
 	(beginDate "2009-06-09")
 	(description "The telemetry source is an SFDU")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Agency.pds.name.-361578825] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The Agency has name Japan Aerospace Exploration Agency")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Agency.pds.name.-545259579] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The Agency has name Roscosmos State Corporation for Space Activities")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Agency.pds.name.-598354000] of  ValueMeaning
@@ -81829,6 +83833,12 @@
 	(description "The rule statement type is generic Assert.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1176052196] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Angular")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1381086729] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -81907,6 +83917,12 @@
 	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Optical_Path_Length")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1284866112] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Angular")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1430039925] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -81923,6 +83939,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Frame_Rate")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1658032043] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Linear")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.1788177884] of  ValueMeaning
@@ -81983,6 +84005,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Voltage")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.74848519] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Linear")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.869486319] of  ValueMeaning
@@ -82267,6 +84295,12 @@
 	(description "The value is classified as Short_String")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1176052196] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Angular")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-1381086729] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -82315,6 +84349,12 @@
 	(description "The value is given in a unit which conveys pressure")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-2051163880] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Acceleration")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-426039356] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -82339,6 +84379,12 @@
 	(description "The value is given in a unit which conveys optical path length")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1284866112] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Angular")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1430039925] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -82355,6 +84401,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The value is given in a unit which conveys frame rate")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1658032043] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Linear")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.1788177884] of  ValueMeaning
@@ -82415,6 +84467,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The value is given in a unit which conveys voltage")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.74848519] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Linear")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.869486319] of  ValueMeaning
@@ -85816,7 +87874,7 @@
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "This type indicates a target that is a star or stellar system (binary, trinary, etc.) with a known or suspected planetary system around it.")
+	(description "This type indicates a target that is a star or stellar system %28binary, trinary, etc.%29 with a known or suspected planetary system around it.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1901896264] of  ValueMeaning
@@ -85858,7 +87916,7 @@
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-650649921] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "This type indicates a target consisting of a primary body and its satellite(s), ring(s), or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
+	(description "This type indicates a target consisting of a primary body and its satellite%28s%29, ring%28s%29, or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-812771377] of  ValueMeaning
@@ -85996,7 +88054,7 @@
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "This type indicates a target that is a star or stellar system (binary, trinary, etc.) with a known or suspected planetary system around it.")
+	(description "This type indicates a target that is a star or stellar system %28binary, trinary, etc.%29 with a known or suspected planetary system around it.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1901896264] of  ValueMeaning
@@ -86038,7 +88096,7 @@
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-650649921] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "This type indicates a target consisting of a primary body and its satellite(s), ring(s), or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
+	(description "This type indicates a target consisting of a primary body and its satellite%28s%29, ring%28s%29, or similarly associated objects.  For example: Saturn and its rings, Jupiter and its moons, etc.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-812771377] of  ValueMeaning
@@ -86573,6 +88631,126 @@
 
 	(beginDate "2009-06-09")
 	(description "The abbreviated unit for Units_of_Optical_Path_Length is airmass")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id.-2050785475] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Angular maximum, minimum, and permissible values are given in the unit deg%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type.393434316] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Angular is classified as being of type Resolution.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2050785475] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is deg%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is radian%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is arcsec%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.specified_unit_id.1203016601] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Linear maximum, minimum, and permissible values are given in the unit km%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.type.393434316] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Resolution_Linear is classified as being of type Resolution")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.-594095516] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Linear is m%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.1203016601] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Linear is km%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Linear.pds.unit_id.393669975] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Linear is mm%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id.-140902147] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Angular maximum, minimum, and permissible values are given in the unit pixel%2Fdeg")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.type.79698218] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Angular is classified as being of type Scale.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1035684406] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Angular is pixel%2Fradian")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-140902147] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Angular is pixel%2Fdeg")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.unit_id.-1506700184] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Angular is pixel%2Farcsec")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.specified_unit_id.-143092341] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Linear maximum, minimum, and permissible values are given in the unit pixel%2Fkm")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.type.79698218] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Pixel_Scale_Linear is classified as being of type Scale.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092279] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Linear is pixel%2Fmm")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-143092341] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Linear is pixel%2Fkm")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Linear.pds.unit_id.-558805212] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Linear is pixel%2Fm")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id.97299] of  ValueMeaning

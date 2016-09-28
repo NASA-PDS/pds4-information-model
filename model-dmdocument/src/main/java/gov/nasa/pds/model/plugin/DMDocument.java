@@ -262,8 +262,8 @@ public class DMDocument extends Object {
 		masterClassOrder = 1000;
 
 		// master group number
-//		masterClassOrder = 10;
-		masterGroupNum = 10;
+		masterClassOrder = 10;
+//		masterGroupNum = 10;
 		
 		omitClass = new ArrayList <String> ();
 		omitClass.add("Data_Object");
