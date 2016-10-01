@@ -24,7 +24,7 @@
 
   <groupId>gov.nasa.pds.2010</groupId>
   <artifactId>model</artifactId>
-  <version>1.7.0.0-dev</version>
+  <version>7.0.0</version>
   <packaging>pom</packaging>
 
   <name>Model</name>
@@ -59,11 +59,21 @@
       </roles>
     </developer>
     <developer>
+      <name>Pearl Haw</name>
+      <id>pearl</id>
+      <email>Pearl.Haw@jpl.nasa.gov</email>
+      <organization>NASA Jet Propulsion Laboratory</organization>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
       <name>Steve Hughes</name>
       <email>John.S.Hughes@jpl.nasa.gov</email>
       <organization>NASA Jet Propulsion Laboratory</organization>
       <roles>
         <role>System Engineering Lead</role>
+        <role>Developer</role>
       </roles>
     </developer>
   </developers>

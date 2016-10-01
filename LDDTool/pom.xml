@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2010-2016, by the California Institute of Technology.
+  Copyright 2016, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -16,184 +16,133 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>gov.nasa.pds.2010</groupId>
-        <artifactId>model</artifactId>
-        <version>1.7.0.0-dev</version>
-    </parent>
-    <groupId>gov.nasa.pds.2010.model</groupId>
-    <artifactId>LDDTool</artifactId>
-    <version>1.7.0.0-dev</version>
-    <packaging>jar</packaging>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <parent>
+    <groupId>gov.nasa.pds.2010</groupId>
+    <artifactId>model</artifactId>
+    <version>7.0.0</version>
+  </parent>
 
-    <name>LDDTool</name>
-    <description>
-        The PDS4 LDDTool uses the Maven plugin
-        "pds-model-dmdocument-maven-plugin" as an executible jar to process an input XML file. 
-        The input XML document is parsed and the contents are validated against the master database.
-                - The validated contents are integrated into the master database.
-                - The XML Schema and Schematron files are written.
-                - The process report and spreadsheet are written.
-    </description>
+  <groupId>gov.nasa.pds.2010.model</groupId>
+  <artifactId>LDDTool</artifactId>
+  <version>0.2.1.4</version>
+  <packaging>jar</packaging>
 
-    <url>https://pds-cm.jpl.nasa.gov/pds4/model/LDDTool/</url>
+  <name>Local Data Dictionary Tool</name>
+  <description>
+    The PDS4 LDDTool uses the Maven plugin "pds-model-dmdocument-maven-plugin" as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.
+  </description>
+  <url>https://pds-cm.jpl.nasa.gov/pds4/model/LDDTool/</url>
 
-    <licenses>
-        <license>
-            <name>California Institute of Technology</name>
-            <url>file:///${basedir}/LICENSE.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+  <licenses>
+    <license>
+      <name>California Institute of Technology</name>
+      <url>file:///${basedir}/LICENSE.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-  <developers>
-    <developer>
-      <name>Sean Hardman</name>
-      <id>shardman</id>
-      <email>Sean.Hardman@jpl.nasa.gov</email>
-      <organization>NASA Jet Propulsion Laboratory</organization>
-      <roles>
-        <role>Development Lead</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Sean Kelly</name>
-      <id>kelly</id>
-      <email>sean.kelly@jpl.nasa.gov</email>
-      <organization>NASA Jet Propulsion Laboratory</organization>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Steve Hughes</name>
-      <email>John.S.Hughes@jpl.nasa.gov</email>
-      <organization>NASA Jet Propulsion Laboratory</organization>
-      <roles>
-        <role>System Engineering Lead</role>
-      </roles>
-    </developer>
-  </developers>
-
-  <contributors>
-    <contributor>
-      <name>Ron Joyner</name>
-      <email>Ronald.Joyner@jpl.nasa.gov</email>
-      <organization>NASA Jet Propulsion Laboratory</organization>
-      <roles>
-        <role>System Engineer</role>
-      </roles>
-    </contributor>
-  </contributors>
-
-
-    <build>
+  <build>
     <resources>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>Examples</targetPath>
-                <directory>src/main/resources/Examples</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>Schemas</targetPath>
-                <directory>src/main/resources/Schemas</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-            <resource>
-                <filtering>false</filtering>
-                <targetPath>bin</targetPath>
-                <directory>src/main/resources/bin</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
+      <resource>
+        <filtering>false</filtering>
+        <targetPath>Examples</targetPath>
+        <directory>src/main/resources/Examples</directory>
+        <includes>
+            <include>**/*</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <targetPath>Schemas</targetPath>
+        <directory>src/main/resources/Schemas</directory>
+        <includes>
+            <include>**/*</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <targetPath>bin</targetPath>
+        <directory>src/main/resources/bin</directory>
+        <includes>
+            <include>**/*</include>
+        </includes>
+      </resource>
     </resources>
-
-        <plugins>
-            <!-- create the export directory -->
-<!--
-            <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-                <execution>
-                    <phase>process-resources</phase>
-                    <configuration>
-                        <tasks>
-                            <mkdir dir="${project.build.directory}/classes/export"/>
-                        </tasks>
-                    </configuration>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
-                </execution>
-            </executions>
-         </plugin>
--->
-            <!-- fine the executible jar and rename -->
-         <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-dependency-plugin</artifactId>
-           <version>2.10</version>
-           <executions>
-             <execution>
-               <id>copy</id>
-               <phase>prepare-package</phase>
-               <goals>
-               <goal>copy</goal>
-               </goals>
-               <configuration>
-                 <artifactItems>
-                   <artifactItem>
-                     <groupId>gov.nasa.pds.2010</groupId>
-                     <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-                     <version>1.7.0.0-dev</version>
-                     <type>jar</type>
-                     <overWrite>true</overWrite>
-                     <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
-                     <destFileName>DMDocument.jar</destFileName>
-                   </artifactItem>
-                 </artifactItems>
-               </configuration>
-             </execution>
-           </executions>
-         </plugin>
-
-         <!-- copy the data files from the model-ontology directory -->
-         <plugin>
-             <artifactId>maven-resources-plugin</artifactId>
-             <executions>
-                 <execution>
-                     <id>copy-data</id>
-                     <phase>generate-resources</phase>
-                     <goals>
-                         <goal>copy-resources</goal>
-                     </goals>
-                     <configuration>
-                         <outputDirectory>${project.build.directory}/classes/Data</outputDirectory>
-                         <overwrite>true</overwrite>
-                         <resources>
-                             <resource>
-                                 <directory>../model-ontology/src/ontology/Data</directory>
-                                 <includes>
-                                     <include>*.*</include>
-                                 </includes>
-                             </resource>
-                         </resources>
-                     </configuration>
-                 </execution>
-             </executions>
-         </plugin>
-     <plugin>
+    <plugins>
+      <!-- create the export directory -->
+      <!--
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <configuration>
+              <tasks>
+                <mkdir dir="${project.build.directory}/classes/export"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+      <!-- fine the executible jar and rename -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.10</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>gov.nasa.pds.2010.model</groupId>
+                  <artifactId>model-dmdocument</artifactId>
+                  <version>7.0.0</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
+                  <destFileName>DMDocument.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+       <!-- copy the data files from the model-ontology directory -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-data</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/classes/Data</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>../model-ontology/src/ontology/Data</directory>
+                  <includes>
+                    <include>*.*</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -212,41 +161,43 @@
           </execution>
         </executions>
       </plugin>
+    </plugins>
+  </build>
 
-        </plugins>
-    </build>
+  <repositories>
+    <!-- Hosts the PDS and OODT artifacts. -->
+    <repository>
+      <id>pds-repo</id>
+      <name>PDS Repository</name>
+      <layout>default</layout>
+      <url>https://pds-cm.jpl.nasa.gov/maven2</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
-   <repositories>
-        <!-- Hosts the PDS and OODT artifacts. -->
-        <repository>
-            <id>pds-repo</id>
-            <name>PDS Repository</name>
-            <layout>default</layout>
-            <url>https://pds-cm.jpl.nasa.gov/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven2-repository.dev.java.net</id>
+      <name>Java.net Maven 2 Repository</name>
+      <url>http://download.java.net/maven/2</url>
+    </pluginRepository>
+  </pluginRepositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Maven 2 Repository</name>
-            <url>http://download.java.net/maven/2</url>
-        </pluginRepository>
-    </pluginRepositories>
- <dependencies>
-   <dependency>
-      <groupId>gov.nasa.pds.2010</groupId>
-      <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-      <version>1.7.0.0-dev</version>
-   </dependency>
- </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>gov.nasa.pds.2010.model</groupId>
+      <artifactId>model-dmdocument</artifactId>
+      <version>7.0.0</version>
+    </dependency>
+  </dependencies>
 
+  <!-- Project Information and Reports inherited from parent. -->
+  <reporting/>
 </project>

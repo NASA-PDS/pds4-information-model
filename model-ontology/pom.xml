@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2010-2016, by the California Institute of Technology.
+  Copyright 2016, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -19,25 +19,16 @@
     <parent>
         <groupId>gov.nasa.pds.2010</groupId>
         <artifactId>model</artifactId>
-        <version>1.7.0.0-dev</version>
+        <version>7.0.0</version>
     </parent>
 
     <groupId>gov.nasa.pds.2010.model</groupId>
     <artifactId>model-ontology</artifactId>
-    <version>1.7.0.0-dev</version>
     <packaging>jar</packaging>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
 
     <name>Model Ontology</name>
     <description>
-        The PDS4 Model Ontology component conains the Protégé ontology instances
-        for the PDS4 information and data model, and uses the Maven plugin
-        "pds-model-dmdocument-maven-plugin" to generate documentation and other
-        artifcats from the ontology into a generated JAR file.
+        The PDS4 Model Ontology component conains the Protégé ontology instances for the PDS4 information and data model, and uses the Maven plugin "model-dmdocument" to generate documentation and other artifcats from the ontology into a generated JAR file.
     </description>
     <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-ontology/</url>
 
@@ -51,7 +42,7 @@
 
     <build>
         <plugins>
-<plugin>
+            <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
@@ -81,11 +72,11 @@
                     </goals>
                 </execution>
             </executions>
-         </plugin>
+            </plugin>
             <plugin>
-                <groupId>gov.nasa.pds.2010</groupId>
-                <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-                <version>1.7.0.0-dev</version>
+                <groupId>gov.nasa.pds.2010.model</groupId>
+                <artifactId>model-dmdocument</artifactId>
+                <version>7.0.0</version>
                 <configuration>
                     <ontologySrc>${basedir}/src/ontology</ontologySrc>
                 </configuration>
@@ -101,4 +92,7 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Project Information and Reports inherited from parent. -->
+    <reporting/>
 </project>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2010-2016, by the California Institute of Technology.
+  Copyright 2016, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -19,19 +19,14 @@
     <parent>
         <groupId>gov.nasa.pds.2010</groupId>
         <artifactId>model</artifactId>
-        <version>1.7.0.0-dev</version>
+        <version>7.0.0</version>
     </parent>
 
-    <groupId>gov.nasa.pds.2010</groupId>
-    <artifactId>pds-model-dmdocument-maven-plugin</artifactId>
-    <version>1.7.0.0-dev</version>
+    <groupId>gov.nasa.pds.2010.model</groupId>
+    <artifactId>model-dmdocument</artifactId>
     <packaging>maven-plugin</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <name>PDS Model DM-Document Maven Plugin</name>
+    <name>Model DM-Document Maven Plugin</name>
     <description>
         The Model DM-Document component provides Maven plugins that generate DM
         documents and other artifacts from ontologies.
@@ -125,7 +120,7 @@
                 </executions>
             </plugin>
 
-    <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
