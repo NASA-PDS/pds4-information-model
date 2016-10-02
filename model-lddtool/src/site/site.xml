@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <!-- 
-  Copyright 2009-2016, by the California Institute of Technology.
+  Copyright 2016, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -13,24 +13,24 @@
   may be required before exporting such information to foreign countries or 
   providing access to foreign nationals.
 
-  $Id: site.xml 13406 2014-08-16 05:38:27Z shardman $
+  $Id: $
 -->
 
-<project name="LDDTool">
+<project name="model-lddtool">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
     <href>https://pds-cm.jpl.nasa.gov/</href>
   </bannerLeft>
 
   <bannerRight>
-    <name>LDDTool</name>
+    <name>Local Data Dictionary Tool</name>
   </bannerRight>
 
   <version/>
 
   <body>
     <links>
-      <item name="LDDTool" href="https://pds-cm.jpl.nasa.gov/pds4/model/LDDTool/index.html" />
+      <item name="LDDTool" href="https://pds-cm.jpl.nasa.gov/pds4/model/model-lddtool/index.html" />
     </links>
 
     <menu name="Software Documentation">
@@ -40,8 +40,8 @@
     </menu>
 
     <menu name="Download">
-      <item name="Binary Package (tar.gz)" href="ftp://pds.nasa.gov/pub/toplevel/2010/ingest/${project.artifactId}-${project.version}-bin.tar.gz"/>
-      <item name="Binary Package (zip)" href="ftp://pds.nasa.gov/pub/toplevel/2010/ingest/${project.artifactId}-${project.version}-bin.zip"/>
+      <item name="Binary Package (tar.gz)" href="ftp://pds.nasa.gov/pub/toplevel/2010/model/${project.artifactId}-${project.version}-bin.tar.gz"/>
+      <item name="Binary Package (zip)" href="ftp://pds.nasa.gov/pub/toplevel/2010/model/${project.artifactId}-${project.version}-bin.zip"/>
     </menu>
 
     <menu ref="reports"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- 
-  Copyright 2009-2013, by the California Institute of Technology.
+  Copyright 2016, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -13,14 +13,13 @@
   may be required before exporting such information to foreign countries or 
   providing access to foreign nationals.
 
-  $Id: index.xml.vm 12278 2013-10-15 00:29:51Z shardman $
+  $Id: $
 -->
 
 <document>
   <properties>
     <title>Operation</title>
-    <author email="Michael.Cayanan@jpl.nasa.gov">Michael Cayanan</author>
-    <author email="Sean.Hardman@jpl.nasa.gov">Sean Hardman</author>
+    <author email="John.S.Hughes@jpl.nasa.gov">Steve Hughes</author>
   </properties>
 
   <body>
@@ -133,13 +132,13 @@
 <source>
 <b>If the host platform is a Mac or Unix system, type the following commands: </b>
 
-cd  ./LDDTool/bin
+cd  ./lddtool-${project.version}/bin
 
 lddtool -lp [inputfilename] > lddtool.log
 
 <b>If the host platform is a Windows system, type the following commands: </b>
 
-cd .\LDDTool\bin
+cd .\lddtool-${project.version}\bin
 
 lddtool.bat -lp [inputfilename] > lddtool.log
 

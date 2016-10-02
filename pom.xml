@@ -35,8 +35,8 @@
 
   <modules>
     <module>model-dmdocument</module>
+    <module>model-lddtool</module>
     <module>model-ontology</module>
-    <module>LDDTool</module>
   </modules>
 
   <developers>

@@ -23,15 +23,15 @@
   </parent>
 
   <groupId>gov.nasa.pds.2010.model</groupId>
-  <artifactId>LDDTool</artifactId>
+  <artifactId>model-lddtool</artifactId>
   <version>0.2.1.4</version>
   <packaging>jar</packaging>
 
-  <name>Local Data Dictionary Tool</name>
+  <name>Model Local Data Dictionary Tool</name>
   <description>
-    The PDS4 LDDTool uses the Maven plugin "pds-model-dmdocument-maven-plugin" as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.
+    The PDS4 LDDTool uses the Maven plugin "model-dmdocument" as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.
   </description>
-  <url>https://pds-cm.jpl.nasa.gov/pds4/model/LDDTool/</url>
+  <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-lddtool/</url>
 
   <licenses>
     <license>
@@ -157,6 +157,7 @@
                 <descriptor>src/main/assembly/tar-assembly.xml</descriptor>
                 <descriptor>src/main/assembly/zip-assembly.xml</descriptor>
               </descriptors>
+              <finalName>lddtool-${pom.version}</finalName>
             </configuration>
           </execution>
         </executions>
