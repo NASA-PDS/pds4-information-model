@@ -24,7 +24,6 @@
 
   <groupId>gov.nasa.pds.2010.model</groupId>
   <artifactId>model-lddtool</artifactId>
-  <version>0.2.1.4</version>
   <packaging>jar</packaging>
 
   <name>Model Local Data Dictionary Tool</name>
