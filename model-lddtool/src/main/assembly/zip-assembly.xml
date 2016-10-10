@@ -35,29 +35,29 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>target/classes/Data</directory>
-      <outputDirectory>Data</outputDirectory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
-    <fileSet>
-      <directory>target/classes/Schemas</directory>
+      <directory>src/main/resources/Schemas</directory>
       <outputDirectory>Schemas</outputDirectory>
       <includes>
         <include>**/*</include>
       </includes>
     </fileSet>
     <fileSet>
-      <directory>target/classes/bin</directory>
+      <directory>src/main/resources/bin</directory>
       <outputDirectory>bin</outputDirectory>
       <includes>
         <include>**/*</include>
       </includes>
     </fileSet>
     <fileSet>
-      <directory>target/classes/Examples</directory>
+      <directory>src/main/resources/Examples</directory>
       <outputDirectory>Examples</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>../model-ontology/src/ontology/Data</directory>
+      <outputDirectory>Data</outputDirectory>
       <includes>
         <include>**/*</include>
       </includes>
@@ -86,18 +86,4 @@
       <filtered>true</filtered>
     </file>
   </files>
-<!--
-  <dependencySets>
-    <dependencySet>
-      <outputDirectory>lib</outputDirectory>
-      <unpack>false</unpack>
-      <scope>runtime</scope>
-      <excludes>
-      <exclude>pds-model-dmdocument-maven-plugin-1.7.0.0-dev.jar</exclude>
-      <exclude>LDDTool-1.7.0.0-dev.jar</exclude>
-      </excludes>
-      <useProjectArtifact>false</useProjectArtifact>
-    </dependencySet>
-  </dependencySets>
--->
 </assembly>
