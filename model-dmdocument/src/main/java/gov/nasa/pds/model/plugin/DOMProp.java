@@ -147,6 +147,45 @@ public class DOMProp extends ISOClassOAIS11179 {
 //		<PDSObjDefn> childClassArr;
 //		AttrDefn childAssoc;
 //		ArrayList <String> localIdentifierArr;
+		
+		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
+			rdfIdentifier = lAttr.rdfIdentifier; 							
+//			System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
+			identifier = lAttr.identifier; 
+			versionId = lAttr.versionId;
+			sequenceId = lAttr.uid; 
+
+			title = lAttr.title;
+			definition =  lAttr.description;
+			registrationStatus = lAttr.registrationStatus; 
+			regAuthId = lAttr.regAuthId; 
+			steward = lAttr.steward; 
+			nameSpaceId = lAttr.attrNameSpaceId;
+			nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+			
+//			classOrder = "9999";
+			cardMin = lAttr.cardMin;
+			cardMax = lAttr.cardMax;
+			cardMinI = lAttr.cardMinI; 
+			cardMaxI = lAttr.cardMaxI;
+			
+			// others from PDS3
+
+			localIdentifier = lAttr.lddLocalIdentifier;
+
+			className = lAttr.parentClassTitle;
+			classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
+//			groupName = "TBD_groupName";
+//			referenceType = "TBD_referenceType";
+			isAttribute = lAttr.isAttribute;
+			isChoice = lAttr.isChoice;
+			isAny = lAttr.isAny;
+//			isSet = false;
+			
+//			enclLocalIdentifier = "TBD_enclLocalIdentifier";
+//			minimumOccurrences = "TBD_minimumOccurrences";
+//			maximumOccurrences = "TBD_maximumOccurrences";
+		}
 	}
 	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
