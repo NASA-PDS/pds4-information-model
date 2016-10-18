@@ -99,9 +99,9 @@ class WriteSchematron extends Object {
 		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
 			RuleDefn lRule = (RuleDefn) i.next();	
 			
-			System.out.println("\ndebug writeSchematronRuleClasses lRule.identifier:" + lRule.identifier);
-			System.out.println("debug writeSchematronRuleClasses lRule.xpath:" + lRule.xpath);
-			System.out.println("debug writeSchematronRuleClasses lRule.assertArr.size():" + lRule.assertArr.size());
+//			System.out.println("\ndebug writeSchematronRuleClasses lRule.identifier:" + lRule.identifier);
+//			System.out.println("debug writeSchematronRuleClasses lRule.xpath:" + lRule.xpath);
+//			System.out.println("debug writeSchematronRuleClasses lRule.assertArr.size():" + lRule.assertArr.size());
 			
 			prSchematron.println("  <sch:pattern>");
 			

@@ -91,7 +91,8 @@ public class DMDocument extends Object {
 
 //	static String LDDToolVersionId  = "0.1.9.0a2";
 //	static String LDDToolVersionId  = "0.2.0.3";
-	static String LDDToolVersionId  = "0.2.1.0";
+//	static String LDDToolVersionId  = "0.2.1.0";
+	static String LDDToolVersionId  = "0.2.1.3";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -465,6 +466,8 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Units_of_Wavenumber.unit_id", "pds", "Units_of_Wavenumber", "pds", "unit_id", "m**-1", true));
 		deprecatedObjects2.add(new DeprecatedDefn ("Units_of_Wavenumber.unit_id", "pds", "Units_of_Wavenumber", "pds", "unit_id", "nm**-1", true));
 
+		deprecatedObjects2.add(new DeprecatedDefn ("Units_of_Map_Scale", "pds", "Units_of_Map_Scale", "", "", "", false));		
+		
 		deprecatedObjects2.add(new DeprecatedDefn ("Array_1D", "pds", "Array_1D", "", "", "", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
@@ -1165,7 +1168,8 @@ public class DMDocument extends Object {
 		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("cart");
+//		lSchemaFileDefn.stewardArr.add("cart");
+		lSchemaFileDefn.stewardArr.add("img");
 		lSchemaFileDefn.setVersionIds();
 		lSchemaFileDefn.comment = "This dictionary describes cartography.";
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
