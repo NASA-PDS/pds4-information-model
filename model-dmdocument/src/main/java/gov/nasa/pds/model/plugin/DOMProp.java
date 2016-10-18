@@ -147,7 +147,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 //		<PDSObjDefn> childClassArr;
 //		AttrDefn childAssoc;
 //		ArrayList <String> localIdentifierArr;
-		
+	}	
 		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
 			rdfIdentifier = lAttr.rdfIdentifier; 							
 //			System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
@@ -186,7 +186,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 //			minimumOccurrences = "TBD_minimumOccurrences";
 //			maximumOccurrences = "TBD_maximumOccurrences";
 		}
-	}
 	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
 //		System.out.println("debug - initDOMPermValProp lDOMPermValDefn.rdfIdentifier: " + lDOMPermValDefn.rdfIdentifier);							
