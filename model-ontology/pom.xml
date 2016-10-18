@@ -76,7 +76,7 @@
             <plugin>
                 <groupId>gov.nasa.pds.2010.model</groupId>
                 <artifactId>model-dmdocument</artifactId>
-                <version>7.0.0</version>
+                <version>${pom.version}</version>
                 <configuration>
                     <ontologySrc>${basedir}/src/ontology</ontologySrc>
                 </configuration>
