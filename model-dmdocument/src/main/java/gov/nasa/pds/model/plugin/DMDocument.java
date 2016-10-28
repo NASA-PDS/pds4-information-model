@@ -1134,14 +1134,15 @@ public class DMDocument extends Object {
 		lSchemaFileDefn.setVersionIds();
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
-/*		lSchemaFileDefn = new SchemaFileDefn("msn");
+		lSchemaFileDefn = new SchemaFileDefn("msn");
 		lSchemaFileDefn.versionId = "1.7.0.0";
 		lSchemaFileDefn.labelVersionId = "1.11";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = false;
+		lSchemaFileDefn.isMission = true;
 		lSchemaFileDefn.stewardArr.add("msn");
 		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		*/
+		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("disp");
 		lSchemaFileDefn.versionId = "1.7.0.0";

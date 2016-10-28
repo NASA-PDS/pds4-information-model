@@ -1,5 +1,7 @@
 package gov.nasa.pds.model.plugin; 
 
+import java.util.TreeMap;
+
 public class ISOClassOAIS11179 extends ISOClassOAIS {
 	String regAuthId;								// registration authority identifier
 	String steward;									// steward
@@ -11,8 +13,9 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 	boolean isUsedInModel;
 	boolean isAbstract;
 	boolean isFromLDD;									// has been ingested from Ingest_LDD
-
 	
+	TreeMap <String, TermEntryDefn> termEntryMap;	// Terminological entries for any class
+
 	public ISOClassOAIS11179 () {
 		regAuthId = "TBD_registration_authority_identifier";
 		steward = "TBD_steward";
@@ -24,6 +27,8 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 		isUsedInModel = false;
 		isAbstract = false;
 		isFromLDD = false;
+		
+		termEntryMap = new TreeMap <String, TermEntryDefn> ();
 	}
 	
 	public String getAnchorString() {
@@ -65,5 +70,21 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 	public void setNameSpaceIdNC(String nameSpaceIdNC) {
 		this.nameSpaceIdNC = nameSpaceIdNC;
 		this.nameSpaceId = this.nameSpaceIdNC + ":";
+	}
+	
+	//	get the name in the indicated language; use the attribute title as a default
+	public String getNameInLanguage (String lLanguage) {
+		if (lLanguage == null) return this.title;
+		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
+		if (lTermEntry == null) return this.title;
+		return lTermEntry.name;
+	}
+	
+	//	get the definition in the indicated language; use the attribute description as a default
+	public String getDefinitionInLanguage (String lLanguage) {
+		if (lLanguage == null) return this.definition;
+		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
+		if (lTermEntry == null) return this.definition;
+		return lTermEntry.definition;
 	}
 }
