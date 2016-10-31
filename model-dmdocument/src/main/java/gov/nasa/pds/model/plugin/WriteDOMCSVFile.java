@@ -43,7 +43,7 @@ class WriteDOMCSVFiles extends Object {
 	//			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Class" + DELM_MID + nameInLanguage(lOtherLanguage) + DELM_MID + lClass.versionId + DELM_MID + lClass.nameSpaceIdNC + DELM_MID + definitionInLanguage(lOtherLanguage) + DELM_MID + lClass.steward + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID+ "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + ""  + DELM_MID + ""  + DELM_END + "\r\n");
 				
 				
-				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Class" + DELM_MID + new DOMAttr().getNameInLanguage(lOtherLanguage) + DELM_MID + lClass.versionId + DELM_MID + lClass.nameSpaceIdNC + DELM_MID + new DOMAttr().getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lClass.steward + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID+ "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + ""  + DELM_MID + ""  + DELM_END + "\r\n");
+				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Class" + DELM_MID + lClass.getNameInLanguage(lOtherLanguage) + DELM_MID + lClass.versionId + DELM_MID + lClass.nameSpaceIdNC + DELM_MID + lClass.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lClass.steward + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID+ "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + "" + DELM_MID + ""  + DELM_MID + ""  + DELM_END + "\r\n");
 				
 			 ///   System.out.println("in WriteDOMCSV");
 				ArrayList <DOMProp> allAttr = new ArrayList <DOMProp> ();
@@ -120,7 +120,7 @@ class WriteDOMCSVFiles extends Object {
 						String lValue = lDOMPermVal.value;
 						if (lValue.length() > 20) lValue = lValue.substring(0,20);
 						pIdentifier = valueSortField + " Value:" + lValue;
-						prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lValue + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
+						prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
 					}
 				}
 			}
