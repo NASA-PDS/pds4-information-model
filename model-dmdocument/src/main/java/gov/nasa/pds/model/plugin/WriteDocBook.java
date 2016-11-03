@@ -502,7 +502,7 @@ class WriteDocBook extends Object {
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
 //	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.attrNameSpaceIdNC) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceId ()) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceIdNC ()) + "</entry>");
 //	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.steward) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
 //	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getValueBreak(lAttr.className) + "</entry>");

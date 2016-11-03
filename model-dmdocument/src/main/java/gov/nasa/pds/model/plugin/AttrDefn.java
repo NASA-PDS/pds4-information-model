@@ -480,8 +480,17 @@ public class AttrDefn extends Object {
 	}	
 	
 	//	get the name space id for printing.
-	public String getNameSpaceId () {
+	public String getNameSpaceIdNC () {
 		String lValue = this.attrNameSpaceIdNC;
+		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
+			return lValue;
+		}
+		return "TBD_namespace_id";
+	}
+	
+	//	get the name space id for printing.
+	public String getNameSpaceId () {
+		String lValue = this.attrNameSpaceId;
 		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
 			return lValue;
 		}

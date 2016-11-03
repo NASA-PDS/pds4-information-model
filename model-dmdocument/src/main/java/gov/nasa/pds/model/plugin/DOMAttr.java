@@ -533,7 +533,8 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		}
 		return "TBD_steward";
 	}	
-	
+
+	/*
 	//	get the name space id for printing.
 	public String getNameSpaceId () {
 		String lValue = this.nameSpaceIdNC;
@@ -542,6 +543,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		}
 		return "TBD_namespace_id";
 	}
+	*/
 	
 	//	get the classConcept for printing.
 	public String getClassConcept () {

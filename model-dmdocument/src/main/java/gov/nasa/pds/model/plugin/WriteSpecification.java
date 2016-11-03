@@ -805,7 +805,7 @@ private void printAttrUnit (AttrDefn attr) {
 		if (pval.indexOf("TBD") != 0) {
 			prhtml.println("<i>Steward: </i>" + pval + "<br>");
 		}
-		pval = attr.getNameSpaceId ();
+		pval = attr.getNameSpaceIdNC ();
 		if (pval.indexOf("TBD") != 0) {
 			prhtml.println("<i>Namespace Id: </i>" + pval + "<br>");
 		}

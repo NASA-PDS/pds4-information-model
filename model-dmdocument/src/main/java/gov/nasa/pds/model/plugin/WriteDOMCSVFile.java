@@ -111,7 +111,7 @@ class WriteDOMCSVFiles extends Object {
 				padding = blanks.substring(0, padLength);
 				pIdentifier = attrSortField + " " + lClassNameSpaceId + lDOMAttr.getTitle() + ":1" + padding;
 				valueSortField = attrSortField + " " + lClassNameSpaceId + lDOMAttr.getTitle() + ":2" + padding;
-				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceId () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
+				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 
 				if ( ! (lDOMAttr.domPermValueArr == null || lDOMAttr.domPermValueArr.isEmpty())) {
 					for (Iterator <DOMProp> k = lDOMAttr.domPermValueArr.iterator(); k.hasNext();) {

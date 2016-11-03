@@ -85,7 +85,7 @@ class WriteCSVFiles extends Object {
 				padding = blanks.substring(0, padLength);
 				pIdentifier = attrSortField + " " + lAttr.attrNameSpaceId + lAttr.title + ":1" + padding;
 				valueSortField = attrSortField + " " + lAttr.attrNameSpaceId + lAttr.title + ":2" + padding;
-				prCSVAttr.write(delmBegin + pIdentifier + delmMid + "Attribute" + delmMid + lAttr.nameInLanguage(lOtherLanguage) + delmMid + "n/a" + delmMid + lAttr.getNameSpaceId () + delmMid + lAttr.definitionInLanguage(lOtherLanguage) + delmMid + lAttr.getSteward () + delmMid + lAttr.valueType + delmMid + lAttr.cardMin + delmMid + lAttr.cardMax + delmMid + pMinVal + delmMid + pMaxVal + delmMid+ pMinChar + delmMid + pMaxChar+ delmMid + lAttr.getUnitOfMeasure (true) + delmMid + lAttr.getDefaultUnitId (true) + delmMid + lAttr.classConcept + delmMid + lAttr.dataConcept + delmEnd + "\r\n");
+				prCSVAttr.write(delmBegin + pIdentifier + delmMid + "Attribute" + delmMid + lAttr.nameInLanguage(lOtherLanguage) + delmMid + "n/a" + delmMid + lAttr.getNameSpaceIdNC () + delmMid + lAttr.definitionInLanguage(lOtherLanguage) + delmMid + lAttr.getSteward () + delmMid + lAttr.valueType + delmMid + lAttr.cardMin + delmMid + lAttr.cardMax + delmMid + pMinVal + delmMid + pMaxVal + delmMid+ pMinChar + delmMid + pMaxChar+ delmMid + lAttr.getUnitOfMeasure (true) + delmMid + lAttr.getDefaultUnitId (true) + delmMid + lAttr.classConcept + delmMid + lAttr.dataConcept + delmEnd + "\r\n");
 
 				if ( ! (lAttr.permValueArr == null || lAttr.permValueArr.isEmpty())) {
 					for (Iterator <PermValueDefn> k = lAttr.permValueArr.iterator(); k.hasNext();) {
