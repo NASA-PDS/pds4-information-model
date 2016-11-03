@@ -24,7 +24,7 @@ class WriteDOMCSVFiles extends Object {
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDCSV;
 		if (lOtherLanguage != null) lFileName = lSchemaFileDefn.relativeFileSpecDDCSV + "_" + lOtherLanguage;				
 		lFileName += "_DOM.csv";
-                System.out.println("file path ======"+ lFileName);
+             
 		FileOutputStream lFileOutputStream = new FileOutputStream(lFileName);
 		BufferedWriter prCSVAttr = new BufferedWriter(new OutputStreamWriter(lFileOutputStream,"UTF8"));
 		prCSVAttr.write(DELM_BEGIN + "Sort Key" + DELM_MID + "Type" + DELM_MID + "Name" + DELM_MID + "Version" + DELM_MID + "Name Space Id" + DELM_MID + "Description" + DELM_MID + "Steward" + DELM_MID + "Value Type"  + DELM_MID + "Minimum Cardinality"  + DELM_MID + "Maximum Cardinality"  + DELM_MID + "Minimum Value"  + DELM_MID + "Maximum Value" + DELM_MID+ "Minimum Characters"  + DELM_MID + "Maximum Characters" + DELM_MID + "Unit of Measure Type" + DELM_MID + "Specified Unit Id" + DELM_MID + "Attribute Concept" + DELM_MID + "Conceptual Domain" + DELM_END + "\r\n");		
@@ -109,8 +109,8 @@ class WriteDOMCSVFiles extends Object {
 				padLength = 30 - lAttr.title.length();
 				if (padLength < 0) padLength = 0;
 				padding = blanks.substring(0, padLength);
-				pIdentifier = attrSortField + " " + lClassNameSpaceId + lDOMAttr.getTitle() + ":1" + padding;
-				valueSortField = attrSortField + " " + lClassNameSpaceId + lDOMAttr.getTitle() + ":2" + padding;
+				pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
+				valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
 				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 
 				if ( ! (lDOMAttr.domPermValueArr == null || lDOMAttr.domPermValueArr.isEmpty())) {
