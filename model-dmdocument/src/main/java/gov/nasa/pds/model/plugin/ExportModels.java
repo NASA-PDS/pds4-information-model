@@ -146,6 +146,16 @@ public class ExportModels extends Object {
 		writeDDProductClassDefinitions.writeDDProductClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Class Defn Done");
 
+		// write the 11179 DOM DD Data Element Definition XML Files
+		WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions = new WriteDDProductDOMAttrDefinitions ();
+		writeDDProductDOMAttrDefinitions.writeDDDOMRegFiles (DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Attr Defn Done");
+		
+		// write the 11179 DOM DD Class Definition XML Files
+		WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
+		writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Class Defn Done");
+
 		
 		// write the registry configuration files
 		RegConfig regConfig = new RegConfig ();
