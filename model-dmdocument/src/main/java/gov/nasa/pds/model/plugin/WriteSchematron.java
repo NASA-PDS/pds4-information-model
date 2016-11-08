@@ -102,6 +102,7 @@ class WriteSchematron extends Object {
 //			System.out.println("\ndebug writeSchematronRuleClasses lRule.identifier:" + lRule.identifier);
 //			System.out.println("debug writeSchematronRuleClasses lRule.xpath:" + lRule.xpath);
 //			System.out.println("debug writeSchematronRuleClasses lRule.assertArr.size():" + lRule.assertArr.size());
+//			Dummy change to for updated of the WriteSchematron.java file	
 			
 			prSchematron.println("  <sch:pattern>");
 			
