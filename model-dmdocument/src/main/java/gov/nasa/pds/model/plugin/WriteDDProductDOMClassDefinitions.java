@@ -86,25 +86,23 @@ class WriteDDProductDOMClassDefinitions extends Object{
 
 		for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 			DOMProp lProp = (DOMProp) j.next();
+			if (lProp.isAttribute) continue;
 			if(! lProp.hasDOMClass.isEmpty()) {
 				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(0);
-				if (lISOClass instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lISOClass;
-					if (lDOMAttr.isAttribute) continue;
-					for (Iterator<PDSObjDefn> k = lDOMAttr.valClassArr.iterator(); k.hasNext();) {
-						PDSObjDefn lClassMember = (PDSObjDefn) k.next();			        	
-				        String lClassLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lClassMember.nameSpaceIdNC + ":" + lClassMember.title;
+				if (lISOClass instanceof DOMClass) {
+					DOMClass lDOMClass = (DOMClass) lISOClass;				        	
+				        String lClassLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMClass.nameSpaceIdNC + ":" + lDOMClass.title;
 				        lClassLID = "urn:nasa:pds:context:class:" + lClassLID; 
 			        	lClassLID = lClassLID.toLowerCase();
 			        	prDDReg.println("        <DD_Association>");
 			        	prDDReg.println("           <local_identifier>" + lClassLID + "</local_identifier>");
 			        	prDDReg.println("           <reference_type>component_of</reference_type>");
-			        	prDDReg.println("           <minimum_occurrences>" + lDOMAttr.cardMin + "</minimum_occurrences>");
-				        prDDReg.println("           <maximum_occurrences>" + lDOMAttr.cardMax + "</maximum_occurrences>");
+			        	prDDReg.println("           <minimum_occurrences>" + lProp.minimumOccurrences + "</minimum_occurrences>");
+				        prDDReg.println("           <maximum_occurrences>" + lProp.maximumOccurrences + "</maximum_occurrences>");
 				        prDDReg.println("        </DD_Association>");
-			       }
-		       }
-			}
+			    }
+		    }
+			
 		}
 		prDDReg.println("        <Terminological_Entry>");
 		prDDReg.println("            <name>" + lClass.title + "</name>");
