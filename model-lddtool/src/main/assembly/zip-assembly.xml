@@ -47,6 +47,8 @@
       <includes>
         <include>**/*</include>
       </includes>
+      <fileMode>755</fileMode>
+      <lineEnding>keep</lineEnding>
     </fileSet>
     <fileSet>
       <directory>src/main/resources/Examples</directory>
