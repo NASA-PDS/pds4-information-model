@@ -17,6 +17,7 @@ class WriteDOMCSVFiles extends Object {
 	public void writeDOMCSVFile (ArrayList <DOMClass> lClassArr, SchemaFileDefn lSchemaFileDefn, String lOtherLanguage)  throws java.io.IOException {
 		String pIdentifier;
 		String blanks = "                              ";
+		
 		String padding;
 		int padLength;
 		
@@ -97,33 +98,43 @@ class WriteDOMCSVFiles extends Object {
 		for (Iterator <DOMProp> j = allAttr.iterator(); j.hasNext();) {
 			DOMProp lAttr = (DOMProp) j.next();	
 			if(! lAttr.hasDOMClass.isEmpty()) {
-				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lAttr.hasDOMClass.get(0);
-				if (lISOClass instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lISOClass;
-				//	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
-				String pMinVal = lDOMAttr.getMinimumValue(true,true);
-				String pMaxVal = lDOMAttr.getMaximumValue(true,true);
-				String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
-				String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
+				int attrSize = lAttr.hasDOMClass.size();
 				
-				padLength = 30 - lAttr.title.length();
-				if (padLength < 0) padLength = 0;
-				padding = blanks.substring(0, padLength);
-				pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
-				valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
-				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
+				for (int n= 0; n < attrSize; n++) {
+				    ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lAttr.hasDOMClass.get(n);
+				    if (lISOClass instanceof DOMAttr) {
+				    	DOMAttr lDOMAttr = (DOMAttr) lISOClass;
+				   //	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
+				    String pMinVal = lDOMAttr.getMinimumValue(true,true);
+				    String pMaxVal = lDOMAttr.getMaximumValue(true,true);
+				    String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
+				    String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
+				
+				    padLength = 30 - lDOMAttr.getTitle().length();
+			    	if (padLength < 0) padLength = 0;
+				    padding = blanks.substring(0, padLength);
+					
+			    	pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
+			    	
+				    valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
+				    prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 
-				if ( ! (lDOMAttr.domPermValueArr == null || lDOMAttr.domPermValueArr.isEmpty())) {
-					for (Iterator <DOMProp> k = lDOMAttr.domPermValueArr.iterator(); k.hasNext();) {
-						DOMProp lDOMProp = (DOMProp) k.next();
-						DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMClass.get(0); 
-						String lValue = lDOMPermVal.value;
-						if (lValue.length() > 20) lValue = lValue.substring(0,20);
-						pIdentifier = valueSortField + " Value:" + lValue;
-						prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
-					}
+				    if ( ! (lDOMAttr.domPermValueArr == null || lDOMAttr.domPermValueArr.isEmpty())) {
+				    	for (Iterator <DOMProp> k = lDOMAttr.domPermValueArr.iterator(); k.hasNext();) {
+				    		DOMProp lDOMProp = (DOMProp) k.next();
+					    	int num = lDOMProp.hasDOMClass.size();
+					    	
+						    for (int m = 0; m < num; m++) {
+						        DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMClass.get(m); 
+						        String lValue = lDOMPermVal.value;
+						        if (lValue.length() > 20) lValue = lValue.substring(0,20);
+						        pIdentifier = valueSortField + " Value:" + lValue;
+						        prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
+						    }
+					   }
+				   }
+			     }
 				}
-			}
 			}
 		
 		}
