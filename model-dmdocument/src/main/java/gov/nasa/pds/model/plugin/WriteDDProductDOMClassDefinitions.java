@@ -67,19 +67,22 @@ class WriteDDProductDOMClassDefinitions extends Object{
 		for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 			DOMProp lProp = (DOMProp) j.next();				
 				if(! lProp.hasDOMClass.isEmpty()) {
-					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(0);
-					if (lISOClass instanceof DOMAttr) {
-						DOMAttr lDOMAttr = (DOMAttr) lISOClass;
-			            if (! lDOMAttr.isAttribute) continue;
-			            prDDReg.println("        <DD_Association>");
-			            String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.parentClassTitle + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.title;
-			            lAttrLID = "urn:nasa:pds:context:attribute:" + lAttrLID; 
-			            lAttrLID = lAttrLID.toLowerCase();
-			            prDDReg.println("           <local_identifier>urn:nasa:pds:" + lAttrLID + "</local_identifier>");
-			            prDDReg.println("           <reference_type>attribute_of</reference_type>");
-		                prDDReg.println("           <minimum_occurrences>" + lDOMAttr.cardMin + "</minimum_occurrences>");
-			            prDDReg.println("           <maximum_occurrences>" + lDOMAttr.cardMax + "</maximum_occurrences>");
-			            prDDReg.println("        </DD_Association>");
+					int propSize = lProp.hasDOMClass.size();
+					for (int m = 0; m < propSize; m++) {
+				    	ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(m);
+				    	if (lISOClass instanceof DOMAttr) {
+					    	DOMAttr lDOMAttr = (DOMAttr) lISOClass;
+			                if (! lDOMAttr.isAttribute) continue;
+			                prDDReg.println("        <DD_Association>");
+			                String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.parentClassTitle + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.title;
+			                lAttrLID = "urn:nasa:pds:context:attribute:" + lAttrLID; 
+			                lAttrLID = lAttrLID.toLowerCase();
+			                prDDReg.println("           <local_identifier>urn:nasa:pds:" + lAttrLID + "</local_identifier>");
+			                prDDReg.println("           <reference_type>attribute_of</reference_type>");
+		                    prDDReg.println("           <minimum_occurrences>" + lProp.cardMin + "</minimum_occurrences>");
+			                prDDReg.println("           <maximum_occurrences>" + lProp.cardMax + "</maximum_occurrences>");
+			                prDDReg.println("        </DD_Association>");
+					    }
 					}
 				}
 		}
@@ -88,19 +91,22 @@ class WriteDDProductDOMClassDefinitions extends Object{
 			DOMProp lProp = (DOMProp) j.next();
 			if (lProp.isAttribute) continue;
 			if(! lProp.hasDOMClass.isEmpty()) {
-				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(0);
-				if (lISOClass instanceof DOMClass) {
-					DOMClass lDOMClass = (DOMClass) lISOClass;				        	
-				        String lClassLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMClass.nameSpaceIdNC + ":" + lDOMClass.title;
-				        lClassLID = "urn:nasa:pds:context:class:" + lClassLID; 
-			        	lClassLID = lClassLID.toLowerCase();
-			        	prDDReg.println("        <DD_Association>");
-			        	prDDReg.println("           <local_identifier>" + lClassLID + "</local_identifier>");
-			        	prDDReg.println("           <reference_type>component_of</reference_type>");
-			        	prDDReg.println("           <minimum_occurrences>" + lProp.minimumOccurrences + "</minimum_occurrences>");
-				        prDDReg.println("           <maximum_occurrences>" + lProp.maximumOccurrences + "</maximum_occurrences>");
-				        prDDReg.println("        </DD_Association>");
-			    }
+				int numSize = lProp.hasDOMClass.size();
+				for (int n = 0; n < numSize; n++) {
+				    ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(n);
+			    	if (lISOClass instanceof DOMClass) {
+				    	DOMClass lDOMClass = (DOMClass) lISOClass;				        	
+				          String lClassLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMClass.nameSpaceIdNC + ":" + lDOMClass.title;
+				          lClassLID = "urn:nasa:pds:context:class:" + lClassLID; 
+			            	lClassLID = lClassLID.toLowerCase();
+			            	prDDReg.println("        <DD_Association>");
+			        	    prDDReg.println("           <local_identifier>" + lClassLID + "</local_identifier>");
+			        	    prDDReg.println("           <reference_type>component_of</reference_type>");
+			        	    prDDReg.println("           <minimum_occurrences>" + lProp.minimumOccurrences + "</minimum_occurrences>");
+				            prDDReg.println("           <maximum_occurrences>" + lProp.maximumOccurrences + "</maximum_occurrences>");
+				            prDDReg.println("        </DD_Association>");
+			        }
+				}
 		    }
 			
 		}
