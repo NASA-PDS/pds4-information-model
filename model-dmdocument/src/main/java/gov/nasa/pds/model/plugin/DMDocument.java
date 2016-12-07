@@ -894,6 +894,17 @@ public class DMDocument extends Object {
 		}
 		
 		if (LDDToolFlag) {
+			if (LDDToolMissionGovernanceFlag) {
+				governanceLevel = "Mission";
+				LDDToolSingletonClassTitle = "Mission_Area";
+			} else {
+				governanceLevel = "Discipline";
+				LDDToolSingletonClassTitle = "Discipline_Area";
+			}
+		}
+
+		/* commented out to allow LDDTool to be relocated - SBN node request 12/7/16
+		if (LDDToolFlag) {
 			if (! (lPARENT_DIR.indexOf("LDDTool") > -1)) {
 				System.out.println(">>error   - " + "The directory LDDTool needs to be in the path " + lPARENT_DIR);
 				printHelp();
@@ -913,6 +924,7 @@ public class DMDocument extends Object {
 				System.exit(1);
 			}
 		}
+		*/
 	}
 
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
