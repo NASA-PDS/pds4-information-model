@@ -74,10 +74,10 @@ class WriteDDProductDOMClassDefinitions extends Object{
 					    	DOMAttr lDOMAttr = (DOMAttr) lISOClass;
 			                if (! lDOMAttr.isAttribute) continue;
 			                prDDReg.println("        <DD_Association>");
-			                String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.parentClassTitle + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.title;
+			                String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lDOMAttr.classNameSpaceIdNC + ":" + lDOMAttr.parentClassTitle + ":" + lDOMAttr.nameSpaceIdNC + ":" + lDOMAttr.title;
 			                lAttrLID = "urn:nasa:pds:context:attribute:" + lAttrLID; 
 			                lAttrLID = lAttrLID.toLowerCase();
-			                prDDReg.println("           <local_identifier>urn:nasa:pds:" + lAttrLID + "</local_identifier>");
+			                prDDReg.println("           <local_identifier>" + lAttrLID + "</local_identifier>");
 			                prDDReg.println("           <reference_type>attribute_of</reference_type>");
 		                    prDDReg.println("           <minimum_occurrences>" + lProp.cardMin + "</minimum_occurrences>");
 			                prDDReg.println("           <maximum_occurrences>" + lProp.cardMax + "</maximum_occurrences>");
@@ -102,8 +102,8 @@ class WriteDDProductDOMClassDefinitions extends Object{
 			            	prDDReg.println("        <DD_Association>");
 			        	    prDDReg.println("           <local_identifier>" + lClassLID + "</local_identifier>");
 			        	    prDDReg.println("           <reference_type>component_of</reference_type>");
-			        	    prDDReg.println("           <minimum_occurrences>" + lProp.minimumOccurrences + "</minimum_occurrences>");
-				            prDDReg.println("           <maximum_occurrences>" + lProp.maximumOccurrences + "</maximum_occurrences>");
+			        	    prDDReg.println("           <minimum_occurrences>" + lProp.cardMin + "</minimum_occurrences>");
+				            prDDReg.println("           <maximum_occurrences>" + lProp.cardMax + "</maximum_occurrences>");
 				            prDDReg.println("        </DD_Association>");
 			        }
 				}
