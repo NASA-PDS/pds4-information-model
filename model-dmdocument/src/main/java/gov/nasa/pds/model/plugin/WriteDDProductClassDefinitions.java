@@ -71,7 +71,7 @@ class WriteDDProductClassDefinitions extends Object{
 			String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":" + lAttr.classNameSpaceIdNC + ":" + lAttr.parentClassTitle + ":" + lAttr.attrNameSpaceIdNC + ":" + lAttr.title;
 			lAttrLID = "urn:nasa:pds:" + "context:" + "attribute:" + lAttrLID; 
 			lAttrLID = lAttrLID.toLowerCase();
-			prDDReg.println("           <local_identifier>" + "urn:nasa:pds:" + lAttrLID + "</local_identifier>");
+			prDDReg.println("           <local_identifier>" + lAttrLID + "</local_identifier>");
 			prDDReg.println("           <reference_type>" + "attribute_of" + "</reference_type>");
 			prDDReg.println("           <minimum_occurrences>" + lAttr.cardMin + "</minimum_occurrences>");
 			prDDReg.println("           <maximum_occurrences>" + lAttr.cardMax + "</maximum_occurrences>");
