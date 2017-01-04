@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Copyright 2010-2016, by the California Institute of Technology.
+  Copyright 2016-2017, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology Transfer
   at the California Institute of Technology.
@@ -26,7 +26,13 @@
     <release version="TBD" date="TBD" description="TBD">
     </release>
 
-    <release version="7.0.0" date="2016-09-30" description="This release of the IMTool(model-DMDocument) is a component of the integrated release 7.0.0 of the PDS4 System. This is an operational release of the system components to date.">
+    <release version="7.0.1" date="2017-01-03" description="This release of the Model DM-Document represents a point build of this component.">
+      <action dev="jshughes" type="update">
+        Updated to allow LDDTool to be relocated - SBN node request 12/7/16.
+      </action>
+    </release>
+
+    <release version="7.0.0" date="2016-09-30" description="This release of the Model DM-Document is a component of the integrated release 7.0.0 of the PDS4 System. This is an operational release of the system components to date.">
     </release>
   </body>
 </document>
