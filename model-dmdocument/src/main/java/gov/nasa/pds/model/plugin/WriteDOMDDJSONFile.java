@@ -103,11 +103,105 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("          }");
 			prDDPins.println("        }");
 		}
-	}		
-
-
+	}
+	
 	// Print the Associations
 	public  void printAssoc (DOMClass lClass, PrintWriter prDDPins) {
+		if (lClass.hasDOMObject.isEmpty()) return;
+				
+		// sort by classOrder
+		TreeMap <String, DOMPropGroup> lDOMPropGroupMap = new TreeMap <String, DOMPropGroup> ();
+		DOMPropGroup lDOMPropGroup = new DOMPropGroup ();
+		String pGroupName = "NULL";
+		for (Iterator<ISOClassOAIS11179> i = lClass.hasDOMObject.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			ISOClassOAIS11179 lDOMObject = lDOMProp.hasDOMObject;
+			if (lDOMObject != null) {
+				String lPropType = "C";
+				if (lDOMProp.isAttribute) lPropType = "A";
+				String lSortOrder = lPropType + lDOMProp.classOrder + "-" + lDOMObject.identifier;
+				if ((lDOMProp.groupName.indexOf("TBD") == 0) || (lDOMProp.groupName.compareTo(pGroupName) != 0)) {
+					if (lDOMProp.groupName.indexOf("TBD") == 0) pGroupName = "NULL";
+					else pGroupName = lDOMProp.groupName;
+					lDOMPropGroup = new DOMPropGroup ();
+					lDOMPropGroup.domProp = lDOMProp;
+					lDOMPropGroup.domObjectArr.add(lDOMObject);
+					lDOMPropGroupMap.put(lSortOrder, lDOMPropGroup);
+				} else {
+					lDOMPropGroup.domObjectArr.add(lDOMObject);
+				}
+			} else {
+				System.out.println(">>error    - WriteDOMDDJSONFile - Failed to find DOMObject - lDOMProp.identifier: " + lDOMProp.identifier);
+			}
+		}
+		
+		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	
+		prDDPins.println("              , " + formValue("associationList") + ": [");	
+		String delimiter1 = "  ";
+		for (Iterator<DOMPropGroup> i = lDOMPropGroupArr.iterator(); i.hasNext();) {
+			DOMPropGroup lDOMPropGroup2 = (DOMPropGroup) i.next();
+			DOMProp lDOMProp = lDOMPropGroup2.domProp;
+			if (lDOMProp.isAttribute) {
+				prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+				delimiter1 = ", ";
+				prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+				prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+				prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(true) + " ,");	
+				prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
+				prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
+				prDDPins.println("                " + formValue("groupName") + ": " + formValue(lDOMProp.groupName) + " ,");	
+				prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+				prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
+				prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
+				prDDPins.println("                " + formValue("attributeId") + ": [");				
+				String delimiter2 = "";				
+				for (Iterator<ISOClassOAIS11179> j = lDOMPropGroup2.domObjectArr.iterator(); j.hasNext();) {
+					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
+					if (lISOClass instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lISOClass;	
+						prDDPins.print(delimiter2);
+						prDDPins.print("                  " + formValue(lDOMAttr.identifier));	
+						delimiter2 = ",\n";
+					}
+				}
+				prDDPins.print("\n");
+				prDDPins.println("                 ]");
+				prDDPins.println("              }");
+				prDDPins.println("            }");
+			} else {
+				prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+				delimiter1 = ", ";		
+				prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
+				prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+				prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
+				prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
+				prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
+				prDDPins.println("                " + formValue("groupName") + ": " + formValue(lDOMProp.groupName) + " ,");	
+				prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
+				prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
+				prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
+				prDDPins.println("                " + formValue("classId") + ": [");	
+				String delimiter2 = "";
+				for (Iterator<ISOClassOAIS11179> j = lDOMPropGroup2.domObjectArr.iterator(); j.hasNext();) {
+					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
+					if (lISOClass instanceof DOMClass) {
+						DOMClass lDOMAttr = (DOMClass) lISOClass;	
+						prDDPins.print(delimiter2);
+						prDDPins.print("                  " + formValue(lDOMAttr.identifier));	
+						delimiter2 = ",\n";
+					}
+				}
+				prDDPins.print("\n");
+				prDDPins.println("                 ]");
+				prDDPins.println("              }");
+				prDDPins.println("            }");				
+			}	
+		}
+		prDDPins.println("           ]");
+	}
+	
+	// Print the Associations
+	public  void printAssocxxxxxx (DOMClass lClass, PrintWriter prDDPins) {
 		if (lClass.allAttrAssocArr.isEmpty()) return;
 				
 		// sort by classOrder
@@ -183,68 +277,6 @@ class WriteDOMDDJSONFile extends Object{
 					prDDPins.println("            }");				
 				}
 			}
-		}
-		prDDPins.println("           ]");
-	}
-	
-	// Print the Properties
-	public  void printAssocxxx (DOMClass lClass, PrintWriter prDDPins) {
-		String delimiter1 = "  ";
-		if (lClass.allAttrAssocArr.isEmpty()) return;
-		prDDPins.println("              , " + formValue("associationList") + ": [");				
-		for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
-			DOMProp lDOMProp = (DOMProp) i.next();
-//			System.out.println("debug printAssoc lDOMProp.hasDOMClass.size():" + lDOMProp.hasDOMClass.size());
-//			prDDPins.println("           , {" + formValue("association") + ": {");				
-			prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
-			delimiter1 = ", ";
-			
-// ***BUG*** - more than one attribute is allowed
-// This bug has been left in since we are using a DIFF of the before DOM and after DOM JSON files
-// to test for code conversion compatibility.
-			
-			if(! lDOMProp.hasDOMClass.isEmpty()) {
-				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lDOMProp.hasDOMClass.get(0);
-				if (lISOClass instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lISOClass;			
-					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
-					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
-					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(lDOMAttr.isAttribute) + " ,");	
-					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
-					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
-					prDDPins.println("              }");
-					prDDPins.println("            }");
-				} else if (lISOClass instanceof DOMClass) {	
-					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
-					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
-					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
-					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
-					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
-					prDDPins.println("              }");
-					prDDPins.println("            }");
-				}
-			}
-/*			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
-				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) k.next();
-				if (lISOClass instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lISOClass;			
-					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
-					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
-					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(lDOMAttr.isAttribute) + " ,");	
-					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
-					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
-					prDDPins.println("              }");
-					prDDPins.println("            }");
-				} else if (lISOClass instanceof DOMClass) {	
-					prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
-					prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
-					prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
-					prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
-					prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax));	
-					prDDPins.println("              }");
-					prDDPins.println("            }");
-				}
-			} */
 		}
 		prDDPins.println("           ]");
 	}
