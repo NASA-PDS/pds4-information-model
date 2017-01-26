@@ -17,6 +17,7 @@ class GetDomClasses extends Object {
 		InfoModel.masterDOMPropArr = new ArrayList <DOMProp> ();
 		InfoModel.masterDOMPropMap = new TreeMap <String, DOMProp> ();
 		InfoModel.masterDOMPropIdMap = new TreeMap <String, DOMProp> ();
+		InfoModel.convertAssocDOMPropIdMap = new TreeMap <String, ArrayList<ISOClassOAIS11179>> ();
 		
 		InfoModel.masterDOMDataTypeArr = new ArrayList <DOMDataType> ();
 		InfoModel.masterDOMDataTypeMap = new TreeMap <String, DOMDataType> ();
@@ -36,7 +37,6 @@ class GetDomClasses extends Object {
 		// phase 1.1 - create the DOMClass object
 		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
-//			System.out.println("debug GetDOMClasses convert - phase 1.1 - lClass.identifier:" + lClass.identifier);
 			DOMClass lDOMClass = new DOMClass ();
 			lDOMClass.createDOMClassSingletons (lClass);
 			InfoModel.masterDOMClassArr.add(lDOMClass); 
@@ -50,12 +50,87 @@ class GetDomClasses extends Object {
 			DOMClass lDOMClass = InfoModel.masterDOMClassMap.get(lClass.rdfIdentifier);
 			if (lDOMClass != null) {
 				lDOMClass.initDOMClassHierArrs (lClass, InfoModel.masterDOMClassMap);
-//				System.out.println("debug GetDOMClasses.convert - phase 1.2 - init DOM Class Hierarchies - lDOMClass.identifier:" + lDOMClass.identifier);
 			} else {
 				System.out.println(">>error    - GetDOMClasses.convert - Failed to find new DOMClass - lClass.rdfIdentifier: " + lClass.rdfIdentifier);				
 			}
 		}
-		
+			
+		// phase 2.0 - for each AttrDefn Attribute create the DOMProp, DOMAttr, and DOMPermValDefn - carry over choice groups
+		ArrayList <ISOClassOAIS11179> lDOMPropArr = new ArrayList <ISOClassOAIS11179> ();
+//		for (Iterator<AssocDefn> i = InfoModel.masterMOFAssocArr.iterator(); i.hasNext();) {
+//			AssocDefn lAssoc = (AssocDefn) i.next();
+//			if (! lAssoc.isAttribute) continue;
+//			AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lAssoc.identifier);
+//			if (lAttr != null) {	
+		for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (! lAttr.isAttribute) continue;
+			AssocDefn lAssoc = InfoModel.masterMOFAssocIdMap.get(lAttr.identifier);
+			if (lAssoc != null) {	
+				lDOMPropArr = new ArrayList <ISOClassOAIS11179> (); // initalize the DOMProp array for this association
+				DOMProp lDOMProp = new DOMProp ();									// create the DOMProp for the DOMAttr
+				lDOMProp.createDOMPropAttrSingletons (lAssoc, lAttr);
+				InfoModel.masterDOMPropArr.add(lDOMProp); 
+				InfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
+				InfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
+				DOMAttr lDOMAttr = new DOMAttr ();									// create the DOMAttr
+				lDOMAttr.createDOMAttrSingletons (lAttr);
+				lDOMProp.hasDOMObject = lDOMAttr;									// assign the one DOMAttr to the DOMProp
+				lDOMPropArr.add(lDOMProp);
+				InfoModel.masterDOMAttrArr.add(lDOMAttr); 
+				InfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
+				InfoModel.masterDOMAttrIdMap.put(lDOMAttr.identifier, lDOMAttr);
+				InfoModel.convertAssocDOMPropIdMap.put(lAttr.identifier, lDOMPropArr);
+						
+				// phase 2.2.2 - for each permissible value create a DOMProp and DOMPermVal
+				for (Iterator <PermValueDefn> k = lAttr.permValueArr.iterator(); k.hasNext();) {
+					PermValueDefn lPermValue = (PermValueDefn) k.next();
+					DOMProp lDOMProp2 = new DOMProp ();								// create the DOMProp for the Permissible Value
+					lDOMAttr.domPermValueArr.add(lDOMProp2);
+					lDOMAttr.hasDOMObject.add(lDOMProp2);							// add the DOMProp to the DOMattr
+					DOMPermValDefn lDOMPermValDefn = new DOMPermValDefn ();			// create the DOMPermValDefn
+					lDOMProp2.hasDOMClass.add(lDOMPermValDefn);						
+					lDOMProp2.hasDOMObject = lDOMPermValDefn;						// assign the one DOMPermValDefn to the DOMProp
+					if (lDOMAttr.title.compareTo("pattern") == 0) lDOMPermValDefn.isPattern = true;
+					lDOMPermValDefn.createDOMPermValSingletons(lPermValue, lAttr);
+// fix					lDOMPermValDefn.setRDFIdentifier(lTitle);
+// fix					lDOMPermValDefn.setIdentifier(lNameSpaceIdNC, lTitle);
+					lDOMProp2.initDOMPermValProp(lDOMPermValDefn);
+				}
+			} else {
+				System.out.println(">>error    - GetDOMClasses.convert - Failed to find old AttrDefn - lAssoc.rdfIdentifier): " + lAssoc.rdfIdentifier);
+			}
+		}
+
+		// phase 3.0 - for each AttrDefn Association create the DOMProp and associate the existing classes
+		for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (lAttr.isAttribute) continue;
+			AssocDefn lAssoc = InfoModel.masterMOFAssocIdMap.get(lAttr.identifier);
+			if (lAssoc != null) {			
+				lDOMPropArr = new ArrayList <ISOClassOAIS11179> (); // initalize the DOMProp array for this association
+				for (Iterator <PDSObjDefn> j = lAttr.valClassArr.iterator(); j.hasNext();) {
+					PDSObjDefn lClass = (PDSObjDefn) j.next();
+					DOMClass lDOMClass = InfoModel.masterDOMClassIdMap.get(lClass.identifier); // get the associated DOMClass
+					if (lDOMClass != null) {
+						DOMProp lDOMProp = new DOMProp ();										// create the DOMProp for the DOMClass association
+						lDOMProp.createDOMPropClassSingletons (lAssoc, lAttr, lClass);
+						InfoModel.masterDOMPropArr.add(lDOMProp); 
+						InfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
+						InfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
+						lDOMPropArr.add(lDOMProp);
+						lDOMProp.hasDOMObject = lDOMClass;										// assign the DOMClass to the DOMProp
+					} else {
+						System.out.println(">>error    - GetDOMClasses.convert - Failed to find new DOMClass - Assoc - lClass.rdfIdentifier: " + lClass.rdfIdentifier);				
+					}
+				}
+				InfoModel.convertAssocDOMPropIdMap.put(lAttr.identifier, lDOMPropArr);
+			} else {
+				System.out.println(">>error    - GetDOMClasses.convert - Failed to find old AssocDefn - lAttr.rdfIdentifier): " + lAttr.rdfIdentifier);				
+			}
+		}		
+
+		/*
 		// phase 2.n - for each AttrDefn Attribute Association create the DOMAttr and DOMPermValDefn, then DOMProps with choice groups
 		// phase 2.1 - first group "choice" blocks
 		ArrayList <AssocDefn> lAttrAssocArr = new ArrayList <AssocDefn> ();
@@ -160,6 +235,7 @@ class GetDomClasses extends Object {
 //				System.out.println("debug GetDOMClasses.convert - phase 3 - create DOM Attributes - lDOMAttr.identifier:" + lDOMAttr.identifier);
 			}
 		}
+		*/
 		
 		// phase 4 - for each AssocDefn attribute, create a DOM Property - construct property and copy singleton values
 /*		for (Iterator <AssocDefn> i = InfoModel.masterMOFAssocArr.iterator(); i.hasNext();) {
@@ -177,22 +253,20 @@ class GetDomClasses extends Object {
 			}
 		} */
 		
-		// phase 5 - for each DOM class, copy in references to DOM Properties/DOM Attributes 
+		// phase 4 - for each DOM class, copy in references to DOM Properties/DOM Attributes 
 		for (Iterator <DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();
 			PDSObjDefn lClass = InfoModel.masterMOFClassMap.get(lDOMClass.rdfIdentifier);
 			if (lClass != null) {
 				lDOMClass.initDOMClassAttrArrs (lClass, InfoModel.masterDOMPropMap, InfoModel.masterDOMAttrMap);
-//				System.out.println("debug GetDOMClasses.convert - phase 5 - lDOMClass.identifier:" + lDOMClass.identifier);
 			} else {
 				System.out.println(">>error    - GetDOMClasses.convert - Failed to find old PDS4ObjDefn Class - lDOMClass.rdfIdentifier: " + lDOMClass.rdfIdentifier);				
 			}
 		}
 	
-		// phase 6 - for each PDSObjDefn Datatype, create the DOM DataType
+		// phase 5 - for each PDSObjDefn Datatype, create the DOM DataType
 		for (Iterator <DataTypeDefn> i = InfoModel.masterDataTypesArr2.iterator(); i.hasNext();) {
 			DataTypeDefn lDataTypeDefn = (DataTypeDefn) i.next();
-//			System.out.println("debug GetDOMClasses convert - phase 1 - lClass.identifier:" + lClass.identifier);
 			DOMDataType lDOMDataType= new DOMDataType ();
 			lDOMDataType.createDOMDataTypeSingletons (lDataTypeDefn);
 			lDOMDataType.setRDFIdentifier (lDataTypeDefn.title);
@@ -202,11 +276,9 @@ class GetDomClasses extends Object {
 			InfoModel.masterDOMDataTypeIdMap.put(lDOMDataType.identifier, lDOMDataType);
 		}		
 		
-		
-		// phase 7 - for each PDSObjDefn Unit, create the DOM Unit
+		// phase 6 - for each PDSObjDefn Unit, create the DOM Unit
 		for (Iterator <UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
 			UnitDefn lUnit = (UnitDefn) i.next();
-//			System.out.println("debug GetDOMClasses convert - phase 1 - lClass.identifier:" + lClass.identifier);
 			DOMUnit lDOMUnit= new DOMUnit ();
 			lDOMUnit.createDOMUnitSingletons (lUnit);
 			lDOMUnit.setRDFIdentifier (lUnit.title);
@@ -215,20 +287,7 @@ class GetDomClasses extends Object {
 			InfoModel.masterDOMUnitMap.put(lDOMUnit.rdfIdentifier, lDOMUnit);
 			InfoModel.masterDOMUnitIdMap.put(lDOMUnit.identifier, lDOMUnit);
 		}		
-		
-	// phase 6 - for each DOM Attribute, write a DOM Value class 
-//	for (Iterator <DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
-//		DOMClass lDOMClass = (DOMClass) i.next();
-//		PDSObjDefn lClass = InfoModel.masterMOFClassMap.get(lDOMClass.rdfIdentifier);
-//		if (lClass != null) {
-//			System.out.println("debug GetDOMClasses convert - phase 5 - lDOMClass.identifier:" + lDOMClass.identifier);
-//			lDOMClass.initDOMClassAttrArrs (lClass, InfoModel.masterDOMAttrMap);
-//			System.out.println("debug GetDOMClasses.convert - phase 5 - lDOMClass.identifier:" + lDOMClass.identifier);
-//		} else {
-//			System.out.println(">>error    - GetDOMClasses.convert - Failed to find old PDS4ObjDefn Class - lDOMClass.rdfIdentifier: " + lDOMClass.rdfIdentifier);				
-//		}
-//	}
-}
+	}
 
 	public void writeAttrSection (String lNameSpaceId, PrintWriter prDocBook) {
 		// get the attribute classification maps
