@@ -8,7 +8,9 @@ public class DOMProp extends ISOClassOAIS11179 {
 	int cardMinI;
 	int cardMaxI;
 	String classOrder;						// the order of the attribute or association within a class
+// deprecated to be replaced by hasDOMObject	
 	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows both PDS4 classes, attributes, etc
+	ISOClassOAIS11179 hasDOMObject;			// Overrides  ISOClassOAIS11179 - allows only one object (class, attribute, permissible value, etc, but no DOMProp
 	
 	String localIdentifier;					// local_identifier (the or first local identifier in the Association set)
     													// needed only for display
@@ -25,11 +27,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 	String enclLocalIdentifier;				// local_identifier of enclosing class
 	String minimumOccurrences;
 	String maximumOccurrences;
-	
-//  PDSObjDefn parentClass;					// parent class // **** deprecate
-//  ArrayList <PDSObjDefn> childClassArr;	// all child classes for this association (if necessary for choice)
-//  AttrDefn childAssoc;					  // the one association (AttrDefn) equivalent to this association (AssocDefn)
-//  ArrayList <String> localIdentifierArr;	// local identifier array
 
 	public DOMProp () {
 		cardMin = "0"; 
@@ -38,6 +35,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMaxI = 0;
 		classOrder = "9999";
 		hasDOMClass = new ArrayList <ISOClassOAIS11179> ();
+		hasDOMObject = null;		
 		
 		localIdentifier = "TBD_localIdentifier";
 		className = "TBD_className";
@@ -101,10 +99,86 @@ public class DOMProp extends ISOClassOAIS11179 {
 		this.classOrder = classOrder;
 	}
 	
-	public void createDOMPropSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
-//		System.out.println("debug - createDOMPropSingletons - Phase 4 - lOldProp.rdfIdentifier: " + lOldProp.rdfIdentifier);							
+	public void createDOMPropAttrSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
 		rdfIdentifier = lOldProp.rdfIdentifier; 							
-//		System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
+		identifier = lOldProp.identifier; 
+		versionId = lAttr.versionId;
+		sequenceId = lAttr.uid; 
+		title = lAttr.title;
+		definition =  lAttr.description;
+		registrationStatus = lAttr.registrationStatus; 
+//		isDeprecated = lAttr.isDeprecated; 
+		regAuthId = lAttr.regAuthId; 
+		steward = lAttr.steward; 
+		nameSpaceId = lOldProp.attrNameSpaceId;
+		nameSpaceIdNC = lOldProp.attrNameSpaceIdNC;
+		classOrder = lOldProp.classOrder;
+		cardMin = lOldProp.cardMin;
+		cardMax = lOldProp.cardMax;
+		cardMinI = lOldProp.cardMinI; 
+		cardMaxI = lOldProp.cardMaxI;
+		
+		// others from PDS3
+
+		localIdentifier = lOldProp.localIdentifier;
+
+		className = lOldProp.className;
+		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
+		groupName = lOldProp.groupName;						
+
+		referenceType = lOldProp.referenceType;
+		isAttribute = lOldProp.isAttribute;
+		isChoice = lOldProp.isChoice;
+		isAny = lOldProp.isAny;
+		isSet = lOldProp.isSet;
+		
+		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
+		minimumOccurrences = lOldProp.minimumOccurrences;
+		maximumOccurrences = lOldProp.maximumOccurrences;
+	}	
+		public void createDOMPropClassSingletons (AssocDefn lOldProp, AttrDefn lAttr, PDSObjDefn lOldClass) {
+			rdfIdentifier = lOldProp.rdfIdentifier + "." + lOldClass.title; 							
+			identifier = lOldProp.identifier + "." + lOldClass.title; 
+			versionId = lAttr.versionId;
+			sequenceId = lAttr.uid; 
+
+			title = lAttr.title;
+			definition =  lAttr.description;
+			
+			registrationStatus = lAttr.registrationStatus; 
+//			isDeprecated = lAttr.isDeprecated; 
+			
+			regAuthId = lAttr.regAuthId; 
+			steward = lAttr.steward; 
+			nameSpaceId = lOldProp.attrNameSpaceId;
+			nameSpaceIdNC = lOldProp.attrNameSpaceIdNC;
+			
+			classOrder = lOldProp.classOrder;
+			cardMin = lOldProp.cardMin;
+			cardMax = lOldProp.cardMax;
+			cardMinI = lOldProp.cardMinI; 
+			cardMaxI = lOldProp.cardMaxI;
+			
+			// others from PDS3
+
+			localIdentifier = lOldProp.localIdentifier;
+
+			className = lOldProp.className;
+			classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
+			groupName = lOldProp.groupName;						
+			referenceType = lOldProp.referenceType;
+			isAttribute = lOldProp.isAttribute;
+			isChoice = lOldProp.isChoice;
+			isAny = lOldProp.isAny;
+			isSet = lOldProp.isSet;
+			
+			enclLocalIdentifier = lOldProp.enclLocalIdentifier;
+			minimumOccurrences = lOldProp.minimumOccurrences;
+			maximumOccurrences = lOldProp.maximumOccurrences;
+		}		
+	
+	public void createDOMPropSingletonsxxx (AssocDefn lOldProp, AttrDefn lAttr) {
+		rdfIdentifier = lOldProp.rdfIdentifier; 							
 		identifier = lOldProp.identifier; 
 		versionId = lAttr.versionId;
 		sequenceId = lAttr.uid; 
@@ -142,11 +216,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
-			
-//		PDSObjDefn parentClass;
-//		<PDSObjDefn> childClassArr;
-//		AttrDefn childAssoc;
-//		ArrayList <String> localIdentifierArr;
 	}	
 		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
 			rdfIdentifier = lAttr.rdfIdentifier; 							
