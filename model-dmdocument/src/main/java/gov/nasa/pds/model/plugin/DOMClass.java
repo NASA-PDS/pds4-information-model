@@ -42,8 +42,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 	ArrayList <DOMProp> allAttrAssocArr; 
 	ArrayList <DOMProp> ownedAttrAssocNOArr;
 	ArrayList <DOMProp> ownedAttrAssocArr;					// each class's owned attribute and associations in sorted order
-	ArrayList <DOMProp> ownedAttrAssocAssertArr;			// all enumerated attributes, from this.class through to all superclasses.
-	ArrayList <DOMProp> ownedAttrAssocAssertTitleArr;	// all enumerated attributes, required to eliminate duplicates
+	ArrayList <DOMAttr> ownedAttrAssocAssertArr;			// all enumerated attributes, from this.class through to all superclasses.
+	ArrayList <String> ownedAttrAssocAssertTitleArr;	// all enumerated attributes, required to eliminate duplicates
 	
 	public DOMClass () {
 		section = "TBD_section";
@@ -82,8 +82,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 		allAttrAssocArr = new ArrayList <DOMProp> (); 
 		ownedAttrAssocNOArr = new ArrayList <DOMProp> ();
 		ownedAttrAssocArr = new ArrayList <DOMProp> ();
-		ownedAttrAssocAssertArr = new ArrayList <DOMProp> ();
-		ownedAttrAssocAssertTitleArr = new ArrayList <DOMProp> ();
+		ownedAttrAssocAssertArr = new ArrayList <DOMAttr> ();
+		ownedAttrAssocAssertTitleArr = new ArrayList <String> ();
 	}
 	
 	public String getSection() {
@@ -95,7 +95,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 	}
 	
 	public void createDOMClassSingletons (PDSObjDefn lOldClass) {
-//		System.out.println("debug - createDOMClassSingletons - Phase 1 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
 		rdfIdentifier = lOldClass.rdfIdentifier; 							
 		identifier = lOldClass.identifier; 
 		versionId = lOldClass.versionId; 
@@ -142,7 +141,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 	
 // initialize the class hierarchy arrays	
 	public void initDOMClassHierArrs (PDSObjDefn lOldClass, TreeMap <String, DOMClass> lDOMClassMap) {
-//		System.out.println("debug - initDOMClassHierArrs - Phase 2 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
 		InitDOMClassHierArr (subClassHierArr, lOldClass.subClass, lDOMClassMap);
 		InitDOMClassHierArr (superClassHierArr, lOldClass.superClass, lDOMClassMap);
 		PDSObjDefn lOldClassSubClassOf = lOldClass.subClassOfInst;
@@ -171,9 +169,10 @@ public class DOMClass extends ISOClassOAIS11179 {
 				System.out.println(">>error    - InitDOMClassHierArr - Failed to find new DOMClass - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);
 		}
 	}
-	
+
+/*	
 	// update the DOMClass property arrays using the the PDSObjDefn class - AssocDefn:AttrDefn:DOMProp map
-	public void initDOMClassAttrArrs (PDSObjDefn lOldClass, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
+	public void initDOMClassAttrArrsxxx (PDSObjDefn lOldClass, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
 //		System.out.println("\ndebug - initDOMClassAttrArrs - Phase 5a - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
 		InitAttrArr (ownedAttrArr, lOldClass.ownedAttribute, lDOMPropMap);
 //		dumpCounts (ownedAttrArr);
@@ -186,10 +185,73 @@ public class DOMClass extends ISOClassOAIS11179 {
 		InitAttrArr (ownedAttrAssocAssertArr, lOldClass.ownedAttrAssocAssertArr, lDOMPropMap);
 //		InitAttrArr (ownedAttrAssocAssertTitleArr, lOldClass.ownedAttrAssocAssertTitleArr, lDOMAttrMap);
 		return;
+	} */
+	
+	// update the DOMClass property arrays using the the PDSObjDefn class - AssocDefn:AttrDefn:DOMProp map
+	public void initDOMClassAttrArrs (PDSObjDefn lOldClass, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
+		InitPropArrDOMProp (ownedAttrArr, lOldClass.ownedAttribute);
+		InitPropArrDOMProp (inheritedAttrArr, lOldClass.inheritedAttribute);
+		InitPropArrDOMProp (ownedAssocArr, lOldClass.ownedAssociation);
+		InitPropArrDOMProp (inheritedAssocArr, lOldClass.inheritedAssociation);
+		InitPropArrDOMProp (allAttrAssocArr, lOldClass.allAttrAssocArr);
+		InitPropArrISOClassOAIS11179 (hasDOMObject, lOldClass.allAttrAssocArr);
+		InitPropArrDOMProp (ownedAttrAssocNOArr, lOldClass.ownedAttrAssocNOArr);
+		InitPropArrDOMProp (ownedAttrAssocArr, lOldClass.ownedAttrAssocArr);
+		InitPropArrDOMAttr (ownedAttrAssocAssertArr, lOldClass.ownedAttrAssocAssertArr);
+		return;
 	}
 	
 	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
-	public void InitAttrArr (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap) {
+	public void InitPropArrDOMAttr (ArrayList <DOMAttr> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr) {
+		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lOldAttr = (AttrDefn) i.next();
+			ArrayList <ISOClassOAIS11179> lConvertedDOMPropArr = InfoModel.convertAssocDOMPropIdMap.get(lOldAttr.identifier);
+			if (lConvertedDOMPropArr != null) {
+				for (Iterator <ISOClassOAIS11179> j = lConvertedDOMPropArr.iterator(); j.hasNext();) {
+					DOMProp lConvertedDOMProp = (DOMProp) j.next();
+					DOMAttr lConvertedDOMAttr = (DOMAttr) lConvertedDOMProp.hasDOMObject;
+					lDOMPropArr.add(lConvertedDOMAttr);
+				}
+			} else {
+				System.out.println(">>error    - DOMClass.InitPropArrDOMAttr - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
+			}
+		}
+	}	
+		
+	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
+	public void InitPropArrDOMProp (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr) {
+		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lOldAttr = (AttrDefn) i.next();
+			ArrayList <ISOClassOAIS11179> lConvertedDOMPropArr = InfoModel.convertAssocDOMPropIdMap.get(lOldAttr.identifier);
+			if (lConvertedDOMPropArr != null) {
+				for (Iterator <ISOClassOAIS11179> j = lConvertedDOMPropArr.iterator(); j.hasNext();) {
+					DOMProp lConvertedDOMProp = (DOMProp) j.next();
+					lDOMPropArr.add(lConvertedDOMProp);
+				}
+			} else {
+				System.out.println(">>error    - InitPropArrDOMProp - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
+			}
+		}
+	}
+		
+	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
+	public void InitPropArrISOClassOAIS11179 (ArrayList <ISOClassOAIS11179> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr) {
+		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
+			AttrDefn lOldAttr = (AttrDefn) i.next();
+			ArrayList <ISOClassOAIS11179> lConvertedDOMPropArr = InfoModel.convertAssocDOMPropIdMap.get(lOldAttr.identifier);
+			if (lConvertedDOMPropArr != null) {
+				for (Iterator <ISOClassOAIS11179> j = lConvertedDOMPropArr.iterator(); j.hasNext();) {
+					ISOClassOAIS11179 lConvertedDOMProp = (ISOClassOAIS11179) j.next();
+					lDOMPropArr.add(lConvertedDOMProp);
+				}
+			} else {
+				System.out.println(">>error    - InitPropArrISOClassOAIS11179 - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
+			}
+		}
+	}
+	
+	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
+	public void InitAttrArrxxx (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap) {
 		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lOldAttr = (AttrDefn) i.next();
 			DOMProp lDOMProp = lDOMPropMap.get(lOldAttr.rdfIdentifier);
@@ -217,7 +279,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		}
 	}	
 	
-	public void InitAttrArrxxx (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
+	public void InitAttrArrxxxx (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
 		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lOldAttr = (AttrDefn) i.next();
 			DOMAttr lDOMAttr = lDOMAttrMap.get(lOldAttr.rdfIdentifier);
@@ -239,5 +301,4 @@ public class DOMClass extends ISOClassOAIS11179 {
 			}
 		}
 	}
-	
 }
