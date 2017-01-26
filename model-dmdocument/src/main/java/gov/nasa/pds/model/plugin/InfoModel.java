@@ -82,6 +82,7 @@ public abstract class InfoModel extends Object {
 	static ArrayList <DOMProp> masterDOMPropArr;
 	static TreeMap <String, DOMProp> masterDOMPropMap;
 	static TreeMap <String, DOMProp> masterDOMPropIdMap;
+	static TreeMap <String, ArrayList<ISOClassOAIS11179>> convertAssocDOMPropIdMap;	// used for conversion to DOM
 	
 	// global Data Types
 	static ArrayList <DOMDataType> masterDOMDataTypeArr;
