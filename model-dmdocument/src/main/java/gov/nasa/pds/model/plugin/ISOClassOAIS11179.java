@@ -1,5 +1,6 @@
 package gov.nasa.pds.model.plugin; 
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class ISOClassOAIS11179 extends ISOClassOAIS {
@@ -13,7 +14,8 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 	boolean isUsedInModel;
 	boolean isAbstract;
 	boolean isFromLDD;									// has been ingested from Ingest_LDD
-	
+
+	ArrayList <ISOClassOAIS11179> hasDOMObject;		// allows more than one object (DOMProp only - OVERRIDE in DOMProp)
 	TreeMap <String, TermEntryDefn> termEntryMap;	// Terminological entries for any class
 
 	public ISOClassOAIS11179 () {
@@ -28,6 +30,7 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 		isAbstract = false;
 		isFromLDD = false;
 		
+		hasDOMObject = new ArrayList <ISOClassOAIS11179> ();
 		termEntryMap = new TreeMap <String, TermEntryDefn> ();
 	}
 	
