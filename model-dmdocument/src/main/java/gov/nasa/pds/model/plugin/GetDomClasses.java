@@ -56,12 +56,7 @@ class GetDomClasses extends Object {
 		}
 			
 		// phase 2.0 - for each AttrDefn Attribute create the DOMProp, DOMAttr, and DOMPermValDefn - carry over choice groups
-		ArrayList <ISOClassOAIS11179> lDOMPropArr = new ArrayList <ISOClassOAIS11179> ();
-//		for (Iterator<AssocDefn> i = InfoModel.masterMOFAssocArr.iterator(); i.hasNext();) {
-//			AssocDefn lAssoc = (AssocDefn) i.next();
-//			if (! lAssoc.isAttribute) continue;
-//			AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lAssoc.identifier);
-//			if (lAttr != null) {	
+		ArrayList <ISOClassOAIS11179> lDOMPropArr = new ArrayList <ISOClassOAIS11179> ();	
 		for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
 			if (! lAttr.isAttribute) continue;
@@ -75,6 +70,7 @@ class GetDomClasses extends Object {
 				InfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
 				DOMAttr lDOMAttr = new DOMAttr ();									// create the DOMAttr
 				lDOMAttr.createDOMAttrSingletons (lAttr);
+				lDOMAttr.initAttrParentClass (lAttr, InfoModel.masterDOMClassIdMap);
 				lDOMProp.hasDOMObject = lDOMAttr;									// assign the one DOMAttr to the DOMProp
 				lDOMPropArr.add(lDOMProp);
 				InfoModel.masterDOMAttrArr.add(lDOMAttr); 
