@@ -16,7 +16,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	String submitter;								// submitter for attribute
 	String subModelId;								// identifier of submodel within the registration authority's model.
 	String parentClassTitle;						// class that this attribute is a member of
-	PDSObjDefn attrParentClass; 					// class instance that this attribute is a member of
+	DOMClass attrParentClass; 						// class instance that this attribute is a member of
 	String classConcept;							// for DEC
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
@@ -192,7 +192,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle + "." + lNameSpaceIdNC2 + "." + lTitle2;
 	}
 
-	
 	public void createDOMAttrSingletons (AttrDefn lOldAttr) {
 //		System.out.println("debug - createDOMAttrSingletons - Phase 3 - lOldAttr.rdfIdentifier: " + lOldAttr.rdfIdentifier);							
 		rdfIdentifier = lOldAttr.rdfIdentifier; 
@@ -222,7 +221,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		submitter = lOldAttr.submitter; 
 		subModelId = lOldAttr.subModelId; 
 		parentClassTitle = lOldAttr.parentClassTitle; 
-//		 PDSObjDefn attrParentClass = lOldAttr.attrParentClass; 
 		classConcept = lOldAttr.classConcept; 
 		dataConcept = lOldAttr.dataConcept; 
 		classWord = lOldAttr.classWord; 
@@ -310,6 +308,20 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		InitStringArr (this.genClassArr, lOldAttr.genClassArr);
 		InitStringArr (this.sysClassArr, lOldAttr.sysClassArr);
 		return;
+	}
+	
+	public void initAttrParentClass (AttrDefn lOldAttr, TreeMap <String, DOMClass> lDOMClassIdMap) {		
+		PDSObjDefn lOldAttrParentClass = lOldAttr.attrParentClass;
+		if (lOldAttrParentClass != null) {
+			String lIdentifier = lOldAttrParentClass.identifier;
+			if (lIdentifier != null && (lIdentifier.indexOf("TBD") != 0) ) {
+				attrParentClass = lDOMClassIdMap.get(lIdentifier);
+			} else {
+				System.out.println(">>warning  - initAttrParentClass  - Failed to get attrParentClass - lOldAttr.attrParentClass.identifier: " + lIdentifier);				
+			}
+		} else {
+			System.out.println(">>warning  - initAttrParentClass  - Null attrParentClass - lOldAttr.identifier: " + lOldAttr.identifier);							
+		}
 	}
 	
 	// copy a string array
