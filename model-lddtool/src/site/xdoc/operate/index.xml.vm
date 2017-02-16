@@ -88,7 +88,7 @@
               <td>Generate file to merge the local dictionary into the master dictionary.</td>
             </tr>
             <tr>
-              <td>-m, --Mission
+              <td>-M, --Mission
               </td>
               <td>Indicates mission level governance (includes msn directory specification).
               </td>
@@ -152,7 +152,8 @@ lddtool.bat -lp [inputfilename] > lddtool.log
                   - a process report file (.txt),
                   - a spreadsheet file (.csv) containing the local data dictionary information.
        All output files are generated in the current directory. 
-       They bear the same name as the input file name.
+       They bear the same name as the input file name unless the -s command option is used.  
+       The -s option causes the local namespace + information model version to be used as the output file names.
         </source>
 
       </subsection>
