@@ -241,8 +241,8 @@ class WriteDOMRDFOWLFile extends Object{
 		// write the PDS4 attributes as "has_attribute" properties on PDS4 classes (assume PDS4 attributes are defined as classes.  
 		for (Iterator<DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) j.next();
-			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
-				DOMAttr lDOMAttr = (DOMAttr) k.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
 				gDOMAttrArr.add(lDOMAttr);
 				gAttrIdArr.add(lDOMAttr.identifier);
 				prDDPins.println("      <rdfs:subClassOf>");
@@ -257,14 +257,14 @@ class WriteDOMRDFOWLFile extends Object{
 		// write the PDS4 associations as "has_class" properties on PDS4 classes  
 		for (Iterator<DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) j.next();
-			for (Iterator<ISOClassOAIS11179> k = lDOMProp.hasDOMClass.iterator(); k.hasNext();) {
-				DOMClass lHasDOMClass = (DOMClass) k.next();
-				if (lHasDOMClass.identifier.indexOf("PDS3") > -1) continue;
-				if (! ((lHasDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lHasDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lHasDOMClass.steward.compareTo("pds") == 0 || lHasDOMClass.steward.compareTo("ops") == 0))) continue;			
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lDOMClass2 = (DOMClass) lDOMProp.hasDOMObject;					
+				if (lDOMClass2.identifier.indexOf("PDS3") > -1) continue;
+				if (! ((lDOMClass2.nameSpaceIdNC.compareTo("pds") == 0 || lDOMClass2.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass2.steward.compareTo("pds") == 0 || lDOMClass2.steward.compareTo("ops") == 0))) continue;			
 				prDDPins.println("      <rdfs:subClassOf>");
 				prDDPins.println("         <owl:Restriction>");
 				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_class\"/>");
-				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lHasDOMClass.identifier + "\"/>");
+				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMClass2.identifier + "\"/>");
 				prDDPins.println("         </owl:Restriction>");
 				prDDPins.println("      </rdfs:subClassOf>");
 			}
@@ -317,9 +317,8 @@ class WriteDOMRDFOWLFile extends Object{
 		// write the permissible values as properties
 		for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
-			for (Iterator<ISOClassOAIS11179> j = lDOMProp.hasDOMClass.iterator(); j.hasNext();) {
-				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
-//				System.out.println("debug WriteDOMRDFOWLFile - permissible values 1 - lDOMPermValDefn.identifier:" + lDOMPermValDefn.identifier + " - lDOMPermValDefn.nameSpaceIdNC:" + lDOMPermValDefn.nameSpaceIdNC + " - lDOMPermValDefn.steward:" + lDOMPermValDefn.steward);
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;					
 				if (lDOMPermValDefn.identifier.indexOf("PDS3") > -1) {
 					if (lDOMPermValDefn.identifier.indexOf("Product") > -1) continue;
 				}
