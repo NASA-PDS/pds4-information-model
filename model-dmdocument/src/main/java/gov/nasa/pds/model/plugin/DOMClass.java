@@ -169,23 +169,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 				System.out.println(">>error    - InitDOMClassHierArr - Failed to find new DOMClass - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);
 		}
 	}
-
-/*	
-	// update the DOMClass property arrays using the the PDSObjDefn class - AssocDefn:AttrDefn:DOMProp map
-	public void initDOMClassAttrArrsxxx (PDSObjDefn lOldClass, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
-//		System.out.println("\ndebug - initDOMClassAttrArrs - Phase 5a - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
-		InitAttrArr (ownedAttrArr, lOldClass.ownedAttribute, lDOMPropMap);
-//		dumpCounts (ownedAttrArr);
-		InitAttrArr (inheritedAttrArr, lOldClass.inheritedAttribute, lDOMPropMap);
-		InitAttrArr (ownedAssocArr, lOldClass.ownedAssociation, lDOMPropMap);
-		InitAttrArr (inheritedAssocArr, lOldClass.inheritedAssociation, lDOMPropMap);
-		InitAttrArr (allAttrAssocArr, lOldClass.allAttrAssocArr, lDOMPropMap);
-		InitAttrArr (ownedAttrAssocNOArr, lOldClass.ownedAttrAssocNOArr, lDOMPropMap);
-		InitAttrArr (ownedAttrAssocArr, lOldClass.ownedAttrAssocArr, lDOMPropMap);
-		InitAttrArr (ownedAttrAssocAssertArr, lOldClass.ownedAttrAssocAssertArr, lDOMPropMap);
-//		InitAttrArr (ownedAttrAssocAssertTitleArr, lOldClass.ownedAttrAssocAssertTitleArr, lDOMAttrMap);
-		return;
-	} */
 	
 	// update the DOMClass property arrays using the the PDSObjDefn class - AssocDefn:AttrDefn:DOMProp map
 	public void initDOMClassAttrArrs (PDSObjDefn lOldClass, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
@@ -246,58 +229,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 				}
 			} else {
 				System.out.println(">>error    - InitPropArrISOClassOAIS11179 - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
-			}
-		}
-	}
-	
-	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
-	public void InitAttrArrxxx (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap) {
-		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lOldAttr = (AttrDefn) i.next();
-			DOMProp lDOMProp = lDOMPropMap.get(lOldAttr.rdfIdentifier);
-			if (lDOMProp != null) {
-				if (lOldAttr.isAttribute) {
-					lDOMPropArr.add(lDOMProp);
-				} else {
-					lDOMPropArr.add(lDOMProp);
-				}
-			} else {
-				System.out.println(">>error    - DOMClass.InitAttrArr - Failed to find created DOMProp - lOldAttr.rdfIdentifierr: " + lOldAttr.rdfIdentifier);				
-			}
-		}
-	}
-	
-	public void dumpCounts (ArrayList <DOMProp> lDOMPropArr) {
-		System.out.println("debug - dumpCounts - lDOMPropArr.size(): " + lDOMPropArr.size());							
-		for (Iterator <DOMProp> i = lDOMPropArr.iterator(); i.hasNext();) {
-			DOMProp lDOMProp = (DOMProp) i.next();
-			System.out.println("debug - dumpCounts - lDOMProp.hasDOMClass.size(): " + lDOMProp.hasDOMClass.size());							
-			for (Iterator <ISOClassOAIS11179> j = lDOMProp.hasDOMClass.iterator(); j.hasNext();) {
-				DOMAttr lDOMAttr = (DOMAttr) j.next();
-				System.out.println("debug - dumpCounts - lDOMAttr.identifier: " + lDOMAttr.identifier);							
-			}
-		}
-	}	
-	
-	public void InitAttrArrxxxx (ArrayList <DOMProp> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr, TreeMap <String, DOMProp> lDOMPropMap, TreeMap <String, DOMAttr> lDOMAttrMap) {
-		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lOldAttr = (AttrDefn) i.next();
-			DOMAttr lDOMAttr = lDOMAttrMap.get(lOldAttr.rdfIdentifier);
-			if (lDOMAttr != null) {
-				DOMProp lDOMProp = lDOMPropMap.get(lOldAttr.rdfIdentifier);
-				if (lDOMProp != null) {
-					if (lOldAttr.isAttribute) {
-						lDOMProp.hasDOMClass.add(lDOMAttr);
-						lDOMPropArr.add(lDOMProp);
-					} else {
-						lDOMProp.hasDOMClass.add(lDOMAttr);
-						lDOMPropArr.add(lDOMProp);
-					}
-				} else {
-					System.out.println(">>error    - DOMClass.InitAttrArr - Failed to find created DOMProp - lOldAttr.rdfIdentifierr: " + lOldAttr.rdfIdentifier);				
-				}
-			} else {
-				System.out.println(">>error    - DOMClass.InitAttrArr - Failed to find created DOMAttr - lOldAttr.rdfIdentifierr: " + lOldAttr.rdfIdentifier);				
 			}
 		}
 	}
