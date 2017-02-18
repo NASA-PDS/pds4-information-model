@@ -100,8 +100,10 @@ public class DOMProp extends ISOClassOAIS11179 {
 	}
 	
 	public void createDOMPropAttrSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
-		rdfIdentifier = lOldProp.rdfIdentifier; 							
-		identifier = lOldProp.identifier; 
+//		rdfIdentifier = lOldProp.rdfIdentifier; 							
+//		identifier = lOldProp.identifier; 
+		rdfIdentifier = lOldProp.rdfIdentifier + "." + lAttr.title;							
+		identifier = lOldProp.identifier + "." + lAttr.title;
 		versionId = lAttr.versionId;
 		sequenceId = lAttr.uid; 
 		title = lAttr.title;
@@ -136,64 +138,20 @@ public class DOMProp extends ISOClassOAIS11179 {
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
 	}	
-		public void createDOMPropClassSingletons (AssocDefn lOldProp, AttrDefn lAttr, PDSObjDefn lOldClass) {
-			rdfIdentifier = lOldProp.rdfIdentifier + "." + lOldClass.title; 							
-			identifier = lOldProp.identifier + "." + lOldClass.title; 
-			versionId = lAttr.versionId;
-			sequenceId = lAttr.uid; 
-
-			title = lAttr.title;
-			definition =  lAttr.description;
-			
-			registrationStatus = lAttr.registrationStatus; 
-//			isDeprecated = lAttr.isDeprecated; 
-			
-			regAuthId = lAttr.regAuthId; 
-			steward = lAttr.steward; 
-			nameSpaceId = lOldProp.attrNameSpaceId;
-			nameSpaceIdNC = lOldProp.attrNameSpaceIdNC;
-			
-			classOrder = lOldProp.classOrder;
-			cardMin = lOldProp.cardMin;
-			cardMax = lOldProp.cardMax;
-			cardMinI = lOldProp.cardMinI; 
-			cardMaxI = lOldProp.cardMaxI;
-			
-			// others from PDS3
-
-			localIdentifier = lOldProp.localIdentifier;
-
-			className = lOldProp.className;
-			classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
-			groupName = lOldProp.groupName;						
-			referenceType = lOldProp.referenceType;
-			isAttribute = lOldProp.isAttribute;
-			isChoice = lOldProp.isChoice;
-			isAny = lOldProp.isAny;
-			isSet = lOldProp.isSet;
-			
-			enclLocalIdentifier = lOldProp.enclLocalIdentifier;
-			minimumOccurrences = lOldProp.minimumOccurrences;
-			maximumOccurrences = lOldProp.maximumOccurrences;
-		}		
 	
-	public void createDOMPropSingletonsxxx (AssocDefn lOldProp, AttrDefn lAttr) {
-		rdfIdentifier = lOldProp.rdfIdentifier; 							
-		identifier = lOldProp.identifier; 
+	public void createDOMPropClassSingletons (AssocDefn lOldProp, AttrDefn lAttr, PDSObjDefn lOldClass) {
+		rdfIdentifier = lOldProp.rdfIdentifier + "." + lOldClass.title; 							
+		identifier = lOldProp.identifier + "." + lOldClass.title; 
 		versionId = lAttr.versionId;
 		sequenceId = lAttr.uid; 
-
 		title = lAttr.title;
 		definition =  lAttr.description;
-		
 		registrationStatus = lAttr.registrationStatus; 
 //		isDeprecated = lAttr.isDeprecated; 
-		
 		regAuthId = lAttr.regAuthId; 
 		steward = lAttr.steward; 
 		nameSpaceId = lOldProp.attrNameSpaceId;
 		nameSpaceIdNC = lOldProp.attrNameSpaceIdNC;
-		
 		classOrder = lOldProp.classOrder;
 		cardMin = lOldProp.cardMin;
 		cardMax = lOldProp.cardMax;
@@ -201,12 +159,10 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMaxI = lOldProp.cardMaxI;
 		
 		// others from PDS3
-
 		localIdentifier = lOldProp.localIdentifier;
-
 		className = lOldProp.className;
 		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
-		groupName = lOldProp.groupName;
+		groupName = lOldProp.groupName;						
 		referenceType = lOldProp.referenceType;
 		isAttribute = lOldProp.isAttribute;
 		isChoice = lOldProp.isChoice;
@@ -216,45 +172,41 @@ public class DOMProp extends ISOClassOAIS11179 {
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
-	}	
-		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
-			rdfIdentifier = lAttr.rdfIdentifier; 							
-//			System.out.println("debug - createDOMClassSingletons rdfIdentifier: " + rdfIdentifier);							
-			identifier = lAttr.identifier; 
-			versionId = lAttr.versionId;
-			sequenceId = lAttr.uid; 
+	}		
+		
+	public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
+		rdfIdentifier = lAttr.rdfIdentifier; 														
+		identifier = lAttr.identifier; 
+		versionId = lAttr.versionId;
+		sequenceId = lAttr.uid; 
+		title = lAttr.title;
+		definition =  lAttr.description;
+		registrationStatus = lAttr.registrationStatus; 
+		regAuthId = lAttr.regAuthId; 
+		steward = lAttr.steward; 
+		nameSpaceId = lAttr.attrNameSpaceId;
+		nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+//		classOrder = "9999";
+		cardMin = lAttr.cardMin;
+		cardMax = lAttr.cardMax;
+		cardMinI = lAttr.cardMinI; 
+		cardMaxI = lAttr.cardMaxI;
+		
+		// others from PDS3
+		localIdentifier = lAttr.lddLocalIdentifier;
 
-			title = lAttr.title;
-			definition =  lAttr.description;
-			registrationStatus = lAttr.registrationStatus; 
-			regAuthId = lAttr.regAuthId; 
-			steward = lAttr.steward; 
-			nameSpaceId = lAttr.attrNameSpaceId;
-			nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
-			
-//			classOrder = "9999";
-			cardMin = lAttr.cardMin;
-			cardMax = lAttr.cardMax;
-			cardMinI = lAttr.cardMinI; 
-			cardMaxI = lAttr.cardMaxI;
-			
-			// others from PDS3
-
-			localIdentifier = lAttr.lddLocalIdentifier;
-
-			className = lAttr.parentClassTitle;
-			classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
-//			groupName = "TBD_groupName";
-//			referenceType = "TBD_referenceType";
-			isAttribute = lAttr.isAttribute;
-			isChoice = lAttr.isChoice;
-			isAny = lAttr.isAny;
-//			isSet = false;
-			
-//			enclLocalIdentifier = "TBD_enclLocalIdentifier";
-//			minimumOccurrences = "TBD_minimumOccurrences";
-//			maximumOccurrences = "TBD_maximumOccurrences";
-		}
+		className = lAttr.parentClassTitle;
+		classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
+//		groupName = "TBD_groupName";
+//		referenceType = "TBD_referenceType";
+		isAttribute = lAttr.isAttribute;
+		isChoice = lAttr.isChoice;
+		isAny = lAttr.isAny;
+//		isSet = false;
+//		enclLocalIdentifier = "TBD_enclLocalIdentifier";
+//		minimumOccurrences = "TBD_minimumOccurrences";
+//		maximumOccurrences = "TBD_maximumOccurrences";
+	}
 	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
 //		System.out.println("debug - initDOMPermValProp lDOMPermValDefn.rdfIdentifier: " + lDOMPermValDefn.rdfIdentifier);							
