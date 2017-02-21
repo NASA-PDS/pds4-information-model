@@ -19,8 +19,10 @@ public class ExportModels extends Object {
 
 	public void writeAllArtifacts () throws java.io.IOException {	    
 	    // write the model specification
-		WriteSpecification writeSpecification  = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
-		writeSpecification.printArtifacts();
+	//	WriteSpecification writeSpecification  = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
+		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
+		writeDOMSpecification.printArtifacts();
+	//	writeSpecification.printArtifacts();
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Specification Done");
 		
