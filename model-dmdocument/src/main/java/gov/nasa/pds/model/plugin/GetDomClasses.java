@@ -65,6 +65,7 @@ class GetDomClasses extends Object {
 				lDOMPropArr = new ArrayList <ISOClassOAIS11179> (); // initalize the DOMProp array for this association
 				DOMProp lDOMProp = new DOMProp ();									// create the DOMProp for the DOMAttr
 				lDOMProp.createDOMPropAttrSingletons (lAssoc, lAttr);
+				lDOMProp.initPropParentClass (lAttr, InfoModel.masterDOMClassIdMap);
 				InfoModel.masterDOMPropArr.add(lDOMProp); 
 				InfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
 				InfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
@@ -111,6 +112,7 @@ class GetDomClasses extends Object {
 					if (lDOMClass != null) {
 						DOMProp lDOMProp = new DOMProp ();										// create the DOMProp for the DOMClass association
 						lDOMProp.createDOMPropClassSingletons (lAssoc, lAttr, lClass);
+						lDOMProp.initPropParentClass (lAttr, InfoModel.masterDOMClassIdMap);						
 						InfoModel.masterDOMPropArr.add(lDOMProp); 
 						InfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
 						InfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
