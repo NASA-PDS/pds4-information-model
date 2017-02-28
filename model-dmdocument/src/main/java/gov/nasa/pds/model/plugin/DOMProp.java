@@ -1,5 +1,6 @@
 package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class DOMProp extends ISOClassOAIS11179 {
 	
@@ -10,6 +11,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 	String classOrder;						// the order of the attribute or association within a class
 // deprecated to be replaced by hasDOMObject	
 	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows both PDS4 classes, attributes, etc
+	DOMClass attrParentClass; 				// class instance that this object is a member of
 	ISOClassOAIS11179 hasDOMObject;			// Overrides  ISOClassOAIS11179 - allows only one object (class, attribute, permissible value, etc, but no DOMProp
 	
 	String localIdentifier;					// local_identifier (the or first local identifier in the Association set)
@@ -22,6 +24,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 	Boolean isChoice;							// allows an xs:choice
 	Boolean isAny;								// allows an xs:any
 	Boolean isSet;								// is a set of either attributes or associations (AttrDefn)
+	boolean isRestrictedInSubclass;
 
 	// LDD Attributes
 	String enclLocalIdentifier;				// local_identifier of enclosing class
@@ -35,6 +38,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMaxI = 0;
 		classOrder = "9999";
 		hasDOMClass = new ArrayList <ISOClassOAIS11179> ();
+		attrParentClass = null;
 		hasDOMObject = null;		
 		
 		localIdentifier = "TBD_localIdentifier";
@@ -46,7 +50,8 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isChoice = false;
 		isAny = false;
 		isSet = false;
-
+		isRestrictedInSubclass = false;
+		
 		enclLocalIdentifier = "TBD_enclLocalIdentifier";
 		minimumOccurrences = "TBD_minimumOccurrences";
 		maximumOccurrences = "TBD_maximumOccurrences";
@@ -133,11 +138,26 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isChoice = lOldProp.isChoice;
 		isAny = lOldProp.isAny;
 		isSet = lOldProp.isSet;
+		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
 		
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
 	}	
+	
+	public void initPropParentClass (AttrDefn lOldAttr, TreeMap <String, DOMClass> lDOMClassIdMap) {		
+		PDSObjDefn lOldAttrParentClass = lOldAttr.attrParentClass;
+		if (lOldAttrParentClass != null) {
+			String lIdentifier = lOldAttrParentClass.identifier;
+			if (lIdentifier != null && (lIdentifier.indexOf("TBD") != 0) ) {
+				attrParentClass = lDOMClassIdMap.get(lIdentifier);
+			} else {
+				System.out.println(">>warning  - initAttrParentClass  - Failed to get attrParentClass - lOldAttr.attrParentClass.identifier: " + lIdentifier);				
+			}
+		} else {
+			System.out.println(">>warning  - initAttrParentClass  - Null attrParentClass - lOldAttr.identifier: " + lOldAttr.identifier);							
+		}
+	}
 	
 	public void createDOMPropClassSingletons (AssocDefn lOldProp, AttrDefn lAttr, PDSObjDefn lOldClass) {
 		rdfIdentifier = lOldProp.rdfIdentifier + "." + lOldClass.title; 							
@@ -168,6 +188,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isChoice = lOldProp.isChoice;
 		isAny = lOldProp.isAny;
 		isSet = lOldProp.isSet;
+		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
 		
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
@@ -202,6 +223,8 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isAttribute = lAttr.isAttribute;
 		isChoice = lAttr.isChoice;
 		isAny = lAttr.isAny;
+		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
+
 //		isSet = false;
 //		enclLocalIdentifier = "TBD_enclLocalIdentifier";
 //		minimumOccurrences = "TBD_minimumOccurrences";
