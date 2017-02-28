@@ -49,7 +49,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	boolean isPDS4;					// true->PDS4 keyword used in Protege
 	boolean isEnumerated;
 	boolean isUsedInClass;			// attribute is used in a class
-	boolean isRestrictedInSubclass;
+	boolean isRestrictedInSubclass; // *** deprecate *** moved to DOMProp
 	boolean isMeta;
 	boolean hasAttributeOverride;
 	boolean isNilable;
