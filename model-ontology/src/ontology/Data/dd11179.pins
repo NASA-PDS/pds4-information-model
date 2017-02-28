@@ -1,4 +1,4 @@
-; Tue Sep 27 17:05:32 PDT 2016
+; Wed Feb 01 13:23:14 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -985,7 +985,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet1.pds.subfacet1]
 		[EVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.facet2]
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.subfacet2]
-		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
+		[EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
@@ -1000,16 +1000,16 @@
 		[NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.model_object_id]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.model_object_type]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.title]
+		[NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype]
+		[EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.external_property_map_id]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.identifier]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id]
-		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype]
-		[EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type]
 		[NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.title]
 		[NEVD.0001_NASA_PDS_1.pds.Resource.pds.url]
-		[NEVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id]
+		[EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id]
 		[EVD.0001_NASA_PDS_1.pds.SPICE_Kernel.pds.encoding_type]
 		[EVD.0001_NASA_PDS_1.pds.Science_Facets.pds.domain]
 		[EVD.0001_NASA_PDS_1.pds.Science_Facets.pds.wavelength_range]
@@ -8524,7 +8524,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
+	(representing [EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
@@ -10140,6 +10140,34 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Map.pds.title])
 	(versionIdentifier "1.5"))
 
+([DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
+	(versionIdentifier "1.5"))
+
 ([DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  DataElement
 
 	(administrationRecord [DD_1.5.1.0])
@@ -10222,34 +10250,6 @@
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id])
-	(versionIdentifier "1.5"))
-
-([DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  DataElement
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype])
-	(steward [ops])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype])
-	(versionIdentifier "1.5"))
-
-([DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  DataElement
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
-	(steward [ops])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.Property_Maps.pds.title] of  DataElement
@@ -10736,7 +10736,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(representing [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
@@ -16811,14 +16811,14 @@
 		[DE.0001_NASA_PDS_1.pds.Property_Map.pds.model_object_id]
 		[DE.0001_NASA_PDS_1.pds.Property_Map.pds.model_object_type]
 		[DE.0001_NASA_PDS_1.pds.Property_Map.pds.title]
+		[DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype]
+		[DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type]
 		[DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name]
 		[DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_value]
 		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.description]
 		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.external_property_map_id]
 		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.identifier]
 		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id]
-		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype]
-		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type]
 		[DE.0001_NASA_PDS_1.pds.Property_Maps.pds.title]
 		[DE.0001_NASA_PDS_1.pds.Quaternion.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Resource.pds.url]
@@ -20403,6 +20403,16 @@
 	(definitionText "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  Definition
+
+	(definitionText "The property_map_subtype attribute indicates the subcategory of the property map.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  Definition
+
+	(definitionText "The property_map_type attribute indicates the category of the property map.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  Definition
 
 	(definitionText "The property name attribute provides a word or a combination of words by which a property is known.")
@@ -20431,16 +20441,6 @@
 ([DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id] of  Definition
 
 	(definitionText "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  Definition
-
-	(definitionText "The property_map_subtype attribute indicates the subcategory of the property map.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  Definition
-
-	(definitionText "The property_map_type attribute indicates the category of the property map.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.title] of  Definition
@@ -25763,6 +25763,16 @@
 	(designationName "title")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  Designation
+
+	(designationName "property_map_subtype")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  Designation
+
+	(designationName "property_map_type")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  Designation
 
 	(designationName "property_name")
@@ -25791,16 +25801,6 @@
 ([DES.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id] of  Designation
 
 	(designationName "namespace_id")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  Designation
-
-	(designationName "property_map_subtype")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  Designation
-
-	(designationName "property_map_type")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Property_Maps.pds.title] of  Designation
@@ -32552,7 +32552,8 @@
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1904389435]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1905312956]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1906236477]
-		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998])
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1908083519])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -32620,6 +32621,28 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type.-2018563170])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -33105,16 +33128,16 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
-([EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  EnumeratedValueDomain
+([EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
 	(containedIn1
-		[pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1950842954]
-		[pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1089394287]
-		[pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1945309993]
-		[pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-77474853]
-		[pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-2077932961])
-	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type")
+		[pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1950842954]
+		[pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1089394287]
+		[pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1945309993]
+		[pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-77474853]
+		[pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-2077932961])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
@@ -33124,7 +33147,7 @@
 	(pattern "TBD_pattern")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -33377,6 +33400,38 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Service_Description.pds.parsing_standard_id])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12180250]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12183902]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12185553]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12187715]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12188774]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12192150]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194537]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194630]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196395]
+		[pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196991])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -43674,27 +43729,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
-([NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
-	(representedBy2 [CD_TBD_dataConcept])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
 ([NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -45816,6 +45850,27 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([NEVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -45935,27 +45990,6 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id])
-	(representedBy2 [CD_TBD_dataConcept])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
-([NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype])
 	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -46481,27 +46515,6 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Service.pds.version_id])
-	(representedBy2 [CD_TBD_dataConcept])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
-([NEVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
 	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -58887,6 +58900,24 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
 
+([PR.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1007")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1005")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
 ([PR.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  Property
 
 	(administrationRecord [DD_1.5.1.0])
@@ -58946,24 +58977,6 @@
 	(administrationRecord [DD_1.5.1.0])
 	(classOrder "1040")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.5"))
-
-([PR.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  Property
-
-	(administrationRecord [DD_1.5.1.0])
-	(classOrder "1047")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.5"))
-
-([PR.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  Property
-
-	(administrationRecord [DD_1.5.1.0])
-	(classOrder "1043")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
@@ -68632,6 +68645,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1907159998])
 	(value "1.7.0.0"))
 
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1908083519] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1908083519])
+	(value "1.8.0.0"))
+
 ([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-1116763337] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -68895,6 +68916,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.852822268])
 	(value "Product_Instrument_PDS3"))
+
+([pv.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type.-2018563170] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type.-2018563170])
+	(value "MD5Deep 4.n"))
 
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093] of  PermissibleValue
 
@@ -70272,44 +70301,44 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.type.93055076])
 	(value "Astrometry"))
 
-([pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1089394287] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1089394287] of  PermissibleValue
 
 	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1089394287])
+	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1089394287])
 	(value "Query Model"))
 
-([pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1945309993] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1945309993] of  PermissibleValue
 
 	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1945309993])
+	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1945309993])
 	(value "Rationale"))
 
-([pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1950842954] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1950842954] of  PermissibleValue
 
 	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1950842954])
+	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1950842954])
 	(value "Nuance"))
 
-([pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-2077932961] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-2077932961] of  PermissibleValue
 
 	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-2077932961])
+	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-2077932961])
 	(value "Velocity Variable"))
 
-([pv.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-77474853] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-77474853] of  PermissibleValue
 
 	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-77474853])
+	(usedIn [vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-77474853])
 	(value "Synonym"))
 
 ([pv.0001_NASA_PDS_1.pds.Quaternion.pds.type.727119859] of  PermissibleValue
@@ -70743,6 +70772,86 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Service_Description.pds.parsing_standard_id.2656466])
 	(value "WADL"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12180250] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12180250])
+	(value "PDS_ATM"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12183902] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12183902])
+	(value "PDS_ENG"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12185553] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12185553])
+	(value "PDS_GEO"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12187715] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12187715])
+	(value "PDS_IMG"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12188774] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12188774])
+	(value "PDS_JPL"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12192150] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12192150])
+	(value "PDS_NAI"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194537] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194537])
+	(value "PDS_PPI"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194630] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194630])
+	(value "PDS_PSI"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196395] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196395])
+	(value "PDS_RNG"))
+
+([pv.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196991] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196991])
+	(value "PDS_SBN"))
 
 ([pv.0001_NASA_PDS_1.pds.SPICE_Kernel.pds.encoding_type.-726803703] of  PermissibleValue
 
@@ -78188,6 +78297,20 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Property_Map.pds.title])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype])
+	(designation [DES.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_subtype])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_name] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -78228,20 +78351,6 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id])
 	(designation [DES.0001_NASA_PDS_1.pds.Property_Maps.pds.namespace_id])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype])
-	(designation [DES.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_subtype])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
-	(designation [DES.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Property_Maps.pds.title] of  TerminologicalEntry
@@ -86059,6 +86168,12 @@
 	(description "Information Model version 1.7.0.0 was released on September 30, 2016.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.1908083519] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Information Model version 1.8.0.0 was released on March 31, 2017.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-1116763337] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -86255,6 +86370,12 @@
 
 	(beginDate "2009-06-09")
 	(description "This is a product that is described by the class definition Product_Instrument_PDS3")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type.-2018563170] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The information package is governed by the Message-Digest Algorithm %28MD5%29 output of the MD5 Deep Package Version 4.n %28see http:%2F%2Fmd5deep.sourceforge.net%2F%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093] of  ValueMeaning
@@ -87289,31 +87410,31 @@
 	(description "Precise measurement of positions of heavenly bodies.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1089394287] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1089394287] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "A list of defined attributes to be used for a specific query.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1945309993] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1945309993] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "A statement of reasons about the definition of an attribute.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-1950842954] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-1950842954] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "A subtle difference or distinction in meaning of a defined attribute.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-2077932961] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-2077932961] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "A list of defined attributes to have values provided during product label generation.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Property_Maps.pds.property_map_type.-77474853] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.Property_Map_Entry.pds.property_map_type.-77474853] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "An attribute in an external standard that has thesame or nearly the same meaning.")
@@ -87641,6 +87762,66 @@
 
 	(beginDate "2009-06-09")
 	(description "The service is governed by the standard Web Application Description Language %28WADL%29.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12180250] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Atmospheres Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12183902] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Engineering Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12185553] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Geosciences Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12187715] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Imaging Node at USGS")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12188774] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Imaging Subnode at JPL")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12192150] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: NAIF Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194537] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Planetary Plasma Interactions Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12194630] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Small Bodies Subnode at Planetary Science Institute")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196395] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Rings Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.SIP_Deep_Archive.pds.provider_site_id.12196991] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Planetary Data System: Small Bodies Node at University of Maryland")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.SPICE_Kernel.pds.encoding_type.-726803703] of  ValueMeaning

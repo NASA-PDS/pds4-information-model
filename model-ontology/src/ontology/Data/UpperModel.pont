@@ -1,4 +1,4 @@
-; Wed Sep 28 10:46:43 PDT 2016
+; Wed Feb 01 13:06:50 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -95,6 +95,10 @@
 ;+		(comment "The modification_detail association is a relationship to Modification_Detail, the details of one round of modification for the product.")
 		(type INSTANCE)
 ;+		(allowed-classes Modification_Detail)
+		(create-accessor read-write))
+	(multislot id_reference
+;+		(comment "The id_reference provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot white_space
 ;+		(comment "A sequence of one or more space characters, horizontal tabs, end of line characters, or newline characters except within a character-literal or string-literal (see 7.3), shall be considered whitespace. Any use of this International Standard may define any other characters or sequences of characters not in the above character set to be whitespace as well, such as vertical tabulators, end of page indicators, etc.")
@@ -869,6 +873,11 @@
 ;+		(comment "The name_association_type attribute indicates whether the name is a primary, alternate, or deprecated name.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_Local_ID_Reference
+;+		(comment "The has_Local_ID_Reference association is a relationship to has_Local_ID_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Reference)
+		(create-accessor read-write))
 	(single-slot file_extension_token
 ;+		(comment "The file extension token is a substring that provides a file extension. The maximum size of a directory name is tbd characters.")
 		(type STRING)
@@ -1634,6 +1643,11 @@
 		(allowed-values ARRAY CONTAINER CUBE FILE IMAGE INDEX_TABLE N%2FA SPECTRAL_QUBE SPICE_KERNEL TEXT TIME_SERIES)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot has_Local_ID_Relation
+;+		(comment "The has_Local_ID_Relation association is a relationship to Local_ID_Relation.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Relation)
+		(create-accessor read-write))
 	(single-slot value_end_date
 ;+		(comment "The value_end_date attribute provides the last date on which the permissible value is in effect.")
 		(type STRING)
@@ -1948,6 +1962,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot local_ID
+;+		(comment "The Local_ID attribute provide an identifier for the object.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot member_relation_name
 ;+		(comment "The member relation name provides the name of the relationship.")
 		(type STRING)
@@ -2139,6 +2157,10 @@
 ;+		(comment "underscore = \"_\" ; (* low line *)")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot cs_local_identifier_reference
+;+		(comment "The cs_local_identifier_reference attribute is used to reference one component of a composite structure.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot reference_association_type
 ;+		(comment "The reference_association_type attribute provides the name of the association used in a reference.")
@@ -3154,6 +3176,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot id_reference_from
+;+		(comment "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot member_entry
 ;+		(comment "The member_entry association is a relationship to Member_Entry.")
 		(type INSTANCE)
@@ -3392,6 +3418,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot id_reference_type
+;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot instrument_serial_number
 ;+		(comment "The instrument serial number element provides the manufacturer's serial number assigned to an instrument. This number may be used to uniquely identify a particular instrument for tracing its components or determining its calibration history, for example.")
 		(type STRING)
@@ -3507,6 +3537,10 @@
 ;+		(comment "The records attribute provides a count of records.")
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot reference_frame_id
 ;+		(comment "The reference frame id attribute identifies a reference frame, an origin and set of axes, the physical realization of a reference system, i.e., the reference frame orientation and axes are established by the reported coordinates of datum points in the reference system.")
@@ -4808,7 +4842,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -9237,6 +9271,7 @@
 	(single-slot provider_site_id
 ;+		(comment "The provider site id attribute provides an identifier for the provider.")
 		(type STRING)
+;+		(value "PDS_ENG" "PDS_GEO" "PDS_IMG" "PDS_JPL" "PDS_NAI" "PDS_PSI" "PDS_PPI" "PDS_RNG" "PDS_SBN" "PDS_ATM")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -9837,6 +9872,7 @@
 	(single-slot checksum_type
 ;+		(comment "The checksum type attribute provides the name of the checksum algorithm used to calculate the checksum value.")
 		(type STRING)
+;+		(value "MD5Deep 4.n")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot internal_reference
@@ -9907,6 +9943,17 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot property_map_type
+;+		(comment "The property_map_type attribute indicates the category of the property map.")
+		(type STRING)
+;+		(value "Nuance" "Query Model" "Rationale" "Synonym" "Velocity Variable")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot property_map_subtype
+;+		(comment "The property_map_subtype attribute indicates the subcategory of the property map.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot property_value
 ;+		(comment "The property value attribute provides the value assigned to a property.")
 		(type STRING)
@@ -9952,17 +9999,6 @@
 		(create-accessor read-write))
 	(single-slot title
 ;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot property_map_type
-;+		(comment "The property_map_type attribute indicates the category of the property map.")
-		(type STRING)
-;+		(value "Nuance" "Query Model" "Velocity Variable" "Rationale" "Synonym")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot property_map_subtype
-;+		(comment "The property_map_subtype attribute indicates the subcategory of the property map.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -10125,6 +10161,87 @@
 		(create-accessor read-write))
 	(single-slot start_orbit_number
 ;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Composite_Structure "The Composite Structure class provides a generic framework for defining a composite of PDS4 fundamental data structures."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot has_Local_ID_Relation
+;+		(comment "The has_Local_ID_Relation association is a relationship to Local_ID_Relation.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Relation)
+		(create-accessor read-write))
+	(single-slot local_ID
+;+		(comment "The Local_ID attribute provide an identifier for the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot class_name
+;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Local_ID_Reference
+;+		(comment "The has_Local_ID_Reference association is a relationship to has_Local_ID_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Reference)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent_name
+;+		(comment "The parent name provides the name of the superclass.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Local_ID_Relation "The Local_ID_Relation class defines a one directional relationship between two classes using two identifiers and a reference type."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot id_reference_from
+;+		(comment "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot id_reference_type
+;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Local_ID_Reference "The Local_ID_Reference class is used to define a one directional relationship between two classes using the identifier of the ending class and the name of the association."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot id_reference_type
+;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
