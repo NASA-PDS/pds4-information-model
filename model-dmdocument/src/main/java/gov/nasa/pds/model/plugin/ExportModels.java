@@ -19,10 +19,10 @@ public class ExportModels extends Object {
 
 	public void writeAllArtifacts () throws java.io.IOException {	    
 	    // write the model specification
-		WriteSpecification writeSpecification  = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
-	//	WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
-	//	writeDOMSpecification.printArtifacts();
-		writeSpecification.printArtifacts();
+	//	WriteSpecification writeSpecification  = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
+		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
+		writeDOMSpecification.printArtifacts();
+	//	writeSpecification.printArtifacts();
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Specification Done");
 		
@@ -87,17 +87,16 @@ public class ExportModels extends Object {
 		// write the PDS4 DD CSV file
         ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
         writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
-        if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
+        //if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
         
-		WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles ();
-//		writeCSVFiles.printDDDBFile();
-		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
+		//WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles ();
+		//if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
 		
 		// write the PDS4 DD CSV file 
-		ArrayList <DOMClass> domSortClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassMap.values());
-		writeDOMCSVFiles.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
+		//ArrayList <DOMClass> domSortClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassMap.values());
+		//writeDOMCSVFiles.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
 		
-		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
+		//if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
 
 		
 		// write the 11179 DD pins file
@@ -149,14 +148,14 @@ public class ExportModels extends Object {
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Class Defn Done");
 
 		// write the 11179 DOM DD Data Element Definition XML Files
-		WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions = new WriteDDProductDOMAttrDefinitions ();
-		writeDDProductDOMAttrDefinitions.writeDDDOMRegFiles (DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
-		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Attr Defn Done");
+		//WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions = new WriteDDProductDOMAttrDefinitions ();
+		//writeDDProductDOMAttrDefinitions.writeDDDOMRegFiles (DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		//if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Attr Defn Done");
 		
 		// write the 11179 DOM DD Class Definition XML Files
-		WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
-		writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
-		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Class Defn Done");
+		//WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
+		//writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		//if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Class Defn Done");
 
 		
 		// write the registry configuration files
