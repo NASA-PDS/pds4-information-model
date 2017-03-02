@@ -96,122 +96,43 @@ class WriteDOMCSVFiles extends Object {
 
 
 		for (Iterator <DOMProp> j = allAttr.iterator(); j.hasNext();) {
-			DOMProp lAttr = (DOMProp) j.next();	
-			if(! lAttr.hasDOMClass.isEmpty()) {
-				int attrSize = lAttr.hasDOMClass.size();
-				
-				for (int n= 0; n < attrSize; n++) {
-				    ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lAttr.hasDOMClass.get(n);
-				    if (lISOClass instanceof DOMAttr) {
-				    	DOMAttr lDOMAttr = (DOMAttr) lISOClass;
+			DOMProp lProp = (DOMProp) j.next();	
+			DOMAttr lDOMAttr = (DOMAttr)lProp.hasDOMObject;
+				 
 				   //	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
-				    String pMinVal = lDOMAttr.getMinimumValue(true,true);
-				    String pMaxVal = lDOMAttr.getMaximumValue(true,true);
-				    String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
-				    String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
+			String pMinVal = lDOMAttr.getMinimumValue(true,true);
+		    String pMaxVal = lDOMAttr.getMaximumValue(true,true);
+		    String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
+			String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
 				
-				    padLength = 30 - lDOMAttr.getTitle().length();
-			    	if (padLength < 0) padLength = 0;
-				    padding = blanks.substring(0, padLength);
+			padLength = 30 - lDOMAttr.getTitle().length();
+			if (padLength < 0) padLength = 0;
+				padding = blanks.substring(0, padLength);
 					
-			    	pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
+			pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
 			    	
-				    valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
-				    prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lAttr.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lAttr.cardMin + DELM_MID + lAttr.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
-
-				    if ( ! (lDOMAttr.domPermValueArr == null || lDOMAttr.domPermValueArr.isEmpty())) {
-				    	for (Iterator <DOMProp> k = lDOMAttr.domPermValueArr.iterator(); k.hasNext();) {
-				    		DOMProp lDOMProp = (DOMProp) k.next();
-					    	int num = lDOMProp.hasDOMClass.size();
-					    	
-						    for (int m = 0; m < num; m++) {
-						        DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMClass.get(m); 
-						        String lValue = lDOMPermVal.value;
-						        if (lValue.length() > 20) lValue = lValue.substring(0,20);
-						        pIdentifier = valueSortField + " Value:" + lValue;
-						        prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
-						    }
-					   }
-				   }
-			     }
-				}
-			}
+		    valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
+			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lProp.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lProp.cardMin + DELM_MID + lProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
+			
+			ArrayList<ISOClassOAIS11179> lValArr = lDOMAttr.hasDOMObject;
 		
-		}
+			//		System.out.println("getting values - size is "+ lValClassArr.size());
+			Iterator <ISOClassOAIS11179> k = lValArr.iterator();		
+			String value;
+			//	    System.out.println("Attr - "+ lProp.identifier+ "--" + lProp.classNameSpaceIdNC);
+			while (k.hasNext()) {					   
+				DOMProp lDOMProp = (DOMProp) k.next();					
+				if  (lDOMProp.hasDOMObject instanceof DOMPermValDefn) {					  
+					 DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMObject; 
+					 String lValue = lDOMPermVal.value;
+					 if (lValue.length() > 20) lValue = lValue.substring(0,20);
+					 pIdentifier = valueSortField + " Value:" + lValue;
+					prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
+				}
+			}
+		}		
+		
 	}
 
-/*	
-//	write the DD Normalized file - CSV
-	public void printDDDBFile () throws java.io.IOException  {
-		String lFileName = DMDocument.outputDirPath + "PDS4DDDB.csv";
-		PrintWriter prCSVAttr = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		TreeMap <String, AttrDefn> AttrMap = new TreeMap <String, AttrDefn> ();
-		TreeMap <String, AttrDefn> AssocMap = new TreeMap <String, AttrDefn> ();
-//		prCSVAttr.println(delmBegin + "TYPE" + delmMid + "UNIQUE ID" + delmMid + "NAME" + delmMid + "DEFINITION" + delmMid + "DATA TYPE" + delmMid + "MIN VALUE" + delmMid + "MAX VALUE" + delmMid + "MIN CHARACTERS" + delmMid + "MAX CHARACTERS" + delmEnd);		
-		prCSVAttr.println(delmBegin + "TYPE" + delmMid + "UNIQUE ID" + delmMid + "NAME" + delmMid + "DEFINITION" + delmMid + "DATA TYPE" + delmEnd);		
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
-				prCSVAttr.println(delmBegin + "CLASS" + delmMid + lClass.identifier + delmMid + lClass.title + delmMid + lClass.description + delmEnd);
-				for (Iterator <AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AttrMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.inheritedAttribute.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AttrMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AssocMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.inheritedAssociation.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AssocMap.put(lAttr.identifier, lAttr);
-				}
 
-			}
-		}
-		Set <String> set1 = AttrMap.keySet();
-		Iterator <String> iter1 = set1.iterator();
-		while(iter1.hasNext()) {
-			String lId = (String) iter1.next();
-			AttrDefn lAttr = (AttrDefn) AttrMap.get(lId);	
-			if (lAttr != null) {
-//				prCSVAttr.println(delmBegin + "ATTRIBUTE" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmMid + lAttr.valueType + delmMid + lAttr.minimum_value + delmMid + lAttr.maximum_value+ delmMid + lAttr.minimum_characters + delmMid + lAttr.maximum_characters + delmEnd);
-				prCSVAttr.println(delmBegin + "ATTRIBUTE" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmMid + lAttr.valueType + delmEnd);
-				if ((lAttr.valArr != null) && (! lAttr.valArr.isEmpty())) {
-					int lValCnt = 0;
-					for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-						String lVal = (String) k.next();
-						if (lVal.compareTo ("") != 0) {
-							lValCnt++;
-							prCSVAttr.println(delmBegin + "ATTR VALUE" + delmMid + lAttr.identifier + "_Value_" + lValCnt + delmMid + lVal + delmMid + "" + delmEnd);
-						}
-					}
-				}
-			}
-		}
-		Set <String> set2 = AssocMap.keySet();
-		Iterator <String> iter2 = set2.iterator();
-		while(iter2.hasNext()) {
-			String lId = (String) iter2.next();
-			AttrDefn lAttr = (AttrDefn) AssocMap.get(lId);	
-			if (lAttr != null) {
-				prCSVAttr.println(delmBegin + "ASSOCIATION" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmEnd);
-				if ((lAttr.valArr != null) && (! lAttr.valArr.isEmpty())) {
-					int lValCnt = 0;
-					for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-						String lVal = (String) k.next();
-						if (lVal.compareTo ("") != 0) {
-							lValCnt++;
-							prCSVAttr.println(delmBegin + "ASSOC VALUE" + delmMid + lAttr.identifier + "_Value_" + lValCnt + delmMid + lVal + delmMid + "" + delmEnd);
-						}
-					}
-				}
-			}
-		}
-		prCSVAttr.close();				
-	}
-	*/
 }
