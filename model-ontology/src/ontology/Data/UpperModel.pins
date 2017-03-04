@@ -1,4 +1,4 @@
-; Wed Feb 01 13:06:50 PST 2017
+; Wed Mar 01 16:27:07 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -666,6 +666,30 @@
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
 	(specMesg "The value of the attribute logical_identifier must not include a value that contains '::'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Internal_Reference")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Information_Package_Component_Deep_Archive")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521.101])
+	(identifier "pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521.101] of  Schematron_Assert
+
+	(assertMsg "In Product_SIP_Deep_Archive both Internal_Reference and lidvid_reference are required.")
+	(assertStmt "pds:lidvid_reference")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "In Product_SIP_Deep_Archive both Internal_Reference and lidvid_reference are required."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522] of  Schematron_Rule
 
