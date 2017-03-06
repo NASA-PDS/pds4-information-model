@@ -62,7 +62,7 @@ public class WriteDOMSpecification extends Object {
 //		FileWriter fw = new FileWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 //		To specify these values yourself, construct an OutputStreamWriter on a FileOutputStream.	    
 
-	    String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelSpec;
+	    String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelSpec_DOM;
 	    prhtml = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 	    
 //		Start writing the html document                
@@ -143,7 +143,7 @@ public class WriteDOMSpecification extends Object {
 				} else if (secInfo.secSubType.compareTo("hierarchy") == 0) {
 					printClassHierarchySection (getPrintClassArr(secInfo), secInfo);
 				} else if (secInfo.secSubType.compareTo("datadictionary") == 0) {
-					printDataDict();
+					printDataDictLegacy();
 				} else if (secInfo.secSubType.compareTo("glossary") == 0) {
 					printGlossary(secInfo);
 				}
@@ -222,7 +222,7 @@ public class WriteDOMSpecification extends Object {
 			}
 
 // 			get lClassAnchorString
-			System.out.println("lClassId = "+ lClassId);
+			//System.out.println("lClassId = "+ lClassId);
 			DOMClass lClass = (DOMClass) InfoModel.masterDOMClassMap.get(lClassId);
 			if (lClass == null) continue;
 			String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
@@ -248,7 +248,7 @@ public class WriteDOMSpecification extends Object {
 				}
 			}
 		}
-		System.out.println("size of print class array = " +lClassSortMap.size());
+		//System.out.println("size of print class array = " +lClassSortMap.size());
 		return new ArrayList <DOMClass> (lClassSortMap.values());
 	}	
 		
@@ -339,9 +339,9 @@ public class WriteDOMSpecification extends Object {
  		lClassArr.add(lClass);
 		PrintOneClassHierarchy (lClassArr, "Hierarchy");
 		PrintSubclasses (lClass.subClassHierArr, "Subclass");	
-		System.out.print("-------printing own attr ---------");
+		//System.out.print("-------printing own attr ---------");
 		printTableRow2 (lClass.ownedAttrArr, "Attribute");
-		System.out.print("-------printing inherited attr ---------");
+		//System.out.print("-------printing inherited attr ---------");
 		printTableRow2 (lClass.inheritedAttrArr, "Inherited Attribute");
 	
 		printAssoc(lClass.ownedAssocArr, "Association");
@@ -400,9 +400,16 @@ public class WriteDOMSpecification extends Object {
 	private void PrintSubclasses (ArrayList <DOMClass> subClasses, String relation) {
 		String phRelation = relation;
 		boolean firstflag = true;
-    
-	//	Collections.sort(classIds);
-		for (Iterator <DOMClass> i = subClasses.iterator(); i.hasNext();) {
+       
+		TreeMap <String,DOMClass>  lDOMClassMap = new TreeMap<String,DOMClass>();
+		for (Iterator<DOMClass> i = subClasses.iterator(); i.hasNext();) {
+			DOMClass lClass = i.next();
+			String className = lClass.title;
+			lDOMClassMap.put(className, lClass);
+		}
+		ArrayList <DOMClass> lSortClassArr = new ArrayList <DOMClass> (lDOMClassMap.values());
+	
+		for (Iterator <DOMClass> i = lSortClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			
 			// get lClassAnchorString
@@ -436,7 +443,7 @@ public class WriteDOMSpecification extends Object {
 		// sort the local attributes
 		for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();				
-			lPropSortMap.put(lProp.rdfIdentifier, lProp);			
+			lPropSortMap.put(lProp.hasDOMObject.rdfIdentifier, lProp);			
 		}
 	//	System.out.println("printTableRow:"+ lPropSortMap.size());
 		// process the local attributes
@@ -469,7 +476,7 @@ public class WriteDOMSpecification extends Object {
 					phindicator = "&nbsp;";
 				}
 			}
-			if (lDOMAttr.isRestrictedInSubclass) {		// attribute is restricted in a subclass as opposed to restricted relative to the attribute in the "USER" class
+			if (lProp.isRestrictedInSubclass) {		// attribute is restricted in a subclass as opposed to restricted relative to the attribute in the "USER" class
 				phindicator += "R";
 			}
 			if (cmin.compareTo(cmax) == 0) {
@@ -501,11 +508,11 @@ public class WriteDOMSpecification extends Object {
 				} else {
 			    	DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.hasDOMObject;			    
 				    value = permVal.value;
-		
-					String lAnchorString = lDOMAttr.attrAnchorString;
+		            if (!value.isEmpty()) {
+					    String lAnchorString = lDOMAttr.attrAnchorString;
 			
-					// check for data types, unit of measure, etc
-					if (lDOMAttr.title.compareTo("data_type") == 0 || lDOMAttr.getTitle().compareTo("value_data_type") == 0 || lDOMAttr.getTitle().compareTo("unit_of_measure_type") == 0 || lDOMAttr.getTitle().compareTo("product_class") == 0) {
+					   // check for data types, unit of measure, etc
+					   if (lDOMAttr.title.compareTo("data_type") == 0 || lDOMAttr.getTitle().compareTo("value_data_type") == 0 || lDOMAttr.getTitle().compareTo("unit_of_measure_type") == 0 || lDOMAttr.getTitle().compareTo("product_class") == 0) {
 							String lClassId = InfoModel.getClassIdentifier ("pds", value);
 							DOMClass lClass = InfoModel.masterDOMClassIdMap.get(lClassId);
 							if (lClass != null) {
@@ -514,13 +521,15 @@ public class WriteDOMSpecification extends Object {
 								// error
 								System.out.println(">>error   - printTableRow2 - Component Class is missing - lClassId:" + lClassId);							
 							}
-					} else {
-							lAnchorString = ("value_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_" + lDOMAttr.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value).toLowerCase();				
-					}
-											
+					   } else {
+							lAnchorString = ("value_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_" + lProp.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value).toLowerCase();				
+					   }		            
 					String lValue = replaceString (value, "μ", "&mu;");
 					phvalue = "<a href=\"#" + lAnchorString + "\">" + lValue + "</a>";
-			//		System.out.println("anchor string = "+ phvalue);
+			//		System.out.println("anchor string = "+ phvalue);				    
+				   }else {
+	            	phvalue = "&nbsp;";
+	              }
 				}
 				printHTMLTableRow (phRelation, phtitle, phcard, phvalue, phindicator);
 				firstflag = false;
@@ -528,6 +537,7 @@ public class WriteDOMSpecification extends Object {
 				phtitle = "&nbsp;";
 				phcard = "&nbsp;";
 				phindicator = "&nbsp;";
+				phvalue = "&nbsp;";
 			}
 		}
 		if (firstflag) {
@@ -542,55 +552,47 @@ public class WriteDOMSpecification extends Object {
 		String phindicator = "&nbsp;";		
 		boolean firstflag = true;
 		
-		// sort by classOrder
-		TreeMap <String, DOMPropGroup> lDOMPropGroupMap = new TreeMap <String, DOMPropGroup> ();
-		DOMPropGroup lDOMPropGroup = new DOMPropGroup ();
-		String pGroupName = "NULL";
-		for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
-			DOMProp lDOMProp = (DOMProp) i.next();
-			String lRegistrationStatus = "";
-			if (lDOMProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
-			ISOClassOAIS11179 lDOMObject = lDOMProp.hasDOMObject;
-			if (lDOMObject != null) {
-				String lPropType = "C";			
-				String lSortOrder = lPropType + lDOMProp.classOrder + "-" + lDOMObject.identifier;
-				if ((lDOMProp.groupName.indexOf("TBD") == 0) || (lDOMProp.groupName.compareTo(pGroupName) != 0)) {
-					if (lDOMProp.groupName.indexOf("TBD") == 0) pGroupName = "NULL";
-					else pGroupName = lDOMProp.groupName;
-					lDOMPropGroup = new DOMPropGroup ();
-					lDOMPropGroup.domProp = lDOMProp;
-					lDOMPropGroup.domObjectArr.add(lDOMObject);
-					lDOMPropGroupMap.put(lSortOrder, lDOMPropGroup);
-				} else {
-					lDOMPropGroup.domObjectArr.add(lDOMObject);
-				}
-			} else {
-				System.out.println(">>error    - WriteDOMSpecification - Failed to find DOMObject - lDOMProp.identifier: " + lDOMProp.identifier);
-			}
-		}
-		
-		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	
+		TreeMap  <String, DOMProp> lPropSortMap = new TreeMap <String, DOMProp>();
 	
-		for (Iterator<DOMPropGroup> i = lDOMPropGroupArr.iterator(); i.hasNext();) {
-			DOMPropGroup lDOMPropGroup2 = (DOMPropGroup) i.next();
-			DOMProp lDOMProp = lDOMPropGroup2.domProp;
-			String lastProp = "&nbsp;";
-			for (Iterator<ISOClassOAIS11179> j = lDOMPropGroup2.domObjectArr.iterator(); j.hasNext();) {
-				ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
-				
-				phtitle = "&nbsp;";
-				phcard = "&nbsp;";
-				phindicator = "&nbsp;";
-				DOMClass lDOMClass = (DOMClass) lISOClass;	
+		for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();	
+			DOMClass assoClass = (DOMClass)lProp.hasDOMObject;
+			lPropSortMap.put(lProp.rdfIdentifier, lProp);			
+		}	
+		ArrayList <DOMProp> lSortPropArr = new ArrayList <DOMProp> (lPropSortMap.values());
+		String lastProp = "&nbsp;";
+		for (Iterator <DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			String lRegistrationStatus = "";
+			if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
+			ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMObject;	   
+	        DOMClass lDOMClass = (DOMClass) lISOClass; 
+	
+			phtitle = "&nbsp;";
+			phcard = "&nbsp;";
+			phindicator = "&nbsp;";
+			if (lProp.isRestrictedInSubclass) {		// attribute is restricted in a subclass as opposed to restricted relative to the attribute in the "USER" class
+				phindicator += "R";
+			}
 					// get lClassAnchorString
-				String lClassAnchorString = ("class_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title).toLowerCase();
-				if (lastProp.compareTo(lDOMProp.title) != 0) {
-				   phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lDOMProp.title + "</a>";		
-				} 
-				phvalue = "<a href=\"#" + lClassAnchorString + "\">"  +lDOMClass.title + "</a>";
+			String lClassAnchorString = lDOMClass.anchorString;
+			 // set attributes anchor string
+		   if (lProp.attrParentClass == null) {
+		
+			   lProp.anchorString = "attribute_";
+		   } else {
+			   lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
+		   }
+
+
+				//	("class_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title).toLowerCase();
+			if (lastProp.compareTo(lProp.title) != 0) {
+				   phtitle = "<a href=\"#" + lProp.anchorString + "\">" + lProp.title + "</a>";		
+			} 
+			phvalue = "<a href=\"#" + lClassAnchorString + "\">"  +lDOMClass.title + "</a>";
 			//	System.out.println("anchor string = "+ phvalue);
-				String cmin = lDOMProp.cardMin;																// get min card
-				String cmax = lDOMProp.cardMax;																// get max card
+				String cmin = lProp.cardMin;																// get min card
+				String cmax = lProp.cardMax;																// get max card
 				String cardval = cmin + ".." + cmax;
 				if (cardval.compareTo("1..0") == 0) { 		
 					cardval = "none";
@@ -614,15 +616,19 @@ public class WriteDOMSpecification extends Object {
 				if (cmin.compareTo(cmax) == 0) {
 					cardval = cmin;
 				}
-				phcard = cardval;
-				lastProp = lDOMProp.title;
+			
+				if (phtitle.compareTo("&nbsp;") != 0)
+				   phcard = cardval;
+				lastProp = lProp.title;
 			
 				printHTMLTableRow (phRelation, phtitle, phcard, phvalue, phindicator);
 				firstflag = false;
 				phRelation = "&nbsp;";
 				
+	
+				
 			}
-		}	
+			
 		
 		if (firstflag) {
 			printHTMLTableRow (phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
@@ -733,9 +739,12 @@ public class WriteDOMSpecification extends Object {
 		prhtml.println("<dl>");
 		// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
 		TreeMap <String, DOMAttr> lTreeMap = new TreeMap <String, DOMAttr>();
-		for (Iterator<DOMAttr> i = InfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) i.next();
-			lTreeMap.put(lAttr.sort_identifier, lAttr);
+		for (Iterator<DOMProp> i = InfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			if (lProp.isAttribute){
+				DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
+			    lTreeMap.put(lAttr.sort_identifier, lAttr);
+			}
 		}
 		Collection <DOMAttr> values3 = lTreeMap.values();		
 		ArrayList <DOMAttr> sortedList = new ArrayList <DOMAttr> ( values3 );
@@ -918,17 +927,20 @@ private void printAttrUnit (DOMAttr attr) {
 		String phvalue = "", del = "";
 		boolean elipflag = false;
 
-		if  (lAttr.hasDOMObject.isEmpty()) return; 
-
+		if  (lAttr.hasDOMObject.size() == 0) {	
+			return; 
+		}
+  
 		ArrayList<ISOClassOAIS11179> lValClassArr = lAttr.hasDOMObject;
 
 		  if (lAttr.hasDOMObject.size() > 1) {
 			prhtml.println("<p><i>Values: </i><br>");
-		  } else if (lAttr.hasDOMObject.size() == 1){
-			prhtml.println("<p><i>Value: </i><br>");
-			System.out.println("size is one" );
-		  }
-                
+		  } else if (lAttr.hasDOMObject.size() == 1) { // determine if need to print the Value label
+			  ISOClassOAIS11179 lProp = (ISOClassOAIS11179) lAttr.hasDOMObject.get(0);
+			if (lProp instanceof DOMPermValDefn) {
+			   prhtml.println("<p><i>Value: </i><br>");
+			}
+		  }               
 	
 		String value;
 				 
@@ -937,6 +949,7 @@ private void printAttrUnit (DOMAttr attr) {
 			
 			if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
 				 phvalue = "&nbsp;";
+			
 			} else {
 		    	DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;					
 		    	if (lPermValueDefn.value.compareTo("...") == 0) {
@@ -1219,4 +1232,295 @@ private void printAttrUnit (DOMAttr attr) {
 			result.append(str.substring(s));
 			return result.toString();
 	 }
+
+/**********************************************************************************************************
+		routines for printing the data dictionary
+***********************************************************************************************************/
+
+	public void printDataDictLegacy () {
+		boolean pflag = false;
+//	write the description heading
+		prhtml.println("<dl>");
+
+		for (Iterator <AttrDefn> i = InfoModel.getAttArrByTitleStewardClassSteward().iterator(); i.hasNext();) {
+			AttrDefn lAttr = (AttrDefn) i.next();
+			if (lAttr.isUsedInClass || includeAllAttrFlag) {
+				printDataElement (lAttr);
+				pflag = true;
+			}
+		}
+		if (! pflag) {
+			prhtml.println("<dt><b>" + "Unknown" +  "</b><dd>" +  "Unknown Description");		
+		}
+		prhtml.println("</dl>");		
+	}
+	
+	/**
+		*  Print a data element
+		*/
+	private void printDataElement (AttrDefn attr) {
+		boolean fflag, altflag;		
+		String phtitle, desc, altlist;
+		
+		// get lClassAnchorString
+		PDSObjDefn lClass = attr.attrParentClass;
+		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
+		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
+		String lRegistrationStatus = "";
+		if (attr.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
+		phtitle = "<a name=\"" + attr.attrAnchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
+		desc = attr.description;
+		altflag = false; altlist = ""; fflag = true;
+		HashMap lmap = (HashMap) attr.genAttrMap;
+		if (lmap != null) {
+			ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
+			if (attraliasarr != null) {
+				for (Iterator <String> i = attraliasarr.iterator(); i.hasNext();) {
+					if (fflag) {
+						fflag = false;
+						altflag = true;
+						altlist = " {Alternatives: ";
+					} else {
+						altlist += ", ";
+					}
+					altlist += (String) i.next();
+				}
+				if (altflag) {
+					altlist += "} ";
+				}
+			}
+		}
+		prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
+
+		printAttrType (attr);
+		printAttrUnit (attr);
+		printAttrMisc (attr);
+		printAttrValue (attr);
+		printAttrValueExtended (attr);
+		printAttrSchematronRuleMsg(attr);
+	}	
+
+	
+	/**
+	*  Print an attributes unit
+	*/
+
+private void printAttrUnit (AttrDefn attr) {
+	String lUnitOfMeasureType;
+	if (attr.isAttribute && attr.unit_of_measure_type.indexOf("TBD") != 0 && attr.unit_of_measure_type.indexOf("none") != 0) {
+		lUnitOfMeasureType = (String) attr.unit_of_measure_type;
+		prhtml.println("<p><i>Unit of Measure Type: </i>" + lUnitOfMeasureType + "<br>");
+		
+		String lValueString = attr.getUnits(false);
+		if (lValueString != null) {
+			prhtml.println("<i>Valid Units: </i>" + lValueString + "<br>");
+		}
+	}
+	
+	String pval = "";
+	if (attr.isAttribute && attr.default_unit_id.indexOf("TBD") != 0 && attr.default_unit_id.indexOf("none") != 0) {
+		pval = (String) attr.default_unit_id;
+		prhtml.println("<i>Specified Unit Id: </i>" + pval + "<br>");
+	}
+}	
+	/**
+	*  Print an attributes type
+	*/
+	private void printAttrType (AttrDefn attr) {
+		String phtype;
+		
+		if (attr.isAttribute) {
+			if (attr.valueType.indexOf("TBD") == 0) {
+				return;
+			}
+			phtype = (String) attr.valueType;
+		} else {
+			phtype = "Association";
+		}
+
+		String lClassId = InfoModel.getClassIdentifier ("pds", phtype);
+		PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
+		if (lClass != null) {
+			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
+			phtype = "<a href=\"#" + lAnchorString + "\">" + phtype + "</a>";
+		} else {
+			phtype = "<a href=\"#" + phtype + "\">" + phtype + "</a>";
+		}		
+		prhtml.println("<p><i>Type: </i>" + phtype + "<br>");
+	}
+
+	/**
+	*  Print an attributes type
+	*/
+
+	private void printAttrMisc (AttrDefn attr) {
+		String pval = "";
+		if (! attr.isAttribute) {
+			return;
+		}
+		
+		pval = (String) attr.parentClassTitle;
+		prhtml.println("<i>Class Name: </i>" + pval + "<br>");
+		
+		pval = attr.getMinimumCharacters2 (true, false);
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Minimum Characters: </i>" + pval + "<br>");
+		}
+		pval = attr.getMaximumCharacters2 (true, false);
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Maximum Characters: </i>" + pval + "<br>");
+		}
+		pval = attr.getMinimumValue2 (true, false);
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Minimum Value: </i>" + pval + "<br>");
+		}
+		pval = attr.getMaximumValue2 (true, false);
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Maximum Value: </i>" + pval + "<br>");
+		}
+		pval = attr.getFormat (true);
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Format: </i>" + pval + "<br>");
+		}
+		pval = InfoModel.unEscapeProtegeString(attr.getPattern(true));
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Pattern: </i>" + pval + "<br>");
+		}
+		pval = "false";
+		if (attr.isNilable) {
+			pval = "true";			
+		}
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Nillable: </i>" + pval + "<br>");
+		}
+		pval = (String) attr.classConcept;
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Attribute Concept: </i>" + pval + "<br>");
+		}
+		pval = (String) attr.dataConcept;
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Conceptual Domain: </i>" + pval + "<br>");
+		}
+		pval = attr.getSteward ();
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Steward: </i>" + pval + "<br>");
+		}
+		pval = attr.getNameSpaceIdNC ();
+		if (pval.indexOf("TBD") != 0) {
+			prhtml.println("<i>Namespace Id: </i>" + pval + "<br>");
+		}
+	}
+	
+	/**
+		*  Print an attributes values
+		*/
+
+	private void printAttrValue (AttrDefn lAttr) {
+		String phvalue = "", del = "";
+		boolean elipflag = false;
+
+		if (lAttr.permValueArr == null || lAttr.permValueArr.isEmpty()) return; 
+		if (lAttr.permValueArr.size() > 1) {
+			prhtml.println("<p><i>Values: </i><br>");
+		} else {
+			prhtml.println("<p><i>Value: </i><br>");
+		}
+		
+		for (Iterator <PermValueDefn> i = lAttr.permValueArr.iterator(); i.hasNext();) {
+			PermValueDefn lPermValueDefn = (PermValueDefn) i.next();
+			if (lPermValueDefn.value.compareTo("...") == 0) {
+				elipflag = true; 
+			} else if (lPermValueDefn.value.compareTo("2147483647") == 0) {
+				del = ", ";
+				phvalue = "<a name=\"" + "" + "\"><b>" + "Unbounded" + "</b></a>" + " - " + "There is no bound on the maximum number of characters allowed.";
+				prhtml.println(" - " + phvalue + "<br>");
+
+			} else {
+				// check if deprecated
+				String lRegistrationStatus = "";
+				if (lPermValueDefn.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
+
+				// check if dependent
+				String lDependValue = lAttr.valueDependencyMap.get(lPermValueDefn.value);
+				String lDependClause = "";
+				if (lDependValue != null) lDependClause = " (" + lDependValue + ")";
+				del = ", ";
+				String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
+				String lValue = replaceString (lPermValueDefn.value, "μ", "&mu;");
+				String lValueMeaning = replaceString (lPermValueDefn.value_meaning, "μ", "&mu;");
+				if (lAttr.title.compareTo("pattern") == 0 && lPermValueDefn.value_meaning.indexOf("TBD") == 0) {
+
+					
+					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + lDependClause + lRegistrationStatus + "</b></a>";
+				} else {
+					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lValue + lDependClause + lRegistrationStatus + "</b></a>" + " - " + lValueMeaning;
+				}
+				prhtml.println(" - " + phvalue + "<br>");
+			}
+		}
+		if (elipflag) {
+			phvalue = "<b>...</b>" + " - " + "The number of values exceeds the reasonable limit for this document.";
+			prhtml.println(" - " + phvalue + "<br>");
+		}
+  }
+	
+	/**
+	*  Print an attributes Extended values
+	*/
+	private void printAttrValueExtended (AttrDefn lAttr) {
+		String phvalue, del = "";
+		boolean elipflag = false;
+
+		if (lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty()) {
+			return;
+		}
+		
+		for (Iterator <PermValueExtDefn> i = lAttr.permValueExtArr.iterator(); i.hasNext();) {
+			PermValueExtDefn lPermValueExt = (PermValueExtDefn) i.next();	
+			if (lPermValueExt.permValueExtArr == null || lPermValueExt.permValueExtArr.isEmpty()) {
+				return;
+			}
+			
+			if (lPermValueExt.permValueExtArr.size() > 1) {
+				prhtml.println("<p><i>Extended Values for: " + lPermValueExt.xpath + "</i><br>");
+			} else {
+				prhtml.println("<p><i>Extended Value for: " + lPermValueExt.xpath + "</i><br>");
+			}
+		
+			for (Iterator <PermValueDefn> j = lPermValueExt.permValueExtArr.iterator(); j.hasNext();) {
+				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
+				if (lPermValueDefn.value.compareTo("...") == 0) {
+					elipflag = true;
+				} else {
+					del = ", ";
+					String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
+					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + "</b></a>" + " - " + lPermValueDefn.value_meaning;
+					prhtml.println(" - " + phvalue + "<br>");
+				}
+			}
+		}
+		if (elipflag) {
+			phvalue = "<b>...</b>" + " - " + "The number of values exceeds the reasonable limit for this document.";
+			prhtml.println(" - " + phvalue + "<br>");
+		}
+	}
+	
+	/**
+	*  Print schematron rule for the attribute
+	*/
+	private void printAttrSchematronRuleMsg(AttrDefn lAttr) {
+		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());
+		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
+			RuleDefn lRule = (RuleDefn) i.next();
+			for (Iterator <AssertDefn2> j = lRule.assertArr.iterator(); j.hasNext();) {
+				AssertDefn2 lAssert = (AssertDefn2) j.next();
+				if (! ((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0) && lAssert.attrTitle.compareTo(lAttr.title) == 0)) continue;
+				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
+				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
+				if (lAssert.assertType.compareTo("RAW") != 0) continue;
+//				prhtml.println("<i>Schematron Rule: " + lAssert.assertMsg + "</i><br>");
+				prhtml.println("<i>Schematron Rule: " + lAssert.specMesg + "</i><br>");
+			}
+		} 
+	}
 }
