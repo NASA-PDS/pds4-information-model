@@ -22,14 +22,15 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 		// cycle through classes to get only the used attributes
 		for (Iterator<DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+			ArrayList<ISOClassOAIS11179> lDOMArr = lClass.hasDOMObject;		
+			
+			for (Iterator<ISOClassOAIS11179> j = lDOMArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
-				if(! lProp.hasDOMClass.isEmpty()) {
-					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMClass.get(0);
-					if (lISOClass instanceof DOMAttr) {
-						DOMAttr lDOMAttr = (DOMAttr) lISOClass;
+				
+					if (lProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
 				        if (lDOMAttr.title.compareTo("%3ANAME") == 0) continue;
-				        if (! lDOMAttr.isAttribute) continue;
+				  
 				        String lLID = DMDocument.registrationAuthorityIdentifierValue + "." + lDOMAttr.classNameSpaceIdNC + "." + lDOMAttr.parentClassTitle + "." + lDOMAttr.getNameSpaceIdNC() + "." + lDOMAttr.title;
 				        lLID = "urn:nasa:pds:context:attribute:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
 			        	lLID = lLID.toLowerCase();
@@ -43,7 +44,7 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 				}
 			}
 		}
-	}	
+		
 	
 	// Print the Element Definition Header
 	public void printDDRegFile (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDReg, String todaysDate, String lLID, DOMAttr lAttr) {
