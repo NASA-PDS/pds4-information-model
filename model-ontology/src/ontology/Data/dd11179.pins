@@ -1,4 +1,4 @@
-; Wed Feb 01 13:23:14 PST 2017
+; Tue Mar 07 11:11:41 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -448,9 +448,9 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_File_Specification_Name.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.character_constraint]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_characters]
-		[NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_characters]
-		[NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule]
@@ -478,7 +478,7 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.character_constraint]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_characters]
-		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_Numeric_Base16.pds.character_constraint]
@@ -957,7 +957,9 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.xml_schema_base_type]
-		[NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
@@ -3372,7 +3374,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
@@ -3400,7 +3402,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
@@ -3792,7 +3794,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
@@ -3820,10 +3822,24 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  DataElement
@@ -4174,6 +4190,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.xml_schema_base_type] of  DataElement
@@ -16718,10 +16748,12 @@
 		[DE.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.formation_rule]
 		[DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Numeric_Base16.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Numeric_Base2.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Numeric_Base8.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Short_String_Collapsed.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Short_String_Preserved.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_String.pds.character_constraint]
@@ -18148,6 +18180,11 @@
 	(definitionText "The minimum_value attribute provides the lower inclusive bound on the value.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  Definition
+
+	(definitionText "The pattern attribute provides a symbolic instruction for forming values.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  Definition
 
 	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
@@ -18271,6 +18308,11 @@
 ([DEF.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value] of  Definition
 
 	(definitionText "The minimum_value attribute provides the lower inclusive bound on the value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  Definition
+
+	(definitionText "The pattern attribute provides a symbolic instruction for forming values.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.ASCII_Real.pds.xml_schema_base_type] of  Definition
@@ -23508,6 +23550,11 @@
 	(designationName "minimum_value")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  Designation
+
+	(designationName "pattern")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  Designation
 
 	(designationName "xml_schema_base_type")
@@ -23631,6 +23678,11 @@
 ([DES.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value] of  Designation
 
 	(designationName "minimum_value")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  Designation
+
+	(designationName "pattern")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.ASCII_Real.pds.xml_schema_base_type] of  Designation
@@ -29745,10 +29797,54 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value.-1773151198])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value.1304595158])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.1889969037])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.587357837])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -30229,10 +30325,75 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value.1823116549])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value.48])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.1538127629])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.-1572006366])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -30531,6 +30692,27 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Numeric_Base8.pds.xml_schema_base_type])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -38227,27 +38409,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
-([NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
 ([NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_characters] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -38262,27 +38423,6 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_characters])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
-([NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -38395,27 +38535,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
-([NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
 ([NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_characters] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -38431,27 +38550,6 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_characters])
 	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.5"))
-
-([NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.5.1.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
-	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -52870,6 +52968,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
 
+([PR.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
 ([PR.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  Property
 
 	(administrationRecord [DD_1.5.1.0])
@@ -53091,6 +53198,15 @@
 	(administrationRecord [DD_1.5.1.0])
 	(classOrder "1030")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
@@ -63957,13 +64073,29 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_File_Specification_Name.pds.xml_schema_base_type.1035609096])
 	(value "xsd:token"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.1889969037] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value.-1773151198] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value.-1773151198])
+	(value "9223372036854775807"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value.1304595158] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value.1304595158])
+	(value "-9223372036854775808"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.587357837] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.1889969037])
-	(value "xsd:integer"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.587357837])
+	(value "xsd:long"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.character_constraint.62568241] of  PermissibleValue
 
@@ -64133,13 +64265,29 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.xml_schema_base_type.2015311842])
 	(value "xsd:string"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.1538127629] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value.1823116549] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value.1823116549])
+	(value "18446744073709551615"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value.48] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value.48])
+	(value "0"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.-1572006366] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.1538127629])
-	(value "xsd:nonNegativeInteger"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.-1572006366])
+	(value "xsd:unsignedLong"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_Numeric_Base16.pds.maximum_characters.49746] of  PermissibleValue
 
@@ -75140,6 +75288,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -75313,6 +75468,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value])
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_Real.pds.minimum_value])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.ASCII_Real.pds.xml_schema_base_type] of  TerminologicalEntry
@@ -82652,10 +82814,22 @@
 	(description "ASCII_File_Specification_Name has an XML schema base type of xsd:token")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.1889969037] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.maximum_value.-1773151198] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "ASCII_Integer has an XML schema base type of xsd:integer")
+	(description "The maximum value must be less than or equal to the equivalent integer value for 2^63-1")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.minimum_value.1304595158] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The minimum value must be greater than or equal to the equivalent integer value of -2^63")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_Integer.pds.xml_schema_base_type.587357837] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "ASCII_Integer has an XML schema base type of xsd:long")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.character_constraint.62568241] of  ValueMeaning
@@ -82784,10 +82958,22 @@
 	(description "ASCII_MD5_Checksum has an XML schema base type xsd:string")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.1538127629] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.maximum_value.1823116549] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "ASCII_NonNegative_Integer has an XML schema base type xsd:nonNegativeInteger")
+	(description "The maximum value must be less than or equal to the equivalent integer value for 2^64-1")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value.48] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The minimum value must be greater than or equal to zero.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.xml_schema_base_type.-1572006366] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "ASCII_NonNegative_Integer has an XML schema base type of xsd:unsignedLong")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_Numeric_Base16.pds.maximum_characters.49746] of  ValueMeaning

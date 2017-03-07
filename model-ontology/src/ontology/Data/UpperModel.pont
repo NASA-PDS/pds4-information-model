@@ -1,4 +1,4 @@
-; Wed Mar 01 16:27:07 PST 2017
+; Fri Mar 03 13:33:44 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12107,6 +12107,7 @@
 	(single-slot maximum_value
 ;+		(comment "The maximum_value attribute provides the upper, inclusive bound on the value.")
 		(type STRING)
+;+		(value "9223372036854775807")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_characters
@@ -12122,12 +12123,13 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:integer")
+;+		(value "xsd:long")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_value
 ;+		(comment "The minimum_value attribute provides the lower inclusive bound on the value.")
 		(type STRING)
+;+		(value "-9223372036854775808")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -12257,6 +12259,12 @@
 (defclass ASCII_NonNegative_Integer "The ASCII_NonNegative_Integer class indicates a non-negative  integer."
 	(is-a Character_Data_Type)
 	(role concrete)
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[0-9]+")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
@@ -12265,6 +12273,7 @@
 	(single-slot maximum_value
 ;+		(comment "The maximum_value attribute provides the upper, inclusive bound on the value.")
 		(type STRING)
+;+		(value "18446744073709551615")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_characters
@@ -12280,12 +12289,13 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:nonNegativeInteger")
+;+		(value "xsd:unsignedLong")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_value
 ;+		(comment "The minimum_value attribute provides the lower inclusive bound on the value.")
 		(type STRING)
+;+		(value "0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -12412,6 +12422,12 @@
 (defclass ASCII_Real "The ASCII_Real class indicates a real."
 	(is-a Character_Data_Type)
 	(role concrete)
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[-+]?[0-9]+(\\.?[0-9]+)?([eE][-+]?[0-9]+)?")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
