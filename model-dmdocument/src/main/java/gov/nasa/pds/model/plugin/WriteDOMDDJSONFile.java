@@ -137,6 +137,7 @@ class WriteDOMDDJSONFile extends Object{
 		
 		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	
 		prDDPins.println("              , " + formValue("associationList") + ": [");	
+		printSuperClassAssoc (lClass, prDDPins);
 		String delimiter1 = "  ";
 		for (Iterator<DOMPropGroup> i = lDOMPropGroupArr.iterator(); i.hasNext();) {
 			DOMPropGroup lDOMPropGroup2 = (DOMPropGroup) i.next();
@@ -198,6 +199,35 @@ class WriteDOMDDJSONFile extends Object{
 			}	
 		}
 		prDDPins.println("           ]");
+	}
+	
+	// Print the Associations
+	public  void printSuperClassAssoc (DOMClass lClass, PrintWriter prDDPins) {
+		if (lClass.subClassOf == null) return;
+		DOMClass lSuperClass = lClass.subClassOf;
+		if (lSuperClass == null) return;
+		if (lSuperClass.isAbstract) return;
+		if (lSuperClass.isVacuous) return;
+		if (lSuperClass.title.compareTo("USER") == 0) return;
+		String delimiter1 = "  ";
+		prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+		prDDPins.println("                " + formValue("identifier") + ": " + formValue(lClass.identifier + "." + lSuperClass.title + ".generalization") + " ,");	
+		prDDPins.println("                " + formValue("title") + ": " + formValue(lSuperClass.title) + " ,");	
+		prDDPins.println("                " + formValue("isAttribute") + ": " + "\"false\"" + " ,");	
+		prDDPins.println("                " + formValue("isChoice") + ": " + "\"false\"" + " ,");	
+		prDDPins.println("                " + formValue("isAny") + ": " + "\"false\"" + " ,");	
+		prDDPins.println("                " + formValue("groupName") + ": " + "\"null\"" + " ,");	
+		prDDPins.println("                " + formValue("minimumCardinality") + ": " + "\"1\"" + " ,");	
+		prDDPins.println("                " + formValue("maximumCardinality") + ": " + "\"1\"" + " ,");	
+		prDDPins.println("                " + formValue("classOrder") + ": " + "\"0000\"" + " ,");	
+		prDDPins.println("                " + formValue("attributeId") + ": [");							
+		prDDPins.print("");
+		prDDPins.print("                  " + formValue(lSuperClass.identifier));	
+		prDDPins.print("\n");
+		prDDPins.println("                 ]");
+		prDDPins.println("              }");
+		prDDPins.println("            } ,");  // other associations must always follow
+
 	}
 	
 	// Print the the Protege Pins DE
