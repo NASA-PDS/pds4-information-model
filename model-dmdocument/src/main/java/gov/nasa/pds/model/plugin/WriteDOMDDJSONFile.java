@@ -147,6 +147,7 @@ class WriteDOMDDJSONFile extends Object{
 				delimiter1 = ", ";
 				prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
 				prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+				prDDPins.println("                " + formValue("assocType") + ": " + formValue("attribute_of") + " ,");	
 				prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(true) + " ,");	
 				prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
 				prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
@@ -174,6 +175,7 @@ class WriteDOMDDJSONFile extends Object{
 				delimiter1 = ", ";		
 				prDDPins.println("                " + formValue("identifier") + ": " + formValue(lDOMProp.identifier) + " ,");	
 				prDDPins.println("                " + formValue("title") + ": " + formValue(lDOMProp.title) + " ,");	
+				prDDPins.println("                " + formValue("assocType") + ": " + formValue("component_of") + " ,");	
 				prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
 				prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lDOMProp.isChoice) + " ,");	
 				prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lDOMProp.isAny) + " ,");	
@@ -213,6 +215,7 @@ class WriteDOMDDJSONFile extends Object{
 		prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
 		prDDPins.println("                " + formValue("identifier") + ": " + formValue(lClass.identifier + "." + lSuperClass.title + ".generalization") + " ,");	
 		prDDPins.println("                " + formValue("title") + ": " + formValue(lSuperClass.title) + " ,");	
+		prDDPins.println("                " + formValue("assocType") + ": " + formValue("parent_of") + " ,");	
 		prDDPins.println("                " + formValue("isAttribute") + ": " + "\"false\"" + " ,");	
 		prDDPins.println("                " + formValue("isChoice") + ": " + "\"false\"" + " ,");	
 		prDDPins.println("                " + formValue("isAny") + ": " + "\"false\"" + " ,");	
