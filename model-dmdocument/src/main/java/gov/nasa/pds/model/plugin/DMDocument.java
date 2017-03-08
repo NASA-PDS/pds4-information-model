@@ -70,7 +70,8 @@ public class DMDocument extends Object {
 	// 1.5.1.0 - 1.9  - 1.9  - Build 6b - not released
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b
 	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
-	
+	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
+
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
 	// 1.1.0.0 - 1.1  - 1.1  - Build 4a
@@ -84,6 +85,7 @@ public class DMDocument extends Object {
 	// 1.5.0.0 - 1.9  - 1.9  - Build 6a 
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b 
 	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
+	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
@@ -1066,8 +1068,8 @@ public class DMDocument extends Object {
 		
 		// Schema file Definitions by namespaceid
 		lSchemaFileDefn = new SchemaFileDefn("atm");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("atm");
@@ -1075,8 +1077,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("geo");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("geo");
@@ -1084,7 +1086,7 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("img");
-		lSchemaFileDefn.versionId = "1.7.0.0";
+		lSchemaFileDefn.versionId = "1.8.0.0";
 		lSchemaFileDefn.labelVersionId = "1.17";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
@@ -1101,8 +1103,8 @@ public class DMDocument extends Object {
 		*/
 		
 		lSchemaFileDefn = new SchemaFileDefn("naif");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("naif");
@@ -1110,8 +1112,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("ppi");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("ppi");
@@ -1119,8 +1121,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("rings");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("rings");
@@ -1128,8 +1130,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("rs");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("rs");
@@ -1137,8 +1139,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("sbn");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("sbn");
@@ -1146,8 +1148,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("msn");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = false;
 		lSchemaFileDefn.isMission = true;
@@ -1156,8 +1158,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
 		
 		lSchemaFileDefn = new SchemaFileDefn("disp");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("img");
@@ -1166,8 +1168,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
 
 		lSchemaFileDefn = new SchemaFileDefn("geom");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 		lSchemaFileDefn.stewardArr.add("geo");
@@ -1176,8 +1178,8 @@ public class DMDocument extends Object {
 		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
 		
 		lSchemaFileDefn = new SchemaFileDefn("cart");
-		lSchemaFileDefn.versionId = "1.7.0.0";
-		lSchemaFileDefn.labelVersionId = "1.11";
+		lSchemaFileDefn.versionId = "1.8.0.0";
+		lSchemaFileDefn.labelVersionId = "1.12";
 		lSchemaFileDefn.isMaster = false;
 		lSchemaFileDefn.isDiscipline = true;
 //		lSchemaFileDefn.stewardArr.add("cart");
