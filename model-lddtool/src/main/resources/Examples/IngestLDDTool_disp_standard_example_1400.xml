@@ -15,7 +15,7 @@
                         http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1301.xsd ">
 
   <name>Display</name>
-  <ldd_version_id>1.3.0.1</ldd_version_id>
+  <ldd_version_id>1.4.0.0</ldd_version_id>
   <full_name>Elizabeth D. Rye</full_name>
   <steward_id>img</steward_id>
   <namespace_id>disp</namespace_id>
@@ -26,7 +26,7 @@
   <DD_Attribute>
     <name>horizontal_display_axis</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.horizontal_display_axis</local_identifier>
+    <local_identifier>horizontal_display_axis</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The horizontal_display_axis attribute identifies, by name,
@@ -45,7 +45,7 @@
   <DD_Attribute>
     <name>horizontal_display_direction</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.horizontal_display_direction</local_identifier>
+    <local_identifier>horizontal_display_direction</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth.D.Rye</submitter_name>
     <definition>The horizontal_display_direction attribute specifies the
@@ -71,7 +71,7 @@
   <DD_Attribute>
     <name>vertical_display_axis</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.vertical_display_axis</local_identifier>
+    <local_identifier>vertical_display_axis</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The vertical_display_axis attribute identifies, by name,
@@ -90,7 +90,7 @@
   <DD_Attribute>
     <name>vertical_display_direction</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.vertical_display_direction</local_identifier>
+    <local_identifier>vertical_display_direction</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth.D.Rye</submitter_name>
     <definition>The vertical_display_direction attribute specifies the
@@ -116,7 +116,7 @@
   <DD_Attribute>
     <name>color_display_axis</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.color_display_axis</local_identifier>
+    <local_identifier>color_display_axis</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The color_display_axis attribute identifies, by name, the
@@ -136,7 +136,7 @@
   <DD_Attribute>
     <name>red_channel_band</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.red_channel_band</local_identifier>
+    <local_identifier>red_channel_band</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The red_channel_band attribute identifies the number of the
@@ -154,7 +154,7 @@
   <DD_Attribute>
     <name>green_channel_band</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.green_channel_band</local_identifier>
+    <local_identifier>green_channel_band</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The green_channel_band attribute identifies the number of
@@ -172,7 +172,7 @@
   <DD_Attribute>
     <name>blue_channel_band</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.blue_channel_band</local_identifier>
+    <local_identifier>blue_channel_band</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The blue_channel_band attribute identifies the number of
@@ -190,7 +190,7 @@
   <DD_Attribute>
     <name>time_display_axis</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.time_display_axis</local_identifier>
+    <local_identifier>time_display_axis</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The time_display_axis attribute identifies, by name, the
@@ -208,7 +208,7 @@
   <DD_Attribute>
     <name>frame_rate</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.frame_rate</local_identifier>
+    <local_identifier>frame_rate</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The frame_rate attribute indicates the number of still
@@ -227,7 +227,7 @@
   <DD_Attribute>
     <name>loop_flag</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.loop_flag</local_identifier>
+    <local_identifier>loop_flag</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The loop_flag attribute specifies whether or not a movie
@@ -251,7 +251,7 @@
   <DD_Attribute>
     <name>loop_count</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.loop_count</local_identifier>
+    <local_identifier>loop_count</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The loop_count attribute specifies the number of times a
@@ -267,7 +267,7 @@
   <DD_Attribute>
     <name>loop_delay</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.loop_delay</local_identifier>
+    <local_identifier>loop_delay</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The loop_delay attribute specifies the amount of time to
@@ -284,7 +284,7 @@
   <DD_Attribute>
     <name>loop_back_and_forth_flag</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.loop_back_and_forth_flag</local_identifier>
+    <local_identifier>loop_back_and_forth_flag</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The loop_back_and_forth_flag attribute specifies whether or
@@ -309,7 +309,7 @@
   <DD_Class>
     <name>Display_Settings</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.Display_Settings</local_identifier>
+    <local_identifier>Display_Settings</local_identifier>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The Display_Settings class contains one or more classes
       describing how data should be displayed on a display
@@ -321,19 +321,19 @@
         <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.Display_Direction</local_identifier>
+      <local_identifier>Display_Direction</local_identifier>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.Color_Display_Settings</local_identifier>
+      <local_identifier>Color_Display_Settings</local_identifier>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.Movie_Display_Settings</local_identifier>
+      <local_identifier>Movie_Display_Settings</local_identifier>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -371,7 +371,7 @@
   <DD_Class>
     <name>Display_Direction</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.Display_Direction</local_identifier>
+    <local_identifier>Display_Direction</local_identifier>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The Display_Direction class specifies how two of the
       dimensions of an Array object should be displayed in the vertical
@@ -384,25 +384,25 @@
         <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.horizontal_display_axis</local_identifier>
+      <local_identifier>horizontal_display_axis</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.horizontal_display_direction</local_identifier>
+      <local_identifier>horizontal_display_direction</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.vertical_display_axis</local_identifier>
+      <local_identifier>vertical_display_axis</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.vertical_display_direction</local_identifier>
+      <local_identifier>vertical_display_direction</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -412,13 +412,13 @@
   <DD_Class>
     <name>Color_Display_Settings</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.Color_Display_Settings</local_identifier>
+    <local_identifier>Color_Display_Settings</local_identifier>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The Color_Display_Settings class provides guidance to data
       users on how to display a multi-banded Array object on a
       color-capable display device.</definition>
     <DD_Association>
-      <local_identifier>disp.color_display_axis</local_identifier>
+      <local_identifier>color_display_axis</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -430,19 +430,19 @@
         <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.red_channel_band</local_identifier>
+      <local_identifier>red_channel_band</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.green_channel_band</local_identifier>
+      <local_identifier>green_channel_band</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.blue_channel_band</local_identifier>
+      <local_identifier>blue_channel_band</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -452,13 +452,13 @@
   <DD_Class>
     <name>Movie_Display_Settings</name>
     <version_id>1.0</version_id>
-    <local_identifier>disp.Movie_Display_Settings</local_identifier>
+    <local_identifier>Movie_Display_Settings</local_identifier>
     <submitter_name>Elizabeth D. Rye</submitter_name>
     <definition>The Movie_Display_Settings class provides default values
       for the display of a multi-banded Array using a software application
       capable of displaying video content.</definition>
     <DD_Association>
-      <local_identifier>disp.time_display_axis</local_identifier>
+      <local_identifier>time_display_axis</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -470,31 +470,31 @@
         <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.frame_rate</local_identifier>
+      <local_identifier>frame_rate</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.loop_flag</local_identifier>
+      <local_identifier>loop_flag</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.loop_count</local_identifier>
+      <local_identifier>loop_count</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.loop_delay</local_identifier>
+      <local_identifier>loop_delay</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <local_identifier>disp.loop_back_and_forth_flag</local_identifier>
+      <local_identifier>loop_back_and_forth_flag</local_identifier>
       <reference_type>attribute_of</reference_type>
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
