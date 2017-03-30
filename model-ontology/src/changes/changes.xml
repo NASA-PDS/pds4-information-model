@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Copyright 2010-2016, by the California Institute of Technology.
+  Copyright 2010-2017, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology Transfer
   at the California Institute of Technology.
@@ -23,33 +23,28 @@
   </properties>
 
   <body>
-    <release version="7.1.0" date="2017-03-30" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
-<action dev="jshughes" type="update">
-Three model files are updated in this release:  "UpperModel.pins", "UpperModel.pont", "dd11179.pins"
-</action>
-<action dev="jshughes" type="update">
-CCB approved changes: CCB-171 - Split hardware-compatible ASCII numeric types from the unbounded 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - The values and value meanings for
-"SIP_Deep_Archive.provider_site_id" were added. 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - The value “MD5Deep 4.n” and its value meaning for
-"Information_Package_Component_Deep_Archive.checksum_type", was added. 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - Added schematron rule to Product_SIP_Deep_Archive to
-validate that both Internal_Reference and lidvid_reference are required. 
-</action>
-<action dev="jshughes" type="fix">
-Property Maps – The attributes property_map_type and property_map_subtype were moved
-from pdroperty_maps to property_map_entry. 
-</action>
-<action dev="jshughes" type="fix">
-JSON File – Added Association to provide link (generalization) for a SuperClass.
- Added assocType {attribute_of, component_of, parent_of}
-</action>
+    <release version="7.1.0" date="2017-03-30" description="This release of the Model Ontology is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update">
+        Three model files are updated in this release: "UpperModel.pins", "UpperModel.pont", "dd11179.pins"
+      </action>
+      <action dev="jshughes" type="update">
+        CCB approved changes: CCB-171 - Split hardware-compatible ASCII numeric types from the unbounded.
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - The values and value meanings for "SIP_Deep_Archive.provider_site_id" were added. 
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - The value “MD5Deep 4.n” and its value meaning for "Information_Package_Component_Deep_Archive.checksum_type", was added. 
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - Added schematron rule to Product_SIP_Deep_Archive to validate that both Internal_Reference and lidvid_reference are required. 
+      </action>
+      <action dev="jshughes" type="fix">
+        Property Maps – The attributes property_map_type and property_map_subtype were moved from pdroperty_maps to property_map_entry. 
+      </action>
+      <action dev="jshughes" type="fix">
+        JSON File – Added Association to provide link (generalization) for a SuperClass. Added assocType {attribute_of, component_of, parent_of}.
+      </action>
     </release>
 
     <release version="7.0.1" date="2017-01-03" description="This release of the Model Ontology represents a point build of this component.">
