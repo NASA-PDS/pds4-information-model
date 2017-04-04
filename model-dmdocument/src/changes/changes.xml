@@ -23,6 +23,9 @@
   </properties>
 
   <body>
+    <release version="8.0.0" date="TBD" description="TBD">
+    </release>
+
     <release version="7.1.0" date="2017-03-31" description="This release of the Model DM-Document is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
      <action dev="Steve Hughes" type="update">
       This release of the IMTool includes many changes from the on-going effort to convert internal object model from  Protege-based to OWL-based. The conversion of most core routines that manage the object model is mostly completed. The conversion of output modules that write and convert the model to files in specific formats is still on-giong.

@@ -23,6 +23,9 @@
   </properties>
 
   <body>
+    <release version="8.0.0" date="TBD" description="TBD">
+    </release>
+
     <release version="7.1.0" date="2017-03-30" description="This release of the Model Ontology is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update">
         Three model files are updated in this release: "UpperModel.pins", "UpperModel.pont", "dd11179.pins"
