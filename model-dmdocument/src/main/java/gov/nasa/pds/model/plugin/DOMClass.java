@@ -31,6 +31,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
 	
 	DOMClass subClassOf; 
+	String subClassOfTitle; 					// needed after parsing Protege Pont file to find subClass
+	String subClassOfIdentifier; 				// needed after parsing Protege Pont file to find subClass
 	ArrayList <DOMClass> superClassHierArr; 
 	ArrayList <DOMClass> subClassHierArr; 
 	
@@ -70,7 +72,10 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		isReferencedFromLDD = false;
 		
-		subClassOf = null;
+		subClassOf = null;		
+		subClassOfTitle = "TBD_subClassOfTitle"; 					
+		subClassOfIdentifier = "TBD_subClassOfIdentifier"; 
+		
 		subClassHierArr = new ArrayList <DOMClass> ();  
 		superClassHierArr = new ArrayList <DOMClass> ();  
 		
@@ -136,6 +141,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 		includeInThisSchemaFile = lOldClass.includeInThisSchemaFile;
 		isFromLDD = lOldClass.isFromLDD;
 		isReferencedFromLDD = lOldClass.isReferencedFromLDD;
+		subClassOfTitle = lOldClass.subClassOfTitle; 
+		subClassOfIdentifier = lOldClass.subClassOfIdentifier;
 		return;
 	}
 	
