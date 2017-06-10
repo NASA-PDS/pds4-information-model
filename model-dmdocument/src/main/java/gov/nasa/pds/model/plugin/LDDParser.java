@@ -67,6 +67,9 @@ public class LDDParser extends Object
 	ArrayList <String> classConceptSuf;
 	TreeMap <String, String> classConceptNorm;
 	ArrayList <String> validConceptArr;
+	
+	// map of local to external .titles for LDD valArr update
+	TreeMap <String, String> lLDDValArrExtUpdDefnClassMap = new TreeMap <String, String> ();
 
 	//No generics
 	Document dom;
@@ -248,6 +251,7 @@ public class LDDParser extends Object
 	public void getLocalDD() throws java.io.IOException {
 		//parse the xml file and get the dom object
 		parseXmlFile(gSchemaFileDefn);
+		
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseXmlFile() Done");
 		
 		parseDocument(gSchemaFileDefn);
@@ -326,7 +330,7 @@ public class LDDParser extends Object
 		} else {
 			lSchemaFileDefn.setStewardIds ("tbd");
 		}	
-		
+
 		lDescription = getTextValue(docEle,"comment");
 		if (lDescription  == null || (lDescription.indexOf("TBD") == 0)) {
 			lDescription  = "TBD_description";
@@ -342,7 +346,7 @@ public class LDDParser extends Object
 //		get the LDD classes
 		getClass (lSchemaFileDefn, docEle);
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseDocument.getClass() Done");
-		
+
 //		get the LDD rules
 		getRule (lSchemaFileDefn, docEle);
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseDocument.getRule() Done");
@@ -354,10 +358,7 @@ public class LDDParser extends Object
 //		get the component for the LDD association 
 		resolveComponentsForAssociation (lSchemaFileDefn);
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseDocument.resolveComponentsForAssociation() Done");
-		
-		
-//		InfoModel.printObjectDebug (552, classMap.get("http://pds.nasa.gov/infomodel/pds#geom.Camera_Model_Parameters.XSChoice#.component_of.100003524"));	
-		
+				
 		validateAttributeUsed();
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseDocument.validateAttributeUsed() Done");
 		
@@ -625,7 +626,7 @@ public class LDDParser extends Object
 					lClass.nameSpaceId = lSchemaFileDefn.nameSpaceId;					
 					lClass.subModelId = "UpperModel";  // *** this was added to allow the IM Spec to be written					
 					lClass.steward = lSchemaFileDefn.stewardId;
-					
+
 					// get disposition
 					PDSObjDefn lClassWDisp;
 					lClassWDisp = DMDocument.getClassDisposition (lClass, lClass.title, false);
@@ -1251,7 +1252,25 @@ public class LDDParser extends Object
 				}
 			}					
 		}
-		
+	
+		// update the assoc (AttrDefn) valArr; change 
+		for (Iterator <PDSObjDefn> i = classArr.iterator(); i.hasNext();) {
+			PDSObjDefn lClass = (PDSObjDefn) i.next();
+			for (Iterator <AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
+				AttrDefn lAssoc = (AttrDefn) j.next();
+				ArrayList <String> updValArr = new ArrayList <String> ();
+				for (Iterator <String> k = lAssoc.valArr.iterator(); k.hasNext();) {
+					String lLDDValue = (String) k.next();
+					String lExtValue = lLDDValArrExtUpdDefnClassMap.get(lLDDValue);
+					if (lExtValue == null) {
+						updValArr.add(lLDDValue);
+					} else {
+						updValArr.add(lExtValue);
+					}
+				}
+				lAssoc.valArr = updValArr;
+			}
+		}		
 			
 //			if (lClass.identifier.compareTo("0001_NASA_PDS_1.disp.Display_Direction") == 0) printClassDebug ("4", "0001_NASA_PDS_1.disp.Display_Direction");
 //			printClassDebug ("5", "0001_NASA_PDS_1.disp.Display_Direction");
@@ -1355,9 +1374,13 @@ public class LDDParser extends Object
 		String lClassIdentifier = DMDocument.registrationAuthorityIdentifierValue + "." + lLocalIdentifier;
 		lParentClass = InfoModel.masterMOFClassIdMap.get(lClassIdentifier);
 		if (lParentClass != null) {
+// 8888 something is missing, development version uses lComponentClass.title
+			// create the valArr update map - local to external titles.
+			lLDDValArrExtUpdDefnClassMap.put(lLocalIdentifier, lParentClass.title);
+
 			return lParentClass;
 		}
-		
+				
 		lddErrorMsg.add("   ERROR    Class:" + lClass.identifier + "  Association:" + lProperty.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Parent Class");
 		return null;
 	}
