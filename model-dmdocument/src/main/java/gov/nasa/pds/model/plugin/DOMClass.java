@@ -29,7 +29,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean includeInThisSchemaFile;
 	boolean isFromLDD;								// has been ingested from Ingest_LDD
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
-	
+	boolean isExposed;							// the class is to be exposed in XML Schema - i.e., defined using xs:Element
+
 	DOMClass subClassOf; 
 	String subClassOfTitle; 					// needed after parsing Protege Pont file to find subClass
 	String subClassOfIdentifier; 				// needed after parsing Protege Pont file to find subClass
