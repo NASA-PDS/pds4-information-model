@@ -46,6 +46,7 @@ public class SchemaFileDefn {
 	String relativeFileSpecXMLLabel;		// base dir path, xml schema dir, base file name, file extension
 	String relativeFileSpecDDDocXML;		
 	String relativeFileSpecDDCSV;			
+	String relativeFileSpecCCSDSCSV;			
 	String relativeFileSpecDDProtPins;		
 	String relativeFileSpecDDProtPinsSN;	// short name - used for DD diff comparisons
 	String relativeFileSpecModelRulePins;		
@@ -106,7 +107,8 @@ public class SchemaFileDefn {
 		relativeFileNameSchematron = "TBD_relativeFileNameSchematron";
 		relativeFileSpecXMLLabel = "TBD_relativeFileSpecXMLLabel";
 		relativeFileSpecDDDocXML = "TBD_relativeFileSpecDDDocXML";	
-		relativeFileSpecDDCSV = "TBD_relativeFileSpecDDCSV";			
+		relativeFileSpecDDCSV = "TBD_relativeFileSpecDDCSV";
+		relativeFileSpecCCSDSCSV = "TBD_relativeFileSpecCCSDSCSV";
 		relativeFileSpecDDProtPins = "relativeFileSpecDDProtPins";	
 		relativeFileSpecDDProtPinsSN = "relativeFileSpecDDProtPinsSN";	
 		relativeFileSpecModelRulePins = "TBD_relativeFileSpecModelRulePins";	
@@ -193,6 +195,7 @@ public class SchemaFileDefn {
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + "export/JSON/" + "PDS4_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
 			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + "PDS4_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + "_DOM" + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id;			
+			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + "PDS4_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		} else if (! DMDocument.LDDSyncFileNameFlag) {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
 			relativeFileSpecSchematron = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".sch";			
@@ -204,6 +207,7 @@ public class SchemaFileDefn {
 			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".pont";
 			relativeFileSpecReportTXT = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".txt";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
+			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		} else {
 			versionId = DMDocument.masterPDSSchemaFileDefn.versionId;
 			labelVersionId = DMDocument.masterPDSSchemaFileDefn.labelVersionId;
@@ -225,6 +229,7 @@ public class SchemaFileDefn {
 			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".pont";
 			relativeFileSpecReportTXT = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".txt";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id;			
+			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		}
 		relativeFileSpecDDDocXML = DMDocument.outputDirPath + "export/DD/" + "PDS4_" + nameSpaceIdNCUC + "_" + "DD" + "_" + lab_version_id + ".xml";	
 		relativeFileSpecDDProtPins = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_" + DMDocument.masterTodaysDateyymmdd + ".pins";	
