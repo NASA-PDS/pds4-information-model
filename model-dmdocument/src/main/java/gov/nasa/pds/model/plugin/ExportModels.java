@@ -99,6 +99,10 @@ public class ExportModels extends Object {
 		
 		//if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
 
+		// write the PDS4 CCSDS CSV file 
+		WriteDocCSV writeDocCSV = new WriteDocCSV ();
+		writeDocCSV.writeDocCSV (DMDocument.masterPDSSchemaFileDefn);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - CCSDS CSV Done");
 		
 		// write the 11179 DD pins file
 		Write11179DDPinsFile write11179DDPinsFile = new Write11179DDPinsFile ();
