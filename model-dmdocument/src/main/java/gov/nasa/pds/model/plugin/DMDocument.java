@@ -32,6 +32,7 @@ public class DMDocument extends Object {
 	// specification document info
 	static DocDefn docInfo;
 	static final String docFileName  = "DMDocument";
+	static final String upperModelFileName  = "UpperModel.pont";
 	
 	// variables for the class %3ACLIPS_TOP_LEVEL_SLOT_CLASS
 	static final String TopLevelAttrClassName  = "%3ACLIPS_TOP_LEVEL_SLOT_CLASS";
@@ -90,7 +91,6 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-
 //	static String LDDToolVersionId  = "0.1.9.0a2";
 //	static String LDDToolVersionId  = "0.2.0.3";
 //	static String LDDToolVersionId  = "0.2.1.0";
@@ -126,6 +126,8 @@ public class DMDocument extends Object {
 
 	// Master Model
 	static MasterInfoModel masterInfoModel;
+// 7777 
+//	static MasterDOMInfoModel masterDOMInfoModel;
 	
 	// Master LDD Model
 	static LDDParser primaryLDDModel;
@@ -134,9 +136,8 @@ public class DMDocument extends Object {
 	static ArrayList <LDDParser> LDDModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
-	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap;
+	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
-//	static TreeMap <String, String> masterClassStewardSortMap;
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
 	static SchemaFileDefn masterPDSSchemaFileDefn; 		
@@ -208,6 +209,9 @@ public class DMDocument extends Object {
 	
 	// debug flag	
 	static boolean debugFlag = false;
+	
+	// Property List for Config.Properties
+	static Properties props = new Properties();
 	
 	// need a place to store the LDD schema file definition until it is created.
 //	static String LDDToolSchemaFileVersionId;
@@ -363,15 +367,15 @@ public class DMDocument extends Object {
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Globular Cluster", false));
 
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Globular Cluster", false));
+
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Planetary Rings", "pds", "Node", "pds", "name", "Planetary Rings", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Imaging", "pds", "PDS_Affiliate", "pds", "name", "Imaging", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Planetary Rings", "pds", "PDS_Affiliate", "pds", "name", "Planetary Rings", false));
 
-	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Globular Cluster", false));
-	    
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.data_regime", "pds", "Primary_Result_Summary", "pds", "data_regime", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.type", "pds", "Primary_Result_Summary", "pds", "type", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.processing_level_id", "pds", "Primary_Result_Summary", "pds", "processing_level_id", "", false));
@@ -391,6 +395,8 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.record_delimiter", "pds", "Inventory", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Transfer_Manifest.record_delimiter", "pds", "Transfer_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Uniformly_Sampled.sampling_parameters", "pds", "Uniformly_Sampled", "pds", "sampling_parameters", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Object_Statistics.bit_mask", "pds", "Object_Statistics", "pds", "bit_mask", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Object_Statistics.md5_checksum", "pds", "Object_Statistics", "pds", "md5_checksum", "", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "comma", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "horizontal tab", false));
@@ -600,16 +606,15 @@ public class DMDocument extends Object {
 		getEnvMap();
 		dataDirPath = lPARENT_DIR + "/Data/";
 		
-		// get the config file
+		// get the configuration file
 		String configInputFile = dataDirPath + "config.properties";
 		String configInputStr;
     	File configFile = new File(configInputFile); 
     	try {
     	    FileReader reader = new FileReader(configFile);
-    	    Properties props = new Properties();
+//    	    Properties props = new Properties();
     	    props.load(reader);
     	    configInputStr = props.getProperty("infoModelVersionId");
-//    	    if (configInputStr != null) infoModelVersionId = configInputStr;
     	    if (configInputStr != null) {
     	    	infoModelVersionId = configInputStr;
     	    	infoModelVersionIdNoDots = replaceString(infoModelVersionId, ".", "");
@@ -619,31 +624,19 @@ public class DMDocument extends Object {
     			LDDToolSchemaVersionMapDots.put ("disp", infoModelVersionId);
     			LDDToolSchemaVersionNSMap.put ("pds", "1");
     			LDDToolSchemaVersionNSMap.put ("disp", "1");
-//   	  	   System.out.println("debug dmDocument - infoModelVersionId:" + infoModelVersionId);
-//  	  	   System.out.println("debug dmDocument - infoModelVersionIdNoDots:" + infoModelVersionIdNoDots);
-//   	  	   System.out.println("debug dmDocument - LDDToolSchemaVersionMapDots.get:" + LDDToolSchemaVersionMapDots.get("pds"));
-//   	  	   System.out.println("debug dmDocument - LDDToolSchemaVersionMapNoDots.get:" + LDDToolSchemaVersionMapNoDots.get("pds"));
     	    }
     	    configInputStr = props.getProperty("schemaLabelVersionId");
     	    if (configInputStr != null) schemaLabelVersionId = configInputStr;
-//    	    System.out.println("debug dmDocument - schemaLabelVersionId:" + schemaLabelVersionId);
     	    configInputStr= props.getProperty("pds4BuildId");
     	    if (configInputStr != null) pds4BuildId = configInputStr;
-//    	    System.out.println("debug dmDocument - pds4BuildId:" + pds4BuildId);
-    	    
     	    configInputStr= props.getProperty("imSpecDocTitle");
     	    if (configInputStr != null) imSpecDocTitle = configInputStr;
-//    	    System.out.println("debug dmDocument - imSpecDocTitle:" + imSpecDocTitle);
     	    configInputStr= props.getProperty("imSpecDocAuthor");
     	    if (configInputStr != null) imSpecDocAuthor = configInputStr;
-//    	    System.out.println("debug dmDocument - imSpecDocAuthor:" + imSpecDocAuthor);
     	    configInputStr= props.getProperty("imSpecDocSubTitle");
     	    if (configInputStr != null) imSpecDocSubTitle = configInputStr;
-//    	    System.out.println("debug dmDocument - imSpecDocSubTitle:" + imSpecDocSubTitle);
-    	    
     	    configInputStr= props.getProperty("debugFlag");
     	    if (configInputStr != null && configInputStr.compareTo("true") == 0) debugFlag = true;
-//    	    System.out.println("debug dmDocument - debugFlag:" + debugFlag);
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
@@ -721,48 +714,13 @@ public class DMDocument extends Object {
 		}
 		System.out.println("");
 		
-		// print out the stewards
-//		System.out.println("\n>>info    - Configured Stewards");
-//		for (Iterator <String> i = masterStewardArr.iterator(); i.hasNext();) {
-//			String lSteward = (String) i.next();
-//			System.out.println(">>info    - " + lSteward);
-//		}
-
-		// print out the namespaceid
-//		System.out.println("\n>>info    - Configured NameSpace Ids");
-//		for (Iterator <String> i = masterNameSpaceIDArr.iterator(); i.hasNext();) {
-//			String lNameSpaceid = (String) i.next();
-//			System.out.println(">>info    - " + lNameSpaceid);
-//		}
-//		System.out.println("\n");
-		
 		// set up the System Build version
-//		XMLSchemaLabelBuildNum = "6a";
 		XMLSchemaLabelBuildNum = pds4BuildId;
-
-		// set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces, etc)
-		masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
-		SchemaFileDefn lSchemaFileDefn;
-		lSchemaFileDefn = new SchemaFileDefn("pds");
-		lSchemaFileDefn.versionId = infoModelVersionId;
-		lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
-		lSchemaFileDefn.lddName = "Common Dictionary";
-		lSchemaFileDefn.sourceFileName = "N/A";
-		lSchemaFileDefn.isMaster = true;
-		lSchemaFileDefn.stewardArr.add("pds");
-		lSchemaFileDefn.stewardArr.add("img");
-		lSchemaFileDefn.stewardArr.add("ops");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		masterPDSSchemaFileDefn = lSchemaFileDefn;
 		
-		// set up the remaining Schema Definitions		
-		if (! DMDocument.LDDToolFlag) {
-			setupNameSpaceInfoAll();
-		} else {
-			// only output the master LDD schema
-			masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
-		}
+	    // intialize the masterSchemaFileSortMap 
+		// set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces, etc)
+//		masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
+		setupNameSpaceInfoAll(props);
 
 		// get the 11179 Attribute Dictionary - .pins file
 		ProtPins11179DD protPins11179DD  = new ProtPins11179DD ();
@@ -1064,138 +1022,115 @@ public class DMDocument extends Object {
 			  System.exit(1);
 		}
 	}
-	
-//	setup namespace information (for XML Schemas, etc)
-	static void setupNameSpaceInfoAll () {
+
+	static void setupNameSpaceInfoAll (Properties prop) {
 		SchemaFileDefn lSchemaFileDefn;
-		
-		// *** namespace is set by argument to  constructor ***
-		
-		// Schema file Definitions by namespaceid
-		lSchemaFileDefn = new SchemaFileDefn("atm");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("atm");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("geo");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("geo");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("img");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.17";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("img");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+		String SCHEMA_LITERAL = "lSchemaFileDefn.";
+		String IDENTIFIER = ".identifier";
+   
+        Set<Object> keys = prop.keySet();	
+        for (Object k:keys) {
+        	String key = (String)k;
+        	// look for schema entries
+        	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
+        		String nameSpaceId = prop.getProperty(key);
+        		System.out.println("finding identifier: ---->"+ nameSpaceId);
+        		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
+        		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
+        	    String value = prop.getProperty(isMasterKey);
+        		if (value != null){
+        			if (value.equals("true"))
+        			   lSchemaFileDefn.isMaster = true;
+        			else
+        				lSchemaFileDefn.isMaster = false;
+        		} else{
+        			System.out.println("Missing schema config item: "+ isMasterKey);
+        		}
+        		String versionIdKey = SCHEMA_LITERAL+nameSpaceId + ".versionId";
+        	
+        	    value = prop.getProperty(versionIdKey);
+        		if (value != null){
+        			lSchemaFileDefn.versionId =  value;
+        		} else if (lSchemaFileDefn.isMaster) {
+                                lSchemaFileDefn.versionId = infoModelVersionId;
+        		} else {
+        			System.out.println("Missing schema config item: "+ versionIdKey);
+        		}
+        		String labelVersionIdKey = SCHEMA_LITERAL+nameSpaceId + ".labelVersionId";
+        	    value = prop.getProperty(labelVersionIdKey);
+        		if (value != null){
+        			lSchemaFileDefn.labelVersionId =  value;
+        		} else if (lSchemaFileDefn.isMaster) {
+                                lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
+        		} else{
+        			System.out.println("Missing schema config item: "+ labelVersionIdKey);
+        		}
+           		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
+        	    value = prop.getProperty(isDisciplineKey);
+        		if (value != null){
+        			if (value.equals("true"))
+        			   lSchemaFileDefn.isDiscipline = true;
+        			else
+        			   lSchemaFileDefn.isDiscipline = false;
+        		} 
+        		
+        		String isMissionKey = SCHEMA_LITERAL+nameSpaceId + ".isMission";
+        		value = prop.getProperty(isMissionKey);
+            	if (value != null){
+            		if (value.equals("true"))
+            			   lSchemaFileDefn.isMission = true;
+            		else
+            		       lSchemaFileDefn.isMission = false;
+        	    }    	
+        		
+          		String stewardArrKey = SCHEMA_LITERAL+nameSpaceId + ".stewardArr";
+        	    value = prop.getProperty(stewardArrKey);
+        		if (value != null){
+        		   String[] stewardArray = value.split(",");
+        		   for (int i= 0; i < stewardArray.length; i++) {
+        			   lSchemaFileDefn.stewardArr.add(stewardArray[i]);
+        		   }       	
+        		} else{
+        			System.out.println("Missing schema config item: "+ stewardArrKey);
+        		}
+        		lSchemaFileDefn.setVersionIds();
+        		
+          		String commentKey = SCHEMA_LITERAL+nameSpaceId + ".comment";
+        	    value = prop.getProperty(commentKey);
+        		if (value != null){        		
+        			   lSchemaFileDefn.comment = value;        		        	
+        		} 
+        		
+          		String lddNameKey = SCHEMA_LITERAL+nameSpaceId + ".lddName";
+        	    value = prop.getProperty(lddNameKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.lddName = value;
+        		} 
+        		
+          		String sourceFileNameKey = SCHEMA_LITERAL+nameSpaceId + ".sourceFileName";
+        	    value = prop.getProperty(sourceFileNameKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.sourceFileName = value;
+        		} 
+        		
+        		if (lSchemaFileDefn.isMaster) {
+        		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+        		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+        		   System.out.println("ADDING master:"+ lSchemaFileDefn.identifier);
+        		   if (DMDocument.LDDToolFlag) {
+        			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
+        			   break;
+        		   }     		  
+        		} else if (!DMDocument.LDDToolFlag) {
+        			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+        			System.out.println("ADDING :"+ lSchemaFileDefn.identifier);
+        		} 
+		       
 
-		/*
-		PDS4_IMG_1300	1.13
-		PDS4_IMG_1400	1.14
-		PDS4_IMG_1410	1.15
-		PDS4_IMG_1500	1.16
-		PDS4_IMG_1510	1.17
-		*/
-		
-		lSchemaFileDefn = new SchemaFileDefn("naif");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("naif");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("ppi");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("ppi");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("rings");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("rings");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("rs");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("rs");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("sbn");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("sbn");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("msn");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = false;
-		lSchemaFileDefn.isMission = true;
-		lSchemaFileDefn.stewardArr.add("msn");
-		lSchemaFileDefn.setVersionIds();
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		lSchemaFileDefn = new SchemaFileDefn("disp");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("img");
-		lSchemaFileDefn.setVersionIds();
-		lSchemaFileDefn.comment = "This dictionary describes how to display Array data on a display device.";
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
+        	}
+          }
+        }
 
-		lSchemaFileDefn = new SchemaFileDefn("geom");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-		lSchemaFileDefn.stewardArr.add("geo");
-		lSchemaFileDefn.setVersionIds();
-		lSchemaFileDefn.comment = "This dictionary describes geometry.";
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);		
-		
-		lSchemaFileDefn = new SchemaFileDefn("cart");
-		lSchemaFileDefn.versionId = "1.8.0.0";
-		lSchemaFileDefn.labelVersionId = "1.12";
-		lSchemaFileDefn.isMaster = false;
-		lSchemaFileDefn.isDiscipline = true;
-//		lSchemaFileDefn.stewardArr.add("cart");
-		lSchemaFileDefn.stewardArr.add("img");
-		lSchemaFileDefn.setVersionIds();
-		lSchemaFileDefn.comment = "This dictionary describes cartography.";
-		masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-		
-		return;
-	}
-	
 /**********************************************************************************************************
 	global utilities 
 ***********************************************************************************************************/
