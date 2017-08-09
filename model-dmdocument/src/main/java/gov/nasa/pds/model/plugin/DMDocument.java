@@ -363,6 +363,11 @@ public class DMDocument extends Object {
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Globular Cluster", false));
 
+	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Planetary Rings", "pds", "Node", "pds", "name", "Planetary Rings", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Imaging", "pds", "PDS_Affiliate", "pds", "name", "Imaging", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Planetary Rings", "pds", "PDS_Affiliate", "pds", "name", "Planetary Rings", false));
+
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Globular Cluster", false));
