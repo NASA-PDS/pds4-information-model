@@ -1,4 +1,4 @@
-; Fri Mar 10 14:38:22 PST 2017
+; Fri Aug 04 22:14:55 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -134,6 +134,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot has_occultation_time_series
+;+		(comment "The has_occultation_time_series association is a relationship to occultation_time_series")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Time_Series)
+		(create-accessor read-write))
 	(single-slot value_begin_date
 ;+		(comment "The value_begin_date attribute provides the first date on which the permissible value is in effect.")
 		(type STRING)
@@ -172,16 +177,14 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
-	(single-slot observed_event_stop_tdb
-;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot observed_event_stop_tdb
+;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+	(multislot ring_profile_direction
+;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'ingress', 'egress', or 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot collected_from
 ;+		(comment "The collected_from association is a relationship to target.")
@@ -205,10 +208,9 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot processing_level
+	(multislot processing_level
 ;+		(comment "The processing_level attribute provides a broad classification of data processing level.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot telemetry_provider_id
 ;+		(comment "The telemetry_provider_id attribute identifies the provider and or version of the telemetry data used in the generation of this data.")
@@ -279,6 +281,11 @@
 ;+		(comment "The character_constraint attribute limits the characters allowed.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_rings_supplement
+;+		(comment "The has_rings_supplement association is a relationship to rings_supplement")
+		(type INSTANCE)
+;+		(allowed-classes Rings_Supplement)
+		(create-accessor read-write))
 	(multislot value_domain
 ;+		(comment "Associated value domains.")
 		(type INSTANCE)
@@ -294,10 +301,9 @@
 ;+		(comment "The starting_point attribute provides the local_identifier of the object to be accessed first.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot sub_stellar_clock_angle
+	(multislot sub_stellar_clock_angle
 ;+		(comment "sub_stellar_clock_angle is an angle measured at a point in the ring plane, from the direction toward a star to the local radial direction. This angle is projected into the ring plane and measured in the clockwise %28retrograde%29 direction. Equivalently, this is the prograde angle from the local radial direction to the direction toward the star. For stellar occultation data, this angle is equal to %28180 - OBSERVED_RING_AZIMUTH%29 mod 360. It is available only for backward compatibility with previously published Cassini VIMS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_clock_angle is an optional data table field for Cassini VIMS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini VIMS occultation data; not recommended for other occultation data. ")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot has_Field_Checksum
 ;+		(comment "The has_Field_Checksum association is a relationship to Table_Field_Checksum.")
@@ -312,6 +318,10 @@
 ;+		(comment "This attribute is used in the image map projection. Under review.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot observed_event_stop_time_utc
+;+		(comment "observed_event_stop_time_utc indicates the UTC value for latest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot investigation_reference
 ;+		(comment "The investigation reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object..")
@@ -546,6 +556,10 @@
 ;+		(comment "The observing_system_name attribute provides a unique name for an observing system.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot parent_class_name
+;+		(comment "The parent class name provides the name of the superclass of this class.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot medium_type
 ;+		(comment "The medium_type attribute identifies the physical storage medium for a data volume. Examples: CD-ROM, CARTRIDGE TAPE.")
 		(type STRING)
@@ -641,11 +655,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(cardinality 20 20)
-		(create-accessor read-write))
-	(single-slot SCLK_start_time
-;+		(comment "SCLK_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label. ")
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot vertical_framelet_offset
 ;+		(comment "This attribute is used in the image map projection. Under review.")
@@ -764,10 +773,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot highest_detectable_opacity
-;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+	(multislot highest_detectable_opacity
+;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot lidvid_reference
 ;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
@@ -834,10 +842,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes Alias_List)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot parent_name
-;+		(comment "The parent name provides the name of the superclass.")
-		(type STRING)
 		(create-accessor read-write))
 	(multislot has_Property_Map_Entry
 ;+		(comment "The has_Property_Map_Entry association is a relationship to property map entry.")
@@ -944,10 +948,9 @@
 ;+		(comment "The longitude attribute provides the angular distance east or west on the object's surface, measured by the angle contained between the meridian of a particular place and some prime meridian.")
 		(type FLOAT)
 		(create-accessor read-write))
-	(single-slot minimum_observed_ring_azimuth
-;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_observed_ring_azimuth
+;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot volume_size
 ;+		(comment "The volume size attribute provide the number of bytes in the volume.")
@@ -1007,10 +1010,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
-	(single-slot maximum_observed_event_time
-;+		(comment "maximum_observed_event_time indicates the value for latest time in the described data, and is given in observed_event_tdb format. ")
+	(multislot maximum_observed_event_time
+;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot instrument_host_id
 ;+		(comment "The instrument_host_id attribute provides a unique identifier for the host on which an instrument is located. This host can be either a spacecraft or an earth base (e.g. earth).")
@@ -1028,6 +1030,11 @@
 	(multislot referenced_object_type
 ;+		(comment "The reference object type attribute indicates the type of the object being referenced.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_occultation_supplement
+;+		(comment "The has_occultation_supplement association is a relationship to occultation_supplement")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Supplement)
 		(create-accessor read-write))
 	(multislot external_standard_version_id
 ;+		(comment "The external_standard_version_id attribute provides the version of the external standard.")
@@ -1047,6 +1054,11 @@
 ;+		(comment "The facet2 attribute provides a sub-categorization (under the discipline_name) of the type of data being described by Primary_Result_Summary.  The  facet1  and  factet2  values are intended to provide independent sub-categorizations. The values are restricted according to the value of discipline_name. Type: ASCII_Short_String_Collapsed")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot occultation_direction
+;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'ingress', 'egress', 'both', and 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Both" "Egress" "Ingress" "Multiple")
+		(create-accessor read-write))
 	(multislot facet1
 ;+		(comment "The facet1 attribute provides a sub-categorization under the discipline_name.  The values are restricted according to the value of discipline_name.")
 		(type STRING)
@@ -1061,7 +1073,7 @@
 ;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot md5_checksum
-;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed for a file using the MD5 algorithm.")
+;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed using the MD5 algorithm for the contiguous bytes of single digital object (as stored) or for an entire file.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot rule_assign
@@ -1083,10 +1095,9 @@
 		(type STRING)
 		(default "logical_identifier")
 		(create-accessor read-write))
-	(single-slot maximum_observed_ring_elevation
-;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_observed_ring_elevation
+;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot first_line
 ;+		(comment "The first_line attribute provides the line within a source image that corresponds to the first line in a sub-image.")
@@ -1137,10 +1148,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot maximum_radial_sampling_interval
-;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+	(multislot maximum_radial_sampling_interval
+;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot member_in_group
 ;+		(comment "Associated Personnel")
@@ -1317,7 +1327,7 @@
 ;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot spice_filename
-;+		(comment "spice_filename gives the file name%28s%29 of SPICE files used in the analysis. Only used if the SPICE files can not be identified using a LID or LIDVID. Otherwise the association is made in the Reference_Class using the Internal_Reference class. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "spice_filename gives the file name%28s%29 of SPICE files used in the analysis. Only used if the SPICE files cannot be identified using a LID or LIDVID. Otherwise the association is made in the Reference_Class using the Internal_Reference class. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot protocol_type
@@ -1348,10 +1358,9 @@
 ;+		(comment "The document collection reference attribute provides the logical_identifier for a document collection.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot maximum_light_source_incidence_angle
-;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_light_source_incidence_angle
+;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot node_reference
 ;+		(comment "The node reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
@@ -1405,6 +1414,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot has_occultation_ring_profile
+;+		(comment "The has_occultation_ring_profile association is a relationship to occultation_ring_profile")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Ring_Profile)
+		(create-accessor read-write))
 	(single-slot product_creation_time
 		(type STRING)
 ;+		(cardinality 1 1)
@@ -1423,10 +1437,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes External_Reference_Extended)
 		(create-accessor read-write))
-	(single-slot maximum_observed_ring_azimuth
-;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_observed_ring_azimuth
+;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot supported_operating_system_note
 ;+		(comment "The supported operating system note attribute identifies the Operating System that supports the software.")
@@ -1492,10 +1505,9 @@
 ;+		(comment "The constant value attribute provides the value to be used if an attribute is static.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot minimum_observed_ring_elevation
-;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_observed_ring_elevation
+;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot axis_name
 ;+		(comment "The axis_name attribute provides a word or combination of words by which the axis is known.")
@@ -1560,7 +1572,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot source_pds3_id
-;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is required in occultation labels and may be used multiple times. The acceptable nil_reasons are 'inapplicable' and 'unknown'. ")
+;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is constructed as PDS3 dataset_id, a colon, then the PDS3 product_id. The acceptable nil_reasons are 'inapplicable' and 'unknown'.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot upper_110917_Class1
@@ -1600,10 +1612,9 @@
 ;+		(allowed-classes)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
-	(single-slot earth_received_start_time_utc
-;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot earth_received_start_time_utc
+;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot has_Group_Field_Character
 ;+		(comment "The has_Group_Field_Character association is a relationship to the Group_Field_Character.")
@@ -1618,10 +1629,9 @@
 ;+		(comment "The element flag attribute indicates whether or not the class is defined as a xs:element in XML Schema.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot earth_received_stop_time_utc
-;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot earth_received_stop_time_utc
+;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot node_manager_puid
 ;+		(comment "The node manager puid attribute indicates the node manager.")
@@ -1706,7 +1716,7 @@
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot radial_resolution
-;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Not intended to be used as a table field.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
@@ -1858,10 +1868,9 @@
 ;+		(comment "The start_date attribute provides the date when an activity began.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot maximum_wavelength
-;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_wavelength
+;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot institution_name
 ;+		(comment "The institution_name attribute provides the name of the associated institution.")
@@ -1917,10 +1926,9 @@
 ;+		(comment "The campaign end date attribute provides the date when a campaign was completed.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot maximum_ring_longitude
-;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_ring_longitude
+;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot associated_Property_Map
 ;+		(comment "The associated_Property_Map association is a relationship to property map.")
@@ -1957,13 +1965,8 @@
 ;+		(comment "The data_set_name attribute provides the full name given to a data set or a data product. The data_set_name typically identifies the instrument that acquired the data of that instrument Example value data_set_id. Note This attribute is defined in the AMMOS Magellan catalog as an alias for file_name to provide backward compatibility")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot spacecraft_event_start_time_utc
-;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. spacecraft_event_start_time_utc is required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data. Not used for stellar occultations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot local_ID
-;+		(comment "The Local_ID attribute provide an identifier for the object.")
+	(multislot spacecraft_event_start_time_utc
+;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot member_relation_name
@@ -2015,10 +2018,9 @@
 		(type STRING)
 ;+		(value "Create" "Retrieve" "Update" "Delete")
 		(create-accessor read-write))
-	(single-slot spacecraft_event_stop_time_utc
-;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. spacecraft_event_stop_time_utc is required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data. Not used for stellar occultations.Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot spacecraft_event_stop_time_utc
+;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
 		(type STRING)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot terminological_entry
 ;+		(comment "The terminological_entry association is a relationship to Terminological_Entry.")
@@ -2084,6 +2086,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot time_series_direction
+;+		(comment "time_series_direction indicates the direction the occultation proceeds through the target within a particular data product. Possible values are 'ingress', 'egress', 'both' or 'multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Not intended as a value for a table field.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot has_mission_area
 ;+		(comment "The has_mission_area association is a relationship to Mission Area.")
 		(type INSTANCE)
@@ -2148,10 +2154,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot observed_ring_elevation
-;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B. ")
+	(multislot observed_ring_elevation
+;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot underscore
 ;+		(comment "underscore = \"_\" ; (* low line *)")
@@ -2185,10 +2190,9 @@
 ;+		(comment "The character_encoding attribute identifies the standard that maps a set of allowed characters to their machine readable code.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot minimum_observed_event_time
-;+		(comment "minimum_observed_event_time indicates the value for earliest time in the described data, and is given in observed_event_tdb format. ")
+	(multislot minimum_observed_event_time
+;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot software_id
 ;+		(comment "The software id attribute provides a formal name used to refer to the software.")
@@ -2200,11 +2204,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, and Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+	(multislot occultation_type
+;+		(comment "occultation_type distinguishes between three types of occultation experiments: stellar, solar, or radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot instrument_desc
 ;+		(comment "The instrument_desc attribute describes a given instrument.")
@@ -2390,10 +2393,9 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot minimum_radial_sampling_interval
-;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+	(multislot minimum_radial_sampling_interval
+;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot file_name_token
 ;+		(comment "The file name token is a substring that names a directory. The maximum size of a file name is thirty characters.")
@@ -2428,10 +2430,9 @@
 ;+		(value "PDS4.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Specifically required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data, or anytime spacecraft_event_time is a table field. Not used for stellar occultations. Nillable, the nil_reason should be 'inapplicable'. ")
+	(multislot reference_time_utc
+;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
 		(type STRING)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot activity_type
 ;+		(comment "The activity_type attribute provides a classification for the activity.")
@@ -2493,6 +2494,10 @@
 		(type STRING)
 		(default "logical_identifier")
 		(create-accessor read-write))
+	(multislot sclk_start_time
+;+		(comment "sclk_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot external_reference_extended
 ;+		(comment "The external_reference_extended association is a relationship to external_reference_extended.")
 		(type INSTANCE)
@@ -2552,10 +2557,9 @@
 ;+		(comment "The instrument_type attribute identifies the type of an instrument. Example values: POLARIMETER SPECTROMETER")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot minimum_light_source_incidence_angle
-;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_light_source_incidence_angle
+;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot dd_association
 ;+		(comment "The local_association_attribute association provides a relationship to an attribute.")
@@ -2630,10 +2634,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot radial_sampling_interval
-;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+	(multislot radial_sampling_interval
+;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Not intended to be used as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot axis_index_order
 ;+		(comment "The axis_index_order attribute provides the axis index that varies fastest with respect to storage order.")
@@ -2775,10 +2778,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot light_source_incidence_angle
-;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(multislot light_source_incidence_angle
+;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot observing_system_source
 ;+		(comment "Associated observing system sensor.")
@@ -2883,11 +2885,10 @@
 ;+		(comment "The url attribute provides a Uniform Resource Identifier (URI) that specifies where a resource is available and the mechanism for retrieving it.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot frequency_band
-;+		(comment "frequency_band is the one or two letter identifier of the frequency band. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
+	(multislot frequency_band
+;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
 		(type STRING)
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot isMissionOnly
 ;+		(comment "The isMissionOnly attribute indicates whether a rule is for mission level dictionaries only.")
@@ -2909,15 +2910,13 @@
 ;+		(allowed-classes Data_Set_PDS3)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot along_track_timing_offset
+	(multislot along_track_timing_offset
 ;+		(comment "along_track_timing_offset is a timing offset to the along track spacecraft position. It is the value that minimizes differences in radii of matching circular ring features observed on the ingress and egress sides of the occultation track. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot ring_event_stop_tdb
-;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot ring_event_stop_tdb
+;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot pds_address_book_flag
 ;+		(comment " The pds_address_book_flag data attribute indicates whether or not a registered PDS user will have an entry in the PDS telephone directory.")
@@ -2989,10 +2988,9 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot minimum_ring_radius
-;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_ring_radius
+;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot resource_logical_identifier
 ;+		(comment "The resource logical identifier is an object identifier without the version. It identifies the set of all versions of an object.")
@@ -3081,10 +3079,9 @@
 ;+		(comment "The mission_name attribute identifies a major planetary mission or project. A given planetary mission may be associated with one or more spacecraft.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot wavelength
-;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead. Nillable in which case the nil_reason should be 'inapplicable'. ")
+	(multislot wavelength
+;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot classTitle
 ;+		(comment "The classTitle attribute provides the name of the class to be used for display.")
@@ -3125,10 +3122,9 @@
 ;+		(comment "The data_set_puid attribute provides a globally unique identifer for a data set.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot ring_event_start_time_utc
-;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot ring_event_start_time_utc
+;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot resource_desc
 ;+		(comment "The resource_desc attribute provides a description for the resource")
@@ -3314,10 +3310,9 @@
 ;+		(comment "The property_map_subtype attribute indicates the subcategory of the property map.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot observed_event_start_tdb
-;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. ")
+	(multislot observed_event_start_tdb
+;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot full_name
 ;+		(comment "The full_name attribute provides the complete name for a person and includes titles and suffixes.")
@@ -3451,10 +3446,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes Target_Identification)
 		(create-accessor read-write))
-	(single-slot ring_event_stop_time_utc
-;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot ring_event_stop_time_utc
+;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot latitude
 ;+		(comment "The latitude attribute provides the angular distance north or south from the equator of a point on the object's surface, measured on the meridian of the point.")
@@ -3523,15 +3517,18 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot sclk_stop_time
+;+		(comment "sclk_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot local_static_permissible_value
 		(type INSTANCE)
 ;+		(allowed-classes DD_Static_Permissible_Value)
 		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a ring occultation track also intersects the planet. Required in labels of ring occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+	(multislot planetary_occultation_flag
+;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "N" "Y")
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot records
 ;+		(comment "The records attribute provides a count of records.")
@@ -3623,10 +3620,9 @@
 ;+		(comment "The record_length attribute provides the length of a record, including a record delimiter if present.")
 		(type INTEGER)
 		(create-accessor read-write))
-	(single-slot minimum_wavelength
-;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_wavelength
+;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot target_name
 ;+		(comment "The target_name attribute provides a name by which the target is formally known.")
@@ -3641,10 +3637,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes Observing_System)
 		(create-accessor read-write))
-	(single-slot sub_stellar_ring_azimuth
+	(multislot sub_stellar_ring_azimuth
 ;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data. ")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot lid_reference
 ;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
@@ -3656,10 +3651,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot maximum_ring_radius
-;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot maximum_ring_radius
+;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot has_Discipline_Facets
 ;+		(comment "The has_Discipline_Facets association is a relationship to Discipline_Facets.")
@@ -3813,10 +3807,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot minimum_ring_longitude
-;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot minimum_ring_longitude
+;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot classSteward
 ;+		(comment "The classSteward attribute provides the name of the steward for this rule.")
@@ -3827,10 +3820,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes Target_Identification)
 		(create-accessor read-write))
-	(single-slot star_name
-;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not used for radio occultations. ")
+	(multislot star_name
+;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
 		(type STRING)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot has_Deleted_Grouped_Sequence
 ;+		(comment "The has_Deleted_Grouped_Sequence association is a relationship to field sequence.")
@@ -3928,10 +3920,9 @@
 		(type INSTANCE)
 ;+		(allowed-classes Geometry)
 		(create-accessor read-write))
-	(single-slot ring_event_start_tdb
-;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+	(multislot ring_event_start_tdb
+;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot manifest_reference
 ;+		(comment "The manifest reference attribute provides a reference to a manifest product.")
@@ -4073,16 +4064,19 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot observed_event_start_time_utc
+;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot collected_under
 ;+		(comment "The collected_under association is a relationship to circumstances of observation.")
 		(type INSTANCE)
 ;+		(allowed-classes Context_Area)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot lowest_detectable_opacity
-;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+	(multislot lowest_detectable_opacity
+;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type FLOAT)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot sort_name
 ;+		(comment "The sort name attribute provides a string to be used in ordering. For people, the last name (surname) is typically first, followed by a comma and then other names.")
@@ -4093,10 +4087,9 @@
 ;+		(comment "The valid_maximum attribute specifies the maximum valid value in the field or digital object with which the Special_Constants class is associated. Values above the valid_maximum have a special meaning. Values of this attribute should be represented in the same data_type as the elements in the object or field described. (Note that PDS3 had no qube-related valid_maximum values because all special constants were set below the valid_minimum.)")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot dsn_station_number
+	(multislot dsn_station_number
 ;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
 		(type INTEGER)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot checksum
 ;+		(comment "The checksum attribute provides a computed value which depends on the contents of a block of data and is used to detect corruption of the data.")
@@ -4106,11 +4099,6 @@
 	(multislot conceptual_domain
 ;+		(comment "The conceptual_domain attribute provides the domain to which the value has been assigned.")
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot SCLK_stop_time
-;+		(comment "SCLK_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label. ")
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Product "A Product is a uniquely identified object that is managed by a registry/repository. It consists of one or more tagged data objects."
@@ -4842,7 +4830,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -5215,11 +5203,11 @@
 ;+		(value "Astrometry" "E/B-Field Vectors" "Count" "Gravity Model" "Image" "Map" "Null Result" "Photometry" "Polarimetry" "Radiometry" "Shape Model" "Spectrum" "Altimetry" "Occultation" "Physical Parameters" "Lightcurves" "Reference" "Meteorology")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot purpose
+	(multislot purpose
 ;+		(comment "The purpose attribute provides an indication of the primary purpose of the observations included.")
 		(type STRING)
 ;+		(value "Science" "Navigation" "Calibration" "Checkout" "Engineering" "Observation Geometry")
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -5237,11 +5225,11 @@
 		(type STRING)
 ;+		(value "Gamma Ray" "X-Ray" "Ultraviolet" "Visible" "Infrared" "Near Infrared" "Far Infrared" "Microwave" "Sub-Millimeter" "Millimeter" "Radio" "Magnetic Field" "Electric Field" "Ions" "Electrons" "Particles" "Dust" "Temperature" "Pressure")
 		(create-accessor read-write))
-	(single-slot processing_level
+	(multislot processing_level
 ;+		(comment "The processing_level attribute provides a broad classification of data processing level.")
 		(type STRING)
 ;+		(value "Raw" "Calibrated" "Partially Processed" "Derived" "Telemetry")
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass Investigation_Area "The Investigation_Area class provides information about an investigation (mission, observing campaign or other coordinated, large-scale data collection effort)."
@@ -5720,7 +5708,7 @@
 	(is-a Product_Components)
 	(role concrete)
 	(multislot source_pds3_id
-;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is required in occultation labels and may be used multiple times. The acceptable nil_reasons are 'inapplicable' and 'unknown'. ")
+;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is constructed as PDS3 dataset_id, a colon, then the PDS3 product_id. The acceptable nil_reasons are 'inapplicable' and 'unknown'.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot ring_observation_id
@@ -5729,7 +5717,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Stellar_Occultation "This class is required for all stellar ring occultations"
+(defclass Occultation_Ring_Profile "This class replaces the Radio_Occultation and Stellar_Occultation classes. It is used for all ring occultation profiles regardless of the occultation type."
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot sub_stellar_clock_angle
@@ -5737,281 +5725,50 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, and Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_radial_sampling_interval
-;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+	(single-slot maximum_observed_event_time
+;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot observed_event_stop_time_utc
+;+		(comment "observed_event_stop_time_utc indicates the UTC value for latest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot radial_sampling_interval
-;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Not intended to be used as a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot ring_event_start_time_utc
-;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_tdb
-;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_radius
-;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_radial_sampling_interval
-;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
+;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot maximum_observed_ring_azimuth
-;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orbit_number
-;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-		(create-accessor read-write))
-	(multislot source_pds3_id
-;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is required in occultation labels and may be used multiple times. The acceptable nil_reasons are 'inapplicable' and 'unknown'. ")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot radial_resolution
-;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot ring_occultation_direction
-;+		(comment "ring_occultation_direction indicates the radial direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+	(single-slot occultation_direction
+;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'ingress', 'egress', 'both', and 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_wavelength
-;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot SCLK_start_time
-;+		(comment "SCLK_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_tdb
-;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_wavelength
-;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_tdb
-;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot light_source_incidence_angle
-;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sub_stellar_ring_azimuth
-;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a ring occultation track also intersects the planet. Required in labels of ring occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "N" "Y")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_azimuth
-;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_tdb
-;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_elevation
-;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_ring_elevation
-;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_observation_id
-;+		(comment "The ring_observation_id uniquely identifies a single experiment or observation %28image, occultation profile, spectrum, etc.%29 within a rings-related data set. This is the common id by which data are identified within the Rings Node catalog. It describes the smallest quantity of data that can be usefully cataloged or analyzed by itself. Note that a single observation may be associated with multiple data products %28e.g. raw and calibrated versions of an image%29. Note also that a single data product may be associated with multiple observations %28e.g. a single WFPC2 image file containing four different images%29. A ring observation id is constructed using numbers, upper case letters, forward slash, colon, period, dash, and underscore as follows: p%2Ftype%2Fhost%2Finst%2Ftime%2F... where p is a single-letter planet id %28one of J, S, U, or N%29; type is IMG for images, OCC for occultation profile, etc.; host is the instrument host id, inst is the instrument id; time is the observation time as a date or instrument clock count; further information identifying the observation can then be appended as appropriate. Optional in labels. Nillable, in which case the nil_reason should be 'inapplicable'. Examples: J%2FIMG%2FVG2%2FISS%2F20693.01%2FN J%2FIMG%2FVG2%2FISS%2F20693.02%2FW S%2FIMG%2FHST%2FWFPC2%2F1995-08-10%2FU2TF020B%2FPC1 U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FS U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FX N%2FOCC%2FVG2%2FPPS%2F1989-08-25%2FSIGMA_SGR ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_radius
-;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot lowest_detectable_opacity
-;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wavelength
-;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_longitude
-;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot highest_detectable_opacity
-;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot star_name
-;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not used for radio occultations. ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_time_utc
-;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_elevation
-;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_longitude
-;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot SCLK_stop_time
-;+		(comment "SCLK_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Radio_Occultation "This class is required for all radio ring occultations"
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, and Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_radial_sampling_interval
-;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot radial_sampling_interval
-;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_time_utc
-;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_tdb
-;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_radius
-;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_event_start_time_utc
-;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. spacecraft_event_start_time_utc is required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data. Not used for stellar occultations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_radial_sampling_interval
-;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_azimuth
-;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orbit_number
-;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-		(create-accessor read-write))
-	(multislot source_pds3_id
-;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is required in occultation labels and may be used multiple times. The acceptable nil_reasons are 'inapplicable' and 'unknown'. ")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot radial_resolution
-;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended to be used as a table field. ")
-		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot frequency_band
-;+		(comment "frequency_band is the one or two letter identifier of the frequency band. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
 		(type STRING)
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot ring_occultation_direction
-;+		(comment "ring_occultation_direction indicates the radial direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot minimum_wavelength
-;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot SCLK_start_time
-;+		(comment "SCLK_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot ring_event_start_tdb
-;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -6021,150 +5778,446 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_wavelength
-;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot ring_event_stop_tdb
-;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot light_source_incidence_angle
-;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_light_source_incidence_angle
-;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+	(single-slot sub_stellar_ring_azimuth
+;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data. ")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Specifically required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data, or anytime spacecraft_event_time is a table field. Not used for stellar occultations. Nillable, the nil_reason should be 'inapplicable'. ")
+;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
 		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a ring occultation track also intersects the planet. Required in labels of ring occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "N" "Y")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_azimuth
-;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_tdb
-;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in observed_event_tdb format. Optional in labels; not intended for use as a table field. ")
-		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_observed_ring_elevation
-;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot observed_ring_elevation
-;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. Nillable, in which case the nil_reason should be 'inapplicable'. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B. ")
+;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot ring_observation_id
-;+		(comment "The ring_observation_id uniquely identifies a single experiment or observation %28image, occultation profile, spectrum, etc.%29 within a rings-related data set. This is the common id by which data are identified within the Rings Node catalog. It describes the smallest quantity of data that can be usefully cataloged or analyzed by itself. Note that a single observation may be associated with multiple data products %28e.g. raw and calibrated versions of an image%29. Note also that a single data product may be associated with multiple observations %28e.g. a single WFPC2 image file containing four different images%29. A ring observation id is constructed using numbers, upper case letters, forward slash, colon, period, dash, and underscore as follows: p%2Ftype%2Fhost%2Finst%2Ftime%2F... where p is a single-letter planet id %28one of J, S, U, or N%29; type is IMG for images, OCC for occultation profile, etc.; host is the instrument host id, inst is the instrument id; time is the observation time as a date or instrument clock count; further information identifying the observation can then be appended as appropriate. Optional in labels. Nillable, in which case the nil_reason should be 'inapplicable'. Examples: J%2FIMG%2FVG2%2FISS%2F20693.01%2FN J%2FIMG%2FVG2%2FISS%2F20693.02%2FW S%2FIMG%2FHST%2FWFPC2%2F1995-08-10%2FU2TF020B%2FPC1 U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FS U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FX N%2FOCC%2FVG2%2FPPS%2F1989-08-25%2FSIGMA_SGR ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot earth_received_start_time_utc
-;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_light_source_incidence_angle
-;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_ring_radius
+;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot earth_received_stop_time_utc
+;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ring_event_stop_time_utc
+;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_ring_longitude
+;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_observed_event_time
+;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot occultation_type
+;+		(comment "occultation_type distinguishes between three types of occultation experiments: stellar, solar, or radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Radio" "Solar" "Stellar")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_radial_sampling_interval
+;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observed_event_stop_tdb
+;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ring_profile_direction
+;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'ingress', 'egress', or 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Egress" "Ingress" "Multiple")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_ring_radius
+;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot sclk_start_time
+;+		(comment "sclk_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spacecraft_event_start_time_utc
+;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_observed_ring_azimuth
+;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot orbit_number
+;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot radial_resolution
+;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Not intended to be used as a table field.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot observed_event_start_time_utc
+;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sclk_stop_time
+;+		(comment "sclk_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot light_source_incidence_angle
+;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimum_light_source_incidence_angle
+;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot planetary_occultation_flag
+;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
+		(type STRING)
+;+		(value "N" "Y")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_observed_ring_azimuth
+;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot observed_event_start_tdb
+;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot spacecraft_event_stop_time_utc
-;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. spacecraft_event_stop_time_utc is required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data. Not used for stellar occultations.Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
 		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_radius
-;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lowest_detectable_opacity
-;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot dsn_station_number
 ;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
 		(type INTEGER)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot wavelength
-;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot minimum_ring_longitude
-;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot highest_detectable_opacity
+;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot star_name
+;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot minimum_observed_ring_elevation
+;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Occultation_Time_Series "This class supports occultation data organized as a time series"
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot sub_stellar_clock_angle
+;+		(comment "sub_stellar_clock_angle is an angle measured at a point in the ring plane, from the direction toward a star to the local radial direction. This angle is projected into the ring plane and measured in the clockwise %28retrograde%29 direction. Equivalently, this is the prograde angle from the local radial direction to the direction toward the star. For stellar occultation data, this angle is equal to %28180 - OBSERVED_RING_AZIMUTH%29 mod 360. It is available only for backward compatibility with previously published Cassini VIMS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_clock_angle is an optional data table field for Cassini VIMS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini VIMS occultation data; not recommended for other occultation data. ")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_observed_event_time
+;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot occultation_type
+;+		(comment "occultation_type distinguishes between three types of occultation experiments: stellar, solar, or radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Radio" "Solar" "Stellar")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot observed_event_stop_time_utc
+;+		(comment "observed_event_stop_time_utc indicates the UTC value for latest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ring_event_start_time_utc
+;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time_series_direction
+;+		(comment "time_series_direction indicates the direction the occultation proceeds through the target within a particular data product. Possible values are 'ingress', 'egress', 'both' or 'multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Not intended as a value for a table field.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot observed_event_stop_tdb
+;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimum_ring_radius
+;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spacecraft_event_start_time_utc
+;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sclk_start_time
+;+		(comment "sclk_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_observed_ring_azimuth
+;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot orbit_number
+;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot occultation_direction
+;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'ingress', 'egress', 'both', and 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Both" "Egress" "Ingress" "Multiple")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot frequency_band
+;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
+		(type STRING)
+;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimum_wavelength
+;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ring_event_start_tdb
+;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot along_track_timing_offset
+;+		(comment "along_track_timing_offset is a timing offset to the along track spacecraft position. It is the value that minimizes differences in radii of matching circular ring features observed on the ingress and egress sides of the occultation track. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observed_event_start_time_utc
+;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_wavelength
+;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ring_event_stop_tdb
+;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sclk_stop_time
+;+		(comment "sclk_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot light_source_incidence_angle
+;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimum_light_source_incidence_angle
+;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_time_utc
+;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sub_stellar_ring_azimuth
+;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data. ")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot planetary_occultation_flag
+;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
+		(type STRING)
+;+		(value "N" "Y")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_observed_ring_azimuth
+;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observed_event_start_tdb
+;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_observed_ring_elevation
+;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot observed_ring_elevation
+;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot earth_received_start_time_utc
+;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_light_source_incidence_angle
+;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spacecraft_event_stop_time_utc
+;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximum_ring_radius
+;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lowest_detectable_opacity
+;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot dsn_station_number
+;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot wavelength
+;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimum_ring_longitude
+;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot earth_received_stop_time_utc
-;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot highest_detectable_opacity
-;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot star_name
+;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot ring_event_stop_time_utc
-;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot minimum_observed_ring_elevation
-;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file. Nillable, in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_ring_longitude
-;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot SCLK_stop_time
-;+		(comment "SCLK_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label. ")
-		(type STRING)
+	(single-slot minimum_observed_event_time
+;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Radio_Occultation_Support "This class is required for all radio ring occultation calibration and geometry supplemental files."
+(defclass Occultation_Supplement "This class is required for all radio ring occultation calibration and geometry supplemental files."
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot maximum_observed_event_time
-;+		(comment "maximum_observed_event_time indicates the value for latest time in the described data, and is given in observed_event_tdb format. ")
+;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
 		(type FLOAT)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, and Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+;+		(comment "occultation_type distinguishes between three types of occultation experiments: stellar, solar, or radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "Radio" "Solar" "Stellar")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Specifically required in the label for radio occultation data, but is not used for stellar occultation data. Required in the label for radio occultation data, or anytime spacecraft_event_time is a table field. Not used for stellar occultations. Nillable, the nil_reason should be 'inapplicable'. ")
+;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
 		(type STRING)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot sampling_parameter_interval
 ;+		(comment "sampling_parameter_interval specifies the spacing of points at which data are sampled and at which a value for an instrument or dataset parameter is available. Used in labels for radio occultation supplemental files. Nillable in which case the nil_reason should be 'inapplicable'. ")
@@ -6172,21 +6225,16 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a ring occultation track also intersects the planet. Required in labels of ring occultation observations. Nillable if the observation is not an occultation in which case the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
+;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "N" "Y")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot ring_observation_id
-;+		(comment "The ring_observation_id uniquely identifies a single experiment or observation %28image, occultation profile, spectrum, etc.%29 within a rings-related data set. This is the common id by which data are identified within the Rings Node catalog. It describes the smallest quantity of data that can be usefully cataloged or analyzed by itself. Note that a single observation may be associated with multiple data products %28e.g. raw and calibrated versions of an image%29. Note also that a single data product may be associated with multiple observations %28e.g. a single WFPC2 image file containing four different images%29. A ring observation id is constructed using numbers, upper case letters, forward slash, colon, period, dash, and underscore as follows: p%2Ftype%2Fhost%2Finst%2Ftime%2F... where p is a single-letter planet id %28one of J, S, U, or N%29; type is IMG for images, OCC for occultation profile, etc.; host is the instrument host id, inst is the instrument id; time is the observation time as a date or instrument clock count; further information identifying the observation can then be appended as appropriate. Optional in labels. Nillable, in which case the nil_reason should be 'inapplicable'. Examples: J%2FIMG%2FVG2%2FISS%2F20693.01%2FN J%2FIMG%2FVG2%2FISS%2F20693.02%2FW S%2FIMG%2FHST%2FWFPC2%2F1995-08-10%2FU2TF020B%2FPC1 U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FS U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FX N%2FOCC%2FVG2%2FPPS%2F1989-08-25%2FSIGMA_SGR ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
+	(multislot ring_profile_direction
+;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'ingress', 'egress', or 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type STRING)
 ;+		(value "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
+		(cardinality 0 2)
 		(create-accessor read-write))
 	(single-slot dsn_station_number
 ;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
@@ -6197,8 +6245,14 @@
 ;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot occultation_direction
+;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'ingress', 'egress', 'both', and 'multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
+		(type STRING)
+;+		(value "Both" "Egress" "Ingress" "Multiple")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot spice_filename
-;+		(comment "spice_filename gives the file name%28s%29 of SPICE files used in the analysis. Only used if the SPICE files can not be identified using a LID or LIDVID. Otherwise the association is made in the Reference_Class using the Internal_Reference class. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "spice_filename gives the file name%28s%29 of SPICE files used in the analysis. Only used if the SPICE files cannot be identified using a LID or LIDVID. Otherwise the association is made in the Reference_Class using the Internal_Reference class. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot sampling_parameter_unit
@@ -6207,21 +6261,15 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot frequency_band
-;+		(comment "frequency_band is the one or two letter identifier of the frequency band. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'. ")
+;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
 		(type STRING)
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot ring_occultation_direction
-;+		(comment "ring_occultation_direction indicates the radial direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
-		(type STRING)
-;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot minimum_observed_event_time
-;+		(comment "minimum_observed_event_time indicates the value for earliest time in the described data, and is given in observed_event_tdb format. ")
+;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
 		(type FLOAT)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot sampling_parameter_name
 ;+		(comment "sampling_parameter_name provides the name of the parameter which determines the sampling interval for uniformly sampled data. Used in labels for radio occultation supplemental files. Nillable in which case the nil_reason should be 'inapplicable'. ")
@@ -6377,12 +6425,31 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass NAIF_Supplement "This class is required for NAIF attributes that are to be used across disciplines."
+(defclass Ring_Moon_Systems "This is an umbrella class for all of the classes and attributes in this dictionary."
 	(is-a Product_Components)
 	(role concrete)
-	(single-slot spice_kernel_file_name
-;+		(comment "The spice_kernel_file_name attribute is used to identify SPICE kernel files used in the production of the product.")
-		(type STRING)
+	(single-slot has_occultation_time_series
+;+		(comment "The has_occultation_time_series association is a relationship to occultation_time_series")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Time_Series)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_occultation_ring_profile
+;+		(comment "The has_occultation_ring_profile association is a relationship to occultation_ring_profile")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Ring_Profile)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_rings_supplement
+;+		(comment "The has_rings_supplement association is a relationship to rings_supplement")
+		(type INSTANCE)
+;+		(allowed-classes Rings_Supplement)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_occultation_supplement
+;+		(comment "The has_occultation_supplement association is a relationship to occultation_supplement")
+		(type INSTANCE)
+;+		(allowed-classes Occultation_Supplement)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -6393,6 +6460,11 @@
 (defclass Byte_Stream "The Byte Stream class defines a stream of bytes."
 	(is-a Tagged_Digital_Object)
 	(role abstract)
+	(single-slot md5_checksum
+;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed using the MD5 algorithm for the contiguous bytes of single digital object (as stored) or for an entire file.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
 		(type STRING)
@@ -6899,7 +6971,7 @@
 	(is-a Tagged_Digital_Object)
 	(role concrete)
 	(single-slot md5_checksum
-;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed for a file using the MD5 algorithm.")
+;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed using the MD5 algorithm for the contiguous bytes of single digital object (as stored) or for an entire file.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -6954,8 +7026,48 @@
 	(single-slot document_standard_id
 ;+		(comment "The document_standard_id attribute provides the formal name of a standard used for the structure of a document file.")
 		(type STRING)
-;+		(value "PDF/A" "Encapsulated Postscript" "GIF" "HTML 2.0" "JPEG" "LaTEX" "Microsoft Word" "PNG" "Postscript" "Rich Text" "7-Bit ASCII Text" "TIFF" "PDF" "HTML 3.2" "HTML 4.0" "HTML 4.01" "UTF-8 Text" "Microsoft Excel" "HTML")
+;+		(value "PDF/A" "Encapsulated Postscript" "GIF" "HTML 2.0" "JPEG" "LaTEX" "Microsoft Word" "PNG" "Postscript" "Rich Text" "7-Bit ASCII Text" "TIFF" "PDF" "HTML 3.2" "HTML 4.0" "HTML 4.01" "UTF-8 Text" "Microsoft Excel" "HTML" "MPEG-4")
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Composite_Structure "The Composite Structure class provides a general framework for defining a composite of PDS4 fundamental data structures."
+	(is-a Tagged_Digital_Object)
+	(role concrete)
+	(multislot has_Local_ID_Relation
+;+		(comment "The has_Local_ID_Relation association is a relationship to Local_ID_Relation.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Relation)
+		(create-accessor read-write))
+	(single-slot class_name
+;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent_class_name
+;+		(comment "The parent class name provides the name of the superclass of this class.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Local_ID_Reference
+;+		(comment "The has_Local_ID_Reference association is a relationship to has_Local_ID_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Local_ID_Reference)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot local_identifier
+;+		(comment "The local_identifier attribute provides a character string which uniquely identifies the containing object within the label.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Tagged_Digital_Child "The Tagged Digital Child class is an abstract class for the components  of classes in the tagged digital object class hierarchy."
@@ -7551,6 +7663,50 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
+(defclass Local_ID_Reference "The Local_ID_Reference class is used to define a one directional relationship between the enclosing class and another class in the label."
+	(is-a Tagged_Digital_Child)
+	(role concrete)
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot id_reference_type
+;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(value "has_component")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Local_ID_Relation "The Local_ID_Relation class defines a one directional relationship between two classes in the label."
+	(is-a Tagged_Digital_Child)
+	(role concrete)
+	(multislot id_reference_from
+;+		(comment "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot id_reference_type
+;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass Tagged_NonDigital_Object "The Tagged NonDigital Object class is an abstract class for the physical and conceptual class hierarchy. A tagged object is an information object."
 	(is-a USER)
 	(role abstract))
@@ -7790,7 +7946,7 @@
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the Node is known.")
 		(type STRING)
-;+		(value "Geosciences" "Imaging" "Navigation and Ancillary Information Facility" "Planetary Atmospheres" "Planetary Plasma Interactions" "Planetary Rings" "Radio Science" "Small Bodies" "Engineering" "Management" "Planetary Science Archive")
+;+		(value "Geosciences" "Cartography and Imaging Sciences Discipline" "Navigation and Ancillary Information Facility" "Planetary Atmospheres" "Planetary Plasma Interactions" "Ring-Moon Systems" "Radio Science" "Small Bodies" "Engineering" "Management" "Planetary Science Archive" "Imaging" "Planetary Rings")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7885,7 +8041,7 @@
 	(multislot team_name
 ;+		(comment "The team_name attribute provides the name of a group of individuals working together.")
 		(type STRING)
-;+		(value "Engineering" "Geosciences" "Imaging" "Navigation and Ancillary Information Facility" "Planetary Atmospheres" "Planetary Plasma Interactions" "Planetary Rings" "Radio Science" "Small Bodies" "National Space Science Data Center" "Management" "Headquarters")
+;+		(value "Engineering" "Geosciences" "Cartography and Imaging Sciences Discipline" "Navigation and Ancillary Information Facility" "Planetary Atmospheres" "Planetary Plasma Interactions" "Ring-Moon Systems" "Radio Science" "Small Bodies" "National Space Science Data Center" "Management" "Headquarters" "Planetary Rings" "Imaging")
 		(create-accessor read-write))
 	(single-slot phone_book_flag
 ;+		(comment "The phone_book_flag attribute indicates whether or not this person should be included in the phone book.")
@@ -8497,7 +8653,7 @@
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot md5_checksum
-;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed for a file using the MD5 algorithm.")
+;+		(comment "The md5_checksum attribute is the 32-character hexadecimal number computed using the MD5 algorithm for the contiguous bytes of single digital object (as stored) or for an entire file.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -10161,87 +10317,6 @@
 		(create-accessor read-write))
 	(single-slot start_orbit_number
 ;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Composite_Structure "The Composite Structure class provides a generic framework for defining a composite of PDS4 fundamental data structures."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(multislot has_Local_ID_Relation
-;+		(comment "The has_Local_ID_Relation association is a relationship to Local_ID_Relation.")
-		(type INSTANCE)
-;+		(allowed-classes Local_ID_Relation)
-		(create-accessor read-write))
-	(single-slot local_ID
-;+		(comment "The Local_ID attribute provide an identifier for the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot class_name
-;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_Local_ID_Reference
-;+		(comment "The has_Local_ID_Reference association is a relationship to has_Local_ID_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Local_ID_Reference)
-		(create-accessor read-write))
-	(single-slot title
-;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot parent_name
-;+		(comment "The parent name provides the name of the superclass.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Local_ID_Relation "The Local_ID_Relation class defines a one directional relationship between two classes using two identifiers and a reference type."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(multislot id_reference_from
-;+		(comment "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot id_reference_to
-;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot id_reference_type
-;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Local_ID_Reference "The Local_ID_Reference class is used to define a one directional relationship between two classes using the identifier of the ending class and the name of the association."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(multislot id_reference_to
-;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot id_reference_type
-;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -12299,7 +12374,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass ASCII_Numeric_Base16 "The ASCII Numeric Base16 class indicates a ASCII encoded string constrained to hexadecimal digits."
+(defclass ASCII_Numeric_Base16 "The ASCII Numeric Base16 class indicates an ASCII character representation of a non-negative unsigned integer in base 16. Must consist of the characters 0 through 9, and A through F or a through f. May not be preceded by any sign (+/-) notation."
 	(is-a Character_Data_Type)
 	(role concrete)
 	(single-slot pattern
@@ -12341,7 +12416,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass ASCII_Numeric_Base2 "The ASCII Numeric Base2 class indicates a ASCII encoded string constrained to binary digits."
+(defclass ASCII_Numeric_Base2 "The ASCII Numeric Base2 class indicates an ASCII character representation of a non-negative unsigned integer in base 2. Must consist of the characters 0 and 1. May not be preceded by any sign (+/-) notation."
 	(is-a Character_Data_Type)
 	(role concrete)
 	(single-slot pattern
@@ -12385,7 +12460,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass ASCII_Numeric_Base8 "The ASCII Numeric Base8 class indicates a ASCII encoded string constrained to octal digits."
+(defclass ASCII_Numeric_Base8 "The ASCII Numeric Base8 class indicates an ASCII character representation of a non-negative unsigned integer in base 8. Must consist of the characters 0 through 7. May not be preceded by any sign (+/-) notation."
 	(is-a Character_Data_Type)
 	(role concrete)
 	(single-slot pattern
@@ -12935,6 +13010,62 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_Local_Identifier "The ASCII Local Identifier class indicates a unique identifier local to the label."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:ID")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_Local_Identifier_Reference "The ASCII_Local_Identifier_Reference class indicates a reference to a unique identifier local to the label."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:IDREF")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
