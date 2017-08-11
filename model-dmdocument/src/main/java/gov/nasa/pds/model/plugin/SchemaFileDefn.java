@@ -101,6 +101,7 @@ public class SchemaFileDefn {
 		isDiscipline = false;
 		isMission = false;
 		relativeFileSpecModelSpec = "TBD_relativeFileSpecModelSpec";
+		relativeFileSpecModelSpec_DOM = "TBD_relativeFileSpecModelSpec_DOM";
 		relativeFileSpecXMLSchema = "TBD_relativeFileSpecXMLSchema";  // set after setting version_id; see below
 		relativeFileSpecSchematron = "TBD_relativeFileSpecSchematron";
 		relativeFileNameXMLSchema = "TBD_relativeFileNameXMLSchema";
@@ -185,7 +186,7 @@ public class SchemaFileDefn {
 		
 		// set the relative file spec now that we have a version id
 		relativeFileSpecModelSpec = DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
-		relativeFileSpecModelSpec_DOM = DMDocument.outputDirPath + "index" + "_" + lab_version_id +"_DOM"+  ".html";
+		relativeFileSpecModelSpec_DOM = DMDocument.outputDirPath + "index" + "_" + lab_version_id + "_DOM" +  ".html";
 		if (! isLDD) {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
 			relativeFileSpecSchematron = DMDocument.outputDirPath + "SchemaXML4/" + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
