@@ -1,4 +1,4 @@
-; Fri Aug 04 22:14:55 PDT 2017
+; Fri Aug 11 07:34:47 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5432,7 +5432,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array Composite_Structure)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
@@ -5543,7 +5543,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array)
+;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array Composite_Structure)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
@@ -7030,7 +7030,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Composite_Structure "The Composite Structure class provides a general framework for defining a composite of PDS4 fundamental data structures."
+(defclass Composite_Structure "The Composite Structure class provides a general framework for defining a structure that consists of two or more simpler structures"
 	(is-a Tagged_Digital_Object)
 	(role concrete)
 	(multislot has_Local_ID_Relation
@@ -7663,7 +7663,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Local_ID_Reference "The Local_ID_Reference class is used to define a one directional relationship between the enclosing class and another class in the label."
+(defclass Local_ID_Reference "The Local_ID_Reference class defines a one directional relationship by referencing another class in the label."
 	(is-a Tagged_Digital_Child)
 	(role concrete)
 	(multislot id_reference_to
