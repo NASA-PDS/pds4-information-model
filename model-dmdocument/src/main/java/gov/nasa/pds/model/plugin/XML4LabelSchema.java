@@ -24,7 +24,6 @@ class XML4LabelSchema extends Object {
 
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <PDSObjDefn> lInputClassArr) throws java.io.IOException {
-//		System.out.println("\n\ndebug writeXMLSchemaFiles *** Start *** lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
 		
@@ -86,7 +85,7 @@ class XML4LabelSchema extends Object {
 		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (classHierMap.values());
 		for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
-		
+
 			// skip the subclasses of Science_Facets
 			if (lClass.title.compareTo("Discipline_Facets") == 0) continue;
 			if (lClass.title.compareTo("Group_Facet1") == 0) continue;
@@ -375,7 +374,7 @@ class XML4LabelSchema extends Object {
 			return;
 		}
 		for (Iterator<AttrDefn> i = lAttrAssocArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();			
+			AttrDefn lAttr = (AttrDefn) i.next();
 			if (lAttr.isAny) writeClassXSAnyStmts (prXML);
 			if (lAttr.isAttribute) {
 				writeClassAttribute (lClass, lAttr, prXML);				
@@ -439,9 +438,9 @@ class XML4LabelSchema extends Object {
 			lGroupName = lAttr.groupName;
 		}
 		
+		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";
 		if (choiceBlockOpen) {
-			cmin = "0";
-			cmax = "1";
+			minMaxOccursClause = "";
 		}
 		
 		String nilableClause = "";
@@ -450,7 +449,7 @@ class XML4LabelSchema extends Object {
 		}
 
 		// write the XML schema statement
-		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"> </" + pNS + "element>");
+		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
