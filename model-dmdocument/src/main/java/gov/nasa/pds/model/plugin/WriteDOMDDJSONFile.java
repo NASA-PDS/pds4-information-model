@@ -98,6 +98,8 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lClass.nameSpaceIdNC) + " ,");	
 			prDDPins.println("            " + formValue("steward") + ": " + formValue(lClass.steward) + " ,");	
 			prDDPins.println("            " + formValue("versionId") + ": " + formValue(lClass.versionId) + " ,");	
+			prDDPins.println("            " + formValue("isAbstract") + ": " + formBooleanValue(lClass.isAbstract) + " ,");	
+			prDDPins.println("            " + formValue("isDeprecated") + ": " + formBooleanValue(lClass.isDeprecated) + " ,");	
 			prDDPins.println("            " + formValue("description") + ": " + formValue(lClass.definition));		
 			printAssoc (lClass, prDDPins);
 			prDDPins.println("          }");
@@ -136,7 +138,7 @@ class WriteDOMDDJSONFile extends Object{
 		}
 		
 		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	
-		prDDPins.println("              , " + formValue("associationList") + ": [");	
+		prDDPins.println("              , " + formValue("associationList") + ": [");
 		printSuperClassAssoc (lClass, prDDPins);
 		String delimiter1 = "  ";
 		for (Iterator<DOMPropGroup> i = lDOMPropGroupArr.iterator(); i.hasNext();) {
@@ -202,7 +204,7 @@ class WriteDOMDDJSONFile extends Object{
 		}
 		prDDPins.println("           ]");
 	}
-	
+
 	// Print the Associations
 	public  void printSuperClassAssoc (DOMClass lClass, PrintWriter prDDPins) {
 		if (lClass.subClassOf == null) return;
@@ -252,6 +254,7 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("            " + formValue("description") + ": " + formValue(lAttr.definition) + " ,");	
 			prDDPins.println("            " + formValue("isNillable") + ": " + formBooleanValue(lAttr.isNilable) + " ,");	
 			prDDPins.println("            " + formValue("isEnumerated") + ": " + formBooleanValue(lAttr.isEnumerated) + " ,");	
+			prDDPins.println("            " + formValue("isDeprecated") + ": " + formBooleanValue(lAttr.isDeprecated) + " ,");	
 			prDDPins.println("            " + formValue("dataType") + ": " + formValue(lAttr.valueType) + " ,");	
 			prDDPins.println("            " + formValue("dataTypeId") + ": " + formValue(lAttr.getValueTypeIdentifier()) + " ,");	
 			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lAttr.getMinimumCharacters(true,true)) + " ,");			
@@ -272,7 +275,6 @@ class WriteDOMDDJSONFile extends Object{
 	// Print the Permissible Values and Value Meanings
 	public  void printPermValues (DOMAttr lAttr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-//		if (lAttr.permValueArr.isEmpty()) return;
 		if (lAttr.domPermValueArr.isEmpty()) return;
 		prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");				
 		for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
@@ -282,9 +284,9 @@ class WriteDOMDDJSONFile extends Object{
 			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
 			prDDPins.println("            " + delimiter1 + "{" + formValue("PermissibleValue") + ": {");				
 			delimiter1 = ", ";
-//			prDDPins.println("            , {" + formValue("PermissibleValue") + ": {");					
 			prDDPins.println("                  " + formValue("value") + ": " + formValue(lDOMPermValDefn.value) + " ,");	
-			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lDOMPermValDefn.value_meaning));	
+			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lDOMPermValDefn.value_meaning) + " ,");	
+			prDDPins.println("                  " + formValue("isDeprecated") + ": " + formBooleanValue(lDOMPermValDefn.isDeprecated));	
 			prDDPins.println("                }");
 			prDDPins.println("             }");
 		}
