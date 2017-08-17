@@ -301,6 +301,11 @@ public class DMDocument extends Object {
 		deprecatedAdded = false;
 		deprecatedObjects2 = new ArrayList <DeprecatedDefn> ();
 
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Update", "pds", "Product_Update", "", "", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("Update", "pds", "Update", "", "", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("Update.update_purpose", "pds", "Update", "pds", "update_purpose", "", false));	
+
 		deprecatedObjects2.add(new DeprecatedDefn ("Geometry", "pds", "Geometry", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Display_2D_Image", "pds", "Display_2D_Image", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));	
