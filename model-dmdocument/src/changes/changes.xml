@@ -14,7 +14,7 @@
   providing access to foreign nationals.
 
   $Id:$
-
+-->
 <document>
   <properties>
     <title>Release Changes</title>
@@ -22,7 +22,7 @@
   </properties>
 
   <body>
-    <release version="9.0.1" date="2017-09-30" description="This release of the Model DM-Document represents a point build of this component.">
+    <release version="8.0.0" date="2017-09-30" description="This release of the Model DM-Document represents a point build of this component.">
       <action dev="jshughes" type="update">
 CCB-162 - Move <md5_checksum> from Object_Statistics to Byte_Stream
 CCB-166 - Deprecate bit_mask from IM
