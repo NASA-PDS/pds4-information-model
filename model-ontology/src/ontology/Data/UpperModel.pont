@@ -1,4 +1,4 @@
-; Mon Aug 21 13:50:50 PDT 2017
+; Thu Aug 31 16:25:18 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -134,6 +134,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(single-slot local_planar_description
+;+		(comment "The local_planar_description attribute provides a description of the local planar system.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot has_occultation_time_series
 ;+		(comment "The has_occultation_time_series association is a relationship to occultation_time_series")
 		(type INSTANCE)
@@ -172,6 +177,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot has_Geodetic_Model
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geodetic_Model)
+		(create-accessor read-write))
 	(multislot has_property_map_external
 ;+		(comment "The has_property_map_external association is a relationship to Property_Map_External")
 		(type INSTANCE)
@@ -198,6 +208,11 @@
 	(multislot aperture
 ;+		(comment "The aperture attribute provides the diameter of an opening, usually circular, that limits the quantity of light that can enter an optical instrument.")
 		(type FLOAT)
+		(create-accessor read-write))
+	(multislot has_State_Plane_Coordinate_System
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes State_Plane_Coordinate_System)
 		(create-accessor read-write))
 	(multislot instrument_name
 ;+		(comment "The instrument_name attribute provides a unique name for an instrument.")
@@ -362,6 +377,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(single-slot map_projection_name
+;+		(comment "The map_projection_name attribute provides the name of the map projection.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot created_by
 ;+		(comment "The created_by slot provides the names of the people who create the data set.")
 		(type INSTANCE)
@@ -372,6 +392,11 @@
 ;+		(comment "The has_Table_Character_Field_Sequence association is a relationship to field sequence.")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot has_Spatial_Domain
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Spatial_Domain)
 		(create-accessor read-write))
 	(single-slot application_process_name
 ;+		(comment "The application_process_name attribute provides the name associated with the source or process which created the data.")
@@ -440,6 +465,11 @@
 ;+		(comment "The has_Member association is a relationship to members of a collection.")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot latitude_type
+;+		(comment " The latitude_type attribute defines the type of latitude %28planetographic, planetocentric%29 used within a cartographic product and as reflected in attribute values within associated PDS labels. The IAU definition for direction of positive longitude should be adopted: http:%2F%2Fastrogeology.usgs.gov%2Fgroups%2FIAU-WGCCRE. ")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot primary_collection_reference
 ;+		(comment "The primary collection reference provides a logical_identifier for  the primary collection this product is a member of.")
@@ -585,6 +615,11 @@
 	(single-slot upper_110709_Class1
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot semi_minor_radius
+;+		(comment "The semi_minor_radius attribute provides the value of the intermediate axis of the ellipsoid that defines the approximate shape of a target body. The semi-minor axis is usually in the equatorial plane.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot upper_110709_Class2
 		(type STRING)
@@ -822,6 +857,11 @@
 ;+		(comment "The provider site id attribute provides an identifier for the provider.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot ups_zone_identifier
+;+		(comment "The ups_zone_identifier attribute provides an identifier for the UPS zone.")
+		(type STRING)
+;+		(value "A" "B" "Y" "Z")
+		(create-accessor read-write))
 	(single-slot ring_occultation_direction
 ;+		(comment "ring_occultation_direction indicates the radial direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Nillable if the observation is not a ring occultation in which case the nil_reason should be 'inapplicable'. Not intended as a value for a table field. ")
 		(type STRING)
@@ -881,6 +921,11 @@
 ;+		(comment "The has_Local_ID_Reference association is a relationship to has_Local_ID_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Local_ID_Reference)
+		(create-accessor read-write))
+	(single-slot longitude_direction
+;+		(comment "The longitude_direction attribute identifies the direction of longitude %28e.g. POSITIVE_EAST or POSITIVE_WEST%29 for a planet. The IAU definition for direction of positive longitude is adopted. Typically, for planets with prograde rotations, positive longitude direction is to the west. For planets with retrograde rotations, positive longitude direction is to the east. Note: The longitude_direction attribute should be used for planetographc systems, but not for planetocentric.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot file_extension_token
 ;+		(comment "The file extension token is a substring that provides a file extension. The maximum size of a directory name is tbd characters.")
@@ -972,11 +1017,6 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot cartography
-;+		(comment "The has_Cartography association is a relationship to Cartography.")
-		(type INSTANCE)
-;+		(allowed-classes)
-		(create-accessor read-write))
 	(single-slot field_bytes
 ;+		(comment "The field bytes attribute provides the maximum number of bytes allowed for a field.")
 		(type INTEGER)
@@ -1035,6 +1075,11 @@
 ;+		(comment "The has_occultation_supplement association is a relationship to occultation_supplement")
 		(type INSTANCE)
 ;+		(allowed-classes Occultation_Supplement)
+		(create-accessor read-write))
+	(single-slot utm_zone_number
+;+		(comment "The utm_zone_number attribute provides the identifier for the UTM zone.")
+		(type INTEGER)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot external_standard_version_id
 ;+		(comment "The external_standard_version_id attribute provides the version of the external standard.")
@@ -1103,6 +1148,11 @@
 ;+		(comment "The first_line attribute provides the line within a source image that corresponds to the first line in a sub-image.")
 		(type INTEGER)
 		(create-accessor read-write))
+	(multislot has_Map_Projection
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Map_Projection Local_Planar Grid_Coordinate_System XSChoice%23)
+		(create-accessor read-write))
 	(single-slot fraction_digits
 ;+		(comment "The fraction digits indicates the number of digits in the faction part of a real number.")
 		(type STRING)
@@ -1113,6 +1163,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Time_Coordinates)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Horizontal_Coordate_System_Definition
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Horizontal_Coordinate_System_Definition)
 		(create-accessor read-write))
 	(multislot nssdc
 ;+		(comment "The nssdc association is a relationship to NSSDC.")
@@ -1142,6 +1197,11 @@
 	(multislot property_value
 ;+		(comment "The property value attribute provides the value assigned to a property.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot west_bounding_coordinate
+;+		(comment "The west_bounding_coordinate attribute provides the western-most coordinate of the limit of coverage expressed in longitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot letter
 ;+		(comment "letter = \"a\" | \"b\" | \"c\" | \"d\" | \"e\" | \"f\" | \"g\" | \"h\" | \"i\" | \"j\" | \"k\" | \"l\" | \"m\" | \"n\" | \"o\" | \"p\" | \"q\" | \"r\" | \"s\" | \"t\" | \"u\" | \"v\" | \"w\" | \"x\" | \"y\" | \"z\" | \"A\" | \"B\" | \"C\" | \"D\" | \"E\" | \"F\" | \"G\" | \"H\" | \"I\" | \"J\" | \"K\" | \"L\" | \"M\" | \"N\" | \"O\" | \"P\" | \"Q\" | \"R\" | \"S\" | \"T\" | \"U\" | \"V\" | \"W\" | \"X\" | \"Y\" | \"Z\" ;")
@@ -1493,6 +1553,16 @@
 ;+		(comment "The minimum_sampling_parameter element identifies the minimum value at which a given data item was sampled. For example, a spectrum that was measured in the 0.4 to 3.5 micrometer spectral region would have a minimum_sampling_parameter value of 0.4. The sampling parameter constrained by this value is identified by the sampling_parameter_name element. Note: The unit of measure for the sampling parameter is provided by the unit element.")
 		(type FLOAT)
 		(create-accessor read-write))
+	(single-slot upperleft_corner_x
+;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot upperleft_corner_y
+;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot campaign_description
 ;+		(comment "The campaign description attribute provides a statement, picture in words, or account that describes.")
 		(type STRING)
@@ -1516,6 +1586,11 @@
 	(multislot sampling_parameter_interval
 ;+		(comment "The sampling_parameter_interval attribute provides the spacing of points at which data are sampled and at which values for an instrument or other parameter are available. If x1 and xn are the first and last sampling parameter values, respectively, xn is larger than x1, n is the number of sampling parameters, the caret symbol (^) denotes exponentiation, and b, a positive real number, is the base for exponentiation, then the value of sampling_parameter_interval is: (xn-x1)/(n-1) (for sampling_parameter_scale = Linear), (xn/x1)^(1/(n-1)) (for sampling_parameter_scale = Logarithmic), (b^xn-b^x1)/(n-1) (for sampling_parameter_scale = Exponential).")
 		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot spcs_zone_identifier
+;+		(comment "The spcs_zone_identifier attribute identifies the SPCS zone.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot has_Field_File_Specification_Name
 ;+		(comment "The has_Field_File_Specification_Name association is a relationship to Field_File_Specification_Name.")
@@ -1582,6 +1657,11 @@
 	(multislot record_delimiter
 ;+		(comment "The record_delimiter attribute provides the character or characters used to indicate the end of a record.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot oblique_line_longitude
+;+		(comment "The oblique_line_longitude attribute provides the longitude of a point defining the oblique line.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
@@ -1729,6 +1809,11 @@
 ;+		(comment "The identifier attribute provides the formal name used to refer to an object.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_Equirectrangular
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Equirectangular Lambert_Conformal_Conic Polar_Stereographic Polyconic Transverse_Mercator Oblique_Mercator Sinusoidal XSChoice%23)
+		(create-accessor read-write))
 	(multislot member_reference
 ;+		(comment "The member reference attribute provides a identifier for a member.")
 		(type STRING)
@@ -1752,6 +1837,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Tagged_NonDigital_Object Tagged_Digital_Object)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot south_bounding_coordinate
+;+		(comment "The south_bounding_coordinate attribute provides the southern-most coordinate of the limit of coverage expressed in latitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot document_editions
 ;+		(comment "The document_editions attribute provides a count of the total number of complete, distinct editions of the document.")
@@ -1877,6 +1967,16 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot north_bounding_coordinate
+;+		(comment "The north_bounding_coordinate attribute provides the northern-most coordinate of the limit of coverage expressed in latitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_Geographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geographic Local Planar XSChoice%23)
+		(create-accessor read-write))
 	(single-slot volume_format
 ;+		(comment "The volume_format attribute identifies the logical format used in writing a data volume.")
 		(type STRING)
@@ -1904,6 +2004,11 @@
 	(multislot altitude
 ;+		(comment "The altitude attribute provides the height of anything above a given reference plane.")
 		(type FLOAT)
+		(create-accessor read-write))
+	(single-slot spheroid_name
+;+		(comment "The spheroid_name attribute provides the identification given to established representations of a planet%47s shape. ")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot class_name
 ;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
@@ -1934,6 +2039,12 @@
 ;+		(comment "The associated_Property_Map association is a relationship to property map.")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot bearing_reference_meridian
+;+		(comment "The bearing_reference_meridian attribute specifies the axis from which the bearing is measured.")
+		(type STRING)
+;+		(value "Assumed" "Astronomic" "Geodetic" "Grid" "Magnetic")
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot has_color_display_settings
 ;+		(comment "The has_color_display_settings association is a relationship to Color_Display_Settings.")
@@ -1972,6 +2083,11 @@
 	(multislot member_relation_name
 ;+		(comment "The member relation name provides the name of the relationship.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Coordinate_Representation
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Coordinate_Representation Distance_and_Bearing_Representation)
 		(create-accessor read-write))
 	(multislot subscriber
 ;+		(comment "The subscriber association is a relationship to a Subscriber_PDS3 class.")
@@ -2237,6 +2353,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot latitude_of_projection_origin
+;+		(comment "The latitude_of_projection_origin attribute defines the latitude chosen as the origin of rectangular coordinates for a map projection.")
+		(type FLOAT)
+		(create-accessor read-write))
 	(single-slot green_channel_band
 ;+		(comment "The green_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the green channel of a display device. The first band along the band axis has band number 1.")
 		(type INTEGER)
@@ -2298,6 +2418,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(single-slot local_georeference_information
+;+		(comment "The local_description attribute provides a description of the information provided to register the local system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot object_length
 ;+		(comment "The object_length attribute provides the length of the digital object in bytes.")
 		(type INTEGER)
@@ -2358,6 +2483,12 @@
 	(multislot author_list
 ;+		(comment "The author_list attribute provides a list of people to be cited as the authors of the asssociated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name. If there is no author list, editor_list must be present and non-null.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot bearing_reference_direction
+;+		(comment "The bearing_reference_direction attribute specifies the direction from which the bearing is measured.")
+		(type STRING)
+;+		(value "North" "South")
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot has_property_map
 ;+		(comment "The has_property_map association is a relationship to Property_Map.")
@@ -2460,6 +2591,11 @@
 	(multislot interface_type
 ;+		(comment "The interface type attribute identifies the class of interconnection provided.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Polyconic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Lambert_Conformal_Conic Polyconic Transverse_Mercator Oblique_Mercator XSChoice%23)
 		(create-accessor read-write))
 	(multislot local_true_solar_time
 ;+		(comment "The local_true_solar_time (LTST) attribute provides the local time on a rotating solar system body where LTST is 12 h at the sub-solar point (SSP) and increases 1 h for each 15 degree increase in east longitude away from the SSP for prograde rotation.")
@@ -2576,6 +2712,11 @@
 ;+		(comment "The vector_components attribute provides a count of vector components.")
 		(type INTEGER)
 		(create-accessor read-write))
+	(multislot has_Geo_Transformation
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geo_Transformation)
+		(create-accessor read-write))
 	(single-slot invalid_constant
 ;+		(comment "The invalid_constant attribute provides a value that indicates the original value was outside the valid range for the parameter.")
 		(type STRING)
@@ -2595,6 +2736,11 @@
 ;+		(comment "The has_Property_Maps association is a relationship to a Property Maps class")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot azimuth_measure_point_longitude
+;+		(comment "The azimuth_measure_point_longitude attribute provides the longitude of the map projection origin.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot refer_data_set_projection
 ;+		(comment "Associated Data Set Projection.")
@@ -2687,9 +2833,24 @@
 ;+		(comment "The bits attribute provides the number of bits in the object.")
 		(type INTEGER)
 		(create-accessor read-write))
+	(multislot has_Planar_Coordinate_Information
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Planar_Coordinate_Information)
+		(create-accessor read-write))
 	(multislot document_name
 ;+		(comment "The document_name attribute provides the full name of the published document. This optional attribute is used only if the title in the identification area of the document product is not sufficient.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot pixel_resolution_x
+;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pixel_resolution_y
+;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot aip_lidvid
 ;+		(comment "The aip_lidvid attribute provides the logical_identifier plus version_id, which uniquely identifies a Archival Information Package.")
@@ -2711,6 +2872,11 @@
 	(multislot display_direction
 ;+		(comment "The display_direction attribute provides the preferred direction for displaying on a display device.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Polar_Stereographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Polar_Stereographic)
 		(create-accessor read-write))
 	(multislot data_standards
 ;+		(comment "The data standards association is a relationship to information about the controlling data standards.")
@@ -2749,6 +2915,11 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot polar_radius
+;+		(comment "The polar_radius attribute provides the value of the semiminor axis of the ellipsoid that defines the approximate shape of a target body. The polar radius is normal to the plane defined by the semi-major and semi-minor axes.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot was_informed_by
 ;+		(comment "The was_informed_by association is a recursive relationship on activity.")
 		(type INSTANCE)
@@ -2763,6 +2934,11 @@
 ;+		(comment "Association for mission.")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot has_Oblique_Line_Point_Group
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Oblique_Line_Point_Group)
 		(create-accessor read-write))
 	(multislot checksum_manifest_checksum
 ;+		(comment "The checksum manifest checksum provides the checksum for the checksum manifest file.")
@@ -2857,6 +3033,11 @@
 ;+		(value "ARCHIVED" "IN_LIEN_RESOLUTION" "IN_PEER_REVIEW" "IN_QUEUE" "LOCALLY_ARCHIVED" "PRE_PEER_REVIEW" "SAFED" "SUPERSEDED" "IN_QUEUE_ACCUMULATING" "PRE_PEER_REVIEW_ACCUMULATING" "IN_PEER_REVIEW_ACCUMULATING" "IN_LIEN_RESOLUTION_ACCUMULATING" "LOCALLY_ARCHIVED_ACCUMULATING" "ARCHIVED_ACCUMULATING")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot oblique_line_latitude
+;+		(comment "The oblique_line_latitude attribute provides the latitude of a point defining the oblique line.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot rule_type
 ;+		(comment "The rule_type attribute indicates the type of statement to be executed.")
 		(type STRING)
@@ -2879,6 +3060,16 @@
 	(single-slot steward_id
 ;+		(comment "The steward_id attribute provides the abbreviation of the organization that manages the set of registered attributes and classes.")
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot local_planar_georeference_information
+;+		(comment "The local_planar_georeference_information attribute provides a description of the information provided to register the local planar system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot scale_factor_at_center_line
+;+		(comment "The scale_factor_at_center_line attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the center line.")
+		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot url
@@ -2952,6 +3143,11 @@
 	(multislot os_version
 ;+		(comment "The OS version attribute indicates the version of an operating system.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot azimuthal_angle
+;+		(comment "The azimuthal_angle attribute provides the angle measured clockwise from north, and expressed in degrees.")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot has_Group_Facet1
 ;+		(comment "The has_Group_Facet1 association is a relationship to Group_Facet1.")
@@ -3083,6 +3279,11 @@
 ;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
 		(type FLOAT)
 		(create-accessor read-write))
+	(single-slot longitude_resolution
+;+		(comment "The longitude_resolution attribute indicates the minimum difference between two adjacent longitude values expressed in angular units of measure.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot classTitle
 ;+		(comment "The classTitle attribute provides the name of the class to be used for display.")
 		(type STRING)
@@ -3090,6 +3291,11 @@
 	(multislot bit_fields
 ;+		(comment "The bit_fields attribute provides the number of defined bit fields (Field_Bit definitions) within the Packed_Data_Field.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Transverse_Mercator
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Transverse_Mercator)
 		(create-accessor read-write))
 	(multislot logical_volume_path_name
 ;+		(comment "This attribute is used in by the volume class. It is under review.")
@@ -3122,6 +3328,16 @@
 ;+		(comment "The data_set_puid attribute provides a globally unique identifer for a data set.")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot east_bounding_coordinate
+;+		(comment "The east_bounding_coordinate attribute provides the eastern-most coordinate of the limit of coverage expressed in longitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot latitude_resolution
+;+		(comment "The latitude_resolution attribute indicates the minimum difference between two adjacent latitude values expressed in angular units of measure.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot ring_event_start_time_utc
 ;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
@@ -3141,6 +3357,11 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot planar_coordinate_encoding_method
+;+		(comment "The planar_coordinate_encoding_method attribute indicates the means used to represent horizontal positions.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot volume_set_name
 ;+		(comment "This attribute is used in by the volume class. It is under review.")
 		(type STRING)
@@ -3153,6 +3374,11 @@
 		(create-accessor read-write))
 	(single-slot center_wavelength
 ;+		(comment "The center_wavelength attribute provides the wavelength or frequency describing the center of a bin along the band axis of a spectral qube. When describing data from a spectrometer, the value corresponds to the peak of the response function for a particular detector and%2For grating position.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot distance_resolution
+;+		(comment "The distance_resolution attribute provides the minimum distance measurable between two points, expressed in Planar Distance Units of measure.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
@@ -3226,9 +3452,18 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot semi_major_radius
+;+		(comment "The semi_major_axis attribute provides the radius of the equatorial axis of the ellipsoid.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot software_dialect
 ;+		(comment "The software dialect attribute indicates the variety of a language used to write the software.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot longitude_of_central_meridian
+;+		(comment "The longitude_of_central_meridian attribute defines the line of longitude at the center of a map projection generally used as the basis for constructing the projection.")
+		(type FLOAT)
 		(create-accessor read-write))
 	(multislot property_map_type
 ;+		(comment "The property_map_type attribute indicates the category of the property map.")
@@ -3359,6 +3594,16 @@
 	(single-slot UpperModel_140908c_1300_CCB63_Class1
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pixel_scale_y
+;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pixel_scale_x
+;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
+		(type FLOAT)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot revision_id
 ;+		(comment "The revision_id attribute provides the revision level of a document, which may be set outside PDS and may be different from its version_id.")
@@ -3508,6 +3753,11 @@
 ;+		(comment "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_Bounding_Coordinates
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Bounding_Coordinates)
+		(create-accessor read-write))
 	(multislot spacecraft_clock_start_count
 ;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
 		(type STRING)
@@ -3535,6 +3785,14 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot standard_parallel_1
+;+		(comment "The standard_parallel_1 attribute defines the first standard parallel %28applicable only for specific projections%29, the first line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
+		(type FLOAT)
+		(create-accessor read-write))
+	(multislot standard_parallel_2
+;+		(comment "The standard_parallel_2 attribute defines the second standard parallel %28applicable only for specific projections, a subset of specific projections where a first standard parallel is applicable%29, the second line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
+		(type FLOAT)
+		(create-accessor read-write))
 	(multislot id_reference_to
 ;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
 		(type STRING)
@@ -3551,6 +3809,11 @@
 	(multislot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot grid_coordinate_system_name
+;+		(comment "The grid_coordinate_system_name attribute provides the name of the grid coordinate system.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot valid_minimum
 ;+		(comment "The valid_minimum attribute specifies the minimum valid value in the field or digital object with which the Special_Constants class is associated. Values below the valid_minimum have a special meaning. Values of this attribute should be represented in the same data_type as the elements in the object or field described.")
@@ -3611,6 +3874,11 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot bearing_resolution
+;+		(comment "The bearing_resolution attribute provides the minimum angle measurable between two points.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot xml_schema_collection_reference
 ;+		(comment "The xml schema collection reference attribute provides the logical_identifier for a xml schema collection.")
 		(type STRING)
@@ -3619,6 +3887,10 @@
 	(multislot ring_plane
 ;+		(comment "ring_plane indicates the plane upon which parameters such as ring_radius are based. Possible values for the Saturn ring system are 'Equator', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'Phoebe'. For the Uranus ring system values are 'Equator', 'Six', 'Five', 'Four', 'Alpha', 'Beta', 'Eta', 'Gamma', 'Delta', 'Lambda','Epsilon',Nu, Mu. Required in labels of ring occultation observations.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot scale_factor_at_central_meridian
+;+		(comment "The scale_factor_at_central_meridian attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the central meridian.")
+		(type FLOAT)
 		(create-accessor read-write))
 	(multislot record_length
 ;+		(comment "The record_length attribute provides the length of a record, including a record delimiter if present.")
@@ -3749,6 +4021,12 @@
 ;+		(comment "The type attribute provides a classification for the resource.")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot has_Oblique_Line
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Oblique_Line_Point Oblique_Line_Azimuth)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot has_tracking_detail
 ;+		(comment "The has_tracking_detail association is a relationship to tracking_detail.")
 		(type INSTANCE)
@@ -3795,6 +4073,11 @@
 	(multislot campaign_objectives_summary
 ;+		(comment "The campaign objectives summary attribute provides a comprehensive and brief abstract of a campaigns objectives.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot local_description
+;+		(comment "The local_description attribute provides a description of the coordinate system and its orientation to the surface of a planet.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot assertType
 		(type STRING)
@@ -3985,6 +4268,11 @@
 ;+		(comment "The classNameSpaceNC attribute provides the class name space Id without a colon.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_Universal_Transverse_Mercator
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Universal_Transverse_Mercator)
+		(create-accessor read-write))
 	(single-slot value_syntax
 		(type STRING)
 ;+		(cardinality 1 1)
@@ -4021,6 +4309,11 @@
 ;+		(comment "This attribute is used in the image map projection. Under review. xxx E. Rye xxx")
 		(type FLOAT)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_Spatial_Reference_Information
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Spatial_Reference_Information)
 		(create-accessor read-write))
 	(single-slot distribution_type
 ;+		(comment "This attribute is used in by the data set release class. It is under review.")
@@ -4087,6 +4380,11 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot has_Universal_Polar_Stereographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Universal_Polar_Stereographic)
+		(create-accessor read-write))
 	(multislot valid_maximum
 ;+		(comment "The valid_maximum attribute specifies the maximum valid value in the field or digital object with which the Special_Constants class is associated. Values above the valid_maximum have a special meaning. Values of this attribute should be represented in the same data_type as the elements in the object or field described. (Note that PDS3 had no qube-related valid_maximum values because all special constants were set below the valid_minimum.)")
 		(type STRING)
@@ -4094,6 +4392,10 @@
 	(multislot dsn_station_number
 ;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'.")
 		(type INTEGER)
+		(create-accessor read-write))
+	(multislot scale_factor_at_projection_origin
+;+		(comment " The scale_factor_at_projection_origin attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin. ")
+		(type FLOAT)
 		(create-accessor read-write))
 	(single-slot checksum
 ;+		(comment "The checksum attribute provides a computed value which depends on the contents of a block of data and is used to detect corruption of the data.")
@@ -5293,8 +5595,7 @@
 	(single-slot lid_reference
 ;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
 		(type STRING)
-		(default "logical_identifier")
-;+		(value "XSChoice#1")
+		(default "XSChoice#1")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot reference_type
@@ -5310,8 +5611,7 @@
 	(single-slot lidvid_reference
 ;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
 		(type STRING)
-		(default "logical_identifier::version_id")
-;+		(value "XSChoice#1")
+		(default "XSChoice#1")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -5360,8 +5660,7 @@
 	(single-slot lid_reference
 ;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
 		(type STRING)
-		(default "logical_identifier")
-;+		(value "XSChoice#1")
+		(default "XSChoice#1")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot reference_type
@@ -5373,8 +5672,7 @@
 	(single-slot lidvid_reference
 ;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
 		(type STRING)
-		(default "logical_identifier::version_id")
-;+		(value "XSChoice#1")
+		(default "XSChoice#1")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -5452,7 +5750,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array Composite_Structure)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
@@ -5563,7 +5861,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array Composite_Structure)
+;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
@@ -10368,6 +10666,470 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
+(defclass TNDO_Cartography "The Tagged NonDigital Object (TNDO) Cartography class is an abstract class for the cartography discipline."
+	(is-a Tagged_NonDigital_Object)
+	(role concrete))
+
+(defclass Bounding_Coordinates "The Bounding_Coordinates class defines the limits of coverage of a set of data expressed by latitude and longitude values in the order western-most, eastern-most, northern-most, and southern-most."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot north_bounding_coordinate
+;+		(comment "The north_bounding_coordinate attribute provides the northern-most coordinate of the limit of coverage expressed in latitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot south_bounding_coordinate
+;+		(comment "The south_bounding_coordinate attribute provides the southern-most coordinate of the limit of coverage expressed in latitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot east_bounding_coordinate
+;+		(comment "The east_bounding_coordinate attribute provides the eastern-most coordinate of the limit of coverage expressed in longitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot west_bounding_coordinate
+;+		(comment "The west_bounding_coordinate attribute provides the western-most coordinate of the limit of coverage expressed in longitude.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass State_Plane_Coordinate_System "The State_Plane_Coordinate_System class defines a plane-rectangular coordinate system established for each state in the United States by the National Geodetic Survey."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot spcs_zone_identifier
+;+		(comment "The spcs_zone_identifier attribute identifies the SPCS zone.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Polyconic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Lambert_Conformal_Conic Polyconic Transverse_Mercator Oblique_Mercator XSChoice%23)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Spatial_Reference_Information "The Spatial_Reference_Information class provides a description of the reference frame for, and the means to encode, coordinates in a data set."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Horizontal_Coordate_System_Definition
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Horizontal_Coordinate_System_Definition)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Spatial_Domain "The Spatial_Domain class describes the geographic areal domain of the data set."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Bounding_Coordinates
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Bounding_Coordinates)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Planar_Coordinate_Information "The Planar_Coordinate_Information class provides information about the coordinate system developed on the planar surface."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot planar_coordinate_encoding_method
+;+		(comment "The planar_coordinate_encoding_method attribute indicates the means used to represent horizontal positions.")
+		(type STRING)
+;+		(value "Coordinate Pair" "Distance and Bearing" "Row and Column")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Coordinate_Representation
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Coordinate_Representation Distance_and_Bearing_Representation)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Oblique_Line_Point_Group "The Oblique_Line_Point_Group class provides the coordinates in latitude and longitude of one end point of the line along which an oblique mercator map projection is centered."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot oblique_line_latitude
+;+		(comment "The oblique_line_latitude attribute provides the latitude of a point defining the oblique line.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot oblique_line_longitude
+;+		(comment "The oblique_line_longitude attribute provides the longitude of a point defining the oblique line.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Oblique_Line_Point "The Oblique_Line_Point class defines the method used to describe the line along which an oblique mercator map projection is centered using two points near the limits of the mapped region that define the center line."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(multislot has_Oblique_Line_Point_Group
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Oblique_Line_Point_Group)
+		(cardinality 2 2)
+		(create-accessor read-write)))
+
+(defclass Oblique_Line_Azimuth "The Oblique_Line_Azimuth class defines the method used to describe the line along which an oblique mercator map projection is centered using the map projection origin and an azimuth."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot azimuth_measure_point_longitude
+;+		(comment "The azimuth_measure_point_longitude attribute provides the longitude of the map projection origin.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot azimuthal_angle
+;+		(comment "The azimuthal_angle attribute provides the angle measured clockwise from north, and expressed in degrees.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Map_Projection_Base "An abstract class that serves as the parent class to all the map projections."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot latitude_of_projection_origin
+;+		(comment "The latitude_of_projection_origin attribute defines the latitude chosen as the origin of rectangular coordinates for a map projection.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot scale_factor_at_projection_origin
+;+		(comment " The scale_factor_at_projection_origin attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin. ")
+		(type FLOAT)
+		(default 3301.0)
+		(cardinality 0 3)
+		(create-accessor read-write))
+	(single-slot scale_factor_at_center_line
+;+		(comment "The scale_factor_at_center_line attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the center line.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude_of_central_meridian
+;+		(comment "The longitude_of_central_meridian attribute defines the line of longitude at the center of a map projection generally used as the basis for constructing the projection.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot scale_factor_at_central_meridian
+;+		(comment "The scale_factor_at_central_meridian attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the central meridian.")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Oblique_Line
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Oblique_Line_Point Oblique_Line_Azimuth)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot standard_parallel_1
+;+		(comment "The standard_parallel_1 attribute defines the first standard parallel %28applicable only for specific projections%29, the first line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
+		(type FLOAT)
+		(default 3301.0)
+		(cardinality 0 3)
+		(create-accessor read-write))
+	(multislot standard_parallel_2
+;+		(comment "The standard_parallel_2 attribute defines the second standard parallel %28applicable only for specific projections, a subset of specific projections where a first standard parallel is applicable%29, the second line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
+		(type FLOAT)
+		(default 3301.0)
+		(cardinality 0 3)
+		(create-accessor read-write)))
+
+(defclass Equirectangular "The Equirectangular class contains parameters for the Equirectangular projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Lambert_Conformal_Conic "The Lambert_Conformal_Conic class contains parameters for the Lambert Conformal Conic projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Oblique_Mercator "The Oblique_Mercator class contains parameters for the Oblique Mercator projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Polar_Stereographic "The Polar_Stereographic class contains parameters for the Polar Stereographic projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Polyconic "The Polyconic class contains parameters for the Polyconic projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Sinusoidal "The Sinusoidal class contains parameters for the Sinusoidal projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Transverse_Mercator "The Transverse_Mercator class contains parameters for the Transverse Mercator projection."
+	(is-a Map_Projection_Base)
+	(role concrete))
+
+(defclass Planar "The Planar class provides the quantities of distances, or distances and angles, which define the position of a point on a reference plane to which the surface of a planet has been projected."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Planar_Coordinate_Information
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Planar_Coordinate_Information)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Map_Projection
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Map_Projection Local_Planar Grid_Coordinate_System XSChoice%23)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Geo_Transformation
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geo_Transformation)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Local "The Local class provides a description of any coordinate system that is not aligned with the surface of the planet."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot local_description
+;+		(comment "The local_description attribute provides a description of the coordinate system and its orientation to the surface of a planet.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot local_georeference_information
+;+		(comment "The local_description attribute provides a description of the information provided to register the local system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Horizontal_Coordinate_System_Definition "The Horizontal_Coordinate_System_Definition class provides the reference frame or system from which linear or angular quantities are measured and assigned to the position that a point occupies."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Geographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geographic Local Planar XSChoice%23)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Geodetic_Model
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Geodetic_Model)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Geographic "The Geographic class provides information about the quantities of latitude and longitude which define the position of a point on a planetary body%47s surface with respect to a reference spheroid."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot longitude_resolution
+;+		(comment "The longitude_resolution attribute indicates the minimum difference between two adjacent longitude values expressed in angular units of measure.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot latitude_resolution
+;+		(comment "The latitude_resolution attribute indicates the minimum difference between two adjacent latitude values expressed in angular units of measure.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Coordinate_Representation "The Coordinate_Representation class provides the method of encoding the position of a point by measuring its distance from perpendicular reference axes %28the \"coordinate pair\" and \"row and column\" methods%29."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot pixel_scale_y
+;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pixel_scale_x
+;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pixel_resolution_x
+;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pixel_resolution_y
+;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Map_Projection "The Map_Projection class provides the systematic representation of all or part of the surface of a planet on a plane or developable surface."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot map_projection_name
+;+		(comment "The map_projection_name attribute provides the name of the map projection.")
+		(type STRING)
+;+		(value "Azimuthal Equidistant" "Equidistant Conic" "Equirectangular" "General Vertical Near-sided Projection" "Gnomonic" "Lambert Azimuthal Equal Area" "Lambert Conformal Conic" "Mercator" "Miller Cylindrical" "Oblique Mercator" "Orthographic" "Polar Stereographic" "Polyconic" "Robinson" "Sinusoidal" "Space Oblique Mercator" "Stereographic" "Transverse Mercator" "van der Grinten" "Albers Conical Equal Area")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Equirectrangular
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Equirectangular Lambert_Conformal_Conic Polar_Stereographic Polyconic Transverse_Mercator Oblique_Mercator Sinusoidal XSChoice%23)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Local_Planar "The Local_Planar class defines any right-handed planar coordinate system of which the z-axis coincides with a plumb line through the origin that locally is aligned with the surface of the planet."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot local_planar_description
+;+		(comment "The local_planar_description attribute provides a description of the local planar system.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot local_planar_georeference_information
+;+		(comment "The local_planar_georeference_information attribute provides a description of the information provided to register the local planar system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Cartography "The Cartography class provides a description of how a 3D sphere, spheroid, or elliptical spheroid or the celestial sphere is mapped onto a plane."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Spatial_Reference_Information
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Spatial_Reference_Information)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Spatial_Domain
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Spatial_Domain)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Distance_and_Bearing_Representation "The Distance_and_Bearing_Representation class provides a method of encoding the position of a point by measuring its distance and direction %28azimuth angle%29 from another point."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot bearing_reference_meridian
+;+		(comment "The bearing_reference_meridian attribute specifies the axis from which the bearing is measured.")
+		(type STRING)
+;+		(value "Assumed" "Astronomic" "Geodetic" "Grid" "Magnetic")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot bearing_resolution
+;+		(comment "The bearing_resolution attribute provides the minimum angle measurable between two points.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot bearing_reference_direction
+;+		(comment "The bearing_reference_direction attribute specifies the direction from which the bearing is measured.")
+		(type STRING)
+;+		(value "North" "South")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot distance_resolution
+;+		(comment "The distance_resolution attribute provides the minimum distance measurable between two points, expressed in Planar Distance Units of measure.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Geo_Transformation "The Geo_Transformation class is used for relating coordinates between one Geographical Coordinate System and another Geographical Coordinate System. In this case, a distance (meters) translation from a defined origin to a defined pixel location within an image array."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot upperleft_corner_x
+;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot upperleft_corner_y
+;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Geodetic_Model "The Geodetic_Model class provides parameters describing the shape of the planet."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot semi_major_radius
+;+		(comment "The semi_major_axis attribute provides the radius of the equatorial axis of the ellipsoid.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot spheroid_name
+;+		(comment "The spheroid_name attribute provides the identification given to established representations of a planet%47s shape. ")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot longitude_direction
+;+		(comment "The longitude_direction attribute identifies the direction of longitude %28e.g. POSITIVE_EAST or POSITIVE_WEST%29 for a planet. The IAU definition for direction of positive longitude is adopted. Typically, for planets with prograde rotations, positive longitude direction is to the west. For planets with retrograde rotations, positive longitude direction is to the east. Note: The longitude_direction attribute should be used for planetographc systems, but not for planetocentric.")
+		(type STRING)
+;+		(value "Positive East" "Positive West")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot semi_minor_radius
+;+		(comment "The semi_minor_radius attribute provides the value of the intermediate axis of the ellipsoid that defines the approximate shape of a target body. The semi-minor axis is usually in the equatorial plane.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot latitude_type
+;+		(comment " The latitude_type attribute defines the type of latitude %28planetographic, planetocentric%29 used within a cartographic product and as reflected in attribute values within associated PDS labels. The IAU definition for direction of positive longitude should be adopted: http:%2F%2Fastrogeology.usgs.gov%2Fgroups%2FIAU-WGCCRE. ")
+		(type STRING)
+;+		(value "Planetocentric" "Planetographic")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot polar_radius
+;+		(comment "The polar_radius attribute provides the value of the semiminor axis of the ellipsoid that defines the approximate shape of a target body. The polar radius is normal to the plane defined by the semi-major and semi-minor axes.")
+		(type FLOAT)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Grid_Coordinate_System "The Grid_Coordinate_System class defines a plane-rectangular coordinate system usually based on, and mathematically adjusted to, a map projection so that geographic positions can be readily transformed to and from plane coordinates."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Universal_Polar_Stereographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Universal_Polar_Stereographic)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Universal_Transverse_Mercator
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Universal_Transverse_Mercator)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot grid_coordinate_system_name
+;+		(comment "The grid_coordinate_system_name attribute provides the name of the grid coordinate system.")
+		(type STRING)
+;+		(value "ARC Coordinate System" "Other Grid System" "State Plane Coordinate System 1927" "State Plane Coordinate System 1983" "Universal Polar Stereographic" "Universal Transverse Mercator")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_State_Plane_Coordinate_System
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes State_Plane_Coordinate_System)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Universal_Polar_Stereographic "The Universal_Polar_Stereographic class defines a grid system based on the polar stereographic projection, applied to the planet%47s polar regions north of 84 degrees north and south of 80 degrees south."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot ups_zone_identifier
+;+		(comment "The ups_zone_identifier attribute provides an identifier for the UPS zone.")
+		(type STRING)
+;+		(value "A" "B" "Y" "Z")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_Polar_Stereographic
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Polar_Stereographic)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Universal_Transverse_Mercator "The Universal_Transverse_Mercator class defines a grid system based on the transverse mercator projection, applied between latitudes 84 degrees north and 80 degrees south on the planet%47s surface."
+	(is-a TNDO_Cartography)
+	(role concrete)
+	(single-slot has_Transverse_Mercator
+;+		(comment "The xxx association is a relationship to yyy.")
+		(type INSTANCE)
+;+		(allowed-classes Transverse_Mercator)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot utm_zone_number
+;+		(comment "The utm_zone_number attribute provides the identifier for the UTM zone.")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
 (defclass Tagged_NonDigital_Child "The Tagged NonDigital Child class is an abstract class for the components  of classes in the tagged nondigital object class hierarchy."
 	(is-a USER)
 	(role abstract))
@@ -13229,5 +13991,29 @@
 	(role concrete))
 
 (defclass XSChoice%23 "The XSChoice# class is a system marker that is used to indicate a choice is allowed. If XSChoice# is included in an association, then the allowed classes (other than XSChoice#) are included in an xs:choice structure in the XML schema. If the value XSChoice# is included in two or more attribute value lists, then these attributes are grouped and included in a xs:choice structure."
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2311 "TBD_description"
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2312 "TBD_description"
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2313 "TBD_description"
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2314 "TBD_description"
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2315 "TBD_description"
+	(is-a USER)
+	(role concrete))
+
+(defclass XSChoice%2317 "TBD_description"
 	(is-a USER)
 	(role concrete))

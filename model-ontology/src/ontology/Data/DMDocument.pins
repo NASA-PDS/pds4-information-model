@@ -1,4 +1,4 @@
-; Wed Oct 07 15:42:26 PDT 2015
+; Thu Aug 31 13:27:12 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -35,7 +35,7 @@
 
 ([1015-Acknowledgements] of  Section
 
-	(description "The PDS4 Data Dictionary and the PDS4 Information Model is a joint effort involving representatives from each of the PDS nodes functioning as the PDS4 Data Design Working Group.")
+	(description "The PDS4 Data Dictionary and the PDS4 Information Model is a joint effort involving representatives from each of the PDS nodes functioning as the PDS4 Data Design Working Group. The members of the overall PDS4 Development Team receiving a NASA Group Achievement award in August 2014 are listed in \"The Team\" section below.")
 	(identifier "1015-Acknowledgements")
 	(imageCaption "none")
 	(imageFileName "none")
@@ -226,8 +226,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2094-Observational_Digital_Objects")
-	(imageCaption "Tagged Digital Object UML Class Diagram")
-	(imageFileName "ObsDigObj")
+	(imageCaption "Observational Digital Objects")
+	(imageFileName "ObsDigObj_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -276,7 +276,7 @@
 	(secType "text")
 	(selectConstraint "none")
 	(subSecTOCFlag "false")
-	(title "Observational Data Component"))
+	(title "Observational Data Components"))
 
 ([2102-Observational_Data_Component_Classes] of  Section
 
@@ -299,8 +299,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure..")
 	(identifier "2104-Observational_Data_Component_Classes")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "ObsDataComp")
+	(imageCaption "Observational Data Components")
+	(imageFileName "ObsDataComp_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -372,8 +372,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2114-Document_and_Support_Products")
-	(imageCaption "Context Description UML Class Diagram")
-	(imageFileName "DocSupProd")
+	(imageCaption "Document and Support Products")
+	(imageFileName "DocSupProd_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -445,8 +445,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2124-Document_and_Support_Component_Classes")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "DocSupComp")
+	(imageCaption "Document and Support Components")
+	(imageFileName "DocSupComp_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -518,8 +518,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2134-Context_Products")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "ContProd")
+	(imageCaption "Context Products")
+	(imageFileName "ContProd_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -591,8 +591,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2144-Context_Component_Classes")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "ContComp")
+	(imageCaption "Context Components")
+	(imageFileName "ContComp_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -664,8 +664,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2154-Aggregate_Products")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "AggProd")
+	(imageCaption "Aggregate Products")
+	(imageFileName "AggProd_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -737,8 +737,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2164-Aggregate_Component_Classes")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "AggComp")
+	(imageCaption "Aggregate Components")
+	(imageFileName "AggComp_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -810,8 +810,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2174-Operational_Products")
-	(imageCaption "Operations UML Class Diagram")
-	(imageFileName "OpsProd")
+	(imageCaption "Operational Products")
+	(imageFileName "OpsProd_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -883,8 +883,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "2184-Operational Component_Classes")
-	(imageCaption "Product UML Class Diagram")
-	(imageFileName "OpsComp")
+	(imageCaption "Operational Components")
+	(imageFileName "OpsComp_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -947,8 +947,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "5020-DisciplinelUMLModel")
-	(imageCaption "Imaging Discipline UML Class Diagram")
-	(imageFileName "ImgClass")
+	(imageCaption "Imaging Discipline Classes")
+	(imageFileName "ImgClass_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -1267,8 +1267,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "5620-DiscRINGSUMLModel")
-	(imageCaption "Rings Discipline UML Class Diagram")
-	(imageFileName "RingsClass")
+	(imageCaption "Rings Discipline Classes")
+	(imageFileName "RingsClass_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -1587,8 +1587,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "6120-DataTypelUMLModel")
-	(imageCaption "DataType UML Class Diagram")
-	(imageFileName "DataTypeClass")
+	(imageCaption "DataType Classes")
+	(imageFileName "DataTypeClass_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -1651,8 +1651,8 @@
 
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "6220-UnitsUMLModel")
-	(imageCaption "DataType UML Class Diagram")
-	(imageFileName "UnitsClass")
+	(imageCaption "Unit of Measure Classes")
+	(imageFileName "UnitsClass_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
@@ -1727,6 +1727,21 @@
 	(selectConstraint "none")
 	(subSecTOCFlag "false")
 	(title "Glossary"))
+
+([9900-TeamMembers] of  Section
+
+	(description "(1) Steve Hughes; (2) Mitchell Gordon, Ronald Joyner, Anne Raugh, Elizabeth Rye, Richard Simpson; (3) Richard Chen, Edward Guinness, Sean Hardman, Lyle Huber, Steve Joy, Santa Martinez, Lynn Neakrase, Christopher Isbell, Todd King, Joe Mafi, Jordan Padams, Mark Rose, Boris Semenov; 4) Dan Crichton, Reta Beebe, Charles Acton, Michael A'Hearn, Raymond Arvidson, Lisa Gaddis, Edward Grayzeck, Susan Lavoie, Emily Law, William Knopf, Carol Neese, Michael New, Thomas Morgan, Mark Showalter, Faith Vilas, Raymond Walker (5) Michael Cayanan, Luca Cinquini, Trent Hare, John Ho, Debra Kazden, Richard Keller, Sean Kelly, Hyun Lee, Paul Ramirez, Susie Slavney, Thomas Stein -- (1) Team Lead, (2) Lead Designers, (3) Significant Contributors, (4) Management, (5) Participants")
+	(identifier "9900-TeamMembers")
+	(imageCaption "none")
+	(imageFileName "none")
+	(includeFlag "true")
+	(latexFormat "1")
+	(secSubType "contentHDR")
+	(secTOCFlag "true")
+	(secType "text")
+	(selectConstraint "none")
+	(subSecTOCFlag "false")
+	(title "The Team"))
 
 ([9x00-DiscMSNModel] of  Section
 
