@@ -213,14 +213,8 @@ class ProtPontModel extends InfoModel{
 				if (token.compareTo(")") == 0) {
 					type = 0;
 				} else {
-					if (token.indexOf("XSChoice#") > -1) {
-						attrClass.isChoice= true;
-						attrClass.groupName = token;
-					} else {
-						attrClass.valArr.add(token);
-						attrClass.isEnumerated = true;
-					}
-//					System.out.println("debug 3             attrClass.valArr.add(token):" + token );
+					attrClass.valArr.add(token);
+					attrClass.isEnumerated = true;
 				}
 				break;
 			case 8: // cardinality
@@ -252,8 +246,18 @@ class ProtPontModel extends InfoModel{
 				}
 				type = 0;
 				break;
-			case 11: // default - formation rule
-//				attrClass.format = token;
+			case 11: // default - XSChoice#
+				if (token.compareTo(")") == 0) {
+					type = 0;
+				} else {
+					if (token.indexOf("XSChoice#") > -1) {
+						attrClass.isChoice= true;
+						attrClass.groupName = token;
+					} else if (token.indexOf("33") > -1) {
+						attrClass.isChoice= true;
+						attrClass.groupName = "XSChoice#" + token;
+					}
+				}
 				type = 0;
 				break;
 			}
