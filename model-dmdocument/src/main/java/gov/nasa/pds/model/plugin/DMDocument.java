@@ -378,8 +378,8 @@ public class DMDocument extends Object {
 
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Planetary Rings", "pds", "Node", "pds", "name", "Planetary Rings", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Imaging", "pds", "PDS_Affiliate", "pds", "name", "Imaging", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.name.Planetary Rings", "pds", "PDS_Affiliate", "pds", "name", "Planetary Rings", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.team_name.Imaging", "pds", "PDS_Affiliate", "pds", "team_name", "Imaging", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.team_name.Planetary Rings", "pds", "PDS_Affiliate", "pds", "team_name", "Planetary Rings", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.data_regime", "pds", "Primary_Result_Summary", "pds", "data_regime", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Primary_Result_Summary.type", "pds", "Primary_Result_Summary", "pds", "type", "", false));
