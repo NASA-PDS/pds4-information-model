@@ -22,9 +22,11 @@
   </properties>
 
   <body>
-    <release version="8.0.0" date="2017-09-30" description="This release of the Model DM-Document represents a point build of this component.">
+    <release version="8.0.0" date="2017-09-30" description="This release of the Model DM-Document is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update">
-CCB-162 - Move 'md5_checksum' from Object_Statistics to Byte_Stream; CCB-166 - Deprecate bit_mask from IM; CCB-165 - Ambiguity of ASCII_Numeric_Base; CCB-171 - Split hardware-compatible ASCII numeric types from the unbounded; CCB-172 - Add movie format(s) to list of acceptable documents; CCB-176 - Update Node names in the IM; CCB-178 - Internal Reference Implementation; CCB-179 - In PDS4 'pds' namespace, use ASCII_NonNegative_Integer where value must be greater or equal to 0. Check on 'xs:simpleType name="group_number"' 'xs:minInclusive value="0"/'; CCB-185 - Allow multiple instances of purpose and processing_level (in Primary_Result_Summary) ?\194?\189; CCB-191 - Add Indian Space Research Organisation (ISRO) to the Namespace Registry; Partial - CCB-174 - Add the Composite_Structure class to file areas; Partial ?\226?\128?\147 Rings LDD; Docs - CCB-180 - Clarify whether namespace abbreviation in labels must correspond to namespace_id; Docs - CCB-182 - Clarify whether CDATA is allowed; Noop - CCB-183 - IM contradicts SR on how many stewards to a namespace; pds: attribute references; Expose elements
+      Namespace info is now configurable through the "config.property" file.
+      The conversion of ouput modules that write and convert the model to files in specific formats is still on-going.
+      Bug fixes and enhancements are detailed in model-ontology section.
       </action>
     </release>
     <release version="7.1.0" date="2017-03-31" description="This release of the Model DM-Document is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
