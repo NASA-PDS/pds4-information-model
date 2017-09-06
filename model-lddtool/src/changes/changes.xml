@@ -23,7 +23,6 @@
   </properties>
 
   <body>
-<<<<<<< .mine
     <release version="8.0.0" date="2017-09-30" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
 <action dev="jshughes" type="update">
      This release of the IMTool includes those approved by the CCB and bug fixes since Version 1.8.0.0 of the PDS4 Information Model.  The released documents include 1. index_1900.html – Information Model Specification; 2. PDS4_PDS_1900.xsd – Common Schema; 3. PDS4_PDS_1900.sch – Common Schematron; 4. PDS4_PDS_1900.xml – Label for Common Schema and Schematron; 5. PDS4_PDS_DD_1900.html – Data Dictionary (html); 6. PDS4_PDS_DD_1900.pdf – Data Dictionary (pdf); 7. PDS4_PDS_JSON_1900.JSON – Information Model (JSON); 8. PDS4_PDS_OWL_1900.rdf – Information Model (OWL-DL); 9. PDS4_DISP_1900.xsd – Display LDD Schema; 10. PDS4_DISP_1900.sch – Display LDD Schematron; 11. PDS4_DISP_1900.xml – Label for Display Schema and Schematron.
@@ -33,12 +32,6 @@
 <action dev="jshughes" type="update">
         Removed the restriction where LDDTool has to be run from a directory named "LDDTool".
       </action>
-=======
-    <release version="8.0.0" date="TBD" description="TBD">
-    </release>
-
-    <release version="7.1.0" date="2017-03-31" description="This release of the Local Data Dictionary Tool is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
->>>>>>> .r15964
     </release>
 
     <release version="7.0.1" date="2017-01-03" description="This release of the Local Data Dictionary Tool represents a point build of this component.">
