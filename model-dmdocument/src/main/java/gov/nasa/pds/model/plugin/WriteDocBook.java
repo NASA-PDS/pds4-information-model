@@ -86,8 +86,8 @@ class WriteDocBook extends Object {
 		ClassClassificationDefn lClassClassificationDefn = classClassificationMap.get("pds.product");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Product Classes in the common (pds) namespace.</title>");
-			prDocBook.println("           <para>These classes define the PDS4 products. </para>");
+			prDocBook.println("           <title>Product Classes in the common namespace.</title>");
+			prDocBook.println("           <para>These classes define the products.</para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
 				writeClass (lClass, prDocBook);						
@@ -99,7 +99,7 @@ class WriteDocBook extends Object {
 		lClassClassificationDefn = classClassificationMap.get("pds.support");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Support classes in the common (pds) namespace.</title>");
+			prDocBook.println("           <title>Support classes in the common namespace.</title>");
 			prDocBook.println("           <para>The classes in this section are used by the product classes.</para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -127,7 +127,7 @@ class WriteDocBook extends Object {
 		lClassClassificationDefn = classClassificationMap.get("pds.pds3");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>PDS3 catalog classes in the common (pds) namespace.</title>");
+			prDocBook.println("           <title>PDS3 catalog classes in the common namespace.</title>");
 			prDocBook.println("           <para>These classes are used to archive PDS3 catalog information. </para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -164,6 +164,18 @@ class WriteDocBook extends Object {
 	        prDocBook.println("");
 		}		
 		
+		lClassClassificationDefn = classClassificationMap.get("cart");
+		if (lClassClassificationDefn != null) {
+			prDocBook.println("        <chapter>");
+			prDocBook.println("           <title>Classes in the Cartography discipline namespace.</title>");
+			prDocBook.println("           <para>These classes have been defined for Cartography and can be used in the label's discipline area. </para>");
+			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
+				PDSObjDefn lClass = (PDSObjDefn) j.next();
+				writeClass (lClass, prDocBook);						
+			}
+			prDocBook.println("        </chapter>");
+	        prDocBook.println("");
+		}
         
 		lClassClassificationDefn = classClassificationMap.get("disp");
 		if (lClassClassificationDefn != null) {
@@ -401,8 +413,8 @@ class WriteDocBook extends Object {
 		AttrClassificationDefn lAttrClassificationDefn = attrClassificationMap.get("pds");
 		if (lAttrClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the common (pds) namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes in the common (pds) namespace. </para>");
+			prDocBook.println("           <title>Attributes in the common namespace.</title>");
+			prDocBook.println("           <para>These attributes are used by the classes in the common namespace. </para>");
 			for (Iterator <AttrDefn> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
 				writeAttr (lAttr, prDocBook);						
@@ -452,6 +464,18 @@ class WriteDocBook extends Object {
 	        prDocBook.println("");
 		}
 		
+		lAttrClassificationDefn = attrClassificationMap.get("cart");
+		if (lAttrClassificationDefn != null) {
+			prDocBook.println("        <chapter>");
+			prDocBook.println("           <title>Attributes in the Cartographic namespace.</title>");
+			prDocBook.println("           <para>These attributes are used by the classes defined for the Cartographic namespace.</para>");
+			for (Iterator <AttrDefn> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) j.next();
+				writeAttr (lAttr, prDocBook);						
+			}
+			prDocBook.println("        </chapter>");
+			prDocBook.println("");
+		}
 		
 		lAttrClassificationDefn = attrClassificationMap.get("disp");
 		if (lAttrClassificationDefn != null) {
@@ -628,8 +652,8 @@ class WriteDocBook extends Object {
         prDocBook.println("      <!-- =====================Part4 Begin=========================== -->");
         prDocBook.println("");
 		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Data Types in the common (pds) namespace.</title>");
-		prDocBook.println("       <para>These classes define the PDS4 data types. </para>");
+		prDocBook.println("       <title>Data Types in the common namespace.</title>");
+		prDocBook.println("       <para>These classes define the data types. </para>");
 					
 //		Sort the data types			
 		TreeMap <String, PDSObjDefn> sortDataTypeMap = new TreeMap <String, PDSObjDefn> ();
@@ -749,8 +773,8 @@ class WriteDocBook extends Object {
 		
 		prDocBook.println("    </chapter>");		
 		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Units of Measure in the common (pds) namespace.</title>");
-		prDocBook.println("       <para>These classes define the PDS4 units of measure. </para>");
+		prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
+		prDocBook.println("       <para>These classes define the units of measure. </para>");
 		
 		// get the units
 		ArrayList <PermValueDefn> lPermValueDefnArr = new ArrayList <PermValueDefn> ();
@@ -838,38 +862,35 @@ class WriteDocBook extends Object {
 		prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
-		prDocBook.println("        <title>PDS4 Data Dictionary</title>");
+		prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
 		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <author>");
-		prDocBook.println("            <orgname>PDS4 Data Design Working Group</orgname>");
+		prDocBook.println("            <orgname>Data Design Working Group</orgname>");
 		prDocBook.println("        </author>");
-		prDocBook.println("        <releaseinfo>Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
+		prDocBook.println("        <releaseinfo>Generated from Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");
-//		prDocBook.println("    <part>");
-//		prDocBook.println("        <title>Part One</title>");
-//		prDocBook.println("        <subtitle>Part one of the PDS4 Data Dictionary contains introductory material.</subtitle>");
 		prDocBook.println("        ");
 		prDocBook.println("        <chapter>");
 		prDocBook.println("            <title>Introduction</title>");
-		prDocBook.println("            <para>The Planetary Data System (PDS) PDS4 Data Dictionary defines the organization and components of PDS4 product labels. Components of a product label include classes and their attributes.</para>");
+		prDocBook.println("            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
 		prDocBook.println("            <para>");
 		prDocBook.println("            </para>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Audience</title>");
-		prDocBook.println("                <para>The PDS4 Data Dictionary - Abridged - has been abstracted from the unabridged version with the needs of data providers and data end users in mind. It contains full definitions but not all the fine detail or repetition necessary to support the underlying Information Model.</para>");
+		prDocBook.println("                <para>The Data Dictionary - Abridged - has been abstracted from the unabridged version with the needs of data providers and data end users in mind. It contains full definitions but not all the fine detail or repetition necessary to support the underlying Information Model.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Acknowledgements</title>");
-		prDocBook.println("                <para>The PDS4 Data Dictionary and the PDS4 Information Model is a joint effort involving representatives from each of the PDS nodes functioning as the PDS4 Data Design Working Group.</para>");
+		prDocBook.println("                <para>The Data Dictionary and the Information Model is a joint effort involving discipline experts functioning as a data design working group.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Scope</title>");
-		prDocBook.println("                <para>The PDS4 Data Dictionary defines the common and discipline level classes and attributes used to create PDS4 product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
+		prDocBook.println("                <para>The Data Dictionary defines the common and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
@@ -881,12 +902,12 @@ class WriteDocBook extends Object {
 		prDocBook.println("                    <itemizedlist>");
 		prDocBook.println("                        <listitem>");
 		prDocBook.println("                            <para>");
-		prDocBook.println("                                PDS4 Information Model Specification - The PDS4 Information Model is used as the source for class, attribute, and data type definitions. The model is presented in document format as the PDS4 Information Model Specification.");
+		prDocBook.println("                                Information Model Specification - The Information Model is used as the source for class, attribute, and data type definitions. The model is presented in document format as the Information Model Specification.");
 		prDocBook.println("                            </para>");
 		prDocBook.println("                        </listitem>");
 		prDocBook.println("                        <listitem>");
 		prDocBook.println("                            <para>");
-		prDocBook.println("                                ISO/IEC 11179:3 Registry Metamodel and Basic Attributes Specification, 2003. - The ISO/IEC 11179 specification provides the schema for the PDS4 data dictionary.");
+		prDocBook.println("                                ISO/IEC 11179:3 Registry Metamodel and Basic Attributes Specification, 2003. - The ISO/IEC 11179 specification provides the schema for the data dictionary.");
 		prDocBook.println("                            </para>");
 		prDocBook.println("                        </listitem>");
 		prDocBook.println("                    </itemizedlist>");
@@ -903,18 +924,19 @@ class WriteDocBook extends Object {
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Terminology</title>");
-		prDocBook.println("                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the PDS Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
+// 222		In the following text replaced apostophes and hyphens.
+		prDocBook.println("                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
 		prDocBook.println("                <para>Following are some definitions of essential terms used throughout this document.</para>");
 		prDocBook.println("                <itemizedlist>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, �color� and �length� are possible attributes. </para>");
+		prDocBook.println("                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, 'color' and 'length' are possible attributes. </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic � a template from which individual members of the family may be constructed.");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic - a template from which individual members of the family may be constructed.");
 		prDocBook.println("                        </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of �conceptual objects� include the Cassini mission and NASA�s strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used in the PDS archive to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
@@ -923,7 +945,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data � for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data - for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para><emphasis role=\"italic\">Formal</emphasis> as used in the definition of attributes that are names indicates that an established procedure was involved in creating the name.</para>");
@@ -938,7 +960,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("                        <para><emphasis role=\"italic\">Logical</emphasis> as used in the definition of logical identifier indicates that the identifier logically groups a set of objects. </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of �physical objects� include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">resource</emphasis> is the target (referent) of any Uniform Resource Identifier; the thing to which a URI points.</para>");
