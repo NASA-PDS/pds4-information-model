@@ -48,6 +48,7 @@ public class DMDocument extends Object {
 	static String imSpecDocTitle = "TBD_";
 	static String imSpecDocAuthor = "TBD_";
 	static String imSpecDocSubTitle = "TBD_";
+	static String ddDocTitle = "TBD_";
 	
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
@@ -640,6 +641,8 @@ public class DMDocument extends Object {
     	    if (configInputStr != null) imSpecDocAuthor = configInputStr;
     	    configInputStr= props.getProperty("imSpecDocSubTitle");
     	    if (configInputStr != null) imSpecDocSubTitle = configInputStr;
+    	    configInputStr= props.getProperty("ddDocTitle");
+    	    if (configInputStr != null) ddDocTitle = configInputStr;
     	    configInputStr= props.getProperty("debugFlag");
     	    if (configInputStr != null && configInputStr.compareTo("true") == 0) debugFlag = true;
     	    reader.close();
