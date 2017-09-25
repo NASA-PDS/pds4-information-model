@@ -1,4 +1,4 @@
-; Thu Aug 31 16:25:18 PDT 2017
+; Fri Sep 22 00:26:43 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4363,6 +4363,10 @@
 		(create-accessor read-write))
 	(multislot observed_event_start_time_utc
 ;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot identifier_reference
+;+		(comment "The identifier_reference attribute provides the value of an identifier.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot collected_under
@@ -11260,7 +11264,6 @@
 	(multislot local_identifier
 ;+		(comment "The local_identifier attribute provides a character string which uniquely identifies the containing object within the label.")
 		(type STRING)
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot constant_value
 ;+		(comment "The constant value attribute provides the value to be used if an attribute is static.")
@@ -11272,6 +11275,11 @@
 		(type STRING)
 ;+		(value "subclass_of" "attribute_of" "component_of" "restriction_of" "extension_of" "parent_of")
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot identifier_reference
+;+		(comment "The identifier_reference attribute provides the value of an identifier.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot dd_attribute_reference
 ;+		(comment "The dd_attribute_reference association is a relationship to DD_Attribute_Reference.")

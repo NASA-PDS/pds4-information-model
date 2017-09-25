@@ -1,4 +1,4 @@
-; Thu Aug 31 17:26:32 PDT 2017
+; Fri Sep 22 00:31:03 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1024,6 +1024,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.maximum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.minimum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Reference.pds.name]
@@ -6310,6 +6311,20 @@
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Association.pds.constant_value])
+	(versionIdentifier "1.5"))
+
+([DE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  DataElement
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference])
 	(versionIdentifier "1.5"))
 
 ([DE.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier] of  DataElement
@@ -17810,6 +17825,7 @@
 		[DE.0001_NASA_PDS_1.pds.Character_Data_Type.pds.character_encoding]
 		[DE.0001_NASA_PDS_1.pds.Character_Data_Type.pds.formation_rule]
 		[DE.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter]
+		[DE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference]
 		[DE.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.DD_Association_External.pds.maximum_occurrences]
 		[DE.0001_NASA_PDS_1.pds.DD_Association_External.pds.minimum_occurrences]
@@ -20089,6 +20105,11 @@
 ([DEF.0001_NASA_PDS_1.pds.DD_Association.pds.constant_value] of  Definition
 
 	(definitionText "The constant value attribute provides the value to be used if an attribute is static.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  Definition
+
+	(definitionText "The identifier_reference attribute provides the value of an identifier.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier] of  Definition
@@ -25784,6 +25805,11 @@
 ([DES.0001_NASA_PDS_1.pds.DD_Association.pds.constant_value] of  Designation
 
 	(designationName "constant_value")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  Designation
+
+	(designationName "identifier_reference")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier] of  Designation
@@ -43077,6 +43103,27 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.5"))
 
+([NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.5.1.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference])
+	(representedBy2 [CD_Text])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.5"))
+
 ([NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.5.1.0])
@@ -58007,6 +58054,15 @@
 	(administrationRecord [DD_1.5.1.0])
 	(classOrder "1070")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Association.pds.dd_class_reference")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.5"))
+
+([PR.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  Property
+
+	(administrationRecord [DD_1.5.1.0])
+	(classOrder "1005")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.5"))
@@ -81503,6 +81559,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.DD_Association.pds.constant_value])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference])
+	(designation [DES.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -94871,7 +94934,7 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.specified_unit_id.1203016601] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Units_of_Pixel_Resolution_Map maximum, minimum, and permissible values are given in the unit km/pixel")
+	(description "Units_of_Pixel_Resolution_Map maximum, minimum, and permissible values are given in the unit km%2Fpixel")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.type.393434316] of  ValueMeaning
@@ -94883,25 +94946,25 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.unit_id.-2050785475] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is deg/pixel where 'deg' is interpreted as a surface distance measured in degrees of latitude or longitude")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is deg%2Fpixel where %47deg%47 is interpreted as a surface distance measured in degrees of latitude or longitude")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.unit_id.-594095516] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is m/pixel")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is m%2Fpixel")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.unit_id.1203016601] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is km/pixel")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is km%2Fpixel")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Map.pds.unit_id.393669975] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is mm/pixel")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Map is mm%2Fpixel")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Angular.pds.specified_unit_id.-140902147] of  ValueMeaning
@@ -94967,7 +95030,7 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Map.pds.specified_unit_id.-140902147] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Units_of_Pixel_Scale_Map maximum, minimum, and permissible values are given in the unit pixel/deg")
+	(description "Units_of_Pixel_Scale_Map maximum, minimum, and permissible values are given in the unit pixel%2Fdeg")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Map.pds.type.79698218] of  ValueMeaning
@@ -94979,7 +95042,7 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Scale_Map.pds.unit_id.-140902147] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Scale_Map is pixel/deg where 'deg' is interpreted as a surface distance measured in degrees of latitude or longitude")
+	(description "The abbreviated unit for Units_of_Pixel_Scale_Map is pixel%2Fdeg where %47deg%47 is interpreted as a surface distance measured in degrees of latitude or longitude")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pressure.pds.specified_unit_id.97299] of  ValueMeaning
