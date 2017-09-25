@@ -709,10 +709,14 @@ public class LDDParser extends Object
 				lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
 				lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
 				// get all of the identifiers
-				lLocalIdentifierArr =  getXMLValueArr ("local_identifier", lAssocElem);
+				lLocalIdentifierArr =  getXMLValueArr ("identifier_reference", lAssocElem);
 				if (lLocalIdentifierArr.size() == 0) {
-					lddErrorMsg.add("   ERROR    Association - Reference_Type: " + lReferenceType + " - A local_identifier was not provided for this association.");
-					continue;
+					lLocalIdentifierArr =  getXMLValueArr ("local_identifier", lAssocElem);
+					if (lLocalIdentifierArr.size() == 0) {
+						lddErrorMsg.add("   ERROR    Association - Reference_Type: " + lReferenceType + " - No identifiers were provided for this association.");
+						continue;
+					}
+
 				}
 				lLocalIdentifier = lLocalIdentifierArr.get(0);
 				if (lReferenceType.compareTo("attribute_of") == 0) {
@@ -1252,7 +1256,7 @@ public class LDDParser extends Object
 				}
 			}					
 		}
-	
+		
 		// update the assoc (AttrDefn) valArr; change 
 		for (Iterator <PDSObjDefn> i = classArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
@@ -1270,8 +1274,8 @@ public class LDDParser extends Object
 				}
 				lAssoc.valArr = updValArr;
 			}
-		}		
-			
+		}
+		
 //			if (lClass.identifier.compareTo("0001_NASA_PDS_1.disp.Display_Direction") == 0) printClassDebug ("4", "0001_NASA_PDS_1.disp.Display_Direction");
 //			printClassDebug ("5", "0001_NASA_PDS_1.disp.Display_Direction");
 		return;
@@ -1353,6 +1357,8 @@ public class LDDParser extends Object
 			if ((lComponentClass.nameSpaceIdNC.compareTo("pds") != 0) && (lComponentClass.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) && (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lComponentClass.nameSpaceIdNC))) {
 				DMDocument.LDDImportNameSpaceIdNCArr.add(lComponentClass.nameSpaceIdNC);
 			}
+			// create the valArr update map - local to external titles.
+			lLDDValArrExtUpdDefnClassMap.put(lLocalIdentifier, lComponentClass.title);
 			return lComponentClass;
 		}
 		lddErrorMsg.add("   ERROR    Class:" + lClass.identifier + "  Association:" + lProperty.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Component Class");
@@ -1374,13 +1380,8 @@ public class LDDParser extends Object
 		String lClassIdentifier = DMDocument.registrationAuthorityIdentifierValue + "." + lLocalIdentifier;
 		lParentClass = InfoModel.masterMOFClassIdMap.get(lClassIdentifier);
 		if (lParentClass != null) {
-// 8888 something is missing, development version uses lComponentClass.title
-			// create the valArr update map - local to external titles.
-			lLDDValArrExtUpdDefnClassMap.put(lLocalIdentifier, lParentClass.title);
-
 			return lParentClass;
 		}
-				
 		lddErrorMsg.add("   ERROR    Class:" + lClass.identifier + "  Association:" + lProperty.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Parent Class");
 		return null;
 	}
@@ -1524,9 +1525,7 @@ public class LDDParser extends Object
 			PDSObjDefn lClass = (PDSObjDefn) j.next();
 			InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
 		}
-		
-//		InfoModel.printObjectDebug (553, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.geom.Camera_Model_Parameters"));
-		
+				
 		// build the master array (sorted by identifier)
 		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());		
 
@@ -2155,7 +2154,6 @@ public class LDDParser extends Object
 	// print protege pont file
 	private void printProtegePontFile(SchemaFileDefn lSchemaFileDefn) throws java.io.IOException{
 		//Iterate through the list and print the data
-//		String lFileName = lSchemaFileDefn.LDDToolOutputFileNameNE + "_" + lSchemaFileDefn.nameSpaceIdNCUC + "_" + lSchemaFileDefn.lab_version_id + ".pont";
 		String lFileName = lSchemaFileDefn.relativeFileSpecLDDPontMerge;
 		prProtegePont = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
@@ -2178,7 +2176,7 @@ public class LDDParser extends Object
 	        prProtegePont.println(";+       (comment \"" + InfoModel.escapeProtegeLocalDD(lAttr.description) + "\")");
 	        String lValueType = InfoModel.dataTypePDS4ProtegeMap.get(lAttr.valueType);
 	        if (lValueType == null) {
-	        	lValueType = "string";
+	        	lValueType = "TBD_Protege_Type";
 	        }
 	        prProtegePont.println("    (type " + InfoModel.escapeProtegeLocalDD(lValueType) + ")");
 	        prProtegePont.println(";+        (cardinality " + InfoModel.escapeProtegeLocalDD(lAttr.cardMin) + " " + InfoModel.escapeProtegeLocalDD(lAttr.cardMax) + ")");
@@ -2191,7 +2189,7 @@ public class LDDParser extends Object
 	        prProtegePont.println(";+       (comment \"" + InfoModel.escapeProtegeLocalDD(lAttr.description) + "\")");
 	        String lValueType = InfoModel.dataTypePDS4ProtegeMap.get(lAttr.valueType);
 	        if (lValueType == null) {
-	        	lValueType = "string";
+	        	lValueType = "TBD_Protege_Type";
 	        }
 	        prProtegePont.println("    (type " + lValueType + ")");
 	        String lCardMax = "?VARIABLE";
