@@ -32,11 +32,10 @@
 </action>
 <action dev="jshughes" type="update" issue="CCB-165">
      Ambiguity of ASCII_Numeric_Base
-     a.	It is not definitively clear whether ASCII_Numeric_Base* are describing non-negative integers in their respective bases, or whether they are encoding bytes (e.g. signed or unsigned integers, floats) in ascii representations. Having the latter does not allow for any programmatic access to these without further descriptions of byte order, float or integer, signed or unsigned.
-     b.	Modify descriptions for these data types in the Information Model to:
+     a.	Modify descriptions for these data types in the Information Model to:
 ASCII_Numeric_Base2: "The ASCII Numeric Base2 class indicates an ASCII character representation of a non-negative unsigned integer in base 2. Must consist of the characters 0 and 1. May not be preceded by any sign (+/-) notation."
-     c.	ASCII_Numeric_Base8: "The ASCII Numeric Base8 class indicates an ASCII character representation of a non-negative unsigned integer in base 8. Must consist of the characters 0 through 7. May not be preceded by any sign (+/-) notation."
-     d.	ASCII_Numeric_Base16: "The ASCII Numeric Base16 class indicates an ASCII character representation of a non-negative unsigned integer in base 16. Must consist of the characters 0 through 9, and A through F or a through f. May not be preceded by any sign (+/-) notation."
+     b.	ASCII_Numeric_Base8: "The ASCII Numeric Base8 class indicates an ASCII character representation of a non-negative unsigned integer in base 8. Must consist of the characters 0 through 7. May not be preceded by any sign (+/-) notation."
+     c.	ASCII_Numeric_Base16: "The ASCII Numeric Base16 class indicates an ASCII character representation of a non-negative unsigned integer in base 16. Must consist of the characters 0 through 9, and A through F or a through f. May not be preceded by any sign (+/-) notation."
 </action>
 <action dev="jshughes" type="update" issue="CCB-166">
      Deprecate bit_mask from IM
@@ -44,7 +43,8 @@ ASCII_Numeric_Base2: "The ASCII Numeric Base2 class indicates an ASCII character
 </action>
 <action dev="jshughes" type="update" issue="CCB-171">
      Split hardware-compatible ASCII numeric types from the unbounded 
-     a.	Clarify the definitions of ASCII_Integer, ASCII_NonNegative_Integer, and ASCII_Real, set minimum and maximum value ranges, and use stricter XML Schema base types.
+     a. Change the basetypes of ASCII_Integer and ASCII_NonNegative_Integer. Ensuring that the new basetypes validate the requirements expressed by Table 5A-3 correctly.
+     b.	Clarify the definitions of ASCII_Integer, ASCII_NonNegative_Integer, and ASCII_Real, set minimum and maximum value ranges, and use stricter XML Schema base types.
 </action>
 <action dev="jshughes" type="update" issue="CCB-172">
      Add movie format(s) to list of acceptable documents
@@ -59,7 +59,7 @@ ASCII_Numeric_Base2: "The ASCII Numeric Base2 class indicates an ASCII character
      a.	Define two new data types, ASCII_Local_Identifier and ASCII_Local_Identifier_Reference. 
      b.	The XML Schema base types are xs:ID and xs:IDREF respectively. 
      c.	Change the data types of the attributes "local_identifier" and "local_identifier_reference" to ASCII_Local_Identifier and ASCII_Local_Identifier_Reference respectively. 
-     d.	This change provides referential integrity for PDS4 product labels using XML Schema.
+     d.	Deprecated <DD_Association.local_identifier> and added <DD_Association.identifier_reference> to allow references within the local namespace and also external namespaces. (Bugfix after node testing.)
 </action>
 <action dev="jshughes" type="update" issue="CCB-179">
      In PDS4 'pds' namespace, use ASCII_NonNegative_Integer where value must be greater or equal to 0
@@ -79,6 +79,7 @@ For attributes that currently have a data type of ASCII_Integer and a minimum va
      Clarify whether CDATA is allowed 
      a.	Document Update: In the DPH add the text: 
 	"PDS permits the reasonable use of XML's CDATA structure, for example, when the entry includes a formula that uses symbols used in XML markup (e.g., "&lt;" , "&gt;"), or when the entry includes an XML fragment. If CDATA is used in an XML label, it's use is likely to be scrutinized during peer review”
+     b. No IM changes specified or implemented.
 </action>
 <action dev="jshughes" type="update" issue="CCB-183">
      IM contradicts SR on how many stewards to a namespace
