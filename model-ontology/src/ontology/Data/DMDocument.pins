@@ -1,4 +1,4 @@
-; Thu Aug 31 13:27:12 PDT 2017
+; Tue Sep 26 16:45:58 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1524,7 +1524,7 @@
 	(description "\\newline \\newline The classes in this section are illustrated using a Unified Modeling Language (UML) class hierarchy diagram in the following figure.")
 	(identifier "5912-DiscCartUMLModel")
 	(imageCaption "Discipline UML Class Diagram")
-	(imageFileName "none")
+	(imageFileName "CartDisc_1900")
 	(includeFlag "true")
 	(latexFormat "0")
 	(secSubType "content")
