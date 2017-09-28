@@ -73,7 +73,8 @@ public class DMDocument extends Object {
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b
 	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
 	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
-
+	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
+	
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
 	// 1.1.0.0 - 1.1  - 1.1  - Build 4a
@@ -88,6 +89,7 @@ public class DMDocument extends Object {
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b 
 	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
 	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
+	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
