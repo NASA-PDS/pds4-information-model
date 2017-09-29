@@ -1,4 +1,4 @@
-; Fri Sep 22 00:26:43 PDT 2017
+; Fri Sep 29 08:19:21 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5174,7 +5174,7 @@
 ;+		(comment "The product_class attribute provides the name of the product class.")
 		(type STRING)
 		(default "class_name")
-;+		(value "Product_Attribute_Definition" "Product_Browse" "Product_Bundle" "Product_Context" "Product_Collection" "Product_Document" "Product_File_Repository" "Product_File_Text" "Product_Observational" "Product_Service" "Product_Software" "Product_SPICE_Kernel" "Product_Thumbnail" "Product_Update" "Product_XML_Schema" "Product_Zipped" "Product_Data_Set_PDS3" "Product_Instrument_Host_PDS3" "Product_Instrument_PDS3" "Product_Mission_PDS3" "Product_Proxy_PDS3" "Product_Subscription_PDS3" "Product_Target_PDS3" "Product_Volume_PDS3" "Product_Volume_Set_PDS3" "Product_AIP" "Product_DIP" "Product_DIP_Deep_Archive" "Product_SIP" "Product_Class_Definition" "Product_Native" "Product_SIP_Deep_Archive" "Product_Ancillary")
+;+		(value "Product_Attribute_Definition" "Product_Browse" "Product_Bundle" "Product_Context" "Product_Collection" "Product_Document" "Product_File_Repository" "Product_File_Text" "Product_Observational" "Product_Service" "Product_Software" "Product_SPICE_Kernel" "Product_Thumbnail" "Product_Update" "Product_XML_Schema" "Product_Zipped" "Product_Data_Set_PDS3" "Product_Instrument_Host_PDS3" "Product_Instrument_PDS3" "Product_Mission_PDS3" "Product_Proxy_PDS3" "Product_Subscription_PDS3" "Product_Target_PDS3" "Product_Volume_PDS3" "Product_Volume_Set_PDS3" "Product_AIP" "Product_DIP" "Product_DIP_Deep_Archive" "Product_SIP" "Product_Class_Definition" "Product_Native" "Product_SIP_Deep_Archive" "Product_Ancillary" "Product_Metadata_Supplemental")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot logical_identifier

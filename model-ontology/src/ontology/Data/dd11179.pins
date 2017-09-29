@@ -1,4 +1,4 @@
-; Fri Sep 22 00:31:03 PDT 2017
+; Fri Sep 29 08:02:12 PDT 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1024,7 +1024,6 @@
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.maximum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.minimum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Reference.pds.name]
@@ -1251,6 +1250,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Citation_Information.pds.editor_list]
 		[NEVD.0001_NASA_PDS_1.pds.Collection.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Context_Area.pds.comment]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute.pds.comment]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute.pds.definition]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Full.pds.comment]
@@ -34811,6 +34811,7 @@
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.473272992]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-2133406077]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.852822268]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2142347844]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1861064599]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-2060739161]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1024776647]
@@ -73508,6 +73509,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2104209397])
 	(value "Product_Proxy_PDS3"))
 
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2142347844] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2142347844])
+	(value "Product_Metadata_Supplemental"))
+
 ([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.217529386] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -92349,6 +92358,12 @@
 
 	(beginDate "2009-06-09")
 	(description "This is a product that is described by the class definition Product_Proxy_PDS3")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2142347844] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This is a product that is described by the class definition Product_Metadata_Supplemental")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.217529386] of  ValueMeaning
