@@ -23,119 +23,116 @@
   </properties>
 
   <body>
-    <release version="8.0.0" date="2017-09-30" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
-<action dev="jshughes" type="update" issue="CCB-162">
-     Move "md5_checksum" from Object_Statistics to Byte_Stream
-     a.	Deprecate "md5_checksum" as an attribute in Object_Statistics.
-     b.	Add "md5_checksum" as an optional attribute of Byte_Stream.
-     c.	Revise the definition of "md5_checksum" to allow its use with objects that are smaller than a file.
-</action>
-<action dev="jshughes" type="update" issue="CCB-165">
-     Ambiguity of ASCII_Numeric_Base
-     a.	Modify descriptions for these data types in the Information Model to:
-ASCII_Numeric_Base2: "The ASCII Numeric Base2 class indicates an ASCII character representation of a non-negative unsigned integer in base 2. Must consist of the characters 0 and 1. May not be preceded by any sign (+/-) notation."
-     b.	ASCII_Numeric_Base8: "The ASCII Numeric Base8 class indicates an ASCII character representation of a non-negative unsigned integer in base 8. Must consist of the characters 0 through 7. May not be preceded by any sign (+/-) notation."
-     c.	ASCII_Numeric_Base16: "The ASCII Numeric Base16 class indicates an ASCII character representation of a non-negative unsigned integer in base 16. Must consist of the characters 0 through 9, and A through F or a through f. May not be preceded by any sign (+/-) notation."
-</action>
-<action dev="jshughes" type="update" issue="CCB-166">
-     Deprecate bit_mask from IM
-     a.	Deprecate bit_mask in the Object_Statistics class.
-</action>
-<action dev="jshughes" type="update" issue="CCB-171">
-     Split hardware-compatible ASCII numeric types from the unbounded 
-     a. Change the basetypes of ASCII_Integer and ASCII_NonNegative_Integer. Ensuring that the new basetypes validate the requirements expressed by Table 5A-3 correctly.
-     b.	Clarify the definitions of ASCII_Integer, ASCII_NonNegative_Integer, and ASCII_Real, set minimum and maximum value ranges, and use stricter XML Schema base types.
-</action>
-<action dev="jshughes" type="update" issue="CCB-172">
-     Add movie format(s) to list of acceptable documents
-     a.	Add "MPEG-4" to the list of values for Document_File:document_standard_id with the description "The Document_File is governed by the standard Moving Picture Experts Group (MPEG), ISO/IEC 14496-14, 14496-10 and 14496-3 subject to the restrictions laid out in the Document Products section of the PDS4 Standards Reference."
-</action>
-<action dev="jshughes" type="update" issue="CCB-176">
-     Update Node names in the IM
-     a.	Change the node names for from “Planetary Rings” to “Ring-Moon Systems” and “Imaging” to “Cartography and Imaging Sciences Discipline”.
-</action>
-<action dev="jshughes" type="update" issue="CCB-178">
-     Internal Reference Implementation
-     a.	Define two new data types, ASCII_Local_Identifier and ASCII_Local_Identifier_Reference. 
-     b.	The XML Schema base types are xs:ID and xs:IDREF respectively. 
-     c.	Change the data types of the attributes "local_identifier" and "local_identifier_reference" to ASCII_Local_Identifier and ASCII_Local_Identifier_Reference respectively. 
-     d.	Deprecated <DD_Association.local_identifier> and added <DD_Association.identifier_reference> to allow references within the local namespace and also external namespaces. (Bugfix after node testing.)
-</action>
-<action dev="jshughes" type="update" issue="CCB-179">
-     In PDS4 'pds' namespace, use ASCII_NonNegative_Integer where value must be greater or equal to 0
-For attributes that currently have a data type of ASCII_Integer and a minimum value of zero (0), change the data type to ASCII_NonNegative_Integer.
-</action>
-<action dev="jshughes" type="update" issue="CCB-180">
-     Clarify whether namespace abbreviation in labels must correspond to namespace_id
-     a.	Update, document, and post the Namespace Registry. 
-     b.	LDDTool ensures that the namespace prefix is identical to the namespace_id in the generated XML Schemas.
-</action>
-<action dev="jshughes" type="update" issue="CCB-181">
-     Clarify whether newlines are allowed in PDS DSV 1 (L.Nagdimunov)
-     a.	Document Update: Add a sentence to the SR:
-     “Field definitions within the label must be in the same order as the physical appearance of the fields in the record. No field may contain either the CR character or the LF character."
-</action>
-<action dev="jshughes" type="update" issue="CCB-182">
-     Clarify whether CDATA is allowed 
-     a.	Document Update: In the DPH add the text: 
-	"PDS permits the reasonable use of XML's CDATA structure, for example, when the entry includes a formula that uses symbols used in XML markup (e.g., "&lt;" , "&gt;"), or when the entry includes an XML fragment. If CDATA is used in an XML label, it's use is likely to be scrutinized during peer review”
-     b. No IM changes specified or implemented.
-</action>
-<action dev="jshughes" type="update" issue="CCB-183">
-     IM contradicts SR on how many stewards to a namespace
-     The SCR Triage team and the DDWG have both agreed that no action is required.
-</action>
-<action dev="jshughes" type="fix" issue="CCB-184">
-     The xs:choice element does not validate as expected when minOccurs and maxOccurs are both '1'.
-     a.	Bugfix: Update LDDTool to remove "minOccurs" and "maxOccurs" for attributes in a choice list.
-</action>
-<action dev="jshughes" type="update" issue="CCB-185">
-     Allow multiple instances of purpose and processing_level (in Primary_Result_Summary)
-     Change the cardinality from "1..1" to "1..Unbounded" for Primary_Result_Summary/purpose and Primary_Result_Summary/processing_level.
-</action>
-<action dev="jshughes" type="update" issue="CCB-191">
-     Add Indian Space Research Organisation (ISRO) to the Namespace Registry
-     a.	Create an entry for the Indian Space Research Organisation (ISRO) in the PDS4 Namespace Registry.
-     b.	Update the IM.
-</action>
-<action dev="jshughes" type="update" issue="CCB-192">
-     Add Product_Metadata_Supplemental
-     a.	Add the new class: Product_Metadata_Supplemental 
-     b.	Deprecate Product_Update
-     c.	The specific changes are detailed in the SCR.
-</action>
-<action dev="jshughes" type="update" issue="CCB-193">
-     Add Geosciences and Radio Science as permissible values for discipline_name (S.Slavney)
-     Add "Geosciences" and "Radio Science" as permissible values for discipline_name in the Information Model and Data Dictionary.
-</action>
+    <release version="8.0.0" date="2017-09-29" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-162">
+        Move "md5_checksum" from Object_Statistics to Byte_Stream
+        a.	Deprecate "md5_checksum" as an attribute in Object_Statistics.
+        b.	Add "md5_checksum" as an optional attribute of Byte_Stream.
+        c.	Revise the definition of "md5_checksum" to allow its use with objects that are smaller than a file.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-165">
+        Ambiguity of ASCII_Numeric_Base
+        a.	Modify descriptions for these data types in the Information Model to:
+        ASCII_Numeric_Base2: "The ASCII Numeric Base2 class indicates an ASCII character representation of a non-negative unsigned integer in base 2. Must consist of the characters 0 and 1. May not be preceded by any sign (+/-) notation."
+        b.	ASCII_Numeric_Base8: "The ASCII Numeric Base8 class indicates an ASCII character representation of a non-negative unsigned integer in base 8. Must consist of the characters 0 through 7. May not be preceded by any sign (+/-) notation."
+        c.	ASCII_Numeric_Base16: "The ASCII Numeric Base16 class indicates an ASCII character representation of a non-negative unsigned integer in base 16. Must consist of the characters 0 through 9, and A through F or a through f. May not be preceded by any sign (+/-) notation."
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-166">
+        Deprecate bit_mask from IM
+        a.	Deprecate bit_mask in the Object_Statistics class.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-171">
+        Split hardware-compatible ASCII numeric types from the unbounded 
+        a. Change the basetypes of ASCII_Integer and ASCII_NonNegative_Integer. Ensuring that the new basetypes validate the requirements expressed by Table 5A-3 correctly.
+        b.	Clarify the definitions of ASCII_Integer, ASCII_NonNegative_Integer, and ASCII_Real, set minimum and maximum value ranges, and use stricter XML Schema base types.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-172">
+        Add movie format(s) to list of acceptable documents
+        a.	Add "MPEG-4" to the list of values for Document_File:document_standard_id with the description "The Document_File is governed by the standard Moving Picture Experts Group (MPEG), ISO/IEC 14496-14, 14496-10 and 14496-3 subject to the restrictions laid out in the Document Products section of the PDS4 Standards Reference."
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-176">
+        Update Node names in the IM
+        a.	Change the node names for from “Planetary Rings” to “Ring-Moon Systems” and “Imaging” to “Cartography and Imaging Sciences Discipline”.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-178">
+        Internal Reference Implementation
+        a.	Define two new data types, ASCII_Local_Identifier and ASCII_Local_Identifier_Reference. 
+        b.	The XML Schema base types are xs:ID and xs:IDREF respectively. 
+        c.	Change the data types of the attributes "local_identifier" and "local_identifier_reference" to ASCII_Local_Identifier and ASCII_Local_Identifier_Reference respectively. 
+        d.	Deprecated &lt;DD_Association.local_identifier&gt; and added &lt;DD_Association.identifier_reference&gt; to allow references within the local namespace and also external namespaces. (Bugfix after node testing.)
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-179">
+        In PDS4 'pds' namespace, use ASCII_NonNegative_Integer where value must be greater or equal to 0
+        For attributes that currently have a data type of ASCII_Integer and a minimum value of zero (0), change the data type to ASCII_NonNegative_Integer.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-180">
+        Clarify whether namespace abbreviation in labels must correspond to namespace_id
+        a.	Update, document, and post the Namespace Registry. 
+        b.	LDDTool ensures that the namespace prefix is identical to the namespace_id in the generated XML Schemas.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-181">
+        Clarify whether newlines are allowed in PDS DSV 1 (L.Nagdimunov)
+        a.	Document Update: Add a sentence to the SR:
+        “Field definitions within the label must be in the same order as the physical appearance of the fields in the record. No field may contain either the CR character or the LF character."
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-182">
+        Clarify whether CDATA is allowed 
+        a.	Document Update: In the DPH add the text: 
+	      "PDS permits the reasonable use of XML's CDATA structure, for example, when the entry includes a formula that uses symbols used in XML markup (e.g., "&lt;" , "&gt;"), or when the entry includes an XML fragment. If CDATA is used in an XML label, it's use is likely to be scrutinized during peer review”
+        b. No IM changes specified or implemented.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-183">
+        IM contradicts SR on how many stewards to a namespace
+        The SCR Triage team and the DDWG have both agreed that no action is required.
+      </action>
+      <action dev="jshughes" type="fix" issue="CCB-184">
+        The xs:choice element does not validate as expected when minOccurs and maxOccurs are both '1'.
+        a.	Bugfix: Update LDDTool to remove "minOccurs" and "maxOccurs" for attributes in a choice list.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-185">
+        Allow multiple instances of purpose and processing_level (in Primary_Result_Summary)
+        Change the cardinality from "1..1" to "1..Unbounded" for Primary_Result_Summary/purpose and Primary_Result_Summary/processing_level.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-191">
+        Add Indian Space Research Organisation (ISRO) to the Namespace Registry
+        a.	Create an entry for the Indian Space Research Organisation (ISRO) in the PDS4 Namespace Registry.
+        b.	Update the IM.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-192">
+        Add Product_Metadata_Supplemental
+        a.	Add the new class: Product_Metadata_Supplemental 
+        b.	Deprecate Product_Update
+        c.	The specific changes are detailed in the SCR.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-193">
+        Add Geosciences and Radio Science as permissible values for discipline_name (S.Slavney)
+        Add "Geosciences" and "Radio Science" as permissible values for discipline_name in the Information Model and Data Dictionary.
+      </action>
     </release>
+
     <release version="7.1.0" date="2017-03-30" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
-<action dev="jshughes" type="update">
-Three model files are updated in this release:  "UpperModel.pins", "UpperModel.pont", "dd11179.pins"
-</action>
-<action dev="jshughes" type="update">
-CCB approved changes: CCB-171 - Split hardware-compatible ASCII numeric types from the unbounded 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - The values and value meanings for
-"SIP_Deep_Archive.provider_site_id" were added. 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - The value “MD5Deep 4.n” and its value meaning for
-"Information_Package_Component_Deep_Archive.checksum_type", was added. 
-</action>
-<action dev="jshughes" type="fix">
-SIP_Deep_Archive - steward:NSSDCA - Added schematron rule to Product_SIP_Deep_Archive to
-validate that both Internal_Reference and lidvid_reference are required. 
-</action>
-<action dev="jshughes" type="fix">
-Property Maps – The attributes property_map_type and property_map_subtype were moved
-from pdroperty_maps to property_map_entry. 
-</action>
-<action dev="jshughes" type="fix">
-JSON File – Added Association to provide link (generalization) for a SuperClass.
- Added assocType {attribute_of, component_of, parent_of}
-</action>
+      <action dev="jshughes" type="update">
+        Three model files are updated in this release:  "UpperModel.pins", "UpperModel.pont", "dd11179.pins"
+      </action>
+      <action dev="jshughes" type="update">
+        CCB approved changes: CCB-171 - Split hardware-compatible ASCII numeric types from the unbounded 
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - The values and value meanings for "SIP_Deep_Archive.provider_site_id" were added. 
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - The value “MD5Deep 4.n” and its value meaning for "Information_Package_Component_Deep_Archive.checksum_type", was added. 
+      </action>
+      <action dev="jshughes" type="fix">
+        SIP_Deep_Archive - steward:NSSDCA - Added schematron rule to Product_SIP_Deep_Archive to validate that both Internal_Reference and lidvid_reference are required. 
+      </action>
+      <action dev="jshughes" type="fix">
+        Property Maps – The attributes property_map_type and property_map_subtype were moved from pdroperty_maps to property_map_entry. 
+      </action>
+      <action dev="jshughes" type="fix">
+        JSON File – Added Association to provide link (generalization) for a SuperClass.
+        Added assocType {attribute_of, component_of, parent_of}
+      </action>
     </release>
 
     <release version="7.0.1" date="2017-01-03" description="This release of the Model Ontology represents a point build of this component.">
