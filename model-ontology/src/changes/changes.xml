@@ -23,6 +23,9 @@
   </properties>
 
   <body>
+    <release version="8.1.0" date="TBD" description="TBD">
+    </release>
+
     <release version="8.0.0" date="2017-09-29" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update" issue="CCB-162">
         Move "md5_checksum" from Object_Statistics to Byte_Stream
