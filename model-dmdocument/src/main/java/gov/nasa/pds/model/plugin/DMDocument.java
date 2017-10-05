@@ -102,7 +102,7 @@ public class DMDocument extends Object {
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
 	static boolean LDDSyncFileNameFlag = false;
-	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
+//	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
 	
@@ -521,6 +521,12 @@ public class DMDocument extends Object {
 		exposedElementArr.add("Internal_Reference");
 		exposedElementArr.add("Local_Internal_Reference");
 		exposedElementArr.add("External_Reference");
+		exposedElementArr.add("Cartography");
+		exposedElementArr.add("Occultation_Ring_Profile");
+		exposedElementArr.add("Occultation_Supplement");
+		exposedElementArr.add("Occultation_Time_Series");
+		exposedElementArr.add("Ring_Moon_Systems");
+		exposedElementArr.add("Rings_Supplement");
 		
 		// class version ids
 		classVersionId = new TreeMap <String, String> ();
@@ -816,9 +822,9 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('n') > -1) {
 					LDDNuanceFlag = true;
 				}
-				if (lArg.indexOf('c') > -1) {
-					LDDClassElementFlag = true;
-				}
+//				if (lArg.indexOf('c') > -1) {
+//					LDDClassElementFlag = true;
+//				}
 				if (lArg.indexOf('a') > -1) {
 //					LDDAttrElementFlag = true;
 					LDDAttrElementFlag = false;
@@ -970,11 +976,11 @@ public class DMDocument extends Object {
 		System.out.println("  -p, --PDS4      Set the context to PDS4");
 		System.out.println("  -l, --LDD       Process a local data dictionary input file");
 		System.out.println("  -a, --attribute Write definitions for attribute elements.");
-		System.out.println("  -c, --class     Write definitions for class elements.");
-		System.out.println("  -J, --JASON     Write the master data dictionary to a JASON formatted file.");
+//		System.out.println("  -c, --class     Write definitions for class elements.");
+		System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
 		System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
 		System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
-		System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JASON");
+		System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
 		System.out.println("  -s, --sync      Use local namespace + information model version as output file names.");
 		System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
 		System.out.println("  -v, --version   Returns the LDDTool version number");

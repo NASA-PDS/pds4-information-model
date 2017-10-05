@@ -945,7 +945,26 @@ class MasterInfoModel extends InfoModel{
 			}
 			return false;
 		}
-		
+
+		// set the class isAnExtension and isARestriction flags
+		public void setIsAnExtensionAndIsARestrictionClassFlags () {
+			if (masterDOMClassArr.isEmpty()) return;
+			for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {
+				DOMClass lClass = (DOMClass) i.next();
+				lClass.setisExtentionOrRestrictionClass();
+			}
+		}
+
+		//  Check whether class is an extension - DOM Classes
+		static public boolean isAnExtensionClass (DOMClass lClass) {
+			return lClass.isAnExtension;
+		}
+
+		//  Check whether class is a restriction - DOM Classes
+		static public boolean isARestrictionClass (DOMClass lClass) {
+			return lClass.isARestriction;
+		}
+
 		static public AttrDefn getPossibleRestrictedAttribute (AttrDefn lAttr, PDSObjDefn lSuperClass) {
 			//	find the attribute by title in the super class.
 
@@ -1059,7 +1078,7 @@ class MasterInfoModel extends InfoModel{
 			}
 			return false;
 		}
-		
+
 		/**
 		*  get the inherited attributes
 		*/

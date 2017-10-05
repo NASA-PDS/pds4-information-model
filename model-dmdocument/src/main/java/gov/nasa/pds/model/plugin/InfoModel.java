@@ -69,9 +69,10 @@ public abstract class InfoModel extends Object {
 	// New DOM Classes
 	
 	// global classes
-	static ArrayList <DOMClass> masterDOMClassArr;
-	static TreeMap <String, DOMClass> masterDOMClassMap;
-	static TreeMap <String, DOMClass> masterDOMClassIdMap;
+// 222 This initialization needs to be checked.
+	static ArrayList <DOMClass> masterDOMClassArr = new ArrayList <DOMClass> ();
+	static TreeMap <String, DOMClass> masterDOMClassMap = new TreeMap <String, DOMClass> ();
+	static TreeMap <String, DOMClass> masterDOMClassIdMap = new TreeMap <String, DOMClass> ();
 
 	// global attributes
 	static ArrayList <DOMAttr> masterDOMAttrArr;

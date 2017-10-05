@@ -924,7 +924,6 @@ class WriteDocBook extends Object {
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Terminology</title>");
-// 222		In the following text replaced apostophes and hyphens.
 		prDocBook.println("                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
 		prDocBook.println("                <para>Following are some definitions of essential terms used throughout this document.</para>");
 		prDocBook.println("                <itemizedlist>");

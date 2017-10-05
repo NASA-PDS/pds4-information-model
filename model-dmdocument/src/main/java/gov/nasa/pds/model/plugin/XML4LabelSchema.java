@@ -60,7 +60,7 @@ class XML4LabelSchema extends Object {
 
 			for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0 && lClass.isFromLDD && (DMDocument.LDDClassElementFlag || lClass.isLDDElement)) { 
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0 && lClass.isFromLDD && lClass.isLDDElement) { 
 					lClassSubArr.add(lClass);
 				}
 			}
@@ -428,10 +428,10 @@ class XML4LabelSchema extends Object {
 		
 		if ((lAttr.isChoice) && (!choiceBlockOpen)) {
 			// set the cardinalities of Master Choice block attributes to (1,1)
-			if (lAttr.isChoice && ! lAttr.isFromLDD) {
-				cmin = "1";
-				cmax = "1";
-			}
+//			if (lAttr.isChoice && ! lAttr.isFromLDD) {
+//				cmin = "1";
+//				cmax = "1";
+//			}
 			prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\">");
 			upIndentSpaces();
 			choiceBlockOpen = true;
@@ -478,9 +478,9 @@ class XML4LabelSchema extends Object {
 		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";			
 
 		if (lAttr.isChoice) {
-			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
 			minMaxOccursClause = "";
-			prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
+//			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
+			prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"" + ">");
 			upIndentSpaces();
 		}
 		

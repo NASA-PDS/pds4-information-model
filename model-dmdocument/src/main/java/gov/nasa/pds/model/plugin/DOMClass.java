@@ -19,6 +19,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isSchema1Class;						// will have a schema type 1 created
 	boolean isRegistryClass;					// will be included in registry configuration file
 	boolean isUsedInModel;
+	boolean isAnExtension;							// This class is an extension
+	boolean isARestriction;							// This class is a restriction
 	boolean isVacuous;								// a vacuous class is empty and therefore not to be included in schemas
 	boolean isUnitOfMeasure;
 	boolean isDataType;
@@ -62,6 +64,8 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isSchema1Class = false;
 		isRegistryClass = false;
 		isUsedInModel = false;
+		isAnExtension = false;
+		isARestriction = false;
 		isVacuous = false;
 		isUnitOfMeasure = false;
 		isDataType = false;
@@ -73,9 +77,9 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		isReferencedFromLDD = false;
 		
-		subClassOf = null;		
+		subClassOf = null;
 		subClassOfTitle = "TBD_subClassOfTitle"; 					
-		subClassOfIdentifier = "TBD_subClassOfIdentifier"; 
+		subClassOfIdentifier = "TBD_subClassOfIdentifier";
 		
 		subClassHierArr = new ArrayList <DOMClass> ();  
 		superClassHierArr = new ArrayList <DOMClass> ();  
@@ -237,6 +241,69 @@ public class DOMClass extends ISOClassOAIS11179 {
 				}
 			} else {
 				System.out.println(">>error    - InitPropArrISOClassOAIS11179 - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
+			}
+		}
+	}
+	
+	//  Check whether this class is an extension or restriction
+	public void setisExtentionOrRestrictionClass () {
+		DOMClass lSuperClass = this.subClassOf;
+		if (lSuperClass == null) return;
+
+		ArrayList <String> lThisIdentifierArr = new ArrayList <String> ();
+		ArrayList <String> lSuperIdentifierArr = new ArrayList <String> ();
+
+		// first get the identifiers of the super class's members (attributes and classes)
+		for (Iterator<DOMProp> i = lSuperClass.allAttrAssocArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			for (Iterator<ISOClassOAIS11179> j = lProp.hasDOMClass.iterator(); j.hasNext();) {
+				ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) j.next();
+				if (lISOClassOAIS11179 instanceof DOMAttr) {
+					DOMAttr lSCPAttr = (DOMAttr) lISOClassOAIS11179;
+					lSuperIdentifierArr.add(lSCPAttr.identifier);
+				} else {
+					DOMClass lSCPClass = (DOMClass) lISOClassOAIS11179;
+					lSuperIdentifierArr.add(lSCPClass.identifier);
+				}
+			}
+		}
+		
+		// second get the identifiers of this class's members (attributes and classes)
+		for (Iterator<DOMProp> i = allAttrAssocArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			for (Iterator<ISOClassOAIS11179> j = lProp.hasDOMClass.iterator(); j.hasNext();) {
+				ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) j.next();
+				if (lISOClassOAIS11179 instanceof DOMAttr) {
+					DOMAttr lSCPAttr = (DOMAttr) lISOClassOAIS11179;
+					lThisIdentifierArr.add(lSCPAttr.identifier);
+				} else {
+					DOMClass lSCPClass = (DOMClass) lISOClassOAIS11179;
+					lThisIdentifierArr.add(lSCPClass.identifier);
+				}
+			}
+		}
+		
+		boolean foundAllSuperIdentifers = true;
+		//	check that all identifiers (attributes and classes) of the super class are in this class
+		for (Iterator<String> i = lSuperIdentifierArr.iterator(); i.hasNext();) {
+			String lSuperIdentifier = (String) i.next();
+			if (! (lThisIdentifierArr.contains(lSuperIdentifier))) foundAllSuperIdentifers = false;
+		}
+		
+		boolean foundAllThisIdentifers = true;
+		//	check that all identifiers (attributes and classes) of this class are in the super class
+		for (Iterator<String> i = lThisIdentifierArr.iterator(); i.hasNext();) {
+			String lThisIdentifier = (String) i.next();
+			if (! (lSuperIdentifierArr.contains(lThisIdentifier))) foundAllThisIdentifers = false;
+		}
+		
+		if (foundAllSuperIdentifers) {
+			if (foundAllThisIdentifers) {
+				isAnExtension = false;
+				isARestriction = true;	
+			} else {
+				isAnExtension = true;
+				isARestriction = false;
 			}
 		}
 	}

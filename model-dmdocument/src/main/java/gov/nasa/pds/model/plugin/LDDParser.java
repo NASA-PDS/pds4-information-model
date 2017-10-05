@@ -1728,7 +1728,7 @@ public class LDDParser extends Object
         prLocalDD.println("   LDD Processing" + "         " + DMDocument.LDDToolFlag);
         prLocalDD.println("   Discipline LDD" + "         " + (! DMDocument.LDDToolMissionGovernanceFlag));
         prLocalDD.println("   Mission LDD" + "            " + DMDocument.LDDToolMissionGovernanceFlag);
-        prLocalDD.println("   Write Class Elements" + "   " + DMDocument.LDDClassElementFlag);
+//		prLocalDD.println("   Write Class Elements" + "   " + DMDocument.LDDClassElementFlag);
         prLocalDD.println("   Write Attr Elements" + "    " + DMDocument.LDDAttrElementFlag);
         prLocalDD.println("   Merge with Master" + "      " + DMDocument.PDS4MergeFlag);
 	}	

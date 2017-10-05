@@ -191,11 +191,10 @@ public class GetModels extends Object {
 				lLDDParser.getLocalDD();
 			}
 		}		
-		
+
 		// set the attrParentClass (attributes parent class) from the class name (temp fix)
 		DMDocument.masterInfoModel.setAttrParentClass (true); // LDD run (master run is above)
 
-		
 		// set up master unitsOfMeasure map
 		DMDocument.masterInfoModel.setMasterUnitOfMeasure ();
 		
@@ -279,7 +278,11 @@ public class GetModels extends Object {
 		
 		// get the valClassArr using valArr; for assocs (AttrDefn)
 		DMDocument.masterInfoModel.getValClassArr();
-		
+
+		// set the class isAnExtension and isARestriction flags
+		DMDocument.masterInfoModel.setIsAnExtensionAndIsARestrictionClassFlags ();
+
+// 		***********************************************************************		
 // 		all updates to class and attributes have been made; extracts can now be done.
 
 		// Get the attribute's CD and DEC values
