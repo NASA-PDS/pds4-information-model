@@ -66,7 +66,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	HashMap <String, ArrayList<String>> genAttrMap; 
 	ArrayList <PermValueDefn> permValueArr;
 	ArrayList <PermValueExtDefn> permValueExtArr;
-//	TreeMap <String, TermEntryDefn> termEntryMap;
 	TreeMap <String, String> valueDependencyMap;
 	
 	String dataIdentifier; 						// data identifier
@@ -157,7 +156,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		allowedUnitId = new ArrayList <String> ();
 		permValueArr = new ArrayList <PermValueDefn> ();
 		permValueExtArr = new ArrayList <PermValueExtDefn> ();
-//		termEntryMap = new TreeMap <String, TermEntryDefn> ();
 		valueDependencyMap = new TreeMap <String, String> ();
 		
 		deDataIdentifier = "TBD_deDataIdentifier";				// data element
@@ -573,22 +571,5 @@ public class DOMAttr extends ISOClassOAIS11179 {
 			return lValue;
 		}
 		return "TBD_data_concept";
-	}
-
-	/* moved to ISOClassOAIS11179
-	//	get the name in the indicated language; use the attribute title as a default
-	public String getNameInLanguage (String lLanguage) {
-		if (lLanguage == null) return this.title;
-		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
-		if (lTermEntry == null) return this.title;
-		return lTermEntry.name;
-	}
-	
-	//	get the name in the indicated language; use the attribute description as a default
-	public String getDefinitionInLanguage (String lLanguage) {
-		if (lLanguage == null) return this.definition;
-		TermEntryDefn lTermEntry = this.termEntryMap.get(lLanguage);
-		if (lTermEntry == null) return this.definition;
-		return lTermEntry.definition;
-	} */	
+	}	
 }
