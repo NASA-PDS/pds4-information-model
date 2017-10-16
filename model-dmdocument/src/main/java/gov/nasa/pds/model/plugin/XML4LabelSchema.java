@@ -32,41 +32,44 @@ class XML4LabelSchema extends Object {
 		
 //		write the XML Schema File Header
 		writeXMLSchemaFileHeader (lSchemaFileDefn, prXML);
-								
-       	// write the Product Class Elements
-    	if (lSchemaFileDefn.isMaster) {
-//    		System.out.println("debug writeXMLSchemaFiles *** Master *** lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
-    		writeElementDefinition (classHierMap, prXML);    		
-    	}
-
-		// for non-LDDTool runs, write the Class Elements for all schemas except the master schema 
-		if ((! lSchemaFileDefn.isLDD) && (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0)) {			
+		
+		// for non-LDDTool runs, write the class Elements (aka expose classes)
+		if (! DMDocument.LDDToolFlag) {	
+			prXML.println(" ");
 			ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
-			ArrayList <PDSObjDefn> lClassSubArr = new ArrayList <PDSObjDefn> ();
-//    		System.out.println("debug writeXMLSchemaFiles non-LDDTool lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 			for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) { 
-					lClassSubArr.add(lClass);
+				if (! (lClass.isExposed)) continue;
+				if (lClass.isAbstract) continue;
+				if (! (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0)) continue;
+				if (! lClass.isReferencedFromLDD) {
+					prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
+				} else {
+					prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lClass.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
 				}
 			}
-			writeLDDClassElementDefinition (lSchemaFileDefn, lClassSubArr, prXML);
 		}
-
+		
 		// for LDDTool runs and Class flag on, write the Class Elements for all schemas except the master schema 
-		if (lSchemaFileDefn.isLDD && lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0) {
-			ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
-			ArrayList <PDSObjDefn> lClassSubArr = new ArrayList <PDSObjDefn> ();
-
-			for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-				PDSObjDefn lClass = (PDSObjDefn) i.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0 && lClass.isFromLDD && lClass.isLDDElement) { 
-					lClassSubArr.add(lClass);
+		if (DMDocument.LDDToolFlag) {	
+			prXML.println(" ");
+			if (lSchemaFileDefn.isLDD && lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0) {
+				ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
+				for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
+					PDSObjDefn lClass = (PDSObjDefn) i.next();
+					if (lClass.isAbstract) continue;
+					if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
+					if (! lClass.isFromLDD) continue;
+					if (! lClass.isLDDElement)  continue;
+					if (! lClass.isReferencedFromLDD) {
+						prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
+					} else {
+						prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lClass.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
+					}
 				}
-			}
-			writeLDDClassElementDefinition (lSchemaFileDefn, lClassSubArr, prXML);
-		}  	
-				
+			} 		
+		}
+		
 		// write the Attribute Element definition statements
 		if (lSchemaFileDefn.isLDD && DMDocument.LDDAttrElementFlag) {
 			ArrayList <AttrDefn> lFilteredAttrArr = new ArrayList <AttrDefn> ();
@@ -908,31 +911,6 @@ class XML4LabelSchema extends Object {
     	prXML.println(" ");
     	prXML.println("     Deprecated Items - End -->");
     	prXML.println(" ");
-	}
-	
-	public void writeElementDefinition (TreeMap <String, PDSObjDefn> lClassHierMap, PrintWriter prXML) throws java.io.IOException {
-		prXML.println(" ");
-		ArrayList <PDSObjDefn> lSortedClassArr = new ArrayList <PDSObjDefn> (lClassHierMap.values());
-		for (Iterator<PDSObjDefn> i = lSortedClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-//			if (lClass.isRegistryClass) {
-			if (lClass.isRegistryClass || lClass.isExposed) {
-				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"pds:" + lClass.title + "\">" + " </" + pNS + "element>");
-			}
-		}
-	}	
-			
-	public void writeLDDClassElementDefinition (SchemaFileDefn lSchemaFileDefn, ArrayList <PDSObjDefn> lClassArr, PrintWriter prXML) throws java.io.IOException {
-		prXML.println(" ");
-		for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.isAbstract) continue;
-			if (! lClass.isReferencedFromLDD) {
-				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
-			} else {
-				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lClass.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
-			}
-		}
 	}
 	
 	public void writeUserAttributeElementDefinitons (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {

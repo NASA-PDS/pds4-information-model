@@ -335,12 +335,9 @@ public class GetModels extends Object {
 		
 		// set exposed flag
 		for (Iterator <String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
-			String lElementName = (String) i.next();
-			String lIdentifier = InfoModel.getClassIdentifier ("pds", lElementName);
+			String lIdentifier = (String) i.next();
 			PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
-//			System.out.println("debug DMDocument EXPOSE lIdentifier:" + lIdentifier);
-//			System.out.println("debug DMDocument EXPOSE lClass.isExposed:" + lClass.isExposed);
 		}
 
 		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");

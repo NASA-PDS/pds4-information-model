@@ -502,31 +502,67 @@ public class DMDocument extends Object {
 			if (lObject.value.compareTo("") != 0) {
 				String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className + "." + lObject.attrName + "." + lObject.value;			
 				deprecatedAttrValueArr.add(lIdentifier);
-//				System.out.println("debug deprecatedObjects2 Value lIdentifier:" + lIdentifier);
 				continue;
 			}
 			if (lObject.attrName.compareTo("") != 0) {
 				String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className + "." + lObject.attrName;
 				deprecatedAttrValueArr.add(lIdentifier);
-//				System.out.println("debug deprecatedObjects2 Attr lIdentifier:" + lIdentifier);
 				continue;
 			}
 			String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className;
 			deprecatedAttrValueArr.add(lIdentifier);
-//			System.out.println("debug deprecatedObjects2 Class lIdentifier:" + lIdentifier);
 		}
 		
 		// the set of classes and attributes that will be externalized (defined as xs:Element)
 		exposedElementArr = new ArrayList <String> ();
-		exposedElementArr.add("Internal_Reference");
-		exposedElementArr.add("Local_Internal_Reference");
-		exposedElementArr.add("External_Reference");
-		exposedElementArr.add("Cartography");
-		exposedElementArr.add("Occultation_Ring_Profile");
-		exposedElementArr.add("Occultation_Supplement");
-		exposedElementArr.add("Occultation_Time_Series");
-		exposedElementArr.add("Ring_Moon_Systems");
-		exposedElementArr.add("Rings_Supplement");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Ingest_LDD");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_AIP");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Ancillary");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Attribute_Definition");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Browse");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Bundle");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Class_Definition");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Collection");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Context");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_DIP");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_DIP_Deep_Archive");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Data_Set_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Document");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_File_Repository");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_File_Text");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Instrument_Host_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Instrument_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Metadata_Supplemental");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Mission_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Native");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Observational");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Proxy_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_SIP");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_SIP_Deep_Archive");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_SPICE_Kernel");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Service");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Software");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Subscription_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Target_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Thumbnail");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Update");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Volume_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Volume_Set_PDS3");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_XML_Schema");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Zipped");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
+		exposedElementArr.add("0001_NASA_PDS_1.cart.Cartography");
+		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Ring_Profile");
+		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Supplement");
+		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Time_Series");
+		exposedElementArr.add("0001_NASA_PDS_1.rings.Ring_Moon_Systems");
+		exposedElementArr.add("0001_NASA_PDS_1.rings.Rings_Supplement");
+		exposedElementArr.add("0001_NASA_PDS_1.disp.Color_Display_Settings");		
+		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Direction");		
+		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Settings");		
+		exposedElementArr.add("0001_NASA_PDS_1.disp.Movie_Display_Settings");
 		
 		// class version ids
 		classVersionId = new TreeMap <String, String> ();
