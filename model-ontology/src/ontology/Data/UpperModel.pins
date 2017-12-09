@@ -1,4 +1,4 @@
-; Fri Sep 29 08:19:21 PDT 2017
+; Sat Dec 09 10:53:19 PST 2017
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1473,7 +1473,9 @@
 		"instrument_to_facility"
 		"telescope_to_observatory"
 		"telescope_to_facility"
-		"telescope_to_airborne"))
+		"telescope_to_airborne"
+		"investigation_to_facility"
+		"investigation_to_telescope"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539] of  Schematron_Rule
 
