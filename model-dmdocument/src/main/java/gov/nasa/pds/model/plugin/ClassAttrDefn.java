@@ -364,7 +364,7 @@ public class ClassAttrDefn extends ClassDefn {
 		String lUnitsValueString = "";
 
 		// get the unit of measure type
-		String lUnitIdId = InfoModel.getAttrIdentifier ("pds", lUnitOfMeasureType, "pds", "unit_id");
+		String lUnitIdId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasureType, DMDocument.masterNameSpaceIdNCLC, "unit_id");
 
 //		ClassAttrDefn lAttr = (ClassAttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
 		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);

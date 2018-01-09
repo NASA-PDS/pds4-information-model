@@ -287,7 +287,7 @@ public class AttrDefn extends Object {
 		if ((lValueType.indexOf("TBD") == 0) || (lValueType.compareTo("") == 0)) return null;
 
 		// get the data type
-		String llValueTypeId = InfoModel.getClassIdentifier ("pds", lValueType);
+		String llValueTypeId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lValueType);
 
 		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(llValueTypeId);
 		if (lClass == null) return null;
@@ -418,7 +418,7 @@ public class AttrDefn extends Object {
 		if ((lUnitOfMeasure.indexOf("TBD") == 0) || (lUnitOfMeasure.compareTo("") == 0)) return null;
 
 		// get the unit of measure type
-		String lUnitOfMeasureId = InfoModel.getClassIdentifier ("pds", lUnitOfMeasure);
+		String lUnitOfMeasureId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasure);
 
 		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lUnitOfMeasureId);
 		if (lClass == null) return null;
@@ -436,7 +436,7 @@ public class AttrDefn extends Object {
 		String lUnitsValueString = "";
 
 		// get the unit of measure type
-		String lUnitIdId = InfoModel.getAttrIdentifier ("pds", lUnitOfMeasureType, "pds", "unit_id");
+		String lUnitIdId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasureType, DMDocument.masterNameSpaceIdNCLC, "unit_id");
 
 		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
 		if (lAttr == null) return null;
@@ -457,7 +457,7 @@ public class AttrDefn extends Object {
 		}
 		return lUnitsValueString;
 	}
-		
+
 	//	get the default_unit_id (specified unit) for printing.
 	public String getDefaultUnitId (boolean forceBound) {
 		String lValue = this.default_unit_id;
@@ -468,8 +468,8 @@ public class AttrDefn extends Object {
 			return "none";
 		}
 		return "TBD_default_unit_id";
-	}	
-	
+	}
+
 	//	get the steward for printing.
 	public String getSteward () {
 		String lValue = this.steward;
@@ -477,8 +477,8 @@ public class AttrDefn extends Object {
 			return lValue;
 		}
 		return "TBD_steward";
-	}	
-	
+	}
+
 	//	get the name space id for printing.
 	public String getNameSpaceIdNC () {
 		String lValue = this.attrNameSpaceIdNC;
@@ -487,7 +487,7 @@ public class AttrDefn extends Object {
 		}
 		return "TBD_namespace_id";
 	}
-	
+
 	//	get the name space id for printing.
 	public String getNameSpaceId () {
 		String lValue = this.attrNameSpaceId;
@@ -496,7 +496,7 @@ public class AttrDefn extends Object {
 		}
 		return "TBD_namespace_id";
 	}
-	
+
 	//	get the classConcept for printing.
 	public String getClassConcept () {
 		String lValue = this.classConcept;

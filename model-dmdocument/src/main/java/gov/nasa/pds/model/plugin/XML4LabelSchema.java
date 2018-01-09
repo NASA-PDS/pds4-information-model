@@ -53,7 +53,7 @@ class XML4LabelSchema extends Object {
 		// for LDDTool runs and Class flag on, write the Class Elements for all schemas except the master schema 
 		if (DMDocument.LDDToolFlag) {	
 			prXML.println(" ");
-			if (lSchemaFileDefn.isLDD && lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0) {
+			if (lSchemaFileDefn.isLDD && lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 				ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
 				for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 					PDSObjDefn lClass = (PDSObjDefn) i.next();
@@ -208,7 +208,7 @@ class XML4LabelSchema extends Object {
 		prXML.println("  <" + pNS + "schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"");
 		
 		// write namespace statements
-		if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") == 0) {
+		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
 			prXML.println("    targetNamespace=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "\"");
 			prXML.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
@@ -227,7 +227,7 @@ class XML4LabelSchema extends Object {
 				for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 					String lNameSpaceIdNC = (String) i.next();
 					String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
-					if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get("pds");
+					if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC);
 					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
 				}
 			}
@@ -237,18 +237,18 @@ class XML4LabelSchema extends Object {
 		prXML.println("    version=\"" + lSchemaFileDefn.sch_version_id + "\">");
 
 		// write import statements for all but pds (common)
-		if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0) {
+		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
-			prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.LDDToolSchemaVersionMapNoDots.get("pds") + ".xsd\"/>");	
+			prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.LDDToolSchemaVersionMapNoDots.get(DMDocument.masterNameSpaceIdNCLC) + ".xsd\"/>");	
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
 				String lVersionId = DMDocument.LDDToolSchemaVersionMapNoDots.get(lNameSpaceIdNC);
 				String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
 				if (lVersionId == null) {
-					lVersionId = DMDocument.LDDToolSchemaVersionMapNoDots.get("pds");
-					lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get("pds");
+					lVersionId = DMDocument.LDDToolSchemaVersionMapNoDots.get(DMDocument.masterNameSpaceIdNCLC);
+					lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC);
 				}
 				prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" schemaLocation=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + lVersionId + ".xsd\"/>");	
 			}
@@ -296,7 +296,7 @@ class XML4LabelSchema extends Object {
 		writeVectorUnitAttribute (lClass, prXML);
 		
 		// write assertions for enumerated values	
-		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0 ) {		
+		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0 ) {		
 			if (! isBothExtensionRestriction) {
 				writeAssertionsAttr (lClass.ownedAttrAssocAssertArr, prXML);	
 			}
@@ -331,7 +331,7 @@ class XML4LabelSchema extends Object {
 		writeVectorUnitAttribute (lClass, prXML);
 
 		// write assertions for enumerated values
-		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0 ) {		
+		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0 ) {		
 			writeAssertionsAttr (lClass.ownedAttrAssocAssertArr, prXML);	
 		}
 		prXML.println(indentSpacesDown() + "</" + pNS + "restriction>");
@@ -355,7 +355,7 @@ class XML4LabelSchema extends Object {
 		writeVectorUnitAttribute (lClass, prXML);
 
 		// write assertions for enumerated values
-		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0 ) {		
+		if (DMDocument.LDDToolFlag || lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0 ) {		
 			writeAssertionsAttr (lClass.ownedAttrAssocAssertArr, prXML);
 		}
 		prXML.println(indentSpacesDown() + "</" + pNS + "complexType>");
@@ -859,7 +859,7 @@ class XML4LabelSchema extends Object {
 	
 //	write the XML Schema Nill Values 
 	public void writeXMLNillValues(SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
-		if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") != 0) return;		
+		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) return;		
 		// write the nil reasons
 		
 	    prXML.println("");
@@ -925,7 +925,7 @@ class XML4LabelSchema extends Object {
 			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) != 0) continue;
 			
 			// kludge for common only; fix for LDD
-//			if (lAttr.attrNameSpaceIdNC.compareTo("pds") != 0) continue;
+//			if (lAttr.attrNameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) continue;
 			if (! (lAttr.isUsedInClass && lAttr.isAttribute && lAttr.isPDS4)) continue;
 			
 			String nilableClause = "";

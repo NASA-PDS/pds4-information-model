@@ -105,7 +105,7 @@ class ProtPinsModel extends Object {
 		}
 
 		// iterate through the discipline facets and update the permissible values for the associated attributes
-		String lAttrId = InfoModel.getAttrIdentifier ("pds", "Discipline_Facets", "pds", "discipline_name");
+		String lAttrId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Discipline_Facets", DMDocument.masterNameSpaceIdNCLC, "discipline_name");
 		AttrDefn lAttrDiscipline = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 		if (lAttrDiscipline == null) {
 			System.out.println("debug getProtPinsModel ERROR Missing discipline_name - lAttrId:" + lAttrId);
@@ -123,7 +123,7 @@ class ProtPinsModel extends Object {
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet1Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 //				System.out.println("debug getProtPinsModel UPDATE FACET1 lSFGroupFacet.identifier:" + lSFGroupFacet.identifier);
-				lAttrId = InfoModel.getAttrIdentifier ("pds", "Group_Facet1", "pds", "facet1");			
+				lAttrId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet1", DMDocument.masterNameSpaceIdNCLC, "facet1");			
 				AttrDefn lAttrFacet = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 //				if (lAttrDiscipline == null) {
 				if (lAttrFacet == null) {
@@ -138,7 +138,7 @@ class ProtPinsModel extends Object {
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet2Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 //				System.out.println("debug getProtPinsModel UPDATE FACET2 lSFGroupFacet.identifier:" + lSFGroupFacet.identifier);
-				lAttrId = InfoModel.getAttrIdentifier ("pds", "Group_Facet2", "pds", "facet2");			
+				lAttrId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet2", DMDocument.masterNameSpaceIdNCLC, "facet2");			
 				AttrDefn lAttrFacet = InfoModel.masterMOFAttrIdMap.get(lAttrId);
 				if (lAttrFacet == null) {
 					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);

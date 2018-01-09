@@ -85,7 +85,7 @@ class GenSchematronRules extends Object {
 			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) != 0)) continue;
 			lEnumAttrArr.add(lAttr);
 		}
-		if (! lEnumAttrArr.isEmpty()) addClassSchematronRuleEnumerated ("pds", DMDocument.LDDToolSingletonClassTitle, lSchemaFileDefn.stewardArr.get(0), "", lEnumAttrArr); 
+		if (! lEnumAttrArr.isEmpty()) addClassSchematronRuleEnumerated (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle, lSchemaFileDefn.stewardArr.get(0), "", lEnumAttrArr); 
 	}
 	
 	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, String lDeprecatedClassIdentifier, ArrayList <AttrDefn> lAttrArr) {	
@@ -236,7 +236,7 @@ class GenSchematronRules extends Object {
 				lRule.attrNameSpaceNC = lObject.classNameSpaceIdNC;		
 				lRule.classTitle = lObject.className;		
 				lRule.classNameSpaceNC = lObject.classNameSpaceIdNC;
-				lRule.classSteward = "pds";
+				lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
 
 			}
 			String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
@@ -296,7 +296,7 @@ class GenSchematronRules extends Object {
 				lRule.attrNameSpaceNC = lAttr.attrNameSpaceIdNC;		
 				lRule.classTitle = lAttr.parentClassTitle;		
 				lRule.classNameSpaceNC = lAttr.classNameSpaceIdNC;
-				lRule.classSteward = "pds";
+				lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
 
 			}
 			String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
@@ -325,10 +325,10 @@ class GenSchematronRules extends Object {
 		
 		lRule.xpath = lRuleId;
 		lRule.attrTitle = "discipline_name";		
-		lRule.attrNameSpaceNC = "pds";		
+		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
-		lRule.classNameSpaceNC = "pds";
-		lRule.classSteward = "pds";
+		lRule.classNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;
+		lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
 		String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
 		
 		// create the discipline name rule
@@ -354,7 +354,7 @@ class GenSchematronRules extends Object {
 		for (Iterator <SFDisciplineFacetDefn> i = lDisciplineFacetArr.iterator(); i.hasNext();) {
 			SFDisciplineFacetDefn lDiscFacet = (SFDisciplineFacetDefn) i.next();
 			lRule.attrTitle = lDiscFacet.disciplineName;		
-			lRule.attrNameSpaceNC = "pds";
+			lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;
 			
 			// get all the facet1 assert statements
 			if (lDiscFacet.groupFacet1Arr.size() > 0) {
@@ -457,10 +457,10 @@ class GenSchematronRules extends Object {
 		
 		lRule.xpath = lRuleId;
 		lRule.attrTitle = "subfacet1";		
-		lRule.attrNameSpaceNC = "pds";		
+		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
-		lRule.classNameSpaceNC = "pds";	
-		lRule.classSteward = "pds";
+		lRule.classNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;	
+		lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
 		lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
 		AssertDefn2 lAssert = new AssertDefn2 (lAttrId);
 		lRule.assertArr.add(lAssert);
@@ -477,10 +477,10 @@ class GenSchematronRules extends Object {
 		
 		lRule.xpath = lRuleId;
 		lRule.attrTitle = "subfacet2";		
-		lRule.attrNameSpaceNC = "pds";		
+		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
-		lRule.classNameSpaceNC = "pds";	
-		lRule.classSteward = "pds";
+		lRule.classNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;	
+		lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
 		lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
 		lAssert = new AssertDefn2 (lAttrId);
 		lRule.assertArr.add(lAssert);

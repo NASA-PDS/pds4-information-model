@@ -24,8 +24,10 @@ class MasterInfoModel extends InfoModel{
 		lClass.rootClass = "N/A";
 		lClass.baseClassName = "N/A";
 		lClass.description = "The root class.";
-		lClass.steward = "pds";
+		lClass.steward = DMDocument.masterNameSpaceIdNCLC;
 		lClass.title = lTitle;
+		lClass.role = "abstract";
+		lClass.isAbstract = true;
 		lClass.isUSERClass = true;
 		lClass.docSecType = lTitle;
 		lClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
@@ -207,7 +209,7 @@ class MasterInfoModel extends InfoModel{
 			if (lAttrI.isPDS4) {
 //				System.out.println("\ndebug set other attributes - found PDS4 attribute attrId:" + attrId);
 				String lTitle = lAttrI.valueType;					
-				String lClassId = InfoModel.getClassIdentifier("pds", lTitle);
+				String lClassId = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lTitle);
 				PDSObjDefn lClass = (PDSObjDefn) masterMOFClassIdMap.get(lClassId);
 				if (lClass != null) {
 					for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
@@ -351,7 +353,7 @@ class MasterInfoModel extends InfoModel{
 					if (lDataType == null) {
 						// the data type does not exist, add it
 						lDataType = new DataTypeDefn (lClass.title);
-						lDataType.pds4Identifier = InfoModel.getClassIdentifier("pds", lClass.title);
+						lDataType.pds4Identifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
 						lDataType.title = lDataType.identifier;
 						lDataType.nameSpaceIdNC = lClass.nameSpaceIdNC;
 						lDataType.type = lDataType.identifier;
@@ -488,7 +490,7 @@ class MasterInfoModel extends InfoModel{
 					if (lUnit == null) {
 						// the unit does not exist, add it
 						lUnit = new UnitDefn (lClass.title);
-						lUnit.pds4Identifier = InfoModel.getClassIdentifier("pds", lClass.title);
+						lUnit.pds4Identifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
 						lUnit.title = lUnit.identifier;
 						lUnit.type = lUnit.identifier;
 						InfoModel.masterUnitOfMeasureMap.put(lUnit.title, lUnit);
@@ -806,9 +808,6 @@ class MasterInfoModel extends InfoModel{
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
 				if (lClass.isUSERClass) continue;
-//				System.out.println("\ndebug - lClass.identifier:" + lClass.identifier);					
-//				System.out.println("debug - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
-//				System.out.println("debug - lClass.subClassOfIdentifier:" + lClass.subClassOfIdentifier);					
 				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassIdMap.get(lClass.subClassOfIdentifier);
 				if (lSupClass != null) {
 					lClass.subClassOfInst = lSupClass;
@@ -1339,7 +1338,7 @@ class MasterInfoModel extends InfoModel{
 			Iterator <String> iter = set.iterator();
 			while(iter.hasNext()) {
 				String lClassName = (String) iter.next();
-				String lClassId = InfoModel.getClassIdentifier("pds", lClassName);
+				String lClassId = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClassName);
 //				System.out.println("\ndebug setClassVersionIds lClassName:" + lClassName);
 				PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
 				if (lClass != null) {

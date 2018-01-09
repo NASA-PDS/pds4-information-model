@@ -88,7 +88,7 @@ class WriteRDFOWLFile extends Object{
 			if (lClass.isUnitOfMeasure) continue;
 			if (lClass.isUSERClass) continue;
 			if (lClass.title.compareTo("Product_Components") == 0) continue;
-			if (! (lClass.nameSpaceIdNC.compareTo("pds") == 0 && lClass.steward.compareTo("pds") == 0)) continue;
+			if (! (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 && lClass.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0)) continue;
 			
 			prDDPins.println("   <owl:Class rdf:about=\"http://pds.nasa.gov/pds4/pds#" + lClass.title + "\">");
 			
@@ -166,7 +166,7 @@ class WriteRDFOWLFile extends Object{
 			if (lClass.title.compareTo("Product_Components") == 0) continue;
 
 			// filter out all non Common classes
-			if (! (lClass.nameSpaceIdNC.compareTo("pds") == 0 && lClass.steward.compareTo("pds") == 0)) continue;
+			if (! (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 && lClass.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0)) continue;
 
 			// write the attributes
 			for (Iterator<AttrDefn> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
@@ -327,7 +327,7 @@ class WriteRDFOWLFile extends Object{
 			}	
 			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lUnit.identifier) + " ,");	
 			prDDPins.println("            " + formValue("title") + ": " + formValue(lUnit.title) + " ,");	
-			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue("pds") + " ,");	
+			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(DMDocument.masterNameSpaceIdNCLC) + " ,");	
 			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");
 			prDDPins.println("            " + formValue("defaultUnitId") + ": " + formValue(lUnit.default_unit_id));	
 			printUnitId (lUnit, prDDPins); 

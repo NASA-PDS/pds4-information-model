@@ -115,7 +115,7 @@ class ProtPontModel extends InfoModel{
 			case 2: // subClassOf -- these are converted to rdfIdentifiers by getSubClassOf
 				objClass.subClassOfTitle = token;
 				if (token.compareTo(DMDocument.masterUserClassName) != 0) {
-					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, token);
+					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier("pds", token);
 				} else {
 					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterUserClassNamespaceIdNC, token);
 				}
@@ -246,7 +246,7 @@ class ProtPontModel extends InfoModel{
 				}
 				type = 0;
 				break;
-			case 11: // default - XSChoice#
+			case 11: // default - formation rule
 				if (token.compareTo(")") == 0) {
 					type = 0;
 				} else {

@@ -58,9 +58,9 @@ class WriteDocBook extends Object {
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
 		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		writeHeader (prDocBook);
-		writeClassSection ("pds",prDocBook);
-        writeAttrSection ("pds", prDocBook); // will  need to iterate for each namespace
-    	writeDataTypeUnitsSection ("pds", prDocBook);
+		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);
+        writeAttrSection (DMDocument.masterNameSpaceIdNCLC, prDocBook); // will  need to iterate for each namespace
+    	writeDataTypeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
 		writeFooter (prDocBook);
 		prDocBook.close();
 		return;
@@ -205,7 +205,7 @@ class WriteDocBook extends Object {
 		// classify the class by namespace and other criteria
 		ClassClassificationDefn lClassClassificationDefn = classClassificationMap.get(lClass.nameSpaceIdNC);
 		if (lClassClassificationDefn != null) {			
-			if (lClass.nameSpaceIdNC.compareTo("pds") != 0) {
+			if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 				lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
 			} else {
 				if (lClass.isRegistryClass) {
@@ -410,7 +410,7 @@ class WriteDocBook extends Object {
 			lAttrClassificationDefn.attrArr = new ArrayList <AttrDefn> (lAttrClassificationDefn.attrMap.values());
 		}
 		
-		AttrClassificationDefn lAttrClassificationDefn = attrClassificationMap.get("pds");
+		AttrClassificationDefn lAttrClassificationDefn = attrClassificationMap.get(DMDocument.masterNameSpaceIdNCLC);
 		if (lAttrClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
 			prDocBook.println("           <title>Attributes in the common namespace.</title>");
@@ -1055,7 +1055,7 @@ class WriteDocBook extends Object {
 	}
 	
 	private String getDataTypeLink(String lDataType) {
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + "pds" + "." + lDataType;
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + DMDocument.masterNameSpaceIdNCLC + "." + lDataType;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 //		String lDataTypeWrap = DMDocument.replaceString(lDataType, "_", "_&#x200B;");
@@ -1064,7 +1064,7 @@ class WriteDocBook extends Object {
 	
 	private String getUnitIdLink(String lUnitId) {
 		if (lUnitId.indexOf("TBD") == 0) return "None";
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + "pds" + "." + lUnitId;
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + DMDocument.masterNameSpaceIdNCLC + "." + lUnitId;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 		return "<link linkend=\"" + lLink + "\">" + lUnitId + "</link>";

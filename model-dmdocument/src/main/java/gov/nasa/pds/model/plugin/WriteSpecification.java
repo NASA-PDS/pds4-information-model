@@ -508,7 +508,7 @@ public class WriteSpecification extends Object {
 					if (lAttr.isAttribute) {  // attribute
 						// check for data types, unit of measure, etc
 						if (lAttr.title.compareTo("data_type") == 0 || lAttr.title.compareTo("value_data_type") == 0 || lAttr.title.compareTo("unit_of_measure_type") == 0 || lAttr.title.compareTo("product_class") == 0) {
-							String lClassId = InfoModel.getClassIdentifier ("pds", value);
+							String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, value);
 							PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
 							if (lClass != null) {
 								lAnchorString = lClass.anchorString;	
@@ -738,7 +738,7 @@ private void printAttrUnit (AttrDefn attr) {
 			phtype = "Association";
 		}
 
-		String lClassId = InfoModel.getClassIdentifier ("pds", phtype);
+		String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
 		PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
 		if (lClass != null) {
 			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();

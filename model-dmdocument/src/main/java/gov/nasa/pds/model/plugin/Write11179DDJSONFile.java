@@ -121,11 +121,9 @@ class Write11179DDJSONFile extends Object{
 				lTempAssoc.createAssocSingletons (lAssoc);
 				if (lRelAttr.isAttribute) {
 					lTempAssoc.childAttrArr.add(lRelAttr);
-//					lAttrAssocArr.add(lTempAssoc);
 					String sortTagPre = "";
 					if (lTempAssoc.groupName.indexOf("TBD") != 0) sortTagPre = lTempAssoc.groupName;
 					String sortTag = sortTagPre +  "-"  + lTempAssoc.identifier;
-//					System.out.println("debug printAssoc sortTag:" + sortTag);
 					lAssocDefnMap.put(sortTag, lTempAssoc);
 				} else {
 					for (Iterator<PDSObjDefn> j = lRelAttr.valClassArr.iterator(); j.hasNext();) {
@@ -348,7 +346,7 @@ class Write11179DDJSONFile extends Object{
 //			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lUnit.identifier) + " ,");	
 			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lUnit.pds4Identifier) + " ,");	
 			prDDPins.println("            " + formValue("title") + ": " + formValue(lUnit.title) + " ,");	
-			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue("pds") + " ,");	
+			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(DMDocument.masterNameSpaceIdNCLC) + " ,");	
 			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");
 			prDDPins.println("            " + formValue("defaultUnitId") + ": " + formValue(lUnit.default_unit_id));	
 			printUnitId (lUnit, prDDPins); 
@@ -440,12 +438,10 @@ class Write11179DDJSONFile extends Object{
 						
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
-//		System.out.println("debug printPDDPPR");
 		ArrayList <AssocDefn> lSortedAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocIdMap.values());
 		for (Iterator<AssocDefn> i = lSortedAssocArr.iterator(); i.hasNext();) {
 			AssocDefn lAssoc = (AssocDefn) i.next();
 			String prDataIdentifier = "PR." + lAssoc.identifier;
-//			System.out.println("debug printPDDPPR - prDataIdentifier:" + prDataIdentifier);
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");

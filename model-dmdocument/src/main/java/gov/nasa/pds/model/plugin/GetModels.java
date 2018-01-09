@@ -139,7 +139,7 @@ public class GetModels extends Object {
 			DMDocument.LDDToolSingletonClass = InfoModel.masterMOFUserClass;
 			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
 		} else {
-			String lClassId = InfoModel.getClassIdentifier ("pds", DMDocument.LDDToolSingletonClassTitle);
+			String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle);
 			PDSObjDefn lLDDToolSingletonClass = InfoModel.masterMOFClassIdMap.get(lClassId);
 			if (lLDDToolSingletonClass != null) {
 				DMDocument.LDDToolSingletonClass = lLDDToolSingletonClass;
@@ -299,9 +299,9 @@ public class GetModels extends Object {
 		if (DMDocument.LDDToolFlag) {
 			String lClassIdentifier;
 			if (DMDocument.LDDToolMissionGovernanceFlag) {
-				lClassIdentifier = InfoModel.getClassIdentifier("pds", "Mission_Area");
+				lClassIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, "Mission_Area");
 			} else {
-				lClassIdentifier = InfoModel.getClassIdentifier("pds", "Discipline_Area");
+				lClassIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, "Discipline_Area");
 			}
 			PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassIdentifier);
 			if (lClass != null) {

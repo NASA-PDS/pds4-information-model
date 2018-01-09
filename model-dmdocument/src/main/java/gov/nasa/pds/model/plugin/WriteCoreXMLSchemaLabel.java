@@ -27,18 +27,18 @@ class WriteCoreXMLSchemaLabel extends Object {
 		
 		// write the XML file header
 		prSchematron.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		prSchematron.println("  <!-- PDS4 XML product label for " + "PDS4" + " V" + DMDocument.LDDToolSchemaVersionMapDots.get("pds") + "  " + DMDocument.masterTodaysDate + " -->");
+		prSchematron.println("  <!-- PDS4 XML product label for " + "PDS4" + " V" + DMDocument.LDDToolSchemaVersionMapDots.get(DMDocument.masterNameSpaceIdNCLC) + "  " + DMDocument.masterTodaysDate + " -->");
 		prSchematron.println("  <!-- Generated from the PDS4 Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
 		prSchematron.println("  <!-- *** This PDS4 XML product label is an operational deliverable. *** -->");
-		prSchematron.println("<?xml-model href=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds") + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.LDDToolSchemaVersionMapNoDots.get("pds") + ".sch\"");		
+		prSchematron.println("<?xml-model href=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC) + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.LDDToolSchemaVersionMapNoDots.get(DMDocument.masterNameSpaceIdNCLC) + ".sch\"");		
 		prSchematron.println("  schematypens=\"http://purl.oclc.org/dsdl/schematron\"?>");
 
 		// write the product class
-		prSchematron.println("<Product_XML_Schema xmlns=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds") + "\"");
-		prSchematron.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds") + "\"");
+		prSchematron.println("<Product_XML_Schema xmlns=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC) + "\"");
+		prSchematron.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC) + "\"");
 		prSchematron.println("    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-		prSchematron.println("    xsi:schemaLocation=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds"));		
-		prSchematron.println("    http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get("pds") + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.LDDToolSchemaVersionMapNoDots.get("pds") + ".xsd\">");		
+		prSchematron.println("    xsi:schemaLocation=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC));		
+		prSchematron.println("    http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC) + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.LDDToolSchemaVersionMapNoDots.get(DMDocument.masterNameSpaceIdNCLC) + ".xsd\">");		
 		prSchematron.println("    <Identification_Area>");
 //		String lLID = "urn:nasa:pds:system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema" + "-" + lSchemaFileDefn.lab_version_id;
 		String lLID = "urn:nasa:pds:system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema";
@@ -47,7 +47,7 @@ class WriteCoreXMLSchemaLabel extends Object {
 		prSchematron.println("        <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
 //		prSchematron.println("        <title>PDS4 XML Schema" + " - " + lSchemaFileDefn.nameSpaceIdNCUC + " V" + lSchemaFileDefn.lab_version_id + "</title>");
 		prSchematron.println("        <title>PDS4 XML Schema" + " - " + lSchemaFileDefn.nameSpaceIdNCUC + " V" + lSchemaFileDefn.ont_version_id + "</title>");
-		prSchematron.println("        <information_model_version>" + DMDocument.LDDToolSchemaVersionMapDots.get("pds") + "</information_model_version>");
+		prSchematron.println("        <information_model_version>" + DMDocument.LDDToolSchemaVersionMapDots.get(DMDocument.masterNameSpaceIdNCLC) + "</information_model_version>");
 		prSchematron.println("        <product_class>Product_XML_Schema</product_class>");
 		prSchematron.println("        <Modification_History>");
 		prSchematron.println("            <Modification_Detail>");

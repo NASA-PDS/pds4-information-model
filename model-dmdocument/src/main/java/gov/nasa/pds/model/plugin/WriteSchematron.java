@@ -30,15 +30,7 @@ class WriteSchematron extends Object {
 		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());
 		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
 			RuleDefn lRule = (RuleDefn) i.next();
-			
-//			System.out.println("\ndebug writeSchematronRule - lRule.identifier:" + lRule.identifier);
-//			System.out.println("debug writeSchematronRule - lRule.classSteward:" + lRule.classSteward);
-//			System.out.println("debug writeSchematronRule - lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
-//			System.out.println("debug writeSchematronRule - lRule.classTitle:" + lRule.classTitle);
-//			System.out.println("debug writeSchematronRule - lRule.isMissionOnly:" + lRule.isMissionOnly);
-//			System.out.println("debug writeSchematronRule - lSchemaFileDefn.isLDD:" + lSchemaFileDefn.isLDD);
-//			System.out.println("debug writeSchematronRule - DMDocument.LDDToolMissionGovernanceFlag:" + DMDocument.LDDToolMissionGovernanceFlag);
-			
+						
 			if (lSchemaFileDefn.isMaster) {
 				if (lRule.isMissionOnly) continue;
 				if (! (lRule.alwaysInclude
@@ -98,12 +90,7 @@ class WriteSchematron extends Object {
 		// write class based assertions
 		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
 			RuleDefn lRule = (RuleDefn) i.next();	
-			
-//			System.out.println("\ndebug writeSchematronRuleClasses lRule.identifier:" + lRule.identifier);
-//			System.out.println("debug writeSchematronRuleClasses lRule.xpath:" + lRule.xpath);
-//			System.out.println("debug writeSchematronRuleClasses lRule.assertArr.size():" + lRule.assertArr.size());
-//			Dummy change to for updated of the WriteSchematron.java file	
-			
+						
 			prSchematron.println("  <sch:pattern>");
 			
 			// write pattern level LETs
@@ -173,7 +160,7 @@ class WriteSchematron extends Object {
 		prSchematron.println("");		   
 		prSchematron.println("  <sch:title>Schematron using XPath 2.0</sch:title>");
 		prSchematron.println("");
-		if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") == 0) {
+		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
 			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 		} else {
@@ -187,7 +174,7 @@ class WriteSchematron extends Object {
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
 				String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
-				if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get("pds");
+				if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC);
 				prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}

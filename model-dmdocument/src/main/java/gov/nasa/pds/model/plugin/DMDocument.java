@@ -147,7 +147,8 @@ public class DMDocument extends Object {
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
-	static SchemaFileDefn masterPDSSchemaFileDefn; 		
+	static SchemaFileDefn masterPDSSchemaFileDefn; 	
+	static String masterNameSpaceIdNCLC = "TBD_masterNameSpaceIdNCLC";
 	static SchemaFileDefn masterLDDSchemaFileDefn; 		
 	
 	// dates
@@ -1173,6 +1174,7 @@ public class DMDocument extends Object {
         		if (lSchemaFileDefn.isMaster) {
         		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
         		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+        		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
         		   System.out.println("ADDING master:"+ lSchemaFileDefn.identifier);
         		   if (DMDocument.LDDToolFlag) {
         			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
