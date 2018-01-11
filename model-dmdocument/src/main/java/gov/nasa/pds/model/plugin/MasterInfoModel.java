@@ -9,7 +9,7 @@ class MasterInfoModel extends InfoModel{
 		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> ();
 		InfoModel.masterMOFClassMap = new TreeMap <String, PDSObjDefn> ();
 		InfoModel.masterMOFClassIdMap = new TreeMap <String, PDSObjDefn> ();
-//		InfoModel.masterMOFClassTitleMap = new TreeMap <String, PDSObjDefn> ();
+		InfoModel.masterMOFClassTitleMap = new TreeMap <String, PDSObjDefn> ();
 		
 		// create the USER class - the root of all classes and all namespaces
 		String lTitle = DMDocument.masterUserClassName;
@@ -38,7 +38,7 @@ class MasterInfoModel extends InfoModel{
 		InfoModel.masterMOFClassArr.add(lClass);
 		InfoModel.masterMOFClassMap.put(lClass.rdfIdentifier, lClass);
 		InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
-//		InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);		
+		InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);		
 		
 		// initialize the attribute structures
 		InfoModel.masterMOFAttrMap = new TreeMap <String, AttrDefn> (); 
@@ -808,7 +808,8 @@ class MasterInfoModel extends InfoModel{
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
 				if (lClass.isUSERClass) continue;
-				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassIdMap.get(lClass.subClassOfIdentifier);
+//				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassIdMap.get(lClass.subClassOfIdentifier);
+				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassTitleMap.get(lClass.subClassOfTitle);
 				if (lSupClass != null) {
 					lClass.subClassOfInst = lSupClass;
 					lClass.subClassOfTitle = lSupClass.title;

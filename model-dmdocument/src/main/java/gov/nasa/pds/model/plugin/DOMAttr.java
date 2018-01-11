@@ -5,18 +5,16 @@ import java.util.Iterator;
 import java.util.TreeMap;
 
 public class DOMAttr extends ISOClassOAIS11179 {
-	String uid;										// unique identifier for rdfIdentifier
-	String nsTitle;									// namespace + title
 	String sort_identifier;							// lAttr.title + "_" + lAttr.steward + "_" + lAttr.className + "_" + lAttr.classSteward
-	String attrAnchorString;						// "attribute", lAttr.attrNameSpaceIdNC, lAttr.title, lAttr.classNameSpaceIdNC, lAttr.className
+//	String attrAnchorString;						// "attribute", lAttr.attrNameSpaceIdNC, lAttr.title, lAttr.classNameSpaceIdNC, lAttr.className
 	String XMLSchemaName;							// Title or Class_Title
-	String regAuthId;								// registration authority identifier
+//	String regAuthId;								// registration authority identifier
 	String classSteward;							// steward for attribute's class
 	String classNameSpaceIdNC;
 	String submitter;								// submitter for attribute
-	String subModelId;								// identifier of submodel within the registration authority's model.
 	String parentClassTitle;						// class that this attribute is a member of
 	DOMClass attrParentClass; 						// class instance that this attribute is a member of
+													// *** deprecate *** moved to DOMProp
 	String classConcept;							// for DEC
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
@@ -99,15 +97,12 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	ArrayList <String> sysClassArr;	
 	
 	public DOMAttr () {
-		uid = "TBD_uid";
-		nsTitle = "TBD_nsTitle"; 
 		sort_identifier = "TBD_sort_identifier";
-		attrAnchorString = "TBD_attrAnchorString";
+//		attrAnchorString = "TBD_attrAnchorString";
 		XMLSchemaName = "TBD_XMLSchemaName";
 		classSteward = "TBD_classSteward";
 		classNameSpaceIdNC = "TBD_classNameSpaceId";
 		submitter = "TBD_submitter";
-		subModelId = "TBD_submodel_identifier";
 		parentClassTitle = "TBD_parentClassTitle";
 		attrParentClass = null;
 		classConcept = "TBD_classConcept"; 
@@ -191,7 +186,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	}
 
 	public void createDOMAttrSingletons (AttrDefn lOldAttr) {
-//		System.out.println("debug - createDOMAttrSingletons - Phase 3 - lOldAttr.rdfIdentifier: " + lOldAttr.rdfIdentifier);							
 		rdfIdentifier = lOldAttr.rdfIdentifier; 
 		identifier = lOldAttr.identifier; 
 		versionId = lOldAttr.versionId; 
@@ -208,17 +202,17 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		nameSpaceId = lOldAttr.attrNameSpaceId;
 		nameSpaceIdNC = lOldAttr.attrNameSpaceIdNC;
 
-		uid = lOldAttr.uid; 
 		nsTitle = lOldAttr.nsTitle; 
 		sort_identifier = lOldAttr.sort_identifier; 
-		attrAnchorString = lOldAttr.attrAnchorString; 
+//		attrAnchorString = lOldAttr.attrAnchorString;
+		anchorString = lOldAttr.attrAnchorString;
 
 		XMLSchemaName = lOldAttr.XMLSchemaName; 
 		classSteward = lOldAttr.classSteward; 
 		classNameSpaceIdNC = lOldAttr.classNameSpaceIdNC;
 		submitter = lOldAttr.submitter; 
 		subModelId = lOldAttr.subModelId; 
-		parentClassTitle = lOldAttr.parentClassTitle; 
+		parentClassTitle = lOldAttr.parentClassTitle;
 		classConcept = lOldAttr.classConcept; 
 		dataConcept = lOldAttr.dataConcept; 
 		classWord = lOldAttr.classWord; 
@@ -355,7 +349,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		if ((lValueType.indexOf("TBD") == 0) || (lValueType.compareTo("") == 0)) return null;
 
 		// get the data type
-		String llValueTypeId = InfoModel.getClassIdentifier ("pds", lValueType);
+		String llValueTypeId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lValueType);
 
 		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(llValueTypeId);
 		if (lClass == null) return null;
@@ -483,7 +477,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		if ((lUnitOfMeasure.indexOf("TBD") == 0) || (lUnitOfMeasure.compareTo("") == 0)) return null;
 
 		// get the unit of measure type
-		String lUnitOfMeasureId = InfoModel.getClassIdentifier ("pds", lUnitOfMeasure);
+		String lUnitOfMeasureId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasure);
 
 		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lUnitOfMeasureId);
 		if (lClass == null) return null;
@@ -501,7 +495,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		String lUnitsValueString = "";
 
 		// get the unit of measure type
-		String lUnitIdId = InfoModel.getAttrIdentifier ("pds", lUnitOfMeasureType, "pds", "unit_id");
+		String lUnitIdId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasureType, DMDocument.masterNameSpaceIdNCLC, "unit_id");
 
 		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
 		if (lAttr == null) return null;
@@ -571,5 +565,24 @@ public class DOMAttr extends ISOClassOAIS11179 {
 			return lValue;
 		}
 		return "TBD_data_concept";
-	}	
+	}
+
+	public void set11179Attr (String lDataIdentifier) {
+		// Data Element Identifiers	
+		dataIdentifier = lDataIdentifier;
+		deDataIdentifier = "DE." + lDataIdentifier;				// data element
+		decDataIdentifier = "DEC." + lDataIdentifier;			// data element concept
+		ecdDataIdentifier = "ECD." + lDataIdentifier;			// enumerated conceptual domain 
+		necdDataIdentifier = "NECD." + lDataIdentifier;			// non enumerated conceptual domain 
+		evdDataIdentifier = "EVD." + lDataIdentifier;			// enumerated value domain
+		nevdDataIdentifier = "NEVD." + lDataIdentifier;			// non enumerated value domain
+		pvDataIdentifier = "PV." + lDataIdentifier;				// permissible value
+		vmDataIdentifier = "VM." + lDataIdentifier;				// value meaning
+
+		desDataIdentifier = "DES." + lDataIdentifier;			// designation 
+		defDataIdentifier = "DEF." + lDataIdentifier;			// definition
+		lsDataIdentifier = "LS." + lDataIdentifier;				// language section 
+		teDataIdentifier = "TE." + lDataIdentifier;				// terminological entry		
+		prDataIdentifier = "PR." + lDataIdentifier;				// property 	
+	}
 }

@@ -8,6 +8,7 @@ public class ISOClass extends Object {
 	String sequenceId;							// an sequenced identifier for uniqueness
 
 	String title;  								// no url, no namespace, title
+	String nsTitle;								// namespace + title
 	String definition;							// a definition
 
 	String registrationStatus;					// ISO 11179 item registration status
@@ -24,10 +25,13 @@ public class ISOClass extends Object {
 //		sequenceId = InfoModel.getNextUId();
 		sequenceId = "TBD_sequenceId";
 
-		title = "TBD_title"; 
+		title = "TBD_title";
+		nsTitle = "TBD_nsTitle";
 		definition = "TBD_definition"; 
 
-		registrationStatus = "Candidate";
+// 7777
+//		registrationStatus = "Candidate";
+		registrationStatus = "TBD_registrationStatus";
 		isDeprecated = false;
 		
 		altNameMap = new TreeMap <String, String> ();
@@ -41,28 +45,24 @@ public class ISOClass extends Object {
 		return rdfIdentifier;
 	}
 	
-//	public void setRDFIdentifier(String lTitle) {
-//		this.title = lTitle;
-//		this.identifier = lTitle;
-//		this.rdfIdentifier = DMDocument.rdfPrefix + "." + this.title + "." + this.sequenceId;
-//	}
-	
 	public void setRDFIdentifier (String lTitle) {
-		this.rdfIdentifier = DMDocument.rdfPrefix + "." + this.title + "." + InfoModel.getNextUId();;
+		this.title = lTitle;
+		this.sequenceId = InfoModel.getNextUId();
+		this.rdfIdentifier = DMDocument.rdfPrefix + lTitle + "." + this.sequenceId;
 	}
 	
 	public String getIdentifier() {
 		return identifier;
 	}
 	
-//	public void setIdentifier(String identifier) {
-//		this.identifier = identifier;
-//	}
-	
 	public void setIdentifier(String lNameSpaceIdNC, String lTitle) {
 		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle;
 	}
 	
+	public void setNSTitle (String lNameSpaceIdNC, String lTitle) {
+		this.nsTitle = DOMInfoModel.getAttrNSTitle(lNameSpaceIdNC, lTitle);	
+	}
+
 	public String getTitle() {
 		return title;
 	}

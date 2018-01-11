@@ -126,6 +126,7 @@ public class DMDocument extends Object {
 	static boolean LDDToolAnnotateDefinitionFlag;
 	static String LDDToolSingletonClassTitle = "USER";
 	static PDSObjDefn LDDToolSingletonClass = null;
+	static DOMClass LDDToolSingletonDOMClass = null;
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
 	static TreeMap <String, String> LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
 	static TreeMap <String, String> LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
@@ -134,7 +135,7 @@ public class DMDocument extends Object {
 	// Master Model
 	static MasterInfoModel masterInfoModel;
 // 7777 
-//	static MasterDOMInfoModel masterDOMInfoModel;
+	static MasterDOMInfoModel masterDOMInfoModel;
 	
 	// Master LDD Model
 	static LDDParser primaryLDDModel;
@@ -147,7 +148,7 @@ public class DMDocument extends Object {
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
-	static SchemaFileDefn masterPDSSchemaFileDefn; 	
+	static SchemaFileDefn masterPDSSchemaFileDefn;
 	static String masterNameSpaceIdNCLC = "TBD_masterNameSpaceIdNCLC";
 	static SchemaFileDefn masterLDDSchemaFileDefn; 		
 	
@@ -788,11 +789,24 @@ public class DMDocument extends Object {
 		GetModels lGetModels = new GetModels();
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
+// 7777
+		// get the DOM Model
+		GetDOMModel lGetDOMModel = new GetDOMModel();
+		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+		
 //		System.out.println("\ndebug DMDocument - GetDomClasses ");
 		if (! DMDocument.LDDToolFlag) {
 			GetDomClasses lGetDomClasses = new GetDomClasses ();
-			lGetDomClasses.convert();
+//			lGetDomClasses.convert();
+			System.out.println("\ndebug DMDocument - GetDomClasses.domConvert ");
+			lGetDomClasses.domConvert();
 		}
+		
+//		System.out.println("\ndebug DMDocument - Temporary - InfoModel.masterDOMClassArr.size():" + InfoModel.masterDOMClassArr.size());
+//		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListTemp.txt");
+
+//		System.out.println("\ndebug DMDocument - Permanent - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
+//		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
 		
 		// export the models
 		if (! DMDocument.LDDToolFlag) {
@@ -1315,4 +1329,46 @@ public class DMDocument extends Object {
 		}
 		return null;
 	}	
+	
+	/**
+	 *   get the disposition of a class (from Protege)
+	 */
+	static public DOMClass getDOMClassDisposition (DOMClass lClass, String lClassName, boolean isFromProtege) {
+		// get disposition identifier - if isFromProtege, then the identifier is set else it is not since it is from an LDD.
+		String lDispId = lClass.subModelId + "." + registrationAuthorityIdentifierValue + "." + lClassName;
+		if (! isFromProtege) lDispId = "LDD_" + lDispId;
+		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
+		if (lDispDefn != null) {
+			lClass.section = lDispDefn.section;
+			String lDisp = lDispDefn.disposition;
+			lClass.steward = lDispDefn.intSteward;
+			String lClassNameSpaceIdNC = lDispDefn.intNSId;
+			lClass.nameSpaceIdNC = lClassNameSpaceIdNC;
+			lClass.nameSpaceId = lClassNameSpaceIdNC + ":";
+			
+			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
+			if (isFromProtege) lClass.identifier = InfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
+			lClass.isMasterClass = true;
+			if (lDisp.indexOf("V") > -1) {
+				lClass.isVacuous = true;
+			}
+			if (lDisp.indexOf("S") > -1) {
+				lClass.isSchema1Class = true;
+			}
+			if (lDisp.indexOf("R") > -1) {
+				lClass.isRegistryClass = true;
+			}
+			if (lDisp.indexOf("T") > -1) {
+				lClass.isTDO = true;
+			}
+			if (lDisp.indexOf("d") > -1) {
+				lClass.isDataType = true;
+			}
+			if (lDisp.indexOf("u") > -1) {
+				lClass.isUnitOfMeasure = true;
+			}
+			return lClass;
+		}
+		return null;
+	}		
 }

@@ -454,7 +454,7 @@ public class WriteDOMSpecification extends Object {
 			if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
 			ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMObject;	   
 	        DOMAttr lDOMAttr = (DOMAttr) lISOClass; 
-			phtitle = "<a href=\"#" + lDOMAttr.attrAnchorString + "\">" + lDOMAttr.getTitle() + lRegistrationStatus + "</a>";
+			phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle() + lRegistrationStatus + "</a>";
 			String cmin = lDOMAttr.cardMin;																// get min card
 			String cmax = lDOMAttr.cardMax;																// get max card
 			String cardval = cmin + ".." + cmax;
@@ -509,11 +509,11 @@ public class WriteDOMSpecification extends Object {
 			    	DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.hasDOMObject;			    
 				    value = permVal.value;
 		            if (!value.isEmpty()) {
-					    String lAnchorString = lDOMAttr.attrAnchorString;
+					    String lAnchorString = lDOMAttr.anchorString;
 			
 					   // check for data types, unit of measure, etc
 					   if (lDOMAttr.title.compareTo("data_type") == 0 || lDOMAttr.getTitle().compareTo("value_data_type") == 0 || lDOMAttr.getTitle().compareTo("unit_of_measure_type") == 0 || lDOMAttr.getTitle().compareTo("product_class") == 0) {
-							String lClassId = InfoModel.getClassIdentifier ("pds", value);
+							String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, value);
 							DOMClass lClass = InfoModel.masterDOMClassIdMap.get(lClassId);
 							if (lClass != null) {
 								lAnchorString = lClass.anchorString;	
@@ -574,18 +574,15 @@ public class WriteDOMSpecification extends Object {
 			if (lProp.isRestrictedInSubclass) {		// attribute is restricted in a subclass as opposed to restricted relative to the attribute in the "USER" class
 				phindicator += "R";
 			}
-					// get lClassAnchorString
+			// get lClassAnchorString
 			String lClassAnchorString = lDOMClass.anchorString;
-			 // set attributes anchor string
-		   if (lProp.attrParentClass == null) {
-		
-			   lProp.anchorString = "attribute_";
-		   } else {
-			   lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
-		   }
-
-
-				//	("class_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title).toLowerCase();
+			// set attributes anchor string
+			if (lProp.attrParentClass == null) {
+				lProp.anchorString = "attribute_";
+			} else {
+				lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
+			}
+			//	("class_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title).toLowerCase();
 			if (lastProp.compareTo(lProp.title) != 0) {
 				   phtitle = "<a href=\"#" + lProp.anchorString + "\">" + lProp.title + "</a>";		
 			} 
@@ -776,7 +773,7 @@ public class WriteDOMSpecification extends Object {
 		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
 		String lRegistrationStatus = "";
 		if (attr.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-		phtitle = "<a name=\"" + attr.attrAnchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
+		phtitle = "<a name=\"" + attr.anchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
 		desc = attr.definition;
 		altflag = false; altlist = ""; fflag = true;
 		HashMap lmap = (HashMap) attr.genAttrMap;
@@ -846,7 +843,7 @@ private void printAttrUnit (DOMAttr attr) {
 			phtype = "Association";
 		}
 
-		String lClassId = InfoModel.getClassIdentifier ("pds", phtype);
+		String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
 		DOMClass lClass = InfoModel.masterDOMClassIdMap.get(lClassId);
 		if (lClass != null) {
 			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
@@ -1242,10 +1239,10 @@ private void printAttrUnit (DOMAttr attr) {
 //	write the description heading
 		prhtml.println("<dl>");
 
-		for (Iterator <AttrDefn> i = InfoModel.getAttArrByTitleStewardClassSteward().iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
+		for (Iterator <DOMAttr> i = DOMInfoModel.getAttArrByTitleStewardClassSteward().iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
 			if (lAttr.isUsedInClass || includeAllAttrFlag) {
-				printDataElement (lAttr);
+				printDataElement2 (lAttr);
 				pflag = true;
 			}
 		}
@@ -1258,18 +1255,18 @@ private void printAttrUnit (DOMAttr attr) {
 	/**
 		*  Print a data element
 		*/
-	private void printDataElement (AttrDefn attr) {
+	private void printDataElement2 (DOMAttr attr) {
 		boolean fflag, altflag;		
 		String phtitle, desc, altlist;
 		
 		// get lClassAnchorString
-		PDSObjDefn lClass = attr.attrParentClass;
+		DOMClass lClass = attr.attrParentClass;
 		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
 		String lRegistrationStatus = "";
 		if (attr.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-		phtitle = "<a name=\"" + attr.attrAnchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
-		desc = attr.description;
+		phtitle = "<a name=\"" + attr.anchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
+		desc = attr.definition;
 		altflag = false; altlist = ""; fflag = true;
 		HashMap lmap = (HashMap) attr.genAttrMap;
 		if (lmap != null) {
@@ -1338,7 +1335,7 @@ private void printAttrUnit (AttrDefn attr) {
 			phtype = "Association";
 		}
 
-		String lClassId = InfoModel.getClassIdentifier ("pds", phtype);
+		String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
 		PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
 		if (lClass != null) {
 			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();

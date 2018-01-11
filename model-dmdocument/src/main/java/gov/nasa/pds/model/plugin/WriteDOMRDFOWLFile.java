@@ -35,8 +35,6 @@ class WriteDOMRDFOWLFile extends Object{
 	// write the RDF/OWL file
 	public void writeOWLFile (String lFileName) throws java.io.IOException {
 		prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-//		System.out.println("debug WriteDOMRDFOWLFile lFileName:" + lFileName);
-
 		printPDDPHdr();
 		printPDDPBody ();
 		printPDDPFtr();
@@ -136,7 +134,7 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Tagged_NonDigital_Object\"/>");
 		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Unit_Of_Measure\"/>");
 		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Attribute\"/>");
-// 777		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Permissible_Value\"/>");
+// 		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#0001_NASA_PDS_1.pds.Permissible_Value\"/>");
 		prDDPins.println("      </owl:members>");
 		prDDPins.println("   </rdf:Description>");
 		
@@ -193,7 +191,7 @@ class WriteDOMRDFOWLFile extends Object{
 
 		printAttributes (prDDPins);	
 		printDisjoints ("Attributes", gAttrIdArr, prDDPins);
-// 777		printDisjoints ("Permanent Values", gPermValIdArr, prDDPins);
+// 		printDisjoints ("Permanent Values", gPermValIdArr, prDDPins);
 		
 		printDataTypes (prDDPins);
 		printUnits (prDDPins);
@@ -204,22 +202,19 @@ class WriteDOMRDFOWLFile extends Object{
 		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassIdMap.values());
 		for (Iterator<DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();	
-//			System.out.println("debug WriteDOMRDFOWLFile - printClasses 1 - lDOMClass.identifier:" + lDOMClass.identifier + " - lDOMClass.nameSpaceIdNC:" + lDOMClass.nameSpaceIdNC + " - lDOMClass.steward:" + lDOMClass.steward);
 			if (lDOMClass.identifier.indexOf("PDS3") > -1) continue;
 //			if (lDOMClass.registrationStatus.compareTo("Retired") == 0) continue;
 //			if (lDOMClass.isDataType) continue;
 //			if (lDOMClass.isUnitOfMeasure) continue;
 //			if (lDOMClass.isUSERClass) continue;
 //			if (lDOMClass.title.compareTo("Product_Components") == 0) continue;
-			if (! ((lDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass.steward.compareTo("pds") == 0 || lDOMClass.steward.compareTo("ops") == 0))) continue;			
-//			System.out.println("debug WriteDOMRDFOWLFile - printClasses 2 - FILTERED - lDOMClass.identifier:" + lDOMClass.identifier + " - lDOMClass.nameSpaceIdNC:" + lDOMClass.nameSpaceIdNC + " - lDOMClass.steward:" + lDOMClass.steward);
+			if (! ((lDOMClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMClass.steward.compareTo("ops") == 0))) continue;			
 			printClass (lDOMClass, prDDPins);
 		}
 	}
 	
 	// write a single PDS4 classes as an OWL class 
 	public  void printClass (DOMClass lDOMClass, PrintWriter prDDPins) {
-//		System.out.println("debug WriteDOMRDFOWLFile - printClass- lDOMClass.identifier:" + lDOMClass.identifier);
 		prDDPins.println(" ");
 		prDDPins.println(" ");		    
 		prDDPins.println("   <!-- PDS4 Class: http://pds.nasa.gov/pds4/pds#" + lDOMClass.identifier + " -->");
@@ -260,7 +255,7 @@ class WriteDOMRDFOWLFile extends Object{
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lDOMClass2 = (DOMClass) lDOMProp.hasDOMObject;					
 				if (lDOMClass2.identifier.indexOf("PDS3") > -1) continue;
-				if (! ((lDOMClass2.nameSpaceIdNC.compareTo("pds") == 0 || lDOMClass2.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass2.steward.compareTo("pds") == 0 || lDOMClass2.steward.compareTo("ops") == 0))) continue;			
+				if (! ((lDOMClass2.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMClass2.nameSpaceIdNC.compareTo("all") == 0) && (lDOMClass2.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMClass2.steward.compareTo("ops") == 0))) continue;			
 				prDDPins.println("      <rdfs:subClassOf>");
 				prDDPins.println("         <owl:Restriction>");
 				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_class\"/>");
@@ -277,7 +272,7 @@ class WriteDOMRDFOWLFile extends Object{
 			for (Iterator<DOMClass> i = lDOMClass.subClassHierArr.iterator(); i.hasNext();) {
 				DOMClass lDisjointDOMClass = (DOMClass) i.next();
 				if (lDisjointDOMClass.identifier.indexOf("PDS3") > -1) continue;
-				if (! ((lDisjointDOMClass.nameSpaceIdNC.compareTo("pds") == 0 || lDisjointDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDisjointDOMClass.steward.compareTo("pds") == 0 || lDisjointDOMClass.steward.compareTo("ops") == 0))) continue;			
+				if (! ((lDisjointDOMClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDisjointDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDisjointDOMClass.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDisjointDOMClass.steward.compareTo("ops") == 0))) continue;			
 				gClassIdArr.add(lDisjointDOMClass.identifier);
 			}
 			printDisjoints (lDOMClass.identifier, gClassIdArr, prDDPins);
@@ -288,8 +283,6 @@ class WriteDOMRDFOWLFile extends Object{
 	public  void printAttributes (PrintWriter prDDPins) {
 		for (Iterator<DOMAttr> i = gDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
-//			System.out.println("debug WriteDOMRDFOWLFile - printAtributes 1 - lDOMAttr.identifier:" + lDOMAttr.identifier + " - lDOMAttr.nameSpaceIdNC:" + lDOMAttr.nameSpaceIdNC + " - lDOMAttr.steward:" + lDOMAttr.steward);
-//			if (! ((lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 || lDOMAttr.nameSpaceIdNC.compareTo("all") == 0) && (lDOMAttr.steward.compareTo("pds") == 0 || lDOMAttr.steward.compareTo("ops") == 0))) continue;			
 			if (lDOMAttr.title.indexOf("ANAME") > -1) continue;
 			printAttr (lDOMAttr, prDDPins);
 			gAttrIdArr.add(lDOMAttr.identifier);
@@ -322,9 +315,8 @@ class WriteDOMRDFOWLFile extends Object{
 				if (lDOMPermValDefn.identifier.indexOf("PDS3") > -1) {
 					if (lDOMPermValDefn.identifier.indexOf("Product") > -1) continue;
 				}
-				if (! ((lDOMPermValDefn.nameSpaceIdNC.compareTo("pds") == 0 || lDOMPermValDefn.nameSpaceIdNC.compareTo("all") == 0) && (lDOMPermValDefn.steward.compareTo("pds") == 0 || lDOMPermValDefn.steward.compareTo("ops") == 0))) continue;											
-//				System.out.println("debug WriteDOMRDFOWLFile - permissible values 2 - FILTERED - lDOMPermValDefn.identifier:" + lDOMPermValDefn.identifier + " - lDOMPermValDefn.nameSpaceIdNC:" + lDOMPermValDefn.nameSpaceIdNC + " - lDOMPermValDefn.steward:" + lDOMPermValDefn.steward);
-// 777				prDDPins.println("      <rdfs:subClassOf>");
+				if (! ((lDOMPermValDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMPermValDefn.nameSpaceIdNC.compareTo("all") == 0) && (lDOMPermValDefn.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDOMPermValDefn.steward.compareTo("ops") == 0))) continue;											
+// 				prDDPins.println("      <rdfs:subClassOf>");
 //				prDDPins.println("         <owl:Restriction>");
 //				prDDPins.println("            <owl:onProperty rdf:resource=\"http://pds.nasa.gov/ontologies/1700/pds/has_permissible_value\"/>");
 //				prDDPins.println("            <owl:someValuesFrom rdf:resource=\"http://pds.nasa.gov/pds4/pds#" + lDOMPermValDefn.identifier + "\"/>");
@@ -336,8 +328,7 @@ class WriteDOMRDFOWLFile extends Object{
 		}
 		
 		// write the "has_data_type properties
-		String lIdentifier = InfoModel.getClassIdentifier("pds", lDOMAttr.valueType);
-//		System.out.println("debug printAttr datatype lIdentifier:" + lIdentifier);
+		String lIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.valueType);
 		DOMDataType lDOMDataType = InfoModel.masterDOMDataTypeIdMap.get(lIdentifier);
 		if (lDOMDataType != null) {
 			prDDPins.println("      <rdfs:subClassOf>");
@@ -349,8 +340,7 @@ class WriteDOMRDFOWLFile extends Object{
 		}
 		
 		// write the "has_measurement_units properties
-		lIdentifier = InfoModel.getClassIdentifier("pds", lDOMAttr.unit_of_measure_type);
-//		System.out.println("debug printAttr unit lIdentifier:" + lIdentifier);
+		lIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.unit_of_measure_type);
 		DOMUnit lDOMUnit = InfoModel.masterDOMUnitIdMap.get(lIdentifier);
 		if (lDOMUnit != null) {
 			prDDPins.println("      <rdfs:subClassOf>");
@@ -363,7 +353,7 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("   </owl:Class>");
 		
 		// write the permissible values as OWL classes
-// 777		for (Iterator<DOMPermValDefn> j = lDOMClassAttrPermValArr.iterator(); j.hasNext();) {
+//		for (Iterator<DOMPermValDefn> j = lDOMClassAttrPermValArr.iterator(); j.hasNext();) {
 //			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
 //			printPermValue (lDOMPermValDefn, prDDPins);
 //		}
@@ -445,27 +435,6 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("      </owl:members>");
 		prDDPins.println("   </rdf:Description>");
 	}		
-
-	
-// = = = = = = = = 	
-	
-	// Print the Attributes
-	public  void printAttrxxxx (PrintWriter prDDPins) {
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> ();
-		
-		// write the attributes
-		for (Iterator<AttrDefn> j = lAttrArr.iterator(); j.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) j.next();
-			if (! lAttr.isAttribute) continue;
-			PDSObjDefn lClass = lAttr.attrParentClass;
-			prDDPins.println("\npds:" + lAttr.title + " " + "rdf:type" + " " + "owl:ObjectProperty;");	
-			prDDPins.println("  " + "a" + " " + "skos:Concept;");	
-			prDDPins.println("  " + "skos:prefLabel" + " " +  " \"" + formValue(lAttr.title) + "\"@en;");	
-			prDDPins.println("  " + "skos:definition" + " " +  " \"" + formValue(lAttr.description) + "\"@en;");	
-//			prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lClass.title + ";");	
-			prDDPins.println("  " + "skos:historyNote" + " " +  " \"" + "PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "  Class Version "  + lClass.versionId + "\"@en.");	
-		}
-	}		
 	
 	// Print the Associations
 	public  void printAssoc (PDSObjDefn lClass, PrintWriter prDDPins) {
@@ -489,45 +458,6 @@ class WriteDOMRDFOWLFile extends Object{
 			prDDPins.println("            }");
 		}
 		prDDPins.println("           ]");
-	}
-	
-	// Print the the Protege Pins DE
-	public  void printAttrxxx (PrintWriter prDDPins) {
-		// print the data elements
-		boolean isFirst = true;
-		ArrayList <AttrDefn> lAttrArr = new ArrayList (InfoModel.masterMOFAttrIdMap.values());
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (! (lAttr.isUsedInClass && lAttr.isAttribute)) continue;
-			if (isFirst) {
-				prDDPins.println("        {");
-				isFirst = false;
-			} else {
-				prDDPins.println("      , {");				
-			}
-			prDDPins.println("          " + formValue("attribute") + ": {");	
-			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lAttr.identifier) + " ,");	
-			prDDPins.println("            " + formValue("title") + ": " + formValue(lAttr.title) + " ,");	
-			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");	
-			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lAttr.attrNameSpaceIdNC) + " ,");	
-			prDDPins.println("            " + formValue("steward") + ": " + formValue(lAttr.steward) + " ,");	
-			prDDPins.println("            " + formValue("versionId") + ": " + formValue(lAttr.versionIdentifierValue) + " ,");	
-			prDDPins.println("            " + formValue("description") + ": " + formValue(lAttr.description) + " ,");	
-			prDDPins.println("            " + formValue("isNillable") + ": " + formBooleanValue(lAttr.isNilable) + " ,");	
-			prDDPins.println("            " + formValue("isEnumerated") + ": " + formBooleanValue(lAttr.isEnumerated) + " ,");	
-			prDDPins.println("            " + formValue("dataType") + ": " + formValue(lAttr.valueType) + " ,");	
-			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lAttr.getMinimumCharacters2(true,true)) + " ,");			
-			prDDPins.println("            " + formValue("maximumCharacters") + ": " + formValue(lAttr.getMaximumCharacters2(true,true)) + " ,");	
-			prDDPins.println("            " + formValue("minimumValue") + ": " + formValue(lAttr.getMinimumValue2(true,true)) + " ,");	
-			prDDPins.println("            " + formValue("maximumValue") + ": " + formValue(lAttr.getMaximumValue2(true,true)) + " ,");	
-			prDDPins.println("            " + formValue("pattern") + ": " + formValue(lAttr.getPattern(true)) + " ,");	
-			prDDPins.println("            " + formValue("unitOfMeasure") + ": " + formValue(lAttr.getUnitOfMeasure(false)) + " ,");	
-			prDDPins.println("            " + formValue("unitId") + ": " + formValue(lAttr.getUnits(false)) + " ,");	
-			prDDPins.println("            " + formValue("defaultUnitId") + ": " + formValue(lAttr.getDefaultUnitId(false)));	
-			printPermValues (lAttr, prDDPins);
-			prDDPins.println("          }");
-			prDDPins.println("        }");
-		}
 	}
 
 	// Print the Permissible Values and Value Meanings
@@ -599,28 +529,6 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("           ]");
 	}
 
-	// Print the Units
-	public  void printUnitsxxx (PrintWriter prDDPins) {
-		boolean isFirst = true;
-		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
-			UnitDefn lUnit = (UnitDefn) i.next();
-			if (isFirst) {
-				prDDPins.println("        {" + formValue("Unit") + ": {");
-				isFirst = false;
-			} else {
-				prDDPins.println("      , {" + formValue("Unit") + ": {");			
-			}	
-			prDDPins.println("            " + formValue("identifier") + ": " + formValue(lUnit.identifier) + " ,");	
-			prDDPins.println("            " + formValue("title") + ": " + formValue(lUnit.title) + " ,");	
-			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue("pds") + " ,");	
-			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");
-			prDDPins.println("            " + formValue("defaultUnitId") + ": " + formValue(lUnit.default_unit_id));	
-			printUnitId (lUnit, prDDPins); 
-			prDDPins.println("          }");
-			prDDPins.println("        }");
-		}
-	}	
-
 	// Print the Unit Identifier
 	public  void printUnitId (UnitDefn lUnit, PrintWriter prDDPins) {
 		boolean isFirst = true;
@@ -646,12 +554,10 @@ class WriteDOMRDFOWLFile extends Object{
 						
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
-//		System.out.println("debug printPDDPPR");
 		ArrayList <AssocDefn> lSortedAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocIdMap.values());
 		for (Iterator<AssocDefn> i = lSortedAssocArr.iterator(); i.hasNext();) {
 			AssocDefn lAssoc = (AssocDefn) i.next();
 			String prDataIdentifier = "PR." + lAssoc.identifier;
-//			System.out.println("debug printPDDPPR - prDataIdentifier:" + prDataIdentifier);
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");

@@ -53,7 +53,7 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.formation_rule = formation_rule;
 	}
 	
-	public String getMaximum_characters(boolean forceBound) {
+	public String getMaximumCharacters(boolean forceBound) {
 		String lValue = this.maximum_characters;
 		if (forceBound) {
 			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0) {
@@ -68,7 +68,7 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.maximum_characters = maximum_characters;
 	}
 	
-	public String getMaximum_value(boolean forceBound) {
+	public String getMaximumValue(boolean forceBound) {
 		String lValue = this.maximum_value;
 		if (forceBound) {
 			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("2147483647") == 0 || lValue.compareTo("4294967295") == 0 || lValue.compareTo("INF") == 0) {
@@ -83,7 +83,7 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.maximum_value = maximum_value;
 	}
 	
-	public String getMinimum_characters(boolean forceBound) {
+	public String getMinimumCharacters(boolean forceBound) {
 		String lValue = this.minimum_characters;
 		if (forceBound) {
 			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0) {
@@ -98,7 +98,7 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.minimum_characters = minimum_characters;
 	}
 	
-	public String getMinimum_value(boolean forceBound) {
+	public String getMinimumValue(boolean forceBound) {
 		String lValue = this.minimum_value;
 		if (forceBound) {
 			if (lValue.indexOf("TBD") == 0 || lValue.compareTo("") == 0 || lValue.compareTo("-2147483648") == 0 || lValue.compareTo("-INF") == 0) {
@@ -138,7 +138,6 @@ public class DOMDataType extends ISOClassOAIS11179 {
 	}
 	
 	public void createDOMDataTypeSingletons (DataTypeDefn lDataTypeDefn) {
-//		System.out.println("debug - createDOMClassSingletons - Phase 1 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
 //		rdfIdentifier = "TBD"; 							
 //		identifier = "TBD"; 
 		versionId = "TBD"; 
@@ -150,10 +149,10 @@ public class DOMDataType extends ISOClassOAIS11179 {
 //		registrationStatus = lUnitDefn.registrationStatus; 
 //		isDeprecated = lUnitDefn.isDeprecated;
 		
-		regAuthId = "pds"; 
-		steward = "pds"; 
-		nameSpaceId = "pds"; 
-		nameSpaceIdNC = "pds"; 
+		regAuthId = DMDocument.masterNameSpaceIdNCLC; 
+		steward = DMDocument.masterNameSpaceIdNCLC; 
+		nameSpaceId = DMDocument.masterNameSpaceIdNCLC; 
+		nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC; 
 		
 		type = lDataTypeDefn.type;
 		character_constraint = lDataTypeDefn.character_constraint;
@@ -172,6 +171,90 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		return;
 	}	
 	
-	
-		
+	// new - not currently being used - needs testing
+	public void setDataTypeAttrs (DOMClass lClass) {
+		this.setIdentifier (DMDocument.masterNameSpaceIdNCLC, lClass.title);
+		this.title =  lClass.title;
+		this.nameSpaceIdNC = lClass.nameSpaceIdNC;
+		this.type = lClass.title;
+
+		// for each attribute of the class
+		for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) j.next();								
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+											
+				// set the character_constraint
+				if (lDOMAttr.title.compareTo("character_constraint") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.character_constraint);
+					if (lVal != null) {
+						this.character_constraint =  lVal;
+					}
+				}
+				// set the formation_rule
+				if (lDOMAttr.title.compareTo("formation_rule") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.formation_rule);
+					if (lVal != null) {
+						this.formation_rule =  lVal;
+					}
+				}
+				// set the maximum_characters
+				if (lDOMAttr.title.compareTo("maximum_characters") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.maximum_characters);
+					if (lVal != null) {
+						this.maximum_characters =  lVal;
+					}
+				}
+				// set the maximum_value
+				if (lDOMAttr.title.compareTo("maximum_value") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.maximum_value);
+					if (lVal != null) {
+						this.maximum_value =  lVal;
+					}
+				}
+				// set the minimum_characters
+				if (lDOMAttr.title.compareTo("minimum_characters") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.minimum_characters);
+					if (lVal != null) {
+						this.minimum_characters =  lVal;
+					}
+				}
+				// set the minimum_value
+				if (lDOMAttr.title.compareTo("minimum_value") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.minimum_value);
+					if (lVal != null) {
+						this.minimum_value =  lVal;
+					}
+				}
+				// set the xml_schema_base_type
+				if (lDOMAttr.title.compareTo("xml_schema_base_type") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.xml_schema_base_type);
+					if (lVal != null) {
+						this.xml_schema_base_type =  lVal;
+					}
+				}
+				// set the character_encoding
+				if (lDOMAttr.title.compareTo("character_encoding") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, this.character_encoding);
+					if (lVal != null) {
+						this.character_encoding =  lVal;
+					}
+				}
+				// set the pattern
+/*								if (lAttr.title.compareTo("pattern") == 0) {
+					String lVal = DOMInfoModel.getSingletonValueUpdate(lAttr.valArr, lDataType.pattern);
+					if (lVal != null) {
+						lDataType.pattern =  lVal;
+					}
+				} */
+				if (lDOMAttr.title.compareTo("pattern") == 0) {								
+					for (Iterator<String> l = lDOMAttr.valArr.iterator(); l.hasNext();) {
+						String lValue = (String) l.next();
+						this.pattern.add(lValue);
+					}
+				}
+			}
+		}
+		return;
+	}
 }

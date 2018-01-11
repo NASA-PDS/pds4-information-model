@@ -1,10 +1,10 @@
 package gov.nasa.pds.model.plugin; 
-
 import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class ISOClassOAIS11179 extends ISOClassOAIS {
 	String regAuthId;								// registration authority identifier
+	String subModelId;								// identifier of submodel within the registration authority's model.
 	String steward;									// steward
 	String nameSpaceId;								// namespace id - assigned namespace id with colon
 	String nameSpaceIdNC;							// namespace id - assigned namespace id No Colon
@@ -16,10 +16,11 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 	boolean isFromLDD;									// has been ingested from Ingest_LDD
 
 	ArrayList <ISOClassOAIS11179> hasDOMObject;		// allows more than one object (DOMProp only - OVERRIDE in DOMProp)
-	TreeMap <String, TermEntryDefn> termEntryMap;	// Terminological entries for any class
+	TreeMap <String, TermEntryDefn> termEntryMap;
 
 	public ISOClassOAIS11179 () {
 		regAuthId = "TBD_registration_authority_identifier";
+		subModelId = "TBD_subModelId";
 		steward = "TBD_steward";
 		nameSpaceId = "TBD_namespaceid";
 		nameSpaceIdNC = "TBD_namespaceidNC";

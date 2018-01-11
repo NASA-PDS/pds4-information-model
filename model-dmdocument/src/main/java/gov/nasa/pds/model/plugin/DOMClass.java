@@ -6,18 +6,18 @@ import java.util.TreeMap;
 public class DOMClass extends ISOClassOAIS11179 {
 	
 	String section;									// section of the info model specification document for  this class
-	String subModelId;								// identifier of submodel within the registration authority's model.
-	String role;										// abstract or concrete
-	String docSecType;								// class type = title
+	String role;									// abstract or concrete
+	String xPath;									// class xpath
+	String docSecType;								// the title of the class below USER, for each class's class hierarchy
 	String rootClass;								// RDF identifier
 	String baseClassName;							// Fundamental structure class title
 	String localIdentifier;							// used temporarily for ingest of LDD
 	
 	int subClassLevel;
 	boolean isUSERClass;							// The class of all classes
-	boolean isMasterClass;						// will be included in the master class map
-	boolean isSchema1Class;						// will have a schema type 1 created
-	boolean isRegistryClass;					// will be included in registry configuration file
+	boolean isMasterClass;							// will be included in the master class map
+	boolean isSchema1Class;							// will have a schema type 1 created
+	boolean isRegistryClass;						// will be included in registry configuration file
 	boolean isUsedInModel;
 	boolean isAnExtension;							// This class is an extension
 	boolean isARestriction;							// This class is a restriction
@@ -25,7 +25,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isUnitOfMeasure;
 	boolean isDataType;
 	boolean isTDO;
-	boolean isAbstract;
+//	boolean isAbstract;
 	boolean isChoice;								// class requires xs:choice
 	boolean isAny;									// class requires xs:any
 	boolean includeInThisSchemaFile;
@@ -33,6 +33,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
 	boolean isExposed;							// the class is to be exposed in XML Schema - i.e., defined using xs:Element
 
+	ArrayList <DOMProtAttr> hasDOMProtAttr;		// the protege attributes to be converted to DOMProp and either DOMAttr or DOMClass
 	DOMClass subClassOf; 
 	String subClassOfTitle; 					// needed after parsing Protege Pont file to find subClass
 	String subClassOfIdentifier; 				// needed after parsing Protege Pont file to find subClass
@@ -45,21 +46,27 @@ public class DOMClass extends ISOClassOAIS11179 {
 	ArrayList <DOMProp> inheritedAssocArr; 
 	
 	ArrayList <DOMProp> allAttrAssocArr; 
-	ArrayList <DOMProp> ownedAttrAssocNOArr;
 	ArrayList <DOMProp> ownedAttrAssocArr;					// each class's owned attribute and associations in sorted order
+	ArrayList <DOMProp> ownedAttrAssocNOArr;
+	ArrayList <String> ownedAttrAssocNSTitleArr; 		// needed during attribute/association inheritance processing
+	ArrayList <String> ownedTestedAttrAssocNSTitleArr; 		// needed during attribute/association inheritance processing
+	TreeMap <String, DOMProp> ownedPropNSTitleMap; // needed to set DOMAttr.isRestrictedInSubclass during inheritance processing
+	TreeMap <String, DOMAttr> ownedAttrAssocNSTitleMap; // needed to set DOMAttr.isRestrictedInSubclass during inheritance processing
+
 	ArrayList <DOMAttr> ownedAttrAssocAssertArr;			// all enumerated attributes, from this.class through to all superclasses.
-	ArrayList <String> ownedAttrAssocAssertTitleArr;	// all enumerated attributes, required to eliminate duplicates
+	ArrayList <String> ownedAttrAssocAssertTitleArr;		// all enumerated attributes, required to eliminate duplicates
 	
 	public DOMClass () {
 		section = "TBD_section";
-		subModelId = "TBD_submodel_identifier";
 		role = "TBD_role";
+		xPath = "TBD_xPath";
 		docSecType = "TBD_type"; 
 		rootClass = "TBD_root_class";
 		baseClassName = "TBD_base_class_name";
 		localIdentifier = "TBD_localIdentifier";
 		subClassLevel = 0;
 		isUSERClass = false;
+//		isUsedInClass = false;
 		isMasterClass = false;
 		isSchema1Class = false;
 		isRegistryClass = false;
@@ -70,19 +77,21 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isUnitOfMeasure = false;
 		isDataType = false;
 		isTDO = false;
-		isAbstract = false;
+//		isAbstract = false;
 		isChoice = false;
 		isAny = false;
 		includeInThisSchemaFile = false;
 		isFromLDD = false;
 		isReferencedFromLDD = false;
 		
+		hasDOMProtAttr = new ArrayList <DOMProtAttr> ();
+		
 		subClassOf = null;
 		subClassOfTitle = "TBD_subClassOfTitle"; 					
 		subClassOfIdentifier = "TBD_subClassOfIdentifier";
 		
-		subClassHierArr = new ArrayList <DOMClass> ();  
-		superClassHierArr = new ArrayList <DOMClass> ();  
+		subClassHierArr = new ArrayList <DOMClass> ();				// all subclasses (children) of this class
+		superClassHierArr = new ArrayList <DOMClass> ();  			// the superclass (parent) hierarchy for this class
 		
 		ownedAttrArr = new ArrayList <DOMProp> (); 
 		inheritedAttrArr = new ArrayList <DOMProp> (); 
@@ -90,8 +99,12 @@ public class DOMClass extends ISOClassOAIS11179 {
 		inheritedAssocArr = new ArrayList <DOMProp> (); 
 		
 		allAttrAssocArr = new ArrayList <DOMProp> (); 
-		ownedAttrAssocNOArr = new ArrayList <DOMProp> ();
 		ownedAttrAssocArr = new ArrayList <DOMProp> ();
+		ownedAttrAssocNOArr = new ArrayList <DOMProp> ();
+		ownedAttrAssocNSTitleArr = new ArrayList <String> (); 
+		ownedTestedAttrAssocNSTitleArr = new ArrayList <String> (); 
+		ownedPropNSTitleMap = new TreeMap <String, DOMProp> ();
+		ownedAttrAssocNSTitleMap = new TreeMap <String, DOMAttr> ();
 		ownedAttrAssocAssertArr = new ArrayList <DOMAttr> ();
 		ownedAttrAssocAssertTitleArr = new ArrayList <String> ();
 	}
@@ -160,6 +173,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 			String lRDFIdentifier = lOldClassSubClassOf.rdfIdentifier;
 			if (lRDFIdentifier != null && (lRDFIdentifier.indexOf("TBD") != 0) ) {
 				subClassOf = lDOMClassMap.get(lRDFIdentifier);
+				// Setting subClassOfTitle, subClassOfIdentifier are not needed; see createDOMClassSingletons				
 			} else {
 				System.out.println(">>warning  - initDOMClassHierArrs  - Failed to find subClassOfInst 1 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);				
 			}
@@ -228,7 +242,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 			}
 		}
 	}
-		
+
 	// update the DOMProp property map with the DOMProp that maps to each AttrDefn 
 	public void InitPropArrISOClassOAIS11179 (ArrayList <ISOClassOAIS11179> lDOMPropArr, ArrayList <AttrDefn> lOldAttrArr) {
 		for (Iterator <AttrDefn> i = lOldAttrArr.iterator(); i.hasNext();) {
@@ -244,7 +258,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 			}
 		}
 	}
-	
+
 	//  Check whether this class is an extension or restriction
 	public void setisExtentionOrRestrictionClass () {
 		DOMClass lSuperClass = this.subClassOf;

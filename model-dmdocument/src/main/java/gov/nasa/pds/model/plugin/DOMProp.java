@@ -9,28 +9,34 @@ public class DOMProp extends ISOClassOAIS11179 {
 	int cardMinI;
 	int cardMaxI;
 	String classOrder;						// the order of the attribute or association within a class
-// deprecated to be replaced by hasDOMObject	
-	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows both PDS4 classes, attributes, etc
+	
+// deprecated to be replaced by hasDOMObject
+	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows more than one object (permissible values)
 	DOMClass attrParentClass; 				// class instance that this object is a member of
-	ISOClassOAIS11179 hasDOMObject;			// Overrides  ISOClassOAIS11179 - allows only one object (class, attribute, permissible value, etc, but no DOMProp
+	ISOClassOAIS11179 hasDOMObject;			// OVERRIDE - allows only one object (class, attribute, permissible value, etc, but no DOMProp
+	ArrayList <String> valArr;				// the protege values, either attributes or class titles
 	
 	String localIdentifier;					// local_identifier (the or first local identifier in the Association set)
     													// needed only for display
-	String className;
+//	String className;
+	String parentClassTitle;						// class that this attribute is a member of
 	String classNameSpaceIdNC;
+	String classSteward;							// steward for attribute's class
+
 	String groupName;							// the choice group name
 	String referenceType;
-	Boolean isAttribute;						// true->attribute; false->association
-	Boolean isChoice;							// allows an xs:choice
-	Boolean isAny;								// allows an xs:any
-	Boolean isSet;								// is a set of either attributes or associations (AttrDefn)
-	boolean isRestrictedInSubclass;
-
+	boolean isPDS4;								// true->PDS4 keyword used in Protege
+	boolean isAttribute;						// true->attribute; false->association
+	boolean isChoice;							// allows an xs:choice
+	boolean isAny;								// allows an xs:any
+	boolean isSet;								// is a set of either attributes or associations (AttrDefn)
+	boolean isRestrictedInSubclass;						// the member attribute/class is owned in this class AND some superclass
+	
 	// LDD Attributes
 	String enclLocalIdentifier;				// local_identifier of enclosing class
 	String minimumOccurrences;
 	String maximumOccurrences;
-
+	
 	public DOMProp () {
 		cardMin = "0"; 
 		cardMax = "0";
@@ -40,12 +46,15 @@ public class DOMProp extends ISOClassOAIS11179 {
 		hasDOMClass = new ArrayList <ISOClassOAIS11179> ();
 		attrParentClass = null;
 		hasDOMObject = null;		
+		valArr = new ArrayList <String> (); 
 		
 		localIdentifier = "TBD_localIdentifier";
-		className = "TBD_className";
+		parentClassTitle = "TBD_parentClassTitle";
 		classNameSpaceIdNC = "TBD_classNameSpaceIdNC";
+		classSteward = "TBD_classSteward";
 		groupName = "TBD_groupName";
 		referenceType = "TBD_referenceType";
+		isPDS4 = false;
 		isAttribute = false;
 		isChoice = false;
 		isAny = false;
@@ -107,8 +116,8 @@ public class DOMProp extends ISOClassOAIS11179 {
 	public void createDOMPropAttrSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
 //		rdfIdentifier = lOldProp.rdfIdentifier; 							
 //		identifier = lOldProp.identifier; 
-		rdfIdentifier = lOldProp.rdfIdentifier + "." + lAttr.title;							
-		identifier = lOldProp.identifier + "." + lAttr.title;
+		rdfIdentifier = lOldProp.rdfIdentifier; 							
+		identifier = lOldProp.identifier;
 		versionId = lAttr.versionId;
 		sequenceId = lAttr.uid; 
 		title = lAttr.title;
@@ -126,10 +135,10 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMaxI = lOldProp.cardMaxI;
 		
 		// others from PDS3
-
+		
 		localIdentifier = lOldProp.localIdentifier;
 
-		className = lOldProp.className;
+		parentClassTitle = lOldProp.className;
 		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
 		groupName = lOldProp.groupName;						
 
@@ -138,12 +147,12 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isChoice = lOldProp.isChoice;
 		isAny = lOldProp.isAny;
 		isSet = lOldProp.isSet;
-		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
+//		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
 		
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
-	}	
+	}
 	
 	public void initPropParentClass (AttrDefn lOldAttr, TreeMap <String, DOMClass> lDOMClassIdMap) {		
 		PDSObjDefn lOldAttrParentClass = lOldAttr.attrParentClass;
@@ -180,7 +189,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 		
 		// others from PDS3
 		localIdentifier = lOldProp.localIdentifier;
-		className = lOldProp.className;
+		parentClassTitle = lOldProp.className;
 		classNameSpaceIdNC = lOldProp.classNameSpaceIdNC;
 		groupName = lOldProp.groupName;						
 		referenceType = lOldProp.referenceType;
@@ -188,15 +197,15 @@ public class DOMProp extends ISOClassOAIS11179 {
 		isChoice = lOldProp.isChoice;
 		isAny = lOldProp.isAny;
 		isSet = lOldProp.isSet;
-		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
+//		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
 		
 		enclLocalIdentifier = lOldProp.enclLocalIdentifier;
 		minimumOccurrences = lOldProp.minimumOccurrences;
 		maximumOccurrences = lOldProp.maximumOccurrences;
-	}		
-		
+	}
+	
 	public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
-		rdfIdentifier = lAttr.rdfIdentifier; 														
+		rdfIdentifier = lAttr.rdfIdentifier;
 		identifier = lAttr.identifier; 
 		versionId = lAttr.versionId;
 		sequenceId = lAttr.uid; 
@@ -216,14 +225,14 @@ public class DOMProp extends ISOClassOAIS11179 {
 		// others from PDS3
 		localIdentifier = lAttr.lddLocalIdentifier;
 
-		className = lAttr.parentClassTitle;
+		parentClassTitle = lAttr.parentClassTitle;
 		classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
 //		groupName = "TBD_groupName";
 //		referenceType = "TBD_referenceType";
 		isAttribute = lAttr.isAttribute;
 		isChoice = lAttr.isChoice;
 		isAny = lAttr.isAny;
-		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
+//		isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
 
 //		isSet = false;
 //		enclLocalIdentifier = "TBD_enclLocalIdentifier";
@@ -232,7 +241,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 	}
 	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
-//		System.out.println("debug - initDOMPermValProp lDOMPermValDefn.rdfIdentifier: " + lDOMPermValDefn.rdfIdentifier);							
 		rdfIdentifier = lDOMPermValDefn.rdfIdentifier; 														
 		identifier = lDOMPermValDefn.identifier; 
 		versionId = lDOMPermValDefn.versionId;

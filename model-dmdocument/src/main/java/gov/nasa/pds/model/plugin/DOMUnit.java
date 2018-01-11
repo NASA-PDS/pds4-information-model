@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class DOMUnit extends ISOClassOAIS11179 {
+	String pds4Identifier;
 	String type;
 	String precision;
 	String default_unit_id;
@@ -10,6 +11,7 @@ public class DOMUnit extends ISOClassOAIS11179 {
 	ArrayList <String> unit_id; 
 	
 	public DOMUnit () {          
+		pds4Identifier = "TBD_pds4Identifier";
 		type = "TBD_type";              
 		precision = "TBD precision";                        
 		default_unit_id = "TBD_default_unit_id";                                         
@@ -50,7 +52,6 @@ public class DOMUnit extends ISOClassOAIS11179 {
 	}
 	
 	public void createDOMUnitSingletons (UnitDefn lUnitDefn) {
-//		System.out.println("debug - createDOMClassSingletons - Phase 1 - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);							
 //		rdfIdentifier = "TBD"; 							
 //		identifier = "TBD"; 
 		versionId = "TBD"; 
@@ -62,10 +63,10 @@ public class DOMUnit extends ISOClassOAIS11179 {
 //		registrationStatus = lUnitDefn.registrationStatus; 
 //		isDeprecated = lUnitDefn.isDeprecated;
 		
-		regAuthId = "pds"; 
-		steward = "pds"; 
-		nameSpaceId = "pds"; 
-		nameSpaceIdNC = "pds"; 
+		regAuthId = DMDocument.masterNameSpaceIdNCLC; 
+		steward = DMDocument.masterNameSpaceIdNCLC; 
+		nameSpaceId = DMDocument.masterNameSpaceIdNCLC; 
+		nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC; 
 		
 		type = lUnitDefn.type;
 		precision = lUnitDefn.precision;

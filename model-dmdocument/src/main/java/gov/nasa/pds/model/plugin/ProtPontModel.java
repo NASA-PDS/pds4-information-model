@@ -112,13 +112,13 @@ class ProtPontModel extends InfoModel{
 				}	
 				type = 0;
 				break;
-			case 2: // subClassOf -- these are converted to rdfIdentifiers by getSubClassOf
+			case 2: // subClassOf
 				objClass.subClassOfTitle = token;
-				if (token.compareTo(DMDocument.masterUserClassName) != 0) {
-					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, token);
-				} else {
-					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterUserClassNamespaceIdNC, token);
-				}
+//				if (token.compareTo(DMDocument.masterUserClassName) != 0) {
+//					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, token);
+//				} else {
+//					objClass.subClassOfIdentifier = InfoModel.getClassIdentifier(DMDocument.masterUserClassNamespaceIdNC, token);
+//				}
 				type = 0;
 				break;
 			case 3: // single-slot
@@ -240,8 +240,8 @@ class ProtPontModel extends InfoModel{
 				break;
 			case 10: // role
 				objClass.role = token;
-				objClass.isAbstract = false;
-				if (objClass.role.compareTo("concrete") != 0) {
+//				objClass.isAbstract = false;
+				if (objClass.role.compareTo("abstract") == 0) {
 					objClass.isAbstract = true;					
 				}
 				type = 0;

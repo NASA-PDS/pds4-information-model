@@ -1,11 +1,18 @@
 package gov.nasa.pds.model.plugin; 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.*;
 // import org.apache.commons.lang.WordUtils;
 
 /*
  ** Read RDF XML from a file and write it to standard out
  */
-public abstract class InfoModel extends Object {
+public abstract class DOMInfoModel extends Object {
+	
+	// print writer
+	static PrintWriter prDOMWriter;
 	
 	// global constants
 	static String ont_version_id;						// 0.1.0.0.a
@@ -18,90 +25,51 @@ public abstract class InfoModel extends Object {
 	static ArrayList <AdminDefn> master11179AdminArr;
 	static TreeMap <String, AdminDefn> master11179AdminMap;
 	static TreeMap <String, AdminDefn> master11179AdminMapId;
-	
-	// global classes
-	static PDSObjDefn masterMOFUserClass;
-	static ArrayList <PDSObjDefn> masterMOFClassArr;
-	static TreeMap <String, PDSObjDefn> masterMOFClassMap;
-	static TreeMap <String, PDSObjDefn> masterMOFClassIdMap;
-	static TreeMap <String, PDSObjDefn> masterMOFClassTitleMap;
-	
+
 	static ArrayList <String> fundamentalStructures;
 
 	// global attributes
-	static TreeMap <String, AttrDefn> masterMOFAttrMap;
-	static TreeMap <String, AttrDefn> masterMOFAttrIdMap;
-	static ArrayList <AttrDefn> masterMOFAttrArr;
 	static TreeMap <String, AttrDefn> userClassAttrIdMap;			// user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
-	static TreeMap <String, AttrDefn> userSingletonClassAttrIdMap;	// user Class Attributes (not owned attributes) 
-
-	// global Properties (Currently a duplicate of masterMOFAssocMap)
-//	static TreeMap <String, AssocDefn> masterMOFPropMap;
-//	static TreeMap <String, AssocDefn> masterMOFPropIdMap;
-//	static ArrayList <AssocDefn> masterMOFPropArr;
-
-	// global associations
-	static TreeMap <String, AssocDefn> masterMOFAssocMap;
-	static TreeMap <String, AssocDefn> masterMOFAssocIdMap;
-	static ArrayList <AssocDefn> masterMOFAssocArr;
-		
-	// global data types
-	static TreeMap <String, PDSObjDefn> masterDataTypeMap;
-	static ArrayList <PDSObjDefn> masterDataTypesArr;
-	static TreeMap <String, DataTypeDefn> masterDataTypeMap2;
-	static ArrayList <DataTypeDefn> masterDataTypesArr2;
-	
-	// global unitOfMeasure
-	static TreeMap <String, UnitDefn> masterUnitOfMeasureMap;
-	static ArrayList <UnitDefn> masterUnitOfMeasureArr;
-	
-	// global property maps
-	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap;
-	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr;
 	
 	// global 11179 data dictionary
 	static ArrayList <String> masterMetaAttribute;
-	
-	// global 11179 data dictionary
-	static TreeMap <String, InstDefn> master11179DataDict;
 
 	// ==========================================================
-	// New DOM Classes
 	
 	// global classes
 	static ArrayList <DOMClass> masterDOMClassArr = new ArrayList <DOMClass> ();
 	static TreeMap <String, DOMClass> masterDOMClassMap = new TreeMap <String, DOMClass> ();
 	static TreeMap <String, DOMClass> masterDOMClassIdMap = new TreeMap <String, DOMClass> ();
-	
+	static TreeMap <String, DOMClass> masterDOMClassTitleMap = new TreeMap <String, DOMClass> ();
 	static DOMClass masterDOMUserClass;
 
 	// global attributes
-	static ArrayList <DOMAttr> masterDOMAttrArr;
-	static TreeMap <String, DOMAttr> masterDOMAttrMap;
-	static TreeMap <String, DOMAttr> masterDOMAttrIdMap;
-
-	static TreeMap <String, DOMAttr> userDOMClassAttrIdMap;				// user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
-	static TreeMap <String, DOMAttr> userSingletonDOMClassAttrIdMap;	// user Class Attributes (not owned attributes) 
+	static ArrayList <DOMAttr> masterDOMAttrArr = new ArrayList <DOMAttr> ();
+	static TreeMap <String, DOMAttr> masterDOMAttrMap = new TreeMap <String, DOMAttr> ();
+	static TreeMap <String, DOMAttr> masterDOMAttrIdMap = new TreeMap <String, DOMAttr> ();
+	
+	static TreeMap <String, DOMAttr> userDOMClassAttrIdMap = new TreeMap <String, DOMAttr> (); // user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
+	static TreeMap <String, DOMAttr> userSingletonDOMClassAttrIdMap = new TreeMap <String, DOMAttr> (); // user Class Attributes (not owned attributes) 
 
 	// global Properties
-	static ArrayList <DOMProp> masterDOMPropArr;
-	static TreeMap <String, DOMProp> masterDOMPropMap;
-	static TreeMap <String, DOMProp> masterDOMPropIdMap;
-	static TreeMap <String, ArrayList<ISOClassOAIS11179>> convertAssocDOMPropIdMap;	// used for conversion to DOM
+	static ArrayList <DOMProp> masterDOMPropArr = new ArrayList <DOMProp> ();
+	static TreeMap <String, DOMProp> masterDOMPropMap = new TreeMap <String, DOMProp> ();
+	static TreeMap <String, DOMProp> masterDOMPropIdMap = new TreeMap <String, DOMProp> ();
 	
-	// global Data Types
-	static ArrayList <DOMDataType> masterDOMDataTypeArr;
-	static TreeMap <String, DOMDataType> masterDOMDataTypeMap;
-	static TreeMap <String, DOMDataType> masterDOMDataTypeIdMap;
-	
-	static TreeMap <String, DOMClass> masterDOMDataTypeClassMap;
-	static ArrayList <DOMClass> masterDOMDataTypeClassArr;
+	// global data types
+	static ArrayList <DOMDataType> masterDOMDataTypeArr = new ArrayList <DOMDataType> (); 
+	static TreeMap <String, DOMDataType> masterDOMDataTypeMap = new TreeMap <String, DOMDataType> ();
+	static TreeMap <String, DOMDataType> masterDOMDataTypeTitleMap = new TreeMap <String, DOMDataType> (); 
 	
 	// global Units
 	static ArrayList <DOMUnit> masterDOMUnitArr;
 	static TreeMap <String, DOMUnit> masterDOMUnitMap;
 	static TreeMap <String, DOMUnit> masterDOMUnitIdMap;
 	
+	// global property maps
+	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap;
+	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr;
+		
 	// All CD and DEC values for the Attributes
 	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
 	static TreeMap <String, DOMIndexDefn> decDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
@@ -135,6 +103,8 @@ public abstract class InfoModel extends Object {
 	static TreeMap <String, String> decTitle2DECIDMap;
 	
 	static PDSObjDefn LDDToolSingletonClass; // Class for LDD singleton attributes (Discipline or Mission)
+	// 77775
+//	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
 	
 	// values and value meaning
 	static TreeMap <String, PermValueDefn> masterValueMeaningMap;
@@ -157,11 +127,13 @@ public abstract class InfoModel extends Object {
 	HashMap <String, PDSObjDefn> objDict;
 	HashMap <String, AttrDefn> attrDict;
 	
-//  7777 Local Classes	
+//  Parsed Classes, Props, and Attributes
 	static ArrayList <DOMClass> parsedClassArr;
 	static TreeMap <String, DOMClass> parsedClassMap;
-	static TreeMap <String, DOMAttr> parsedAttrMap;	
-	
+
+	static ArrayList <DOMProtAttr> parsedProtAttrArr;
+	static TreeMap <String, DOMProtAttr> parsedProtAttrMap;	
+		
 	ArrayList <String> texSectionFormats;	
                               
 /**********************************************************************************************************
@@ -363,18 +335,8 @@ public abstract class InfoModel extends Object {
 		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_name", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_unit", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_interval", DMDocument.masterNameSpaceIdNCLC);
-		
 		// assocs (AttrDefn)
 		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
-		
-// 999		System.out.println("\n>>info    - Static Schematron Rules Setup");
-// 999		System.out.println(">>info    - Rule count for Arr: " + InfoModel.schematronRuleArr.size());
-// 999		System.out.println(">>info    - Rule count for Map: " + InfoModel.schematronRuleMap.size());
-// 999		System.out.println(">>info    - Rule count for Id Map: " + InfoModel.schematronRuleIdMap.size());
-// 999		System.out.println(" ");
 		
 		masterValueMeaningMap = new TreeMap <String, PermValueDefn> ();
  		GetValueMeanings lGetValueMeanings = new GetValueMeanings ();
@@ -396,11 +358,7 @@ public abstract class InfoModel extends Object {
 	*  return a fundamental structure
 	*/
 	public String checkForFundamentalStructure (String lName) {
-	/*		if (InfoModel.fundamentalStructures.contains(lName))
-		{
-			return lName;
-		} */
-		for (Iterator <String> i = InfoModel.fundamentalStructures.iterator(); i.hasNext();) {
+		for (Iterator <String> i = fundamentalStructures.iterator(); i.hasNext();) {
 			String fsName = (String) i.next();
 			if (lName.compareTo(fsName) == 0) {
 				return fsName;
@@ -483,8 +441,6 @@ public abstract class InfoModel extends Object {
 	*  return property map's rdfIdentifier
 	*/
 	static public String getPropMapRDFIdentifier (String lInputIdentifier) {
-//		String lIdentifier = DMDocument.registrationAuthorityIdentifierValue + "." + lInputIdentifier;
-//		String lIdentifier = DMDocument.rdfPrefix + "." + lInputIdentifier + "." + getNextUId();
 		String lIdentifier = lInputIdentifier + "." + getNextUId();
 		return lIdentifier;
 	}	
@@ -493,10 +449,6 @@ public abstract class InfoModel extends Object {
 	*  wrap a text string
 	*/
 	static public String wrapText (String lString, int beginOffset, int endOffset) {
-//		System.out.println("\ndebug wrapText lString:" + lString);
-//		System.out.println("debug wrapText -next chunk- beginOffset:" + beginOffset);			
-//		System.out.println("debug wrapText -next chunk- endOffset:" + endOffset);	
-		
 		// return empty array for null text
 		if (lString == null) return "";
 		
@@ -513,8 +465,6 @@ public abstract class InfoModel extends Object {
 		int lInputBuffOffset1 = 0, lInputBuffOffset2 = 0, lInputBuffOffsetPrevBlank = 0;
 		int lOutputBuffOffset = 0;
 		
-//		System.out.println("debug wrapText lStringLength:" + lStringLength);
-
 		// set up string buffer
 		StringBuffer lInputStringBuff = new StringBuffer(lString);
 		StringBuffer lOutputStringBuff = new StringBuffer();
@@ -544,46 +494,29 @@ public abstract class InfoModel extends Object {
 			// insert prefix blanks in output buffer
 			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');
 
-//			System.out.println("debug wrapText -non blank character- lInputBuffOffset1:" + lInputBuffOffset1);			
-			
 			// find the next chunk of text by finding the next break before the end of the wrapwidth (delimiter = ' ')
 			currOffset = beginOffset + indent; // counter for wrapped string size
 			indent = 2;
 			lInputBuffOffset2 = lInputBuffOffset1; // ending offset in input buffer; init at start offset
 			int lIBO1 = lInputBuffOffset1; // offset in input buffer; init at start offset
-			lInputBuffOffsetPrevBlank = -1; // location to backtrack to if last word goes over wrap boundary
-			
-//			System.out.println("debug wrapText -next chunk- lIBO1:" + lIBO1);			
-//			System.out.println("debug wrapText -next chunk- lStringLength:" + lStringLength);			
-//			System.out.println("debug wrapText -next chunk- currOffset:" + currOffset);			
-//			System.out.println("debug wrapText -next chunk- endOffset:" + endOffset);			
-//			System.out.println("debug wrapText -next chunk- lInputBuffOffset1:" + lInputBuffOffset1);			
-//			System.out.println("debug wrapText -next chunk1- lInputBuffOffset2:" + lInputBuffOffset2);			
+			lInputBuffOffsetPrevBlank = -1; // location to backtrack to if last word goes over wrap boundary		
 			
 			while (lIBO1 < lStringLength && currOffset <= endOffset) {
 				if (lInputStringBuff.charAt(lIBO1) == ' ') lInputBuffOffsetPrevBlank = lIBO1;
 				lIBO1++; currOffset++;
 				lInputBuffOffset2++;
-			}
-//			System.out.println("debug wrapText -next chunk2- lInputBuffOffset2:" + lInputBuffOffset2);
-			
+			}		
 			if (lIBO1 < lStringLength) { // check to see of input buffer is exhausted
 				if (lInputBuffOffsetPrevBlank > -1) { // was a blank found
 					lInputBuffOffset2 = lInputBuffOffsetPrevBlank;
 				}
 			}
-//			System.out.println("debug wrapText -next chunk2- lInputBuffOffset2:" + lInputBuffOffset2);						
-//			System.out.println("debug wrapText -next break- lInputBuffOffset1:" + lInputBuffOffset1);			
-//			System.out.println("debug wrapText -next break- lInputBuffOffset2:" + lInputBuffOffset2);			
-
 			// copy in the next chunk of text
 			while (lInputBuffOffset1 < lInputBuffOffset2) {
 				lOutputStringBuff.insert(lOutputBuffOffset, lInputStringBuff.charAt(lInputBuffOffset1));
 				lInputBuffOffset1++;
 				lOutputBuffOffset++;
 			}
-
-//			System.out.println("debug wrapText -next next chunk- lInputBuffOffset1:" + lInputBuffOffset1);						
 		}
 		return lOutputStringBuff.toString();
 	}
@@ -749,10 +682,6 @@ public abstract class InfoModel extends Object {
 //      Windows-1252 or CP-1252 is a character encoding of the Latin alphabet, 
 //		used by default in the legacy components of Microsoft Windows in English
 //		and some other Western languages		
-		
-// 777		
-//		char lCharMu = '\u03BC';
-//		String lStringMu = "\u03BC";
 		
 //		lString = replaceString (lString, "μ", "&mu;");
 		lString = replaceString (lString, "&", "&amp;");
@@ -954,13 +883,11 @@ public abstract class InfoModel extends Object {
 			if (lAttr.isAttribute) {
 				if (lAttr.title.indexOf("reference_association_type") == 0) {
 					if (! lAttr.valArr.isEmpty()) {
-//						System.out.println("debug4 getAllRefAssocType Associations lAttr.title:" + lAttr.title);
 						for (Iterator<String> j = lAttr.valArr.iterator(); j.hasNext();) {
 							String lVal = (String) j.next();
 							if (lVal.compareTo("") != 0) {
 								if (lRefTypeArr.contains(lVal)) {
 									System.out.println("\n***Warning***  getAllRefAssocType - found duplicate association -  Association:" + lVal);
-//									lVal = lVal + ".DUP";
 								} else {
 									lRefTypeArr.add(lVal);
 								}
@@ -975,42 +902,6 @@ public abstract class InfoModel extends Object {
 		}
 		return lRefTypeArr;
 	}
-	
-	// get all CD and DEC values for each attribute; used to print a CD or DEC 11179 definition. i.e. all DECS for a CD.
-	public void getCDDECIndexes () {
-		
-		// get Attribute for the VD info
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (lAttr.isUsedInClass && lAttr.isAttribute) {
-				
-				// update the CD (dataConcept) Index
-				String sortKey = lAttr.dataConcept;
-				IndexDefn lIndex = cdAttrMap.get(sortKey);
-				if (lIndex == null) {
-					lIndex = new IndexDefn(sortKey);
-					cdAttrMap.put(sortKey, lIndex);
-				}
-				lIndex.identifier1Map.put(lAttr.identifier, lAttr);
-				if (! lIndex.identifier2Arr.contains(lAttr.classConcept)) {
-					lIndex.identifier2Arr.add(lAttr.classConcept);
-				}
-
-				// update the DEC (classConcept) Index
-				sortKey = lAttr.classConcept;
-				lIndex = decAttrMap.get(sortKey);
-				if (lIndex == null) {
-					lIndex = new IndexDefn(sortKey);
-					decAttrMap.put(sortKey, lIndex);
-				}
-				lIndex.identifier1Map.put(lAttr.identifier, lAttr);
-				if (! lIndex.identifier2Arr.contains(lAttr.dataConcept)) {
-					lIndex.identifier2Arr.add(lAttr.dataConcept);
-				}
-			}
-		}
-		return;
-	}	
 	
 	// clone an attribute 
 	static public AttrDefn cloneAttr (String lRDFIdentifier, AttrDefn lOrgAttr) {
@@ -1251,24 +1142,6 @@ public abstract class InfoModel extends Object {
 		return lAssocClassArr;
 	}	
 	
-	// 7777 deprecated - new sort in MasterDOMInfoModel
-	// sort attributes or associations using MOF properties 
-	static public ArrayList <AttrDefn> getSortedAssocAttrArr (ArrayList<AttrDefn> lAttrArr) {
-		TreeMap<String, AttrDefn> lSortAttrMap = new TreeMap <String, AttrDefn> ();
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			AssocDefn lAssoc = masterMOFAssocIdMap.get(lAttr.identifier);
-			if (lAssoc != null) {
-				String sortId = lAssoc.classOrder + "_" + lAttr.identifier;
-				lSortAttrMap.put(sortId, lAttr);
-			} else {
-				System.out.println(">>error   - Association for Attribute is missing - Sort - lAttr.identifier:" + lAttr.identifier);
-			}
-		}
-		ArrayList <AttrDefn> lSortAttrArr = new ArrayList <AttrDefn> (lSortAttrMap.values());
-		return lSortAttrArr;
-	}
-	
 	// sort the class associated classes (Future)
 	public ArrayList <PDSObjDefn> getSortedAssocClasses_actual_classes_future (ArrayList<AssocDefn> lAssocArr) {
 		TreeMap<String, AssocDefn> lSortAssocMap = new TreeMap <String, AssocDefn> ();
@@ -1282,7 +1155,6 @@ public abstract class InfoModel extends Object {
 		ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> ();
 		for (Iterator<AssocDefn> i = lSortAssocArr.iterator(); i.hasNext();) {
 			AssocDefn lAssoc = (AssocDefn) i.next();	
-			System.out.println("debug getSortedAssocClasses lAssoc.identifier:" + lAssoc.identifier);
 			for (Iterator<PDSObjDefn> j = lAssoc.childClassArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClassMember = (PDSObjDefn) j.next();
 				lSortClassArr.add(lClassMember);
@@ -1302,339 +1174,388 @@ public abstract class InfoModel extends Object {
 		return (seq);
 	}
 	
+	
 	// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
-	static public ArrayList <AttrDefn> getAttArrByTitleStewardClassSteward () {
-		TreeMap <String, AttrDefn> lTreeMap = new TreeMap <String, AttrDefn>();
-		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			lTreeMap.put(lAttr.sort_identifier, lAttr);
+	static public ArrayList <DOMAttr> getAttArrByTitleStewardClassSteward () {
+		TreeMap <String, DOMAttr> lDOMAttrMap = new TreeMap <String, DOMAttr>();
+		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
+			lDOMAttrMap.put(lAttr.sort_identifier, lAttr);
 		}
-		Collection <AttrDefn> values3 = lTreeMap.values();		
-		return (new ArrayList <AttrDefn> ( values3 ));
+		ArrayList <DOMAttr> lDOMAttrArr = new ArrayList <DOMAttr>(lDOMAttrMap.values());	
+		return (lDOMAttrArr);
 	}
-	
+
 //====================== Miscellaneous Routines ==============================================================================	
-	
-	/**
-	 * debug one attribute
-	 */
-	static void printOneAttributeIdentifier (String lIdentifier) {
-//		System.out.println("\ndebug printOneAttribute lIdentifier:" + lIdentifier);
-		AttrDefn lAttr = masterMOFAttrIdMap.get(lIdentifier);
-		if (lAttr != null){
-			System.out.println("debug printOneAttribute FOUND lIdentifier:" + lIdentifier);
-			printAttr ("printOneAttribute", lAttr);
-			
-		} else  {
-			System.out.println("debug printOneAttribute NOT FOUND lIdentifier:" + lIdentifier);
-		}
-	}
-	
-	/**
-	 * debug one attribute
-	 */
-	static void printOneAttributeRDFIdentifier (String lRDFIdentifier) {
-		System.out.println("\ndebug printOneAttribute lRDFIdentifier:" + lRDFIdentifier);
-		AttrDefn lAttr = masterMOFAttrMap.get(lRDFIdentifier);
-		if (lAttr != null){
-			System.out.println("debug printOneAttribute FOUND lRDFIdentifier:" + lRDFIdentifier);
-			printAttr ("printOneAttribute", lAttr);
-			
-		} else  {
-			System.out.println("debug printOneAttribute NOT FOUND lRDFIdentifier:" + lRDFIdentifier);
-		}
-	}
 	
 	/**
 	 * print all classes
 	 */
-	static void printObjectAllDebug (int lInt, ArrayList <PDSObjDefn> classArr) {
-		for (Iterator<PDSObjDefn> i = classArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();			
-			printObjectDebug(lInt, lClass);
+	static void domWriter (ArrayList <DOMClass> classArr, String lFileName)  throws java.io.IOException {
+		prDOMWriter = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
+		for (Iterator<DOMClass> i = classArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();			
+			domClassWriter(lClass, prDOMWriter, lFileName);
 		}
+		prDOMWriter.close();
 	}
 	
-	/**
-	 * print one class
-	 */
-	static void printObjectDebug (int lInt, PDSObjDefn objClass) {
-        System.out.println("\n==========================  Class  ==============================");
+	static void domClassWriter (DOMClass objClass, PrintWriter prDOMWriter, String lFileName) {
+		prDOMWriter.println("\n==========================  Class  ==============================");
 		if (objClass == null) {
-		    System.out.println("\ndebug Class Definition - id:" + lInt + " -" + "NOT FOUND");
+		    System.out.println("\ndebug Class Definition - id:" + lFileName + " -" + "NOT FOUND");
 			return;
 		}
-	    System.out.println("\ndebug Class Definition - id:" + lInt + " - identifier:" + objClass.identifier);
-	    System.out.println("  rdfIdentifier:" + objClass.rdfIdentifier);
-		System.out.println("  identifier:" + objClass.identifier);
-		System.out.println("  title:" + objClass.title);
-		System.out.println("  registrationStatus:" + objClass.registrationStatus);
-		System.out.println("  regAuthId:" + objClass.regAuthId);
-		System.out.println("  steward:" + objClass.steward);
-		System.out.println("  nameSpaceId:" + objClass.nameSpaceId);
-		System.out.println("  nameSpaceIdNC:" + objClass.nameSpaceIdNC);
-		System.out.println("  section:" + objClass.section);
-		System.out.println("  subModelid:" + objClass.subModelId);
-		System.out.println("  docSecType:" + objClass.docSecType);
-		System.out.println("  subClassOfTitle:" + objClass.subClassOfTitle);
-		System.out.println("  subClassOfIdentifier:" + objClass.subClassOfIdentifier);
-		System.out.println("  rootClass:" + objClass.rootClass);
-		System.out.println("  baseClassName:" + objClass.baseClassName);
-		System.out.println("  description:" + objClass.description);
-		System.out.println("  subClassLevel:" + objClass.subClassLevel);
-	    System.out.println("  isAbstract:" + objClass.isAbstract);
-	    System.out.println("  isUSERClass:" + objClass.isUSERClass);
-	    System.out.println("  isRegistryClass:" + objClass.isRegistryClass);
-	    System.out.println("  isMasterClass:" + objClass.isMasterClass);
-	    System.out.println("  isUsedInModel:" + objClass.isUsedInModel);
-	    System.out.println("  isUnitOfMeasure:" + objClass.isUnitOfMeasure);
-	    System.out.println("  isDataType:" + objClass.isDataType);
-	    System.out.println("  isFromLDD:" + objClass.isFromLDD);
+		prDOMWriter.println("\ndebug Class Definition - identifier:" + objClass.identifier);
+//	    prDOMWriter.println("  rdfIdentifier:" + objClass.rdfIdentifier);
+		prDOMWriter.println("  identifier:" + objClass.identifier);
+		prDOMWriter.println("  versionId:" + objClass.versionId);
+//		prDOMWriter.println("  sequenceId:" + objClass.sequenceId);
+		prDOMWriter.println("  title:" + objClass.title);
+		prDOMWriter.println("  definition:" + objClass.definition);
+		prDOMWriter.println("  registrationStatus:" + objClass.registrationStatus);
+		prDOMWriter.println("  isDeprecated:" + objClass.isDeprecated);
+		
+		prDOMWriter.println("  isDigital:" + objClass.isDigital);
+		prDOMWriter.println("  isPhysical:" + objClass.isPhysical);
+		
+		prDOMWriter.println("  regAuthId:" + objClass.regAuthId);
+		prDOMWriter.println("  subModelid:" + objClass.subModelId);
+		prDOMWriter.println("  steward:" + objClass.steward);
+		prDOMWriter.println("  nameSpaceId:" + objClass.nameSpaceId);
+		prDOMWriter.println("  nameSpaceIdNC:" + objClass.nameSpaceIdNC);
+	    prDOMWriter.println("  isUsedInModel:" + objClass.isUsedInModel);
+		prDOMWriter.println("  isAbstract:" + objClass.isAbstract);
+	    prDOMWriter.println("  isFromLDD:" + objClass.isFromLDD);
+		prDOMWriter.println("  anchorString:" + objClass.anchorString);
 
-        System.out.println("    -------------------------  superClass  -------------------------------");
-		for (Iterator <PDSObjDefn> i = objClass.superClass.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			System.out.println("    superClass.identifier:" + lClass.identifier);
+		
+		prDOMWriter.println("  section:" + objClass.section);
+		prDOMWriter.println("  role:" + objClass.role);
+//		prDOMWriter.println("  xPath:" + objClass.xPath);
+		prDOMWriter.println("  docSecType:" + objClass.docSecType);
+//		prDOMWriter.println("  rootClass:" + objClass.rootClass);
+		prDOMWriter.println("  baseClassName:" + objClass.baseClassName);
+		prDOMWriter.println("  localIdentifier:" + objClass.localIdentifier);
+		prDOMWriter.println("  subClassLevel:" + objClass.subClassLevel);
+		prDOMWriter.println("  subClassOfTitle:" + objClass.subClassOfTitle);
+		prDOMWriter.println("  subClassOfIdentifier:" + objClass.subClassOfIdentifier);
+
+	    prDOMWriter.println("  isUSERClass:" + objClass.isUSERClass);
+//		prDOMWriter.println("  isUsedInClass:" + objClass.isUsedInClass);
+		prDOMWriter.println("  isMasterClass:" + objClass.isMasterClass);
+		prDOMWriter.println("  isSchema1Class:" + objClass.isSchema1Class);
+	    prDOMWriter.println("  isRegistryClass:" + objClass.isRegistryClass);
+		prDOMWriter.println("  isUsedInModel:" + objClass.isUsedInModel);
+		prDOMWriter.println("  isAnExtension:" + objClass.isAnExtension);
+		prDOMWriter.println("  isARestriction:" + objClass.isARestriction);
+		prDOMWriter.println("  isVacuous:" + objClass.isVacuous);
+	    prDOMWriter.println("  isUnitOfMeasure:" + objClass.isUnitOfMeasure);
+	    prDOMWriter.println("  isDataType:" + objClass.isDataType);
+		prDOMWriter.println("  isTDO:" + objClass.isTDO);
+		prDOMWriter.println("  isChoice:" + objClass.isChoice);
+		prDOMWriter.println("  isAny:" + objClass.isAny);
+		prDOMWriter.println("  includeInThisSchemaFile:" + objClass.includeInThisSchemaFile);
+		prDOMWriter.println("  isFromLDD:" + objClass.isFromLDD);
+		prDOMWriter.println("  isReferencedFromLDD:" + objClass.isReferencedFromLDD);
+		prDOMWriter.println("  isExposed:" + objClass.isExposed);
+
+    	ArrayList <DOMClass> lSortDOMClassArr;
+    	ArrayList <DOMProp> lSortDOMPropArr;
+    	ArrayList <DOMAttr> lSortDOMAttrArr;
+    	
+        prDOMWriter.println("-------------------------  superClass  --------------------------");
+        lSortDOMClassArr = sortDOMClass (objClass.superClassHierArr);
+        for (Iterator <DOMClass> i = lSortDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
+			prDOMWriter.println("    superClass.identifier:" + lClass.identifier);
+   		}       
+           
+        prDOMWriter.println("-------------------------  subClass  ----------------------------");
+        lSortDOMClassArr = sortDOMClass (objClass.subClassHierArr);
+		for (Iterator <DOMClass> i = lSortDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass aname = (DOMClass) i.next();
+			prDOMWriter.println("    subClass:" + aname.title);
    		}
-        System.out.println("    -------------------------  subClasses  -------------------------------");
-		for (Iterator <String> i = objClass.subClasses.iterator(); i.hasNext();) {
-			String aname = (String) i.next();
-			System.out.println("    subClasses:" + aname);
+		
+        prDOMWriter.println("-------------------------  ownedAttribute  ----------------------");
+        lSortDOMPropArr = sortDOMProp (objClass.ownedAttrArr);
+        for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+        	DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    ownedAttribute:" + lAttr.identifier);
    		}
-        System.out.println("    -------------------------  subClass  -------------------  ------------");
-		for (Iterator <PDSObjDefn> i = objClass.subClass.iterator(); i.hasNext();) {
-			PDSObjDefn aname = (PDSObjDefn) i.next();
-			System.out.println("    subClass:" + aname.title);
+		
+        prDOMWriter.println("-------------------------  inheritedAttribute  ----------------------");
+        lSortDOMPropArr = sortDOMProp (objClass.inheritedAttrArr);
+        for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+        	DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    inheritedAttrArr:" + lAttr.identifier);
    		}
-        System.out.println("    -------------------------  ownedAttribute  ---------------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAttribute.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    ownedAttribute:" + lAttr.identifier);
+        
+        prDOMWriter.println("-------------------------  ownedAssociation  --------------------");
+        lSortDOMPropArr = sortDOMProp (objClass.ownedAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    ownedAssociation:" + lAttr.identifier);
 		}
-        System.out.println("    -------------------------  ownedAssociation  -------------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAssociation.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    ownedAssociation:" + lAttr.identifier);
+	     
+        prDOMWriter.println("-------------------------  inheritedAssociation  --------------------");
+        lSortDOMPropArr = sortDOMProp (objClass.inheritedAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    inheritedAssocArr:" + lAttr.identifier);
 		}
-        System.out.println("    -------------------------  allAttrAssocArr  --------------------------");
-		for (Iterator <AttrDefn> i = objClass.allAttrAssocArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    allAttrAssocArr:" + lAttr.identifier);
+
+		prDOMWriter.println("-------------------------  allAttrAssocArr  ---------------------");
+		lSortDOMPropArr = sortDOMProp (objClass.allAttrAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    allAttrAssocArr:" + lAttr.identifier);
 		}
-        System.out.println("    -------------------------  ownedAttrAssocNOArr  ----------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAttrAssocNOArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    ownedAttrAssocNOArr:" + lAttr.identifier);
+
+		prDOMWriter.println("-------------------------  ownedAttrAssocNOArr  -----------------");
+		lSortDOMPropArr = sortDOMProp (objClass.ownedAttrAssocNOArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    ownedAttrAssocNOArr:" + lAttr.identifier);
 		}
-        System.out.println("    -------------------------  ownedAttrAssocArr  ------------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAttrAssocArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    ownedAttrAssocArr:" + lAttr.identifier);
+
+		prDOMWriter.println("-------------------------  ownedAttrAssocArr  -------------------");
+		lSortDOMPropArr = sortDOMProp (objClass.ownedAttrAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lAttr = (DOMProp) i.next();
+			prDOMWriter.println("    ownedAttrAssocArr:" + lAttr.identifier);
 		}
-        System.out.println("    -------------------------  ownedAttrAssocAssertArr  ------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAttrAssocAssertArr .iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			System.out.println("    ownedAttrAssocAssertArr :" + lAttr.identifier);
+
+    	prDOMWriter.println("-------------------------  ownedAttrAssocAssertArr  -------------");
+    	lSortDOMAttrArr = sortDOMAttr (objClass.ownedAttrAssocAssertArr);
+		for (Iterator <DOMAttr> i = lSortDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
+			prDOMWriter.println("    ownedAttrAssocAssertArr :" + lAttr.identifier);
 		}	
-		
-/*		for (Iterator <AttrDefn> i = objClass.hasSlot.iterator(); i.hasNext();) {
-			AttrDefn attr = (AttrDefn) i.next();
-			printAttr("objdump", attr);
+
+		prDOMWriter.println("\n=========================  Properties  ==========================");
+		lSortDOMPropArr = sortDOMProp (objClass.allAttrAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			DOMPropWriter(lProp, prDOMWriter);
 		}
-		*/
-		
-        System.out.println("\n    =========================   Attributes  ===============================");		
-        System.out.println("    -------------------------  ownedAttribute  ----------------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAttribute.iterator(); i.hasNext();) {
-			AttrDefn attr = (AttrDefn) i.next();
-			printAttr("objdump", attr);
-		}
-        System.out.println("    -------------------------  ownedAssociation  --------------------------");
-		for (Iterator <AttrDefn> i = objClass.ownedAssociation.iterator(); i.hasNext();) {
-			AttrDefn attr = (AttrDefn) i.next();
-			printAttr("objdump", attr);
-		}
-		
-        System.out.println("\n    =========================  Properties  ===============================");
-		for (Iterator <AssocDefn> i = objClass.PropertyArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			printProp("objdump", lAssoc);
-		}
-	}
-	
-	/**
-	 * print all attributes
-	 */
-	public void printAttrAll (String note, HashMap <String, AttrDefn> attrDict) {
-		Set <String> set = attrDict.keySet();
-		Iterator <String> iter = set.iterator();
-		while(iter.hasNext()) {
-			String attrRDFId = (String) iter.next();
-			AttrDefn attr = (AttrDefn) attrDict.get(attrRDFId);
-			printAttr(note, attr);
-		}
-	}
-	
-	/**
-	 * print all named attributes
-	 */
-	static void printAttrNamed (String note, String lTitle, HashMap <String, AttrDefn> attrDict) {
-		Set <String> set = attrDict.keySet();
-		Iterator <String> iter = set.iterator();
-		while(iter.hasNext()) {
-			String attrRDFId = (String) iter.next();
-			AttrDefn attr = (AttrDefn) attrDict.get(attrRDFId);
-			if (attr.title.compareTo(lTitle) == 0) {
-				printAttr(note, attr);
+
+		prDOMWriter.println("\n=========================   Attributes  =========================");		
+        
+		prDOMWriter.println("-------------------------  ownedAttribute  --------------------------");
+		lSortDOMPropArr = sortDOMProp (objClass.ownedAttrArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				DOMAttrWriter(lDOMAttr, prDOMWriter);
 			}
 		}
+		
+		prDOMWriter.println("-------------------------  ownedAssociation (Class Identifiers) -----");
+		lSortDOMPropArr = sortDOMProp (objClass.ownedAssocArr);
+		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+				prDOMWriter.println("    ownedAssocArr :" + lDOMClass.identifier);
+			}	
+		}
 	}
-
+	
 	/**
 	 * print one attribute
 	 */
-	static public void printAttr (String note, AttrDefn attr) {	
-        System.out.println("\n    debug Attribute Definition" + " - identifier:" + attr.identifier);
-        System.out.println("        attr.rdfIdentifier:" + attr.rdfIdentifier);
-		System.out.println("        attr.identifier:" + attr.identifier);
-        System.out.println("        attr.nsTitle:" + attr.nsTitle);
-        System.out.println("        attr.title:" + attr.title);
-		System.out.println("        attr.XMLSchemaName:" + attr.XMLSchemaName);
-//		System.out.println("        attr.type:" + attr.type);
-        System.out.println("        attr.hasRetiredValue:" + attr.hasRetiredValue);
-		System.out.println("        attr.registrationStatus:" + attr.registrationStatus);
-		System.out.println("        attr.parentClassTitle:" + attr.parentClassTitle);
-		if (attr.attrParentClass != null)
-			System.out.println("        attr.attrParentClass.title:" + attr.attrParentClass.title);
-		System.out.println("        attr.classNameSpaceIdNC:" + attr.classNameSpaceIdNC);
-		System.out.println("        attr.attrNameSpaceId:" + attr.attrNameSpaceId);
-		System.out.println("        attr.attrNameSpaceIdNC:" + attr.attrNameSpaceIdNC);
-		System.out.println("        attr.deDataIdentifier:" + attr.deDataIdentifier);
-		System.out.println("        attr.regAuthId:" + attr.regAuthId);
-		System.out.println("        attr.subModelid:" + attr.subModelId);
-		System.out.println("        attr.iAttribute:" + attr.isAttribute);
-		System.out.println("        attr.isOwnedAttribute:" + attr.isOwnedAttribute);
-		System.out.println("        attr.isRestrictedInSubclass:" + attr.isRestrictedInSubclass);
-		System.out.println("        attr.isPDS4:" + attr.isPDS4);		
-// 445		System.out.println("        attr.isDataType:" + attr.isDataType);		
-		System.out.println("        attr.isEnumerated:" + attr.isEnumerated);		
-		System.out.println("        attr.isNilable:" + attr.isNilable);		
-		System.out.println("        attr.isChoice:" + attr.isChoice);		
-		System.out.println("        attr.isAny:" + attr.isAny);		
-		System.out.println("        attr.isFromLDD:" + attr.isFromLDD);		
-// 445		System.out.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
-		System.out.println("        attr.valueType:" + attr.valueType);
-		System.out.println("        attr.propType:" + attr.propType);
-		System.out.println("        attr.groupName:" + attr.groupName);
-		System.out.println("        attr.cardMin:" + attr.cardMin);
-		System.out.println("        attr.cardMax:" + attr.cardMax);
-		System.out.println("        attr.description:" + attr.description);
-		System.out.println("        attr.protValueType:" + attr.protValType);
-		System.out.println("        attr.format:" + attr.format);
-		System.out.println("        attr.minimum_characters:" + attr.minimum_characters);
-		System.out.println("        attr.maximum_characters:" + attr.maximum_characters);
-		System.out.println("        attr.minimum_value:" + attr.minimum_value);		
-		System.out.println("        attr.maximum_value:" + attr.maximum_value);
-		System.out.println("        attr.unit_of_measure_type:" + attr.unit_of_measure_type);
-		System.out.println("        attr.specified_unit_id:" + attr.default_unit_id);
-		System.out.println("        attr.unit_of_measure_precision:" + attr.unit_of_measure_precision);	
-		if (attr.lddUserAttribute != null) {
-			System.out.println("        attr.lddUserAttribute.identifier:" + attr.lddUserAttribute.identifier);
-		} else {
-			System.out.println("        attr.lddUserAttribute:" + "null");
-		}
+	static public void DOMAttrWriter (DOMAttr attr,  PrintWriter prDOMWriter) {	
+        prDOMWriter.println("\n    debug Attribute Definition" + " - identifier:" + attr.identifier);
+//        prDOMWriter.println("        attr.rdfIdentifier:" + attr.rdfIdentifier);
+		prDOMWriter.println("        attr.identifier:" + attr.identifier);
+//		prDOMWriter.println("        attr.versionId:" + attr.versionId);
+//		prDOMWriter.println("        attr.sequenceId:" + attr.sequenceId);
+        prDOMWriter.println("        attr.title:" + attr.title);
+        prDOMWriter.println("        attr.definition:" + attr.definition);
+        prDOMWriter.println("        attr.registrationStatus:" + attr.registrationStatus);
+        prDOMWriter.println("        attr.isDeprecated:" + attr.isDeprecated);
+
+        prDOMWriter.println("        attr.isDigital:" + attr.isDigital);
+        prDOMWriter.println("        attr.isPhysical:" + attr.isPhysical);
+
+		prDOMWriter.println("        attr.regAuthId:" + attr.regAuthId);
+		prDOMWriter.println("        attr.subModelid:" + attr.subModelId);
+		prDOMWriter.println("        attr.steward:" + attr.steward);
+		prDOMWriter.println("        attr.nameSpaceId:" + attr.nameSpaceId);
+		prDOMWriter.println("        attr.nameSpaceIdNC:" + attr.nameSpaceIdNC);
+		prDOMWriter.println("        attr.isUsedInModel:" + attr.isUsedInModel);
+		prDOMWriter.println("        attr.isAbstract:" + attr.isAbstract);
+		prDOMWriter.println("        attr.anchorString:" + attr.anchorString);
 		
+        prDOMWriter.println("        attr.nsTitle:" + attr.nsTitle);
+        prDOMWriter.println("        attr.sort_identifier:" + attr.sort_identifier); 
+		prDOMWriter.println("        attr.XMLSchemaName:" + attr.XMLSchemaName);
+		prDOMWriter.println("        attr.classNameSpaceIdNC:" + attr.classNameSpaceIdNC);
+		prDOMWriter.println("        attr.classSteward:" + attr.classSteward);
+		prDOMWriter.println("        attr.submitter:" + attr.submitter);
+		prDOMWriter.println("        attr.parentClassTitle:" + attr.parentClassTitle);
+		if (attr.attrParentClass != null)
+			prDOMWriter.println("        attr.attrParentClass.identifier:" + attr.attrParentClass.identifier);
+		prDOMWriter.println("        attr.classConcept:" + attr.classConcept);
+		prDOMWriter.println("        attr.dataConcept:" + attr.dataConcept);
+		prDOMWriter.println("        attr.lddLocalIdentifier:" + attr.lddLocalIdentifier);
+		if (attr.lddUserAttribute != null) prDOMWriter.println("        attr.lddUserAttribute.identifier:" + attr.lddUserAttribute.identifier);
+			else prDOMWriter.println("        attr.lddUserAttribute:" + "null");
+		
+		prDOMWriter.println("        attr.xmlBaseDataType:" + attr.xmlBaseDataType);
+		prDOMWriter.println("        attr.protValType:" + attr.protValType);
+		prDOMWriter.println("        attr.propType:" + attr.propType);
+		prDOMWriter.println("        attr.valueType:" + attr.valueType);
+		prDOMWriter.println("        attr.groupName:" + attr.groupName);
+		prDOMWriter.println("        attr.cardMin:" + attr.cardMin);
+		prDOMWriter.println("        attr.cardMax:" + attr.cardMax);
+		prDOMWriter.println("        attr.cardMinI:" + attr.cardMinI);
+		prDOMWriter.println("        attr.cardMaxI:" + attr.cardMaxI);
+		
+		prDOMWriter.println("        attr.minimum_characters:" + attr.minimum_characters);
+		prDOMWriter.println("        attr.maximum_characters:" + attr.maximum_characters);
+		prDOMWriter.println("        attr.minimum_value:" + attr.minimum_value);		
+		prDOMWriter.println("        attr.maximum_value:" + attr.maximum_value);
+		prDOMWriter.println("        attr.format:" + attr.format);
+		prDOMWriter.println("        attr.pattern:" + attr.pattern);
+		prDOMWriter.println("        attr.unit_of_measure_type:" + attr.unit_of_measure_type);
+		prDOMWriter.println("        attr.default_unit_id:" + attr.default_unit_id);
+		prDOMWriter.println("        attr.unit_of_measure_precision:" + attr.unit_of_measure_precision);
+		
+		prDOMWriter.println("        attr.isAttribute:" + attr.isAttribute);
+		prDOMWriter.println("        attr.isOwnedAttribute:" + attr.isOwnedAttribute);
+		prDOMWriter.println("        attr.isPDS4:" + attr.isPDS4);		
+		prDOMWriter.println("        attr.isEnumerated:" + attr.isEnumerated);		
+		prDOMWriter.println("        attr.isUsedInClass:" + attr.isUsedInClass);
+		prDOMWriter.println("        attr.isRestrictedInSubclass:" + attr.isRestrictedInSubclass);
+		prDOMWriter.println("        attr.isMeta:" + attr.isMeta);
+		prDOMWriter.println("        attr.hasAttributeOverride:" + attr.hasAttributeOverride);
+		prDOMWriter.println("        attr.isNilable:" + attr.isNilable);		
+		prDOMWriter.println("        attr.isChoice:" + attr.isChoice);		
+		prDOMWriter.println("        attr.isAny:" + attr.isAny);		
+		prDOMWriter.println("        attr.isFromLDD:" + attr.isFromLDD);
+        prDOMWriter.println("        attr.hasRetiredValue:" + attr.hasRetiredValue);
+        
+        prDOMWriter.println("        attr.classWord:" + attr.classWord);
+		prDOMWriter.println("        attr.deDataIdentifier:" + attr.deDataIdentifier);
+
+//			prDOMWriter.println("        attr.type:" + attr.type);
+// 445		prDOMWriter.println("        attr.isDataType:" + attr.isDataType);		
+// 445		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
+
 		if (attr.valArr != null && attr.valArr.size() > 0) {
-			System.out.println("        has attr.valArr");
+			prDOMWriter.println("        has attr.valArr");
 
 			for (Iterator <String> j = attr.valArr.iterator(); j.hasNext();) {
 				String lVal = (String) j.next();
-				System.out.println("          val:" + lVal);
+				prDOMWriter.println("          val:" + lVal);
 			}
 		}
 		
 		if (attr.valClassArr != null && attr.valClassArr.size() > 0) {
-			System.out.println("        has attr.valClassArr");
+			prDOMWriter.println("        has attr.valClassArr");
 
 			for (Iterator <PDSObjDefn> j = attr.valClassArr.iterator(); j.hasNext();) {
 				PDSObjDefn lValClass = (PDSObjDefn) j.next();
-				System.out.println("          class val:" + lValClass.title);
+				prDOMWriter.println("          class val:" + lValClass.title);
 			}
 		}
 		
 		if (attr.permValueArr != null && attr.permValueArr.size() > 0) {
-			System.out.println("        has attr.permValueArr");
+			prDOMWriter.println("        has attr.permValueArr");
 
 			for (Iterator <PermValueDefn> j = attr.permValueArr.iterator(); j.hasNext();) {
 				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
-				System.out.println("          PermValueDefn.value:" + lPermValueDefn.value + "  registrationStatus:" + lPermValueDefn.registrationStatus + "  lPermValueDefn.value_meaning:" + lPermValueDefn.value_meaning);
+				prDOMWriter.println("          PermValueDefn.value:" + lPermValueDefn.value + "  registrationStatus:" + lPermValueDefn.registrationStatus + "  lPermValueDefn.value_meaning:" + lPermValueDefn.value_meaning);
 			}
 		}		
 	}
 	
-	/**
-	 * print one property
-	 */
-	static public void printProp (String note, AssocDefn lProp) {	
-        System.out.println("\n    debug Property Definition" + " - identifier:" + lProp.identifier);
-        System.out.println("        lProp.rdfIdentifier:" + lProp.rdfIdentifier);
-		System.out.println("        lProp.identifier:" + lProp.identifier);
-        System.out.println("        lProp.title:" + lProp.title);
-        System.out.println("        lProp.localIdentifier:" + lProp.localIdentifier);
-		System.out.println("        lProp.className:" + lProp.className);
-		System.out.println("        lProp.attrNameSpaceId:" + lProp.attrNameSpaceId);
-		System.out.println("        lProp.attrNameSpaceIdNC:" + lProp.attrNameSpaceIdNC);
-		System.out.println("        lProp.classNameSpaceIdNC:" + lProp.classNameSpaceIdNC);
-		System.out.println("        lProp.classOrder:" + lProp.classOrder);
-		System.out.println("        lProp.groupName:" + lProp.groupName);
-		System.out.println("        lProp.cardMin:" + lProp.cardMin);
-		System.out.println("        lProp.cardMax:" + lProp.cardMax);
-		System.out.println("        lProp.cardMinI:" + lProp.cardMinI);
-		System.out.println("        lProp.cardMaxI:" + lProp.cardMaxI);
-		System.out.println("        lProp.referenceType:" + lProp.referenceType);
-		System.out.println("        lProp.isAttribute:" + lProp.isAttribute);
-		System.out.println("        lProp.isChoice:" + lProp.isChoice);		
-		System.out.println("        lProp.isAny:" + lProp.isAny);		
-	}
+	static public void DOMPropWriter (DOMProp lProp,  PrintWriter prDOMWrite) {	
+		prDOMWriter.println("\n    debug Property Definition" + " - identifier:" + lProp.identifier);
+//		prDOMWriter.println("        lProp.rdfIdentifier:" + lProp.rdfIdentifier);
+		prDOMWriter.println("        lProp.identifier:" + lProp.identifier);
+//		prDOMWriter.println("        lProp.versionId:" + lProp.versionId);
+//		prDOMWriter.println("        lProp.sequenceId:" + lProp.sequenceId);
+		prDOMWriter.println("        lProp.title:" + lProp.title);
+		prDOMWriter.println("        lProp.definition:" + lProp.definition);
+		prDOMWriter.println("        lProp.registrationStatus:" + lProp.registrationStatus);
+		prDOMWriter.println("        lProp.isDeprecated:" + lProp.isDeprecated);
 		
-//	Dump the attribute dictionary (original parsed attributes; includes top class
-	static public void dumpAttrDict () {
-		
-// 	*** Note that the Identifier in the MAP is not the identifier in the Attribute; the class has been set to USER.		
+		prDOMWriter.println("        lProp.isDigital:" + lProp.isDigital);
+		prDOMWriter.println("        lProp.isPhysical:" + lProp.isPhysical);
 
-		System.out.println("\ndebug dump attribute dictionary");
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.userClassAttrIdMap.values());
-		for (Iterator<AttrDefn> j = lAttrArr.iterator(); j.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) j.next();
-			System.out.println("debug dump attribute identifiers lAttr.identifier:" + lAttr.identifier);
-		}
-		return;
+		prDOMWriter.println("        lProp.regAuthId:" + lProp.regAuthId);
+//		prDOMWriter.println("        lProp.subModelId:" + lProp.subModelId);
+		prDOMWriter.println("        lProp.steward:" + lProp.steward);
+		prDOMWriter.println("        lProp.nameSpaceId:" + lProp.nameSpaceId);
+		prDOMWriter.println("        lProp.nameSpaceIdNC:" + lProp.nameSpaceIdNC);
+		prDOMWriter.println("        lProp.isUsedInModel:" + lProp.isUsedInModel);
+		prDOMWriter.println("        lProp.isAbstract:" + lProp.isAbstract);
+		prDOMWriter.println("        lProp.isFromLDD:" + lProp.isFromLDD);
+		prDOMWriter.println("        lProp.anchorString:" + lProp.anchorString);
+		
+		prDOMWriter.println("        lProp.cardMin:" + lProp.cardMin);
+		prDOMWriter.println("        lProp.cardMax:" + lProp.cardMax);
+		prDOMWriter.println("        lProp.cardMinI:" + lProp.cardMinI);
+		prDOMWriter.println("        lProp.cardMaxI:" + lProp.cardMaxI);
+		prDOMWriter.println("        lProp.classOrder:" + lProp.classOrder);
+		
+//		if (lProp.attrParentClass != null)
+//			prDOMWriter.println("        lProp.attrParentClass.identifier:" + lProp.attrParentClass.identifier);
+//		else
+//			prDOMWriter.println("        lProp.attrParentClass.identifier:" + "null");
+
+		prDOMWriter.println("        lProp.localIdentifier:" + lProp.localIdentifier);
+		prDOMWriter.println("        lProp.parentClassTitle:" + lProp.parentClassTitle);
+		prDOMWriter.println("        lProp.classNameSpaceIdNC:" + lProp.classNameSpaceIdNC);
+//		prDOMWriter.println("        lProp.classSteward:" + lProp.classSteward);
+
+		prDOMWriter.println("        lProp.groupName:" + lProp.groupName);
+		prDOMWriter.println("        lProp.referenceType:" + lProp.referenceType);
+//		prDOMWriter.println("        lProp.isPDS4:" + lProp.isPDS4);
+		prDOMWriter.println("        lProp.isAttribute:" + lProp.isAttribute);
+		prDOMWriter.println("        lProp.isChoice:" + lProp.isChoice);		
+		prDOMWriter.println("        lProp.isAny:" + lProp.isAny);		
+		prDOMWriter.println("        lProp.isSet:" + lProp.isSet);		
+//		prDOMWriter.println("        lProp.isRestrictedInSubclass:" + lProp.isRestrictedInSubclass);	
+		
+//		prDOMWriter.println("        lProp.enclLocalIdentifier:" + lProp.enclLocalIdentifier);
+//		prDOMWriter.println("        lProp.minimumOccurrences:" + lProp.minimumOccurrences);
+//		prDOMWriter.println("        lProp.maximumOccurrences:" + lProp.maximumOccurrences);
 	}
 	
-//	debug - write one attributes permissible values
-	static public void writePermissibleValues (String where, AttrDefn lAttr) {
-		if (lAttr == null) {
-			System.out.println("debug writePermissibleValues -  NULL Attribute");
-			return;
+	static ArrayList <DOMClass> sortDOMClass (ArrayList <DOMClass> ISOArr) {
+		TreeMap <String, DOMClass> lISOMap = new TreeMap <String, DOMClass> ();
+		for (Iterator<DOMClass> i = ISOArr.iterator(); i.hasNext();) {
+			DOMClass lISO = (DOMClass) i.next();
+			lISOMap.put(lISO.identifier, lISO);
 		}
-		System.out.println("\ndebug writePermissibleValues - " + where + " - lAttr.identifier:" + lAttr.identifier);
-		if (lAttr.valArr == null || lAttr.valArr.size() == 0) {
-			System.out.println("debug writePermissibleValues -  No ValArr - lAttr.identifier:" + lAttr.identifier);
-			return;
+		ArrayList <DOMClass> lISOArr = new ArrayList <DOMClass> (lISOMap.values());
+		return lISOArr;
+	}
+	
+	static ArrayList <DOMAttr> sortDOMAttr (ArrayList <DOMAttr> ISOArr) {
+		TreeMap <String, DOMAttr> lISOMap = new TreeMap <String, DOMAttr> ();
+		for (Iterator<DOMAttr> i = ISOArr.iterator(); i.hasNext();) {
+			DOMAttr lISO = (DOMAttr) i.next();
+			lISOMap.put(lISO.identifier, lISO);
 		}
-		for (Iterator <String> i = lAttr.valArr.iterator(); i.hasNext();) {
-			String lVal = (String) i.next();
-			System.out.println("debug writePermissibleValues - lVal:" + lVal);
-			System.out.println("debug writePermissibleValues - lVal HEX:" + DMDocument.stringToHex(lVal));
+		ArrayList <DOMAttr> lISOArr = new ArrayList <DOMAttr> (lISOMap.values());
+		return lISOArr;
+	}
+	
+	static ArrayList <DOMProp> sortDOMProp (ArrayList <DOMProp> ISOArr) {
+		TreeMap <String, DOMProp> lISOMap = new TreeMap <String, DOMProp> ();
+		for (Iterator<DOMProp> i = ISOArr.iterator(); i.hasNext();) {
+			DOMProp lISO = (DOMProp) i.next();
+			lISOMap.put(lISO.identifier, lISO);
 		}
-		if (lAttr.permValueArr == null || lAttr.permValueArr.size() == 0) {
-			System.out.println("debug writePermissibleValues -  No Permissble Value - lAttr.identifier:" + lAttr.identifier);
-			return;
-		}
-		for (Iterator <PermValueDefn> i = lAttr.permValueArr.iterator(); i.hasNext();) {
-			PermValueDefn lPermValueDefn = (PermValueDefn) i.next();
-			System.out.println("debug writePermissibleValues - lPermValueDefn.value:" + lPermValueDefn.value + "   lPermValueDefn.value_meaning:" + lPermValueDefn.value_meaning);
-		}
+		ArrayList <DOMProp> lISOArr = new ArrayList <DOMProp> (lISOMap.values());
+		return lISOArr;
 	}
 	
 	/**
@@ -1643,6 +1564,7 @@ public abstract class InfoModel extends Object {
 	
 //	schematronRuleArr	
 	static void printRulesAllDebug (int lInt, ArrayList <RuleDefn> lRuleArr) {
+
         System.out.println("\n\n==========================  Rules  ==============================");
         int cnt = 0;
 		for (Iterator<RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
@@ -1658,7 +1580,7 @@ public abstract class InfoModel extends Object {
 	 * print one rule
 	 */
 	static void printRuleDebug (int lInt, RuleDefn lRule) {
-        System.out.println("\n==========================  Rule  ==============================");
+        System.out.println("\n==========================  Rule  ===================================");
 		if (lRule == null) {
 		    System.out.println("\ndebug Rule Definition - id:" + lInt + " -" + "NOT FOUND");
 			return;
@@ -1678,7 +1600,7 @@ public abstract class InfoModel extends Object {
 		System.out.println("  lRule.alwaysInclude:" + lRule.alwaysInclude);
 		System.out.println("  lRule.isMissionOnly:" + lRule.isMissionOnly);
 
-        System.out.println("    -------------------------  Let Assignments - Pattern  -------------------------------");
+        System.out.println("-------------------------  Let Assignments - Pattern  -----------");
         if (lRule.letAssignPatternArr != null) {
     		for (Iterator <String> i = lRule.letAssignPatternArr.iterator(); i.hasNext();) {
     			String lLetAssignPattern = (String) i.next();
@@ -1686,7 +1608,7 @@ public abstract class InfoModel extends Object {
        		}
         }
 
-        System.out.println("    -------------------------  Let Assignments - Rule  -------------------------------");
+        System.out.println("-------------------------  Let Assignments - Rule  --------------");
         if (lRule.letAssignArr != null) {
     		for (Iterator <String> i = lRule.letAssignArr.iterator(); i.hasNext();) {
     			String lLetAssign = (String) i.next();
@@ -1694,7 +1616,7 @@ public abstract class InfoModel extends Object {
        		}
         }
 		
-        System.out.println("    -------------------------  Assert Statement  -------------------------------");
+        System.out.println("-------------------------  Assert Statement  --------------------");
         if (lRule.assertArr != null) {
     		for (Iterator <AssertDefn2> i = lRule.assertArr.iterator(); i.hasNext();) {
     			AssertDefn2 lAssert = (AssertDefn2) i.next();
@@ -1705,7 +1627,7 @@ public abstract class InfoModel extends Object {
     			System.out.println("    lAssert.assertStmt:" + lAssert.assertStmt);
     			System.out.println("    lAssert.specMesg:" + lAssert.specMesg);
     			
-    	        System.out.println("    -------------------------  Assert Statement Test Values  -------------------------------");
+    	        System.out.println("-------------------------  Assert Statement Test Values  --------");
     	        if (lAssert.testValArr != null) {
         			for (Iterator <String> j = lAssert.testValArr.iterator(); j.hasNext();) {
         				String lTestValue = (String) j.next();

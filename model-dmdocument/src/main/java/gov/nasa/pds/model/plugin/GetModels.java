@@ -88,11 +88,14 @@ public class GetModels extends Object {
 		getMasterObjectDict();
 		
 		// debug print the master list of objects
-//		System.out.println("\n ================================ Master Class Array Dump ========================================");
+// 		System.out.println("\n ================================ Master Class Array Dump ========================================");
 //		InfoModel.printObjectAllDebug(111, InfoModel.masterMOFClassArr);
 		
+//		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListTemp.txt");
+//		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
+		
 // 		Display one object
-//		InfoModel.printObjectDebug (555, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.geom.Camera_Model_Parameters"));
+//		InfoModel.printObjectDebug (555, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.cart.Planar_Coordinate_Information"));
 
 // 444		
 		// debug print the master list of rules
@@ -356,7 +359,7 @@ public class GetModels extends Object {
 		for (Iterator<PDSObjDefn> j = lClassArr.iterator(); j.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) j.next();
 			InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
-//			InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);			
+			InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);			
 		}
 		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
 		
