@@ -99,6 +99,7 @@ public class GetDOMModel extends Object {
 						if (lDOMAttr != null && DOMInfoModel.masterDOMAttrMap.get(lDOMAttr.rdfIdentifier) == null) {
 							DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
 							lDOMProp.hasDOMObject = lDOMAttr;
+							lDOMAttr.hasDOMProp = lDOMProp;
 						} else {
 							System.out.println(">>error    - Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
 						}
@@ -124,6 +125,7 @@ public class GetDOMModel extends Object {
 						DOMClass lDOMClass = (DOMClass) lDOMPropComp.domComp;
 						if (lDOMClass != null && DOMInfoModel.masterDOMClassMap.get(lDOMClass.rdfIdentifier) != null) {
 							lDOMProp.hasDOMObject = lDOMClass;
+							lDOMClass.hasDOMProp = lDOMProp;
 						} else {
 							System.out.println(">>error    - Class not found - ADDING Class lDOMClass.rdfIdentifier:" + lDOMClass.rdfIdentifier);
 						}
@@ -273,9 +275,9 @@ public class GetDOMModel extends Object {
 
 		// 021 - get the permissible values from schematron statements (for example reference_type)
 		DMDocument.masterDOMInfoModel.getAttributePermValuesExtended ();
-				
+		
 		// 022 - set the registration status
-		DMDocument.masterDOMInfoModel.setRegistrationStatus ();				
+		DMDocument.masterDOMInfoModel.setRegistrationStatus ();
 		
 		// 024 - set up master data types - the data type map
 		DMDocument.masterDOMInfoModel.setMasterDataType2 ();
@@ -288,7 +290,6 @@ public class GetDOMModel extends Object {
 						
 		// 027 - copy in dataType attribute xmlBaseDataType from dataType definitions
 		DMDocument.masterDOMInfoModel.SetMasterAttrXMLBaseDataTypeFromDataType ();
-	
 		
 		// 028 - validate the data types
 //		DMDocument.masterDOMInfoModel.ValidateAttributeDataTypes ();
@@ -333,7 +334,7 @@ public class GetDOMModel extends Object {
 		genSchematronRules.genSchematronRules();
 					
 		// 036 - setup 11179 classes from master attributes
-		lISO11179DOMMDR.ISO11179MDRSetup();					
+		lISO11179DOMMDR.ISO11179MDRSetup();
 				
 		// 037 - if this is an LDD Tool run, validate and write reports for the parsed LDD
 		if (DMDocument.LDDToolFlag) {

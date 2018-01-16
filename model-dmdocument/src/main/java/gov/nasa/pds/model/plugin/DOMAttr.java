@@ -56,6 +56,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	boolean isFromLDD;				// attribute came from an LDD
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
 	
+	DOMProp hasDOMProp;				// associated property - only one allowed
 	ArrayList <DOMProp> domPermValueArr;
 	
 	ArrayList <String> valArr;
@@ -145,6 +146,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		hasRetiredValue = false;
 
+		hasDOMProp = null;
 		domPermValueArr = new ArrayList <DOMProp> ();
 		valArr = new ArrayList <String> (); 
 		valClassArr = new ArrayList <PDSObjDefn> (); 

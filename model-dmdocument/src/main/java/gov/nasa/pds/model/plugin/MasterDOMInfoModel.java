@@ -731,11 +731,15 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lDeprecatedDefn.identifier);
 				if (lClass != null) {
 					lClass.registrationStatus = "Retired";
+					// update property
+					if (lClass.hasDOMProp != null) lClass.hasDOMProp.registrationStatus = lClass.registrationStatus;
 				} else {
 					// is it an attribute
 					DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lDeprecatedDefn.identifier);
 					if (lAttr != null) {
 						lAttr.registrationStatus = "Retired";
+						// update property
+						if (lAttr.hasDOMProp != null) lAttr.hasDOMProp.registrationStatus = lAttr.registrationStatus;
 					}
 				}				
 			}

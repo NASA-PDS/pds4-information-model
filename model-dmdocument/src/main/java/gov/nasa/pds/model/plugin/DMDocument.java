@@ -797,15 +797,10 @@ public class DMDocument extends Object {
 //		System.out.println("\ndebug DMDocument - GetDomClasses ");
 		if (! DMDocument.LDDToolFlag) {
 			GetDomClasses lGetDomClasses = new GetDomClasses ();
-//			lGetDomClasses.convert();
-			System.out.println("\ndebug DMDocument - GetDomClasses.domConvert ");
 			lGetDomClasses.domConvert();
 		}
 		
-//		System.out.println("\ndebug DMDocument - Temporary - InfoModel.masterDOMClassArr.size():" + InfoModel.masterDOMClassArr.size());
 //		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListTemp.txt");
-
-//		System.out.println("\ndebug DMDocument - Permanent - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
 //		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
 		
 		// export the models
@@ -1281,17 +1276,11 @@ public class DMDocument extends Object {
 	static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
 		// get disposition identifier - if isFromProtege, then the identifier is set else it is not since it is from an LDD.
 		String lDispId = lClass.subModelId + "." + registrationAuthorityIdentifierValue + "." + lClassName;
-//		System.out.println("\ndebug getClassDisposition1 lDispId:" + lDispId);
 		if (! isFromProtege) lDispId = "LDD_" + lDispId;
-//		System.out.println("debug getClassDisposition2 lDispId:" + lDispId);
 		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
 		if (lDispDefn != null) {
-//			System.out.println("debug getClassDisposition3 lDispId:" + lDispId);
 			lClass.section = lDispDefn.section;
 			String lDisp = lDispDefn.disposition;
-//			String lStewardInd = lDisp.substring(0, 1);
-//			String lSteward = DMDocument.masterClassStewardMap.get(lStewardInd);
-//			lClass.steward = lSteward;
 			lClass.steward = lDispDefn.intSteward;
 			String lClassNameSpaceIdNC = lDispDefn.intNSId;
 			lClass.nameSpaceIdNC = lClassNameSpaceIdNC;
