@@ -204,18 +204,18 @@ public class DOMProp extends ISOClassOAIS11179 {
 		maximumOccurrences = lOldProp.maximumOccurrences;
 	}
 	
-	public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
+	public void createDOMPropSingletonsNoAssoc (DOMAttr lAttr) {
 		rdfIdentifier = lAttr.rdfIdentifier;
 		identifier = lAttr.identifier; 
 		versionId = lAttr.versionId;
-		sequenceId = lAttr.uid; 
+		sequenceId = lAttr.sequenceId; 
 		title = lAttr.title;
-		definition =  lAttr.description;
+		definition =  lAttr.definition;
 		registrationStatus = lAttr.registrationStatus; 
 		regAuthId = lAttr.regAuthId; 
 		steward = lAttr.steward; 
-		nameSpaceId = lAttr.attrNameSpaceId;
-		nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+		nameSpaceId = lAttr.nameSpaceId;
+		nameSpaceIdNC = lAttr.nameSpaceIdNC;
 //		classOrder = "9999";
 		cardMin = lAttr.cardMin;
 		cardMax = lAttr.cardMax;
