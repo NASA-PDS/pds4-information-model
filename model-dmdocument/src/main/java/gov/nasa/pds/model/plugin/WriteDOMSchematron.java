@@ -14,7 +14,7 @@ class WriteDOMSchematron extends Object {
 	public void writeSchematronFile (SchemaFileDefn lSchemaFileDefn, TreeMap <String, PDSObjDefn> lMasterMOFClassMap) throws java.io.IOException {				
 		String lFileName = lSchemaFileDefn.relativeFileSpecSchematron;
 // 7777
-		lFileName = lFileName + "x";
+		lFileName = lFileName;
 		prSchematron = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		writeSchematronRule(lSchemaFileDefn, lMasterMOFClassMap, prSchematron);
 		prSchematron.close();	
