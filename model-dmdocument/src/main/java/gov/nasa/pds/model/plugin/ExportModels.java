@@ -20,11 +20,11 @@ public class ExportModels extends Object {
 	    // write the model specification
 		WriteSpecification writeSpecification  = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
 		writeSpecification.printArtifacts();
-//		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
-//		writeDOMSpecification.printArtifacts();
+		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
+		writeDOMSpecification.printArtifacts();
 		
 		
-		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Specification Done");
+	//	if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Specification Done");
 		
 		// Write the files consisting of individual classes
 		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
@@ -49,11 +49,15 @@ public class ExportModels extends Object {
 			xml4LabelSchema.writeXMLSchemaFiles (lSchemaFileDefn, InfoModel.masterMOFClassArr);
 			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XML Schema - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 			
+			XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM ();
+			xml4LabelSchemaDOM.writeXMLSchemaFiles (lSchemaFileDefn, DOMInfoModel.masterDOMClassArr);
+			
 			//  write schematron file
 			WriteSchematron writeSchematron = new WriteSchematron ();
 			writeSchematron.writeSchematronFile(lSchemaFileDefn, InfoModel.masterMOFClassMap);
-//			WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron ();
-//			writeDOMSchematron.writeSchematronFile(lSchemaFileDefn, InfoModel.masterMOFClassMap);
+			
+			WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron ();
+			writeDOMSchematron.writeSchematronFile(lSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
 			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 			
 			//  write label file for XML Schema and Schematron
@@ -92,14 +96,14 @@ public class ExportModels extends Object {
         writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
         //if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
         
-	//	WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles ();
-		//if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
+		WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles ();
+	    if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
 		
 		// write the PDS4 DD CSV file 
-	//	ArrayList <DOMClass> domSortClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassMap.values());
-	//	writeDOMCSVFiles.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
+		ArrayList <DOMClass> domSortClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
+		writeDOMCSVFiles.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
 		
-		//if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
+		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
 
 		// write the PDS4 CCSDS CSV file 
 		WriteDocCSV writeDocCSV = new WriteDocCSV ();
@@ -134,13 +138,17 @@ public class ExportModels extends Object {
 		WriteLODSKOSFile writeLODSKOSFile = new WriteLODSKOSFile ();
 		writeLODSKOSFile.writeSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL);	
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - SKOS Done");
+
+		//DOM
+		WriteLODSKOSFileDOM writeLODSKOSDOMFile = new WriteLODSKOSFileDOM ();
+		writeLODSKOSDOMFile.writeDOMSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL_DOM);
 		
 		// write the RDF/OWL file
 		WriteRDFOWLFile writeRDFOWLFile = new WriteRDFOWLFile ();
 		writeRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);	
 		if (! DMDocument.LDDToolFlag) {
 			WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
-			writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);	
+			writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF_DOM);	
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - RDF/OWL Done");
 				
@@ -155,14 +163,14 @@ public class ExportModels extends Object {
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Class Defn Done");
 
 		// write the 11179 DOM DD Data Element Definition XML Files
-	//	WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions = new WriteDDProductDOMAttrDefinitions ();
-	//	writeDDProductDOMAttrDefinitions.writeDDDOMRegFiles (DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
-		//if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Attr Defn Done");
+		WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions = new WriteDDProductDOMAttrDefinitions ();
+		writeDDProductDOMAttrDefinitions.writeDDDOMRegFiles (DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Attr Defn Done");
 		
 		// write the 11179 DOM DD Class Definition XML Files
-	//	WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
-	//	writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
-		//if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Class Defn Done");
+		WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
+		writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllDOMArtifacts - DOM Class Defn Done");
 
 		
 		// write the registry configuration files
@@ -235,8 +243,8 @@ public class ExportModels extends Object {
 				write11179DDJSONFile.writeJSONFile (lFileName);	
 				
 // DOM				
-//				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-//				writeDOMDDJSONFile.writeJSONFile (lFileName);	
+				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+				writeDOMDDJSONFile.writeJSONFile (lFileName);	
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 			}
 
@@ -246,7 +254,13 @@ public class ExportModels extends Object {
 				writeSpecification.printArtifacts();
 				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - Info Model Spec Done");
 			}
-			
+			//DOM
+			// write the Info Spec file 
+			if (DMDocument.exportSpecFileFlag) {
+				WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification (DMDocument.docInfo, PDSOptionalFlag); 
+				writeDOMSpecification.printArtifacts();
+				if (DMDocument.debugFlag) System.out.println("debug writeDOMSpecification Done");
+			}
 		    // write the Doc Book
 			if (DMDocument.exportDDFileFlag) {
 				WriteDocBook lWriteDocBook  = new WriteDocBook (); 
