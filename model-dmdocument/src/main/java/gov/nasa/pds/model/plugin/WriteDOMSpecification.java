@@ -741,6 +741,8 @@ public class WriteDOMSpecification extends Object {
 			if (lProp.isAttribute){
 				DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
 			    lTreeMap.put(lAttr.sort_identifier, lAttr);
+			} else {
+				
 			}
 		}
 		Collection <DOMAttr> values3 = lTreeMap.values();		

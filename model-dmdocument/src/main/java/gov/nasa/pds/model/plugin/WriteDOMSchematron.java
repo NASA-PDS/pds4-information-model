@@ -11,18 +11,18 @@ class WriteDOMSchematron extends Object {
 	}
 	
 //	write all Schematron files
-	public void writeSchematronFile (SchemaFileDefn lSchemaFileDefn, TreeMap <String, PDSObjDefn> lMasterMOFClassMap) throws java.io.IOException {				
+	public void writeSchematronFile (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) throws java.io.IOException {				
 		String lFileName = lSchemaFileDefn.relativeFileSpecSchematron;
 // 7777
-		lFileName = lFileName;
+		lFileName = lFileName+"_DOM";
 		prSchematron = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
-		writeSchematronRule(lSchemaFileDefn, lMasterMOFClassMap, prSchematron);
+		writeSchematronRule(lSchemaFileDefn, lMasterDOMClassMap, prSchematron);
 		prSchematron.close();	
 		return;
 	}
 		
 //	write the schematron rules
-	public void writeSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, PDSObjDefn> lMasterMOFClassMap, PrintWriter prSchematron) {
+	public void writeSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap, PrintWriter prSchematron) {
 		// write schematron file header
 		printSchematronFileHdr (lSchemaFileDefn, prSchematron); 
 		printSchematronFileCmt (prSchematron);

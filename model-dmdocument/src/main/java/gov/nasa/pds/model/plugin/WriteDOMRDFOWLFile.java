@@ -199,7 +199,7 @@ class WriteDOMRDFOWLFile extends Object{
 	
 	// write the PDS4 classes as OWL classes 
 	public  void printClasses (PrintWriter prDDPins) {
-		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassIdMap.values());
+		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
 		for (Iterator<DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();	
 			if (lDOMClass.identifier.indexOf("PDS3") > -1) continue;
@@ -328,8 +328,8 @@ class WriteDOMRDFOWLFile extends Object{
 		}
 		
 		// write the "has_data_type properties
-		String lIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.valueType);
-		DOMDataType lDOMDataType = InfoModel.masterDOMDataTypeIdMap.get(lIdentifier);
+		String lIdentifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.valueType);
+		DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeMap.get(lIdentifier);
 		if (lDOMDataType != null) {
 			prDDPins.println("      <rdfs:subClassOf>");
 			prDDPins.println("         <owl:Restriction>");
@@ -340,8 +340,8 @@ class WriteDOMRDFOWLFile extends Object{
 		}
 		
 		// write the "has_measurement_units properties
-		lIdentifier = InfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.unit_of_measure_type);
-		DOMUnit lDOMUnit = InfoModel.masterDOMUnitIdMap.get(lIdentifier);
+		lIdentifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lDOMAttr.unit_of_measure_type);
+		DOMUnit lDOMUnit = DOMInfoModel.masterDOMUnitMap.get(lIdentifier);
 		if (lDOMUnit != null) {
 			prDDPins.println("      <rdfs:subClassOf>");
 			prDDPins.println("         <owl:Restriction>");
@@ -379,7 +379,7 @@ class WriteDOMRDFOWLFile extends Object{
 	
 	// write the Data Types as OWL classes
 	public  void printDataTypes (PrintWriter prDDPins) {
-		for (Iterator<DOMDataType> i = InfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMDataType> i = DOMInfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
 			DOMDataType lDOMDataType = (DOMDataType) i.next();
 			gDataTypeIdArr.add(lDOMDataType.identifier);
 			prDDPins.println(" ");
@@ -399,7 +399,7 @@ class WriteDOMRDFOWLFile extends Object{
 	
 	// write the Units as OWL classes
 	public  void printUnits (PrintWriter prDDPins) {
-		for (Iterator<DOMUnit> i = InfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
 			DOMUnit lDOMUnit = (DOMUnit) i.next();
 			gUnitIdArr.add(lDOMUnit.identifier);
 			prDDPins.println(" ");
@@ -461,12 +461,16 @@ class WriteDOMRDFOWLFile extends Object{
 	}
 
 	// Print the Permissible Values and Value Meanings
-	public  void printPermValues (AttrDefn lAttr, PrintWriter prDDPins) {
+	public  void printPermValues (DOMAttr lAttr, PrintWriter prDDPins) {
 		boolean isFirst = true;
 		if (lAttr.permValueArr.isEmpty()) return;
 		prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");				
-		for (Iterator<PermValueDefn> i = lAttr.permValueArr.iterator(); i.hasNext();) {
-			PermValueDefn lPermValueDefn = (PermValueDefn) i.next();
+		for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+            if (lDOMProp.hasDOMObject == null) continue;
+            if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) continue;
+            DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+			
 			if (isFirst) {
 				prDDPins.println("              {" + formValue("PermissibleValue") + ": {");	
 				isFirst = false;
@@ -474,8 +478,8 @@ class WriteDOMRDFOWLFile extends Object{
 				prDDPins.println("            , {" + formValue("PermissibleValue") + ": {");					
 			}
 //			prDDPins.println("            , {" + formValue("PermissibleValue") + ": {");					
-			prDDPins.println("                  " + formValue("value") + ": " + formValue(lPermValueDefn.value) + " ,");	
-			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lPermValueDefn.value_meaning));	
+			prDDPins.println("                  " + formValue("value") + ": " + formValue(lDOMPermVal.value) + " ,");	
+			prDDPins.println("                  " + formValue("valueMeaning") + ": " + formValue(lDOMPermVal.value_meaning));	
 			prDDPins.println("                }");
 			prDDPins.println("             }");
 		}
@@ -485,8 +489,8 @@ class WriteDOMRDFOWLFile extends Object{
 	// Print the Data Types
 	public  void printDataType (PrintWriter prDDPins) {
 		boolean isFirst = true;
-		for (Iterator<DataTypeDefn> i = InfoModel.masterDataTypesArr2.iterator(); i.hasNext();) {
-			DataTypeDefn lDataType = (DataTypeDefn) i.next();
+		for (Iterator<DOMDataType> i = DOMInfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+			DOMDataType lDataType = (DOMDataType) i.next();
 			if (isFirst) {
 				prDDPins.println("        {" + formValue("DataType") + ": {");
 				isFirst = false;
@@ -497,10 +501,10 @@ class WriteDOMRDFOWLFile extends Object{
 			prDDPins.println("            " + formValue("title") + ": " + formValue(lDataType.title) + " ,");	
 			prDDPins.println("            " + formValue("nameSpaceId") + ": " + formValue(lDataType.nameSpaceIdNC) + " ,");	
 			prDDPins.println("            " + formValue("registrationAuthorityId") + ": " + formValue(DMDocument.registrationAuthorityIdentifierValue) + " ,");
-			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lDataType.getMinimumCharacters2(true)) + " ,");			
-			prDDPins.println("            " + formValue("maximumCharacters") + ": " + formValue(lDataType.getMaximumCharacters2(true)) + " ,");	
-			prDDPins.println("            " + formValue("minimumValue") + ": " + formValue(lDataType.getMinimumValue2(true)) + " ,");	
-			prDDPins.println("            " + formValue("maximumValue") + ": " + formValue(lDataType.getMaximumValue2(true)));	
+			prDDPins.println("            " + formValue("minimumCharacters") + ": " + formValue(lDataType.getMinimumCharacters(true)) + " ,");			
+			prDDPins.println("            " + formValue("maximumCharacters") + ": " + formValue(lDataType.getMaximumCharacters(true)) + " ,");	
+			prDDPins.println("            " + formValue("minimumValue") + ": " + formValue(lDataType.getMinimumValue(true)) + " ,");	
+			prDDPins.println("            " + formValue("maximumValue") + ": " + formValue(lDataType.getMaximumValue(true)));	
 			printPattern(lDataType, prDDPins);
 			prDDPins.println("            }");
 			prDDPins.println("         }");
@@ -508,7 +512,7 @@ class WriteDOMRDFOWLFile extends Object{
 	}	
 	
 	// Print the data type Pattern
-	public  void printPattern (DataTypeDefn lDataType, PrintWriter prDDPins) {
+	public  void printPattern (DOMDataType lDataType, PrintWriter prDDPins) {
 		boolean isFirst = true;
 		if (lDataType.pattern.isEmpty()) return;
 		prDDPins.println("          , " + formValue("patternList") + ": [");	
@@ -530,7 +534,7 @@ class WriteDOMRDFOWLFile extends Object{
 	}
 
 	// Print the Unit Identifier
-	public  void printUnitId (UnitDefn lUnit, PrintWriter prDDPins) {
+	public  void printUnitId (DOMUnit lUnit, PrintWriter prDDPins) {
 		boolean isFirst = true;
 		if (lUnit.unit_id.isEmpty()) return;
 		prDDPins.println("          , " + formValue("unitIdList") + ": [");	
@@ -554,25 +558,25 @@ class WriteDOMRDFOWLFile extends Object{
 						
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
-		ArrayList <AssocDefn> lSortedAssocArr = new ArrayList <AssocDefn> (InfoModel.masterMOFAssocIdMap.values());
-		for (Iterator<AssocDefn> i = lSortedAssocArr.iterator(); i.hasNext();) {
-			AssocDefn lAssoc = (AssocDefn) i.next();
-			String prDataIdentifier = "PR." + lAssoc.identifier;
+		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
+		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lProp = (DOMProp) i.next();
+			String prDataIdentifier = "PR." + lProp.identifier;
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");
 			prDDPins.println("  (registeredBy [" + "RA_0001_NASA_PDS_1" + "])");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");						
-			prDDPins.println("  (classOrder \"" + lAssoc.classOrder + "\")");
-			prDDPins.println("  (versionIdentifier \"" + InfoModel.identifier_version_id + "\"))");
+			prDDPins.println("  (classOrder \"" + lProp.classOrder + "\")");
+			prDDPins.println("  (versionIdentifier \"" + DOMInfoModel.identifier_version_id + "\"))");
 		}
 	}
 
 	// Print the the Protege Pins CD
 	public  void printPDDPCD (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lCDAttrArr = new ArrayList <IndexDefn> (InfoModel.cdAttrMap.values());
-		for (Iterator<IndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lCDAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.cdDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "CD_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of ConceptualDomain");
@@ -594,8 +598,8 @@ class WriteDOMRDFOWLFile extends Object{
 			lfc = "";
 			prDDPins.println("  (representing2 ");
 //			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				if (lAttr.isEnumerated) {
 					prDDPins.print("    [" + lAttr.evdDataIdentifier + "]");
@@ -630,9 +634,9 @@ class WriteDOMRDFOWLFile extends Object{
 	
 	// Print the the Protege Pins DEC
 	public  void printPDDPDEC (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lDECAttrArr = new ArrayList <IndexDefn> (InfoModel.decAttrMap.values());
-		for (Iterator<IndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lDECAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.decDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "DEC_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of DataElementConcept");
@@ -642,8 +646,8 @@ class WriteDOMRDFOWLFile extends Object{
 			String lfc = "";
 			prDDPins.println("  (expressing ");
 //			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				prDDPins.print("    [" + lAttr.deDataIdentifier + "]");
 				lfc = "\n";
@@ -687,11 +691,11 @@ class WriteDOMRDFOWLFile extends Object{
 	// Print the the Protege Pins TE
 	public  void printPDDPTE (PrintWriter prDDPins) {
 		// print the Terminological Entry
-//		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
-//		for (Iterator<AttrDefn> i = InfoModel.getMasterMOFAttrIdMap().iterator(); i.hasNext();) {
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
+
+		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
+
+		for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
 			if (lAttr.isUsedInClass && lAttr.isAttribute) {
 				// print TE section
 				prDDPins.println("([" + lAttr.teDataIdentifier + "] of TerminologicalEntry");
@@ -702,7 +706,7 @@ class WriteDOMRDFOWLFile extends Object{
 		
 				// print definition section
 				prDDPins.println("([" + lAttr.defDataIdentifier + "] of Definition");
-				prDDPins.println("  (definitionText \"" + InfoModel.escapeProtegeString(lAttr.description) + "\")");
+				prDDPins.println("  (definitionText \"" + DOMInfoModel.escapeProtegeString(lAttr.definition) + "\")");
 				prDDPins.println("  (isPreferred \"" + "TRUE" + "\"))");
 				
 				// print designation section
@@ -793,11 +797,11 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("  (languageIdentifier \"English\"))");
 			
 		// write the unitOfMeasure
-		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
-			UnitDefn lUnit = (UnitDefn) i.next();		
+		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
+			DOMUnit lUnit = (DOMUnit) i.next();		
 			prDDPins.println("([" + lUnit.title + "] of UnitOfMeasure");
 			prDDPins.println("	(measureName \"" + lUnit.title + "\")");
-			prDDPins.println("	(defaultUnitId \"" + InfoModel.escapeProtegeString(lUnit.default_unit_id) + "\")");
+			prDDPins.println("	(defaultUnitId \"" + DOMInfoModel.escapeProtegeString(lUnit.default_unit_id) + "\")");
 			prDDPins.println("	(precision \"" + "TBD_precision" + "\")");
 			if (! lUnit.unit_id.isEmpty() )
 			{
@@ -821,8 +825,8 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("	(unitId \"" + "TBD_unitId" + "\"))");
 		
 		// print data types
-		for (Iterator<PDSObjDefn> i = InfoModel.masterDataTypesArr.iterator(); i.hasNext();) {
-			PDSObjDefn lDataType = (PDSObjDefn) i.next();	
+		for (Iterator<DOMDataType> i = DOMInfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+			DOMDataType lDataType = (DOMDataType) i.next();	
 			prDDPins.println("([" + lDataType.title + "] of DataType");
 			prDDPins.println("  (dataTypeName \"" + lDataType.title + "\")");
 			prDDPins.println("  (dataTypeSchemaReference \"TBD_dataTypeSchemaReference\"))");
@@ -840,7 +844,7 @@ class WriteDOMRDFOWLFile extends Object{
 		String rString = lString;
 		if (rString == null) rString = "null";
 		if (rString.indexOf("TBD") == 0) rString = "null";
-		rString = InfoModel.escapeXMLChar(rString);
+		rString = DOMInfoModel.escapeXMLChar(rString);
 //		rString = "\"" + rString + "\"";
 		return rString;
 	}
