@@ -53,8 +53,10 @@ public class SchemaFileDefn {
 	String relativeFileSpecModelJSON;	
 	String relativeFileSpecDOMModelJSON;	
 	String relativeFileSpecModelRDF;
-	String relativeFileSpecOWLRDF;			
-	String relativeFileSpecSKOSTTL;			
+	String relativeFileSpecOWLRDF;
+	String relativeFileSpecOWLRDF_DOM;
+	String relativeFileSpecSKOSTTL;
+	String relativeFileSpecSKOSTTL_DOM;	
 	String relativeFileSpecReportTXT;		
 	String relativeFileSpecUMLXMI;
 	String relativeFileSpecUMLXMI2;
@@ -116,8 +118,10 @@ public class SchemaFileDefn {
 		relativeFileSpecModelJSON = "TBD_relativeFileSpecModelJSON";	
 		relativeFileSpecDOMModelJSON = "TBD_relativeFileSpecDOMModelJSON";	
 		relativeFileSpecModelRDF = "TBD_relativeFileSpecModelRDF";
-		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";		
-		relativeFileSpecSKOSTTL = "TBD_relativeFileSpecSKOSTTL";		
+		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";	
+		relativeFileSpecOWLRDF_DOM = "TBD_relativeFileSpecOWLRDF_DOM";
+		relativeFileSpecSKOSTTL = "TBD_relativeFileSpecSKOSTTL";
+		relativeFileSpecSKOSTTL_DOM = "TBD_relativeFileSpecSKOSTTL_DOM";
 		relativeFileSpecReportTXT = "TBD_relativeFileSpecReportTXT";
 		relativeFileSpecUMLXMI = "TBD_relativeFileSpecUMLXMI";
 		relativeFileSpecUMLXMI2 = "TBD_relativeFileSpecUMLXMI2";
@@ -237,8 +241,10 @@ public class SchemaFileDefn {
 		relativeFileSpecDDProtPinsSN = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen" + ".pins";	
 		relativeFileSpecModelRulePins = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + "MODEL_RULES" + "_" + lab_version_id + ".txt";	
 		relativeFileSpecModelRDF = DMDocument.outputDirPath + "export/rdf/" + "PDS4_" + nameSpaceIdNCUC + "_" + "MODEL" + "_" + lab_version_id + ".rdf";		
-		relativeFileSpecOWLRDF = DMDocument.outputDirPath + "export/owl/" + "PDS4_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";		
-		relativeFileSpecSKOSTTL = DMDocument.outputDirPath + "export/skos/" + "PDS4_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl";		
+		relativeFileSpecOWLRDF = DMDocument.outputDirPath + "export/owl/" + "PDS4_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";
+		relativeFileSpecOWLRDF_DOM = DMDocument.outputDirPath + "export/owl/" + "PDS4_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf_DOM";
+		relativeFileSpecSKOSTTL = DMDocument.outputDirPath + "export/skos/" + "PDS4_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl";
+		relativeFileSpecSKOSTTL_DOM = DMDocument.outputDirPath + "export/skos/" + "PDS4_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl_DOM";
 		relativeFileSpecUMLXMI = DMDocument.outputDirPath + "export/xmi/" + "PDS4_" + nameSpaceIdNCUC + "_" + "XMI" + "_clean" + "_" + lab_version_id + ".xmi";	
 		relativeFileSpecUMLXMI2 = DMDocument.outputDirPath + "export/xmi/" + "PDS4_" + nameSpaceIdNCUC + "_" + "XMI" + "_wNames" + "_" + lab_version_id + ".xmi";	
 		relativeFileSpecModelPVL = DMDocument.outputDirPath + "export/pvl/" + "PDS4_" + nameSpaceIdNCUC + "_" + "PVL" + "_" + lab_version_id + "_";	
