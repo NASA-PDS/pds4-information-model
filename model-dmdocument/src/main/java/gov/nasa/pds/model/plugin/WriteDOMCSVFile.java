@@ -57,11 +57,11 @@ class WriteDOMCSVFiles extends Object {
 		// write any singleton attributes
 		ArrayList <DOMProp> lEnumAttrArr = new ArrayList <DOMProp> ();
 		
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.userSingletonClassAttrIdMap.values());
-		for (Iterator <AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userSingletonDOMClassAttrIdMap.values());
+		for (Iterator <DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
 			
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) != 0)) continue;
+			DOMAttr lAttr = (DOMAttr) i.next();
+			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.nameSpaceIdNC) != 0)) continue;
 			DOMProp lDOMProp = new DOMProp();
 			lDOMProp.createDOMPropSingletonsNoAssoc(lAttr);
 			lEnumAttrArr.add(lDOMProp);
@@ -99,10 +99,10 @@ class WriteDOMCSVFiles extends Object {
 			DOMProp lProp = (DOMProp) j.next();	
 			DOMAttr lDOMAttr = (DOMAttr)lProp.hasDOMObject;
 				 
-				   //	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
+		 //	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
 			String pMinVal = lDOMAttr.getMinimumValue(true,true);
-		    String pMaxVal = lDOMAttr.getMaximumValue(true,true);
-		    String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
+		        String pMaxVal = lDOMAttr.getMaximumValue(true,true);
+		        String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
 			String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
 				
 			padLength = 30 - lDOMAttr.getTitle().length();
@@ -111,7 +111,7 @@ class WriteDOMCSVFiles extends Object {
 					
 			pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
 			    	
-		    valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
+		        valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
 			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lProp.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lProp.cardMin + DELM_MID + lProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 			
 			ArrayList<ISOClassOAIS11179> lValArr = lDOMAttr.hasDOMObject;
