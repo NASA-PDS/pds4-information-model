@@ -1,5 +1,4 @@
 package gov.nasa.pds.model.plugin; 
-
 import java.io.*;
 import java.util.*;
 
@@ -53,6 +52,8 @@ public class ExportModels extends Object {
 			//  write schematron file
 			WriteSchematron writeSchematron = new WriteSchematron ();
 			writeSchematron.writeSchematronFile(lSchemaFileDefn, InfoModel.masterMOFClassMap);
+//			WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron ();
+//			writeDOMSchematron.writeSchematronFile(lSchemaFileDefn, InfoModel.masterMOFClassMap);
 			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 			
 			//  write label file for XML Schema and Schematron
@@ -85,6 +86,7 @@ public class ExportModels extends Object {
 						
 		// write the PDS4 Attr CSV full file 
 		WriteCSVFiles writeCSVFiles = new WriteCSVFiles ();
+//		writeCSVFiles.printDDDBFile();
 		// write the PDS4 DD CSV file
         ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
         writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
@@ -207,7 +209,7 @@ public class ExportModels extends Object {
 		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-		
+			
 			// skip the master for LDD runs
 			if (lSchemaFileDefn.isMaster) continue;
 			

@@ -56,19 +56,28 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, DOMProp> masterDOMPropMap = new TreeMap <String, DOMProp> ();
 	static TreeMap <String, DOMProp> masterDOMPropIdMap = new TreeMap <String, DOMProp> ();
 	
+	// global Rules and Assert statements
+	static ArrayList <DOMRule> masterDOMRuleArr = new ArrayList <DOMRule> ();
+	static TreeMap <String, DOMRule> masterDOMRuleMap = new TreeMap <String, DOMRule> ();
+	static TreeMap <String, DOMRule> masterDOMRuleIdMap = new TreeMap <String, DOMRule> (); // to be deprecated
+	
+	// new rules
+	static ArrayList <DOMRule> masterDOMRuleNewArr;
+	static TreeMap <String, DOMRule> masterDOMRuleNewMap;	
+	
 	// global data types
 	static ArrayList <DOMDataType> masterDOMDataTypeArr = new ArrayList <DOMDataType> (); 
 	static TreeMap <String, DOMDataType> masterDOMDataTypeMap = new TreeMap <String, DOMDataType> ();
 	static TreeMap <String, DOMDataType> masterDOMDataTypeTitleMap = new TreeMap <String, DOMDataType> (); 
 	
 	// global Units
-	static ArrayList <DOMUnit> masterDOMUnitArr;
-	static TreeMap <String, DOMUnit> masterDOMUnitMap;
-	static TreeMap <String, DOMUnit> masterDOMUnitIdMap;
+	static ArrayList <DOMUnit> masterDOMUnitArr = new ArrayList <DOMUnit> ();
+	static TreeMap <String, DOMUnit> masterDOMUnitMap = new TreeMap <String, DOMUnit> ();
+	static TreeMap <String, DOMUnit> masterDOMUnitTitleMap = new TreeMap <String, DOMUnit> ();
 	
 	// global property maps
-	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap;
-	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr;
+	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
+	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr = new ArrayList <PropertyMapsDefn> ();
 		
 	// All CD and DEC values for the Attributes
 	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
@@ -77,7 +86,6 @@ public abstract class DOMInfoModel extends Object {
 	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
 	
 	// global science discipline facet map 
-//	static TreeMap <String, InstDefn> masterProtPinsUpperModel;
 	static TreeMap <String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap <String, SFDisciplineFacetDefn> ();
 
 	// special rdfIdentifiers
@@ -112,16 +120,6 @@ public abstract class DOMInfoModel extends Object {
 	// Attribute Namespace Resolution Map
 	static TreeMap <String, String> attrNamespaceResolutionMap;
 	
-// 444
-	// class assert statements
-	static ArrayList <RuleDefn> schematronRuleArr = new ArrayList <RuleDefn> ();
-	static TreeMap <String, RuleDefn> schematronRuleMap = new TreeMap <String, RuleDefn> ();
-	static TreeMap <String, RuleDefn> schematronRuleIdMap = new TreeMap <String, RuleDefn> (); // to be deprecated
-	
-	// new rules
-	static ArrayList <RuleDefn> schematronRuleNewArr;
-	static TreeMap <String, RuleDefn> schematronRuleNewMap;	
-	
 	// Local Classes	
 	ArrayList <PDSObjDefn> objArr;
 	HashMap <String, PDSObjDefn> objDict;
@@ -130,7 +128,7 @@ public abstract class DOMInfoModel extends Object {
 //  Parsed Classes, Props, and Attributes
 	static ArrayList <DOMClass> parsedClassArr;
 	static TreeMap <String, DOMClass> parsedClassMap;
-
+	
 	static ArrayList <DOMProtAttr> parsedProtAttrArr;
 	static TreeMap <String, DOMProtAttr> parsedProtAttrMap;	
 		
@@ -1330,13 +1328,13 @@ public abstract class DOMInfoModel extends Object {
 			DOMProp lAttr = (DOMProp) i.next();
 			prDOMWriter.println("    ownedAttrAssocArr:" + lAttr.identifier);
 		}
-
-    	prDOMWriter.println("-------------------------  ownedAttrAssocAssertArr  -------------");
-    	lSortDOMAttrArr = sortDOMAttr (objClass.ownedAttrAssocAssertArr);
+		
+		prDOMWriter.println("-------------------------  allEnumAttrArr  -------------");
+    	lSortDOMAttrArr = sortDOMAttr (objClass.allEnumAttrArr);
 		for (Iterator <DOMAttr> i = lSortDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
-			prDOMWriter.println("    ownedAttrAssocAssertArr :" + lAttr.identifier);
-		}	
+			prDOMWriter.println("    allEnumAttrArr :" + lAttr.identifier);
+		}
 
 		prDOMWriter.println("\n=========================  Properties  ==========================");
 		lSortDOMPropArr = sortDOMProp (objClass.allAttrAssocArr);

@@ -54,8 +54,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	TreeMap <String, DOMProp> ownedPropNSTitleMap; // needed to set DOMAttr.isRestrictedInSubclass during inheritance processing
 	TreeMap <String, DOMAttr> ownedAttrAssocNSTitleMap; // needed to set DOMAttr.isRestrictedInSubclass during inheritance processing
 
-	ArrayList <DOMAttr> ownedAttrAssocAssertArr;			// all enumerated attributes, from this.class through to all superclasses.
-	ArrayList <String> ownedAttrAssocAssertTitleArr;		// all enumerated attributes, required to eliminate duplicates
+	ArrayList <DOMAttr> allEnumAttrArr;						// all enumerated attributes, this.class and all superclasses
 	
 	public DOMClass () {
 		section = "TBD_section";
@@ -107,8 +106,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		ownedTestedAttrAssocNSTitleArr = new ArrayList <String> (); 
 		ownedPropNSTitleMap = new TreeMap <String, DOMProp> ();
 		ownedAttrAssocNSTitleMap = new TreeMap <String, DOMAttr> ();
-		ownedAttrAssocAssertArr = new ArrayList <DOMAttr> ();
-		ownedAttrAssocAssertTitleArr = new ArrayList <String> ();
+		allEnumAttrArr = new ArrayList <DOMAttr> ();
 	}
 	
 	public String getSection() {
@@ -208,7 +206,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		InitPropArrISOClassOAIS11179 (hasDOMObject, lOldClass.allAttrAssocArr);
 		InitPropArrDOMProp (ownedAttrAssocNOArr, lOldClass.ownedAttrAssocNOArr);
 		InitPropArrDOMProp (ownedAttrAssocArr, lOldClass.ownedAttrAssocArr);
-		InitPropArrDOMAttr (ownedAttrAssocAssertArr, lOldClass.ownedAttrAssocAssertArr);
+		InitPropArrDOMAttr (allEnumAttrArr, lOldClass.ownedAttrAssocAssertArr);
 		return;
 	}
 	

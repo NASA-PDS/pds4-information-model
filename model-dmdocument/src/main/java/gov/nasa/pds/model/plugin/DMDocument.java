@@ -209,6 +209,7 @@ public class DMDocument extends Object {
 	static ArrayList <String> deprecatedAttrValueArr;
 	static String Literal_DEPRECATED = " *Deprecated*";
 	static boolean deprecatedAdded;
+	static boolean deprecatedAddedDOM;
 	
 	// the set of classes and attributes that will be externalized (defined as xs:Element)	
 	static ArrayList <String> exposedElementArr;
@@ -308,6 +309,7 @@ public class DMDocument extends Object {
 				
 		// deprecated objects  *** Inconsistency here to be fixed - Earth base identifier is different ***
 		deprecatedAdded = false;
+		deprecatedAddedDOM = false;
 		deprecatedObjects2 = new ArrayList <DeprecatedDefn> ();
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Product_Update", "pds", "Product_Update", "", "", "", false));	

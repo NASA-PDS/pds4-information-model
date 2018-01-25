@@ -149,7 +149,7 @@ public class GetDOMModel extends Object {
 			DOMInfoModel.masterDOMAttrIdMap.put(lAttr.identifier, lAttr);
 		}
 		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
-				
+		
 		System.out.println("\n>>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
@@ -159,6 +159,9 @@ public class GetDOMModel extends Object {
 		System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
+		System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
 		System.out.println(" ");
 
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
@@ -184,24 +187,24 @@ public class GetDOMModel extends Object {
 		lISO11179DOMMDR.getClassOrder();
 		
 		// 004 - parse UpperModel.pins file and get Science Facets for example
-		ProtPinsModel protPinsUpperModel  = new ProtPinsModel ();
-		protPinsUpperModel.getProtPinsModel(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "UpperModel.pins");
+		ProtPinsDOMModel lProtPinsDOMModel  = new ProtPinsDOMModel ();
+		lProtPinsDOMModel.getProtPinsModel(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "UpperModel.pins");
 
 		// 005 - get custom rules from UpperModel.pins file
-		protPinsUpperModel.getRulesPins ();
+		lProtPinsDOMModel.getRulesPins ();
 		
 		// 006 - copy in parsed rules from uppermodel.pins
 		//      clear customized rules provide by JAVA code
 		//		InfoModel.schematronRuleMap.clear();
 		//		InfoModel.schematronRuleIdMap.clear();
 		
-		ArrayList <RuleDefn> testRuleDefnArr = new ArrayList <RuleDefn> (protPinsUpperModel.testRuleDefnMap.values());
-		for (Iterator <RuleDefn> i = testRuleDefnArr.iterator(); i.hasNext();) {
-			RuleDefn lRule = (RuleDefn) i.next();
-			DOMInfoModel.schematronRuleMap.put(lRule.rdfIdentifier, lRule);
-			DOMInfoModel.schematronRuleIdMap.put(lRule.identifier, lRule);
+		ArrayList <DOMRule> testRuleDefnArr = new ArrayList <DOMRule> (lProtPinsDOMModel.testRuleDefnMap.values());
+		for (Iterator <DOMRule> i = testRuleDefnArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();
+			DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
+			DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
 		}
-		DOMInfoModel.schematronRuleArr = new ArrayList <RuleDefn> (DOMInfoModel.schematronRuleIdMap.values());		
+		DOMInfoModel.masterDOMRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 		
 		// 007 - get list of USER attributes (owned attributes)
 		//        This must be done before LDD parsing since it needs the USER attributes
@@ -330,8 +333,10 @@ public class GetDOMModel extends Object {
 		}
 		
 		// 035 - generate the schematron rules (does not include custom rules)
-		GenSchematronRules genSchematronRules = new GenSchematronRules ();
-		genSchematronRules.genSchematronRules();
+//		GenSchematronRules genSchematronRules = new GenSchematronRules ();
+//		genSchematronRules.genSchematronRules();
+		GenDOMRules lGenDOMRules = new GenDOMRules ();
+		lGenDOMRules.genSchematronRules();
 					
 		// 036 - setup 11179 classes from master attributes
 		lISO11179DOMMDR.ISO11179MDRSetup();
@@ -357,6 +362,27 @@ public class GetDOMModel extends Object {
 			DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
 		}
+		
+		System.out.println("\n>>info    - Master DOM Structures Initiated");	
+		System.out.println(">>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
+		System.out.println("\n>>info    - Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
+		System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
+		System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
+		System.out.println("\n>>info    - Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
+		System.out.println("\n>>info    - Master Unit Sizes           - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
+		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
+		System.out.println(" ");
 
 		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");	
 	}

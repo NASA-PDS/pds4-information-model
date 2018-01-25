@@ -37,15 +37,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		DOMInfoModel.masterDOMClassMap.put(lClass.rdfIdentifier, lClass);
 		DOMInfoModel.masterDOMClassIdMap.put(lClass.identifier, lClass);
 		DOMInfoModel.masterDOMClassTitleMap.put(lClass.title, lClass);		
-
-
-		// initialize the global unitOfMeasure
-		DOMInfoModel.masterDOMUnitMap = new TreeMap <String, DOMUnit> ();
-
-		// initialize the global property map
-		DOMInfoModel.masterPropertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
-		DOMInfoModel.masterPropertyMapsArr = new ArrayList <PropertyMapsDefn> (); 	
-
 		return;
 	}
 
@@ -114,7 +105,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	public void setMasterUnitOfMeasure () {
 		// iterate through the classes and create a sorted array
 		// *** cool code
-		// 7777 this is updating a non-DOM MAP; i.e., double update.
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isUnitOfMeasure) {
@@ -128,6 +118,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						lUnit.title = lUnit.identifier;
 						lUnit.type = lUnit.identifier;
 						DOMInfoModel.masterDOMUnitMap.put(lUnit.title, lUnit);
+// 333	-- deprecate masterDOMUnitMap, use title
+						DOMInfoModel.masterDOMUnitTitleMap.put(lUnit.title, lUnit);
 						// for each attribute of the class
 						for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
 							DOMProp lDOMProp = (DOMProp) j.next();
@@ -502,18 +494,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			lPropArr.addAll(lClass.ownedAssocArr);
 			ArrayList <DOMProp> lSortedPropArr = getSortedPropArr (lPropArr);
 			lClass.ownedAttrAssocArr.addAll(lSortedPropArr);
-											
-			// get the own attributes (enumerated) for asserts
-			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lDOMProp = (DOMProp) j.next();
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-					if (lDOMAttr != null && lDOMAttr.isEnumerated) {
-						lClass.ownedAttrAssocAssertArr.add(lDOMAttr);
-						lClass.ownedAttrAssocAssertTitleArr.add(lDOMAttr.title);
-					}
-				}
-			}
 		}
 	}
 	
@@ -538,25 +518,31 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			//	get all owned attributes of the class
 			lClass.allAttrAssocArr.addAll(lClass.ownedAttrArr);
 			
-			for (Iterator <DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-
-//						lChildClass.ownedAttrNSTitleArr.contains(lMemberParentClass.nsTitle)) {
-//						lChildClass.inheritedAssocArr.add(lParentProp);
-				}
-			}
-			//	get all inherited attributes of the class
+			// add all inherited attributes of the class to the owned attributes
 			lClass.allAttrAssocArr.addAll(lClass.inheritedAttrArr);
 			
-			//	get all owned associations of the class
+			// before adding the associates, get all enumerated owned and inherited attributes.
+			ArrayList <String> allEnumAttrIdArr = new ArrayList <String> ();
+			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+				DOMProp lDOMProp = (DOMProp) j.next();
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+					if (lDOMAttr != null && lDOMAttr.isEnumerated) {
+						if (! allEnumAttrIdArr.contains(lDOMAttr.identifier)) {
+							allEnumAttrIdArr.add(lDOMAttr.identifier);
+							lClass.allEnumAttrArr.add(lDOMAttr);
+						}
+					}
+				}
+			}
+			
+			// add all owned associations of the class
 			lClass.allAttrAssocArr.addAll(lClass.ownedAssocArr);
 			
-			//	get all inherited associations of the class
+			// add all inherited associations of the class
 			lClass.allAttrAssocArr.addAll(lClass.inheritedAssocArr);
 			
-			//	get all owned attributes and associations
+			// add all owned attributes and associations
 			lClass.ownedAttrAssocNOArr.addAll(lClass.ownedAttrAssocArr);
 		}
 	}
@@ -674,9 +660,9 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	// 021 - get the permissible values from schematron statements (for example reference_type)
 	public void getAttributePermValuesExtended () {
 		// get an array of the schematron pattern statements
-		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (schematronRuleMap.values());				
-		for (Iterator<RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
-			RuleDefn lRule = (RuleDefn) i.next();
+		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (masterDOMRuleMap.values());				
+		for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();
 			
 //			System.out.println("\ndebug getAttributePermValuesExtended lRule.identifier:" + lRule.identifier);
 			
@@ -686,8 +672,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			if (lAttr != null) {
 					
 			// for each rule get assert statement
-				for (Iterator<AssertDefn2> k = lRule.assertArr.iterator(); k.hasNext();) {
-					AssertDefn2 lAssert = (AssertDefn2) k.next();
+				for (Iterator<DOMAssert> k = lRule.assertArr.iterator(); k.hasNext();) {
+					DOMAssert lAssert = (DOMAssert) k.next();
 					
 					if (lAssert.assertType.compareTo("EVERY") == 0 || lAssert.assertType.compareTo("IF") == 0) {		
 						// create a new permissible value entry extended for the attribute
@@ -1101,9 +1087,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 // ===============================================================================================	
 	
 	// get the value meaning
-	public String getValueMeaning (RuleDefn lRule, String lVal) {
+	public String getValueMeaning (DOMRule lRule, String lVal) {
 		String lId = lRule.xpath + "." + lRule.attrTitle + "." + lVal;
-//		System.out.println("      getValueMeaning lId:" + lId);
 		PermValueDefn lPermVal = GetValueMeanings.masterValueMeaningKeyMap.get(lId);
 		if (lPermVal != null) {
 			return lPermVal.value_meaning;

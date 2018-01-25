@@ -240,6 +240,43 @@ public class DOMProp extends ISOClassOAIS11179 {
 //		maximumOccurrences = "TBD_maximumOccurrences";
 	}
 	
+	// temporary until Pearl updates WriteDOMCSVFile
+		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
+			rdfIdentifier = lAttr.rdfIdentifier;
+			identifier = lAttr.identifier; 
+			versionId = lAttr.versionId;
+			sequenceId = lAttr.uid; 
+			title = lAttr.title;
+			definition =  lAttr.description;
+			registrationStatus = lAttr.registrationStatus; 
+			regAuthId = lAttr.regAuthId; 
+			steward = lAttr.steward; 
+			nameSpaceId = lAttr.attrNameSpaceId;
+			nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
+//			classOrder = "9999";
+			cardMin = lAttr.cardMin;
+			cardMax = lAttr.cardMax;
+			cardMinI = lAttr.cardMinI; 
+			cardMaxI = lAttr.cardMaxI;
+			
+			// others from PDS3
+			localIdentifier = lAttr.lddLocalIdentifier;
+
+			parentClassTitle = lAttr.parentClassTitle;
+			classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
+//			groupName = "TBD_groupName";
+//			referenceType = "TBD_referenceType";
+			isAttribute = lAttr.isAttribute;
+			isChoice = lAttr.isChoice;
+			isAny = lAttr.isAny;
+//			isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
+
+//			isSet = false;
+//			enclLocalIdentifier = "TBD_enclLocalIdentifier";
+//			minimumOccurrences = "TBD_minimumOccurrences";
+//			maximumOccurrences = "TBD_maximumOccurrences";
+		}
+	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
 		rdfIdentifier = lDOMPermValDefn.rdfIdentifier; 														
 		identifier = lDOMPermValDefn.identifier; 

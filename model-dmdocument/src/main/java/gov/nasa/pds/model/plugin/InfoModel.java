@@ -109,7 +109,6 @@ public abstract class InfoModel extends Object {
 	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
 	
 	// global science discipline facet map 
-//	static TreeMap <String, InstDefn> masterProtPinsUpperModel;
 	static TreeMap <String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap <String, SFDisciplineFacetDefn> ();
 
 	// special rdfIdentifiers
