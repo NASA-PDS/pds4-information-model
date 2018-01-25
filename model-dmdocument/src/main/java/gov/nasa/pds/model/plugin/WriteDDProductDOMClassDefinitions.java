@@ -19,7 +19,7 @@ class WriteDDProductDOMClassDefinitions extends Object{
 	public void writeDDProductDOMClassDefnFiles (SchemaFileDefn lSchemaFileDefn, String todaysDate) throws java.io.IOException {
 				
 		// cycle once for each data element
-		for (Iterator<DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			String lLID = DMDocument.registrationAuthorityIdentifierValue + "." + lClass.nameSpaceIdNC + "." + lClass.title;
 //			lLID = "urn:nasa:pds:" + "context:" + "class:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
@@ -37,14 +37,14 @@ class WriteDDProductDOMClassDefinitions extends Object{
 	// Print the class Definition Header
 	public void writeDDProductDOMClassDefnFile (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDReg, String todaysDate, String lLID, DOMClass lClass) {
 		prDDReg.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-//		prDDReg.println("<Product_Class_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "\"");
+//		prDDReg.println("<Product_Class_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + DOMInfoModel.ns_version_id + "\"");
 		prDDReg.println("<Product_Class_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "\"");
 		prDDReg.println(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-//		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "/PDS4_PDS_" + InfoModel.lab_version_id + ".xsd\">");
+//		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DOMInfoModel.ns_version_id + "/PDS4_PDS_" + DOMInfoModel.lab_version_id + ".xsd\">");
 		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
 		prDDReg.println("    <Identification_Area>");
 		prDDReg.println("        <logical_identifier>" + lLID + "</logical_identifier>");
-//		prDDReg.println("        <version_id>" + InfoModel.identifier_version_id + "</version_id>");
+//		prDDReg.println("        <version_id>" + DOMInfoModel.identifier_version_id + "</version_id>");
 		prDDReg.println("        <version_id>" + lSchemaFileDefn.identifier_version_id + "</version_id>");
 		prDDReg.println("        <title>" + lClass.title + "</title>");
 		prDDReg.println("        <information_model_version>" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</information_model_version>");
@@ -52,7 +52,7 @@ class WriteDDProductDOMClassDefinitions extends Object{
 		prDDReg.println("    </Identification_Area>");
 		prDDReg.println("    <DD_Class_Full>");
 		prDDReg.println("        <name>" + lClass.title + "</name>");
-//		prDDReg.println("        <version_id>" + InfoModel.identifier_version_id + "</version_id>");
+//		prDDReg.println("        <version_id>" + DOMInfoModel.identifier_version_id + "</version_id>");
 		prDDReg.println("        <version_id>" + lSchemaFileDefn.identifier_version_id + "</version_id>");
 		prDDReg.println("        <local_identifier>" + lLID + "</local_identifier>");
 		prDDReg.println("        <steward_id>" + lClass.steward + "</steward_id>");

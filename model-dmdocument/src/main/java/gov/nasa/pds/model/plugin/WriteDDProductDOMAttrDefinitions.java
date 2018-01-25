@@ -20,7 +20,7 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 		// get the permissible values for attribute concept
 
 		// cycle through classes to get only the used attributes
-		for (Iterator<DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			ArrayList<ISOClassOAIS11179> lDOMArr = lClass.hasDOMObject;		
 			
@@ -49,10 +49,10 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 	// Print the Element Definition Header
 	public void printDDRegFile (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDReg, String todaysDate, String lLID, DOMAttr lAttr) {
 		prDDReg.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-//		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "\"");
+//		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + DOMInfoModel.ns_version_id + "\"");
 		prDDReg.println("<Product_Attribute_Definition xmlns=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "\"");
 		prDDReg.println(" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-//		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + InfoModel.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
+//		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DOMInfoModel.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
 		prDDReg.println(" xsi:schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + lSchemaFileDefn.lab_version_id + ".xsd\">");
 		prDDReg.println("    <Identification_Area>");
 		prDDReg.println("        <logical_identifier>" + lLID + "</logical_identifier>");
@@ -100,8 +100,8 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 		prDDReg.println("            <maximum_characters>" + lAttr.getMaximumCharacters (true, true) + "</maximum_characters>");
 		prDDReg.println("            <minimum_value>" + lAttr.getMinimumValue (true, true)+ "</minimum_value>");
 		prDDReg.println("            <maximum_value>" + lAttr.getMaximumValue (true, true) + "</maximum_value>");
-//		prDDReg.println("            <pattern>" + InfoModel.unEscapeProtegeChar(lAttr.getPattern(true)) + "</pattern>");
-		String lPattern = InfoModel.unEscapeProtegeString(lAttr.getPattern(true));
+//		prDDReg.println("            <pattern>" + DOMInfoModel.unEscapeProtegeChar(lAttr.getPattern(true)) + "</pattern>");
+		String lPattern = DOMInfoModel.unEscapeProtegeString(lAttr.getPattern(true));
 		if (lPattern.indexOf("TBD") != 0)
 			prDDReg.println("            <pattern>" + lPattern + "</pattern>");
 		prDDReg.println("            <unit_of_measure_type>" + lAttr.getUnitOfMeasure (true) + "</unit_of_measure_type>");
@@ -119,7 +119,7 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 					   prDDReg.println("            <DD_Permissible_Value_Full>");
 					   prDDReg.println("                <value>" + lValue + "</value>");
 				    	if (lDOMPermVal.value_meaning.indexOf("TBD") != 0) {
-						   prDDReg.println("                <value_meaning>" + InfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
+						   prDDReg.println("                <value_meaning>" + DOMInfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
 					    }
 					    prDDReg.println("                <value_begin_date>" + DMDocument.beginDatePDS4Value + "T00:00:00Z" + "</value_begin_date>");
 					    prDDReg.println("                <value_end_date>" + DMDocument.endDateValue + "T00:00:00Z" + "</value_end_date>");
@@ -216,8 +216,8 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 		prDDReg.println("  (countryIdentifier \"USA\")");
 		prDDReg.println("  (languageIdentifier \"English\"))");
 		
-		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
-			UnitDefn lUnit = (UnitDefn) i.next();		
+		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
+			DOMUnit lUnit = (DOMUnit) i.next();		
 			prDDReg.println("([" + lUnit.title + "] of UnitOfMeasure");
 			prDDReg.println("	(measureName \"" + lUnit.title + "\")");
 			prDDReg.println("	(defaultUnitId \"" + lUnit.default_unit_id + "\"))");
@@ -232,8 +232,8 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 		}
 		
 		// print data types
-		for (Iterator<PDSObjDefn> i = InfoModel.masterDataTypesArr.iterator(); i.hasNext();) {
-			PDSObjDefn lDataType = (PDSObjDefn) i.next();	
+		for (Iterator<DOMDataType> i = DOMInfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+			DOMDataType lDataType = (DOMDataType) i.next();	
 			prDDReg.println("([" + lDataType.title + "] of DataType");
 			prDDReg.println("  (dataTypeName \"" + lDataType.title + "\")");
 			prDDReg.println("  (dataTypeSchemaReference \"TBD_dataTypeSchemaReference\"))");
