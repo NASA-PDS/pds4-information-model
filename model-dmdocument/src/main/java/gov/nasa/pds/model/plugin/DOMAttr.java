@@ -8,6 +8,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	String sort_identifier;							// lAttr.title + "_" + lAttr.steward + "_" + lAttr.className + "_" + lAttr.classSteward
 //	String attrAnchorString;						// "attribute", lAttr.attrNameSpaceIdNC, lAttr.title, lAttr.classNameSpaceIdNC, lAttr.className
 	String XMLSchemaName;							// Title or Class_Title
+	String xPath;									// attribute xpath
 //	String regAuthId;								// registration authority identifier
 	String classSteward;							// steward for attribute's class
 	String classNameSpaceIdNC;
@@ -101,6 +102,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		sort_identifier = "TBD_sort_identifier";
 //		attrAnchorString = "TBD_attrAnchorString";
 		XMLSchemaName = "TBD_XMLSchemaName";
+		xPath = "TBD_xPath";
 		classSteward = "TBD_classSteward";
 		classNameSpaceIdNC = "TBD_classNameSpaceId";
 		submitter = "TBD_submitter";

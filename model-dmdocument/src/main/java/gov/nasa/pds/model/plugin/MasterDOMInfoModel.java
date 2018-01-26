@@ -571,7 +571,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		}
 	}
 
-	// 016 - set the isUsedInClass flag
+	// 016 - general - master attribute fixup - uses class scan 
+	//		- set the isUsedInClass flag
 	public void setMasterAttrisUsedInClassFlag () {		
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -593,6 +594,16 @@ class MasterDOMInfoModel extends DOMInfoModel{
 //					lDOMAttr.isUsedInClass = true;
 //				}
 			}
+			
+			// set the xpath
+			for (Iterator <DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
+				DOMProp lDOMProp = (DOMProp) j.next();
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+					lDOMAttr.xPath = lClass.xPath + "/" + lDOMAttr.title;
+				}
+			}
+			
 //			for (Iterator <DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
 //				DOMProp lDOMProp = (DOMProp) j.next();
 //				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {

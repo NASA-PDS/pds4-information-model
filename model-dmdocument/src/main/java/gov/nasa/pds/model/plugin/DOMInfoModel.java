@@ -1199,6 +1199,10 @@ public abstract class DOMInfoModel extends Object {
 			DOMClass lClass = (DOMClass) i.next();			
 			domClassWriter(lClass, prDOMWriter, lFileName);
 		}
+		
+		// write DOMRules
+		prDOMWriter.println("\ndebug - domWriter - masterDOMRuleArr.size():" + masterDOMRuleArr.size());
+		printRulesAllDebug (masterDOMRuleArr, prDOMWriter);
 		prDOMWriter.close();
 	}
 	
@@ -1234,7 +1238,7 @@ public abstract class DOMInfoModel extends Object {
 		
 		prDOMWriter.println("  section:" + objClass.section);
 		prDOMWriter.println("  role:" + objClass.role);
-//		prDOMWriter.println("  xPath:" + objClass.xPath);
+		prDOMWriter.println("  xPath:" + objClass.xPath);
 		prDOMWriter.println("  docSecType:" + objClass.docSecType);
 //		prDOMWriter.println("  rootClass:" + objClass.rootClass);
 		prDOMWriter.println("  baseClassName:" + objClass.baseClassName);
@@ -1392,6 +1396,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        attr.isAbstract:" + attr.isAbstract);
 		prDOMWriter.println("        attr.anchorString:" + attr.anchorString);
 		
+		prDOMWriter.println("        attr.xPath:" + attr.xPath);
         prDOMWriter.println("        attr.nsTitle:" + attr.nsTitle);
         prDOMWriter.println("        attr.sort_identifier:" + attr.sort_identifier); 
 		prDOMWriter.println("        attr.XMLSchemaName:" + attr.XMLSchemaName);
@@ -1565,75 +1570,66 @@ public abstract class DOMInfoModel extends Object {
 	 */
 	
 //	schematronRuleArr	
-	static void printRulesAllDebug (int lInt, ArrayList <RuleDefn> lRuleArr) {
+	static void printRulesAllDebug (ArrayList <DOMRule> lRuleArr, PrintWriter prDOMWrite) {
 
-        System.out.println("\n\n==========================  Rules  ==============================");
-        int cnt = 0;
-		for (Iterator<RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
-			RuleDefn lRule = (RuleDefn) i.next();			
-			printRuleDebug(lInt, lRule);
-			cnt++;
+		prDOMWriter.println("\n\n==========================  Rules  ==============================");
+		for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();			
+			printRuleDebug(lRule, prDOMWrite);
 		}
-	    System.out.println("\ndebug Total Rules:" + cnt);
-        System.out.println("==========================  End Rules  ==============================");
+		prDOMWriter.println("==========================  End Rules  ==============================");
 	}
 	
 	/**
 	 * print one rule
 	 */
-	static void printRuleDebug (int lInt, RuleDefn lRule) {
-        System.out.println("\n==========================  Rule  ===================================");
-		if (lRule == null) {
-		    System.out.println("\ndebug Rule Definition - id:" + lInt + " -" + "NOT FOUND");
-			return;
-		}
+	static void printRuleDebug (DOMRule lRule, PrintWriter prDOMWrite) {
+		prDOMWriter.println("\n==========================  Rule  ===================================");
+		prDOMWriter.println("  lRule.rdfIdentifier:" + lRule.rdfIdentifier);
+		prDOMWriter.println("  lRule.identifier:" + lRule.identifier);
+		prDOMWriter.println("  lRule.type:" + lRule.type);
+		prDOMWriter.println("  lRule.xpath:" + lRule.xpath);
+		prDOMWriter.println("  lRule.roleId:" + lRule.roleId);
+		prDOMWriter.println("  lRule.attrTitle:" + lRule.attrTitle);
+		prDOMWriter.println("  lRule.attrNameSpaceNC:" + lRule.attrNameSpaceNC);
+		prDOMWriter.println("  lRule.classTitle:" + lRule.classTitle);
+		prDOMWriter.println("  lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
+		prDOMWriter.println("  lRule.classSteward:" + lRule.classSteward);
+		prDOMWriter.println("  lRule.alwaysInclude:" + lRule.alwaysInclude);
+		prDOMWriter.println("  lRule.isMissionOnly:" + lRule.isMissionOnly);
 
-	    System.out.println("\ndebug Rule Definition - id:" + lInt + " - identifier:" + lRule.identifier);
-	    System.out.println("  lRule.rdfIdentifier:" + lRule.rdfIdentifier);
-		System.out.println("  lRule.identifier:" + lRule.identifier);
-		System.out.println("  lRule.type:" + lRule.type);
-		System.out.println("  lRule.xpath:" + lRule.xpath);
-		System.out.println("  lRule.roleId:" + lRule.roleId);
-		System.out.println("  lRule.attrTitle:" + lRule.attrTitle);
-		System.out.println("  lRule.attrNameSpaceNC:" + lRule.attrNameSpaceNC);
-		System.out.println("  lRule.classTitle:" + lRule.classTitle);
-		System.out.println("  lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
-		System.out.println("  lRule.classSteward:" + lRule.classSteward);
-		System.out.println("  lRule.alwaysInclude:" + lRule.alwaysInclude);
-		System.out.println("  lRule.isMissionOnly:" + lRule.isMissionOnly);
-
-        System.out.println("-------------------------  Let Assignments - Pattern  -----------");
+		prDOMWriter.println("-------------------------  Let Assignments - Pattern  -----------");
         if (lRule.letAssignPatternArr != null) {
     		for (Iterator <String> i = lRule.letAssignPatternArr.iterator(); i.hasNext();) {
     			String lLetAssignPattern = (String) i.next();
-    			System.out.println("    lLetAssignPattern:" + lLetAssignPattern);
+    			prDOMWriter.println("    lLetAssignPattern:" + lLetAssignPattern);
        		}
         }
 
-        System.out.println("-------------------------  Let Assignments - Rule  --------------");
+        prDOMWriter.println("-------------------------  Let Assignments - Rule  --------------");
         if (lRule.letAssignArr != null) {
     		for (Iterator <String> i = lRule.letAssignArr.iterator(); i.hasNext();) {
     			String lLetAssign = (String) i.next();
-    			System.out.println("    lLetAssign:" + lLetAssign);
+    			prDOMWriter.println("    lLetAssign:" + lLetAssign);
        		}
         }
 		
-        System.out.println("-------------------------  Assert Statement  --------------------");
+        prDOMWriter.println("-------------------------  Assert Statement  --------------------");
         if (lRule.assertArr != null) {
-    		for (Iterator <AssertDefn2> i = lRule.assertArr.iterator(); i.hasNext();) {
-    			AssertDefn2 lAssert = (AssertDefn2) i.next();
-    			System.out.println("    lAssert.identifier:" + lAssert.identifier);
-    			System.out.println("    lAssert.attrTitle:" + lAssert.attrTitle);
-    			System.out.println("    lAssert.assertType:" + lAssert.assertType);
-    			System.out.println("    lAssert.assertMsg:" + lAssert.assertMsg);
-    			System.out.println("    lAssert.assertStmt:" + lAssert.assertStmt);
-    			System.out.println("    lAssert.specMesg:" + lAssert.specMesg);
+    		for (Iterator <DOMAssert> i = lRule.assertArr.iterator(); i.hasNext();) {
+    			DOMAssert lAssert = (DOMAssert) i.next();
+    			prDOMWriter.println("    lAssert.identifier:" + lAssert.identifier);
+    			prDOMWriter.println("    lAssert.attrTitle:" + lAssert.attrTitle);
+    			prDOMWriter.println("    lAssert.assertType:" + lAssert.assertType);
+    			prDOMWriter.println("    lAssert.assertMsg:" + lAssert.assertMsg);
+    			prDOMWriter.println("    lAssert.assertStmt:" + lAssert.assertStmt);
+    			prDOMWriter.println("    lAssert.specMesg:" + lAssert.specMesg);
     			
-    	        System.out.println("-------------------------  Assert Statement Test Values  --------");
+    			prDOMWriter.println("-------------------------  Assert Statement Test Values  --------");
     	        if (lAssert.testValArr != null) {
         			for (Iterator <String> j = lAssert.testValArr.iterator(); j.hasNext();) {
         				String lTestValue = (String) j.next();
-        				System.out.println("       lTestValue:" + lTestValue);
+        				prDOMWriter.println("       lTestValue:" + lTestValue);
         	   		}	
     	        }
        		}
