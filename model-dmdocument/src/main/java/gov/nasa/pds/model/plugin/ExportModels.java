@@ -75,12 +75,21 @@ public class ExportModels extends Object {
 		// write the xmi file
 		XMI2LabelSchema xmi2LabelSchema = new XMI2LabelSchema ();
 		xmi2LabelSchema.getXMIElements ();
-		xmi2LabelSchema.writeXMIFile (DMDocument.sTodaysDate);											
+		xmi2LabelSchema.writeXMIFile (DMDocument.sTodaysDate);
+		
+		//DOM
+		XMI2LabelSchemaDOM xmi2LabelSchemaDOM = new XMI2LabelSchemaDOM ();
+		xmi2LabelSchemaDOM.getXMIElements ();
+		xmi2LabelSchemaDOM.writeXMIFile (DMDocument.sTodaysDate);	
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XMI1 Done");
 
-		// write the xmi file - original version with relationship names
 		XMI2LabelSchema2 xmi2LabelSchema2 = new XMI2LabelSchema2 ();
 		xmi2LabelSchema2.writeXMIFile (DMDocument.sTodaysDate);
+		
+		// DOM  write the xmi file - original version with relationship names
+		XMI2LabelSchema2DOM xmi2LabelSchema2DOM = new XMI2LabelSchema2DOM ();
+		xmi2LabelSchema2DOM.writeXMIFile (DMDocument.sTodaysDate);
+		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XMI2 Done");
 
 		// write the RDF
