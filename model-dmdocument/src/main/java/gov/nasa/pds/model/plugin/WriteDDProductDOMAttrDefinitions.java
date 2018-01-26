@@ -18,24 +18,21 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 	// write the Data Element Product files
 	public void writeDDDOMRegFiles (SchemaFileDefn lSchemaFileDefn, String todaysDate) throws java.io.IOException {
 		// get the permissible values for attribute concept
-
+		
 		// cycle through classes to get only the used attributes
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-			ArrayList<ISOClassOAIS11179> lDOMArr = lClass.hasDOMObject;		
+			ArrayList<DOMProp> lDOMArr = lClass.ownedAttrArr;		
 			
-			for (Iterator<ISOClassOAIS11179> j = lDOMArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				
-					if (lProp.hasDOMObject instanceof DOMAttr) {
+			for (Iterator<DOMProp> j = lDOMArr.iterator(); j.hasNext();) {
+				DOMProp lProp = (DOMProp) j.next();				
+					if (lProp.hasDOMObject instanceof DOMAttr) {						
 						DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
-				        if (lDOMAttr.title.compareTo("%3ANAME") == 0) continue;
-				  
+				        if (lDOMAttr.title.compareTo("%3ANAME") == 0) continue;				        
 				        String lLID = DMDocument.registrationAuthorityIdentifierValue + "." + lDOMAttr.classNameSpaceIdNC + "." + lDOMAttr.parentClassTitle + "." + lDOMAttr.getNameSpaceIdNC() + "." + lDOMAttr.title;
 				        lLID = "urn:nasa:pds:context:attribute:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
 			        	lLID = lLID.toLowerCase();
 				        String lUIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_" + lDOMAttr.getNameSpaceIdNC() + "_" + lDOMAttr.title;
-//				String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_DOM.xml";
 			        	String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + "_DOM.xml";
 				        prDDReg = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
 			         	printDDRegFile(lSchemaFileDefn, prDDReg, todaysDate, lLID, lDOMAttr);									
