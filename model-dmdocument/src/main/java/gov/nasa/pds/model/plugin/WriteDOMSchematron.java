@@ -6,7 +6,6 @@ class WriteDOMSchematron extends Object {
 	PrintWriter prSchematron;
 
 	public WriteDOMSchematron () {
-//		System.out.println("\ndebug WriteSchematron");
 		return;
 	}
 	
@@ -29,9 +28,6 @@ class WriteDOMSchematron extends Object {
 
 		// select out the rules for this namespace
 		ArrayList <DOMRule> lSelectRuleArr = new ArrayList <DOMRule> ();
-
-		System.out.println("debug writeSchematronRuleClasses - lRuleArr - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
-		System.out.println("debug writeSchematronRuleClasses - lRuleArr - InfoModel.schematronRuleIdMap.size():" + InfoModel.schematronRuleIdMap.size());
 
 // 333
 //		System.out.println("\ndebug --- writeSchematronRule Dump ---");
@@ -101,8 +97,6 @@ class WriteDOMSchematron extends Object {
 //	write the schematron rules
 	public void writeSchematronRuleClasses (SchemaFileDefn lSchemaFileDefn, ArrayList<DOMRule> lRuleArr, PrintWriter prSchematron) {
 		// write class based assertions
-
-		System.out.println("debug writeSchematronRuleClasses - lRuleArr - lRuleArr.size():" + lRuleArr.size());
 		
 		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();	

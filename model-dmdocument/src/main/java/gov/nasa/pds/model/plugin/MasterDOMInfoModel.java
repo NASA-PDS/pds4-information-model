@@ -117,6 +117,9 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						lUnit.pds4Identifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
 						lUnit.title = lUnit.identifier;
 						lUnit.type = lUnit.identifier;
+						lUnit.nameSpaceIdNC = lClass.nameSpaceIdNC;
+						lUnit.nameSpaceId = lClass.nameSpaceId;
+						lUnit.steward = lClass.steward;
 						DOMInfoModel.masterDOMUnitMap.put(lUnit.title, lUnit);
 // 333	-- deprecate masterDOMUnitMap, use title
 						DOMInfoModel.masterDOMUnitTitleMap.put(lUnit.title, lUnit);

@@ -6,7 +6,6 @@ class WriteSchematron extends Object {
 	PrintWriter prSchematron;
 
 	public WriteSchematron () {
-//		System.out.println("\ndebug WriteSchematron");
 		return;
 	}
 	

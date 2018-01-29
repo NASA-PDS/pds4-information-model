@@ -139,7 +139,8 @@ public class ExportModels extends Object {
 		
 		if (! DMDocument.LDDToolFlag) {
 			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-			writeDOMDDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON);	
+//			writeDOMDDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON);	
+			writeDOMDDJSONFile.writeJSONFile ();	
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 		
@@ -253,7 +254,7 @@ public class ExportModels extends Object {
 				
 // DOM				
 				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-				writeDOMDDJSONFile.writeJSONFile (lFileName);	
+				writeDOMDDJSONFile.writeJSONFile ();	
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 			}
 

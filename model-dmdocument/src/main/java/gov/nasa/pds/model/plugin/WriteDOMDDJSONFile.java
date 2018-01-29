@@ -10,23 +10,53 @@ import java.util.*;
 class WriteDOMDDJSONFile extends Object{
 	
 	ArrayList <String> adminRecUsedArr, adminRecTitleArr;
-	PrintWriter prDDPins;
 
 	public WriteDOMDDJSONFile () {
 		return;
 	}
 
 	// write the JSON file
-	public void writeJSONFile (String lFileName) throws java.io.IOException {
-	   prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		printPDDPHdr();
-		printPDDPBody ();
-		printPDDPFtr();
+	public void writeJSONFile () throws java.io.IOException {	
+		
+		// write the JSON files
+		// write one JSON file for all IM content
+		
+		// PDS4_PDS_JSON_1910_DOM
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
+		lFileName = DMDocument.replaceString (lFileName, "PDS_JSON", "ALL_JSON");
+		PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+		printPDDPHdr(prDDPins);
+		printPDDPBody ("all", prDDPins);
+		printPDDPFtr(prDDPins);
 		prDDPins.close();
+		
+		// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
+		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+
+		//	write a JSON file for each namespace
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
+			for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+				DOMClass lSelectedClass = (DOMClass) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
+					lSelectedClassArr.add(lSelectedClass);
+				}
+			}
+			if (! DOMInfoModel.masterNameSpaceHasMemberArr.contains(lSchemaFileDefn.nameSpaceIdNC)) continue;
+		
+			// PDS4_PDS_JSON_1910_DOM
+			String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
+			PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
+			printPDDPHdr(prDDPins2);
+			printPDDPBody (lSchemaFileDefn.nameSpaceIdNC, prDDPins2);
+			printPDDPFtr(prDDPins2);
+			prDDPins2.close();
+		}
 	}	
 	
 	// Print the JSON Header
-	public void printPDDPHdr () {
+	public void printPDDPHdr (PrintWriter prDDPins) {
 		prDDPins.println("[");
 		prDDPins.println("  {");
 		prDDPins.println("    " + formValue("dataDictionary") + ": {");
@@ -53,40 +83,100 @@ class WriteDOMDDJSONFile extends Object{
 	}
 
 	// Print the JSON Footer
-	public  void printPDDPFtr () {
+	public  void printPDDPFtr (PrintWriter prDDPins) {
 		prDDPins.println("    }");
 		prDDPins.println("  }");
 		prDDPins.println("]");
 	}
 	
 //	print the JSON body
-	public  void printPDDPBody () {
-		prDDPins.println("      " + formValue("classDictionary") + ": [");
-		printClass (prDDPins);
-		prDDPins.println("      ]");
+	public  void printPDDPBody (String lNameSpaceIdNC, PrintWriter prDDPins) {
+		boolean isAllFlag = false;
+		if (lNameSpaceIdNC.compareTo("all") == 0) isAllFlag = true; 
 
-		prDDPins.println("    , " + formValue("attributeDictionary") + ": [");
-		printAttr (prDDPins);
-		prDDPins.println("      ]");
+		// Write Classes
+		ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
+		for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+			DOMClass lSelectedClass = (DOMClass) j.next();
+			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
+				lSelectedClassArr.add(lSelectedClass);
+			}
+		}
+//		System.out.println("debug writeJSONFile lSelectedClassArr.size():" + lSelectedClassArr.size());
+		if (lSelectedClassArr.size() > 0) {
+			prDDPins.println("      " + formValue("classDictionary") + ": [");
+			printClass (lSelectedClassArr, prDDPins);
+			prDDPins.println("      ]");
+		}
 		
-		prDDPins.println("    , " + formValue("dataTypeDictionary") + ": [");
-		printDataType (prDDPins);
-		prDDPins.println("      ]");
-		
-		prDDPins.println("    , " + formValue("unitDictionary") + ": [");
-		printUnits (prDDPins);
-		prDDPins.println("      ]");	
+//		Properties are listed under Classes as associations
 
-		prDDPins.println("    , " + formValue("PropertyMapDictionary") + ": [");
-		printPropertyMaps (prDDPins);
-		prDDPins.println("      ]");		
+		// Write Attributes
+		ArrayList <DOMAttr> lSelectedAttrArr = new ArrayList <DOMAttr> ();
+		for (Iterator <DOMAttr> j = DOMInfoModel.masterDOMAttrArr.iterator(); j.hasNext();) {
+			DOMAttr lSelectedAttr = (DOMAttr) j.next();
+			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedAttr.nameSpaceIdNC) == 0) {
+				lSelectedAttrArr.add(lSelectedAttr);
+			}
+		}
+//		System.out.println("debug writeJSONFile lSelectedAttrArr.size():" + lSelectedAttrArr.size());
+		if (lSelectedAttrArr.size() > 0) {
+			prDDPins.println("    , " + formValue("attributeDictionary") + ": [");
+			printAttr (lSelectedAttrArr, prDDPins);
+			prDDPins.println("      ]");
+		}
+
+		// Write DataTypes
+		ArrayList <DOMDataType> lSelectedDataTypeArr = new ArrayList <DOMDataType> ();
+		for (Iterator <DOMDataType> j = DOMInfoModel.masterDOMDataTypeArr.iterator(); j.hasNext();) {
+			DOMDataType lSelectedDataType = (DOMDataType) j.next();
+			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedDataType.nameSpaceIdNC) == 0) {
+				lSelectedDataTypeArr.add(lSelectedDataType);
+			}
+		}
+//		System.out.println("debug writeJSONFile lSelectedDataTypeArr.size():" + lSelectedDataTypeArr.size());
+		if (lSelectedDataTypeArr.size() > 0) {
+			prDDPins.println("    , " + formValue("dataTypeDictionary") + ": [");
+			printDataType (lSelectedDataTypeArr, prDDPins);
+			prDDPins.println("      ]");
+		}
+		
+		// Write Units
+		ArrayList <DOMUnit> lSelectedUnitArr = new ArrayList <DOMUnit> ();
+		for (Iterator <DOMUnit> j = DOMInfoModel.masterDOMUnitArr.iterator(); j.hasNext();) {
+			DOMUnit lSelectedUnit = (DOMUnit) j.next();
+			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedUnit.nameSpaceIdNC) == 0) {
+				lSelectedUnitArr.add(lSelectedUnit);
+			}
+		}
+//		System.out.println("debug writeJSONFile lSelectedUnitArr.size():" + lSelectedUnitArr.size());
+		if (lSelectedUnitArr.size() > 0) {
+			prDDPins.println("    , " + formValue("unitDictionary") + ": [");
+			printUnits (lSelectedUnitArr, prDDPins);
+			prDDPins.println("      ]");
+		}
+
+		// Write Property Maps
+		ArrayList <PropertyMapsDefn> lSelectedPropMapArr = new ArrayList <PropertyMapsDefn> ();
+		for (Iterator <PropertyMapsDefn> j = DOMInfoModel.masterPropertyMapsArr.iterator(); j.hasNext();) {
+			PropertyMapsDefn lSelectedPropMap = (PropertyMapsDefn) j.next();
+			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedPropMap.namespace_id) == 0) {
+				lSelectedPropMapArr.add(lSelectedPropMap);
+			}
+		}
+//		System.out.println("debug writeJSONFile lSelectedPropMapArr.size():" + lSelectedPropMapArr.size());
+		if (lSelectedPropMapArr.size() > 0) {
+			prDDPins.println("    , " + formValue("PropertyMapDictionary") + ": [");
+			printPropertyMaps (lSelectedPropMapArr, prDDPins);
+			prDDPins.println("      ]");
+		}
 	}
 	
 	// Print the classes
-	public  void printClass (PrintWriter prDDPins) {
+	public  void printClass (ArrayList <DOMClass> lSelectedClassArr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
-		for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
+//		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
+		for (Iterator<DOMClass> i = lSelectedClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.title.indexOf("PDS3") > -1) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
@@ -109,13 +199,13 @@ class WriteDOMDDJSONFile extends Object{
 	
 	// Print the Associations
 	public  void printAssoc (DOMClass lClass, PrintWriter prDDPins) {
-		if (lClass.hasDOMObject.isEmpty()) return;
+		if (lClass.allAttrAssocArr.isEmpty()) return;
 				
 		// sort by classOrder
 		TreeMap <String, DOMPropGroup> lDOMPropGroupMap = new TreeMap <String, DOMPropGroup> ();
 		DOMPropGroup lDOMPropGroup = new DOMPropGroup ();
 		String pGroupName = "NULL";
-		for (Iterator<ISOClassOAIS11179> i = lClass.hasDOMObject.iterator(); i.hasNext();) {
+		for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
 			ISOClassOAIS11179 lDOMObject = lDOMProp.hasDOMObject;
 			if (lDOMObject != null) {
@@ -136,7 +226,6 @@ class WriteDOMDDJSONFile extends Object{
 				System.out.println(">>error    - WriteDOMDDJSONFile - Failed to find DOMObject - lDOMProp.identifier: " + lDOMProp.identifier);
 			}
 		}
-		
 		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	
 		prDDPins.println("              , " + formValue("associationList") + ": [");
 		printSuperClassAssoc (lClass, prDDPins);
@@ -204,7 +293,7 @@ class WriteDOMDDJSONFile extends Object{
 		}
 		prDDPins.println("           ]");
 	}
-
+	
 	// Print the Associations
 	public  void printSuperClassAssoc (DOMClass lClass, PrintWriter prDDPins) {
 		if (lClass.subClassOf == null) return;
@@ -236,10 +325,10 @@ class WriteDOMDDJSONFile extends Object{
 	}
 	
 	// Print the the Protege Pins DE
-	public void printAttr (PrintWriter prDDPins) {
+	public void printAttr (ArrayList <DOMAttr> lSelectedAttrArr, PrintWriter prDDPins) {
 		// print the data elements
 		String delimiter1 = "  ";
-		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMAttr> i = lSelectedAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
 			if (! (lAttr.isUsedInClass && lAttr.isAttribute)) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
@@ -294,9 +383,9 @@ class WriteDOMDDJSONFile extends Object{
 	}
 	
 	// Print the Data Types
-	public  void printDataType (PrintWriter prDDPins) {
+	public  void printDataType (ArrayList <DOMDataType> lSelectedDatatypeArr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-		for (Iterator<DOMDataType> i = DOMInfoModel.masterDOMDataTypeArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMDataType> i = lSelectedDatatypeArr.iterator(); i.hasNext();) {
 			DOMDataType lDataType = (DOMDataType) i.next();
 			prDDPins.println("      " + delimiter1 + "{" + formValue("DataType") + ": {");				
 			delimiter1 = ", ";
@@ -334,9 +423,9 @@ class WriteDOMDDJSONFile extends Object{
 	}
 
 	// Print the Units
-	public  void printUnits (PrintWriter prDDPins) {
+	public  void printUnits (ArrayList <DOMUnit> lSelectedUnitArr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMUnit> i = lSelectedUnitArr.iterator(); i.hasNext();) {
 			DOMUnit lUnit = (DOMUnit) i.next();
 			prDDPins.println("      " + delimiter1 + "{" + formValue("Unit") + ": {");				
 			delimiter1 = ", ";
@@ -371,9 +460,9 @@ class WriteDOMDDJSONFile extends Object{
 	}
 	
 		// Print the Property Maps
-		public  void printPropertyMaps (PrintWriter prDDPins) {
+		public  void printPropertyMaps (ArrayList <PropertyMapsDefn> lSelectedPropMapsArr, PrintWriter prDDPins) {
 			String delimiter1 = "  ";
-			for (Iterator<PropertyMapsDefn> i = DOMInfoModel.masterPropertyMapsArr.iterator(); i.hasNext();) {
+			for (Iterator<PropertyMapsDefn> i = lSelectedPropMapsArr.iterator(); i.hasNext();) {
 				PropertyMapsDefn lPropertyMaps = (PropertyMapsDefn) i.next();
 				prDDPins.println("      " + delimiter1 + "{" + formValue("PropertyMaps") + ": {");				
 				delimiter1 = ", ";

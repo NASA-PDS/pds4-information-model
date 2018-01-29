@@ -150,22 +150,7 @@ public class GetDOMModel extends Object {
 		}
 		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
 		
-		System.out.println("\n>>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
-		System.out.println("\n>>info    - Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
-		System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
-		System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
-		System.out.println(" ");
-
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
-		
 		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
 			DMDocument.LDDToolSingletonDOMClass = DOMInfoModel.masterDOMUserClass;
 			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
@@ -361,6 +346,36 @@ public class GetDOMModel extends Object {
 			String lIdentifier = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lElementName);
 			DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
+		}
+		
+		// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
+		// initially developed for WriteDOMDDJSONFile
+		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			boolean foundObject = false;
+			for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+				DOMClass lSelectedClass = (DOMClass) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) foundObject = true;
+			}
+			for (Iterator <DOMAttr> j = DOMInfoModel.masterDOMAttrArr.iterator(); j.hasNext();) {
+				DOMAttr lSelectedAttr = (DOMAttr) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedAttr.nameSpaceIdNC) == 0) foundObject = true;
+			}
+			for (Iterator <DOMDataType> j = DOMInfoModel.masterDOMDataTypeArr.iterator(); j.hasNext();) {
+				DOMDataType lSelectedDataType = (DOMDataType) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedDataType.nameSpaceIdNC) == 0) foundObject = true;
+			}
+			for (Iterator <DOMUnit> j = DOMInfoModel.masterDOMUnitArr.iterator(); j.hasNext();) {
+				DOMUnit lSelectedUnit = (DOMUnit) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedUnit.nameSpaceIdNC) == 0) foundObject = true;
+			}
+			for (Iterator <PropertyMapsDefn> j = DOMInfoModel.masterPropertyMapsArr.iterator(); j.hasNext();) {
+				PropertyMapsDefn lSelectedPropMap = (PropertyMapsDefn) j.next();
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedPropMap.namespace_id) == 0) foundObject = true;
+			}
+			
+			if (foundObject) DOMInfoModel.masterNameSpaceHasMemberArr.add(lSchemaFileDefn.nameSpaceIdNC);
 		}
 		
 		System.out.println("\n>>info    - Master DOM Structures Initiated");	

@@ -78,6 +78,9 @@ public abstract class DOMInfoModel extends Object {
 	// global property maps
 	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
 	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr = new ArrayList <PropertyMapsDefn> ();
+	
+	// Array of namespaces that have a class, attribute, etc as a member. Determines what files to write.
+	static ArrayList <String> masterNameSpaceHasMemberArr = new ArrayList <String> ();
 		
 	// All CD and DEC values for the Attributes
 	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
