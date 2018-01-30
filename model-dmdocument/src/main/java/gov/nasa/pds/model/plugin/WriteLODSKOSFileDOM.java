@@ -110,15 +110,7 @@ class WriteLODSKOSFileDOM extends Object{
 				prDDPins.println("  " + "skos:narrower" + " " +  "pds:" + lSubClass.title + ";");	
 			}
 			
-		// write and save the member attributes
-			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.hasDOMObject instanceof DOMAttr) {			
-				   lRefAttrArr.put(lProp.nameSpaceId + lProp.title, lProp);
-				   prDDPins.println("  " + "skos:semanticRelation" + " " +  "pds:" + lProp.title + ";");
-				}
-			} 
-			
+
 			// write and save the member attributes
 			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
