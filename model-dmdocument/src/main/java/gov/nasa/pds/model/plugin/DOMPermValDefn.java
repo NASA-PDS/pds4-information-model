@@ -51,4 +51,31 @@ public class DOMPermValDefn extends ISOClassOAIS11179 {
 		value_end_date = lPermValue.value_end_date;
 		return;
 	}
+	
+	public void createDOMPermValSingletonsDOM (String lValue, String lValueMeaning, DOMAttr lAttr) {
+		sequenceId = InfoModel.getNextUId();
+		String lValueId = lValue;
+		if (lAttr.title.compareTo("pattern") == 0) {
+			isPattern = true;
+			lValueId = "Pattern"; // pattern characters (e.g., back slashes) are invalid for OWL RDF identifiers.
+		}
+		int lValueLength = lValueId.length();
+		if (lValueLength > 20) lValueId = lValueId.substring(0, 20);
+		rdfIdentifier = DMDocument.rdfPrefix + lAttr.parentClassTitle + "." + lAttr.title + "." + lValueId + "." + sequenceId; 
+		int lHashCodeI = lValue.hashCode();
+		String lHashCodeS = Integer.toString(lHashCodeI);
+		identifier = lAttr.identifier + "." + lValueId + "." + lHashCodeS;
+		versionId = lAttr.versionId; 
+		title = identifier;
+		registrationStatus = "TBD_registrationStatus"; 
+		regAuthId = lAttr.regAuthId; 
+		steward = lAttr.steward; 
+		nameSpaceId = lAttr.nameSpaceId;
+		nameSpaceIdNC = lAttr.nameSpaceIdNC;
+		value = lValue;
+		value_meaning = lValueMeaning;
+		value_begin_date = "TBD_value_begin_date";
+		value_end_date = "TBD_value_end_date";
+		return;
+	}
 }

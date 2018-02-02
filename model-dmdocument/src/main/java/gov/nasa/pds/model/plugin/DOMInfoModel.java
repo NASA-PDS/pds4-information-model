@@ -1456,6 +1456,7 @@ public abstract class DOMInfoModel extends Object {
 // 445		prDOMWriter.println("        attr.isDataType:" + attr.isDataType);		
 // 445		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
 
+// 333 to be deprecated
 		if (attr.valArr != null && attr.valArr.size() > 0) {
 			prDOMWriter.println("        has attr.valArr");
 
@@ -1465,6 +1466,7 @@ public abstract class DOMInfoModel extends Object {
 			}
 		}
 		
+// 333 to be deprecated
 		if (attr.valClassArr != null && attr.valClassArr.size() > 0) {
 			prDOMWriter.println("        has attr.valClassArr");
 
@@ -1474,14 +1476,27 @@ public abstract class DOMInfoModel extends Object {
 			}
 		}
 		
-		if (attr.permValueArr != null && attr.permValueArr.size() > 0) {
+// 333 to be deprecated
+/*		if (attr.permValueArr != null && attr.permValueArr.size() > 0) {
 			prDOMWriter.println("        has attr.permValueArr");
 
 			for (Iterator <PermValueDefn> j = attr.permValueArr.iterator(); j.hasNext();) {
 				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
 				prDOMWriter.println("          PermValueDefn.value:" + lPermValueDefn.value + "  registrationStatus:" + lPermValueDefn.registrationStatus + "  lPermValueDefn.value_meaning:" + lPermValueDefn.value_meaning);
 			}
-		}		
+		}	*/
+		
+// 		Permissible values
+		if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
+			prDOMWriter.println("        has attr.domPermValueArr");
+			for (Iterator <DOMProp> j = attr.domPermValueArr.iterator(); j.hasNext();) {
+				DOMProp lDOMProp = (DOMProp) j.next();
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+					DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+					prDOMWriter.println("          lDOMPermVal.value:" + lDOMPermVal.value + "  lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "  lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
+				}
+			}
+		}
 	}
 	
 	static public void DOMPropWriter (DOMProp lProp,  PrintWriter prDOMWrite) {	

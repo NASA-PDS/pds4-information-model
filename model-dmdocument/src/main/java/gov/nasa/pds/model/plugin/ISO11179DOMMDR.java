@@ -214,6 +214,15 @@ class ISO11179DOMMDR extends Object {
 						if (lValueMeaning != null) {
 							lPermValueDefn.value_meaning = lValueMeaning;
 						}
+						
+						// create a DOMProp and Associated DOMPermValDefn for each permissible value
+						DOMProp lDOMProp = new DOMProp ();								// create the DOMProp for the Permissible Value
+						lAttr.domPermValueArr.add(lDOMProp);
+						DOMPermValDefn lDOMPermValDefn = new DOMPermValDefn ();			// create the DOMPermValDefn						
+						lDOMProp.hasDOMObject = lDOMPermValDefn;						// assign the one DOMPermValDefn to the DOMProp
+//						if (lDOMAttr.title.compareTo("pattern") == 0) lDOMPermValDefn.isPattern = true;
+						lDOMPermValDefn.createDOMPermValSingletonsDOM(lValue, lValueMeaning, lAttr);
+						lDOMProp.initDOMPermValProp(lDOMPermValDefn);
 					}
 				}
 			}

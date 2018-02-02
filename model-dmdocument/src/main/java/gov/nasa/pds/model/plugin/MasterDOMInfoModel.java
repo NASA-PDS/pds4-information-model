@@ -725,6 +725,15 @@ class MasterDOMInfoModel extends DOMInfoModel{
 							lPermValue.registrationStatus = "Retired";
 						}
 					}
+					for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
+						DOMProp lDOMProp = (DOMProp) j.next();
+						if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+							DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+							if (lDOMPermValDefn.value.compareTo(lDeprecatedDefn.value) == 0) {
+								lDOMPermValDefn.registrationStatus = "Retired";
+							}
+						}
+					}
 				}
 			} else {
 				// is it a class
