@@ -110,14 +110,17 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 			if ( ! (lAttr.domPermValueArr == null || lAttr.domPermValueArr.isEmpty())) {
 				for (Iterator <DOMProp> k = lAttr.domPermValueArr.iterator(); k.hasNext();) {
 					DOMProp lDOMProp = (DOMProp) k.next();
-					DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMClass.get(0); 
+					
+					if (lDOMProp.hasDOMObject == null) continue;
+					if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) continue;
+					DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
 					String lValue = lDOMPermVal.value;					
 				    if (lValue != null) {
 					   prDDReg.println("            <DD_Permissible_Value_Full>");
 					   prDDReg.println("                <value>" + lValue + "</value>");
-				    	if (lDOMPermVal.value_meaning.indexOf("TBD") != 0) {
-						   prDDReg.println("                <value_meaning>" + DOMInfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
-					    }
+//				    	if (lDOMPermVal.value_meaning.indexOf("TBD") != 0) {
+//						   prDDReg.println("                <value_meaning>" + DOMInfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
+//					    }
 					    prDDReg.println("                <value_begin_date>" + DMDocument.beginDatePDS4Value + "T00:00:00Z" + "</value_begin_date>");
 					    prDDReg.println("                <value_end_date>" + DMDocument.endDateValue + "T00:00:00Z" + "</value_end_date>");
 					    prDDReg.println("            </DD_Permissible_Value_Full>");
