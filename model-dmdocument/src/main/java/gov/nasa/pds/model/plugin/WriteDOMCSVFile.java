@@ -112,25 +112,21 @@ class WriteDOMCSVFiles extends Object {
 			pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
 			    	
 		        valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
-			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lProp.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lProp.cardMin + DELM_MID + lProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
+			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lDOMAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lProp.cardMin + DELM_MID + lProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 			
-			ArrayList<ISOClassOAIS11179> lValArr = lDOMAttr.hasDOMObject;
-		
-			//		System.out.println("getting values - size is "+ lValClassArr.size());
-			Iterator <ISOClassOAIS11179> k = lValArr.iterator();		
-			String value;
-			//	    System.out.println("Attr - "+ lProp.identifier+ "--" + lProp.classNameSpaceIdNC);
-			while (k.hasNext()) {					   
-				DOMProp lDOMProp = (DOMProp) k.next();					
-				if  (lDOMProp.hasDOMObject instanceof DOMPermValDefn) {					  
-					 DOMPermValDefn lDOMPermVal  =(DOMPermValDefn) lDOMProp.hasDOMObject; 
-					 String lValue = lDOMPermVal.value;
+			
+			for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
+				DOMProp lDOMProp = (DOMProp) i.next();
+				if (lDOMProp.hasDOMObject == null) continue;
+				if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) continue;
+				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+			    String lValue = lDOMPermValDefn.value;
 					 if (lValue.length() > 20) lValue = lValue.substring(0,20);
 					 pIdentifier = valueSortField + " Value:" + lValue;
-					prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermVal.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermVal.value_meaning + DELM_END + "\r\n");
+					prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermValDefn.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermValDefn.value_meaning + DELM_END + "\r\n");
 				}
 			}
-		}		
+				
 		
 	}
 
