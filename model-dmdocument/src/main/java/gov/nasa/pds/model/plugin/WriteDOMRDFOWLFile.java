@@ -463,7 +463,7 @@ class WriteDOMRDFOWLFile extends Object{
 	// Print the Permissible Values and Value Meanings
 	public  void printPermValues (DOMAttr lAttr, PrintWriter prDDPins) {
 		boolean isFirst = true;
-		if (lAttr.permValueArr.isEmpty()) return;
+		if (lAttr.domPermValueArr.isEmpty()) return;
 		prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");				
 		for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
