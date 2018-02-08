@@ -65,9 +65,8 @@ class WriteDDProductDOMClassDefinitions extends Object{
 		prDDReg.println("        <abstract_flag>" + lClass.isAbstract + "</abstract_flag>");
 
 		
-		ArrayList<ISOClassOAIS11179> lDOMArr = lClass.hasDOMObject;		
-		
-		for (Iterator<ISOClassOAIS11179> j = lDOMArr.iterator(); j.hasNext();) {
+	
+		for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {		
 			DOMProp lProp = (DOMProp) j.next();			    	
 			if (!(lProp.isAttribute))  {
 			    DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;				        	
