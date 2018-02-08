@@ -45,20 +45,14 @@ public class GetModels extends Object {
 		getModels2(instMap);
 		getSectionContent(instMap);
 		
-		InfoModel.ont_version_id = DMDocument.docInfo.version; 			// 1.0.0.0[b]
-		DMDocument.administrationRecordValue = "DD_" + DMDocument.docInfo.version;
-		String lLabVersion = InfoModel.ont_version_id;		
-		lLabVersion = replaceString(lLabVersion, ".", "");		// 1000[b]
-		if (lLabVersion.length() > 4) {
-			InfoModel.lab_version_id = lLabVersion.substring(0,5);	// 1000B from Beta
-		} else {
-			InfoModel.lab_version_id = lLabVersion;				// 1000[b]	
-		}
-		InfoModel.ns_version_id = lLabVersion.substring(0,1);	// 1
-		String lSchVersion = InfoModel.ont_version_id;	
-		InfoModel.sch_version_id = lSchVersion.substring(0,7);	// 1.0.0.0
-		InfoModel.identifier_version_id = lSchVersion.substring(0,3);	// 1.0
-		DMDocument.versionIdentifierValue = InfoModel.identifier_version_id;
+// 333 - Remove the following after updating the writers.
+		// use the master version 
+		InfoModel.ont_version_id = DMDocument.masterPDSSchemaFileDefn.ont_version_id;
+		InfoModel.lab_version_id = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+		InfoModel.identifier_version_id = DMDocument.masterPDSSchemaFileDefn.identifier_version_id;
+		// use the master version
+		DMDocument.versionIdentifierValue = DMDocument.masterPDSSchemaFileDefn.identifier_version_id;
+		DMDocument.administrationRecordValue = "DD_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id;
 		
 		// Initialize the master information model 
 		DMDocument.masterInfoModel = new  MasterInfoModel ();

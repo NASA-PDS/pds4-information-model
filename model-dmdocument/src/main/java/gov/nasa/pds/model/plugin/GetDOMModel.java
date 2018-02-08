@@ -21,20 +21,14 @@ public class GetDOMModel extends Object {
 
 		PDSOptionalFlag = oflag;
 		
-		DOMInfoModel.ont_version_id = DMDocument.docInfo.version; 			// 1.0.0.0[b]
-		DMDocument.administrationRecordValue = "DD_" + DMDocument.docInfo.version;
-		String lLabVersion = DOMInfoModel.ont_version_id;		
-		lLabVersion = DOMInfoModel.replaceString(lLabVersion, ".", "");		// 1000[b]
-		if (lLabVersion.length() > 4) {
-			DOMInfoModel.lab_version_id = lLabVersion.substring(0,5);	// 1000B from Beta
-		} else {
-			DOMInfoModel.lab_version_id = lLabVersion;				// 1000[b]	
-		}
-		DOMInfoModel.ns_version_id = lLabVersion.substring(0,1);	// 1
-		String lSchVersion = DOMInfoModel.ont_version_id;	
-		DOMInfoModel.sch_version_id = lSchVersion.substring(0,7);	// 1.0.0.0
-		DOMInfoModel.identifier_version_id = lSchVersion.substring(0,3);	// 1.0
-		DMDocument.versionIdentifierValue = DOMInfoModel.identifier_version_id;
+// 333 - Remove the following after updating the writers.
+		// use the master version 
+		DOMInfoModel.ont_version_id = DMDocument.masterPDSSchemaFileDefn.ont_version_id;
+		DOMInfoModel.lab_version_id = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+		DOMInfoModel.identifier_version_id = DMDocument.masterPDSSchemaFileDefn.identifier_version_id;
+		// use the master version 
+		DMDocument.versionIdentifierValue = DMDocument.masterPDSSchemaFileDefn.identifier_version_id;
+		DMDocument.administrationRecordValue = "DD_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id;
 		
 		// Initialize the master information model 
 		DMDocument.masterDOMInfoModel = new  MasterDOMInfoModel ();
@@ -416,30 +410,24 @@ public class GetDOMModel extends Object {
 			DOMClass lClass = (DOMClass) i.next();
 			
 			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				for (Iterator<ISOClassOAIS11179> k = lProp.hasDOMClass.iterator(); k.hasNext();) {
-					ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) k.next();
-					if (lISOClassOAIS11179 instanceof DOMAttr) {
-						DOMAttr lAttr = (DOMAttr) lISOClassOAIS11179;
-						lAttr.isUsedInClass = true;
-					}
+				DOMProp lProp = (DOMProp) j.next();	
+				if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+					lAttr.isUsedInClass = true;
 				}
 			}
-			
+
 			for (Iterator<DOMProp> j = lClass.inheritedAttrArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
-				for (Iterator<ISOClassOAIS11179> k = lProp.hasDOMClass.iterator(); k.hasNext();) {
-					ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) k.next();
-					if (lISOClassOAIS11179 instanceof DOMAttr) {
-						DOMAttr lAttr = (DOMAttr) lISOClassOAIS11179;
-						lAttr.isUsedInClass = true;
-					}
+				if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+					lAttr.isUsedInClass = true;
 				}
 			}
 		}
 		return;
 	}
-				
+	
 /**********************************************************************************************************
 		miscellaneous routines
 ***********************************************************************************************************/

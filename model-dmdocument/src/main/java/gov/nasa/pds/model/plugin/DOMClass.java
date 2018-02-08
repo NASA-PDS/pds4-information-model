@@ -258,7 +258,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 			}
 		}
 	}
-
+	
 	//  Check whether this class is an extension or restriction
 	public void setisExtentionOrRestrictionClass () {
 		DOMClass lSuperClass = this.subClassOf;
@@ -270,13 +270,12 @@ public class DOMClass extends ISOClassOAIS11179 {
 		// first get the identifiers of the super class's members (attributes and classes)
 		for (Iterator<DOMProp> i = lSuperClass.allAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
-			for (Iterator<ISOClassOAIS11179> j = lProp.hasDOMClass.iterator(); j.hasNext();) {
-				ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) j.next();
-				if (lISOClassOAIS11179 instanceof DOMAttr) {
-					DOMAttr lSCPAttr = (DOMAttr) lISOClassOAIS11179;
+			if (lProp.hasDOMObject != null) {
+				if (lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lSCPAttr = (DOMAttr) lProp.hasDOMObject;
 					lSuperIdentifierArr.add(lSCPAttr.identifier);
-				} else {
-					DOMClass lSCPClass = (DOMClass) lISOClassOAIS11179;
+				} else if (lProp.hasDOMObject instanceof DOMClass){
+					DOMClass lSCPClass = (DOMClass) lProp.hasDOMObject;
 					lSuperIdentifierArr.add(lSCPClass.identifier);
 				}
 			}
@@ -285,13 +284,12 @@ public class DOMClass extends ISOClassOAIS11179 {
 		// second get the identifiers of this class's members (attributes and classes)
 		for (Iterator<DOMProp> i = allAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
-			for (Iterator<ISOClassOAIS11179> j = lProp.hasDOMClass.iterator(); j.hasNext();) {
-				ISOClassOAIS11179 lISOClassOAIS11179 = (ISOClassOAIS11179) j.next();
-				if (lISOClassOAIS11179 instanceof DOMAttr) {
-					DOMAttr lSCPAttr = (DOMAttr) lISOClassOAIS11179;
+			if (lProp.hasDOMObject != null) {
+				if (lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lSCPAttr = (DOMAttr) lProp.hasDOMObject;
 					lThisIdentifierArr.add(lSCPAttr.identifier);
-				} else {
-					DOMClass lSCPClass = (DOMClass) lISOClassOAIS11179;
+				} else  if (lProp.hasDOMObject instanceof DOMClass) {
+					DOMClass lSCPClass = (DOMClass) lProp.hasDOMObject;
 					lThisIdentifierArr.add(lSCPClass.identifier);
 				}
 			}

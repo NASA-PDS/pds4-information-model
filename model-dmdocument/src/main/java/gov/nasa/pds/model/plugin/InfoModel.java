@@ -8,10 +8,8 @@ import java.util.*;
 public abstract class InfoModel extends Object {
 	
 	// global constants
-	static String ont_version_id;						// 0.1.0.0.a
-	static String lab_version_id;						// 0100a
-	static String sch_version_id;						// 1.0.0
-	static String ns_version_id;						// 01
+	static String ont_version_id;						// 0.1.0.0
+	static String lab_version_id;						// 0100
 	static String identifier_version_id;				// 0.1
 	
 	// global administrative records

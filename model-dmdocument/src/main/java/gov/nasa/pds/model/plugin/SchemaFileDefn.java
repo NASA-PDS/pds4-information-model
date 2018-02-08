@@ -1,5 +1,6 @@
 package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SchemaFileDefn {
 	// identifier is the namespace id, without colon, and in caps; it must be unique within the PDS
@@ -56,7 +57,7 @@ public class SchemaFileDefn {
 	String relativeFileSpecOWLRDF;
 	String relativeFileSpecOWLRDF_DOM;
 	String relativeFileSpecSKOSTTL;
-	String relativeFileSpecSKOSTTL_DOM;	
+	String relativeFileSpecSKOSTTL_DOM;
 	String relativeFileSpecReportTXT;		
 	String relativeFileSpecUMLXMI;
 	String relativeFileSpecUMLXMI2;
@@ -118,7 +119,7 @@ public class SchemaFileDefn {
 		relativeFileSpecModelJSON = "TBD_relativeFileSpecModelJSON";	
 		relativeFileSpecDOMModelJSON = "TBD_relativeFileSpecDOMModelJSON";	
 		relativeFileSpecModelRDF = "TBD_relativeFileSpecModelRDF";
-		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";	
+		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";
 		relativeFileSpecOWLRDF_DOM = "TBD_relativeFileSpecOWLRDF_DOM";
 		relativeFileSpecSKOSTTL = "TBD_relativeFileSpecSKOSTTL";
 		relativeFileSpecSKOSTTL_DOM = "TBD_relativeFileSpecSKOSTTL_DOM";
@@ -153,40 +154,20 @@ public class SchemaFileDefn {
 		nameSpaceIdNCUC = nameSpaceIdNC.toUpperCase();
 		nameSpaceId = nameSpaceIdNCLC + ":";
 		return;
-	}		
+	}
 	
 	//	set the various version identifiers
 	public void setVersionIds () {
 		
-		// new code; not tested
-/*		int lLength = versionId.length();
-		if (lLength > 7) lLength = 7;
-		String lVersionString = "1.0.0.0";
-		String lVersionSuffix = lVersionString.substring(lLength,7);	*/
-		
-		if (versionId.length() <= 0) versionId  = "1.0.0.0";
-		if (versionId.length() <= 1) versionId +=  ".0.0.0";
-		if (versionId.length() <= 2) versionId +=   "0.0.0";
-		if (versionId.length() <= 3) versionId +=    ".0.0";
-		if (versionId.length() <= 4) versionId +=     "0.0";
-		if (versionId.length() <= 5) versionId +=      ".0";
-		if (versionId.length() <= 6) versionId +=       "0";
-		String lVersionId = versionId; 						// 1.0.0.0[b]
-		ont_version_id = lVersionId; 						// 1.0.0.0[b]
-		sch_version_id = lVersionId.substring(0,7);			// 1.0.0.0
-		identifier_version_id = lVersionId.substring(0,3);	// 1.0
-		lVersionId = DMDocument.replaceString(lVersionId, ".", "");		// 1000[b]
-		if (lVersionId.length() > 4) {
-			lab_version_id = lVersionId.substring(0,5);		// 1000B from Beta
-		} else {
-			lab_version_id = lVersionId;					// 1000[b]	
-		}
-		ns_version_id = lVersionId.substring(0,1);	// 1
-
-//		System.out.println("\ndebug SchemaFileDefn nameSpaceId:" + nameSpaceId);
-//		System.out.println("debug SchemaFileDefn versionId:" + versionId);
-//		System.out.println("debug SchemaFileDefn labelVersionId:" + labelVersionId);
-//		System.out.println("debug SchemaFileDefn lab_version_id:" + lab_version_id);
+		// get a cleaned up version id
+		// the following attributes are updated.
+		//    ont_version_id, lab_version_id, identifier_version_id 
+		getCleanVersionId(versionId);
+//		*** ont_version_id = DOMInfoModel.ont_version_id; 				// 1.0.0.0
+		sch_version_id = ont_version_id;								// 1.0.0.0
+//		*** identifier_version_id = DOMInfoModel.identifier_version_id;	// 1.0
+//		***lab_version_id = DOMInfoModel.lab_version_id;				// 1000
+		ns_version_id = lab_version_id.substring(0,1);					// 1
 		
 		// set the relative file spec now that we have a version id
 		relativeFileSpecModelSpec = DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
@@ -220,10 +201,6 @@ public class SchemaFileDefn {
 			lab_version_id = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 			sch_version_id = DMDocument.masterPDSSchemaFileDefn.sch_version_id;
 			ns_version_id = DMDocument.masterPDSSchemaFileDefn.ns_version_id;	
-			
-//			System.out.println("debug SchemaFileDefn new versionId:" + versionId);
-//			System.out.println("debug SchemaFileDefn new labelVersionId:" + labelVersionId);
-//			System.out.println("debug SchemaFileDefn new lab_version_id:" + lab_version_id);
 
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
 			relativeFileSpecSchematron = DMDocument.outputDirPath + "PDS4_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
@@ -254,6 +231,63 @@ public class SchemaFileDefn {
 		relativeFileSpecAttrDefn = DMDocument.outputDirPath + "export/defnAttr/";	
 		relativeFileSpecClassDefn = DMDocument.outputDirPath + "export/defnClass/";	
 
+		return;
+	}
+	
+	// get clean version id
+	void getCleanVersionId(String versionId) {
+		// parse out the version id into an array of strings, one string for each digit
+		char ic;
+		ArrayList <String> vIdDigitArr = new ArrayList <String> ();
+		String vIdDigit = "";
+		StringBuffer sbVersionId = new StringBuffer(versionId);
+		for (int i = 0; i <  sbVersionId.length (); i++) {
+			ic = sbVersionId.charAt(i);
+			if (ic != '.') {
+				if (Character.isDigit(ic)) vIdDigit += new Character(ic).toString();
+				else vIdDigit += "x";
+			} else {
+				vIdDigitArr.add(vIdDigit);
+				vIdDigit = "";
+			}
+		}
+
+		// ensure that there are four digits
+		for (int i = vIdDigitArr.size(); i <  4; i++) {
+			vIdDigitArr.add("0");
+		}
+		
+		// get ont_version_id - 1.0.0.0
+		String lId = "";
+		String lDel = "";
+		for (Iterator <String> i = vIdDigitArr.iterator(); i.hasNext();) {
+			String lDigit = (String) i.next();
+			lId += lDel + lDigit;
+			lDel = ".";
+		}
+		ont_version_id = lId;
+		
+		// get lab_version_id - 1000
+		lId = "";
+		for (Iterator <String> i = vIdDigitArr.iterator(); i.hasNext();) {
+			String lDigit = (String) i.next();
+			if (lDigit.compareTo("10") == 0) lDigit = "A";
+			lId += lDigit;
+		}
+		lab_version_id = lId;
+		
+		// get identifier_version_id - 1.0
+		lId = "";
+		int cnt = 0;
+		lDel = "";
+		for (Iterator <String> i = vIdDigitArr.iterator(); i.hasNext();) {
+			String lDigit = (String) i.next();
+			lId += lDel + lDigit;
+			lDel = ".";
+			cnt++;
+			if (cnt >= 2) break;
+		}
+		identifier_version_id = lId;
 		return;
 	}
 }
