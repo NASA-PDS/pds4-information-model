@@ -545,8 +545,47 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			// add all inherited associations of the class
 			lClass.allAttrAssocArr.addAll(lClass.inheritedAssocArr);
 			
-			// add all owned attributes and associations
-			lClass.ownedAttrAssocNOArr.addAll(lClass.ownedAttrAssocArr);
+			// find all owned attributes and associations that are not inherited from any super class
+			//      lClass.ownedAttrAssocNOArr
+			ArrayList <String> lSuperOwnedAttrAssocArr = new ArrayList <String> ();
+			// iterate through the super classes
+			for (Iterator<DOMClass> j = lClass.superClassHierArr.iterator(); j.hasNext();) {
+				DOMClass lDOMSuperClass = (DOMClass) j.next();
+
+				// first get the identifiers of the owned attributes of the super class
+				for (Iterator<DOMProp> k = lDOMSuperClass.ownedAttrArr.iterator(); k.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) k.next();
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+						lSuperOwnedAttrAssocArr.add(lDOMAttr.nameSpaceId + lDOMAttr.title);
+					}
+				}
+				// second get the identifiers of the owned associations of the super class
+				for (Iterator<DOMProp> k = lDOMSuperClass.ownedAssocArr.iterator(); k.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) k.next();
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+						DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+						lSuperOwnedAttrAssocArr.add(lDOMClass.nameSpaceId + lDOMClass.title);
+					}
+				}
+			}
+			// finally check the owned attributes and associations against the inherited owned attr and assoc from the super classes
+			for (Iterator<DOMProp> j = lClass.ownedAttrAssocArr.iterator(); j.hasNext();) {
+				DOMProp lDOMProp = (DOMProp) j.next();
+				if (lDOMProp.hasDOMObject != null) {
+					if (lDOMProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+						if (! lSuperOwnedAttrAssocArr.contains(lDOMAttr.nameSpaceId + lDOMAttr.title)) {
+							lClass.ownedAttrAssocNOArr.add(lDOMProp);
+						}
+					} else if (lDOMProp.hasDOMObject instanceof DOMClass) {
+						DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+						if (! lSuperOwnedAttrAssocArr.contains(lDOMClass.nameSpaceId + lDOMClass.title)) {
+							lClass.ownedAttrAssocNOArr.add(lDOMProp);
+						}
+					}
+				}
+			}
 		}
 	}
 
