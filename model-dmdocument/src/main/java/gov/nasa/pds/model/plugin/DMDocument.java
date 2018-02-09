@@ -41,7 +41,6 @@ public class DMDocument extends Object {
 	
 	// configuration file variables
 	static String infoModelVersionId = "0.0.0.0";
-	static String infoModelVersionIdNoDots = "0000";
 	static String schemaLabelVersionId = "0.0";
 	static String pds4BuildId = "0a";
 	
@@ -128,9 +127,6 @@ public class DMDocument extends Object {
 	static PDSObjDefn LDDToolSingletonClass = null;
 	static DOMClass LDDToolSingletonDOMClass = null;
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
-	static TreeMap <String, String> LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
-	static TreeMap <String, String> LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
-	static TreeMap <String, String> LDDToolSchemaVersionNSMap = new TreeMap <String, String> ();
 
 	// Master Model
 	static MasterInfoModel masterInfoModel;
@@ -241,9 +237,6 @@ public class DMDocument extends Object {
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
 		LDDToolMissionGovernanceFlag = false;
-//		LDDToolSchemaVersionMapNoDots = new TreeMap <String, String> ();
-//		LDDToolSchemaVersionMapDots = new TreeMap <String, String> ();
-//		LDDToolSchemaVersionNSMap = new TreeMap <String, String> ();
 
 		// get dates
 		rTodaysDate = new Date();
@@ -676,13 +669,6 @@ public class DMDocument extends Object {
     	    configInputStr = props.getProperty("infoModelVersionId");
     	    if (configInputStr != null) {
     	    	infoModelVersionId = configInputStr;
-    	    	infoModelVersionIdNoDots = replaceString(infoModelVersionId, ".", "");
-    			LDDToolSchemaVersionMapNoDots.put ("pds", infoModelVersionIdNoDots);
-    			LDDToolSchemaVersionMapNoDots.put ("disp", infoModelVersionIdNoDots);
-    			LDDToolSchemaVersionMapDots.put ("pds", infoModelVersionId);
-    			LDDToolSchemaVersionMapDots.put ("disp", infoModelVersionId);
-    			LDDToolSchemaVersionNSMap.put ("pds", "1");
-    			LDDToolSchemaVersionNSMap.put ("disp", "1");
     	    }
     	    configInputStr = props.getProperty("schemaLabelVersionId");
     	    if (configInputStr != null) schemaLabelVersionId = configInputStr;

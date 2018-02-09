@@ -12,8 +12,7 @@ class WriteDOMSchematron extends Object {
 //	write all Schematron files
 	public void writeSchematronFile (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) throws java.io.IOException {				
 		String lFileName = lSchemaFileDefn.relativeFileSpecSchematron;
-// 7777
-		lFileName = lFileName+"_DOM";
+		lFileName = lFileName + "_DOM";
 		prSchematron = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		writeSchematronRule(lSchemaFileDefn, lMasterDOMClassMap, prSchematron);
 		prSchematron.close();	
@@ -183,8 +182,8 @@ class WriteDOMSchematron extends Object {
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
-				if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(DMDocument.masterNameSpaceIdNCLC);
+				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
+				if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 				prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}

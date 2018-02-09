@@ -226,8 +226,8 @@ class XML4LabelSchemaDOM extends Object {
 			if (DMDocument.LDDToolFlag) {
 				for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 					String lNameSpaceIdNC = (String) i.next();
-					String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
-					if (lVersionNSId == null) lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get("pds");
+					String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
+					if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
 				}
 			}
@@ -240,15 +240,15 @@ class XML4LabelSchemaDOM extends Object {
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
-			prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.LDDToolSchemaVersionMapNoDots.get("pds") + ".xsd\"/>");	
+			prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionId = DMDocument.LDDToolSchemaVersionMapNoDots.get(lNameSpaceIdNC);
-				String lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get(lNameSpaceIdNC);
+				String lVersionId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).lab_version_id;
+				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
 				if (lVersionId == null) {
-					lVersionId = DMDocument.LDDToolSchemaVersionMapNoDots.get("pds");
-					lVersionNSId = DMDocument.LDDToolSchemaVersionNSMap.get("pds");
+					lVersionId = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+					lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 				}
 				prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" schemaLocation=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + lVersionId + ".xsd\"/>");	
 			}
