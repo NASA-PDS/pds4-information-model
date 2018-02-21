@@ -1,4 +1,4 @@
-; Sat Dec 09 10:53:19 PST 2017
+; Wed Feb 14 11:19:52 PST 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -586,10 +586,6 @@
 ;+		(comment "The observing_system_name attribute provides a unique name for an observing system.")
 		(type STRING)
 		(create-accessor read-write))
-	(multislot parent_class_name
-;+		(comment "The parent class name provides the name of the superclass of this class.")
-		(type STRING)
-		(create-accessor read-write))
 	(single-slot medium_type
 ;+		(comment "The medium_type attribute identifies the physical storage medium for a data volume. Examples: CD-ROM, CARTRIDGE TAPE.")
 		(type STRING)
@@ -882,6 +878,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Alias_List)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot component
+		(type STRING)
+		(default "IM" "DD")
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot has_Property_Map_Entry
 ;+		(comment "The has_Property_Map_Entry association is a relationship to property map entry.")
@@ -3633,6 +3634,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot desc
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot field_location
 ;+		(comment "The field_location attribute provides the starting byte for a field within a record or group, counting from '1'.")
 		(type INTEGER)
@@ -3859,6 +3864,10 @@
 ;+		(comment "The collected_about association is a relationship to target.")
 		(type INSTANCE)
 ;+		(allowed-classes Target)
+		(create-accessor read-write))
+	(multislot type_description
+;+		(comment "The type_description attribute provides a description of the object's type.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot was_derived_from
 ;+		(comment "The was_derived_from association is a recursive relationship on entity.")
@@ -4410,6 +4419,10 @@
 ;+		(comment "The checksum attribute provides a computed value which depends on the contents of a block of data and is used to detect corruption of the data.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot date
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot conceptual_domain
 ;+		(comment "The conceptual_domain attribute provides the domain to which the value has been assigned.")
@@ -5161,7 +5174,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -5762,6 +5775,12 @@
 ;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
+	(single-slot has_composite_structure
+;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
+		(type INSTANCE)
+;+		(allowed-classes Composite_Structure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot has_File
 ;+		(comment "The has_File association is a relationship to File.")
 		(type INSTANCE)
@@ -5872,6 +5891,12 @@
 		(type INSTANCE)
 ;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_composite_structure
+;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
+		(type INSTANCE)
+;+		(allowed-classes Composite_Structure)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot has_File
 ;+		(comment "The has_File association is a relationship to File.")
@@ -7396,19 +7421,10 @@
 ;+		(comment "The has_Local_ID_Relation association is a relationship to Local_ID_Relation.")
 		(type INSTANCE)
 ;+		(allowed-classes Local_ID_Relation)
-		(create-accessor read-write))
-	(single-slot class_name
-;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
-		(type STRING)
-;+		(cardinality 1 1)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot parent_class_name
-;+		(comment "The parent class name provides the name of the superclass of this class.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7419,7 +7435,12 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot title
-;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+;+		(comment "The title attribute provides a short, descriptive text string suitable for use as a title or brief description in a display or listing of products.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot type_description
+;+		(comment "The type_description attribute provides a description of the object's type.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -8022,7 +8043,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Local_ID_Reference "The Local_ID_Reference class defines a one directional relationship by referencing another class in the label."
+(defclass Local_ID_Reference "The Local_ID_Reference class defines a one directional relationship by referencing another description object in the label."
 	(is-a Tagged_Digital_Child)
 	(role concrete)
 	(multislot id_reference_to
@@ -8033,7 +8054,7 @@
 	(single-slot id_reference_type
 ;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
 		(type STRING)
-;+		(value "has_component")
+;+		(value "has_component" "has_primary_component")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot comment
@@ -8042,7 +8063,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Local_ID_Relation "The Local_ID_Relation class defines a one directional relationship between two classes in the label."
+(defclass Local_ID_Relation "The Local_ID_Relation class defines a one directional relationship between two description objects in the label."
 	(is-a Tagged_Digital_Child)
 	(role concrete)
 	(multislot id_reference_from
@@ -8058,6 +8079,7 @@
 	(single-slot id_reference_type
 ;+		(comment "The id_reference_type attribute provides the name of an association between two objects.")
 		(type STRING)
+;+		(value "has_backplane" "has_display_settings" "has_spectral_characteristics" "has_axis_values" "has_column_headers")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot comment
@@ -14011,3 +14033,19 @@
 (defclass XSChoice%23 "The XSChoice# class is a system marker that is used to indicate a choice is allowed. If XSChoice# is included in an association, then the allowed classes (other than XSChoice#) are included in an xs:choice structure in the XML schema. If the value XSChoice# is included in two or more attribute value lists, then these attributes are grouped and included in a xs:choice structure."
 	(is-a USER)
 	(role concrete))
+
+(defclass ChangeLog
+	(is-a USER)
+	(role concrete)
+	(single-slot desc
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot date
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
