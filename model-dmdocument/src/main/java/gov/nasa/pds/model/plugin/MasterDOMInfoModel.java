@@ -234,19 +234,26 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			String lClassXpath = "";
 			String lClassXPathDel = "";
 			String lDocSecType = "TBD_lDocSecType";
-			for (Iterator<DOMClass> j = lSuperClassArr.iterator(); j.hasNext();) {
-				lSuperClass = (DOMClass) j.next();
-
-				if (lDocSecType.indexOf("TBD") == 0 && ! lSuperClass.isUSERClass && lSuperClass.subClassOfTitle != null)
-					if (lSuperClass.subClassOfTitle.compareTo("USER") == 0) lDocSecType = lSuperClass.title;
-
-				if (lSuperClass.isAbstract) continue;
-				lClassXpath += lClassXPathDel + lSuperClass.title;
-				lClassXPathDel = "/";
+			if (lClass.subClassOfTitle.compareTo("USER") != 0) {
+				// for each class, iterate through the super class array, from top down
+				for (Iterator<DOMClass> j = lSuperClassArr.iterator(); j.hasNext();) {
+					lSuperClass = (DOMClass) j.next();
+					if (lDocSecType.indexOf("TBD") == 0 && ! lSuperClass.isUSERClass && lSuperClass.subClassOfTitle != null)
+	 					if (lSuperClass.subClassOfTitle.compareTo("USER") == 0) {
+	 						lDocSecType = lSuperClass.title;
+	 					}
+					if (lSuperClass.isAbstract) continue;
+					lClassXpath += lClassXPathDel + lSuperClass.title;
+					lClassXPathDel = "/";
+				}
+				lClassXpath += lClassXPathDel + lClass.title;
+				lClass.xPath = lClassXpath;
+				lClass.docSecType = lDocSecType;
+			} else {
+				// handle the top level protege classes
+				lClass.xPath = lClass.title;
+				lClass.docSecType = lClass.title;
 			}
-			lClassXpath += lClassXPathDel + lClass.title;
-			lClass.xPath = lClassXpath;
-			lClass.docSecType = lDocSecType;
 		}
 		// init the class hierarchy levels array (classes higher in in the tree are first) 
 		lClassHierLevelsArr = new ArrayList <DOMClass> (lClassHierLevelsMap.values());
