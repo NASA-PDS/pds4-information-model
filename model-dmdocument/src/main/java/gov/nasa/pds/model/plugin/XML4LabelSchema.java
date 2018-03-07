@@ -24,9 +24,11 @@ class XML4LabelSchema extends Object {
 
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <PDSObjDefn> lInputClassArr) throws java.io.IOException {
+// 777
+//		System.out.println("\ndebug writeXMLSchemaFiles -- XML4LabelSchema - ##### - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+		
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
-		
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
 		prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		
@@ -111,6 +113,11 @@ class XML4LabelSchema extends Object {
 				}
 			}
 			boolean isBothExtensionRestriction = isExtension && isRestriction;		
+// 777
+//			System.out.println("\ndebug writeXMLSchemaFiles lClass.identifier:" + lClass.identifier);
+//			System.out.println("debug                     isExtension:" + isExtension);
+//			System.out.println("debug                     isRestriction:" + isRestriction);
+//			System.out.println("debug                     isBothExtensionRestriction:" + isBothExtensionRestriction);
 			
 			// write the classes
 			xsAnyStmtWritten = false;

@@ -224,7 +224,10 @@ public class GetDOMModel extends Object {
 		DMDocument.masterDOMInfoModel.getOwnedAttrAssocArr ();
 			
 		// 013g - finalize the remaining attribute and association arrays
-		DMDocument.masterDOMInfoModel.setRemainingAttributeAssociationArrays ();		
+		DMDocument.masterDOMInfoModel.setRemainingAttributeAssociationArrays ();	
+		
+		// 013h - set IsAnExtension And IsARestriction
+		DMDocument.masterDOMInfoModel.setIsAnExtensionAndIsARestriction ();
 		
 		// 014 - iterate through the classes and get all subclasses				
 		DMDocument.masterDOMInfoModel.getSubClasses ();	

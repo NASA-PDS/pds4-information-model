@@ -290,7 +290,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			DOMClass lChildClass = (DOMClass) i.next();
 			DOMClass lParentClass = lChildClass.subClassOf;
 			if (lParentClass != null) {
-
+				
 				// initialize ownedAttrAssocNSTitleArr
 				//   all parent attributes are inherited, both the parent's owned and inherited (parent had no duplicate attributes)
 				//   if parent attribute is also a child owned attribute
@@ -496,8 +496,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		// 7777 why is sorted important ???
 		for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-			
-//			System.out.println("\ndebug getOwnedAttrAssocArr lClass.identifier:" + lClass.identifier);
 
 			// sort all owned attributes and associations (AttrDefn)
 			ArrayList <DOMProp> lPropArr = new ArrayList <DOMProp> (lClass.ownedAttrArr);
@@ -595,7 +593,164 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			}
 		}
 	}
+	
+	// 013h - set IsAnExtension And IsARestriction
+	public void setIsAnExtensionAndIsARestriction () {
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
+			DOMClass lParentClass = lClass.subClassOf;
+			if (lParentClass != null) {
+				//	the child class is an extension if any attribute owned by the child is inherited 
+				for (Iterator <DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
+					DOMProp lChildProp = (DOMProp) j.next();
+					if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lChildAttr = (DOMAttr) lChildProp.hasDOMObject;
+						// is child nsTitle inherited from the parent
+						if (! lParentClass.ownedTestedAttrAssocNSTitleArr.contains(lChildAttr.nsTitle)) {
+							// the child class is restricted since an owned attribute in this class is not inherited
+							lClass.isAnExtension = true;
+						}
+						// is child nsTitle a parent owned nsTitle
+						if (lParentClass.ownedAttrAssocNSTitleArr.contains(lChildAttr.nsTitle)) {
+							boolean testTrue = false;
+							for (Iterator <DOMProp> k = lParentClass.ownedAttrArr.iterator(); k.hasNext();) {
+								DOMProp lParentProp = (DOMProp) k.next();
+								if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
+									DOMAttr lParentAttr = (DOMAttr) lChildProp.hasDOMObject;
+									testTrue = isRestrictedAttribute (true, lChildAttr, lParentAttr);
+									if (testTrue) lClass.isARestriction = true;
+								}
+							}
+						}
+					}
+				}
+				
+				//	the child class is an extension if any association owned by the child is inherited 
+				for (Iterator <DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
+					DOMProp lChildProp = (DOMProp) j.next();
+					if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMClass) {
+						DOMClass lMemberChildClass = (DOMClass) lChildProp.hasDOMObject;
+						// is child nsTitle inherited from the parent
+						if (! lParentClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberChildClass.nsTitle)) {
+							// the child class is restricted since an owned attribute in this class is not inherited
+							lClass.isAnExtension = true;
+						}
+						// is child nsTitle a parent owned nsTitle
+						if (lParentClass.ownedAttrAssocNSTitleArr.contains(lMemberChildClass.nsTitle)) {
+							// the child class is restricted since an inherited attribute is also an owned attribute in this class
+							boolean testTrue = false;
+							for (Iterator <DOMProp> k = lParentClass.ownedAssocArr.iterator(); k.hasNext();) {
+								DOMProp lParentProp = (DOMProp) k.next();
+								testTrue = isRestrictedProp (false, lChildProp, lParentProp);
+								if (testTrue) lClass.isARestriction = true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	*  Check whether attribute is restricted
+	*/
+	private boolean isRestrictedAttribute (boolean isAttribute, DOMAttr lAttr, DOMAttr lSuperAttr) {
+		// check if the attribute has different meta-attributes
+		// for the xml schemas, having a different enumerated list does not count as being different
+		
+		if (lSuperAttr == null) {
+			return false;
+		}
+				
+		if (lAttr.valueType.compareTo(lSuperAttr.valueType) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.valueType:" + lSuperAttr.valueType + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.cardMin.compareTo(lSuperAttr.cardMin) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.cardMin:" + lSuperAttr.cardMin + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.cardMax.compareTo(lSuperAttr.cardMax) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.cardMax:" + lSuperAttr.cardMax + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.definition.compareTo(lSuperAttr.definition) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.description:" + lSuperAttr.definition + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.minimum_characters.compareTo(lSuperAttr.minimum_characters) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.minimum_characters:" + lSuperAttr.minimum_characters + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.maximum_characters.compareTo(lSuperAttr.maximum_characters) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.maximum_characters:" + lSuperAttr.maximum_characters + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.minimum_value.compareTo(lSuperAttr.minimum_value) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.minimum_value:" + lSuperAttr.minimum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.maximum_value.compareTo(lSuperAttr.maximum_value) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.maximum_value:" + lSuperAttr.maximum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.nameSpaceIdNC.compareTo(lSuperAttr.nameSpaceIdNC) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.attrNameSpaceIdNC:" + lSuperAttr.nameSpaceIdNC + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.pattern.compareTo(lSuperAttr.pattern) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.pattern:" + lSuperAttr.pattern + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.default_unit_id.compareTo(lSuperAttr.default_unit_id) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.default_unit_id:" + lSuperAttr.default_unit_id + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (lAttr.format.compareTo(lSuperAttr.format) != 0) {
+			System.out.println(">>warning - isRestrictedAttribute lSuperAttr.format:" + lSuperAttr.format + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+			return true;
+		}
+		if (! isAttribute) { // if association we need  to check the standard values.
+			if (lAttr.valArr.size() != lSuperAttr.valArr.size()) {
+				System.out.println(">>warning - isRestrictedAttribute lAttr.valArr.size():" + lAttr.valArr.size() + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+				return true;
+			}
+			for (Iterator<String> i = lAttr.valArr.iterator(); i.hasNext();) {
+				String lVal = (String) i.next();
+				if (! lSuperAttr.valArr.contains(lVal)) {
+					System.out.println(">>warning - isRestrictedAttribute lAttr.lVal" + lVal + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	*  Check whether attribute is restricted
+	*/
+	private boolean isRestrictedProp (boolean isAttribute, DOMProp lProp, DOMProp lSuperProp) {
+		// check if the attribute has different meta-attributes
+		// for the xml schemas, having a different enumerated list does not count as being different
+		
+		if (lSuperProp == null) return false;
+				
 
+		if (lProp.cardMin.compareTo(lSuperProp.cardMin) != 0) {
+			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMin:" + lSuperProp.cardMin + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+			return true;
+		}
+		if (lProp.cardMax.compareTo(lSuperProp.cardMax) != 0) {
+			System.out.println(">>warning - isRestrictedPropertye lSuperProp.cardMax:" + lSuperProp.cardMax + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+			return true;
+		}
+
+		if (lProp.nameSpaceIdNC.compareTo(lSuperProp.nameSpaceIdNC) != 0) {
+			System.out.println(">>warning - isRestrictedProperty lSuperProp.attrNameSpaceIdNC:" + lSuperProp.nameSpaceIdNC + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+			return true;
+		}
+		return false;
+	}
 	
 	// clone an array list
 	static public ArrayList <DOMClass> clonePDSObjDefnArrayList (ArrayList <DOMClass> lArrayList) {
@@ -1220,53 +1375,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				}
 			}
 			return;
-		}	
-
-		/**
-		*  Check whether class is an extension
-		*/
-		static public boolean isExtendedClass (PDSObjDefn lClass, PDSObjDefn lSuperClass) {
-			if (lSuperClass == null) {
-				return false;
-			}
-
-			//	check if all owned and inherited attributes are in the super class
-			for (Iterator<AttrDefn> i = lClass.ownedAttribute.iterator(); i.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) i.next();
-				if (! (lSuperClass.ownedAttrNSTitle.contains(lAttr.nsTitle) || lSuperClass.inheritedAttrNSTitle.contains(lAttr.nsTitle))) {
-					return true;
-				}
-			}
-			
-			//	check if all owned and inherited associations are in the super class
-			for (Iterator<AttrDefn> i = lClass.ownedAssociation.iterator(); i.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) i.next();
-				if (! (lSuperClass.ownedAssocNSTitle.contains(lAttr.nsTitle) || lSuperClass.inheritedAssocNSTitle.contains(lAttr.nsTitle))) {
-					return true;
-				}
-			}
-			return false;
-		}
-				
-		static public boolean isRestrictedClass (PDSObjDefn lClass, PDSObjDefn lSuperClass) {
-			//	check if any owned attributes is in the super class (owned or inherited)
-			if (lSuperClass == null) {
-				return false;
-			}
-			for (Iterator<AttrDefn> i = lClass.ownedAttribute.iterator(); i.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) i.next();
-				if (isRestrictedAttribute (true, lAttr, (getPossibleRestrictedAttribute (lAttr, lSuperClass)))) {
-					return true;
-				}
-			}
-			//	check if all owned and inherited associations are in the super class
-			for (Iterator<AttrDefn> i = lClass.ownedAssociation.iterator(); i.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) i.next();
-				if (isRestrictedAttribute (false, lAttr, (getPossibleRestrictedAssociation (lAttr, lSuperClass)))) {
-					return true;
-				}
-			}
-			return false;
 		}
 		
 		static public AttrDefn getPossibleRestrictedAttribute (AttrDefn lAttr, PDSObjDefn lSuperClass) {
@@ -1305,84 +1413,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			return null;
 		}
 		
-		/**
-		*  Check whether attribute is restricted
-		*/
-		static public boolean isRestrictedAttribute (Boolean isAttribute, AttrDefn lAttr, AttrDefn lSuperAttr) {
-			// check if the attribute has different meta-attributes
-			// for the xml schemas, having a different enumerated list does not count as being different
-			
-			if (lSuperAttr == null) {
-				return false;
-			}
-			
-//			System.out.println("\ndebug isRestrictedAttribute lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
-//			System.out.println("      isRestrictedAttribute lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-			
-			if (lAttr.valueType.compareTo(lSuperAttr.valueType) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.valueType:" + lSuperAttr.valueType + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.cardMin.compareTo(lSuperAttr.cardMin) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.cardMin:" + lSuperAttr.cardMin + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.cardMax.compareTo(lSuperAttr.cardMax) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.cardMax:" + lSuperAttr.cardMax + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.description.compareTo(lSuperAttr.description) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.description:" + lSuperAttr.description + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.minimum_characters.compareTo(lSuperAttr.minimum_characters) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.minimum_characters:" + lSuperAttr.minimum_characters + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.maximum_characters.compareTo(lSuperAttr.maximum_characters) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.maximum_characters:" + lSuperAttr.maximum_characters + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.minimum_value.compareTo(lSuperAttr.minimum_value) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.minimum_value:" + lSuperAttr.minimum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.maximum_value.compareTo(lSuperAttr.maximum_value) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.maximum_value:" + lSuperAttr.maximum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.attrNameSpaceIdNC.compareTo(lSuperAttr.attrNameSpaceIdNC) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.attrNameSpaceIdNC:" + lSuperAttr.attrNameSpaceIdNC + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.pattern.compareTo(lSuperAttr.pattern) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.pattern:" + lSuperAttr.pattern + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.default_unit_id.compareTo(lSuperAttr.default_unit_id) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.default_unit_id:" + lSuperAttr.default_unit_id + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (lAttr.format.compareTo(lSuperAttr.format) != 0) {
-				System.out.println(">>warning - isRestrictedAttribute lSuperAttr.format:" + lSuperAttr.format + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-				return true;
-			}
-			if (! isAttribute) { // if association we need  to check the standard values.
-				if (lAttr.valArr.size() != lSuperAttr.valArr.size()) {
-					System.out.println(">>warning - isRestrictedAttribute lAttr.valArr.size():" + lAttr.valArr.size() + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-					return true;
-				}
-				for (Iterator<String> i = lAttr.valArr.iterator(); i.hasNext();) {
-					String lVal = (String) i.next();
-					if (! lSuperAttr.valArr.contains(lVal)) {
-						System.out.println(">>warning - isRestrictedAttribute lAttr.lVal" + lVal + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-
 		public void dumpClassVersionIds () {
 			//	set the class version identifiers
 			 ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());

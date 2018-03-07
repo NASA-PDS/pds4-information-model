@@ -89,7 +89,7 @@ public class GetModels extends Object {
 //		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 // 		Display one object
-//		InfoModel.printObjectDebug (555, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.cart.Planar_Coordinate_Information"));
+//		InfoModel.printObjectDebug (111, InfoModel.masterMOFClassIdMap.get("0001_NASA_PDS_1.cart.Planar_Coordinate_Information"));
 
 // 444		
 		// debug print the master list of rules
@@ -275,10 +275,7 @@ public class GetModels extends Object {
 		
 		// get the valClassArr using valArr; for assocs (AttrDefn)
 		DMDocument.masterInfoModel.getValClassArr();
-
-		// set the class isAnExtension and isARestriction flags
-		DMDocument.masterInfoModel.setIsAnExtensionAndIsARestrictionClassFlags ();
-
+		
 // 		***********************************************************************		
 // 		all updates to class and attributes have been made; extracts can now be done.
 

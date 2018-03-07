@@ -1,0 +1,52 @@
+
+clock will start once we are cleared to do the work and that it will now be 30
+weeks
+
+		JG - The proposed updates look good to me.
+
+		As discussed the number of sites will be important to determine.  We also
+		need some feedback on what their processes are and what happens at each of
+		the sites so we can provide better feedback in our early deliverables.  We
+		also need indications of how many different filetypes are involved.
+
+
+
+1) Review - GPO application for 16363 audit
+
+   BA - I have spent the past few hours reviewing the GPO application for 16363
+   audit.  A few items stand out so far.
+
+  Another item that interests me is the designation of the offsite iteration of
+  fedsys as the primary preservation site and the onsite iteration as the backup
+  site.  A rather unusual game plan that deserves explanation, examination and
+  description in the final report.
+
+	1. I think we can get a good idea of the type of stand alone report that GPO
+	would like to be able to distribute  to their designated communities by
+	looking at the 2012 NAPA report listed:
+
+	https://www.gpo.gov/docs/default-source/congressional-relations-pdf-
+	files/gpo_napa_report_final.pdf.
+
+	While that report focused on expanding the role of GPO in digital information
+	preservation, we can look to the format, language, and recommendations as a
+	partial template.to create a document for their designated communties.
+
+  Good find. I think when we see Jessica’s self review, that may be a good indicator too.
+
+ 
+
+	2.  Their division of their designated communities into primary and secondary
+	categories needs some examination.and explanation.
+
+  I also noted the division of having the Designated Communities that they were
+  preserving for and then the additional users/consumers that they also have to
+  serve. 
+  
+  	I think that is pretty reasonable way to divvy it up.
+
+
+	3. I think we also need to look at the cited NARA"audit" and affiliated
+	archives agreement and at the NIST Security Assessment Report.
+
+     Yes, will be interesting to see these.

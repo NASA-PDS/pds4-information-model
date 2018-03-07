@@ -38,7 +38,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	DOMClass subClassOf; 
 	String subClassOfTitle; 					// needed after parsing Protege Pont file to find subClass
 	String subClassOfIdentifier; 				// needed after parsing Protege Pont file to find subClass
-	ArrayList <DOMClass> superClassHierArr; 
+	ArrayList <DOMClass> superClassHierArr; 	// super classes - does not include USER; however USER is the value of subClassOfTitle for top level protege classes
 	ArrayList <DOMClass> subClassHierArr; 
 	
 	ArrayList <DOMProp> ownedAttrArr; 
@@ -255,67 +255,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 				}
 			} else {
 				System.out.println(">>error    - InitPropArrISOClassOAIS11179 - Failed to find created DOMPropArr - lOldAttr.identifier: " + lOldAttr.identifier);				
-			}
-		}
-	}
-	
-	//  Check whether this class is an extension or restriction
-	public void setisExtentionOrRestrictionClass () {
-		DOMClass lSuperClass = this.subClassOf;
-		if (lSuperClass == null) return;
-
-		ArrayList <String> lThisIdentifierArr = new ArrayList <String> ();
-		ArrayList <String> lSuperIdentifierArr = new ArrayList <String> ();
-
-		// first get the identifiers of the super class's members (attributes and classes)
-		for (Iterator<DOMProp> i = lSuperClass.allAttrAssocArr.iterator(); i.hasNext();) {
-			DOMProp lProp = (DOMProp) i.next();
-			if (lProp.hasDOMObject != null) {
-				if (lProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lSCPAttr = (DOMAttr) lProp.hasDOMObject;
-					lSuperIdentifierArr.add(lSCPAttr.identifier);
-				} else if (lProp.hasDOMObject instanceof DOMClass){
-					DOMClass lSCPClass = (DOMClass) lProp.hasDOMObject;
-					lSuperIdentifierArr.add(lSCPClass.identifier);
-				}
-			}
-		}
-		
-		// second get the identifiers of this class's members (attributes and classes)
-		for (Iterator<DOMProp> i = allAttrAssocArr.iterator(); i.hasNext();) {
-			DOMProp lProp = (DOMProp) i.next();
-			if (lProp.hasDOMObject != null) {
-				if (lProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lSCPAttr = (DOMAttr) lProp.hasDOMObject;
-					lThisIdentifierArr.add(lSCPAttr.identifier);
-				} else  if (lProp.hasDOMObject instanceof DOMClass) {
-					DOMClass lSCPClass = (DOMClass) lProp.hasDOMObject;
-					lThisIdentifierArr.add(lSCPClass.identifier);
-				}
-			}
-		}
-		
-		boolean foundAllSuperIdentifers = true;
-		//	check that all identifiers (attributes and classes) of the super class are in this class
-		for (Iterator<String> i = lSuperIdentifierArr.iterator(); i.hasNext();) {
-			String lSuperIdentifier = (String) i.next();
-			if (! (lThisIdentifierArr.contains(lSuperIdentifier))) foundAllSuperIdentifers = false;
-		}
-		
-		boolean foundAllThisIdentifers = true;
-		//	check that all identifiers (attributes and classes) of this class are in the super class
-		for (Iterator<String> i = lThisIdentifierArr.iterator(); i.hasNext();) {
-			String lThisIdentifier = (String) i.next();
-			if (! (lSuperIdentifierArr.contains(lThisIdentifier))) foundAllThisIdentifers = false;
-		}
-		
-		if (foundAllSuperIdentifers) {
-			if (foundAllThisIdentifers) {
-				isAnExtension = false;
-				isARestriction = true;	
-			} else {
-				isAnExtension = true;
-				isARestriction = false;
 			}
 		}
 	}

@@ -398,6 +398,8 @@ public class DMDocument extends Object {
 //		deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds", "DD_Association_External", "pds", "reference_type", "extension_of", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Binary.record_delimiter", "pds", "Table_Binary", "pds", "record_delimiter", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Field_Bit.start_bit", "pds", "Field_Bit", "pds", "start_bit", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Field_Bit.stop_bit", "pds", "Field_Bit", "pds", "stop_bit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.record_delimiter", "pds", "Table_Delimited", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Character.record_delimiter", "pds", "Table_Character", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Stream_Text.record_delimiter", "pds", "Stream_Text", "pds", "record_delimiter", "carriage-return line-feed", false));
