@@ -812,7 +812,7 @@ public class DMDocument extends Object {
 
     	lJAVAHOME = env.get("JAVA_HOME");
     	if (lJAVAHOME == null) {
-    		System.out.println(">>error    - Environment variable JAVAHOME is null");
+    		System.out.println(">>error    - Environment variable JAVA_HOME is null");
 			System.exit(1);
     	}
     	lJAVAHOME =  replaceString (lJAVAHOME, "\\", "/");
