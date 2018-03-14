@@ -1,4 +1,4 @@
-; Wed Feb 14 11:19:52 PST 2018
+; Wed Mar 14 16:02:39 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -37,6 +37,11 @@
 	(multislot file_specification_name
 ;+		(comment "The file_specification_name attribute provides the file_name prepended by the directory_path to the file.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot stop_bit_location
+;+		(comment "The stop_bit_location attribute provides the position of the last bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is \"1\".")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot record_type
 ;+		(comment "The record type attribute classifies a record.")
@@ -1542,6 +1547,11 @@
 		(create-accessor read-write))
 	(single-slot product_id
 ;+		(comment "The product id attribute provides a product identifier that is unique within an archive collection.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start_bit_location
+;+		(comment "The start_bit_location attribute provides the position of the first bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is \"1\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7437,7 +7447,7 @@
 	(single-slot title
 ;+		(comment "The title attribute provides a short, descriptive text string suitable for use as a title or brief description in a display or listing of products.")
 		(type STRING)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot type_description
 ;+		(comment "The type_description attribute provides a description of the object's type.")
@@ -7862,6 +7872,11 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot stop_bit_location
+;+		(comment "The stop_bit_location attribute provides the position of the last bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is \"1\".")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
@@ -7885,6 +7900,11 @@
 		(create-accessor read-write))
 	(single-slot unit
 ;+		(comment "The unit attribute provides the unit of measurement.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot start_bit_location
+;+		(comment "The start_bit_location attribute provides the position of the first bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is \"1\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -12806,7 +12826,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00((:00((\\.0+)?))?)(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00((:00((\\.0+)?))?)(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z)" "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z)" "")
+;+		(value "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00((:00((\\.0+)?))?)(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00((:00((\\.0+)?))?)(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z)" "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters

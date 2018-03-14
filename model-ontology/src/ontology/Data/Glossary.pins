@@ -1,7 +1,7 @@
-; Wed Mar 20 17:31:29 PDT 2013
+; Mon Feb 19 09:43:01 PST 2018
 ; 
-;+ (version "3.4.7")
-;+ (build "Build 620")
+;+ (version "3.5")
+;+ (build "Build 663")
 
 ([Archive] of  Data_Element
 
@@ -52,6 +52,16 @@
 
 	(column_desc "A list of basic products, all of which are closely related in some way. The collection's manifestation, Product_Collection, is itself a product (because it is simply a list, with its label); but it is not a basic product.")
 	(column_name "Collection"))
+
+([Component] of  Data_Element
+
+	(column_desc "A digital object in a file of observational data that is identified as part of a composite structure.")
+	(column_name "Component"))
+
+([Composite_Structure] of  Data_Element
+
+	(column_desc "A class that identifies two or more objects in a single data file as components of a logically integrated structure and provides the relationships between them.")
+	(column_name "Composite_Structure"))
 
 ([Conceptual_Object] of  Data_Element
 
@@ -237,6 +247,11 @@
 
 	(column_desc "An object which is physical or tangible (and, therefore, does not itself fit into a digital archive). Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer. Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).")
 	(column_name "Physical_Object"))
+
+([Primary_Component] of  Data_Element
+
+	(column_desc "The central, or most important, among several components; the component which has relationships (either directly or indirectly) to all other components in a composite structure.")
+	(column_name "Primary_Component"))
 
 ([Primary_Member] of  Data_Element
 

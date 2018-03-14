@@ -1,4 +1,4 @@
-; Wed Feb 14 14:17:28 PST 2018
+; Wed Mar 14 16:27:42 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -220,7 +220,9 @@
 		[NEVD.0001_NASA_PDS_1.pds.Field_Binary.pds.field_length]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Binary.pds.field_location]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit]
+		[NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit]
+		[NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.field_length]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.field_location]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.maximum_field_length]
@@ -8480,6 +8482,20 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit])
 	(versionIdentifier "1.10"))
 
+([DE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  DataElement
+
+	(administrationRecord [DD_1.10.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location")
+	(expressedBy [DEC_Bit])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location])
+	(versionIdentifier "1.10"))
+
 ([DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  DataElement
 
 	(administrationRecord [DD_1.10.0.0])
@@ -8492,6 +8508,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit])
+	(versionIdentifier "1.10"))
+
+([DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  DataElement
+
+	(administrationRecord [DD_1.10.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location")
+	(expressedBy [DEC_Bit])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
 	(versionIdentifier "1.10"))
 
 ([DE.0001_NASA_PDS_1.pds.Field_Bit.pds.unit] of  DataElement
@@ -16958,7 +16988,9 @@
 	(dataIdentifier "DEC_Bit")
 	(expressing
 		[DE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit]
-		[DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit])
+		[DE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location]
+		[DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit]
+		[DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(specifying [CD_Integer])
@@ -21053,9 +21085,19 @@
 	(definitionText "The start_bit attribute provides the position of the first bit within an ordered sequence of bits.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  Definition
+
+	(definitionText "The start_bit_location attribute provides the position of the first bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is %421%42.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  Definition
 
 	(definitionText "The stop-bit attribute provides the location of the last bit in this bit field relative to the first bit in the packed_data field.  Bits are numbered continuously across byte boundaries.  The first bit location in the packed data field is %421%42.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  Definition
+
+	(definitionText "The stop_bit_location attribute provides the position of the last bit in a bit field relative to the first bit in the parent packed data field. Bytes are sequential and bits are numbered continuously across byte boundaries within a single bit field. The first bit position in the packed data field is %421%42.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.unit] of  Definition
@@ -26808,9 +26850,19 @@
 	(designationName "start_bit")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  Designation
+
+	(designationName "start_bit_location")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  Designation
 
 	(designationName "stop_bit")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  Designation
+
+	(designationName "stop_bit_location")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Field_Bit.pds.unit] of  Designation
@@ -31140,7 +31192,6 @@
 
 	(administrationRecord [DD_1.10.0.0])
 	(containedIn1
-		[pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.0]
 		[pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.-825106892]
 		[pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.1392170939]
 		[pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.-2125022069]
@@ -46110,6 +46161,27 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.10"))
 
+([NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.10.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location")
+	(datatype [ASCII_NonNegative_Integer])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "18446744073709551615")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "1")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location])
+	(representedBy2 [CD_Integer])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.10"))
+
 ([NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.10.0.0])
@@ -46124,6 +46196,27 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit])
+	(representedBy2 [CD_Integer])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.10"))
+
+([NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.10.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location")
+	(datatype [ASCII_NonNegative_Integer])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "18446744073709551615")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "1")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
 	(representedBy2 [CD_Integer])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -60279,11 +60372,29 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.10"))
 
+([PR.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  Property
+
+	(administrationRecord [DD_1.10.0.0])
+	(classOrder "1015")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.10"))
+
 ([PR.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  Property
 
 	(administrationRecord [DD_1.10.0.0])
 	(classOrder "1030")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.10"))
+
+([PR.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  Property
+
+	(administrationRecord [DD_1.10.0.0])
+	(classOrder "1025")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.10"))
@@ -68660,13 +68771,6 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.-888029451])
 	(value "%28-%29?%5B0-9%5D%7B4%7D-%28%2800%5B1-9%5D%29%7C%280%5B1-9%5D%5B0-9%5D%29%7C%28%5B1-2%5D%5B0-9%5D%5B0-9%5D%29%7C%283%28%28%5B0-5%5D%5B0-9%5D%29%7C%286%5B0-6%5D%29%29%29%29%28T%2924:00%28%28:00%28%28%5C.0%2B%29?%29%29?%29%28Z%29"))
-
-([pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.0] of  PermissibleValue
-
-	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern])
-	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.0]))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.1392170939] of  PermissibleValue
 
@@ -83381,11 +83485,25 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location])
+	(designation [DES.0001_NASA_PDS_1.pds.Field_Bit.pds.start_bit_location])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit])
 	(designation [DES.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
+	(designation [DES.0001_NASA_PDS_1.pds.Field_Bit.pds.stop_bit_location])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Field_Bit.pds.unit] of  TerminologicalEntry
@@ -89033,12 +89151,6 @@
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.-888029451] of  ValueMeaning
-
-	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
-	(endDate "2019-12-31"))
-
-([vm.0001_NASA_PDS_1.pds.ASCII_Date_Time_UTC.pds.pattern.0] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "TBD_value_meaning")

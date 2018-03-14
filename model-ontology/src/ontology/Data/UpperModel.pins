@@ -1,4 +1,4 @@
-; Wed Feb 14 11:19:53 PST 2018
+; Wed Mar 14 16:02:39 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -420,59 +420,77 @@
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105])
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.106])
 	(identifier "pds:Field_Binary")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(schematronAssign
-		"name=\"BitLength_1\" value=\"pds:data_type = ('SignedByte', 'UnsignedByte')\""
-		"name=\"BitLength_2\" value=\"pds:data_type = ('SignedLSB2', 'SignedMSB2', 'UnsignedLSB2', 'UnsignedMSB2')\""
-		"name=\"BitLength_4\" value=\"pds:data_type = ('IEEE754LSBSingle', 'IEEE754MSBSingle', 'SignedLSB4', 'SignedMSB4', 'UnsignedLSB4', 'UnsignedMSB4')\""
-		"name=\"BitLength_8\" value=\"pds:data_type = ('ComplexLSB8', 'ComplexMSB8', 'IEEE754LSBDouble', 'IEEE754MSBDouble', 'SignedLSB8', 'SignedMSB8', 'UnsignedLSB8', 'UnsignedMSB8')\""
-		"name=\"BitLength_16\" value=\"pds:data_type = ('ComplexLSB16', 'ComplexMSB16')\"")
+		"name=\"Bit-1_values\" value=\"('SignedByte', 'UnsignedByte')\""
+		"name=\"Bit-2_values\" value=\"('SignedLSB2', 'SignedMSB2', 'UnsignedLSB2', 'UnsignedMSB2')\""
+		"name=\"Bit-4_values\" value=\"('IEEE754LSBSingle', 'IEEE754MSBSingle', 'SignedLSB4', 'SignedMSB4', 'UnsignedLSB4', 'UnsignedMSB4')\""
+		"name=\"Bit-8_values\" value=\"('ComplexLSB8', 'ComplexMSB8', 'IEEE754LSBDouble', 'IEEE754MSBDouble', 'SignedLSB8', 'SignedMSB8', 'UnsignedLSB8', 'UnsignedMSB8')\""
+		"name=\"Bit-16_values\" value=\"('ComplexLSB16', 'ComplexMSB16')\""
+		"name=\"Bit-1_test\" value=\"(pds:field_length = 1) and (some $ref in (pds:data_type) satisfies $ref = $Bit-1_values)\""
+		"name=\"Bit-2_test\" value=\"(pds:field_length = 2) and (some $ref in (pds:data_type) satisfies $ref = $Bit-2_values)\""
+		"name=\"Bit-4_test\" value=\"(pds:field_length = 4) and (some $ref in (pds:data_type) satisfies $ref = $Bit-4_values)\""
+		"name=\"Bit-8_test\" value=\"(pds:field_length = 8) and (some $ref in (pds:data_type) satisfies $ref = $Bit-8_values)\""
+		"name=\"Bit-16_test\" value=\"(pds:field_length = 16) and (some $ref in (pds:data_type) satisfies $ref = $Bit-16_values)\""
+		"name=\"isPresent\" value=\" boolean(pds:Packed_Data_Fields)\""
+		"name=\"FB_DT_Ref\" value=\"pds:data_type\""
+		"name=\"DT_value\" value=\"every $ref in ($FB_DT_Ref) satisfies $ref = ('UnsignedBitString')\"")
 	(type "TBD_type")
 	(xpath "pds:Field_Binary"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.101] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:field_length ('<sch:value-of select=\"pds:field_length\" />') does not match pds:data_type ('<sch:value-of select=\"pds:data_type\" />').")
-	(assertStmt "if ($BitLength_1) then (pds:field_length = 1) else true()")
+	(assertMsg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'.")
+	(assertStmt "if ($isPresent) then ($DT_value) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-1_values\"/>.")
+	(assertStmt "if (not($isPresent) and (pds:field_length = 1)) then ($Bit-1_test) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 1 byte pds:data_type."))
 
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102] of  Schematron_Assert
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:field_length ('<sch:value-of select=\"pds:field_length\" />') does not match pds:data_type ('<sch:value-of select=\"pds:data_type\" />').")
-	(assertStmt "if ($BitLength_2) then (pds:field_length = 2) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-2_values\"/>.")
+	(assertStmt "if (not($isPresent) and (pds:field_length = 2)) then ($Bit-2_test) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 2 byte pds:data_type."))
 
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103] of  Schematron_Assert
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:field_length ('<sch:value-of select=\"pds:field_length\" />') does not match pds:data_type ('<sch:value-of select=\"pds:data_type\" />').")
-	(assertStmt "if ($BitLength_4) then (pds:field_length = 4) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-4_values\"/>.")
+	(assertStmt "if (not($isPresent) and (pds:field_length = 4)) then ($Bit-4_test) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 4 byte pds:data_type."))
 
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104] of  Schematron_Assert
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:field_length ('<sch:value-of select=\"pds:field_length\" />') does not match pds:data_type ('<sch:value-of select=\"pds:data_type\" />').")
-	(assertStmt "if ($BitLength_8) then (pds:field_length = 8) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-8_values\"/>.")
+	(assertStmt "if (not($isPresent) and (pds:field_length = 8)) then ($Bit-8_test) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 8 byte pds:data_type."))
 
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105] of  Schematron_Assert
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.106] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:field_length ('<sch:value-of select=\"pds:field_length\" />') does not match pds:data_type ('<sch:value-of select=\"pds:data_type\" />').")
-	(assertStmt "if ($BitLength_16) then (pds:field_length = 16) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-16_values\"/>.")
+	(assertStmt "if (not($isPresent) and (pds:field_length = 16)) then ($Bit-16_test) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -1085,6 +1103,169 @@
 	(testValArr
 		"browse_to_data"
 		"browse_to_thumbnail"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Context_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.106]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.107]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.108]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.109]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.110]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.111]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.112]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113])
+	(identifier "pds:Product_Bundle/pds:Context_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"bundTypeRef\" value=\"pds:Bundle/pds:bundle_type\""
+		"name=\"bundMissionRef\" value=\"pds:Context_Area/pds:Investigation_Area/pds:type\""
+		"name=\"bundPurposeRef\" value=\"pds:Context_Area/pds:Primary_Result_Summary/pds:purpose\""
+		"name=\"bundCI_descriptionRef\" value=\"pds:Identification_Area/pds:Citation_Information/pds:description\""
+		"name=\"bundStartTimeRef\" value=\"pds:Context_Area/pds:Time_Coordinates/pds:start_date_time\""
+		"name=\"bundStopTimeRef\" value=\"pds:Context_Area/pds:Time_Coordinates/pds:stop_date_time\""
+		"name=\"bundTargetNameRef\" value=\"pds:Context_Area/pds:Target_Identification/pds:name\""
+		"name=\"bundTargetTypeRef\" value=\"pds:Context_Area/pds:Target_Identification/pds:type\""
+		"name=\"bundInvestNameRef\" value=\"pds:Context_Area/pds:Investigation_Area/pds:name\""
+		"name=\"bundObsSysCompNameRef\" value=\"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:name\""
+		"name=\"bundObsSysCompTypeRef\" value=\"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\""
+		"name=\"bundPRSlevelRef\" value=\"pds:Context_Area/pds:Primary_Result_Summary/pds:processing_level\""
+		"name=\"bundleType\" value=\"some $ref in ($bundTypeRef) satisfies $ref = ('Archive')\""
+		"name=\"MissionType\" value=\"some $ref in ($bundMissionRef) satisfies $ref = ('Mission')\""
+		"name=\"PurposeType\" value=\"some $ref in ($bundPurposeRef) satisfies $ref = ('Science')\""
+		"name=\"InstrumentType\" value=\"some $ref in ($bundObsSysCompTypeRef) satisfies $ref = ('Instrument')\""
+		"name=\"isTypeMSD\" value=\"($bundleType and $MissionType and $PurposeType)\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.101] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Bundle/pds:type\" must have a value of 'Archive'.")
+	(assertStmt "if ($isTypeMSD) then ($bundleType) else true()")
+	(assertType "RAW")
+	(attrTitle "bundle_type")
+	(identifier "bundle_type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.102] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', at least one instance of \"pds:Context_Area/pds:Investigation_Area/pds:type\" must have a value of 'Mission'.")
+	(assertStmt "if ($isTypeMSD) then ($MissionType) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.103] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', at least one instance of \"pds:Context_Area/pds:Primary_Result_Summary/pds:purpose\" must have a value of 'Science'.")
+	(assertStmt "if ($isTypeMSD) then ($PurposeType) else true()")
+	(assertType "RAW")
+	(attrTitle "purpose")
+	(identifier "purpose")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.104] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Identification_Area/pds:Citation_Information/description\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundCI_descriptionRef) else true()")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.105] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Time_Coordinates/pds:start_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($bundStartTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "start_date_time")
+	(identifier "start_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.106] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Time_Coordinates/pds:stop_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($bundStopTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "stop_date_time")
+	(identifier "stop_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.107] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Target_Identification/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundTargetNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.108] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Target_Identification/pds:type\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundTargetTypeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.109] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Investigation_Area/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundInvestNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.110] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Observing_System/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundObsSysCompNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.111] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundObsSysCompNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.112] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', an instance of \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\" must have a value of 'Instrument'.")
+	(assertStmt "if ($isTypeMSD) then ($InstrumentType) else true()")
+	(assertType "RAW")
+	(attrTitle "start_date_time")
+	(identifier "start_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Primary_Result_Summary/pds:processing_level\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundPRSlevelRef) else true()")
+	(assertType "RAW")
+	(attrTitle "processing_level")
+	(identifier "processing_level")
+	(specMesg "TBD"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002530] of  Schematron_Rule
 
