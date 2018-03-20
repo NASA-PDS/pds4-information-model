@@ -24,8 +24,6 @@ class XML4LabelSchemaDOM extends Object {
 
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <DOMClass> lInputClassArr) throws java.io.IOException {
-// 777
-//		System.out.println("\ndebug writeXMLSchemaFiles -- XML4LabelSchemaDOM - ***** - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
@@ -38,6 +36,7 @@ class XML4LabelSchemaDOM extends Object {
 								
        	// write the Product Class Elements
     	if (lSchemaFileDefn.isMaster) {
+//    		System.out.println("debug writeXMLSchemaFiles *** Master *** lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
     		writeElementDefinition (classHierMap, prXML);    		
     	}
 
@@ -45,6 +44,7 @@ class XML4LabelSchemaDOM extends Object {
 		if ((! lSchemaFileDefn.isLDD) && (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0)) {			
 			ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
 			ArrayList <DOMClass> lClassSubArr = new ArrayList <DOMClass> ();
+//    		System.out.println("debug writeXMLSchemaFiles non-LDDTool lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 			for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
 				DOMClass lClass = (DOMClass) i.next();
 				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) { 
@@ -97,9 +97,11 @@ class XML4LabelSchemaDOM extends Object {
 			ResetIndentSpaces();
 			
 			// determine extension, restriction, neither
+			
 			boolean isExtension = lClass.isAnExtension;
 			boolean isRestriction = lClass.isARestriction;
 
+		
 			if (! isExtension) {
 				isRestriction = true;
 			}
@@ -110,13 +112,8 @@ class XML4LabelSchemaDOM extends Object {
 					isRestriction = false;
 				}
 			}
-			boolean isBothExtensionRestriction = isExtension && isRestriction;
-// 777			
-//			System.out.println("\ndebug writeXMLSchemaFiles lClass.identifier:" + lClass.identifier);
-//			System.out.println("debug                     isExtension:" + isExtension);
-//			System.out.println("debug                     isRestriction:" + isRestriction);
-//			System.out.println("debug                     isBothExtensionRestriction:" + isBothExtensionRestriction);
-
+			boolean isBothExtensionRestriction = isExtension && isRestriction;		
+			
 			// write the classes
 			xsAnyStmtWritten = false;
 			if (isBothExtensionRestriction) {
@@ -784,28 +781,28 @@ class XML4LabelSchemaDOM extends Object {
 					}
 				}
 
-				if (lProp.title.compareTo("maximum_characters") == 0) {
-					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
-					if ( ! (lVal == null || lVal.compareTo("2147483647") == 0)) {
-					    prXML.println("        <" + pNS + "maxLength value=\"" + lVal + "\"/>");
-					}
-				}
 				if (lProp.title.compareTo("minimum_characters") == 0) {
 					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
 					if ( ! (lVal == null || lVal.compareTo("-2147483648") == 0)) {
 					    prXML.println("        <" + pNS + "minLength value=\"" + lVal + "\"/>");
 					}
 				}
-				if (lProp.title.compareTo("maximum_value") == 0) {
+				if (lProp.title.compareTo("maximum_characters") == 0) {
 					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
 					if ( ! (lVal == null || lVal.compareTo("2147483647") == 0)) {
-					    prXML.println("        <" + pNS + "maxInclusive value=\"" + lVal + "\"/>");
+					    prXML.println("        <" + pNS + "maxLength value=\"" + lVal + "\"/>");
 					}
 				}
 				if (lProp.title.compareTo("minimum_value") == 0) {
 					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
 					if ( ! (lVal == null || lVal.compareTo("-2147483648") == 0)) {
 					    prXML.println("        <" + pNS + "minInclusive value=\"" + lVal + "\"/>");
+					}
+				}
+				if (lProp.title.compareTo("maximum_value") == 0) {
+					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
+					if ( ! (lVal == null || lVal.compareTo("2147483647") == 0)) {
+					    prXML.println("        <" + pNS + "maxInclusive value=\"" + lVal + "\"/>");
 					}
 				}
 				if (lProp.title.compareTo("pattern") == 0) {
@@ -937,7 +934,6 @@ class XML4LabelSchemaDOM extends Object {
 		ArrayList <DOMClass> lSortedClassArr = new ArrayList <DOMClass> (lClassHierMap.values());
 		for (Iterator<DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-//			if (lClass.isRegistryClass) {
 			if (lClass.isRegistryClass || lClass.isExposed) {
 				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"pds:" + lClass.title + "\">" + " </" + pNS + "element>");
 			}
