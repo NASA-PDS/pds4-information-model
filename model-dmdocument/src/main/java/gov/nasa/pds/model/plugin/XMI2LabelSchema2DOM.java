@@ -36,11 +36,13 @@ class XMI2LabelSchema2DOM extends Object {
 		*  Iterate through all classes
 		*/
 		int count = 0;
-		for (Iterator<DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();	
 			writeXMIClass (lClass);
 //			if (count++ > 10) { break; };
 		}
+
+/* remove - later , code is never executed
 		// write the associations
 		Set <String> set1 = assocMap.keySet();
 		Iterator <String> iter1 = set1.iterator();
@@ -53,21 +55,22 @@ class XMI2LabelSchema2DOM extends Object {
 			prXML.println("          <memberEnd xmi:idref=\"" + lAssoc.toPropId + "\"/>");
 			prXML.println("        </ownedMember>");
 		}
+*/
 		writeXMIFtr();
 		prXML.close();
 	}
 	
 //	write the XMI Class
 	public void  writeXMIClass (DOMClass lClass) throws java.io.IOException {
-		int k = 0;
+		// int k = 0;
 		// get associations for this class
 		for (Iterator<DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
 			DOMProp lProp = (DOMProp) j.next();
 			if (lProp != null)  {
-				if (lProp.title.equalsIgnoreCase("dd_association")) {
+				//if (lProp.title.equalsIgnoreCase("dd_association")) {
 				//	System.out.println("dd_association lprop");
-					k = 1;
-				}
+				//	k = 1;
+				//  }
 			prXML.println("        <ownedMember xmi:type=\"uml:Association\" xmi:id=\"" + lProp.title + "\" visibility=\"public\">");
 			prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_1" + "\"/>");
 			prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_2" + "\"/>");
@@ -83,13 +86,13 @@ class XMI2LabelSchema2DOM extends Object {
 			}			
 
 			
-		//	if (lProp != null) {
-					DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
-				//	if (k == 1) System.out.println("Printing DOM properties");
-					prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_2" + "\" name=\"" + lProp.title + "\" visibility=\"private\" type=\"" + lAssocClass.title + "\" association=\"" + lProp.title + "\">");
-					prXML.println("            <upperValue xmi:type=\"" + cmaxType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmax + "\"/>");
-					prXML.println("            <lowerValue xmi:type=\"" + cminType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmin + "\"/>");
-					prXML.println("          </ownedEnd>");
+	
+			DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
+			//	if (k == 1) System.out.println("Printing DOM properties");
+			prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_2" + "\" name=\"" + lProp.title + "\" visibility=\"private\" type=\"" + lAssocClass.title + "\" association=\"" + lProp.title + "\">");
+			prXML.println("            <upperValue xmi:type=\"" + cmaxType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmax + "\"/>");
+			prXML.println("            <lowerValue xmi:type=\"" + cminType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmin + "\"/>");
+			prXML.println("          </ownedEnd>");
 			}
 			
 			prXML.println("        </ownedMember>");
