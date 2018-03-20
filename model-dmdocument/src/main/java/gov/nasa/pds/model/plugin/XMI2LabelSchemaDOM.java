@@ -49,7 +49,7 @@ class XMI2LabelSchemaDOM extends Object {
 //	write the XML File
 	public void getXMIElements () {
 		// Iterate through all classes
-		for (Iterator<DOMClass> i = InfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();	
 			XMIClass lXMIClass = new XMIClass ();
 			lXMIClass.title = lClass.title;
