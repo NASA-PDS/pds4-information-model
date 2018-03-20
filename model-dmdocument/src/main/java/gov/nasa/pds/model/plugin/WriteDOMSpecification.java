@@ -223,7 +223,7 @@ public class WriteDOMSpecification extends Object {
 
 // 			get lClassAnchorString
 			//System.out.println("lClassId = "+ lClassId);
-			DOMClass lClass = (DOMClass) InfoModel.masterDOMClassMap.get(lClassId);
+			DOMClass lClass = (DOMClass) DOMInfoModel.masterDOMClassMap.get(lClassId);
 			if (lClass == null) continue;
 			String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 			String phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
@@ -240,7 +240,7 @@ public class WriteDOMSpecification extends Object {
 		for (Iterator <String> i = secInfo.sectionModelContentId.iterator(); i.hasNext();) {
 			String cid = (String) i.next();
 			SectionContentDefn content = (SectionContentDefn) docInfo.sectionContentMap.get(cid);
-            Collection<DOMClass> classArr =  InfoModel.masterDOMClassIdMap.values();
+            Collection<DOMClass> classArr =  DOMInfoModel.masterDOMClassIdMap.values();
 			for (Iterator <DOMClass> j = classArr.iterator(); j.hasNext();) {
 				DOMClass lClass = (DOMClass) j.next();			
 				if (content.includeClassId.contains(lClass.section)) {					
@@ -289,7 +289,7 @@ public class WriteDOMSpecification extends Object {
 		*/
 	
 	private void printClass (String lClassId, int levelind, ArrayList <String> itemNum) {				
-		DOMClass lClass = (DOMClass) InfoModel.masterDOMClassMap.get(lClassId);
+		DOMClass lClass = (DOMClass) DOMInfoModel.masterDOMClassMap.get(lClassId);
 		if (lClass == null) return;
 		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();		
 //		System.out.println("\ndebug class title:" + lClass.title);
@@ -380,7 +380,6 @@ public class WriteDOMSpecification extends Object {
 			// get lClassAnchorString
 			String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();			
 			
-			String pltitle = lClass.title;
 			String phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>" ;
 			printHTMLTableRow (phRelation, indent + phtitle, "&nbsp;", "&nbsp;", "&nbsp;");
 			indent = indent + ". ";
@@ -452,8 +451,8 @@ public class WriteDOMSpecification extends Object {
 			DOMProp lProp = (DOMProp) i.next();
 			String lRegistrationStatus = "";
 			if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
-			ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMObject;	   
-	        DOMAttr lDOMAttr = (DOMAttr) lISOClass; 
+			   
+	        DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
 			phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle() + lRegistrationStatus + "</a>";
 			String cmin = lDOMAttr.cardMin;																// get min card
 			String cmax = lDOMAttr.cardMax;																// get max card
@@ -486,17 +485,17 @@ public class WriteDOMSpecification extends Object {
 			phvalue = "";
 
 					
-			ArrayList<ISOClassOAIS11179> lValClassArr = lDOMAttr.hasDOMObject;
+			ArrayList<DOMProp> lValClassArr = lDOMAttr.domPermValueArr;
 			if (lValClassArr.isEmpty()) {
 		//		System.out.println("attribute value array is empty");
 				String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
-				ISOClassOAIS11179 lDummyClass =(ISOClassOAIS11179) new DOMProp();
+				DOMProp lDummyClass = new DOMProp();
 				lDummyClass.rdfIdentifier = lClassRdfIdentifier;
 				lDummyClass.title = "dummy";
 				lValClassArr.add(lDummyClass);
 			}			
 	//		System.out.println("getting values - size is "+ lValClassArr.size());
-			Iterator <ISOClassOAIS11179> k = lValClassArr.iterator();		
+			Iterator <DOMProp> k = lValClassArr.iterator();		
 			String value;
 	//	    System.out.println("Attr - "+ lProp.identifier+ "--" + lProp.classNameSpaceIdNC);
 			while (k.hasNext()) {
@@ -513,8 +512,8 @@ public class WriteDOMSpecification extends Object {
 			
 					   // check for data types, unit of measure, etc
 					   if (lDOMAttr.title.compareTo("data_type") == 0 || lDOMAttr.getTitle().compareTo("value_data_type") == 0 || lDOMAttr.getTitle().compareTo("unit_of_measure_type") == 0 || lDOMAttr.getTitle().compareTo("product_class") == 0) {
-							String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, value);
-							DOMClass lClass = InfoModel.masterDOMClassIdMap.get(lClassId);
+							String lClassId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, value);
+							DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
 							if (lClass != null) {
 								lAnchorString = lClass.anchorString;	
 							} else {
@@ -556,17 +555,13 @@ public class WriteDOMSpecification extends Object {
 	
 		for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();	
-			DOMClass assoClass = (DOMClass)lProp.hasDOMObject;
 			lPropSortMap.put(lProp.rdfIdentifier, lProp);			
 		}	
 		ArrayList <DOMProp> lSortPropArr = new ArrayList <DOMProp> (lPropSortMap.values());
 		String lastProp = "&nbsp;";
 		for (Iterator <DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
-			DOMProp lProp = (DOMProp) i.next();
-			String lRegistrationStatus = "";
-			if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
-			ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) lProp.hasDOMObject;	   
-	        DOMClass lDOMClass = (DOMClass) lISOClass; 
+			DOMProp lProp = (DOMProp) i.next();						   
+	        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;
 	
 			phtitle = "&nbsp;";
 			phcard = "&nbsp;";
@@ -620,12 +615,9 @@ public class WriteDOMSpecification extends Object {
 			
 				printHTMLTableRow (phRelation, phtitle, phcard, phvalue, phindicator);
 				firstflag = false;
-				phRelation = "&nbsp;";
+				phRelation = "&nbsp;";	
 				
-	
-				
-			}
-			
+			}			
 		
 		if (firstflag) {
 			printHTMLTableRow (phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
@@ -695,7 +687,7 @@ public class WriteDOMSpecification extends Object {
 	private ArrayList <DOMClass> getClassReferences (String lClassId) {
 		ArrayList <String> lClassIdArr = new ArrayList <String> ();
 		ArrayList<DOMClass> lClassArr = new ArrayList <DOMClass> ();
-		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (InfoModel.masterDOMClassIdMap.values());
+		ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
 		for (Iterator <DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;
@@ -736,7 +728,7 @@ public class WriteDOMSpecification extends Object {
 		prhtml.println("<dl>");
 		// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
 		TreeMap <String, DOMAttr> lTreeMap = new TreeMap <String, DOMAttr>();
-		for (Iterator<DOMProp> i = InfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
 			if (lProp.isAttribute){
 				DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
@@ -845,8 +837,8 @@ private void printAttrUnit (DOMAttr attr) {
 			phtype = "Association";
 		}
 
-		String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
-		DOMClass lClass = InfoModel.masterDOMClassIdMap.get(lClassId);
+		String lClassId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
+		DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
 		if (lClass != null) {
 			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 			phtype = "<a href=\"#" + lAnchorString + "\">" + phtype + "</a>";
@@ -889,7 +881,7 @@ private void printAttrUnit (DOMAttr attr) {
 		if (pval.indexOf("TBD") != 0) {
 			prhtml.println("<i>Format: </i>" + pval + "<br>");
 		}
-		pval = InfoModel.unEscapeProtegeString(attr.getPattern(true));
+		pval = DOMInfoModel.unEscapeProtegeString(attr.getPattern(true));
 		if (pval.indexOf("TBD") != 0) {
 			prhtml.println("<i>Pattern: </i>" + pval + "<br>");
 		}
@@ -923,27 +915,21 @@ private void printAttrUnit (DOMAttr attr) {
 		*/
 
 	private void printAttrValue (DOMAttr lAttr) {
-		String phvalue = "", del = "";
+		String phvalue = "";
 		boolean elipflag = false;
 
 		if  (lAttr.hasDOMObject.size() == 0) {	
 			return; 
-		}
-  
-		ArrayList<ISOClassOAIS11179> lValClassArr = lAttr.hasDOMObject;
+		}	  
+		ArrayList<DOMProp> lValClassArr = lAttr.domPermValueArr;;
 
-		  if (lAttr.hasDOMObject.size() > 1) {
+		  if (lValClassArr.size() > 1) {
 			prhtml.println("<p><i>Values: </i><br>");
-		  } else if (lAttr.hasDOMObject.size() == 1) { // determine if need to print the Value label
-			  ISOClassOAIS11179 lProp = (ISOClassOAIS11179) lAttr.hasDOMObject.get(0);
-			if (lProp instanceof DOMPermValDefn) {
-			   prhtml.println("<p><i>Value: </i><br>");
-			}
+		  } else if (lValClassArr.size() == 1) { // determine if need to print the Value label			 
+			   prhtml.println("<p><i>Value: </i><br>");			
 		  }               
 	
-		String value;
-				 
-		for (Iterator <ISOClassOAIS11179> i = lValClassArr.iterator(); i.hasNext();) {
+		for (Iterator <DOMProp> i = lValClassArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
 			
 			if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
@@ -954,7 +940,6 @@ private void printAttrUnit (DOMAttr attr) {
 		    	if (lPermValueDefn.value.compareTo("...") == 0) {
 			    	elipflag = true; 
 			    } else if (lPermValueDefn.value.compareTo("2147483647") == 0) {
-				    del = ", ";
 				    phvalue = "<a name=\"" + "" + "\"><b>" + "Unbounded" + "</b></a>" + " - " + "There is no bound on the maximum number of characters allowed.";
 				    prhtml.println(" - " + phvalue + "<br>");
 
@@ -967,7 +952,6 @@ private void printAttrUnit (DOMAttr attr) {
 				String lDependValue = lAttr.valueDependencyMap.get(lPermValueDefn.value);
 				String lDependClause = "";
 				if (lDependValue != null) lDependClause = " (" + lDependValue + ")";
-				del = ", ";
 				String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.nameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
 				String lValue = replaceString (lPermValueDefn.value, "μ", "&mu;");
 				String lValueMeaning = replaceString (lPermValueDefn.value_meaning, "μ", "&mu;");
@@ -993,7 +977,7 @@ private void printAttrUnit (DOMAttr attr) {
 	*  Print an attributes Extended values
 	*/
 	private void printAttrValueExtended (DOMAttr lAttr) {
-		String phvalue, del = "";
+		String phvalue;
 		boolean elipflag = false;
 
 		if (lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty()) {
@@ -1017,7 +1001,6 @@ private void printAttrUnit (DOMAttr attr) {
 				if (lPermValueDefn.value.compareTo("...") == 0) {
 					elipflag = true;
 				} else {
-					del = ", ";
 					String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.nameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
 					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + "</b></a>" + " - " + lPermValueDefn.value_meaning;
 					prhtml.println(" - " + phvalue + "<br>");
@@ -1033,6 +1016,23 @@ private void printAttrUnit (DOMAttr attr) {
 	*  Print schematron rule for the attribute
 	*/
 	private void printAttrSchematronRuleMsg(DOMAttr lAttr) {
+		/*
+		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleNewArr);
+		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();
+			for (Iterator <DOMAssert> j = lRule.assertArr.iterator(); j.hasNext();) {
+				DOMAssert lAssert = (DOMAssert) j.next();
+				if (! ((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0) && lAssert.attrTitle.compareTo(lAttr.title) == 0)) continue;
+				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
+				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
+				if (lAssert.assertType.compareTo("RAW") != 0) continue;
+//				prhtml.println("<i>Schematron Rule: " + lAssert.assertMsg + "</i><br>");
+				prhtml.println("<i>Schematron Rule: " + lAssert.specMesg + "</i><br>");
+			}
+		} 
+		*/
+		//revert back to legacy code - DOMInfoModel.masterDOMRuleNewArr is null
+		//fix later
 		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());
 		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
 			RuleDefn lRule = (RuleDefn) i.next();
@@ -1042,7 +1042,7 @@ private void printAttrUnit (DOMAttr attr) {
 				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
 				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
 				if (lAssert.assertType.compareTo("RAW") != 0) continue;
-//				prhtml.println("<i>Schematron Rule: " + lAssert.assertMsg + "</i><br>");
+
 				prhtml.println("<i>Schematron Rule: " + lAssert.specMesg + "</i><br>");
 			}
 		} 
@@ -1297,229 +1297,5 @@ private void printAttrUnit (DOMAttr attr) {
 		printAttrValue (attr);
 		printAttrValueExtended (attr);
 		printAttrSchematronRuleMsg(attr);
-	}	
-
-	
-	/**
-	*  Print an attributes unit
-	*/
-
-private void printAttrUnit (AttrDefn attr) {
-	String lUnitOfMeasureType;
-	if (attr.isAttribute && attr.unit_of_measure_type.indexOf("TBD") != 0 && attr.unit_of_measure_type.indexOf("none") != 0) {
-		lUnitOfMeasureType = (String) attr.unit_of_measure_type;
-		prhtml.println("<p><i>Unit of Measure Type: </i>" + lUnitOfMeasureType + "<br>");
-		
-		String lValueString = attr.getUnits(false);
-		if (lValueString != null) {
-			prhtml.println("<i>Valid Units: </i>" + lValueString + "<br>");
-		}
-	}
-	
-	String pval = "";
-	if (attr.isAttribute && attr.default_unit_id.indexOf("TBD") != 0 && attr.default_unit_id.indexOf("none") != 0) {
-		pval = (String) attr.default_unit_id;
-		prhtml.println("<i>Specified Unit Id: </i>" + pval + "<br>");
-	}
-}	
-	/**
-	*  Print an attributes type
-	*/
-	private void printAttrType (AttrDefn attr) {
-		String phtype;
-		
-		if (attr.isAttribute) {
-			if (attr.valueType.indexOf("TBD") == 0) {
-				return;
-			}
-			phtype = (String) attr.valueType;
-		} else {
-			phtype = "Association";
-		}
-
-		String lClassId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, phtype);
-		PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lClassId);
-		if (lClass != null) {
-			String lAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
-			phtype = "<a href=\"#" + lAnchorString + "\">" + phtype + "</a>";
-		} else {
-			phtype = "<a href=\"#" + phtype + "\">" + phtype + "</a>";
-		}		
-		prhtml.println("<p><i>Type: </i>" + phtype + "<br>");
-	}
-
-	/**
-	*  Print an attributes type
-	*/
-
-	private void printAttrMisc (AttrDefn attr) {
-		String pval = "";
-		if (! attr.isAttribute) {
-			return;
-		}
-		
-		pval = (String) attr.parentClassTitle;
-		prhtml.println("<i>Class Name: </i>" + pval + "<br>");
-		
-		pval = attr.getMinimumCharacters2 (true, false);
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Minimum Characters: </i>" + pval + "<br>");
-		}
-		pval = attr.getMaximumCharacters2 (true, false);
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Maximum Characters: </i>" + pval + "<br>");
-		}
-		pval = attr.getMinimumValue2 (true, false);
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Minimum Value: </i>" + pval + "<br>");
-		}
-		pval = attr.getMaximumValue2 (true, false);
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Maximum Value: </i>" + pval + "<br>");
-		}
-		pval = attr.getFormat (true);
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Format: </i>" + pval + "<br>");
-		}
-		pval = InfoModel.unEscapeProtegeString(attr.getPattern(true));
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Pattern: </i>" + pval + "<br>");
-		}
-		pval = "false";
-		if (attr.isNilable) {
-			pval = "true";			
-		}
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Nillable: </i>" + pval + "<br>");
-		}
-		pval = (String) attr.classConcept;
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Attribute Concept: </i>" + pval + "<br>");
-		}
-		pval = (String) attr.dataConcept;
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Conceptual Domain: </i>" + pval + "<br>");
-		}
-		pval = attr.getSteward ();
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Steward: </i>" + pval + "<br>");
-		}
-		pval = attr.getNameSpaceIdNC ();
-		if (pval.indexOf("TBD") != 0) {
-			prhtml.println("<i>Namespace Id: </i>" + pval + "<br>");
-		}
-	}
-	
-	/**
-		*  Print an attributes values
-		*/
-
-	private void printAttrValue (AttrDefn lAttr) {
-		String phvalue = "", del = "";
-		boolean elipflag = false;
-
-		if (lAttr.permValueArr == null || lAttr.permValueArr.isEmpty()) return; 
-		if (lAttr.permValueArr.size() > 1) {
-			prhtml.println("<p><i>Values: </i><br>");
-		} else {
-			prhtml.println("<p><i>Value: </i><br>");
-		}
-		
-		for (Iterator <PermValueDefn> i = lAttr.permValueArr.iterator(); i.hasNext();) {
-			PermValueDefn lPermValueDefn = (PermValueDefn) i.next();
-			if (lPermValueDefn.value.compareTo("...") == 0) {
-				elipflag = true; 
-			} else if (lPermValueDefn.value.compareTo("2147483647") == 0) {
-				del = ", ";
-				phvalue = "<a name=\"" + "" + "\"><b>" + "Unbounded" + "</b></a>" + " - " + "There is no bound on the maximum number of characters allowed.";
-				prhtml.println(" - " + phvalue + "<br>");
-
-			} else {
-				// check if deprecated
-				String lRegistrationStatus = "";
-				if (lPermValueDefn.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-
-				// check if dependent
-				String lDependValue = lAttr.valueDependencyMap.get(lPermValueDefn.value);
-				String lDependClause = "";
-				if (lDependValue != null) lDependClause = " (" + lDependValue + ")";
-				del = ", ";
-				String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
-				String lValue = replaceString (lPermValueDefn.value, "μ", "&mu;");
-				String lValueMeaning = replaceString (lPermValueDefn.value_meaning, "μ", "&mu;");
-				if (lAttr.title.compareTo("pattern") == 0 && lPermValueDefn.value_meaning.indexOf("TBD") == 0) {
-
-					
-					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + lDependClause + lRegistrationStatus + "</b></a>";
-				} else {
-					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lValue + lDependClause + lRegistrationStatus + "</b></a>" + " - " + lValueMeaning;
-				}
-				prhtml.println(" - " + phvalue + "<br>");
-			}
-		}
-		if (elipflag) {
-			phvalue = "<b>...</b>" + " - " + "The number of values exceeds the reasonable limit for this document.";
-			prhtml.println(" - " + phvalue + "<br>");
-		}
-  }
-	
-	/**
-	*  Print an attributes Extended values
-	*/
-	private void printAttrValueExtended (AttrDefn lAttr) {
-		String phvalue, del = "";
-		boolean elipflag = false;
-
-		if (lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty()) {
-			return;
-		}
-		
-		for (Iterator <PermValueExtDefn> i = lAttr.permValueExtArr.iterator(); i.hasNext();) {
-			PermValueExtDefn lPermValueExt = (PermValueExtDefn) i.next();	
-			if (lPermValueExt.permValueExtArr == null || lPermValueExt.permValueExtArr.isEmpty()) {
-				return;
-			}
-			
-			if (lPermValueExt.permValueExtArr.size() > 1) {
-				prhtml.println("<p><i>Extended Values for: " + lPermValueExt.xpath + "</i><br>");
-			} else {
-				prhtml.println("<p><i>Extended Value for: " + lPermValueExt.xpath + "</i><br>");
-			}
-		
-			for (Iterator <PermValueDefn> j = lPermValueExt.permValueExtArr.iterator(); j.hasNext();) {
-				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
-				if (lPermValueDefn.value.compareTo("...") == 0) {
-					elipflag = true;
-				} else {
-					del = ", ";
-					String lValueAnchorString = ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value).toLowerCase();				
-					phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + "</b></a>" + " - " + lPermValueDefn.value_meaning;
-					prhtml.println(" - " + phvalue + "<br>");
-				}
-			}
-		}
-		if (elipflag) {
-			phvalue = "<b>...</b>" + " - " + "The number of values exceeds the reasonable limit for this document.";
-			prhtml.println(" - " + phvalue + "<br>");
-		}
-	}
-	
-	/**
-	*  Print schematron rule for the attribute
-	*/
-	private void printAttrSchematronRuleMsg(AttrDefn lAttr) {
-		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());
-		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
-			RuleDefn lRule = (RuleDefn) i.next();
-			for (Iterator <AssertDefn2> j = lRule.assertArr.iterator(); j.hasNext();) {
-				AssertDefn2 lAssert = (AssertDefn2) j.next();
-				if (! ((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0) && lAssert.attrTitle.compareTo(lAttr.title) == 0)) continue;
-				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
-				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
-				if (lAssert.assertType.compareTo("RAW") != 0) continue;
-//				prhtml.println("<i>Schematron Rule: " + lAssert.assertMsg + "</i><br>");
-				prhtml.println("<i>Schematron Rule: " + lAssert.specMesg + "</i><br>");
-			}
-		} 
 	}
 }
