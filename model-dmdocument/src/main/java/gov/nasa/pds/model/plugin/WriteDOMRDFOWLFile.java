@@ -353,10 +353,10 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("   </owl:Class>");
 		
 		// write the permissible values as OWL classes
-//		for (Iterator<DOMPermValDefn> j = lDOMClassAttrPermValArr.iterator(); j.hasNext();) {
-//			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
-//			printPermValue (lDOMPermValDefn, prDDPins);
-//		}
+		for (Iterator<DOMPermValDefn> j = lDOMClassAttrPermValArr.iterator(); j.hasNext();) {
+			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) j.next();
+			printPermValue (lDOMPermValDefn, prDDPins);
+		}
 	}	
 
 	// write a single permissible value as a OWL class
@@ -810,7 +810,7 @@ class WriteDOMRDFOWLFile extends Object{
 				// set the units
 				for (Iterator<String> j = lUnit.unit_id.iterator(); j.hasNext();) {
 					String lVal = (String) j.next();
-					prDDPins.print(lSpace + "\"" + InfoModel.escapeProtegeString(lVal) + "\"");
+					prDDPins.print(lSpace + "\"" + DOMInfoModel.escapeProtegeString(lVal) + "\"");
 					lSpace = " ";
 				}
 				prDDPins.println("))");
