@@ -118,9 +118,15 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 				    if (lValue != null) {
 					   prDDReg.println("            <DD_Permissible_Value_Full>");
 					   prDDReg.println("                <value>" + lValue + "</value>");
-//				    	if (lDOMPermVal.value_meaning.indexOf("TBD") != 0) {
-//						   prDDReg.println("                <value_meaning>" + DOMInfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
-//					    }
+
+					   String str = lDOMPermVal.value_meaning;
+					   if (str == null)
+						   System.out.println("value_meaning is null"+ lAttr.title + "=="+ lDOMProp.title);
+					   else {
+						   if (str.indexOf("TBD") != 0) {
+							   prDDReg.println("                <value_meaning>" + DOMInfoModel.escapeXMLChar(lDOMPermVal.value_meaning) + "</value_meaning>");
+						   }
+					   }
 					    prDDReg.println("                <value_begin_date>" + DMDocument.beginDatePDS4Value + "T00:00:00Z" + "</value_begin_date>");
 					    prDDReg.println("                <value_end_date>" + DMDocument.endDateValue + "T00:00:00Z" + "</value_end_date>");
 					    prDDReg.println("            </DD_Permissible_Value_Full>");
