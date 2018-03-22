@@ -147,8 +147,8 @@ class XML4LabelSchemaDOM extends Object {
     	}
 		
 		if (DMDocument.LDDToolFlag  && DMDocument.LDDNuanceFlag) {
-			WritePropMapsSchema lWritePropMapsSchema = new WritePropMapsSchema ();
-			lWritePropMapsSchema.writePropertyMaps (prXML);
+			WriteDOMPropMapsSchema lWritePropMapsSchema = new WriteDOMPropMapsSchema ();
+			lWritePropMapsSchema.writeDOMPropertyMaps (prXML);
 		}
 		
        	// write the deprecated items
