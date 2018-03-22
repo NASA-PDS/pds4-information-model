@@ -23,7 +23,46 @@
   </properties>
 
   <body>
-    <release version="8.1.0" date="TBD" description="TBD">
+    <release version="8.1.0" date="2018-03-31" description="This release of the IMTOOL schema data files(model-ontology) is a component of the integrated release 8.1.0 of the PDS4 System.  This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-153">
+        SR Needs Additional Description of Packed_Data_Fields 
+        a.	Change attributes start_bit and stop_bit to start_bit_location and stop_bit_location which establishes a better parallel with field_location.
+        b.	Make the definitions of the new attributes more explcit.
+        c.	Update the schematron rule.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-174">
+        Add the Composite Structure class
+        a.	Defined the Composite_Structure class as a member of the File_Area_Observational and File_Area_Observational_Supplemental classes.
+        b.	Defined the Local_ID_Reference class.  Added the following values and their value meanings = has_component and has_primary_component.
+        c.	Defined the Local_ID_Relation class.  Added the following values and their value meanings - has_axis_values, has_backplane, has_column_headers, has_display_settings and has_special_characteristics.
+        d.      Added the following terms and their definitions to the Glossary - component, primary component and composite structure.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-189">
+        Implement Query Model for PDS4 Mission Science Data Bundles
+        a.	Implement a schematron rule that validates that a Mission Science Archive Product_Bundle contains the attributes necessary for the bundle to be found via the PDS4 search services
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-201">
+        Add enumerated values to reference_type for investigations at facilities using telescopes.
+        a.	Added value and value meanings for Internal_Reference.reference_type used in pds:Product_Context/pds:Reference_List/pds:Internal_Reference.
+        b.      investigation_to_facility - The investigation is associated to a facility.
+        c.      investigation_to_telescope - The investigation is associated to a telescope.
+      </action>
+      <action dev="jshughes" type="fix">
+        Removed pds:Context_Area from the XPath pds:Product_Bundle/pds:Context_Area for Bundle query model.
+      </action>
+      <action dev="jshughes" type="fix">
+        Removed null pattern from data type ASCII_Date_Time_UTC.
+      </action>
+      <action dev="jshughes" type="fix">
+        Fixed Bundle Query Model Schematron Rule - sch:rule context="pds:Product_Bundle"
+      </action>
+      <action dev="jshughes" type="fix">
+        Other Significant Updates External to the Common Dictionary
+        The version identifier of the Information Model is used for many purposes, including being inserted as part of the file name for almost all system files that are auto-generated for the release.
+        To be inserted into the filename, the version identifier must have the dots "." removed, for example "1900" is derived from "1.9.0.0".  However for this release the insert "11000" results from "1.10.0.0".
+        This insert causes problems with ordering as well as being ambiguous.  After some consultation it was decided to use the insert "1.A.0.0" for this release.  For example PDS4_PDS_1A00.xsd is the name of the 
+        XML Schema file for this release.  System programmers will immediately identify the change from the decimal to the hexadecimal numbering system.  (base-10 to base-16).
+      </action>
     </release>
 
     <release version="8.0.0" date="2017-09-29" description="This release of the IMTool schema data files(model-ontology) is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
