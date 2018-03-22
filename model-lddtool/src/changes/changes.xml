@@ -23,7 +23,10 @@
   </properties>
 
   <body>
-    <release version="8.1.0" date="TBD" description="TBD">
+    <release version="8.1.0" date="2018-03-31" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.1.0 of the PDS4 System. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update">
+      Bug fixes and enhancements are detailed in model-ontology section.
+      </action>
     </release>
 
     <release version="8.0.0" date="2017-09-29" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
