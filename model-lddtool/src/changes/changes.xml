@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Copyright 2016-2017, by the California Institute of Technology.
+  Copyright 2016-2018, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology Transfer
   at the California Institute of Technology.
@@ -23,20 +23,20 @@
   </properties>
 
   <body>
-    <release version="8.1.0" date="2018-03-31" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.1.0 of the PDS4 System. This is an operational release of the system components to date.">
+    <release version="8.1.0" date="2018-03-30" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.1.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update">
-      Bug fixes and enhancements are detailed in model-ontology section.
+        Bug fixes and enhancements are detailed in model-ontology section.
       </action>
     </release>
 
     <release version="8.0.0" date="2017-09-29" description="This release of the Local Data Dictionary Tool is a component of the integrated release 8.0.0 of the PDS4 System. This is an operational release of the system components to date.">
-<action dev="jshughes" type="update">
-     This release of the IMTool includes those approved by the CCB and bug fixes since Version 1.8.0.0 of the PDS4 Information Model.  The released documents include 1. index_1900.html – Information Model Specification; 2. PDS4_PDS_1900.xsd – Common Schema; 3. PDS4_PDS_1900.sch – Common Schematron; 4. PDS4_PDS_1900.xml – Label for Common Schema and Schematron; 5. PDS4_PDS_DD_1900.html – Data Dictionary (html); 6. PDS4_PDS_DD_1900.pdf – Data Dictionary (pdf); 7. PDS4_PDS_JSON_1900.JSON – Information Model (JSON); 8. PDS4_PDS_OWL_1900.rdf – Information Model (OWL-DL); 9. PDS4_DISP_1900.xsd – Display LDD Schema; 10. PDS4_DISP_1900.sch – Display LDD Schematron; 11. PDS4_DISP_1900.xml – Label for Display Schema and Schematron.
+      <action dev="jshughes" type="update">
+        This release of the IMTool includes those approved by the CCB and bug fixes since Version 1.8.0.0 of the PDS4 Information Model.  The released documents include 1. index_1900.html – Information Model Specification; 2. PDS4_PDS_1900.xsd – Common Schema; 3. PDS4_PDS_1900.sch – Common Schematron; 4. PDS4_PDS_1900.xml – Label for Common Schema and Schematron; 5. PDS4_PDS_DD_1900.html – Data Dictionary (html); 6. PDS4_PDS_DD_1900.pdf – Data Dictionary (pdf); 7. PDS4_PDS_JSON_1900.JSON – Information Model (JSON); 8. PDS4_PDS_OWL_1900.rdf – Information Model (OWL-DL); 9. PDS4_DISP_1900.xsd – Display LDD Schema; 10. PDS4_DISP_1900.sch – Display LDD Schematron; 11. PDS4_DISP_1900.xml – Label for Display Schema and Schematron.
       </action>
     </release>
 
     <release version="7.1.0" date="2017-03-31" description="This release of the Local Data Dictionary Tool is a component of the integrated release 7.1.0 of the PDS4 System. This is an operational release of the system components to date.">
-<action dev="jshughes" type="update">
+      <action dev="jshughes" type="update">
         Removed the restriction where LDDTool has to be run from a directory named "LDDTool".
       </action>
     </release>
