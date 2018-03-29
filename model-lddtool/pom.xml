@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2016-2017, by the California Institute of Technology.
+  Copyright 2016-2018, by the California Institute of Technology.
   ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
   Any commercial use must be negotiated with the Office of Technology 
   Transfer at the California Institute of Technology.
@@ -19,7 +19,7 @@
   <parent>
     <groupId>gov.nasa.pds.2010</groupId>
     <artifactId>model</artifactId>
-    <version>8.1.0-dev</version>
+    <version>8.1.0</version>
   </parent>
 
   <groupId>gov.nasa.pds.2010.model</groupId>
