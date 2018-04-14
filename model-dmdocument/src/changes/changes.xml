@@ -22,6 +22,9 @@
   </properties>
 
   <body>
+    <release version="9.0.0" date="TBD" description="TBD">
+    </release>
+
     <release version="8.1.0" date="2018-03-30" description="This release of the Model DM-Document is a component of the integrated release 8.1.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update">
       The conversion of ouput modules that write and convert the model to files in specific formats is still on-going.
