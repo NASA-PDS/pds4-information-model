@@ -158,7 +158,6 @@ public class SchemaFileDefn {
 	
 	//	set the various version identifiers
 	public void setVersionIds () {
-		
 		// get a cleaned up version id
 		// the following attributes are updated.
 		//    ont_version_id, lab_version_id, identifier_version_id 
@@ -230,18 +229,17 @@ public class SchemaFileDefn {
 		relativeFileSpecModelRIM4 = DMDocument.outputDirPath + "export/rim/" + "PDS4_" + nameSpaceIdNCUC + "_" + "RIM4" + "_" + lab_version_id + ".txt";	
 		relativeFileSpecAttrDefn = DMDocument.outputDirPath + "export/defnAttr/";	
 		relativeFileSpecClassDefn = DMDocument.outputDirPath + "export/defnClass/";	
-
 		return;
 	}
 	
 	// get clean version id
 	void getCleanVersionId(String versionId) {
 		// parse out the version id into an array of strings, one string for each digit
-		char ic;
+		char ic = 'x';
 		ArrayList <String> vIdDigitArr = new ArrayList <String> ();
 		String vIdDigit = "";
 		StringBuffer sbVersionId = new StringBuffer(versionId);
-		for (int i = 0; i <  sbVersionId.length (); i++) {
+		for (int i = 0; i < sbVersionId.length(); i++) {
 			ic = sbVersionId.charAt(i);
 			if (ic != '.') {
 				if (Character.isDigit(ic)) vIdDigit += new Character(ic).toString();
@@ -251,7 +249,8 @@ public class SchemaFileDefn {
 				vIdDigit = "";
 			}
 		}
-
+		vIdDigitArr.add(vIdDigit);
+		
 		// ensure that there are four digits
 		for (int i = vIdDigitArr.size(); i <  4; i++) {
 			vIdDigitArr.add("0");
@@ -272,6 +271,11 @@ public class SchemaFileDefn {
 		for (Iterator <String> i = vIdDigitArr.iterator(); i.hasNext();) {
 			String lDigit = (String) i.next();
 			if (lDigit.compareTo("10") == 0) lDigit = "A";
+			if (lDigit.compareTo("11") == 0) lDigit = "B";
+			if (lDigit.compareTo("12") == 0) lDigit = "C";
+			if (lDigit.compareTo("13") == 0) lDigit = "D";
+			if (lDigit.compareTo("14") == 0) lDigit = "E";
+			if (lDigit.compareTo("15") == 0) lDigit = "F";
 			lId += lDigit;
 		}
 		lab_version_id = lId;

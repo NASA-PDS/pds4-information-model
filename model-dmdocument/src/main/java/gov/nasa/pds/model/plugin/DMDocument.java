@@ -780,9 +780,10 @@ public class DMDocument extends Object {
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 // 7777
+// 555
 		// get the DOM Model
-		GetDOMModel lGetDOMModel = new GetDOMModel();
-		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+//		GetDOMModel lGetDOMModel = new GetDOMModel();
+//		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
 		
 //		System.out.println("\ndebug DMDocument - GetDomClasses ");
 		if (! DMDocument.LDDToolFlag) {

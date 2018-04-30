@@ -716,7 +716,6 @@ public class LDDParser extends Object
 						lddErrorMsg.add("   ERROR    Association - Reference_Type: " + lReferenceType + " - No identifiers were provided for this association.");
 						continue;
 					}
-
 				}
 				lLocalIdentifier = lLocalIdentifierArr.get(0);
 				if (lReferenceType.compareTo("attribute_of") == 0) {
