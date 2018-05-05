@@ -99,7 +99,8 @@ public class GetModels extends Object {
 //		InfoModel.printRulesAllDebug (222, dumpRuleDefnArr);
 //		System.out.println("<<<RuleDump End - getModels>>>");
 		
-		MasterInfoModel.checkSameNameOverRide ();
+// 7777
+//		MasterInfoModel.checkSameNameOverRide ();
 		
 		// debug print permissible values
 //		InfoModel.writePermissibleValues ("debug - GetModels 1", InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.unit_id"));

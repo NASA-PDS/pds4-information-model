@@ -75,6 +75,8 @@ public class DMDocument extends Object {
 	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
 	// 1.9.1.0 - 1.14 - 1.14 - Build 8a
 	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
+	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
+	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
 	
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
@@ -93,13 +95,12 @@ public class DMDocument extends Object {
 	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
 	// 1.9.1.0 - 1.14 - 1.14 - Build 8a
 	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
+	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
+	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-//	static String LDDToolVersionId  = "0.1.9.0a2";
-//	static String LDDToolVersionId  = "0.2.0.3";
-//	static String LDDToolVersionId  = "0.2.1.0";
 	static String LDDToolVersionId  = "0.2.1.3";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
@@ -780,12 +781,10 @@ public class DMDocument extends Object {
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 // 7777
-// 555
 		// get the DOM Model
-//		GetDOMModel lGetDOMModel = new GetDOMModel();
-//		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+		GetDOMModel lGetDOMModel = new GetDOMModel();
+		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
 		
-//		System.out.println("\ndebug DMDocument - GetDomClasses ");
 		if (! DMDocument.LDDToolFlag) {
 			GetDomClasses lGetDomClasses = new GetDomClasses ();
 			lGetDomClasses.domConvert();
@@ -1092,7 +1091,7 @@ public class DMDocument extends Object {
         	// look for schema entries
         	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
         		String nameSpaceId = prop.getProperty(key);
-        		System.out.println("finding identifier: ---->"+ nameSpaceId);
+        		System.out.println(">>info    - config namespace_id:"+ nameSpaceId);
         		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
         		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
         	    String value = prop.getProperty(isMasterKey);
@@ -1169,23 +1168,43 @@ public class DMDocument extends Object {
         	    value = prop.getProperty(sourceFileNameKey);
         		if (value != null){        		
             			   lSchemaFileDefn.sourceFileName = value;
-        		} 
+        		}
+        		
+          		String nameSpaceURLKey = SCHEMA_LITERAL+nameSpaceId + ".nameSpaceURL";
+        	    value = prop.getProperty(nameSpaceURLKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.nameSpaceURL = value;
+        		}
+        		
+          		String urnPrefixKey = SCHEMA_LITERAL+nameSpaceId + ".urnPrefix";
+        	    value = prop.getProperty(urnPrefixKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.urnPrefix = value;
+        		}
+        		
+          		String modelShortNameKey = SCHEMA_LITERAL+nameSpaceId + ".modelShortName";
+        	    value = prop.getProperty(modelShortNameKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.modelShortName = value;
+        		}
+        		
+          		String regAuthIdKey = SCHEMA_LITERAL+nameSpaceId + ".regAuthId";
+        	    value = prop.getProperty(regAuthIdKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.regAuthId = value;
+        		}
         		
         		if (lSchemaFileDefn.isMaster) {
         		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
         		   masterPDSSchemaFileDefn = lSchemaFileDefn;
         		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
-        		   System.out.println("ADDING master:"+ lSchemaFileDefn.identifier);
         		   if (DMDocument.LDDToolFlag) {
         			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
         			   break;
         		   }     		  
         		} else if (!DMDocument.LDDToolFlag) {
         			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-        			System.out.println("ADDING :"+ lSchemaFileDefn.identifier);
-        		} 
-		       
-
+        		}
         	}
           }
         }

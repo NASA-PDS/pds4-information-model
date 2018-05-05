@@ -24,9 +24,6 @@ class XML4LabelSchema extends Object {
 
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <PDSObjDefn> lInputClassArr) throws java.io.IOException {
-// 777
-//		System.out.println("\ndebug writeXMLSchemaFiles -- XML4LabelSchema - ##### - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
-		
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
@@ -193,9 +190,9 @@ class XML4LabelSchema extends Object {
 	public void writeXMLSchemaFileHeader (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
 		//	Write the header statements
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
-		prXML.println("  <!-- PDS4 XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
-		prXML.println("  <!-- Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prXML.println("  <!-- *** This PDS4 product schema is an operational deliverable. *** -->");
+		prXML.println("  <!-- " + lSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
+		prXML.println("  <!-- Generated from the " + lSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prXML.println("  <!-- *** This " + lSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
 		if (DMDocument.LDDToolFlag) {
 			prXML.println("  <!--                                                                           -->");
 			prXML.println("  <!--               Dictionary Stack                                            -->");
@@ -217,17 +214,17 @@ class XML4LabelSchema extends Object {
 		// write namespace statements
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
-			prXML.println("    targetNamespace=\"http://pds.nasa.gov/pds4/pds/v" + lSchemaFileDefn.ns_version_id + "\"");
-			prXML.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    targetNamespace=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 		} else {
 			// namespaces required: ldd - latest version
 			String governanceDirectory = "";
 			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";
-			prXML.println("    targetNamespace=\"http://pds.nasa.gov/pds4/" + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
-			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"http://pds.nasa.gov/pds4/" + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    targetNamespace=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 
 			// namespaces required: pds - latest version
-			prXML.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    xmlns:" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 
 			// namespaces required: all other discipline levels referenced; no mission level allowed - prior versions
 			if (DMDocument.LDDToolFlag) {
@@ -235,7 +232,7 @@ class XML4LabelSchema extends Object {
 					String lNameSpaceIdNC = (String) i.next();
 					String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
 					if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
+					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
 				}
 			}
 		}
@@ -247,7 +244,7 @@ class XML4LabelSchema extends Object {
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
-			prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"http://pds.nasa.gov/pds4/pds/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
+			prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
@@ -257,7 +254,7 @@ class XML4LabelSchema extends Object {
 					lVersionId = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 					lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 				}
-				prXML.println("    <" + pNS + "import namespace=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" schemaLocation=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + lVersionId + ".xsd\"/>");	
+				prXML.println("    <" + pNS + "import namespace=\"" + lSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" schemaLocation=\"" + lSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + lVersionId + ".xsd\"/>");	
 			}
 		}
 		
@@ -610,7 +607,7 @@ class XML4LabelSchema extends Object {
 		prXML.println("      <" + pNS + "documentation>This section contains the simpleTypes that provide more constraints");
 		prXML.println("        than those at the base data type level. The simpleTypes defined here build on the base data");
 		prXML.println("        types. This is another component of the common dictionary and therefore falls within the");
-		prXML.println("        pds namespace.");
+		prXML.println("        common namespace.");
 		prXML.println("      </" + pNS + "documentation>");
 		prXML.println("    </" + pNS + "annotation>");		
 		
@@ -665,8 +662,8 @@ class XML4LabelSchema extends Object {
 			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
 			prXML.println("    </" + pNS + "annotation>");
 		}
-	
-		prXML.println("    <" + pNS + "restriction base=\"pds:" + lAttr.getValueType (true) + "\">");
+		
+		prXML.println("    <" + pNS + "restriction base=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.getValueType (true) + "\">");
 		
 		lValue = lAttr.getFormat (true);
 		if (! (lValue.indexOf("TBD") == 0)) {
@@ -735,9 +732,9 @@ class XML4LabelSchema extends Object {
 //		Write the header statements
 		prXML.println("");
 	    prXML.println("    <" + pNS + "annotation>");
-	    prXML.println("      <" + pNS + "documentation>This section contains the base data types for PDS4 and any constraints those types");
+	    prXML.println("      <" + pNS + "documentation>This section contains the base data types and any constraints those types");
 	    prXML.println("        may have. These types should be reused across schemas to promote compatibility. This is one");
-	    prXML.println("        component of the common dictionary and thus falls into the common namespace, pds.");
+	    prXML.println("        component of the common dictionary and thus falls into the common namespace.");
 	    prXML.println("      </" + pNS + "documentation>");
 	    prXML.println("    </" + pNS + "annotation>");
 		
@@ -833,9 +830,9 @@ class XML4LabelSchema extends Object {
 //		Write the header statements
 		prXML.println("");
 	    prXML.println("    <" + pNS + "annotation>");
-	    prXML.println("      <" + pNS + "documentation>This section contains the base Units of Measure for PDS4.");
+	    prXML.println("      <" + pNS + "documentation>This section contains the base Units of Measure.");
 	    prXML.println("        These Units of Measure should be reused across schemas to promote compatibility. This is one");
-	    prXML.println("        component of the common dictionary and thus falls into the common namespace, pds.");
+	    prXML.println("        component of the common dictionary and thus falls into the common namespace.");
 	    prXML.println("      </" + pNS + "documentation>");
 	    prXML.println("    </" + pNS + "annotation>");
 		

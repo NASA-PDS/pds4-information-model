@@ -303,6 +303,7 @@ public class LDDParser extends Object
 		String lNameSpaceIdNC = getTextValue(docEle,"namespace_id");
 		if (lNameSpaceIdNC == null) lNameSpaceIdNC = "TBD";
 		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC);
+		lSchemaFileDefn.setRegAuthority (DMDocument.masterPDSSchemaFileDefn);
 		
 		// set namespace and governance level
 		if (DMDocument.governanceLevel.compareTo("Discipline") == 0) lSchemaFileDefn.isDiscipline = true;
@@ -1215,21 +1216,6 @@ public class LDDParser extends Object
 							lddErrorMsg.add("   ERROR    Association: " + lProperty.identifier + " - Missing Class: " + lProperty.localIdentifier + " - Reference Type: " + lProperty.referenceType);	
 						}
 					}
-				}
-			}
-			
-			// copy the titles of the <choice or any> component classes into the old Assoc (AttrDefn)
-			if (lChoiceOrAnyAssocOld != null) {
-				for (Iterator <PDSObjDefn> k = lChildClassArr.iterator(); k.hasNext();) {
-					PDSObjDefn lComponentClass = (PDSObjDefn) k.next();
-// 					lChoiceOrAnyAssocOld.valArr.add(lComponentClass.title);
-										
-//					System.out.println("debug resolveComponentsForAssociation - valArr2 - lComponentClass.rdfIdentifier:" + lComponentClass.rdfIdentifier);							
-//					System.out.println("debug resolveComponentsForAssociation - valArr2 - lComponentClass.identifier:" + lComponentClass.identifier);							
-//					System.out.println("debug resolveComponentsForAssociation - valArr2 - lComponentClass.title:" + lComponentClass.title);							
-//					System.out.println("debug resolveComponentsForAssociation - valArr2 - lClassComponent.rdfIdentifier:" + lChoiceOrAnyAssocOld.rdfIdentifier);							
-//					System.out.println("debug resolveComponentsForAssociation - valArr2 - lClassComponent.identifier:" + lChoiceOrAnyAssocOld.identifier);							
-					
 				}
 			}
 		}

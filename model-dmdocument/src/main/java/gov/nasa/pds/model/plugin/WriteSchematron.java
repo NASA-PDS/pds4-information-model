@@ -161,20 +161,20 @@ class WriteSchematron extends Object {
 		prSchematron.println("");
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
-			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
+			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 		} else {
 			// namespaces required: pds
-			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
+			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: ldd
 			String governanceDirectory = "";
 			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";
-			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\"" + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
+			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\"" + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
 				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
 				if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-				prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
+				prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}
 	}

@@ -1,0 +1,545 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Model DM-Document Maven Plugin
+[INFO]    task-segment: [clean, install]
+[INFO] ------------------------------------------------------------------------
+[INFO] [clean:clean {execution: default-clean}]
+[INFO] Deleting directory C:\AAIMToolcheckoutdir\model\model-dmdocument\target
+[INFO] [plugin:helpmojo {execution: help-goal}]
+[WARNING] 
+
+Goal prefix is specified as: 'pds-model-dmdocument'. Maven currently expects it to be 'model-dmdocument'.
+
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java
+[INFO] Mojo extractor for language: java found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 0 mojo descriptors.
+[INFO] [plugin:descriptor {execution: default-descriptor}]
+[WARNING] 
+
+Goal prefix is specified as: 'pds-model-dmdocument'. Maven currently expects it to be 'model-dmdocument'.
+
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java
+[INFO] Mojo extractor for language: java found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 0 mojo descriptors.
+[INFO] [resources:resources {execution: default-resources}]
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] [compiler:compile {execution: default-compile}]
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 95 source files to C:\AAIMToolcheckoutdir\model\model-dmdocument\target\classes
+[WARNING] /C:/AAIMToolcheckoutdir/model/model-dmdocument/src/main/java/gov/nasa/pds/model/plugin/WriteRDFOWLFile.java: Some input files use unchecked or unsafe operations.
+[WARNING] /C:/AAIMToolcheckoutdir/model/model-dmdocument/src/main/java/gov/nasa/pds/model/plugin/WriteRDFOWLFile.java: Recompile with -Xlint:unchecked for details.
+[INFO] Preparing javadoc:javadoc
+[WARNING] Removing: javadoc from forked lifecycle, to prevent recursive invocation.
+[INFO] [plugin:helpmojo {execution: help-goal}]
+[WARNING] 
+
+Goal prefix is specified as: 'pds-model-dmdocument'. Maven currently expects it to be 'model-dmdocument'.
+
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java
+[INFO] Mojo extractor for language: java found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 2 mojo descriptors.
+[WARNING] 
+
+A help goal (HelpMojo) already exists in this plugin. SKIPPED THE gov.nasa.pds.model.plugin.HelpMojo GENERATION.
+
+[INFO] [javadoc:javadoc {execution: default}]
+Loading source file C:\AAIMToolcheckoutdir\model\model-dmdocument\target\generated-sources\plugin\HelpMojo.java...
+Loading source files for package gov.nasa.pds.model.plugin...
+Constructing Javadoc information...
+Standard Doclet version 1.8.0_77
+Building tree for all the packages and classes...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\HelpMojo.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AAAClassAttrOrder_Historical.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AAAUsefulCode.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AAHoldClass2Defn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AbstractGenerationPlugin.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AdminDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AssertDefn2.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AssocAttrChoiceAnyDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AssocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AttrClassificationDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\AttrDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\Class2Defn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ClassAttrDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ClassClassificationDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ClassDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DataTypeDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DeprecatedDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DispDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DMDocument.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DocumentationGenerationPlugin.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMAttr.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMClass.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMDataType.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMPermValDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DomPermValue.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMProp.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DomTemp.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DOMUnit.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\DomUnits.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ExportModels.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\GetModels.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\IndexDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\InfoModel.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\InstDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ISOClass.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ISOClassOAIS.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ISOClassOAIS11179.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\LDDParser.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ModelDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PDSObjDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PermValueDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PermValueExtDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PropertyMapDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PropertyMapEntryDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\PropertyMapsDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\ProtFramesParser.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\RuleDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SchemaFileDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SectionContentDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SectionDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SFDisciplineFacetDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SFGroupFacetDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\SortAssocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\TermEntryDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\UnitDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\WriteSpecification.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\XMLDocParserDomMDPTNConfig.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\overview-frame.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\package-frame.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\package-summary.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\package-tree.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\package-frame.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\package-summary.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\package-tree.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\constant-values.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\class-use\HelpMojo.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\XMLDocParserDomMDPTNConfig.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\WriteSpecification.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\UnitDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\TermEntryDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SortAssocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SFGroupFacetDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SFDisciplineFacetDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SectionDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SectionContentDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\SchemaFileDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\RuleDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ProtFramesParser.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PropertyMapsDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PropertyMapEntryDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PropertyMapDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PermValueExtDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PermValueDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\PDSObjDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ModelDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\LDDParser.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ISOClassOAIS11179.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ISOClassOAIS.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ISOClass.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\InstDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\InfoModel.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\IndexDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\GetModels.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ExportModels.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DomUnits.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMUnit.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DomTemp.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMProp.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DomPermValue.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMPermValDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMDataType.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMClass.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DOMAttr.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DocumentationGenerationPlugin.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DMDocument.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DispDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DeprecatedDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\DataTypeDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ClassDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ClassClassificationDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\ClassAttrDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\Class2Defn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AttrDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AttrClassificationDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AssocDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AssocAttrChoiceAnyDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AssertDefn2.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AdminDefn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AbstractGenerationPlugin.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AAHoldClass2Defn.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AAAUsefulCode.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\class-use\AAAClassAttrOrder_Historical.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\package-use.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\gov\nasa\pds\model\plugin\package-use.html...
+Building index for all the packages and classes...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\overview-tree.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\index-all.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\deprecated-list.html...
+Building index for all classes...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\allclasses-frame.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\allclasses-noframe.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\index.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\overview-summary.html...
+Generating C:\AAIMToolcheckoutdir\model\model-dmdocument\target\site\apidocs\help-doc.html...
+100 warnings
+[WARNING] Javadoc Warnings
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\AbstractGenerationPlugin.java:37: warning: no @throws for org.apache.maven.plugin.MojoExecutionException
+[WARNING] protected abstract void generateArtifacts() throws MojoExecutionException;
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\AbstractGenerationPlugin.java:66: warning: no @param for newenv
+[WARNING] protected void setEnv(Map<String, String> newenv) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\AbstractGenerationPlugin.java:66: warning: no @throws for java.lang.Throwable
+[WARNING] protected void setEnv(Map<String, String> newenv) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:218: warning: no @param for args
+[WARNING] public static void main (String args[]) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:218: warning: no @throws for java.lang.Throwable
+[WARNING] public static void main (String args[]) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1206: warning: no @param for s
+[WARNING] static public boolean isInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1206: warning: no @return
+[WARNING] static public boolean isInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1255: warning: no @param for lClass
+[WARNING] static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1255: warning: no @param for lClassName
+[WARNING] static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1255: warning: no @param for isFromProtege
+[WARNING] static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\DMDocument.java:1255: warning: no @return
+[WARNING] static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ExportModels.java:20: warning: no @throws for java.io.IOException
+[WARNING] public void writeAllArtifacts () throws java.io.IOException {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:34: warning: no @param for oflag
+[WARNING] public void getModels (boolean oflag, String docFileName)  throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:34: warning: no @param for docFileName
+[WARNING] public void getModels (boolean oflag, String docFileName)  throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:34: warning: no @throws for java.lang.Throwable
+[WARNING] public void getModels (boolean oflag, String docFileName)  throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:551: warning: no @param for instMap
+[WARNING] public void getDocInfo (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:551: warning: no @throws for java.lang.Throwable
+[WARNING] public void getDocInfo (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:580: warning: no @param for instMap
+[WARNING] public void getSections (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:580: warning: no @throws for java.lang.Throwable
+[WARNING] public void getSections (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:650: warning: no @param for instMap
+[WARNING] public void getModels2 (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:650: warning: no @throws for java.lang.Throwable
+[WARNING] public void getModels2 (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:676: warning: no @param for instMap
+[WARNING] public void getSectionContent (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:676: warning: no @throws for java.lang.Throwable
+[WARNING] public void getSectionContent (HashMap <String, InstDefn> instMap) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:721: warning: no @param for valarr
+[WARNING] public String getSlotMapValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:721: warning: no @return
+[WARNING] public String getSlotMapValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:749: warning: no @param for s
+[WARNING] static public boolean isInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\GetModels.java:749: warning: no @return
+[WARNING] static public boolean isInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:387: warning: no @param for lName
+[WARNING] public String checkForFundamentalStructure (String lName) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:387: warning: no @return
+[WARNING] public String checkForFundamentalStructure (String lName) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:405: warning: no @return
+[WARNING] static public String getNextUId () {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:441: warning: no @param for lClassNameSpaceIdNC
+[WARNING] static public String getClassIdentifier (String lClassNameSpaceIdNC, String lClassTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:441: warning: no @param for lClassTitle
+[WARNING] static public String getClassIdentifier (String lClassNameSpaceIdNC, String lClassTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:441: warning: no @return
+[WARNING] static public String getClassIdentifier (String lClassNameSpaceIdNC, String lClassTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:449: warning: no @param for lClassNameSpaceIdNC
+[WARNING] static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:449: warning: no @param for lClassTitle
+[WARNING] static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:449: warning: no @param for lAttrNameSpaceIdNC
+[WARNING] static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:449: warning: no @param for lAttrTitle
+[WARNING] static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:449: warning: no @return
+[WARNING] static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:457: warning: no @param for lAttrNameSpaceIdNC
+[WARNING] static public String getAttrNSTitle (String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:457: warning: no @param for lAttrTitle
+[WARNING] static public String getAttrNSTitle (String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:457: warning: no @return
+[WARNING] static public String getAttrNSTitle (String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:465: warning: no @param for lClassNameSpaceIdNC
+[WARNING] static public String getRuleRDFIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:465: warning: no @param for lClassTitle
+[WARNING] static public String getRuleRDFIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:465: warning: no @param for lAttrNameSpaceIdNC
+[WARNING] static public String getRuleRDFIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:465: warning: no @param for lAttrTitle
+[WARNING] static public String getRuleRDFIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:465: warning: no @return
+[WARNING] static public String getRuleRDFIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:473: warning: no @param for lInputIdentifier
+[WARNING] static public String getPropMapRDFIdentifier (String lInputIdentifier) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:473: warning: no @return
+[WARNING] static public String getPropMapRDFIdentifier (String lInputIdentifier) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:483: warning: no @param for lString
+[WARNING] static public String wrapText (String lString, int beginOffset, int endOffset) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:483: warning: no @param for beginOffset
+[WARNING] static public String wrapText (String lString, int beginOffset, int endOffset) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:483: warning: no @param for endOffset
+[WARNING] static public String wrapText (String lString, int beginOffset, int endOffset) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:483: warning: no @return
+[WARNING] static public String wrapText (String lString, int beginOffset, int endOffset) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:818: warning: no @param for s1
+[WARNING] public int String2Int (String s1) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:818: warning: no @return
+[WARNING] public int String2Int (String s1) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:837: warning: no @param for valarr
+[WARNING] static public String getSingletonAttrValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:837: warning: no @return
+[WARNING] static public String getSingletonAttrValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:855: warning: no @param for valarr
+[WARNING] static public String getSingletonValueUpdate (ArrayList <String> valarr, String oVal) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:855: warning: no @param for oVal
+[WARNING] static public String getSingletonValueUpdate (ArrayList <String> valarr, String oVal) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:855: warning: no @return
+[WARNING] static public String getSingletonValueUpdate (ArrayList <String> valarr, String oVal) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:873: warning: no @param for valArr
+[WARNING] static public  ArrayList <String> getMultipleValue (ArrayList <String> valArr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:873: warning: no @return
+[WARNING] static public  ArrayList <String> getMultipleValue (ArrayList <String> valArr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:895: warning: no @param for lAttrArr
+[WARNING] public static ArrayList <AttrDefn> getAllAttrRecurse (ArrayList <AttrDefn> lAttrArr, ArrayList <PDSObjDefn> visitedClass, PDSObjDefn lClass) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:895: warning: no @param for visitedClass
+[WARNING] public static ArrayList <AttrDefn> getAllAttrRecurse (ArrayList <AttrDefn> lAttrArr, ArrayList <PDSObjDefn> visitedClass, PDSObjDefn lClass) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:895: warning: no @param for lClass
+[WARNING] public static ArrayList <AttrDefn> getAllAttrRecurse (ArrayList <AttrDefn> lAttrArr, ArrayList <PDSObjDefn> visitedClass, PDSObjDefn lClass) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:895: warning: no @return
+[WARNING] public static ArrayList <AttrDefn> getAllAttrRecurse (ArrayList <AttrDefn> lAttrArr, ArrayList <PDSObjDefn> visitedClass, PDSObjDefn lClass) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1454: warning: no @param for note
+[WARNING] public void printAttrAll (String note, HashMap <String, AttrDefn> attrDict) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1454: warning: no @param for attrDict
+[WARNING] public void printAttrAll (String note, HashMap <String, AttrDefn> attrDict) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1482: warning: no @param for note
+[WARNING] static public void printAttr (String note, AttrDefn attr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1482: warning: no @param for attr
+[WARNING] static public void printAttr (String note, AttrDefn attr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1564: warning: no @param for note
+[WARNING] static public void printProp (String note, AssocDefn lProp) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\InfoModel.java:1564: warning: no @param for lProp
+[WARNING] static public void printProp (String note, AssocDefn lProp) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\LDDParser.java:2042: warning: no @param for deName
+[WARNING] public String getClassWord (String deName) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\LDDParser.java:2042: warning: no @return
+[WARNING] public String getClassWord (String deName) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\LDDParser.java:2123: warning: no @param for lValueType
+[WARNING] public String getDataConceptFromDataType (String lValueType) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\LDDParser.java:2123: warning: no @return
+[WARNING] public String getDataConceptFromDataType (String lValueType) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ProtFramesParser.java:37: warning: no @param for fname
+[WARNING] public boolean parse(String fname) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ProtFramesParser.java:37: warning: no @return
+[WARNING] public boolean parse(String fname) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ProtFramesParser.java:37: warning: no @throws for java.lang.Throwable
+[WARNING] public boolean parse(String fname) throws Throwable {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ProtFramesParser.java:59: warning: no @return
+[WARNING] public ArrayList<String> getTokenArray () {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\ProtFramesParser.java:66: warning: no @return
+[WARNING] public ArrayList<String> getTokenTypeArray () {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:59: warning: no @throws for java.io.IOException
+[WARNING] public void printArtifacts () throws java.io.IOException {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:165: warning: no @param for imsec
+[WARNING] public void printStandardSection (SectionDefn imsec, ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:165: warning: no @param for itemNum
+[WARNING] public void printStandardSection (SectionDefn imsec, ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:186: warning: no @param for printClassArr
+[WARNING] public void printClassHierarchySection (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:186: warning: no @param for secInfo
+[WARNING] public void printClassHierarchySection (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:236: warning: no @param for secInfo
+[WARNING] public ArrayList <PDSObjDefn> getPrintClassArr (SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:236: warning: no @return
+[WARNING] public ArrayList <PDSObjDefn> getPrintClassArr (SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:258: warning: no @param for printClassArr
+[WARNING] public void printModelTOC (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:258: warning: no @param for secInfo
+[WARNING] public void printModelTOC (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:275: warning: no @param for printClassArr
+[WARNING] public void printModelTable (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo, ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:275: warning: no @param for secInfo
+[WARNING] public void printModelTable (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo, ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:275: warning: no @param for itemNum
+[WARNING] public void printModelTable (ArrayList <PDSObjDefn> printClassArr, SectionDefn secInfo, ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:931: warning: no @param for secInfo
+[WARNING] public void printGlossary (SectionDefn secInfo) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:979: warning: no @param for valarr
+[WARNING] public String getSlotMapValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:979: warning: no @return
+[WARNING] public String getSlotMapValue (ArrayList <String> valarr) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:989: warning: no @param for s
+[WARNING] public boolean myIsInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:989: warning: no @return
+[WARNING] public boolean myIsInteger (String s) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:1002: warning: no @param for itemNum
+[WARNING] public void itemNumPlus (ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:1015: warning: no @param for itemNum
+[WARNING] public void itemNumMinus (ArrayList <String> itemNum) {
+[WARNING] ^
+[WARNING] C:\AAIMToolcheckoutdir\model\model-dmdocument\src\main\java\gov\nasa\pds\model\plugin\WriteSpecification.java:1028: warning: no @param for itemNum
+[WARNING] public void itemNumAdd (ArrayList <String> itemNum) {
+[WARNING] ^
+[INFO] [plugin:descriptor {execution: mojo-descriptor}]
+[WARNING] 
+
+Goal prefix is specified as: 'pds-model-dmdocument'. Maven currently expects it to be 'model-dmdocument'.
+
+[INFO] Using 'UTF-8' encoding to read mojo metadata.
+[INFO] Applying mojo extractor for language: java
+[INFO] Mojo extractor for language: java found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: bsh
+[INFO] Mojo extractor for language: bsh found 0 mojo descriptors.
+[INFO] Applying mojo extractor for language: java-annotations
+[INFO] Mojo extractor for language: java-annotations found 2 mojo descriptors.
+[INFO] [resources:testResources {execution: default-testResources}]
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] [compiler:testCompile {execution: default-testCompile}]
+[INFO] Nothing to compile - all classes are up to date
+[INFO] [surefire:test {execution: default-test}]
+[INFO] Surefire report directory: C:\AAIMToolcheckoutdir\model\model-dmdocument\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+There are no tests to run.
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] [jar:jar {execution: default-jar}]
+[INFO] Building jar: C:\AAIMToolcheckoutdir\model\model-dmdocument\target\model-dmdocument-7.1.0-dev.jar
+[INFO] [plugin:addPluginArtifactMetadata {execution: default-addPluginArtifactMetadata}]
+[INFO] [checksum:artifacts {execution: default}]
+[INFO] model-dmdocument-7.1.0-dev.jar - MD5 : 76406c4aac40b837bccf8dd6193dad35
+[INFO] model-dmdocument-7.1.0-dev.jar - SHA-1 : 3e2497f64a29d1e64b522974e29554e1a5b605e3
+[INFO] [install:install {execution: default-install}]
+[INFO] Installing C:\AAIMToolcheckoutdir\model\model-dmdocument\target\model-dmdocument-7.1.0-dev.jar to C:\Users\jshughes\.m2\repository\gov\nasa\pds\2010\model\model-dmdocument\7.1.0-dev\model-dmdocument-7.1.0-dev.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 14 seconds
+[INFO] Finished at: Wed Nov 16 09:17:33 PST 2016
+[INFO] Final Memory: 72M/1466M
+[INFO] ------------------------------------------------------------------------

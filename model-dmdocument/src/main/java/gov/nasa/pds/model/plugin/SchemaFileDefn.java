@@ -22,6 +22,12 @@ public class SchemaFileDefn {
 	String nameSpaceIdNCUC;		// no colon, upper cased
 	String nameSpaceId;			// colon, lower cased
 	
+	// nameSpace URL
+	String nameSpaceURL;
+	String urnPrefix;
+	String modelShortName;
+	String regAuthId;
+	
 	// governance level
 	String governanceLevel;
 
@@ -98,6 +104,11 @@ public class SchemaFileDefn {
 		nameSpaceIdNCLC = nameSpaceIdNC.toLowerCase();
 		nameSpaceIdNCUC = nameSpaceIdNC.toUpperCase();
 		nameSpaceId = nameSpaceIdNCLC + ":";
+		nameSpaceURL = "TBD_nameSpaceURL";
+		urnPrefix = "TBD_urnPrefix";
+		modelShortName = "TBD_modelShortName";
+		regAuthId =  "TBD_regAuthId";
+		
 		governanceLevel = DMDocument.governanceLevel;
 		isMaster = false;
 		isLDD = false;
@@ -138,7 +149,7 @@ public class SchemaFileDefn {
 		LDDToolInputFileName = "TBD_LDDToolInputFileName";			
 //		LDDToolInputFileNameNE = "TBD_LDDToolInputFileNameNE";					
 		LDDToolOutputFileNameNE = "TBD_LDDToolOutputFileNameNE";		
-		comment = "This XML schema file has been generated from the PDS4 Information Model.";		
+		comment = "This XML schema file has been generated from the Information Model.";		
 		stewardArr = new ArrayList <String>();
 	} 
 	
@@ -156,6 +167,14 @@ public class SchemaFileDefn {
 		return;
 	}
 	
+	public void setRegAuthority (SchemaFileDefn lSchemaFileDefn) {
+		nameSpaceURL = lSchemaFileDefn.nameSpaceURL;
+		urnPrefix = lSchemaFileDefn.urnPrefix;
+		modelShortName = lSchemaFileDefn.modelShortName;
+		regAuthId = lSchemaFileDefn.regAuthId;
+		return;
+	}
+
 	//	set the various version identifiers
 	public void setVersionIds () {
 		// get a cleaned up version id

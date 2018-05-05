@@ -191,7 +191,9 @@ public class GetDOMModel extends Object {
 		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
 		
 		// 008 - if this is an LDD Tool run, parse the LDD(s)
-		if (DMDocument.LDDToolFlag) {
+// 7777	
+//		if (DMDocument.LDDToolFlag) {
+		if (false) {
 			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 				LDDParser lLDDParser = new LDDParser ();
@@ -396,7 +398,7 @@ public class GetDOMModel extends Object {
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
 		System.out.println(" ");
 
-		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");	
+		if (DMDocument.debugFlag) System.out.println("debug GetDOMModel Done");	
 	}
 
 /**********************************************************************************************************
