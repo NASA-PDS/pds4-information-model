@@ -22,7 +22,7 @@
 
 # Set the JAVA_HOME environment variable here in the script if it will 
 # not be defined in the environment.
-if [ -z ${JAVA_HOME} ] ; then
+if [ -z "${JAVA_HOME}" ] ; then
   export JAVA_HOME=/path/to/java/home
 fi
 
@@ -32,15 +32,15 @@ export PARENT_DIR=`cd ${SCRIPT_DIR}/.. && pwd`
 export LIB_DIR=${PARENT_DIR}/lib
 
 # Check for dependencies.
-if [ ! -f ${LIB_DIR}/DMDocument.jar ]; then
+if [ ! -f "${LIB_DIR}"/DMDocument.jar ]; then
     echo "Cannot find DMDocument jar file in ${LIB_DIR}"
     exit 1
 fi
 
 # Finds the jar file in LIB_DIR and sets it to DMDOC_JAR.
-DMDOC_JAR=`ls ${LIB_DIR}/DMDocument.jar`
+DMDOC_JAR=`ls "${LIB_DIR}"/DMDocument.jar`
 
 # Executes lddtool via the executable jar file
 # Arguments are passed in to the tool via '$@'
-${JAVA_HOME}/bin/java -jar ${DMDOC_JAR} "$@"
+"${JAVA_HOME}"/bin/java -jar "${DMDOC_JAR}" "$@"
 
