@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  Copyright 2018, by the California Institute of Technology.
+  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
+  Any commercial use must be negotiated with the Office of Technology 
+  Transfer at the California Institute of Technology.
+
+  This software is subject to U. S. export control laws and regulations 
+  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
+  is subject to U.S. export control laws and regulations, the recipient has 
+  the responsibility to obtain export licenses or other export authority as 
+  may be required before exporting such information to foreign countries or 
+  providing access to foreign nationals.
+
+  $Id: $
+-->
+
+<document>
+  <properties>
+    <title>Operation</title>
+    <author email="John.S.Hughes@jpl.nasa.gov">Steve Hughes</author>
+  </properties>
+
+  <body>
+    <section name="Operation">
+      <p>This document describes how to run the LDDTool program. 
+      </p>
+
+      <p>Note: The command-line examples in this section have been broken into multiple lines for readability. The commands should be reassembled into a single line prior to execution.
+      </p>
+    </section>
+
+    <section name="Tool Execution">
+<p>The execution steps are as follows:</p>
+   <ol>
+       <li>The input XML document is parsed and the contents are converted into SKOS records.</li>
+      <li>The records are written out to a SKOS output file.</li>
+      <li>The records are also written out to a PropertyMap file in XML format.</li>
+   </ol>
+
+      <subsection name="Command-Line Options">
+        <p>The following table describes the command-line options available.
+        </p>
+
+        <p>Valid options are:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Command-Line Option</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>-f, --file</td>
+              <td>indicates input file name(s) to follow. 
+              </td>
+            </tr>
+            <tr>
+              <td>-h, --help
+              </td>
+              <td>Print this message.
+              </td>
+            </tr> 
+          </tbody>
+        </table>
+
+      </subsection>
+
+      <subsection name="Execute Termmap">
+<source>
+<b>If the host platform is a Mac or Unix system, type the following commands: </b>
+
+cd  ./model-termmap-${project.version}/bin
+
+termmap -f [inputfilename] > termmap.log
+
+<b>If the host platform is a Windows system, type the following commands: </b>
+
+cd .\model-termmap-${project.version}\bin
+
+termmap.bat -f [inputfilename] > termmap.log
+
+<b>Note:</b>  The input file to termmap is an XML document.
+       The file name must be in the form:
+
+         PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV
+            e.g. PDS4_INSIGHT_DEEN_PDS3_MAP_1A00.CSV
+                <value_types> can be {PDS3, VICR, NUANCE, ....} 
+
+       The output files written by termmap are:
+                  - an XML SKOS file, 
+                  - an XML PropertyMap file. 
+       All output files are generated in the "map" directory under current directory. 
+       They bear the same name as the input file name.  
+        </source>
+
+      </subsection>
+
+
+    </section>
+  </body>
+</document>
