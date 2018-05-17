@@ -35,13 +35,6 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>src/main/resources/Schemas</directory>
-      <outputDirectory>Schemas</outputDirectory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
-    <fileSet>
       <directory>src/main/resources/bin</directory>
       <outputDirectory>bin</outputDirectory>
       <includes>
@@ -49,13 +42,6 @@
       </includes>
       <fileMode>755</fileMode>
       <lineEnding>keep</lineEnding>
-    </fileSet>
-    <fileSet>
-      <directory>src/main/resources/Examples</directory>
-      <outputDirectory>Examples</outputDirectory>
-      <includes>
-        <include>**/*</include>
-      </includes>
     </fileSet>
     <fileSet>
       <directory>../model-ontology/src/ontology/Data</directory>
