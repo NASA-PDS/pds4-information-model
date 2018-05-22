@@ -134,6 +134,12 @@ It also provides a web service for the search of SKOS records.
       <version>${pom.version}</version>
     </dependency>
 
+ <dependency>
+     <groupId>javax</groupId>
+     <artifactId>javaee-api</artifactId>
+     <version>8.0</version>
+  </dependency>
+
     <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
