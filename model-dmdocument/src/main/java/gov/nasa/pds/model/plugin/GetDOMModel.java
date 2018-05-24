@@ -18,7 +18,7 @@ public class GetDOMModel extends Object {
 ***********************************************************************************************************/
 	
 	public void getDOMModel (boolean oflag, String docFileName)  throws Throwable {
-
+		
 		PDSOptionalFlag = oflag;
 		
 // 333 - Remove the following after updating the writers.
@@ -60,7 +60,7 @@ public class GetDOMModel extends Object {
 			DOMInfoModel.masterDOMClassTitleMap.put(lClass.title, lClass);
 		}
 		DOMInfoModel.masterDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
-	
+		
 		//  001.5 - build the Component Classes master map (DOMProp and DOMAttr or DOMClass)
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -224,7 +224,7 @@ public class GetDOMModel extends Object {
 		
 		// 013f - get the attribute and associations for each class
 		DMDocument.masterDOMInfoModel.getOwnedAttrAssocArr ();
-			
+		
 		// 013g - finalize the remaining attribute and association arrays
 		DMDocument.masterDOMInfoModel.setRemainingAttributeAssociationArrays ();	
 		
@@ -341,8 +341,7 @@ public class GetDOMModel extends Object {
 		
 		// 039 - set exposed flag
 		for (Iterator <String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
-			String lElementName = (String) i.next();
-			String lIdentifier = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lElementName);
+			String lIdentifier = (String) i.next();
 			DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
 		}

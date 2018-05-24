@@ -780,7 +780,7 @@ public class DMDocument extends Object {
 		// set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces, etc)
 //		masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
 		setupNameSpaceInfoAll(props);
-
+		
 		// get the 11179 Attribute Dictionary - .pins file
 		ProtPins11179DD protPins11179DD  = new ProtPins11179DD ();
 		protPins11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");

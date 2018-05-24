@@ -493,10 +493,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	// 013.f - For each class, get all owned attributes and associations from the class	
 	public void getOwnedAttrAssocArr () {
 		// get the class.ownedAttrAssocArr array - sorted (owned attributes and associations)
-		// 7777 why is sorted important ???
 		for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-
 			// sort all owned attributes and associations (AttrDefn)
 			ArrayList <DOMProp> lPropArr = new ArrayList <DOMProp> (lClass.ownedAttrArr);
 			lPropArr.addAll(lClass.ownedAssocArr);
@@ -523,15 +521,19 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			
-			//	get all owned attributes of the class
-			lClass.allAttrAssocArr.addAll(lClass.ownedAttrArr);
+			// set allAttrAssocArr by adding ownedAttrAssocArr, top down through the hierarchy
+			for (Iterator<DOMClass> j = lClass.superClassHierArr.iterator(); j.hasNext();) {
+				DOMClass lSuperClass = (DOMClass) j.next();
+				if (lSuperClass.ownedAttrAssocArr.size() > 0) lClass.allAttrAssocArr.addAll(lSuperClass.ownedAttrAssocArr);
+			}
+			if (lClass.ownedAttrAssocArr.size() > 0) lClass.allAttrAssocArr.addAll(lClass.ownedAttrAssocArr);
 			
-			// add all inherited attributes of the class to the owned attributes
-			lClass.allAttrAssocArr.addAll(lClass.inheritedAttrArr);
-			
-			// before adding the associates, get all enumerated owned and inherited attributes.
+			// get all enumerated owned and inherited attributes
 			ArrayList <String> allEnumAttrIdArr = new ArrayList <String> ();
-			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+			ArrayList <DOMProp> lOwnedInheritedAttributes = new ArrayList <DOMProp> ();
+			lOwnedInheritedAttributes.addAll(lClass.ownedAttrArr);
+			lOwnedInheritedAttributes.addAll(lClass.inheritedAttrArr);
+			for (Iterator<DOMProp> j = lOwnedInheritedAttributes.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
 				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
@@ -543,12 +545,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 					}
 				}
 			}
-			
-			// add all owned associations of the class
-			lClass.allAttrAssocArr.addAll(lClass.ownedAssocArr);
-			
-			// add all inherited associations of the class
-			lClass.allAttrAssocArr.addAll(lClass.inheritedAssocArr);
 			
 			// find all owned attributes and associations that are not inherited from any super class
 			//      lClass.ownedAttrAssocNOArr
@@ -1517,5 +1513,21 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				if (DMDocument.debugFlag) System.out.println(" ");
 			}
 			return;
-		}		
+		}
+		
+		static public void printOwnedAttrAssocArr (DOMClass lClass, String lTitle) {
+			System.out.println("\ndebug ownedAttrAssocArr - " + lTitle + " - " + "lClass.identifier:" + lClass.identifier);
+			for (Iterator<DOMProp> j = lClass.ownedAttrAssocArr.iterator(); j.hasNext();) {
+				DOMProp lProp = (DOMProp) j.next();
+				System.out.println("debug                 - lProp.classOrder:" + lProp.classOrder);
+			}
+		}
+		
+		static public void printAllAttrAssocArr (DOMClass lClass, String lTitle) {
+			System.out.println("\ndebug allAttrAssocArr - " + lTitle + " - " + "lClass.identifier:" + lClass.identifier);
+			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+				DOMProp lProp = (DOMProp) j.next();
+				System.out.println("debug                 - lProp.classOrder:" + lProp.classOrder);
+			}
+		}
 	}

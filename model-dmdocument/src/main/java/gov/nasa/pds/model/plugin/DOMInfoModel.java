@@ -1144,6 +1144,8 @@ public abstract class DOMInfoModel extends Object {
 		return lAssocClassArr;
 	}	
 	
+// 777
+	/*
 	// sort the class associated classes (Future)
 	public ArrayList <PDSObjDefn> getSortedAssocClasses_actual_classes_future (ArrayList<AssocDefn> lAssocArr) {
 		TreeMap<String, AssocDefn> lSortAssocMap = new TreeMap <String, AssocDefn> ();
@@ -1163,7 +1165,7 @@ public abstract class DOMInfoModel extends Object {
 			}		
 		}
 		return lSortClassArr;
-	}	
+	} */
 		
 	static public String getSortId (Integer iseq) {
 		String seq = iseq.toString();
@@ -1214,10 +1216,10 @@ public abstract class DOMInfoModel extends Object {
 			return;
 		}
 		prDOMWriter.println("\ndebug Class Definition - identifier:" + objClass.identifier);
-//	    prDOMWriter.println("  rdfIdentifier:" + objClass.rdfIdentifier);
+	    prDOMWriter.println("  rdfIdentifier:" + objClass.rdfIdentifier);
 		prDOMWriter.println("  identifier:" + objClass.identifier);
 		prDOMWriter.println("  versionId:" + objClass.versionId);
-//		prDOMWriter.println("  sequenceId:" + objClass.sequenceId);
+		prDOMWriter.println("  sequenceId:" + objClass.sequenceId);
 		prDOMWriter.println("  title:" + objClass.title);
 		prDOMWriter.println("  definition:" + objClass.definition);
 		prDOMWriter.println("  registrationStatus:" + objClass.registrationStatus);
@@ -1241,7 +1243,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("  role:" + objClass.role);
 		prDOMWriter.println("  xPath:" + objClass.xPath);
 		prDOMWriter.println("  docSecType:" + objClass.docSecType);
-//		prDOMWriter.println("  rootClass:" + objClass.rootClass);
+		prDOMWriter.println("  rootClass:" + objClass.rootClass);
 		prDOMWriter.println("  baseClassName:" + objClass.baseClassName);
 		prDOMWriter.println("  localIdentifier:" + objClass.localIdentifier);
 		prDOMWriter.println("  subClassLevel:" + objClass.subClassLevel);
@@ -1249,7 +1251,6 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("  subClassOfIdentifier:" + objClass.subClassOfIdentifier);
 
 	    prDOMWriter.println("  isUSERClass:" + objClass.isUSERClass);
-//		prDOMWriter.println("  isUsedInClass:" + objClass.isUsedInClass);
 		prDOMWriter.println("  isMasterClass:" + objClass.isMasterClass);
 		prDOMWriter.println("  isSchema1Class:" + objClass.isSchema1Class);
 	    prDOMWriter.println("  isRegistryClass:" + objClass.isRegistryClass);
@@ -1376,10 +1377,10 @@ public abstract class DOMInfoModel extends Object {
 	 */
 	static public void DOMAttrWriter (DOMAttr attr,  PrintWriter prDOMWriter) {	
         prDOMWriter.println("\n    debug Attribute Definition" + " - identifier:" + attr.identifier);
-//        prDOMWriter.println("        attr.rdfIdentifier:" + attr.rdfIdentifier);
+        prDOMWriter.println("        attr.rdfIdentifier:" + attr.rdfIdentifier);
 		prDOMWriter.println("        attr.identifier:" + attr.identifier);
-//		prDOMWriter.println("        attr.versionId:" + attr.versionId);
-//		prDOMWriter.println("        attr.sequenceId:" + attr.sequenceId);
+        prDOMWriter.println("        attr.versionId:" + attr.versionId);
+        prDOMWriter.println("        attr.sequenceId:" + attr.sequenceId);
         prDOMWriter.println("        attr.title:" + attr.title);
         prDOMWriter.println("        attr.definition:" + attr.definition);
         prDOMWriter.println("        attr.registrationStatus:" + attr.registrationStatus);
@@ -1397,7 +1398,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        attr.isAbstract:" + attr.isAbstract);
 		prDOMWriter.println("        attr.anchorString:" + attr.anchorString);
 		
-		prDOMWriter.println("        attr.xPath:" + attr.xPath);
+        prDOMWriter.println("        attr.xPath:" + attr.xPath);
         prDOMWriter.println("        attr.nsTitle:" + attr.nsTitle);
         prDOMWriter.println("        attr.sort_identifier:" + attr.sort_identifier); 
 		prDOMWriter.println("        attr.XMLSchemaName:" + attr.XMLSchemaName);
@@ -1450,11 +1451,11 @@ public abstract class DOMInfoModel extends Object {
         prDOMWriter.println("        attr.classWord:" + attr.classWord);
 		prDOMWriter.println("        attr.deDataIdentifier:" + attr.deDataIdentifier);
 
-//			prDOMWriter.println("        attr.type:" + attr.type);
-// 445		prDOMWriter.println("        attr.isDataType:" + attr.isDataType);		
-// 445		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
+// 777	prDOMWriter.println("        attr.type:" + attr.type);
+//		prDOMWriter.println("        attr.isDataType:" + attr.isDataType);		
+//		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
 
-// 333 to be deprecated
+// 777 to be deprecated
 		if (attr.valArr != null && attr.valArr.size() > 0) {
 			prDOMWriter.println("        has attr.valArr");
 
@@ -1464,7 +1465,7 @@ public abstract class DOMInfoModel extends Object {
 			}
 		}
 		
-// 333 to be deprecated
+// 777 to be deprecated
 		if (attr.valClassArr != null && attr.valClassArr.size() > 0) {
 			prDOMWriter.println("        has attr.valClassArr");
 
@@ -1473,16 +1474,6 @@ public abstract class DOMInfoModel extends Object {
 				prDOMWriter.println("          class val:" + lValClass.title);
 			}
 		}
-		
-// 333 to be deprecated
-/*		if (attr.permValueArr != null && attr.permValueArr.size() > 0) {
-			prDOMWriter.println("        has attr.permValueArr");
-
-			for (Iterator <PermValueDefn> j = attr.permValueArr.iterator(); j.hasNext();) {
-				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
-				prDOMWriter.println("          PermValueDefn.value:" + lPermValueDefn.value + "  registrationStatus:" + lPermValueDefn.registrationStatus + "  lPermValueDefn.value_meaning:" + lPermValueDefn.value_meaning);
-			}
-		}	*/
 		
 // 		Permissible values
 		if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
@@ -1499,10 +1490,10 @@ public abstract class DOMInfoModel extends Object {
 	
 	static public void DOMPropWriter (DOMProp lProp,  PrintWriter prDOMWrite) {	
 		prDOMWriter.println("\n    debug Property Definition" + " - identifier:" + lProp.identifier);
-//		prDOMWriter.println("        lProp.rdfIdentifier:" + lProp.rdfIdentifier);
+		prDOMWriter.println("        lProp.rdfIdentifier:" + lProp.rdfIdentifier);
 		prDOMWriter.println("        lProp.identifier:" + lProp.identifier);
-//		prDOMWriter.println("        lProp.versionId:" + lProp.versionId);
-//		prDOMWriter.println("        lProp.sequenceId:" + lProp.sequenceId);
+		prDOMWriter.println("        lProp.versionId:" + lProp.versionId);
+		prDOMWriter.println("        lProp.sequenceId:" + lProp.sequenceId);
 		prDOMWriter.println("        lProp.title:" + lProp.title);
 		prDOMWriter.println("        lProp.definition:" + lProp.definition);
 		prDOMWriter.println("        lProp.registrationStatus:" + lProp.registrationStatus);
@@ -1512,7 +1503,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        lProp.isPhysical:" + lProp.isPhysical);
 
 		prDOMWriter.println("        lProp.regAuthId:" + lProp.regAuthId);
-//		prDOMWriter.println("        lProp.subModelId:" + lProp.subModelId);
+		prDOMWriter.println("        lProp.subModelId:" + lProp.subModelId);
 		prDOMWriter.println("        lProp.steward:" + lProp.steward);
 		prDOMWriter.println("        lProp.nameSpaceId:" + lProp.nameSpaceId);
 		prDOMWriter.println("        lProp.nameSpaceIdNC:" + lProp.nameSpaceIdNC);
@@ -1527,28 +1518,28 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        lProp.cardMaxI:" + lProp.cardMaxI);
 		prDOMWriter.println("        lProp.classOrder:" + lProp.classOrder);
 		
-//		if (lProp.attrParentClass != null)
-//			prDOMWriter.println("        lProp.attrParentClass.identifier:" + lProp.attrParentClass.identifier);
-//		else
-//			prDOMWriter.println("        lProp.attrParentClass.identifier:" + "null");
+		if (lProp.attrParentClass != null)
+			prDOMWriter.println("        lProp.attrParentClass.identifier:" + lProp.attrParentClass.identifier);
+		else
+			prDOMWriter.println("        lProp.attrParentClass.identifier:" + "null");
 
 		prDOMWriter.println("        lProp.localIdentifier:" + lProp.localIdentifier);
 		prDOMWriter.println("        lProp.parentClassTitle:" + lProp.parentClassTitle);
 		prDOMWriter.println("        lProp.classNameSpaceIdNC:" + lProp.classNameSpaceIdNC);
-//		prDOMWriter.println("        lProp.classSteward:" + lProp.classSteward);
+		prDOMWriter.println("        lProp.classSteward:" + lProp.classSteward);
 
 		prDOMWriter.println("        lProp.groupName:" + lProp.groupName);
 		prDOMWriter.println("        lProp.referenceType:" + lProp.referenceType);
-//		prDOMWriter.println("        lProp.isPDS4:" + lProp.isPDS4);
+		prDOMWriter.println("        lProp.isPDS4:" + lProp.isPDS4);
 		prDOMWriter.println("        lProp.isAttribute:" + lProp.isAttribute);
 		prDOMWriter.println("        lProp.isChoice:" + lProp.isChoice);		
 		prDOMWriter.println("        lProp.isAny:" + lProp.isAny);		
 		prDOMWriter.println("        lProp.isSet:" + lProp.isSet);		
-//		prDOMWriter.println("        lProp.isRestrictedInSubclass:" + lProp.isRestrictedInSubclass);	
+		prDOMWriter.println("        lProp.isRestrictedInSubclass:" + lProp.isRestrictedInSubclass);	
 		
-//		prDOMWriter.println("        lProp.enclLocalIdentifier:" + lProp.enclLocalIdentifier);
-//		prDOMWriter.println("        lProp.minimumOccurrences:" + lProp.minimumOccurrences);
-//		prDOMWriter.println("        lProp.maximumOccurrences:" + lProp.maximumOccurrences);
+		prDOMWriter.println("        lProp.enclLocalIdentifier:" + lProp.enclLocalIdentifier);
+		prDOMWriter.println("        lProp.minimumOccurrences:" + lProp.minimumOccurrences);
+		prDOMWriter.println("        lProp.maximumOccurrences:" + lProp.maximumOccurrences);
 	}
 	
 	static ArrayList <DOMClass> sortDOMClass (ArrayList <DOMClass> ISOArr) {
