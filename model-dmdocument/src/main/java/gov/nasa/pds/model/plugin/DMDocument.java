@@ -794,12 +794,6 @@ public class DMDocument extends Object {
 		GetDOMModel lGetDOMModel = new GetDOMModel();
 		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
 		
-		if (! DMDocument.LDDToolFlag) {
-			GetDomClasses lGetDomClasses = new GetDomClasses ();
-			lGetDomClasses.domConvert();
-		}
-		
-//		DOMInfoModel.domWriter(InfoModel.masterDOMClassArr, "DOMModelListTemp.txt");
 //		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
 		
 		// export the models

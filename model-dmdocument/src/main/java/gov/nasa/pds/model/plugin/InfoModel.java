@@ -63,49 +63,6 @@ public abstract class InfoModel extends Object {
 	// global 11179 data dictionary
 	static TreeMap <String, InstDefn> master11179DataDict;
 
-	// ==========================================================
-	// New DOM Classes
-	
-	// global classes
-	static ArrayList <DOMClass> masterDOMClassArr = new ArrayList <DOMClass> ();
-	static TreeMap <String, DOMClass> masterDOMClassMap = new TreeMap <String, DOMClass> ();
-	static TreeMap <String, DOMClass> masterDOMClassIdMap = new TreeMap <String, DOMClass> ();
-	
-	static DOMClass masterDOMUserClass;
-
-	// global attributes
-	static ArrayList <DOMAttr> masterDOMAttrArr;
-	static TreeMap <String, DOMAttr> masterDOMAttrMap;
-	static TreeMap <String, DOMAttr> masterDOMAttrIdMap;
-
-	static TreeMap <String, DOMAttr> userDOMClassAttrIdMap;				// user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
-	static TreeMap <String, DOMAttr> userSingletonDOMClassAttrIdMap;	// user Class Attributes (not owned attributes) 
-
-	// global Properties
-	static ArrayList <DOMProp> masterDOMPropArr;
-	static TreeMap <String, DOMProp> masterDOMPropMap;
-	static TreeMap <String, DOMProp> masterDOMPropIdMap;
-	static TreeMap <String, ArrayList<ISOClassOAIS11179>> convertAssocDOMPropIdMap;	// used for conversion to DOM
-	
-	// global Data Types
-	static ArrayList <DOMDataType> masterDOMDataTypeArr;
-	static TreeMap <String, DOMDataType> masterDOMDataTypeMap;
-	static TreeMap <String, DOMDataType> masterDOMDataTypeIdMap;
-	
-	static TreeMap <String, DOMClass> masterDOMDataTypeClassMap;
-	static ArrayList <DOMClass> masterDOMDataTypeClassArr;
-	
-	// global Units
-	static ArrayList <DOMUnit> masterDOMUnitArr;
-	static TreeMap <String, DOMUnit> masterDOMUnitMap;
-	static TreeMap <String, DOMUnit> masterDOMUnitIdMap;
-	
-	// All CD and DEC values for the Attributes
-	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
-	static TreeMap <String, DOMIndexDefn> decDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
-	
-	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
-	
 	// global science discipline facet map 
 	static TreeMap <String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap <String, SFDisciplineFacetDefn> ();
 
@@ -152,12 +109,7 @@ public abstract class InfoModel extends Object {
 	// Local Classes	
 	ArrayList <PDSObjDefn> objArr;
 	HashMap <String, PDSObjDefn> objDict;
-	HashMap <String, AttrDefn> attrDict;
-	
-//  7777 Local Classes	
-	static ArrayList <DOMClass> parsedClassArr;
-	static TreeMap <String, DOMClass> parsedClassMap;
-	static TreeMap <String, DOMAttr> parsedAttrMap;	
+	HashMap <String, AttrDefn> attrDict;	
 	
 	ArrayList <String> texSectionFormats;	
                               
