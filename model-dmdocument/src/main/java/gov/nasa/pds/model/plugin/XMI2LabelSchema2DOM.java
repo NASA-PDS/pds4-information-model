@@ -62,41 +62,41 @@ class XMI2LabelSchema2DOM extends Object {
 	
 //	write the XMI Class
 	public void  writeXMIClass (DOMClass lClass) throws java.io.IOException {
-		// int k = 0;
+		
 		// get associations for this class
+        String prevTitle = "";
 		for (Iterator<DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
+			
 			DOMProp lProp = (DOMProp) j.next();
-			if (lProp != null)  {
-				//if (lProp.title.equalsIgnoreCase("dd_association")) {
-				//	System.out.println("dd_association lprop");
-				//	k = 1;
-				//  }
-			prXML.println("        <ownedMember xmi:type=\"uml:Association\" xmi:id=\"" + lProp.title + "\" visibility=\"public\">");
-			prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_1" + "\"/>");
-			prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_2" + "\"/>");
-			prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_1" + "\" visibility=\"private\" type=\"" + lClass.title + "\" association=\"" + lProp.title + "\"/>");
-
-			String cmin = lProp.cardMin;
-			String cminType = "uml:LiteralInteger";
-			String cmax = lProp.cardMax;
-			String cmaxType = "uml:LiteralInteger";
-			if (cmax.compareTo("*") == 0) {
-				cmax = "-1";
-				cmaxType = "uml:LiteralUnlimitedNatural";
-			}			
-
-			
-	
-			DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
+			if (lProp != null)  {		
+		        if (!prevTitle.equals(lProp.title)){
+		   	       prXML.println("        <ownedMember xmi:type=\"uml:Association\" xmi:id=\"" + lProp.title + "\" visibility=\"public\">");
+			       prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_1" + "\"/>");
+			       prXML.println("          <memberEnd xmi:idref=\"" + lProp.title + "_OwnedEnd_2" + "\"/>");
+			       prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_1" + "\" visibility=\"private\" type=\"" + lClass.title + "\" association=\"" + lProp.title + "\"/>");
+		        }		    
+			    String cmin = lProp.cardMin;
+			    String cminType = "uml:LiteralInteger";
+			    String cmax = lProp.cardMax;
+			    String cmaxType = "uml:LiteralInteger";
+			    if (cmax.compareTo("*") == 0) {
+			  	    cmax = "-1";
+				    cmaxType = "uml:LiteralUnlimitedNatural";
+			    }						
+	 	        DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
 			//	if (k == 1) System.out.println("Printing DOM properties");
-			prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_2" + "\" name=\"" + lProp.title + "\" visibility=\"private\" type=\"" + lAssocClass.title + "\" association=\"" + lProp.title + "\">");
-			prXML.println("            <upperValue xmi:type=\"" + cmaxType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmax + "\"/>");
-			prXML.println("            <lowerValue xmi:type=\"" + cminType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmin + "\"/>");
-			prXML.println("          </ownedEnd>");
-			}
+			    prXML.println("          <ownedEnd xmi:type=\"uml:Property\" xmi:id=\"" + lProp.title + "_OwnedEnd_2" + "\" name=\"" + lProp.title + "\" visibility=\"private\" type=\"" + lAssocClass.title + "\" association=\"" + lProp.title + "\">");
+			    prXML.println("            <upperValue xmi:type=\"" + cmaxType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmax + "\"/>");
+			    prXML.println("            <lowerValue xmi:type=\"" + cminType + "\" xmi:id=\"" + lProp.title + getNextUUID()  + "\" visibility=\"public\" value=\"" + cmin + "\"/>");
+			    prXML.println("          </ownedEnd>");
+			} 
+			if (!prevTitle.equals(lProp.title))
+					prXML.println("        </ownedMember>");
+			prevTitle = lProp.title;
 			
-			prXML.println("        </ownedMember>");
-		}
+		}	
+	   
+		
 
 		// print the class definition and generalization
 		prXML.println("        <ownedMember xmi:type=\"uml:Class\" xmi:id=\"" + lClass.title + "\" name=\"" + lClass.title + "\" visibility=\"public\">");
