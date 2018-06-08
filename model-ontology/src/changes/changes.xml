@@ -23,7 +23,16 @@
   </properties>
 
   <body>
-    <release version="9.0.0" date="TBD" description="TBD">
+    <release version="8.1.1" date="2018-06-08" description="This release of the IMTOOL schema data files (model-ontology) is an interim point build of the component. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-177">
+        Missing ability to specify source products and processing history 
+        a. There is no way to specify source products and processing history for partially-processed, calibrated, and derived products.
+        b. Reference_List was updated by adding two new associated classes Source_Product_Internal and Source_Product_External.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-215">
+        Allow "PDS3" as a parsing_standard_id for Stream_Text 
+        a. Add "PDS3" to the valid values for parsing_standard_id when used within Stream_Text.
+      </action>
     </release>
 
     <release version="8.1.0" date="2018-03-30" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 8.1.0 of the PDS4 System.  This is an operational release of the system components to date.">

@@ -19,16 +19,15 @@
   <parent>
     <groupId>gov.nasa.pds.2010</groupId>
     <artifactId>model</artifactId>
-    <version>9.0.0-dev</version>
+    <version>8.1.1</version>
   </parent>
 
   <groupId>gov.nasa.pds.2010.model</groupId>
   <artifactId>model-termmap</artifactId>
   <packaging>war</packaging>
-  <name>model-termmap</name>
+  <name>Model Terminological Mapping Tool</name>
   <description>
-The termmap application converts CSV formatted PDS3 and PDS4 info into SKOS records.
-It also provides a web service for the search of SKOS records.
+    The Model Terminological Mapping Tool converts CSV formatted PDS3 and PDS4 info into SKOS records. It also provides a web service for the search of SKOS records.
   </description>
   <url>https://pds-cm.jpl.nasa.gov/pds4/model/model-termmap/</url>
 

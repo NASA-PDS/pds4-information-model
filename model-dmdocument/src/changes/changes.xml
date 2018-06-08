@@ -22,7 +22,7 @@
   </properties>
 
   <body>
-    <release version="9.0.0" date="TBD" description="TBD">
+    <release version="8.1.1" date="2018-06-08" description="This release of the Model DM-Document is an interim point build of the component. This is an operational release of the system components to date.">
     </release>
 
     <release version="8.1.0" date="2018-03-30" description="This release of the Model DM-Document is a component of the integrated release 8.1.0 of the PDS4 System. This is an operational release of the system components to date.">

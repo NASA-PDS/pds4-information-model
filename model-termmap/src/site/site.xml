@@ -16,25 +16,25 @@
   $Id: $
 -->
 
-<project name="model-lddtool">
+<project name="model-termmap">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
     <href>https://pds-cm.jpl.nasa.gov/</href>
   </bannerLeft>
 
   <bannerRight>
-    <name>Terminological Mapping Tool</name>
+    <name>Model Terminological Mapping Tool</name>
   </bannerRight>
 
   <version/>
 
   <body>
     <links>
-      <item name="Termmap" href="https://pds-cm.jpl.nasa.gov/pds4/model/model-termmap/index.html" />
+      <item name="Model Terminological Mapping Tool" href="https://pds-cm.jpl.nasa.gov/pds4/model/model-termmap/index.html" />
     </links>
 
     <menu name="Software Documentation">
-      <item name="About termmap " href="index.html"/>
+      <item name="About Model Termmap" href="index.html"/>
       <item name="Installation" href="install/index.html"/>
       <item name="Operation" href="operate/index.html"/>
     </menu>
