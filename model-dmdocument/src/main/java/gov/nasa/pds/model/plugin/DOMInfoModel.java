@@ -1126,23 +1126,30 @@ public abstract class DOMInfoModel extends Object {
 		ArrayList<AttrDefn> lAttrArrOrdered = new ArrayList<AttrDefn> (lAttrMapOrdered.values()); 
 		return lAttrArrOrdered;
 	}
-
-	static public ArrayList <AssocClassDefn> getSortedAlphaClassAssocClassArr (PDSObjDefn lClass) {
-		TreeMap <String, AssocClassDefn> lAssocClassMap = new TreeMap <String, AssocClassDefn> ();
-		ArrayList <AttrDefn> lAssocArr = new ArrayList <AttrDefn> ();
-		lAssocArr.addAll(lClass.ownedAssociation);
-		lAssocArr.addAll(lClass.inheritedAssociation);
-		for (Iterator<AttrDefn> i = lAssocArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			for (Iterator<PDSObjDefn> j = lAttr.valClassArr.iterator(); j.hasNext();) {
-				PDSObjDefn lClassMember = (PDSObjDefn) j.next();
-				AssocClassDefn lAssocClass = new AssocClassDefn (lClassMember.title, lAttr.cardMinI, lAttr.cardMaxI, lClassMember);
-				lAssocClassMap.put(lAssocClass.identifier, lAssocClass);
+	
+	static public ArrayList <DOMAssocClassDefn> getSortedAlphaClassAssocClassArr (DOMClass lClass) {
+		TreeMap <String, DOMAssocClassDefn> lAssocClassGroupMap = new TreeMap <String, DOMAssocClassDefn> ();
+	
+		// get owned and inherited associated classes
+		for (Iterator <DOMProp> i = lClass.ownedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lAssocClass = (DOMClass) lDOMProp.hasDOMObject;
+				DOMAssocClassDefn lAssocClassGroup = new DOMAssocClassDefn (lAssocClass.title, lDOMProp.cardMinI, lDOMProp.cardMaxI, lAssocClass);
+				lAssocClassGroupMap.put(lAssocClassGroup.identifier, lAssocClassGroup);
 			}
 		}
-		ArrayList <AssocClassDefn> lAssocClassArr = new ArrayList <AssocClassDefn> (lAssocClassMap.values());
-		return lAssocClassArr;
-	}	
+		for (Iterator <DOMProp> i = lClass.inheritedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lAssocClass = (DOMClass) lDOMProp.hasDOMObject;
+				DOMAssocClassDefn lAssocClassGroup = new DOMAssocClassDefn (lAssocClass.title, lDOMProp.cardMinI, lDOMProp.cardMaxI, lAssocClass);
+				lAssocClassGroupMap.put(lAssocClassGroup.identifier, lAssocClassGroup);
+			}
+		}
+		ArrayList <DOMAssocClassDefn> lAssocClassGroupArr = new ArrayList <DOMAssocClassDefn> (lAssocClassGroupMap.values());
+		return lAssocClassGroupArr;
+	}
 	
 // 777
 	/*
