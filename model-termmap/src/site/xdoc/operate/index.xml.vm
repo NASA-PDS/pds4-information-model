@@ -70,8 +70,8 @@
       </subsection>
 
       <subsection name="Execute Termmap">
-<source>
-<b>If the host platform is a Mac or Unix system, type the following commands: </b>
+        <source>
+<b>If the host platform is a Mac or Unix system, type the following commands:</b>
 
 cd  ./model-termmap-${project.version}/bin
 
@@ -86,9 +86,9 @@ termmap.bat -f [inputfilename] > termmap.log
 <b>Note:</b>  The input file to termmap is an XML document.
        The file name must be in the form:
 
-         PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV
+         PDS4_&lt;namespace_id&gt;_&lt;steward_id&gt;_&lt;value_type&gt;_MAP_&lt;version_id&gt;.CSV
             e.g. PDS4_INSIGHT_DEEN_PDS3_MAP_1A00.CSV
-                <value_types> can be {PDS3, VICR, NUANCE, ....} 
+                &lt;value_types&gt; can be {PDS3, VICR, NUANCE, ....} 
 
        The output files written by termmap are:
                   - an XML SKOS file, 
@@ -96,10 +96,7 @@ termmap.bat -f [inputfilename] > termmap.log
        All output files are generated in the "map" directory under current directory. 
        They bear the same name as the input file name.  
         </source>
-
       </subsection>
-
-
     </section>
   </body>
 </document>
