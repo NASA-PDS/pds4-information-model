@@ -515,18 +515,83 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		return lSortAttrArr;
 	}
 	
-	// 013g - finalize the remaining attribute and association arrays
-	//	allAttrAssocArr
-	public void setRemainingAttributeAssociationArrays () {
+	// 013g1 - set allAttrAssocArr
+	public void setAllAttrAssocArr () {
+		
+		// get the class hierarchy, including this class
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			
-			// set allAttrAssocArr by adding ownedAttrAssocArr, top down through the hierarchy
-			for (Iterator<DOMClass> j = lClass.superClassHierArr.iterator(); j.hasNext();) {
-				DOMClass lSuperClass = (DOMClass) j.next();
-				if (lSuperClass.ownedAttrAssocArr.size() > 0) lClass.allAttrAssocArr.addAll(lSuperClass.ownedAttrAssocArr);
+			// get the class hierarchy, including this class
+			ArrayList <DOMClass> lClassHierarchyTopDownArr = new ArrayList <DOMClass> ();
+			lClassHierarchyTopDownArr.addAll(lClass.superClassHierArr);
+			lClassHierarchyTopDownArr.add(lClass);
+			ArrayList <DOMClass> lClassHierarchyBottomUp = new ArrayList <DOMClass> (lClassHierarchyTopDownArr);
+			Collections.reverse(lClassHierarchyBottomUp);
+			
+			// extract the namespace and title of all owned Attributes and Associations; top down
+			ArrayList <String> lMemberAttrAssocIDTopDownArr = new ArrayList <String> ();
+			for (Iterator<DOMClass> j = lClassHierarchyTopDownArr.iterator(); j.hasNext();) {
+				DOMClass lDOMClass = (DOMClass) j.next();
+				for (Iterator<DOMProp> k = lDOMClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) k.next();
+					String lIdentifier;
+					if (lDOMProp.hasDOMObject != null) {
+						if (lDOMProp.hasDOMObject instanceof DOMAttr) {
+							DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+							lIdentifier = lMemDOMAttr.nameSpaceId + lMemDOMAttr.title;
+						} else {
+							DOMClass lMemDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+							lIdentifier = lMemDOMClass.nameSpaceId + lMemDOMClass.title;
+						}
+						if (! lMemberAttrAssocIDTopDownArr.contains(lIdentifier)) {
+							lMemberAttrAssocIDTopDownArr.add(lIdentifier);
+						}
+					}
+				}
 			}
-			if (lClass.ownedAttrAssocArr.size() > 0) lClass.allAttrAssocArr.addAll(lClass.ownedAttrAssocArr);
+			
+			// extracted all the owned Attributes and Associations; bottom up
+			ArrayList <String> lMemberAttrAssocIdBottomUpArr = new ArrayList <String> ();
+			TreeMap <String, DOMProp> lMemberAttrAssocIdBottomUpMap = new TreeMap <String, DOMProp> ();
+			for (Iterator<DOMClass> j = lClassHierarchyBottomUp.iterator(); j.hasNext();) {
+				DOMClass lDOMClass = (DOMClass) j.next();
+				for (Iterator<DOMProp> k = lDOMClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) k.next();
+					String lIdentifier;
+					if (lDOMProp.hasDOMObject != null) {
+						if (lDOMProp.hasDOMObject instanceof DOMAttr) {
+							DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+							lIdentifier = lMemDOMAttr.nameSpaceId + lMemDOMAttr.title;
+						} else {
+							DOMClass lMemDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+							lIdentifier = lMemDOMClass.nameSpaceId + lMemDOMClass.title;
+						}
+						if (! lMemberAttrAssocIdBottomUpArr.contains(lIdentifier)) {
+							lMemberAttrAssocIdBottomUpArr.add(lIdentifier);
+							lMemberAttrAssocIdBottomUpMap.put(lIdentifier, lDOMProp);
+						}
+					}
+				}
+			}
+			
+			// create allAttrAssocArr; using id from top down, get the bottom up owned Attributes or Associations
+			for (Iterator<String> j = lMemberAttrAssocIDTopDownArr.iterator(); j.hasNext();) {
+				String lIdentfier = (String) j.next();
+				DOMProp lMemberDOMProp = lMemberAttrAssocIdBottomUpMap.get(lIdentfier);
+				if (lMemberDOMProp != null) {
+					lClass.allAttrAssocArr.add(lMemberDOMProp);
+				}
+			}
+		}	
+	}
+	
+	// 013g - finalize the remaining attribute and association arrays
+	//	allEnumAttrIdArr
+	//	ownedAttrAssocNOArr
+	public void setRemainingAttributeAssociationArrays () {
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			
 			// get all enumerated owned and inherited attributes
 			ArrayList <String> allEnumAttrIdArr = new ArrayList <String> ();
@@ -1527,6 +1592,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			System.out.println("\ndebug allAttrAssocArr - " + lTitle + " - " + "lClass.identifier:" + lClass.identifier);
 			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
+				System.out.println("debug                 - lProp.identifier:" + lProp.identifier);
 				System.out.println("debug                 - lProp.classOrder:" + lProp.classOrder);
 			}
 		}
