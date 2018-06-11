@@ -1244,6 +1244,8 @@ private void printAttrUnit (DOMAttr attr) {
 		for (Iterator <DOMAttr> i = DOMInfoModel.getAttArrByTitleStewardClassSteward().iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
 			if (lAttr.isUsedInClass || includeAllAttrFlag) {
+				DOMClass lClass = lAttr.attrParentClass;
+				if (lClass == null) continue;
 				printDataElement2 (lAttr);
 				pflag = true;
 			}
