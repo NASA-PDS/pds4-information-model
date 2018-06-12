@@ -229,8 +229,8 @@ public class ExportModels extends Object {
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Standard Id Done");
 		
 		// DOM
-//		WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract ();
- //       writeDOMStandardIdExtract.writeExtractFile();
+		WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract ();
+        writeDOMStandardIdExtract.writeExtractFile();
 		
 		// print out the histogram for the DEC concepts
 /*		System.out.println("\nConcept Histogram");
