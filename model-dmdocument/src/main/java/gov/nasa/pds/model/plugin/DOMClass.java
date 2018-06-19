@@ -33,7 +33,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
 	boolean isExposed;							// the class is to be exposed in XML Schema - i.e., defined using xs:Element
 
-	DOMProp hasDOMProp;							// associated property - only one allowed
+	DOMProp hasDOMPropInverse;					// the owning DOMProp of this Class 
 	ArrayList <DOMProtAttr> hasDOMProtAttr;		// the protege attributes to be converted to DOMProp and either DOMAttr or DOMClass
 	DOMClass subClassOf; 
 	String subClassOfTitle; 					// needed after parsing Protege Pont file to find subClass
@@ -84,7 +84,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		isReferencedFromLDD = false;
 		
-		hasDOMProp = null;
+		hasDOMPropInverse = null;
 		hasDOMProtAttr = new ArrayList <DOMProtAttr> ();
 		
 		subClassOf = null;

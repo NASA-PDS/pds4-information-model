@@ -428,19 +428,17 @@ class Write11179DDPinsFile extends Object{
 		prDDPins.println("([Steward_PDS] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
 		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		
+		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());		
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			prDDPins.println("([" + lSchemaFileDefn.identifier + "] of Steward");
+			prDDPins.println("	(contact [PDS_Standards_Coordinator])");
+			prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
 
-		prDDPins.println("([pds] of Steward");
-		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
-
-		prDDPins.println("([img] of Steward");
-		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
-
-		prDDPins.println("([rings] of Steward");
-		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
-
+		}
+		
+		// ops is not included as a defined namespace in the SchemaFileDefn array
 		prDDPins.println("([ops] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
 		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");

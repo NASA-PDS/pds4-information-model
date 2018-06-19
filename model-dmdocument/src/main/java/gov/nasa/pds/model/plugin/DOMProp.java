@@ -10,8 +10,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 	int cardMaxI;
 	String classOrder;						// the order of the attribute or association within a class
 	
-// deprecated to be replaced by hasDOMObject
-	ArrayList <ISOClassOAIS11179> hasDOMClass;		// allows more than one object (permissible values)
 	DOMClass attrParentClass; 				// class instance that this object is a member of
 	ISOClassOAIS11179 hasDOMObject;			// OVERRIDE - allows only one object (class, attribute, permissible value, etc, but no DOMProp
 	ArrayList <String> valArr;				// the protege values, either attributes or class titles
@@ -43,7 +41,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMinI = 0; 
 		cardMaxI = 0;
 		classOrder = "9999";
-		hasDOMClass = new ArrayList <ISOClassOAIS11179> ();
 		attrParentClass = null;
 		hasDOMObject = null;		
 		valArr = new ArrayList <String> (); 
@@ -66,7 +63,11 @@ public class DOMProp extends ISOClassOAIS11179 {
 		maximumOccurrences = "TBD_maximumOccurrences";
 		
 		return;
-	}	
+	}
+	
+	public void setIdentifier(String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2) {
+		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle + "." + lNameSpaceIdNC2 + "." + lTitle2;
+	}
 	
 	public String getCardMin() {
 		return cardMin;

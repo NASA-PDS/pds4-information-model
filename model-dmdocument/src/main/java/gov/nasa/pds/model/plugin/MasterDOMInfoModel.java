@@ -75,7 +75,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		}
 	}	
 	
-	
 	// 007 - Get USER Class Attributes Id Map
 	//  The attributes are not cloned, they are simply added to the DOMInfoModel.userClassAttrIdMap
 	//  with the identifier for the map using "attrNameSpaceIdNC.USER" + "attrNameSpaceIdNC.title"
@@ -1003,14 +1002,14 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				if (lClass != null) {
 					lClass.registrationStatus = "Retired";
 					// update property
-					if (lClass.hasDOMProp != null) lClass.hasDOMProp.registrationStatus = lClass.registrationStatus;
+					if (lClass.hasDOMPropInverse != null) lClass.hasDOMPropInverse.registrationStatus = lClass.registrationStatus;
 				} else {
 					// is it an attribute
 					DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lDeprecatedDefn.identifier);
 					if (lAttr != null) {
 						lAttr.registrationStatus = "Retired";
 						// update property
-						if (lAttr.hasDOMProp != null) lAttr.hasDOMProp.registrationStatus = lAttr.registrationStatus;
+						if (lAttr.hasDOMPropInverse != null) lAttr.hasDOMPropInverse.registrationStatus = lAttr.registrationStatus;
 					}
 				}				
 			}

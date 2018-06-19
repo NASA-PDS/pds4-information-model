@@ -110,11 +110,13 @@ public class DMDocument extends Object {
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
 	
-	// export file flags
+	// import export file flags
 	static boolean exportProdDefnFlag = true;
 	static boolean exportJSONFileFlag = false;
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
+	static boolean exportJSONAttrFlag = false;
+	static boolean importJSONAttrFlag = false;
 
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
@@ -904,6 +906,15 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('1') > -1) {
 					exportSpecFileFlag = true;
+				}
+/*				if (lArg.indexOf('2') > -1) {
+					exportDDFileFlag = true;
+				} */
+				if (lArg.indexOf('3') > -1) {
+					exportJSONAttrFlag = true;
+				}
+				if (lArg.indexOf('4') > -1) {
+					importJSONAttrFlag = true;
 				}
 				if (lArg.indexOf('f') > -1) {
                    aind++;

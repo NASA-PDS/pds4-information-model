@@ -93,7 +93,7 @@ public class GetDOMModel extends Object {
 						if (lDOMAttr != null && DOMInfoModel.masterDOMAttrMap.get(lDOMAttr.rdfIdentifier) == null) {
 							DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
 							lDOMProp.hasDOMObject = lDOMAttr;
-							lDOMAttr.hasDOMProp = lDOMProp;
+							lDOMAttr.hasDOMPropInverse = lDOMProp;
 						} else {
 							System.out.println(">>error    - Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
 						}
@@ -119,7 +119,7 @@ public class GetDOMModel extends Object {
 						DOMClass lDOMClass = (DOMClass) lDOMPropComp.domComp;
 						if (lDOMClass != null && DOMInfoModel.masterDOMClassMap.get(lDOMClass.rdfIdentifier) != null) {
 							lDOMProp.hasDOMObject = lDOMClass;
-							lDOMClass.hasDOMProp = lDOMProp;
+							lDOMClass.hasDOMPropInverse = lDOMProp;
 						} else {
 							System.out.println(">>error    - Class not found - ADDING Class lDOMClass.rdfIdentifier:" + lDOMClass.rdfIdentifier);
 						}
@@ -127,7 +127,7 @@ public class GetDOMModel extends Object {
 				}
 			}
 		}
-						
+		
 		// build the remaining association maps and array (sorted by identifier)
 		ArrayList <DOMProp> lPropArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropMap.values());
 		for (Iterator<DOMProp> j = lPropArr.iterator(); j.hasNext();) {
