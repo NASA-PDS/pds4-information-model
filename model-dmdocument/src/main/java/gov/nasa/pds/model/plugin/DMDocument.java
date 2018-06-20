@@ -117,6 +117,7 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
+	static boolean exportDOMFlag = false;
 
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
@@ -807,7 +808,7 @@ public class DMDocument extends Object {
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
 		} else {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeAllArtifacts ();
+			lExportModels.writeAllArtifacts (exportDOMFlag);
 		}
 	}
 	
