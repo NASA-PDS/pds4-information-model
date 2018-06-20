@@ -219,7 +219,7 @@ public class DMDocument extends Object {
 	static TreeMap <String, String> classVersionId;
 	
 	// debug flag	
-	static boolean debugFlag = true;
+	static boolean debugFlag = false;
 	
 	// Property List for Config.Properties
 	static Properties props = new Properties();
