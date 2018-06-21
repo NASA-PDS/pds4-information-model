@@ -99,20 +99,19 @@ class WriteDOMDocBook extends Object {
 
 		}
 		
-
-		
-		lClassClassificationDefn = classClassificationMap.get("pds.pds3");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>PDS3 catalog classes in the common namespace.</title>");
-			prDocBook.println("           <para>These classes are used to archive PDS3 catalog information. </para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
+		if (! DMDocument.importJSONAttrFlag) {  // if a JSON run, dont write the following
+			lClassClassificationDefn = classClassificationMap.get("pds.pds3");
+			if (lClassClassificationDefn != null) {
+				prDocBook.println("        <chapter>");
+				prDocBook.println("           <title>PDS3 catalog classes in the common namespace.</title>");
+				prDocBook.println("           <para>These classes are used to archive PDS3 catalog information. </para>");
+				for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
+					DOMClass lClass = (DOMClass) j.next();
+					writeClass (lClass, prDocBook);						
+				}
+				prDocBook.println("        </chapter>");
+				prDocBook.println("");
 			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-
 		}
 		
 		lClassClassificationDefn = classClassificationMap.get("rings");
@@ -555,6 +554,7 @@ class WriteDOMDocBook extends Object {
 				if (lDependValue != null) lDependClause = " (" + lDependValue + ")";								
 				
 				String lValueMeaning = lPermValueDefn.value_meaning;
+				if (lValueMeaning == null) lValueMeaning = "TBD_value_meaning";
 			    
 				if (lAttr.title.compareTo("pattern") == 0) {
 					if ((lValueMeaning == null) || (lValueMeaning.indexOf("TBD") == 0))
@@ -601,9 +601,6 @@ class WriteDOMDocBook extends Object {
 	public void getAttrClassification (DOMAttr lAttr) {
 //		if (lAttr.isDataType || lAttr.isUnitOfMeasure) return; 
 		if (! (lAttr.isUsedInClass && lAttr.isAttribute)) return;
-		
-//		System.out.println("debug getAttrClassification lAttr.identifier:" + lAttr.identifier);
-//		System.out.println("debug getAttrClassification lAttr.attrNameSpaceIdNC:" + lAttr.attrNameSpaceIdNC);
 		
 		// classify the class by namespace and other criteria
 //		String lAttrId = lAttr.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
@@ -812,6 +809,8 @@ class WriteDOMDocBook extends Object {
 	            prDocBook.println("                <row>");
 	            prDocBook.println("                    <entry>" + "</entry>");
 	            prDocBook.println("                    <entry>" + getValue(lPermValueDefn.value) + "</entry>");
+	            String lValueMeaning = lPermValueDefn.value_meaning;
+	            if (lValueMeaning == null) lValueMeaning = "TBD_value_meaning";
 	            prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue(lPermValueDefn.value_meaning) + "</entry>");
 	            prDocBook.println("                </row>");
 			}         
@@ -887,15 +886,17 @@ class WriteDOMDocBook extends Object {
 		prDocBook.println("                            </para>");
 		prDocBook.println("                        </listitem>");
 		prDocBook.println("                    </itemizedlist>");
-		prDocBook.println("                    <emphasis role=\"bold\">Reference Documents</emphasis>");
-		prDocBook.println("                    <itemizedlist>");
-		prDocBook.println("                        <listitem>");
-		prDocBook.println("                            <para>");
-		prDocBook.println("                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
-		prDocBook.println("                            </para>");
-		prDocBook.println("                        </listitem>");
-		prDocBook.println("                        ");
-		prDocBook.println("                    </itemizedlist>");
+		if (! DMDocument.importJSONAttrFlag) {
+			prDocBook.println("                    <emphasis role=\"bold\">Reference Documents</emphasis>");
+			prDocBook.println("                    <itemizedlist>");
+			prDocBook.println("                        <listitem>");
+			prDocBook.println("                            <para>");
+			prDocBook.println("                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
+			prDocBook.println("                            </para>");
+			prDocBook.println("                        </listitem>");
+			prDocBook.println("                        ");
+			prDocBook.println("                    </itemizedlist>");
+		}
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
@@ -914,7 +915,7 @@ class WriteDOMDocBook extends Object {
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used in the PDS archive to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
+		prDocBook.println("                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
 		prDocBook.println("                    </listitem>");
 		prDocBook.println("                    <listitem>");
 		prDocBook.println("                        <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
@@ -986,9 +987,10 @@ class WriteDOMDocBook extends Object {
 	}
 	
 	private String getValueLink(DOMAttr lAttr, String lValue) {
-//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
-//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.title + "." + lValue;
+		String lAttrParentClassTitle = "TBD_lAttrParentClassTitle";
+		if (lAttr.attrParentClass != null) 
+			lAttrParentClassTitle = lAttr.attrParentClass.title;
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttrParentClassTitle + "." + lAttr.nameSpaceIdNC + "." + lAttr.title + "." + lValue;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 		return "<link linkend=\"" + lLink + "\">" + getValueBreak(lValue) + "</link>";
@@ -1004,9 +1006,11 @@ class WriteDOMDocBook extends Object {
 	}
 
 	private String getAttrLink(DOMAttr lAttr) {
-//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
-//		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
-		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.title;
+		String lAttrParentClassTitle = "TBD_lAttrParentClassTitle";
+		if (lAttr.attrParentClass != null) {
+			lAttrParentClassTitle = lAttr.attrParentClass.title;
+		}
+		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttrParentClassTitle + "." + lAttr.nameSpaceIdNC + "." + lAttr.title;
 		int lLinkI = lLink.hashCode();
 		lLink = "N" + Integer.toString(lLinkI);
 		String lRegistrationStatusInsert = "";
