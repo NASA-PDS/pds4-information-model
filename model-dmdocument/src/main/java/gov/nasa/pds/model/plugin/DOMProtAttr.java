@@ -242,8 +242,45 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 		lAttr.isChoice = this.isChoice;
 		lAttr.set11179Attr(lAttr.identifier);
 		
+		createDOMPermValDefn (lAttr, this.valArr);
+		
 		InitStringArr (lAttr.valArr, this.valArr);
 		
 		return lAttr;
+	}
+	
+	// convert a Protege Value Array (valArr) to a DOMPermValDefn
+	public void createDOMPermValDefn (DOMAttr lDOMAttr, ArrayList <String> lValArr) {
+		if (lValArr == null) return;
+		for (Iterator <String> i = lValArr.iterator(); i.hasNext();) {
+			String lValue = (String) i.next();
+			if (lValue != null && lValue.compareTo("") != 0 ) {
+				DOMPermValDefn lDOMPermVal = new DOMPermValDefn();
+				lDOMPermVal.value = lValue;
+	            DOMProp lDOMProp = createDOMProp (lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC, lDOMAttr.title + lValue);
+	            lDOMAttr.domPermValueArr.add(lDOMProp);
+	            lDOMProp.hasDOMObject = lDOMPermVal;
+			}
+		}
+	}
+	
+	// create a DOM Property
+	public DOMProp createDOMProp (String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2) {
+		DOMProp lDOMProp = new DOMProp ();
+		lDOMProp.setRDFIdentifier (lTitle); 							
+		lDOMProp.setIdentifier(lNameSpaceIdNC, lTitle, lNameSpaceIdNC2, lTitle2);
+		lDOMProp.title = lTitle;
+		lDOMProp.registrationStatus = DMDocument.registrationAuthorityIdentifierValue;  
+		lDOMProp.nameSpaceIdNC = lNameSpaceIdNC;
+		lDOMProp.nameSpaceId = lNameSpaceIdNC + ":";
+		if (true) {
+			lDOMProp.referenceType = "attribute_of";
+		}
+		lDOMProp.cardMin = "0";
+		lDOMProp.cardMax = "1";
+		lDOMProp.cardMinI = 0; 
+		lDOMProp.cardMaxI = 1;
+		lDOMProp.isPDS4 = true;
+		return lDOMProp;
 	}
 }

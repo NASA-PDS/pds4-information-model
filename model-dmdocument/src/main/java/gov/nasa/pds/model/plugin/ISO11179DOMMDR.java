@@ -192,43 +192,30 @@ class ISO11179DOMMDR extends Object {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.default_unit_id:" + lAttr.default_unit_id + "  - with lVal:" + lVal); }
 					lAttr.default_unit_id = lVal;
 				}
-
-				// get the permissible values and value meanings
-				if  (lAttr.valArr != null && lAttr.valArr.size() > 0) {					
-					ArrayList <String> lValArrSorted = new ArrayList <String> ();
-					for (Iterator<String> j = lAttr.valArr.iterator(); j.hasNext();) {
-						String lValue = (String) j.next();
-						lValArrSorted.add(lValue);
-					}
-					Collections.sort(lValArrSorted);
-					for (Iterator<String> j = lValArrSorted.iterator(); j.hasNext();) {
-						String lValue = (String) j.next();						
-						String lId = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.parentClassTitle + "." + lAttr.title + "_Value." + lValue;
-						PermValueDefn lPermValueDefn = new PermValueDefn (lId, lValue);
-						lAttr.permValueArr.add(lPermValueDefn);
-
-						// title:vm.0001_NASA_PDS_1.pds.DD_Class_Full.steward_id.111209
-						String lKey = "pv." + InfoModel.getAttrIdentifier(lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title) + "." + lValue;
-						
-						String lValueMeaning = hashCodedValueMeaningMap.get(lKey);
-						if (lValueMeaning != null) {
-							lPermValueDefn.value_meaning = lValueMeaning;
+				
+				// get the permissible value meanings
+				if  (lAttr.domPermValueArr != null && lAttr.domPermValueArr.size() > 0) {					
+					for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
+						DOMProp lDOMProp = (DOMProp) j.next();
+						if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+							DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+							System.out.println("\ndebug OverwriteFrom11179DataDict - get the permissible value meanings - lDOMPermVal.identifier:" + lDOMPermVal.identifier);
+							System.out.println("debug OverwriteFrom11179DataDict - get the permissible value meanings - lDOMPermVal.value:" + lDOMPermVal.value);
+							
+							// title:vm.0001_NASA_PDS_1.pds.DD_Class_Full.steward_id.111209
+							String lKey = "pv." + InfoModel.getAttrIdentifier(lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title) + "." + lDOMPermVal.value;
+							String lValueMeaning = hashCodedValueMeaningMap.get(lKey);
+							System.out.println("debug OverwriteFrom11179DataDict - get the permissible value meanings - - lKey:" + lKey);
+							if (lValueMeaning != null) {
+								lDOMPermVal.value_meaning = lValueMeaning;
+								System.out.println("debug OverwriteFrom11179DataDict - get the permissible value meanings - - - lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
+							}
 						}
-						
-						// create a DOMProp and Associated DOMPermValDefn for each permissible value
-						DOMProp lDOMProp = new DOMProp ();								// create the DOMProp for the Permissible Value
-						lAttr.domPermValueArr.add(lDOMProp);
-						DOMPermValDefn lDOMPermValDefn = new DOMPermValDefn ();			// create the DOMPermValDefn						
-						lDOMProp.hasDOMObject = lDOMPermValDefn;						// assign the one DOMPermValDefn to the DOMProp
-//						if (lDOMAttr.title.compareTo("pattern") == 0) lDOMPermValDefn.isPattern = true;
-						lDOMPermValDefn.createDOMPermValSingletonsDOM(lValue, lValueMeaning, lAttr);
-						lDOMProp.initDOMPermValProp(lDOMPermValDefn);
 					}
 				}
 			}
 		}
 	}
-	
 	
 //	Get class order
 	public void getClassOrder () {

@@ -1415,6 +1415,8 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        attr.parentClassTitle:" + attr.parentClassTitle);
 		if (attr.attrParentClass != null)
 			prDOMWriter.println("        attr.attrParentClass.identifier:" + attr.attrParentClass.identifier);
+		else
+			prDOMWriter.println("        attr.attrParentClass.identifier:" + "null");
 		prDOMWriter.println("        attr.classConcept:" + attr.classConcept);
 		prDOMWriter.println("        attr.dataConcept:" + attr.dataConcept);
 		prDOMWriter.println("        attr.lddLocalIdentifier:" + attr.lddLocalIdentifier);
@@ -1458,29 +1460,9 @@ public abstract class DOMInfoModel extends Object {
         prDOMWriter.println("        attr.classWord:" + attr.classWord);
 		prDOMWriter.println("        attr.deDataIdentifier:" + attr.deDataIdentifier);
 
-// 777	prDOMWriter.println("        attr.type:" + attr.type);
+// 		prDOMWriter.println("        attr.type:" + attr.type);
 //		prDOMWriter.println("        attr.isDataType:" + attr.isDataType);		
 //		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
-
-// 777 to be deprecated
-		if (attr.valArr != null && attr.valArr.size() > 0) {
-			prDOMWriter.println("        has attr.valArr");
-
-			for (Iterator <String> j = attr.valArr.iterator(); j.hasNext();) {
-				String lVal = (String) j.next();
-				prDOMWriter.println("          val:" + lVal);
-			}
-		}
-		
-// 777 to be deprecated
-		if (attr.valClassArr != null && attr.valClassArr.size() > 0) {
-			prDOMWriter.println("        has attr.valClassArr");
-
-			for (Iterator <PDSObjDefn> j = attr.valClassArr.iterator(); j.hasNext();) {
-				PDSObjDefn lValClass = (PDSObjDefn) j.next();
-				prDOMWriter.println("          class val:" + lValClass.title);
-			}
-		}
 		
 // 		Permissible values
 		if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
@@ -1492,6 +1474,9 @@ public abstract class DOMInfoModel extends Object {
 					prDOMWriter.println("          lDOMPermVal.value:" + lDOMPermVal.value + "  lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "  lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
 				}
 			}
+		} else {
+			if (attr.domPermValueArr == null) prDOMWriter.println("        domPermValueArr:" + "null");
+			else  prDOMWriter.println("  ERROR domPermValueArr.size():" + attr.domPermValueArr.size());
 		}
 	}
 	

@@ -113,12 +113,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						// the unit does not exist, add it
 						lUnit = new DOMUnit ();
 						lUnit.identifier = lClass.title;
-						lUnit.pds4Identifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
-						lUnit.title = lUnit.identifier;
-						lUnit.type = lUnit.identifier;
-						lUnit.nameSpaceIdNC = lClass.nameSpaceIdNC;
-						lUnit.nameSpaceId = lClass.nameSpaceId;
-						lUnit.steward = lClass.steward;
+						lUnit.createDOMUnitSingletons (lClass.title, lClass);
 						DOMInfoModel.masterDOMUnitMap.put(lUnit.title, lUnit);
 // 333	-- deprecate masterDOMUnitMap, use title
 						DOMInfoModel.masterDOMUnitTitleMap.put(lUnit.title, lUnit);
@@ -173,8 +168,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			}
 		}
 		DOMInfoModel.masterDOMUnitArr = new ArrayList <DOMUnit> (DOMInfoModel.masterDOMUnitMap.values());
-	}	
-
+	}
+	
 	// 011.1 - get the subClassOf (superClass) identifier and instances for each class, using the title
 	public void getSubClassOf () {
 		// iterate through the classes and get the subClassOf			

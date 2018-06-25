@@ -51,31 +51,22 @@ public class DOMUnit extends ISOClassOAIS11179 {
 		this.unit_id = unit_id;
 	}
 	
-	public void createDOMUnitSingletons (UnitDefn lUnitDefn) {
-//		rdfIdentifier = "TBD"; 							
-//		identifier = "TBD"; 
-		versionId = "TBD"; 
-//		sequenceId= "TBD";
-		
-		title = lUnitDefn.title;
-//		definition = lUnitDefn.description;
-		
-//		registrationStatus = lUnitDefn.registrationStatus; 
-//		isDeprecated = lUnitDefn.isDeprecated;
-		
-		regAuthId = DMDocument.masterNameSpaceIdNCLC; 
-		steward = DMDocument.masterNameSpaceIdNCLC; 
-		nameSpaceId = DMDocument.masterNameSpaceIdNCLC; 
-		nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC; 
-		
-		type = lUnitDefn.type;
-		precision = lUnitDefn.precision;
-		default_unit_id = lUnitDefn.default_unit_id;
-
-		for (Iterator <String> i = lUnitDefn.unit_id.iterator(); i.hasNext();) {
-			String lUnitId = (String) i.next();
-			this.unit_id.add(lUnitId);
-		}
+	public void createDOMUnitSingletons (String lId, DOMClass lClass) {
+//		rdfIdentifier = "TBD"; 
+		identifier = lId;
+		versionId = "1.0.0.0";
+		pds4Identifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
+		title = this.identifier;
+		type = this.identifier;
+		nameSpaceIdNC = lClass.nameSpaceIdNC;
+		nameSpaceId = lClass.nameSpaceId;
+		steward = lClass.steward;
+		regAuthId = DMDocument.registrationAuthorityIdentifierValue; 
+		definition = lClass.definition;
+		registrationStatus = lClass.registrationStatus; 
+		isDeprecated = lClass.isDeprecated;
+//		precision = lUnitDefn.precision;
+//		default_unit_id = lUnitDefn.default_unit_id;
 		return;
 	}
 }
