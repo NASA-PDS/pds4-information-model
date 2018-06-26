@@ -133,10 +133,9 @@ public class DMDocument extends Object {
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
 	
 	static boolean mapToolFlag = false;
-
+	
 	// Master Model
 	static MasterInfoModel masterInfoModel;
-// 7777 
 	static MasterDOMInfoModel masterDOMInfoModel;
 	
 	// Master LDD Model
@@ -225,7 +224,7 @@ public class DMDocument extends Object {
 	// Property List for Config.Properties
 	static Properties props = new Properties();
 	
-	static ArrayList <String> propertyMapFileName = new ArrayList <String> ();;
+	static ArrayList <String> propertyMapFileName = new ArrayList <String> ();
 	
 	// need a place to store the LDD schema file definition until it is created.
 //	static String LDDToolSchemaFileVersionId;
@@ -267,7 +266,7 @@ public class DMDocument extends Object {
 		submitterValue = "Submitter_PDS";
 		
 		registeredByValue = "RA_0001_NASA_PDS_1"; 
-		//registrationAuthorityIdentifierValue = "0001_NASA_PDS_1";
+		registrationAuthorityIdentifierValue = "0001_NASA_PDS_1";
 
 		// Master User Class Name
 		masterUserClassNamespaceIdNC = "all";
@@ -697,7 +696,6 @@ public class DMDocument extends Object {
     	    configInputStr= props.getProperty("lSchemaFileDefn.pds.registrationAuthority");
     	    if (configInputStr != null) {
                 registrationAuthorityIdentifierValue = configInputStr;
-//                System.out.println(" 555555555555555555555 Registration Authority is:" + registrationAuthorityIdentifierValue);
     	    }
     	    reader.close();
     	} catch (FileNotFoundException ex) {
@@ -792,7 +790,6 @@ public class DMDocument extends Object {
 		GetModels lGetModels = new GetModels();
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
-// 7777
 		// get the DOM Model
 		GetDOMModel lGetDOMModel = new GetDOMModel();
 		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
@@ -800,7 +797,7 @@ public class DMDocument extends Object {
 //		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
 		
 		// export the models
-		if ( DMDocument.LDDToolFlag) {
+		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
 			lExportModels.writeLDDArtifacts ();
 		} else if ( DMDocument.mapToolFlag) {
@@ -918,23 +915,22 @@ public class DMDocument extends Object {
 					importJSONAttrFlag = true;
 				}
 				if (lArg.indexOf('f') > -1) {
-                   aind++;
-                   while (aind < args.length) { 
-                         String temFileName = args[aind];                                	                                		
-                         if (((temFileName.endsWith(".csv")) || (temFileName.endsWith(".CSV"))) && (temFileName.startsWith("PDS4_"))) {
-                        	 
-                            if ( ! checkFileName (args[aind])) {
-                            	 System.out.println(" ");
-                                 System.out.println(">>ERROR: " + "Input file not found: " + temFileName); 
-                            }
-                         } else {
-                            	 System.out.println(" ");
-                         		 System.out.println(">>ERROR: " + "Input file name prefix is \"PDS4_\" and suffix is \".CSV\" " + temFileName); 
-                         }
-                         propertyMapFileName.add(temFileName); // accept only valid files
-                         aind++; 
-                   }
-				}			
+					aind++;
+					while (aind < args.length) { 
+						String temFileName = args[aind];                                	                                		
+						if (((temFileName.endsWith(".csv")) || (temFileName.endsWith(".CSV"))) && (temFileName.startsWith("PDS4_"))) {
+							if ( ! checkFileName (args[aind])) {
+								System.out.println(" ");
+								System.out.println(">>ERROR: " + "Input file not found: " + temFileName); 
+							}
+						} else {
+							System.out.println(" ");
+							System.out.println(">>ERROR: " + "Input file name prefix is \"PDS4_\" and suffix is \".CSV\" " + temFileName); 
+						}
+						propertyMapFileName.add(temFileName); // accept only valid files
+						aind++; 
+					}
+				}
 			} else {
 				SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
 				lLDDSchemaFileDefn.sourceFileName = lArg;
@@ -962,9 +958,6 @@ public class DMDocument extends Object {
 				LDDToolSingletonClassTitle = "Discipline_Area";
 			}
 		}
-
-
-
 	}
 
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
@@ -1029,7 +1022,6 @@ public class DMDocument extends Object {
 		if (mapToolFlag) {
 			System.out.println("\nUsage: termmap -f  inputFileName.CSV");
 		
-			
             System.out.println("  -f \"PropertyMapFile.csv\"  the file name is in the following format: ");
             System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV");
             System.out.println("	e.g. PDS4_INSIGHT_DEEN_PDS3_MAP_1A00.CSV");
@@ -1039,44 +1031,41 @@ public class DMDocument extends Object {
             System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.XML"); 
             System.out.println("   generated into the map directory \n");
 		} else {
-		System.out.println("\nUsage: lddtool -pl [OPTION]... FILE1 FILE2 ... ");
-		System.out.println("Parse a local data dictionary definition file and generate PDS4 data standard files.");
-
-		System.out.println("\nExample: lddtool -pl  inputFileName");
-	
-		
-		System.out.println("\nProcess control:");
-		System.out.println("  -p, --PDS4      Set the context to PDS4");
-		System.out.println("  -l, --LDD       Process a local data dictionary input file");
-		System.out.println("  -a, --attribute Write definitions for attribute elements.");
-//		System.out.println("  -c, --class     Write definitions for class elements.");
-		System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
-		System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
-		System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
-		System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
-		System.out.println("  -s, --sync      Use local namespace + information model version as output file names.");
-		System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
-		System.out.println("  -v, --version   Returns the LDDTool version number");
-
-		System.out.println("  -h, --help      Print this message");
-		
-		System.out.println("\nInput control:");
-		System.out.println("  FILE provides the file name of an input file. The file name extension .xml is assumed.");
-		System.out.println("    If there are more than one file, the first files are considered references");
-		System.out.println("    for the last file. The last file is considered the primary local data dictionary.");
-
-		System.out.println("\nOutput control:");
-		System.out.println("  FILE is used to provide the file name for the output files. The file name extensions are distinct.");
-		System.out.println("  .xsd -- XML Schema file");
-		System.out.println("  .sch -- schematron file");
-		System.out.println("  .xml -- label file");
-		System.out.println("  .csv -- data dictionary information in csv formatted file.");
-		System.out.println("  .JSON -- dump of model in JSON format.");
-		System.out.println("  .txt -- process report in text format");
-		System.out.println("  .pont -- ontology file for merge");
-		System.out.println(" ");
+			System.out.println("\nUsage: lddtool -pl [OPTION]... FILE1 FILE2 ... ");
+			System.out.println("Parse a local data dictionary definition file and generate PDS4 data standard files.");
+			
+			System.out.println("\nExample: lddtool -pl  inputFileName");
+			
+			System.out.println("\nProcess control:");
+			System.out.println("  -p, --PDS4      Set the context to PDS4");
+			System.out.println("  -l, --LDD       Process a local data dictionary input file");
+			System.out.println("  -a, --attribute Write definitions for attribute elements.");
+//			System.out.println("  -c, --class     Write definitions for class elements.");
+			System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
+			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
+			System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
+			System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
+			System.out.println("  -s, --sync      Use local namespace + information model version as output file names.");
+			System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
+			System.out.println("  -v, --version   Returns the LDDTool version number");
+			System.out.println("  -h, --help      Print this message");
+			
+			System.out.println("\nInput control:");
+			System.out.println("  FILE provides the file name of an input file. The file name extension .xml is assumed.");
+			System.out.println("    If there are more than one file, the first files are considered references");
+			System.out.println("    for the last file. The last file is considered the primary local data dictionary.");
+			
+			System.out.println("\nOutput control:");
+			System.out.println("  FILE is used to provide the file name for the output files. The file name extensions are distinct.");
+			System.out.println("  .xsd -- XML Schema file");
+			System.out.println("  .sch -- schematron file");
+			System.out.println("  .xml -- label file");
+			System.out.println("  .csv -- data dictionary information in csv formatted file.");
+			System.out.println("  .JSON -- dump of model in JSON format.");
+			System.out.println("  .txt -- process report in text format");
+			System.out.println("  .pont -- ontology file for merge");
+			System.out.println(" ");
 		}
-
 	}
 	
 	static public void checkRequiredFiles () {
@@ -1240,10 +1229,7 @@ public class DMDocument extends Object {
         		   }     		  
         		} else if (!DMDocument.LDDToolFlag) {
         			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-       
-        		} 
-		       
-
+        		}
         	}
           }
         }
