@@ -791,10 +791,11 @@ public class DMDocument extends Object {
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
-		GetDOMModel lGetDOMModel = new GetDOMModel();
-		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
-		
-//		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
+		if (exportDOMFlag) {
+			GetDOMModel lGetDOMModel = new GetDOMModel();
+			lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+			DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
+		}
 		
 		// export the models
 		if (DMDocument.LDDToolFlag) {

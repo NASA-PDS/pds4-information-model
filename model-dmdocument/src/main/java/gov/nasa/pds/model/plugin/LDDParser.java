@@ -1503,17 +1503,20 @@ public class LDDParser extends Object
 		}
 		
 		// build the remaining class maps and array
-		InfoModel.masterMOFClassIdMap.clear(); 
-		InfoModel.masterMOFClassArr.clear(); 
+		InfoModel.masterMOFClassIdMap.clear();
+		InfoModel.masterMOFClassArr.clear();
+		InfoModel.masterMOFClassTitleMap.clear();
+		
 		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
 		for (Iterator<PDSObjDefn> j = lClassArr.iterator(); j.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) j.next();
 			InfoModel.masterMOFClassIdMap.put(lClass.identifier, lClass);
+			InfoModel.masterMOFClassTitleMap.put(lClass.title, lClass);
 		}
 				
 		// build the master array (sorted by identifier)
 		InfoModel.masterMOFClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());		
-
+		
 		// merge the LDD attributes into the Master
 		for (Iterator <AttrDefn> i = attrArrResolved.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();

@@ -804,7 +804,7 @@ class MasterInfoModel extends InfoModel{
 		*  get the subClassOf identifier and instances for each class, using the title
 		*/
 		public void getSubClassOf () {
-	//		iterate through the classes and get the subClassOf			
+	//		iterate through the classes and get the subClassOf
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
 				if (lClass.isUSERClass) continue;
@@ -815,7 +815,8 @@ class MasterInfoModel extends InfoModel{
 					lClass.subClassOfTitle = lSupClass.title;
 					lClass.subClassOfIdentifier = lSupClass.identifier;
 				} else {
-					System.out.println("***error*** - missing superClass in master while trying to set subClassOf - lClass.identifier:" + lClass.identifier + " - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
+					if (lClass.subClassOfTitle.indexOf("TBD") != 0) 
+						System.out.println("***error*** - missing superClass in master while trying to set subClassOf - lClass.identifier:" + lClass.identifier + " - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
 				}
 			}
 			return;
@@ -1206,7 +1207,7 @@ class MasterInfoModel extends InfoModel{
 				lAttrArr.addAll(lClass.ownedAssociation);
 				ArrayList <AttrDefn> lSortedAttrArr = getSortedAssocAttrArr (lAttrArr);
 				lClass.ownedAttrAssocArr.addAll(lSortedAttrArr);
-											
+				
 				// get the enumerated attributes for asserts
 				for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 					AttrDefn lAttr = (AttrDefn) j.next();
@@ -1278,11 +1279,10 @@ class MasterInfoModel extends InfoModel{
 				ArrayList <String> lClassTitleArr = new ArrayList <String> ();
 				for (Iterator<PDSObjDefn> j = superClassArr.iterator(); j.hasNext();) {
 					lSuperClass = (PDSObjDefn) j.next();
-
+					
 					// for each superclass, add attribute/association if not already present
 					for (Iterator<AttrDefn> k = lSuperClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
 						AttrDefn lPotentialAttr = (AttrDefn) k.next();
-
 						if (! lClassTitleArr.contains(lPotentialAttr.title)) {
 							AttrDefn lHierOwnedAttr = hierOwnedAttrAssocTitleMap.get(lPotentialAttr.title);
 							if (lHierOwnedAttr != null) {
