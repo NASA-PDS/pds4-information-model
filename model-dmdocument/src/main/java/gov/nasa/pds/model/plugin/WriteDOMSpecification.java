@@ -483,9 +483,8 @@ public class WriteDOMSpecification extends Object {
 			}
 			phcard = cardval;
 			phvalue = "";
-
-					
-			ArrayList<DOMProp> lValClassArr = lDOMAttr.domPermValueArr;
+			
+			ArrayList<DOMProp> lValClassArr = new ArrayList<DOMProp> (lDOMAttr.domPermValueArr);
 			if (lValClassArr.isEmpty()) {
 		//		System.out.println("attribute value array is empty");
 				String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
