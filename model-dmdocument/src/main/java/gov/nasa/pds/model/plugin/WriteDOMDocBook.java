@@ -59,7 +59,7 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("");	
         prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
         prDocBook.println("");
-		
+        
 		// get the class classification maps
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -266,7 +266,7 @@ class WriteDOMDocBook extends Object {
 				}
 			}
         }
-			
+        
 		// write the attributes
 		if (attrCount == 0) {
 		       prDocBook.println("                <row>");
@@ -279,7 +279,7 @@ class WriteDOMDocBook extends Object {
             prDocBook.println("                    <entry>" + getPrompt("Name") + "</entry>");
             prDocBook.println("                    <entry>" + getPrompt("Cardinality") + "</entry>");
             prDocBook.println("                    <entry>" + getPrompt("Value") + "</entry>");
-            prDocBook.println("                </row>");	
+            prDocBook.println("                </row>");
             
 			for (Iterator <DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
@@ -320,32 +320,57 @@ class WriteDOMDocBook extends Object {
             prDocBook.println("                    <entry>" + getPrompt("Cardinality") + "</entry>");
             prDocBook.println("                    <entry>" + getPrompt("Class") + "</entry>");
             prDocBook.println("                </row>");
+            
+            // first get array of member classes for this association
+            TreeMap <String, String> lPropOrderMap = new TreeMap <String, String> ();
+            TreeMap <String, String> lPropCardMap = new TreeMap <String, String> ();
+            TreeMap <String, TreeMap <String, DOMClass>> lPropMemberClassMap = new TreeMap <String, TreeMap <String, DOMClass>> ();
 
-			for (Iterator <DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.isAttribute) continue;
-	            lValueString = "";
-	            lValueDel = "";
-	    		DOMClass assocClass = (DOMClass)lProp.hasDOMObject;
-	    		for (Iterator<DOMProp> k = assocClass.allAttrAssocArr.iterator(); k.hasNext();) {	    			
-	    		    DOMProp lDOMProp = (DOMProp)k.next();
-	    		    if (lDOMProp.isAttribute) continue;
-	    		    DOMClass lDOMClass = (DOMClass)lDOMProp.hasDOMObject; 
-	    		
-	    		    lValueString += lValueDel + getClassLink(lDOMClass);
-	    		    lValueDel = ", ";
+            Integer lSeqNumI = 1000;
+            for (Iterator <DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {       	
+				DOMProp lDOMProp = (DOMProp) j.next();
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+					DOMClass lMemberDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+					TreeMap <String, DOMClass> lMemberClassMap = lPropMemberClassMap.get(lDOMProp.title);
+					if (lMemberClassMap != null) {
+						lMemberClassMap.put(lMemberDOMClass.title, lMemberDOMClass);
+					} else {
+						lSeqNumI++;
+						String lSeqNum = lSeqNumI.toString();
+						lPropOrderMap.put(lSeqNum, lDOMProp.title);
+						lMemberClassMap = new TreeMap <String, DOMClass> ();
+						lMemberClassMap.put(lMemberDOMClass.title, lMemberDOMClass);
+						lPropMemberClassMap.put(lDOMProp.title, lMemberClassMap);
+						lPropCardMap.put(lDOMProp.title, getValue(getCardinality(lDOMProp.cardMinI, lDOMProp.cardMaxI)));
+					}
 	    		}
-	    		
-	            prDocBook.println("                <row>");
-	            prDocBook.println("                    <entry></entry>");
-	            prDocBook.println("                    <entry>" + getValueBreak(assocClass.title) + "</entry>");
-	            prDocBook.println("                    <entry>" + getValue(getCardinality(lProp.cardMinI, lProp.cardMaxI)) + "</entry>");
-	            prDocBook.println("                    <entry>" + lValueString + "</entry>");
-	            prDocBook.println("                </row>");
+			}
+            
+            // write the member classes
+			ArrayList <String> lPropOrderArr = new ArrayList <String> (lPropOrderMap.values());
+			for (Iterator <String> j = lPropOrderArr.iterator(); j.hasNext();) {
+				String lDOMPropTitle = (String) j.next();
+				TreeMap <String, DOMClass> lMemberClassMap = lPropMemberClassMap.get(lDOMPropTitle);
+				String lCardString = lPropCardMap.get(lDOMPropTitle);
+				if (lCardString != null && lMemberClassMap != null) {
+					ArrayList <DOMClass> lMemberClassArr = new ArrayList <DOMClass> (lMemberClassMap.values());
+		            lValueString = "";
+		            lValueDel = "";
+		            for (Iterator <DOMClass> k = lMemberClassArr.iterator(); k.hasNext();) {
+						DOMClass lMemberClass = (DOMClass) k.next();
+		    		    lValueString += lValueDel + getClassLink(lMemberClass);
+			    		lValueDel = ", ";
+					}
+	                prDocBook.println("                <row>");
+	                prDocBook.println("                    <entry></entry>");
+	                prDocBook.println("                    <entry>" + getValueBreak(lDOMPropTitle) + "</entry>");
+	                prDocBook.println("                    <entry>" + lCardString + "</entry>");
+	                prDocBook.println("                    <entry>" + lValueString + "</entry>");
+	                prDocBook.println("                </row>");
+	    		}
 			}
 		}
-
-
+		
         // write the references
  		ArrayList <DOMClass> lRefClassArr = getClassReferences (lClass);
  		lValueString = "";

@@ -1,5 +1,6 @@
 package gov.nasa.pds.model.plugin; 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class DOMProtAttr extends ISOClassOAIS11179 {
@@ -56,6 +57,7 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 	boolean hasRetiredValue;		// at least one permissible value has been retired
 	
 	ArrayList <String> valArr;
+	ArrayList <String> valArrSorted;
 	
 	public DOMProtAttr () { 
 		sort_identifier = "TBD_sort_identifier";
@@ -137,13 +139,17 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 	public ArrayList <DOMPropComp> convertToDOMPropCompArr () {
 		ArrayList <DOMPropComp> lDomPropCompArr = new ArrayList <DOMPropComp> ();
 		
+		// sort the value array
+		valArrSorted = new ArrayList <String> (valArr);
+		Collections.sort(valArrSorted);	
+		
 		if (this.isAttribute) {
 			DOMPropComp lDomPropComp = new DOMPropComp ();
 			lDomPropComp.domProp = convertToDOMProp();
 			lDomPropComp.domComp = convertToDOMAttr();
 			lDomPropCompArr.add(lDomPropComp);
 		} else {
-			for (Iterator <String> i = valArr.iterator(); i.hasNext();) {
+			for (Iterator <String> i = valArrSorted.iterator(); i.hasNext();) {
 				String lClassTitle = (String) i.next();
 				if (lClassTitle == null) continue;
 				// get class
@@ -252,7 +258,8 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 	// convert a Protege Value Array (valArr) to a DOMPermValDefn
 	public void createDOMPermValDefn (DOMAttr lDOMAttr, ArrayList <String> lValArr) {
 		if (lValArr == null) return;
-		for (Iterator <String> i = lValArr.iterator(); i.hasNext();) {
+		
+		for (Iterator <String> i = valArrSorted.iterator(); i.hasNext();) {
 			String lValue = (String) i.next();
 			if (lValue != null && lValue.compareTo("") != 0 ) {
 				DOMPermValDefn lDOMPermVal = new DOMPermValDefn();
