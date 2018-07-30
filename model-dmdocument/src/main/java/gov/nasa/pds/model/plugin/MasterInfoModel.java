@@ -77,8 +77,8 @@ class MasterInfoModel extends InfoModel{
 	
 	public void GetMasterDECMaps () {		
 		//set the DEC maps
-		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Attribute_Full.pds.attribute_concept");
-
+		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(DMDocument.masterPDSSchemaFileDefn.regAuthId + "." + DMDocument.masterPDSSchemaFileDefn.identifier + "." + "DD_Attribute_Full.pds.attribute_concept");
+		
 		if (lAttr == null) {
 			System.out.println("***error*** system attribute - attribute_concept - MISSING");
 			return;
@@ -101,7 +101,7 @@ class MasterInfoModel extends InfoModel{
 		
 	public void GetMasterCDMaps () {		
 		//set the CD maps
-		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.conceptual_domain");
+		AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(DMDocument.masterPDSSchemaFileDefn.regAuthId + "." + DMDocument.masterPDSSchemaFileDefn.identifier + "." + "DD_Value_Domain_Full.pds.conceptual_domain");
 
 		if (lAttr == null) {
 			System.out.println("***error*** system attribute - conceptual_domain - MISSING");
@@ -443,22 +443,18 @@ class MasterInfoModel extends InfoModel{
 	public void setRegistrationStatus () {
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
-	//		System.out.println("debug setRegistrationStatus lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
 			// is it a value
 			if (lDeprecatedDefn.value.compareTo("") != 0) {
 				String lId = InfoModel.getAttrIdentifier (lDeprecatedDefn.classNameSpaceIdNC, lDeprecatedDefn.className, lDeprecatedDefn.attrNameSpaceIdNC, lDeprecatedDefn.attrName);
 				AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lId);
 				if (lAttr != null) {
 					lAttr.hasRetiredValue = true;
-	//				System.out.println("debug setRegistrationStatus Object FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
 					for (Iterator<PermValueDefn> j = lAttr.permValueArr.iterator(); j.hasNext();) {
 						PermValueDefn lPermValue = (PermValueDefn) j.next();
 						if (lPermValue.value.compareTo(lDeprecatedDefn.value) == 0) {
 							lPermValue.registrationStatus = "Retired";
 						}
 					}
-				} else {
-// 999					System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.value:" + lDeprecatedDefn.value);
 				}
 			} else {
 				// is it a class
@@ -470,8 +466,6 @@ class MasterInfoModel extends InfoModel{
 					AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lDeprecatedDefn.identifier);
 					if (lAttr != null) {
 						lAttr.registrationStatus = "Retired";
-					} else {
-// 999						System.out.println("debug setRegistrationStatus Object NOT FOUND lDeprecatedDefn.identifier:" + lDeprecatedDefn.identifier);
 					}
 				}				
 			}

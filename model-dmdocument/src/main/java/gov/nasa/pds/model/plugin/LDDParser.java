@@ -432,7 +432,7 @@ public class LDDParser extends Object
 					getTermEntry (lAttr, el);
 					
 					// check if attribute already exists
-					String lid = "0001_NASA_PDS_1." + lLocalIdentifier;
+					String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
 //					System.out.println("debug getAttributes -External Attribute-  lid:" + lid);
 					AttrDefn lExternAttr = InfoModel.masterMOFAttrIdMap.get(lid);
 					if (lExternAttr != null) {

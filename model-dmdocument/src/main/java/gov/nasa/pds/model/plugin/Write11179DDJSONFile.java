@@ -172,6 +172,7 @@ class Write11179DDJSONFile extends Object{
 			delimiter1 = ", ";
 			prDDPins.println("                " + formValue("identifier") + ": " + formValue(lAssoc.identifier) + " ,");	
 			prDDPins.println("                " + formValue("title") + ": " + formValue(lAssoc.title) + " ,");	
+			prDDPins.println("                " + formValue("assocType") + ": " + formValue("attribute_of") + " ,");	
 			prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(true) + " ,");	
 			prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lAssoc.isChoice) + " ,");	
 			prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lAssoc.isAny) + " ,");	
@@ -192,7 +193,28 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("                 ]");
 			prDDPins.println("              }");
 			prDDPins.println("            }");
-
+		}
+		
+		// write the subclass association (if it exists)
+		if (lClass.subClassOfInst != null && ! lClass.subClassOfInst.isVacuous && ! lClass.subClassOfInst.isAbstract) {
+			prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
+			delimiter1 = ", ";
+			String lIdentifier = InfoModel.getClassIdentifier(lClass.nameSpaceIdNC, lClass.subClassOfTitle);
+			prDDPins.println("                " + formValue("identifier") + ": " + formValue(lIdentifier) + " ,");	
+			prDDPins.println("                " + formValue("title") + ": " + formValue(lClass.subClassOfTitle) + " ,");	
+			prDDPins.println("                " + formValue("assocType") + ": " + formValue("parent_of") + " ,");	
+			prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
+			prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(false) + " ,");	
+			prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(false) + " ,");	
+//			prDDPins.println("                " + formValue("groupName") + ": " + formValue(lAssoc.groupName) + " ,");	
+			prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue("1") + " ,");	
+			prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue("1") + " ,");	
+			prDDPins.println("                " + formValue("classOrder") + ": " + formValue("1010") + " ,");	
+			prDDPins.println("                " + formValue("attributeId") + ": [");				
+			prDDPins.println("                  " + formValue(lIdentifier));
+			prDDPins.println("                 ]");
+			prDDPins.println("              }");
+			prDDPins.println("            }");			
 		}
 		
 		// sort by classOrder
@@ -202,16 +224,16 @@ class Write11179DDJSONFile extends Object{
 			String lSortOrder = lAssoc.classOrder + "-" + lAssoc.identifier;
 			lClassAssocMap.put(lSortOrder, lAssoc);
 		}
-		lClassAssocArr = new ArrayList <AssocDefn> (lClassAssocMap.values());		
+		lClassAssocArr = new ArrayList <AssocDefn> (lClassAssocMap.values());
 		
 		// write the class list
-//		delimiter1 = "  ";
 		for (Iterator<AssocDefn> i = lClassAssocArr.iterator(); i.hasNext();) {
 			AssocDefn lAssoc = (AssocDefn) i.next();
 			prDDPins.println("           " + delimiter1 + "{" + formValue("association") + ": {");				
 			delimiter1 = ", ";		
 			prDDPins.println("                " + formValue("identifier") + ": " + formValue(lAssoc.identifier) + " ,");	
 			prDDPins.println("                " + formValue("title") + ": " + formValue(lAssoc.title) + " ,");	
+			prDDPins.println("                " + formValue("assocType") + ": " + formValue("component_of") + " ,");	
 			prDDPins.println("                " + formValue("isAttribute") + ": " + formBooleanValue(false) + " ,");	
 			prDDPins.println("                " + formValue("isChoice") + ": " + formBooleanValue(lAssoc.isChoice) + " ,");	
 			prDDPins.println("                " + formValue("isAny") + ": " + formBooleanValue(lAssoc.isAny) + " ,");	
@@ -445,7 +467,7 @@ class Write11179DDJSONFile extends Object{
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");
-			prDDPins.println("  (registeredBy [" + "RA_0001_NASA_PDS_1" + "])");
+			prDDPins.println("  (registeredBy [" + DMDocument.registeredByValue + "])");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");						
 			prDDPins.println("  (classOrder \"" + lAssoc.classOrder + "\")");
 //			prDDPins.println("  (versionIdentifier \"" + InfoModel.identifier_version_id + "\"))");
@@ -613,19 +635,19 @@ class Write11179DDJSONFile extends Object{
 		prDDPins.println("	(unresolvedIssue \"Issues still being determined.\")");
 		prDDPins.println("	(untilDate \"" + DMDocument.endDateValue + "\"))");
 		
-		prDDPins.println("([0001_NASA_PDS_1] of RegistrationAuthorityIdentifier");
+		prDDPins.println("([" + DMDocument.registrationAuthorityIdentifierValue + "] of RegistrationAuthorityIdentifier");
 		prDDPins.println("	(internationalCodeDesignator \"0001\")");
 		prDDPins.println("	(opiSource \"1\")");
 		prDDPins.println("	(organizationIdentifier \"National Aeronautics and Space Administration\")");
 		prDDPins.println("	(organizationPartIdentifier \"Planetary Data System\"))");
 
-		prDDPins.println("([RA_0001_NASA_PDS_1] of RegistrationAuthority");
+		prDDPins.println("([" + DMDocument.registeredByValue + "] of RegistrationAuthority");
 		prDDPins.println("	(documentationLanguageIdentifier [LI_English])");
 		prDDPins.println("	(languageUsed [LI_English])");
 		prDDPins.println("	(organizationMailingAddress \"4800 Oak Grove Drive\")");
 		prDDPins.println("	(organizationName \"NASA Planetary Data System\")");
 		prDDPins.println("	(registrar [PDS_Registrar])");
-		prDDPins.println("	(registrationAuthorityIdentifier_v [0001_NASA_PDS_1]))");
+		prDDPins.println("	(registrationAuthorityIdentifier_v [" + DMDocument.registrationAuthorityIdentifierValue + "]))");
 	
 		prDDPins.println("([NASA_PDS] of Context");
 		prDDPins.println("	(dataIdentifier  \"NASA_PDS\"))");
@@ -636,27 +658,27 @@ class Write11179DDJSONFile extends Object{
 		
 		prDDPins.println("([Steward_PDS] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([pds] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([img] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([rings] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([ops] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([Submitter_PDS] of Submitter");
 		prDDPins.println("	(contact [DataDesignWorkingGroup])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 		
 		prDDPins.println("([PDS_Standards_Coordinator] of Contact");
 		prDDPins.println("	(contactTitle \"PDS_Standards_Coordinator\")");

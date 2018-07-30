@@ -172,9 +172,7 @@ class WriteSchematron extends Object {
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
-				if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-				prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
+				prSchematron.println("  <sch:ns uri=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}
 	}

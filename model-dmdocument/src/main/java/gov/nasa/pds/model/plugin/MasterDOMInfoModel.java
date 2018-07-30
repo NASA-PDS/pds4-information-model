@@ -1047,7 +1047,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	// 025 - Set the DEC and CD for each attribute.
 	public void GetMasterDECMaps () {		
 		//set the DEC maps
-		DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Attribute_Full.pds.attribute_concept");
+		DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(DMDocument.masterPDSSchemaFileDefn.regAuthId + "." + DMDocument.masterPDSSchemaFileDefn.identifier + "." + "DD_Attribute_Full.pds.attribute_concept");
 
 		if (lAttr == null) {
 			System.out.println("***error*** system attribute - attribute_concept - MISSING");
@@ -1072,7 +1072,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	// 026 - set up master conceptual domain array
 	public void GetMasterCDMaps () {		
 		//set the CD maps
-		DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get("0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.conceptual_domain");
+		DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(DMDocument.masterPDSSchemaFileDefn.regAuthId + "." + DMDocument.masterPDSSchemaFileDefn.identifier + "." + "DD_Value_Domain_Full.pds.conceptual_domain");
 
 		if (lAttr == null) {
 			System.out.println("***error*** system attribute - conceptual_domain - MISSING");
