@@ -60,7 +60,7 @@ class WriteDDProductClassDefinitions extends Object{
 		prDDReg.println("        <namespace_id>" + lClass.nameSpaceIdNC + "</namespace_id>");
 		prDDReg.println("        <submitter_name>" + lClass.steward + "</submitter_name>");
 		prDDReg.println("        <definition>" + lClass.description + "</definition>");
-		prDDReg.println("        <registered_by>" + "RA_0001_NASA_PDS_1" + "</registered_by>");
+		prDDReg.println("        <registered_by>" + DMDocument.registeredByValue + "</registered_by>");
 		prDDReg.println("        <registration_authority_id>" + DMDocument.registrationAuthorityIdentifierValue + "</registration_authority_id>");
 		prDDReg.println("        <abstract_flag>" + lClass.isAbstract + "</abstract_flag>");
 

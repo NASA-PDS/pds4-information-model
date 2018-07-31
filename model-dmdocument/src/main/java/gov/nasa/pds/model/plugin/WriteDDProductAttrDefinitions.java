@@ -142,19 +142,19 @@ class WriteDDProductAttrDefinitions extends Object{
 		prDDReg.println("	(unresolvedIssue \"Issues still being determined.\")");
 		prDDReg.println("	(untilDate \"" + DMDocument.endDateValue + "\"))");
 		
-		prDDReg.println("([0001_NASA_PDS_1] of RegistrationAuthorityIdentifier");
+		prDDReg.println("([" + DMDocument.registrationAuthorityIdentifierValue + "] of RegistrationAuthorityIdentifier");
 		prDDReg.println("	(internationalCodeDesignator \"0001\")");
 		prDDReg.println("	(opiSource \"1\")");
 		prDDReg.println("	(organizationIdentifier \"National Aeronautics and Space Administration\")");
 		prDDReg.println("	(organizationPartIdentifier \"Planetary Data System\"))");
 
-		prDDReg.println("([RA_0001_NASA_PDS_1] of RegistrationAuthority");
+		prDDReg.println("([" + DMDocument.registeredByValue + "] of RegistrationAuthority");
 		prDDReg.println("	(documentationLanguageIdentifier [LI_English])");
 		prDDReg.println("	(languageUsed [LI_English])");
 		prDDReg.println("	(organizationMailingAddress \"4800 Oak Grove Drive\")");
 		prDDReg.println("	(organizationName \"NASA Planetary Data System\")");
 		prDDReg.println("	(registrar [PDS_Registrar])");
-		prDDReg.println("	(registrationAuthorityIdentifier_v [0001_NASA_PDS_1]))");
+		prDDReg.println("	(registrationAuthorityIdentifier_v [" + DMDocument.registrationAuthorityIdentifierValue + "]))");
 	
 		prDDReg.println("([NASA_PDS] of Context");
 		prDDReg.println("	(dataIdentifier  \"NASA_PDS\"))");
@@ -165,27 +165,27 @@ class WriteDDProductAttrDefinitions extends Object{
 		
 		prDDReg.println("([Steward_PDS] of Steward");
 		prDDReg.println("	(contact [PDS_Standards_Coordinator])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDReg.println("([pds] of Steward");
 		prDDReg.println("	(contact [PDS_Standards_Coordinator])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDReg.println("([img] of Steward");
 		prDDReg.println("	(contact [PDS_Standards_Coordinator])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDReg.println("([rings] of Steward");
 		prDDReg.println("	(contact [PDS_Standards_Coordinator])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDReg.println("([ops] of Steward");
 		prDDReg.println("	(contact [PDS_Standards_Coordinator])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDReg.println("([Submitter_PDS] of Submitter");
 		prDDReg.println("	(contact [DataDesignWorkingGroup])");
-		prDDReg.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDReg.println("	(organization [" + DMDocument.registeredByValue + "]))");
 		
 		prDDReg.println("([PDS_Standards_Coordinator] of Contact");
 		prDDReg.println("	(contactTitle \"PDS_Standards_Coordinator\")");

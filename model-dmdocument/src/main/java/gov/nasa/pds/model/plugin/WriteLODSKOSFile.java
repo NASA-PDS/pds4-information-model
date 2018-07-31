@@ -387,7 +387,7 @@ class WriteLODSKOSFile extends Object{
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");
-			prDDPins.println("  (registeredBy [" + "RA_0001_NASA_PDS_1" + "])");
+			prDDPins.println("  (registeredBy [" + DMDocument.registeredByValue + "])");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");						
 			prDDPins.println("  (classOrder \"" + lAssoc.classOrder + "\")");
 //			prDDPins.println("  (versionIdentifier \"" + InfoModel.identifier_version_id + "\"))");
@@ -556,19 +556,19 @@ class WriteLODSKOSFile extends Object{
 		prDDPins.println("	(unresolvedIssue \"Issues still being determined.\")");
 		prDDPins.println("	(untilDate \"" + DMDocument.endDateValue + "\"))");
 		
-		prDDPins.println("([0001_NASA_PDS_1] of RegistrationAuthorityIdentifier");
+		prDDPins.println("([" + DMDocument.registrationAuthorityIdentifierValue + "] of RegistrationAuthorityIdentifier");
 		prDDPins.println("	(internationalCodeDesignator \"0001\")");
 		prDDPins.println("	(opiSource \"1\")");
 		prDDPins.println("	(organizationIdentifier \"National Aeronautics and Space Administration\")");
 		prDDPins.println("	(organizationPartIdentifier \"Planetary Data System\"))");
 
-		prDDPins.println("([RA_0001_NASA_PDS_1] of RegistrationAuthority");
+		prDDPins.println("([" + DMDocument.registeredByValue + "] of RegistrationAuthority");
 		prDDPins.println("	(documentationLanguageIdentifier [LI_English])");
 		prDDPins.println("	(languageUsed [LI_English])");
 		prDDPins.println("	(organizationMailingAddress \"4800 Oak Grove Drive\")");
 		prDDPins.println("	(organizationName \"NASA Planetary Data System\")");
 		prDDPins.println("	(registrar [PDS_Registrar])");
-		prDDPins.println("	(registrationAuthorityIdentifier_v [0001_NASA_PDS_1]))");
+		prDDPins.println("	(registrationAuthorityIdentifier_v [" + DMDocument.registrationAuthorityIdentifierValue + "]))");
 	
 		prDDPins.println("([NASA_PDS] of Context");
 		prDDPins.println("	(dataIdentifier  \"NASA_PDS\"))");
@@ -579,27 +579,27 @@ class WriteLODSKOSFile extends Object{
 		
 		prDDPins.println("([Steward_PDS] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([pds] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([img] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([rings] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([ops] of Steward");
 		prDDPins.println("	(contact [PDS_Standards_Coordinator])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 
 		prDDPins.println("([Submitter_PDS] of Submitter");
 		prDDPins.println("	(contact [DataDesignWorkingGroup])");
-		prDDPins.println("	(organization [RA_0001_NASA_PDS_1]))");
+		prDDPins.println("	(organization [" + DMDocument.registeredByValue + "]))");
 		
 		prDDPins.println("([PDS_Standards_Coordinator] of Contact");
 		prDDPins.println("	(contactTitle \"PDS_Standards_Coordinator\")");
