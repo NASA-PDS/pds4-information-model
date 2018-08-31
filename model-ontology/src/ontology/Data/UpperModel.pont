@@ -1,4 +1,4 @@
-; Wed Mar 14 16:02:39 PDT 2018
+; Thu Aug 30 06:19:20 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -228,6 +228,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot type_list
+;+		(comment "The type_list attribute classifies the instrument according to its function. The values in this list are comma separated.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot processing_level
 ;+		(comment "The processing_level attribute provides a broad classification of data processing level.")
 		(type STRING)
@@ -317,6 +321,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot type_list_identifer
+;+		(comment "The type_list_identifier attribute identifies the list from which the values in the type_list were selected.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot starting_point_identifier
 ;+		(comment "The starting_point attribute provides the local_identifier of the object to be accessed first.")
 		(type STRING)
@@ -364,7 +372,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot editor_list
-;+		(comment "The editor_list attribute provides a list of people to be cited as the editors of the associated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name.")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot field_description
@@ -1555,6 +1563,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot skos_relation_name
+;+		(comment "The attribute skos_relation_name provides a meaning of the relationship between two associated terms.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot confidence_level_note
 ;+		(comment "The confidence_level_note attribute is a text field which characterizes the reliability of data within a data set or the reliability of a particular programming algorithm or software component. Essentially, this note discusses the level of confidence in the accuracy of the data or in the ability of the software to produce accurate results.")
 		(type STRING)
@@ -1843,6 +1856,10 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot name_resolver_reference
+;+		(comment "The name_resolver_reference attribute provides a reference to a name resolution service.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot product_description
 ;+		(comment "Description at the identifiable layer.")
 		(type INSTANCE)
@@ -1909,6 +1926,11 @@
 		(type STRING)
 		(default "logical_identifier")
 		(create-accessor read-write))
+	(single-slot referenced_identifier
+;+		(comment "The referenced identifier attribute provides the identifier of the entify being referenced.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot iso_iec_646_letters
 ;+		(comment "ISO/IEC 10176 describes the notion of classes of letter-like characters (outside of ISO/IEC 646 letters A through Z), digit-like characters (outside of ISO/IEC 646 digits 0 through 9), and special characters that are all used in identifiers.")
 		(type STRING)
@@ -1938,7 +1960,7 @@
 ;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot instance_id
-;+		(comment "The instance_id attribute provides the formal name of a single occurrence of an object.")
+;+		(comment "The instance_id attribute provides an identifier for the single occurrence of an object, for example an XPath.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot directory_delimiter
@@ -2126,6 +2148,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot dictionary_id
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot software_format_set
 ;+		(comment "The software_format_set association is a relationship to a set of one or more software formats.")
 		(type INSTANCE)
@@ -2255,6 +2281,11 @@
 ;+		(comment "The has_Transfer_Manifest association is a relationship to Transfer_Manifest.")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot curating_facility
+;+		(comment "The curating_facility attribute provides a unique name or identifier for the curating facility maintaining the source product.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot replicate
 ;+		(comment "The replicate attribute indicates whether the object is replicated.")
@@ -2492,7 +2523,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot author_list
-;+		(comment "The author_list attribute provides a list of people to be cited as the authors of the asssociated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name. If there is no author list, editor_list must be present and non-null.")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot bearing_reference_direction
@@ -2956,6 +2987,12 @@
 		(type INSTANCE)
 ;+		(allowed-classes Oblique_Line_Point_Group)
 		(create-accessor read-write))
+	(single-slot registration_authority
+;+		(comment "The registration_authority attribute provides the name of the group  responsible for the terminological entry.")
+		(type STRING)
+;+		(value "PDS4" "PDS3" "VICAR")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot checksum_manifest_checksum
 ;+		(comment "The checksum manifest checksum provides the checksum for the checksum manifest file.")
 		(type STRING)
@@ -3097,6 +3134,10 @@
 		(type STRING)
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
 		(create-accessor read-write))
+	(multislot external_source_product_identifier
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot isMissionOnly
 ;+		(comment "The isMissionOnly attribute indicates whether a rule is for mission level dictionaries only.")
 		(type STRING)
@@ -3216,6 +3257,10 @@
 		(create-accessor read-write))
 	(multislot testValArr
 ;+		(comment "The testValArr attribute provides the values for the assert statement.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot naif_target_id
+;+		(comment "The naif_target_id element provides the numeric ID used within the SPICE system to identify the target..")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot has_document
@@ -3701,6 +3746,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot source_product_external
+;+		(comment "The source_product_external association is a relationship to Source Product External.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_External)
+		(create-accessor read-write))
 	(single-slot max_exclusive
 ;+		(comment "The max exclusive attribute provides a value that is greater than all the values in the object.")
 		(type STRING)
@@ -3961,6 +4011,12 @@
 ;+		(allowed-classes Discipline_Facets)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot Term_Map_SKOS_to_Term_Entry_SKOS
+;+		(comment "The Term_Map_SKOS_to _Term_Entry_SKOS association is a relationship to Terminological_Entry_SKOS.")
+		(type INSTANCE)
+;+		(allowed-classes Terminological_Entry_SKOS)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
 	(single-slot value
 ;+		(comment "The value attribute provides a single, allowed numerical or character string value.")
 		(type STRING)
@@ -3984,6 +4040,11 @@
 ;+		(comment "The file_area association is a relationship to File Area")
 		(type INSTANCE)
 ;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot source_product_internal
+;+		(comment "The source_product_internal association is a relationship to Source_Product_Internal.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_Internal)
 		(create-accessor read-write))
 	(multislot solar_longitude
 ;+		(comment "The solar_longitude attribute provides the angle between the body-Sun line at the time of interest and the body-Sun line at its vernal equinox.")
@@ -4389,6 +4450,11 @@
 ;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_type_list_entry
+;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
+		(type INSTANCE)
+;+		(allowed-classes Type_List_Entry)
+		(create-accessor read-write))
 	(multislot identifier_reference
 ;+		(comment "The identifier_reference attribute provides the value of an identifier.")
 		(type STRING)
@@ -4494,6 +4560,12 @@
 		(type INSTANCE)
 ;+		(allowed-classes File_Area_Browse)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Product_Document "A Product Document is a product consisting of a single logical document that may comprise one or more document editions."
@@ -5164,6 +5236,21 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Product_Dictionary "The Product_Dictionary describes the components of a dictionary product which includes as a minimum an Ingest_LDD file. It may also include a schema (.xsd) file, a Schematron (.sch) file, and any other file output by LDDTool."
+	(is-a Product)
+	(role concrete)
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Dictionary)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_XML_Schema)
+		(create-accessor read-write)))
+
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
 	(is-a USER)
 	(role abstract)
@@ -5184,7 +5271,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -5343,7 +5430,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties so that correct nomenclature can be applied.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog")
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
@@ -5461,7 +5548,7 @@
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot author_list
-;+		(comment "The author_list attribute provides a list of people to be cited as the authors of the asssociated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name. If there is no author list, editor_list must be present and non-null.")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -5471,7 +5558,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot editor_list
-;+		(comment "The editor_list attribute provides a list of people to be cited as the editors of the associated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name.")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -5483,6 +5570,11 @@
 ;+		(comment "The publication_year attribute provides the year in which the product should be considered as published. Generally, this will be the year the data were declared \"Certified\" or \"Archived\".")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot doi
+;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Modification_History "The Modification_History class tracks the history of changes made to the product once it enters the registry system."
@@ -5607,13 +5699,23 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Reference_List "The Reference_List class provides lists general references and cross-references for the product.  References cited elsewhere in the label need not be repeated here."
+(defclass Reference_List "The Reference_List class provides general references, cross-references, and source products for the product. References cited elsewhere in the label need not be repeated here."
 	(is-a Product_Components)
 	(role concrete)
+	(multislot source_product_external
+;+		(comment "The source_product_external association is a relationship to Source Product External.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_External)
+		(create-accessor read-write))
 	(multislot internal_reference
 ;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Internal_Reference)
+		(create-accessor read-write))
+	(multislot source_product_internal
+;+		(comment "The source_product_internal association is a relationship to Source_Product_Internal.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_Internal)
 		(create-accessor read-write))
 	(multislot external_reference
 ;+		(comment "The external_reference association is a relationship to External_Reference.")
@@ -6040,7 +6142,7 @@
 	(multislot domain
 ;+		(comment "The radial %42zone%42 or %42shell%42 of the target for which the observations were collected or which are represented in the product(s).  The value may depend on wavelength_range and size of the target.")
 		(type STRING)
-;+		(value "Interior" "Surface" "Atmosphere" "Ionosphere" "Magnetosphere" "Heliosphere" "Interstellar" "Rings" "Dynamics")
+;+		(value "Interior" "Surface" "Atmosphere" "Ionosphere" "Magnetosphere" "Heliosphere" "Interstellar" "Rings" "Dynamics" "Heliosheath")
 		(create-accessor read-write)))
 
 (defclass Group_Facet1 "The Group_Facet1 class contains a single facet restricted according to the value of discipline_name. It also contains zero or more subfacets restricted according to the value of the facet. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
@@ -7111,7 +7213,7 @@
 	(single-slot parsing_standard_id
 ;+		(comment "The parsing_standard_id attribute provides the formal name of a standard used for the structure of a Parsable Byte Stream digital object.")
 		(type STRING)
-;+		(value "7-Bit ASCII Text" "UTF-8 Text")
+;+		(value "7-Bit ASCII Text" "UTF-8 Text" "PDS3")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot record_delimiter
@@ -7253,10 +7355,11 @@
 ;+		(value "Last Index Fastest")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot local_internal_reference
+	(single-slot local_internal_reference
 ;+		(comment "The local_internal_reference association is a relationship to the class Local_Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Local_Internal_Reference)
+;+		(cardinality 0 0)
 		(create-accessor read-write)))
 
 (defclass Array_2D "The Array 2D class is the parent class for all two dimensional array based classes."
@@ -7860,12 +7963,12 @@
 	(single-slot stop_bit
 ;+		(comment "The stop-bit attribute provides the location of the last bit in this bit field relative to the first bit in the packed_data field.  Bits are numbered continuously across byte boundaries.  The first bit location in the packed data field is \"1\".")
 		(type INTEGER)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot start_bit
 ;+		(comment "The start_bit attribute provides the position of the first bit within an ordered sequence of bits.")
 		(type INTEGER)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot value_offset
 ;+		(comment "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value (Ov) is calculated from the stored value (Sv) thus: Ov = (Sv * scaling_factor) + value_offset. The default value is 0.")
@@ -8312,7 +8415,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog")
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -8661,6 +8764,157 @@
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Instrument2 "The Instrument class provides a description of a physical object that collects data."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot data_object
+;+		(comment "The data_object association is a relationship to Data Object.")
+		(type INSTANCE)
+;+		(allowed-classes Physical_Object)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot serial_number
+;+		(comment "The serial number attribute provides the manufacturer's serial number assigned to an instrument host.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot model_id
+;+		(comment "The model_id attribute helps discriminate instrument hardware. For example \"flight\", \"engineering\", or \"proto\" have been used.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot type
+;+		(comment "The type attribute provides a classification for the resource. For instrument type the value is taken from a local data dictionary.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot naif_instrument_id
+;+		(comment "The naif_instrument_id element provides the numeric ID used within the SPICE system to identify the spacecraft, spacecraft structure or science instrument.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot type_list_identifer
+;+		(comment "The type_list_identifier attribute identifies the list from which the values in the type_list were selected.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Type_List "The Type_List class provides a list of values and their value meanings."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_type_list_entry
+;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
+		(type INSTANCE)
+;+		(allowed-classes Type_List_Entry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot identifier
+;+		(comment "The identifier attribute provides the formal name used to refer to an object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Type_List_Entry "The Type_List_Entry class provides a single value and its value meaning."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot value_meaning
+;+		(comment "The value_meaning attribute provides the meaning, or semantic content, of the associated permissible value.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot value
+;+		(comment "The value attribute provides a single, allowed numerical or character string value.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Target2 "The Target class provides a description of a physical object that is the object of data collection."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot data_object
+;+		(comment "The data_object association is a relationship to Data Object.")
+		(type INSTANCE)
+;+		(allowed-classes Physical_Object)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot alternate_designation
+;+		(comment "The alternate_designation attribute provides a known alternate name or identifier.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot name_resolver_reference
+;+		(comment "The name_resolver_reference attribute provides a reference to a name resolution service.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot naif_target_id
+;+		(comment "The naif_target_id element provides the numeric ID used within the SPICE system to identify the target..")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Dictionary "The Dictionary class provides a description of a local data dictionary."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot ldd_version_id
+;+		(comment "The ldd_version_id attribute provides the version of the Local Data Dictionary.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass TNDO_Context_PDS3 "The Tagged NonDigital Object (TNDO) Context PDS3 class is an abstract class for the PDS3 context class hierarchy."
@@ -9519,7 +9773,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot author_list
-;+		(comment "The author_list attribute provides a list of people to be cited as the authors of the asssociated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name. If there is no author list, editor_list must be present and non-null.")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -9563,7 +9817,7 @@
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot author_list
-;+		(comment "The author_list attribute provides a list of people to be cited as the authors of the asssociated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name. If there is no author list, editor_list must be present and non-null.")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -9615,7 +9869,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot editor_list
-;+		(comment "The editor_list attribute provides a list of people to be cited as the editors of the associated product. Lists are constructed with last names first and first and middle names and/or initials following. Initials are terminated by periods and delimited by single spaces. Suffixes (if applicable) follow everything else, after a final comma. Hyphenated names may be reduced to initials as \"J.-P.\" Each person's full name is separated from the next by a semi-colon. There is no \"and\" before the last name.")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -10477,7 +10731,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot instance_id
-;+		(comment "The instance_id attribute provides the formal name of a single occurrence of an object.")
+;+		(comment "The instance_id attribute provides an identifier for the single occurrence of an object, for example an XPath.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot has_Property_Map_Entry
@@ -10721,6 +10975,28 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
+
+(defclass Term_Map_SKOS "TheTerm_Map_SKOS class is used to collect a set of terms and definitions for a SKOS ontology."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot Term_Map_SKOS_to_Term_Entry_SKOS
+;+		(comment "The Term_Map_SKOS_to _Term_Entry_SKOS association is a relationship to Terminological_Entry_SKOS.")
+		(type INSTANCE)
+;+		(allowed-classes Terminological_Entry_SKOS)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass DD_Identification_Area "The DD_Identification_Area consists of attributes that identify and name objects associated with a PDS4 dictionary. When used in Ingest_LDD, it is populated with values that will be used in the label file for the associated dictionary product. The DD_Identification_Area class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
+	(is-a TNDO_Supplemental)
+	(role concrete))
+
+(defclass DD_Modification_History "The DD_Modification_History class tracks the history of changes made to the product once it enters the registry system. The DD_Modification_History class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
+	(is-a TNDO_Supplemental)
+	(role concrete))
+
+(defclass DD_Modification_Detail "The DD_Modification_Detail class provides the details of one round of modification for the product. The first, required, instance of this class documents the date the product was first registered. The DD_Modification_Detail class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
+	(is-a TNDO_Supplemental)
+	(role concrete))
 
 (defclass TNDO_Cartography "The Tagged NonDigital Object (TNDO) Cartography class is an abstract class for the cartography discipline."
 	(is-a Tagged_NonDigital_Object)
@@ -11190,13 +11466,13 @@
 	(is-a USER)
 	(role abstract))
 
-(defclass Observing_System_Component "The Observing System Component class references one or more subsystems used to collect data. A subsystem can be an instrument_host, instrument, or any other similar product. Each subsystem is categorized as either a sensor or a source. If the observing system includes both a sensor and a source, Observing System Component occurs twice (once for each type) otherwise it only occurs once."
+(defclass Observing_System_Component "The Observing System Component class describes one or more subsystems used to collect data."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot type
 ;+		(comment "The type attribute classifies the observing system component according to its function.")
 		(type STRING)
-;+		(value "Naked Eye" "Laboratory" "Observatory" "Telescope" "Instrument" "Literature Search" "Spacecraft" "Artificial Illumination" "Facility" "Balloon" "Airborne" "Aircraft" "Suborbital Rocket")
+;+		(value "Naked Eye" "Laboratory" "Observatory" "Telescope" "Instrument" "Literature Search" "Spacecraft" "Artificial Illumination" "Facility" "Balloon" "Airborne" "Aircraft" "Suborbital Rocket" "Computer")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -11251,9 +11527,71 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot instance_id
-;+		(comment "The instance_id attribute provides the formal name of a single occurrence of an object.")
+;+		(comment "The instance_id attribute provides an identifier for the single occurrence of an object, for example an XPath.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Terminological_Entry_SKOS "The terminological_entry_SKOS class provides terms and definitions for a SKOS ontology."
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot model_object_id
+;+		(comment "The model_object_id attribute provides the unique identifier of a class, attribute, or value that is defined in the information model.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot namespace_id
+;+		(comment "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot steward_id
+;+		(comment "The steward_id attribute provides the abbreviation of the organization that manages the set of registered attributes and classes.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot model_object_type
+;+		(comment "The model_object_type attribute provides a classification for a modeled object.")
+		(type STRING)
+;+		(value "Attribute" "Class" "Nuance" "Keyword" "Value")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot instance_id
+;+		(comment "The instance_id attribute provides an identifier for the single occurrence of an object, for example an XPath.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot referenced_identifier
+;+		(comment "The referenced identifier attribute provides the identifier of the entify being referenced.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot identifier
+;+		(comment "The identifier attribute provides the formal name used to refer to an object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot registration_authority
+;+		(comment "The registration_authority attribute provides the name of the group  responsible for the terminological entry.")
+		(type STRING)
+;+		(value "PDS4" "PDS3" "VICAR")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot skos_relation_name
+;+		(comment "The attribute skos_relation_name provides a meaning of the relationship between two associated terms.")
+		(type STRING)
+;+		(value "exactMatch" "closeMatch" "broadMatch" "narrowMatch" "relatedMatch")
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass DD_Permissible_Value_Full "The DD_Permissible_Value_Full class lists permissible values, their meanings, and the dates when active."
@@ -11682,6 +12020,57 @@
 ;+		(comment "The files attribute provides the number of files in the edition.")
 		(type INTEGER)
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Source_Product_Internal "The Source_Product _Internal class is used to reference one or more source products in the PDS4 registry system. A source product contains input data for the creation of this product."
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot reference_type
+;+		(comment "The reference_type attribute provides the name of the association.")
+		(type STRING)
+;+		(value "data_to_telemetry_source_product" "data_to_raw_source_product" "data_to_partially_processed_source_product" "data_to_calibrated_source_product" "data_to_derived_source_product")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lidvid_reference
+;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
+		(type STRING)
+		(default "logical_identifier::version_id")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Source_Product_External "The Source_Product_External class is used to reference one or more source products outside the PDS4 Registry that have a common reference_type and (optional) doi, curating facility, and/or description. A source product contains input data for the creation of this product."
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot curating_facility
+;+		(comment "The curating_facility attribute provides a unique name or identifier for the curating facility maintaining the source product.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_type
+;+		(comment "The reference_type attribute provides the name of the association.")
+		(type STRING)
+;+		(value "data_to_telemetry_source_product" "data_to_raw_source_product" "data_to_partially_processed_source_product" "data_to_calibrated_source_product" "data_to_derived_source_product")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot doi
+;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot external_source_product_identifier
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass Unit_Of_Measure "The Unit_Of_Measure is a definite magnitude of a quantity."
@@ -12730,7 +13119,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(-)?[0-9]{4}(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24((:00)|(:00:00))?(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00:00(\\.([0]{1,4}))(Z?)")
+;+		(value "(-)?[0-9]{4}(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,6}))?(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24((:00)|(:00:00))?(Z?)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00:00(\\.([0]{1,6}))(Z?)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -12778,7 +13167,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(-)?[0-9]{4}(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24((:00)|(:00:00))?(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00:00(\\.([0]{1,4}))(Z?)")
+;+		(value "(-)?[0-9]{4}(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3]))(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,6}))?(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24((:00)|(:00:00))?(Z?)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00:00(\\.([0]{1,6}))(Z?)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -13369,7 +13758,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "[-+]?[0-9]+(\\.?[0-9]+)?([eE][-+]?[0-9]+)?")
+;+		(value "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -13838,7 +14227,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24((:00)|(:00:00))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00:00(\\.([0]{1,4}))(Z)")
+;+		(value "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3]))(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,6}))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24((:00)|(:00:00))?(Z)" "(-)?[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))(T)24:00:00(\\.([0]{1,6}))(Z)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -13866,7 +14255,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,4}))?(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24((:00)|(:00:00))?(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00:00(\\.([0]{1,4}))(Z)")
+;+		(value "(-)?[0-9]{4}(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9](Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-3])):[0-5][0-9]:(([0-5][0-9])|60)(\\.([0-9]{1,6}))?(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)(([0-1][0-9])|(2[0-4]))(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24((:00)|(:00:00))?(Z)" "(-)?[0-9]{4}-((00[1-9])|(0[1-9][0-9])|([1-2][0-9][0-9])|(3(([0-5][0-9])|(6[0-6]))))(T)24:00:00(\\.([0]{1,6}))(Z)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint

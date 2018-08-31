@@ -1,4 +1,4 @@
-; Wed Mar 14 16:02:39 PDT 2018
+; Thu Aug 30 06:19:20 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -426,26 +426,24 @@
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(schematronAssign
+		"name=\"isPresent\" value=\" boolean(pds:Packed_Data_Fields)\""
 		"name=\"Bit-1_values\" value=\"('SignedByte', 'UnsignedByte')\""
 		"name=\"Bit-2_values\" value=\"('SignedLSB2', 'SignedMSB2', 'UnsignedLSB2', 'UnsignedMSB2')\""
 		"name=\"Bit-4_values\" value=\"('IEEE754LSBSingle', 'IEEE754MSBSingle', 'SignedLSB4', 'SignedMSB4', 'UnsignedLSB4', 'UnsignedMSB4')\""
 		"name=\"Bit-8_values\" value=\"('ComplexLSB8', 'ComplexMSB8', 'IEEE754LSBDouble', 'IEEE754MSBDouble', 'SignedLSB8', 'SignedMSB8', 'UnsignedLSB8', 'UnsignedMSB8')\""
 		"name=\"Bit-16_values\" value=\"('ComplexLSB16', 'ComplexMSB16')\""
-		"name=\"Bit-1_test\" value=\"(pds:field_length = 1) and (some $ref in (pds:data_type) satisfies $ref = $Bit-1_values)\""
-		"name=\"Bit-2_test\" value=\"(pds:field_length = 2) and (some $ref in (pds:data_type) satisfies $ref = $Bit-2_values)\""
-		"name=\"Bit-4_test\" value=\"(pds:field_length = 4) and (some $ref in (pds:data_type) satisfies $ref = $Bit-4_values)\""
-		"name=\"Bit-8_test\" value=\"(pds:field_length = 8) and (some $ref in (pds:data_type) satisfies $ref = $Bit-8_values)\""
-		"name=\"Bit-16_test\" value=\"(pds:field_length = 16) and (some $ref in (pds:data_type) satisfies $ref = $Bit-16_values)\""
-		"name=\"isPresent\" value=\" boolean(pds:Packed_Data_Fields)\""
-		"name=\"FB_DT_Ref\" value=\"pds:data_type\""
-		"name=\"DT_value\" value=\"every $ref in ($FB_DT_Ref) satisfies $ref = ('UnsignedBitString')\"")
+		"name=\"Bit-1_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-1_values)\""
+		"name=\"Bit-2_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-2_values)\""
+		"name=\"Bit-4_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-4_values)\""
+		"name=\"Bit-8_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-8_values)\""
+		"name=\"Bit-16_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-16_values)\"")
 	(type "TBD_type")
 	(xpath "pds:Field_Binary"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.101] of  Schematron_Assert
 
-	(assertMsg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'.")
-	(assertStmt "if ($isPresent) then ($DT_value) else true()")
+	(assertMsg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'")
+	(assertStmt "if ($isPresent) then (pds:data_type = 'UnsignedBitString') else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -453,8 +451,8 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-1_values\"/>.")
-	(assertStmt "if (not($isPresent) and (pds:field_length = 1)) then ($Bit-1_test) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-1_test)) then (pds:field_length = 1) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -462,8 +460,8 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-2_values\"/>.")
-	(assertStmt "if (not($isPresent) and (pds:field_length = 2)) then ($Bit-2_test) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-2_test)) then (pds:field_length = 2) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -471,8 +469,8 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-4_values\"/>.")
-	(assertStmt "if (not($isPresent) and (pds:field_length = 4)) then ($Bit-4_test) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-4_test)) then (pds:field_length = 4) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -480,8 +478,8 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-8_values\"/>.")
-	(assertStmt "if (not($isPresent) and (pds:field_length = 8)) then ($Bit-8_test) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-8_test)) then (pds:field_length = 8) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -489,8 +487,8 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.106] of  Schematron_Assert
 
-	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />').  The attribute pds:data_type must be one of: <sch:value-of select=\"$Bit-16_values\"/>.")
-	(assertStmt "if (not($isPresent) and (pds:field_length = 16)) then ($Bit-16_test) else true()")
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-16_test)) then (pds:field_length = 16) else true()")
 	(assertType "RAW")
 	(attrTitle "field_length")
 	(identifier "field_length")
@@ -1102,7 +1100,9 @@
 	(specMesg "TBD")
 	(testValArr
 		"browse_to_data"
-		"browse_to_thumbnail"))
+		"browse_to_thumbnail"
+		"browse_to_browse"
+		"browse_to_document"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534] of  Schematron_Rule
 
@@ -1666,7 +1666,12 @@
 		"telescope_to_facility"
 		"telescope_to_airborne"
 		"investigation_to_facility"
-		"investigation_to_telescope"))
+		"investigation_to_telescope"
+		"facility_to_investigation"
+		"facility_to_instrument"
+		"facility_to_telescope"
+		"investigation_to_facility"
+		"telescope_to_instrument"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539] of  Schematron_Rule
 
