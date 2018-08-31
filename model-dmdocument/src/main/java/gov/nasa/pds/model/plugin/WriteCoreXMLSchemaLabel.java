@@ -25,30 +25,30 @@ class WriteCoreXMLSchemaLabel extends Object {
 		
 		// write the XML file header
 		prSchematron.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		prSchematron.println("  <!-- PDS4 XML product label for " + "PDS4" + " V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "  " + DMDocument.masterTodaysDate + " -->");
-		prSchematron.println("  <!-- Generated from the PDS4 Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prSchematron.println("  <!-- *** This PDS4 XML product label is an operational deliverable. *** -->");
-		prSchematron.println("<?xml-model href=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".sch\"");		
+		prSchematron.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML product label for " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "  " + DMDocument.masterTodaysDate + " -->");
+		prSchematron.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model V" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prSchematron.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML product label is an operational deliverable. *** -->");
+		prSchematron.println("<?xml-model href=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURLs +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + DMDocument.masterPDSSchemaFileDefn.modelShortName + "_" +  lMasterFileIdUpper + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".sch\"");		
 		prSchematron.println("  schematypens=\"http://purl.oclc.org/dsdl/schematron\"?>");
 
 		// write the product class
-		prSchematron.println("<Product_XML_Schema xmlns=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
-		prSchematron.println("    xmlns:pds=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+		prSchematron.println("<Product_XML_Schema xmlns=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+		prSchematron.println("    xmlns:" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 		prSchematron.println("    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-		prSchematron.println("    xsi:schemaLocation=\"http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id);		
-		prSchematron.println("    http://pds.nasa.gov/pds4/" +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + "PDS4_" +  lMasterFileIdUpper + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\">");		
+		prSchematron.println("    xsi:schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id);		
+		prSchematron.println("    " + DMDocument.masterPDSSchemaFileDefn.nameSpaceURLs +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + DMDocument.masterPDSSchemaFileDefn.modelShortName + "_" +  lMasterFileIdUpper + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\">");		
 		prSchematron.println("    <Identification_Area>");
-		String lLID = "urn:nasa:pds:system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema";
+		String lLID = DMDocument.masterPDSSchemaFileDefn.urnPrefix + "system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema";
 		prSchematron.println("        <logical_identifier>" + lLID.toLowerCase() + "</logical_identifier>");
 		prSchematron.println("        <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
-		prSchematron.println("        <title>PDS4 XML Schema" + " - " + lSchemaFileDefn.nameSpaceIdNCUC + " V" + lSchemaFileDefn.ont_version_id + "</title>");
+		prSchematron.println("        <title>" + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML Schema" + " - " + lSchemaFileDefn.nameSpaceIdNCUC + " V" + lSchemaFileDefn.ont_version_id + "</title>");
 		prSchematron.println("        <information_model_version>" + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</information_model_version>");
 		prSchematron.println("        <product_class>Product_XML_Schema</product_class>");
 		prSchematron.println("        <Modification_History>");
 		prSchematron.println("            <Modification_Detail>");
 		prSchematron.println("                <modification_date>" + DMDocument.masterTodaysDateUTC + "</modification_date>");
 		prSchematron.println("                <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
-		prSchematron.println("                <description>This is the system generated PDS4 product label for PDS4 XML Schema and Schematron files.</description>");
+		prSchematron.println("                <description>This is the system generated " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " product label for " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML Schema and Schematron files.</description>");
 		prSchematron.println("            </Modification_Detail>");
 		prSchematron.println("        </Modification_History>");
 		prSchematron.println("    </Identification_Area>");
@@ -63,7 +63,7 @@ class WriteCoreXMLSchemaLabel extends Object {
 		prSchematron.println("            <name>" + lSchemaFileDefn.relativeFileNameXMLSchema + "</name>");
 		prSchematron.println("            <offset unit=\"byte\">0</offset>");
 		prSchematron.println("            <parsing_standard_id>XML Schema Version 1.1</parsing_standard_id>");
-		prSchematron.println("            <description>This is a PDS4 XML Schema file for the declared namespace.</description>");
+		prSchematron.println("            <description>This is a " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML Schema file for the declared namespace.</description>");
 		prSchematron.println("        </XML_Schema>");
 		prSchematron.println("    </File_Area_XML_Schema>");
 		prSchematron.println("    <File_Area_XML_Schema>");
@@ -77,7 +77,7 @@ class WriteCoreXMLSchemaLabel extends Object {
 		prSchematron.println("            <name>" + lSchemaFileDefn.relativeFileNameSchematron + "</name>");
 		prSchematron.println("            <offset unit=\"byte\">0</offset>");
 		prSchematron.println("            <parsing_standard_id>Schematron ISO/IEC 19757-3:2006</parsing_standard_id>");
-		prSchematron.println("            <description>This is the PDS4 Schematron file for the declared namespace. Schematron provides rule-based validation for XML Schema.</description>");
+		prSchematron.println("            <description>This is the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Schematron file for the declared namespace. Schematron provides rule-based validation for XML Schema.</description>");
 		prSchematron.println("        </XML_Schema>");
 		prSchematron.println("    </File_Area_XML_Schema>");
 		prSchematron.println("</Product_XML_Schema>");

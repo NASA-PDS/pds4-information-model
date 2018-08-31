@@ -145,7 +145,8 @@ class XML4LabelSchema extends Object {
 		
     	// write the Nil Values
 		if (lSchemaFileDefn.isMaster || lSchemaFileDefn.isDiscipline || lSchemaFileDefn.isMission) {
-    		writeXMLNillValues (lSchemaFileDefn, prXML);
+			if (! DMDocument.importJSONAttrFlag)
+				writeXMLNillValues (lSchemaFileDefn, prXML);
     	}
 		
 		if (DMDocument.LDDToolFlag  && DMDocument.LDDNuanceFlag) {
@@ -242,7 +243,7 @@ class XML4LabelSchema extends Object {
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
-			prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
+			prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURLs + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
@@ -376,8 +377,10 @@ class XML4LabelSchema extends Object {
 			AttrDefn lAttr = (AttrDefn) i.next();
 			if (lAttr.isAny) writeClassXSAnyStmts (prXML);
 			if (lAttr.isAttribute) {
-				writeClassAttribute (lClass, lAttr, prXML);				
-			} else {
+				writeClassAttribute (lClass, lAttr, prXML);
+				
+			// if non PDS run then do not process selected relations
+			} else if (! (DMDocument.importJSONAttrFlag && ( (lAttr.title.indexOf("_has_")  > -1) || (lAttr.title.indexOf("_to_")  > -1 ) ) ) ) {
 				
 				// if the choice block is open, close it
 				if (choiceBlockOpen) {
@@ -398,7 +401,7 @@ class XML4LabelSchema extends Object {
 		}	
 		return;
 	}	
-
+	
 //	write the attribute as an element definition, a component of the element that represents the class
 	public void writeClassAttribute (PDSObjDefn lClass, AttrDefn lAttr, PrintWriter prXML) throws java.io.IOException {
 		// capture the data types that are used; will write only those used.
@@ -875,6 +878,7 @@ class XML4LabelSchema extends Object {
 	}	
 
 	public void writeDeprecatedItems (PrintWriter prXML) throws java.io.IOException {
+		if (DMDocument.importJSONAttrFlag) return;
     	prXML.println(" ");
     	prXML.println("<!-- Deprecated Items - Begin ");
     	prXML.println(" ");

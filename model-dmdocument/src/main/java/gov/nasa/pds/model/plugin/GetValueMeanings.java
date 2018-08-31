@@ -158,26 +158,35 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_document", "investigation_to_document", "The investigation is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_facility", "investigation_to_facility", "The investigation is associated to a facility"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_telescope", "investigation_to_telescope", "The investigation is associated to a telescope"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_facility", "investigation_to_facility", "The investigation is associated to a facility"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_personnel", "node_to_personnel", "The node is associated to a person"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_agency", "node_to_agency", "The node is associated to an agency"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_manager", "node_to_manager", "The node is associated to a manager"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_operator", "node_to_operator", "The node is associated to an operator"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_data_archivist", "node_to_data_archivist", "The node is associated to a data archivist"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.resource_to_instrument", "resource_to_instrument", "The resource is associated to an instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.resource_to_instrument_host", "resource_to_instrument_host", "The resource is associated to an instrument host"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.resource_to_investigation", "resource_to_investigation", "The resource is associated to an investigation"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.resource_to_target", "resource_to_target", "The resource is associated to a target"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.target_to_document", "target_to_document", "The target is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.telescope_to_observatory", "telescope_to_observatory", "The telescope is associated to an observatory"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.telescope_to_facility", "telescope_to_facility", "The telescope is associated to a facility"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.telescope_to_airborne", "telescope_to_airborne", "The telescope is associated to an airborne platform"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.telescope_to_instrument", "telescope_to_instrument", "A telescope is associated to an instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.instrument_host_to_instrument", "instrument_host_to_instrument", "The instrument_host is associated to an instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.target_to_instrument_host", "target_to_instrument_host", "The target is associated to an instrument_host"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.target_to_instrument", "target_to_instrument", "The target is associated to an instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.target_to_investigation", "target_to_investigation", "The target is associated to an investigation"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		
+		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.facility_to_investigation", "facility_to_investigation", "The facility is associated to an investigation"); masterValueMeaningMap.put(lPVD.identifier, lPVD);		
+		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.facility_to_instrument", "facility_to_instrument", "The facility is associated to an instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);		
+		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.facility_to_telescope", "facility_to_telescope", "A facility is associated to a telescope"); masterValueMeaningMap.put(lPVD.identifier, lPVD);		
 		
 		lPVD = new PermValueDefn ("pds:Product_Delivery_Manifest/pds:Reference_List/pds:Internal_Reference.reference_type.delivery_manifest_to_collection", "delivery_manifest_to_collection", "The delivery manifest is for the referenced collection"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Delivery_Manifest/pds:Reference_List/pds:Internal_Reference.reference_type.delivery_manifest_to_bundle", "delivery_manifest_to_bundle", "The delivery manifest is for the referenced bundle"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
@@ -196,6 +205,8 @@ class GetValueMeanings extends Object{
 		
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_data", "browse_to_data", "The browse product is associated to a data product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_thumbnail", "browse_to_thumbnail", "The browse product is associated to a thumbnail"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_browse", "browse_to_browse", "The browse product is associated to a different browse product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_document", "browse_to_document", "The browse product is associated to a document."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
 		
 		lPVD = new PermValueDefn ("pds:Product_Native/pds:Reference_List/pds:Internal_Reference.reference_type.described_by_document", "described_by_document", "The format of the digital object must be described one or more referenced documents"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Native/pds:Reference_List/pds:Internal_Reference.reference_type.native_to_archival", "native_to_archival", "The product native is associated to a product observational"); masterValueMeaningMap.put(lPVD.identifier, lPVD);

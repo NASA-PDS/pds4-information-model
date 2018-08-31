@@ -44,15 +44,16 @@ public class DMDocument extends Object {
 	static String schemaLabelVersionId = "0.0";
 	static String pds4BuildId = "0a";
 	
-	static String imSpecDocTitle = "TBD_";
-	static String imSpecDocAuthor = "TBD_";
-	static String imSpecDocSubTitle = "TBD_";
-	static String ddDocTitle = "TBD_";
+	static String imSpecDocTitle = "TBD_imSpecDocTitle";
+	static String imSpecDocAuthor = "TBD_imSpecDocAuthor";
+	static String imSpecDocSubTitle = "TBD_imSpecDocSubTitle";
+	static String ddDocTitle = "TBD_ddDocTitle";
+	static String ddDocTeam = "TBD_ddDocTeam";
 	
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "0.1.8";
+	static String DMDocVersionId  = "0.1.9";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -101,7 +102,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.1.4";
+	static String LDDToolVersionId  = "0.2.1.5";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -118,7 +119,8 @@ public class DMDocument extends Object {
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
 	static boolean exportDOMFlag = false;
-
+	static boolean pds4ModelFlag = true;
+	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
 	// in an LDDTool run, when true indicates that a mission LDD is being processed, otherwise a discipline LDD is being processed
@@ -175,6 +177,7 @@ public class DMDocument extends Object {
 	static String stewardValue;
 	static String submitterValue;
 
+	static String mastModelId;
 	static String registeredByValue;
 	static String registrationAuthorityIdentifierValue;
 
@@ -265,7 +268,8 @@ public class DMDocument extends Object {
 		stewardValue = "Steward_PDS";
 		submitterValue = "Submitter_PDS";
 		
-		registeredByValue = "RA_0001_NASA_PDS_1"; 
+//		registeredByValue = "RA_0001_NASA_PDS_1"; 
+		registeredByValue = "TBD_registeredByValue"; 
 		registrationAuthorityIdentifierValue = "TBD_registrationAuthorityIdentifierValue";
 
 		// Master User Class Name
@@ -329,10 +333,19 @@ public class DMDocument extends Object {
     	    if (configInputStr != null) ddDocTitle = configInputStr;
     	    configInputStr= props.getProperty("debugFlag");
     	    if (configInputStr != null && configInputStr.compareTo("true") == 0) debugFlag = true;
-    	    configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
+//    	    configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
+    	    configInputStr= props.getProperty("mastRegAuthId");
     	    if (configInputStr != null) {
                 registrationAuthorityIdentifierValue = configInputStr;
+        		registeredByValue = "RA_" + registrationAuthorityIdentifierValue; 
     	    }
+    	    configInputStr= props.getProperty("ddDocTeam");
+    	    if (configInputStr != null) ddDocTeam = configInputStr;
+    	    configInputStr= props.getProperty("pds4ModelFlag");
+    	    if (configInputStr != null && configInputStr.compareTo("true") == 0) pds4ModelFlag = true;
+    	    configInputStr= props.getProperty("mastModelId");
+    	    if (configInputStr != null) mastModelId = configInputStr;
+    	    
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
@@ -841,6 +854,12 @@ public class DMDocument extends Object {
             			   lSchemaFileDefn.nameSpaceURL = value;
         		}
         		
+          		String nameSpaceURLKeyS = SCHEMA_LITERAL+nameSpaceId + ".nameSpaceURLs";
+        	    value = prop.getProperty(nameSpaceURLKeyS);
+        		if (value != null){        		
+            			   lSchemaFileDefn.nameSpaceURLs = value;
+        		}
+        		
           		String urnPrefixKey = SCHEMA_LITERAL+nameSpaceId + ".urnPrefix";
         	    value = prop.getProperty(urnPrefixKey);
         		if (value != null){        		
@@ -1056,6 +1075,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin", "pds", "Band_Bin", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Array.Local_Internal_Reference", "pds", "Array", "pds", "Local_Internal_Reference", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth Based", "pds", "Instrument_Host", "pds", "type", "Earth Based", false));
 
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Accelerometer", "pds", "Instrument", "pds", "type", "Accelerometer", false));                            

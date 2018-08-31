@@ -106,7 +106,7 @@ class ProtPontDOMModel extends DOMInfoModel{
 				} else {
 //					lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
 					if (! DMDocument.LDDToolFlag) {
-						System.out.println(">>warning - Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
+						System.out.println(">>warning - Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
 					}
 				}
 				lClass.setIdentifier (classNameSpaceIdNC, className);
