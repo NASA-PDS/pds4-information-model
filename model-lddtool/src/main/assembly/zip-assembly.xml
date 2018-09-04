@@ -35,11 +35,36 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>src/main/resources/Schemas</directory>
-      <outputDirectory>Schemas</outputDirectory>
+      <directory>../model-ontology/target/classes/ontology/export</directory>
+      <outputDirectory>export</outputDirectory>
       <includes>
         <include>**/*</include>
       </includes>
+      <fileMode>644</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>../model-ontology/target/classes/ontology/Extract</directory>
+      <outputDirectory>Extract</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+      <fileMode>644</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>../model-ontology/target/classes/ontology/Model_DataDictionary</directory>
+      <outputDirectory>Model_DataDictionary</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+      <fileMode>644</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>../model-ontology/target/classes/ontology/SchemaXML4</directory>
+      <outputDirectory>SchemaXML4</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+      <fileMode>644</fileMode>
     </fileSet>
     <fileSet>
       <directory>src/main/resources/bin</directory>
