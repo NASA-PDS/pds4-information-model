@@ -45,7 +45,6 @@
     <module>model-dmdocument</module>
     <module>model-ontology</module>
     <module>model-lddtool</module>
-    <module>model-termmap</module>
   </modules>
 
   <developers>
