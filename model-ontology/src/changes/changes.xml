@@ -23,7 +23,43 @@
   </properties>
 
   <body>
-    <release version="9.0.0" date="TBD" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 9.0.0 of the PDS4 System.  This is an operational release of the system components to date.">
+    <release version="9.0.0" date="2018-09-30" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 9.0.0 of the PDS4 System.  This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-217">
+        PDS4 Metadata for identifying Data from the Heliosheath.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-218">
+        Allow more than 2 Observing System Components.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-219">
+        Add Context_Area to Product_Browse.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-221">
+        Add "Laboratory Analog" to target type in Target_Identification.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-224">
+        Add more values to reference_type to accommodate facility relationships.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-226">
+        DATE_TIME formats do not allow microseconds precision (YYYY-MM-DDTHH:MM:SS.SSSSSS).
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-228">
+        Bad reference in definition for external_source_product_id.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-229">
+        Spurious Local_Internal_Reference in Array objects.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-232">
+        Add "Centaur" to the type list for Target (schematron validation rule).
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-233">
+        Need the capability to "associate" Browse products to other types of products.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-234">
+        Schematron error for data_type or field_length in binary tables (schematron validation rule).
+      </action>
+      <action dev="jshughes" type="fix">
+        Move registration_authority,file prefix id and other values to tool configuration file.
+      </action>
     </release>
 
     <release version="8.1.1" date="2018-06-08" description="This release of the IMTOOL schema data files (model-ontology) is an interim point build of the component. This is an operational release of the system components to date.">
