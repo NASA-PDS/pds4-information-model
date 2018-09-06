@@ -19,16 +19,10 @@
 :: Expects the DMDocument jar file to be located in the ../lib directory.
 
 @echo off
-
-:: Set the JAVA_HOME environment variable here in the script if it will
-:: not be defined in the environment.
-
-:: if not defined JAVA_HOME (
-::   set JAVA_HOME=\path\to\java\home
-:: )
-
+:: Check if the JAVA_HOME environment variable is set.
 if not defined JAVA_HOME (
-  set JAVA_HOME=C:\Program Files\Java\jre7
+echo The JAVA_HOME environment variable is not set.
+goto END
 )
 
 :: echo %JAVA_HOME%
