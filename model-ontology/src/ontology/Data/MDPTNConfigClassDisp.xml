@@ -171,10 +171,10 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Airborne</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Telescope</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Instrument2</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Instrument2</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Target2</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List_Entry</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List_Entry</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Bundle</Field> <Field>1MSRC</Field> <Field>#15</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Collection</Field> <Field>1MSRC</Field> <Field>#15</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
@@ -315,6 +315,14 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Color_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Movie_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Activity</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Agent</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Entity</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Config</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Input_Data</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Methods</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Output_Data</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
 
   <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Rings</Field> <Field>7MVE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Rings_Supplement</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 

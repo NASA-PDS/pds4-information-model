@@ -1,4 +1,4 @@
-; Thu Aug 30 06:19:20 PDT 2018
+; Wed Sep 12 07:25:29 PDT 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1650,6 +1650,10 @@
 ;+		(comment "The campaign name attribute provides a word or a combination of words by which a campaign is designated, called, or known.")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot UpperModel_180912x_1B00_Prov_Class5
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot target_desc
 ;+		(comment "The target_desc attribute describes the characteristics of a particular target.")
 		(type STRING)
@@ -2105,6 +2109,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes Context_Area)
 		(create-accessor read-write))
+	(single-slot used
+		(type INSTANCE)
+;+		(allowed-classes Methods Config Input_Data)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot data_set_name
 ;+		(comment "The data_set_name attribute provides the full name given to a data set or a data product. The data_set_name typically identifies the instrument that acquired the data of that instrument Example value data_set_id. Note This attribute is defined in the AMMOS Magellan catalog as an alias for file_name to provide backward compatibility")
 		(type STRING)
@@ -2440,6 +2449,11 @@
 ;+		(comment "The observing_system_component association is a relationship to Observing_System_Component.")
 		(type INSTANCE)
 ;+		(allowed-classes Observing_System_Component)
+		(create-accessor read-write))
+	(single-slot was_generated_by
+		(type INSTANCE)
+;+		(allowed-classes Activity)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot model_object_id
 ;+		(comment "The model_object_id attribute provides the unique identifier of a class, attribute, or value that is defined in the information model.")
@@ -2901,6 +2915,11 @@
 	(multislot field_format
 ;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot was_associated_with
+		(type INSTANCE)
+;+		(allowed-classes Agent)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot certified_flag
 ;+		(comment "The certified flag attribute indicates that the data is sufficiently complete, formatted, and documented for use by scientists who are not directly affiliated with the providers. An archive_status of \"In Peer Review\" indicates that the data product or release is not yet certified by the PDS.")
@@ -10860,6 +10879,27 @@
 ;+		(allowed-classes Local_Internal_Reference)
 		(create-accessor read-write)))
 
+(defclass Output_Data
+	(is-a Entity)
+	(role concrete)
+	(single-slot was_generated_by
+		(type INSTANCE)
+;+		(allowed-classes Activity)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Input_Data
+	(is-a Entity)
+	(role concrete))
+
+(defclass Methods
+	(is-a Entity)
+	(role concrete))
+
+(defclass Config
+	(is-a Entity)
+	(role concrete))
+
 (defclass Agent "The Agent class is something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity."
 	(is-a TNDO_Supplemental)
 	(role concrete)
@@ -10904,6 +10944,11 @@
 (defclass Activity "The Activity class is something that occurs over a period of time and acts upon or with entities; it may include consuming, processing, transforming, modifying, relocating, using, or generating entities."
 	(is-a TNDO_Supplemental)
 	(role concrete)
+	(single-slot used
+		(type INSTANCE)
+;+		(allowed-classes Methods Config Input_Data)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot external_reference_extended
 ;+		(comment "The external_reference_extended association is a relationship to external_reference_extended.")
 		(type INSTANCE)
@@ -10915,11 +10960,6 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot was_informed_by
-;+		(comment "The was_informed_by association is a recursive relationship on activity.")
-		(type INSTANCE)
-;+		(allowed-classes Activity)
-		(create-accessor read-write))
 	(single-slot title
 ;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
 		(type STRING)
@@ -10929,6 +10969,11 @@
 ;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Internal_Reference)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot was_associated_with
+		(type INSTANCE)
+;+		(allowed-classes Agent)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot activity_type
@@ -13758,7 +13803,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?")
+;+		(value "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?" "[^aFIN,]* ")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
