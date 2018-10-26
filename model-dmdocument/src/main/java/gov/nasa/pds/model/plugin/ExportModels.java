@@ -29,6 +29,11 @@ public class ExportModels extends Object {
 		
 	//	if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Specification Done");
 		
+		if (DMDocument.exportJSONAttrFlag)  {
+			WriteModelAttrJSONFile lWriteModelAttrJSONFile = new WriteModelAttrJSONFile ();
+			lWriteModelAttrJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
+		}
+		
 		// Write the files consisting of individual classes
 		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
@@ -175,7 +180,6 @@ public class ExportModels extends Object {
 		
 		if (! DMDocument.LDDToolFlag) {
 			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-//			writeDOMDDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON);	
 			writeDOMDDJSONFile.writeJSONFile ();	
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
@@ -300,7 +304,6 @@ public class ExportModels extends Object {
 				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
 				write11179DDJSONFile.writeJSONFile (lFileName);	
 				
-// DOM				
 				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
 				writeDOMDDJSONFile.writeJSONFile ();	
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");

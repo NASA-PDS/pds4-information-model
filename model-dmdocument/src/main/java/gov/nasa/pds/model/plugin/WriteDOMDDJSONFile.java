@@ -17,42 +17,50 @@ class WriteDOMDDJSONFile extends Object{
 
 	// write the JSON file
 	public void writeJSONFile () throws java.io.IOException {	
-		
-		// write the JSON files
-		// write one JSON file for all IM content
-		
-		// PDS4_ALL_JSON_1910_DOM
-		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
-		lFileName = DMDocument.replaceString (lFileName, "PDS_JSON", "ALL_JSON");
-		PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		printPDDPHdr(prDDPins);
-		printPDDPBody ("all", prDDPins);
-		printPDDPFtr(prDDPins);
-		prDDPins.close();
-		
-		//	now write a JSON file for each namespace
-		// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
-		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-		
-		//	write a JSON file for each namespace
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
-			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-			ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
-			for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
-				DOMClass lSelectedClass = (DOMClass) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
-					lSelectedClassArr.add(lSelectedClass);
+		// if not LDDTool, then write separate JSON files for "all" and each namespace 
+		if (! DMDocument.LDDToolFlag) {
+			// write one JSON file for all IM content
+			// PDS4_ALL_JSON_1910_DOM
+			String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
+			lFileName = DMDocument.replaceString (lFileName, "PDS_JSON", "ALL_JSON");
+			PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+			printPDDPHdr(prDDPins);
+			printPDDPBody ("all", prDDPins);
+			printPDDPFtr(prDDPins);
+			prDDPins.close();
+			
+			//	now write a JSON file for each namespace
+			// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
+			ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+			
+			//	write a JSON file for each namespace
+			for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+				ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
+				for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+					DOMClass lSelectedClass = (DOMClass) j.next();
+					if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
+						lSelectedClassArr.add(lSelectedClass);
+					}
 				}
+				if (! DOMInfoModel.masterNameSpaceHasMemberArr.contains(lSchemaFileDefn.nameSpaceIdNC)) continue;
+			
+				// PDS4_PDS_JSON_1910_DOM
+				String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
+				PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
+				printPDDPHdr(prDDPins2);
+				printPDDPBody (lSchemaFileDefn.nameSpaceIdNC, prDDPins2);
+				printPDDPFtr(prDDPins2);
+				prDDPins2.close();
 			}
-			if (! DOMInfoModel.masterNameSpaceHasMemberArr.contains(lSchemaFileDefn.nameSpaceIdNC)) continue;
-		
-			// PDS4_PDS_JSON_1910_DOM
-			String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
-			PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
-			printPDDPHdr(prDDPins2);
-			printPDDPBody (lSchemaFileDefn.nameSpaceIdNC, prDDPins2);
-			printPDDPFtr(prDDPins2);
-			prDDPins2.close();
+		} else {
+			// write the JSON file for the LDD
+			String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
+			PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+			printPDDPHdr(prDDPins);
+			printPDDPBody (DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
+			printPDDPFtr(prDDPins);
+			prDDPins.close();
 		}
 	}	
 	
@@ -792,4 +800,4 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("  (dataTypeSchemaReference \"TBD_dataTypeSchemaReference\"))");
 		}
 	}
-}	
+}
