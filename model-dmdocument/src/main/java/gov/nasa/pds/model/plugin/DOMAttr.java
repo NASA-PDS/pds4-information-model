@@ -56,9 +56,11 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	boolean isAny;					// Association or Instance attribute that allows a class any
 	boolean isFromLDD;				// attribute came from an LDD
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
+	boolean isCharDataType;			// the data type (aka valueType) of the attribute is character. XML Schema allows only max/min length for value.
 	
 	DOMProp hasDOMPropInverse;		// the owning DOMProp of this Class 
 	ArrayList <DOMProp> domPermValueArr;
+	ArrayList <String> lValueTypeArr;
 	
 	ArrayList <String> valArr;
 	ArrayList <PDSObjDefn> valClassArr;	// classes for for assoc (AttrDefn) valArr
@@ -147,9 +149,19 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		isAny = false;
 		isFromLDD = false;
 		hasRetiredValue = false;
+		isCharDataType = true;
 
 		hasDOMPropInverse = null;
 		domPermValueArr = new ArrayList <DOMProp> ();
+		lValueTypeArr = new ArrayList <String> ();
+		lValueTypeArr.add("Number");
+		lValueTypeArr.add("ASCII_Integer");
+		lValueTypeArr.add("ASCII_NonNegative_Integer");
+//		lValueTypeArr.add("ASCII_Numeric_Base16");
+//		lValueTypeArr.add("ASCII_Numeric_Base2"); // bit_mask, sets min/max length
+//		lValueTypeArr.add("ASCII_Numeric_Base8");
+		lValueTypeArr.add("ASCII_Real");
+		
 		valArr = new ArrayList <String> (); 
 		valClassArr = new ArrayList <PDSObjDefn> (); 
 		allowedUnitId = new ArrayList <String> ();
@@ -588,5 +600,42 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		lsDataIdentifier = "LS." + lDataIdentifier;				// language section 
 		teDataIdentifier = "TE." + lDataIdentifier;				// terminological entry		
 		prDataIdentifier = "PR." + lDataIdentifier;				// property 	
+	}
+	
+	public void sortPermissibleValues () {
+		//	sort the permissible value and set order
+		TreeMap <String, DOMPermValDefn> lOrderedDOMPermValMap = new TreeMap <String, DOMPermValDefn> ();
+		TreeMap <String, DOMProp> lOrderedDOMPropMap = new TreeMap <String, DOMProp> ();
+		for (Iterator <DOMProp> i = domPermValueArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+				DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+				lOrderedDOMPermValMap.put(lDOMPermVal.value, lDOMPermVal);
+				lOrderedDOMPropMap.put(lDOMPermVal.value, lDOMProp);
+			}
+		}
+		domPermValueArr.clear();
+		Integer lClassOrder = 1010;
+		ArrayList <DOMPermValDefn> lDOMPermValArr = new ArrayList <DOMPermValDefn> (lOrderedDOMPermValMap.values());
+		for (Iterator <DOMPermValDefn> i = lDOMPermValArr.iterator(); i.hasNext();) {
+			DOMPermValDefn lDOMPermVal = (DOMPermValDefn) i.next();
+			String lValue = lDOMPermVal.value;
+			DOMProp lDOMProp = lOrderedDOMPropMap.get(lValue);
+			if (lDOMProp != null) {
+				domPermValueArr.add(lDOMProp);
+				String lClassOrderString = lClassOrder.toString();
+				lDOMProp.classOrder = lClassOrderString;
+//				System.out.println("debug sortPermissibleValues  lDOMAttr.identifier:" + identifier + " - " + "lDOMPermVal.value:" + lDOMPermVal.value + " - " + "lDOMProp.classOrder:" + lDOMProp.classOrder);		
+			}
+			lClassOrder += 10;
+		}
+	}
+	
+	public void setIsCharDataType () {
+		// if the valueType is not a character, set setIsCharDataType false
+		// the XML Schema writer writes only min/max character for character types, min/max value for non-character
+		if (lValueTypeArr.contains(valueType)) {
+			isCharDataType = false;
+		}
 	}
 }

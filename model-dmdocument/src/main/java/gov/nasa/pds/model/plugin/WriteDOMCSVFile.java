@@ -50,7 +50,8 @@ class WriteDOMCSVFiles extends Object {
 				ArrayList <DOMProp> allAttr = new ArrayList <DOMProp> ();
 				allAttr.addAll(lClass.ownedAttrArr);
 				allAttr.addAll(lClass.inheritedAttrArr);
-				writeCSVFileLine (lClass.title, lClass.nameSpaceId, allAttr, lOtherLanguage, prCSVAttr);
+				if (! allAttr.isEmpty())
+					writeCSVFileLine (lClass.title, lClass.nameSpaceId, allAttr, lOtherLanguage, prCSVAttr);
 				//  System.out.println("in WriteDOMCSV done write FIleLine");
 			}
 		}
@@ -92,43 +93,32 @@ class WriteDOMCSVFiles extends Object {
 		classSortField = lClassNameSpaceId + lClassTitle + ":1" + padding;
 		attrSortField = lClassNameSpaceId + lClassTitle + ":2" + padding;
 		pIdentifier = classSortField;
-	
-
-
+		
 		for (Iterator <DOMProp> j = allAttr.iterator(); j.hasNext();) {
-			DOMProp lProp = (DOMProp) j.next();	
-			DOMAttr lDOMAttr = (DOMAttr)lProp.hasDOMObject;
-				 
-		 //	  System.out.println("in WriteDOMCSV DOMAttr.title" + lDOMAttr.getTitle());
-			String pMinVal = lDOMAttr.getMinimumValue(true,true);
-		        String pMaxVal = lDOMAttr.getMaximumValue(true,true);
-		        String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
-			String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
+			DOMProp lDOMProp = (DOMProp) j.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr)lDOMProp.hasDOMObject;
+				String pMinVal = lDOMAttr.getMinimumValue(true,true);
+				String pMaxVal = lDOMAttr.getMaximumValue(true,true);
+				String pMinChar = lDOMAttr.getMinimumCharacters(true,true);
+				String pMaxChar = lDOMAttr.getMaximumCharacters(true,true);
+				padLength = 30 - lDOMAttr.getTitle().length();
+				if (padLength < 0) padLength = 0; padding = blanks.substring(0, padLength);						
+				pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
+				valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
+				prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lDOMProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lDOMAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lDOMProp.cardMin + DELM_MID + lDOMProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
 				
-			padLength = 30 - lDOMAttr.getTitle().length();
-			if (padLength < 0) padLength = 0;
-				padding = blanks.substring(0, padLength);
-					
-			pIdentifier = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":1" + padding;
-			    	
-		        valueSortField = attrSortField + " " + lDOMAttr.getNameSpaceId() + lDOMAttr.getTitle() + ":2" + padding;
-			prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Attribute" + DELM_MID +  lDOMAttr.getNameInLanguage(lOtherLanguage) + DELM_MID + "n/a" + DELM_MID + lProp.getNameSpaceIdNC () + DELM_MID +  lDOMAttr.getDefinitionInLanguage(lOtherLanguage) + DELM_MID + lDOMAttr.getSteward () + DELM_MID + lDOMAttr.valueType + DELM_MID + lProp.cardMin + DELM_MID + lProp.cardMax + DELM_MID + pMinVal + DELM_MID + pMaxVal + DELM_MID+ pMinChar + DELM_MID + pMaxChar+ DELM_MID + lDOMAttr.getUnitOfMeasure (true) + DELM_MID + lDOMAttr.getDefaultUnitId (true) + DELM_MID + lDOMAttr.classConcept + DELM_MID + lDOMAttr.dataConcept + DELM_END + "\r\n");
-			
-			
-			for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
-				DOMProp lDOMProp = (DOMProp) i.next();
-				if (lDOMProp.hasDOMObject == null) continue;
-				if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn)) continue;
-				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
-			    String lValue = lDOMPermValDefn.value;
-					 if (lValue.length() > 20) lValue = lValue.substring(0,20);
-					 pIdentifier = valueSortField + " Value:" + lValue;
+				for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
+					DOMProp lDOMProp2 = (DOMProp) i.next();
+					if (lDOMProp2.hasDOMObject == null) continue;
+					if (! (lDOMProp2.hasDOMObject instanceof DOMPermValDefn)) continue;
+					DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp2.hasDOMObject;
+				    String lValue = lDOMPermValDefn.value;
+					if (lValue.length() > 20) lValue = lValue.substring(0,20);
+					pIdentifier = valueSortField + " Value:" + lValue;
 					prCSVAttr.write(DELM_BEGIN + pIdentifier + DELM_MID + "Value" + DELM_MID + lDOMPermValDefn.value + DELM_MID + "" + DELM_MID + "" + DELM_MID + lDOMPermValDefn.value_meaning + DELM_END + "\r\n");
 				}
 			}
-				
-		
+		}
 	}
-
-
 }

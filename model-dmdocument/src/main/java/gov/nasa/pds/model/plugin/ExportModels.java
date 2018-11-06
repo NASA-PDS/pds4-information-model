@@ -128,27 +128,21 @@ public class ExportModels extends Object {
 		WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile ();
 		writeDOM11179DDRDFFile.printISO11179DDRDF (DMDocument.sTodaysDate);
 	//	if (DMDocument.debugFlag) System.out.println("debug DOMwriteAllArtifacts - RDF Done");
-		}				
-		// write the PDS4 Attr CSV full file 
-		WriteCSVFiles writeCSVFiles = new WriteCSVFiles ();
-//		writeCSVFiles.printDDDBFile();
+		}
 		
 		// write the PDS4 DD CSV file
         ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
-        writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
+		WriteCSVFiles writeCSVFiles = new WriteCSVFiles ();
+		writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
+        if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
         
-        //if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
-        
-        //DOM Write CSV file
+        // write the DOM PDS4 DD CSV file 
     	if (domFlag) {
-	    WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles ();
-	    if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
-		
-		// write the PDS4 DD CSV file 
+	    WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles (); 
 		ArrayList <DOMClass> domSortClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
 		writeDOMCSVFiles.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
     	}
-	//	if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD CSV Done");
+    	if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Attr CSV Done");
 
 		// write the PDS4 CCSDS CSV file 
 		WriteDocCSV writeDocCSV = new WriteDocCSV ();

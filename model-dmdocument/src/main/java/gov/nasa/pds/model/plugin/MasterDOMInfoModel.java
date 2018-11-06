@@ -122,41 +122,22 @@ class MasterDOMInfoModel extends DOMInfoModel{
 							DOMProp lDOMProp = (DOMProp) j.next();
 							if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 								DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-								
-								// set the default_unit_id
-								if (lDOMAttr.title.compareTo("specified_unit_id") == 0) {
-									String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, lUnit.default_unit_id);
-									if (lVal != null) {
-										lUnit.default_unit_id =  lVal;
-									}
-								}
-								// set the unit_id
-								if (lDOMAttr.title.compareTo("unit_id") == 0) {
-									ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
-									if (lValArr != null) {
-										for (Iterator<String> l = lValArr.iterator(); l.hasNext();) {
-											String lVal = (String) l.next();
-											lUnit.unit_id.add(lVal); 
+								if (lDOMAttr != null) {
+									// set the default_unit_id
+									if (lDOMAttr.title.compareTo("specified_unit_id") == 0) {
+										String lVal = DOMInfoModel.getSingletonValueUpdate(lDOMAttr.valArr, lUnit.default_unit_id);
+										if (lVal != null) {
+											lUnit.default_unit_id =  lVal;
 										}
 									}
-								}
-							}
-							
-							DOMAttr lAttr = (DOMAttr) lDOMProp.hasDOMObject;
-							if (lAttr != null) {								// set the default_unit_id
-								if (lAttr.title.compareTo("specified_unit_id") == 0) {
-									String lVal = DOMInfoModel.getSingletonValueUpdate(lAttr.valArr, lUnit.default_unit_id);
-									if (lVal != null) {
-										lUnit.default_unit_id =  lVal;
-									}
-								}
-								// set the unit_id
-								if (lAttr.title.compareTo("unit_id") == 0) {
-									ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lAttr.valArr);
-									if (lValArr != null) {
-										for (Iterator<String> l = lValArr.iterator(); l.hasNext();) {
-											String lVal = (String) l.next();
-											lUnit.unit_id.add(lVal); 
+									// set the unit_id
+									if (lDOMAttr.title.compareTo("unit_id") == 0) {
+										ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
+										if (lValArr != null) {
+											for (Iterator<String> l = lValArr.iterator(); l.hasNext();) {
+												String lVal = (String) l.next();
+												lUnit.unit_id.add(lVal); 
+											}
 										}
 									}
 								}
@@ -914,6 +895,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 
 			// sort attribute.valarr
 			Collections.sort(lAttr.valArr);
+			lAttr.sortPermissibleValues();
+			lAttr.setIsCharDataType();
 		}	
 		return;
 	}

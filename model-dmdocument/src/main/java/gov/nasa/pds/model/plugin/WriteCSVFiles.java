@@ -72,7 +72,7 @@ class WriteCSVFiles extends Object {
 		classSortField = lClassNameSpaceId + lClassTitle + ":1" + padding;
 		attrSortField = lClassNameSpaceId + lClassTitle + ":2" + padding;
 		pIdentifier = classSortField;
-
+		
 		for (Iterator <AttrDefn> j = allAttr.iterator(); j.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) j.next();	
 			if (lAttr != null) {
@@ -98,78 +98,5 @@ class WriteCSVFiles extends Object {
 				}
 			}
 		}
-	}
-	
-//	write the DD Normalized file - CSV
-	public void printDDDBFile () throws java.io.IOException  {
-		String lFileName = DMDocument.outputDirPath + "PDS4DDDB.csv";
-		PrintWriter prCSVAttr = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		TreeMap <String, AttrDefn> AttrMap = new TreeMap <String, AttrDefn> ();
-		TreeMap <String, AttrDefn> AssocMap = new TreeMap <String, AttrDefn> ();
-//		prCSVAttr.println(delmBegin + "TYPE" + delmMid + "UNIQUE ID" + delmMid + "NAME" + delmMid + "DEFINITION" + delmMid + "DATA TYPE" + delmMid + "MIN VALUE" + delmMid + "MAX VALUE" + delmMid + "MIN CHARACTERS" + delmMid + "MAX CHARACTERS" + delmEnd);		
-		prCSVAttr.println(delmBegin + "TYPE" + delmMid + "UNIQUE ID" + delmMid + "NAME" + delmMid + "DEFINITION" + delmMid + "DATA TYPE" + delmEnd);		
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
-				prCSVAttr.println(delmBegin + "CLASS" + delmMid + lClass.identifier + delmMid + lClass.title + delmMid + lClass.description + delmEnd);
-				for (Iterator <AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AttrMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.inheritedAttribute.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AttrMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.ownedAssociation.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AssocMap.put(lAttr.identifier, lAttr);
-				}
-				for (Iterator <AttrDefn> j = lClass.inheritedAssociation.iterator(); j.hasNext();) {
-					AttrDefn lAttr = (AttrDefn) j.next();	
-					AssocMap.put(lAttr.identifier, lAttr);
-				}
-
-			}
-		}
-		Set <String> set1 = AttrMap.keySet();
-		Iterator <String> iter1 = set1.iterator();
-		while(iter1.hasNext()) {
-			String lId = (String) iter1.next();
-			AttrDefn lAttr = (AttrDefn) AttrMap.get(lId);	
-			if (lAttr != null) {
-//				prCSVAttr.println(delmBegin + "ATTRIBUTE" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmMid + lAttr.valueType + delmMid + lAttr.minimum_value + delmMid + lAttr.maximum_value+ delmMid + lAttr.minimum_characters + delmMid + lAttr.maximum_characters + delmEnd);
-				prCSVAttr.println(delmBegin + "ATTRIBUTE" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmMid + lAttr.valueType + delmEnd);
-				if ((lAttr.valArr != null) && (! lAttr.valArr.isEmpty())) {
-					int lValCnt = 0;
-					for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-						String lVal = (String) k.next();
-						if (lVal.compareTo ("") != 0) {
-							lValCnt++;
-							prCSVAttr.println(delmBegin + "ATTR VALUE" + delmMid + lAttr.identifier + "_Value_" + lValCnt + delmMid + lVal + delmMid + "" + delmEnd);
-						}
-					}
-				}
-			}
-		}
-		Set <String> set2 = AssocMap.keySet();
-		Iterator <String> iter2 = set2.iterator();
-		while(iter2.hasNext()) {
-			String lId = (String) iter2.next();
-			AttrDefn lAttr = (AttrDefn) AssocMap.get(lId);	
-			if (lAttr != null) {
-				prCSVAttr.println(delmBegin + "ASSOCIATION" + delmMid + lAttr.identifier + delmMid + lAttr.title + delmMid + lAttr.description + delmEnd);
-				if ((lAttr.valArr != null) && (! lAttr.valArr.isEmpty())) {
-					int lValCnt = 0;
-					for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-						String lVal = (String) k.next();
-						if (lVal.compareTo ("") != 0) {
-							lValCnt++;
-							prCSVAttr.println(delmBegin + "ASSOC VALUE" + delmMid + lAttr.identifier + "_Value_" + lValCnt + delmMid + lVal + delmMid + "" + delmEnd);
-						}
-					}
-				}
-			}
-		}
-		prCSVAttr.close();				
 	}
 }

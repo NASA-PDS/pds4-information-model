@@ -38,7 +38,7 @@ class ProtPinsDOMModel extends Object {
 			if ( ! ((lInst.className.compareTo("Discipline_Facets") == 0) || (lInst.className.compareTo("Group_Facet1") == 0) || (lInst.className.compareTo("Group_Facet2") == 0))) continue;
 
 			HashMap <String, ArrayList<String>> lInstSlotMap = lInst.genSlotMap;
-
+			
 			if (lInst.className.compareTo("Discipline_Facets") == 0) {
 				SFDisciplineFacetDefn lSFDisciplineFacetDefn = new SFDisciplineFacetDefn (lInst.className, lInst.title);
 				DOMInfoModel.sfDisciplineFacetDefnMap.put(lSFDisciplineFacetDefn.identifier, lSFDisciplineFacetDefn);
@@ -47,7 +47,7 @@ class ProtPinsDOMModel extends Object {
 					for (Iterator <String> j = lValArr.iterator(); j.hasNext();) {
 						String lVal = (String) j.next();
 						String lValPlus = lVal + "." + "Group_Facet1";
-						lSFDisciplineFacetDefn.groupFacet1IdArr.add(lValPlus);						
+						lSFDisciplineFacetDefn.groupFacet1IdArr.add(lValPlus);
 					}
 				}
 				lValArr = lInstSlotMap.get("has_Group_Facet2"); 
@@ -55,7 +55,7 @@ class ProtPinsDOMModel extends Object {
 					for (Iterator <String> j = lValArr.iterator(); j.hasNext();) {
 						String lVal = (String) j.next();
 						String lValPlus = lVal + "." + "Group_Facet2";
-						lSFDisciplineFacetDefn.groupFacet2IdArr.add(lValPlus);						
+						lSFDisciplineFacetDefn.groupFacet2IdArr.add(lValPlus);
 					}
 				}
 			} else {
@@ -68,7 +68,7 @@ class ProtPinsDOMModel extends Object {
 				if (lValArr != null) {
 					for (Iterator <String> j = lValArr.iterator(); j.hasNext();) {
 						String lVal = (String) j.next();
-						lSFGroupFacetDefn.subfacetArr.add(lVal);						
+						lSFGroupFacetDefn.subfacetArr.add(lVal);
 					}
 				}
 				
@@ -88,7 +88,6 @@ class ProtPinsDOMModel extends Object {
 		ArrayList <SFDisciplineFacetDefn> lSFDisciplineFacetDefnArr = new ArrayList <SFDisciplineFacetDefn> (DOMInfoModel.sfDisciplineFacetDefnMap.values());
 		for (Iterator <SFDisciplineFacetDefn> i = lSFDisciplineFacetDefnArr.iterator(); i.hasNext();) {
 			SFDisciplineFacetDefn lSFDisciplineFacetDefn = (SFDisciplineFacetDefn) i.next();
-			
 			for (Iterator <String> j = lSFDisciplineFacetDefn.groupFacet1IdArr.iterator(); j.hasNext();) {
 				String lSFGroupFacetId = (String) j.next();
 				SFGroupFacetDefn lSFGroupFacetDefn = lSFGroupFacetDefnMap.get(lSFGroupFacetId);
@@ -102,46 +101,64 @@ class ProtPinsDOMModel extends Object {
 				lSFDisciplineFacetDefn.groupFacet2Arr.add(lSFGroupFacetDefn);
 			}
 		}
-
+		
 		// iterate through the discipline facets and update the permissible values for the associated attributes
 		String lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Discipline_Facets", DMDocument.masterNameSpaceIdNCLC, "discipline_name");
-		DOMAttr lAttrDiscipline = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
-		if (lAttrDiscipline == null) {
+		DOMAttr lDOMAttrDiscipline = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
+		if (lDOMAttrDiscipline == null) {
 			System.out.println("debug getProtPinsModel ERROR Missing discipline_name - lAttrId:" + lAttrId);
 			return;
 		}
 		
 		// update discpline_name values
-		lAttrDiscipline.isEnumerated = true;
+		lDOMAttrDiscipline.isEnumerated = true;
 		for (Iterator <SFDisciplineFacetDefn> i = lSFDisciplineFacetDefnArr.iterator(); i.hasNext();) {
 			SFDisciplineFacetDefn lSFDisciplineFacetDefn = (SFDisciplineFacetDefn) i.next();
-			lAttrDiscipline.valArr.add(lSFDisciplineFacetDefn.disciplineName);
-
+			lDOMAttrDiscipline.valArr.add(lSFDisciplineFacetDefn.disciplineName);
+			DOMPermValDefn lDOMPermVal = new DOMPermValDefn();
+			lDOMPermVal.value = lSFDisciplineFacetDefn.disciplineName;
+            DOMProp lDOMProp = new DOMProp ();
+            lDOMProp.initDOMPermValProp (lDOMPermVal);
+            lDOMAttrDiscipline.domPermValueArr.add(lDOMProp);
+            lDOMProp.hasDOMObject = lDOMPermVal;
+            
 			// update facet1 values
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet1Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 				lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet1", DMDocument.masterNameSpaceIdNCLC, "facet1");			
-				DOMAttr lAttrFacet = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
-				if (lAttrFacet == null) {
+				DOMAttr lDOMAttrFacet1 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
+				if (lDOMAttrFacet1 == null) {
 					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);
 					continue;
 				}
-				lAttrFacet.isEnumerated = true;
-				lAttrFacet.valArr.add(lSFGroupFacet.facet);
-				lAttrFacet.valueDependencyMap.put(lSFGroupFacet.facet, lSFDisciplineFacetDefn.disciplineName);
+				lDOMAttrFacet1.isEnumerated = true;
+				lDOMAttrFacet1.valArr.add(lSFGroupFacet.facet);
+				lDOMAttrFacet1.valueDependencyMap.put(lSFGroupFacet.facet, lSFDisciplineFacetDefn.disciplineName);
+				DOMPermValDefn lDOMPermValFacet1 = new DOMPermValDefn();
+				lDOMPermValFacet1.value = lSFGroupFacet.facet;
+	            DOMProp lDOMPropFacet1 = new DOMProp ();
+	            lDOMPropFacet1.initDOMPermValProp (lDOMPermValFacet1);
+	            lDOMAttrFacet1.domPermValueArr.add(lDOMPropFacet1);
+	            lDOMPropFacet1.hasDOMObject = lDOMPermValFacet1;
 			}
 			// update facet2 values
 			for (Iterator <SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet2Arr.iterator(); j.hasNext();) {
 				SFGroupFacetDefn lSFGroupFacet = (SFGroupFacetDefn) j.next();
 				lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet2", DMDocument.masterNameSpaceIdNCLC, "facet2");			
-				DOMAttr lAttrFacet = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
-				if (lAttrFacet == null) {
+				DOMAttr lDOMAttrFacet2 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
+				if (lDOMAttrFacet2 == null) {
 					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);
 					continue;
 				}
-				lAttrFacet.isEnumerated = true;
-				lAttrFacet.valArr.add(lSFGroupFacet.facet);
-				lAttrFacet.valueDependencyMap.put(lSFGroupFacet.facet, lSFDisciplineFacetDefn.disciplineName);
+				lDOMAttrFacet2.isEnumerated = true;
+				lDOMAttrFacet2.valArr.add(lSFGroupFacet.facet);
+				lDOMAttrFacet2.valueDependencyMap.put(lSFGroupFacet.facet, lSFDisciplineFacetDefn.disciplineName);
+				DOMPermValDefn lDOMPermValFacet2 = new DOMPermValDefn();
+				lDOMPermValFacet2.value = lSFGroupFacet.facet;
+	            DOMProp lDOMPropFacet2 = new DOMProp ();
+	            lDOMPropFacet2.initDOMPermValProp (lDOMPermValFacet2);
+	            lDOMAttrFacet2.domPermValueArr.add(lDOMPropFacet2);
+	            lDOMPropFacet2.hasDOMObject = lDOMPermValFacet2;
 			}
 		} 
 		return;
