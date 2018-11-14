@@ -383,19 +383,15 @@ class XML4LabelSchemaDOM extends Object {
 		}
 		for (Iterator<DOMProp> i = lAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();			
-			if (lProp.isAny) writeClassXSAnyStmts (prXML);
-			if (lProp.isAttribute) {
-				writeClassAttribute (lClass, lProp, prXML);				
-			} else {
-				
-				// if the choice block is open, close it
-				if (choiceBlockOpen) {
-					downIndentSpaces();
-					prXML.println(indentSpaces() + "</" + pNS + "choice>");
-					choiceBlockOpen = false;
-				}
-				writeClassAssociation (lClass, lProp, prXML);
+			if (lProp.isAny) {
+				writeClassXSAnyStmts (prXML);		
 			}
+			if (lProp.isAttribute) {
+				writeClassAttribute (lClass, lProp, prXML);		
+			} else {						       		
+			    writeClassAssociation (lClass, lProp, prXML);			 
+			}
+
 		}
 		downIndentSpaces();
 		
@@ -486,14 +482,23 @@ class XML4LabelSchemaDOM extends Object {
 			cmax = "unbounded";
 		}
 		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";			
-
-		if (lProp.isChoice) {
+		if (lProp.isChoice){
+            if (!choiceBlockOpen) {
+		
 			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
 			minMaxOccursClause = "";
 			prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
 			upIndentSpaces();
+			choiceBlockOpen = true;
+		     } 
+		} else {
+             if (choiceBlockOpen) {
+			downIndentSpaces();
+			prXML.println(indentSpaces() + "</" + pNS + "choice>");
+			choiceBlockOpen = false;
+                     }
 		}
-		
+
 		// get each associated class
 		DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
 					
@@ -509,11 +514,7 @@ class XML4LabelSchemaDOM extends Object {
 			}							
 			
 		}
-		
-		if (lProp.isChoice) {
-			downIndentSpaces();
-			prXML.println(indentSpaces() + "</" + pNS + "choice>");
-		}		
+
 		return;
 	}
 	
