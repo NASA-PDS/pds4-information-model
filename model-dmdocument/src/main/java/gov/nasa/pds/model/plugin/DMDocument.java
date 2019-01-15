@@ -118,7 +118,8 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
-	static boolean exportDOMFlag = false;
+	static boolean exportDOMFlag = true;
+	// set exportDOMFlag to true - 190115c
 	static boolean pds4ModelFlag = true;
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
