@@ -1,4 +1,4 @@
-; Wed Sep 12 07:25:29 PDT 2018
+; Fri Jan 18 18:27:32 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4309,7 +4309,7 @@
 	(multislot has_geometry
 ;+		(comment "The has_geometry association is a relationship to Geometry objects.")
 		(type INSTANCE)
-;+		(allowed-classes Geometry)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot ring_event_start_tdb
 ;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
@@ -4532,10 +4532,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes Identification_Area)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot %3ANAME
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Product_Observational "A Product_Observational is a set of one or more information objects produced by an observing system."
@@ -5272,11 +5268,7 @@
 
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
 	(is-a USER)
-	(role abstract)
-	(single-slot %3ANAME
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role abstract))
 
 (defclass Identification_Area "The identification area consists of attributes that identify and name an object."
 	(is-a Product_Components)
@@ -5290,7 +5282,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -5466,71 +5458,6 @@
 ;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Internal_Reference)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Telemetry_Parameters "The Telemetry_Parameters class contains downlink-related attributes used primarily during mission operations."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot application_process_id
-;+		(comment "The application_process_id attribute identifies the process, or source, which created the data.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot telemetry_source_name
-;+		(comment "The telemetry_source_name attribute identifies the telemetry source used in creation of a data set.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spice_file_name
-;+		(comment "The spice_file_name attribute provides the names of the SPICE files used in processing the data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot earth_received_stop_date_time
-;+		(comment "The earth_received_stop_date_time attribute provides the latest time at which any component telemetry data for a particular product was received.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot packet_map_mask
-;+		(comment "The packet_map_mask attribute is a binary or hexadecimal number identifying which of a data file's expected packets were actually received.  The digits correspond positionally with the relative packet numbers of the data file.  The bits are to be read left to right; i.e., the first %28left-most%29 digit of the number corresponds to the first packet of the data file.  A bit value of 1 indicates that the packet was received; a value of 0 indicates that it was not received.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot earth_received_start_date_time
-;+		(comment "The earth_received_start_date_time attribute provides the earliest time at which any component telemetry data for a particular product was received.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot expected_packets
-;+		(comment "The expected_packets attribute provides the total number of telemetry packets which constitute a complete data product, i.e., a data product without missing data.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot telemetry_format_id
-;+		(comment "The telemetry_format_id attribute supplies a telemetry format code.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot telemetry_source_type
-;+		(comment "The telemetry_source_type attribute classifies the source of the telemetry used in creation of this data collection.")
-		(type STRING)
-;+		(value "SFDU" "DATA_PRODUCT")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot received_packets
-;+		(comment "The received_packets attribute provides the total number of telemetry packets which constitute a reconstructed data product, cf. expected_packets.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot application_process_name
-;+		(comment "The application_process_name attribute provides the name associated with the source or process which created the data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot telemetry_provider_id
-;+		(comment "The telemetry_provider_id attribute identifies the provider and or version of the telemetry data used in the generation of this data.")
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -9303,26 +9230,6 @@
 	(is-a Tagged_NonDigital_Object)
 	(role abstract))
 
-(defclass Geometry "The Geometry class groups geometry information."
-	(is-a TNDO_Supplemental)
-	(role abstract)
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Conceptual_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot vector
-;+		(comment "The vector assocation is a relationship to Vector objects.")
-		(type INSTANCE)
-;+		(allowed-classes Vector)
-		(create-accessor read-write))
-	(single-slot local_identifier
-;+		(comment "The local_identifier attribute provides a character string which uniquely identifies the containing object within the label.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Object_Statistics "The Object Statistics class provides a set of values that provide metrics about the object."
 	(is-a TNDO_Supplemental)
 	(role concrete)
@@ -11857,7 +11764,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -11963,7 +11870,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -13158,7 +13065,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "YYYY-DOYTHH:MM:SS.SSS(Z)")
+;+		(value "YYYY-DOYTHH:MM:SS.SSSSSS(Z)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
@@ -13206,7 +13113,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "YYYY-MM-DDTHH:MM:SS.SSS(Z)")
+;+		(value "YYYY-MM-DDTHH:MM:SS.SSSSSS(Z)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
@@ -14266,7 +14173,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "YYYY-MM-DDTHH:MM:SS.SSSZ")
+;+		(value "YYYY-MM-DDTHH:MM:SS.SSSSSSZ")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
@@ -14294,7 +14201,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "YYYY-DOYTHH:MM:SS.SSSZ")
+;+		(value "YYYY-DOYTHH:MM:SS.SSSSSSZ")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
