@@ -78,6 +78,7 @@ public class DMDocument extends Object {
 	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
 	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
 	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
+	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
 	
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
@@ -98,6 +99,7 @@ public class DMDocument extends Object {
 	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
 	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
 	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
+	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
@@ -205,6 +207,12 @@ public class DMDocument extends Object {
 	static ArrayList <String> registryClass;
 	static ArrayList <String> registryAttr;
 	
+	// reserved Class names
+	static ArrayList <String> reservedClassNames;
+	
+	// reserved Attribute names
+	static ArrayList <String> reservedAttrNames;
+	
 	// Omitted classes
 	static ArrayList <String> omitClass;
 		
@@ -284,6 +292,18 @@ public class DMDocument extends Object {
 
 		// master group number
 		masterGroupNum = 10;
+		
+		// reserved Class names
+		reservedClassNames = new ArrayList <String> ();
+		reservedClassNames.add("Internal_Reference");
+		reservedClassNames.add("Local_Internal_Reference");
+		reservedClassNames.add("Reference_Pixel_Regression_Test");
+
+		// reserved Attribute names
+		reservedAttrNames = new ArrayList <String> ();
+		reservedAttrNames.add("logical_identifier");
+		reservedAttrNames.add("local_identifier");
+		reservedAttrNames.add("pixel_latitude_Regression_Test");
 		
 		omitClass = new ArrayList <String> ();
 		omitClass.add("Data_Object");
