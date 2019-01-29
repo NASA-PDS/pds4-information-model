@@ -860,22 +860,18 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println("      <" + pNS + "restriction base=\"" + pNS + "string\">");							
 //			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 			// use attribute list sorted by classOrder
-	     for (Iterator<DOMAttr> j = lClass.allEnumAttrArr.iterator(); j.hasNext();) {
-	        
-	        DOMAttr lAttr = (DOMAttr)j.next();
-	        System.out.println("Title = ******"+ lAttr.title);
-	    
-	        if (lAttr.title.compareTo("unit_id") == 0) {
-	          ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lAttr.valArr);
-	          
-  					if (lValArr != null) {
-  						for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
-  							String lVal = (String) k.next();
-  							prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
-  						}
-  					}
-	        }
+			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
+				DOMProp lProp = (DOMProp) j.next();
+				if (lProp.title.compareTo("unit_id") == 0) {
+					ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lProp.valArr);
+					if (lValArr != null) {
+						for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
+							String lVal = (String) k.next();
+							prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
+						}
+					}
 				}
+			}
 		    prXML.println("      </" + pNS + "restriction>");
 		    prXML.println("    </" + pNS + "simpleType>");
 		}
