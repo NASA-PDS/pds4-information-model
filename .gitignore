@@ -1,0 +1,37 @@
+# Object files
+*.o
+*.pkl
+*.pyc
+
+# Libraries
+*.lib
+*.a
+
+# Eclipse files
+.settings/
+*.project
+*.classpath
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Temporary files
+*~
+
+# other stuff
+*.xpr
+*.swp
+/bin/
+
+# Java stuff
+*.javac
+.gwt/
+target/
