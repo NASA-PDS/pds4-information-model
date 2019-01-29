@@ -1113,7 +1113,8 @@ public class DMDocument extends Object {
 //	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Wave Spectrometer", "pds", "Instrument", "pds", "type", "Plasma Wave Spectrometer", false));
 //	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Polarimeter", "pds", "Instrument", "pds", "type", "Polarimeter", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radar", "pds", "Instrument", "pds", "type", "Radar", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Science", "pds", "Instrument", "pds", "type", "Radio Science", false));
+//		Undeprecate Radio Science as per CCB-247
+//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Science", "pds", "Instrument", "pds", "type", "Radio Science", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Spectrometer", "pds", "Instrument", "pds", "type", "Radio Spectrometer", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Telescope", "pds", "Instrument", "pds", "type", "Radio Telescope", false));
 //	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radiometer", "pds", "Instrument", "pds", "type", "Radiometer", false));
