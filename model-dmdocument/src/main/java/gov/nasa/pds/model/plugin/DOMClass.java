@@ -12,6 +12,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	String rootClass;								// RDF identifier
 	String baseClassName;							// Fundamental structure class title
 	String localIdentifier;							// used temporarily for ingest of LDD
+	String used;									// MDPTNConfig used flag - Y, N, or I - Inactive
 	
 	int subClassLevel;
 	boolean isUSERClass;							// The class of all classes
@@ -64,6 +65,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		rootClass = "TBD_root_class";
 		baseClassName = "TBD_base_class_name";
 		localIdentifier = "TBD_localIdentifier";
+		used = "TBD_used";
 		subClassLevel = 0;
 		isUSERClass = false;
 //		isUsedInClass = false;

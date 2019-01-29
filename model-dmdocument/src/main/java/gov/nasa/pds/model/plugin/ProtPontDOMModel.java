@@ -95,14 +95,20 @@ class ProtPontDOMModel extends DOMInfoModel{
 				DOMClass lClassWDisp = DMDocument.getDOMClassDisposition (lClass, className, true);
 				classNameSpaceIdNC = "tbd";
 				if (lClassWDisp != null) {
-					classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
-					parsedClassMap.put(lClassWDisp.rdfIdentifier, lClassWDisp);
-					parsedClassArr.add(lClassWDisp);
-					String token1 = (String) tokenIter.next();
-					if (token1.compareTo("(") != 0) {
-						lClassWDisp.definition = InfoModel.unEscapeProtegeString(token1);
+					if (lClassWDisp.used.compareTo("Y") == 0) {
+						classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
+						parsedClassMap.put(lClassWDisp.rdfIdentifier, lClassWDisp);
+						parsedClassArr.add(lClassWDisp);
+						String token1 = (String) tokenIter.next();
+						if (token1.compareTo("(") != 0) {
+							lClassWDisp.definition = InfoModel.unEscapeProtegeString(token1);
+						}
+//						lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
+					} else if (lClassWDisp.used.compareTo("I") == 0) {
+						// class is "hidden" ignore it and do not print warning
+					} else {	// disposition exists but not clear why, print warning 
+						System.out.println(">>warning - Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
 					}
-//					lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
 				} else {
 //					lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
 					if (! DMDocument.LDDToolFlag) {

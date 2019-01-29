@@ -13,6 +13,7 @@ public class ISOClass extends Object {
 
 	String registrationStatus;					// ISO 11179 item registration status
 	boolean isDeprecated;						// class is deprecated
+	boolean isInactive;							// class is inactive, it is hidden from all processing - ignore
 	
 	TreeMap <String, String> altNameMap;		// names in alternate natural languages
 	TreeMap <String, String> altDefnMap;		// descriptions in alternate natural languages
@@ -33,6 +34,7 @@ public class ISOClass extends Object {
 //		registrationStatus = "Candidate";
 		registrationStatus = "TBD_registrationStatus";
 		isDeprecated = false;
+		isInactive = false;
 		
 		altNameMap = new TreeMap <String, String> ();
 		altDefnMap = new TreeMap <String, String> ();

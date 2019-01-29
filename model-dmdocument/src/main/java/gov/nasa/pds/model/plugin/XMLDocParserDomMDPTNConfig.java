@@ -1,11 +1,6 @@
-package gov.nasa.pds.model.plugin; 
-import java.io.FileWriter;
+package gov.nasa.pds.model.plugin;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.TreeMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -94,7 +89,6 @@ public class XMLDocParserDomMDPTNConfig extends Object
 	}
 	
 	private void getField(Element lElem){
-		boolean yFlag = false;
 		//get a nodelist of Record elements
 		NodeList nl = lElem.getElementsByTagName("Field");
 		if(nl != null && nl.getLength() > 0) {
@@ -121,11 +115,6 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			if (lFlagValue == null) {
 				System.out.println("error - null lFlagValue");
 				return;
-			}
-//			System.out.println("\ndebug lFlagValue:" + lFlagValue);
-			yFlag = false;
-			if (lFlagValue.compareTo("Y") == 0) {
-				yFlag = true;
 			}
 
 			// get the name
@@ -190,28 +179,17 @@ public class XMLDocParserDomMDPTNConfig extends Object
 			}
 			
 			//			System.out.println("debug lDispValue:" + lDispValue);
-			if (yFlag) {
-				if (classDispositionMap.get(lNameValue) == null) {
-					DispDefn classDisposition = new DispDefn (lNameValue);
-					classDisposition.disposition = lDispValue ;
-					classDisposition.section = lSection;
-					classDisposition.intNSId = lIntNSId;
-					classDisposition.intSteward = lSteward;
-					classDispositionMap.put(lNameValue, classDisposition);
-//					System.out.println("\ndebug classDispositionMap lNameValue:" + lNameValue);
-//					System.out.println("debug classDispositionMap classDisposition.identifier:" + classDisposition.identifier);
-//					System.out.println("debug classDispositionMap classDisposition.disposition:" + classDisposition.disposition);
-//					System.out.println("debug classDispositionMap classDisposition.section:" + classDisposition.section);
-//					System.out.println("debug classDispositionMap classDisposition.intNSId:" + classDisposition.intNSId);
-
-				} else {
-					if (! DMDocument.LDDToolFlag) {
-						System.out.println(">>error   - Duplicate class exists - Class Identifier:" + lNameValue);
-					}
-				}
+			if (classDispositionMap.get(lNameValue) == null) {
+				DispDefn classDisposition = new DispDefn (lNameValue);
+				classDisposition.used = lFlagValue;
+				classDisposition.disposition = lDispValue ;
+				classDisposition.section = lSection;
+				classDisposition.intNSId = lIntNSId;
+				classDisposition.intSteward = lSteward;
+				classDispositionMap.put(lNameValue, classDisposition);
 			} else {
 				if (! DMDocument.LDDToolFlag) {
-					System.out.println(">>warning - Class omitted from build - Class Identifier:" + lNameValue);
+					System.out.println(">>error   - Duplicate class exists - Class Identifier:" + lNameValue);
 				}
 			}
 		}

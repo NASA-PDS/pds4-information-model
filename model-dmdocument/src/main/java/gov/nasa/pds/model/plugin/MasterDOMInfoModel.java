@@ -1084,12 +1084,14 @@ class MasterDOMInfoModel extends DOMInfoModel{
  
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
+			if (lAttr.isInactive) continue;
 			if (lAttr.isPDS4) {
 				DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lAttr.valueType);
 				if (lDataType != null) {
 					lAttr.xmlBaseDataType = lDataType.xml_schema_base_type;
 				} else {
-					System.out.println(">>error   - SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing - lAttr.protValType:" + lAttr.protValType);
+					System.out.println(">>error   - SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing - lAttr.identifier:" + lAttr.identifier);
+					System.out.println("          - SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing - lAttr.valueType:" + lAttr.valueType);
 				}
 			}
 		}
@@ -1099,11 +1101,12 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	public void sethasAttributeOverride1 (ArrayList <DOMAttr> lMasterDOMAttrArr) {
 		for (Iterator<DOMAttr> i = lMasterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
+			if (lAttr.isInactive) continue;
 			if (lAttr.isAttribute) {
 //				DOMDataType lValueType = DOMInfoModel.masterDOMDataTypeMap.get(lAttr.valueType);
 				DOMDataType lValueType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lAttr.valueType);
 				if (lValueType == null) {
-					System.out.println(">>error   - Could not find a value type for this attribute while checking for attribute overrides - Name:" + lAttr.title + "   Value Type:" + lAttr.valueType);
+					System.out.println(">>error   - Could not find a value type for this attribute while checking for attribute overrides - Name:" + lAttr.identifier + "   Value Type:" + lAttr.valueType);
 				} else {
 					boolean hasOverride = false;
 					if (!((lAttr.minimum_value.indexOf("TBD") == 0) || (lAttr.minimum_value.compareTo(lValueType.minimum_value) == 0))) {

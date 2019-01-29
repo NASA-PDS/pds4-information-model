@@ -969,6 +969,7 @@ public class DMDocument extends Object {
 		if (! isFromProtege) lDispId = "LDD_" + lDispId;
 		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
 		if (lDispDefn != null) {
+			lClass.used = lDispDefn.used;
 			lClass.section = lDispDefn.section;
 			String lDisp = lDispDefn.disposition;
 			lClass.steward = lDispDefn.intSteward;
@@ -1018,6 +1019,7 @@ public class DMDocument extends Object {
 		if (! isFromProtege) lDispId = "LDD_" + lDispId;
 		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
 		if (lDispDefn != null) {
+			lClass.used = lDispDefn.used;
 			lClass.section = lDispDefn.section;
 			String lDisp = lDispDefn.disposition;
 			lClass.steward = lDispDefn.intSteward;

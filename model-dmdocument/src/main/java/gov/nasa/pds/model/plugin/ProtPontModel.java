@@ -95,14 +95,20 @@ class ProtPontModel extends InfoModel{
 				// get disposition for the class
 				PDSObjDefn lClassWDisp = DMDocument.getClassDisposition (objClass, className, true);
 				if (lClassWDisp != null) {
-					classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
-					objDict.put(lClassWDisp.rdfIdentifier, lClassWDisp);
-					objArr.add(lClassWDisp);
-//					System.out.println("\ndebug ProtPontModel lClassWDisp.rdfIdentifier:" + lClassWDisp.rdfIdentifier);					
-					attrClass = new AttrDefn("TBD");
-					String token1 = (String) tokenIter.next();
-					if (token1.compareTo("(") != 0) {
-						lClassWDisp.description = InfoModel.unEscapeProtegeString(token1);
+					if (lClassWDisp.used.compareTo("Y") == 0) {
+						classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
+						objDict.put(lClassWDisp.rdfIdentifier, lClassWDisp);
+						objArr.add(lClassWDisp);
+//						System.out.println("\ndebug ProtPontModel lClassWDisp.rdfIdentifier:" + lClassWDisp.rdfIdentifier);					
+						attrClass = new AttrDefn("TBD");
+						String token1 = (String) tokenIter.next();
+						if (token1.compareTo("(") != 0) {
+							lClassWDisp.description = InfoModel.unEscapeProtegeString(token1);
+						}
+					} else if (lClassWDisp.used.compareTo("I") == 0) {
+						// class is "hidden" ignore it and do not print warning
+					} else {	// disposition exists but not clear why, print warning 
+						System.out.println(">>warning - Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
 					}
 				} else {
 					objClass.identifier = InfoModel.getClassIdentifier("tbd", className);
