@@ -203,36 +203,18 @@ public class SchemaFileDefn {
 			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + "_DOM" + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
 			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
-		} else if (! DMDocument.LDDSyncFileNameFlag) {
-			relativeFileSpecXMLSchema = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
-			relativeFileSpecSchematron = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".sch";			
-			relativeFileNameXMLSchema = LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
-			relativeFileNameSchematron = LDDToolOutputFileNameNE + "_" +  nameSpaceIdNCUC + "_" + lab_version_id + ".sch";			
-			relativeFileSpecXMLLabel = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
-			relativeFileSpecModelJSON = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".JSON";
-			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + "_DOM" + ".JSON";
-			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".pont";
-			relativeFileSpecReportTXT = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".txt";	
-			relativeFileSpecDDCSV = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
-			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + LDDToolOutputFileNameNE + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		} else {
-			versionId = DMDocument.masterPDSSchemaFileDefn.versionId;
-			labelVersionId = DMDocument.masterPDSSchemaFileDefn.labelVersionId;
-			ont_version_id = DMDocument.masterPDSSchemaFileDefn.ont_version_id;
-			lab_version_id = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-			sch_version_id = DMDocument.masterPDSSchemaFileDefn.sch_version_id;
-			ns_version_id = DMDocument.masterPDSSchemaFileDefn.ns_version_id;	
-
-			relativeFileSpecXMLSchema = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
-			relativeFileSpecSchematron = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
-			relativeFileNameXMLSchema = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
-			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
-			relativeFileSpecXMLLabel = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
-			relativeFileSpecModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".JSON";	
-			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".pont";
-			relativeFileSpecReportTXT = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".txt";	
-			relativeFileSpecDDCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
-			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
+			relativeFileSpecXMLSchema = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
+			relativeFileSpecSchematron = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
+			relativeFileNameXMLSchema = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
+			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
+			relativeFileSpecXMLLabel = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xml";
+			relativeFileSpecModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + "_DOM" + ".JSON";
+			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".pont";
+			relativeFileSpecReportTXT = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".txt";	
+			relativeFileSpecDDCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id;			
+			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_CCSDS"  + "_" + lab_version_id;			
 		}
 		relativeFileSpecDDDocXML = DMDocument.outputDirPath + "export/DD/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "DD" + "_" + lab_version_id + ".xml";	
 		relativeFileSpecDDProtPins = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_" + DMDocument.masterTodaysDateyymmdd + ".pins";	

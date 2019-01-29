@@ -106,7 +106,6 @@ public class DMDocument extends Object {
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
-	static boolean LDDSyncFileNameFlag = false;
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
@@ -553,9 +552,6 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('J') > -1) {
 					exportJSONFileFlag = true;
 				}
-				if (lArg.indexOf('s') > -1) {
-					LDDSyncFileNameFlag = true;
-				}
 				if (lArg.indexOf('1') > -1) {
 					exportSpecFileFlag = true;
 				}
@@ -699,7 +695,6 @@ public class DMDocument extends Object {
 			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
 			System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
 			System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
-			System.out.println("  -s, --sync      Use local namespace + information model version as output file names.");
 			System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
 			System.out.println("  -v, --version   Returns the LDDTool version number");
 			System.out.println("  -h, --help      Print this message");
