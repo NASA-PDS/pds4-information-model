@@ -1,4 +1,4 @@
-; Fri Jan 18 18:27:32 PST 2019
+; Wed Jan 23 13:14:10 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2176,6 +2176,34 @@
 	(attrTitle "x")
 	(identifier "x")
 	(specMesg "In Product_SPICE_Kernel the Time_Coordinates, Investigation_Area, Target_Identification, and Observing_System classes must be present"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101])
+	(identifier "pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_resource', 'has_association', 'has_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"thumbnail_to_data"
+		"thumbnail_to_browse"
+		"thumbnail_to_document"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Update%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002557] of  Schematron_Rule
 

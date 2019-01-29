@@ -207,6 +207,10 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_thumbnail", "browse_to_thumbnail", "The browse product is associated to a thumbnail"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_browse", "browse_to_browse", "The browse product is associated to a different browse product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_document", "browse_to_document", "The browse product is associated to a document."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
+
+		lPVD = new PermValueDefn ("pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference.reference_type.thumbnail_to_data", "thumbnail_to_data", "The thumbnail product is associated to a data product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
+		lPVD = new PermValueDefn ("pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference.reference_type.thumbnail_to_browse", "thumbnail_to_browse", "The thumbnail product is associated to a browse product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
+		lPVD = new PermValueDefn ("pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference.reference_type.thumbnail_to_document", "thumbnail_to_document", "The thumbnail product is associated to a document product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
 		
 		lPVD = new PermValueDefn ("pds:Product_Native/pds:Reference_List/pds:Internal_Reference.reference_type.described_by_document", "described_by_document", "The format of the digital object must be described one or more referenced documents"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Native/pds:Reference_List/pds:Internal_Reference.reference_type.native_to_archival", "native_to_archival", "The product native is associated to a product observational"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
