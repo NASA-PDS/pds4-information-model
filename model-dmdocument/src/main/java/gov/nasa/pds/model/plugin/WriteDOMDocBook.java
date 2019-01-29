@@ -43,8 +43,10 @@ class WriteDOMDocBook extends Object {
 	
 //	print DocBook File
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-//		??? DMDocument.masterPDSSchemaFileDefn
-		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML+"_DOM";
+		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
+		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+		String lDOMLabelVersionId = lLabelVersionId + "_DOM";
+		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
 		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		writeHeader (prDocBook);
 		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);
@@ -255,6 +257,7 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" + getPrompt("Class Hierarchy: ") + lValueString + "</entry>");
         prDocBook.println("                </row>");
 
+        // determine the type and number of class members (attributes and classes)
 		int attrCount = 0, assocCount= 0;
         if (lClass.allAttrAssocArr != null) {
 			for (Iterator <DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
@@ -293,7 +296,7 @@ class WriteDOMDocBook extends Object {
 	    				DOMProp lDOMProp = (DOMProp) k.next();
 	    				if (! (lDOMProp.hasDOMObject instanceof DOMPermValDefn))  continue;	    				
 	    			    DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
-	    				lValueString += lValueDel + getValueLink(lAttr, lPermValueDefn.value);
+	    			    lValueString += lValueDel + getValueLink(lAttr, getValue(lPermValueDefn.value));
 	    				lValueDel = ", ";
 	    			}
 	    		}
@@ -305,6 +308,7 @@ class WriteDOMDocBook extends Object {
 	            prDocBook.println("                </row>");	
 			}
 		}
+		
 		// write the associations
 		if (assocCount == 0) {
 		       prDocBook.println("                <row>");
@@ -587,7 +591,7 @@ class WriteDOMDocBook extends Object {
 				}
 	 	        prDocBook.println("                <row>");
 		        prDocBook.println("                    <entry></entry>"); 
-		        prDocBook.println("                    <entry>" + getValueAnchor(lAttr, lPermValueDefn.value) + getValueBreak (lPermValueDefn.value) + getValue(lDependClause) + lRegistrationStatusInsert + "</entry>");
+		        prDocBook.println("                    <entry>" + getValueAnchor(lAttr, getValue(lPermValueDefn.value)) + getValueBreak (getValue(lPermValueDefn.value)) + getValue(lDependClause) + lRegistrationStatusInsert + "</entry>");
 		        prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue(lValueMeaning) + "</entry>");
 		        prDocBook.println("                </row>");
 			}
@@ -865,7 +869,7 @@ class WriteDOMDocBook extends Object {
 		prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
 		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <author>");
-		prDocBook.println("            <orgname>Data Design Working Group</orgname>");
+		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
 		prDocBook.println("        </author>");
 		prDocBook.println("        <releaseinfo>Generated from Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");

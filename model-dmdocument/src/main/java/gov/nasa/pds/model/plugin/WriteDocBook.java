@@ -33,7 +33,8 @@ class WriteDocBook extends Object {
 		} */
 		
 		classClassificationMap.put("pds.product", new ClassClassificationDefn ("pds.product"));
-		classClassificationMap.put("pds.pds3", new ClassClassificationDefn ("pds.pds3"));
+		if (!DMDocument.importJSONAttrFlag)
+			classClassificationMap.put("pds.pds3", new ClassClassificationDefn ("pds.pds3"));
 		classClassificationMap.put("pds.support", new ClassClassificationDefn ("pds.support"));
 		classClassificationMap.put("pds.other", new ClassClassificationDefn ("pds.other"));
 		classClassificationMap.put("other", new ClassClassificationDefn ("other"));
@@ -86,7 +87,7 @@ class WriteDocBook extends Object {
 		ClassClassificationDefn lClassClassificationDefn = classClassificationMap.get("pds.product");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Product Classes in the common namespace.</title>");
+			prDocBook.println("           <title>Product Classes in the " + lNameSpaceId + " namespace.</title>");
 			prDocBook.println("           <para>These classes define the products.</para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -99,7 +100,7 @@ class WriteDocBook extends Object {
 		lClassClassificationDefn = classClassificationMap.get("pds.support");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Support classes in the common namespace.</title>");
+			prDocBook.println("           <title>Support classes in the " + lNameSpaceId + " namespace.</title>");
 			prDocBook.println("           <para>The classes in this section are used by the product classes.</para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -113,7 +114,7 @@ class WriteDocBook extends Object {
 /*		lClassClassificationDefn = classClassificationMap.get("pds.other");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Other classes in the common (pds) namespace.</title>");
+			prDocBook.println("           <title>Other classes in the " + lNameSpaceId + " (pds) namespace.</title>");
 			prDocBook.println("           <para>These classes </para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -127,7 +128,7 @@ class WriteDocBook extends Object {
 		lClassClassificationDefn = classClassificationMap.get("pds.pds3");
 		if (lClassClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>PDS3 catalog classes in the common namespace.</title>");
+			prDocBook.println("           <title>PDS3 catalog classes in the " + lNameSpaceId + " namespace.</title>");
 			prDocBook.println("           <para>These classes are used to archive PDS3 catalog information. </para>");
 			for (Iterator <PDSObjDefn> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) j.next();
@@ -413,8 +414,8 @@ class WriteDocBook extends Object {
 		AttrClassificationDefn lAttrClassificationDefn = attrClassificationMap.get(DMDocument.masterNameSpaceIdNCLC);
 		if (lAttrClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the common namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes in the common namespace. </para>");
+			prDocBook.println("           <title>Attributes in the " + lNameSpaceId + " namespace.</title>");
+			prDocBook.println("           <para>These attributes are used by the classes in the " + lNameSpaceId + " namespace. </para>");
 			for (Iterator <AttrDefn> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
 				AttrDefn lAttr = (AttrDefn) j.next();
 				writeAttr (lAttr, prDocBook);						
@@ -652,7 +653,7 @@ class WriteDocBook extends Object {
         prDocBook.println("      <!-- =====================Part4 Begin=========================== -->");
         prDocBook.println("");
 		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Data Types in the common namespace.</title>");
+		prDocBook.println("       <title>Data Types in the " + lNameSpaceIdNC + " namespace.</title>");
 		prDocBook.println("       <para>These classes define the data types. </para>");
 					
 //		Sort the data types			
@@ -773,7 +774,7 @@ class WriteDocBook extends Object {
 		
 		prDocBook.println("    </chapter>");		
 		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
+		prDocBook.println("       <title>Units of Measure in the " + lNameSpaceIdNC + " namespace.</title>");
 		prDocBook.println("       <para>These classes define the units of measure. </para>");
 		
 		// get the units
@@ -865,7 +866,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
 		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <author>");
-		prDocBook.println("            <orgname>Data Design Working Group</orgname>");
+		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
 		prDocBook.println("        </author>");
 		prDocBook.println("        <releaseinfo>Generated from Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
@@ -890,7 +891,7 @@ class WriteDocBook extends Object {
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Scope</title>");
-		prDocBook.println("                <para>The Data Dictionary defines the common and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
+		prDocBook.println("                <para>The Data Dictionary defines the " + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + " and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
@@ -915,7 +916,10 @@ class WriteDocBook extends Object {
 		prDocBook.println("                    <itemizedlist>");
 		prDocBook.println("                        <listitem>");
 		prDocBook.println("                            <para>");
-		prDocBook.println("                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
+		if (! DMDocument.importJSONAttrFlag)
+			prDocBook.println("                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
+		else
+			prDocBook.println("                                None.");
 		prDocBook.println("                            </para>");
 		prDocBook.println("                        </listitem>");
 		prDocBook.println("                        ");
