@@ -28,7 +28,6 @@ class XML4LabelSchemaDOM extends Object {
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
 		
-//		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema+ "_DOM";
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 		String lDOMLabelVersionId = lLabelVersionId + "_DOM";
@@ -455,7 +454,7 @@ class XML4LabelSchemaDOM extends Object {
 		}
 
 		// write the XML schema statement
-		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"> </" + pNS + "element>");
+		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
@@ -483,16 +482,18 @@ class XML4LabelSchemaDOM extends Object {
 		}
 		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";			
 		if (lProp.isChoice){
-            if (!choiceBlockOpen) {
+                   if (!choiceBlockOpen) {
 		
 			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
-			minMaxOccursClause = "";
 			prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
 			upIndentSpaces();
 			choiceBlockOpen = true;
-		     } 
+			minMaxOccursClause = "";
+		   }  else {
+			minMaxOccursClause = "";
+                   }
 		} else {
-             if (choiceBlockOpen) {
+                    if (choiceBlockOpen) {
 			downIndentSpaces();
 			prXML.println(indentSpaces() + "</" + pNS + "choice>");
 			choiceBlockOpen = false;
@@ -858,20 +859,24 @@ class XML4LabelSchemaDOM extends Object {
 		    prXML.println("");
 		    prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
 			prXML.println("      <" + pNS + "restriction base=\"" + pNS + "string\">");							
-//			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 			// use attribute list sorted by classOrder
 			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.title.compareTo("unit_id") == 0) {
-					ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lProp.valArr);
+                                if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+				   DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+		  		   if (lDOMAttr != null) {
+			  	      if (lDOMAttr.title.compareTo("unit_id") == 0) {
+					 ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
 					if (lValArr != null) {
 						for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
 							String lVal = (String) k.next();
 							prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
 						}
 					}
-				}
-			}
+				 }
+			       }
+                           }
+                     }
 		    prXML.println("      </" + pNS + "restriction>");
 		    prXML.println("    </" + pNS + "simpleType>");
 		}
