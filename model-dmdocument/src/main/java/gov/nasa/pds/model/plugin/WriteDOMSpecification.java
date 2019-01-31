@@ -344,8 +344,8 @@ public class WriteDOMSpecification extends Object {
 		//System.out.print("-------printing inherited attr ---------");
 		printTableRow2 (lClass.inheritedAttrArr, "Inherited Attribute");
 	
-		printAssoc(lClass.ownedAssocArr, "Association");
-		printAssoc(lClass.inheritedAssocArr, "Inherited Association");
+		printAssoc(lClass, lClass.ownedAssocArr, "Association");
+		printAssoc(lClass,lClass.inheritedAssocArr, "Inherited Association");
 		//	find and print reference for this class
 		ArrayList <DOMClass> refClasses = getClassReferences (lClass.identifier);
 		printSimpleTableRow (refClasses, "Referenced from", true);
@@ -542,7 +542,7 @@ public class WriteDOMSpecification extends Object {
 			printHTMLTableRow (phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
 		}
 	}
-	private void printAssoc (ArrayList <DOMProp> lPropArr, String relation) {
+	private void printAssoc (DOMClass parentClass, ArrayList <DOMProp> lPropArr, String relation) {
 		String phRelation = relation;
 		String phtitle;
 		String phcard ="&nbsp;" ;
@@ -559,9 +559,8 @@ public class WriteDOMSpecification extends Object {
 		ArrayList <DOMProp> lSortPropArr = new ArrayList <DOMProp> (lPropSortMap.values());
 		String lastProp = "&nbsp;";
 		for (Iterator <DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
-			DOMProp lProp = (DOMProp) i.next();						   
-	        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;
-	
+			DOMProp lProp = (DOMProp) i.next();						                      
+	        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;                     	
 			phtitle = "&nbsp;";
 			phcard = "&nbsp;";
 			phindicator = "&nbsp;";
@@ -571,12 +570,11 @@ public class WriteDOMSpecification extends Object {
 			// get lClassAnchorString
 			String lClassAnchorString = lDOMClass.anchorString;
 			// set attributes anchor string
-			if (lProp.attrParentClass == null) {
-				lProp.anchorString = "attribute_";
-			} else {
-				lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
-			}
-			//	("class_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title).toLowerCase();
+//			if (lProp.attrParentClass == null) {
+//				lProp.anchorString = "attribute_";
+			lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + parentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
+
+		//	lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
 			if (lastProp.compareTo(lProp.title) != 0) {
 				   phtitle = "<a href=\"#" + lProp.anchorString + "\">" + lProp.title + "</a>";		
 			} 
@@ -732,9 +730,7 @@ public class WriteDOMSpecification extends Object {
 			if (lProp.isAttribute){
 				DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
 			    lTreeMap.put(lAttr.sort_identifier, lAttr);
-			} else {
-				
-			}
+			} 
 		}
 		Collection <DOMAttr> values3 = lTreeMap.values();		
 		ArrayList <DOMAttr> sortedList = new ArrayList <DOMAttr> ( values3 );
