@@ -365,8 +365,6 @@ class XML4LabelSchema extends Object {
 		lGroupName = "TBD_groupName";
 
 		upIndentSpaces();
-// 999 - Need to remove Geometry for new LDD
-//		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1) || (lClass.title.indexOf("Geometry") > -1)) {
 //		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1) || (lClass.title.indexOf(DMDocument.LDDToolGeometry) > -1)) {
 		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1)) {
 			writeClassXSAnyStmts (prXML);
