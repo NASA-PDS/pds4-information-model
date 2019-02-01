@@ -35,3 +35,5 @@
 *.javac
 .gwt/
 target/
+model-dmdocument/src/main/java/gov/nasa/pds/model/plugin/DOMInfoModel.java.bak
+*.bak
