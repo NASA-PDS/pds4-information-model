@@ -1,4 +1,4 @@
-; Wed Jan 23 13:10:48 PST 2019
+; Fri Feb 01 16:00:43 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -35235,7 +35235,6 @@
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.424864027]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2587250]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.534785580]
-		[pv.0001_NASA_PDS_1.pds.Target.pds.type.83500]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2003984165]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.943723667]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.465971714])
@@ -35290,7 +35289,6 @@
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.424864027]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2587250]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.534785580]
-		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.83500]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2003984165]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.943723667]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.465971714])
@@ -74551,14 +74549,6 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.765122084])
 	(value "Open Cluster"))
 
-([pv.0001_NASA_PDS_1.pds.Target.pds.type.83500] of  PermissibleValue
-
-	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Target.pds.type])
-	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.83500])
-	(value "Sun"))
-
 ([pv.0001_NASA_PDS_1.pds.Target.pds.type.866833498] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -74814,14 +74804,6 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.765122084])
 	(value "Open Cluster"))
-
-([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.83500] of  PermissibleValue
-
-	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Target_Identification.pds.type])
-	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.83500])
-	(value "Sun"))
 
 ([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.866833498] of  PermissibleValue
 
@@ -92659,12 +92641,6 @@
 	(description "The target is classified as an open cluster")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Target.pds.type.83500] of  ValueMeaning
-
-	(beginDate "2009-06-09")
-	(description "The target is classified as a sun")
-	(endDate "2019-12-31"))
-
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.866833498] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -92855,12 +92831,6 @@
 
 	(beginDate "2009-06-09")
 	(description "The target is classified as an open cluster")
-	(endDate "2019-12-31"))
-
-([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.83500] of  ValueMeaning
-
-	(beginDate "2009-06-09")
-	(description "The target is classified as a sun")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.866833498] of  ValueMeaning
