@@ -1,4 +1,4 @@
-; Fri Feb 01 16:00:43 PST 2019
+; Mon Feb 04 13:51:02 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -35232,6 +35232,7 @@
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-483696169]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-1644150754]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2547280]
+		[pv.0001_NASA_PDS_1.pds.Target.pds.type.-1825807926]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.424864027]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.2587250]
 		[pv.0001_NASA_PDS_1.pds.Target.pds.type.534785580]
@@ -35286,6 +35287,7 @@
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-483696169]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1644150754]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2547280]
+		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1825807926]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.424864027]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.2587250]
 		[pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.534785580]
@@ -74341,6 +74343,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-1759452837])
 	(value "Exoplanet System"))
 
+([pv.0001_NASA_PDS_1.pds.Target.pds.type.-1825807926] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target.pds.type.-1825807926])
+	(value "Sample"))
+
 ([pv.0001_NASA_PDS_1.pds.Target.pds.type.-1901896264] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -74596,6 +74606,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1759452837])
 	(value "Exoplanet System"))
+
+([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1825807926] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Target_Identification.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1825807926])
+	(value "Sample"))
 
 ([pv.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1901896264] of  PermissibleValue
 
@@ -88192,13 +88210,13 @@
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-230038890] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Map")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-372820294] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Map")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-426039356] of  ValueMeaning
@@ -88666,13 +88684,13 @@
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-230038890] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Scale_Map")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-372820294] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
+	(description "The attribute being defined uses one of the values of unit_id listed in class Units_of_Pixel_Resolution_Map")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.unit_of_measure_type.-426039356] of  ValueMeaning
@@ -92485,6 +92503,12 @@
 	(description "This type indicates a target that is a star or stellar system %28binary, trinary, etc.%29 with a known or suspected planetary system around it.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1825807926] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The target is classified as a physical sample representative of a larger whole. Samples may include but are not confined to rocks, minerals, fluids, or synthetic approximations of those types of materials.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Target.pds.type.-1901896264] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -92675,6 +92699,12 @@
 
 	(beginDate "2009-06-09")
 	(description "This type indicates a target that is a star or stellar system %28binary, trinary, etc.%29 with a known or suspected planetary system around it.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1825807926] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The target is classified as a physical sample representative of a larger whole. Samples may include but are not confined to rocks, minerals, fluids, or synthetic approximations of those types of materials.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Target_Identification.pds.type.-1901896264] of  ValueMeaning
