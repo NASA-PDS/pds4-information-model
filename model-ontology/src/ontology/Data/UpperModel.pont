@@ -1,4 +1,4 @@
-; Mon Feb 04 09:48:56 PST 2019
+; Mon Feb 04 15:01:53 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8280,7 +8280,7 @@
 	(single-slot type
 ;+		(comment "The type attribute classifies the instrument host.  When more than one value is correct, the value with the finest granularity should be selected.  That is, choose \"rover\" rather than \"spacecraft\" when both would be correct since rover more narrowly defines the type of instrument host.")
 		(type STRING)
-;+		(value "Earth Based" "Rover" "Spacecraft" "Lander" "Earth-based")
+;+		(value "Earth Based" "Rover" "Spacecraft" "Lander" "Earth-based" "Aircraft" "Balloon" "Suborbital Rocket")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
