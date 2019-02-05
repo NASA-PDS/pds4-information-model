@@ -1,4 +1,4 @@
-; Mon Feb 04 16:11:03 PST 2019
+; Tue Feb 05 15:27:51 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8196,7 +8196,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Investigation "The Investigation class provides a description of activities involved in the collection of data."
+(defclass Investigation "A set of experiments and/or observations with a clearly defined purpose."
 	(is-a TNDO_Context)
 	(role concrete)
 	(single-slot data_object
@@ -8213,7 +8213,7 @@
 	(single-slot type
 ;+		(comment "The type attribute classifies the investigation according to its scope.")
 		(type STRING)
-;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation")
+;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
