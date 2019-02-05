@@ -44,6 +44,7 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_7", "bundle_has_member_collection",       "The bundle has a member collection member"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_8", "bundle_has_schema_collection",       "The bundle has a schema collection member"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_9", "bundle_has_spice_kernel_collection", "The bundle has a spice kernel collection member"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_10", "bundle_has_miscellaneous_collection", "The bundle has a miscellaneous collection member"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.DD_Association.reference_type_<Value>_1", "attribute_of",   "The referenced attribute is a member of this class"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.DD_Association.reference_type_<Value>_2", "subclass_of",    "The referenced class is a subclass of this class"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
@@ -85,7 +86,7 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Observing_System_Component/pds:Internal_Reference.reference_type.is_other", "is_other", "The referenced class is a context product describing something not classified."); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Observing_System_Component/pds:Internal_Reference.reference_type.is_facility", "is_facility", "The referenced class is a context product describing the facility."); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Observing_System_Component/pds:Internal_Reference.reference_type.is_telescope", "is_telescope", "The referenced class is a context product describing the telescope."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
-		lPVD = new PermValueDefn ("pds:Observing_System_Component/pds:Internal_Reference.reference_type.is_airborne", "is_airborne", "The referenced class is a context product describing the an airborne platform."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
+		lPVD = new PermValueDefn ("pds:Observing_System_Component/pds:Internal_Reference.reference_type.is_airborne", "is_airborne", "*Deprecated* The referenced class is a context product describing an airborne platform."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
 		
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_associate", "data_to_associate", "The data product is associated to a product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_resource", "data_to_resource", "The data product is associated to a resource"); masterValueMeaningMap.put(lPVD.identifier, lPVD);

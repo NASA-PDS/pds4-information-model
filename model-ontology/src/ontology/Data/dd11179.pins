@@ -1,4 +1,4 @@
-; Mon Feb 04 15:14:04 PST 2019
+; Mon Feb 04 16:28:06 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -32602,6 +32602,7 @@
 		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.989340256]
 		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-11288919]
 		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-94190847]
+		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1170357199]
 		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-254362214]
 		[pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.1789267981])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type")
@@ -67410,6 +67411,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-11288919])
 	(value "bundle_has_geometry_collection"))
 
+([pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1170357199] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1170357199])
+	(value "bundle_has_miscellaneous_collection"))
+
 ([pv.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1591910064] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -87328,6 +87337,12 @@
 	(description "The bundle has a geometry collection member")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1170357199] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The bundle has a miscellaneous collection member")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-1591910064] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -87355,7 +87370,7 @@
 ([vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.-94190847] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The bundle has a member collection member")
+	(description "*Deprecated* The bundle has a member collection member")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Bundle_Member_Entry.pds.reference_type.1665382709] of  ValueMeaning

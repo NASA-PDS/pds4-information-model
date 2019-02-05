@@ -120,7 +120,6 @@ public class DMDocument extends Object {
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
 	static boolean exportDOMFlag = true;
-	// set exportDOMFlag to true - 190131
 	static boolean pds4ModelFlag = true;
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
@@ -1097,7 +1096,9 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Aircraft", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Balloon", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
+
 		deprecatedObjects2.add(new DeprecatedDefn ("Internal_Reference.reference_type", "pds", "Internal_Reference", "pds", "reference_type", "is_airborne", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Internal_Reference.reference_type", "pds", "Internal_Reference", "pds", "reference_type", "bundle_has_member_collection", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Display_2D_Image", "pds", "Display_2D_Image", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));	
