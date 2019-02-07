@@ -906,21 +906,22 @@ public abstract class DOMInfoModel extends Object {
 	}
 	
 	// clone an attribute 
-	static public AttrDefn cloneAttr (String lRDFIdentifier, AttrDefn lOrgAttr) {
-		AttrDefn lNewAttr = new AttrDefn (lRDFIdentifier);				              					              
-		lNewAttr.uid = lOrgAttr.uid;										              
-		lNewAttr.identifier = lOrgAttr.identifier; 						              
+	static public DOMAttr cloneDOMAttr (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle, DOMAttr lOrgAttr) {
+		DOMAttr lNewAttr = new DOMAttr ();				              					              
+//		lNewAttr.uid = lOrgAttr.uid;										              
+		lNewAttr.setRDFIdentifier (lAttrTitle);								              										              
+		lNewAttr.setIdentifier(lClassNameSpaceIdNC, lClassTitle, lAttrNameSpaceIdNC, lAttrTitle); 						              
 		lNewAttr.sort_identifier = lOrgAttr.sort_identifier;				              
-		lNewAttr.attrAnchorString = lOrgAttr.attrAnchorString;			              
+//		lNewAttr.attrAnchorString = lOrgAttr.attrAnchorString;			              
 		lNewAttr.title = lOrgAttr.title;  								              
 		lNewAttr.versionId = lOrgAttr.versionId;							              
 		lNewAttr.registrationStatus = lOrgAttr.registrationStatus;		              
-		lNewAttr.XMLSchemaName = lOrgAttr.XMLSchemaName;					              
+		lNewAttr.XMLSchemaName = lAttrTitle;					              
 		lNewAttr.regAuthId = lOrgAttr.regAuthId;							              
 		lNewAttr.steward = lOrgAttr.steward;								              
 		lNewAttr.classSteward = lOrgAttr.classSteward;					              
-		lNewAttr.attrNameSpaceId = lOrgAttr.attrNameSpaceId;                     
-		lNewAttr.attrNameSpaceIdNC = lOrgAttr.attrNameSpaceIdNC;                   
+		lNewAttr.nameSpaceId = lOrgAttr.nameSpaceId;                     
+		lNewAttr.nameSpaceIdNC = lOrgAttr.nameSpaceIdNC;                   
 		lNewAttr.classNameSpaceIdNC = lOrgAttr.classNameSpaceIdNC;                  
 		lNewAttr.submitter = lOrgAttr.submitter;							              
 		lNewAttr.subModelId = lOrgAttr.subModelId;						              
@@ -929,7 +930,7 @@ public abstract class DOMInfoModel extends Object {
 		lNewAttr.classConcept = lOrgAttr.classConcept;					              
 		lNewAttr.dataConcept = lOrgAttr.dataConcept;						              
 		lNewAttr.classWord = lOrgAttr.classWord;							              
-		lNewAttr.description = lOrgAttr.description;                         
+		lNewAttr.definition = lOrgAttr.definition;                         
 		lNewAttr.lddLocalIdentifier = lOrgAttr.lddLocalIdentifier;		              
 
 		lNewAttr.xmlBaseDataType = lOrgAttr.xmlBaseDataType;				              
@@ -1185,8 +1186,8 @@ public abstract class DOMInfoModel extends Object {
 		return (seq);
 	}
 	
-	
 	// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
+	// 7777 deprecate this
 	static public ArrayList <DOMAttr> getAttArrByTitleStewardClassSteward () {
 		TreeMap <String, DOMAttr> lDOMAttrMap = new TreeMap <String, DOMAttr>();
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
@@ -1196,7 +1197,48 @@ public abstract class DOMInfoModel extends Object {
 		ArrayList <DOMAttr> lDOMAttrArr = new ArrayList <DOMAttr>(lDOMAttrMap.values());	
 		return (lDOMAttrArr);
 	}
-
+	
+	// for DOM model
+	// 7777
+	static public ArrayList <DOMProp> getPropArrByTitleStewardClassSteward () {
+		String lBlanks = "                              "; // 30 blanks
+		TreeMap <String, DOMProp> lDOMPropMap = new TreeMap <String, DOMProp>();
+		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				DOMClass lDOMClass = lDOMProp.attrParentClass;
+				String lClassTitle = lDOMClass.title;
+				String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
+				String lMemberTitle = lDOMAttr.title;
+				String lMemberNameSpaceLCNC = lDOMAttr.nameSpaceIdNC;
+				String lSortKey = lMemberTitle + "_" + lMemberNameSpaceLCNC;
+				int lLength = lSortKey.length();
+				if (lLength >= 30) {
+					lLength = 30;
+				}
+				String lPaddedSortKey = lSortKey + lBlanks.substring(0, 30 - lLength) + lClassTitle + "_" + lClassNameSpaceLCNC;
+				lDOMPropMap.put(lPaddedSortKey, lDOMProp);
+			} else {
+				DOMClass lDOMMemberClass = (DOMClass) lDOMProp.hasDOMObject;
+				DOMClass lDOMClass = lDOMProp.attrParentClass;
+				String lClassTitle = lDOMClass.title;
+				String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
+				String lMemberTitle = lDOMMemberClass.title;
+				String lMemberNameSpaceLCNC = lDOMMemberClass.nameSpaceIdNC;
+				String lSortKey = lMemberTitle + "_" + lMemberNameSpaceLCNC;
+				int lLength = lSortKey.length();
+				if (lLength >= 30) {
+					lLength = 30;
+				}
+				String lPaddedSortKey = lSortKey + lBlanks.substring(0, 30 - lLength) + lClassTitle + "_" + lClassNameSpaceLCNC;
+				lDOMPropMap.put(lPaddedSortKey, lDOMProp);
+			}
+		}
+		ArrayList <DOMProp> lDOMPropArr = new ArrayList <DOMProp>(lDOMPropMap.values());	
+		return (lDOMPropArr);
+	}
+	
 //====================== Miscellaneous Routines ==============================================================================	
 	
 	/**
@@ -1465,8 +1507,8 @@ public abstract class DOMInfoModel extends Object {
 //		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
 		
 // 		Permissible values
+		prDOMWriter.println("\n        has attr.domPermValueArr");
 		if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
-			prDOMWriter.println("        has attr.domPermValueArr");
 			for (Iterator <DOMProp> j = attr.domPermValueArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
 				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
@@ -1475,8 +1517,8 @@ public abstract class DOMInfoModel extends Object {
 				}
 			}
 		} else {
-			if (attr.domPermValueArr == null) prDOMWriter.println("        domPermValueArr:" + "null");
-			else  prDOMWriter.println("  ERROR domPermValueArr.size():" + attr.domPermValueArr.size());
+			if (attr.domPermValueArr == null) prDOMWriter.println("            attr.domPermValueArr:" + "null");
+			else                              prDOMWriter.println("            attr.domPermValueArr.size():" + attr.domPermValueArr.size());
 		}
 	}
 	
