@@ -424,6 +424,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Directory_Path_Name</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_MD5_Checksum</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_DOI</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_BibCode</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_AnyURI</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Local_Identifier</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Local_Identifier_Reference</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 

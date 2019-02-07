@@ -1,4 +1,4 @@
-; Tue Feb 05 13:59:35 PST 2019
+; Thu Feb 07 12:41:03 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -13,6 +13,10 @@
 ([ASCII_AnyURI] of  DataType
 
 	(dataTypeName "ASCII_AnyURI"))
+
+([ASCII_BibCode] of  DataType
+
+	(dataTypeName "ASCII_BibCode"))
 
 ([ASCII_Boolean] of  DataType
 
@@ -958,6 +962,10 @@
 		[NEVD.0001_NASA_PDS_1.disp.Display_Direction.disp.vertical_display_axis]
 		[EVD.0001_NASA_PDS_1.disp.Display_Direction.disp.vertical_display_direction]
 		[NEVD.0001_NASA_PDS_1.disp.Movie_Display_Settings.disp.time_display_axis]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_DOY_UTC.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_DOY_UTC.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_DOY_UTC.pds.pattern]
@@ -2023,6 +2031,62 @@
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
 	(versionIdentifier "1.12"))
 
 ([DE.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type] of  DataElement
@@ -17355,6 +17419,10 @@
 		[DE.0001_NASA_PDS_1.msn.Mission_Information.msn.stop_orbit_number]
 		[DE.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.character_encoding]
+		[DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule]
+		[DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern]
+		[DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type]
 		[DE.0001_NASA_PDS_1.pds.ASCII_DOI.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_DOI.pds.formation_rule]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Date.pds.character_constraint]
@@ -18214,6 +18282,26 @@
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type] of  Definition
+
+	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  Definition
+
+	(definitionText "The character_constraint attribute limits the characters allowed.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  Definition
+
+	(definitionText "The formation_rule attribute provides a %47user friendly%47 instruction for forming values.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  Definition
+
+	(definitionText "The pattern attribute provides a symbolic instruction for forming values.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  Definition
 
 	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 	(isPreferred TRUE))
@@ -23799,6 +23887,26 @@
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type] of  Designation
+
+	(designationName "xml_schema_base_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  Designation
+
+	(designationName "character_constraint")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  Designation
+
+	(designationName "formation_rule")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  Designation
+
+	(designationName "pattern")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  Designation
 
 	(designationName "xml_schema_base_type")
 	(isPreferred TRUE))
@@ -29479,6 +29587,94 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.12"))
 
+([EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint.62568241])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type.2015311842])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
 ([EVD.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
@@ -33121,6 +33317,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.651452622]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-557195686]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-372203270]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-1402605808]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.1133577867]
@@ -33266,6 +33463,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.651452622]
+		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-557195686]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-372203270]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-1402605808]
 		[pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.1133577867]
@@ -33626,6 +33824,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.651452622]
+		[pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-557195686]
 		[pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-372203270]
 		[pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-1402605808]
 		[pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.1133577867]
@@ -33722,6 +33921,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.651452622]
+		[pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-557195686]
 		[pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-372203270]
 		[pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-1402605808]
 		[pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.1133577867]
@@ -33770,6 +33970,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.651452622]
+		[pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-557195686]
 		[pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-372203270]
 		[pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-1402605808]
 		[pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.1133577867]
@@ -53973,6 +54174,42 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
 
+([PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
 ([PR.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type] of  Property
 
 	(administrationRecord [DD_1.12.0.0])
@@ -65804,6 +66041,38 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type.1494634417])
 	(value "xsd:anyURI"))
 
+([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint.62568241] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint.62568241])
+	(value "ASCII"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674])
+	(value "YYYYJJJJJVVVVMPPPPA"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001])
+	(value "%5B0-9%5D%7B4%7D%5BA-Za-z0-9%5C&%5C.%5D%7B5%7D%5BA-Za-z0-9%5C.%5D%7B9%7D%5BAZ%5C.%5D"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type.2015311842] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type.2015311842])
+	(value "xsd:string"))
+
 ([pv.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type.-3371401] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -68932,6 +69201,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-530668020])
 	(value "ASCII_Real"))
 
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-557195686] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-557195686])
+	(value "ASCII_BibCode"))
+
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-804506148] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -69555,6 +69832,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-530668020])
 	(value "ASCII_Real"))
+
+([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-557195686] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-557195686])
+	(value "ASCII_BibCode"))
 
 ([pv.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-854081068] of  PermissibleValue
 
@@ -70396,6 +70681,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-530668020])
 	(value "ASCII_Real"))
 
+([pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-557195686] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-557195686])
+	(value "ASCII_BibCode"))
+
 ([pv.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.1013068388] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70764,6 +71057,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-530668020])
 	(value "ASCII_Real"))
 
+([pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-557195686] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Field_Character.pds.data_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-557195686])
+	(value "ASCII_BibCode"))
+
 ([pv.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.1133577867] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70971,6 +71272,14 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-530668020])
 	(value "ASCII_Real"))
+
+([pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-557195686] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-557195686])
+	(value "ASCII_BibCode"))
 
 ([pv.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.1133577867] of  PermissibleValue
 
@@ -78112,6 +78421,34 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type])
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_AnyURI.pds.xml_schema_base_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type] of  TerminologicalEntry
@@ -86140,6 +86477,30 @@
 	(description "ASCII_AnyURI has an XML schema base type of xsd:anyURI")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.character_constraint.62568241] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values of ASCII_BibCode must be ASCII.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The ADS BibCode is expressed as a series of six character strings, consisting of the year of publication (YYYY), the identifier for the journal (JJJJJ), its volume number (VVVV), the type of journal (M), the page number (PPPP), and the last initial of the author (A). The format and its use are specified by the Astrophysics Data System (see http://adsabs.harvard.edu).")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "TBD_value_meaning")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type.2015311842] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "ASCII_BibCode has an XML schema base type of xsd:string")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.ASCII_Boolean.pds.xml_schema_base_type.-3371401] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -88486,6 +88847,12 @@
 	(description "The value is expressed using the data type ASCII_Real")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-557195686] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The value is expressed using the data type ASCII_BibCode")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.value_data_type.-804506148] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -88952,6 +89319,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The value is expressed using the data type ASCII_Real")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-557195686] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The value is expressed using the data type ASCII_BibCode")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain_Full.pds.value_data_type.-854081068] of  ValueMeaning
@@ -89584,6 +89957,12 @@
 	(description "Values in Field_Binary have data type ASCII_Real")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.-557195686] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values in Field_Binary have data type ASCII_BibCode")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Field_Binary.pds.data_type.1013068388] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -89860,6 +90239,12 @@
 	(description "Values in Field_Character have data type ASCII_Real")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.-557195686] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values in Field_Character have data type ASCII_BibCode")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Field_Character.pds.data_type.1133577867] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -90014,6 +90399,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The delimited field has data type ASCII_Real")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.-557195686] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values in Field_Delimited have data type ASCII_BibCode")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Field_Delimited.pds.data_type.1133577867] of  ValueMeaning
@@ -91165,31 +91556,31 @@
 ([vm.0001_NASA_PDS_1.pds.Investigation.pds.type.-1560864404] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A set of experiments and/or observations with a clearly defined purpose that is under the direction of an organization (such as a national space agency) and uses one or more vehicles of similar design. A mission is usually conducted by a national or international space agency using a small number (often one) of spacecraft especially designed and built for the purpose. For example: (1) the NASA Voyager mission launched two spacecraft to Jupiter and Saturn; (2) the Deep Impact (DI) mission launched a spacecraft, part of which impacted the comet Tempel 2; and (3) the EPOXI mission redefined the objectives of the surviving DI hardware for further exploration of the solar system.")
+	(description "A set of experiments and%2For observations with a clearly defined purpose that is under the direction of an organization %28such as a national space agency%29 and uses one or more vehicles of similar design. A mission is usually conducted by a national or international space agency using a small number %28often one%29 of spacecraft especially designed and built for the purpose. For example: %281%29 the NASA Voyager mission launched two spacecraft to Jupiter and Saturn; %282%29 the Deep Impact %28DI%29 mission launched a spacecraft, part of which impacted the comet Tempel 2; and %283%29 the EPOXI mission redefined the objectives of the surviving DI hardware for further exploration of the solar system.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Investigation.pds.type.-179916366] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Any other set of experiments and/or observations with a unifying theme.")
+	(description "Any other set of experiments and%2For observations with a unifying theme.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Investigation.pds.type.-955543881] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A set of experiments and/or observations with a clearly defined purpose that is coordinated among one or more individuals and/or one or more organizations. The campaign is characterized primarily by its remote sensing observations. For example, the International Halley Watch mobilized observatories around the world for collection of data during the most recent apparition of Comet Halley. The Shoemaker-Levy-9 (SL9) campaign used both Earth-based and spacecraft instruments to monitor the SL9 impact on Jupiter.")
+	(description "A set of experiments and%2For observations with a clearly defined purpose that is coordinated among one or more individuals and%2For one or more organizations. The campaign is characterized primarily by its remote sensing observations. For example, the International Halley Watch mobilized observatories around the world for collection of data during the most recent apparition of Comet Halley. The Shoemaker-Levy-9 %28SL9%29 campaign used both Earth-based and spacecraft instruments to monitor the SL9 impact on Jupiter.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Investigation.pds.type.1073663419] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A set of experiments and/or observations with a clearly defined purpose that is under the direction of a single individual. For example, a series of related laboratory experiments/observations conducted by a small university team and funded through a single proposal could be an Individual Investigation. Library research by one person on previously published results to distill common conclusions could also be an Individual Investigation.")
+	(description "A set of experiments and%2For observations with a clearly defined purpose that is under the direction of a single individual. For example, a series of related laboratory experiments%2Fobservations conducted by a small university team and funded through a single proposal could be an Individual Investigation. Library research by one person on previously published results to distill common conclusions could also be an Individual Investigation.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Investigation.pds.type.1622534582] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A set of experiments and/or observations with a clearly defined purpose that is coordinated among one or more individuals and/or one or more organizations. The campaign is characterized primarily by its in situ terrestrial field work.")
+	(description "A set of experiments and%2For observations with a clearly defined purpose that is coordinated among one or more individuals and%2For one or more organizations. The campaign is characterized primarily by its in situ terrestrial field work.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Investigation_Area.pds.type.-1560864404] of  ValueMeaning

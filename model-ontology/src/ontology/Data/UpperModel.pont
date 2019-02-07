@@ -1,4 +1,4 @@
-; Tue Feb 05 15:27:51 PST 2019
+; Thu Feb 07 10:25:40 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7780,7 +7780,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Binary (see PDS Standards Reference section \"Binary Data Types\").")
 		(type STRING)
-;+		(value "SignedLSB2" "SignedLSB4" "SignedLSB8" "SignedMSB2" "SignedMSB4" "SignedMSB8" "UnsignedByte" "UnsignedLSB2" "UnsignedLSB4" "UnsignedMSB2" "UnsignedMSB4" "IEEE754MSBDouble" "IEEE754MSBSingle" "ASCII_File_Name" "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "UnsignedLSB8" "UnsignedMSB8" "IEEE754LSBDouble" "IEEE754LSBSingle" "SignedByte" "UTF8_String" "ASCII_String" "SignedBitString" "UnsignedBitString" "ComplexLSB16" "ComplexLSB8" "ComplexMSB16" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ComplexMSB8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "SignedLSB2" "SignedLSB4" "SignedLSB8" "SignedMSB2" "SignedMSB4" "SignedMSB8" "UnsignedByte" "UnsignedLSB2" "UnsignedLSB4" "UnsignedMSB2" "UnsignedMSB4" "IEEE754MSBDouble" "IEEE754MSBSingle" "ASCII_File_Name" "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "UnsignedLSB8" "UnsignedMSB8" "IEEE754LSBDouble" "IEEE754LSBSingle" "SignedByte" "UTF8_String" "ASCII_String" "SignedBitString" "UnsignedBitString" "ComplexLSB16" "ComplexLSB8" "ComplexMSB16" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ComplexMSB8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7842,7 +7842,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Character (see PDS Standards Reference section \"Character Data Types\").")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7899,7 +7899,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Delimited (see PDS Standards Reference section \"Character Data Types\").")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -11785,7 +11785,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_value
@@ -11887,7 +11887,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot permissible_value
@@ -14276,6 +14276,34 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:IDREF")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_BibCode "The ASCII BibCode class indicates a bibliographic code from the Astrophysics Data System."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot formation_rule
+;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
+		(type STRING)
+;+		(value "YYYYJJJJJVVVVMPPPPA")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[0-9]{4}[A-Za-z0-9\\&\\.]{5}[A-Za-z0-9\\.]{9}[AZ\\.]")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
