@@ -143,7 +143,7 @@ public class WriteDOMSpecification extends Object {
 				} else if (secInfo.secSubType.compareTo("hierarchy") == 0) {
 					printClassHierarchySection (getPrintClassArr(secInfo), secInfo);
 				} else if (secInfo.secSubType.compareTo("datadictionary") == 0) {
-					printDataDictLegacy();
+					printDataDict();
 				} else if (secInfo.secSubType.compareTo("glossary") == 0) {
 					printGlossary(secInfo);
 				}
@@ -723,24 +723,24 @@ public class WriteDOMSpecification extends Object {
 		boolean pflag = false;
 //	write the description heading
 		prhtml.println("<dl>");
-		// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
-		TreeMap <String, DOMAttr> lTreeMap = new TreeMap <String, DOMAttr>();
-		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+		// get property array sorted by "attribute", namespace, attr title, namespace, class title
+	        ArrayList<DOMProp> sortedList = DOMInfoModel.getPropArrByTitleStewardClassSteward();	
+		for (Iterator<DOMProp> i = sortedList.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
-			if (lProp.isAttribute){
-				DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
-			    lTreeMap.put(lAttr.sort_identifier, lAttr);
-			} 
-		}
-		Collection <DOMAttr> values3 = lTreeMap.values();		
-		ArrayList <DOMAttr> sortedList = new ArrayList <DOMAttr> ( values3 );
-		
-		for (Iterator<DOMAttr> i = sortedList.iterator(); i.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) i.next();
-			if (lAttr.isUsedInClass || includeAllAttrFlag) {
-				printDataElement (lAttr);
-				pflag = true;
-			}
+			pflag = true;
+                        if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+                           DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+			   if (lAttr.isUsedInClass || includeAllAttrFlag) {
+				printDataElementAttr (lAttr);
+                           }
+			} else { // association
+                                DOMClass lDOMMemberClass = (DOMClass) lProp.hasDOMObject;
+                                DOMClass lDOMClass = lProp.attrParentClass;
+                                String lClassTitle = lDOMClass.title;
+                                String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
+                                String lMemberTitle = lDOMMemberClass.title;
+
+                        }
 		}
 		if (! pflag) {
 			prhtml.println("<dt><b>" + "Unknown" +  "</b><dd>" +  "Unknown Description");		
@@ -751,13 +751,16 @@ public class WriteDOMSpecification extends Object {
 	/**
 		*  Print a data element
 		*/
-	private void printDataElement (DOMAttr attr) {
+	private void printDataElementAttr (DOMAttr attr) {
 		boolean fflag, altflag;		
 		String phtitle, desc, altlist;
 		
 		// get lClassAnchorString
 		DOMClass lClass = attr.attrParentClass;
-		if (lClass == null) return;
+		if (lClass == null) {
+                    System.out.println("null return for lClass = " + attr.attrParentClass.title);
+                    return;
+                }
 		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
 		String lRegistrationStatus = "";
@@ -844,7 +847,6 @@ private void printAttrUnit (DOMAttr attr) {
 	}
 
 	/**
-	*  Print an attributes type
 	*/
 
 	private void printAttrMisc (DOMAttr attr) {
@@ -913,9 +915,9 @@ private void printAttrUnit (DOMAttr attr) {
 		String phvalue = "";
 		boolean elipflag = false;
 
-		if  (lAttr.hasDOMObject.size() == 0) {	
-			return; 
-		}	  
+//		if  (lAttr.hasDOMObject.size() == 0) {	
+//			return; 
+//		}	  
 		ArrayList<DOMProp> lValClassArr = lAttr.domPermValueArr;;
 
 		  if (lValClassArr.size() > 1) {
