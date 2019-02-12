@@ -1208,8 +1208,8 @@ public abstract class DOMInfoModel extends Object {
 			if (lDOMProp.hasDOMObject != null) {
 				if (lDOMProp.hasDOMObject instanceof DOMAttr) {
 					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-					if (lDOMAttr.attrParentClass != null) {
-						DOMClass lDOMClass = lDOMAttr.attrParentClass;
+					if (lDOMProp.attrParentClass != null) {
+						DOMClass lDOMClass = lDOMProp.attrParentClass;
 						String lClassTitle = lDOMClass.title;
 						String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
 						String lMemberTitle = lDOMAttr.title;

@@ -84,6 +84,7 @@ public class GetDOMModel extends Object {
 						if (lDOMProp != null && DOMInfoModel.masterDOMPropMap.get(lDOMProp.rdfIdentifier) == null) {
 							DOMInfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
 							lClass.ownedAttrArr.add(lDOMProp);
+							lDOMProp.attrParentClass = lClass;
 						} else {
 							System.out.println(">>error    - Duplicate Found - ADDING Attribute Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
 						}
@@ -111,6 +112,7 @@ public class GetDOMModel extends Object {
 						if (lDOMProp != null && DOMInfoModel.masterDOMPropMap.get(lDOMProp.rdfIdentifier) == null) {
 							DOMInfoModel.masterDOMPropMap.put(lDOMProp.rdfIdentifier, lDOMProp);
 							lClass.ownedAssocArr.add(lDOMProp);
+							lDOMProp.attrParentClass = lClass;
 						} else {
 							System.out.println(">>error    - Duplicate Found - ADDING Class Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
 						}

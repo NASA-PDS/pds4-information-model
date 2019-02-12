@@ -318,20 +318,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		return;
 	}
 	
-	public void initAttrParentClass (AttrDefn lOldAttr, TreeMap <String, DOMClass> lDOMClassIdMap) {		
-		PDSObjDefn lOldAttrParentClass = lOldAttr.attrParentClass;
-		if (lOldAttrParentClass != null) {
-			String lIdentifier = lOldAttrParentClass.identifier;
-			if (lIdentifier != null && (lIdentifier.indexOf("TBD") != 0) ) {
-				attrParentClass = lDOMClassIdMap.get(lIdentifier);
-			} else {
-				System.out.println(">>warning  - initAttrParentClass  - Failed to get attrParentClass - lOldAttr.attrParentClass.identifier: " + lIdentifier);				
-			}
-		} else {
-			System.out.println(">>warning  - initAttrParentClass  - Null attrParentClass - lOldAttr.identifier: " + lOldAttr.identifier);							
-		}
-	}
-	
 	// copy a string array
 	public void InitStringArr (ArrayList <String> lDomStrArr, ArrayList <String> lPDSStrArr) {
 		if (lPDSStrArr == null) return;
