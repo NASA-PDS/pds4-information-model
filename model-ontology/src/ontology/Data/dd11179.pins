@@ -1,4 +1,4 @@
-; Thu Feb 07 12:41:03 PST 2019
+; Thu Feb 07 13:48:41 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1091,6 +1091,9 @@
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
@@ -12897,6 +12900,48 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id])
 	(versionIdentifier "1.12"))
 
+([DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(versionIdentifier "1.12"))
+
 ([DE.0001_NASA_PDS_1.pds.Units_of_Frame_Rate.pds.specified_unit_id] of  DataElement
 
 	(administrationRecord [DD_1.12.0.0])
@@ -17643,6 +17688,9 @@
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
@@ -22162,6 +22210,21 @@
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  Definition
 
 	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 	(isPreferred TRUE))
@@ -27767,6 +27830,21 @@
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  Designation
 
 	(designationName "unit_id")
 	(isPreferred TRUE))
@@ -36049,6 +36127,76 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id.74])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type.2080120488])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.74]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.77214]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.3217]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.106044])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
 	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -63453,6 +63601,33 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
 
+([PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
 ([PR.0001_NASA_PDS_1.pds.Units_of_Frame_Rate.pds.specified_unit_id] of  Property
 
 	(administrationRecord [DD_1.12.0.0])
@@ -75561,6 +75736,54 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id.65])
 	(value "A"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id.74] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id.74])
+	(value "J"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type.2080120488] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type.2080120488])
+	(value "Energy"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.106044] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.106044])
+	(value "keV"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.3217] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.3217])
+	(value "eV"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.74] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.74])
+	(value "J"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.77214] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.77214])
+	(value "MeV"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Frame_Rate.pds.specified_unit_id.-1644955318] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -83855,6 +84078,27 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Current.pds.unit_id])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Units_of_Frame_Rate.pds.specified_unit_id] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -86025,6 +86269,17 @@
 		"A"
 		"mA"))
 
+([Units_of_Energy] of  UnitOfMeasure
+
+	(defaultUnitId "J")
+	(measureName "Units_of_Energy")
+	(precision "TBD_precision")
+	(unitId
+		"eV"
+		"keV"
+		"MeV"
+		"J"))
+
 ([Units_of_Frame_Rate] of  UnitOfMeasure
 
 	(defaultUnitId "frames%2Fs")
@@ -86486,7 +86741,7 @@
 ([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The ADS BibCode is expressed as a series of six character strings, consisting of the year of publication (YYYY), the identifier for the journal (JJJJJ), its volume number (VVVV), the type of journal (M), the page number (PPPP), and the last initial of the author (A). The format and its use are specified by the Astrophysics Data System (see http://adsabs.harvard.edu).")
+	(description "The ADS BibCode is expressed as a series of six character strings, consisting of the year of publication %28YYYY%29, the identifier for the journal %28JJJJJ%29, its volume number %28VVVV%29, the type of journal %28M%29, the page number %28PPPP%29, and the last initial of the author %28A%29. The format and its use are specified by the Astrophysics Data System %28see http:%2F%2Fadsabs.harvard.edu%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001] of  ValueMeaning
@@ -93615,6 +93870,42 @@
 
 	(beginDate "2009-06-09")
 	(description "The abbreviated unit for Units_of_Current is A")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id.74] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Energy maximum, minimum, and permissible values are given in the unit joule.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type.2080120488] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Energy is classified as being of type Energy")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.106044] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for kiloelectronvolts Units_of_Energy.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.3217] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for electronvolts in Units_of_Energy.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.74] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for joules in Units_of_Energy.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id.77214] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for megaelectronvolts in Units_of_Energy.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Frame_Rate.pds.specified_unit_id.-1644955318] of  ValueMeaning

@@ -438,6 +438,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Area</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Current</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Distance</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Energy</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Frame_Rate</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Frequency</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Length</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record>

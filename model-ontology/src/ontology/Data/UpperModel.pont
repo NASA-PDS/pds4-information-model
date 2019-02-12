@@ -1,4 +1,4 @@
-; Thu Feb 07 10:25:40 PST 2019
+; Thu Feb 07 13:22:50 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12767,6 +12767,28 @@
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
 ;+		(value "km/pixel" "m/pixel" "mm/pixel" "deg/pixel")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Energy "Units_of_Energy is a magnitude of energy."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Energy")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "J")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "eV" "keV" "MeV" "J")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
