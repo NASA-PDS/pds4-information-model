@@ -1,4 +1,4 @@
-; Thu Feb 07 13:22:50 PST 2019
+; Tue Feb 12 16:10:44 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11995,7 +11995,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Source_Product_External "The Source_Product_External class is used to reference one or more source products outside the PDS4 Registry that have a common reference_type and (optional) doi, curating facility, and/or description. A source product contains input data for the creation of this product."
+(defclass Source_Product_External "The Source_Product_External class is used to reference one or more source products (a product containing input data for the creation of this product) outside the PDS4 Registry that have a common reference_type, doi, curating facility, and/or description. At least one of doi or curating facility must be provided. All source products listed within a single Source_Product_External class must correspond to the same doi and/or curating facility."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot description
