@@ -1,4 +1,4 @@
-; Wed Feb 13 16:00:55 PST 2019
+; Thu Feb 14 12:07:41 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1010,6 +1010,8 @@
 		[NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
+		[NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format]
+		[NEVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format]
 		[NEVD.0001_NASA_PDS_1.pds.Group.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Group.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Group_Facet1.pds.facet1]
@@ -7944,6 +7946,20 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Character.pds.unit])
 	(versionIdentifier "1.12"))
 
+([DE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format])
+	(versionIdentifier "1.12"))
+
 ([DE.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  DataElement
 
 	(administrationRecord [DD_1.12.0.0])
@@ -8054,6 +8070,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format])
 	(versionIdentifier "1.12"))
 
 ([DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.value_offset] of  DataElement
@@ -17588,6 +17618,8 @@
 		[DE.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
 		[DE.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[DE.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
+		[DE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format]
+		[DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format]
 		[DE.0001_NASA_PDS_1.pds.Field_Statistics.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.File.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Group.pds.description]
@@ -20316,7 +20348,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Binary.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Binary.pds.field_length] of  Definition
@@ -20361,7 +20393,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Bit.pds.name] of  Definition
@@ -20416,7 +20448,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.field_length] of  Definition
@@ -20444,6 +20476,11 @@
 	(definitionText "The unit attribute provides the unit of measurement.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  Definition
+
+	(definitionText "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  Definition
 
 	(definitionText "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value %28Ov%29 is calculated from the stored value %28Sv%29 thus: Ov = %28Sv * scaling_factor%29 %2B value_offset. The default value is 0.")
@@ -20461,7 +20498,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.field_format] of  Definition
 
-	(definitionText "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
+	(definitionText "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.maximum_field_length] of  Definition
@@ -20482,6 +20519,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit] of  Definition
 
 	(definitionText "The unit attribute provides the unit of measurement.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  Definition
+
+	(definitionText "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section %42Field Formats%42 for details.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.value_offset] of  Definition
@@ -26064,6 +26106,11 @@
 	(designationName "unit")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  Designation
+
+	(designationName "validation_format")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  Designation
 
 	(designationName "value_offset")
@@ -26102,6 +26149,11 @@
 ([DES.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit] of  Designation
 
 	(designationName "unit")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  Designation
+
+	(designationName "validation_format")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Field_Delimited.pds.value_offset] of  Designation
@@ -31183,7 +31235,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -31293,7 +31345,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -31403,7 +31455,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -44819,6 +44871,27 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.12"))
 
+([NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
 ([NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
@@ -44960,6 +45033,27 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([NEVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "%[\\+,-]?[0-9]+(\\.([0-9]+))?[doxfeEs]")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format])
+	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -58570,6 +58664,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
 
+([PR.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
 ([PR.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  Property
 
 	(administrationRecord [DD_1.12.0.0])
@@ -58656,6 +58759,15 @@
 	(administrationRecord [DD_1.12.0.0])
 	(classOrder "1050")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
@@ -67176,12 +67288,12 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571])
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570])
 	(value "13"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
@@ -67216,12 +67328,12 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576])
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575])
 	(value "18"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
@@ -67256,12 +67368,12 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571])
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570])
 	(value "13"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
@@ -81600,6 +81712,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Field_Character.pds.unit])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format])
+	(designation [DES.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Field_Character.pds.value_offset] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -81654,6 +81773,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit])
 	(designation [DES.0001_NASA_PDS_1.pds.Field_Delimited.pds.unit])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format])
+	(designation [DES.0001_NASA_PDS_1.pds.Field_Delimited.pds.validation_format])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Field_Delimited.pds.value_offset] of  TerminologicalEntry
@@ -87452,7 +87578,7 @@
 	(description "Values of ASCII_LID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "Values of ASCII_LID must have at least 13 characters")
@@ -87482,7 +87608,7 @@
 	(description "Values of ASCII_LIDVID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "Values of ASCII_LID must have at least 18 characters")
@@ -87512,7 +87638,7 @@
 	(description "Values of ASCII_LIDVID_LID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "Values of ASCII_LID must have at least 13 characters")

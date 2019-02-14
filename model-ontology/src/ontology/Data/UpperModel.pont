@@ -1,4 +1,4 @@
-; Wed Feb 13 16:20:45 PST 2019
+; Thu Feb 14 11:57:38 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2913,7 +2913,7 @@
 		(type STRING)
 		(create-accessor read-write))
 	(multislot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot was_associated_with
@@ -3536,6 +3536,10 @@
 ;+		(comment "The semi_major_axis attribute provides the radius of the equatorial axis of the ellipsoid.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot validation_format
+;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot software_dialect
 ;+		(comment "The software dialect attribute indicates the variety of a language used to write the software.")
@@ -7741,7 +7745,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7792,6 +7796,11 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot validation_format
+;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
@@ -7803,7 +7812,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7854,13 +7863,18 @@
 		(type FLOAT)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot validation_format
+;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7932,7 +7946,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
