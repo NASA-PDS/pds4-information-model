@@ -1,4 +1,4 @@
-; Thu Feb 07 13:48:41 PST 2019
+; Wed Feb 13 16:00:55 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -31139,7 +31139,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.1843799403])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.-1628927188])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -31249,7 +31249,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.789339458])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.-233281503])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -31359,7 +31359,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.-1412533658])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.1414155646])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -67160,13 +67160,13 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.character_constraint.62568241])
 	(value "ASCII"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.1843799403] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.-1628927188] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.1843799403])
-	(value "urn:nasa:pds:xxxx"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.-1628927188])
+	(value "urn:xxx:yyy:zzzz"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.maximum_characters.49746] of  PermissibleValue
 
@@ -67182,7 +67182,7 @@
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571])
-	(value "14"))
+	(value "13"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -67200,13 +67200,13 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.character_constraint.62568241])
 	(value "ASCII"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.789339458] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.-233281503] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.789339458])
-	(value "urn:nasa:pds:xxxx::M.n"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.-233281503])
+	(value "urn:xxx:yyy:zzzz::M.n"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.maximum_characters.49746] of  PermissibleValue
 
@@ -67222,7 +67222,7 @@
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576])
-	(value "19"))
+	(value "18"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -67240,13 +67240,13 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.character_constraint.62568241])
 	(value "ASCII"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.-1412533658] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.1414155646] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.-1412533658])
-	(value "urn:nasa:pds:xxxx%2Furn:nasa:pds:xxxx::M.n"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.1414155646])
+	(value "urn:xxx:yyy:zzzz%2Furn:xxx:yyy:zzzz::M.n"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.maximum_characters.49746] of  PermissibleValue
 
@@ -67262,7 +67262,7 @@
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571])
-	(value "14"))
+	(value "13"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -87440,10 +87440,10 @@
 	(description "Values of ASCII_LID must be ASCII")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.1843799403] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule.-1628927188] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The logical identifier is formed by concatenating %42urn%42, %42nasa%42, and %42pds%42 with an identifer %28represented by %42xxxx%42%29 chosen by the data provider. Colons separate the fields. Rules for forming logical identifiers are given in the PDS4 Standards Reference section %42Logical Indentifier%42.")
+	(description "The logical identifier is formed by concatenating %42urn%42, %42xxx%42 %28e.g., nasa%29, and %42yyy%42 %28e.g., pds%29 with an identifer %28represented by %42zzzz%42%29 chosen by the data provider. Colons separate the fields. Rules for forming logical identifiers are given in the PDS4 Standards Reference section %42Logical Indentifier%42.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.maximum_characters.49746] of  ValueMeaning
@@ -87455,7 +87455,7 @@
 ([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1571] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LID must have at least 14 characters")
+	(description "Values of ASCII_LID must have at least 13 characters")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type.2015311842] of  ValueMeaning
@@ -87470,10 +87470,10 @@
 	(description "Values of ASCII_LIDVID must be ASCII")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.789339458] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule.-233281503] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A versioned identifier %28LIDVID%29 is formed by appending a version identifier %28VID%29 of the form M.n to a logical identifier %28LID%29 of the form usa:nasa:pds:xxxx. Rules for forming versioned identifiers are given in the PDS4 Standards Reference section %42Identifiers%42.")
+	(description "A versioned identifier %28LIDVID%29 is formed by appending a version identifier %28VID%29 of the form M.n to a logical identifier %28LID%29 of the form urn:xxx:yyy:zzzz. Rules for forming versioned identifiers are given in the PDS4 Standards Reference section %42Identifiers%42.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.maximum_characters.49746] of  ValueMeaning
@@ -87485,7 +87485,7 @@
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1576] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LIDVID must have at least 19 characters")
+	(description "Values of ASCII_LID must have at least 18 characters")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type.2015311842] of  ValueMeaning
@@ -87500,10 +87500,10 @@
 	(description "Values of ASCII_LIDVID_LID must be ASCII")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.-1412533658] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule.1414155646] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The value must be a logical identifier %28LID%29 of the form usa:nasa:psa:xxxx or a versioned identifier %28LIDVID%29 of the form usa:nasa:pds:xxxx::M.n. Rules for forming logical and versioned identifiers are given in the PDS4 Standards Reference section %42Identifiers%42.")
+	(description "The value must be a logical identifier %28LID%29 of the form urn:xxx:yyy:zzzz or a versioned identifier %28LIDVID%29 of the form urn:xxx:yyy:zzzz::M.n. Rules for forming logical and versioned identifiers are given in the PDS4 Standards Reference section %42Identifiers%42.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.maximum_characters.49746] of  ValueMeaning
@@ -87515,7 +87515,7 @@
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1571] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LIDVID_LID must have at least 14 characters")
+	(description "Values of ASCII_LID must have at least 13 characters")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type.2015311842] of  ValueMeaning

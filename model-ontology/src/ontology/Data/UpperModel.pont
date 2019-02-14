@@ -1,4 +1,4 @@
-; Tue Feb 12 16:10:44 PST 2019
+; Wed Feb 13 16:20:45 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5669,7 +5669,7 @@
 ;+		(allowed-classes External_Reference)
 		(create-accessor read-write)))
 
-(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in the PDS registry system."
+(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in PDS4-compliant registries of PDS and its recognized international partners."
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot lid_reference
@@ -13446,7 +13446,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx")
+;+		(value "urn:xxx:yyy:zzzz")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
@@ -13468,7 +13468,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "14")
+;+		(value "13")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -13495,7 +13495,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx::M.n")
+;+		(value "urn:xxx:yyy:zzzz::M.n")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -13507,7 +13507,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "19")
+;+		(value "18")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -14161,7 +14161,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx/urn:nasa:pds:xxxx::M.n")
+;+		(value "urn:xxx:yyy:zzzz/urn:xxx:yyy:zzzz::M.n")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -14173,7 +14173,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "14")
+;+		(value "13")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
