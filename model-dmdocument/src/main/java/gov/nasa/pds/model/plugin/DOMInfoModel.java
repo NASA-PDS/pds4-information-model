@@ -1228,8 +1228,8 @@ public abstract class DOMInfoModel extends Object {
 						DOMClass lDOMClass = lDOMProp.attrParentClass;
 						String lClassTitle = lDOMClass.title;
 						String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
-						String lMemberTitle = lDOMMemberClass.title;
-						String lMemberNameSpaceLCNC = lDOMMemberClass.nameSpaceIdNC;
+						String lMemberTitle = lDOMProp.title;
+						String lMemberNameSpaceLCNC = lDOMProp.nameSpaceIdNC;
 						String lSortKey = lMemberTitle + "_" + lMemberNameSpaceLCNC;
 						int lLength = lSortKey.length();
 						if (lLength >= 30) {
