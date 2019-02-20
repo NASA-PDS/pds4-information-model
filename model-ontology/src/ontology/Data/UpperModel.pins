@@ -1,4 +1,4 @@
-; Thu Feb 14 11:57:38 PST 2019
+; Wed Feb 20 09:12:05 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -493,6 +493,30 @@
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 16 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "validation_format")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Character")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518.101])
+	(identifier "pds:Field_Character/pds:validation_format")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Field_Character/pds:validation_format"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518.101] of  Schematron_Assert
+
+	(assertMsg "If a validation_format is present, its value must be equal to the value in field_format")
+	(assertStmt ". = ../pds:field_format")
+	(assertType "RAW")
+	(attrTitle "validation_format")
+	(identifier "validation_format")
+	(specMesg "If a validation_format is present, its value must be equal to the value in field_format"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518] of  Schematron_Rule
 

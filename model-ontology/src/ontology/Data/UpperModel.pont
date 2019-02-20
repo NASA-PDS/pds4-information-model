@@ -1,4 +1,4 @@
-; Thu Feb 14 11:57:38 PST 2019
+; Wed Feb 20 09:12:05 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7861,11 +7861,6 @@
 	(single-slot value_offset
 ;+		(comment "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value (Ov) is calculated from the stored value (Sv) thus: Ov = (Sv * scaling_factor) + value_offset. The default value is 0.")
 		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot validation_format
-;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
-		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot description
