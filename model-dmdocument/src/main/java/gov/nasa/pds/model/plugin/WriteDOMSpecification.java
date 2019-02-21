@@ -344,8 +344,8 @@ public class WriteDOMSpecification extends Object {
 		//System.out.print("-------printing inherited attr ---------");
 		printTableRow2 (lClass.inheritedAttrArr, "Inherited Attribute");
 	
-		printAssoc(lClass, lClass.ownedAssocArr, "Association");
-		printAssoc(lClass,lClass.inheritedAssocArr, "Inherited Association");
+		printAssoc(lClass.ownedAssocArr, "Association");
+		printAssoc(lClass.inheritedAssocArr, "Inherited Association");
 		//	find and print reference for this class
 		ArrayList <DOMClass> refClasses = getClassReferences (lClass.identifier);
 		printSimpleTableRow (refClasses, "Referenced from", true);
@@ -452,7 +452,7 @@ public class WriteDOMSpecification extends Object {
 			String lRegistrationStatus = "";
 			if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
 			   
-	        DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+	                DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
 			phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle() + lRegistrationStatus + "</a>";
 			String cmin = lDOMAttr.cardMin;																// get min card
 			String cmax = lDOMAttr.cardMax;																// get max card
@@ -542,7 +542,7 @@ public class WriteDOMSpecification extends Object {
 			printHTMLTableRow (phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
 		}
 	}
-	private void printAssoc (DOMClass parentClass, ArrayList <DOMProp> lPropArr, String relation) {
+	private void printAssoc ( ArrayList <DOMProp> lPropArr, String relation) {
 		String phRelation = relation;
 		String phtitle;
 		String phcard ="&nbsp;" ;
@@ -560,7 +560,7 @@ public class WriteDOMSpecification extends Object {
 		String lastProp = "&nbsp;";
 		for (Iterator <DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();						                      
-	        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;                     	
+	                DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;                     	
 			phtitle = "&nbsp;";
 			phcard = "&nbsp;";
 			phindicator = "&nbsp;";
@@ -570,11 +570,11 @@ public class WriteDOMSpecification extends Object {
 			// get lClassAnchorString
 			String lClassAnchorString = lDOMClass.anchorString;
 			// set attributes anchor string
-//			if (lProp.attrParentClass == null) {
-//				lProp.anchorString = "attribute_";
-			lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + parentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
-
-		//	lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
+			if (lProp.attrParentClass == null) {
+				lProp.anchorString = "attribute_";
+                        } else {
+			        lProp.anchorString = ("attribute_" + lProp.classNameSpaceIdNC + "_" + lProp.attrParentClass.title + "_" + lDOMClass.nameSpaceIdNC + "_"  + lProp.title).toLowerCase();
+                        }
 			if (lastProp.compareTo(lProp.title) != 0) {
 				   phtitle = "<a href=\"#" + lProp.anchorString + "\">" + lProp.title + "</a>";		
 			} 
@@ -727,20 +727,10 @@ public class WriteDOMSpecification extends Object {
 	        ArrayList<DOMProp> sortedList = DOMInfoModel.getPropArrByTitleStewardClassSteward();	
 		for (Iterator<DOMProp> i = sortedList.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
+                //   System.out.println("%%%%%%%%%%% "+ lProp.title);
 			pflag = true;
-                        if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-                           DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-			   if (lAttr.isUsedInClass || includeAllAttrFlag) {
-				printDataElementAttr (lAttr);
-                           }
-			} else { // association
-                                DOMClass lDOMMemberClass = (DOMClass) lProp.hasDOMObject;
-                                DOMClass lDOMClass = lProp.attrParentClass;
-                                String lClassTitle = lDOMClass.title;
-                                String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
-                                String lMemberTitle = lDOMMemberClass.title;
+			printDataElement(lProp);
 
-                        }
 		}
 		if (! pflag) {
 			prhtml.println("<dt><b>" + "Unknown" +  "</b><dd>" +  "Unknown Description");		
@@ -751,51 +741,74 @@ public class WriteDOMSpecification extends Object {
 	/**
 		*  Print a data element
 		*/
-	private void printDataElementAttr (DOMAttr attr) {
+	private void printDataElement (DOMProp lProp) {
 		boolean fflag, altflag;		
 		String phtitle, desc, altlist;
+
+                if (lProp.hasDOMObject != null) {
+                   if ( lProp.hasDOMObject instanceof DOMAttr) {
+ 
+                    DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+	  	    if (lAttr.isUsedInClass || includeAllAttrFlag) {
 		
-		// get lClassAnchorString
-		DOMClass lClass = attr.attrParentClass;
-		if (lClass == null) {
-                    System.out.println("null return for lClass = " + attr.attrParentClass.title);
-                    return;
-                }
-		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
-		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
-		String lRegistrationStatus = "";
-		if (attr.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-		phtitle = "<a name=\"" + attr.anchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
-		desc = attr.definition;
-		altflag = false; altlist = ""; fflag = true;
-		HashMap lmap = (HashMap) attr.genAttrMap;
-		if (lmap != null) {
-			ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
+		    // get lClassAnchorString
+		       DOMClass lClass = lAttr.attrParentClass;
+		       String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
+		       String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
+		       String lRegistrationStatus = "";
+		       if (lAttr.registrationStatus.compareTo("Retired") == 0)
+                           lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
+		
+                       phtitle = "<a name=\"" + lAttr.anchorString + "\"><b>" + lAttr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
+		       desc = lAttr.definition;
+		       altflag = false; altlist = ""; fflag = true;
+		       HashMap lmap = (HashMap) lAttr.genAttrMap;
+ 		       if (lmap != null) {
+		       	ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
 			if (attraliasarr != null) {
 				for (Iterator <String> i = attraliasarr.iterator(); i.hasNext();) {
 					if (fflag) {
-						fflag = false;
-						altflag = true;
-						altlist = " {Alternatives: ";
+					   fflag = false;
+					   altflag = true;
+					   altlist = " {Alternatives: ";
 					} else {
-						altlist += ", ";
+					   altlist += ", ";
 					}
 					altlist += (String) i.next();
 				}
 				if (altflag) {
 					altlist += "} ";
 				}
-			}
-		}
-		prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
+			 }
+		        }
+		        prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
+                       }
 
-		printAttrType (attr);
-		printAttrUnit (attr);
-		printAttrMisc (attr);
-		printAttrValue (attr);
-		printAttrValueExtended (attr);
-		printAttrSchematronRuleMsg(attr);
-	}	
+		       printAttrType (lProp);
+		       printAttrUnit (lAttr);
+	               printAttrMisc (lAttr);
+	       	       printAttrValue (lAttr);
+		       printAttrValueExtended (lAttr);
+		       printAttrSchematronRuleMsg(lAttr);
+	         } else {
+                       DOMClass lDOMMemberClass = (DOMClass) lProp.hasDOMObject;
+                       DOMClass lDOMClass = lProp.attrParentClass;
+                       String lMemberTitle = lDOMMemberClass.title;
+		       String lClassAnchorString = ("attribute_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title +"_"+ lDOMClass.nameSpaceIdNC + "_" + lProp.title).toLowerCase();
+		       String lClassHrefString = "<a href=\"#" + "class_"+ lDOMClass.nameSpaceIdNC +"_" + lDOMClass.title.toLowerCase() +   "\">" + lDOMClass.title + "</a>";
+		       String lRegistrationStatus = "";
+		      // if (lProp.registrationStatus.compareTo("Retired") == 0)
+                       //    lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
+                       phtitle = "<a name=\"" + lClassAnchorString + "\"><b>" + lProp.title + "</b> in " + lClassHrefString + "</a>";
+
+		       desc = lProp.definition;
+                       altlist = "";
+		        prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
+		   printAttrType (lProp);
+
+                 }   	
+          }
+        }
 
 	
 	/**
@@ -823,14 +836,15 @@ private void printAttrUnit (DOMAttr attr) {
 	/**
 	*  Print an attributes type
 	*/
-	private void printAttrType (DOMAttr attr) {
+	private void printAttrType (DOMProp prop) {
 		String phtype;
 		
-		if (attr.isAttribute) {
-			if (attr.valueType.indexOf("TBD") == 0) {
+		if (prop.isAttribute) {
+                    DOMAttr lAttr = (DOMAttr) prop.hasDOMObject;
+			if (lAttr.valueType.indexOf("TBD") == 0) {
 				return;
 			}
-			phtype = (String) attr.valueType;
+			phtype = (String) lAttr.valueType;
 		} else {
 			phtype = "Association";
 		}
@@ -1290,7 +1304,7 @@ private void printAttrUnit (DOMAttr attr) {
 		}
 		prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
 
-		printAttrType (attr);
+//		printAttrType (attr);
 		printAttrUnit (attr);
 		printAttrMisc (attr);
 		printAttrValue (attr);
