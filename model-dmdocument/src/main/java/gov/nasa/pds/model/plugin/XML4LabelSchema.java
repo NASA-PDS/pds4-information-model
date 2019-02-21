@@ -793,6 +793,7 @@ class XML4LabelSchema extends Object {
 						hasPattern = true;
 						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
 							String lPattern = (String) k.next();
+							lPattern = InfoModel.escapeXMLChar(lPattern);
 							prXML.println("        <" + pNS + "pattern value='" + lPattern + "'/>");
 						}
 					}

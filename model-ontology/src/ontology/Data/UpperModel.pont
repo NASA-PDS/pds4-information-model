@@ -1,4 +1,4 @@
-; Wed Feb 20 09:12:05 PST 2019
+; Thu Feb 21 10:48:16 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -14322,7 +14322,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "[0-9]{4}[A-Za-z0-9\\&\\.]{5}[A-Za-z0-9\\.]{9}[AZ\\.]")
+;+		(value "[0-9]{4}[A-Za-z0-9&\\.]{5}[A-Za-z0-9\\.]{9}[A-Z\\.]")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint

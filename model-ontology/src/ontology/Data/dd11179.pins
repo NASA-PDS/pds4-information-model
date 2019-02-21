@@ -1,4 +1,4 @@
-; Wed Feb 20 09:39:15 PST 2019
+; Thu Feb 21 10:53:20 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -29738,7 +29738,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-1870442610])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -66288,13 +66288,13 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.formation_rule.-651256674])
 	(value "YYYYJJJJJVVVVMPPPPA"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-1870442610] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001])
-	(value "%5B0-9%5D%7B4%7D%5BA-Za-z0-9%5C&%5C.%5D%7B5%7D%5BA-Za-z0-9%5C.%5D%7B9%7D%5BAZ%5C.%5D"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-1870442610])
+	(value "%5B0-9%5D%7B4%7D%5BA-Za-z0-9&%5C.%5D%7B5%7D%5BA-Za-z0-9%5C.%5D%7B9%7D%5BA-Z%5C.%5D"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -86807,7 +86807,7 @@
 	(description "The ADS BibCode is expressed as a series of six character strings, consisting of the year of publication %28YYYY%29, the identifier for the journal %28JJJJJ%29, its volume number %28VVVV%29, the type of journal %28M%29, the page number %28PPPP%29, and the last initial of the author %28A%29. The format and its use are specified by the Astrophysics Data System %28see http:%2F%2Fadsabs.harvard.edu%29.")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-281145001] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_BibCode.pds.pattern.-1870442610] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "TBD_value_meaning")
