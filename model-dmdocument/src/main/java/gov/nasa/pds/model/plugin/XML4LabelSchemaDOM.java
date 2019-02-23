@@ -829,8 +829,8 @@ class XML4LabelSchemaDOM extends Object {
 						// if not null there there are one or more patterns
 						hasPattern = true;
 						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
-							lPattern = DOMInfoModel.escapeXMLChar(lPattern);
 							String lPattern = (String) k.next();
+							lPattern = DOMInfoModel.escapeXMLChar(lPattern);
 							prXML.println("        <" + pNS + "pattern value='" + lPattern + "'/>");
 						}
 					}
