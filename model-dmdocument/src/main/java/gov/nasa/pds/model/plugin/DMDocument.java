@@ -1107,7 +1107,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Array.Local_Internal_Reference", "pds", "Array", "pds", "Local_Internal_Reference", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth Based", "pds", "Instrument_Host", "pds", "type", "Earth Based", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth-based", "pds", "Instrument_Host", "pds", "type", "Earth-based", false));
+//		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth-based", "pds", "Instrument_Host", "pds", "type", "Earth-based", false));
 
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds", "type", "", false));                            
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));                            
