@@ -1,4 +1,4 @@
-; Thu Feb 21 10:53:20 PST 2019
+; Fri Feb 22 15:50:31 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -59711,6 +59711,15 @@
 	(administrationRecord [DD_1.12.0.0])
 	(classOrder "1060")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.description")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Instrument.pds.has_type_list_area] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "1015")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.has_type_list_area")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))

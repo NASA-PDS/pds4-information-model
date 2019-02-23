@@ -1,4 +1,4 @@
-; Thu Feb 21 10:48:16 PST 2019
+; Fri Feb 22 15:34:03 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3422,6 +3422,11 @@
 ;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_type_list_area
+;+		(comment "The has_type_list_area association is a relationship to Type_List_Area.")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
 	(single-slot resource_desc
 ;+		(comment "The resource_desc attribute provides a description for the resource")
 		(type STRING)
@@ -4476,7 +4481,7 @@
 	(multislot has_type_list_entry
 ;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
 		(type INSTANCE)
-;+		(allowed-classes Type_List_Entry)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot identifier_reference
 ;+		(comment "The identifier_reference attribute provides the value of an identifier.")
@@ -8356,6 +8361,12 @@
 	(multislot subtype
 ;+		(comment "The subtype attribute is a special type included within the general type. It provides more specific clarifying and/or supplemental information as to the nature of the type.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot has_type_list_area
+;+		(comment "The has_type_list_area association is a relationship to Type_List_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Type_List_Area)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Target "The Target class provides a description of a physical object that is the object of data collection."
@@ -8721,138 +8732,9 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Instrument2 "The Instrument class provides a description of a physical object that collects data."
+(defclass Type_List_Area "The Type_List_Area allows the insertion of a Type List."
 	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Physical_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot serial_number
-;+		(comment "The serial number attribute provides the manufacturer's serial number assigned to an instrument host.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot model_id
-;+		(comment "The model_id attribute helps discriminate instrument hardware. For example \"flight\", \"engineering\", or \"proto\" have been used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot type
-;+		(comment "The type attribute provides a classification for the resource. For instrument type the value is taken from a local data dictionary.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot naif_instrument_id
-;+		(comment "The naif_instrument_id element provides the numeric ID used within the SPICE system to identify the spacecraft, spacecraft structure or science instrument.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot type_list_identifer
-;+		(comment "The type_list_identifier attribute identifies the list from which the values in the type_list were selected.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Type_List "The Type_List class provides a list of values and their value meanings."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot type
-;+		(comment "The type attribute provides a classification for the resource.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot title
-;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot has_type_list_entry
-;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
-		(type INSTANCE)
-;+		(allowed-classes Type_List_Entry)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot identifier
-;+		(comment "The identifier attribute provides the formal name used to refer to an object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Type_List_Entry "The Type_List_Entry class provides a single value and its value meaning."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot value_meaning
-;+		(comment "The value_meaning attribute provides the meaning, or semantic content, of the associated permissible value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot value
-;+		(comment "The value attribute provides a single, allowed numerical or character string value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Target2 "The Target class provides a description of a physical object that is the object of data collection."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Physical_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot alternate_designation
-;+		(comment "The alternate_designation attribute provides a known alternate name or identifier.")
-		(type STRING)
-		(create-accessor read-write))
-	(multislot type
-;+		(comment "The type attribute provides a classification for the resource.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot name_resolver_reference
-;+		(comment "The name_resolver_reference attribute provides a reference to a name resolution service.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot naif_target_id
-;+		(comment "The naif_target_id element provides the numeric ID used within the SPICE system to identify the target..")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role concrete))
 
 (defclass Dictionary "The Dictionary class provides a description of a local data dictionary."
 	(is-a TNDO_Context)

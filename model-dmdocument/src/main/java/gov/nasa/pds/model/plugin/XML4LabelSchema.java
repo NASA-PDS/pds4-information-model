@@ -371,6 +371,11 @@ class XML4LabelSchema extends Object {
 			downIndentSpaces();
 			return;
 		}
+		if ((lClass.title.indexOf("Type_List_Area") > -1)) {
+			writeClassXSAnyTypeList (prXML);
+			downIndentSpaces();
+			return;
+		}
 		for (Iterator<AttrDefn> i = lAttrAssocArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
 			if (lAttr.isAny) writeClassXSAnyStmts (prXML);
@@ -570,6 +575,16 @@ class XML4LabelSchema extends Object {
 //		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"lax\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
 		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
 		prXML.println("      <!-- <" + pNS + "element name=\"Any_NonDigital_Object\" type=\"pds:Any_NonDigital_Object\" minOccurs=\"0\" maxOccurs=\"unbounded\"> </" + pNS + "element> -->");
+		xsAnyStmtWritten = true;
+		return;
+	}
+
+//	write the Type List XSAny statements
+	public void writeClassXSAnyTypeList (PrintWriter prXML) throws java.io.IOException {
+		if (xsAnyStmtWritten) return;
+		prXML.println("      <!-- When creating a context product you must insert a type list. -->");
+		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"1\" />");
+		prXML.println("      <!-- <" + pNS + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"1\"> </" + pNS + "element> -->");
 		xsAnyStmtWritten = true;
 		return;
 	}
