@@ -277,7 +277,8 @@ class XML4LabelSchema extends Object {
 			lClassName = lClass.subClassOfTitle + "-" + lClass.title;
 		}
 		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
 		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -312,7 +313,8 @@ class XML4LabelSchema extends Object {
 			lSuperClassName = lSuperClassName + "-" + lClass.title;
 		}		
 		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
 		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -338,7 +340,8 @@ class XML4LabelSchema extends Object {
 	}	
 	
 	public void writeXMLClassNeither (SchemaFileDefn lSchemaFileDefn, PDSObjDefn lClass, ArrayList<PDSObjDefn> visitClassList, ArrayList<PDSObjDefn> recurseClassList, PrintWriter prXML) throws java.io.IOException {		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
 		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -591,7 +594,8 @@ class XML4LabelSchema extends Object {
 	
 //	write the mission and node areas
 	public void writeClassXSAny (PDSObjDefn lClass, PrintWriter prXML) throws java.io.IOException {
-		prXML.println("\n  <" + pNS + "complexType name=\"" + lClass.title + "\">");
+		prXML.println("");
+		prXML.println("  <" + pNS + "complexType name=\"" + lClass.title + "\">");
 		prXML.println("    <" + pNS + "annotation>");
 		prXML.print  ("      <" + pNS + "documentation>");
 		prXML.print  (" " + lClass.description);
@@ -645,7 +649,8 @@ class XML4LabelSchema extends Object {
 			if (! lAttr.isNilable || hasUnits) {
 				writeXMLExtendedRestrictedNonEnumerated (lSchemaFileDefn, hasUnits, lAttr, prXML);			
 			} else {
-				prXML.println("\n  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
+				prXML.println("");
+				prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 				prXML.println("    <" + pNS + "annotation>");		
 				prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
 				prXML.println("    </" + pNS + "annotation>");		
@@ -663,9 +668,11 @@ class XML4LabelSchema extends Object {
 	public void writeXMLExtendedRestrictedNonEnumerated (SchemaFileDefn lSchemaFileDefn, boolean hasUnits, AttrDefn lAttr, PrintWriter prXML) throws java.io.IOException {
 		String lValue;
 		if (hasUnits) {
-			prXML.println("\n  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "_WO_Units\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "_WO_Units\">");
 		} else {
-			prXML.println("\n  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
 			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
 			prXML.println("    </" + pNS + "annotation>");
@@ -707,7 +714,8 @@ class XML4LabelSchema extends Object {
 		prXML.println("  </" + pNS + "simpleType>");
 		
 		if (hasUnits) {
-			prXML.println("\n  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
 			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
 			prXML.println("    </" + pNS + "annotation>");		
