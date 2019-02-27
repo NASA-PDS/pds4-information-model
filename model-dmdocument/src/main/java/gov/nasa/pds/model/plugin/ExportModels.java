@@ -167,8 +167,8 @@ public class ExportModels extends Object {
 //		System.out.println("<<<RuleDump End - ExportModels>>>");
 		
 		// write the 11179 JSON file
-		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
+		//Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
+		//write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
 		
 		if (! DMDocument.LDDToolFlag) {
 			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
