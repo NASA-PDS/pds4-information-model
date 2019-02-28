@@ -152,9 +152,9 @@ class WriteSchematron extends Object {
 //	write the schematron file header
 	public void printSchematronFileHdr (SchemaFileDefn lSchemaFileDefn, PrintWriter prSchematron) {
 		prSchematron.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");					
-		prSchematron.println("  <!-- " + lSchemaFileDefn.modelShortName + " Schematron" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id  + " - " + DMDocument.masterTodaysDate + " -->");
-		prSchematron.println("  <!-- Generated from the " + lSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prSchematron.println("  <!-- *** This " + lSchemaFileDefn.modelShortName + " schematron file is an operational deliverable. *** -->");
+		prSchematron.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Schematron" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id  + " - " + DMDocument.masterTodaysDate + " -->");
+		prSchematron.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prSchematron.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " schematron file is an operational deliverable. *** -->");
 		prSchematron.println("<sch:schema xmlns:sch=\"http://purl.oclc.org/dsdl/schematron\" queryBinding=\"xslt2\">");
 		prSchematron.println("");		   
 		prSchematron.println("  <sch:title>Schematron using XPath 2.0</sch:title>");
@@ -164,7 +164,7 @@ class WriteSchematron extends Object {
 			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 		} else {
 			// namespaces required: pds
-			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
+			prSchematron.println("  <sch:ns uri=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: ldd
 			String governanceDirectory = "";
 			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";

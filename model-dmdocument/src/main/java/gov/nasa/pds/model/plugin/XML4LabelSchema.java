@@ -191,9 +191,9 @@ class XML4LabelSchema extends Object {
 	public void writeXMLSchemaFileHeader (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
 		//	Write the header statements
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
-		prXML.println("  <!-- " + lSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
-		prXML.println("  <!-- Generated from the " + lSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prXML.println("  <!-- *** This " + lSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
+		prXML.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
+		prXML.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prXML.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
 		if (DMDocument.LDDToolFlag) {
 			prXML.println("  <!--                                                                           -->");
 			prXML.println("  <!--               Dictionary Stack                                            -->");
@@ -203,7 +203,6 @@ class XML4LabelSchema extends Object {
 
 			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lFileInfo = (SchemaFileDefn) i.next();
-//				lEntry = lFileInfo.sourceFileName + " - " + lFileInfo.ont_version_id;
 				lEntry = lFileInfo.ont_version_id + " - " + lFileInfo.nameSpaceId + " - " + lFileInfo.lddName + " - " + lFileInfo.sourceFileName + "                                   ";
 				lEntry = lEntry.substring(0, 73);
 				prXML.println("  <!-- " + lEntry + " -->");
@@ -575,7 +574,6 @@ class XML4LabelSchema extends Object {
 	public void writeClassXSAnyStmts (PrintWriter prXML) throws java.io.IOException {
 		if (xsAnyStmtWritten) return;
 		prXML.println("      <!-- When creating a specific XML schema, remove the '" + pNS + "any' element. You may insert any described nondigital object, one or more times. -->");
-//		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"lax\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
 		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
 		prXML.println("      <!-- <" + pNS + "element name=\"Any_NonDigital_Object\" type=\"pds:Any_NonDigital_Object\" minOccurs=\"0\" maxOccurs=\"unbounded\"> </" + pNS + "element> -->");
 		xsAnyStmtWritten = true;

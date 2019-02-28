@@ -187,9 +187,9 @@ class XML4LabelSchemaDOM extends Object {
 	public void writeXMLSchemaFileHeader (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
 		//	Write the header statements
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
-		prXML.println("  <!-- " + lSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
-		prXML.println("  <!-- Generated from the " + lSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prXML.println("  <!-- *** This " + lSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
+		prXML.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
+		prXML.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prXML.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
 		if (DMDocument.LDDToolFlag) {
 			prXML.println("  <!--                                                                           -->");
 			prXML.println("  <!--               Dictionary Stack                                            -->");
@@ -389,14 +389,13 @@ class XML4LabelSchemaDOM extends Object {
 		for (Iterator<DOMProp> i = lAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();			
 			if (lProp.isAny) {
-				writeClassXSAnyStmts (prXML);		
+				writeClassXSAnyStmts (prXML);
 			}
 			if (lProp.isAttribute) {
-				writeClassAttribute (lClass, lProp, prXML);		
-			} else {						       		
-			    writeClassAssociation (lClass, lProp, prXML);			 
+				writeClassAttribute (lClass, lProp, prXML);
+			} else {
+				writeClassAssociation (lClass, lProp, prXML);
 			}
-
 		}
 		downIndentSpaces();
 		
@@ -486,24 +485,23 @@ class XML4LabelSchemaDOM extends Object {
 		if (cmax.compareTo("*") == 0) {
 			cmax = "unbounded";
 		}
-		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";			
+		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";
 		if (lProp.isChoice){
-                   if (!choiceBlockOpen) {
-		
-			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
-			prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
-			upIndentSpaces();
-			choiceBlockOpen = true;
-			minMaxOccursClause = "";
-		   }  else {
-			minMaxOccursClause = "";
-                   }
+			if (!choiceBlockOpen) {
+				String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
+				prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
+				upIndentSpaces();
+				choiceBlockOpen = true;
+				minMaxOccursClause = "";
+			} else {
+				minMaxOccursClause = "";
+			}
 		} else {
-                    if (choiceBlockOpen) {
-			downIndentSpaces();
-			prXML.println(indentSpaces() + "</" + pNS + "choice>");
-			choiceBlockOpen = false;
-                     }
+			if (choiceBlockOpen) {
+				downIndentSpaces();
+				prXML.println(indentSpaces() + "</" + pNS + "choice>");
+				choiceBlockOpen = false;
+			}
 		}
 
 		// get each associated class
@@ -512,16 +510,12 @@ class XML4LabelSchemaDOM extends Object {
 		if (! DMDocument.omitClass.contains(lAssocClass.title)) {
 			if (lAssocClass.title.compareTo("Discipline_Facets") == 0) {
 				writeXMLClassDisciplineFacet (lClass, prXML);
-			
-//						prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lCompClass.title + "\"" + " type=\"" + lCompClass.nameSpaceId  + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 			} else if (! lAssocClass.isExposed) {
 				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAssocClass.title + "\"" + " type=\"" + lAssocClass.nameSpaceId  + lAssocClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 			} else {
 				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAssocClass.nameSpaceId + lAssocClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
-			}							
-			
+			}
 		}
-
 		return;
 	}
 	
@@ -878,29 +872,29 @@ class XML4LabelSchemaDOM extends Object {
 //		Write the unit types		
 		for (Iterator<DOMClass> i = sortDataTypeArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-		    prXML.println("");
-		    prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
+			prXML.println("");
+			prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
 			prXML.println("      <" + pNS + "restriction base=\"" + pNS + "string\">");							
 			// use attribute list sorted by classOrder
 			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
-                                if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-				   DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
-		  		   if (lDOMAttr != null) {
-			  	      if (lDOMAttr.title.compareTo("unit_id") == 0) {
-					 ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
-					if (lValArr != null) {
-						for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
-							String lVal = (String) k.next();
-							prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
+				if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+					if (lDOMAttr != null) {
+						if (lDOMAttr.title.compareTo("unit_id") == 0) {
+						ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
+							if (lValArr != null) {
+								for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
+									String lVal = (String) k.next();
+									prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
+								}
+							}
 						}
 					}
-				 }
-			       }
-                           }
-                     }
-		    prXML.println("      </" + pNS + "restriction>");
-		    prXML.println("    </" + pNS + "simpleType>");
+				}
+			}
+			prXML.println("      </" + pNS + "restriction>");
+			prXML.println("    </" + pNS + "simpleType>");
 		}
 	}	
 	
@@ -926,19 +920,20 @@ class XML4LabelSchemaDOM extends Object {
 	}	
 
 	public void writeDeprecatedItems (PrintWriter prXML) throws java.io.IOException {
-    	prXML.println(" ");
-    	prXML.println("<!-- Deprecated Items - Begin ");
-    	prXML.println(" ");
-    	prXML.println("     - Classes -");
+		if (DMDocument.importJSONAttrFlag) return;
+		prXML.println(" ");
+		prXML.println("<!-- Deprecated Items - Begin ");
+		prXML.println(" ");
+		prXML.println("     - Classes -");
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
 			if (! lDeprecatedDefn.isAttribute) {
 				String lValue = lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.className;
-		    	prXML.println("     " + lValue);
+				prXML.println("     " + lValue);
 			}
 		}
-    	prXML.println(" ");
-    	prXML.println("     - Attributes -");
+		prXML.println(" ");
+		prXML.println("     - Attributes -");
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
 			if (lDeprecatedDefn.isAttribute && ! lDeprecatedDefn.isValue) {

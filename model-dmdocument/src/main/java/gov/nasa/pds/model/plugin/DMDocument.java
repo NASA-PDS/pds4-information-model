@@ -119,8 +119,7 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
-	static boolean exportDOMFlag = false;
-	// test 190206
+	static boolean exportDOMFlag = true;
 	static boolean pds4ModelFlag = true;
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
@@ -149,7 +148,8 @@ public class DMDocument extends Object {
 	static ArrayList <LDDParser> LDDModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
-	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
+	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc
+	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
@@ -436,12 +436,11 @@ public class DMDocument extends Object {
 		masterStewardNameSpaceIDArr = new ArrayList <String> (lStewardNameSpaceIdMap.values());
 		
 		// print out the stewards - namespaceid pairs
-		System.out.println("\n>>info    - Configured Steward/NameSpaceId Pairs");
+		System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
 		for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
 			String lStewardNameSpaceId = (String) i.next();
 			System.out.println(">>info    - " + lStewardNameSpaceId);
 		}
-		System.out.println("");
 		
 		// set up the System Build version
 		XMLSchemaLabelBuildNum = pds4BuildId;
@@ -778,14 +777,16 @@ public class DMDocument extends Object {
 		SchemaFileDefn lSchemaFileDefn;
 		String SCHEMA_LITERAL = "lSchemaFileDefn.";
 		String IDENTIFIER = ".identifier";
-   
+		
+		System.out.println("\n>>info    - config.properties:");
+		
         Set<Object> keys = prop.keySet();	
         for (Object k:keys) {
         	String key = (String)k;
         	// look for schema entries
         	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
         		String nameSpaceId = prop.getProperty(key);
-        		System.out.println(">>info    - config namespace_id:"+ nameSpaceId);
+        		System.out.println(">>info    - namespace_id:"+ nameSpaceId);
         		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
         		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
         	    String value = prop.getProperty(isMasterKey);
@@ -819,18 +820,20 @@ public class DMDocument extends Object {
            		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
         		if (value != null){
-        			if (value.equals("true"))
+        			if (value.equals("true")) {
         			   lSchemaFileDefn.isDiscipline = true;
-        			else
+        			   lSchemaFileDefn.governanceLevel = "Discipline";
+        			} else
         			   lSchemaFileDefn.isDiscipline = false;
         		} 
         		
         		String isMissionKey = SCHEMA_LITERAL+nameSpaceId + ".isMission";
         		value = prop.getProperty(isMissionKey);
             	if (value != null){
-            		if (value.equals("true"))
+            		if (value.equals("true")) {
             			   lSchemaFileDefn.isMission = true;
-            		else
+            			   lSchemaFileDefn.governanceLevel = "Mission";
+            		} else
             		       lSchemaFileDefn.isMission = false;
         	    }    	
         		
@@ -894,17 +897,42 @@ public class DMDocument extends Object {
             			   lSchemaFileDefn.regAuthId = value;
         		}
         		
-        		if (lSchemaFileDefn.isMaster) {
-        		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-        		   masterPDSSchemaFileDefn = lSchemaFileDefn;
-        		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
-        		   if (DMDocument.LDDToolFlag) {
-        			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
-        			   break;
-        		   }     		  
-        		} else if (!DMDocument.LDDToolFlag) {
+        		masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+
+/*        		System.out.println("\ndebug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
+        		System.out.println("                            lSchemaFileDefn.lddName:" + lSchemaFileDefn.lddName);
+        		System.out.println("                            lSchemaFileDefn.versionId:" + lSchemaFileDefn.versionId);
+        		System.out.println("                            lSchemaFileDefn.labelVersionId:" + lSchemaFileDefn.labelVersionId);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" + lSchemaFileDefn.nameSpaceIdNCLC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" + lSchemaFileDefn.nameSpaceIdNCUC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceId:" + lSchemaFileDefn.nameSpaceId);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceURL:" + lSchemaFileDefn.nameSpaceURL);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" + lSchemaFileDefn.nameSpaceURLs);
+        		System.out.println("                            lSchemaFileDefn.modelShortName:" + lSchemaFileDefn.modelShortName);
+        		System.out.println("                            lSchemaFileDefn.regAuthId:" + lSchemaFileDefn.regAuthId);
+        		System.out.println("                            lSchemaFileDefn.governanceLevel:" + lSchemaFileDefn.governanceLevel);
+        		System.out.println("                            lSchemaFileDefn.isMaster:" + lSchemaFileDefn.isMaster);
+        		System.out.println("                            lSchemaFileDefn.isLDD:" + lSchemaFileDefn.isLDD);
+        		System.out.println("                            lSchemaFileDefn.isDiscipline:" + lSchemaFileDefn.isDiscipline);
+        		System.out.println("                            lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+*/        		
+        		
+        		if (!DMDocument.LDDToolFlag) {		// IMTool run
         			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-        		}
+            		if (lSchemaFileDefn.isMaster) {
+              		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+              		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+              		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
+            		}
+         		} else {							// LDDTool run
+         			if (lSchemaFileDefn.isMaster) {
+               		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+               		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+               		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
+           			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
+         			}
+         		}
         	}
           }
         }

@@ -303,8 +303,19 @@ public class LDDParser extends Object
 		// get namespace
 		String lNameSpaceIdNC = getTextValue(docEle,"namespace_id");
 		if (lNameSpaceIdNC == null) lNameSpaceIdNC = "TBD";
+		
+		SchemaFileDefn lConfigSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+		if (lConfigSchemaFileDefn == null) {
+			lConfigSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
+			System.out.println("   WARNING  Init: " + " - Config.Properties Namespace Id Not Found:" + lNameSpaceIdNC);
+		} else {
+			System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Found:" + lNameSpaceIdNC);
+		}
+		System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Using:" + lConfigSchemaFileDefn.identifier);
+		System.out.println("debug parseDocument lConfigSchemaFileDefn.identifier:" + lConfigSchemaFileDefn.identifier);
+		
 		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC);
-		lSchemaFileDefn.setRegAuthority (DMDocument.masterPDSSchemaFileDefn);
+		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);
 		
 		// set namespace and governance level
 		if (DMDocument.governanceLevel.compareTo("Discipline") == 0) lSchemaFileDefn.isDiscipline = true;
