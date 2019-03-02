@@ -1,4 +1,4 @@
-; Fri Feb 22 15:50:31 PST 2019
+; Sat Mar 02 07:09:45 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1413,6 +1413,11 @@
 ([ComplexMSB8] of  DataType
 
 	(dataTypeName "ComplexMSB8"))
+
+([darts] of  Steward
+
+	(contact [PDS_Standards_Coordinator])
+	(organization [RA_0001_NASA_PDS_1]))
 
 ([DataDesignWorkingGroup] of  Contact
 
@@ -39030,6 +39035,11 @@
 	(contact [PDS_Standards_Coordinator])
 	(organization [RA_0001_NASA_PDS_1]))
 
+([isda] of  Steward
+
+	(contact [PDS_Standards_Coordinator])
+	(organization [RA_0001_NASA_PDS_1]))
+
 ([LI_English] of  LanguageIdentification
 
 	(countryIdentifier "USA")
@@ -66105,6 +66115,11 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
 
+([psa] of  Steward
+
+	(contact [PDS_Standards_Coordinator])
+	(organization [RA_0001_NASA_PDS_1]))
+
 ([pv.0001_NASA_PDS_1.disp.Display_Direction.disp.horizontal_display_direction.-1575193616] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -78352,6 +78367,11 @@
 	(organization [RA_0001_NASA_PDS_1]))
 
 ([rs] of  Steward
+
+	(contact [PDS_Standards_Coordinator])
+	(organization [RA_0001_NASA_PDS_1]))
+
+([rssa] of  Steward
 
 	(contact [PDS_Standards_Coordinator])
 	(organization [RA_0001_NASA_PDS_1]))

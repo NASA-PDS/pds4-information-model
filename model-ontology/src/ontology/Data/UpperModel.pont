@@ -1,4 +1,4 @@
-; Fri Feb 22 15:34:03 PST 2019
+; Sat Mar 02 07:01:59 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8341,7 +8341,6 @@
 ;+		(comment "The type attribute classifies the instrument according to its function.")
 		(type STRING)
 ;+		(value "Accelerometer" "Altimeter" "Camera" "Cosmic Ray Detector" "Dust Detector" "Imaging Spectrometer" "Magnetometer" "Photometer" "Plasma Analyzer" "Radio Science" "Radio Spectrometer" "Radio Telescope" "Radiometer" "Reflectometer" "Spectrometer" "Spectrograph Imager" "Alpha Particle Detector" "Biology Experiments" "Bolometer" "Imager" "Energetic Particle Detector" "Gamma Ray Detector" "Gas Analyzer" "Grinding Tool" "Inertial Measurement Unit	" "Infrared Spectrometer" "Laser Induced Breakdown Spectrometer" "Mass Spectrometer" "Microwave Spectrometer" "Naked Eye" "Neutral Particle Detector" "Neutron Detector" "Plasma Detector" "Plasma Wave Spectrometer" "Polarimeter" "Radar" "Thermal Imager" "Ultraviolet Spectrometer" "Wet Chemistry Laboratory" "X-ray Diffraction Spectrometer" "X-ray Detector" "Atomic Force Microscope" "Alpha Particle X-Ray Spectrometer" "Moessbauer Spectrometer" "Thermal Probe" "Electrical Probe" "X-ray Fluorescence Spectrometer" "Anemometer" "Barometer" "Thermometer" "Hygrometer" "Robotic Arm" "Drilling Tool" "Weather Station" "Atmospheric Sciences" "Dust" "Gravimeter" "Interferometer" "Microscope" "Particle Detector" "Radio-Radar" "Small Bodies Sciences" "Seismometer" "Regolith Properties" "Spectrograph")
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
