@@ -53,7 +53,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "0.1.9";
+	static String DMDocVersionId  = "0.2.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -104,7 +104,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.1.5b";
+	static String LDDToolVersionId  = "0.2.2.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -119,7 +119,7 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;
 	static boolean importJSONAttrFlag = false;
-	static boolean exportDOMFlag = true;
+	static boolean exportDOMFlag = false;
 	static boolean pds4ModelFlag = true;
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
