@@ -445,47 +445,44 @@ public abstract class DOMInfoModel extends Object {
 	static public String getPropMapRDFIdentifier (String lInputIdentifier) {
 		String lIdentifier = lInputIdentifier + "." + getNextUId();
 		return lIdentifier;
-	}	
+	}
 	
 	/**
 	*  wrap a text string
 	*/
-	static public String wrapText (String lString, int beginOffset, int endOffset) {
+	static public ArrayList <String> wrapTextNew (String lString, int beginOffset, int endOffset) {
+//		endOffset = endOffset + 2;
+		ArrayList <String> lLineArr = new ArrayList <String> ();
 		// return empty array for null text
-		if (lString == null) return "";
+		if (lString == null) return null;
 		
 		// return text if length is zero or less
 		int wrapWidth = (endOffset - beginOffset) + 1;
-		if (wrapWidth <= 0) return "";		
-
+		if (wrapWidth <= 0) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
+		
 		// return text if less than wrap width
 		int lStringLength = lString.length();
-		if (lStringLength <= wrapWidth) return lString;
+		if (lStringLength <= wrapWidth) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
 		
 		// set buffer offsets
 		int currOffset = beginOffset;
 		int lInputBuffOffset1 = 0, lInputBuffOffset2 = 0, lInputBuffOffsetPrevBlank = 0;
 		int lOutputBuffOffset = 0;
-		
+
 		// set up string buffer
 		StringBuffer lInputStringBuff = new StringBuffer(lString);
 		StringBuffer lOutputStringBuff = new StringBuffer();
 		
-		// setup major loop for transfering the string in the input buffer to a wrapped string in the output buffer 
+		// transfer the string in the input buffer to a wrapped string (many lines) in the output buffer 
 		int indent = 0;
-//		char lfcr = '\n';
-		char cr = '\r';
-		char lf = '\n';
-		boolean isFirst = true;
 		while (lInputBuffOffset1 < lStringLength) {
 			// insert linefeed (except first time)
-			if (isFirst) isFirst = false;
-			else { 
-				lOutputStringBuff.insert(lOutputBuffOffset++, cr);
-				lOutputStringBuff.insert(lOutputBuffOffset++, lf);
-			}
-			
-//			System.out.println("\ndebug wrapText -insert blanks- lInputBuffOffset1:" + lInputBuffOffset1);
 			
 			// find next non-blank character in input buffer
 			while (lInputBuffOffset1 < lStringLength) {
@@ -494,8 +491,8 @@ public abstract class DOMInfoModel extends Object {
 			}
 			
 			// insert prefix blanks in output buffer
-			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');
-
+			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');		
+			
 			// find the next chunk of text by finding the next break before the end of the wrapwidth (delimiter = ' ')
 			currOffset = beginOffset + indent; // counter for wrapped string size
 			indent = 2;
@@ -507,20 +504,33 @@ public abstract class DOMInfoModel extends Object {
 				if (lInputStringBuff.charAt(lIBO1) == ' ') lInputBuffOffsetPrevBlank = lIBO1;
 				lIBO1++; currOffset++;
 				lInputBuffOffset2++;
-			}		
+			}
+			
 			if (lIBO1 < lStringLength) { // check to see of input buffer is exhausted
 				if (lInputBuffOffsetPrevBlank > -1) { // was a blank found
 					lInputBuffOffset2 = lInputBuffOffsetPrevBlank;
 				}
-			}
+			}		
+
 			// copy in the next chunk of text
 			while (lInputBuffOffset1 < lInputBuffOffset2) {
 				lOutputStringBuff.insert(lOutputBuffOffset, lInputStringBuff.charAt(lInputBuffOffset1));
 				lInputBuffOffset1++;
 				lOutputBuffOffset++;
 			}
+			String lLine = lOutputStringBuff.toString();
+			lLineArr.add(lLine);
+			lOutputStringBuff = new StringBuffer();
+			lOutputBuffOffset = 0;
 		}
-		return lOutputStringBuff.toString();
+		return lLineArr;
+	}
+	
+	static public void printWrappedTextArr (ArrayList <String> lLineArr, PrintWriter prXML) throws java.io.IOException {
+		for (Iterator<String> i = lLineArr.iterator(); i.hasNext();) {
+			String lLine = (String) i.next();
+			prXML.println(lLine);
+		}
 	}
 	
 //	=======================  Utilities ================================================================

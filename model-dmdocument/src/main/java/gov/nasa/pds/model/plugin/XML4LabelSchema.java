@@ -253,7 +253,9 @@ class XML4LabelSchema extends Object {
 		prXML.println(" ");		
 		prXML.println("  <" + pNS + "annotation>");		
 		if (! DMDocument.LDDToolFlag) {
-			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
+//			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
+			String lLine = "<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>";		
+			InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, (indentSpaces + 2) * 2, 72 ), prXML);
 		} else {
 			// change made to allow Mitch's comments to wrap properly.
 			prXML.println("    <" + pNS + "documentation>");		
@@ -279,7 +281,9 @@ class XML4LabelSchema extends Object {
 		prXML.println("");
 		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>";		
+		InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "complexContent>");
 		prXML.println(indentSpacesUp() + "<" + pNS + "extension base=\"" + lClass.nameSpaceId + lSuperClassName + "\">");
@@ -315,7 +319,9 @@ class XML4LabelSchema extends Object {
 		prXML.println("");
 		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>";		
+		InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "complexContent>");
 		prXML.println(indentSpacesUp() + "<" + pNS + "restriction base=\"" + lClass.nameSpaceId + lSuperClassName + "\">");
@@ -342,7 +348,9 @@ class XML4LabelSchema extends Object {
 		prXML.println("");
 		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (InfoModel.wrapText ("<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.description + "</" + pNS + "documentation>";		
+		InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "sequence" + ">");
 		
@@ -650,7 +658,9 @@ class XML4LabelSchema extends Object {
 				prXML.println("");
 				prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 				prXML.println("    <" + pNS + "annotation>");		
-				prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+//				prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+				String lLine = "<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>";		
+				InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 				prXML.println("    </" + pNS + "annotation>");		
 				prXML.println("    <" + pNS + "simpleContent>");
 				prXML.println("      <" + pNS + "extension base=\"pds:" + lAttr.valueType + "\">");
@@ -672,7 +682,9 @@ class XML4LabelSchema extends Object {
 			prXML.println("");
 			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
-			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+//			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+			String lLine = "<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>";		
+			InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 			prXML.println("    </" + pNS + "annotation>");
 		}
 		
@@ -715,7 +727,9 @@ class XML4LabelSchema extends Object {
 			prXML.println("");
 			prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
-			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+//			prXML.println(InfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>", 6, 72));		
+			String lLine = "<" + pNS + "documentation>" + lAttr.description + "</" + pNS + "documentation>";		
+			InfoModel.printWrappedTextArr (InfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 			prXML.println("    </" + pNS + "annotation>");		
 			prXML.println("    <" + pNS + "simpleContent>");
 			prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.XMLSchemaName + "_WO_Units\">");
@@ -970,7 +984,7 @@ class XML4LabelSchema extends Object {
 				prXML.println("  <" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"pds:" + lAttr.valueType + "\"> </" + pNS + "element>");
 			}
 		}
-	}	
+	}
 	
 	public void ResetIndentSpaces () {
 		indentSpaces = 0;
