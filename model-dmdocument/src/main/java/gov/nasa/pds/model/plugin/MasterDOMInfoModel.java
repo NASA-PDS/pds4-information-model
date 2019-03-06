@@ -897,7 +897,12 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			Collections.sort(lAttr.valArr);
 			lAttr.sortPermissibleValues();
 			lAttr.setIsCharDataType();
-		}	
+		}
+		// set IM Spec Sort Key
+		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			lDOMProp.setSortKey();
+		}
 		return;
 	}
 	

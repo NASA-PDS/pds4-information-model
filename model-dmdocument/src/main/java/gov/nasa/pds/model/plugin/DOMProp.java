@@ -9,6 +9,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 	int cardMinI;
 	int cardMaxI;
 	String classOrder;						// the order of the attribute or association within a class
+	String sortKeyIMSPec;					// sort key for IM Specification Dictionary -  Title/Steward/Class/Steward
 	
 	DOMClass attrParentClass; 				// class instance that this object is a member of
 	ISOClassOAIS11179 hasDOMObject;			// OVERRIDE - allows only one object (class, attribute, permissible value, etc, but no DOMProp
@@ -41,6 +42,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 		cardMinI = 0; 
 		cardMaxI = 0;
 		classOrder = "9999";
+		sortKeyIMSPec = "TBD_sortKeyIMSPec";
 		attrParentClass = null;
 		hasDOMObject = null;		
 		valArr = new ArrayList <String> (); 
@@ -112,6 +114,31 @@ public class DOMProp extends ISOClassOAIS11179 {
 	
 	public void setClassOrder(String classOrder) {
 		this.classOrder = classOrder;
+	}
+	
+	public void setSortKey () {
+		String lMemberTitle = "TBD_lMemberTitle";
+		String lMemberSteward = "TBD_lMemberSteward";
+		if (hasDOMObject != null) {
+			if (hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) hasDOMObject;
+				lMemberTitle = lDOMAttr.title;
+				lMemberSteward = lDOMAttr.steward;
+			} else if (hasDOMObject instanceof DOMClass) {
+				lMemberTitle = title;
+				lMemberSteward = steward;
+			} else {
+				return;
+			}
+		}
+		String lBlanks = "                              ";
+		int lLength = lMemberTitle.length();
+		if (lLength >= 30) lLength = 30;
+		String lPaddedMemberTitle = lMemberTitle + lBlanks.substring(0, 30 - lLength);
+		lLength = attrParentClass.title.length();
+		if (lLength >= 30) lLength = 30;
+		String lPaddedClassTitle = attrParentClass.title + lBlanks.substring(0, 30 - lLength);
+		sortKeyIMSPec = lPaddedMemberTitle + "_" + lMemberSteward + "_" + lPaddedClassTitle + "_" + attrParentClass.steward;
 	}
 	
 	public void createDOMPropAttrSingletons (AssocDefn lOldProp, AttrDefn lAttr) {
@@ -240,43 +267,6 @@ public class DOMProp extends ISOClassOAIS11179 {
 //		minimumOccurrences = "TBD_minimumOccurrences";
 //		maximumOccurrences = "TBD_maximumOccurrences";
 	}
-	
-	// temporary until Pearl updates WriteDOMCSVFile
-		public void createDOMPropSingletonsNoAssoc (AttrDefn lAttr) {
-			rdfIdentifier = lAttr.rdfIdentifier;
-			identifier = lAttr.identifier; 
-			versionId = lAttr.versionId;
-			sequenceId = lAttr.uid; 
-			title = lAttr.title;
-			definition =  lAttr.description;
-			registrationStatus = lAttr.registrationStatus; 
-			regAuthId = lAttr.regAuthId; 
-			steward = lAttr.steward; 
-			nameSpaceId = lAttr.attrNameSpaceId;
-			nameSpaceIdNC = lAttr.attrNameSpaceIdNC;
-//			classOrder = "9999";
-			cardMin = lAttr.cardMin;
-			cardMax = lAttr.cardMax;
-			cardMinI = lAttr.cardMinI; 
-			cardMaxI = lAttr.cardMaxI;
-			
-			// others from PDS3
-			localIdentifier = lAttr.lddLocalIdentifier;
-
-			parentClassTitle = lAttr.parentClassTitle;
-			classNameSpaceIdNC = lAttr.classNameSpaceIdNC;
-//			groupName = "TBD_groupName";
-//			referenceType = "TBD_referenceType";
-			isAttribute = lAttr.isAttribute;
-			isChoice = lAttr.isChoice;
-			isAny = lAttr.isAny;
-//			isRestrictedInSubclass = lAttr.isRestrictedInSubclass;
-
-//			isSet = false;
-//			enclLocalIdentifier = "TBD_enclLocalIdentifier";
-//			minimumOccurrences = "TBD_minimumOccurrences";
-//			maximumOccurrences = "TBD_maximumOccurrences";
-		}
 	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
 		rdfIdentifier = lDOMPermValDefn.rdfIdentifier; 														

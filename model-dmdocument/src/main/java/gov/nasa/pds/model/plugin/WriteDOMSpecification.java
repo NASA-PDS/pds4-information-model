@@ -721,16 +721,14 @@ public class WriteDOMSpecification extends Object {
 
 	public void printDataDict () {
 		boolean pflag = false;
-//	write the description heading
+		//	write the description heading
 		prhtml.println("<dl>");
 		// get property array sorted by "attribute", namespace, attr title, namespace, class title
-	        ArrayList<DOMProp> sortedList = DOMInfoModel.getPropArrByTitleStewardClassSteward();	
+		ArrayList<DOMProp> sortedList = DOMInfoModel.getPropArrByTitleStewardClassSteward();
 		for (Iterator<DOMProp> i = sortedList.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
-                //   System.out.println("%%%%%%%%%%% "+ lProp.title);
 			pflag = true;
 			printDataElement(lProp);
-
 		}
 		if (! pflag) {
 			prhtml.println("<dt><b>" + "Unknown" +  "</b><dd>" +  "Unknown Description");		
@@ -745,12 +743,11 @@ public class WriteDOMSpecification extends Object {
 		boolean fflag, altflag;		
 		String phtitle, desc, altlist;
 
-                if (lProp.hasDOMObject != null) {
-                   if ( lProp.hasDOMObject instanceof DOMAttr) {
- 
-                    DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-	  	    if (lAttr.isUsedInClass || includeAllAttrFlag) {
-		
+		if (lProp.hasDOMObject != null) {
+			if ( lProp.hasDOMObject instanceof DOMAttr) {
+			DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+			if (lAttr.isUsedInClass || includeAllAttrFlag) {
+				
 		    // get lClassAnchorString
 		       DOMClass lClass = lAttr.attrParentClass;
 		       String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();

@@ -1208,48 +1208,12 @@ public abstract class DOMInfoModel extends Object {
 		return (lDOMAttrArr);
 	}
 	
-	// for DOM model
-	// 7777
+	// get DOMProp array sorted by member attr/prop title, steward, class title, steward
 	static public ArrayList <DOMProp> getPropArrByTitleStewardClassSteward () {
-		String lBlanks = "                              "; // 30 blanks
 		TreeMap <String, DOMProp> lDOMPropMap = new TreeMap <String, DOMProp>();
 		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
-			if (lDOMProp.hasDOMObject != null) {
-				if (lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-					if (lDOMProp.attrParentClass != null) {
-						DOMClass lDOMClass = lDOMProp.attrParentClass;
-						String lClassTitle = lDOMClass.title;
-						String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
-						String lMemberTitle = lDOMAttr.title;
-						String lMemberNameSpaceLCNC = lDOMAttr.nameSpaceIdNC;
-						String lSortKey = lMemberTitle + "_" + lMemberNameSpaceLCNC;
-						int lLength = lSortKey.length();
-						if (lLength >= 30) {
-							lLength = 30;
-						}
-						String lPaddedSortKey = lSortKey + lBlanks.substring(0, 30 - lLength) + lClassTitle + "_" + lClassNameSpaceLCNC;
-						lDOMPropMap.put(lPaddedSortKey, lDOMProp);
-					}
-				} else if (lDOMProp.hasDOMObject instanceof DOMClass) {
-					DOMClass lDOMMemberClass = (DOMClass) lDOMProp.hasDOMObject;
-					if (lDOMProp.attrParentClass != null) {
-						DOMClass lDOMClass = lDOMProp.attrParentClass;
-						String lClassTitle = lDOMClass.title;
-						String lClassNameSpaceLCNC = lDOMClass.nameSpaceIdNC;
-						String lMemberTitle = lDOMProp.title;
-						String lMemberNameSpaceLCNC = lDOMProp.nameSpaceIdNC;
-						String lSortKey = lMemberTitle + "_" + lMemberNameSpaceLCNC;
-						int lLength = lSortKey.length();
-						if (lLength >= 30) {
-							lLength = 30;
-						}
-						String lPaddedSortKey = lSortKey + lBlanks.substring(0, 30 - lLength) + lClassTitle + "_" + lClassNameSpaceLCNC;
-						lDOMPropMap.put(lPaddedSortKey, lDOMProp);
-					}
-				}
-			}
+			lDOMPropMap.put(lDOMProp.sortKeyIMSPec, lDOMProp);
 		}
 		ArrayList <DOMProp> lDOMPropArr = new ArrayList <DOMProp>(lDOMPropMap.values());	
 		return (lDOMPropArr);
