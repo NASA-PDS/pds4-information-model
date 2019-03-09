@@ -19,7 +19,7 @@ class WriteDOMDDJSONFile extends Object{
 	public void writeJSONFile () throws java.io.IOException {	
 		// if not LDDTool, then write separate JSON files for "all" and each namespace 
 		if (! DMDocument.LDDToolFlag) {
-			// write one JSON file for all IM content
+/*			// write one JSON file for all IM content
 			// PDS4_ALL_JSON_1910_DOM
 			String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
 			lFileName = DMDocument.replaceString (lFileName, "PDS_JSON", "ALL_JSON");
@@ -27,24 +27,16 @@ class WriteDOMDDJSONFile extends Object{
 			printPDDPHdr(prDDPins);
 			printPDDPBody ("all", prDDPins);
 			printPDDPFtr(prDDPins);
-			prDDPins.close();
+			prDDPins.close(); */
 			
 			//	now write a JSON file for each namespace
-			// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
 			ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 			
 			//	write a JSON file for each namespace
 			for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-				ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
-				for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
-					DOMClass lSelectedClass = (DOMClass) j.next();
-					if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
-						lSelectedClassArr.add(lSelectedClass);
-					}
-				}
-				if (! DOMInfoModel.masterNameSpaceHasMemberArr.contains(lSchemaFileDefn.nameSpaceIdNC)) continue;
-			
+				if (! lSchemaFileDefn.isActive) continue;
+				
 				// PDS4_PDS_JSON_1910_DOM
 				String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
 				PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));

@@ -6,7 +6,8 @@ public class SchemaFileDefn {
 	// identifier is the namespace id, without colon, and in caps; it must be unique within the PDS
 	String identifier;
 	String lddName;
-
+	boolean isActive;			// isActive=true indicates that the namespace is found in at least one class, attribute, see GetDOMModel #040
+	
 	// each namespace has a version identifier - model version id
 	String versionId;
 	
@@ -98,6 +99,7 @@ public class SchemaFileDefn {
 	public SchemaFileDefn (String id) {
 		identifier = id;
 		versionId = "0.0.0.0.n";
+		isActive = false;
 		lddName = "TBD_lddName";
 		labelVersionId = "0.0";
 		stewardId = "TBD_stewardId";

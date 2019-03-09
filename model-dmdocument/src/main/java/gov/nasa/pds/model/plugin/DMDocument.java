@@ -114,12 +114,12 @@ public class DMDocument extends Object {
 	
 	// import export file flags
 	static boolean exportProdDefnFlag = true;
-	static boolean exportJSONFileFlag = false;
+	static boolean exportJSONFileFlag = false;			// LDDTool, set by -J option
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
-	static boolean exportJSONAttrFlag = false;
-	static boolean importJSONAttrFlag = false;
-	static boolean exportDOMFlag = false;
+	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
+	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
+	static boolean exportDOMFlag = false;				// if false do not write any DOM file
 	static boolean pds4ModelFlag = true;
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
@@ -471,7 +471,7 @@ public class DMDocument extends Object {
 		// export the models
 		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeLDDArtifacts ();
+			lExportModels.writeLDDArtifacts (exportDOMFlag);
 		} else if ( DMDocument.mapToolFlag) {
             WriteMappingFile writeMappingFile = new WriteMappingFile();
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
@@ -603,6 +603,7 @@ public class DMDocument extends Object {
 			} else {
 				SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
 				lLDDSchemaFileDefn.sourceFileName = lArg;
+				lLDDSchemaFileDefn.isActive = true;
 				lLDDSchemaFileDefn.isLDD = true;
 				lLDDSchemaFileDefn.labelVersionId = "1.0";
 				LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);

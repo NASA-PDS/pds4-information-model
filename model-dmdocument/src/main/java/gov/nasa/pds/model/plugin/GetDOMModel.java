@@ -146,6 +146,20 @@ public class GetDOMModel extends Object {
 		}
 		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
 		
+// 		Overwrite from JSON 11179 file (new classes and attributes)
+		if (DMDocument.mastModelId.compareTo("WRC") == 0)  {
+			GetJSON11179 lGetJSON11179 = new GetJSON11179 ();
+			lGetJSON11179.parseJSON();
+//			GetCSVMetadataFile lGetCSVMetadataFile = new GetCSVMetadataFile ();
+//			lGetCSVMetadataFile.readParseCSVFile ();
+//			ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
+//			DOMInfoModel.domWriter (lDOMClassArr, "GetCSVMetadataFile.txt");
+		}
+		if (DMDocument.mastModelId.compareTo("SWOT") == 0) {
+			GetCSV lGetCSV = new GetCSV ();
+			lGetCSV.readParseCSVFile();
+		}
+		
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
 		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
 			DMDocument.LDDToolSingletonDOMClass = DOMInfoModel.masterDOMUserClass;
@@ -243,7 +257,9 @@ public class GetDOMModel extends Object {
 		DMDocument.masterDOMInfoModel.setMasterAttrisUsedInClassFlag ();	
 		
 		// 017 - overwrite master attributes from the 11179 DD
-		lISO11179DOMMDR.OverwriteFrom11179DataDict();		
+		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
+		//		Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???		
+		lISO11179DOMMDR.OverwriteFrom11179DataDict();
 		
 		// 018 - overwrite any LDD attributes from the cloned USER attributes
 		//       this is not really needed since the definitions are in the external class
@@ -351,9 +367,10 @@ public class GetDOMModel extends Object {
 			if (lClass != null) lClass.isExposed = true;
 		}
 		
-		// initialize lNamespaceHasObjectArr; used to determine if a file needs to be written.
-		// initially developed for WriteDOMDDJSONFile
+		// 040 - set isActive flag
+		// initialize masterNameSpaceHasMemberArr; used to determine if a file needs to be written.
 		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+		ArrayList <String> lNameSpaceHasMemberArr = new ArrayList <String> ();
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 			boolean foundObject = false;
@@ -378,7 +395,16 @@ public class GetDOMModel extends Object {
 				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedPropMap.namespace_id) == 0) foundObject = true;
 			}
 			
-			if (foundObject) DOMInfoModel.masterNameSpaceHasMemberArr.add(lSchemaFileDefn.nameSpaceIdNC);
+			if (foundObject) {
+				lSchemaFileDefn.isActive = true;
+				lNameSpaceHasMemberArr.add(lSchemaFileDefn.nameSpaceIdNC);
+			}
+		}
+		
+		System.out.println("\n>>info    - Active Namespace Ids:");
+		for (Iterator <String> i = lNameSpaceHasMemberArr.iterator(); i.hasNext();) {
+			String lNameSpaceId = (String) i.next();
+			System.out.println(">>info    - namespace_id:" + lNameSpaceId);
 		}
 		
 		System.out.println("\n>>info    - Master DOM Structures Initiated");	
