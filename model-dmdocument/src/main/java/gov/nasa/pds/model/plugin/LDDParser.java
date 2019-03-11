@@ -1719,7 +1719,9 @@ public class LDDParser extends Object
 
 	public void writeLocalDDFiles (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
 		// print report
-		printReport(lSchemaFileDefn);	
+		
+		if (DMDocument.writeDOMCount == 0) printReport(lSchemaFileDefn);
+		DMDocument.writeDOMCount++;
 		
 		// write the default csv file (English)
 		WriteCSVFiles writeCSVFiles = new WriteCSVFiles ();

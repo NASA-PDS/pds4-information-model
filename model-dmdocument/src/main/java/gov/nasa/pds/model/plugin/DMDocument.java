@@ -104,7 +104,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.0";
+	static String LDDToolVersionId  = "0.2.2.1";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -119,8 +119,9 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
-	static boolean exportDOMFlag = false;				// if false do not write any DOM file
+	static boolean exportDOMFlag = false;				// if false do not write any DOM file, except JSON DOM file; requires that getDOMModel be run
 	static boolean pds4ModelFlag = true;
+	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
@@ -462,11 +463,9 @@ public class DMDocument extends Object {
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
-		if (exportDOMFlag) {
-			GetDOMModel lGetDOMModel = new GetDOMModel();
-			lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
-			DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
-		}
+		GetDOMModel lGetDOMModel = new GetDOMModel();
+		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 		// export the models
 		if (DMDocument.LDDToolFlag) {
@@ -1393,12 +1392,6 @@ public class DMDocument extends Object {
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-		exposedElementArr.add("0001_NASA_PDS_1.cart.Cartography");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Ring_Profile");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Supplement");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Time_Series");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Ring_Moon_Systems");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Rings_Supplement");
 		exposedElementArr.add("0001_NASA_PDS_1.disp.Color_Display_Settings");		
 		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Direction");		
 		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Settings");		
