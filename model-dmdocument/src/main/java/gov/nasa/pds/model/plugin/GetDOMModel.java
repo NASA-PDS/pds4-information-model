@@ -147,18 +147,18 @@ public class GetDOMModel extends Object {
 		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
 		
 // 		Overwrite from JSON 11179 file (new classes and attributes)
-		if (DMDocument.mastModelId.compareTo("WRC") == 0)  {
-			GetJSON11179 lGetJSON11179 = new GetJSON11179 ();
-			lGetJSON11179.parseJSON();
+//		if (DMDocument.mastModelId.compareTo("WRC") == 0)  {
+//			GetJSON11179 lGetJSON11179 = new GetJSON11179 ();
+//			lGetJSON11179.parseJSON();
 //			GetCSVMetadataFile lGetCSVMetadataFile = new GetCSVMetadataFile ();
 //			lGetCSVMetadataFile.readParseCSVFile ();
 //			ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
 //			DOMInfoModel.domWriter (lDOMClassArr, "GetCSVMetadataFile.txt");
-		}
-		if (DMDocument.mastModelId.compareTo("SWOT") == 0) {
-			GetCSV lGetCSV = new GetCSV ();
-			lGetCSV.readParseCSVFile();
-		}
+//		}
+//		if (DMDocument.mastModelId.compareTo("SWOT") == 0) {
+//			GetCSV lGetCSV = new GetCSV ();
+//			lGetCSV.readParseCSVFile();
+//		}
 		
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
 		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
