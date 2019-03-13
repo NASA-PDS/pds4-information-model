@@ -1392,10 +1392,6 @@ public class DMDocument extends Object {
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Color_Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Direction");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Movie_Display_Settings");	
 	}
 	
 	static void setRegistryAttrFlag () {

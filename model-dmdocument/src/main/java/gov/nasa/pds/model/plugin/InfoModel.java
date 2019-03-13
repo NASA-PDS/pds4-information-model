@@ -310,12 +310,12 @@ public abstract class InfoModel extends Object {
 		// initialize the Attribute Namespace Resolution Map 
 		// attrs (AttrDefn)
 		attrNamespaceResolutionMap = new TreeMap <String, String> ();
-		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 		
 		// assocs (AttrDefn)
-		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
+//		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
 		
 // 999		System.out.println("\n>>info    - Static Schematron Rules Setup");
 // 999		System.out.println(">>info    - Rule count for Arr: " + InfoModel.schematronRuleArr.size());
