@@ -1116,12 +1116,12 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Update.update_purpose", "pds", "Update", "pds", "update_purpose", "", false));	
 
-		deprecatedObjects2.add(new DeprecatedDefn ("Airborne", "pds", "Airborne", "", "", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("Airborne", "pds", "Airborne", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Aircraft", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Balloon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Suborbital Rocket", false));
+
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Airborne", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.product_data_object", "pds", "Product_Context", "pds", "product_data_object", "Airborne", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Airborne.type", "pds", "Airborne", "pds", "type", "Aircraft", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Airborne.type", "pds", "Airborne", "pds", "type", "Balloon", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Airborne.type", "pds", "Airborne", "pds", "type", "Suborbital Rocket", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Aircraft", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Balloon", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
@@ -1392,10 +1392,6 @@ public class DMDocument extends Object {
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Color_Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Direction");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Movie_Display_Settings");	
 	}
 	
 	static void setRegistryAttrFlag () {
