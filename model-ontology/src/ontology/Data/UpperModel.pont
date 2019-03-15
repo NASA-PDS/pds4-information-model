@@ -1,4 +1,4 @@
-; Mon Mar 11 14:44:58 PDT 2019
+; Wed Mar 13 13:31:43 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2086,7 +2086,7 @@
 	(single-slot has_color_display_settings
 ;+		(comment "The has_color_display_settings association is a relationship to Color_Display_Settings.")
 		(type INSTANCE)
-;+		(allowed-classes Color_Display_Settings)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot subscription_id
@@ -4227,7 +4227,7 @@
 	(single-slot has_display_direction
 ;+		(comment "The has_display_direction association is a relationship to Display_Direction.")
 		(type INSTANCE)
-;+		(allowed-classes Display_Direction)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot enumeration_flag
@@ -4369,7 +4369,7 @@
 	(single-slot has_movie_display_settings
 ;+		(comment "The has_movie_display_settings association is a relationship to Movie_Display_Settings.")
 		(type INSTANCE)
-;+		(allowed-classes Movie_Display_Settings)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot classNameSpaceNC
@@ -6140,135 +6140,6 @@
 	(single-slot discipline_name
 ;+		(comment "The discipline_name attribute describes the observing discipline (as opposed to a PDS Discipline Node Name, though the concepts and values are similar). Some of these values are, with respect to the PDS Nodes, inter-disciplinary and should be used when they are applicable in perference to the more restrictive values.")
 		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Display_Direction "The Display_Direction class specifies how two of the dimensions of an Array object should be displayed in the vertical (line) and horizontal (sample) dimensions of a display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot vertical_display_direction
-;+		(comment "The vertical_display_direction attribute specifies the direction along the screen of a display device that data along the vertical axis of an Array is supposed to be displayed.")
-		(type STRING)
-;+		(value "Top to Bottom" "Bottom to Top")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot horizontal_display_direction
-;+		(comment "The horizontal_display_direction attribute specifies the direction across the screen of a display device that data along the horizontal axis of an Array is supposed to be displayed.")
-		(type STRING)
-;+		(value "Left to Right" "Right to Left")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot vertical_display_axis
-;+		(comment "The vertical_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the vertical or %42line%42 dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot horizontal_display_axis
-;+		(comment "The horizontal_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the horizontal or %42sample%42 dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Color_Display_Settings "The Color_Display_Settings class provides guidance to data users on how to display a multi-banded Array object on a color-capable display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot red_channel_band
-;+		(comment "The red_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the red channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot color_display_axis
-;+		(comment "The color_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the color dimension of a display device. I.e., bands from this dimension will be loaded into the red, green, and blue bands of the display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot green_channel_band
-;+		(comment "The green_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the green channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot blue_channel_band
-;+		(comment "The blue_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the blue channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Movie_Display_Settings "The Movie_Display_Settings class provides default values for the display of a multi-banded Array using a software application capable of displaying video content."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot frame_rate
-;+		(comment "The frame_rate attribute indicates the number of still pictures %28or frames%29 that should be displayed per unit of time in a video. Note this is NOT necessarily the same as the rate at which the images were acquired.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_delay
-;+		(comment "The loop_delay attribute specifies the amount of time to pause between %42loops%42 or repeated playbacks of a movie.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_back_and_forth_flag
-;+		(comment "The loop_back_and_forth_flag attribute specifies whether or not a movie should only be %42looped%42 or played repeatedly in the forward direction, or whether it should be played forward followed by played in reverse, iteratively.")
-		(type STRING)
-;+		(value "false" "true")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_count
-;+		(comment "The loop_count attribute specifies the number of times a movie should be %42looped%42 or replayed before stopping.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time_display_axis
-;+		(comment "The time_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29, the bands of which are intended to be displayed sequentially in time on a display device. The frame_rate attribute, if present, provides the rate at which these bands are to be displayed.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot loop_flag
-;+		(comment "The loop_flag attribute specifies whether or not a movie object should be played repeatedly without prompting from the user.")
-		(type STRING)
-;+		(value "false" "true")
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Display_Settings "The Display_Settings class contains one or more classes describing how data should be displayed on a display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot has_movie_display_settings
-;+		(comment "The has_movie_display_settings association is a relationship to Movie_Display_Settings.")
-		(type INSTANCE)
-;+		(allowed-classes Movie_Display_Settings)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_color_display_settings
-;+		(comment "The has_color_display_settings association is a relationship to Color_Display_Settings.")
-		(type INSTANCE)
-;+		(allowed-classes Color_Display_Settings)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot local_internal_reference
-;+		(comment "The local_internal_reference association is a relationship to the class Local_Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Local_Internal_Reference)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_display_direction
-;+		(comment "The has_display_direction association is a relationship to Display_Direction.")
-		(type INSTANCE)
-;+		(allowed-classes Display_Direction)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -10115,40 +9986,6 @@
 ;+		(comment "The local_internal_reference association is a relationship to the class Local_Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Local_Internal_Reference)
-		(create-accessor read-write)))
-
-(defclass Mission_Information "The Mission Information class provides a set of optional attributes that have their value sets defined by the mission."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(single-slot mission_phase_identifier
-;+		(comment "The mission_phase_identifier attribute provides an identifier for a mission phase.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_clock_stop_count
-;+		(comment "The spacecraft_clock_stop_count attribute provides the value of the spacecraft clock at the end of a time period of interest.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_clock_start_count
-;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot stop_orbit_number
-;+		(comment "The stop_orbit_number attribute provides the last in a series of numbers that represent s set of orbital revolutions of one body around another.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot mission_phase_name
-;+		(comment "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot start_orbit_number
-;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Term_Map_SKOS "TheTerm_Map_SKOS class is used to collect a set of terms and definitions for a SKOS ontology."
