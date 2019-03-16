@@ -162,7 +162,7 @@ public class ExportModels extends Object {
 		
 		// write the 11179 MOF JSON file
 		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
+		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
 		
 		// write the 11179 DOM JSON file - requires DOMInfoModel to be executed
 		if (domFlag) {
@@ -291,9 +291,8 @@ public class ExportModels extends Object {
 
 			// write the 11179 JSON file
 			if (DMDocument.exportJSONFileFlag) {
-				String lFileName = lSchemaFileDefn.relativeFileSpecModelJSON;	
 				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-				write11179DDJSONFile.writeJSONFile (lFileName);
+				write11179DDJSONFile.writeJSONFile (lSchemaFileDefn);
 				if (domFlag) {
 					WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
 					writeDOMDDJSONFile.writeJSONFile ();
