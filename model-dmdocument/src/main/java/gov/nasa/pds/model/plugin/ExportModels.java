@@ -160,9 +160,15 @@ public class ExportModels extends Object {
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD Pins File Done");
 		
+		// write the 11179 MOF JSON file
+		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
+		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
+		
 		// write the 11179 DOM JSON file - requires DOMInfoModel to be executed
-		WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-		writeDOMDDJSONFile.writeJSONFile ();	
+		if (domFlag) {
+			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+			writeDOMDDJSONFile.writeJSONFile ();
+		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 		
 		// write the LOD SKOS file
@@ -285,8 +291,13 @@ public class ExportModels extends Object {
 
 			// write the 11179 JSON file
 			if (DMDocument.exportJSONFileFlag) {
-				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-				writeDOMDDJSONFile.writeJSONFile ();	
+				String lFileName = lSchemaFileDefn.relativeFileSpecModelJSON;	
+				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
+				write11179DDJSONFile.writeJSONFile (lFileName);
+				if (domFlag) {
+					WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+					writeDOMDDJSONFile.writeJSONFile ();
+				}
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 			}
 

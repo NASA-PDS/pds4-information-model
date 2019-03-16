@@ -1,4 +1,4 @@
-; Wed Mar 13 13:31:44 PDT 2019
+; Fri Mar 15 14:31:13 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2431,9 +2431,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Source_Product_External")
-	(has_Schematron_Assert
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.102])
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101])
 	(identifier "pds:Source_Product_External")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -2442,21 +2440,12 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101] of  Schematron_Assert
 
-	(assertMsg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' and 'pds:curating_facility'.")
-	(assertStmt "if ( not(pds:doi) ) then (pds:curating_facility) else true()")
+	(assertMsg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'.")
+	(assertStmt "if ( (not(pds:doi)) and (not(pds:curating_facility)) ) then false() else true()")
 	(assertType "RAW")
 	(attrTitle "doi")
 	(identifier "doi")
-	(specMesg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' and 'pds:curating_facility'."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.102] of  Schematron_Assert
-
-	(assertMsg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' and 'pds:curating_facility'.")
-	(assertStmt "if ( not(pds:curating_facility) ) then (pds:doi) else true()")
-	(assertType "RAW")
-	(attrTitle "curating_facility")
-	(identifier "curating_facility")
-	(specMesg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' and 'pds:curating_facility'."))
+	(specMesg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556] of  Schematron_Rule
 

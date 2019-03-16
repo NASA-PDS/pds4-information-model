@@ -119,7 +119,7 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
-	static boolean exportDOMFlag = false;				// if false do not write any DOM file, except JSON DOM file; requires that getDOMModel be run
+	static boolean exportDOMFlag = false;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
 	static boolean pds4ModelFlag = true;
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
@@ -463,9 +463,11 @@ public class DMDocument extends Object {
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
-		GetDOMModel lGetDOMModel = new GetDOMModel();
-		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
-		DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
+		if (exportDOMFlag) {
+			GetDOMModel lGetDOMModel = new GetDOMModel();
+			lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+		}
+		if (debugFlag) DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 		// export the models
 		if (DMDocument.LDDToolFlag) {

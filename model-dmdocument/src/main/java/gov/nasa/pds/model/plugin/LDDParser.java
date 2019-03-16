@@ -312,7 +312,6 @@ public class LDDParser extends Object
 			System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Found:" + lNameSpaceIdNC);
 		}
 		System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Using:" + lConfigSchemaFileDefn.identifier);
-		System.out.println("debug parseDocument lConfigSchemaFileDefn.identifier:" + lConfigSchemaFileDefn.identifier);
 		
 		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC);
 		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);

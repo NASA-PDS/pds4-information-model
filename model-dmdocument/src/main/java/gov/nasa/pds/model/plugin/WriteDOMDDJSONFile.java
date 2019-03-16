@@ -54,7 +54,7 @@ class WriteDOMDDJSONFile extends Object{
 			printPDDPFtr(prDDPins);
 			prDDPins.close();
 		}
-	}	
+	}
 	
 	// Print the JSON Header
 	public void printPDDPHdr (PrintWriter prDDPins) {
@@ -103,6 +103,7 @@ class WriteDOMDDJSONFile extends Object{
 				lSelectedClassArr.add(lSelectedClass);
 			}
 		}
+		
 //		System.out.println("debug writeJSONFile lSelectedClassArr.size():" + lSelectedClassArr.size());
 		if (lSelectedClassArr.size() > 0) {
 			prDDPins.println("      " + formValue("classDictionary") + ": [");

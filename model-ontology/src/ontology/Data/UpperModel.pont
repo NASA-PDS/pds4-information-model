@@ -1,4 +1,4 @@
-; Wed Mar 13 13:31:43 PDT 2019
+; Fri Mar 15 14:31:13 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7957,12 +7957,12 @@
 ;+		(comment "The type attribute provides a classification for the resource.")
 		(type STRING)
 ;+		(value "Balloon" "Suborbital Rocket" "Aircraft")
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
