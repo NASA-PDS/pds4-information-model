@@ -923,6 +923,8 @@ public class DMDocument extends Object {
         		if (!DMDocument.LDDToolFlag) {		// IMTool run
         			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
             		if (lSchemaFileDefn.isMaster) {
+// 7777 isActive is set here temporarily until DOM is used; isActive is set above for all IngestLDD
+            			lSchemaFileDefn.isActive = true; 
               		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
               		   masterPDSSchemaFileDefn = lSchemaFileDefn;
               		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
