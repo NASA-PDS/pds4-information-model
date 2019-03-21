@@ -1,4 +1,4 @@
-; Fri Mar 15 18:18:16 PDT 2019
+; Thu Mar 21 10:39:17 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2441,7 +2441,7 @@
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101] of  Schematron_Assert
 
 	(assertMsg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'.")
-	(assertStmt "pds:doi or pds:curating_facility")
+	(assertStmt "if ( (not(pds:doi)) and (not(pds:curating_facility)) ) then false() else true()")
 	(assertType "RAW")
 	(attrTitle "doi")
 	(identifier "doi")
