@@ -19,7 +19,7 @@
     <parent>
         <groupId>gov.nasa.pds.2010</groupId>
         <artifactId>model</artifactId>
-        <version>9.1.0-dev</version>
+        <version>9.1.0</version>
     </parent>
 
     <groupId>gov.nasa.pds.2010.model</groupId>
