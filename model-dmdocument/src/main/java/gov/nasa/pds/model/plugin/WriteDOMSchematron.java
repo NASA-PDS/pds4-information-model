@@ -162,9 +162,9 @@ class WriteDOMSchematron extends Object {
 //	write the schematron file header
 	public void printSchematronFileHdr (SchemaFileDefn lSchemaFileDefn, PrintWriter prSchematron) {
 		prSchematron.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");					
-		prSchematron.println("  <!-- PDS4 Schematron" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id  + " - " + DMDocument.masterTodaysDate + " -->");
-		prSchematron.println("  <!-- Generated from the PDS4 Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prSchematron.println("  <!-- *** This PDS4 schematron file is an operational deliverable. *** -->");
+		prSchematron.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Schematron" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id  + " - " + DMDocument.masterTodaysDate + " -->");
+		prSchematron.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prSchematron.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " schematron file is an operational deliverable. *** -->");
 		prSchematron.println("<sch:schema xmlns:sch=\"http://purl.oclc.org/dsdl/schematron\" queryBinding=\"xslt2\">");
 		prSchematron.println("");		   
 		prSchematron.println("  <sch:title>Schematron using XPath 2.0</sch:title>");

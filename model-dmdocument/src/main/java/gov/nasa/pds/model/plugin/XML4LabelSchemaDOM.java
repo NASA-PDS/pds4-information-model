@@ -28,7 +28,6 @@ class XML4LabelSchemaDOM extends Object {
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
 		
-//		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema+ "_DOM";
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 		String lDOMLabelVersionId = lLabelVersionId + "_DOM";
@@ -188,9 +187,9 @@ class XML4LabelSchemaDOM extends Object {
 	public void writeXMLSchemaFileHeader (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
 		//	Write the header statements
 		prXML.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");						
-		prXML.println("  <!-- " + lSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
-		prXML.println("  <!-- Generated from the " + lSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
-		prXML.println("  <!-- *** This " + lSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
+		prXML.println("  <!-- " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML/Schema" + " for Name Space Id:" + lSchemaFileDefn.nameSpaceIdNC + "  Version:" + lSchemaFileDefn.ont_version_id + " - " + DMDocument.masterTodaysDate + " -->");	 
+		prXML.println("  <!-- Generated from the " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - System Build " + DMDocument.XMLSchemaLabelBuildNum + " -->");
+		prXML.println("  <!-- *** This " + DMDocument.masterPDSSchemaFileDefn.modelShortName + " product schema is an operational deliverable. *** -->");
 		if (DMDocument.LDDToolFlag) {
 			prXML.println("  <!--                                                                           -->");
 			prXML.println("  <!--               Dictionary Stack                                            -->");
@@ -259,7 +258,9 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println(" ");		
 		prXML.println("  <" + pNS + "annotation>");		
 		if (! DMDocument.LDDToolFlag) {
-			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
+//			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));		
+			String lLine = "<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>";		
+			DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 2) * 2, 72 ), prXML);
 		} else {
 			// change made to allow Mitch's comments to wrap properly.
 			prXML.println("    <" + pNS + "documentation>");		
@@ -282,9 +283,12 @@ class XML4LabelSchemaDOM extends Object {
 			lClassName = lClass.subClassOfTitle + "-" + lClass.title;
 		}
 		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";		
+		DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "complexContent>");
 		prXML.println(indentSpacesUp() + "<" + pNS + "extension base=\"" + lClass.nameSpaceId + lSuperClassName + "\">");
@@ -318,9 +322,12 @@ class XML4LabelSchemaDOM extends Object {
 			lSuperClassName = lSuperClassName + "-" + lClass.title;
 		}		
 		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClassName + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";		
+		DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "complexContent>");
 		prXML.println(indentSpacesUp() + "<" + pNS + "restriction base=\"" + lClass.nameSpaceId + lSuperClassName + "\">");
@@ -345,9 +352,12 @@ class XML4LabelSchemaDOM extends Object {
 	}	
 	
 	public void writeXMLClassNeither (SchemaFileDefn lSchemaFileDefn, DOMClass lClass, ArrayList<DOMClass> visitClassList, ArrayList<DOMClass> recurseClassList, PrintWriter prXML) throws java.io.IOException {		
-		prXML.println("\n" + indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
+		prXML.println("");
+		prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
 		prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+//		prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>", (indentSpaces + 1) * 2, 72));		
+		String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";		
+		DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72 ), prXML);
 		prXML.println(indentSpaces() + "</" + pNS + "annotation>");
 		prXML.println(indentSpaces() + "<" + pNS + "sequence" + ">");
 		
@@ -373,25 +383,27 @@ class XML4LabelSchemaDOM extends Object {
 		lGroupName = "TBD_groupName";
 
 		upIndentSpaces();
-// 999 - Need to remove Geometry for new LDD
-//		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1) || (lClass.title.indexOf("Geometry") > -1)) {
 //		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1) || (lClass.title.indexOf(DMDocument.LDDToolGeometry) > -1)) {
 		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1)) {
 			writeClassXSAnyStmts (prXML);
 			downIndentSpaces();
 			return;
 		}
+		if ((lClass.title.indexOf("Type_List_Area") > -1)) {
+			writeClassXSAnyTypeList (prXML);
+			downIndentSpaces();
+			return;
+		}
 		for (Iterator<DOMProp> i = lAttrAssocArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();			
 			if (lProp.isAny) {
-				writeClassXSAnyStmts (prXML);		
+				writeClassXSAnyStmts (prXML);
 			}
 			if (lProp.isAttribute) {
-				writeClassAttribute (lClass, lProp, prXML);		
-			} else {						       		
-			    writeClassAssociation (lClass, lProp, prXML);			 
+				writeClassAttribute (lClass, lProp, prXML);
+			} else {
+				writeClassAssociation (lClass, lProp, prXML);
 			}
-
 		}
 		downIndentSpaces();
 		
@@ -455,7 +467,7 @@ class XML4LabelSchemaDOM extends Object {
 		}
 
 		// write the XML schema statement
-		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"> </" + pNS + "element>");
+		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
@@ -481,22 +493,23 @@ class XML4LabelSchemaDOM extends Object {
 		if (cmax.compareTo("*") == 0) {
 			cmax = "unbounded";
 		}
-		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";			
+		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";
 		if (lProp.isChoice){
-            if (!choiceBlockOpen) {
-		
-			String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
-			minMaxOccursClause = "";
-			prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
-			upIndentSpaces();
-			choiceBlockOpen = true;
-		     } 
+			if (!choiceBlockOpen) {
+				String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
+				prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
+				upIndentSpaces();
+				choiceBlockOpen = true;
+				minMaxOccursClause = "";
+			} else {
+				minMaxOccursClause = "";
+			}
 		} else {
-             if (choiceBlockOpen) {
-			downIndentSpaces();
-			prXML.println(indentSpaces() + "</" + pNS + "choice>");
-			choiceBlockOpen = false;
-                     }
+			if (choiceBlockOpen) {
+				downIndentSpaces();
+				prXML.println(indentSpaces() + "</" + pNS + "choice>");
+				choiceBlockOpen = false;
+			}
 		}
 
 		// get each associated class
@@ -505,16 +518,12 @@ class XML4LabelSchemaDOM extends Object {
 		if (! DMDocument.omitClass.contains(lAssocClass.title)) {
 			if (lAssocClass.title.compareTo("Discipline_Facets") == 0) {
 				writeXMLClassDisciplineFacet (lClass, prXML);
-			
-//						prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lCompClass.title + "\"" + " type=\"" + lCompClass.nameSpaceId  + lCompClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 			} else if (! lAssocClass.isExposed) {
 				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAssocClass.title + "\"" + " type=\"" + lAssocClass.nameSpaceId  + lAssocClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 			} else {
 				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAssocClass.nameSpaceId + lAssocClass.title + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
-			}							
-			
+			}
 		}
-
 		return;
 	}
 	
@@ -584,10 +593,21 @@ class XML4LabelSchemaDOM extends Object {
 		xsAnyStmtWritten = true;
 		return;
 	}
+
+//	write the Type List XSAny statements
+	public void writeClassXSAnyTypeList (PrintWriter prXML) throws java.io.IOException {
+		if (xsAnyStmtWritten) return;
+		prXML.println("      <!-- When creating a context product you must insert a type list. -->");
+		prXML.println("      <" + pNS + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"1\" />");
+		prXML.println("      <!-- <" + pNS + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"1\"> </" + pNS + "element> -->");
+		xsAnyStmtWritten = true;
+		return;
+	}
 	
 //	write the mission and node areas
 	public void writeClassXSAny (DOMClass lClass, PrintWriter prXML) throws java.io.IOException {
-		prXML.println("\n  <" + pNS + "complexType name=\"" + lClass.title + "\">");
+		prXML.println("");
+		prXML.println("  <" + pNS + "complexType name=\"" + lClass.title + "\">");
 		prXML.println("    <" + pNS + "annotation>");
 		prXML.print  ("      <" + pNS + "documentation>");
 		prXML.print  (" " + lClass.definition);
@@ -647,9 +667,12 @@ class XML4LabelSchemaDOM extends Object {
 			if (! lAttr.isNilable || hasUnits) {
 				writeXMLExtendedRestrictedNonEnumerated (lSchemaFileDefn, hasUnits, lAttr, prXML);			
 			} else {
-				prXML.println("\n  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
+				prXML.println("");
+				prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 				prXML.println("    <" + pNS + "annotation>");		
-				prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+//				prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+				String lLine = "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";		
+				DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 				prXML.println("    </" + pNS + "annotation>");		
 				prXML.println("    <" + pNS + "simpleContent>");
 				prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.valueType + "\">");
@@ -666,11 +689,15 @@ class XML4LabelSchemaDOM extends Object {
 		String lValue;
 		
 		if (hasUnits) {
-			prXML.println("\n  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "_WO_Units\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "_WO_Units\">");
 		} else {
-			prXML.println("\n  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
-			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+//			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+			String lLine = "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";		
+			DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 			prXML.println("    </" + pNS + "annotation>");
 		}
 	
@@ -713,9 +740,12 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println("  </" + pNS + "simpleType>");
 		
 		if (hasUnits) {
-			prXML.println("\n  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
+			prXML.println("");
+			prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
-			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+//			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
+			String lLine = "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";		
+			DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 			prXML.println("    </" + pNS + "annotation>");		
 			prXML.println("    <" + pNS + "simpleContent>");
 			prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.XMLSchemaName + "_WO_Units\">");
@@ -816,6 +846,7 @@ class XML4LabelSchemaDOM extends Object {
 						hasPattern = true;
 						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
 							String lPattern = (String) k.next();
+							lPattern = DOMInfoModel.escapeXMLChar(lPattern);
 							prXML.println("        <" + pNS + "pattern value='" + lPattern + "'/>");
 						}
 					}
@@ -855,25 +886,29 @@ class XML4LabelSchemaDOM extends Object {
 //		Write the unit types		
 		for (Iterator<DOMClass> i = sortDataTypeArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-		    prXML.println("");
-		    prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
+			prXML.println("");
+			prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
 			prXML.println("      <" + pNS + "restriction base=\"" + pNS + "string\">");							
-//			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
 			// use attribute list sorted by classOrder
 			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.title.compareTo("unit_id") == 0) {
-					ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lProp.valArr);
-					if (lValArr != null) {
-						for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
-							String lVal = (String) k.next();
-							prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
+				if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+					if (lDOMAttr != null) {
+						if (lDOMAttr.title.compareTo("unit_id") == 0) {
+						ArrayList <String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);
+							if (lValArr != null) {
+								for (Iterator<String> k = lValArr.iterator(); k.hasNext();) {
+									String lVal = (String) k.next();
+									prXML.println("        <" + pNS + "enumeration value=\"" + lVal + "\"></" + pNS + "enumeration>");
+								}
+							}
 						}
 					}
 				}
 			}
-		    prXML.println("      </" + pNS + "restriction>");
-		    prXML.println("    </" + pNS + "simpleType>");
+			prXML.println("      </" + pNS + "restriction>");
+			prXML.println("    </" + pNS + "simpleType>");
 		}
 	}	
 	
@@ -899,19 +934,20 @@ class XML4LabelSchemaDOM extends Object {
 	}	
 
 	public void writeDeprecatedItems (PrintWriter prXML) throws java.io.IOException {
-    	prXML.println(" ");
-    	prXML.println("<!-- Deprecated Items - Begin ");
-    	prXML.println(" ");
-    	prXML.println("     - Classes -");
+		if (DMDocument.importJSONAttrFlag) return;
+		prXML.println(" ");
+		prXML.println("<!-- Deprecated Items - Begin ");
+		prXML.println(" ");
+		prXML.println("     - Classes -");
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
 			if (! lDeprecatedDefn.isAttribute) {
 				String lValue = lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.className;
-		    	prXML.println("     " + lValue);
+				prXML.println("     " + lValue);
 			}
 		}
-    	prXML.println(" ");
-    	prXML.println("     - Attributes -");
+		prXML.println(" ");
+		prXML.println("     - Attributes -");
 		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
 			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
 			if (lDeprecatedDefn.isAttribute && ! lDeprecatedDefn.isValue) {

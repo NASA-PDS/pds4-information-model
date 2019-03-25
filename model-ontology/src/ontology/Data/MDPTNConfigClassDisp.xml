@@ -22,8 +22,10 @@
 
   </Comment>
 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.%3ACLIPS_TOP_LEVEL_SLOT_CLASS</Field> <Field>1M</Field> <Field>#nm</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.%3ACLIPS_TOP_LEVEL_SLOT_CLASS</Field> <Field>1M</Field> <Field>#nm</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.AAREADME</Field> <Field>1M</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record>   
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.XSChoice%23</Field> <Field>1M</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record>   
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.ChangeLog</Field> <Field>1M</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record>   
 
   <Comment> </Comment>
   
@@ -135,7 +137,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Thumbnail</Field> <Field>1MSR</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Metadata_Supplemental</Field> <Field>1MSR</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_XML_Schema</Field> <Field>1MSRC</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Dictionary</Field> <Field>1MSRC</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Dictionary</Field> <Field>1MSRC</Field> <Field>#11</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Zipped</Field> <Field>oMSR</Field> <Field>#11</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Document_Format</Field> <Field>1MC</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record>   
@@ -170,16 +172,12 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Facility</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Airborne</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Telescope</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Instrument2</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Target2</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List_Entry</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Type_List_Area</Field> <Field>1M</Field> <Field>#14</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Bundle</Field> <Field>1MSRC</Field> <Field>#15</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Collection</Field> <Field>1MSRC</Field> <Field>#15</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Dictionary</Field> <Field>1MC</Field> <Field>#16</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Dictionary</Field> <Field>1MC</Field> <Field>#16</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Bundle</Field> <Field>1MC</Field> <Field>#16</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Bundle_Member_Entry</Field> <Field>1MC</Field> <Field>#16</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Collection</Field> <Field>1MC</Field> <Field>#16</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
@@ -219,6 +217,8 @@
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Rule</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Rule_Statement</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Rule</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Assert</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.External_Reference_Extended</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Agency</Field> <Field>1M</Field> <Field>#18</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
@@ -245,7 +245,7 @@
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Tracking_Detail</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.NSSDC</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Service</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Mission_Information</Field> <Field>oM</Field> <Field>#18</Field> <Field>msn</Field> <Field>msn</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Mission_Information</Field> <Field>oM</Field> <Field>#18</Field> <Field>msn</Field> <Field>msn</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Digital_Object</Field> <Field>oMVC</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Physical_Object</Field> <Field>oMVC</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
@@ -289,7 +289,6 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.TNDO_Context</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.TNDO_Context_PDS3</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.TNDO_Supplemental</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.TNDO_Cartography</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Tagged_Digital_Child</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Tagged_Digital_Object</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Tagged_NonDigital_Child</Field> <Field>oMV</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
@@ -305,14 +304,13 @@
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin_Set</Field> <Field>4MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>img</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin</Field> <Field>4MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Cartography_Group</Field> <Field>4MTE</Field> <Field>#19</Field> <Field>fgdcx</Field> <Field>img</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion</Field> <Field>1MTF</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion_Component</Field> <Field>1MTF</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Direction</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Color_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Movie_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Direction</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Color_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Movie_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
 
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Activity</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Agent</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
@@ -321,44 +319,6 @@
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Input_Data</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Methods</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Output_Data</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
-
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Rings</Field> <Field>7MVE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Rings_Supplement</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Ring_Moon_Systems</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Occultation_Ring_Profile</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Occultation_Time_Series</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Occultation_Supplement</Field> <Field>7MSE</Field> <Field>#20</Field> <Field>rings</Field> <Field>rings</Field> </Record> 
-
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Cartography</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Spatial_Domain</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Spatial_Reference_Information</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Bounding_Coordinates</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Horizontal_Coordinate_System_Definition</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Geodetic_Model</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Geographic</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Planar</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Local</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Planar_Coordinate_Information</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Map_Projection</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Grid_Coordinate_System</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Local_Planar</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Coordinate_Representation</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Distance_and_Bearing_Representation</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Equirectangular</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Lambert_Conformal_Conic</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Oblique_Mercator</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Polar_Stereographic</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Polyconic</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Sinusoidal</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Transverse_Mercator</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Universal_Transverse_Mercator</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Universal_Polar_Stereographic</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.State_Plane_Coordinate_System</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Oblique_Line_Azimuth</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Oblique_Line_Point</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Map_Projection_Base</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Oblique_Line_Point_Group</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Geo_Transformation</Field> <Field>7MS</Field> <Field>#24</Field> <Field>cart</Field> <Field>cart</Field> </Record>
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Decimal_Integer</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Decimal_Real</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
@@ -424,6 +384,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Directory_Path_Name</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_MD5_Checksum</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_DOI</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_BibCode</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_AnyURI</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Local_Identifier</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_Local_Identifier_Reference</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 		 		 
@@ -437,6 +398,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Area</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Current</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Distance</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Energy</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Frame_Rate</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Frequency</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Units_of_Length</Field> <Field>1Mu</Field> <Field>#22</Field> <Field>pds</Field> <Field>pds</Field> </Record>

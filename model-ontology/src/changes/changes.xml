@@ -24,6 +24,63 @@
 
   <body>
     <release version="9.1.0" date="2019-03-29" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 9.1.0 of the PDS4 System. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-195">
+       Update Information Model to Improve International Interoperability.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-202">
+       Amend the Instrument class context product.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-203">
+       Define and enforce constraints on local dictionaries to avoid confusion with key pds: namespace attributes.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-214">
+       Optional trailing zeroes in ASCII_Real for Table_Character.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-227">
+       Missing Requirements in Source_Product_External.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-235">
+       Add data type ASCII_BibCode.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-238">
+       Need the capability to associate Thumbnail products to other types of products. 
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-240">
+       Add Units_of_Energy as a unit of measure.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-242">
+       Add 'Field Campaign' to Investigation Type.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-243">
+       Consolidate Context Target Types for Samples.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-245">
+       Deprecate 'Airborne' as an independent host type.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-246">
+       Deprecate 'Sun' as a separate context target.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-247">
+       Undeprecate "Radio Science" as a Value for Instrument.type.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-248">
+       Bundle_Member_Entry is missing a reference_type for miscellaneous collections.
+      </action>
+      <action dev="jshughes" type="fix">
+       Removed the Imaging class "Telemetry_Parameters" from the IM master database.
+      </action>
+      <action dev="jshughes" type="fix">
+       Removed the Geometry class "Geometry" from the IM master database.
+      </action>
+      <action dev="jshughes" type="fix">
+       Removed the Cartography class "Cartography" from the IM master database.
+      </action>
+      <action dev="jshughes" type="fix">
+       Add Imaging "Units_of_Pixel_Scale_Map" to "DD_Value_Domain. unit_of_measure_type.
+      </action>
+      <action dev="jshughes" type="fix">
+       Made line endings consistent for XML Schema file.
+      </action>
     </release>
       
     <release version="9.0.0" date="2018-09-30" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 9.0.0 of the PDS4 System.  This is an operational release of the system components to date.">

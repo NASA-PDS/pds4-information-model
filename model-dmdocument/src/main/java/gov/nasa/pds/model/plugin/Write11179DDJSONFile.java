@@ -17,16 +17,17 @@ class Write11179DDJSONFile extends Object{
 	}
 
 	// write the JSON file
-	public void writeJSONFile (String lFileName) throws java.io.IOException {
+	public void writeJSONFile (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
+		String lFileName = lSchemaFileDefn.relativeFileSpecModelJSON;
 	    prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		printPDDPHdr();
-		printPDDPBody ();
-		printPDDPFtr();
+		printPDDPHdr(lSchemaFileDefn);
+		printPDDPBody (lSchemaFileDefn);
+		printPDDPFtr(lSchemaFileDefn);
 		prDDPins.close();
 	}	
 	
 	// Print the JSON Header
-	public void printPDDPHdr () {
+	public void printPDDPHdr (SchemaFileDefn lSchemaFileDefn) {
 		prDDPins.println("[");
 		prDDPins.println("  {");
 		prDDPins.println("    " + formValue("dataDictionary") + ": {");
@@ -53,29 +54,31 @@ class Write11179DDJSONFile extends Object{
 	}
 
 	// Print the JSON Footer
-	public  void printPDDPFtr () {
+	public  void printPDDPFtr (SchemaFileDefn lSchemaFileDefn) {
 		prDDPins.println("    }");
 		prDDPins.println("  }");
 		prDDPins.println("]");
 	}
 	
 //	print the JSON body
-	public  void printPDDPBody () {
+	public  void printPDDPBody (SchemaFileDefn lSchemaFileDefn) {
 		prDDPins.println("      " + formValue("classDictionary") + ": [");
-		printClass (prDDPins);
+		printClass (lSchemaFileDefn, prDDPins);
 		prDDPins.println("      ]");
 
 		prDDPins.println("    , " + formValue("attributeDictionary") + ": [");
-		printAttr (prDDPins);
+		printAttr (lSchemaFileDefn, prDDPins);
 		prDDPins.println("      ]");
 		
-		prDDPins.println("    , " + formValue("dataTypeDictionary") + ": [");
-		printDataType (prDDPins);
-		prDDPins.println("      ]");
-		
-		prDDPins.println("    , " + formValue("unitDictionary") + ": [");
-		printUnits (prDDPins);
-		prDDPins.println("      ]");	
+		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
+			prDDPins.println("    , " + formValue("dataTypeDictionary") + ": [");
+			printDataType (prDDPins);
+			prDDPins.println("      ]");
+			
+			prDDPins.println("    , " + formValue("unitDictionary") + ": [");
+			printUnits (prDDPins);
+			prDDPins.println("      ]");
+		}
 
 		prDDPins.println("    , " + formValue("PropertyMapDictionary") + ": [");
 		printPropertyMaps (prDDPins);
@@ -83,11 +86,12 @@ class Write11179DDJSONFile extends Object{
 	}
 	
 	// Print the classes
-	public  void printClass (PrintWriter prDDPins) {
+	public  void printClass (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
 		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassIdMap.values());
 		for (Iterator<PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
+			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
 			if (lClass.title.indexOf("PDS3") > -1) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
 			delimiter1 = ", ";
@@ -258,13 +262,14 @@ class Write11179DDJSONFile extends Object{
 	}
 	
 	// Print the the Protege Pins DE
-	public  void printAttr (PrintWriter prDDPins) {
+	public  void printAttr (SchemaFileDefn lSchemaFileDefn, PrintWriter prDDPins) {
 		// print the data elements
 		String delimiter1 = "  ";
 ///		ArrayList <AttrDefn> lAttrArr = new ArrayList (InfoModel.masterMOFAttrIdMap.values());
 ///		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
 		for (Iterator<AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
+			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) != 0) continue;
 			if (! (lAttr.isUsedInClass && lAttr.isAttribute)) continue;
 			prDDPins.println("      " + delimiter1 + "{");				
 			delimiter1 = ", ";

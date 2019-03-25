@@ -1,4 +1,4 @@
-; Wed Jan 23 13:14:09 PST 2019
+; Thu Mar 21 10:39:17 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -147,7 +147,7 @@
 	(multislot has_occultation_time_series
 ;+		(comment "The has_occultation_time_series association is a relationship to occultation_time_series")
 		(type INSTANCE)
-;+		(allowed-classes Occultation_Time_Series)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot value_begin_date
 ;+		(comment "The value_begin_date attribute provides the first date on which the permissible value is in effect.")
@@ -185,7 +185,7 @@
 	(multislot has_Geodetic_Model
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Geodetic_Model)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot has_property_map_external
 ;+		(comment "The has_property_map_external association is a relationship to Property_Map_External")
@@ -217,7 +217,7 @@
 	(multislot has_State_Plane_Coordinate_System
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes State_Plane_Coordinate_System)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot instrument_name
 ;+		(comment "The instrument_name attribute provides a unique name for an instrument.")
@@ -308,7 +308,7 @@
 	(multislot has_rings_supplement
 ;+		(comment "The has_rings_supplement association is a relationship to rings_supplement")
 		(type INSTANCE)
-;+		(allowed-classes Rings_Supplement)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot value_domain
 ;+		(comment "Associated value domains.")
@@ -409,7 +409,7 @@
 	(multislot has_Spatial_Domain
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Spatial_Domain)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot application_process_name
 ;+		(comment "The application_process_name attribute provides the name associated with the source or process which created the data.")
@@ -1088,7 +1088,7 @@
 	(multislot has_occultation_supplement
 ;+		(comment "The has_occultation_supplement association is a relationship to occultation_supplement")
 		(type INSTANCE)
-;+		(allowed-classes Occultation_Supplement)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot utm_zone_number
 ;+		(comment "The utm_zone_number attribute provides the identifier for the UTM zone.")
@@ -1165,7 +1165,7 @@
 	(multislot has_Map_Projection
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Map_Projection Local_Planar Grid_Coordinate_System XSChoice%23)
+;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
 	(single-slot fraction_digits
 ;+		(comment "The fraction digits indicates the number of digits in the faction part of a real number.")
@@ -1181,7 +1181,7 @@
 	(multislot has_Horizontal_Coordate_System_Definition
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Horizontal_Coordinate_System_Definition)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot nssdc
 ;+		(comment "The nssdc association is a relationship to NSSDC.")
@@ -1491,7 +1491,7 @@
 	(multislot has_occultation_ring_profile
 ;+		(comment "The has_occultation_ring_profile association is a relationship to occultation_ring_profile")
 		(type INSTANCE)
-;+		(allowed-classes Occultation_Ring_Profile)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot product_creation_time
 		(type STRING)
@@ -1840,7 +1840,7 @@
 	(multislot has_Equirectrangular
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Equirectangular Lambert_Conformal_Conic Polar_Stereographic Polyconic Transverse_Mercator Oblique_Mercator Sinusoidal XSChoice%23)
+;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
 	(multislot member_reference
 ;+		(comment "The member reference attribute provides a identifier for a member.")
@@ -2012,7 +2012,7 @@
 	(multislot has_Geographic
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Geographic Local Planar XSChoice%23)
+;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
 	(single-slot volume_format
 ;+		(comment "The volume_format attribute identifies the logical format used in writing a data volume.")
@@ -2086,7 +2086,7 @@
 	(single-slot has_color_display_settings
 ;+		(comment "The has_color_display_settings association is a relationship to Color_Display_Settings.")
 		(type INSTANCE)
-;+		(allowed-classes Color_Display_Settings)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot subscription_id
@@ -2129,7 +2129,7 @@
 	(multislot has_Coordinate_Representation
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Coordinate_Representation Distance_and_Bearing_Representation)
+;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
 	(multislot subscriber
 ;+		(comment "The subscriber association is a relationship to a Subscriber_PDS3 class.")
@@ -2651,7 +2651,7 @@
 	(multislot has_Polyconic
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Lambert_Conformal_Conic Polyconic Transverse_Mercator Oblique_Mercator XSChoice%23)
+;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
 	(multislot local_true_solar_time
 ;+		(comment "The local_true_solar_time (LTST) attribute provides the local time on a rotating solar system body where LTST is 12 h at the sub-solar point (SSP) and increases 1 h for each 15 degree increase in east longitude away from the SSP for prograde rotation.")
@@ -2771,7 +2771,7 @@
 	(multislot has_Geo_Transformation
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Geo_Transformation)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot invalid_constant
 ;+		(comment "The invalid_constant attribute provides a value that indicates the original value was outside the valid range for the parameter.")
@@ -2892,7 +2892,7 @@
 	(multislot has_Planar_Coordinate_Information
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Planar_Coordinate_Information)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot document_name
 ;+		(comment "The document_name attribute provides the full name of the published document. This optional attribute is used only if the title in the identification area of the document product is not sufficient.")
@@ -2913,7 +2913,7 @@
 		(type STRING)
 		(create-accessor read-write))
 	(multislot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot was_associated_with
@@ -2942,7 +2942,7 @@
 	(multislot has_Polar_Stereographic
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Polar_Stereographic)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot data_standards
 ;+		(comment "The data standards association is a relationship to information about the controlling data standards.")
@@ -3004,7 +3004,7 @@
 	(multislot has_Oblique_Line_Point_Group
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Oblique_Line_Point_Group)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot registration_authority
 ;+		(comment "The registration_authority attribute provides the name of the group  responsible for the terminological entry.")
@@ -3375,7 +3375,7 @@
 	(multislot has_Transverse_Mercator
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Transverse_Mercator)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot logical_volume_path_name
 ;+		(comment "This attribute is used in by the volume class. It is under review.")
@@ -3421,6 +3421,11 @@
 	(multislot ring_event_start_time_utc
 ;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_type_list_area
+;+		(comment "The has_type_list_area association is a relationship to Type_List_Area.")
+		(type INSTANCE)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot resource_desc
 ;+		(comment "The resource_desc attribute provides a description for the resource")
@@ -3536,6 +3541,10 @@
 ;+		(comment "The semi_major_axis attribute provides the radius of the equatorial axis of the ellipsoid.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot validation_format
+;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot software_dialect
 ;+		(comment "The software dialect attribute indicates the variety of a language used to write the software.")
@@ -3845,7 +3854,7 @@
 	(multislot has_Bounding_Coordinates
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Bounding_Coordinates)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot spacecraft_clock_start_count
 ;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
@@ -3863,11 +3872,6 @@
 	(multislot local_static_permissible_value
 		(type INSTANCE)
 ;+		(allowed-classes DD_Static_Permissible_Value)
-		(create-accessor read-write))
-	(multislot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "N" "Y")
 		(create-accessor read-write))
 	(single-slot records
 ;+		(comment "The records attribute provides a count of records.")
@@ -4128,7 +4132,7 @@
 	(single-slot has_Oblique_Line
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Oblique_Line_Point Oblique_Line_Azimuth)
+;+		(allowed-classes XSChoice%23)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot has_tracking_detail
@@ -4223,7 +4227,7 @@
 	(single-slot has_display_direction
 ;+		(comment "The has_display_direction association is a relationship to Display_Direction.")
 		(type INSTANCE)
-;+		(allowed-classes Display_Direction)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot enumeration_flag
@@ -4365,7 +4369,7 @@
 	(single-slot has_movie_display_settings
 ;+		(comment "The has_movie_display_settings association is a relationship to Movie_Display_Settings.")
 		(type INSTANCE)
-;+		(allowed-classes Movie_Display_Settings)
+;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot classNameSpaceNC
@@ -4375,7 +4379,7 @@
 	(multislot has_Universal_Transverse_Mercator
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Universal_Transverse_Mercator)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot value_syntax
 		(type STRING)
@@ -4417,7 +4421,7 @@
 	(multislot has_Spatial_Reference_Information
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Spatial_Reference_Information)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot distribution_type
 ;+		(comment "This attribute is used in by the data set release class. It is under review.")
@@ -4472,7 +4476,7 @@
 	(multislot has_type_list_entry
 ;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
 		(type INSTANCE)
-;+		(allowed-classes Type_List_Entry)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot identifier_reference
 ;+		(comment "The identifier_reference attribute provides the value of an identifier.")
@@ -4496,7 +4500,7 @@
 	(multislot has_Universal_Polar_Stereographic
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
-;+		(allowed-classes Universal_Polar_Stereographic)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot valid_maximum
 ;+		(comment "The valid_maximum attribute specifies the maximum valid value in the field or digital object with which the Special_Constants class is associated. Values above the valid_maximum have a special meaning. Values of this attribute should be represented in the same data_type as the elements in the object or field described. (Note that PDS3 had no qube-related valid_maximum values because all special constants were set below the valid_minimum.)")
@@ -4973,22 +4977,6 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Product_Resource "A resource product describes a web resource."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Resource)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
 (defclass Product_Target_PDS3 "A target product describes a target. This product captures a reduced set of the PDS3 catalog target information."
 	(is-a Product)
 	(role concrete)
@@ -5441,7 +5429,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties so that correct nomenclature can be applied.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample")
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
@@ -5669,7 +5657,7 @@
 ;+		(allowed-classes External_Reference)
 		(create-accessor read-write)))
 
-(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in the PDS registry system."
+(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in PDS4-compliant registries of PDS and its recognized international partners."
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot lid_reference
@@ -5746,7 +5734,7 @@
 	(single-slot reference_type
 ;+		(comment "The reference_type attribute provides the name of the association.")
 		(type STRING)
-;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection")
+;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection" "bundle_has_miscellaneous_collection")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot lidvid_reference
@@ -6136,589 +6124,6 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Rings_Supplement "This class is required for all Rings Node currated data products"
-	(is-a Product_Components)
-	(role concrete)
-	(multislot source_pds3_id
-;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is constructed as PDS3 dataset_id, a colon, then the PDS3 product_id. The acceptable nil_reasons are 'inapplicable' and 'unknown'.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot ring_observation_id
-;+		(comment "The ring_observation_id uniquely identifies a single experiment or observation %28image, occultation profile, spectrum, etc.%29 within a rings-related data set. This is the common id by which data are identified within the Rings Node catalog. It describes the smallest quantity of data that can be usefully cataloged or analyzed by itself. Note that a single observation may be associated with multiple data products %28e.g. raw and calibrated versions of an image%29. Note also that a single data product may be associated with multiple observations %28e.g. a single WFPC2 image file containing four different images%29. A ring observation id is constructed using numbers, upper case letters, forward slash, colon, period, dash, and underscore as follows: p%2Ftype%2Fhost%2Finst%2Ftime%2F... where p is a single-letter planet id %28one of J, S, U, or N%29; type is IMG for images, OCC for occultation profile, etc.; host is the instrument host id, inst is the instrument id; time is the observation time as a date or instrument clock count; further information identifying the observation can then be appended as appropriate. Optional in labels. Nillable, in which case the nil_reason should be 'inapplicable'. Examples: J%2FIMG%2FVG2%2FISS%2F20693.01%2FN J%2FIMG%2FVG2%2FISS%2F20693.02%2FW S%2FIMG%2FHST%2FWFPC2%2F1995-08-10%2FU2TF020B%2FPC1 U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FS U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FX N%2FOCC%2FVG2%2FPPS%2F1989-08-25%2FSIGMA_SGR ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Occultation_Ring_Profile "This class replaces the Radio_Occultation and Stellar_Occultation classes. It is used for all ring occultation profiles regardless of the occultation type."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot sub_stellar_clock_angle
-;+		(comment "sub_stellar_clock_angle is an angle measured at a point in the ring plane, from the direction toward a star to the local radial direction. This angle is projected into the ring plane and measured in the clockwise %28retrograde%29 direction. Equivalently, this is the prograde angle from the local radial direction to the direction toward the star. For stellar occultation data, this angle is equal to %28180 - OBSERVED_RING_AZIMUTH%29 mod 360. It is available only for backward compatibility with previously published Cassini VIMS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_clock_angle is an optional data table field for Cassini VIMS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini VIMS occultation data; not recommended for other occultation data. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_event_time
-;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_time_utc
-;+		(comment "observed_event_stop_time_utc indicates the UTC value for latest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot radial_sampling_interval
-;+		(comment "radial_sampling_interval indicates the radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. Required in labels if the value is fixed. If the value varies, the corresponding minimum and and maximum attributes must be used instead. Not intended to be used as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_time_utc
-;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_radial_sampling_interval
-;+		(comment "minimum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ring_plane
-;+		(comment "ring_plane indicates the plane upon which parameters such as ring_radius are based. Possible values for the Saturn ring system are 'Equator', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'Phoebe'. For the Uranus ring system values are 'Equator', 'Six', 'Five', 'Four', 'Alpha', 'Beta', 'Eta', 'Gamma', 'Delta', 'Lambda','Epsilon',Nu, Mu. Required in labels of ring occultation observations.")
-		(type STRING)
-;+		(value "Alpha" "B" "C" "D" "Delta" "E" "Epsilon" "Equator" "Eta" "F" "Five" "Four" "G" "Gamma" "Lambda" "Mu" "Nu" "Phoebe" "Six" "A" "Beta")
-		(create-accessor read-write))
-	(single-slot occultation_direction
-;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot frequency_band
-;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
-		(type STRING)
-;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_wavelength
-;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_tdb
-;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot along_track_timing_offset
-;+		(comment "along_track_timing_offset is a timing offset to the along track spacecraft position. It is the value that minimizes differences in radii of matching circular ring features observed on the ingress and egress sides of the occultation track. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_wavelength
-;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_tdb
-;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sub_stellar_ring_azimuth
-;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_elevation
-;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_ring_elevation
-;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot earth_received_start_time_utc
-;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_light_source_incidence_angle
-;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_radius
-;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot earth_received_stop_time_utc
-;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_time_utc
-;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_longitude
-;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_event_time
-;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, or Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_radial_sampling_interval
-;+		(comment "maximum_radial_sampling_interval indicates the smallest radial spacing between consecutive points in a ring profile. In practice, this may be somewhat smaller than the radial_resolution because a profile may be over-sampled. If the value of radial_sampling_interval varies, the minimum and maximum attributes are required in labels. Not intended to be used as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_tdb
-;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_radius
-;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot sclk_start_time
-;+		(comment "sclk_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_event_start_time_utc
-;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_azimuth
-;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orbit_number
-;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot radial_resolution
-;+		(comment "radial_resolution indicates the nominal radial distance over which changes in ring properties can be detected within a data product. Note: this value may be larger than the radial_sampling_interval value, because a data product can be over-sampled. Required in labels if the value is fixed, as it is for stellar occultations. If the value varies, the corresponding minimum and maximum attributes must be used instead. Not intended to be used as a table field.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_time_utc
-;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sclk_stop_time
-;+		(comment "sclk_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot light_source_incidence_angle
-;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_light_source_incidence_angle
-;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "N" "Y")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_azimuth
-;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_tdb
-;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_event_stop_time_utc
-;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot lowest_detectable_opacity
-;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot dsn_station_number
-;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wavelength
-;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_longitude
-;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot highest_detectable_opacity
-;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot star_name
-;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_elevation
-;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Occultation_Time_Series "This class supports occultation data organized as a time series"
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot sub_stellar_clock_angle
-;+		(comment "sub_stellar_clock_angle is an angle measured at a point in the ring plane, from the direction toward a star to the local radial direction. This angle is projected into the ring plane and measured in the clockwise %28retrograde%29 direction. Equivalently, this is the prograde angle from the local radial direction to the direction toward the star. For stellar occultation data, this angle is equal to %28180 - OBSERVED_RING_AZIMUTH%29 mod 360. It is available only for backward compatibility with previously published Cassini VIMS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_clock_angle is an optional data table field for Cassini VIMS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini VIMS occultation data; not recommended for other occultation data. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_event_time
-;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, or Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_time_utc
-;+		(comment "observed_event_stop_time_utc indicates the UTC value for latest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_time_utc
-;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time_series_direction
-;+		(comment "time_series_direction indicates the direction the occultation proceeds through the target within a particular data product. Possible values are 'ingress', 'egress', 'both' or 'multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Not intended as a value for a table field.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot observed_event_stop_tdb
-;+		(comment "observed_event_stop_tdb indicates the value for latest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_radius
-;+		(comment "minimum_ring_radius indicates the smallest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_event_start_time_utc
-;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sclk_start_time
-;+		(comment "sclk_start_time is the value of the spacecraft clock corresponding to the start_date_time given in the label.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_azimuth
-;+		(comment "maximum_observed_ring_azimuth specifes the largest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ring_plane
-;+		(comment "ring_plane indicates the plane upon which parameters such as ring_radius are based. Possible values for the Saturn ring system are 'Equator', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'Phoebe'. For the Uranus ring system values are 'Equator', 'Six', 'Five', 'Four', 'Alpha', 'Beta', 'Eta', 'Gamma', 'Delta', 'Lambda','Epsilon',Nu, Mu. Required in labels of ring occultation observations.")
-		(type STRING)
-;+		(value "A" "Alpha" "B" "Beta" "C" "D" "Delta" "E" "Epsilon" "Equator" "Eta" "F" "Five" "Four" "G" "Gamma" "Lambda" "Mu" "Nu" "Phoebe" "Six")
-		(create-accessor read-write))
-	(multislot orbit_number
-;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot occultation_direction
-;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot frequency_band
-;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
-		(type STRING)
-;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_wavelength
-;+		(comment "minimum_wavelength is the smallest wavelength used in the observation. Optional in labels. Used with maximum_wavelength when the observation is over a wavelength range.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_start_tdb
-;+		(comment "ring_event_start_tdb indicates the value for earliest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot along_track_timing_offset
-;+		(comment "along_track_timing_offset is a timing offset to the along track spacecraft position. It is the value that minimizes differences in radii of matching circular ring features observed on the ingress and egress sides of the occultation track. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_time_utc
-;+		(comment "observed_event_start_time_utc indicates the UTC value for earliest time in the described data. It is part of a start/stop pair. If one of observed_event_start_time_utc and observed_event_stop_time_utc is used, both must be used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_wavelength
-;+		(comment "maximum_wavelength is the largest wavelength used in the observation. Optional in labels. Used with minimum_wavelength when the observation is over a wavelength range.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_tdb
-;+		(comment "ring_event_stop_tdb indicates the value for latest time in the described data, and is given in ring_event_tdb format. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sclk_stop_time
-;+		(comment "sclk_stop_time is the value of the spacecraft clock corresponding to the stop_date_time given in the label.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot light_source_incidence_angle
-;+		(comment "light_source_incidence_angle is an angle measured from the local surface normal vector to the direction of a photon arriving from the light source. For rings, the normal vector is that on the same side of the rings as the light source, so values always range between 0 and 90 in units of degrees. The value is always equal to 90 - %7C observed_ring_elevation %7C This will enable users to perform database searches based on the effective ring opening angle when they are not concerned about the the distinction between north-side and southside viewpoints. We have included the 'light source' prefix to the term so that this quantity is not confused with 'incidence angle', a term that is generally associated with sunlight rather than stars or radio transmitters. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label. Optional as a field in the data table.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_light_source_incidence_angle
-;+		(comment "minimum_light_source_incidence_angle specifes the smallest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sub_stellar_ring_azimuth
-;+		(comment "sub_stellar_ring_azimuth is an angle measured at a point in the ring plane, starting from the direction of a photon arriving from a star, and ending at the direction of a local radial vector. This angle is projected into the ring plane and measured in the prograde direction. Values range from 0 to 360 in units of degrees. For stellar occultation data, this angle is equal to %28observed_ring_azimuth %2B 180%29 mod 360. It is available only for backward compatibility with previously published Cassini UVIS occultation data analysis; observed_ring_azimuth is the preferred quantity for archiving. sub_stellar_ring_azimuth is an optional data table field for Cassini UVIS occultation data; not recommended for other occultation data. In a label, the min and max variation attributes are optional for Cassini UVIS occultation data; not recommended for other occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "N" "Y")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_azimuth
-;+		(comment "minimum_observed_ring_azimuth specifes the smallest value for observed_ring_azimuth in the data file. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_event_start_tdb
-;+		(comment "observed_event_start_tdb indicates the value for earliest time in the described data, and is given in elapsed seconds since the J2000 epoch. Optional in labels; not intended for use as a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_observed_ring_elevation
-;+		(comment "maximum_observed_ring_elevation specifes the largest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot observed_ring_elevation
-;+		(comment "observed_ring_elevation is an angle measured at a point in the ring plane, starting from the ring plane to the direction of a photon heading to the observer. This angle is positive on the side of the ring plane defined by positive angular momentum, and negative on the opposite side. Values range from -90 to %2B90 in units of degrees. This angle is constant for stellar occultations, but may vary significantly during radio occultations. Note: The direction of positive angular momentum points toward the IAU-defined north side of the ring plane for Jupiter, Saturn and Neptune, but IAU-defined south side of the ring plane for Uranus. Required in the label if the value is constant for the observation. If the angle varies for the observation, the min and max attributes are required in the label, and observed_ring_elevation is strongly recommended as a field in the data table. The above definition of observed_ring_elevation is equivalent to the most common usage of the term 'ring open angle', B.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot earth_received_start_time_utc
-;+		(comment "earth_received_start_time_utc gives the UTC time corresponding to the earliest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_light_source_incidence_angle
-;+		(comment "maximum_light_source_incidence_angle specifes the largest value for observed_ring_elevation in the observation. Only used if the value is not constant over the observation. Values range from 0 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_event_stop_time_utc
-;+		(comment "spacecraft_event_stop_time_utc gives the UTC time corresponding to the latest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_stop_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_radius
-;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot lowest_detectable_opacity
-;+		(comment "lowest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the smallest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot dsn_station_number
-;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot wavelength
-;+		(comment "wavelength of the observation. Optional in labels. If the observation is over a wavelength range, use the corresponding minimum and maximum attributes instead.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_ring_longitude
-;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot earth_received_stop_time_utc
-;+		(comment "earth_received_stop_time_utc gives the UTC time corresponding to the latest time for the data product at which telemetry or other photons were received on Earth. Optional for occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot highest_detectable_opacity
-;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot star_name
-;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot ring_event_stop_time_utc
-;+		(comment "ring_event_stop_time_utc gives the UTC time corresponding to the latest time given by ring_event_time or ring_event_tdb in the data table. ring_event_stop_time_utc is required for all ring occultation data. ring_event_stop_time_utc is required label attribute for all ring occultation data.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_ring_elevation
-;+		(comment "minimum_observed_ring_elevation specifes the smallest value for observed_ring_elevation in the data file. Only used if the value is not constant over the observation. Values range from -90 to %2B90 in units of degrees. Not intended for use in the data file.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot maximum_ring_longitude
-;+		(comment "maximum_ring_longitude specifies one boundary for the ring longitude range in the data; normally the largest value. However, for ranges that cross the prime meridian, the maximum ring longitude will have a value less than the minimum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_event_time
-;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Occultation_Supplement "This class is required for all radio ring occultation calibration and geometry supplemental files."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot maximum_observed_event_time
-;+		(comment "maximum_observed_event_time gives the largest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. maximum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot occultation_type
-;+		(comment "occultation_type distinguishes between three types of occultation experiments: Stellar, Solar, or Radio. Stellar occultations involve observing a star as a targeted ring or body passes in front, as seen from either a spacecraft or Earth-based observatory. Solar occultations are similar to stellar occultations except that the Sun is used in place of a star. Radio occultations typically involve observing the continuous-wave radio transmissions from a spacecraft as it passes behind the target as seen from a radio telescope on Earth or another spacecraft. Required in labels of occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Radio" "Solar" "Stellar")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot reference_time_utc
-;+		(comment "reference_time_utc provides a date and time in UTC format. Given in a label when time values in a table are given as elapsed seconds offset from a reference time. Unless there are compelling reasons to do otherwise, reference_time_utc should correspond to the start of a day. Required anytime a table field is given relative to a specific date and time other than when Barycentric Dynamical Time is used (e.g., observed_event_tdb).")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sampling_parameter_interval
-;+		(comment "sampling_parameter_interval specifies the spacing of points at which data are sampled and at which a value for an instrument or dataset parameter is available. Used in labels for radio occultation supplemental files. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot planetary_occultation_flag
-;+		(comment "The planetary_occultation_flag is a yes-or-no flag that indicates whether a occultation track also intersects the planet. Required in labels of ring occultation observations. Normally not intended as a value for a table field.")
-		(type STRING)
-;+		(value "N" "Y")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ring_profile_direction
-;+		(comment "ring_profile_direction indicates the radial direction of a ring occultation within a particular data product. Possible values are 'Ingress', 'Egress', or 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Egress" "Ingress" "Multiple")
-		(cardinality 0 2)
-		(create-accessor read-write))
-	(single-slot dsn_station_number
-;+		(comment "dsn_station_number identifies the receiving DSN station. Required in labels for radio occultations; not used for stellar occultations. Nillable in which case the nil_reason should be 'inapplicable'.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot orbit_number
-;+		(comment "orbit_number if present is the value assigned by the mission for the orbit number associated with the observation. Optional in labels of occultation observations and may be used multiple times. Nillable, the nil_reason should be 'inapplicable'. Normally not intended as a value for a table field. ")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot occultation_direction
-;+		(comment "occultation_direction indicates the direction of an occultation track. This refers to the observed occultation track overall, not to the subset that might appear in a particular file (e.g., if an occultation includes both ingress and egress tracks, the value for occultation_direction will be both in the data products for each occultation profile. Permitted values are 'Ingress', 'Egress', 'Both', and 'Multiple'. The value 'Multiple' is only used for some Hubble-based occultations where the occultation track is not monotonic over relatively short time scales. Required in labels of ring occultation observations. Not intended as a value for a table field.")
-		(type STRING)
-;+		(value "Both" "Egress" "Ingress" "Multiple")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot spice_filename
-;+		(comment "spice_filename gives the file name%28s%29 of SPICE files used in the analysis. Only used if the SPICE files cannot be identified using a LID or LIDVID. Otherwise the association is made in the Reference_Class using the Internal_Reference class. Optional in labels for radio occultation. Nillable in which case the nil_reason should be 'inapplicable'.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot sampling_parameter_unit
-;+		(comment "sampling_parameter_unit provides the units of the parameter which determines the sampling interval for uniformly sampled data. Used in labels for radio occultation supplemental files. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot frequency_band
-;+		(comment "The frequency_band attribute provides the one or two letter identifier for the frequency band associated with radio occultation data. Required in labels for radio occultations; not used for stellar occultations.")
-		(type STRING)
-;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_observed_event_time
-;+		(comment "minimum_observed_event_time gives the smallest value for observed_event_time in the associated data file. It is given in numeric seconds as an offset from the specified UTC reference time. minimum_observed_event_time is optional in labels since the data file time interval end point values are given by the required start_date_time_utc and stop_date_time_utc attributes in the Time_Coordinates class.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot sampling_parameter_name
-;+		(comment "sampling_parameter_name provides the name of the parameter which determines the sampling interval for uniformly sampled data. Used in labels for radio occultation supplemental files. Nillable in which case the nil_reason should be 'inapplicable'. ")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
 (defclass Discipline_Facets "The Discipline_Facets class contains the discipline-related search facets.  It is required and may not be repeated. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
 	(is-a Product_Components)
 	(role concrete)
@@ -6736,163 +6141,6 @@
 ;+		(comment "The discipline_name attribute describes the observing discipline (as opposed to a PDS Discipline Node Name, though the concepts and values are similar). Some of these values are, with respect to the PDS Nodes, inter-disciplinary and should be used when they are applicable in perference to the more restrictive values.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Display_Direction "The Display_Direction class specifies how two of the dimensions of an Array object should be displayed in the vertical (line) and horizontal (sample) dimensions of a display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot vertical_display_direction
-;+		(comment "The vertical_display_direction attribute specifies the direction along the screen of a display device that data along the vertical axis of an Array is supposed to be displayed.")
-		(type STRING)
-;+		(value "Top to Bottom" "Bottom to Top")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot horizontal_display_direction
-;+		(comment "The horizontal_display_direction attribute specifies the direction across the screen of a display device that data along the horizontal axis of an Array is supposed to be displayed.")
-		(type STRING)
-;+		(value "Left to Right" "Right to Left")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot vertical_display_axis
-;+		(comment "The vertical_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the vertical or %42line%42 dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot horizontal_display_axis
-;+		(comment "The horizontal_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the horizontal or %42sample%42 dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Color_Display_Settings "The Color_Display_Settings class provides guidance to data users on how to display a multi-banded Array object on a color-capable display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot red_channel_band
-;+		(comment "The red_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the red channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot color_display_axis
-;+		(comment "The color_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the color dimension of a display device. I.e., bands from this dimension will be loaded into the red, green, and blue bands of the display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot green_channel_band
-;+		(comment "The green_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the green channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot blue_channel_band
-;+		(comment "The blue_channel_band attribute identifies the number of the band, along the band axis, that should be loaded, by default, into the blue channel of a display device. The first band along the band axis has band number 1.")
-		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Movie_Display_Settings "The Movie_Display_Settings class provides default values for the display of a multi-banded Array using a software application capable of displaying video content."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot frame_rate
-;+		(comment "The frame_rate attribute indicates the number of still pictures %28or frames%29 that should be displayed per unit of time in a video. Note this is NOT necessarily the same as the rate at which the images were acquired.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_delay
-;+		(comment "The loop_delay attribute specifies the amount of time to pause between %42loops%42 or repeated playbacks of a movie.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_back_and_forth_flag
-;+		(comment "The loop_back_and_forth_flag attribute specifies whether or not a movie should only be %42looped%42 or played repeatedly in the forward direction, or whether it should be played forward followed by played in reverse, iteratively.")
-		(type STRING)
-;+		(value "false" "true")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot loop_count
-;+		(comment "The loop_count attribute specifies the number of times a movie should be %42looped%42 or replayed before stopping.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot time_display_axis
-;+		(comment "The time_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29, the bands of which are intended to be displayed sequentially in time on a display device. The frame_rate attribute, if present, provides the rate at which these bands are to be displayed.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot loop_flag
-;+		(comment "The loop_flag attribute specifies whether or not a movie object should be played repeatedly without prompting from the user.")
-		(type STRING)
-;+		(value "false" "true")
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Display_Settings "The Display_Settings class contains one or more classes describing how data should be displayed on a display device."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot has_movie_display_settings
-;+		(comment "The has_movie_display_settings association is a relationship to Movie_Display_Settings.")
-		(type INSTANCE)
-;+		(allowed-classes Movie_Display_Settings)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_color_display_settings
-;+		(comment "The has_color_display_settings association is a relationship to Color_Display_Settings.")
-		(type INSTANCE)
-;+		(allowed-classes Color_Display_Settings)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot local_internal_reference
-;+		(comment "The local_internal_reference association is a relationship to the class Local_Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Local_Internal_Reference)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_display_direction
-;+		(comment "The has_display_direction association is a relationship to Display_Direction.")
-		(type INSTANCE)
-;+		(allowed-classes Display_Direction)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Ring_Moon_Systems "This is an umbrella class for all of the classes and attributes in this dictionary."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot has_occultation_time_series
-;+		(comment "The has_occultation_time_series association is a relationship to occultation_time_series")
-		(type INSTANCE)
-;+		(allowed-classes Occultation_Time_Series)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_occultation_ring_profile
-;+		(comment "The has_occultation_ring_profile association is a relationship to occultation_ring_profile")
-		(type INSTANCE)
-;+		(allowed-classes Occultation_Ring_Profile)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_rings_supplement
-;+		(comment "The has_rings_supplement association is a relationship to rings_supplement")
-		(type INSTANCE)
-;+		(allowed-classes Rings_Supplement)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_occultation_supplement
-;+		(comment "The has_occultation_supplement association is a relationship to occultation_supplement")
-		(type INSTANCE)
-;+		(allowed-classes Occultation_Supplement)
-;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Tagged_Digital_Object "The Tagged Digital Object class is an abstract class for the digital class hierarchy. A tagged object is an information object."
@@ -7741,7 +6989,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7780,7 +7028,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Binary (see PDS Standards Reference section \"Binary Data Types\").")
 		(type STRING)
-;+		(value "SignedLSB2" "SignedLSB4" "SignedLSB8" "SignedMSB2" "SignedMSB4" "SignedMSB8" "UnsignedByte" "UnsignedLSB2" "UnsignedLSB4" "UnsignedMSB2" "UnsignedMSB4" "IEEE754MSBDouble" "IEEE754MSBSingle" "ASCII_File_Name" "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "UnsignedLSB8" "UnsignedMSB8" "IEEE754LSBDouble" "IEEE754LSBSingle" "SignedByte" "UTF8_String" "ASCII_String" "SignedBitString" "UnsignedBitString" "ComplexLSB16" "ComplexLSB8" "ComplexMSB16" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ComplexMSB8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "SignedLSB2" "SignedLSB4" "SignedLSB8" "SignedMSB2" "SignedMSB4" "SignedMSB8" "UnsignedByte" "UnsignedLSB2" "UnsignedLSB4" "UnsignedMSB2" "UnsignedMSB4" "IEEE754MSBDouble" "IEEE754MSBSingle" "ASCII_File_Name" "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "UnsignedLSB8" "UnsignedMSB8" "IEEE754LSBDouble" "IEEE754LSBSingle" "SignedByte" "UTF8_String" "ASCII_String" "SignedBitString" "UnsignedBitString" "ComplexLSB16" "ComplexLSB8" "ComplexMSB16" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ComplexMSB8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7790,6 +7038,11 @@
 	(single-slot value_offset
 ;+		(comment "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value (Ov) is calculated from the stored value (Sv) thus: Ov = (Sv * scaling_factor) + value_offset. The default value is 0.")
 		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot validation_format
+;+		(comment "The validation_format attribute gives the magnitude and precision of the data value with the expectation that both will be validated exactly. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -7803,7 +7056,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7842,7 +7095,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Character (see PDS Standards Reference section \"Character Data Types\").")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7860,7 +7113,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7899,7 +7152,7 @@
 	(single-slot data_type
 ;+		(comment "The data_type attribute provides the hardware representation used to store a value in Field_Delimited (see PDS Standards Reference section \"Character Data Types\").")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_File_Name" "UTF8_String" "ASCII_String" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_Numeric_Base8" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7932,7 +7185,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot field_format
-;+		(comment "The field_format attribute gives the magnitude and precision of the data value. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section \"Field Formats\" for details.")
+;+		(comment "The field_format attribute gives the magnitude and precision of the data value. This may specify the output format for a binary value, or give a general indication of the precision of a field, but is not used for validation. A subset of the standard POSIX string formats is allowed. See the PDS Standards Reference section “Field Formats” for details.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -8196,7 +7449,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Investigation "The Investigation class provides a description of activities involved in the collection of data."
+(defclass Investigation "A set of experiments and/or observations with a clearly defined purpose."
 	(is-a TNDO_Context)
 	(role concrete)
 	(single-slot data_object
@@ -8213,7 +7466,7 @@
 	(single-slot type
 ;+		(comment "The type attribute classifies the investigation according to its scope.")
 		(type STRING)
-;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation")
+;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -8280,7 +7533,7 @@
 	(single-slot type
 ;+		(comment "The type attribute classifies the instrument host.  When more than one value is correct, the value with the finest granularity should be selected.  That is, choose \"rover\" rather than \"spacecraft\" when both would be correct since rover more narrowly defines the type of instrument host.")
 		(type STRING)
-;+		(value "Earth Based" "Rover" "Spacecraft" "Lander" "Earth-based")
+;+		(value "Earth Based" "Rover" "Spacecraft" "Lander" "Earth-based" "Aircraft" "Balloon" "Suborbital Rocket")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -8327,7 +7580,6 @@
 ;+		(comment "The type attribute classifies the instrument according to its function.")
 		(type STRING)
 ;+		(value "Accelerometer" "Altimeter" "Camera" "Cosmic Ray Detector" "Dust Detector" "Imaging Spectrometer" "Magnetometer" "Photometer" "Plasma Analyzer" "Radio Science" "Radio Spectrometer" "Radio Telescope" "Radiometer" "Reflectometer" "Spectrometer" "Spectrograph Imager" "Alpha Particle Detector" "Biology Experiments" "Bolometer" "Imager" "Energetic Particle Detector" "Gamma Ray Detector" "Gas Analyzer" "Grinding Tool" "Inertial Measurement Unit	" "Infrared Spectrometer" "Laser Induced Breakdown Spectrometer" "Mass Spectrometer" "Microwave Spectrometer" "Naked Eye" "Neutral Particle Detector" "Neutron Detector" "Plasma Detector" "Plasma Wave Spectrometer" "Polarimeter" "Radar" "Thermal Imager" "Ultraviolet Spectrometer" "Wet Chemistry Laboratory" "X-ray Diffraction Spectrometer" "X-ray Detector" "Atomic Force Microscope" "Alpha Particle X-Ray Spectrometer" "Moessbauer Spectrometer" "Thermal Probe" "Electrical Probe" "X-ray Fluorescence Spectrometer" "Anemometer" "Barometer" "Thermometer" "Hygrometer" "Robotic Arm" "Drilling Tool" "Weather Station" "Atmospheric Sciences" "Dust" "Gravimeter" "Interferometer" "Microscope" "Particle Detector" "Radio-Radar" "Small Bodies Sciences" "Seismometer" "Regolith Properties" "Spectrograph")
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -8347,6 +7599,12 @@
 	(multislot subtype
 ;+		(comment "The subtype attribute is a special type included within the general type. It provides more specific clarifying and/or supplemental information as to the nature of the type.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot has_type_list_area
+;+		(comment "The has_type_list_area association is a relationship to Type_List_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Type_List_Area)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Target "The Target class provides a description of a physical object that is the object of data collection."
@@ -8361,7 +7619,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Sun" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample")
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -8699,12 +7957,12 @@
 ;+		(comment "The type attribute provides a classification for the resource.")
 		(type STRING)
 ;+		(value "Balloon" "Suborbital Rocket" "Aircraft")
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
@@ -8712,138 +7970,9 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Instrument2 "The Instrument class provides a description of a physical object that collects data."
+(defclass Type_List_Area "The Type_List_Area allows the insertion of a Type List."
 	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Physical_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot serial_number
-;+		(comment "The serial number attribute provides the manufacturer's serial number assigned to an instrument host.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot model_id
-;+		(comment "The model_id attribute helps discriminate instrument hardware. For example \"flight\", \"engineering\", or \"proto\" have been used.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot type
-;+		(comment "The type attribute provides a classification for the resource. For instrument type the value is taken from a local data dictionary.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot naif_instrument_id
-;+		(comment "The naif_instrument_id element provides the numeric ID used within the SPICE system to identify the spacecraft, spacecraft structure or science instrument.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot type_list_identifer
-;+		(comment "The type_list_identifier attribute identifies the list from which the values in the type_list were selected.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Type_List "The Type_List class provides a list of values and their value meanings."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot type
-;+		(comment "The type attribute provides a classification for the resource.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot title
-;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot has_type_list_entry
-;+		(comment "The has_type_list_entry association is a relationship to Type_List_Entry")
-		(type INSTANCE)
-;+		(allowed-classes Type_List_Entry)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot identifier
-;+		(comment "The identifier attribute provides the formal name used to refer to an object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Type_List_Entry "The Type_List_Entry class provides a single value and its value meaning."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot value_meaning
-;+		(comment "The value_meaning attribute provides the meaning, or semantic content, of the associated permissible value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot value
-;+		(comment "The value attribute provides a single, allowed numerical or character string value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Target2 "The Target class provides a description of a physical object that is the object of data collection."
-	(is-a TNDO_Context)
-	(role concrete)
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Physical_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot alternate_designation
-;+		(comment "The alternate_designation attribute provides a known alternate name or identifier.")
-		(type STRING)
-		(create-accessor read-write))
-	(multislot type
-;+		(comment "The type attribute provides a classification for the resource.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot name_resolver_reference
-;+		(comment "The name_resolver_reference attribute provides a reference to a name resolution service.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot naif_target_id
-;+		(comment "The naif_target_id element provides the numeric ID used within the SPICE system to identify the target..")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
+	(role concrete))
 
 (defclass Dictionary "The Dictionary class provides a description of a local data dictionary."
 	(is-a TNDO_Context)
@@ -9461,41 +8590,6 @@
 ;+		(comment "The local_identifier attribute provides a character string which uniquely identifies the containing object within the label.")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Axis_Display "The Axis_Display class provides attributes to enable the display of an array axis."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(single-slot default_green
-;+		(comment "The default_green attribute provides  the number of the plane along the axis that is to be loaded, by default, into the green plane of a display device.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot continuous_loop_flag
-;+		(comment "The continuous_loop_flag attribute indicates whether or not to keep replaying a movie.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot frame_rate
-;+		(comment "The frame_rate attribute provides the time, in specified units, between frames for display of a movie.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot default_red
-;+		(comment "The default_red attribute provides the number of the plane along the axis that is to be loaded, by default, into the red plane of a display device.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot default_blue
-;+		(comment "The default_blue attribute provides the number of the plane along the axis that is to be loaded, by default, into the blue plane of a display device.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot display_direction
-;+		(comment "The display_direction attribute provides the preferred direction for displaying on a display device.")
-		(type STRING)
-;+		(value "Down" "Left" "Right" "Up" "Forward" "Back" "Sequential")
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Cartography_Group "The Cartography Group class is a placeholder for soon forthcoming Imaging cartography classes."
@@ -10894,40 +9988,6 @@
 ;+		(allowed-classes Local_Internal_Reference)
 		(create-accessor read-write)))
 
-(defclass Mission_Information "The Mission Information class provides a set of optional attributes that have their value sets defined by the mission."
-	(is-a TNDO_Supplemental)
-	(role concrete)
-	(single-slot mission_phase_identifier
-;+		(comment "The mission_phase_identifier attribute provides an identifier for a mission phase.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_clock_stop_count
-;+		(comment "The spacecraft_clock_stop_count attribute provides the value of the spacecraft clock at the end of a time period of interest.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot spacecraft_clock_start_count
-;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot stop_orbit_number
-;+		(comment "The stop_orbit_number attribute provides the last in a series of numbers that represent s set of orbital revolutions of one body around another.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot mission_phase_name
-;+		(comment "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot start_orbit_number
-;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Term_Map_SKOS "TheTerm_Map_SKOS class is used to collect a set of terms and definitions for a SKOS ontology."
 	(is-a TNDO_Supplemental)
 	(role concrete)
@@ -10936,482 +9996,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes Terminological_Entry_SKOS)
 		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass DD_Identification_Area "The DD_Identification_Area consists of attributes that identify and name objects associated with a PDS4 dictionary. When used in Ingest_LDD, it is populated with values that will be used in the label file for the associated dictionary product. The DD_Identification_Area class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
-	(is-a TNDO_Supplemental)
-	(role concrete))
-
-(defclass DD_Modification_History "The DD_Modification_History class tracks the history of changes made to the product once it enters the registry system. The DD_Modification_History class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
-	(is-a TNDO_Supplemental)
-	(role concrete))
-
-(defclass DD_Modification_Detail "The DD_Modification_Detail class provides the details of one round of modification for the product. The first, required, instance of this class documents the date the product was first registered. The DD_Modification_Detail class is specific to PDS4 dictionary products and the Ingest_LDD files used as input to LDDTool to generate such products."
-	(is-a TNDO_Supplemental)
-	(role concrete))
-
-(defclass TNDO_Cartography "The Tagged NonDigital Object (TNDO) Cartography class is an abstract class for the cartography discipline."
-	(is-a Tagged_NonDigital_Object)
-	(role concrete))
-
-(defclass Bounding_Coordinates "The Bounding_Coordinates class defines the limits of coverage of a set of data expressed by latitude and longitude values in the order western-most, eastern-most, northern-most, and southern-most."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot north_bounding_coordinate
-;+		(comment "The north_bounding_coordinate attribute provides the northern-most coordinate of the limit of coverage expressed in latitude.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot south_bounding_coordinate
-;+		(comment "The south_bounding_coordinate attribute provides the southern-most coordinate of the limit of coverage expressed in latitude.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot east_bounding_coordinate
-;+		(comment "The east_bounding_coordinate attribute provides the eastern-most coordinate of the limit of coverage expressed in longitude.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot west_bounding_coordinate
-;+		(comment "The west_bounding_coordinate attribute provides the western-most coordinate of the limit of coverage expressed in longitude.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass State_Plane_Coordinate_System "The State_Plane_Coordinate_System class defines a plane-rectangular coordinate system established for each state in the United States by the National Geodetic Survey."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot spcs_zone_identifier
-;+		(comment "The spcs_zone_identifier attribute identifies the SPCS zone.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Polyconic
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Lambert_Conformal_Conic Polyconic Transverse_Mercator Oblique_Mercator XSChoice%23)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Spatial_Reference_Information "The Spatial_Reference_Information class provides a description of the reference frame for, and the means to encode, coordinates in a data set."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Horizontal_Coordate_System_Definition
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Horizontal_Coordinate_System_Definition)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Spatial_Domain "The Spatial_Domain class describes the geographic areal domain of the data set."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Bounding_Coordinates
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Bounding_Coordinates)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Planar_Coordinate_Information "The Planar_Coordinate_Information class provides information about the coordinate system developed on the planar surface."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot planar_coordinate_encoding_method
-;+		(comment "The planar_coordinate_encoding_method attribute indicates the means used to represent horizontal positions.")
-		(type STRING)
-;+		(value "Coordinate Pair" "Distance and Bearing" "Row and Column")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Coordinate_Representation
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Coordinate_Representation Distance_and_Bearing_Representation)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Oblique_Line_Point_Group "The Oblique_Line_Point_Group class provides the coordinates in latitude and longitude of one end point of the line along which an oblique mercator map projection is centered."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot oblique_line_latitude
-;+		(comment "The oblique_line_latitude attribute provides the latitude of a point defining the oblique line.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot oblique_line_longitude
-;+		(comment "The oblique_line_longitude attribute provides the longitude of a point defining the oblique line.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Oblique_Line_Point "The Oblique_Line_Point class defines the method used to describe the line along which an oblique mercator map projection is centered using two points near the limits of the mapped region that define the center line."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(multislot has_Oblique_Line_Point_Group
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Oblique_Line_Point_Group)
-		(cardinality 2 2)
-		(create-accessor read-write)))
-
-(defclass Oblique_Line_Azimuth "The Oblique_Line_Azimuth class defines the method used to describe the line along which an oblique mercator map projection is centered using the map projection origin and an azimuth."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot azimuth_measure_point_longitude
-;+		(comment "The azimuth_measure_point_longitude attribute provides the longitude of the map projection origin.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot azimuthal_angle
-;+		(comment "The azimuthal_angle attribute provides the angle measured clockwise from north, and expressed in degrees.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Map_Projection_Base "An abstract class that serves as the parent class to all the map projections."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot latitude_of_projection_origin
-;+		(comment "The latitude_of_projection_origin attribute defines the latitude chosen as the origin of rectangular coordinates for a map projection.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot scale_factor_at_projection_origin
-;+		(comment " The scale_factor_at_projection_origin attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance at the projection origin. ")
-		(type FLOAT)
-		(default 3301.0)
-		(cardinality 0 3)
-		(create-accessor read-write))
-	(single-slot scale_factor_at_center_line
-;+		(comment "The scale_factor_at_center_line attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the center line.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude_of_central_meridian
-;+		(comment "The longitude_of_central_meridian attribute defines the line of longitude at the center of a map projection generally used as the basis for constructing the projection.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot scale_factor_at_central_meridian
-;+		(comment "The scale_factor_at_central_meridian attribute provides a multiplier for reducing a distance obtained from a map by computation or scaling to the actual distance along the central meridian.")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_Oblique_Line
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Oblique_Line_Point Oblique_Line_Azimuth)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot standard_parallel_1
-;+		(comment "The standard_parallel_1 attribute defines the first standard parallel %28applicable only for specific projections%29, the first line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
-		(type FLOAT)
-		(default 3301.0)
-		(cardinality 0 3)
-		(create-accessor read-write))
-	(multislot standard_parallel_2
-;+		(comment "The standard_parallel_2 attribute defines the second standard parallel %28applicable only for specific projections, a subset of specific projections where a first standard parallel is applicable%29, the second line of constant latitude at which the surface of the planet and the plane or developable surface intersect. ")
-		(type FLOAT)
-		(default 3301.0)
-		(cardinality 0 3)
-		(create-accessor read-write)))
-
-(defclass Equirectangular "The Equirectangular class contains parameters for the Equirectangular projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Lambert_Conformal_Conic "The Lambert_Conformal_Conic class contains parameters for the Lambert Conformal Conic projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Oblique_Mercator "The Oblique_Mercator class contains parameters for the Oblique Mercator projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Polar_Stereographic "The Polar_Stereographic class contains parameters for the Polar Stereographic projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Polyconic "The Polyconic class contains parameters for the Polyconic projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Sinusoidal "The Sinusoidal class contains parameters for the Sinusoidal projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Transverse_Mercator "The Transverse_Mercator class contains parameters for the Transverse Mercator projection."
-	(is-a Map_Projection_Base)
-	(role concrete))
-
-(defclass Planar "The Planar class provides the quantities of distances, or distances and angles, which define the position of a point on a reference plane to which the surface of a planet has been projected."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Planar_Coordinate_Information
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Planar_Coordinate_Information)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Map_Projection
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Map_Projection Local_Planar Grid_Coordinate_System XSChoice%23)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Geo_Transformation
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Geo_Transformation)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Local "The Local class provides a description of any coordinate system that is not aligned with the surface of the planet."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot local_description
-;+		(comment "The local_description attribute provides a description of the coordinate system and its orientation to the surface of a planet.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot local_georeference_information
-;+		(comment "The local_description attribute provides a description of the information provided to register the local system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Horizontal_Coordinate_System_Definition "The Horizontal_Coordinate_System_Definition class provides the reference frame or system from which linear or angular quantities are measured and assigned to the position that a point occupies."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Geographic
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Geographic Local Planar XSChoice%23)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Geodetic_Model
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Geodetic_Model)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Geographic "The Geographic class provides information about the quantities of latitude and longitude which define the position of a point on a planetary body%47s surface with respect to a reference spheroid."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot longitude_resolution
-;+		(comment "The longitude_resolution attribute indicates the minimum difference between two adjacent longitude values expressed in angular units of measure.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot latitude_resolution
-;+		(comment "The latitude_resolution attribute indicates the minimum difference between two adjacent latitude values expressed in angular units of measure.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Coordinate_Representation "The Coordinate_Representation class provides the method of encoding the position of a point by measuring its distance from perpendicular reference axes %28the \"coordinate pair\" and \"row and column\" methods%29."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot pixel_scale_y
-;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot pixel_scale_x
-;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot pixel_resolution_x
-;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot pixel_resolution_y
-;+		(comment " The pixel_resolution_x and pixel_resolution_y attributes indicate the image array pixel resolution %28distance%2Fpixel or degree%2Fpixel%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y resolution values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where resolution may differ for each axis %28%47rectangular%47 pixels%29. NOTE: Definition of this PDS4 attribute differs from how %47resolution%47 was defined within PDS3. ")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Map_Projection "The Map_Projection class provides the systematic representation of all or part of the surface of a planet on a plane or developable surface."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot map_projection_name
-;+		(comment "The map_projection_name attribute provides the name of the map projection.")
-		(type STRING)
-;+		(value "Azimuthal Equidistant" "Equidistant Conic" "Equirectangular" "General Vertical Near-sided Projection" "Gnomonic" "Lambert Azimuthal Equal Area" "Lambert Conformal Conic" "Mercator" "Miller Cylindrical" "Oblique Mercator" "Orthographic" "Polar Stereographic" "Polyconic" "Robinson" "Sinusoidal" "Space Oblique Mercator" "Stereographic" "Transverse Mercator" "van der Grinten" "Albers Conical Equal Area")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Equirectrangular
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Equirectangular Lambert_Conformal_Conic Polar_Stereographic Polyconic Transverse_Mercator Oblique_Mercator Sinusoidal XSChoice%23)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Local_Planar "The Local_Planar class defines any right-handed planar coordinate system of which the z-axis coincides with a plumb line through the origin that locally is aligned with the surface of the planet."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot local_planar_description
-;+		(comment "The local_planar_description attribute provides a description of the local planar system.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot local_planar_georeference_information
-;+		(comment "The local_planar_georeference_information attribute provides a description of the information provided to register the local planar system to a planet %28e.g. control points, satellite ephemeral data, inertial navigation data%29.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Cartography "The Cartography class provides a description of how a 3D sphere, spheroid, or elliptical spheroid or the celestial sphere is mapped onto a plane."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Spatial_Reference_Information
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Spatial_Reference_Information)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Spatial_Domain
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Spatial_Domain)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Distance_and_Bearing_Representation "The Distance_and_Bearing_Representation class provides a method of encoding the position of a point by measuring its distance and direction %28azimuth angle%29 from another point."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot bearing_reference_meridian
-;+		(comment "The bearing_reference_meridian attribute specifies the axis from which the bearing is measured.")
-		(type STRING)
-;+		(value "Assumed" "Astronomic" "Geodetic" "Grid" "Magnetic")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot bearing_resolution
-;+		(comment "The bearing_resolution attribute provides the minimum angle measurable between two points.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot bearing_reference_direction
-;+		(comment "The bearing_reference_direction attribute specifies the direction from which the bearing is measured.")
-		(type STRING)
-;+		(value "North" "South")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot distance_resolution
-;+		(comment "The distance_resolution attribute provides the minimum distance measurable between two points, expressed in Planar Distance Units of measure.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Geo_Transformation "The Geo_Transformation class is used for relating coordinates between one Geographical Coordinate System and another Geographical Coordinate System. In this case, a distance (meters) translation from a defined origin to a defined pixel location within an image array."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot upperleft_corner_x
-;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot upperleft_corner_y
-;+		(comment "The upperleft_corner_x and upperleft_corner_y attributes provide the projection x and y values, in meters, relative to the map projection origin, at sample 0.5 and line 0.5 (upper left corner of pixel 1,1 within image array).")
-		(type FLOAT)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Geodetic_Model "The Geodetic_Model class provides parameters describing the shape of the planet."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot semi_major_radius
-;+		(comment "The semi_major_axis attribute provides the radius of the equatorial axis of the ellipsoid.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot spheroid_name
-;+		(comment "The spheroid_name attribute provides the identification given to established representations of a planet%47s shape. ")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot longitude_direction
-;+		(comment "The longitude_direction attribute identifies the direction of longitude %28e.g. POSITIVE_EAST or POSITIVE_WEST%29 for a planet. The IAU definition for direction of positive longitude is adopted. Typically, for planets with prograde rotations, positive longitude direction is to the west. For planets with retrograde rotations, positive longitude direction is to the east. Note: The longitude_direction attribute should be used for planetographc systems, but not for planetocentric.")
-		(type STRING)
-;+		(value "Positive East" "Positive West")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot semi_minor_radius
-;+		(comment "The semi_minor_radius attribute provides the value of the intermediate axis of the ellipsoid that defines the approximate shape of a target body. The semi-minor axis is usually in the equatorial plane.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot latitude_type
-;+		(comment " The latitude_type attribute defines the type of latitude %28planetographic, planetocentric%29 used within a cartographic product and as reflected in attribute values within associated PDS labels. The IAU definition for direction of positive longitude should be adopted: http:%2F%2Fastrogeology.usgs.gov%2Fgroups%2FIAU-WGCCRE. ")
-		(type STRING)
-;+		(value "Planetocentric" "Planetographic")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot polar_radius
-;+		(comment "The polar_radius attribute provides the value of the semiminor axis of the ellipsoid that defines the approximate shape of a target body. The polar radius is normal to the plane defined by the semi-major and semi-minor axes.")
-		(type FLOAT)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Grid_Coordinate_System "The Grid_Coordinate_System class defines a plane-rectangular coordinate system usually based on, and mathematically adjusted to, a map projection so that geographic positions can be readily transformed to and from plane coordinates."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Universal_Polar_Stereographic
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Universal_Polar_Stereographic)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_Universal_Transverse_Mercator
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Universal_Transverse_Mercator)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot grid_coordinate_system_name
-;+		(comment "The grid_coordinate_system_name attribute provides the name of the grid coordinate system.")
-		(type STRING)
-;+		(value "ARC Coordinate System" "Other Grid System" "State Plane Coordinate System 1927" "State Plane Coordinate System 1983" "Universal Polar Stereographic" "Universal Transverse Mercator")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_State_Plane_Coordinate_System
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes State_Plane_Coordinate_System)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Universal_Polar_Stereographic "The Universal_Polar_Stereographic class defines a grid system based on the polar stereographic projection, applied to the planet%47s polar regions north of 84 degrees north and south of 80 degrees south."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot ups_zone_identifier
-;+		(comment "The ups_zone_identifier attribute provides an identifier for the UPS zone.")
-		(type STRING)
-;+		(value "A" "B" "Y" "Z")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_Polar_Stereographic
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Polar_Stereographic)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Universal_Transverse_Mercator "The Universal_Transverse_Mercator class defines a grid system based on the transverse mercator projection, applied between latitudes 84 degrees north and 80 degrees south on the planet%47s surface."
-	(is-a TNDO_Cartography)
-	(role concrete)
-	(single-slot has_Transverse_Mercator
-;+		(comment "The xxx association is a relationship to yyy.")
-		(type INSTANCE)
-;+		(allowed-classes Transverse_Mercator)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot utm_zone_number
-;+		(comment "The utm_zone_number attribute provides the identifier for the UTM zone.")
-		(type INTEGER)
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Tagged_NonDigital_Child "The Tagged NonDigital Child class is an abstract class for the components  of classes in the tagged nondigital object class hierarchy."
@@ -11785,7 +10369,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_value
@@ -11887,7 +10471,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot permissible_value
@@ -11995,7 +10579,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Source_Product_External "The Source_Product_External class is used to reference one or more source products outside the PDS4 Registry that have a common reference_type and (optional) doi, curating facility, and/or description. A source product contains input data for the creation of this product."
+(defclass Source_Product_External "The Source_Product_External class is used to reference one or more source products (a product containing input data for the creation of this product) outside the PDS4 Registry that have a common reference_type, doi, curating facility, and/or description. At least one of doi or curating facility must be provided. All source products listed within a single Source_Product_External class must correspond to the same doi and/or curating facility."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot description
@@ -12770,6 +11354,28 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Units_of_Energy "Units_of_Energy is a magnitude of energy."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Energy")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "J")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "eV" "keV" "MeV" "J")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
 (defclass Data_Object "The Data Object class defines a thing about which almost nothing is known."
 	(is-a USER)
 	(role abstract))
@@ -13424,7 +12030,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx")
+;+		(value "urn:xxx:yyy:zzzz")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot pattern
@@ -13446,7 +12052,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "14")
+;+		(value "13")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -13473,7 +12079,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx::M.n")
+;+		(value "urn:xxx:yyy:zzzz::M.n")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -13485,7 +12091,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "19")
+;+		(value "18")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -14139,7 +12745,7 @@
 	(single-slot formation_rule
 ;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
 		(type STRING)
-;+		(value "urn:nasa:pds:xxxx/urn:nasa:pds:xxxx::M.n")
+;+		(value "urn:xxx:yyy:zzzz/urn:xxx:yyy:zzzz::M.n")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -14151,7 +12757,7 @@
 	(single-slot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 		(type STRING)
-;+		(value "14")
+;+		(value "13")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot character_constraint
@@ -14276,6 +12882,34 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:IDREF")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_BibCode "The ASCII BibCode class indicates a bibliographic code from the Astrophysics Data System."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot formation_rule
+;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
+		(type STRING)
+;+		(value "YYYYJJJJJVVVVMPPPPA")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[0-9]{4}[A-Za-z0-9&\\.]{5}[A-Za-z0-9\\.]{9}[A-Z\\.]")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 

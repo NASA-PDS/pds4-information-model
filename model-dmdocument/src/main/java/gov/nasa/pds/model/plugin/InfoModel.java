@@ -1,4 +1,5 @@
 package gov.nasa.pds.model.plugin; 
+import java.io.PrintWriter;
 import java.util.*;
 // import org.apache.commons.lang.WordUtils;
 
@@ -109,7 +110,7 @@ public abstract class InfoModel extends Object {
 	// Local Classes	
 	ArrayList <PDSObjDefn> objArr;
 	HashMap <String, PDSObjDefn> objDict;
-	HashMap <String, AttrDefn> attrDict;	
+	HashMap <String, AttrDefn> attrDict;
 	
 	ArrayList <String> texSectionFormats;	
                               
@@ -309,15 +310,12 @@ public abstract class InfoModel extends Object {
 		// initialize the Attribute Namespace Resolution Map 
 		// attrs (AttrDefn)
 		attrNamespaceResolutionMap = new TreeMap <String, String> ();
-		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_name", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_unit", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_interval", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 		
 		// assocs (AttrDefn)
-		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
+//		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
 		
 // 999		System.out.println("\n>>info    - Static Schematron Rules Setup");
 // 999		System.out.println(">>info    - Rule count for Arr: " + InfoModel.schematronRuleArr.size());
@@ -441,48 +439,39 @@ public abstract class InfoModel extends Object {
 	/**
 	*  wrap a text string
 	*/
-	static public String wrapText (String lString, int beginOffset, int endOffset) {
-//		System.out.println("\ndebug wrapText lString:" + lString);
-//		System.out.println("debug wrapText -next chunk- beginOffset:" + beginOffset);			
-//		System.out.println("debug wrapText -next chunk- endOffset:" + endOffset);	
-		
+	static public ArrayList <String> wrapTextNew (String lString, int beginOffset, int endOffset) {
+//		endOffset = endOffset + 2;
+		ArrayList <String> lLineArr = new ArrayList <String> ();
 		// return empty array for null text
-		if (lString == null) return "";
+		if (lString == null) return null;
 		
 		// return text if length is zero or less
 		int wrapWidth = (endOffset - beginOffset) + 1;
-		if (wrapWidth <= 0) return "";		
-
+		if (wrapWidth <= 0) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
+		
 		// return text if less than wrap width
 		int lStringLength = lString.length();
-		if (lStringLength <= wrapWidth) return lString;
+		if (lStringLength <= wrapWidth) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
 		
 		// set buffer offsets
 		int currOffset = beginOffset;
 		int lInputBuffOffset1 = 0, lInputBuffOffset2 = 0, lInputBuffOffsetPrevBlank = 0;
 		int lOutputBuffOffset = 0;
-		
-//		System.out.println("debug wrapText lStringLength:" + lStringLength);
 
 		// set up string buffer
 		StringBuffer lInputStringBuff = new StringBuffer(lString);
 		StringBuffer lOutputStringBuff = new StringBuffer();
 		
-		// setup major loop for transfering the string in the input buffer to a wrapped string in the output buffer 
+		// transfer the string in the input buffer to a wrapped string (many lines) in the output buffer 
 		int indent = 0;
-//		char lfcr = '\n';
-		char cr = '\r';
-		char lf = '\n';
-		boolean isFirst = true;
 		while (lInputBuffOffset1 < lStringLength) {
 			// insert linefeed (except first time)
-			if (isFirst) isFirst = false;
-			else { 
-				lOutputStringBuff.insert(lOutputBuffOffset++, cr);
-				lOutputStringBuff.insert(lOutputBuffOffset++, lf);
-			}
-			
-//			System.out.println("\ndebug wrapText -insert blanks- lInputBuffOffset1:" + lInputBuffOffset1);
 			
 			// find next non-blank character in input buffer
 			while (lInputBuffOffset1 < lStringLength) {
@@ -491,39 +480,26 @@ public abstract class InfoModel extends Object {
 			}
 			
 			// insert prefix blanks in output buffer
-			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');
-
-//			System.out.println("debug wrapText -non blank character- lInputBuffOffset1:" + lInputBuffOffset1);			
+			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');		
 			
 			// find the next chunk of text by finding the next break before the end of the wrapwidth (delimiter = ' ')
 			currOffset = beginOffset + indent; // counter for wrapped string size
 			indent = 2;
 			lInputBuffOffset2 = lInputBuffOffset1; // ending offset in input buffer; init at start offset
 			int lIBO1 = lInputBuffOffset1; // offset in input buffer; init at start offset
-			lInputBuffOffsetPrevBlank = -1; // location to backtrack to if last word goes over wrap boundary
-			
-//			System.out.println("debug wrapText -next chunk- lIBO1:" + lIBO1);			
-//			System.out.println("debug wrapText -next chunk- lStringLength:" + lStringLength);			
-//			System.out.println("debug wrapText -next chunk- currOffset:" + currOffset);			
-//			System.out.println("debug wrapText -next chunk- endOffset:" + endOffset);			
-//			System.out.println("debug wrapText -next chunk- lInputBuffOffset1:" + lInputBuffOffset1);			
-//			System.out.println("debug wrapText -next chunk1- lInputBuffOffset2:" + lInputBuffOffset2);			
+			lInputBuffOffsetPrevBlank = -1; // location to backtrack to if last word goes over wrap boundary		
 			
 			while (lIBO1 < lStringLength && currOffset <= endOffset) {
 				if (lInputStringBuff.charAt(lIBO1) == ' ') lInputBuffOffsetPrevBlank = lIBO1;
 				lIBO1++; currOffset++;
 				lInputBuffOffset2++;
 			}
-//			System.out.println("debug wrapText -next chunk2- lInputBuffOffset2:" + lInputBuffOffset2);
 			
 			if (lIBO1 < lStringLength) { // check to see of input buffer is exhausted
 				if (lInputBuffOffsetPrevBlank > -1) { // was a blank found
 					lInputBuffOffset2 = lInputBuffOffsetPrevBlank;
 				}
-			}
-//			System.out.println("debug wrapText -next chunk2- lInputBuffOffset2:" + lInputBuffOffset2);						
-//			System.out.println("debug wrapText -next break- lInputBuffOffset1:" + lInputBuffOffset1);			
-//			System.out.println("debug wrapText -next break- lInputBuffOffset2:" + lInputBuffOffset2);			
+			}		
 
 			// copy in the next chunk of text
 			while (lInputBuffOffset1 < lInputBuffOffset2) {
@@ -531,10 +507,19 @@ public abstract class InfoModel extends Object {
 				lInputBuffOffset1++;
 				lOutputBuffOffset++;
 			}
-
-//			System.out.println("debug wrapText -next next chunk- lInputBuffOffset1:" + lInputBuffOffset1);						
+			String lLine = lOutputStringBuff.toString();
+			lLineArr.add(lLine);
+			lOutputStringBuff = new StringBuffer();
+			lOutputBuffOffset = 0;
 		}
-		return lOutputStringBuff.toString();
+		return lLineArr;
+	}
+	
+	static public void printWrappedTextArr (ArrayList <String> lLineArr, PrintWriter prXML) throws java.io.IOException {
+		for (Iterator<String> i = lLineArr.iterator(); i.hasNext();) {
+			String lLine = (String) i.next();
+			prXML.println(lLine);
+		}
 	}
 	
 //	=======================  Utilities ================================================================
@@ -1200,7 +1185,7 @@ public abstract class InfoModel extends Object {
 		return lAssocClassArr;
 	}	
 	
-	// 7777 deprecated - new sort in MasterDOMInfoModel
+// 7777 deprecated - new sort in MasterDOMInfoModel
 	// sort attributes or associations using MOF properties 
 	static public ArrayList <AttrDefn> getSortedAssocAttrArr (ArrayList<AttrDefn> lAttrArr) {
 		TreeMap<String, AttrDefn> lSortAttrMap = new TreeMap <String, AttrDefn> ();

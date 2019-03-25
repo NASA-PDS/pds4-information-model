@@ -40,6 +40,7 @@ public class ExportModels extends Object {
 		//	write the label schema - new version 4		
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			if (! lSchemaFileDefn.isActive) continue;
 			
 			//	write the label schema			
 			XML4LabelSchema xml4LabelSchema = new XML4LabelSchema ();
@@ -114,16 +115,16 @@ public class ExportModels extends Object {
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - RDF Done");
 		
-/*		// write the IM to RDF
-		WriteDOMIMToRDF lWriteDOMIMToRDF = new WriteDOMIMToRDF ();
-		lWriteDOMIMToRDF.domIMToRDFWriter (DMDocument.sTodaysDate);
+		// write the IM to RDF
+//		WriteDOMIMToRDF lWriteDOMIMToRDF = new WriteDOMIMToRDF ();
+//		lWriteDOMIMToRDF.domIMToRDFWriter (DMDocument.sTodaysDate);
 
-		// write the Lucid Ingest file  file 
-		WriteLucidFiles WriteLucidFiles = new WriteLucidFiles ();
-		WriteLucidFiles.WriteLucidFile(); */
+		// write the Lucid Ingest file
+//		WriteLucidMySQLFiles WriteLucidFiles = new WriteLucidMySQLFiles ();
+//		WriteLucidFiles.WriteLucidFile();
 		
-        // write the DOM PDS4 DD CSV file 
-        ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
+		// write the DOM PDS4 DD CSV file
+		ArrayList <PDSObjDefn> lSortClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
 		WriteCSVFiles writeCSVFiles = new WriteCSVFiles ();
 		writeCSVFiles.writeCSVFile (lSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
         
@@ -158,21 +159,15 @@ public class ExportModels extends Object {
 		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);	
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD Pins File Done");
-
-// debug print the master list of rules
-//		System.out.println("\n ================================ Master Rule Array Dump ========================================");
-//		ArrayList <RuleDefn> dumpRuleDefnArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleMap.values());
-//		System.out.println("<<<RuleDump - ExportModels - model update complete - start writing artifacts>>>");
-//		InfoModel.printRulesAllDebug (222, dumpRuleDefnArr);
-//		System.out.println("<<<RuleDump End - ExportModels>>>");
 		
-		// write the 11179 JSON file
+		// write the 11179 MOF JSON file
 		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelJSON);
+		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
 		
-		if (! DMDocument.LDDToolFlag) {
+		// write the 11179 DOM JSON file - requires DOMInfoModel to be executed
+		if (domFlag) {
 			WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-			writeDOMDDJSONFile.writeJSONFile ();	
+			writeDOMDDJSONFile.writeJSONFile ();
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 		
@@ -253,7 +248,7 @@ public class ExportModels extends Object {
 		return;
 	}
 
-	public void writeLDDArtifacts () throws java.io.IOException {	    
+	public void writeLDDArtifacts (boolean domFlag) throws java.io.IOException {	    
 		ArrayList <PDSObjDefn> lLDDClassArr = new ArrayList <PDSObjDefn> ();
 		TreeMap <String, PDSObjDefn> lLDDClassMap = new TreeMap <String, PDSObjDefn> ();
 		
@@ -273,6 +268,8 @@ public class ExportModels extends Object {
 		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+			
+			if (! lSchemaFileDefn.isActive) continue;
 			
 			// skip the master for LDD runs
 			if (lSchemaFileDefn.isMaster) continue;
@@ -294,12 +291,12 @@ public class ExportModels extends Object {
 
 			// write the 11179 JSON file
 			if (DMDocument.exportJSONFileFlag) {
-				String lFileName = lSchemaFileDefn.relativeFileSpecModelJSON;	
 				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-				write11179DDJSONFile.writeJSONFile (lFileName);	
-				
-				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-				writeDOMDDJSONFile.writeJSONFile ();	
+				write11179DDJSONFile.writeJSONFile (lSchemaFileDefn);
+				if (domFlag) {
+					WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+					writeDOMDDJSONFile.writeJSONFile ();
+				}
 				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
 			}
 

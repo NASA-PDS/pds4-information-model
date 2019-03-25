@@ -53,7 +53,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "0.1.9";
+	static String DMDocVersionId  = "0.2.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -104,7 +104,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.1.5b";
+	static String LDDToolVersionId  = "0.2.2.1";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -114,14 +114,14 @@ public class DMDocument extends Object {
 	
 	// import export file flags
 	static boolean exportProdDefnFlag = true;
-	static boolean exportJSONFileFlag = false;
+	static boolean exportJSONFileFlag = false;			// LDDTool, set by -J option
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
-	static boolean exportJSONAttrFlag = false;
-	static boolean importJSONAttrFlag = false;
-	static boolean exportDOMFlag = true;
-	// set exportDOMFlag to true - 190115c
+	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
+	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
+	static boolean exportDOMFlag = false;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
 	static boolean pds4ModelFlag = true;
+	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
@@ -149,7 +149,8 @@ public class DMDocument extends Object {
 	static ArrayList <LDDParser> LDDModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
-	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
+	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc
+	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
@@ -436,12 +437,11 @@ public class DMDocument extends Object {
 		masterStewardNameSpaceIDArr = new ArrayList <String> (lStewardNameSpaceIdMap.values());
 		
 		// print out the stewards - namespaceid pairs
-		System.out.println("\n>>info    - Configured Steward/NameSpaceId Pairs");
+		System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
 		for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
 			String lStewardNameSpaceId = (String) i.next();
 			System.out.println(">>info    - " + lStewardNameSpaceId);
 		}
-		System.out.println("");
 		
 		// set up the System Build version
 		XMLSchemaLabelBuildNum = pds4BuildId;
@@ -466,13 +466,13 @@ public class DMDocument extends Object {
 		if (exportDOMFlag) {
 			GetDOMModel lGetDOMModel = new GetDOMModel();
 			lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
-			DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");		
 		}
+		if (debugFlag) DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 		// export the models
 		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeLDDArtifacts ();
+			lExportModels.writeLDDArtifacts (exportDOMFlag);
 		} else if ( DMDocument.mapToolFlag) {
             WriteMappingFile writeMappingFile = new WriteMappingFile();
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
@@ -604,6 +604,7 @@ public class DMDocument extends Object {
 			} else {
 				SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
 				lLDDSchemaFileDefn.sourceFileName = lArg;
+				lLDDSchemaFileDefn.isActive = true;
 				lLDDSchemaFileDefn.isLDD = true;
 				lLDDSchemaFileDefn.labelVersionId = "1.0";
 				LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
@@ -778,14 +779,16 @@ public class DMDocument extends Object {
 		SchemaFileDefn lSchemaFileDefn;
 		String SCHEMA_LITERAL = "lSchemaFileDefn.";
 		String IDENTIFIER = ".identifier";
-   
+		
+		System.out.println("\n>>info    - config.properties:");
+		
         Set<Object> keys = prop.keySet();	
         for (Object k:keys) {
         	String key = (String)k;
         	// look for schema entries
         	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
         		String nameSpaceId = prop.getProperty(key);
-        		System.out.println(">>info    - config namespace_id:"+ nameSpaceId);
+        		System.out.println(">>info    - namespace_id:"+ nameSpaceId);
         		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
         		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
         	    String value = prop.getProperty(isMasterKey);
@@ -819,18 +822,20 @@ public class DMDocument extends Object {
            		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
         		if (value != null){
-        			if (value.equals("true"))
+        			if (value.equals("true")) {
         			   lSchemaFileDefn.isDiscipline = true;
-        			else
+        			   lSchemaFileDefn.governanceLevel = "Discipline";
+        			} else
         			   lSchemaFileDefn.isDiscipline = false;
         		} 
         		
         		String isMissionKey = SCHEMA_LITERAL+nameSpaceId + ".isMission";
         		value = prop.getProperty(isMissionKey);
             	if (value != null){
-            		if (value.equals("true"))
+            		if (value.equals("true")) {
             			   lSchemaFileDefn.isMission = true;
-            		else
+            			   lSchemaFileDefn.governanceLevel = "Mission";
+            		} else
             		       lSchemaFileDefn.isMission = false;
         	    }    	
         		
@@ -894,17 +899,44 @@ public class DMDocument extends Object {
             			   lSchemaFileDefn.regAuthId = value;
         		}
         		
-        		if (lSchemaFileDefn.isMaster) {
-        		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-        		   masterPDSSchemaFileDefn = lSchemaFileDefn;
-        		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
-        		   if (DMDocument.LDDToolFlag) {
-        			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
-        			   break;
-        		   }     		  
-        		} else if (!DMDocument.LDDToolFlag) {
+        		masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+
+/*        		System.out.println("\ndebug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
+        		System.out.println("                            lSchemaFileDefn.lddName:" + lSchemaFileDefn.lddName);
+        		System.out.println("                            lSchemaFileDefn.versionId:" + lSchemaFileDefn.versionId);
+        		System.out.println("                            lSchemaFileDefn.labelVersionId:" + lSchemaFileDefn.labelVersionId);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" + lSchemaFileDefn.nameSpaceIdNCLC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" + lSchemaFileDefn.nameSpaceIdNCUC);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceId:" + lSchemaFileDefn.nameSpaceId);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceURL:" + lSchemaFileDefn.nameSpaceURL);
+        		System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" + lSchemaFileDefn.nameSpaceURLs);
+        		System.out.println("                            lSchemaFileDefn.modelShortName:" + lSchemaFileDefn.modelShortName);
+        		System.out.println("                            lSchemaFileDefn.regAuthId:" + lSchemaFileDefn.regAuthId);
+        		System.out.println("                            lSchemaFileDefn.governanceLevel:" + lSchemaFileDefn.governanceLevel);
+        		System.out.println("                            lSchemaFileDefn.isMaster:" + lSchemaFileDefn.isMaster);
+        		System.out.println("                            lSchemaFileDefn.isLDD:" + lSchemaFileDefn.isLDD);
+        		System.out.println("                            lSchemaFileDefn.isDiscipline:" + lSchemaFileDefn.isDiscipline);
+        		System.out.println("                            lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+*/        		
+        		
+        		if (!DMDocument.LDDToolFlag) {		// IMTool run
         			masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-        		}
+            		if (lSchemaFileDefn.isMaster) {
+// 7777 isActive is set here temporarily until DOM is used; isActive is set above for all IngestLDD
+            			lSchemaFileDefn.isActive = true; 
+              		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+              		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+              		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
+            		}
+         		} else {							// LDDTool run
+         			if (lSchemaFileDefn.isMaster) {
+               		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+               		   masterPDSSchemaFileDefn = lSchemaFileDefn;
+               		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
+           			   masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
+         			}
+         		}
         	}
           }
         }
@@ -1088,14 +1120,30 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Update.update_purpose", "pds", "Update", "pds", "update_purpose", "", false));	
 
-		deprecatedObjects2.add(new DeprecatedDefn ("Geometry", "pds", "Geometry", "", "", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("Airborne", "pds", "Airborne", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Aircraft", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Balloon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Suborbital Rocket", false));
+
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Airborne", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Aircraft", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Balloon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
+
+		deprecatedObjects2.add(new DeprecatedDefn ("Internal_Reference.reference_type", "pds", "Internal_Reference", "pds", "reference_type", "is_airborne", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Bundle_Member_Entry.reference_type", "pds", "Bundle_Member_Entry", "pds", "reference_type", "bundle_has_member_collection", false));
+
 		deprecatedObjects2.add(new DeprecatedDefn ("Display_2D_Image", "pds", "Display_2D_Image", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Band_Bin", "pds", "Band_Bin", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Array.Local_Internal_Reference", "pds", "Array", "pds", "Local_Internal_Reference", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth Based", "pds", "Instrument_Host", "pds", "type", "Earth Based", false));
+//		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth-based", "pds", "Instrument_Host", "pds", "type", "Earth-based", false));
 
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds", "type", "", false));                            
+	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));                            
+			
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Accelerometer", "pds", "Instrument", "pds", "type", "Accelerometer", false));                            
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle Detector", "pds", "Instrument", "pds", "type", "Alpha Particle Detector", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle X-Ray Spectrometer", "pds", "Instrument", "pds", "type", "Alpha Particle X-Ray Spectrometer", false));
@@ -1156,10 +1204,20 @@ public class DMDocument extends Object {
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Globular Cluster", false));
 
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Terrestrial Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Lunar Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Synthetic Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Meteorite", false));
+
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Globular Cluster", false));
 
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Terrestrial Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Lunar Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Synthetic Sample", false));
+	    deprecatedObjects2.add(new DeprecatedDefn ("Target.type", "pds", "Target", "pds", "type", "Meteorite", false));
+	    
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Node.name.Planetary Rings", "pds", "Node", "pds", "name", "Planetary Rings", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("PDS_Affiliate.team_name.Imaging", "pds", "PDS_Affiliate", "pds", "team_name", "Imaging", false));
@@ -1338,16 +1396,6 @@ public class DMDocument extends Object {
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-		exposedElementArr.add("0001_NASA_PDS_1.cart.Cartography");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Ring_Profile");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Supplement");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Occultation_Time_Series");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Ring_Moon_Systems");
-		exposedElementArr.add("0001_NASA_PDS_1.rings.Rings_Supplement");
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Color_Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Direction");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Display_Settings");		
-		exposedElementArr.add("0001_NASA_PDS_1.disp.Movie_Display_Settings");	
 	}
 	
 	static void setRegistryAttrFlag () {

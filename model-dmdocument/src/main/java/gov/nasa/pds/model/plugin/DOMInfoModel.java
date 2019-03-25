@@ -77,9 +77,6 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, PropertyMapsDefn> masterPropertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
 	static ArrayList <PropertyMapsDefn> masterPropertyMapsArr = new ArrayList <PropertyMapsDefn> ();
 	
-	// Array of namespaces that have a class, attribute, etc as a member. Determines what files to write.
-	static ArrayList <String> masterNameSpaceHasMemberArr = new ArrayList <String> ();
-		
 	// All CD and DEC values for the Attributes
 	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
 	static TreeMap <String, DOMIndexDefn> decDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
@@ -331,14 +328,11 @@ public abstract class DOMInfoModel extends Object {
 		// initialize the Attribute Namespace Resolution Map 
 		// attrs (AttrDefn)
 		attrNamespaceResolutionMap = new TreeMap <String, String> ();
-		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_name", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_unit", DMDocument.masterNameSpaceIdNCLC);
-		attrNamespaceResolutionMap.put("rings.Occultation_Supplement.rings.sampling_parameter_interval", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
+//		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 		// assocs (AttrDefn)
-		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);			
+//		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);
 		
 		masterValueMeaningMap = new TreeMap <String, PermValueDefn> ();
  		GetValueMeanings lGetValueMeanings = new GetValueMeanings ();
@@ -445,47 +439,44 @@ public abstract class DOMInfoModel extends Object {
 	static public String getPropMapRDFIdentifier (String lInputIdentifier) {
 		String lIdentifier = lInputIdentifier + "." + getNextUId();
 		return lIdentifier;
-	}	
+	}
 	
 	/**
 	*  wrap a text string
 	*/
-	static public String wrapText (String lString, int beginOffset, int endOffset) {
+	static public ArrayList <String> wrapTextNew (String lString, int beginOffset, int endOffset) {
+//		endOffset = endOffset + 2;
+		ArrayList <String> lLineArr = new ArrayList <String> ();
 		// return empty array for null text
-		if (lString == null) return "";
+		if (lString == null) return null;
 		
 		// return text if length is zero or less
 		int wrapWidth = (endOffset - beginOffset) + 1;
-		if (wrapWidth <= 0) return "";		
-
+		if (wrapWidth <= 0) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
+		
 		// return text if less than wrap width
 		int lStringLength = lString.length();
-		if (lStringLength <= wrapWidth) return lString;
+		if (lStringLength <= wrapWidth) {
+			lLineArr.add(lString);
+			return lLineArr;
+		}
 		
 		// set buffer offsets
 		int currOffset = beginOffset;
 		int lInputBuffOffset1 = 0, lInputBuffOffset2 = 0, lInputBuffOffsetPrevBlank = 0;
 		int lOutputBuffOffset = 0;
-		
+
 		// set up string buffer
 		StringBuffer lInputStringBuff = new StringBuffer(lString);
 		StringBuffer lOutputStringBuff = new StringBuffer();
 		
-		// setup major loop for transfering the string in the input buffer to a wrapped string in the output buffer 
+		// transfer the string in the input buffer to a wrapped string (many lines) in the output buffer 
 		int indent = 0;
-//		char lfcr = '\n';
-		char cr = '\r';
-		char lf = '\n';
-		boolean isFirst = true;
 		while (lInputBuffOffset1 < lStringLength) {
 			// insert linefeed (except first time)
-			if (isFirst) isFirst = false;
-			else { 
-				lOutputStringBuff.insert(lOutputBuffOffset++, cr);
-				lOutputStringBuff.insert(lOutputBuffOffset++, lf);
-			}
-			
-//			System.out.println("\ndebug wrapText -insert blanks- lInputBuffOffset1:" + lInputBuffOffset1);
 			
 			// find next non-blank character in input buffer
 			while (lInputBuffOffset1 < lStringLength) {
@@ -494,8 +485,8 @@ public abstract class DOMInfoModel extends Object {
 			}
 			
 			// insert prefix blanks in output buffer
-			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');
-
+			for (int i = 0; i < beginOffset + indent; i++) lOutputStringBuff.insert(lOutputBuffOffset++, ' ');		
+			
 			// find the next chunk of text by finding the next break before the end of the wrapwidth (delimiter = ' ')
 			currOffset = beginOffset + indent; // counter for wrapped string size
 			indent = 2;
@@ -507,20 +498,33 @@ public abstract class DOMInfoModel extends Object {
 				if (lInputStringBuff.charAt(lIBO1) == ' ') lInputBuffOffsetPrevBlank = lIBO1;
 				lIBO1++; currOffset++;
 				lInputBuffOffset2++;
-			}		
+			}
+			
 			if (lIBO1 < lStringLength) { // check to see of input buffer is exhausted
 				if (lInputBuffOffsetPrevBlank > -1) { // was a blank found
 					lInputBuffOffset2 = lInputBuffOffsetPrevBlank;
 				}
-			}
+			}		
+
 			// copy in the next chunk of text
 			while (lInputBuffOffset1 < lInputBuffOffset2) {
 				lOutputStringBuff.insert(lOutputBuffOffset, lInputStringBuff.charAt(lInputBuffOffset1));
 				lInputBuffOffset1++;
 				lOutputBuffOffset++;
 			}
+			String lLine = lOutputStringBuff.toString();
+			lLineArr.add(lLine);
+			lOutputStringBuff = new StringBuffer();
+			lOutputBuffOffset = 0;
 		}
-		return lOutputStringBuff.toString();
+		return lLineArr;
+	}
+	
+	static public void printWrappedTextArr (ArrayList <String> lLineArr, PrintWriter prXML) throws java.io.IOException {
+		for (Iterator<String> i = lLineArr.iterator(); i.hasNext();) {
+			String lLine = (String) i.next();
+			prXML.println(lLine);
+		}
 	}
 	
 //	=======================  Utilities ================================================================
@@ -906,21 +910,22 @@ public abstract class DOMInfoModel extends Object {
 	}
 	
 	// clone an attribute 
-	static public AttrDefn cloneAttr (String lRDFIdentifier, AttrDefn lOrgAttr) {
-		AttrDefn lNewAttr = new AttrDefn (lRDFIdentifier);				              					              
-		lNewAttr.uid = lOrgAttr.uid;										              
-		lNewAttr.identifier = lOrgAttr.identifier; 						              
+	static public DOMAttr cloneDOMAttr (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle, DOMAttr lOrgAttr) {
+		DOMAttr lNewAttr = new DOMAttr ();				              					              
+//		lNewAttr.uid = lOrgAttr.uid;										              
+		lNewAttr.setRDFIdentifier (lAttrTitle);								              										              
+		lNewAttr.setIdentifier(lClassNameSpaceIdNC, lClassTitle, lAttrNameSpaceIdNC, lAttrTitle); 						              
 		lNewAttr.sort_identifier = lOrgAttr.sort_identifier;				              
-		lNewAttr.attrAnchorString = lOrgAttr.attrAnchorString;			              
+//		lNewAttr.attrAnchorString = lOrgAttr.attrAnchorString;			              
 		lNewAttr.title = lOrgAttr.title;  								              
 		lNewAttr.versionId = lOrgAttr.versionId;							              
 		lNewAttr.registrationStatus = lOrgAttr.registrationStatus;		              
-		lNewAttr.XMLSchemaName = lOrgAttr.XMLSchemaName;					              
+		lNewAttr.XMLSchemaName = lAttrTitle;					              
 		lNewAttr.regAuthId = lOrgAttr.regAuthId;							              
 		lNewAttr.steward = lOrgAttr.steward;								              
 		lNewAttr.classSteward = lOrgAttr.classSteward;					              
-		lNewAttr.attrNameSpaceId = lOrgAttr.attrNameSpaceId;                     
-		lNewAttr.attrNameSpaceIdNC = lOrgAttr.attrNameSpaceIdNC;                   
+		lNewAttr.nameSpaceId = lOrgAttr.nameSpaceId;                     
+		lNewAttr.nameSpaceIdNC = lOrgAttr.nameSpaceIdNC;                   
 		lNewAttr.classNameSpaceIdNC = lOrgAttr.classNameSpaceIdNC;                  
 		lNewAttr.submitter = lOrgAttr.submitter;							              
 		lNewAttr.subModelId = lOrgAttr.subModelId;						              
@@ -929,7 +934,7 @@ public abstract class DOMInfoModel extends Object {
 		lNewAttr.classConcept = lOrgAttr.classConcept;					              
 		lNewAttr.dataConcept = lOrgAttr.dataConcept;						              
 		lNewAttr.classWord = lOrgAttr.classWord;							              
-		lNewAttr.description = lOrgAttr.description;                         
+		lNewAttr.definition = lOrgAttr.definition;                         
 		lNewAttr.lddLocalIdentifier = lOrgAttr.lddLocalIdentifier;		              
 
 		lNewAttr.xmlBaseDataType = lOrgAttr.xmlBaseDataType;				              
@@ -1185,8 +1190,8 @@ public abstract class DOMInfoModel extends Object {
 		return (seq);
 	}
 	
-	
 	// get attribute array sorted by "attribute", namespace, attr title, namespace, class title
+	// 7777 deprecate this
 	static public ArrayList <DOMAttr> getAttArrByTitleStewardClassSteward () {
 		TreeMap <String, DOMAttr> lDOMAttrMap = new TreeMap <String, DOMAttr>();
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
@@ -1196,7 +1201,18 @@ public abstract class DOMInfoModel extends Object {
 		ArrayList <DOMAttr> lDOMAttrArr = new ArrayList <DOMAttr>(lDOMAttrMap.values());	
 		return (lDOMAttrArr);
 	}
-
+	
+	// get DOMProp array sorted by member attr/prop title, steward, class title, steward
+	static public ArrayList <DOMProp> getPropArrByTitleStewardClassSteward () {
+		TreeMap <String, DOMProp> lDOMPropMap = new TreeMap <String, DOMProp>();
+		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			lDOMPropMap.put(lDOMProp.sortKeyIMSPec, lDOMProp);
+		}
+		ArrayList <DOMProp> lDOMPropArr = new ArrayList <DOMProp>(lDOMPropMap.values());	
+		return (lDOMPropArr);
+	}
+	
 //====================== Miscellaneous Routines ==============================================================================	
 	
 	/**
@@ -1465,8 +1481,8 @@ public abstract class DOMInfoModel extends Object {
 //		prDOMWriter.println("        attr.isUnitOfMeasure:" + attr.isUnitOfMeasure);
 		
 // 		Permissible values
+		prDOMWriter.println("\n        has attr.domPermValueArr");
 		if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
-			prDOMWriter.println("        has attr.domPermValueArr");
 			for (Iterator <DOMProp> j = attr.domPermValueArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
 				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
@@ -1475,8 +1491,8 @@ public abstract class DOMInfoModel extends Object {
 				}
 			}
 		} else {
-			if (attr.domPermValueArr == null) prDOMWriter.println("        domPermValueArr:" + "null");
-			else  prDOMWriter.println("  ERROR domPermValueArr.size():" + attr.domPermValueArr.size());
+			if (attr.domPermValueArr == null) prDOMWriter.println("            attr.domPermValueArr:" + "null");
+			else                              prDOMWriter.println("            attr.domPermValueArr.size():" + attr.domPermValueArr.size());
 		}
 	}
 	
