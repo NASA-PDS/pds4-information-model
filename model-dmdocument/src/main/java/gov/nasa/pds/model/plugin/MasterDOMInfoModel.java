@@ -278,7 +278,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						lChildClass.ownedAttrAssocNSTitleArr.add(lChildAttr.nsTitle);
 						lChildClass.ownedAttrAssocNSTitleMap.put(lChildAttr.nsTitle, lChildAttr);
 						lChildClass.ownedTestedAttrAssocNSTitleArr.add(lChildAttr.nsTitle);
-						lChildClass.ownedPropNSTitleMap.put(lChildProp.nsTitle, lChildProp);
+						lChildClass.ownedPropNSTitleMap.put(lChildAttr.nsTitle, lChildProp);
 					}
 				}
 				// ditto for associations
@@ -287,8 +287,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 					if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMClass) {
 						DOMClass lMemberChildClass = (DOMClass) lChildProp.hasDOMObject;
 						lChildClass.ownedAttrAssocNSTitleArr.add(lMemberChildClass.nsTitle);
-						lChildClass.ownedPropNSTitleMap.put(lChildProp.nsTitle, lChildProp);
 						lChildClass.ownedTestedAttrAssocNSTitleArr.add(lMemberChildClass.nsTitle);
+						lChildClass.ownedPropNSTitleMap.put(lMemberChildClass.nsTitle, lChildProp);
 					}
 				}				
 				
@@ -320,6 +320,14 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lParentAttr = (DOMAttr) lParentProp.hasDOMObject;
 				
+				// has parent attribute been checked
+				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
+					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lParentAttr.nsTitle);
+					
+					// add the parent owned attribute to the inherited attribute array.
+					lChildClass.inheritedAttrArr.add(lParentProp);
+				}
+				
 				// is parent nsTitle a child owned nsTitle
 				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
 					
@@ -329,14 +337,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 
 					DOMAttr lChildAttr = lChildClass.ownedAttrAssocNSTitleMap.get(lParentAttr.nsTitle);
 					if (lChildAttr != null) lChildAttr.isRestrictedInSubclass = true;
-				}
-				
-				// has parent attribute been checked
-				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
-					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lParentAttr.nsTitle);
-					
-					// add the parent owned attribute to the inherited attribute array.
-					lChildClass.inheritedAttrArr.add(lParentProp);
 				}
 			}
 		}
@@ -354,6 +354,14 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lParentAttr = (DOMAttr) lParentProp.hasDOMObject;
 				
+				// has parent attribute been checked
+				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
+					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lParentAttr.nsTitle);
+					
+					// add the parent owned attribute to the inherited attribute array.
+					lChildClass.inheritedAttrArr.add(lParentProp);
+				}
+				
 				// is parent nsTitle also a child owned nsTitle
 				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
 
@@ -364,14 +372,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 					// the parent inherited attribute is inherited
 					DOMAttr lChildAttr = lChildClass.ownedAttrAssocNSTitleMap.get(lParentAttr.nsTitle);
 					if (lChildAttr != null) lChildAttr.isRestrictedInSubclass = true;
-				}
-				
-				// has parent attribute been checked
-				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
-					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lParentAttr.nsTitle);
-					
-					// add the parent owned attribute to the inherited attribute array.
-					lChildClass.inheritedAttrArr.add(lParentProp);
 				}
 			}
 		}
@@ -389,20 +389,20 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lMemberParentClass = (DOMClass) lParentProp.hasDOMObject;
 				
-				// is parent nsTitle a child owned nsTitle
-				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
-					
-					// the parent owned attribute is restricted
-					DOMProp lChildProp = lChildClass.ownedPropNSTitleMap.get(lMemberParentClass.nsTitle);
-					if (lChildProp != null) lChildProp.isRestrictedInSubclass = true;
-				}
-				
 				// has parent attribute been checked
 				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
 					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lMemberParentClass.nsTitle);
 					
 					// add the parent owned attribute to the inherited array.
 					lChildClass.inheritedAssocArr.add(lParentProp);
+				}
+				
+				// is parent nsTitle a child owned nsTitle
+				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
+					
+					// the parent owned attribute is restricted
+					DOMProp lChildProp = lChildClass.ownedPropNSTitleMap.get(lMemberParentClass.nsTitle);
+					if (lChildProp != null) lChildProp.isRestrictedInSubclass = true;
 				}
 			}
 		}
@@ -412,7 +412,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	//	for each ParentClass
 	//		for each inherited attribute of the ParentClass 
 	//			add the attribute as an inherited attribute of the ChildClass
-	//     		(check is limited to the atribute's nsTitle (namespace + title)
+	//     		(check is limited to the attribute's nsTitle (namespace + title)
 	private void getInheritedClassAssociationsFromParent (DOMClass lChildClass, DOMClass lParentClass) {
 		//	inherit all inherited attributes of the parent class
 		for (Iterator <DOMProp> i = lParentClass.inheritedAssocArr.iterator(); i.hasNext();) {
@@ -420,20 +420,20 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lMemberParentClass = (DOMClass) lParentProp.hasDOMObject;
 				
-				// is parent nsTitle a child owned nsTitle
-				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
-					
-					// the parent owned attribute is restricted
-					DOMProp lChildProp = lChildClass.ownedPropNSTitleMap.get(lMemberParentClass.nsTitle);
-					if (lChildProp != null) lChildProp.isRestrictedInSubclass = true;
-				}
-				
 				// has parent attribute been checked
 				if (! lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
 					lChildClass.ownedTestedAttrAssocNSTitleArr.add(lMemberParentClass.nsTitle);
 					
 					// add the parent owned attribute to the inherited array.
 					lChildClass.inheritedAssocArr.add(lParentProp);
+				}
+				
+				// is parent nsTitle a child owned nsTitle
+				if (lChildClass.ownedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
+					
+					// the parent owned attribute is restricted
+					DOMProp lChildProp = lChildClass.ownedPropNSTitleMap.get(lMemberParentClass.nsTitle);
+					if (lChildProp != null) lChildProp.isRestrictedInSubclass = true;
 				}
 			}
 		}
@@ -771,13 +771,14 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		
 		if (lSuperProp == null) return false;
 				
-
+// 7777 ***** this need to be resolved; this check and the errors do not occur in the MOF version, only in the DOM, why??? *****	
+// 7777       error message commented out for v1.12.0.0 to reduce error messages for both IMTool and LDDTool runs
 		if (lProp.cardMin.compareTo(lSuperProp.cardMin) != 0) {
 			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMin:" + lSuperProp.cardMin + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
 			return true;
 		}
 		if (lProp.cardMax.compareTo(lSuperProp.cardMax) != 0) {
-			System.out.println(">>warning - isRestrictedPropertye lSuperProp.cardMax:" + lSuperProp.cardMax + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMax:" + lSuperProp.cardMax + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
 			return true;
 		}
 
