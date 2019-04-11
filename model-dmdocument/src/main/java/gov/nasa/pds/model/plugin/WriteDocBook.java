@@ -590,7 +590,7 @@ class WriteDocBook extends Object {
 				if (lAttr.title.compareTo("pattern") == 0 && lValueMeaning.indexOf("TBD") == 0) lValueMeaning = "";
 	 	        prDocBook.println("                <row>");
 		        prDocBook.println("                    <entry></entry>"); 
-		        prDocBook.println("                    <entry>" + getValueAnchor(lAttr, lPermValueDefn.value) + getValueBreak (lPermValueDefn.value) + getValue(lDependClause) + lRegistrationStatusInsert + "</entry>");
+		        prDocBook.println("                    <entry>" + getValueAnchor(lAttr, lPermValueDefn.value) + getValueBreak (getValue(lPermValueDefn.value)) + getValue(lDependClause) + lRegistrationStatusInsert + "</entry>");
 		        prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue(lValueMeaning) + "</entry>");
 		        prDocBook.println("                </row>");
 			}
