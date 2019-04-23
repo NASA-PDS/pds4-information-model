@@ -50,7 +50,7 @@ public class LDDParser extends Object
 	TreeMap <String, RuleDefn> ruleMap = new TreeMap <String, RuleDefn> ();
 
 	// initialize the Reference
-	ArrayList <String> ruleReferenceArr = new ArrayList <String> ();
+	ArrayList <RuleReferenceTypeDefn> ruleReferenceArr = new ArrayList <RuleReferenceTypeDefn> ();
 	
 	// initialize the Property Map structures
 	ArrayList <PropertyMapsDefn> propertyMapsArr = new ArrayList <PropertyMapsDefn> (); 	
@@ -751,12 +751,12 @@ public class LDDParser extends Object
 				// save the Internal_Reference or Local_Internal_Reference for rule checking
 				if (lLocalIdentifier.compareTo("pds.Internal_Reference") == 0 ) {
 					String lRuleReferenceXPath = gSchemaFileDefn.nameSpaceId + lClass.title + "/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + "Internal_Reference";
-//					System.out.println("debug Internal_Reference and Local_Internal_Reference - Rules - lRuleReferenceXPath:" + lRuleReferenceXPath);
-					ruleReferenceArr.add(lRuleReferenceXPath);
+					RuleReferenceTypeDefn lRuleReferenceTypeDefn = new RuleReferenceTypeDefn (lRuleReferenceXPath, false);
+					ruleReferenceArr.add(lRuleReferenceTypeDefn);
 				} else if (lLocalIdentifier.compareTo("pds.Local_Internal_Reference") == 0) {
-					String lRuleReferenceXPath = lClass.title + "/" + "Local_Internal_Reference";
-//					System.out.println("debug Internal_Reference and Local_Internal_Reference - Rules - lRuleReferenceXPath:" + lRuleReferenceXPath);
-					ruleReferenceArr.add(lRuleReferenceXPath);
+					String lRuleReferenceXPath = gSchemaFileDefn.nameSpaceId + lClass.title + "/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + "Local_Internal_Reference";
+					RuleReferenceTypeDefn lRuleReferenceTypeDefn = new RuleReferenceTypeDefn (lRuleReferenceXPath, true);
+					ruleReferenceArr.add(lRuleReferenceTypeDefn);
 				}
 
 				validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lLocalIdentifier);
@@ -1398,15 +1398,10 @@ public class LDDParser extends Object
 	}
 	
 	private void validateReservedNames () {
-//		System.out.println("\ndebug validateReservedNames");
-		
 		boolean hasAtLeastOneElementDefined = false;
 		// scan LDD class titles and determine if a reserved name has been used.
 		for (Iterator <PDSObjDefn> i = classArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
-//			System.out.println("\ndebug validateReservedNames lClass.title:" + lClass.title);
-//			System.out.println("debug validateReservedNames lClass.isLDDElement:" + lClass.isLDDElement);
-//			System.out.println("debug validateReservedNames lClass.localIdentifier:" + lClass.localIdentifier);
 			
 			// if the value of the attribute title is a reserved word then this class definition is not allowed.
 			// the value of the attribute local_identifier is irrelevant even if it is a reference to a foreign namespace
@@ -1428,8 +1423,6 @@ public class LDDParser extends Object
 		// scan LDD attributes titles and determine if a reserved name has been used.
 		for (Iterator <AttrDefn> i = attrArr.iterator(); i.hasNext();) {
 			AttrDefn lAttr = (AttrDefn) i.next();
-//			System.out.println("debug validateReservedNames lAttr.title:" + lAttr.title);
-//			System.out.println("debug validateReservedNames lAttr.localIdentifier:" + lAttr.lddLocalIdentifier);
 			
 			if (DMDocument.reservedAttrNames.contains(lAttr.title)) {
 				lddErrorMsg.add("   ERROR    Attribute: " + " - No local dictionary may define an attribute called " + lAttr.title + ".");
@@ -1442,20 +1435,24 @@ public class LDDParser extends Object
 		}
 		
 		// scan LDD rules to check that a value for reference_type has been define for the rule 
-		for (Iterator <String> i = ruleReferenceArr.iterator(); i.hasNext();) {
-			String lRuleXPath = (String) i.next();
-//			System.out.println("\ndebug validateReservedNames - lRuleReference:" + lRuleXPath);
+		for (Iterator <RuleReferenceTypeDefn> i = ruleReferenceArr.iterator(); i.hasNext();) {
+			RuleReferenceTypeDefn lRuleReferenceType = (RuleReferenceTypeDefn) i.next();
+			String lRuleXPath = lRuleReferenceType.ruleReferenceXPath;
 			boolean foundReferenceTypeDef = false;
 			for (Iterator <RuleDefn> j = ruleArr.iterator(); j.hasNext();) {
 				RuleDefn lRule = (RuleDefn) j.next();
-				if (lRule.xpath.compareTo(lRuleXPath) == 0) {
-//					System.out.println("debug validateReservedNames - FOUND - lRuleReference:" + lRuleXPath);
+				String lRuleXpathClean = cleanXPath (lRule.xpath);
+				if (lRuleXpathClean.compareTo(lRuleXPath) == 0) {
 					for (Iterator <AssertDefn2> k = lRule.assertArr.iterator(); k.hasNext();) {
 						AssertDefn2 lAssert = (AssertDefn2) k.next();
-//						System.out.println("debug validateReservedNames - Checking - lAssert.assertStmt:" + lAssert.assertStmt);
-						if (lAssert.assertStmt.indexOf("pds:reference_type") > -1) {
-//							System.out.println("debug validateReservedNames - FOUND Reference Type Definition - lAssert.assertStmt:" + lAssert.assertStmt);
-							foundReferenceTypeDef = true;							
+						if (! lRuleReferenceType.isLocal) {
+							if (lAssert.assertStmt.indexOf("pds:reference_type") > -1) {
+								foundReferenceTypeDef = true;
+							}
+						} else {
+							if (lAssert.assertStmt.indexOf("pds:local_reference_type") > -1) {
+								foundReferenceTypeDef = true;
+							}
 						}
 					}
 				}
@@ -1463,9 +1460,19 @@ public class LDDParser extends Object
 			if (! foundReferenceTypeDef) 
 				lddErrorMsg.add("   ERROR    Class: " + " - At least one value for pds:local_reference_type must be defined for " + lRuleXPath + ".");
 		}
-
-
 		return;
+	}
+	
+	private String cleanXPath (String lRuleXpath) {
+		StringBuffer lInBuff = new StringBuffer(lRuleXpath);
+		StringBuffer lOutBuff = new StringBuffer();
+		int inCnt = 0, inLmt = lInBuff.length();
+		while (inCnt < inLmt) {
+			Character inChar = lInBuff.charAt(inCnt);
+			if (! ((inCnt < 2) && (inChar == '/'))) lOutBuff.append(lInBuff.charAt(inCnt));
+			inCnt++;
+		}
+		return lOutBuff.toString();
 	}
 	
 	private void validateAttributeUsed () {
