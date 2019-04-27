@@ -68,7 +68,7 @@ public class XMLDocParserDomMDPTNConfig extends Object
 		//get the root element
 		Element lRootElem = dom.getDocumentElement();
 		if(lRootElem != null) {
-			System.out.println(">>info    - " + "Found required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
+//			System.out.println(">>info    - " + "Found required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
 			getRecord (lRootElem);
 		} else {
 			System.out.println(">>error   - " + "Did not find required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");

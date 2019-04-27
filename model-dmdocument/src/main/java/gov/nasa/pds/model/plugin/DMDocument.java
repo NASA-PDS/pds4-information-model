@@ -53,7 +53,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "0.2.0";
+	static String DMDocVersionId  = "1.18.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -104,7 +104,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.1";
+	static String LDDToolVersionId  = "0.2.2.2";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -378,21 +378,6 @@ public class DMDocument extends Object {
 		
 		// get the command line arguments
 		getCommandArgs (args);
-				
-		// output the context info
-		if (! LDDToolFlag) {
-			System.out.println(">>info    - DMDoc Version: " + DMDocVersionId);
-		} else {
-			System.out.println(">>info    - LDDTOOL Version: " + LDDToolVersionId);
-//			System.out.println(">>info    - Input File Name: " + LDDToolFileNameNE);
-//1			System.out.println(">>info    - Original Input File Name: " + lLDDToolFileName);
-		}
-		System.out.println(">>info    - Date: " + sTodaysDate);
-		System.out.println(">>info    - JAVAHOME: " + lJAVAHOME);
-		System.out.println(">>info    - PARENT_DIR: " + lPARENT_DIR);
-		System.out.println(">>info    - SCRIPT_DIR: " + lSCRIPT_DIR);
-		System.out.println(">>info    - LIB_DIR: " + lLIB_DIR);
-//		System.out.println(">>info    - USERNAME: " + lUSERNAME);
 		
 		// check the files
 		checkRequiredFiles ();
@@ -436,13 +421,6 @@ public class DMDocument extends Object {
 		masterNameSpaceIDArr = new ArrayList <String> (lNameSpaceIdMap.values());
 		masterStewardNameSpaceIDArr = new ArrayList <String> (lStewardNameSpaceIdMap.values());
 		
-		// print out the stewards - namespaceid pairs
-		System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
-		for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
-			String lStewardNameSpaceId = (String) i.next();
-			System.out.println(">>info    - " + lStewardNameSpaceId);
-		}
-		
 		// set up the System Build version
 		XMLSchemaLabelBuildNum = pds4BuildId;
 		
@@ -450,6 +428,33 @@ public class DMDocument extends Object {
 		// set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces, etc)
 //		masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();
 		setupNameSpaceInfoAll(props);
+		
+		// output the context info
+		if (! LDDToolFlag) {
+			System.out.println(">>info    - DMDoc Version: " + DMDocVersionId);
+			System.out.println(">>info    - IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);	
+			System.out.println(">>info    - IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
+			System.out.println(">>info    - IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
+		} else {
+			System.out.println(">>info    - LDDTOOL Version: " + LDDToolVersionId);
+			System.out.println(">>info    - IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
+			System.out.println(">>info    - IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
+			System.out.println(">>info    - IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
+		}	
+		
+		System.out.println(">>info    - Date: " + sTodaysDate);
+		System.out.println(">>info    - JAVAHOME: " + lJAVAHOME);
+		System.out.println(">>info    - PARENT_DIR: " + lPARENT_DIR);
+		System.out.println(">>info    - SCRIPT_DIR: " + lSCRIPT_DIR);
+		System.out.println(">>info    - LIB_DIR: " + lLIB_DIR);
+		
+		// print out the stewards - namespaceid pairs
+		System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
+		for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
+			String lStewardNameSpaceId = (String) i.next();
+			System.out.println(">>info    - " + lStewardNameSpaceId);
+		}
+		System.out.println(" " );
 		
 		// set the deprecated flags
 		setObjectDeprecatedFlag();
@@ -780,7 +785,7 @@ public class DMDocument extends Object {
 		String SCHEMA_LITERAL = "lSchemaFileDefn.";
 		String IDENTIFIER = ".identifier";
 		
-		System.out.println("\n>>info    - config.properties:");
+//		System.out.println("\n>>info    - config.properties:");
 		
         Set<Object> keys = prop.keySet();	
         for (Object k:keys) {
@@ -788,7 +793,7 @@ public class DMDocument extends Object {
         	// look for schema entries
         	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
         		String nameSpaceId = prop.getProperty(key);
-        		System.out.println(">>info    - namespace_id:"+ nameSpaceId);
+//        		System.out.println(">>info    - namespace_id:"+ nameSpaceId);
         		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
         		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
         	    String value = prop.getProperty(isMasterKey);
