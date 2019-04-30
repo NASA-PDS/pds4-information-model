@@ -672,6 +672,7 @@ public class LDDParser extends Object
 					if (lBooleanStringValue != null) {
 						if (lBooleanStringValue.compareTo("true") == 0) {
 							lClass.isLDDElement = true;
+							lClass.isExposed = true;
 						}
 					}
 					

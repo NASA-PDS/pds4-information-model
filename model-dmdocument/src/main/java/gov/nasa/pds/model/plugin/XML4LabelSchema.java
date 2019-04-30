@@ -27,7 +27,7 @@ class XML4LabelSchema extends Object {
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
-		prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
+		prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
 //		write the XML Schema File Header
 		writeXMLSchemaFileHeader (lSchemaFileDefn, prXML);
@@ -246,7 +246,11 @@ class XML4LabelSchema extends Object {
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
+				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+				String lSchemaLocationFileName2 = "TBD_lSchemaLocation";
+				if (lLDDSchemaFileDefn != null) lSchemaLocationFileName2 = lLDDSchemaFileDefn.relativeFileNameXMLSchema2;
+				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + lLDDSchemaFileDefn.nameSpaceURLs + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + lSchemaLocationFileName2 + "\"/>");	
+//				prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/PDS4_" + lNameSpaceIdNC.toUpperCase() + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
 			}
 		}
 		

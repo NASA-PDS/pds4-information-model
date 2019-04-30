@@ -51,6 +51,7 @@ public class SchemaFileDefn {
 	String relativeFileSpecXMLSchema;		// base dir path, xml schema dir, base file name, file extension
 	String relativeFileSpecSchematron;		// base dir path, xml schema dir, base file name, file extension	
 	String relativeFileNameXMLSchema;
+	String relativeFileNameXMLSchema2;
 	String relativeFileNameSchematron;
 	String relativeFileSpecXMLLabel;		// base dir path, xml schema dir, base file name, file extension
 	String relativeFileSpecDDDocXML;		
@@ -123,6 +124,7 @@ public class SchemaFileDefn {
 		relativeFileSpecXMLSchema = "TBD_relativeFileSpecXMLSchema";  // set after setting version_id; see below
 		relativeFileSpecSchematron = "TBD_relativeFileSpecSchematron";
 		relativeFileNameXMLSchema = "TBD_relativeFileNameXMLSchema";
+		relativeFileNameXMLSchema2 = "TBD_relativeFileNameXMLSchema2";
 		relativeFileNameSchematron = "TBD_relativeFileNameSchematron";
 		relativeFileSpecXMLLabel = "TBD_relativeFileSpecXMLLabel";
 		relativeFileSpecDDDocXML = "TBD_relativeFileSpecDDDocXML";	
@@ -192,6 +194,8 @@ public class SchemaFileDefn {
 //		***lab_version_id = DOMInfoModel.lab_version_id;				// 1000
 		ns_version_id = lab_version_id.substring(0,1);					// 1
 		
+		String lLabelVersionId = getCleanLabelVersionId(DMDocument.infoModelVersionId);
+		
 		// set the relative file spec now that we have a version id
 		relativeFileSpecModelSpec = DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
 		relativeFileSpecModelSpec_DOM = DMDocument.outputDirPath + "index" + "_" + lab_version_id + "_DOM" + ".html";
@@ -199,6 +203,7 @@ public class SchemaFileDefn {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
 			relativeFileSpecSchematron = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
 			relativeFileNameXMLSchema = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
+			relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lLabelVersionId + "_" + lab_version_id + ".xsd";
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
@@ -209,6 +214,7 @@ public class SchemaFileDefn {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
 			relativeFileSpecSchematron = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
 			relativeFileNameXMLSchema = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
+			relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
@@ -299,5 +305,47 @@ public class SchemaFileDefn {
 		}
 		identifier_version_id = lId;
 		return;
+	}
+	
+	// get clean label version id
+	String getCleanLabelVersionId(String versionId) {
+		// parse out the version id into an array of strings, one string for each digit
+		String labelVersionID = "";
+		char ic = 'x';
+		ArrayList <String> vIdDigitArr = new ArrayList <String> ();
+		String vIdDigit = "";
+		StringBuffer sbVersionId = new StringBuffer(versionId);
+		for (int i = 0; i < sbVersionId.length(); i++) {
+			ic = sbVersionId.charAt(i);
+			if (ic != '.') {
+				if (Character.isDigit(ic)) vIdDigit += new Character(ic).toString();
+				else vIdDigit += "x";
+			} else {
+				vIdDigitArr.add(vIdDigit);
+				vIdDigit = "";
+			}
+		}
+		vIdDigitArr.add(vIdDigit);
+		
+		// ensure that there are four digits
+		for (int i = vIdDigitArr.size(); i <  4; i++) {
+			vIdDigitArr.add("0");
+		}
+		
+		// get lab_version_id - 1000
+		String lId = "";
+		for (Iterator <String> i = vIdDigitArr.iterator(); i.hasNext();) {
+			String lDigit = (String) i.next();
+			if (lDigit.compareTo("10") == 0) lDigit = "A";
+			if (lDigit.compareTo("11") == 0) lDigit = "B";
+			if (lDigit.compareTo("12") == 0) lDigit = "C";
+			if (lDigit.compareTo("13") == 0) lDigit = "D";
+			if (lDigit.compareTo("14") == 0) lDigit = "E";
+			if (lDigit.compareTo("15") == 0) lDigit = "F";
+			lId += lDigit;
+		}
+		labelVersionID = lId;
+		
+		return labelVersionID;
 	}
 }
