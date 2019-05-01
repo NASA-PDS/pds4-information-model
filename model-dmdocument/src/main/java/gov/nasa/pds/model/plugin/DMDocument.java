@@ -53,7 +53,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "1.18.0";
+	static String DMDocVersionId  = "1.18.1";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -104,7 +104,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.2";
+	static String LDDToolVersionId  = "0.2.2.4";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -1403,6 +1403,8 @@ public class DMDocument extends Object {
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.DD_Class.pds.local_identifier");
+		exposedElementArr.add("0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier");
 	}
 	
 	static void setRegistryAttrFlag () {

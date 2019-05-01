@@ -328,11 +328,13 @@ public class GetModels extends Object {
 		DMDocument.masterInfoModel.setClassVersionIds ();
 //		DMDocument.masterInfoModel.dumpClassVersionIds ();
 		
-		// set exposed flag
+		// set exposed flag - Classes and Attributes
 		for (Iterator <String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
 			String lIdentifier = (String) i.next();
 			PDSObjDefn lClass = InfoModel.masterMOFClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
+			AttrDefn lAttr = InfoModel.masterMOFAttrIdMap.get(lIdentifier);
+			if (lAttr != null) lAttr.isExposed = true;
 		}
 
 		if (DMDocument.debugFlag) System.out.println("debug getMasterObjectDict Done");

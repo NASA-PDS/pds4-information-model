@@ -66,6 +66,7 @@ public class AttrDefn extends Object {
 	boolean isAny;					// Association or Instance attribute that allows a class any
 	boolean isFromLDD;				// attribute came from an LDD
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
+	boolean isExposed;				// the attribute is to be exposed in XML Schema - i.e., defined using xs:Element
 	
 	ArrayList <String> valArr;
 	ArrayList <PDSObjDefn> valClassArr;	// classes for for assoc (AttrDefn) valArr
@@ -202,6 +203,7 @@ public class AttrDefn extends Object {
 		isAny = false;
 		isFromLDD = false;
 		hasRetiredValue = false;
+		isExposed = false;
 
 		valArr = new ArrayList <String> (); 
 		valClassArr = new ArrayList <PDSObjDefn> (); 

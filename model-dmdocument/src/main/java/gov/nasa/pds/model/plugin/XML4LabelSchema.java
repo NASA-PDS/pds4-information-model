@@ -47,6 +47,15 @@ class XML4LabelSchema extends Object {
 					prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lClass.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
 				}
 			}
+			
+			prXML.println(" ");
+			ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrMap.values());
+			for (Iterator <AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) i.next();
+				if (! (lAttr.isExposed)) continue;
+				if (! (lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) == 0)) continue;
+				prXML.println("  <" + pNS + "element name=\"" + lAttr.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.title + "\"> </" + pNS + "element>");
+			}
 		}
 		
 		// for LDDTool runs and Class flag on, write the Class Elements for all schemas except the master schema 
@@ -468,7 +477,11 @@ class XML4LabelSchema extends Object {
 		}
 
 		// write the XML schema statement
-		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+//		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		if (! (lAttr.isExposed || lAttr.title.compareTo("local_identifier") == 0)) 
+			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		else
+			prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.attrNameSpaceId + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
