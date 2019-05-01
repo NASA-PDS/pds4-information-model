@@ -477,11 +477,14 @@ class XML4LabelSchema extends Object {
 		}
 
 		// write the XML schema statement
-//		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
-		if (! (lAttr.isExposed || lAttr.title.compareTo("local_identifier") == 0)) 
-			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
-		else
-			prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.attrNameSpaceId + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		if (! DMDocument.LDDToolFlag) {
+			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		} else {
+			if (! (lAttr.isExposed || lAttr.title.compareTo("local_identifier") == 0)) 
+				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"" + lAttr.attrNameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+			else
+				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.attrNameSpaceId + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		}
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
