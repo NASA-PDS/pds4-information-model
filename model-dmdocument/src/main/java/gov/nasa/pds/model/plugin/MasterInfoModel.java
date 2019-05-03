@@ -802,6 +802,10 @@ class MasterInfoModel extends InfoModel{
 			for (Iterator<PDSObjDefn> i = masterMOFClassArr.iterator(); i.hasNext();) {
 				PDSObjDefn lClass = (PDSObjDefn) i.next();
 				if (lClass.isUSERClass) continue;
+				
+				// all LDD classes have had their subClasses set in LDDParser
+				if (! ((lClass.subClassOfIdentifier.indexOf("TBD") == 0) || (lClass.subClassOfIdentifier.indexOf("USER") >= 0))) continue;
+				
 //				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassIdMap.get(lClass.subClassOfIdentifier);
 				PDSObjDefn lSupClass = (PDSObjDefn) masterMOFClassTitleMap.get(lClass.subClassOfTitle);
 				if (lSupClass != null) {

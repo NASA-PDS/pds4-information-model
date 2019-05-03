@@ -1127,7 +1127,7 @@ public class LDDParser extends Object
 			
 			for (Iterator <AssocDefn> j = lClass.PropertyArr.iterator(); j.hasNext();) {
 				AssocDefn lProperty = (AssocDefn) j.next();
-
+				
 				// if an attribute association, resolve it	
 				if (lProperty.isAttribute) {
 					if (lProperty.localIdentifier.indexOf("XSChoice#") == 0) continue; 
@@ -1297,16 +1297,12 @@ public class LDDParser extends Object
 	private AttrDefn getLocalOrExternAttr (SchemaFileDefn lSchemaFileDefn, PDSObjDefn lClass, AssocDefn lProperty) {
 //		will be looking for something like "0001_NASA_PDS_1.pds.USER.standard_deviation"
 		String lLocalIdentifier = lProperty.localIdentifier;
-//		System.out.println("\ndebug getLocalOrExternAttr - lClass.identifier:" + lClass.identifier);
-//		System.out.println("debug getLocalOrExternAttr - lLocalIdentifier:" + lLocalIdentifier);
 		
 		// check if attribute is an LDD attribute or an external added in an earlier iteration
 		AttrDefn lAttr = attrMapLocal.get(lLocalIdentifier);
 		if (lAttr != null) {
-//			System.out.println("debug getLocalOrExternAttr - FOUND IN attrMapLocal - lLocalIdentifier:" + lLocalIdentifier);
 //			lAttr.setAttrIdentifier (lClass.nameSpaceIdNC, lClass.title, lAttr.attrNameSpaceIdNC, lAttr.title);
 		} else {
-//			System.out.println("debug getLocalOrExternAttr - NOT FOUND IN attrMapLocal - lLocalIdentifier:" + lLocalIdentifier);
 			// else get a USER attribute
 			int lStringInd = lLocalIdentifier.lastIndexOf(".");
 			String lLDDExtTitle = lLocalIdentifier;
@@ -1384,7 +1380,7 @@ public class LDDParser extends Object
 		
 		// Is the class local 
 		lParentClass = classMapLocal.get(lLocalIdentifier);
-		if (lParentClass  != null) {
+		if (lParentClass  != null) {			
 			return lParentClass;
 		}
 
