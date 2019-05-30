@@ -119,7 +119,8 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
-	static boolean exportDOMFlag = false;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
+	static boolean exportDOMFlag = true;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
+	static boolean exportMOFFlag = true;
 	static boolean pds4ModelFlag = true;
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
@@ -477,13 +478,13 @@ public class DMDocument extends Object {
 		// export the models
 		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeLDDArtifacts (exportDOMFlag);
+			lExportModels.writeLDDArtifacts (exportDOMFlag,exportMOFFlag);
 		} else if ( DMDocument.mapToolFlag) {
             WriteMappingFile writeMappingFile = new WriteMappingFile();
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
 		} else {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeAllArtifacts (exportDOMFlag);
+			lExportModels.writeAllArtifacts (exportDOMFlag,exportMOFFlag);
 		}
 	}
 	
