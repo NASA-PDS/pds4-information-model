@@ -197,4 +197,47 @@ public class DOMClass extends ISOClassOAIS11179 {
 				System.out.println(">>error    - InitDOMClassHierArr - Failed to find new DOMClass - lOldClass.rdfIdentifier: " + lOldClass.rdfIdentifier);
 		}
 	}
+	
+	/**
+	 *   get the disposition of a class (from Protege)
+	 */
+	public boolean getDOMClassDisposition (boolean isFromProtege) {
+		// get disposition identifier - if isFromProtege, then the identifier is set else it is not since it is from an LDD.
+		String lDispId = this.subModelId + "." + DMDocument.registrationAuthorityIdentifierValue + "." + this.title;
+		if (! isFromProtege) lDispId = "LDD_" + lDispId;
+		DispDefn lDispDefn = DMDocument.masterClassDispoMap2.get(lDispId);
+		if (lDispDefn != null) {
+			this.used = lDispDefn.used;
+			this.section = lDispDefn.section;
+			String lDisp = lDispDefn.disposition;
+			this.steward = lDispDefn.intSteward;
+			String lClassNameSpaceIdNC = lDispDefn.intNSId;
+			this.nameSpaceIdNC = lClassNameSpaceIdNC;
+			this.nameSpaceId = lClassNameSpaceIdNC + ":";
+			
+			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
+			if (isFromProtege) this.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, this.title);
+			this.isMasterClass = true;
+			if (lDisp.indexOf("V") > -1) {
+				this.isVacuous = true;
+			}
+			if (lDisp.indexOf("S") > -1) {
+				this.isSchema1Class = true;
+			}
+			if (lDisp.indexOf("R") > -1) {
+				this.isRegistryClass = true;
+			}
+			if (lDisp.indexOf("T") > -1) {
+				this.isTDO = true;
+			}
+			if (lDisp.indexOf("d") > -1) {
+				this.isDataType = true;
+			}
+			if (lDisp.indexOf("u") > -1) {
+				this.isUnitOfMeasure = true;
+			}
+			return true;
+		}
+		return false;
+	}
 }

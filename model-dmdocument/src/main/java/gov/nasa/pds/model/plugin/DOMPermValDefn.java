@@ -19,6 +19,16 @@ public class DOMPermValDefn extends ISOClassOAIS11179 {
 		isPattern = false; // pattern special characters (e.g. back slashes) are invalid for OWL RDF identifiers.
 	}
 	
+	public DOMPermValDefn (String lId, String lValue, String lValueMeaning) {
+		identifier = lId; 
+		searchKey = "TBD_searchKey";
+		registrationStatus = "TBD_registrationStatus";
+		value = lValue;
+		value_meaning = lValueMeaning;
+		value_begin_date = "TBD_value_begin_date";
+		value_end_date = "TBD_value_end_date";
+	}
+	
 	public void createDOMPermValSingletons (PermValueDefn lPermValue, AttrDefn lOldAttr) {
 		sequenceId = InfoModel.getNextUId();
 //		rdfIdentifier = lOldAttr.rdfIdentifier; 
