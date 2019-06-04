@@ -241,17 +241,15 @@ class XML4LabelSchemaDOM extends Object {
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
-			prXML.println("    <" + pNS + "import namespace=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + lSchemaFileDefn.modelShortName + "_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
+			prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURLs + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id +                                      "/PDS4_PDS_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\"/>");	
+
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).lab_version_id;
-				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
-				if (lVersionId == null) {
-					lVersionId = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-					lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-				}
-				prXML.println("    <" + pNS + "import namespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "/" + lSchemaFileDefn.modelShortName + "_" + lNameSpaceIdNC.toUpperCase() + "_" + lVersionId + ".xsd\"/>");	
+				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+				String lSchemaLocationFileName2 = "TBD_lSchemaLocation";
+				if (lLDDSchemaFileDefn != null) lSchemaLocationFileName2 = lLDDSchemaFileDefn.relativeFileNameXMLSchema2;
+				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + lLDDSchemaFileDefn.nameSpaceURLs + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + lSchemaLocationFileName2 + "\"/>");	
 			}
 		}
 		
@@ -997,26 +995,26 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println("");
 		
 		// get all Owned variables for any class that is a child of the USER class
-		ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (DOMInfoModel.userClassAttrIdMap.values());
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
+		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userClassAttrIdMap.values());
+		for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			
 			// only write the attributes in this schema's namespace
-			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) != 0) continue;
+			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lDOMAttr.nameSpaceIdNC) != 0) continue;
 			
 			// kludge for common only; fix for LDD
 //			if (lAttr.attrNameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) continue;
-			if (! (lAttr.isUsedInClass && lAttr.isAttribute && lAttr.isPDS4)) continue;
+			if (! (lDOMAttr.isUsedInClass && lDOMAttr.isAttribute && lDOMAttr.isPDS4)) continue;
 			
 			String nilableClause = "";
-			if (lAttr.isNilable) {
+			if (lDOMAttr.isNilable) {
 				nilableClause = " nillable=\"true\"";
 			}
 			
-			if (lAttr.hasAttributeOverride) {
-				prXML.println("  <" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.XMLSchemaName + "\">" + " </" + pNS + "element>");
+			if (lDOMAttr.hasAttributeOverride) {
+				prXML.println("  <" + pNS + "element name=\"" + lDOMAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lDOMAttr.XMLSchemaName + "\">" + " </" + pNS + "element>");
 			} else {
-				prXML.println("  <" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.valueType     + "\">" + " </" + pNS + "element>");
+				prXML.println("  <" + pNS + "element name=\"" + lDOMAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lDOMAttr.valueType     + "\">" + " </" + pNS + "element>");
 			}
 		}
 	}
