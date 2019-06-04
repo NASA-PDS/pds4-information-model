@@ -9,7 +9,6 @@ public class DOMUseCase  extends ISOClassOAIS11179 {
 	String context;
 	String steps;
 	String trigger;
-
 	
 	public DOMUseCase (String id) {
 		identifier = id; 
