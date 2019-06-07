@@ -39,7 +39,25 @@ class XML4LabelSchemaDOM extends Object {
 								
        	// write the Product Class Elements
     	if (lSchemaFileDefn.isMaster) {
-    		writeElementDefinition (classHierMap, lSchemaFileDefn, prXML);    		
+    		// write the xs:elements for the master classes (e.g., the Product classes)
+    		prXML.println(" ");
+    		ArrayList <DOMClass> lSortedClassArr = new ArrayList <DOMClass> (classHierMap.values());
+    		for (Iterator<DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
+    			DOMClass lClass = (DOMClass) i.next();
+    			if (lClass.isRegistryClass || lClass.isExposed) {
+    				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\">" + " </" + pNS + "element>");
+    			}
+    		}
+    		
+    		// write the xs:element definitions for the master attributes (e.g., local_identifier and logical_identifier)
+			prXML.println(" ");
+			ArrayList <AttrDefn> lAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrMap.values());
+			for (Iterator <AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
+				AttrDefn lAttr = (AttrDefn) i.next();
+				if (! (lAttr.isExposed)) continue;
+				if (! (lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.attrNameSpaceIdNC) == 0)) continue;
+				prXML.println("  <" + pNS + "element name=\"" + lAttr.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.title + "\"> </" + pNS + "element>");
+			}
     	}
 
 		// for non-LDDTool runs, write the Class Elements for all schemas except the master schema 
@@ -457,7 +475,6 @@ class XML4LabelSchemaDOM extends Object {
 		if (choiceBlockOpen) {
 			minMaxOccursClause = "";
 		}
-	
 		
 		String nilableClause = "";
 		if (lAttr.isNilable) {
@@ -465,7 +482,14 @@ class XML4LabelSchemaDOM extends Object {
 		}
 
 		// write the XML schema statement
-		prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		if (! DMDocument.LDDToolFlag) {
+			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		} else {
+			if (! (lAttr.isExposed || lAttr.title.compareTo("local_identifier") == 0)) 
+				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+			else
+				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.nameSpaceId + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+		}
 		
 		// save the attribute's schema name for writing the simpleType statements
 		if (! allAttrTypeIdArr.contains(lAttr.XMLSchemaName)) {
@@ -967,17 +991,6 @@ class XML4LabelSchemaDOM extends Object {
     	prXML.println(" ");
 	}
 	
-	public void writeElementDefinition (TreeMap <String, DOMClass> lClassHierMap, SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
-		prXML.println(" ");
-		ArrayList <DOMClass> lSortedClassArr = new ArrayList <DOMClass> (lClassHierMap.values());
-		for (Iterator<DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();
-			if (lClass.isRegistryClass || lClass.isExposed) {
-				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\">" + " </" + pNS + "element>");
-			}
-		}
-	}	
-			
 	public void writeLDDClassElementDefinition (SchemaFileDefn lSchemaFileDefn, ArrayList <DOMClass> lClassArr, PrintWriter prXML) throws java.io.IOException {
 		prXML.println(" ");
 		for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {

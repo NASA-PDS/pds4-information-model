@@ -14,7 +14,7 @@ public class GetDOMModel extends Object {
 /**********************************************************************************************************
 	  initialize the information model and master dictionary (attribute and class)
 	  * Note that only the information model is now read 
-	  * the document, glossary, etc are handled in GetDOMModels
+	  * the document, glossary, etc are handled in GetDOMModelDoc
 ***********************************************************************************************************/
 	
 	public void getDOMModel (boolean oflag, String docFileName)  throws Throwable {
@@ -187,12 +187,10 @@ public class GetDOMModel extends Object {
 
 		// 005 - get custom rules from UpperModel.pins file
 		lProtPinsDOMModel.getRulesPins ();
-		
-		// 006 - copy in parsed rules from uppermodel.pins
+		// 005.5 - copy in parsed rules from uppermodel.pins
 		//      clear customized rules provide by JAVA code
 		//		InfoModel.schematronRuleMap.clear();
 		//		InfoModel.schematronRuleIdMap.clear();
-		
 		ArrayList <DOMRule> testRuleDefnArr = new ArrayList <DOMRule> (lProtPinsDOMModel.testRuleDefnMap.values());
 		for (Iterator <DOMRule> i = testRuleDefnArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
@@ -200,11 +198,22 @@ public class GetDOMModel extends Object {
 			DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
 		}
 		DOMInfoModel.masterDOMRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
+
+/*		// 006 - get usecases from UpperModel.pins file - *** Used by CCSDS ***
+		lProtPinsDOMModel.getUseCasesPins ();
+		// 006.5 - copy in parsed rules from uppermodel.pins
+		ArrayList <DOMUseCase> testUseCaseDefnArr = new ArrayList <DOMUseCase> (lProtPinsDOMModel.testUseCaseDefnMap.values());
+		for (Iterator <DOMUseCase> i = testUseCaseDefnArr.iterator(); i.hasNext();) {
+			DOMUseCase lUseCase = (DOMUseCase) i.next();
+			DOMInfoModel.masterDOMUseCaseMap.put(lUseCase.rdfIdentifier, lUseCase);
+			DOMInfoModel.masterDOMUseCaseIdMap.put(lUseCase.identifier, lUseCase);
+		}
+		DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase> (DOMInfoModel.masterDOMUseCaseIdMap.values());
 		
 		// 007 - get list of USER attributes (owned attributes)
 		//        This must be done before LDD parsing since it needs the USER attributes
 		//        The attributes are updated later (data type, etc)
-		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
+		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap(); */
 		
 		// 008 - if this is an LDD Tool run, parse the LDD(s)
 // 7777	
@@ -365,6 +374,8 @@ public class GetDOMModel extends Object {
 			String lIdentifier = (String) i.next();
 			DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lIdentifier);
 			if (lClass != null) lClass.isExposed = true;
+			DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lIdentifier);
+			if (lAttr != null) lAttr.isExposed = true;
 		}
 		
 		// 040 - set isActive flag
