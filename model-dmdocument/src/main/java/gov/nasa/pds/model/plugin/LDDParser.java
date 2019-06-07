@@ -1804,7 +1804,7 @@ public class LDDParser extends Object
         prLocalDD.println("\nConfiguration:");        
         prLocalDD.println("   LDDTool Version" + "        " + DMDocument.LDDToolVersionId);
         prLocalDD.println("   LDD Version Id:" + "        " + lSchemaFileDefn.versionId);
-//        prLocalDD.println("   LDD Namespace Id:" + "      " + lSchemaFileDefn.identifier);
+//      prLocalDD.println("   LDD Namespace Id:" + "      " + lSchemaFileDefn.identifier);
         prLocalDD.println("   LDD Label Version Id:" + "  " + lSchemaFileDefn.labelVersionId);
         prLocalDD.println("   LDD Discipline (T/F):" + "  " + lSchemaFileDefn.isDiscipline);
         prLocalDD.println("   LDD Namespace URL:" + "     " + lSchemaFileDefn.nameSpaceURL);

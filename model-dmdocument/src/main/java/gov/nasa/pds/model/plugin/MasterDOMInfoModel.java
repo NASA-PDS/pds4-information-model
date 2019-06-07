@@ -774,16 +774,16 @@ class MasterDOMInfoModel extends DOMInfoModel{
 // 7777 ***** this need to be resolved; this check and the errors do not occur in the MOF version, only in the DOM, why??? *****	
 // 7777       error message commented out for v1.12.0.0 to reduce error messages for both IMTool and LDDTool runs
 		if (lProp.cardMin.compareTo(lSuperProp.cardMin) != 0) {
-			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMin:" + lSuperProp.cardMin + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+//			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMin:" + lSuperProp.cardMin + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
 			return true;
 		}
 		if (lProp.cardMax.compareTo(lSuperProp.cardMax) != 0) {
-			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMax:" + lSuperProp.cardMax + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+//			System.out.println(">>warning - isRestrictedProperty lSuperProp.cardMax:" + lSuperProp.cardMax + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
 			return true;
 		}
 
 		if (lProp.nameSpaceIdNC.compareTo(lSuperProp.nameSpaceIdNC) != 0) {
-			System.out.println(">>warning - isRestrictedProperty lSuperProp.attrNameSpaceIdNC:" + lSuperProp.nameSpaceIdNC + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
+//			System.out.println(">>warning - isRestrictedProperty lSuperProp.attrNameSpaceIdNC:" + lSuperProp.nameSpaceIdNC + "   lSuperProp.rdfIdentifier:" + lSuperProp.rdfIdentifier);
 			return true;
 		}
 		return false;
