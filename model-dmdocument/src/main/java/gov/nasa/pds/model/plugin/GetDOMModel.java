@@ -163,13 +163,13 @@ public class GetDOMModel extends Object {
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
 		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
 			DMDocument.LDDToolSingletonDOMClass = DOMInfoModel.masterDOMUserClass;
-			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
+			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
 		} else {
 			String lClassId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle);
 			DOMClass lLDDToolSingletonClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
 			if (lLDDToolSingletonClass != null) {
 				DMDocument.LDDToolSingletonDOMClass = lLDDToolSingletonClass;
-				System.out.println(">>info    - getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonClass.title:" + DMDocument.LDDToolSingletonClass.title);
+				System.out.println(">>info    - getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
 			} else {
 				System.out.println(">>error   - getMasterObjectDict - Could not find LDDToolSingletonClass - lClassId:" + lClassId);
 			}
@@ -232,8 +232,7 @@ public class GetDOMModel extends Object {
 		// 009 - set the attrParentClass (attributes parent class) from the class name (temp fix)
 		DMDocument.masterDOMInfoModel.setAttrParentClass (true); // LDD run (master run is above)
 
-		// 010 - set up master unitsOfMeasure map
-		DMDocument.masterDOMInfoModel.setMasterUnitOfMeasure ();		
+		// 010 - *** Open *** moved setMasterUnitOfMeasure ();		
 		
 		// 011.1 - get the subClassOf attribute for each class
 		DMDocument.masterDOMInfoModel.getSubClassOf ();
@@ -298,6 +297,9 @@ public class GetDOMModel extends Object {
 		
 		// 024 - set up master data types - the data type map
 		DMDocument.masterDOMInfoModel.setMasterDataType2 ();
+		
+		// 024.5 - set up master unitsOfMeasure map
+		DMDocument.masterDOMInfoModel.setMasterUnitOfMeasure ();
 		
 		// 025 - set up master Data Element Concept array
 		DMDocument.masterDOMInfoModel.GetMasterDECMaps ();

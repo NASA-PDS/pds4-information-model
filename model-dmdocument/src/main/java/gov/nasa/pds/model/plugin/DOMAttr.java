@@ -20,7 +20,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
 	String lddLocalIdentifier;						// LDD local identifier
-	AttrDefn lddUserAttribute;						// the USER attribute used to initialize the LDD attribute
+	DOMAttr lddUserAttribute;						// the USER attribute used to initialize the LDD attribute
 
 	String xmlBaseDataType;							// the XML base data type
 	String protValType;								// value type from protege model
@@ -353,9 +353,9 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		if ((lValueType.indexOf("TBD") == 0) || (lValueType.compareTo("") == 0)) return null;
 
 		// get the data type
-		String llValueTypeId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lValueType);
+		String llValueTypeId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lValueType);
 
-		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(llValueTypeId);
+		DOMClass lClass = (DOMClass) DOMInfoModel.masterDOMClassIdMap.get(llValueTypeId);
 		if (lClass == null) return null;
 
 		return lClass.identifier;
@@ -365,7 +365,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getMinimumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.minimum_characters;
 		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType == null) return "TBD_minimum_characters";
 			lValue = lDataType.minimum_characters;
 		}
@@ -382,7 +382,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getMaximumCharacters (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.maximum_characters;
 		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType == null) return "TBD_maximum_characters";
 			lValue = lDataType.maximum_characters;
 		}
@@ -399,7 +399,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getMinimumValue (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.minimum_value;
 		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType == null) return "TBD_minimum_value";
 			lValue = lDataType.minimum_value;
 		}
@@ -416,7 +416,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getMaximumValue (boolean useDataTypeForUNK, boolean forceBound) {
 		String lValue = this.maximum_value;
 		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType == null) return "TBD_maximum_value";
 			lValue = lDataType.maximum_value;
 		}
@@ -436,7 +436,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 			return lValue;
 		}
 		if (useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType != null) {
 				lValue = lDataType.formation_rule;
 				if (! (lValue.indexOf("TBD") == 0)) {
@@ -451,7 +451,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getPattern (boolean useDataTypeForUNK) {
 		String lValue = this.pattern;
 		if (lValue.indexOf("TBD") == 0 && useDataTypeForUNK) {
-			DataTypeDefn lDataType = InfoModel.masterDataTypeMap2.get(this.valueType);
+			DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(this.valueType);
 			if (lDataType == null) return "TBD_pattern";
 			if (lDataType.pattern.isEmpty()) return "TBD_pattern";
 			if (lDataType.pattern.size() > 1) return "TBD_pattern";
@@ -465,7 +465,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getUnitOfMeasure (boolean forceBound) {
 		String lValue = this.unit_of_measure_type;
 		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			return InfoModel.unEscapeProtegeString(lValue);
+			return DOMInfoModel.unEscapeProtegeString(lValue);
 		}
 		if (forceBound) {
 			return "Units_of_None";
@@ -481,9 +481,9 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		if ((lUnitOfMeasure.indexOf("TBD") == 0) || (lUnitOfMeasure.compareTo("") == 0)) return null;
 
 		// get the unit of measure type
-		String lUnitOfMeasureId = InfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasure);
+		String lUnitOfMeasureId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasure);
 
-		PDSObjDefn lClass = (PDSObjDefn) InfoModel.masterMOFClassIdMap.get(lUnitOfMeasureId);
+		DOMClass lClass = (DOMClass) DOMInfoModel.masterDOMClassIdMap.get(lUnitOfMeasureId);
 		if (lClass == null) return null;
 
 		return lClass.identifier;
@@ -491,7 +491,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 
 	//	get the units for this unit_of_measure_type.
 	public String getUnits (boolean needsQuotes) {
-		
 		// check if there is a unit of measure type
 		String lUnitOfMeasureType = this.unit_of_measure_type;
 		if ((lUnitOfMeasureType.indexOf("TBD") == 0) || (lUnitOfMeasureType.compareTo("") == 0)) return null;
@@ -499,19 +498,16 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		String lUnitsValueString = "";
 
 		// get the unit of measure type
-		String lUnitIdId = InfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, lUnitOfMeasureType, DMDocument.masterNameSpaceIdNCLC, "unit_id");
-
-		AttrDefn lAttr = (AttrDefn) InfoModel.masterMOFAttrIdMap.get(lUnitIdId);
-		if (lAttr == null) return null;
+		DOMUnit lDOMUnit = (DOMUnit) DOMInfoModel.masterDOMUnitTitleMap.get(lUnitOfMeasureType);
+		if (lDOMUnit == null) return null;
 
 		// check if there are any permissible values
-		if ((lAttr.permValueArr == null || lAttr.permValueArr.isEmpty()))  return null;
+		if ((lDOMUnit.unit_id == null || lDOMUnit.unit_id.isEmpty()))  return null;
 		
 		// create the value string
 		String lDel = "";
-		for (Iterator <PermValueDefn> k = lAttr.permValueArr.iterator(); k.hasNext();) {
-			PermValueDefn lPermValueDefn = (PermValueDefn) k.next();
-			String lValue = lPermValueDefn.value;
+		for (Iterator <String> k = lDOMUnit.unit_id.iterator(); k.hasNext();) {
+			String lValue = (String) k.next();
 			if (needsQuotes) {
 				lValue = "'" + lValue + "'";
 			}
@@ -525,7 +521,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	public String getDefaultUnitId (boolean forceBound) {
 		String lValue = this.default_unit_id;
 		if (! ((lValue.indexOf("TBD") == 0) || (lValue.compareTo("") == 0))) {
-			return InfoModel.unEscapeProtegeString(lValue);
+			return DOMInfoModel.unEscapeProtegeString(lValue);
 		}
 		if (forceBound) {
 			return "none";
@@ -626,4 +622,211 @@ public class DOMAttr extends ISOClassOAIS11179 {
 			isCharDataType = false;
 		}
 	}
+	
+	// clone an attribute 
+	public void cloneAttr (DOMAttr lOrgAttr) {
+//		AttrDefn lNewAttr = new AttrDefn (lRDFIdentifier);				              					              
+		this.sequenceId = lOrgAttr.sequenceId;										              
+		this.identifier = lOrgAttr.identifier; 						              
+		this.sort_identifier = lOrgAttr.sort_identifier;				              
+//		this.attrAnchorString = lOrgAttr.attrAnchorString;			              
+		this.title = lOrgAttr.title;  								              
+		this.versionId = lOrgAttr.versionId;							              
+		this.registrationStatus = lOrgAttr.registrationStatus;		              
+		this.XMLSchemaName = lOrgAttr.XMLSchemaName;					              
+		this.regAuthId = lOrgAttr.regAuthId;							              
+		this.steward = lOrgAttr.steward;								              
+		this.classSteward = lOrgAttr.classSteward;					              
+		this.nameSpaceId = lOrgAttr.nameSpaceId;                     
+		this.nameSpaceIdNC = lOrgAttr.nameSpaceIdNC;                   
+		this.classNameSpaceIdNC = lOrgAttr.classNameSpaceIdNC;                  
+		this.submitter = lOrgAttr.submitter;							              
+		this.subModelId = lOrgAttr.subModelId;						              
+		this.parentClassTitle = lOrgAttr.parentClassTitle;							              
+		this.attrParentClass = lOrgAttr.attrParentClass;							              
+		this.classConcept = lOrgAttr.classConcept;					              
+		this.dataConcept = lOrgAttr.dataConcept;						              
+		this.classWord = lOrgAttr.classWord;							              
+		this.definition = lOrgAttr.definition;                         
+		this.lddLocalIdentifier = lOrgAttr.lddLocalIdentifier;		              
+
+		this.xmlBaseDataType = lOrgAttr.xmlBaseDataType;				              
+		this.protValType = lOrgAttr.protValType;						              
+		this.propType = lOrgAttr.propType;							              
+		this.valueType = lOrgAttr.valueType;
+		this.groupName = lOrgAttr.groupName;
+		this.cardMin = lOrgAttr.cardMin;                             
+		this.cardMax = lOrgAttr.cardMax;                             
+		this.cardMinI = lOrgAttr.cardMinI;                            
+		this.cardMaxI = lOrgAttr.cardMaxI;                            
+
+		this.minimum_characters = lOrgAttr.minimum_characters;		              
+		this.maximum_characters = lOrgAttr.maximum_characters;		              
+		this.minimum_value = lOrgAttr.minimum_value;			                  
+		this.maximum_value = lOrgAttr.maximum_value;			                  
+		this.format = lOrgAttr.format;					                    
+		this.pattern = lOrgAttr.pattern;					                    
+		this.unit_of_measure_type = lOrgAttr.unit_of_measure_type;	              
+		this.default_unit_id = lOrgAttr.default_unit_id;			                
+		this.unit_of_measure_precision = lOrgAttr.unit_of_measure_precision;	          
+
+//		this.type = lOrgAttr.type;                                
+		this.isAttribute = lOrgAttr.isAttribute;			                    
+		this.isOwnedAttribute = lOrgAttr.isOwnedAttribute;		                
+		this.isPDS4 = lOrgAttr.isPDS4;					                    
+// 445		this.isUnitOfMeasure = lOrgAttr.isUnitOfMeasure;                     
+// 445		this.isDataType = lOrgAttr.isDataType;                          
+		this.isEnumerated = lOrgAttr.isEnumerated;                        
+		this.isUsedInClass = lOrgAttr.isUsedInClass;			                  
+		this.isRestrictedInSubclass = lOrgAttr.isRestrictedInSubclass;              
+		this.isMeta = lOrgAttr.isMeta;                              
+		this.hasAttributeOverride = lOrgAttr.hasAttributeOverride;                
+		this.isNilable = lOrgAttr.isNilable;                           
+		this.isChoice = lOrgAttr.isChoice;				                    
+		this.isAny = lOrgAttr.isAny;				                    
+		this.isFromLDD = lOrgAttr.isFromLDD;			                      
+		this.hasRetiredValue = lOrgAttr.hasRetiredValue;                     
+
+		this.valArr = lOrgAttr.valArr;                              
+		this.allowedUnitId = lOrgAttr.allowedUnitId;	                      
+		this.genAttrMap = lOrgAttr.genAttrMap;                          
+		this.permValueArr = lOrgAttr.permValueArr;                        
+		this.permValueExtArr = lOrgAttr.permValueExtArr;                     
+		this.termEntryMap = lOrgAttr.termEntryMap;                        
+		this.valueDependencyMap = lOrgAttr.valueDependencyMap;                  
+		 	                                            
+		this.dataIdentifier = lOrgAttr.dataIdentifier; 						          
+		this.deDataIdentifier = lOrgAttr.deDataIdentifier;					          
+		this.decDataIdentifier = lOrgAttr.decDataIdentifier;					          
+		this.ecdDataIdentifier = lOrgAttr.ecdDataIdentifier;					          
+		this.evdDataIdentifier = lOrgAttr.evdDataIdentifier;					          
+		this.necdDataIdentifier = lOrgAttr.necdDataIdentifier;				          
+		this.nevdDataIdentifier = lOrgAttr.nevdDataIdentifier;				          
+		this.pvDataIdentifier = lOrgAttr.pvDataIdentifier;					          
+		this.vmDataIdentifier = lOrgAttr.vmDataIdentifier;					          
+		 	                                            
+		this.desDataIdentifier = lOrgAttr.desDataIdentifier;					          
+		this.defDataIdentifier = lOrgAttr.defDataIdentifier;					          
+		this.lsDataIdentifier = lOrgAttr.lsDataIdentifier;					          
+		this.teDataIdentifier = lOrgAttr.teDataIdentifier;					          
+		this.prDataIdentifier = lOrgAttr.prDataIdentifier;					          
+		 	                                            
+		this.administrationRecordValue = lOrgAttr.administrationRecordValue;           
+		this.versionIdentifierValue = lOrgAttr.versionIdentifierValue;              
+		this.registeredByValue = lOrgAttr.registeredByValue;                   
+		this.registrationAuthorityIdentifierValue = lOrgAttr.registrationAuthorityIdentifierValue;
+		 	                                            
+		this.expressedByArr = lOrgAttr.expressedByArr;                      
+		this.representing1Arr = lOrgAttr.representing1Arr;                    
+		this.representedBy1Arr = lOrgAttr.representedBy1Arr;                   
+		this.representedBy2Arr = lOrgAttr.representedBy2Arr;                   
+		this.containedIn1Arr = lOrgAttr.containedIn1Arr;                     
+		 	                                            
+		this.genClassArr = lOrgAttr.genClassArr;                         
+		this.sysClassArr = lOrgAttr.sysClassArr;	                       
+		return;
+	}
+	
+	// finish the clone of an attribute 
+	public void finishCloneAttr (DOMAttr lOrgAttr) {				              					              
+//		this.uid = lOrgAttr.uid;										              
+//		this.identifier = lOrgAttr.identifier; 						              
+//		this.sort_identifier = lOrgAttr.sort_identifier;				              
+//		this.attrAnchorString = lOrgAttr.attrAnchorString;			              
+//		this.title = lOrgAttr.title;  								              
+//		this.versionId = lOrgAttr.versionId;							              
+//		this.registrationStatus = lOrgAttr.registrationStatus;		              
+		this.XMLSchemaName = lOrgAttr.XMLSchemaName;					              
+//		this.regAuthId = lOrgAttr.regAuthId;							              
+		this.steward = lOrgAttr.steward;								              
+//		this.classSteward = lOrgAttr.classSteward;					              
+//		this.attrNameSpaceId = lOrgAttr.attrNameSpaceId;                     
+//		this.attrNameSpaceIdNC = lOrgAttr.attrNameSpaceIdNC;                   
+//		this.classNameSpaceIdNC = lOrgAttr.classNameSpaceIdNC;                  
+//		this.submitter = lOrgAttr.submitter;							              
+//		this.subModelId = lOrgAttr.subModelId;						              
+//		this.className = lOrgAttr.className;							              
+//		this.classConcept = lOrgAttr.classConcept;					              
+		this.dataConcept = lOrgAttr.dataConcept;						              
+//		this.classWord = lOrgAttr.classWord;							              
+		this.definition = lOrgAttr.definition;                         
+		this.lddLocalIdentifier = lOrgAttr.lddLocalIdentifier;		              
+
+		this.xmlBaseDataType = lOrgAttr.xmlBaseDataType;				              
+		this.protValType = lOrgAttr.protValType;						              
+		this.propType = lOrgAttr.propType;							              
+		this.valueType = lOrgAttr.valueType;	
+		this.groupName = lOrgAttr.groupName;
+
+//		this.cardMin = lOrgAttr.cardMin;                             
+//		this.cardMax = lOrgAttr.cardMax;                             
+//		this.cardMinI = lOrgAttr.cardMinI;                            
+//		this.cardMaxI = lOrgAttr.cardMaxI;                            
+
+		this.minimum_characters = lOrgAttr.minimum_characters;		              
+		this.maximum_characters = lOrgAttr.maximum_characters;		              
+		this.minimum_value = lOrgAttr.minimum_value;			                  
+		this.maximum_value = lOrgAttr.maximum_value;			                  
+		this.format = lOrgAttr.format;					                    
+		this.pattern = lOrgAttr.pattern;					                    
+		this.unit_of_measure_type = lOrgAttr.unit_of_measure_type;	              
+		this.default_unit_id = lOrgAttr.default_unit_id;			                
+		this.unit_of_measure_precision = lOrgAttr.unit_of_measure_precision;	          
+
+//		this.type = lOrgAttr.type;                                
+		this.isAttribute = lOrgAttr.isAttribute;			                    
+		this.isOwnedAttribute = lOrgAttr.isOwnedAttribute;		                
+		this.isPDS4 = lOrgAttr.isPDS4;					                    
+//		this.isUnitOfMeasure = lOrgAttr.isUnitOfMeasure;                     
+//		this.isDataType = lOrgAttr.isDataType;                          
+		this.isEnumerated = lOrgAttr.isEnumerated;                        
+		this.isUsedInClass = lOrgAttr.isUsedInClass;			                  
+		this.isRestrictedInSubclass = lOrgAttr.isRestrictedInSubclass;              
+		this.isMeta = lOrgAttr.isMeta;                              
+		this.hasAttributeOverride = lOrgAttr.hasAttributeOverride;                
+		this.isNilable = lOrgAttr.isNilable;                           
+		this.isChoice = lOrgAttr.isChoice;				                    
+		this.isAny = lOrgAttr.isAny;				                    
+//		this.isFromLDD = lOrgAttr.isFromLDD;			                      
+		this.hasRetiredValue = lOrgAttr.hasRetiredValue;                     
+
+		this.valArr = lOrgAttr.valArr;                              
+		this.allowedUnitId = lOrgAttr.allowedUnitId;	                      
+		this.genAttrMap = lOrgAttr.genAttrMap;                          
+		this.permValueArr = lOrgAttr.permValueArr;                        
+		this.permValueExtArr = lOrgAttr.permValueExtArr;                     
+		this.termEntryMap = lOrgAttr.termEntryMap;                        
+		this.valueDependencyMap = lOrgAttr.valueDependencyMap;                  
+		 	                                            
+//		this.dataIdentifier = lOrgAttr.dataIdentifier; 						          
+//		this.deDataIdentifier = lOrgAttr.deDataIdentifier;					          
+//		this.decDataIdentifier = lOrgAttr.decDataIdentifier;					          
+//		this.ecdDataIdentifier = lOrgAttr.ecdDataIdentifier;					          
+//		this.evdDataIdentifier = lOrgAttr.evdDataIdentifier;					          
+//		this.necdDataIdentifier = lOrgAttr.necdDataIdentifier;				          
+//		this.nevdDataIdentifier = lOrgAttr.nevdDataIdentifier;				          
+//		this.pvDataIdentifier = lOrgAttr.pvDataIdentifier;					          
+//		this.vmDataIdentifier = lOrgAttr.vmDataIdentifier;					          
+		 	                                            
+//		this.desDataIdentifier = lOrgAttr.desDataIdentifier;					          
+//		this.defDataIdentifier = lOrgAttr.defDataIdentifier;					          
+//		this.lsDataIdentifier = lOrgAttr.lsDataIdentifier;					          
+//		this.teDataIdentifier = lOrgAttr.teDataIdentifier;					          
+//		this.prDataIdentifier = lOrgAttr.prDataIdentifier;					          
+		 	                                            
+		this.administrationRecordValue = lOrgAttr.administrationRecordValue;           
+		this.versionIdentifierValue = lOrgAttr.versionIdentifierValue;              
+		this.registeredByValue = lOrgAttr.registeredByValue;                   
+		this.registrationAuthorityIdentifierValue = lOrgAttr.registrationAuthorityIdentifierValue;
+		 	                                            
+		this.expressedByArr = lOrgAttr.expressedByArr;                      
+		this.representing1Arr = lOrgAttr.representing1Arr;                    
+		this.representedBy1Arr = lOrgAttr.representedBy1Arr;                   
+		this.representedBy2Arr = lOrgAttr.representedBy2Arr;                   
+		this.containedIn1Arr = lOrgAttr.containedIn1Arr;                     
+		 	                                            
+		this.genClassArr = lOrgAttr.genClassArr;                         
+		this.sysClassArr = lOrgAttr.sysClassArr;	                       
+		return;
+	}	
 }

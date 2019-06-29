@@ -468,6 +468,10 @@ public class DMDocument extends Object {
 		GetModels lGetModels = new GetModels();
 		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
+		// get the models
+//		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
+//		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
+		
 		// get the DOM Model
 		if (exportDOMFlag) {
 			GetDOMModel lGetDOMModel = new GetDOMModel();

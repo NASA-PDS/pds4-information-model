@@ -745,9 +745,9 @@ public class WriteDOMSpecification extends Object {
 
 		if (lProp.hasDOMObject != null) {
 			if ( lProp.hasDOMObject instanceof DOMAttr) {
-			DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-			if (lAttr.isUsedInClass || includeAllAttrFlag) {
-				
+				DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+				if (lAttr.isUsedInClass || includeAllAttrFlag) {
+					
 		    // get lClassAnchorString
 		       DOMClass lClass = lAttr.attrParentClass;
 		       String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
@@ -1041,11 +1041,11 @@ private void printAttrUnit (DOMAttr attr) {
 		*/
 		//revert back to legacy code - DOMInfoModel.masterDOMRuleNewArr is null
 		//fix later
-		ArrayList <RuleDefn> lRuleArr = new ArrayList <RuleDefn> (InfoModel.schematronRuleIdMap.values());
-		for (Iterator <RuleDefn> i = lRuleArr.iterator(); i.hasNext();) {
-			RuleDefn lRule = (RuleDefn) i.next();
-			for (Iterator <AssertDefn2> j = lRule.assertArr.iterator(); j.hasNext();) {
-				AssertDefn2 lAssert = (AssertDefn2) j.next();
+		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
+		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();
+			for (Iterator <DOMAssert> j = lRule.assertArr.iterator(); j.hasNext();) {
+				DOMAssert lAssert = (DOMAssert) j.next();
 				if (! ((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0) && lAssert.attrTitle.compareTo(lAttr.title) == 0)) continue;
 				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
 				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
