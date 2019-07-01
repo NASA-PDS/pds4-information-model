@@ -425,8 +425,8 @@ class XML4LabelSchemaDOM extends Object {
 		
 		// if the choice block is open, close it
 		if (choiceBlockOpen) {
-			downIndentSpaces();
 			prXML.println(indentSpaces() + "</" + pNS + "choice>");
+			downIndentSpaces();
 			choiceBlockOpen = false;
 		}	
 		return;
@@ -653,7 +653,7 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println("      <" + pNS + "documentation>This section contains the simpleTypes that provide more constraints");
 		prXML.println("        than those at the base data type level. The simpleTypes defined here build on the base data");
 		prXML.println("        types. This is another component of the common dictionary and therefore falls within the");
-		prXML.println("        " + lSchemaFileDefn.nameSpaceIdNC + " namespace.");
+		prXML.println("        common namespace.");
 		prXML.println("      </" + pNS + "documentation>");
 		prXML.println("    </" + pNS + "annotation>");		
 		
@@ -798,7 +798,7 @@ class XML4LabelSchemaDOM extends Object {
 //		Write the header statements
 		prXML.println("");
 	    prXML.println("    <" + pNS + "annotation>");
-	    prXML.println("      <" + pNS + "documentation>This section contains the base data types for " + lSchemaFileDefn.modelShortName + " and any constraints those types");
+	    prXML.println("      <" + pNS + "documentation>This section contains the base data types and any constraints those types");
 	    prXML.println("        may have. These types should be reused across schemas to promote compatibility. This is one");
 	    prXML.println("        component of the common dictionary and thus falls into the common namespace.");
 	    prXML.println("      </" + pNS + "documentation>");
@@ -899,7 +899,7 @@ class XML4LabelSchemaDOM extends Object {
 //		Write the header statements
 		prXML.println("");
 	    prXML.println("    <" + pNS + "annotation>");
-	    prXML.println("      <" + pNS + "documentation>This section contains the base Units of Measure for " + lSchemaFileDefn.modelShortName + ".");
+	    prXML.println("      <" + pNS + "documentation>This section contains the base Units of Measure.");
 	    prXML.println("        These Units of Measure should be reused across schemas to promote compatibility. This is one");
 	    prXML.println("        component of the common dictionary and thus falls into the common namespace.");
 	    prXML.println("      </" + pNS + "documentation>");
