@@ -177,6 +177,8 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.title =  lClass.title;
 		this.nameSpaceIdNC = lClass.nameSpaceIdNC;
 		this.type = lClass.title;
+		this.versionId = lClass.versionId;
+		this.definition = lClass.definition;
 
 		// for each attribute of the class
 		for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {

@@ -644,9 +644,10 @@ class WriteDOMDocBook extends Object {
 			lAttrClassificationDefn.attrMap.put(lAttrId, lAttr);
 		}
 		return;
-	}	
+	}
 	
 	private void writeDataTypeUnitsSection (String lNameSpaceIdNC, PrintWriter prDocBook) {
+		ArrayList <String> lPatternArr = new ArrayList<String> ();
         prDocBook.println("");
         prDocBook.println("      <!-- =====================Part4 Begin=========================== -->");
         prDocBook.println("");
@@ -667,12 +668,11 @@ class WriteDOMDocBook extends Object {
 			
 //		Write the data types
 		String lSchemaBaseType = "None", lMinChar = "None", lMaxChar = "None", lMinVal = "None", lMaxVal = "None";
-		ArrayList <PermValueDefn> lPermValueArr = null;
 		for (Iterator<DOMClass> i = sortDataTypeArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			
 			lSchemaBaseType = "None"; lMinChar = "None"; lMaxChar = "None"; lMinVal = "None"; lMaxVal = "None";
-			lPermValueArr = null;
+			lPatternArr = new ArrayList<String> ();
 
 			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
 				DOMProp lProp = j.next();
@@ -703,9 +703,15 @@ class WriteDOMDocBook extends Object {
 					if ((lMinVal == null || lMinVal.compareTo("-2147483648") == 0)) lMinVal = "None";
 
 				}
-				if (lAttr.title.compareTo("pattern") == 0) {
-					lPermValueArr = lAttr.permValueArr;
-					if (lPermValueArr == null || lPermValueArr.size() == 0) lPermValueArr = null;
+				if (lProp.title.compareTo("pattern") == 0) {
+					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
+					if (lVal != null) {
+						// if not null there there are one or more patterns
+						for (Iterator <String> k = lAttr.valArr.iterator(); k.hasNext();) {
+							String lPattern = (String) k.next();
+							lPatternArr.add(lPattern);
+						}
+					}
 				}
 			}
 					
@@ -743,7 +749,7 @@ class WriteDOMDocBook extends Object {
             prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lMaxChar) + "</entry>");
             prDocBook.println("                </row>");
 
-            if (lPermValueArr == null) {
+            if (lPatternArr == null || lPatternArr.isEmpty()) {
                 prDocBook.println("                <row>");
                 prDocBook.println("                    <entry>" + "</entry>");
                 prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getPrompt("No Pattern") + "</entry>");
@@ -753,13 +759,11 @@ class WriteDOMDocBook extends Object {
                 prDocBook.println("                    <entry>" + "</entry>");
             	prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getPrompt("Pattern") + "</entry>");           	
 	            prDocBook.println("                </row>");
-// v1.3	            
-    			for (Iterator <PermValueDefn> k = lPermValueArr.iterator(); k.hasNext();) {
-    				PermValueDefn lPattern = (PermValueDefn) k.next();
-//    				lPattern = DOMInfoModel.escapeXMLChar(lPattern);
+    			for (Iterator <String> k = lPatternArr.iterator(); k.hasNext();) {
+    				String lPattern = (String) k.next();
     	            prDocBook.println("                <row>");
                     prDocBook.println("                    <entry>" + "</entry>");
-    	            prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getValue(lPattern.value) + "</entry>");
+    	            prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getValue(lPattern) + "</entry>");
     	            prDocBook.println("                </row>");
     			}
             }
@@ -778,7 +782,7 @@ class WriteDOMDocBook extends Object {
 		prDocBook.println("       <para>These classes define the units of measure. </para>");
 		
 		// get the units
-		ArrayList <DOMPermValDefn> lPermValueDefnArr = new ArrayList <DOMPermValDefn> ();
+		ArrayList <DOMProp> lDOMPermValueArr;
 		TreeMap <String, DOMClass> sortUnitsMap = new TreeMap <String, DOMClass> ();
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -791,20 +795,12 @@ class WriteDOMDocBook extends Object {
 
 		for (Iterator<DOMClass> i = sortUnitsArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-			lPermValueDefnArr = new ArrayList <DOMPermValDefn> ();
-			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
+			lDOMPermValueArr = new ArrayList <DOMProp> ();
+			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = j.next();
-				DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-				if (lAttr.title.compareTo("unit_id") == 0) {
-					if (lAttr.permValueArr == null || lAttr.permValueArr.size() == 0) {
-						DOMPermValDefn lPermValueDefn = new DOMPermValDefn ();
-						lPermValueDefnArr.add(lPermValueDefn);
-					}
-					else for (Iterator <DOMProp> k = lAttr.domPermValueArr.iterator(); k.hasNext();) {
-						DOMProp lDOMProp =k.next();
-						DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
-						lPermValueDefnArr.add(lPermValueDefn);
-					}
+				DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+				if (lDOMAttr.title.compareTo("unit_id") == 0) {
+					if (lDOMAttr.domPermValueArr != null) lDOMPermValueArr = lDOMAttr.domPermValueArr;
 				}
 			}
 					
@@ -834,16 +830,27 @@ class WriteDOMDocBook extends Object {
             prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">" + getPrompt("Unit Id") + "</entry>");
             prDocBook.println("                </row>");
             
-			for (Iterator <DOMPermValDefn> k = lPermValueDefnArr.iterator(); k.hasNext();) {
-				DOMPermValDefn lPermValueDefn = (DOMPermValDefn) k.next();
+            if (! lDOMPermValueArr.isEmpty()) {
+    			for (Iterator <DOMProp> k = lDOMPermValueArr.iterator(); k.hasNext();) {
+    				DOMProp lDOMProp = (DOMProp) k.next();
+    				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+    					DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+    		            prDocBook.println("                <row>");
+    		            prDocBook.println("                    <entry>" + "</entry>");
+    		            prDocBook.println("                    <entry>" + getValue(lDOMPermValDefn.value) + "</entry>");
+    		            String lValueMeaning = lDOMPermValDefn.value_meaning;
+    		            if (lValueMeaning == null) lValueMeaning = "TBD_value_meaning";
+    		            prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue(lValueMeaning) + "</entry>");
+    		            prDocBook.println("                </row>");
+    				}
+    			}
+            } else {
 	            prDocBook.println("                <row>");
 	            prDocBook.println("                    <entry>" + "</entry>");
-	            prDocBook.println("                    <entry>" + getValue(lPermValueDefn.value) + "</entry>");
-	            String lValueMeaning = lPermValueDefn.value_meaning;
-	            if (lValueMeaning == null) lValueMeaning = "TBD_value_meaning";
-	            prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue(lPermValueDefn.value_meaning) + "</entry>");
+	            prDocBook.println("                    <entry>" + "None" + "</entry>");
+	            prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">" + getValue("") + "</entry>");
 	            prDocBook.println("                </row>");
-			}         
+            }
 			
             prDocBook.println("");
             prDocBook.println("            </tbody>");
@@ -858,7 +865,6 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("");
         prDocBook.println("      <!-- ===================== Part4 End=========================== -->");
         prDocBook.println("");
-				
 	}
 	
 	private void writeHeader (PrintWriter prDocBook) {
@@ -1054,7 +1060,7 @@ class WriteDOMDocBook extends Object {
 		lAnchor = "N" + Integer.toString(lAnchorI);
 		return "<anchor xml:id=\"" + lAnchor + "\"/>";
 	}
-
+	
 	private String getClassLink(DOMClass lClass) {
 		String lLink = DMDocument.registrationAuthorityIdentifierValue + "." + lClass.nameSpaceIdNC + "." + lClass.title;
 		int lLinkI = lLink.hashCode();

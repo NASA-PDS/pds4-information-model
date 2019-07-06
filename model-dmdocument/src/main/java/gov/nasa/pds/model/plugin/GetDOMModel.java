@@ -199,7 +199,7 @@ public class GetDOMModel extends Object {
 		}
 		DOMInfoModel.masterDOMRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 
-/*		// 006 - get usecases from UpperModel.pins file - *** Used by CCSDS ***
+		// 006 - get usecases from UpperModel.pins file
 		lProtPinsDOMModel.getUseCasesPins ();
 		// 006.5 - copy in parsed rules from uppermodel.pins
 		ArrayList <DOMUseCase> testUseCaseDefnArr = new ArrayList <DOMUseCase> (lProtPinsDOMModel.testUseCaseDefnMap.values());
@@ -213,7 +213,7 @@ public class GetDOMModel extends Object {
 		// 007 - get list of USER attributes (owned attributes)
 		//        This must be done before LDD parsing since it needs the USER attributes
 		//        The attributes are updated later (data type, etc)
-		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap(); */
+		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
 		
 		// 008 - if this is an LDD Tool run, parse the LDD(s)
 // 7777	
@@ -295,6 +295,9 @@ public class GetDOMModel extends Object {
 		// 022 - set the registration status
 		DMDocument.masterDOMInfoModel.setRegistrationStatus ();
 		
+		// 023 - set the class version identifiers (stop gap until class are stored in OWL) (was 038)
+		DMDocument.masterDOMInfoModel.setClassVersionIds ();
+		
 		// 024 - set up master data types - the data type map
 		DMDocument.masterDOMInfoModel.setMasterDataType2 ();
 		
@@ -369,7 +372,7 @@ public class GetDOMModel extends Object {
 		}
 		
 		// 038 - set the class version identifiers (stop gap until class are stored in OWL
-		DMDocument.masterDOMInfoModel.setClassVersionIds ();
+//		DMDocument.masterDOMInfoModel.setClassVersionIds ();
 		
 		// 039 - set exposed flag
 		for (Iterator <String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
