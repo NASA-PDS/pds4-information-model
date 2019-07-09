@@ -199,8 +199,10 @@ public class GetDOMModel extends Object {
 		}
 		DOMInfoModel.masterDOMRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 
+// 555 usecases
 		// 006 - get usecases from UpperModel.pins file
-		lProtPinsDOMModel.getUseCasesPins ();
+/*		lProtPinsDOMModel.getUseCasesPins ();
+		
 		// 006.5 - copy in parsed rules from uppermodel.pins
 		ArrayList <DOMUseCase> testUseCaseDefnArr = new ArrayList <DOMUseCase> (lProtPinsDOMModel.testUseCaseDefnMap.values());
 		for (Iterator <DOMUseCase> i = testUseCaseDefnArr.iterator(); i.hasNext();) {
@@ -208,7 +210,7 @@ public class GetDOMModel extends Object {
 			DOMInfoModel.masterDOMUseCaseMap.put(lUseCase.rdfIdentifier, lUseCase);
 			DOMInfoModel.masterDOMUseCaseIdMap.put(lUseCase.identifier, lUseCase);
 		}
-		DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase> (DOMInfoModel.masterDOMUseCaseIdMap.values());
+		DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase> (DOMInfoModel.masterDOMUseCaseIdMap.values()); */
 		
 		// 007 - get list of USER attributes (owned attributes)
 		//        This must be done before LDD parsing since it needs the USER attributes
