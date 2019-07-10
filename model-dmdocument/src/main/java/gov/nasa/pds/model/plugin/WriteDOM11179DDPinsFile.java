@@ -141,7 +141,7 @@ class WriteDOM11179DDPinsFile extends Object{
 			prDDPins.println("  (maximumValue \"" + lDOMAttr.maximum_value + "\")");
 			prDDPins.println("  (minimumValue \"" + lDOMAttr.minimum_value + "\")");
 			prDDPins.println("  (pattern \"" + InfoModel.escapeProtegePatterns(lDOMAttr.pattern) + "\")");
-			prDDPins.println("  (valueDomainFormat \"" + lDOMAttr.format + "\")");
+			prDDPins.println("  (valueDomainFormat \"" + InfoModel.escapeProtegePatterns(lDOMAttr.format) + "\")");
 			prDDPins.println("  (registeredBy " + lDOMAttr.registeredByValue+ ")");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + lDOMAttr.registrationAuthorityIdentifierValue + "])");
 			prDDPins.println("  (representedBy" + " [" + lDOMAttr.deDataIdentifier + "])");
@@ -200,26 +200,57 @@ class WriteDOM11179DDPinsFile extends Object{
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
 //		System.out.println("debug printPDDPPR");
+		
+// 888 Comparison Change
+/*		ArrayList <String> lUsedIdentifiers = new ArrayList <String> ();
+		String lPrevDOMPropId = "TBD_lPrevDOMPropId"; */
+		
 		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
 		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
+			
+// 888 Comparison Change
 			String prDataIdentifier = "PR." + lDOMProp.identifier;
-//			System.out.println("debug printPDDPPR - prDataIdentifier:" + prDataIdentifier);
+/*			String lDOMPropId = lDOMProp.identifier;
+			System.out.println("\ndebug printPDDPPR lDOMPropId:" + lDOMPropId);
+
+	        int count = 0;        
+	        for(int k = 0; k < lDOMPropId.length(); k++) {    
+	            if(lDOMPropId.charAt(k) == '.')    
+	                count++;    
+	        }
+			System.out.println("                  count:" + count);
+
+	        if (count > 4) {
+	        	int offset = lDOMPropId.lastIndexOf(".");
+				System.out.println("                  offset:" + offset);
+	        	lDOMPropId = lDOMPropId.substring(0, offset);
+				System.out.println("                  lDOMPropId:" + lDOMPropId);
+	        }
+        	String prDataIdentifier = "PR." + lDOMPropId;
+        	if (lUsedIdentifiers.contains(prDataIdentifier)) {
+				System.out.println("                  Previous lDOMProp.identifier:" + lPrevDOMPropId);
+				System.out.println("                           lDOMProp.identifier:" + lDOMProp.identifier);
+        		continue;
+        	}
+        	lUsedIdentifiers.add(prDataIdentifier);
+        	lPrevDOMPropId = lDOMProp.identifier; */
+			
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");
 			prDDPins.println("  (registeredBy [" + DMDocument.registeredByValue + "])");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");						
 			prDDPins.println("  (classOrder \"" + lDOMProp.classOrder + "\")");
-			prDDPins.println("  (versionIdentifier \"" + InfoModel.identifier_version_id + "\"))");
+			prDDPins.println("  (versionIdentifier \"" + DMDocument.versionIdentifierValue + "\"))");
 		}
 	}
 
 	// Print the the Protege Pins CD
 	public  void printPDDPCD (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lCDAttrArr = new ArrayList <IndexDefn> (InfoModel.cdAttrMap.values());
-		for (Iterator<IndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lCDAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.cdDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "CD_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of ConceptualDomain");
@@ -241,8 +272,8 @@ class WriteDOM11179DDPinsFile extends Object{
 			lfc = "";
 			prDDPins.println("  (representing2 ");
 //			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				if (lAttr.isEnumerated) {
 					prDDPins.print("    [" + lAttr.evdDataIdentifier + "]");
@@ -277,9 +308,9 @@ class WriteDOM11179DDPinsFile extends Object{
 	
 	// Print the the Protege Pins DEC
 	public  void printPDDPDEC (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lDECAttrArr = new ArrayList <IndexDefn> (InfoModel.decAttrMap.values());
-		for (Iterator<IndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lDECAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.decDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "DEC_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of DataElementConcept");
@@ -289,8 +320,8 @@ class WriteDOM11179DDPinsFile extends Object{
 			String lfc = "";
 			prDDPins.println("  (expressing ");
 //			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				prDDPins.print("    [" + lAttr.deDataIdentifier + "]");
 				lfc = "\n";
