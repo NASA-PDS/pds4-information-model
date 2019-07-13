@@ -199,11 +199,10 @@ class WriteDOM11179DDPinsFile extends Object{
 
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
-//		System.out.println("debug printPDDPPR");
 		
 // 888 Comparison Change
-/*		ArrayList <String> lUsedIdentifiers = new ArrayList <String> ();
-		String lPrevDOMPropId = "TBD_lPrevDOMPropId"; */
+//		ArrayList <String> lUsedIdentifiers = new ArrayList <String> ();
+//		String lPrevDOMPropId = "TBD_lPrevDOMPropId";
 		
 		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
 		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
@@ -211,16 +210,16 @@ class WriteDOM11179DDPinsFile extends Object{
 			
 // 888 Comparison Change
 			String prDataIdentifier = "PR." + lDOMProp.identifier;
-/*			String lDOMPropId = lDOMProp.identifier;
+			
+/* for Comparing MOF and DOM Pins Files.
+			String lDOMPropId = lDOMProp.identifier;
 			System.out.println("\ndebug printPDDPPR lDOMPropId:" + lDOMPropId);
-
 	        int count = 0;        
 	        for(int k = 0; k < lDOMPropId.length(); k++) {    
 	            if(lDOMPropId.charAt(k) == '.')    
 	                count++;    
 	        }
 			System.out.println("                  count:" + count);
-
 	        if (count > 4) {
 	        	int offset = lDOMPropId.lastIndexOf(".");
 				System.out.println("                  offset:" + offset);
