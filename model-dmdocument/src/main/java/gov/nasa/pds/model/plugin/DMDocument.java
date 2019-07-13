@@ -145,9 +145,11 @@ public class DMDocument extends Object {
 	
 	// Master LDD Model
 	static LDDParser primaryLDDModel;
+	static LDDDOMParser primaryLDDDOMModel;
 	
 	// Secondary LDD Models
 	static ArrayList <LDDParser> LDDModelArr;
+	static ArrayList <LDDDOMParser> LDDDOMModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
 	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc
@@ -254,6 +256,7 @@ public class DMDocument extends Object {
 		LDDToolFlag = false;
 		// Secondary LDD Models
 		LDDModelArr = new ArrayList <LDDParser> ();
+		LDDDOMModelArr = new ArrayList <LDDDOMParser> ();
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
 		LDDToolMissionGovernanceFlag = false;
@@ -465,12 +468,12 @@ public class DMDocument extends Object {
 		protPins11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");
 		
 		// get the models
-		GetModels lGetModels = new GetModels();
-		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
+//		GetModels lGetModels = new GetModels();
+//		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the models
-//		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
-//		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
+		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
+		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
 		if (exportDOMFlag) {
@@ -482,13 +485,13 @@ public class DMDocument extends Object {
 		// export the models
 		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeLDDArtifacts (exportDOMFlag,exportMOFFlag);
+			lExportModels.writeLDDArtifacts (exportDOMFlag, exportMOFFlag);
 		} else if ( DMDocument.mapToolFlag) {
             WriteMappingFile writeMappingFile = new WriteMappingFile();
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
 		} else {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeAllArtifacts (exportDOMFlag,exportMOFFlag);
+			lExportModels.writeAllArtifacts (exportDOMFlag, exportMOFFlag);
 		}
 	}
 	

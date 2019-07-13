@@ -27,7 +27,7 @@ public abstract class DOMInfoModel extends Object {
 	static ArrayList <String> fundamentalStructures;
 
 	// global attributes
-	static TreeMap <String, DOMAttr> userClassAttrIdMap;			// user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
+// 888	static TreeMap <String, DOMAttr> userClassAttrIdMap;			// user Class Attributes (owned attributes); Id:class changed to USER, Attribute is a master attribute.
 	
 	// global 11179 data dictionary
 	static ArrayList <String> masterMetaAttribute;

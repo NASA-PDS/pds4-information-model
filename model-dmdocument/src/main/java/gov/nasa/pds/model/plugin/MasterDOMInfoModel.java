@@ -902,7 +902,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		// set IM Spec Sort Key
 		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
-			lDOMProp.setSortKey();
+			if (lDOMProp.identifier.indexOf("TBD") != 0) lDOMProp.setSortKey();
 		}
 		return;
 	}

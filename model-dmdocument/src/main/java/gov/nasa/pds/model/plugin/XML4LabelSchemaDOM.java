@@ -1008,7 +1008,7 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println("");
 		
 		// get all Owned variables for any class that is a child of the USER class
-		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userClassAttrIdMap.values());
+		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userDOMClassAttrIdMap.values());
 		for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			

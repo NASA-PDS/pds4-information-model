@@ -282,8 +282,13 @@ public class ExportModels extends Object {
 	public void writeLDDArtifacts (boolean domFlag, boolean mofFlag) throws java.io.IOException {	    
 		ArrayList <PDSObjDefn> lLDDClassArr = new ArrayList <PDSObjDefn> ();
 		TreeMap <String, PDSObjDefn> lLDDClassMap = new TreeMap <String, PDSObjDefn> ();
+
+		// DOM
+		ArrayList <DOMClass> lLDDDOMClassArr = new ArrayList <DOMClass> ();
+		TreeMap <String, DOMClass> lLDDDOMClassMap = new TreeMap <String, DOMClass> ();
 		
 		// get LDD Classes
+		if (mofFlag) {
 		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
 		for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
 			PDSObjDefn lClass = (PDSObjDefn) i.next();
@@ -293,6 +298,21 @@ public class ExportModels extends Object {
 					lLDDClassMap.put(lClass.title, lClass);
 				}
 			}
+		}
+		}
+		
+		// DOM
+		if (domFlag) {
+		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
+		for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isFromLDD) {
+				if (lClass.allAttrAssocArr.size() != 0) {
+					lLDDDOMClassArr.add(lClass);
+					lLDDDOMClassMap.put(lClass.title, lClass);
+				}
+			}
+		}
 		}
 		
 		// get the LDD SchemaFileDefn - should be just one; but the Master must be skipped
@@ -305,6 +325,7 @@ public class ExportModels extends Object {
 			// skip the master for LDD runs
 			if (lSchemaFileDefn.isMaster) continue;
 			
+			if (mofFlag) {
 			//	write the schema - new version 4	
 			XML4LabelSchema xml4LabelSchema = new XML4LabelSchema ();
 			xml4LabelSchema.writeXMLSchemaFiles (lSchemaFileDefn, lLDDClassArr);
@@ -337,20 +358,53 @@ public class ExportModels extends Object {
 				writeSpecification.printArtifacts();
 				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - Info Model Spec Done");
 			}
-			//DOM
-/*			if (DMDocument.exportSpecFileFlag) {
-				WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification (DMDocument.docInfo, PDSOptionalFlag); 
-				writeDOMSpecification.printArtifacts();
-				if (DMDocument.debugFlag) System.out.println("debug writeDOMSpecification Done");
-			} */
 		    // write the Doc Book
 			if (DMDocument.exportDDFileFlag) {
 				WriteDocBook lWriteDocBook  = new WriteDocBook (); 
 				lWriteDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-				
+			}
+			}
+			
+			// DOM
+			if (domFlag) {
+			//	write the schema - new version 4	
+			XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM ();
+			xml4LabelSchemaDOM.writeXMLSchemaFiles (lSchemaFileDefn, lLDDDOMClassArr);
+			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XML Schema - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
+			
+			//  write schematron file
+			WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron ();
+			writeDOMSchematron.writeSchematronFile(lSchemaFileDefn, lLDDDOMClassMap);
+			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
+
+			//  write label file for XML Schema and Schematron
+			WriteCoreXMLSchemaLabel writeCoreXMLSchemaLabel = new WriteCoreXMLSchemaLabel ();
+			writeCoreXMLSchemaLabel.writeFile(lSchemaFileDefn);
+			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
+
+			// write the 11179 JSON file
+//??
+			if (DMDocument.exportJSONFileFlag) {
+//				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
+//				write11179DDJSONFile.writeJSONFile (lSchemaFileDefn);
+				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
+				writeDOMDDJSONFile.writeJSONFile ();
+				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
+			}
+
+			// write the Info Spec file 
+			if (DMDocument.exportSpecFileFlag) {
+				WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification (DMDocument.docInfo, PDSOptionalFlag); 
+				writeDOMSpecification.printArtifacts();
+				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - Info Model Spec Done");
+			}
+			
+		    // write the Doc Book
+			if (DMDocument.exportDDFileFlag) {				
 				WriteDOMDocBook lWriteDOMDocBook  = new WriteDOMDocBook (); 
 				lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);				
 				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - DD DocBook Done");
+			}
 			}
 
 			System.out.println(">>info    - LDDTOOL Exit");

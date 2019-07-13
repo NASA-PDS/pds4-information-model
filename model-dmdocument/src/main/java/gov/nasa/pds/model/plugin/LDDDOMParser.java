@@ -1,5 +1,5 @@
 package gov.nasa.pds.model.plugin; 
-import java.io.File; 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -406,7 +406,7 @@ public class LDDDOMParser extends Object
 				String lTitle = getTextValue(el,"name");
 				
 				// create the rdfIdentifier; at this time only the LDD local identifier is known; the class is obtained from the association processing later.
-				String lAttrRdfIdentifier = DMDocument.rdfPrefix + lSchemaFileDefn.nameSpaceIdNC + "." + lTitle + "." + InfoModel.getNextUId();
+				String lAttrRdfIdentifier = DMDocument.rdfPrefix + lSchemaFileDefn.nameSpaceIdNC + "." + lTitle + "." + DOMInfoModel.getNextUId();
 //				System.out.println("debug getAttributes INITIAL lAttrRdfIdentifier:" + lAttrRdfIdentifier);
 				DOMAttr lDOMAttr= (DOMAttr) attrMap.get(lAttrRdfIdentifier);
 				if (lDOMAttr == null) {
@@ -433,7 +433,7 @@ public class LDDDOMParser extends Object
 					lDOMAttr.submitter = getTextValue(docEle,"submitter_name");
 					String lDescription = getTextValue(el,"definition");
 //					lDescription = lDescription.replaceAll("\\s+"," ");
-					lDescription = InfoModel.cleanCharString(lDescription);
+					lDescription = DOMInfoModel.cleanCharString(lDescription);
 					lDOMAttr.definition = lDescription;
 					lDOMAttr.regAuthId = lRegAuthId;
 					String lNillableFlag = getTextValue(el,"nillable_flag");
@@ -451,10 +451,10 @@ public class LDDDOMParser extends Object
 					// check if attribute already exists
 					String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
 //					System.out.println("debug getAttributes -External Attribute-  lid:" + lid);
-					AttrDefn lExternAttr = InfoModel.masterMOFAttrIdMap.get(lid);
+					DOMAttr lExternAttr = DOMInfoModel.masterDOMAttrIdMap.get(lid);
 					if (lExternAttr != null) {
 						System.out.println("debug getAttributes -External Attribute - SETTING VALUES-  lExternAttr.identifier:" + lExternAttr.identifier);
-					    if (lDOMAttr.definition.indexOf("TBD") == 0) lDOMAttr.definition = lExternAttr.description;
+					    if (lDOMAttr.definition.indexOf("TBD") == 0) lDOMAttr.definition = lExternAttr.definition;
 						if (! lDOMAttr.isNilable) lDOMAttr.isNilable = lExternAttr.isNilable;
 						if (!lDOMAttr.isEnumerated) lDOMAttr.isEnumerated = lExternAttr.isEnumerated;
 						if (lDOMAttr.minimum_characters.indexOf("TBD") == 0) lDOMAttr.minimum_characters = lExternAttr.minimum_characters;
@@ -573,7 +573,7 @@ public class LDDDOMParser extends Object
 					lVal = getTextValue(el,"definition");
 					if (lVal != null) {
 //						lVal = lVal.replaceAll("\\s+"," ");
-						lVal = InfoModel.cleanCharString(lVal);
+						lVal = DOMInfoModel.cleanCharString(lVal);
 						lTermEntry.definition = lVal;
 					}
 					lVal = getTextValue(el,"preferred_flag");
@@ -605,7 +605,7 @@ public class LDDDOMParser extends Object
 				if (lValueMeaning == null) {
 					lValue = "TBD_value_meaning";
 				}
-				lValueMeaning= InfoModel.cleanCharString (lValueMeaning);
+				lValueMeaning= DOMInfoModel.cleanCharString (lValueMeaning);
 				
 				String lValueBeginDate = getTextValue(el,"value_begin_date");
 				String lValueEndDate = getTextValue(el,"value_end_date");
@@ -652,11 +652,11 @@ public class LDDDOMParser extends Object
 					}
 
 					String lDescription = getTextValue(el,"definition");
-					lDOMClass.definition = InfoModel.cleanCharString(lDescription);
+					lDOMClass.definition = DOMInfoModel.cleanCharString(lDescription);
 					lDOMClass.regAuthId = lRegAuthId;
 					// subClassOF is temporary until true subClassOf is found in main code
 					lDOMClass.subClassOfTitle = DMDocument.masterUserClassName;
-					lDOMClass.subClassOfIdentifier = InfoModel.getClassIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName);
+					lDOMClass.subClassOfIdentifier = DOMInfoModel.getClassIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName);
 					lDOMClass.localIdentifier = getTextValue(el,"local_identifier");
 					
 					String lBooleanStringValue = getTextValue(el,"abstract_flag");
@@ -680,7 +680,7 @@ public class LDDDOMParser extends Object
 					getTermEntry (lDOMClass, el);
 
 					// reset class order
-					InfoModel.resetClassOrder();
+					DOMInfoModel.resetClassOrder();
 					
 					// get associations for the respective attributes
 					getAssociations(lDOMClass, el);
@@ -781,7 +781,7 @@ public class LDDDOMParser extends Object
 						isGroupDelimter = true;
 						isGroupContent = false;
 						lIsChoice = true;
-						lGroupName = lLocalIdentifier + InfoModel.getNextGroupNum();  // i.e., XSChoice#26						
+						lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum();  // i.e., XSChoice#26						
 						if (! lIsAttribute) {
 							String lCompClassNameSpaceIdNC = lDOMClass.nameSpaceIdNC;						
 							lLocalIdentifier = lGroupName;
@@ -791,7 +791,7 @@ public class LDDDOMParser extends Object
 							lCompClass.nameSpaceId = lCompClass.nameSpaceIdNC + ":";
 							lCompClass.localIdentifier = lGroupName;
 							lCompClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lCompClassNameSpaceIdNC + "." + lGroupName;
-							lCompClass.subClassOfIdentifier = InfoModel.masterMOFUserClass.identifier;
+							lCompClass.subClassOfIdentifier = DOMInfoModel.masterDOMUserClass.identifier;
 							lCompClass.title = lGroupName;
 							lCompClass.isAbstract = true;
 							lCompClass.isChoice = true;
@@ -805,7 +805,7 @@ public class LDDDOMParser extends Object
 						isGroupDelimter = true;
 						isGroupContent = false;
 						lIsAny = true;
-						lGroupName = lLocalIdentifier + InfoModel.getNextGroupNum();
+						lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum();
 						if (! lIsAttribute) {
 							String lCompClassNameSpaceIdNC = lDOMClass.nameSpaceIdNC;
 							lLocalIdentifier = lGroupName;
@@ -815,7 +815,7 @@ public class LDDDOMParser extends Object
 							lCompClass.nameSpaceId = lCompClass.nameSpaceIdNC + ":";
 							lCompClass.localIdentifier = lGroupName;
 							lCompClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lCompClassNameSpaceIdNC + "." + lGroupName;
-							lCompClass.subClassOfIdentifier = InfoModel.masterMOFUserClass.identifier;
+							lCompClass.subClassOfIdentifier = DOMInfoModel.masterDOMUserClass.identifier;
 							lCompClass.title = lGroupName;
 							lCompClass.isAbstract = true;
 							lCompClass.isAny = true;
@@ -831,15 +831,15 @@ public class LDDDOMParser extends Object
 					lDOMProp.localIdentifier = lLocalIdentifier;
 //					lProperty.localIdentifierArr = lLocalIdentifierArr;
 					lDOMProp.referenceType = lReferenceType;
-					lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lDOMProp.localIdentifier + "." + lDOMProp.referenceType + "." + InfoModel.getNextUId();
+					lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lDOMProp.localIdentifier + "." + lDOMProp.referenceType + "." + DOMInfoModel.getNextUId();
 					lDOMProp.enclLocalIdentifier = lDOMClass.localIdentifier;			
-					lDOMProp.classOrder = InfoModel.getNextClassOrder();
+					lDOMProp.classOrder = DOMInfoModel.getNextClassOrder();
 					lDOMProp.isChoice = lIsChoice;	
 					lDOMProp.isAny = lIsAny;
 					lDOMProp.maximumOccurrences = lMaximumOccurrences;
 					lDOMProp.minimumOccurrences = lMinimumOccurrences;
 					lDOMProp.groupName = lGroupName;
-					lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lLocalIdentifier + "." + lDOMProp.referenceType + "." + InfoModel.getNextUId();
+					lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lLocalIdentifier + "." + lDOMProp.referenceType + "." + DOMInfoModel.getNextUId();
 //					getAssociationCardinalities(lDOMProp);
 					lDOMProp.cardMin = lCardMin;
 					lDOMProp.cardMinI = lCardMinI;
@@ -953,7 +953,7 @@ public class LDDDOMParser extends Object
 				}
 				
 				PropertyMapsDefn lPropertyMaps = new PropertyMapsDefn (lIdentifier);
-				lPropertyMaps.rdfIdentifier = InfoModel.getPropMapRDFIdentifier (lIdentifier);
+				lPropertyMaps.rdfIdentifier = DOMInfoModel.getPropMapRDFIdentifier (lIdentifier);
 				PropertyMapsDefn lPropertyMaps2 = (PropertyMapsDefn) propertyMapsMap.get(lPropertyMaps.rdfIdentifier);
 				if (lPropertyMaps2 == null) {
 					propertyMapsMap.put(lPropertyMaps.rdfIdentifier, lPropertyMaps);
@@ -974,7 +974,7 @@ public class LDDDOMParser extends Object
 					// get the description
 					lValue = getTextValue(lPropMapsElem,"description");
 					if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
-						lPropertyMaps.description = InfoModel.cleanCharString (lValue);
+						lPropertyMaps.description = DOMInfoModel.cleanCharString (lValue);
 					}
 					
 					// get the external_property_map_id
@@ -1031,7 +1031,7 @@ public class LDDDOMParser extends Object
 						// get the description
 						lValue = getTextValue(lPropMapElem,"description");
 						if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
-							lPropertyMap.description = InfoModel.cleanCharString (lValue);
+							lPropertyMap.description = DOMInfoModel.cleanCharString (lValue);
 						}
 					
 						// get the property map entries
@@ -1052,7 +1052,7 @@ public class LDDDOMParser extends Object
 							// get the property_value
 							lValue = getTextValue(lPropMapEntryElem,"property_value");
 							if (! (lValue == null || (lValue.indexOf("TBD") == 0))) {
-								lPropertyMapEntry.property_value = InfoModel.cleanCharString (lValue);
+								lPropertyMapEntry.property_value = DOMInfoModel.cleanCharString (lValue);
 							}
 						}
 					}
@@ -1066,11 +1066,11 @@ public class LDDDOMParser extends Object
 		while(iter1.hasNext()) {
 			String lId = (String) iter1.next();
 			PropertyMapsDefn lPropertyMapsDefn = propertyMapsMap.get(lId);
-			InfoModel.masterPropertyMapsMap.put(lId, lPropertyMapsDefn);
+			DOMInfoModel.masterPropertyMapsMap.put(lId, lPropertyMapsDefn);
 		}
 		for (Iterator <PropertyMapsDefn> i = propertyMapsArr.iterator(); i.hasNext();) {
 			PropertyMapsDefn lPropertyMapsDefn = (PropertyMapsDefn) i.next();
-			InfoModel.masterPropertyMapsArr.add(lPropertyMapsDefn);
+			DOMInfoModel.masterPropertyMapsArr.add(lPropertyMapsDefn);
 		}
 	}
 	
@@ -1289,8 +1289,8 @@ public class LDDDOMParser extends Object
 			if (lStringInd > -1) lLDDExtTitle = lLocalIdentifier.substring(lStringInd + 1);
 			if (lStringInd > 0) lLDDExtNS = lLocalIdentifier.substring(0, lStringInd);
 			lLDDExtNS = lLDDExtNS.toLowerCase();
-			String lAttrIdentifier = InfoModel.getAttrIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
-			lDOMAttr = DOMInfoModel.userClassAttrIdMap.get(lAttrIdentifier);
+			String lAttrIdentifier = DOMInfoModel.getAttrIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
+			lDOMAttr = DOMInfoModel.userDOMClassAttrIdMap.get(lAttrIdentifier);
 			if (lDOMAttr != null) {
 //				System.out.println("debug getLocalOrExternAttr - FOUND IN USER - lLocalIdentifier:" + lLocalIdentifier);
 			} else {
@@ -1306,7 +1306,7 @@ public class LDDDOMParser extends Object
 		
 		// clone the USER or LDD attribute for use as a Resolved attribute
 		// returns rdfIdentifier = "TBD_rdfIdentifier"
-		String lRDFIdentifier = DMDocument.rdfPrefix + lDOMAttr.title + "." + InfoModel.getNextUId();
+		String lRDFIdentifier = DMDocument.rdfPrefix + lDOMAttr.title + "." + DOMInfoModel.getNextUId();
 //		DOMAttr lNewDOMAttr = DOMInfoModel.cloneDOMAttr(lRDFIdentifier, lDOMAttr);
 		DOMAttr lNewDOMAttr = new DOMAttr ();
 		lNewDOMAttr.cloneAttr(lDOMAttr);
@@ -2024,7 +2024,7 @@ public class LDDDOMParser extends Object
 			} */
 		}
 		if (!(lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0)) {
-			UnitDefn lUnit = InfoModel.masterUnitOfMeasureMap.get(lDOMAttr.unit_of_measure_type);
+			DOMUnit lUnit = DOMInfoModel.masterDOMUnitMap.get(lDOMAttr.unit_of_measure_type);
 			if (lUnit == null) {
 				lddErrorMsg.add("   WARNING  Attribute2 <: " + lDOMAttr.title + " - Invalid Unit of Measure Type: " + lDOMAttr.unit_of_measure_type);
 			}
@@ -2113,8 +2113,8 @@ public class LDDDOMParser extends Object
 
 			if (lClassWord.compareTo("VALUE") != 0) {
 				// we have a non VALUE keyword, first search for the class word
-				for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-					AttrDefn lMAttr = (AttrDefn) i.next();
+				for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+					DOMAttr lMAttr = (DOMAttr) i.next();
 					if (lMAttr.title.toUpperCase().compareTo(lDOMAttr.title.toUpperCase()) == 0) { continue; }
 					if (numMatches >= maxMatches) { break; }
 					String lTitleUpper = lMAttr.title.toUpperCase();
@@ -2127,8 +2127,8 @@ public class LDDDOMParser extends Object
 				}
 			} else {
 				// we have a VALUE keyword, just search for the descriptor word
-				for (Iterator <AttrDefn> i = InfoModel.masterMOFAttrArr.iterator(); i.hasNext();) {
-					AttrDefn lMAttr = (AttrDefn) i.next();
+				for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+					DOMAttr lMAttr = (DOMAttr) i.next();
 					if (lMAttr.title.toUpperCase().compareTo(lDOMAttr.title.toUpperCase()) == 0) { continue; }
 					if (numMatches >= maxMatches) { break; }
 					String lTitleUpper = lMAttr.title.toUpperCase();
@@ -2231,7 +2231,7 @@ public class LDDDOMParser extends Object
 	* get the conceptual domain (CD) from the data type
 	*/
 	public String getDataConceptFromDataType (String lValueType) {
-		String lCD = InfoModel.dataTypeToConceptMap.get(lValueType);
+		String lCD = DOMInfoModel.dataTypeToConceptMap.get(lValueType);
 		if (lCD != null) {
 			return (lCD);
 		} else {
@@ -2263,22 +2263,22 @@ public class LDDDOMParser extends Object
 	// print one protege attribute
 	public void printProtegePontAttr (DOMAttr lDOMAttr) {
 		if (lDOMAttr.cardMaxI <= 1) {
-	        prProtegePont.println("  (single-slot " + InfoModel.escapeProtegeLocalDD(lDOMAttr.title));
-	        prProtegePont.println(";+       (comment \"" + InfoModel.escapeProtegeLocalDD(lDOMAttr.definition) + "\")");
-	        String lValueType = InfoModel.dataTypePDS4ProtegeMap.get(lDOMAttr.valueType);
+	        prProtegePont.println("  (single-slot " + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.title));
+	        prProtegePont.println(";+       (comment \"" + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.definition) + "\")");
+	        String lValueType = DOMInfoModel.dataTypePDS4ProtegeMap.get(lDOMAttr.valueType);
 	        if (lValueType == null) {
 	        	lValueType = "TBD_Protege_Type";
 	        }
-	        prProtegePont.println("    (type " + InfoModel.escapeProtegeLocalDD(lValueType) + ")");
-	        prProtegePont.println(";+        (cardinality " + InfoModel.escapeProtegeLocalDD(lDOMAttr.cardMin) + " " + InfoModel.escapeProtegeLocalDD(lDOMAttr.cardMax) + ")");
+	        prProtegePont.println("    (type " + DOMInfoModel.escapeProtegeLocalDD(lValueType) + ")");
+	        prProtegePont.println(";+        (cardinality " + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.cardMin) + " " + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.cardMax) + ")");
 	        prProtegePont.println("    (create-accessor read-write)");	 	        
 	        printProtegePontAttrValues (lDOMAttr);
 	        prProtegePont.println("  )");
 
 		} else {
-	        prProtegePont.println("  (multislot " + InfoModel.escapeProtegeLocalDD(lDOMAttr.title));
-	        prProtegePont.println(";+       (comment \"" + InfoModel.escapeProtegeLocalDD(lDOMAttr.definition) + "\")");
-	        String lValueType = InfoModel.dataTypePDS4ProtegeMap.get(lDOMAttr.valueType);
+	        prProtegePont.println("  (multislot " + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.title));
+	        prProtegePont.println(";+       (comment \"" + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.definition) + "\")");
+	        String lValueType = DOMInfoModel.dataTypePDS4ProtegeMap.get(lDOMAttr.valueType);
 	        if (lValueType == null) {
 	        	lValueType = "TBD_Protege_Type";
 	        }
@@ -2287,7 +2287,7 @@ public class LDDDOMParser extends Object
 	        if (lDOMAttr.cardMax.compareTo("*") != 0) {
 	        	lCardMax = lDOMAttr.cardMax;
 	        }
-	        prProtegePont.println(";        (cardinality " + InfoModel.escapeProtegeLocalDD(lDOMAttr.cardMin) + " " + InfoModel.escapeProtegeLocalDD(lCardMax) + ")");
+	        prProtegePont.println(";        (cardinality " + DOMInfoModel.escapeProtegeLocalDD(lDOMAttr.cardMin) + " " + DOMInfoModel.escapeProtegeLocalDD(lCardMax) + ")");
 	        prProtegePont.println("    (create-accessor read-write)");
 	        printProtegePontAttrValues (lDOMAttr);
 	        prProtegePont.println("  )");
@@ -2309,8 +2309,8 @@ public class LDDDOMParser extends Object
 	
 	// print print protege class - begin
 	public void printProtegeClassBegin (String lName, String lDefinition, String lSuperClass) {	         
-        prProtegePont.println("(defclass " + InfoModel.escapeProtegeLocalDD(lName) + " \"" + InfoModel.escapeProtegeLocalDD(lDefinition) + "\"");
-        prProtegePont.println("  (is-a " + InfoModel.escapeProtegeLocalDD(lSuperClass) + ")");
+        prProtegePont.println("(defclass " + DOMInfoModel.escapeProtegeLocalDD(lName) + " \"" + DOMInfoModel.escapeProtegeLocalDD(lDefinition) + "\"");
+        prProtegePont.println("  (is-a " + DOMInfoModel.escapeProtegeLocalDD(lSuperClass) + ")");
         prProtegePont.println("  (role concrete)");
 	}
 	
