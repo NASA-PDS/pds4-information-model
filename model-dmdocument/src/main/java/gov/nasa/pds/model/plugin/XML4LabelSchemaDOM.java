@@ -239,7 +239,8 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 
 			// namespaces required: pds - latest version
-			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+//			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    xmlns:" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 
 			// namespaces required: all other discipline levels referenced; no mission level allowed - prior versions
 			if (DMDocument.LDDToolFlag) {
@@ -697,8 +698,10 @@ class XML4LabelSchemaDOM extends Object {
 				DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 				prXML.println("    </" + pNS + "annotation>");		
 				prXML.println("    <" + pNS + "simpleContent>");
-				prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.valueType + "\">");
-				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
+//				prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.valueType + "\">");
+				prXML.println("      <" + pNS + "extension base=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.valueType + "\">");
+//				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
+				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC  + ":nil_reason\" use=\"optional\" />");
 				prXML.println("      </" + pNS + "extension>");
 				prXML.println("    </" + pNS + "simpleContent>");
 				prXML.println("  </" + pNS + "complexType>");
@@ -723,8 +726,9 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println("    </" + pNS + "annotation>");
 		}
 	
-		prXML.println("    <" + pNS + "restriction base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.getValueType (true) + "\">");
-		
+//		prXML.println("    <" + pNS + "restriction base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.getValueType (true) + "\">");
+		prXML.println("    <" + pNS + "restriction base=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.getValueType (true) + "\">");
+
 		lValue = lAttr.getFormat (true);
 		if (! (lValue.indexOf("TBD") == 0)) {
 			prXML.println("  <!-- format=\"" + lValue + "\" -->");
@@ -771,9 +775,11 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println("    </" + pNS + "annotation>");		
 			prXML.println("    <" + pNS + "simpleContent>");
 			prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.XMLSchemaName + "_WO_Units\">");
-			prXML.println("        <" + pNS + "attribute name=\"unit\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.unit_of_measure_type  + "\" use=\"required\" />");
+//			prXML.println("        <" + pNS + "attribute name=\"unit\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.unit_of_measure_type  + "\" use=\"required\" />");
+			prXML.println("        <" + pNS + "attribute name=\"unit\" type=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.unit_of_measure_type  + "\" use=\"required\" />");
 			if (lAttr.isNilable) {
-				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
+//				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
+				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC  + ":nil_reason\" use=\"optional\" />");
 			}
 			prXML.println("      </" + pNS + "extension>");
 			prXML.println("    </" + pNS + "simpleContent>");

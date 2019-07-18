@@ -44,7 +44,8 @@ public class LDDDOMParser extends Object
 	
 	// initialize the Property structures
 //	ArrayList <AssocDefn> LDDMOFPropArr = new ArrayList <AssocDefn> (); 	
-	ArrayList <DOMProp> LDDMOFPropArr = new ArrayList <DOMProp> (); 	
+//	ArrayList <DOMProp> LDDMOFPropArr = new ArrayList <DOMProp> (); 	
+	ArrayList <DOMProp> LDDDOMPropArr = new ArrayList <DOMProp> (); 	
 		
 	// initialize the Rule structures
 	ArrayList <DOMRule> ruleArr = new ArrayList <DOMRule> (); 	
@@ -647,9 +648,9 @@ public class LDDDOMParser extends Object
 					lDOMClass.steward = lSchemaFileDefn.stewardId;
 
 					// get disposition
-					if (! lDOMClass.getDOMClassDisposition(false)) {
-						System.out.println("debug getClass getLDDClassDisposition FAILED lClass.identifier:" + lDOMClass.identifier);
-					}
+//					if (! lDOMClass.getDOMClassDisposition(false)) {
+//						System.out.println("debug getClass getLDDClassDisposition FAILED lClass.identifier:" + lDOMClass.identifier);
+//					}
 
 					String lDescription = getTextValue(el,"definition");
 					lDOMClass.definition = DOMInfoModel.cleanCharString(lDescription);
@@ -768,7 +769,7 @@ public class LDDDOMParser extends Object
 					DOMProp lDOMProp = new DOMProp ();
 					
 					// update property arrays
-					LDDMOFPropArr.add(lDOMProp);
+					LDDDOMPropArr.add(lDOMProp);
 //					lDOMClass.PropertyArr.add(lDOMProp);
 					if (lIsAttribute) {
 						lDOMClass.ownedAttrArr.add(lDOMProp);
@@ -1119,6 +1120,9 @@ public class LDDDOMParser extends Object
 
 						lDOMAttr.isUsedInClass = true;
 						
+						// add the attribute to the property
+						lDOMProp.hasDOMObject = lDOMAttr;
+						
 						// add the association (AttrDefn) to the resolved attribute array
 						attrArrResolved.add(lDOMProp);
 						attrMapResolved.put(lDOMProp.rdfIdentifier, lDOMProp);
@@ -1464,7 +1468,7 @@ public class LDDDOMParser extends Object
 		// get the ASSOC local_identifiers
 		ArrayList <String> lAssocLocalIdentifiersArr = new ArrayList <String> ();
 
-		for (Iterator <DOMProp> i = LDDMOFPropArr.iterator(); i.hasNext();) {
+		for (Iterator <DOMProp> i = LDDDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
 			lAssocLocalIdentifiersArr.add(lDOMProp.localIdentifier);
 		}
@@ -1633,7 +1637,7 @@ public class LDDDOMParser extends Object
 		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());		
 		
 		// merge the LDD associations into the Master
-		for (Iterator <DOMProp> i = LDDMOFPropArr.iterator(); i.hasNext();) {
+		for (Iterator <DOMProp> i = LDDDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp= (DOMProp) i.next();
 			if (DOMInfoModel.masterDOMPropIdMap.containsKey(lDOMProp.identifier)) {
 				// an ldd association is a duplicate of a master association; replace the master with the LDD version
@@ -1835,7 +1839,7 @@ public class LDDDOMParser extends Object
 	public void printDocumentSummary () {	  
         int totalClasses = classArr.size();
         int totalAttrs = attrArr.size();
-        int totalAssocs = LDDMOFPropArr.size();
+        int totalAssocs = LDDDOMPropArr.size();
         int totalErrors = 0;
         int totalWarnings = 0;
         int totalInfo = 0;
@@ -1985,7 +1989,7 @@ public class LDDDOMParser extends Object
 	private void validateAttribute(DOMAttr lDOMAttr) {
 //		System.out.println("\ndebug validateAttribute lAttr.title:" + lAttr.title);
 		int numMatches = 0, maxMatches = 7;
-		DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeMap.get(lDOMAttr.valueType);
+		DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lDOMAttr.valueType);
 		if (lDOMDataType == null) {
 			lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - Invalid Data Type. Data Type: " + lDOMAttr.valueType);
 		} else {
