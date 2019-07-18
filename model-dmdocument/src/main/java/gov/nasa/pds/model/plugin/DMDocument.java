@@ -467,13 +467,16 @@ public class DMDocument extends Object {
 		ProtPins11179DD protPins11179DD  = new ProtPins11179DD ();
 		protPins11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");
 		
+// 999
+		// use the following for MOF and DOM testing.
 		// get the models
-//		GetModels lGetModels = new GetModels();
-//		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
+		GetModels lGetModels = new GetModels();
+		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
+//		// use the following for DOM only testing		
 		// get the models
-		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
-		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
+//		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
+//		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
 		if (exportDOMFlag) {
