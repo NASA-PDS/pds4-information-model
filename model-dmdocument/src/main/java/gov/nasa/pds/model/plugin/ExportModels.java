@@ -173,8 +173,8 @@ public class ExportModels extends Object {
 		// write the 11179 DD pins file
 		if (mofFlag) {
 		Write11179DDPinsFile write11179DDPinsFile = new Write11179DDPinsFile ();
-		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);	
-		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);
+		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins+"_MOF");	
+		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN+"_MOF");
 		}
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD Pins File Done");
@@ -195,14 +195,14 @@ public class ExportModels extends Object {
 		// write the LOD SKOS file
 		if (mofFlag) {
 		WriteLODSKOSFile writeLODSKOSFile = new WriteLODSKOSFile ();
-		writeLODSKOSFile.writeSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL);	
+		writeLODSKOSFile.writeSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL+"_MOF");	
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - SKOS Done");
 		
 		//DOM
 		if (domFlag) {
 		WriteLODSKOSFileDOM writeLODSKOSDOMFile = new WriteLODSKOSFileDOM ();
-		writeLODSKOSDOMFile.writeDOMSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL_DOM);
+		writeLODSKOSDOMFile.writeDOMSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL);
 		}
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - SKOS Done");
 
@@ -210,7 +210,7 @@ public class ExportModels extends Object {
 		if (! DMDocument.LDDToolFlag) {
 			if (mofFlag) {
 			WriteRDFOWLFile writeRDFOWLFile = new WriteRDFOWLFile ();
-			writeRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF);
+			writeRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF+"_MOF");
 			}
 			//DOM
 			if (domFlag) {

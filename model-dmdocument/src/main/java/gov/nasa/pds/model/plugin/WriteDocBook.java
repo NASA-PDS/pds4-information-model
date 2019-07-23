@@ -56,7 +56,7 @@ class WriteDocBook extends Object {
 //	print DocBook File
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
 //		??? DMDocument.masterPDSSchemaFileDefn
-		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
+		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML+"_MOF";
 		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		writeHeader (prDocBook);
 		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);

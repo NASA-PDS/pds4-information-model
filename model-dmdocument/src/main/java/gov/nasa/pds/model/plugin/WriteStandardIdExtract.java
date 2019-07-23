@@ -23,7 +23,7 @@ class WriteStandardIdExtract extends Object {
 	
 	public void writeExtractFileBegin ()  throws java.io.IOException  {
 		// Write the files consisting of individual classes
-		String lFileName = DMDocument.outputDirPath + "Extract/" + "StandardId" + "_" + InfoModel.lab_version_id + ".txt";
+		String lFileName = DMDocument.outputDirPath + "Extract/" + "StandardId" + "_" + InfoModel.lab_version_id + ".txt_MOF";
 	    prPVL = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
 
 	    PVLStmt = delBeg + "Standard Id" + del + "Description" + del + "Class" + del + "Attribute" + delEnd;

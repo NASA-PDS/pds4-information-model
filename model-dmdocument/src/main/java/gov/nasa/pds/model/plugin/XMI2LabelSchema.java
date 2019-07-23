@@ -126,7 +126,7 @@ class XMI2LabelSchema extends Object {
 
 //	write the XML File
 	public void writeXMIFile (String todaysDate) throws java.io.IOException {
-		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI;
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI+"_MOF";
 	    prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));    
 		writeXMIHdr (todaysDate);
 		

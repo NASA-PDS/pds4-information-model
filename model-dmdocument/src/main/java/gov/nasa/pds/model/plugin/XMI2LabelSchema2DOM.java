@@ -28,7 +28,7 @@ class XMI2LabelSchema2DOM extends Object {
 
 //	write the XML File
 	public void writeXMIFile (String todaysDate) throws java.io.IOException {
-		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI2+"_DOM";
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI2;
 	    prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 	    
 		writeXMIHdr (todaysDate);

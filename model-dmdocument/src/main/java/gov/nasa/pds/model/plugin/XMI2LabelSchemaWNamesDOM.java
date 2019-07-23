@@ -51,7 +51,7 @@ class XMI2LabelSchemaWNamesDOM extends Object {
 //	write the XML File
 	public void writeXMIFile (String todaysDate) throws java.io.IOException {
 		String lFileNameXMI = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecUMLXMI2;
-		lFileNameXMI = DOMInfoModel.replaceString(lFileNameXMI, "_wNames", "_DOM_wNames");
+//		lFileNameXMI = DOMInfoModel.replaceString(lFileNameXMI, "_wNames", "_DOM_wNames");
 		String lFileNameCMOF = lFileNameXMI;
 		lFileNameCMOF = DOMInfoModel.replaceString(lFileNameCMOF, ".xmi", ".cmof");
 	    prXMLXMI = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileNameXMI)), "UTF-8"));

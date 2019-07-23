@@ -33,7 +33,7 @@ class WriteDDProductDOMAttrDefinitions extends Object{
 				        lLID = "urn:nasa:pds:context:attribute:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
 			        	lLID = lLID.toLowerCase();
 				        String lUIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_" + lDOMAttr.getNameSpaceIdNC() + "_" + lDOMAttr.title;
-			        	String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + "_DOM.xml";
+			        	String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml";
 				        prDDReg = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
 			         	printDDRegFile(lSchemaFileDefn, prDDReg, todaysDate, lLID, lDOMAttr);									
 				        prDDReg.close();

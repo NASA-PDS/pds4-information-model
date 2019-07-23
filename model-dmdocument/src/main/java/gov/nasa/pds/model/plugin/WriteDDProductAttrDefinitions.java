@@ -31,7 +31,7 @@ class WriteDDProductAttrDefinitions extends Object{
 				lLID = lLID.toLowerCase();
 				String lUIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_" + lAttr.attrNameSpaceIdNC + "_" + lAttr.title;
 //				String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xml";
-				String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml";
+				String lFileName = lSchemaFileDefn.relativeFileSpecAttrDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml_MOF";
 				prDDReg = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
 				printDDRegFile(lSchemaFileDefn, prDDReg, todaysDate, lLID, lAttr);
 				prDDReg.close();

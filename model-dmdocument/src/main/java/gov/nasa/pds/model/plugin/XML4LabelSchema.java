@@ -26,7 +26,7 @@ class XML4LabelSchema extends Object {
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <PDSObjDefn> lInputClassArr) throws java.io.IOException {
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
-		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
+		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema+"_MOF";
 		prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
 //		write the XML Schema File Header

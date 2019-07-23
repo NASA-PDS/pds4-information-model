@@ -11,7 +11,7 @@ class WriteSchematron extends Object {
 	
 //	write all Schematron files
 	public void writeSchematronFile (SchemaFileDefn lSchemaFileDefn, TreeMap <String, PDSObjDefn> lMasterMOFClassMap) throws java.io.IOException {				
-		String lFileName = lSchemaFileDefn.relativeFileSpecSchematron;
+		String lFileName = lSchemaFileDefn.relativeFileSpecSchematron+"_MOF";
 		prSchematron = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		writeSchematronRule(lSchemaFileDefn, lMasterMOFClassMap, prSchematron);
 		prSchematron.close();	

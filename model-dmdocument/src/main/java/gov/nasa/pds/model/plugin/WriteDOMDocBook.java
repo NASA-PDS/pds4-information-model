@@ -45,7 +45,7 @@ class WriteDOMDocBook extends Object {
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-		String lDOMLabelVersionId = lLabelVersionId + "_DOM";
+		String lDOMLabelVersionId = lLabelVersionId;
 		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
 		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		writeHeader (prDocBook);

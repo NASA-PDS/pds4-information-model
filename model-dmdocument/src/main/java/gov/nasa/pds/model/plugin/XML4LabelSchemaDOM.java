@@ -30,7 +30,7 @@ class XML4LabelSchemaDOM extends Object {
 		
 		String lFileName = lSchemaFileDefn.relativeFileSpecXMLSchema;
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-		String lDOMLabelVersionId = lLabelVersionId + "_DOM";
+		String lDOMLabelVersionId = lLabelVersionId;
 		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
 		prXML = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		

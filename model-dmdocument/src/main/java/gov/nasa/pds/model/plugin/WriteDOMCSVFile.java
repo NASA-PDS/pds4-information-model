@@ -24,7 +24,7 @@ class WriteDOMCSVFiles extends Object {
 //		String lFileName;
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDCSV;
 		if (lOtherLanguage != null) lFileName = lSchemaFileDefn.relativeFileSpecDDCSV + "_" + lOtherLanguage;				
-		lFileName += "_DOM.csv";
+		lFileName += ".csv";
              
 		FileOutputStream lFileOutputStream = new FileOutputStream(lFileName);
 		BufferedWriter prCSVAttr = new BufferedWriter(new OutputStreamWriter(lFileOutputStream,"UTF8"));

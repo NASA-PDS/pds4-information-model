@@ -26,7 +26,7 @@ class WriteDDProductClassDefinitions extends Object{
 			lLID = "urn:nasa:pds:" + "context:" + "class:" + lLID + "_" + lSchemaFileDefn.lab_version_id;
 			lLID = lLID.toLowerCase();
 			String lUIdFileName = DMDocument.registrationAuthorityIdentifierValue + "_" + lClass.nameSpaceIdNC + "_" + lClass.title;
-			String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecClassDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml";
+			String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecClassDefn + lUIdFileName + "_" + lSchemaFileDefn.lab_version_id + ".xml_MOF";
 			prDDReg = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 
 			writeDDProductClassDefnFile(lSchemaFileDefn, prDDReg, todaysDate, lLID, lClass);

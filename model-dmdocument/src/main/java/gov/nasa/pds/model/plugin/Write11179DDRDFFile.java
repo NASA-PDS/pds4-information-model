@@ -11,7 +11,7 @@ class Write11179DDRDFFile extends Object{
 	
 //	print the ISO 11179 DD in RDF
 	public void printISO11179DDRDF (String todaysDate) throws java.io.IOException {
-		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRDF;
+		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRDF+"_MOF";
 		PrintWriter pr11179 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		write11179Hdr (todaysDate, pr11179);
 		printAttrISODERDF (pr11179);

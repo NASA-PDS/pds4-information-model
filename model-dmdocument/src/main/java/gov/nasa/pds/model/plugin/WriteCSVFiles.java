@@ -19,7 +19,7 @@ class WriteCSVFiles extends Object {
 //		String lFileName;
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDCSV;
 		if (lOtherLanguage != null) lFileName = lSchemaFileDefn.relativeFileSpecDDCSV + "_" + lOtherLanguage;				
-		lFileName += ".csv";
+		lFileName += ".csv_MOF";
 		FileOutputStream lFileOutputStream = new FileOutputStream(lFileName);
 		BufferedWriter prCSVAttr = new BufferedWriter(new OutputStreamWriter(lFileOutputStream,"UTF8"));
 		prCSVAttr.write(delmBegin + "Sort Key" + delmMid + "Type" + delmMid + "Name" + delmMid + "Version" + delmMid + "Name Space Id" + delmMid + "Description" + delmMid + "Steward" + delmMid + "Value Type"  + delmMid + "Minimum Cardinality"  + delmMid + "Maximum Cardinality"  + delmMid + "Minimum Value"  + delmMid + "Maximum Value" + delmMid+ "Minimum Characters"  + delmMid + "Maximum Characters" + delmMid + "Unit of Measure Type" + delmMid + "Specified Unit Id" + delmMid + "Attribute Concept" + delmMid + "Conceptual Domain" + delmEnd + "\r\n");		
