@@ -464,8 +464,10 @@ class XML4LabelSchemaDOM extends Object {
 		if ((lProp.isChoice) && (!choiceBlockOpen)) {
 			// set the cardinalities of Master Choice block attributes to (1,1)
 			if (lProp.isChoice && ! lProp.isFromLDD) {
-				cmin = "1";
-				cmax = "1";
+//				cmin = "1";
+//				cmax = "1";
+				cmin = lProp.cardMin;
+				cmax = lProp.cardMax;
 			}
 			prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\">");
 			upIndentSpaces();

@@ -723,6 +723,7 @@ public class LDDDOMParser extends Object
 				lReferenceType = getTextValue(lAssocElem,"reference_type");;
 				lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
 				lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
+				
 				// get all of the identifiers
 				lLocalIdentifierArr =  getXMLValueArr ("identifier_reference", lAssocElem);
 				if (lLocalIdentifierArr.size() == 0) {
@@ -733,6 +734,7 @@ public class LDDDOMParser extends Object
 					}
 				}
 				lLocalIdentifier = lLocalIdentifierArr.get(0);
+				
 				if (lReferenceType.compareTo("attribute_of") == 0) {
 					lIsAttribute = true;
 				} else if (lReferenceType.compareTo("component_of") == 0) {					
@@ -768,63 +770,18 @@ public class LDDDOMParser extends Object
 					// create new association -- Note that lProperty.identifier will not be set until the associated attribute is located in resolveComponentsForAssociation
 					DOMProp lDOMProp = new DOMProp ();
 					
-					// update property arrays
-					LDDDOMPropArr.add(lDOMProp);
-//					lDOMClass.PropertyArr.add(lDOMProp);
-					if (lIsAttribute) {
-						lDOMClass.ownedAttrArr.add(lDOMProp);
-					} else {
-						lDOMClass.ownedAssocArr.add(lDOMProp);
-					}
-					
 					// test for choice and any
 					if (lLocalIdentifier.indexOf("XSChoice#") == 0) {
 						isGroupDelimter = true;
 						isGroupContent = false;
 						lIsChoice = true;
 						lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum();  // i.e., XSChoice#26						
-						if (! lIsAttribute) {
-							String lCompClassNameSpaceIdNC = lDOMClass.nameSpaceIdNC;						
-							lLocalIdentifier = lGroupName;
-							DOMClass lCompClass = new DOMClass ();
-							lCompClass.setRDFIdentifier(lGroupName);
-							lCompClass.nameSpaceIdNC = lCompClassNameSpaceIdNC;
-							lCompClass.nameSpaceId = lCompClass.nameSpaceIdNC + ":";
-							lCompClass.localIdentifier = lGroupName;
-							lCompClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lCompClassNameSpaceIdNC + "." + lGroupName;
-							lCompClass.subClassOfIdentifier = DOMInfoModel.masterDOMUserClass.identifier;
-							lCompClass.title = lGroupName;
-							lCompClass.isAbstract = true;
-							lCompClass.isChoice = true;
-							lCompClass.isFromLDD = true;
-							classMap.put(lCompClass.identifier, lCompClass);
-							classArr.add(lCompClass);
-							classMapLocal.put(lCompClass.localIdentifier, lCompClass);
-						}
 					}
 					if (lLocalIdentifier.compareTo("XSAny#") == 0) {
 						isGroupDelimter = true;
 						isGroupContent = false;
 						lIsAny = true;
 						lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum();
-						if (! lIsAttribute) {
-							String lCompClassNameSpaceIdNC = lDOMClass.nameSpaceIdNC;
-							lLocalIdentifier = lGroupName;
-							DOMClass lCompClass = new DOMClass ();
-							lCompClass.setRDFIdentifier(lGroupName);
-							lCompClass.nameSpaceIdNC = lCompClassNameSpaceIdNC;
-							lCompClass.nameSpaceId = lCompClass.nameSpaceIdNC + ":";
-							lCompClass.localIdentifier = lGroupName;
-							lCompClass.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lCompClassNameSpaceIdNC + "." + lGroupName;
-							lCompClass.subClassOfIdentifier = DOMInfoModel.masterDOMUserClass.identifier;
-							lCompClass.title = lGroupName;
-							lCompClass.isAbstract = true;
-							lCompClass.isAny = true;
-							lCompClass.isFromLDD = true;
-							classMap.put(lCompClass.identifier, lCompClass);
-							classArr.add(lCompClass);
-							classMapLocal.put(lCompClass.localIdentifier, lCompClass);
-						}
 					}
 					
 					// get common attributes
@@ -840,12 +797,22 @@ public class LDDDOMParser extends Object
 					lDOMProp.maximumOccurrences = lMaximumOccurrences;
 					lDOMProp.minimumOccurrences = lMinimumOccurrences;
 					lDOMProp.groupName = lGroupName;
-					lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lLocalIdentifier + "." + lDOMProp.referenceType + "." + DOMInfoModel.getNextUId();
-//					getAssociationCardinalities(lDOMProp);
 					lDOMProp.cardMin = lCardMin;
 					lDOMProp.cardMinI = lCardMinI;
 					lDOMProp.cardMax = lCardMax;
 					lDOMProp.cardMaxI = lCardMaxI;
+					
+					// ignore "XSChoice# and XSAny#
+					if (! isGroupDelimter) {	
+					
+						// update property arrays
+						LDDDOMPropArr.add(lDOMProp);
+						if (lIsAttribute) {
+							lDOMClass.ownedAttrArr.add(lDOMProp);
+						} else {
+							lDOMClass.ownedAssocArr.add(lDOMProp);							
+						}
+					}
 					
 					// validate cardinalities and set card min and max
 					if (isGroupDelimter) {
@@ -1106,64 +1073,68 @@ public class LDDDOMParser extends Object
 			// first resolve attribute
 			for (Iterator <DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
-					if (lDOMProp.localIdentifier.indexOf("XSChoice#") == 0) continue; 
-					if (lDOMProp.localIdentifier.compareTo("XSAny#") == 0) continue;
-					DOMAttr lDOMAttr =  getLocalOrExternAttr (lSchemaFileDefn, lDOMClass, lDOMProp);
-					if (lDOMAttr != null) {
-						lDOMAttr.cardMinI = lDOMProp.cardMinI;
-						lDOMAttr.cardMin = lDOMProp.cardMin;
-						lDOMAttr.cardMaxI = lDOMProp.cardMaxI;
-						lDOMAttr.cardMax = lDOMProp.cardMax;
-						lDOMAttr.isChoice = lDOMProp.isChoice;
-						lDOMAttr.isAny = lDOMProp.isAny;
-						lDOMAttr.groupName = lDOMProp.groupName;
+				if (lDOMProp.localIdentifier.indexOf("XSChoice#") == 0) continue; 
+				if (lDOMProp.localIdentifier.compareTo("XSAny#") == 0) continue;
+				
+				DOMAttr lDOMAttr =  getLocalOrExternAttr (lSchemaFileDefn, lDOMClass, lDOMProp);
+				if (lDOMAttr != null) {
 
-						lDOMAttr.isUsedInClass = true;
+					lDOMAttr.cardMinI = lDOMProp.cardMinI;
+					lDOMAttr.cardMin = lDOMProp.cardMin;
+					lDOMAttr.cardMaxI = lDOMProp.cardMaxI;
+					lDOMAttr.cardMax = lDOMProp.cardMax;
+					lDOMAttr.isChoice = lDOMProp.isChoice;
+					lDOMAttr.isAny = lDOMProp.isAny;
+					lDOMAttr.groupName = lDOMProp.groupName;
+					lDOMProp.nameSpaceIdNC = lDOMAttr.nameSpaceIdNC;
+					lDOMProp.title = lDOMAttr.title;
+					lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
+					lDOMProp.nameSpaceIdNC = lDOMAttr.nameSpaceIdNC;
+					lDOMProp.title = lDOMAttr.title;
+					lDOMProp.parentClassTitle = lDOMClass.title;
+					lDOMProp.attrParentClass = lDOMClass;
+					lDOMAttr.isUsedInClass = true;
+					
+					// add the attribute to the property
+					lDOMProp.hasDOMObject = lDOMAttr;
 						
-						// add the attribute to the property
-						lDOMProp.hasDOMObject = lDOMAttr;
-						
-						// add the association (AttrDefn) to the resolved attribute array
-						attrArrResolved.add(lDOMProp);
-						attrMapResolved.put(lDOMProp.rdfIdentifier, lDOMProp);
-						
-						// fixup the Property (AssocDefn)
-// ??						lProperty.identifier = lAttr.identifier;
-						
-						// fixup Class
-// deprecate			lDOMClass.ownedAttrArr.add(lAttr);
-						lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMAttr.nsTitle); 
-						
-						// fixup the Property
-// ??						lProperty.identifier = lAttr.identifier;
-					} else {
-						lddErrorMsg.add("   ERROR    Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
-					}
+					// add the association (AttrDefn) to the resolved attribute array
+					attrArrResolved.add(lDOMProp);
+					attrMapResolved.put(lDOMProp.rdfIdentifier, lDOMProp);
+					
+					// fixup the Property (AssocDefn)
+					// lProperty.identifier = lAttr.identifier;
+					
+					// fixup Class
+					// deprecate			lDOMClass.ownedAttrArr.add(lAttr);
+					lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMAttr.nsTitle); 
+					
+					// fixup the Property
+					// lProperty.identifier = lAttr.identifier;
+				} else {
+					lddErrorMsg.add("   ERROR    Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
 				}
-			for (Iterator <DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
+			}
+			for (Iterator <DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
+				
 					// resolve an association/class
 					if (lDOMProp.referenceType.compareTo("component_of") == 0) {
 						
 						// get the associated local or external class
 						DOMClass lDOMClassComponent = getLocalOrExtrnCompClass (lSchemaFileDefn, lDOMClass, lDOMProp);
 						if (lDOMClassComponent != null) {
-							
+														
 							// are the following 2 statements useful?
 							lDOMClass.isChoice = lDOMProp.isChoice;
 							lDOMClass.isAny = lDOMProp.isAny;
 							isChoiceOrAny = lDOMProp.isChoice || lDOMProp.isAny;
 							isChoiceOrAnyDelimiter = (lDOMProp.localIdentifier.indexOf("XSChoice#") == 0) || (lDOMProp.localIdentifier.compareTo("XSAny#") == 0);
-							
-							// create a new assoc (AttrDefn)
-// deprecate							AttrDefn lAssoc = new AttrDefn (lProperty.rdfIdentifier);
-//							lAssoc.isAttribute = false;
-//							lAssoc.identifier = lProperty.identifier;
-//							lAssoc.attrNameSpaceIdNC = lClassComponent.nameSpaceIdNC;
-//							lAssoc.title = lProperty.localIdentifier; 
-//							lAssoc.setIdentifier (lDOMClass.nameSpaceIdNC, lDOMClass.title, lAssoc.attrNameSpaceIdNC, lAssoc.title);
-
-
+												
+							lDOMProp.nameSpaceIdNC = lDOMClassComponent.nameSpaceIdNC;
+							lDOMProp.title = lDOMClassComponent.title;
+//							lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMProp.nameSpaceIdNC, lDOMProp.title + "_" + lDOMClassComponent.title);
+							lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMClassComponent.nameSpaceIdNC, lDOMClassComponent.title);
 							lDOMProp.parentClassTitle = lDOMClass.title;
 							lDOMProp.attrParentClass = lDOMClass;
 //							lAssoc.isChoice = lProperty.isChoice;
@@ -1176,11 +1147,15 @@ public class LDDDOMParser extends Object
 //							lAssoc.cardMinI = lProperty.cardMinI;
 																					
 							// add the associated class
-							if (! isChoiceOrAny) {
-								lDOMProp.valArr.add(lDOMClassComponent.title);
-								
-							}
-					
+//							if (! isChoiceOrAny) {
+//								lDOMProp.valArr.add(lDOMClassComponent.title);
+//								lDOMProp.hasDOMObject = lDOMClassComponent;
+//								System.out.println("debug resolveComponentsForAssociation  - ADDED component_of - lDOMClassComponent.identifier:" + lDOMClassComponent.identifier);
+//								
+//							}
+							lDOMProp.valArr.add(lDOMClassComponent.title);
+							lDOMProp.hasDOMObject = lDOMClassComponent;
+							
 							// get all block headers and components
 							if (lDOMProp.groupName.indexOf("XSChoice#") == 0 || lDOMProp.groupName.indexOf("XSAny#") == 0) {
 								if (! lBlockCompRDFIdArr.contains(lDOMProp.rdfIdentifier)) {
