@@ -40,7 +40,6 @@ public class LDDDOMParser extends Object
 
 	// initialize the resolved properties (after LDD Attr or Class has been mapped to a class)
 	ArrayList <DOMProp> attrArrResolved = new ArrayList <DOMProp> (); 
-	TreeMap <String, DOMProp> attrMapResolved = new TreeMap <String, DOMProp> (); 		
 	
 	// initialize the Property structures
 //	ArrayList <AssocDefn> LDDMOFPropArr = new ArrayList <AssocDefn> (); 	
@@ -418,6 +417,7 @@ public class LDDDOMParser extends Object
 					attrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
 					lDOMAttr.lddLocalIdentifier = lLocalIdentifier;
 					attrMapLocal.put(lDOMAttr.lddLocalIdentifier, lDOMAttr);
+					lDOMAttr.isPDS4 = true;
 					lDOMAttr.isFromLDD = true;
 					lDOMAttr.versionIdentifierValue = getTextValue(docEle,"version_id");				
 					lDOMAttr.title = lTitle;
@@ -449,6 +449,7 @@ public class LDDDOMParser extends Object
 					// get the terminological entry
 					getTermEntry (lDOMAttr, el);
 					
+					// *** Not sure that this code is doing anything - check out ***
 					// check if attribute already exists
 					String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
 //					System.out.println("debug getAttributes -External Attribute-  lid:" + lid);
@@ -1100,17 +1101,10 @@ public class LDDDOMParser extends Object
 						
 					// add the association (AttrDefn) to the resolved attribute array
 					attrArrResolved.add(lDOMProp);
-					attrMapResolved.put(lDOMProp.rdfIdentifier, lDOMProp);
-					
-					// fixup the Property (AssocDefn)
-					// lProperty.identifier = lAttr.identifier;
 					
 					// fixup Class
 					// deprecate			lDOMClass.ownedAttrArr.add(lAttr);
-					lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMAttr.nsTitle); 
-					
-					// fixup the Property
-					// lProperty.identifier = lAttr.identifier;
+					lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMAttr.nsTitle);
 				} else {
 					lddErrorMsg.add("   ERROR    Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
 				}
@@ -1148,11 +1142,6 @@ public class LDDDOMParser extends Object
 																					
 							// add the associated class
 //							if (! isChoiceOrAny) {
-//								lDOMProp.valArr.add(lDOMClassComponent.title);
-//								lDOMProp.hasDOMObject = lDOMClassComponent;
-//								System.out.println("debug resolveComponentsForAssociation  - ADDED component_of - lDOMClassComponent.identifier:" + lDOMClassComponent.identifier);
-//								
-//							}
 							lDOMProp.valArr.add(lDOMClassComponent.title);
 							lDOMProp.hasDOMObject = lDOMClassComponent;
 							
@@ -1166,17 +1155,13 @@ public class LDDDOMParser extends Object
 							
 							// add the association (AttrDefn) to the resolved attribute array
 							attrArrResolved.add(lDOMProp);
-							attrMapResolved.put(lDOMProp.rdfIdentifier, lDOMProp);
 
 							// following needed to fixup choice and any assoc.valArr(AttrDefn) after all class components are found
 							if (isChoiceOrAny && ! isChoiceOrAnyDelimiter) {
 								if (! lChildClassArr.contains(lDOMClassComponent)) {
 									lChildClassArr.add(lDOMClassComponent);
 								}
-							}							
-							
-							// fixup the Property (AssocDefn)
-// deprecate							lProperty.identifier = lAssoc.identifier;
+							}
 							
 							// fixup the class associations (AttrDefn)
 							if (! isChoiceOrAny) {
@@ -1244,9 +1229,6 @@ public class LDDDOMParser extends Object
 				lDOMProp.valArr = updValArr;
 			}
 		}
-		
-//			if (lClass.identifier.compareTo("0001_NASA_PDS_1.disp.Display_Direction") == 0) printClassDebug ("4", "0001_NASA_PDS_1.disp.Display_Direction");
-//			printClassDebug ("5", "0001_NASA_PDS_1.disp.Display_Direction");
 		return;
 	}
 		
@@ -1286,7 +1268,6 @@ public class LDDDOMParser extends Object
 		// clone the USER or LDD attribute for use as a Resolved attribute
 		// returns rdfIdentifier = "TBD_rdfIdentifier"
 		String lRDFIdentifier = DMDocument.rdfPrefix + lDOMAttr.title + "." + DOMInfoModel.getNextUId();
-//		DOMAttr lNewDOMAttr = DOMInfoModel.cloneDOMAttr(lRDFIdentifier, lDOMAttr);
 		DOMAttr lNewDOMAttr = new DOMAttr ();
 		lNewDOMAttr.cloneAttr(lDOMAttr);
 		// update new attribute
@@ -1300,7 +1281,6 @@ public class LDDDOMParser extends Object
 		lNewDOMAttr.lddLocalIdentifier = lLocalIdentifier;
 		lNewDOMAttr.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lNewDOMAttr.nameSpaceIdNC, lNewDOMAttr.title);
 //		attrArrResolved.add(lNewAttr);
-//		attrMapResolved.put(lNewAttr.rdfIdentifier, lNewAttr);
 		lNewDOMAttr.lddUserAttribute = lDOMAttr; // actually this could be an LDD attribute
 		return lNewDOMAttr;
 	}
@@ -1585,19 +1565,18 @@ public class LDDDOMParser extends Object
 			DOMProp lDOMProp = (DOMProp) i.next();
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-			
-			if (DOMInfoModel.masterDOMAttrIdMap.containsKey(lDOMAttr.identifier)) {
-				// an ldd attribute is a duplicate of a master attribute; replace the master with the LDD version
-				System.out.println(">>warning - Found duplicate attribute - lDOMAttr.identifier:" + lDOMAttr.identifier);
-				if (DOMInfoModel.masterDOMAttrMap.containsKey(lDOMAttr.rdfIdentifier)) {
-					DOMInfoModel.masterDOMAttrMap.remove(lDOMAttr.rdfIdentifier);
-					System.out.println(">>warning - Found duplicate attribute - REPLACED - lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
-					System.out.println(">>error   - Found duplicate attribute - REPLACED Failed - lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
+				if (DOMInfoModel.masterDOMAttrIdMap.containsKey(lDOMAttr.identifier)) {
+					// an ldd attribute is a duplicate of a master attribute; replace the master with the LDD version
+					System.out.println(">>warning - Found duplicate attribute - lDOMAttr.identifier:" + lDOMAttr.identifier);
+					if (DOMInfoModel.masterDOMAttrMap.containsKey(lDOMAttr.rdfIdentifier)) {
+						DOMInfoModel.masterDOMAttrMap.remove(lDOMAttr.rdfIdentifier);
+						System.out.println(">>warning - Found duplicate attribute - REPLACED - lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
+						System.out.println(">>error   - Found duplicate attribute - REPLACED Failed - lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
+					}
+					DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
+				} else {
+					DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
 				}
-				DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
-			} else {
-				DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
-			}
 			}
 		}
 		//  build the remaining attribute maps and array
@@ -1663,8 +1642,44 @@ public class LDDDOMParser extends Object
 	
 	public void OverwriteFrom11179DataDict () {
 	// iterate through the LDD attribute array
+		for (Iterator<DOMProp> i = attrArrResolved.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+			
+//				System.out.println("\ndebug LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.identifier:" + lDOMAttr.identifier);
+//				System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.valueType:" + lDOMAttr.valueType);
+			
+				DOMAttr lLDDUserAttribute = lDOMAttr.lddUserAttribute;
+				if (lLDDUserAttribute == null) continue;
+				if (lDOMAttr.valueType.indexOf("TBD") != 0) continue;
+				lDOMAttr.isNilable = lLDDUserAttribute.isNilable;
+				lDOMAttr.valueType = lLDDUserAttribute.valueType;
+				lDOMAttr.minimum_value = lLDDUserAttribute.minimum_value;
+				lDOMAttr.maximum_value = lLDDUserAttribute.maximum_value;
+				lDOMAttr.minimum_characters = lLDDUserAttribute.minimum_characters;
+				lDOMAttr.maximum_characters = lLDDUserAttribute.maximum_characters;
+				lDOMAttr.pattern = lLDDUserAttribute.pattern;
+				lDOMAttr.unit_of_measure_type = lLDDUserAttribute.unit_of_measure_type;
+				lDOMAttr.default_unit_id = lLDDUserAttribute.default_unit_id;
+				lDOMAttr.valArr = lLDDUserAttribute.valArr;
+				lDOMAttr.permValueArr = lLDDUserAttribute.permValueArr;
+
+//				System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.identifier:" + lDOMAttr.identifier);
+//				System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.valueType:" + lDOMAttr.valueType);
+			}
+		}
+	}
+	
+	public void OverwriteFrom11179DataDictxxx () {
+	// iterate through the LDD attribute array
 		for (Iterator<DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
+			
+			System.out.println("\ndebug LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.identifier:" + lDOMAttr.identifier);
+			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.valueType:" + lDOMAttr.valueType);
+			
+			
 			DOMAttr lLDDUserAttribute = lDOMAttr.lddUserAttribute;
 			if (lLDDUserAttribute == null) continue;
 			lDOMAttr.isNilable = lLDDUserAttribute.isNilable;
@@ -1678,8 +1693,11 @@ public class LDDDOMParser extends Object
 			lDOMAttr.default_unit_id = lLDDUserAttribute.default_unit_id;
 			lDOMAttr.valArr = lLDDUserAttribute.valArr;
 			lDOMAttr.permValueArr = lLDDUserAttribute.permValueArr;
+			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.identifier:" + lDOMAttr.identifier);
+			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.valueType:" + lDOMAttr.valueType);
 		}
 	}
+	
 	
 	private int getIntValue(Element ele, String tagName) {
 		//in production application you would catch the exception
@@ -1938,23 +1956,17 @@ public class LDDDOMParser extends Object
 	
 	// finish copying in the values of the USER attribute
 	public void finishCloneOfLDDUserAttributes() {
-//		System.out.println("\ndebug finishCloneOfLDDUserAttributes");
 		for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			if (! lDOMAttr.isAttribute) continue;
 			if (! lDOMAttr.isFromLDD) continue;
-//			System.out.println("debug finishCloneOfLDDUserAttributes lAttr.identifier:" + lAttr.identifier);
 			if (lDOMAttr.lddUserAttribute == null) continue;
 			
-//			System.out.println("debug finishCloneOfLDDUserAttributes FINISH lAttr.lddUserAttribute.identifier:" + lAttr.lddUserAttribute.identifier);
-//			DOMInfoModel.finishCloneAttr(lDOMAttr, lDOMAttr.lddUserAttribute);
-//			DOMInfoModel.finishCloneAttr(lDOMAttr, lDOMAttr.lddUserAttribute);
 			lDOMAttr.lddUserAttribute.finishCloneAttr(lDOMAttr);
 		}
 	}
 	
 	public void validateLDDAttributes() {
-//		System.out.println("\ndebug validateLDDAttributes");
 		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			validateAttribute(lDOMAttr);
@@ -1962,7 +1974,6 @@ public class LDDDOMParser extends Object
 	}
 	
 	private void validateAttribute(DOMAttr lDOMAttr) {
-//		System.out.println("\ndebug validateAttribute lAttr.title:" + lAttr.title);
 		int numMatches = 0, maxMatches = 7;
 		DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lDOMAttr.valueType);
 		if (lDOMDataType == null) {
