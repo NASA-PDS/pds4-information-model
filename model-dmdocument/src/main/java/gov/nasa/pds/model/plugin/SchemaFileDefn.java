@@ -207,7 +207,7 @@ public class SchemaFileDefn {
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch_MOF";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
-			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + "_DOM" + ".JSON";	
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
 			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		} else {
@@ -218,7 +218,7 @@ public class SchemaFileDefn {
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xml";
 			relativeFileSpecModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
-			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + "_DOM" + ".JSON";
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id  + ".JSON";
 			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".pont";
 			relativeFileSpecReportTXT = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".txt";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id;			

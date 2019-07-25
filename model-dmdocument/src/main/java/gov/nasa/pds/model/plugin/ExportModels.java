@@ -68,10 +68,10 @@ public class ExportModels extends Object {
 			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 			
 			//  write label file for XML Schema and Schematron
-			if (mofFlag) {
+			//if (mofFlag) {
 			WriteCoreXMLSchemaLabel writeCoreXMLSchemaLabel = new WriteCoreXMLSchemaLabel ();
 			writeCoreXMLSchemaLabel.writeFile(lSchemaFileDefn);
-			}
+			//}
 //			writeCoreXMLSchemaLabel.writeFile(DMDocument.masterPDSSchemaFileDefn);
 			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 		}	
@@ -173,17 +173,24 @@ public class ExportModels extends Object {
 		// write the 11179 DD pins file
 		if (mofFlag) {
 		Write11179DDPinsFile write11179DDPinsFile = new Write11179DDPinsFile ();
-		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins+"_MOF");	
-		write11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN+"_MOF");
+        String oldFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins;
+        String newFileName = oldFileName.replace(".pins", "_MOF.pins");
+		write11179DDPinsFile.writePINSFile (newFileName);
+		oldFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN;
+		newFileName = oldFileName.replace(".pins", "_MOF.pins");
+		write11179DDPinsFile.writePINSFile (newFileName);
 		}
+
+
 		
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD Pins File Done");
 		
 		// write the 11179 MOF JSON file
-		if (mofFlag) {
-		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
-		}
+                // comment out - all changes are made in the DOM version only
+//		if (mofFlag) {
+//		Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
+//		write11179DDJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
+//		}
 		
 		// write the 11179 DOM JSON file - requires DOMInfoModel to be executed
 		if (domFlag) {
