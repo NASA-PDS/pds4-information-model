@@ -25,6 +25,7 @@
 
 # Temporary files
 *~
+/bin/
 
 # other stuff
 *.xpr

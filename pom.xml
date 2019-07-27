@@ -1,37 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2019, California Institute of Technology ("Caltech").
+U.S. Government sponsorship acknowledged.
 
-<!-- 
-  Copyright 2016-2018, by the California Institute of Technology.
-  ALL RIGHTS RESERVED. United States Government Sponsorship acknowledged.
-  Any commercial use must be negotiated with the Office of Technology 
-  Transfer at the California Institute of Technology.
+All rights reserved.
 
-  This software is subject to U. S. export control laws and regulations 
-  (22 C.F.R. 120-130 and 15 C.F.R. 730-774). To the extent that the software 
-  is subject to U.S. export control laws and regulations, the recipient has 
-  the responsibility to obtain export licenses or other export authority as 
-  may be required before exporting such information to foreign countries or 
-  providing access to foreign nationals.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+• Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+• Redistributions must reproduce the above copyright notice, this list of
+  conditions and the following disclaimer in the documentation and/or other
+  materials provided with the distribution.
+• Neither the name of Caltech nor its operating division, the Jet Propulsion
+  Laboratory, nor the names of its contributors may be used to endorse or
+  promote products derived from this software without specific prior written
+  permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
 -->
-
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>gov.nasa.pds</groupId>
-    <artifactId>2010</artifactId>
-    <version>0.0.0</version>
-  </parent>
 
-  <groupId>gov.nasa.pds.2010</groupId>
+  <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>9.1.0</version>
+  <version>9.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Model</name>
+  <name>PDS4 Information Model</name>
   <description>
-    The Model package describes the information model in use by PDS4.
+    The PDS4 Information Model package describes the information model in use by PDS4.
   </description>
-  <url>https://pds-cm.jpl.nasa.gov/pds4/model/</url>
+  <url>https://nasa-pds-incubator.github.io/model/</url>
 
   <licenses>
     <license>
@@ -48,6 +61,24 @@
   </modules>
 
   <developers>
+    <developer>
+      <name>Jordan Padams</name>
+      <id>jpadams</id>
+      <email>Jordan.H.Padams@jpl.nasa.gov</email>
+      <organization>NASA Jet Propulsion Laboratory</organization>
+      <roles>
+        <role>PDS Engineering Node Manager</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Galen Hollins</name>
+      <id>ghollins</id>
+      <email>Galen.Hollins@jpl.nasa.gov</email>
+      <organization>NASA Jet Propulsion Laboratory</organization>
+      <roles>
+        <role>PDS Engineering Node Development Lead</role>
+      </roles>
+    </developer>
     <developer>
       <name>Sean Hardman</name>
       <id>shardman</id>
@@ -97,23 +128,148 @@
     </contributor>
   </contributors>
 
-  <repositories>
-    <!-- Hosts the PDS and OODT artifacts. -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-      <id>pds-repo</id>
-      <name>PDS Maven Repository</name>
-      <url>https://pds-cm.jpl.nasa.gov/maven2</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+  
+  <scm>
+    <url>https://github.com/NASA-PDS-Incubator/pds4-information-model</url>
+    <connection>scm:git:git://github.com/NASA-PDS-Incubator/pds4-information-model.git</connection>
+    <developerConnection>scm:git:ssh://github.com:NASA-PDS-Incubator/pds4-information-model.git</developerConnection>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>snapshots-repo</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
       <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
+	<enabled>false</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+	<enabled>true</enabled>
       </snapshots>
     </repository>
   </repositories>
 
-  <!-- Project Information and Reports inherited from parent. -->
-  <reporting/>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile> 
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                  <goal>test-jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <source>1.8</source>
+              <failOnError>false</failOnError>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+                <execution>
+                    <id>sign-artifacts</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>sign</goal>
+                    </goals>
+                    <configuration>
+                        <gpgArguments>
+                            <arg>--pinentry-mode</arg>
+                            <arg>loopback</arg>
+                        </gpgArguments>
+                    </configuration>
+                </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependencies</report>
+              <report>issue-management</report>
+              <report>licenses</report>
+              <report>mailing-lists</report>
+              <report>team</report>
+              <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>changes-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <!--plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <failOnError>false</failOnError>
+        </configuration>
+      </plugin-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
 </project>
