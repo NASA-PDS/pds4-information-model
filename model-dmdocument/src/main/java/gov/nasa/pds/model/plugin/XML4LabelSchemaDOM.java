@@ -276,7 +276,7 @@ class XML4LabelSchemaDOM extends Object {
 			if (DMDocument.LDDToolFlag) {
 				for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 					String lNameSpaceIdNC = (String) i.next();
-					String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
+					String lVersionNSId = (DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
 					if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
 				}

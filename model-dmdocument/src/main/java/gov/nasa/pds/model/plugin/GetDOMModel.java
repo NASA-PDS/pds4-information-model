@@ -302,7 +302,7 @@ public class GetDOMModel extends Object {
 		DMDocument.masterDOMInfoModel.getSubClasses ();	
 	
 		// 016 - set the attribute isUsedInClass flag				
-		DMDocument.masterDOMInfoModel.setMasterAttrisUsedInClassFlag ();	
+		DMDocument.masterDOMInfoModel.setMasterAttrisUsedInClassFlag ();
 		
 		// 017 - overwrite master attributes from the 11179 DD
 		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
@@ -489,7 +489,7 @@ public class GetDOMModel extends Object {
 		System.out.println("\n>>info    - Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
-		System.out.println("\n>>info    - Master Unit Sizes           - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
+		System.out.println("\n>>info    - Master Unit Sizes          - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
 		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
 		System.out.println(" ");
