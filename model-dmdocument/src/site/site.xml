@@ -34,7 +34,7 @@
 <project name='Model DM-Document'>
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>https://pds-cm.jpl.nasa.gov/pds4/</href>
+    <href>https://github.com/NASA-PDS-Incubator/pds4-information-model/</href>
   </bannerLeft>
 
   <bannerRight>
@@ -45,7 +45,7 @@
 
   <body>
     <links>
-      <item name='Model DM-Document' href='https://pds-cm.jpl.nasa.gov/pds4/model/model-dmdocument/index.html' />
+      <item name='Model DM-Document' href='https://github.com/NASA-PDS-Incubator/pds4-information-model/${project.artifactId}/index.html' />
     </links>
 
     <menu name='Software Documentation'>

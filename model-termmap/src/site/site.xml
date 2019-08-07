@@ -34,7 +34,7 @@
 <project name="model-termmap">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>https://pds-cm.jpl.nasa.gov/</href>
+    <href>https://github.com/NASA-PDS-Incubator/pds4-information-model/</href>
   </bannerLeft>
 
   <bannerRight>
@@ -45,7 +45,7 @@
 
   <body>
     <links>
-      <item name="Model Terminological Mapping Tool" href="https://pds-cm.jpl.nasa.gov/pds4/model/model-termmap/index.html" />
+      <item name="Model Terminological Mapping Tool" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/${project.artifactId}/index.html" />
     </links>
 
     <menu name="Software Documentation">
@@ -55,8 +55,8 @@
     </menu>
 
     <menu name="Download">
-      <item name="Binary Package (tar.gz)" href="ftp://pds.nasa.gov/pub/toplevel/2010/model/termmap-${project.version}-bin.tar.gz"/>
-      <item name="Binary Package (zip)" href="ftp://pds.nasa.gov/pub/toplevel/2010/model/termmap-${project.version}-bin.zip"/>
+      <item name="Binary Package (tar.gz)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/termmap-${project.version}-bin.tar.gz"/>
+      <item name="Binary Package (zip)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/termmap-${project.version}-bin.zip"/>
     </menu>
 
     <menu ref="reports"/>
