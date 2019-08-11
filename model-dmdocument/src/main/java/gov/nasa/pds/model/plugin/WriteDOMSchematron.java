@@ -212,7 +212,7 @@ class WriteDOMSchematron extends Object {
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionNSId = (DMDocument.masterSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
+				String lVersionNSId = (DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
 				if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 				prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
