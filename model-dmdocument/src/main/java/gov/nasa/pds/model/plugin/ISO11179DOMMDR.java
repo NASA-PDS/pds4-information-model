@@ -42,7 +42,7 @@ class ISO11179DOMMDR extends Object {
 		valueChangeMap = new TreeMap <String, String> ();
 				
 		// set up permissible value / value meaning map; need identifier from map
-		ArrayList <InstDefn> lMaster11179DataDictArr = new ArrayList <InstDefn> (InfoModel.master11179DataDict.values());
+		ArrayList <InstDefn> lMaster11179DataDictArr = new ArrayList <InstDefn> (DOMInfoModel.master11179DataDict.values());
 		for (Iterator <InstDefn> i = lMaster11179DataDictArr.iterator(); i.hasNext();) {
 			InstDefn lInstDefn = (InstDefn) i.next();
 			if (lInstDefn.className.compareTo ("PermissibleValue") == 0) {
@@ -56,7 +56,7 @@ class ISO11179DOMMDR extends Object {
 					if (lValArr != null) {
 						String lVMId = lValArr.get(0);
 						String lVMIdExt = "ValueMeaning" + "." + lVMId; 
-						InstDefn lVMInst = (InstDefn) InfoModel.master11179DataDict.get(lVMIdExt);
+						InstDefn lVMInst = (InstDefn) DOMInfoModel.master11179DataDict.get(lVMIdExt);
 						if (lVMInst != null) {
 							lValArr = lVMInst.genSlotMap.get("description");
 							if (lValArr != null) {
@@ -113,7 +113,7 @@ class ISO11179DOMMDR extends Object {
 			lSuffix = DOMInfoModel.getAttrIdentifier (lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title);			
 			
 			lInstId = "DataElement" + "." + "DE" + "." + lSuffix;		
-			InstDefn lDEInst = InfoModel.master11179DataDict.get(lInstId);
+			InstDefn lDEInst = DOMInfoModel.master11179DataDict.get(lInstId);
 			if (lDEInst != null) {
 				lInstMap = lDEInst.genSlotMap;
 
@@ -146,13 +146,13 @@ class ISO11179DOMMDR extends Object {
 			boolean hasVD = false;
 			isEnumerated = false;
 			lInstId = "EnumeratedValueDomain" + "." + "EVD" + "." + lSuffix;
-			InstDefn lVDInst = InfoModel.master11179DataDict.get(lInstId);
+			InstDefn lVDInst = DOMInfoModel.master11179DataDict.get(lInstId);
 			if (lAttr.isEnumerated && lVDInst != null) {
 				hasVD = true;
 				isEnumerated = true;
 			} else {
 				lInstId = "NonEnumeratedValueDomain" + "." + "NEVD" + "." + lSuffix;
-				lVDInst = InfoModel.master11179DataDict.get(lInstId);
+				lVDInst = DOMInfoModel.master11179DataDict.get(lInstId);
 				if (lVDInst != null) {
 					hasVD = true;
 				}
@@ -233,7 +233,7 @@ class ISO11179DOMMDR extends Object {
 //							System.out.println("debug OverwriteFrom11179DataDict - get the permissible value meanings - lDOMPermVal.value:" + lDOMPermVal.value);
 							
 							// title:vm.0001_NASA_PDS_1.pds.DD_Class_Full.steward_id.111209
-							String lKey = "pv." + InfoModel.getAttrIdentifier(lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title) + "." + lDOMPermVal.value;
+							String lKey = "pv." + DOMInfoModel.getAttrIdentifier(lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title) + "." + lDOMPermVal.value;
 							String lValueMeaning = hashCodedValueMeaningMap.get(lKey);
 //							System.out.println("debug OverwriteFrom11179DataDict - get the permissible value meanings - - lKey:" + lKey);
 							if (lValueMeaning != null) {
@@ -252,9 +252,10 @@ class ISO11179DOMMDR extends Object {
 		// iterate through the associations
 		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
-			String lSuffix = InfoModel.getAttrIdentifier (lProp.classNameSpaceIdNC, lProp.parentClassTitle, lProp.nameSpaceIdNC, lProp.title);			
-			String lInstId = "Property" + "." + "PR" + "." + lSuffix;	
-			InstDefn lPRInst = InfoModel.master11179DataDict.get(lInstId);
+//			String lSuffix = DOMInfoModel.getAttrIdentifier (lProp.classNameSpaceIdNC, lProp.parentClassTitle, lProp.nameSpaceIdNC, lProp.title);			
+//			String lInstId = "Property" + "." + "PR" + "." + lSuffix;	
+			String lInstId = "Property" + "." + "PR" + "." + lProp.identifier;	
+			InstDefn lPRInst = DOMInfoModel.master11179DataDict.get(lInstId);
 			if (lPRInst == null) continue;
 			HashMap <String, ArrayList<String>> lInstMap = lPRInst.genSlotMap;
 			if (lInstMap == null) continue;

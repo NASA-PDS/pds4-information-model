@@ -103,6 +103,9 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, DOMUnit> masterDOMUnitMap = new TreeMap <String, DOMUnit> ();
 	static TreeMap <String, DOMUnit> masterDOMUnitTitleMap = new TreeMap <String, DOMUnit> ();
 	
+	// global 11179 data dictionary
+	static TreeMap <String, InstDefn> master11179DataDict;
+	
 	// global UseCases
 	static ArrayList <DOMUseCase> masterDOMUseCaseArr = new ArrayList <DOMUseCase> ();
 	static TreeMap <String, DOMUseCase> masterDOMUseCaseMap = new TreeMap <String, DOMUseCase> ();
