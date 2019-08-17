@@ -149,7 +149,7 @@ public class DMDocument extends Object {
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean exportDOMFlag = true;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
-	static boolean exportMOFFlag = true;
+	static boolean exportMOFFlag = false;
 	static boolean pds4ModelFlag = true;
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
@@ -1194,7 +1194,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Array.Local_Internal_Reference", "pds", "Array", "pds", "Local_Internal_Reference", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth Based", "pds", "Instrument_Host", "pds", "type", "Earth Based", false));
-//		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth-based", "pds", "Instrument_Host", "pds", "type", "Earth-based", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Instrument_Host.type.Earth-based", "pds", "Instrument_Host", "pds", "type", "Earth-based", false));
 
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds", "type", "", false));                            
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));                            
