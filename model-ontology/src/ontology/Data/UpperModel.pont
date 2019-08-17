@@ -1,4 +1,4 @@
-; Sat Aug 17 12:40:27 PDT 2019
+; Sat Aug 17 15:18:05 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5587,7 +5587,7 @@
 	(multislot purpose
 ;+		(comment "The purpose attribute provides an indication of the primary purpose of the observations included.")
 		(type STRING)
-;+		(value "Science" "Navigation" "Calibration" "Checkout" "Engineering" "Observation Geometry")
+;+		(value "Science" "Navigation" "Calibration" "Checkout" "Engineering" "Observation Geometry" "Supporting Observation")
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
