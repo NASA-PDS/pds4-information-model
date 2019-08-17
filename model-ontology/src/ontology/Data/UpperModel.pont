@@ -1,4 +1,4 @@
-; Sat Aug 17 11:28:21 PDT 2019
+; Sat Aug 17 12:40:27 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9729,7 +9729,7 @@
 	(single-slot checksum_type
 ;+		(comment "The checksum type attribute provides the name of the checksum algorithm used to calculate the checksum value.")
 		(type STRING)
-;+		(value "MD5Deep 4.n")
+;+		(value "MD5Deep 4.n" "MD5")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot internal_reference

@@ -1174,6 +1174,7 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Update", "pds", "Update", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));	
 		deprecatedObjects2.add(new DeprecatedDefn ("Update.update_purpose", "pds", "Update", "pds", "update_purpose", "", false));	
+		deprecatedObjects2.add(new DeprecatedDefn ("Information_Package_Component_Deep_Archive.checksum_type", "pds", "Information_Package_Component_Deep_Archive", "pds", "checksum_type", "MD5Deep 4.n", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Airborne", "pds", "Airborne", "", "", "", false));
 //		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Aircraft", false));
