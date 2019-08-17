@@ -1,4 +1,4 @@
-; Sat Aug 17 12:46:41 PDT 2019
+; Sat Aug 17 14:56:54 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10314,7 +10314,7 @@
 	(administrationRecord [DD_1.12.0.0])
 	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Science_Facets.pds.wavelength_range")
 	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
+	(isNillable "true")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representing [EVD.0001_NASA_PDS_1.pds.Science_Facets.pds.wavelength_range])
