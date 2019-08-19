@@ -1,4 +1,4 @@
-; Sat Aug 17 15:18:05 PDT 2019
+; Sun Aug 18 16:24:56 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12936,6 +12936,22 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass UTF8_Text_Collapsed "The UTF8_Text_Collapsed class indicates an unlimited length, whitespace-collapsed text string constrained to the UTF-8 character encoding."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:token")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
