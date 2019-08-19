@@ -1,4 +1,4 @@
-; Sat Aug 17 15:23:22 PDT 2019
+; Mon Aug 19 09:17:32 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -805,6 +805,8 @@
 		[EVD.0001_NASA_PDS_1.pds.UTF8_Short_String_Preserved.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.UTF8_String.pds.minimum_characters]
 		[EVD.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type]
+		[EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters]
+		[EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.character_constraint]
 		[NEVD.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.maximum_characters]
 		[NEVD.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.maximum_value]
@@ -1062,6 +1064,9 @@
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
@@ -12577,6 +12582,48 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
 	(versionIdentifier "1.12"))
 
+([DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(versionIdentifier "1.12"))
+
 ([DE.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  DataElement
 
 	(administrationRecord [DD_1.12.0.0])
@@ -13905,6 +13952,34 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(versionIdentifier "1.12"))
+
+([DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  DataElement
+
+	(administrationRecord [DD_1.12.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
 	(versionIdentifier "1.12"))
 
 ([DE.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.character_constraint] of  DataElement
@@ -15645,6 +15720,8 @@
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.title]
 		[DE.0001_NASA_PDS_1.pds.UTF8_Short_String_Collapsed.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.UTF8_Short_String_Preserved.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters]
+		[DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type]
 		[DE.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Current.pds.type]
@@ -15652,6 +15729,9 @@
 		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Energy.pds.unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type]
+		[DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.specified_unit_id]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id]
@@ -19998,6 +20078,21 @@
 	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  Definition
+
+	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  Definition
+
+	(definitionText "The type attribute provides a classification for the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  Definition
+
+	(definitionText "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  Definition
 
 	(definitionText "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
@@ -20469,6 +20564,16 @@
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type] of  Definition
+
+	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  Definition
+
+	(definitionText "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  Definition
 
 	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 	(isPreferred TRUE))
@@ -24948,6 +25053,21 @@
 	(designationName "unit_id")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  Designation
+
+	(designationName "specified_unit_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  Designation
+
+	(designationName "type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  Designation
+
+	(designationName "unit_id")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  Designation
 
 	(designationName "specified_unit_id")
@@ -25419,6 +25539,16 @@
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type] of  Designation
+
+	(designationName "xml_schema_base_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  Designation
+
+	(designationName "minimum_characters")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  Designation
 
 	(designationName "xml_schema_base_type")
 	(isPreferred TRUE))
@@ -32751,6 +32881,72 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.12"))
 
+([EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id")
+	(datatype [UTF8_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type.68914107])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id.1375474215])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id")
+	(datatype [UTF8_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
 ([EVD.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.12.0.0])
@@ -34677,6 +34873,50 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters.49])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "255")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "1")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.12"))
+
+([EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.12.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type.1035609096])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "255")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "1")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -39625,7 +39865,7 @@
 
 	(administrationRecord [DD_1.12.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.External_Reference.pds.reference_text")
-	(datatype [ASCII_Text_Preserved])
+	(datatype [UTF8_Text_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -57792,6 +58032,33 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
 
+([PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
 ([PR.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  Property
 
 	(administrationRecord [DD_1.12.0.0])
@@ -58670,6 +58937,24 @@
 	(administrationRecord [DD_1.12.0.0])
 	(classOrder "1020")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.12"))
+
+([PR.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  Property
+
+	(administrationRecord [DD_1.12.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.12"))
@@ -68900,6 +69185,30 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354])
 	(value "Hz"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215])
+	(value "km**3s**-2"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type.68914107] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type.68914107])
+	(value "Gmass"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id.1375474215] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id.1375474215])
+	(value "km**3s**-2"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id.109] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70084,6 +70393,22 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type.1035609096])
 	(value "xsd:token"))
 
+([pv.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters.49] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters.49])
+	(value "1"))
+
+([pv.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type.1035609096] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type.1035609096])
+	(value "xsd:token"))
+
 ([pv.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.minimum_characters.49] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70389,6 +70714,9 @@
 	(measureName "TBD_unit_of_measure_type")
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
+
+([TBD_value_type] of  %3AUNDEFINED
+)
 
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
 
@@ -76032,6 +76360,27 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -76695,6 +77044,20 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type])
 	(designation [DES.0001_NASA_PDS_1.pds.UTF8_String.pds.xml_schema_base_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(designation [DES.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
+	(designation [DES.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.character_constraint] of  TerminologicalEntry
@@ -77401,6 +77764,13 @@
 	(precision "TBD_precision")
 	(unitId "Hz"))
 
+([Units_of_Gmass] of  UnitOfMeasure
+
+	(defaultUnitId "km**3s**-2")
+	(measureName "Units_of_Gmass")
+	(precision "TBD_precision")
+	(unitId "km**3s**-2"))
+
 ([Units_of_Length] of  UnitOfMeasure
 
 	(defaultUnitId "m")
@@ -77702,6 +78072,10 @@
 ([UTF8_String] of  DataType
 
 	(dataTypeName "UTF8_String"))
+
+([UTF8_Text_Collapsed] of  DataType
+
+	(dataTypeName "UTF8_Text_Collapsed"))
 
 ([UTF8_Text_Preserved] of  DataType
 
@@ -83458,7 +83832,7 @@
 ([vm.0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.purpose.1300673855] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A science observation that was acquired to provide support for another science observation (e.g., a context image for a very high resolution observation, or an image intended to support an observation by a spectral imager).")
+	(description "A science observation that was acquired to provide support for another science observation %28e.g., a context image for a very high resolution observation, or an image intended to support an observation by a spectral imager%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Primary_Result_Summary.pds.purpose.1601548646] of  ValueMeaning
@@ -85039,6 +85413,24 @@
 	(description "The abbreviated unit for Units_of_Frequency is Hz")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Gmass maximum, minimum, and permissible values are given in the units km**3s**-2.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.type.68914107] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Gmass gives the value of the product of the universal gravitational constant, G, and the mass of one specified body. The form is (Units_of_Length)**3/(Units_of_Time)**2")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.unit_id.1375474215] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Units_of_Gmass maximum, minimum, and permissible values are given in the units km**3s**-2.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Units_of_Length.pds.specified_unit_id.109] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -85925,6 +86317,18 @@
 
 	(beginDate "2009-06-09")
 	(description "UTF8_String must be normalized.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.minimum_characters.49] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values of UTF8_Text_Collapsed must have at least 1 character")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.UTF8_Text_Collapsed.pds.xml_schema_base_type.1035609096] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "UTF8_Text_Collapsed has an XML schema base type of xsd:token")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.UTF8_Text_Preserved.pds.minimum_characters.49] of  ValueMeaning

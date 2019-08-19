@@ -1,4 +1,4 @@
-; Sat Aug 17 15:18:05 PDT 2019
+; Mon Aug 19 08:59:56 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11402,6 +11402,28 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Units_of_Gmass "Units_of_Gmass is a product of the universal gravitational constant and the mass of one specified body"
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Gmass")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "km**3s**-2")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "km**3s**-2")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
 (defclass Data_Object "The Data Object class defines a thing about which almost nothing is known."
 	(is-a USER)
 	(role abstract))
@@ -12936,6 +12958,22 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass UTF8_Text_Collapsed "The UTF8_Text_Collapsed class indicates an unlimited length, whitespace-collapsed text string constrained to the UTF-8 character encoding."
+	(is-a Character_Data_Type)
+	(role concrete)
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:token")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
