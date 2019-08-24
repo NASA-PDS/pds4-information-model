@@ -68,7 +68,6 @@ class WriteDOMSchematron extends Object {
 		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
-						
 			if (lSchemaFileDefn.isMaster) {
 				if (lRule.isMissionOnly) continue;
 				if (! (lRule.alwaysInclude
@@ -199,6 +198,7 @@ class WriteDOMSchematron extends Object {
 		prSchematron.println("");		   
 		prSchematron.println("  <sch:title>Schematron using XPath 2.0</sch:title>");
 		prSchematron.println("");
+		prSchematron.println("  <sch:ns uri=\"http://www.w3.org/2001/XMLSchema-instance\"" + " prefix=\"xsi\"/>");
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
 			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
