@@ -155,6 +155,13 @@ class WriteDOMSchematron extends Object {
 						prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\">");
 						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
 					}
+				} else if (lAssert.assertType.compareTo("REPORT") == 0) {
+					if (lAssert.assertMsg.indexOf("TBD") == 0) {
+						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\"/>");						
+					} else {
+						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\">");
+						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
+					}
 				} else if (lAssert.assertType.compareTo("EVERY") == 0) {
 					String lDel = "";
 					prSchematron.print("      <sch:assert test=\"" + "every $ref in (" + lRule.attrNameSpaceNC + ":" + lRule.attrTitle + ") satisfies $ref = (");
