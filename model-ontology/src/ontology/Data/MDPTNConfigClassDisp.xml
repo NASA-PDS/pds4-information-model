@@ -203,9 +203,6 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Ingest_LDD</Field> <Field>oMSR</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Association</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Association_External</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Associate_External_Class</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Context_Value_List</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Attribute</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Attribute2</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Attribute_Full</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
