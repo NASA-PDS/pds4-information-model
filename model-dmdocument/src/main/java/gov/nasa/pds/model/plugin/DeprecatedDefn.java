@@ -27,6 +27,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
+
 package gov.nasa.pds.model.plugin; 
 public class DeprecatedDefn {
 	String identifier;
@@ -52,16 +53,16 @@ public class DeprecatedDefn {
 		isAttribute = false;
 		isUnitId = lIsUnitId;
 		if (value.compareTo("") != 0) {
-			identifier = InfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
+			identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
 			isValue = true;
 			isAttribute = true;
 			context = classNameSpaceIdNC + ":" + lClassName;
 		} else if (lAttrName.compareTo("") != 0) {
-			identifier = InfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
+			identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
 			isAttribute = true;
 			context = classNameSpaceIdNC + ":" + lClassName + "/" + lAttrNameSpaceIdNC + ":" + lAttrName;
 		} else {
-			identifier = InfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
+			identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
 			context = classNameSpaceIdNC + ":" + lClassName;
 		}
 	} 

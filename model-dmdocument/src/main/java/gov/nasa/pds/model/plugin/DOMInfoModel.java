@@ -146,20 +146,11 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, String> decID2DECTitleMap;
 	static TreeMap <String, String> decTitle2DECIDMap;
 	
-	static PDSObjDefn LDDToolSingletonClass; // Class for LDD singleton attributes (Discipline or Mission)
-	// 77775
-//	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
-	
 	// values and value meaning
 	static TreeMap <String, PermValueDefn> masterValueMeaningMap;
 
 	// Attribute Namespace Resolution Map
 	static TreeMap <String, String> attrNamespaceResolutionMap;
-	
-	// Local Classes	
-	ArrayList <PDSObjDefn> objArr;
-	HashMap <String, PDSObjDefn> objDict;
-	HashMap <String, AttrDefn> attrDict;
 	
 //  Parsed Classes, Props, and Attributes
 	static ArrayList <DOMClass> parsedClassArr;
@@ -874,52 +865,6 @@ public abstract class DOMInfoModel extends Object {
 		return null;
 	}
 	
-	/**
-	*  Return all attributes in a class - recurse down through all associations.
-	*/
-	public static ArrayList <AttrDefn> getAllAttrRecurse (ArrayList <AttrDefn> lAttrArr, ArrayList <PDSObjDefn> visitedClass, PDSObjDefn lClass) {
-		//	get all local attributes
-		for (Iterator<AttrDefn> i = lClass.ownedAttribute.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (! lAttrArr.contains(lAttr)) {
-				lAttrArr.add(lAttr);
-			}
-		} 	
-		
-		//	get all inherited attributes
-		for (Iterator<AttrDefn> i = lClass.inheritedAttribute.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			if (! lAttrArr.contains(lAttr)) {
-				lAttrArr.add(lAttr);
-			}
-		} 	
-		
-		//get all local associations
-		for (Iterator<AttrDefn> i = lClass.ownedAssociation.iterator(); i.hasNext();) {
-			AttrDefn lAssoc = (AttrDefn) i.next();
-			for (Iterator<PDSObjDefn> j = lAssoc.valClassArr.iterator(); j.hasNext();) {
-				PDSObjDefn lCompClass = j.next();
-				if (! visitedClass.contains(lCompClass)) {
-					visitedClass.add(lCompClass);
-					getAllAttrRecurse (lAttrArr, visitedClass, lCompClass);
-				}
-			}
-		}
-		
-		//get all inherited associations
-		for (Iterator<AttrDefn> i = lClass.inheritedAssociation.iterator(); i.hasNext();) {
-			AttrDefn lAssoc = (AttrDefn) i.next();
-			for (Iterator<PDSObjDefn> j = lAssoc.valClassArr.iterator(); j.hasNext();) {
-				PDSObjDefn lCompClass = j.next();
-				if (! visitedClass.contains(lCompClass)) {
-					visitedClass.add(lCompClass);
-					getAllAttrRecurse (lAttrArr, visitedClass, lCompClass);
-				}
-			}
-		}
-		return lAttrArr;
-	}
-		
 	public static ArrayList <String> getAllRefAssocType (ArrayList <AttrDefn> lAttrArr) {		
 		ArrayList <String> lRefTypeArr = new ArrayList <String> ();
 		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
@@ -1156,19 +1101,6 @@ public abstract class DOMInfoModel extends Object {
 	}
 	
 //======================= Master Sorts =============================================================================
-	
-	static public ArrayList <AttrDefn> getSortedAlphaClassAssocAttrArr (PDSObjDefn lClass) {
-		TreeMap <String, AttrDefn> lAttrMapOrdered = new TreeMap <String, AttrDefn> ();
-		ArrayList<AttrDefn> lAttrArr = new ArrayList<AttrDefn>();
-		lAttrArr.addAll(lClass.ownedAttribute);
-		lAttrArr.addAll(lClass.inheritedAttribute);
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = (AttrDefn) i.next();
-			lAttrMapOrdered.put(lAttr.title, lAttr);
-		}
-		ArrayList<AttrDefn> lAttrArrOrdered = new ArrayList<AttrDefn> (lAttrMapOrdered.values()); 
-		return lAttrArrOrdered;
-	}
 	
 	static public ArrayList <DOMAssocClassDefn> getSortedAlphaClassAssocClassArr (DOMClass lClass) {
 		TreeMap <String, DOMAssocClassDefn> lAssocClassGroupMap = new TreeMap <String, DOMAssocClassDefn> ();

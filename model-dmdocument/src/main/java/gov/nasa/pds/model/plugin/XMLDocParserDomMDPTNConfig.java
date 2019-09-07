@@ -54,7 +54,6 @@ public class XMLDocParserDomMDPTNConfig extends Object
 	
 	//No generics
 	Document dom;
-	AttrDefn lAttrMaster;				
 	String lFullName;				
 	String lLastModificationDateTime;				
 //	String lPds4MergeFlag;				
