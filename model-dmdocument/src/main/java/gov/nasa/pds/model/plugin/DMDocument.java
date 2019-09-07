@@ -27,6 +27,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
+
 package gov.nasa.pds.model.plugin; 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -82,7 +83,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "1.18.1";
+	static String DMDocVersionId  = "1.19.1";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -108,6 +109,8 @@ public class DMDocument extends Object {
 	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
 	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
 	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
+	// 1.13.0.0 - 1.19 - 1.19 - Build 10a
+	// 1.14.0.0 - 1.20 - 1.20 - Build 10b
 	
 	// Actual    VID    MOD
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
@@ -129,11 +132,13 @@ public class DMDocument extends Object {
 	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
 	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
 	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
+	// 1.13.0.0 - 1.19 - 1.19 - Build 10a
+	// 1.14.0.0 - 1.20 - 1.20 - Build 10b
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.5";
+	static String LDDToolVersionId  = "0.2.2.6";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -284,7 +289,6 @@ public class DMDocument extends Object {
 		PDSOptionalFlag = false;
 		LDDToolFlag = false;
 		// Secondary LDD Models
-		LDDModelArr = new ArrayList <LDDParser> ();
 		LDDDOMModelArr = new ArrayList <LDDDOMParser> ();
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
@@ -1066,56 +1070,6 @@ public class DMDocument extends Object {
 		  }
 		  return buf.toString();
 		}
-	
-	/**
-	 *   get the disposition of a class (from Protege)
-	 */
-	static public PDSObjDefn getClassDisposition (PDSObjDefn lClass, String lClassName, boolean isFromProtege) {
-		// get disposition identifier - if isFromProtege, then the identifier is set else it is not since it is from an LDD.
-		String lDispId = lClass.subModelId + "." + registrationAuthorityIdentifierValue + "." + lClassName;
-		if (! isFromProtege) lDispId = "LDD_" + lDispId;
-		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
-		if (lDispDefn != null) {
-			lClass.used = lDispDefn.used;
-			lClass.section = lDispDefn.section;
-			String lDisp = lDispDefn.disposition;
-			lClass.steward = lDispDefn.intSteward;
-			String lClassNameSpaceIdNC = lDispDefn.intNSId;
-			lClass.nameSpaceIdNC = lClassNameSpaceIdNC;
-			lClass.nameSpaceId = lClassNameSpaceIdNC + ":";
-			
-			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
-			if (isFromProtege) lClass.identifier = InfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
-			lClass.isMasterClass = true;
-			if (lDisp.indexOf("V") > -1) {
-				lClass.isVacuous = true;
-			}
-			if (lDisp.indexOf("S") > -1) {
-				lClass.isSchema1Class = true;
-			}
-			if (lDisp.indexOf("R") > -1) {
-				lClass.isRegistryClass = true;
-			}
-			if (lDisp.indexOf("T") > -1) {
-				lClass.isTDO = true;
-			}
-			if (lDisp.indexOf("d") > -1) {
-				lClass.isDataType = true;
-			}
-			if (lDisp.indexOf("u") > -1) {
-				lClass.isUnitOfMeasure = true;
-			}
-/*			if (lDisp.indexOf("E") > -1) {
-				lClass.versionId = "1.1.0.0";
-			} else if (lDisp.indexOf("D") > -1) {
-				lClass.versionId = "1.2.0.0";
-			} else if (lDisp.indexOf("F") > -1) {
-				lClass.versionId = "1.n.0.0";
-			} */
-			return lClass;
-		}
-		return null;
-	}	
 	
 	/**
 	 *   get the disposition of a class (from Protege)

@@ -819,14 +819,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		return false;
 	}
 	
-	// clone an array list
-	static public ArrayList <DOMClass> clonePDSObjDefnArrayList (ArrayList <DOMClass> lArrayList) {
-		ArrayList <DOMClass> newArrayList = new ArrayList <DOMClass> ();
-		newArrayList.addAll(lArrayList);								
-		return newArrayList;
-	}	
-	
-	
 	// 014 - Get the subClass array
 	public void getSubClasses () {
 		for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {			// get the target class
@@ -1452,42 +1444,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				}
 			}
 			return;
-		}
-		
-		static public AttrDefn getPossibleRestrictedAttribute (AttrDefn lAttr, PDSObjDefn lSuperClass) {
-			//	find the attribute by title in the super class.
-
-			for (Iterator<AttrDefn> i = lSuperClass.ownedAttribute.iterator(); i.hasNext();) {
-				AttrDefn lSuperAttr = (AttrDefn) i.next();
-				if ((lSuperAttr.title.compareTo(lAttr.title) == 0)) {
-					return lSuperAttr;
-				}
-			}
-			for (Iterator<AttrDefn> i = lSuperClass.inheritedAttribute.iterator(); i.hasNext();) {
-				AttrDefn lSuperAttr = (AttrDefn) i.next();
-				if ((lSuperAttr.title.compareTo(lAttr.title) == 0)) {
-					return lSuperAttr;
-				}
-			}
-			return null;
-		}
-		
-		static public AttrDefn getPossibleRestrictedAssociation (AttrDefn lAttr, PDSObjDefn lSuperClass) {
-			//	find the attribute by title in the super class.
-
-			for (Iterator<AttrDefn> i = lSuperClass.ownedAssociation.iterator(); i.hasNext();) {
-				AttrDefn lSuperAttr = (AttrDefn) i.next();
-				if ((lSuperAttr.title.compareTo(lAttr.title) == 0)) {
-					return lSuperAttr;
-				}
-			}
-			for (Iterator<AttrDefn> i = lSuperClass.inheritedAssociation.iterator(); i.hasNext();) {
-				AttrDefn lSuperAttr = (AttrDefn) i.next();
-				if ((lSuperAttr.title.compareTo(lAttr.title) == 0)) {
-					return lSuperAttr;
-				}
-			}
-			return null;
 		}
 		
 		public void dumpClassVersionIds () {

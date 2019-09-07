@@ -396,8 +396,6 @@ public class GetDOMModel extends Object {
 		}
 		
 		// 035 - generate the schematron rules (does not include custom rules)
-//		GenSchematronRules genSchematronRules = new GenSchematronRules ();
-//		genSchematronRules.genSchematronRules();
 		GenDOMRules lGenDOMRules = new GenDOMRules ();
 		lGenDOMRules.genSchematronRules();
 					
