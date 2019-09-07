@@ -715,13 +715,13 @@ public class LDDDOMParser extends Object
 					DOMInfoModel.resetClassOrder();
 					
 					// get associations for the respective attributes
-					getAssociations(lDOMClass, el);
+					getAssociations(lSchemaFileDefn, lDOMClass, el);
 				}
 			}
 		}
 	}	
 
-	private void getAssociations (DOMClass lDOMClass, Element ele) {		
+	private void getAssociations (SchemaFileDefn lSchemaFileDefn, DOMClass lDOMClass, Element ele) {		
 		// start processing
 		ArrayList <Element> lAssocElemArr = getAssocElemFromClassDefn (ele);
 		for (Iterator <Element> i = lAssocElemArr.iterator(); i.hasNext();) {
@@ -850,6 +850,65 @@ public class LDDDOMParser extends Object
 						isGroupDelimter = false;
 						isGroupContent = true;
 					}
+				}
+			} else if (lAssocElem.getNodeName().compareTo("DD_Associate_External_Class") == 0) { 
+
+				// get common attributes
+				String lnamespace_id = getTextValue(lAssocElem,"namespace_id");
+				String lclass_name = getTextValue(lAssocElem,"class_name");
+//				String lmaximum_occurrences = getTextValue(lAssocElem,"maximum_occurrences");	
+//				String lminimum_occurrences = getTextValue(lAssocElem,"minimum_occurrences");
+				Node lValueListNode = lAssocElem.getFirstChild();
+				while (lValueListNode != null)
+				{
+					if ((lValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+						(lValueListNode.getNodeName().indexOf("DD_Context_Value_List") == 0)) {
+						Element lValueListElement = (Element)lValueListNode;
+						String lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
+						DOMRule lDOMRule = new DOMRule (lnamespace_id + ":" + lclass_name + "." + lXpath);	
+						lDOMRule.setRDFIdentifier();	
+						if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
+							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
+							ruleArr.add(lDOMRule);					
+							
+							lDOMRule.xpath = lXpath;
+							lDOMRule.attrTitle = lXpath;		
+							lDOMRule.attrNameSpaceNC = lnamespace_id;		
+							lDOMRule.classTitle = lclass_name;		
+							lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+							lDOMRule.classSteward = lSchemaFileDefn.nameSpaceIdNC;
+							String lAttrId = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
+							int pvCount = 0;
+							String lAssertMsgValueList = "";
+							DOMAssert lDOMAssert = new DOMAssert (lAttrId);	
+							lDOMAssert.assertType = "EVERY";
+							String lDel = "";
+							Node lPermValueListNode = lValueListElement.getFirstChild();
+							while (lPermValueListNode != null)
+							{
+								if ((lPermValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+									(lPermValueListNode.getNodeName().indexOf("DD_Permissible_Value") == 0)) {
+									Element lPermValueListElement = (Element)lPermValueListNode;
+									String lValue = getTextValue(lPermValueListElement,"value");	
+									String lValueMeaning = getTextValue(lPermValueListElement,"value_meaning");
+									lDOMAssert.testValArr.add(lValue);
+									pvCount++;
+									String lValString = lDel + "'" + lValue + "'";					
+									lDel = ", ";					
+									lAssertMsgValueList += lValString;	
+								}	
+								lPermValueListNode = lPermValueListNode.getNextSibling();
+							}
+							if (pvCount >= 1) {
+								String assertMsgPre = " must be equal to one of the following values"; 
+								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
+								lDOMAssert.assertStmt =  "";	
+								lDOMAssert.assertMsg =  assertMsgPre + " " + lAssertMsgValueList + ".";	;
+								lDOMRule.assertArr.add(lDOMAssert);
+							}
+						}
+					}
+					lValueListNode = lValueListNode.getNextSibling();
 				}
 			}
 		}
@@ -1501,13 +1560,12 @@ public class LDDDOMParser extends Object
 	}
 			
 	private ArrayList <Element> getAssocElemFromClassDefn (Element elem) {
-//		System.out.println("\ndebug getAssocFromClassDefn");
 		ArrayList <Element> lAssocElemArr = new ArrayList <Element> ();
-
 		Node assocElement = elem.getFirstChild();
 		while (assocElement != null)
 		{
-			if ((assocElement.getNodeType() == Node.ELEMENT_NODE) && (assocElement.getNodeName().indexOf("DD_Association") == 0)) {
+			if ((assocElement.getNodeType() == Node.ELEMENT_NODE) && 
+				((assocElement.getNodeName().indexOf("DD_Association") == 0) || (assocElement.getNodeName().indexOf("DD_Associate_External_Class") == 0))) {
 				lAssocElemArr.add((Element)assocElement);
 			}
 			assocElement = assocElement.getNextSibling();
@@ -1649,13 +1707,11 @@ public class LDDDOMParser extends Object
 		// copy in the LDD Schematron Rules 
 		for (Iterator <DOMRule> i = ruleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
-//			System.out.println("Debug - Adding to Master - Rule - lRule.identifier:" + lRule.identifier);
 			DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
 			DOMInfoModel.masterDOMRuleArr.add(lRule);
-			lRule.setRDFIdentifier();
 			DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 		}		
-
+		
 		// merge in the master rules
 		for (Iterator <DOMRule> i = tempSchematronRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
@@ -1676,10 +1732,6 @@ public class LDDDOMParser extends Object
 			DOMProp lDOMProp = (DOMProp) i.next();
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-			
-//				System.out.println("\ndebug LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.identifier:" + lDOMAttr.identifier);
-//				System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.valueType:" + lDOMAttr.valueType);
-			
 				DOMAttr lLDDUserAttribute = lDOMAttr.lddUserAttribute;
 				if (lLDDUserAttribute == null) continue;
 				if (lDOMAttr.valueType.indexOf("TBD") != 0) continue;
@@ -2084,27 +2136,6 @@ public class LDDDOMParser extends Object
 		}
 		if (lCardMaxI < lCardMinI) {
 			lddErrorMsg.add("   ERROR    Association: " + lLocalIdentifier + " - Maximum occurrences is less than minimum occurrences");
-		}
-	}
-	
-	private void validateAssociationCardinalities(AssocDefn lAssoc, String lMinCard, String lMaxCard) {
-		if (DMDocument.isInteger(lMinCard)) {
-			lAssoc.cardMin = lMinCard;
-			lAssoc.cardMinI = new Integer(lMinCard);
-		} else {
-			lddErrorMsg.add("   ERROR    Association: " + lAssoc.localIdentifier + " - Minimum occurrences is invalid: " + lMinCard);
-		}
-		if ((lMaxCard.compareTo("*") == 0) || (lMaxCard.compareTo("unbounded") == 0)) {
-			lAssoc.cardMax = "*";
-			lAssoc.cardMaxI = 9999999;
-		} else if (DMDocument.isInteger(lMaxCard)) {
-			lAssoc.cardMax = lMaxCard;
-			lAssoc.cardMaxI = new Integer(lMaxCard);
-		} else {
-			lddErrorMsg.add("   ERROR    Association: " + lAssoc.localIdentifier + " - Maximum occurrences is invalid: " + lMaxCard);
-		}
-		if (lAssoc.cardMaxI < lAssoc.cardMinI) {
-			lddErrorMsg.add("   ERROR    Association: " + lAssoc.localIdentifier + " - Maximum occurrences is less than minimum occurrences");
 		}
 	}
 	
