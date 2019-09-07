@@ -53,6 +53,6 @@ public class DOMUseCase  extends ISOClassOAIS11179 {
 	} 
 	
 	public void setRDFIdentifier () {
-		rdfIdentifier = DMDocument.rdfPrefix + "." + identifier + "." + InfoModel.getNextUId();
+		rdfIdentifier = DMDocument.rdfPrefix + "." + identifier + "." + DOMInfoModel.getNextUId();
 	}
 }

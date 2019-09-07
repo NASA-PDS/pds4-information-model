@@ -167,40 +167,6 @@ public class DOMDataType extends ISOClassOAIS11179 {
 		this.pattern = pattern;
 	}
 	
-	public void createDOMDataTypeSingletons (DataTypeDefn lDataTypeDefn) {
-//		rdfIdentifier = "TBD"; 							
-//		identifier = "TBD"; 
-		versionId = "TBD"; 
-//		sequenceId= "TBD";
-		
-		title = lDataTypeDefn.title;
-//		definition = lUnitDefn.description;
-		
-//		registrationStatus = lUnitDefn.registrationStatus; 
-//		isDeprecated = lUnitDefn.isDeprecated;
-		
-		regAuthId = DMDocument.masterNameSpaceIdNCLC; 
-		steward = DMDocument.masterNameSpaceIdNCLC; 
-		nameSpaceId = DMDocument.masterNameSpaceIdNCLC; 
-		nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC; 
-		
-		type = lDataTypeDefn.type;
-		character_constraint = lDataTypeDefn.character_constraint;
-		formation_rule = lDataTypeDefn.formation_rule;
-		maximum_characters = lDataTypeDefn.maximum_characters;
-		maximum_value = lDataTypeDefn.maximum_value;
-		minimum_characters = lDataTypeDefn.minimum_characters;
-		minimum_value = lDataTypeDefn.minimum_value;
-		xml_schema_base_type = lDataTypeDefn.xml_schema_base_type;
-		character_encoding = lDataTypeDefn.character_encoding; 	 	
-
-		for (Iterator <String> i = lDataTypeDefn.pattern.iterator(); i.hasNext();) {
-			String lPattern = (String) i.next();
-			this.pattern.add(lPattern);
-		}
-		return;
-	}	
-	
 	// new - not currently being used - needs testing
 	public void setDataTypeAttrs (DOMClass lClass) {
 		this.setIdentifier (DMDocument.masterNameSpaceIdNCLC, lClass.title);

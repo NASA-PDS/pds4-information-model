@@ -48,7 +48,6 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 	String dataConcept;							    // for CD
 	String classWord;								// for nomenclature rules
 	String lddLocalIdentifier;						// LDD local identifier
-	AttrDefn lddUserAttribute;						// the USER attribute used to initialize the LDD attribute
 
 	String xmlBaseDataType;							// the XML base data type
 	String protValType;								// value type from protege model
@@ -102,7 +101,6 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 		dataConcept = "TBD_dataConcept"; 
 		classWord = "TBD_classWord"; 
 		lddLocalIdentifier = "TBD_lddLocalIdentifier";
-		lddUserAttribute = null;
 
 		xmlBaseDataType = "TBD_XML_Base_Data_Type";
 		protValType = "TBD_Protege_Value_type";
@@ -197,6 +195,7 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 					lDomPropCompArr.add(lDomPropComp);
 				} else {
 					System.out.println(">>error   - Could not find the class referenced in an association - identifier:" + this.identifier + "   Class:" + lClassTitle);
+					System.out.println(">>error   - Could not find the class referenced in an association - identifier:" + this.identifier + "   lClassMemberIdentifier:" + lClassMemberIdentifier);
 				}
 			}
 		}
