@@ -1106,8 +1106,8 @@ private void printAttrUnit (DOMAttr attr) {
 		while(iter1.hasNext()) {
 			String lTitle = (String) iter1.next();
 			String lId = (String) lmodel.glossTitleIdMap.get(lTitle);
-			AttrDefn attr =  (AttrDefn) lmodel.glossMap.get(lId);
-			printTerm (attr);
+			DOMAttr lDOMAttr =  (DOMAttr) lmodel.glossMap.get(lId);
+			printTerm (lDOMAttr);
 			pflag = true;
 		}
 		
@@ -1120,14 +1120,14 @@ private void printAttrUnit (DOMAttr attr) {
 	/**
 		*  Print a data element
 		*/
-	private void printTerm (AttrDefn attr) {
+	private void printTerm (DOMAttr lDOMAttr) {
 		
 		String phtitle, desc;
 		
-		String lTermAnchorString = ("term_" + attr.title).toLowerCase();
-		String titleWithBlanks = DMDocument.replaceString (attr.title, "_", " ");
+		String lTermAnchorString = ("term_" + lDOMAttr.title).toLowerCase();
+		String titleWithBlanks = DMDocument.replaceString (lDOMAttr.title, "_", " ");
 		phtitle = "<a name=\"" + lTermAnchorString + "\">" + titleWithBlanks + "</a>";
-		desc = attr.description;
+		desc = lDOMAttr.definition;
 		prhtml.println("<dt><b>" + phtitle +  "</b><dd><i>" + "</i>" + desc);
 	}	
 				

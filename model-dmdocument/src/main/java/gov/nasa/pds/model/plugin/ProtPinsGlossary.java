@@ -32,13 +32,13 @@ package gov.nasa.pds.model.plugin;
 import java.util.*;
 
 class ProtPinsGlossary extends Object{
-	TreeMap <String, AttrDefn> glossMap;
+	TreeMap <String, DOMAttr> glossMap;
 	TreeMap <String, String> glossTitleIdMap;
 	
 	ProtPins protPinsInst;   
 	
 	public ProtPinsGlossary () {
-		glossMap = new TreeMap <String, AttrDefn> ();
+		glossMap = new TreeMap <String, DOMAttr> ();
 		glossTitleIdMap = new TreeMap <String, String> ();
 		return;
 	}
@@ -54,18 +54,19 @@ class ProtPinsGlossary extends Object{
 		while(iter1.hasNext()) {
 			String instRDFId = (String) iter1.next();		
 			InstDefn localInst = (InstDefn) tDict.get(instRDFId);
-			AttrDefn attrClass = new AttrDefn(localInst.rdfIdentifier);
-			attrClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
-			attrClass.subModelId = subModelId;
-			attrClass.title = InfoModel.unEscapeProtegeString(localInst.title);
-			attrClass.genAttrMap = localInst.genSlotMap;
-			ArrayList attrdescarr = (ArrayList) attrClass.genAttrMap.get("column_desc");
+			DOMAttr lDOMAttr = new DOMAttr();
+			lDOMAttr.setRDFIdentifier(localInst.rdfIdentifier);
+			lDOMAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
+			lDOMAttr.subModelId = subModelId;
+			lDOMAttr.title = InfoModel.unEscapeProtegeString(localInst.title);
+			lDOMAttr.genAttrMap = localInst.genSlotMap;
+			ArrayList <String> attrdescarr = (ArrayList<String>) lDOMAttr.genAttrMap.get("column_desc");
 			String lDescription = (String) attrdescarr.get(0);
 			lDescription =  InfoModel.unEscapeProtegeString(lDescription);
-			attrClass.description = lDescription;
+			lDOMAttr.definition = lDescription;
 			
-			glossMap.put(attrClass.rdfIdentifier, attrClass);
-			glossTitleIdMap.put(attrClass.title, attrClass.rdfIdentifier);
+			glossMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
+			glossTitleIdMap.put(lDOMAttr.title, lDOMAttr.rdfIdentifier);
 		}
 		return;
 	}
