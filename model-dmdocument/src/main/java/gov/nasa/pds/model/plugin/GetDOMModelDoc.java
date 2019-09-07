@@ -83,11 +83,6 @@ public class GetDOMModelDoc extends Object {
 				lModelInfo.objectid  = new ProtPinsGlossary ();
 				ProtPinsGlossary lobjectid  = (ProtPinsGlossary) lModelInfo.objectid;
 				lobjectid.getProtPinsGlossary(modelId, DMDocument.dataDirPath + lModelInfo.filename);
-			} else if (lModelInfo.type.compareTo("ProtPontModel") == 0) {
-				lModelInfo.objectid  = new ProtPontModel ();
-				ProtPontModel lobjectid  = (ProtPontModel) lModelInfo.objectid;
-				lobjectid.initInfoModel();
-				lobjectid.getProtModel(modelId, DMDocument.dataDirPath + lModelInfo.filename);
 			}
 		}
 		if (DMDocument.debugFlag) System.out.println("debug GetDOMModelDoc Done 555");
