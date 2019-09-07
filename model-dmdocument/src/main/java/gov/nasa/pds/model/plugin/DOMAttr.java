@@ -94,7 +94,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	ArrayList <String> lValueTypeArr;
 	
 	ArrayList <String> valArr;
-	ArrayList <PDSObjDefn> valClassArr;	// classes for for assoc (AttrDefn) valArr
 	ArrayList <String> allowedUnitId;	// the unit ids allowed from the set of measurement units.
 	HashMap <String, ArrayList<String>> genAttrMap; 
 	ArrayList <PermValueDefn> permValueArr;
@@ -194,8 +193,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 //		lValueTypeArr.add("ASCII_Numeric_Base8");
 		lValueTypeArr.add("ASCII_Real");
 		
-		valArr = new ArrayList <String> (); 
-		valClassArr = new ArrayList <PDSObjDefn> (); 
+		valArr = new ArrayList <String> ();
 		allowedUnitId = new ArrayList <String> ();
 		permValueArr = new ArrayList <PermValueDefn> ();
 		permValueExtArr = new ArrayList <PermValueExtDefn> ();
@@ -231,123 +229,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	
 	public void setIdentifier(String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2) {
 		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle + "." + lNameSpaceIdNC2 + "." + lTitle2;
-	}
-
-	public void createDOMAttrSingletons (AttrDefn lOldAttr) {
-		rdfIdentifier = lOldAttr.rdfIdentifier; 
-		identifier = lOldAttr.identifier; 
-		versionId = lOldAttr.versionId; 
-		sequenceId = lOldAttr.uid; 
-		
-		title = lOldAttr.title; 
-		definition = lOldAttr.description;
-		
-		registrationStatus = lOldAttr.registrationStatus; 
-//		isDeprecated = lOldAttr.isDeprecated; 
-		
-		regAuthId = lOldAttr.regAuthId; 
-		steward = lOldAttr.steward; 
-		nameSpaceId = lOldAttr.attrNameSpaceId;
-		nameSpaceIdNC = lOldAttr.attrNameSpaceIdNC;
-
-		nsTitle = lOldAttr.nsTitle; 
-		sort_identifier = lOldAttr.sort_identifier; 
-//		attrAnchorString = lOldAttr.attrAnchorString;
-		anchorString = lOldAttr.attrAnchorString;
-
-		XMLSchemaName = lOldAttr.XMLSchemaName; 
-		classSteward = lOldAttr.classSteward; 
-		classNameSpaceIdNC = lOldAttr.classNameSpaceIdNC;
-		submitter = lOldAttr.submitter; 
-		subModelId = lOldAttr.subModelId; 
-		parentClassTitle = lOldAttr.parentClassTitle;
-		classConcept = lOldAttr.classConcept; 
-		dataConcept = lOldAttr.dataConcept; 
-		classWord = lOldAttr.classWord; 
-
-		lddLocalIdentifier = lOldAttr.lddLocalIdentifier; 
-//		 AttrDefn lddUserAttribute = lOldAttr.lddUserAttribute; 
-		 
-		xmlBaseDataType = lOldAttr.xmlBaseDataType; 
-		protValType = lOldAttr.protValType; 
-		propType = lOldAttr.propType; 
-		valueType = lOldAttr.valueType; 
-		groupName = lOldAttr.groupName; 
-		cardMin = lOldAttr.cardMin;
-		cardMax = lOldAttr.cardMax;
-		cardMinI = lOldAttr.cardMinI;
-		cardMaxI = lOldAttr.cardMaxI;
-		 
-		minimum_characters = lOldAttr.minimum_characters; 
-		maximum_characters = lOldAttr.maximum_characters; 
-		minimum_value = lOldAttr.minimum_value; 
-		maximum_value = lOldAttr.maximum_value; 
-		format = lOldAttr.format; 
-		pattern = lOldAttr.pattern; 
-		unit_of_measure_type = lOldAttr.unit_of_measure_type; 
-		default_unit_id = lOldAttr.default_unit_id; 
-		unit_of_measure_precision = lOldAttr.unit_of_measure_precision; 
-		 
-		isAttribute = lOldAttr.isAttribute; 
-		isOwnedAttribute = lOldAttr.isOwnedAttribute; 
-		isPDS4 = lOldAttr.isPDS4; 
-		 
-		isEnumerated = lOldAttr.isEnumerated;
-		isUsedInClass = lOldAttr.isUsedInClass; 
-		isRestrictedInSubclass = lOldAttr.isRestrictedInSubclass;
-		isMeta = lOldAttr.isMeta;
-		hasAttributeOverride = lOldAttr.hasAttributeOverride;
-		isNilable = lOldAttr.isNilable;
-		isChoice = lOldAttr.isChoice; 
-		isAny = lOldAttr.isAny; 
-		isFromLDD = lOldAttr.isFromLDD; 
-		hasRetiredValue = lOldAttr.hasRetiredValue; 
-		
-		InitStringArr (this.valArr, lOldAttr.valArr);
-		InitStringArr (this.allowedUnitId, lOldAttr.allowedUnitId);
-		
-/*		
-		 ArrayList <String> valArr = lOldAttr.valArr;
-		 ArrayList <PDSObjDefn> valClassArr = lOldAttr.valClassArr; 
-		 ArrayList <String> allowedUnitId = lOldAttr.allowedUnitId; 
-		 HashMap <String, ArrayList<String>> genAttrMap = lOldAttr.genAttrMap; 
-		 ArrayList <PermValueDefn> permValueArr = lOldAttr.permValueArr;
-		 ArrayList <PermValueExtDefn> permValueExtArr = lOldAttr.permValueExtArr;
-		 TreeMap <String, TermEntryDefn> termEntryMap = lOldAttr.termEntryMap;
-		 TreeMap <String, String> valueDependencyMap = lOldAttr.valueDependencyMap;
-		 */
-		 
-		dataIdentifier = lOldAttr.dataIdentifier; 
-		deDataIdentifier = lOldAttr.deDataIdentifier; 
-		decDataIdentifier = lOldAttr.decDataIdentifier; 
-		ecdDataIdentifier = lOldAttr.ecdDataIdentifier; 
-		evdDataIdentifier = lOldAttr.evdDataIdentifier; 
-		necdDataIdentifier = lOldAttr.necdDataIdentifier; 
-		nevdDataIdentifier = lOldAttr.nevdDataIdentifier; 
-		pvDataIdentifier = lOldAttr.pvDataIdentifier; 
-		vmDataIdentifier = lOldAttr.vmDataIdentifier; 
-		 
-		desDataIdentifier = lOldAttr.desDataIdentifier; 
-		defDataIdentifier = lOldAttr.defDataIdentifier; 
-		lsDataIdentifier = lOldAttr.lsDataIdentifier; 
-		teDataIdentifier = lOldAttr.teDataIdentifier; 
-		prDataIdentifier = lOldAttr.prDataIdentifier; 
-		 
-		administrationRecordValue = lOldAttr.administrationRecordValue;
-		versionIdentifierValue = lOldAttr.versionIdentifierValue;
-		registeredByValue = lOldAttr.registeredByValue;
-		registrationAuthorityIdentifierValue = lOldAttr.registrationAuthorityIdentifierValue;
-		
-		
-		InitStringArr (this.expressedByArr, lOldAttr.expressedByArr);
-		InitStringArr (this.representing1Arr, lOldAttr.representing1Arr);
-		InitStringArr (this.representedBy1Arr, lOldAttr.representedBy1Arr);
-		InitStringArr (this.representedBy2Arr, lOldAttr.representedBy2Arr);
-		InitStringArr (this.containedIn1Arr, lOldAttr.containedIn1Arr);
-		
-		InitStringArr (this.genClassArr, lOldAttr.genClassArr);
-		InitStringArr (this.sysClassArr, lOldAttr.sysClassArr);
-		return;
 	}
 	
 	// copy a string array
