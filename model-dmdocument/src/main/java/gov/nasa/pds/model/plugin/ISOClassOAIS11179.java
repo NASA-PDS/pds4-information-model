@@ -29,6 +29,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 package gov.nasa.pds.model.plugin; 
+
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -45,8 +46,9 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 	boolean isAbstract;
 	boolean isFromLDD;									// has been ingested from Ingest_LDD
 
-	ArrayList <ISOClassOAIS11179> hasDOMObject;		// allows more than one object (DOMProp only - OVERRIDE in DOMProp)
+	ArrayList <ISOClassOAIS11179> hasDOMObject;		// allows more than one object (DOMProp OVERRIDE allows only one DOMxxx class)
 	TreeMap <String, TermEntryDefn> termEntryMap;
+	TreeMap <String, PropertyMapDefn> propertyMapMap;  // for miscellaneous meta-attributes, e.g. system status, dates, etc
 
 	public ISOClassOAIS11179 () {
 		regAuthId = "TBD_registration_authority_identifier";
@@ -63,6 +65,7 @@ public class ISOClassOAIS11179 extends ISOClassOAIS {
 		
 		hasDOMObject = new ArrayList <ISOClassOAIS11179> ();
 		termEntryMap = new TreeMap <String, TermEntryDefn> ();
+		propertyMapMap = new TreeMap <String, PropertyMapDefn> ();
 	}
 	
 	public String getAnchorString() {
