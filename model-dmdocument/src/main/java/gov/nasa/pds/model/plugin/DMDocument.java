@@ -174,7 +174,6 @@ public class DMDocument extends Object {
 	static boolean mapToolFlag = false;
 	
 	// Master Model
-	static MasterInfoModel masterInfoModel;
 	static MasterDOMInfoModel masterDOMInfoModel;
 	
 	// Master LDD Model
