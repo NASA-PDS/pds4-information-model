@@ -118,21 +118,21 @@ class ISO11179DOMMDR extends Object {
 				lInstMap = lDEInst.genSlotMap;
 
 				// update steward
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "steward", lAttr.steward);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "steward", lAttr.steward);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.steward:" + lAttr.steward + "  - with lVal:" + lVal); }
 					lAttr.steward = lVal;
 				}
 				
 				// update classConcept
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "expressedBy", lAttr.classConcept);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "expressedBy", lAttr.classConcept);                        
 				if (lVal != null) {
 					lVal = lVal.substring(4, lVal.length());
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.classConcept:" + lAttr.classConcept + "  - with lVal:" + lVal); }					
 					lAttr.classConcept = lVal;
 			}
 			
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "isNillable", "false");                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isNillable", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.isNilable:" + lAttr.isNilable + "  - with lVal:" + lVal); }
 					lAttr.isNilable = true;
@@ -160,14 +160,14 @@ class ISO11179DOMMDR extends Object {
 			if (hasVD) {
 				lInstMap = lVDInst.genSlotMap;					
 				// dataType
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "datatype", lAttr.valueType);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "datatype", lAttr.valueType);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.valueType:" + lAttr.valueType + "  - with lVal:" + lVal); }
 					lAttr.valueType = lVal;
 				}
 				
 				// dataConcept
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "representedBy2", lAttr.dataConcept);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "representedBy2", lAttr.dataConcept);                        
 				if (lVal != null) {
 					lVal = lVal.substring(3, lVal.length());
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.dataConcept:" + lAttr.dataConcept + "  - with lVal:" + lVal); }
@@ -175,49 +175,49 @@ class ISO11179DOMMDR extends Object {
 				}
 				
 				// Minimum Value
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "minimumValue", lAttr.minimum_value);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "minimumValue", lAttr.minimum_value);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.minimum_value:" + lAttr.minimum_value + "  - with lVal:" + lVal); }
 					lAttr.minimum_value = lVal;
 				}				
 				
 				// Maximum Value
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "maximumValue", lAttr.maximum_value);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "maximumValue", lAttr.maximum_value);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.maximum_value:" + lAttr.maximum_value + "  - with lVal:" + lVal); }
 					lAttr.maximum_value = lVal;
 				}	
 
 				// Minimum Characters
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "minimumCharacterQuantity", lAttr.minimum_characters);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "minimumCharacterQuantity", lAttr.minimum_characters);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.minimum_characters:" + lAttr.minimum_characters + "  - with lVal:" + lVal); }
 					lAttr.minimum_characters = lVal;
 				}	
 				
 				// Maximum Characters
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "maximumCharacterQuantity", lAttr.maximum_characters);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "maximumCharacterQuantity", lAttr.maximum_characters);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.maximum_characters:" + lAttr.maximum_characters + "  - with lVal:" + lVal); }
 					lAttr.maximum_characters = lVal;
 				}	
 				
 				// Pattern
-				lVal = ProtPins11179DD.getStringValueUpdatePattern (true, lInstMap, "pattern", lAttr.pattern);                        
+				lVal = ProtPinsDOM11179DD.getStringValueUpdatePattern (true, lInstMap, "pattern", lAttr.pattern);                        
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.pattern:" + lAttr.pattern + "  - with lVal:" + lVal); }
 					lAttr.pattern = lVal;
 				}				
 				
 				// Unit_of_measure_type
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "unitOfMeasure", lAttr.unit_of_measure_type);               
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "unitOfMeasure", lAttr.unit_of_measure_type);               
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.unit_of_measure_type:" + lAttr.unit_of_measure_type + "  - with lVal:" + lVal); }
 					lAttr.unit_of_measure_type = lVal;
 				}				
 				
 				// default_unit_id
-				lVal = ProtPins11179DD.getStringValueUpdate (false, lInstMap, "defaultUnitId", lAttr.default_unit_id);               
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "defaultUnitId", lAttr.default_unit_id);               
 				if (lVal != null) {
 					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.default_unit_id:" + lAttr.default_unit_id + "  - with lVal:" + lVal); }
 					lAttr.default_unit_id = lVal;

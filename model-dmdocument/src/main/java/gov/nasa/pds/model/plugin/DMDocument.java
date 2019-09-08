@@ -178,11 +178,9 @@ public class DMDocument extends Object {
 	static MasterDOMInfoModel masterDOMInfoModel;
 	
 	// Master LDD Model
-	static LDDParser primaryLDDModel;
 	static LDDDOMParser primaryLDDDOMModel;
 	
 	// Secondary LDD Models
-	static ArrayList <LDDParser> LDDModelArr;
 	static ArrayList <LDDDOMParser> LDDDOMModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
