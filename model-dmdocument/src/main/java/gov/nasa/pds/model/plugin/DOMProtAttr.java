@@ -143,7 +143,7 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 	
 	public void setRDFIdentifier (String lClassTitle, String lAttrTitle) {
 		this.title = lAttrTitle;
-		this.sequenceId = InfoModel.getNextUId();
+		this.sequenceId = DOMInfoModel.getNextUId();
 		this.rdfIdentifier = DMDocument.rdfPrefix + lClassTitle + "." + lAttrTitle + "." + this.sequenceId;	
 	}
 	

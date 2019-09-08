@@ -28,7 +28,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+//package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -38,8 +38,8 @@ class RegConfig extends Object {
 	static int reference_string_length = reference_string.length();	
 	
 	ArrayList <String> associationsArr = new ArrayList <String> (); 
-	ArrayList <AttrDefn> allSearchAttrArr = new ArrayList <AttrDefn> (); 
-	TreeMap <String, ArrayList<AttrDefn>> classAttrMap = new TreeMap <String, ArrayList<AttrDefn>> ();
+	ArrayList <DOMAttr> allSearchAttrArr = new ArrayList <DOMAttr> (); 
+	TreeMap <String, ArrayList<DOMAttr>> classAttrMap = new TreeMap <String, ArrayList<DOMAttr>> ();
 	TreeMap <String, ArrayList<String>> classAssocMap = new TreeMap <String, ArrayList<String>> ();
 
 	public RegConfig () {
@@ -73,8 +73,8 @@ class RegConfig extends Object {
 		String delimiter = "";
 		prRIM1.println("[");
 		
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isRegistryClass) {
 				writeRegRIMClass (lClass, delimiter, prRIM1);
 				delimiter = ", ";
@@ -84,17 +84,18 @@ class RegConfig extends Object {
 		prRIM1.close();
 	}
 
-	public void writeRegRIMClass (PDSObjDefn lClass, String delimiter, PrintWriter prRIM1) {
-		ArrayList <AttrDefn> lAttrArr;
-		ArrayList <AttrDefn> plAttrArr = new ArrayList <AttrDefn> ();
+	public void writeRegRIMClass (DOMClass lClass, String delimiter, PrintWriter prRIM1) {
+		ArrayList <DOMAttr> lAttrArr;
+		ArrayList <DOMAttr> plAttrArr = new ArrayList <DOMAttr> ();
 		
 		prRIM1.println(delimiter + "{");
 		prRIM1.println("reg_object_type: " + lClass.title);
 				
-		lAttrArr = InfoModel.getAllAttrRecurse (new ArrayList <AttrDefn> (), new ArrayList <PDSObjDefn> (), lClass);
+// fix		lAttrArr = DOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
+		lAttrArr = null;
 		if (! lAttrArr.isEmpty()) {
-			for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttr = i.next();
+			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+				DOMAttr lAttr = i.next();
 //				System.out.println("debug writeRegRIM slot lAttr.title:" + lAttr.title);
 				if (lAttr.isAttribute && DMDocument.registryAttr.contains(lAttr.title)) {
 					plAttrArr.add(lAttr);
@@ -105,8 +106,8 @@ class RegConfig extends Object {
 		int ind = 0;
 		if (! plAttrArr.isEmpty()) {
 			prRIM1.println("metadata: {");
-			for (Iterator<AttrDefn> i = plAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttr = i.next();
+			for (Iterator<DOMAttr> i = plAttrArr.iterator(); i.hasNext();) {
+				DOMAttr lAttr = i.next();
 				ind++;
 				prRIM1.println("           slot" + ind + ": " + lAttr.title);
 			}
@@ -115,8 +116,8 @@ class RegConfig extends Object {
 		prRIM1.println("data_refs: [");
 		prRIM1.println("             http://regrep.pds.nasa.gov/registry/entries/{logical_identifier}/{version_id}");
 		if (! lAttrArr.isEmpty()) {
-			for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttr = i.next();
+			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+				DOMAttr lAttr = i.next();
 				String lTitle = lAttr.title;
 //				System.out.println("debug writeRegRIM slot lAttr.title:" + lAttr.title);
 				int lIndex = lTitle.indexOf(reference_string); 
@@ -161,8 +162,8 @@ class RegConfig extends Object {
 	    
 	    // output objecttype definitions
 	    prRIM.println("\n       <!--       ObjectType Definitions       -->");
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isRegistryClass) {
 				String lTitle = lClass.title;
 			    prRIM.println("      <rim:RegistryObject xsi:type=\"rim:ClassificationNodeType\" code=\"" + lTitle + "\" parent=\"urn:oasis:names:tc:ebxml-regrep:ObjectType:RegistryObject:ExtrinsicObject\" lid=\"urn:nasa:pds:profile:regrep:ObjectType:" + lTitle + "\"  id=\"urn:nasa:pds:profile:regrep:ObjectType:" + lTitle + "\">");
@@ -170,7 +171,7 @@ class RegConfig extends Object {
 			    prRIM.println("          <rim:LocalizedString charset=\"UTF-8\" value=\"" + lTitle + "\"/>");
 			    prRIM.println("        </rim:Name>");
 			    prRIM.println("        <rim:Description>");
-			    prRIM.println("          <rim:LocalizedString charset=\"UTF-8\" value=\"" + lClass.description + "\"/>");
+			    prRIM.println("          <rim:LocalizedString charset=\"UTF-8\" value=\"" + lClass.definition + "\"/>");
 			    prRIM.println("        </rim:Description>");
 			    prRIM.println("      </rim:RegistryObject>");
 			}
@@ -224,8 +225,8 @@ class RegConfig extends Object {
 	    prRIM.println("            <rim:LocalizedString charset=\"UTF-8\" value=\"Check if you wish to match objects when any of the supplied parameters match. Do not check if you wish to match objects only when ALL supplied parameters match.\"/>");
 	    prRIM.println("          </rim:Description>");
 		ArrayList <String> lTitleArr = new ArrayList <String> (); 
-	    for (Iterator <AttrDefn> i = allSearchAttrArr.iterator(); i.hasNext();) {
-	    	AttrDefn lAttr = (AttrDefn) i.next();
+	    for (Iterator <DOMAttr> i = allSearchAttrArr.iterator(); i.hasNext();) {
+	    	DOMAttr lAttr = (DOMAttr) i.next();
 	    	String lTitle = lAttr.title;
 	    	if (! lTitleArr.contains(lTitle)) {
 	    		lTitleArr.add(lTitle);
@@ -253,8 +254,8 @@ class RegConfig extends Object {
 	    prRIM.println("  </rim:RegistryObject>");
 
 	    prRIM.println("\n       <!--       RegisterType       -->");
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isRegistryClass) {
 				String lTitle = lClass.title;
 			    prRIM.println("  <rim:RegistryObject xsi:type=\"rim:RegisterType\" lid=\"urn:nasa:pds:profile:regrep:register:" + lTitle + "\" id=\"urn:nasa:pds:profile:regrep:register:" + lTitle + "\">");
@@ -277,14 +278,14 @@ class RegConfig extends Object {
 //	write the Registry Information Model Configuration file  -  XML
 	public void writeRegRIM4 (String todaysDate)  throws java.io.IOException {
 		
-		TreeMap <String, PDSObjDefn> lSortClassMap = new TreeMap <String, PDSObjDefn> ();
-		for (Iterator <PDSObjDefn> i = InfoModel.masterMOFClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		TreeMap <String, DOMClass> lSortClassMap = new TreeMap <String, DOMClass> ();
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isRegistryClass) {
 				lSortClassMap.put(lClass.title, lClass);
 			}
 		}
-		ArrayList <PDSObjDefn> lSortedClassArr = new ArrayList <PDSObjDefn> (lSortClassMap.values());
+		ArrayList <DOMClass> lSortedClassArr = new ArrayList <DOMClass> (lSortClassMap.values());
 		String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecModelRIM4;
 		PrintWriter prRIM = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 		
@@ -301,8 +302,8 @@ class RegConfig extends Object {
 		prRIM.println("        name=\"Product\" lid=\"urn:nasa:pds:profile:regrep:ObjectType:Product\"");
 		prRIM.println("        guid=\"urn:nasa:pds:profile:regrep:ObjectType:Product\"/>");
 
-		for (Iterator <PDSObjDefn> i = lSortedClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			getClassAttrAndAssoc (lClass); 
 			writeRegRIM4regObjType (lClass, ":", prRIM);
 		}
@@ -310,37 +311,37 @@ class RegConfig extends Object {
 
 		// output associationType definitions
 	    prRIM.println("\n       <!--       AssociationType definitions       -->");
-		for (Iterator <PDSObjDefn> i = lSortedClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			writeRegRIM4RegAssociations (lClass, ":", prRIM);
 		}
 		
 		// output Slot definitions
 	    prRIM.println("\n       <!--       Slot definitions       -->");
 	    // output AssociatoinType definitions
-		for (Iterator <PDSObjDefn> i = lSortedClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
+		for (Iterator <DOMClass> i = lSortedClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
 			writeRegRIM4RegSlots (lClass, ":", prRIM);
 		}
 	    prRIM.println("</PDS4Configuration>");
 		prRIM.close();
 	}
 	
-	public void writeRegRIM4regObjType (PDSObjDefn lClass, String delimiter, PrintWriter prRIM) {	
+	public void writeRegRIM4regObjType (DOMClass lClass, String delimiter, PrintWriter prRIM) {	
 		String pCode = DMDocument.replaceString (lClass.title, "/", "_");
-		prRIM.println("    <classificationNode code=\"" + InfoModel.escapeXMLChar(pCode) + "\"");
+		prRIM.println("    <classificationNode code=\"" + DOMInfoModel.escapeXMLChar(pCode) + "\"");
 		prRIM.println("        parent=\"urn:nasa:pds:profile:regrep:ObjectType:Product\"");
-		prRIM.println("        description=\"" + InfoModel.escapeXMLChar(lClass.description) + "\"");
-		prRIM.println("        name=\"" + InfoModel.escapeXMLChar(lClass.title) + "\"");
-		prRIM.println("        lid=\"urn:nasa:pds:profile:regrep:ObjectType:" + InfoModel.escapeXMLChar(lClass.title) + "\"");
-		prRIM.println("        guid=\"urn:nasa:pds:profile:regrep:ObjectType:" + InfoModel.escapeXMLChar(lClass.title) + "\"/>");
+		prRIM.println("        description=\"" + DOMInfoModel.escapeXMLChar(lClass.definition) + "\"");
+		prRIM.println("        name=\"" + DOMInfoModel.escapeXMLChar(lClass.title) + "\"");
+		prRIM.println("        lid=\"urn:nasa:pds:profile:regrep:ObjectType:" + DOMInfoModel.escapeXMLChar(lClass.title) + "\"");
+		prRIM.println("        guid=\"urn:nasa:pds:profile:regrep:ObjectType:" + DOMInfoModel.escapeXMLChar(lClass.title) + "\"/>");
 	}
 
-	public void writeRegRIM4RegAssociations (PDSObjDefn lClass, String delimiter, PrintWriter prRIM) {
-		ArrayList <AttrDefn> lAttrArr = classAttrMap.get(lClass.title);
+	public void writeRegRIM4RegAssociations (DOMClass lClass, String delimiter, PrintWriter prRIM) {
+		ArrayList <DOMAttr> lAttrArr = classAttrMap.get(lClass.title);
 		if (!(lAttrArr == null || lAttrArr.isEmpty())) {
-			for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttr = i.next();
+			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+				DOMAttr lAttr = i.next();
 				if (lAttr.isAttribute && (lAttr.title.indexOf("reference_type") == 0)) {
 					if (! lAttr.valArr.isEmpty()) {
 						for (Iterator<String> j = lAttr.valArr.iterator(); j.hasNext();) {
@@ -349,11 +350,11 @@ class RegConfig extends Object {
 								String pCode1 = DMDocument.replaceString (lClass.title, "/", "_");
 								String pCode2 = DMDocument.replaceString (lVal, "/", "_");
 								prRIM.println("    <classificationNode");
-								prRIM.println("        lid=\"urn:nasa:pds:profile:regrep:AssociationType:" + InfoModel.escapeXMLChar(lClass.title) + "." + InfoModel.escapeXMLChar(lVal) + "\"");
-								prRIM.println("        code=\"" + InfoModel.escapeXMLChar(pCode1) + "." + InfoModel.escapeXMLChar(pCode2) + "\"");
-								prRIM.println("        guid=\"urn:nasa:pds:profile:regrep:AssociationType:" + InfoModel.escapeXMLChar(lClass.title) + "." + InfoModel.escapeXMLChar(lVal) + "\"");
+								prRIM.println("        lid=\"urn:nasa:pds:profile:regrep:AssociationType:" + DOMInfoModel.escapeXMLChar(lClass.title) + "." + DOMInfoModel.escapeXMLChar(lVal) + "\"");
+								prRIM.println("        code=\"" + DOMInfoModel.escapeXMLChar(pCode1) + "." + DOMInfoModel.escapeXMLChar(pCode2) + "\"");
+								prRIM.println("        guid=\"urn:nasa:pds:profile:regrep:AssociationType:" + DOMInfoModel.escapeXMLChar(lClass.title) + "." + DOMInfoModel.escapeXMLChar(lVal) + "\"");
 								prRIM.println("        parent=\"urn:registry:classificationScheme:AssociationType\"");
-								prRIM.println("        name=\"" + InfoModel.escapeXMLChar(lClass.title) + "." + InfoModel.escapeXMLChar(lVal) + "\"/>");
+								prRIM.println("        name=\"" + DOMInfoModel.escapeXMLChar(lClass.title) + "." + DOMInfoModel.escapeXMLChar(lVal) + "\"/>");
 							}
 						}
 					}
@@ -362,15 +363,15 @@ class RegConfig extends Object {
 		}
 	}
 
-	public void writeRegRIM4RegSlots (PDSObjDefn lClass, String delimiter, PrintWriter prRIM) {		
-		ArrayList <AttrDefn> lAttrArr = classAttrMap.get(lClass.title);
+	public void writeRegRIM4RegSlots (DOMClass lClass, String delimiter, PrintWriter prRIM) {		
+		ArrayList <DOMAttr> lAttrArr = classAttrMap.get(lClass.title);
 		if (!(lAttrArr == null || lAttrArr.isEmpty())) {
-			prRIM.println("\n    <extrinsicObject id=\"urn:nasa:pds:profile:regrep:ObjectType:" + InfoModel.escapeXMLChar(lClass.title) + ":Definition\"");
+			prRIM.println("\n    <extrinsicObject id=\"urn:nasa:pds:profile:regrep:ObjectType:" + DOMInfoModel.escapeXMLChar(lClass.title) + ":Definition\"");
 			prRIM.println("        objectType=\"urn:registry:ObjectType:RegistryObject:ExtrinsicObject:SlotDescription\">");
-			for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-				AttrDefn lAttr = i.next();
+			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+				DOMAttr lAttr = i.next();
 				if (lAttr.isAttribute && DMDocument.registryAttr.contains(lAttr.title)) {
-					prRIM.println("        <slot name=\"" + InfoModel.escapeXMLChar(lAttr.title) + "\" slotType=\"string\"/>");
+					prRIM.println("        <slot name=\"" + DOMInfoModel.escapeXMLChar(lAttr.title) + "\" slotType=\"string\"/>");
 				}
 			}
 			prRIM.println("\n       <!--       a way to specify an association, this is currently the approach harvest employs       -->");
@@ -378,22 +379,23 @@ class RegConfig extends Object {
 			if (!(lRefTypeArr == null || lRefTypeArr.isEmpty())) {
 				for (Iterator<String> i = lRefTypeArr.iterator(); i.hasNext();) {
 					String lRefType = i.next();			
-					prRIM.println("        <slot name=\"urn:nasa:pds:profile:regrep:Slot:" + InfoModel.escapeXMLChar(lRefType) + "\" slotType=\"guid\"/>");
+					prRIM.println("        <slot name=\"urn:nasa:pds:profile:regrep:Slot:" + DOMInfoModel.escapeXMLChar(lRefType) + "\" slotType=\"guid\"/>");
 				}
 			}
 			prRIM.println("    </extrinsicObject>");
 		}
 	}
 
-	public void getClassAttrAndAssoc (PDSObjDefn lClass) {
-		ArrayList <AttrDefn> lAttrArr;
+	public void getClassAttrAndAssoc (DOMClass lClass) {
+		ArrayList <DOMAttr> lAttrArr;
 		ArrayList <String> lRefTypeArr;
 		
-		lAttrArr = InfoModel.getAllAttrRecurse (new ArrayList <AttrDefn> (), new ArrayList <PDSObjDefn> (), lClass);
+// fix		lAttrArr = DOMDOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
+		lAttrArr = null;
 		if (lAttrArr.isEmpty()) {
 			return;
 		}
-		ArrayList<AttrDefn> tAttrArr = classAttrMap.get(lClass.title);
+		ArrayList<DOMAttr> tAttrArr = classAttrMap.get(lClass.title);
 		if (tAttrArr != null) {
 			System.out.println("\n***Warning***  RegConfig - getClassAttrAndAssoc - found duplicate classAttrMap - lClass.title:" + lClass.title);
 			return;
@@ -401,8 +403,8 @@ class RegConfig extends Object {
 		classAttrMap.put(lClass.title, lAttrArr);
 		
 		// get reference association types
-		lRefTypeArr = InfoModel.getAllRefAssocType (lAttrArr);
-
+//fix		lRefTypeArr = DOMDOMInfoModel.getAllRefAssocType (lAttrArr);
+		lRefTypeArr = null;
 		
 		if (lRefTypeArr == null) {
 			return;

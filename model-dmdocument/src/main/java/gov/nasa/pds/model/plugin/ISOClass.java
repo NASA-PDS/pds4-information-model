@@ -54,7 +54,6 @@ public class ISOClass extends Object {
 		rdfIdentifier = "TBD_rdfIdentifier"; 
 		identifier = "TBD_identifier"; 
 		versionId = "0.1";
-//		sequenceId = InfoModel.getNextUId();
 		sequenceId = "TBD_sequenceId";
 
 		title = "TBD_title";
@@ -80,7 +79,7 @@ public class ISOClass extends Object {
 	
 	public void setRDFIdentifier (String lTitle) {
 		this.title = lTitle;
-		this.sequenceId = InfoModel.getNextUId();
+		this.sequenceId = DOMInfoModel.getNextUId();
 		this.rdfIdentifier = DMDocument.rdfPrefix + lTitle + "." + this.sequenceId;
 	}
 	
