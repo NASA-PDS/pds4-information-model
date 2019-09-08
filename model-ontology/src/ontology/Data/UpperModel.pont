@@ -1,4 +1,4 @@
-; Mon Aug 19 10:00:54 PDT 2019
+; Wed Aug 28 20:48:50 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -258,6 +258,10 @@
 	(multislot low_representation_saturation
 ;+		(comment "The low_representative_saturation attribute specifies a special value whose presence indicates the true value cannot be represented in the chosen data type and length -- in this case being below the allowable range -- which may happen during conversion from another data type. The value must be less than the value of the valid_minimum attribute. Values of this attribute should be represented in the same data_type as the elements in the object with which the Special_Constants class is associated.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot attribute_relative_xpath
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot DD_Rule_Let
 		(type STRING)
@@ -3903,6 +3907,11 @@
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot dd_context_Value_List
+		(type INSTANCE)
+;+		(allowed-classes DD_Context_Value_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot grid_coordinate_system_name
 ;+		(comment "The grid_coordinate_system_name attribute provides the name of the grid coordinate system.")
 		(type STRING)
@@ -5271,7 +5280,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -9462,7 +9471,7 @@
 	(multislot dd_association
 ;+		(comment "The local_association_attribute association provides a relationship to an attribute.")
 		(type INSTANCE)
-;+		(allowed-classes DD_Association DD_Association_External XSChoice%23)
+;+		(allowed-classes DD_Association DD_Association_External DD_Associate_External_Class XSChoice%23)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
@@ -10374,7 +10383,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -10395,7 +10404,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "Vector_Cartesian_3" "Vector_Cartesian_3_Acceleration" "Vector_Cartesian_3_Position" "Vector_Cartesian_3_Velocity" "Vector_Cartesian_3_Pointing" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode" "UTF8_Text_Collapsed")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot minimum_value
@@ -10480,7 +10489,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot maximum_value
@@ -10497,7 +10506,7 @@
 	(single-slot value_data_type
 ;+		(comment "The value_data_type attribute is used in a data dictionary to specify the data type of an attribute's value.")
 		(type STRING)
-;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode")
+;+		(value "ASCII_Boolean" "ASCII_Date_YMD" "ASCII_Integer" "ASCII_Real" "ASCII_AnyURI" "ASCII_Date_DOY" "ASCII_Date_Time_DOY_UTC" "ASCII_Date_Time_YMD_UTC" "ASCII_LID" "ASCII_LIDVID" "ASCII_MD5_Checksum" "ASCII_Short_String_Collapsed" "ASCII_Text_Preserved" "ASCII_Short_String_Preserved" "ASCII_Time" "ASCII_VID" "ASCII_DOI" "ASCII_Numeric_Base2" "ASCII_Numeric_Base16" "ASCII_NonNegative_Integer" "ASCII_File_Specification_Name" "ASCII_Directory_Path_Name" "ASCII_LIDVID_LID" "ASCII_File_Name" "ASCII_Numeric_Base8" "ASCII_Text_Collapsed" "UTF8_Short_String_Collapsed" "UTF8_Short_String_Preserved" "UTF8_Text_Preserved" "ASCII_Date_Time_DOY" "ASCII_Date_Time_YMD" "ASCII_BibCode" "UTF8_Text_Collapsed")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot permissible_value
@@ -10632,6 +10641,49 @@
 	(multislot external_source_product_identifier
 ;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
 		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass DD_Associate_External_Class
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot namespace_id
+;+		(comment "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot class_name
+;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_occurrences
+;+		(comment "The maximum occurrences attribute indicates the number of times something may occur. It is also called the maximum cardinality. The asterisk character is used as a value to indicate that no upper bound exists.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot dd_context_Value_List
+		(type INSTANCE)
+;+		(allowed-classes DD_Context_Value_List)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_occurrences
+;+		(comment "The minimum occurrences attribute indicates the number of times something may occur. It is also called the minimum cardinality.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass DD_Context_Value_List
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot attribute_relative_xpath
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot permissible_value
+;+		(comment "The permissible_value association is a relationship to Permissible_Value.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Permissible_Value)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
