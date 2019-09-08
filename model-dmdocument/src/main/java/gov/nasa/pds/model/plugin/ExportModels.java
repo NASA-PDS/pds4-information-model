@@ -233,28 +233,12 @@ public class ExportModels extends Object {
 		return;
 	}
 
-	public void writeLDDArtifacts (boolean domFlag, boolean mofFlag) throws java.io.IOException {	    
-		ArrayList <PDSObjDefn> lLDDClassArr = new ArrayList <PDSObjDefn> ();
-		TreeMap <String, PDSObjDefn> lLDDClassMap = new TreeMap <String, PDSObjDefn> ();
-
+	public void writeLDDArtifacts (boolean domFlag, boolean mofFlag) throws java.io.IOException {
 		// DOM
 		ArrayList <DOMClass> lLDDDOMClassArr = new ArrayList <DOMClass> ();
 		TreeMap <String, DOMClass> lLDDDOMClassMap = new TreeMap <String, DOMClass> ();
 		
 		// get LDD Classes
-		if (mofFlag) {
-		ArrayList <PDSObjDefn> lClassArr = new ArrayList <PDSObjDefn> (InfoModel.masterMOFClassMap.values());
-		for (Iterator <PDSObjDefn> i = lClassArr.iterator(); i.hasNext();) {
-			PDSObjDefn lClass = (PDSObjDefn) i.next();
-			if (lClass.isFromLDD) {
-				if (lClass.allAttrAssocArr.size() != 0) {
-					lLDDClassArr.add(lClass);
-					lLDDClassMap.put(lClass.title, lClass);
-				}
-			}
-		}
-		}
-		
 		// DOM
 		if (domFlag) {
 		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
@@ -278,46 +262,6 @@ public class ExportModels extends Object {
 			
 			// skip the master for LDD runs
 			if (lSchemaFileDefn.isMaster) continue;
-			
-			if (mofFlag) {
-			//	write the schema - new version 4	
-			XML4LabelSchema xml4LabelSchema = new XML4LabelSchema ();
-			xml4LabelSchema.writeXMLSchemaFiles (lSchemaFileDefn, lLDDClassArr);
-			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XML Schema - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
-			
-			//  write schematron file
-			WriteSchematron writeSchematron = new WriteSchematron ();
-			writeSchematron.writeSchematronFile(lSchemaFileDefn, lLDDClassMap);
-			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
-
-			//  write label file for XML Schema and Schematron
-			WriteCoreXMLSchemaLabel writeCoreXMLSchemaLabel = new WriteCoreXMLSchemaLabel ();
-			writeCoreXMLSchemaLabel.writeFile(lSchemaFileDefn);
-			if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
-
-			// write the 11179 JSON file
-			if (DMDocument.exportJSONFileFlag) {
-				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-				write11179DDJSONFile.writeJSONFile (lSchemaFileDefn);
-				if (domFlag) {
-					WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
-					writeDOMDDJSONFile.writeJSONFile ();
-				}
-				if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - JSON Done");
-			}
-
-			// write the Info Spec file 
-			if (DMDocument.exportSpecFileFlag) {
-				WriteSpecification writeSpecification = new WriteSpecification (DMDocument.docInfo, PDSOptionalFlag); 
-				writeSpecification.printArtifacts();
-				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - Info Model Spec Done");
-			}
-		    // write the Doc Book
-			if (DMDocument.exportDDFileFlag) {
-				WriteDocBook lWriteDocBook  = new WriteDocBook (); 
-				lWriteDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-			}
-			}
 			
 			// DOM
 			if (domFlag) {
