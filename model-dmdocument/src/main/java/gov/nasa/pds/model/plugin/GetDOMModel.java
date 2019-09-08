@@ -248,17 +248,7 @@ public class GetDOMModel extends Object {
 		DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
 		
 		// 008 - if this is an LDD Tool run, parse the LDD(s)
-// 7777	
 		if (DMDocument.LDDToolFlag) {
-//		if (false) {
-/* MOF			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
-				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-				LDDParser lLDDParser = new LDDParser ();
-				DMDocument.LDDModelArr.add(lLDDParser);
-				DMDocument.primaryLDDModel = lLDDParser; 		// last in array is the primary.
-				lLDDParser.gSchemaFileDefn = lSchemaFileDefn;	// the schema definition file for this LDDParser.
-				lLDDParser.getLocalDD();
-			} */
 			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 				LDDDOMParser lLDDDOMParser = new LDDDOMParser ();
@@ -314,10 +304,6 @@ public class GetDOMModel extends Object {
 		//       the error resulted from checkSameNameOverRide - maybe code needs to added here to 
 		//       ignore USER clones.
 		if (DMDocument.LDDToolFlag) {
-/* MOF			for (Iterator <LDDParser> i = DMDocument.LDDModelArr.iterator(); i.hasNext();) {
-				LDDParser lLDDParser = (LDDParser) i.next();
-				lLDDParser.OverwriteFrom11179DataDict();
-			} */
 			for (Iterator <LDDDOMParser> i = DMDocument.LDDDOMModelArr.iterator(); i.hasNext();) {
 				LDDDOMParser lLDDDOMParser = (LDDDOMParser) i.next();
 				lLDDDOMParser.OverwriteFrom11179DataDict();
@@ -404,13 +390,6 @@ public class GetDOMModel extends Object {
 				
 		// 037 - if this is an LDD Tool run, validate and write reports for the parsed LDD
 		if (DMDocument.LDDToolFlag) {
-//			InfoModel.printOneAttributeIdentifier ("0001_NASA_PDS_1.disp.Color_Display_Settings.pds.comment");						
-/* MOF			for (Iterator <LDDParser> i = DMDocument.LDDModelArr.iterator(); i.hasNext();) {
-				LDDParser lLDDParser = (LDDParser) i.next();
-				lLDDParser.finishCloneOfLDDUserAttributes();
-				lLDDParser.validateLDDAttributes();
-			}
-			DMDocument.primaryLDDModel.writeLocalDDFiles(DMDocument.masterLDDSchemaFileDefn); */
 			for (Iterator <LDDDOMParser> i = DMDocument.LDDDOMModelArr.iterator(); i.hasNext();) {
 				LDDDOMParser lLDDDOMParser = (LDDDOMParser) i.next();
 				lLDDDOMParser.finishCloneOfLDDUserAttributes();
