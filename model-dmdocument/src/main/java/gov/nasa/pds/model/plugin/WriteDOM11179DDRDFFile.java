@@ -57,8 +57,6 @@ class WriteDOM11179DDRDFFile extends Object{
 	*/
 	private void printAttrISODERDF (PrintWriter pr11179) {
 		// print the data elements
-///		ArrayList <AttrDefn> lSortedAttrArr = new ArrayList <AttrDefn> (InfoModel.masterMOFAttrIdMap.values());
-///		for (Iterator<AttrDefn> i = lSortedAttrArr.iterator(); i.hasNext();) {
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 		
 			DOMAttr lAttr = (DOMAttr) i.next();
@@ -201,7 +199,7 @@ class WriteDOM11179DDRDFFile extends Object{
 //		pr11179.println("	 " + kbId + "isPreferred=\"" + lTE.defIsPreferred + "\"");
 		pr11179.println("	 " + kbId + "isPreferred=\"" + "TRUE" + "\"");
 		pr11179.println("	 rdfs:label=\"" + lAttr.defDataIdentifier + "\">");
-		pr11179.println("	<" + kbId + "definitionText>" + InfoModel.escapeXMLChar(lAttr.definition) + "</" + kbId + "definitionText>");
+		pr11179.println("	<" + kbId + "definitionText>" + DOMInfoModel.escapeXMLChar(lAttr.definition) + "</" + kbId + "definitionText>");
 		pr11179.println("</" + kbId + "Definition>");
 		pr11179.println(" ");
 			

@@ -87,7 +87,7 @@ class ProtPins extends Object{
 			case 1: // Instance Name
 //				System.out.println("debug ProtPins - instance name - token:" + token);
 // 444				String title = token;
-				String lToken = InfoModel.unEscapeProtegeString(token);
+				String lToken = DOMInfoModel.unEscapeProtegeString(token);
 				String title = lToken;
 				String rdfIdentifier = gNameSpaceIdNC + "." + title;
 				String identifier = gNameSpaceIdNC + "."  + title;
@@ -121,7 +121,7 @@ class ProtPins extends Object{
 // 444				
 //				lInst.genSlotMap.put(token, genSlotValArray);
 //				lAttrName = token;
-				String lToken2 = InfoModel.unEscapeProtegeString(token);
+				String lToken2 = DOMInfoModel.unEscapeProtegeString(token);
 				lInst.genSlotMap.put(lToken2, genSlotValArray);
 				lAttrName = lToken2;
 //				System.out.println("\ndebug ProtPins.getInstances gSteward:" + gSteward + "  lInst.title:" + lInst.title + "  lAttrName:" + lAttrName);				
@@ -133,7 +133,7 @@ class ProtPins extends Object{
 				} else if ((token.compareTo("[") == 0) || (token.compareTo("]") == 0)) {
 					type = 4;
 				} else {
-					String lToken3 = InfoModel.unEscapeProtegeString(token);
+					String lToken3 = DOMInfoModel.unEscapeProtegeString(token);
 					genSlotValArray.add(lToken3);
 					lAttrVal = lToken3;
 				}

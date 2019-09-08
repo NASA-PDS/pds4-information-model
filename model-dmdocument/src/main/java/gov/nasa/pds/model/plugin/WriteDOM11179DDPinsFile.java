@@ -170,8 +170,8 @@ class WriteDOM11179DDPinsFile extends Object{
 			prDDPins.println("  (minimumCharacterQuantity \"" + lDOMAttr.minimum_characters + "\")");
 			prDDPins.println("  (maximumValue \"" + lDOMAttr.maximum_value + "\")");
 			prDDPins.println("  (minimumValue \"" + lDOMAttr.minimum_value + "\")");
-			prDDPins.println("  (pattern \"" + InfoModel.escapeProtegePatterns(lDOMAttr.pattern) + "\")");
-			prDDPins.println("  (valueDomainFormat \"" + InfoModel.escapeProtegePatterns(lDOMAttr.format) + "\")");
+			prDDPins.println("  (pattern \"" + DOMInfoModel.escapeProtegePatterns(lDOMAttr.pattern) + "\")");
+			prDDPins.println("  (valueDomainFormat \"" + DOMInfoModel.escapeProtegePatterns(lDOMAttr.format) + "\")");
 			prDDPins.println("  (registeredBy " + lDOMAttr.registeredByValue+ ")");
 			prDDPins.println("  (registrationAuthorityIdentifier [" + lDOMAttr.registrationAuthorityIdentifierValue + "])");
 			prDDPins.println("  (representedBy" + " [" + lDOMAttr.deDataIdentifier + "])");
@@ -211,15 +211,15 @@ class WriteDOM11179DDPinsFile extends Object{
 						prDDPins.println("  (containing1 [" + lDOMAttr.evdDataIdentifier + "])");
 						prDDPins.println("  (endDate \"" + DMDocument.endDateValue + "\")");
 						prDDPins.println("  (usedIn [" + vmIdentifier + "])");
-						prDDPins.println("  (value \"" + InfoModel.escapeProtegeString(lDOMPermValDefn.value) + "\"))");
-// v1.3					prDDPins.println("  (value \"" + InfoModel.escapeProtegeString(tPermValue) + "\"))");
+						prDDPins.println("  (value \"" + DOMInfoModel.escapeProtegeString(lDOMPermValDefn.value) + "\"))");
+// v1.3					prDDPins.println("  (value \"" + DOMInfoModel.escapeProtegeString(tPermValue) + "\"))");
 						prDDPins.println(" ");
 						prDDPins.println("([" + vmIdentifier + "] of ValueMeaning");
 						prDDPins.println("  (beginDate \"" + DMDocument.beginDatePDS4Value + "\")");
 						prDDPins.println("  (containing1 [" + lDOMAttr.evdDataIdentifier + "])");
 						prDDPins.println("  (endDate \"" + DMDocument.endDateValue + "\")");
-						prDDPins.println("  (description \"" + InfoModel.escapeProtegeString(lDOMPermValDefn.value_meaning) + "\"))");
-// v1.3						prDDPins.println("  (description \"" + InfoModel.escapeProtegeString(tPermValueMeaning) + "\"))");
+						prDDPins.println("  (description \"" + DOMInfoModel.escapeProtegeString(lDOMPermValDefn.value_meaning) + "\"))");
+// v1.3						prDDPins.println("  (description \"" + DOMInfoModel.escapeProtegeString(tPermValueMeaning) + "\"))");
 						prDDPins.println(" ");
 					}
 				}
@@ -529,12 +529,11 @@ class WriteDOM11179DDPinsFile extends Object{
 		prDDPins.println("  (languageIdentifier \"English\"))");
 			
 		// write the unitOfMeasure
-//		for (Iterator<UnitDefn> i = InfoModel.masterUnitOfMeasureArr.iterator(); i.hasNext();) {
 		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
 			DOMUnit lDOMUnit = (DOMUnit) i.next();		
 			prDDPins.println("([" + lDOMUnit.title + "] of UnitOfMeasure");
 			prDDPins.println("	(measureName \"" + lDOMUnit.title + "\")");
-			prDDPins.println("	(defaultUnitId \"" + InfoModel.escapeProtegeString(lDOMUnit.default_unit_id) + "\")");
+			prDDPins.println("	(defaultUnitId \"" + DOMInfoModel.escapeProtegeString(lDOMUnit.default_unit_id) + "\")");
 			prDDPins.println("	(precision \"" + "TBD_precision" + "\")");
 			if (! lDOMUnit.unit_id.isEmpty() )
 			{
@@ -543,7 +542,7 @@ class WriteDOM11179DDPinsFile extends Object{
 				// set the units
 				for (Iterator<String> j = lDOMUnit.unit_id.iterator(); j.hasNext();) {
 					String lVal = (String) j.next();
-					prDDPins.print(lSpace + "\"" + InfoModel.escapeProtegeString(lVal) + "\"");
+					prDDPins.print(lSpace + "\"" + DOMInfoModel.escapeProtegeString(lVal) + "\"");
 					lSpace = " ";
 				}
 				prDDPins.println("))");

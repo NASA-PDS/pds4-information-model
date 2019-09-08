@@ -58,11 +58,11 @@ class ProtPinsGlossary extends Object{
 			lDOMAttr.setRDFIdentifier(localInst.rdfIdentifier);
 			lDOMAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 			lDOMAttr.subModelId = subModelId;
-			lDOMAttr.title = InfoModel.unEscapeProtegeString(localInst.title);
+			lDOMAttr.title = DOMInfoModel.unEscapeProtegeString(localInst.title);
 			lDOMAttr.genAttrMap = localInst.genSlotMap;
 			ArrayList <String> attrdescarr = (ArrayList<String>) lDOMAttr.genAttrMap.get("column_desc");
 			String lDescription = (String) attrdescarr.get(0);
-			lDescription =  InfoModel.unEscapeProtegeString(lDescription);
+			lDescription =  DOMInfoModel.unEscapeProtegeString(lDescription);
 			lDOMAttr.definition = lDescription;
 			
 			glossMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);

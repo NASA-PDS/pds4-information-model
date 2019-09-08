@@ -28,12 +28,10 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+//package gov.nasa.pds.model.plugin; 
 
 import java.io.*;
 import java.util.*;
-
-
 
 class WriteDOMCSVFiles extends Object {	
 	static final String DELM_BEGIN = "\"", DELM_MID = "\",\"", DELM_END = "\"";
@@ -54,7 +52,7 @@ class WriteDOMCSVFiles extends Object {
 //		String lFileName;
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDCSV;
 		if (lOtherLanguage != null) lFileName = lSchemaFileDefn.relativeFileSpecDDCSV + "_" + lOtherLanguage;				
-		lFileName += ".csv";
+		lFileName += "_DOM.csv";
              
 		FileOutputStream lFileOutputStream = new FileOutputStream(lFileName);
 		BufferedWriter prCSVAttr = new BufferedWriter(new OutputStreamWriter(lFileOutputStream,"UTF8"));

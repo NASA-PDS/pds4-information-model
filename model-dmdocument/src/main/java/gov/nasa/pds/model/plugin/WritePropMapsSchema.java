@@ -64,7 +64,6 @@ class WritePropMapsSchema extends Object {
 		prDDPins.println("  {");
 		prDDPins.println("    " + formValue("dataDictionary") + ": {");
 		prDDPins.println("      " + formValue("Title") + ": " + formValue("PDS4 Data Dictionary") + " ,");
-//		prDDPins.println("      " + formValue("Version") + ": " +  formValue(InfoModel.ont_version_id) + " ,");
 		prDDPins.println("      " + formValue("Version") + ": " +  formValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + " ,");
 		prDDPins.println("      " + formValue("Date") + ": " +  formValue(DMDocument.sTodaysDate) + " ,");
 		prDDPins.println("      " + formValue("Description") + ": " + formValue("This document is a dump of the contents of the PDS4 Data Dictionary") + " ,");
@@ -81,7 +80,7 @@ class WritePropMapsSchema extends Object {
 		String rString = lString;
 		if (rString == null) rString = "null";
 		if (rString.indexOf("TBD") == 0) rString = "null";
-		rString = InfoModel.escapeJSONChar(rString);
+		rString = DOMInfoModel.escapeJSONChar(rString);
 		rString = "\"" + rString + "\"";
 		return rString;
 	}
@@ -103,7 +102,7 @@ class WritePropMapsSchema extends Object {
 	// Print the Property Maps
 	public  void printPropertyMaps (PrintWriter prDDPins) {
 		boolean isFirst = true;
-		for (Iterator<PropertyMapsDefn> i = InfoModel.masterPropertyMapsArr.iterator(); i.hasNext();) {
+		for (Iterator<PropertyMapsDefn> i = DOMInfoModel.masterPropertyMapsArr.iterator(); i.hasNext();) {
 			PropertyMapsDefn lPropertyMaps = (PropertyMapsDefn) i.next();
 			if (isFirst) {
 				prDDPins.println("        {" + formValue("PropertyMaps") + ": {");
