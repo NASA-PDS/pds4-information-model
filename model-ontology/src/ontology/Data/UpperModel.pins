@@ -1,4 +1,4 @@
-; Mon Aug 19 10:00:54 PDT 2019
+; Wed Aug 28 20:48:50 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -120,6 +120,30 @@
 	(attrTitle "product_class")
 	(identifier "product_class")
 	(specMesg "The ROOT element must be one of the allowed types."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "nilReason")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Product")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556.101])
+	(identifier "aaa:Root/nilReason")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "*[@xsi:nil]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556.101] of  Schematron_Assert
+
+	(assertMsg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\"")
+	(assertStmt "(@xsi:nil eq 'true' and @nilReason) or not(@xsi:nil eq 'true' or @nilReason)")
+	(assertType "RAW")
+	(attrTitle "nilReason")
+	(identifier "nilReason")
+	(specMesg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\""))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510] of  Schematron_Rule
 
