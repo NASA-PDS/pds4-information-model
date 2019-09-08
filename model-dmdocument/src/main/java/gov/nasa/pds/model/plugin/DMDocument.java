@@ -501,13 +501,6 @@ public class DMDocument extends Object {
 		ProtPinsDOM11179DD lProtPinsDOM11179DD  = new ProtPinsDOM11179DD ();
 		lProtPinsDOM11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");
 		
-// 999
-		// use the following for MOF and DOM testing.
-		// get the models
-//		GetModels lGetModels = new GetModels();
-//		lGetModels.getModels (PDSOptionalFlag, docFileName + ".pins");
-		
-//		// use the following for DOM only testing		
 		// get the models
 		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
 		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
@@ -1089,7 +1082,7 @@ public class DMDocument extends Object {
 			lClass.nameSpaceId = lClassNameSpaceIdNC + ":";
 			
 			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
-			if (isFromProtege) lClass.identifier = InfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
+			if (isFromProtege) lClass.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
 			lClass.isMasterClass = true;
 			if (lDisp.indexOf("V") > -1) {
 				lClass.isVacuous = true;
