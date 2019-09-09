@@ -28,7 +28,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-//package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
 import java.io.*;
 import java.util.*;
 
@@ -91,8 +91,7 @@ class RegConfig extends Object {
 		prRIM1.println(delimiter + "{");
 		prRIM1.println("reg_object_type: " + lClass.title);
 				
-// fix		lAttrArr = DOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
-		lAttrArr = null;
+		lAttrArr = DOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
 		if (! lAttrArr.isEmpty()) {
 			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
 				DOMAttr lAttr = i.next();
@@ -390,8 +389,7 @@ class RegConfig extends Object {
 		ArrayList <DOMAttr> lAttrArr;
 		ArrayList <String> lRefTypeArr;
 		
-// fix		lAttrArr = DOMDOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
-		lAttrArr = null;
+		lAttrArr = DOMInfoModel.getAllAttrRecurse (new ArrayList <DOMAttr> (), new ArrayList <DOMClass> (), lClass);
 		if (lAttrArr.isEmpty()) {
 			return;
 		}
@@ -403,9 +401,7 @@ class RegConfig extends Object {
 		classAttrMap.put(lClass.title, lAttrArr);
 		
 		// get reference association types
-//fix		lRefTypeArr = DOMDOMInfoModel.getAllRefAssocType (lAttrArr);
-		lRefTypeArr = null;
-		
+		lRefTypeArr = DOMInfoModel.getAllRefAssocType (lAttrArr);
 		if (lRefTypeArr == null) {
 			return;
 		}
