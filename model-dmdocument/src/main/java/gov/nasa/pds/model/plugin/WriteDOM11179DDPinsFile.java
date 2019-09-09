@@ -48,10 +48,7 @@ class WriteDOM11179DDPinsFile extends Object{
 
 	// write the PINS file
 	public void writePINSFile (String lFileName) throws java.io.IOException {
-		String lFileNameOrg = "dd11179_Gen";
-		String lFileNameUpd = "dd11179_Gen";
-		String lFileName2 = DMDocument.replaceString (lFileName, lFileNameOrg, lFileNameUpd);
-		prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));		
+		prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));		
 		
 	    printPDDPHdr();
 		printPDDPBody ();
