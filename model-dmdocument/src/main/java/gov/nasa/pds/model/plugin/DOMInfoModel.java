@@ -865,10 +865,62 @@ public abstract class DOMInfoModel extends Object {
 		return null;
 	}
 	
-	public static ArrayList <String> getAllRefAssocType (ArrayList <AttrDefn> lAttrArr) {		
+	/**
+	*  Return all attributes in a class - recurse down through all associations.
+	*/
+	public static ArrayList <DOMAttr> getAllAttrRecurse (ArrayList <DOMAttr> lAttrArr, ArrayList <DOMClass> visitedClass, DOMClass lClass) {
+		//	get all local attributes
+		for (Iterator<DOMProp> i = lClass.ownedAttrArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				if (! lAttrArr.contains(lDOMAttr)) {
+					lAttrArr.add(lDOMAttr);
+				}
+			}
+		} 	
+		
+		//	get all inherited attributes
+		for (Iterator<DOMProp> i = lClass.inheritedAttrArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+					if (! lAttrArr.contains(lDOMAttr)) {
+						lAttrArr.add(lDOMAttr);
+				}
+			}
+		} 	
+		
+		//get all local associations
+		for (Iterator<DOMProp> i = lClass.ownedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (! visitedClass.contains(lCompClass)) {
+					visitedClass.add(lCompClass);
+					getAllAttrRecurse (lAttrArr, visitedClass, lCompClass);
+				}
+			}
+		}
+		
+		//get all inherited associations
+		for (Iterator<DOMProp> i = lClass.inheritedAssocArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (! visitedClass.contains(lCompClass)) {
+					visitedClass.add(lCompClass);
+					getAllAttrRecurse (lAttrArr, visitedClass, lCompClass);
+				}
+			}
+		}
+		return lAttrArr;
+	}
+	
+	public static ArrayList <String> getAllRefAssocType (ArrayList <DOMAttr> lAttrArr) {		
 		ArrayList <String> lRefTypeArr = new ArrayList <String> ();
-		for (Iterator<AttrDefn> i = lAttrArr.iterator(); i.hasNext();) {
-			AttrDefn lAttr = i.next();
+		for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = i.next();
 			if (lAttr.isAttribute) {
 				if (lAttr.title.indexOf("reference_association_type") == 0) {
 					if (! lAttr.valArr.isEmpty()) {
