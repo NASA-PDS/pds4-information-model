@@ -23,6 +23,44 @@
   </properties>
 
   <body>
+    <release version="10.0.0" date="2019-09-30" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 10.0.0 of the PDS4 System. This is an operational release of the system components to date.">
+      <action dev="jshughes" type="update" issue="CCB-237">
+       Change Attribute doi to Data Type ASCII_DOI.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-244">
+       Deprecate earth-based from Context Product Instrument_Host types.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-249">
+       Schematron Rule Elements - Assert and Report.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-250">
+       Correct schematron Rule pds:checksum_type to test for MD5 not MD5Deep4.n.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-251">
+       Add Units_of_Gmass as a unit of measure.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-252">
+       Add Not_Applicable to wavelength_range in Science_Facets.as a unit of measure.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-253">
+       Add Units_of_Force as a unit of measure.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-254">
+       Add Enumerated Value to Target_Identification.type for Gravitational Waves.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-256">
+       Need method for providing permissible value definitions for external namespaces in Ingest_Ldd.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-258">
+       Use of nilReason with xsi:nil should be required and validated.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-262">
+       Add an enumberated value for Primary_Result_Summar.
+      </action>
+      <action dev="jshughes" type="update" issue="CCB-266">
+       Change type of External_Reference/reference_text.
+      </action>
+    </release>
     <release version="9.1.0" date="2019-03-29" description="This release of the IMTOOL schema data files (model-ontology) is a component of the integrated release 9.1.0 of the PDS4 System. This is an operational release of the system components to date.">
       <action dev="jshughes" type="update" issue="CCB-195">
        Update Information Model to Improve International Interoperability.
