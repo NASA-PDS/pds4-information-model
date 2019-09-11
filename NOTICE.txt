@@ -1,2 +1,0 @@
-PDS4 Information Model Package
-Copyright 2019 California Institute of Technology
