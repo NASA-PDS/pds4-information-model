@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2019, California Institute of Technology ("Caltech").
+  U.S. Government sponsorship acknowledged.
+  
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+  
+  * Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+  * Redistributions must reproduce the above copyright notice, this list of
+  conditions and the following disclaimer in the documentation and/or other
+  materials provided with the distribution.
+  * Neither the name of Caltech nor its operating division, the Jet Propulsion
+  Laboratory, nor the names of its contributors may be used to endorse or
+  promote products derived from this software without specific prior written
+  permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<document>
+  <properties>
+    <title>Local Data Dictionary Tool Past Releases</title>
+    <author email="John.S.Hughes@jpl.nasa.gov">Steve Hughes</author>
+  </properties>
+
+  <body>
+    <section name="LDDTool Past Releases">
+      <p>The following lists all previous versions of LDDTool. It is recommended you use the latest version of the software wherever possible.
+      </p>
+      
+      <p>If you are unsure of what version to use for the version of the information model you are using, please contact the <a href="mailto:pds_operator@jpl.nasa.gov">PDS Operator</a> for assistance at pds_operator@jpl.nasa.gov.</p>
+
+      <ul>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.0.0-bin.tar.gz">lddtool-7.0.0-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.0.0-bin.zip">lddtool-7.0.0-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.0.1-bin.tar.gz">lddtool-7.0.1-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.0.1-bin.zip">lddtool-7.0.1-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.1.0-bin.tar.gz">lddtool-7.1.0-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.1.0-bin.zip">lddtool-7.1.0-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.1.0-dev-bin.tar.gz">lddtool-7.1.0-dev-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-7.1.0-dev-bin.zip">lddtool-7.1.0-dev-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.0.0-bin.tar.gz">lddtool-8.0.0-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.0.0-bin.zip">lddtool-8.0.0-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.0.0-dev-bin.tar.gz">lddtool-8.0.0-dev-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.0.0-dev-bin.zip">lddtool-8.0.0-dev-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.0-bin.tar.gz">lddtool-8.1.0-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.0-bin.zip">lddtool-8.1.0-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.0-dev-bin.tar.gz">lddtool-8.1.0-dev-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.0-dev-bin.zip">lddtool-8.1.0-dev-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.1-bin.tar.gz">lddtool-8.1.1-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-8.1.1-bin.zip">lddtool-8.1.1-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.0.0-bin.tar.gz">lddtool-9.0.0-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.0.0-bin.zip">lddtool-9.0.0-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.0.0-dev-bin.tar.gz">lddtool-9.0.0-dev-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.0.0-dev-bin.zip">lddtool-9.0.0-dev-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.1.0-dev-bin.tar.gz">lddtool-9.1.0-dev-bin.tar.gz</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.1.0-dev-bin.zip">lddtool-9.1.0-dev-bin.zip</a></li>
+        <li><a href="https://pds.nasa.gov/software/pds4/model/lddtool-9.1.0-bin.tar.gz">lddtool-9.1.0-bin.tar.gz</a></li>
+      </ul>
+      
+    </section>
+  </body>
+</document>

@@ -34,7 +34,7 @@
 <project name="model-lddtool">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>https://nasa-pds-incubator.github.io/pds4-information-model/</href>
+    <href>/pds4-information-model/</href>
   </bannerLeft>
 
   <bannerRight>
@@ -45,7 +45,7 @@
 
   <body>
     <links>
-      <item name="LDDTool" href="https://nasa-pds-incubator.github.io/pds4-information-model/${project.artifactId}/index.html" />
+      <item name="LDDTool" href="index.html" />
     </links>
 
     <menu name="Software Documentation">
@@ -54,9 +54,10 @@
       <item name="Operation" href="operate/index.html"/>
     </menu>
 
-    <menu name="Download">
-      <item name="Binary Package (tar.gz)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/releases/download/v${project.version}/lddtool-${project.version}-bin.tar.gz"/>
-      <item name="Binary Package (zip)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/releases/download/v${project.version}/lddtool-${project.version}-bin.zip"/>
+    <menu name="Downloads">
+      <item name="Current Release (tar.gz)" href="https://github.com/NASA-PDS-Incubator/${project.artifactId}/releases/download/v${project.version}/${project.artifactId}-${project.version}-bin.tar.gz"/>
+      <item name="Current Release (zip)" href="https://github.com/NASA-PDS-Incubator/${project.artifactId}/releases/download/v${project.version}/${project.artifactId}-${project.version}-bin.zip"/>
+      <item name="Past Releases" href="releases.html"/>
     </menu>
 
     <menu ref="reports"/>

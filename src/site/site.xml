@@ -34,7 +34,7 @@
 <project name="Model">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>https://pds-cm.jpl.nasa.gov/pds4/</href>
+    <href>/pds4-information-model</href>
   </bannerLeft>
 
   <bannerRight>
@@ -43,7 +43,7 @@
 
   <body>
     <links>
-      <item name="Model" href="https://pds-cm.jpl.nasa.gov/pds4/model/index.html" />
+      <item name="Model" href="/pds4-information-model" />
     </links>
 
     <menu name="Software Documentation">
