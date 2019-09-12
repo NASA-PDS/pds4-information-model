@@ -12,6 +12,10 @@
 *.project
 *.classpath
 
+# IntelliJ files
+.idea/
+*.iml
+
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
@@ -25,17 +29,18 @@
 
 # Temporary files
 *~
-/bin/
 
 # other stuff
 *.xpr
 *.swp
 /bin/
+.*.swp
+*.sublime-*
+*.DS_Store
+pom.xml.versionsBackup
+*\#
 
 # Java stuff
 *.javac
 .gwt/
 target/
-model-dmdocument/src/main/java/gov/nasa/pds/model/plugin/DOMInfoModel.java.bak
-*.bak
-DOMModelListPerm.txt
