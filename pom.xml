@@ -41,7 +41,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>9.1.0-SNAPSHOT</version>
+  <version>10.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>PDS4 Information Model</name>
@@ -52,9 +52,8 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <licenses>
     <license>
-      <name>California Institute of Technology</name>
-      <url>file:///${basedir}/LICENSE.txt</url>
-      <distribution>repo</distribution>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
 
