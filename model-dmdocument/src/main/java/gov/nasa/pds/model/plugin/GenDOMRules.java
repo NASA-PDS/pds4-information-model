@@ -135,38 +135,54 @@ class GenDOMRules extends Object {
 				lRule.classNameSpaceNC = lClassNameSpaceIdNC;
 				lRule.classSteward = lClassSteward;
 			}
-			String lDeprecatedAttrIdentifier = lDeprecatedClassIdentifier + "." + lAttr.title;
+//			String lDeprecatedAttrIdentifier = lDeprecatedClassIdentifier + "." + lAttr.title;
 			if (lAttr.valArr == null || lAttr.valArr.isEmpty()) continue;
-			String assertMsgPre = " must be equal to one of the following values "; 
-			if (lAttr.valArr.size() == 1) {
-				assertMsgPre = " must be equal to the value "; 					
-			}
 			lRule.attrTitle = lAttr.title;		
 			lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;
 			String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
 			if (foundAssertStmt (lAttrId, lRule.assertArr)) continue;
-			DOMAssert lAssert = new DOMAssert (lAttrId);
-			lAssert.assertStmt = ". = (";	
-			lAssert.assertMsg =  "The attribute " + lAttrId + assertMsgPre;
+			DOMAssert lAssert = new DOMAssert (lAttrId);	
 			lRule.assertArr.add(lAssert);
-			String lDel = "";
 			
-			// if attribute is information_model_version, only the current version is allowed
-			if (lAttr.title.compareTo("information_model_version") != 0) {
+			String lDel = "";
+			String lDelimitedValueArr = "";
+			
+			// test for special attributes
+			if (! (lAttr.title.compareTo("information_model_version") == 0)) {
 				for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
-					String lVal = (String) k.next();
-					String lValString = lDel + "'" + lVal + "'";					
+					String lValue = (String) k.next();
+					String lDelimitedValue = lDel + "'" + lValue + "'";					
 					lDel = ", ";					
-					lAssert.assertStmt += lValString;	
-					lAssert.assertMsg += lValString;
+					lDelimitedValueArr += lDelimitedValue;	
 				}
+
+				if (lAttr.valArr.size() > 1) {
+					if (! lAttr.isNilable) {
+						lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
+						lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to one of the following values " + lDelimitedValueArr + ".";
+					} else {
+						lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
+						lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
+					}
+				} else {
+					if (! lAttr.isNilable) {
+						lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
+						lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValueArr + ".";
+					} else {
+						lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
+						lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
+					}
+				}
+
+			// if attribute is information_model_version, only the current version is allowed			
 			} else {
-				String lValString = "'" + DMDocument.masterPDSSchemaFileDefn.versionId + "'";										
-				lAssert.assertStmt += lValString;	
-				lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lValString;
+				String lDelimitedValue = "'" + DMDocument.masterPDSSchemaFileDefn.versionId + "'";										
+				lAssert.assertStmt = ". = (" + lDelimitedValue + ")";	
+				if (! lAttr.isNilable)
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValue + ".";
+				else
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValue + ".";	
 			}
-			lAssert.assertStmt += ")";	
-			lAssert.assertMsg +=  ".";
 		}
 	}		
 	
