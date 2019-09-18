@@ -35,7 +35,6 @@ import java.util.*;
  * Transforms a token array (parsed Protege .pont file) into logical entities.
  *   ProtPontDOMModel - get token array from parser and convert into classes and attributes
  */
-//class ProtPontDOMModel extends InfoModel{
 class ProtPontDOMModel extends DOMInfoModel{
 	
 	DOMClass lClass;
@@ -131,16 +130,14 @@ class ProtPontDOMModel extends DOMInfoModel{
 						parsedClassArr.add(lClassWDisp);
 						String token1 = (String) tokenIter.next();
 						if (token1.compareTo("(") != 0) {
-							lClassWDisp.definition = InfoModel.unEscapeProtegeString(token1);
+							lClassWDisp.definition = DOMInfoModel.unEscapeProtegeString(token1);
 						}
-//						lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
 					} else if (lClassWDisp.used.compareTo("I") == 0) {
 						// class is "hidden" ignore it and do not print warning
 					} else {	// disposition exists but not clear why, print warning 
 						System.out.println(">>warning - Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
 					}
 				} else {
-//					lClass.identifier = InfoModel.getClassIdentifier(classNameSpaceIdNC, className);
 					if (! DMDocument.LDDToolFlag) {
 						System.out.println(">>warning - Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
 					}
@@ -285,7 +282,7 @@ class ProtPontDOMModel extends DOMInfoModel{
 				type = 0;
 				break;
 			case 9: // comment
-				lProtAttr.definition = InfoModel.unEscapeProtegeString(token);
+				lProtAttr.definition = DOMInfoModel.unEscapeProtegeString(token);
 				type = 0;
 				break;
 			case 10: // role

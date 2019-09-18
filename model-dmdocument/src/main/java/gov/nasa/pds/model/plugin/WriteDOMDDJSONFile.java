@@ -567,9 +567,9 @@ class WriteDOMDDJSONFile extends Object{
 
 	// Print the the Protege Pins CD
 	public  void printPDDPCD (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lCDAttrArr = new ArrayList <IndexDefn> (DOMInfoModel.cdAttrMap.values());
-		for (Iterator<IndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lCDAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.cdDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lCDAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "CD_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of ConceptualDomain");
@@ -590,9 +590,8 @@ class WriteDOMDDJSONFile extends Object{
 
 			lfc = "";
 			prDDPins.println("  (representing2 ");
-//			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				if (lAttr.isEnumerated) {
 					prDDPins.print("    [" + lAttr.evdDataIdentifier + "]");
@@ -627,9 +626,9 @@ class WriteDOMDDJSONFile extends Object{
 	
 	// Print the the Protege Pins DEC
 	public  void printPDDPDEC (PrintWriter prDDPins) {
-		ArrayList <IndexDefn> lDECAttrArr = new ArrayList <IndexDefn> (DOMInfoModel.decAttrMap.values());
-		for (Iterator<IndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
-			IndexDefn lIndex = (IndexDefn) i.next();
+		ArrayList <DOMIndexDefn> lDECAttrArr = new ArrayList <DOMIndexDefn> (DOMInfoModel.decDOMAttrMap.values());
+		for (Iterator<DOMIndexDefn> i = lDECAttrArr.iterator(); i.hasNext();) {
+			DOMIndexDefn lIndex = (DOMIndexDefn) i.next();
 			String gIdentifier = lIndex.identifier;
 			String dbIdentifier = "DEC_" + gIdentifier;
 			prDDPins.println("([" + dbIdentifier  + "] of DataElementConcept");
@@ -638,9 +637,8 @@ class WriteDOMDDJSONFile extends Object{
 
 			String lfc = "";
 			prDDPins.println("  (expressing ");
-//			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
-			for (Iterator<AttrDefn> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
-				AttrDefn lAttr = (AttrDefn) j.next();
+			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
+				DOMAttr lAttr = (DOMAttr) j.next();
 				prDDPins.print(lfc);
 				prDDPins.print("    [" + lAttr.deDataIdentifier + "]");
 				lfc = "\n";

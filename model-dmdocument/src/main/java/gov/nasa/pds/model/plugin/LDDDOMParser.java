@@ -72,8 +72,6 @@ public class LDDDOMParser extends Object
 	ArrayList <DOMProp> attrArrResolved = new ArrayList <DOMProp> (); 
 	
 	// initialize the Property structures
-//	ArrayList <AssocDefn> LDDMOFPropArr = new ArrayList <AssocDefn> (); 	
-//	ArrayList <DOMProp> LDDMOFPropArr = new ArrayList <DOMProp> (); 	
 	ArrayList <DOMProp> LDDDOMPropArr = new ArrayList <DOMProp> (); 	
 		
 	// initialize the Rule structures
@@ -589,8 +587,6 @@ public class LDDDOMParser extends Object
 				if (lVal != null) {
 					TermEntryDefn lTermEntry = new TermEntryDefn ();
 					lTermEntry.language = lVal;
-
-// 3333 - AttrDefn
 					if (lObject.getClass().getName().compareTo("AttrDefn") == 0) {
 						DOMAttr lAttr = (DOMAttr) lObject;
 						lAttr.termEntryMap.put(lTermEntry.language, lTermEntry);
@@ -1997,9 +1993,6 @@ public class LDDDOMParser extends Object
         prLocalDD.println("\n   Associations");
 		
 		// print associations
-//		TreeMap <String, AssocDefn> lAssocMap = classAssocMap.get(lClass.localIdentifier);
-//		ArrayList <AssocDefn> lPropertyArr = new ArrayList <AssocDefn> (lAssocMap.values());
-
 		for (Iterator <DOMProp> i = lDOMClass.ownedAttrArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
 	        prLocalDD.println("\n      local identifier" + "      " + lDOMProp.localIdentifier);

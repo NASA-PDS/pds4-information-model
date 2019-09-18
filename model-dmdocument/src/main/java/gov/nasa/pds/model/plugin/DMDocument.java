@@ -167,7 +167,6 @@ public class DMDocument extends Object {
 	
 	static boolean LDDToolAnnotateDefinitionFlag;
 	static String LDDToolSingletonClassTitle = "USER";
-	static PDSObjDefn LDDToolSingletonClass = null;
 	static DOMClass LDDToolSingletonDOMClass = null;
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
 	
