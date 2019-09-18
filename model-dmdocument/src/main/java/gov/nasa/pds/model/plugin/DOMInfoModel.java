@@ -127,10 +127,6 @@ public abstract class DOMInfoModel extends Object {
 	// special rdfIdentifiers
 	static String protegeRootClassRdfId, protegeSlotClassRdfId;
 	
-	// All CD and DEC values for the Attributes
-	static TreeMap <String, IndexDefn> cdAttrMap = new TreeMap <String, IndexDefn>();
-	static TreeMap <String, IndexDefn> decAttrMap = new TreeMap <String, IndexDefn>();
-	
 	// class concepts - for CD and DEC
 	static TreeMap <String, String> classConcept;
 	static TreeMap <String, String> dataConcept;
@@ -355,12 +351,10 @@ public abstract class DOMInfoModel extends Object {
 		dataTypeToConceptMap.put("UTF8_Text_Preserved", "TEXT");
 		
 		// initialize the Attribute Namespace Resolution Map 
-		// attrs (AttrDefn)
 		attrNamespaceResolutionMap = new TreeMap <String, String> ();
 //		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 //		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
 //		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-		// assocs (AttrDefn)
 //		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);
 		
 		masterValueMeaningMap = new TreeMap <String, PermValueDefn> ();
@@ -1049,109 +1043,6 @@ public abstract class DOMInfoModel extends Object {
 		return lNewAttr;
 	}
 	
-	// finish the clone of an attribute 
-	static public void finishCloneAttr (AttrDefn lOrgAttr, AttrDefn lNewAttr) {				              					              
-//		lNewAttr.uid = lOrgAttr.uid;										              
-//		lNewAttr.identifier = lOrgAttr.identifier; 						              
-//		lNewAttr.sort_identifier = lOrgAttr.sort_identifier;				              
-//		lNewAttr.attrAnchorString = lOrgAttr.attrAnchorString;			              
-//		lNewAttr.title = lOrgAttr.title;  								              
-//		lNewAttr.versionId = lOrgAttr.versionId;							              
-//		lNewAttr.registrationStatus = lOrgAttr.registrationStatus;		              
-		lNewAttr.XMLSchemaName = lOrgAttr.XMLSchemaName;					              
-//		lNewAttr.regAuthId = lOrgAttr.regAuthId;							              
-		lNewAttr.steward = lOrgAttr.steward;								              
-//		lNewAttr.classSteward = lOrgAttr.classSteward;					              
-//		lNewAttr.attrNameSpaceId = lOrgAttr.attrNameSpaceId;                     
-//		lNewAttr.attrNameSpaceIdNC = lOrgAttr.attrNameSpaceIdNC;                   
-//		lNewAttr.classNameSpaceIdNC = lOrgAttr.classNameSpaceIdNC;                  
-//		lNewAttr.submitter = lOrgAttr.submitter;							              
-//		lNewAttr.subModelId = lOrgAttr.subModelId;						              
-//		lNewAttr.className = lOrgAttr.className;							              
-//		lNewAttr.classConcept = lOrgAttr.classConcept;					              
-		lNewAttr.dataConcept = lOrgAttr.dataConcept;						              
-//		lNewAttr.classWord = lOrgAttr.classWord;							              
-		lNewAttr.description = lOrgAttr.description;                         
-		lNewAttr.lddLocalIdentifier = lOrgAttr.lddLocalIdentifier;		              
-
-		lNewAttr.xmlBaseDataType = lOrgAttr.xmlBaseDataType;				              
-		lNewAttr.protValType = lOrgAttr.protValType;						              
-		lNewAttr.propType = lOrgAttr.propType;							              
-		lNewAttr.valueType = lOrgAttr.valueType;	
-		lNewAttr.groupName = lOrgAttr.groupName;
-
-//		lNewAttr.cardMin = lOrgAttr.cardMin;                             
-//		lNewAttr.cardMax = lOrgAttr.cardMax;                             
-//		lNewAttr.cardMinI = lOrgAttr.cardMinI;                            
-//		lNewAttr.cardMaxI = lOrgAttr.cardMaxI;                            
-
-		lNewAttr.minimum_characters = lOrgAttr.minimum_characters;		              
-		lNewAttr.maximum_characters = lOrgAttr.maximum_characters;		              
-		lNewAttr.minimum_value = lOrgAttr.minimum_value;			                  
-		lNewAttr.maximum_value = lOrgAttr.maximum_value;			                  
-		lNewAttr.format = lOrgAttr.format;					                    
-		lNewAttr.pattern = lOrgAttr.pattern;					                    
-		lNewAttr.unit_of_measure_type = lOrgAttr.unit_of_measure_type;	              
-		lNewAttr.default_unit_id = lOrgAttr.default_unit_id;			                
-		lNewAttr.unit_of_measure_precision = lOrgAttr.unit_of_measure_precision;	          
-
-//		lNewAttr.type = lOrgAttr.type;                                
-		lNewAttr.isAttribute = lOrgAttr.isAttribute;			                    
-		lNewAttr.isOwnedAttribute = lOrgAttr.isOwnedAttribute;		                
-		lNewAttr.isPDS4 = lOrgAttr.isPDS4;					                    
-//		lNewAttr.isUnitOfMeasure = lOrgAttr.isUnitOfMeasure;                     
-//		lNewAttr.isDataType = lOrgAttr.isDataType;                          
-		lNewAttr.isEnumerated = lOrgAttr.isEnumerated;                        
-		lNewAttr.isUsedInClass = lOrgAttr.isUsedInClass;			                  
-		lNewAttr.isRestrictedInSubclass = lOrgAttr.isRestrictedInSubclass;              
-		lNewAttr.isMeta = lOrgAttr.isMeta;                              
-		lNewAttr.hasAttributeOverride = lOrgAttr.hasAttributeOverride;                
-		lNewAttr.isNilable = lOrgAttr.isNilable;                           
-		lNewAttr.isChoice = lOrgAttr.isChoice;				                    
-		lNewAttr.isAny = lOrgAttr.isAny;				                    
-//		lNewAttr.isFromLDD = lOrgAttr.isFromLDD;			                      
-		lNewAttr.hasRetiredValue = lOrgAttr.hasRetiredValue;                     
-
-		lNewAttr.valArr = lOrgAttr.valArr;                              
-		lNewAttr.allowedUnitId = lOrgAttr.allowedUnitId;	                      
-		lNewAttr.genAttrMap = lOrgAttr.genAttrMap;                          
-		lNewAttr.permValueArr = lOrgAttr.permValueArr;                        
-		lNewAttr.permValueExtArr = lOrgAttr.permValueExtArr;                     
-		lNewAttr.termEntryMap = lOrgAttr.termEntryMap;                        
-		lNewAttr.valueDependencyMap = lOrgAttr.valueDependencyMap;                  
-		 	                                            
-//		lNewAttr.dataIdentifier = lOrgAttr.dataIdentifier; 						          
-//		lNewAttr.deDataIdentifier = lOrgAttr.deDataIdentifier;					          
-//		lNewAttr.decDataIdentifier = lOrgAttr.decDataIdentifier;					          
-//		lNewAttr.ecdDataIdentifier = lOrgAttr.ecdDataIdentifier;					          
-//		lNewAttr.evdDataIdentifier = lOrgAttr.evdDataIdentifier;					          
-//		lNewAttr.necdDataIdentifier = lOrgAttr.necdDataIdentifier;				          
-//		lNewAttr.nevdDataIdentifier = lOrgAttr.nevdDataIdentifier;				          
-//		lNewAttr.pvDataIdentifier = lOrgAttr.pvDataIdentifier;					          
-//		lNewAttr.vmDataIdentifier = lOrgAttr.vmDataIdentifier;					          
-		 	                                            
-//		lNewAttr.desDataIdentifier = lOrgAttr.desDataIdentifier;					          
-//		lNewAttr.defDataIdentifier = lOrgAttr.defDataIdentifier;					          
-//		lNewAttr.lsDataIdentifier = lOrgAttr.lsDataIdentifier;					          
-//		lNewAttr.teDataIdentifier = lOrgAttr.teDataIdentifier;					          
-//		lNewAttr.prDataIdentifier = lOrgAttr.prDataIdentifier;					          
-		 	                                            
-		lNewAttr.administrationRecordValue = lOrgAttr.administrationRecordValue;           
-		lNewAttr.versionIdentifierValue = lOrgAttr.versionIdentifierValue;              
-		lNewAttr.registeredByValue = lOrgAttr.registeredByValue;                   
-		lNewAttr.registrationAuthorityIdentifierValue = lOrgAttr.registrationAuthorityIdentifierValue;
-		 	                                            
-		lNewAttr.expressedByArr = lOrgAttr.expressedByArr;                      
-		lNewAttr.representing1Arr = lOrgAttr.representing1Arr;                    
-		lNewAttr.representedBy1Arr = lOrgAttr.representedBy1Arr;                   
-		lNewAttr.representedBy2Arr = lOrgAttr.representedBy2Arr;                   
-		lNewAttr.containedIn1Arr = lOrgAttr.containedIn1Arr;                     
-		 	                                            
-		lNewAttr.genClassArr = lOrgAttr.genClassArr;                         
-		lNewAttr.sysClassArr = lOrgAttr.sysClassArr;	                       
-		return;
-	}
-	
 //======================= Master Sorts =============================================================================
 	
 	static public ArrayList <DOMAssocClassDefn> getSortedAlphaClassAssocClassArr (DOMClass lClass) {
@@ -1180,7 +1071,7 @@ public abstract class DOMInfoModel extends Object {
 	
 // 777
 	/*
-	// sort the class associated classes (Future)
+	// sort the class associated classes (Future) *** needs Conversion. ***
 	public ArrayList <PDSObjDefn> getSortedAssocClasses_actual_classes_future (ArrayList<AssocDefn> lAssocArr) {
 		TreeMap<String, AssocDefn> lSortAssocMap = new TreeMap <String, AssocDefn> ();
 		for (Iterator<AssocDefn> i = lAssocArr.iterator(); i.hasNext();) {
