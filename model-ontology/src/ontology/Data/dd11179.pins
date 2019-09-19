@@ -1,4 +1,4 @@
-; Wed Aug 28 20:57:10 PDT 2019
+; Thu Sep 19 14:51:12 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -563,6 +563,8 @@
 		[EVD.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.parsing_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.Citation_Information.pds.keyword]
 		[EVD.0001_NASA_PDS_1.pds.Collection.pds.collection_type]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.class_name]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.constant_value]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association.pds.maximum_occurrences]
@@ -599,6 +601,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.DD_Class_Full.pds.submitter_name]
 		[EVD.0001_NASA_PDS_1.pds.DD_Class_Full.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Class_Full.pds.version_id]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Permissible_Value.pds.value]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Permissible_Value_Full.pds.value]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_value]
@@ -970,17 +973,13 @@
 		[NEVD.0001_NASA_PDS_1.pds.Composite_Structure.pds.local_identifier]
 		[NEVD.0001_NASA_PDS_1.pds.Composite_Structure.pds.title]
 		[NEVD.0001_NASA_PDS_1.pds.Composite_Structure.pds.type_description]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.class_name]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.maximum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Association_External.pds.minimum_occurrences]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Reference.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Reference.pds.namespace_id]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id]
-		[NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath]
+		[NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Rule.pds.local_identifier]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Rule.pds.rule_assign]
 		[NEVD.0001_NASA_PDS_1.pds.DD_Rule.pds.rule_context]
@@ -5212,34 +5211,6 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.class_name])
 	(versionIdentifier "1.13"))
 
-([DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  DataElement
-
-	(administrationRecord [DD_1.13.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences])
-	(steward [ops])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences])
-	(versionIdentifier "1.13"))
-
-([DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  DataElement
-
-	(administrationRecord [DD_1.13.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences])
-	(steward [ops])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences])
-	(versionIdentifier "1.13"))
-
 ([DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id] of  DataElement
 
 	(administrationRecord [DD_1.13.0.0])
@@ -6036,6 +6007,20 @@
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id])
+	(versionIdentifier "1.13"))
+
+([DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  DataElement
+
+	(administrationRecord [DD_1.13.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name])
 	(versionIdentifier "1.13"))
 
 ([DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath] of  DataElement
@@ -15708,8 +15693,6 @@
 		[DE.0001_NASA_PDS_1.pds.Composite_Structure.pds.title]
 		[DE.0001_NASA_PDS_1.pds.Composite_Structure.pds.type_description]
 		[DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.class_name]
-		[DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences]
-		[DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences]
 		[DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id]
 		[DE.0001_NASA_PDS_1.pds.DD_Association.pds.identifier_reference]
 		[DE.0001_NASA_PDS_1.pds.DD_Association.pds.local_identifier]
@@ -15725,6 +15708,7 @@
 		[DE.0001_NASA_PDS_1.pds.DD_Class_Full.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.name]
 		[DE.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id]
+		[DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name]
 		[DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath]
 		[DE.0001_NASA_PDS_1.pds.DD_Rule.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.DD_Rule.pds.rule_assign]
@@ -17571,16 +17555,6 @@
 	(definitionText "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
 	(isPreferred TRUE))
 
-([DEF.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  Definition
-
-	(definitionText "The maximum occurrences attribute indicates the number of times something may occur. It is also called the maximum cardinality. The asterisk character is used as a value to indicate that no upper bound exists.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  Definition
-
-	(definitionText "The minimum occurrences attribute indicates the number of times something may occur. It is also called the minimum cardinality.")
-	(isPreferred TRUE))
-
 ([DEF.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id] of  Definition
 
 	(definitionText "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
@@ -17866,9 +17840,14 @@
 	(definitionText "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  Definition
+
+	(definitionText "The attribute_name attribute provides the common name by which an attribute is known.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath] of  Definition
 
-	(definitionText "TBD_definition")
+	(definitionText "The attribute_relative_xpath attribute provides a location path for an attribute within a tree representation of an XML document. The location path includes the attribute name.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.DD_Permissible_Value.pds.value] of  Definition
@@ -22586,16 +22565,6 @@
 	(designationName "class_name")
 	(isPreferred TRUE))
 
-([DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  Designation
-
-	(designationName "maximum_occurrences")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  Designation
-
-	(designationName "minimum_occurrences")
-	(isPreferred TRUE))
-
 ([DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id] of  Designation
 
 	(designationName "namespace_id")
@@ -22879,6 +22848,11 @@
 ([DES.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id] of  Designation
 
 	(designationName "namespace_id")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  Designation
+
+	(designationName "attribute_name")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath] of  Designation
@@ -38021,48 +37995,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.13"))
 
-([NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.13.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.13"))
-
-([NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.13.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.13"))
-
 ([NEVD.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.13.0.0])
@@ -39085,6 +39017,27 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id])
+	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.13"))
+
+([NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.13.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name")
+	(datatype [TBD_value_type])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name])
 	(representedBy2 [CD_TBD_dataConcept])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -50687,29 +50640,11 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.13"))
 
-([PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.dd_context_Value_List.DD_Context_Value_List] of  Property
-
-	(administrationRecord [DD_1.13.0.0])
-	(classOrder "1050")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.dd_context_Value_List.DD_Context_Value_List")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.13"))
-
-([PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  Property
-
-	(administrationRecord [DD_1.13.0.0])
-	(classOrder "1040")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.13"))
-
-([PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  Property
+([PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.dd_Context_Value_List.DD_Context_Value_List] of  Property
 
 	(administrationRecord [DD_1.13.0.0])
 	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.dd_Context_Value_List.DD_Context_Value_List")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.13"))
@@ -51385,6 +51320,15 @@
 	(administrationRecord [DD_1.13.0.0])
 	(classOrder "1010")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.13"))
+
+([PR.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  Property
+
+	(administrationRecord [DD_1.13.0.0])
+	(classOrder "1005")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.13"))
@@ -73236,20 +73180,6 @@
 	(designation [DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.class_name])
 	(sectionLanguage [LI_English]))
 
-([TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences])
-	(designation [DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.maximum_occurrences])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences])
-	(designation [DES.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.minimum_occurrences])
-	(sectionLanguage [LI_English]))
-
 ([TE.0001_NASA_PDS_1.pds.DD_Associate_External_Class.pds.namespace_id] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -73647,6 +73577,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id])
 	(designation [DES.0001_NASA_PDS_1.pds.DD_Class_Reference.pds.namespace_id])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name])
+	(designation [DES.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_name])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.DD_Context_Value_List.pds.attribute_relative_xpath] of  TerminologicalEntry
