@@ -1,4 +1,4 @@
-; Wed Aug 28 20:48:50 PDT 2019
+; Thu Sep 19 09:13:00 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -259,9 +259,9 @@
 ;+		(comment "The low_representative_saturation attribute specifies a special value whose presence indicates the true value cannot be represented in the chosen data type and length -- in this case being below the allowable range -- which may happen during conversion from another data type. The value must be less than the value of the valid_minimum attribute. Values of this attribute should be represented in the same data_type as the elements in the object with which the Special_Constants class is associated.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot attribute_relative_xpath
+	(multislot attribute_relative_xpath
+;+		(comment "The attribute_relative_xpath attribute provides a location path for an attribute within a tree representation of an XML document. The location path includes the attribute name.")
 		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot DD_Rule_Let
 		(type STRING)
@@ -676,6 +676,12 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot dd_Context_Value_List
+;+		(comment "The dd_Context_Value_List association is a relationship to dd_Context_Value_List.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Context_Value_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot geometry_collection_reference
 ;+		(comment "The geometry collection reference attribute provides the logical_identifier for a geometry collection.")
 		(type STRING)
@@ -796,6 +802,10 @@
 ;+		(comment "The data type length attribute provides the extent from beginning to end of a series of units such as bytes.")
 		(type INTEGER)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot attribute_name
+;+		(comment "The attribute_name attribute provides the common name by which an attribute is known.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot curated_by
 ;+		(comment "Association for curation nodes.")
@@ -3906,11 +3916,6 @@
 	(multislot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot dd_context_Value_List
-		(type INSTANCE)
-;+		(allowed-classes DD_Context_Value_List)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot grid_coordinate_system_name
 ;+		(comment "The grid_coordinate_system_name attribute provides the name of the grid coordinate system.")
@@ -10644,9 +10649,15 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass DD_Associate_External_Class
+(defclass DD_Associate_External_Class "The DD_Associate_External_Class class allows the definition of permissible values in Ingest_LDD for  attributes defined in external namespaces."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
+	(single-slot dd_Context_Value_List
+;+		(comment "The dd_Context_Value_List association is a relationship to dd_Context_Value_List.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Context_Value_List)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot namespace_id
 ;+		(comment "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
 		(type STRING)
@@ -10656,27 +10667,18 @@
 ;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_occurrences
-;+		(comment "The maximum occurrences attribute indicates the number of times something may occur. It is also called the maximum cardinality. The asterisk character is used as a value to indicate that no upper bound exists.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot dd_context_Value_List
-		(type INSTANCE)
-;+		(allowed-classes DD_Context_Value_List)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_occurrences
-;+		(comment "The minimum occurrences attribute indicates the number of times something may occur. It is also called the minimum cardinality.")
-		(type STRING)
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass DD_Context_Value_List
+(defclass DD_Context_Value_List "The DD_Context_Value_List class identifies an attribute and its relative xpath for the definition of permissible values and their meanings."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot attribute_relative_xpath
+;+		(comment "The attribute_relative_xpath attribute provides a location path for an attribute within a tree representation of an XML document. The location path includes the attribute name.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot attribute_name
+;+		(comment "The attribute_name attribute provides the common name by which an attribute is known.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
