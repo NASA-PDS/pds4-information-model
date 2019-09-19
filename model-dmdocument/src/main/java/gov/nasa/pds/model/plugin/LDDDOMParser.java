@@ -852,23 +852,22 @@ public class LDDDOMParser extends Object
 				// get common attributes
 				String lnamespace_id = getTextValue(lAssocElem,"namespace_id");
 				String lclass_name = getTextValue(lAssocElem,"class_name");
-//				String lmaximum_occurrences = getTextValue(lAssocElem,"maximum_occurrences");	
-//				String lminimum_occurrences = getTextValue(lAssocElem,"minimum_occurrences");
 				Node lValueListNode = lAssocElem.getFirstChild();
 				while (lValueListNode != null)
 				{
 					if ((lValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
 						(lValueListNode.getNodeName().indexOf("DD_Context_Value_List") == 0)) {
 						Element lValueListElement = (Element)lValueListNode;
+						String lattribute_name = getTextValue(lValueListElement,"attribute_name");
 						String lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
 						DOMRule lDOMRule = new DOMRule (lnamespace_id + ":" + lclass_name + "." + lXpath);	
 						lDOMRule.setRDFIdentifier();	
 						if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
 							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
 							ruleArr.add(lDOMRule);					
-							
 							lDOMRule.xpath = lXpath;
-							lDOMRule.attrTitle = lXpath;		
+							lDOMRule.ruleNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+							lDOMRule.attrTitle = lattribute_name;
 							lDOMRule.attrNameSpaceNC = lnamespace_id;		
 							lDOMRule.classTitle = lclass_name;		
 							lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
