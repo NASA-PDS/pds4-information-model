@@ -1,4 +1,4 @@
-; Thu Sep 19 09:13:00 PDT 2019
+; Wed Sep 25 08:17:56 PDT 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9476,7 +9476,7 @@
 	(multislot dd_association
 ;+		(comment "The local_association_attribute association provides a relationship to an attribute.")
 		(type INSTANCE)
-;+		(allowed-classes DD_Association DD_Association_External DD_Associate_External_Class XSChoice%23)
+;+		(allowed-classes DD_Association DD_Association_External XSChoice%23)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
