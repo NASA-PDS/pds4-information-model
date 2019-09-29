@@ -139,6 +139,7 @@ public class DMDocument extends Object {
 	//									Modification history will continue with 1.n
 	                         
 	static String LDDToolVersionId  = "0.2.2.6";
+	static String buildIMVersionId = "1.13.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -601,8 +602,7 @@ public class DMDocument extends Object {
 					System.exit(0);
 				}
 				if (lArg.indexOf('v') > -1) {
-//					printHelp();
-					System.out.println("LDDTOOL Version: " + LDDToolVersionId);
+					System.out.println("LDDTOOL Version: " + LDDToolVersionId + " - Built with IM Version:" + buildIMVersionId);
 					System.exit(0);
 				}
 				if (lArg.indexOf('D') > -1) {

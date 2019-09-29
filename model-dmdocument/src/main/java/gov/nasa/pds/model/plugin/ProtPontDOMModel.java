@@ -143,7 +143,6 @@ class ProtPontDOMModel extends DOMInfoModel{
 					}
 				}
 				lClass.setIdentifier (classNameSpaceIdNC, className);
-				lClass.setNSTitle(lClass.nameSpaceIdNC, lClass.title);
 				type = 0;
 				break;
 			case 2: // subClassOf
@@ -170,8 +169,6 @@ class ProtPontDOMModel extends DOMInfoModel{
 				lProtAttr.nameSpaceIdNC = classNameSpaceIdNC;
 				lProtAttr.nameSpaceId = lProtAttr.nameSpaceIdNC + ":";
 				lProtAttr.setIdentifier (classNameSpaceIdNC, className, classNameSpaceIdNC, attrTitle);
-				lProtAttr = resolveAttrNamespace (lProtAttr);
-				lProtAttr.setNSTitle(lProtAttr.nameSpaceIdNC, lProtAttr.title);
 				lProtAttr.cardMin = "0";
 				lProtAttr.cardMinI = 0;
 				lProtAttr.cardMax = "1";
@@ -208,8 +205,6 @@ class ProtPontDOMModel extends DOMInfoModel{
 				lProtAttr.nameSpaceIdNC = classNameSpaceIdNC;
 				lProtAttr.nameSpaceId = lProtAttr.nameSpaceIdNC + ":";
 				lProtAttr.setIdentifier (classNameSpaceIdNC, className, classNameSpaceIdNC, attrTitle);
-				lProtAttr = resolveAttrNamespace (lProtAttr);
-				lProtAttr.setNSTitle(lProtAttr.nameSpaceIdNC, lProtAttr.title);
 //				lProtAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
 				lProtAttr.cardMin = "0";
 				lProtAttr.cardMinI = 0;
@@ -309,20 +304,5 @@ class ProtPontDOMModel extends DOMInfoModel{
 				break;
 			}
 		}
-	}
-	
-	/**
-	 *   resolveAttrNamespace - temporary method to resolve attribute namespaces
-	 *   Plan on using OWL version so that namespaces can be specified in Protege.
-	 */
-	private DOMProtAttr resolveAttrNamespace (DOMProtAttr lProtAttr) {
-		String lNameSpaceIdNC = DOMInfoModel.attrNamespaceResolutionMap.get(lProtAttr.classNameSpaceIdNC + "." + lProtAttr.parentClassTitle + "." + lProtAttr.nameSpaceIdNC + "." + lProtAttr.title);
-		if (lNameSpaceIdNC != null) {
-			lProtAttr.nameSpaceIdNC = lNameSpaceIdNC;
-			lProtAttr.nameSpaceId = lProtAttr.nameSpaceIdNC + ":";
-			lProtAttr.setIdentifier (lProtAttr.classNameSpaceIdNC, lProtAttr.parentClassTitle, lProtAttr.nameSpaceIdNC, lProtAttr.title);
-//			lAttr.set11179Attr(lAttr.identifier);
-		}
-		return lProtAttr;
 	}
 }

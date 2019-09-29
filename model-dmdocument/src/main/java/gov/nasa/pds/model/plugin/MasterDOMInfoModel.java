@@ -664,27 +664,45 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	public void setIsAnExtensionAndIsARestriction () {
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+//			System.out.println("\ndebug Extension-Restriction lClass.identifier:" + lClass.identifier);
+//			System.out.println("      Extension-Restriction lClass.ownedAttrTitleArr:" + getAttrTitles (lClass));
+
 			DOMClass lParentClass = lClass.subClassOf;
 			if (lParentClass != null) {
-				//	the child class is an extension if any attribute owned by the child is inherited 
+//				System.out.println("      Extension-Restriction lParentClass.identifier:" + lParentClass.identifier);
+//				System.out.println("      Extension-Restriction lParentClass.ownedAttrTitleArr:" + getAttrTitles (lParentClass));
+//				System.out.println("      Extension-Restriction lParentClass.ownedTestedAttrAssocNSTitleArr:" + lParentClass.ownedTestedAttrAssocNSTitleArr);
+//				System.out.println("      Extension-Restriction lParentClass.ownedAttrAssocNSTitleArr:" + lParentClass.ownedAttrAssocNSTitleArr);
+
+				//	the class is an extension if any owned attribute is inherited from its parent class 
 				for (Iterator <DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
 					DOMProp lChildProp = (DOMProp) j.next();
 					if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMAttr) {
 						DOMAttr lChildAttr = (DOMAttr) lChildProp.hasDOMObject;
-						// is child nsTitle inherited from the parent
+//						System.out.println("                            lChildAttr.identifier:" + lChildAttr.identifier);
+
+						// is the owned attribute (nsTitle) inherited from its parent class
 						if (! lParentClass.ownedTestedAttrAssocNSTitleArr.contains(lChildAttr.nsTitle)) {
-							// the child class is restricted since an owned attribute in this class is not inherited
+							
+							// the owned attribute not inherited; this is an extension
 							lClass.isAnExtension = true;
+//							System.out.println("                            ***isAnExtension*** lChildAttr.identifier:" + lChildAttr.identifier);
 						}
-						// is child nsTitle a parent owned nsTitle
+						// is the owned attribute (nsTitle) inherited from its parent class
 						if (lParentClass.ownedAttrAssocNSTitleArr.contains(lChildAttr.nsTitle)) {
+							
+							// the owned attribute is inherited; this is probably a restriction; test the meta-attributes
 							boolean testTrue = false;
 							for (Iterator <DOMProp> k = lParentClass.ownedAttrArr.iterator(); k.hasNext();) {
 								DOMProp lParentProp = (DOMProp) k.next();
 								if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
 									DOMAttr lParentAttr = (DOMAttr) lChildProp.hasDOMObject;
+//									System.out.println("                            lParentAttr.identifier:" + lParentAttr.identifier);
 									testTrue = isRestrictedAttribute (true, lChildAttr, lParentAttr);
-									if (testTrue) lClass.isARestriction = true;
+									if (testTrue) {
+//										System.out.println("                            ***isARestriction*** lParentAttr.identifier:" + lParentAttr.identifier);
+										lClass.isARestriction = true;
+									}
 								}
 							}
 						}
@@ -715,6 +733,18 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				}
 			}
 		}
+	}
+	
+	public ArrayList <String> getAttrTitles (DOMClass iClass) {
+		ArrayList <String> lAttrTitleArr = new ArrayList <String> ();
+		for (Iterator <DOMProp> j = iClass.ownedAttrArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) j.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				lAttrTitleArr.add(lDOMAttr.title);
+			}
+		}
+		return lAttrTitleArr;
 	}
 	
 	/**
