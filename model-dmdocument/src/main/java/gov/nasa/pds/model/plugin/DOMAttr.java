@@ -229,6 +229,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	
 	public void setIdentifier(String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2) {
 		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle + "." + lNameSpaceIdNC2 + "." + lTitle2;
+		this.nsTitle = lNameSpaceIdNC2 + "." + lTitle2;	
 	}
 	
 	// copy a string array

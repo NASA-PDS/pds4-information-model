@@ -144,9 +144,6 @@ public abstract class DOMInfoModel extends Object {
 	
 	// values and value meaning
 	static TreeMap <String, PermValueDefn> masterValueMeaningMap;
-
-	// Attribute Namespace Resolution Map
-	static TreeMap <String, String> attrNamespaceResolutionMap;
 	
 //  Parsed Classes, Props, and Attributes
 	static ArrayList <DOMClass> parsedClassArr;
@@ -350,13 +347,6 @@ public abstract class DOMInfoModel extends Object {
 		dataTypeToConceptMap.put("UTF8_Short_String_Preserved", "SHORT_STRING");
 		dataTypeToConceptMap.put("UTF8_Text_Preserved", "TEXT");
 		
-		// initialize the Attribute Namespace Resolution Map 
-		attrNamespaceResolutionMap = new TreeMap <String, String> ();
-//		attrNamespaceResolutionMap.put("disp.Color_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-//		attrNamespaceResolutionMap.put("disp.Display_Direction.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-//		attrNamespaceResolutionMap.put("disp.Movie_Display_Settings.disp.comment", DMDocument.masterNameSpaceIdNCLC);
-//		attrNamespaceResolutionMap.put("disp.Display_Settings.disp.local_internal_reference", DMDocument.masterNameSpaceIdNCLC);
-		
 		masterValueMeaningMap = new TreeMap <String, PermValueDefn> ();
  		GetValueMeanings lGetValueMeanings = new GetValueMeanings ();
 		lGetValueMeanings.insertValueMeaning();
@@ -437,16 +427,7 @@ public abstract class DOMInfoModel extends Object {
 	static public String getAttrIdentifier (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle) {
 		String lIdentifier = DMDocument.registrationAuthorityIdentifierValue + "." + lClassNameSpaceIdNC + "." + lClassTitle + "." + lAttrNameSpaceIdNC + "." + lAttrTitle;
 		return lIdentifier;
-	}	
-	
-	/**
-	*  return an attribute's nsTitle
-	*/
-	static public String getAttrNSTitle (String lAttrNameSpaceIdNC, String lAttrTitle) {
-//		String lNSTitle = DMDocument.registrationAuthorityIdentifierValue + "." + lAttrNameSpaceIdNC + "." + lAttrTitle;
-		String lNSTitle = lAttrNameSpaceIdNC + "." + lAttrTitle;
-		return lNSTitle;
-	}	
+	}
 	
 	/**
 	*  return rules's rdfIdentifier
@@ -1151,7 +1132,7 @@ public abstract class DOMInfoModel extends Object {
 		    System.out.println("\ndebug Class Definition - id:" + lFileName + " -" + "NOT FOUND");
 			return;
 		}
-		prDOMWriter.println("\ndebug Class Definition - identifier:" + objClass.identifier);
+		prDOMWriter.println("\ndebug Class Definition - identifier:" + objClass.identifier + "|");
 	    prDOMWriter.println("  rdfIdentifier:" + objClass.rdfIdentifier);
 		prDOMWriter.println("  identifier:" + objClass.identifier);
 		prDOMWriter.println("  versionId:" + objClass.versionId);

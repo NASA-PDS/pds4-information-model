@@ -89,10 +89,7 @@ public class ISOClass extends Object {
 	
 	public void setIdentifier(String lNameSpaceIdNC, String lTitle) {
 		this.identifier = DMDocument.registrationAuthorityIdentifierValue + "." + lNameSpaceIdNC + "." + lTitle;
-	}
-	
-	public void setNSTitle (String lNameSpaceIdNC, String lTitle) {
-		this.nsTitle = DOMInfoModel.getAttrNSTitle(lNameSpaceIdNC, lTitle);	
+		this.nsTitle = lNameSpaceIdNC + "." + lTitle;	
 	}
 
 	public String getTitle() {

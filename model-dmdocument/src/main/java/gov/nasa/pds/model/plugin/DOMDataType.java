@@ -170,6 +170,7 @@ public class DOMDataType extends ISOClassOAIS11179 {
 	// new - not currently being used - needs testing
 	public void setDataTypeAttrs (DOMClass lClass) {
 		this.setIdentifier (DMDocument.masterNameSpaceIdNCLC, lClass.title);
+		this.nsTitle = DMDocument.masterNameSpaceIdNCLC + "." + lClass.title;
 		this.title =  lClass.title;
 		this.nameSpaceIdNC = lClass.nameSpaceIdNC;
 		this.type = lClass.title;
