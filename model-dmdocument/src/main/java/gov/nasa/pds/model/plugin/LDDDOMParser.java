@@ -339,7 +339,9 @@ public class LDDDOMParser extends Object
 		}
 		System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Using:" + lConfigSchemaFileDefn.identifier);
 		
+		// finally set namespace id and add to LDDSchemaFileSortMap
 		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC);
+		DMDocument.LDDSchemaFileSortMap.put(lSchemaFileDefn.nameSpaceIdNCLC, lSchemaFileDefn);
 		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);
 		
 		// set namespace and governance level

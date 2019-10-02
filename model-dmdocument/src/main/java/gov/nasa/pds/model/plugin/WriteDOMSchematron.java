@@ -218,13 +218,30 @@ class WriteDOMSchematron extends Object {
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				String lVersionNSId = (DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
-				if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-				prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
+				String lVersionNSId = "TBD_lVersionNSId";
+				String lNameSpaceURL = "TBD_lNameSpaceURL";
+				
+				// get info for XML schema namespace declaration; first try LDD 
+				SchemaFileDefn lSchemaFileDefnExternal = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
+				if (lSchemaFileDefnExternal != null) {
+					lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
+					lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+				} else {
+					
+					// next try config.properties
+					lSchemaFileDefnExternal = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+					if (lSchemaFileDefnExternal != null) {
+						lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
+						lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+					} else {
+		    			System.out.println(">>error    - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+					}
+				}
+				prSchematron.println("  <sch:ns uri=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}
 	}
-
+	
 //	write the schematron file header
 	public void printSchematronFileCmt (PrintWriter prSchematron) {
 		prSchematron.println("");

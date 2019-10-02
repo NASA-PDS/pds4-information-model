@@ -262,20 +262,38 @@ class XML4LabelSchemaDOM extends Object {
 			// namespaces required: ldd - latest version
 			String governanceDirectory = "";
 			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";
-			prXML.println("    targetNamespace=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
-			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    targetNamespace=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
+			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 
 			// namespaces required: pds - latest version
 //			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + lSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 			prXML.println("    xmlns:" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\"");
 
-			// namespaces required: all other discipline levels referenced; no mission level allowed - prior versions
+			// namespaces required: all other discipline levels referenced; no mission level allowed
 			if (DMDocument.LDDToolFlag) {
 				for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 					String lNameSpaceIdNC = (String) i.next();
-					String lVersionNSId = (DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC)).ns_version_id;
-					if (lVersionNSId == null) lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
-					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
+					System.out.println("debug writeXMLSchemaFileHeader lNameSpaceIdNC:" +lNameSpaceIdNC);
+					String lVersionNSId = "TBD_lVersionNSId";
+					String lNameSpaceURL = "TBD_lNameSpaceURL";
+					
+					// get info for XML schema namespace declaration; first try LDD 
+					SchemaFileDefn lSchemaFileDefnExternal = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
+					if (lSchemaFileDefnExternal != null) {
+						lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
+						lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+					} else {
+						
+						// next try config.properties
+						lSchemaFileDefnExternal = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+						if (lSchemaFileDefnExternal != null) {
+							lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
+							lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+						} else {
+			    			System.out.println(">>error    - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+						}
+					}
+					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
 				}
 			}
 		}
@@ -295,7 +313,8 @@ class XML4LabelSchemaDOM extends Object {
 				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
 				String lSchemaLocationFileName2 = "TBD_lSchemaLocation";
 				if (lLDDSchemaFileDefn != null) lSchemaLocationFileName2 = lLDDSchemaFileDefn.relativeFileNameXMLSchema2;
-				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" schemaLocation=\"" + lLDDSchemaFileDefn.nameSpaceURLs + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + lSchemaLocationFileName2 + "\"/>");	
+				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id
+						+ "\" schemaLocation=\"" + lLDDSchemaFileDefn.nameSpaceURLs + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + lSchemaLocationFileName2 + "\"/>");
 			}
 		}
 		
