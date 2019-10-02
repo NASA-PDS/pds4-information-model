@@ -138,7 +138,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.6";
+	static String LDDToolVersionId  = "0.2.2.8";
 	static String buildIMVersionId = "1.13.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
@@ -186,6 +186,7 @@ public class DMDocument extends Object {
 	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
 	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
+	static TreeMap <String, SchemaFileDefn> LDDSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		   
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
 	static SchemaFileDefn masterPDSSchemaFileDefn;
@@ -969,6 +970,8 @@ public class DMDocument extends Object {
           		   masterPDSSchemaFileDefn = lSchemaFileDefn;
            		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
            		   lSchemaFileDefn.isActive = true; // 7777 isActive is set here temporarily until DOM is used; isActive is set above for all IngestLDD
+               		// set lab_version_id for master so that the remaining lab_version_id can be set below.
+               		masterPDSSchemaFileDefn.setVersionIds();
      			}
         	}
           }
