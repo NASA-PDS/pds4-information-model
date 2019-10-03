@@ -273,7 +273,6 @@ class XML4LabelSchemaDOM extends Object {
 			if (DMDocument.LDDToolFlag) {
 				for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 					String lNameSpaceIdNC = (String) i.next();
-					System.out.println("debug writeXMLSchemaFileHeader lNameSpaceIdNC:" +lNameSpaceIdNC);
 					String lVersionNSId = "TBD_lVersionNSId";
 					String lNameSpaceURL = "TBD_lNameSpaceURL";
 					
@@ -290,7 +289,9 @@ class XML4LabelSchemaDOM extends Object {
 							lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
 							lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
 						} else {
-			    			System.out.println(">>error    - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+							lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
+							lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
+			    			System.out.println(">>warning  - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
 						}
 					}
 					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");

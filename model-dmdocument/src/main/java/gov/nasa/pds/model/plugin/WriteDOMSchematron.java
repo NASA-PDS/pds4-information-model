@@ -234,7 +234,9 @@ class WriteDOMSchematron extends Object {
 						lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
 						lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
 					} else {
-		    			System.out.println(">>error    - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+						lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
+						lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
+		    			System.out.println(">>warning  - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
 					}
 				}
 				prSchematron.println("  <sch:ns uri=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");

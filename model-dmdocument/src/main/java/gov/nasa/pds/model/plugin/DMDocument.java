@@ -521,6 +521,7 @@ public class DMDocument extends Object {
 			ExportModels lExportModels = new ExportModels ();
 			lExportModels.writeAllArtifacts (exportDOMFlag, exportMOFFlag);
 		}
+		System.out.println(">>info    - Exit");
 	}
 	
 /**********************************************************************************************************

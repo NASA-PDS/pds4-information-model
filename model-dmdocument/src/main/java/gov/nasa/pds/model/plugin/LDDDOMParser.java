@@ -326,12 +326,14 @@ public class LDDDOMParser extends Object
 		lComment = getTextValue(docEle,"comment");
 		if (lComment == null) lComment = "TBD_comment";
 		
-		// get namespace
+		// get namespace_id from Ingest_LDD
 		String lNameSpaceIdNC = getTextValue(docEle,"namespace_id");
 		if (lNameSpaceIdNC == null) lNameSpaceIdNC = "TBD";
 		
+		// find namespace_id in "all" schemaFiles (from config.properties) 
 		SchemaFileDefn lConfigSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
 		if (lConfigSchemaFileDefn == null) {
+			// default to pds if not found
 			lConfigSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
 			System.out.println("   WARNING  Init: " + " - Config.Properties Namespace Id Not Found:" + lNameSpaceIdNC);
 		} else {
@@ -339,8 +341,8 @@ public class LDDDOMParser extends Object
 		}
 		System.out.println("   INFO     Init: " + " - Config.Properties Namespace Id Using:" + lConfigSchemaFileDefn.identifier);
 		
-		// finally set namespace id and add to LDDSchemaFileSortMap
-		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC);
+		// finally set namespace id and add this LDD to LDDSchemaFileSortMap
+		lSchemaFileDefn.setNameSpaceIds(lNameSpaceIdNC); // all variations
 		DMDocument.LDDSchemaFileSortMap.put(lSchemaFileDefn.nameSpaceIdNCLC, lSchemaFileDefn);
 		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);
 		
@@ -361,7 +363,7 @@ public class LDDDOMParser extends Object
 		if (! (lLDDVersionId == null || (lLDDVersionId.indexOf("TBD") == 0))) {
 			lSchemaFileDefn.versionId = lLDDVersionId;
 		}
-		lSchemaFileDefn.setVersionIds();
+		lSchemaFileDefn.setVersionIds(); // set variations of versions and all filenames
 		
 		String lStewardId = getTextValue(docEle,"steward_id");
 		if ( !(lStewardId == null || (lStewardId.indexOf("TBD") == 0))) {
