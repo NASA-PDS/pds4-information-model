@@ -699,12 +699,9 @@ class MasterDOMInfoModel extends DOMInfoModel{
 									DOMAttr lParentAttr = (DOMAttr) lChildProp.hasDOMObject;
 //									System.out.println("                            lParentAttr.identifier:" + lParentAttr.identifier);
 									testTrue = isRestrictedAttribute (true, lChildAttr, lParentAttr);
-									if (testTrue) {
-//										System.out.println("                            ***isARestriction*** lParentAttr.identifier:" + lParentAttr.identifier);
-										lClass.isARestriction = true;
-									}
 								}
 							}
+							if (testTrue) lClass.isARestriction = true;
 						}
 					}
 				}
@@ -726,8 +723,8 @@ class MasterDOMInfoModel extends DOMInfoModel{
 							for (Iterator <DOMProp> k = lParentClass.ownedAssocArr.iterator(); k.hasNext();) {
 								DOMProp lParentProp = (DOMProp) k.next();
 								testTrue = isRestrictedProp (false, lChildProp, lParentProp);
-								if (testTrue) lClass.isARestriction = true;
 							}
+							if (testTrue) lClass.isARestriction = true;
 						}
 					}
 				}
