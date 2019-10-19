@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 1.9.1" />
-    <title>Model &#x2013; Project Summary</title>
+    <title>model-lddtool &#x2013; Project Summary</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.8.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,8 +18,8 @@
     <div class="container-fluid">
       <header>
         <div id="banner">
-          <div class="pull-left"><a href="pds4-information-model" id="bannerLeft"><img src="images/pds4_logo.png"  alt=""/></a></div>
-          <div class="pull-right"><div id="bannerRight"><h2>Model</h2>
+          <div class="pull-left"><a href="pds4-information-model/" id="bannerLeft"><img src="images/pds4_logo.png"  alt=""/></a></div>
+          <div class="pull-right"><div id="bannerRight"><h2>Local Data Dictionary Tool</h2>
 </div>
 </div>
           <div class="clear"><hr/></div>
@@ -30,6 +30,8 @@
         <li id="publishDate">Last Published: 2019-10-19<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 10.1.1</li>
+      <li class="pull-right"><span class="divider">|</span>
+<a href="index.html" title="LDDTool">LDDTool</a></li>
       <li class="pull-right"><a href="pds4-information-model" title="Model">Model</a></li>
           </ul>
         </div>
@@ -39,15 +41,17 @@
           <nav class="well sidebar-nav">
   <ul class="nav nav-list">
    <li class="nav-header">Software Documentation</li>
-    <li><a href="index.html" title="About Model"><span class="none"></span>About Model</a></li>
-    <li><a href="docs/model-arch.pdf" title="Architecture"><span class="none"></span>Architecture</a></li>
-   <li class="nav-header">Modules</li>
-    <li><a href="model-dmdocument/index.html" title="Model DM-Document Maven Plugin"><span class="none"></span>Model DM-Document Maven Plugin</a></li>
-    <li><a href="model-ontology/index.html" title="Model Ontology"><span class="none"></span>Model Ontology</a></li>
-    <li><a href="model-lddtool/index.html" title="Local Data Dictionary Tool"><span class="none"></span>Local Data Dictionary Tool</a></li>
+    <li><a href="index.html" title="About LDDTool"><span class="none"></span>About LDDTool</a></li>
+    <li><a href="install/index.html" title="Installation"><span class="none"></span>Installation</a></li>
+    <li><a href="operate/index.html" title="Operation"><span class="none"></span>Operation</a></li>
+   <li class="nav-header">Downloads</li>
+    <li><a href="https://github.com/NASA-PDS-Incubator/model-lddtool/releases/download/v10.1.1/lddtool-10.1.1-bin.tar.gz" class="externalLink" title="Current Release (tar.gz)"><span class="none"></span>Current Release (tar.gz)</a></li>
+    <li><a href="https://github.com/NASA-PDS-Incubator/model-lddtool/releases/download/v10.1.1/lddtool-10.1.1-bin.zip" class="externalLink" title="Current Release (zip)"><span class="none"></span>Current Release (zip)</a></li>
+    <li><a href="releases.html" title="Past Releases"><span class="none"></span>Past Releases</a></li>
    <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-down"></span>Project Information</a>
      <ul class="nav nav-list">
+      <li><a href="dependencies.html" title="Dependencies"><span class="none"></span>Dependencies</a></li>
       <li><a href="licenses.html" title="Licenses"><span class="none"></span>Licenses</a></li>
       <li><a href="team.html" title="Team"><span class="none"></span>Team</a></li>
       <li class="active"><a href="#"><span class="none"></span>Summary</a></li>
@@ -75,13 +79,13 @@
 <th>Value</th></tr>
 <tr class="b">
 <td>Name</td>
-<td>PDS4 Information Model</td></tr>
+<td>Local Data Dictionary Tool</td></tr>
 <tr class="a">
 <td>Description</td>
-<td>The PDS4 Information Model package describes the information model in use by PDS4.</td></tr>
+<td>The PDS4 LDDTool uses the Maven plugin &quot;model-dmdocument&quot; as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.</td></tr>
 <tr class="b">
 <td>Homepage</td>
-<td><a class="externalLink" href="https://nasa-pds-incubator.github.io/model/">https://nasa-pds-incubator.github.io/model/</a></td></tr></table></section><section>
+<td><a class="externalLink" href="https://nasa-pds-incubator.github.io/model/model-lddtool/">https://nasa-pds-incubator.github.io/model/model-lddtool/</a></td></tr></table></section><section>
 <h3><a name="Project_Organization"></a>Project Organization</h3><a name="Project_Organization"></a>
 <p>This project does not belong to an organization.</p></section><section>
 <h3><a name="Build_Information"></a>Build Information</h3><a name="Build_Information"></a>
@@ -91,10 +95,10 @@
 <th>Value</th></tr>
 <tr class="b">
 <td>GroupId</td>
-<td>gov.nasa.pds</td></tr>
+<td>gov.nasa.pds.model</td></tr>
 <tr class="a">
 <td>ArtifactId</td>
-<td>model</td></tr>
+<td>model-lddtool</td></tr>
 <tr class="b">
 <td>Version</td>
 <td>10.1.1</td></tr>
