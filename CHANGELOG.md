@@ -13,6 +13,8 @@
 - LDDTool: IngestLDD 'Report' rules do not make it to Schematron [\#1](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/1)
 
 ## [v10.1.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.0) (2019-10-11)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.0.0...v10.1.0)
+
 **Fixed bugs:**
 
 - LDDTool: XMLSchema Fix Null In Import Cleanup [\#81](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/81)
@@ -27,6 +29,23 @@
 - DOMConv\_Depcreation\_FinalCleanup\_Deprecate\_InfoModel\_and\_Associated\_Classes [\#68](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/68)
 - DOMConv\_Deprecation\_FinalCleanup\_Continued [\#66](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/66)
 -  CCB-252 Make\_Science\_Facets\_wavelength\_range\_nillable\_BugFix [\#64](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/64)
+
+**Merged pull requests:**
+
+- Issue \#83 IMTool\_LDDTool\_Config\_Properties\_Update [\#84](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/84) ([jshughes416](https://github.com/jshughes416))
+- Issue \#81 LDDTool\_XMLSchema\_Fix\_Null\_In\_Import\_Cleanup [\#82](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/82) ([jshughes416](https://github.com/jshughes416))
+- Issue \#79 LDDTool\_XMLSchema\_Fix\_Null\_In\_Import [\#80](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/80) ([jshughes416](https://github.com/jshughes416))
+- \#77 LDDTool\_IMG\_LDD\_Brightness\_Correction\_Cristina [\#78](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/78) ([jshughes416](https://github.com/jshughes416))
+- \#75 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Removal [\#76](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/76) ([jshughes416](https://github.com/jshughes416))
+- \#72 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Update\_Data [\#73](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/73) ([jshughes416](https://github.com/jshughes416))
+- Issue \#70 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Update [\#71](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/71) ([jshughes416](https://github.com/jshughes416))
+- Issue \#68 dom conv depcreation final cleanup deprecate info model and associated classes [\#69](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/69) ([jshughes416](https://github.com/jshughes416))
+- Issue \#66 DOMConv\_Deprecation\_FinalCleanup\_Continued [\#67](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/67) ([jshughes416](https://github.com/jshughes416))
+- Issue \#64 CCB-252 Make\_Science\_Facets\_wavelength\_range\_nillable\_BugFix [\#65](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/65) ([jshughes416](https://github.com/jshughes416))
+
+## [v10.0.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.0.0) (2019-09-12)
+**Closed issues:**
+
 - DOMConv Deprecation\_FinalCleanup - Fix Errors Found in Build 10a [\#62](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/62)
 - 190908b\_DOMConv\_Depcreation\_FinalCleanup\_Remove\_DOM\_From\_Filename - Part 1 [\#60](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/60)
 - 190908\_PDS4\_Information\_Model\_V1D00\_Database\_Update - Part 3 [\#58](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/58)
@@ -61,16 +80,6 @@
 
 **Merged pull requests:**
 
-- Issue \#83 IMTool\_LDDTool\_Config\_Properties\_Update [\#84](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/84) ([jshughes416](https://github.com/jshughes416))
-- Issue \#81 LDDTool\_XMLSchema\_Fix\_Null\_In\_Import\_Cleanup [\#82](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/82) ([jshughes416](https://github.com/jshughes416))
-- Issue \#79 LDDTool\_XMLSchema\_Fix\_Null\_In\_Import [\#80](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/80) ([jshughes416](https://github.com/jshughes416))
-- \#77 LDDTool\_IMG\_LDD\_Brightness\_Correction\_Cristina [\#78](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/78) ([jshughes416](https://github.com/jshughes416))
-- \#75 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Removal [\#76](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/76) ([jshughes416](https://github.com/jshughes416))
-- \#72 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Update\_Data [\#73](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/73) ([jshughes416](https://github.com/jshughes416))
-- Issue \#70 CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Update [\#71](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/71) ([jshughes416](https://github.com/jshughes416))
-- Issue \#68 dom conv depcreation final cleanup deprecate info model and associated classes [\#69](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/69) ([jshughes416](https://github.com/jshughes416))
-- Issue \#66 DOMConv\_Deprecation\_FinalCleanup\_Continued [\#67](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/67) ([jshughes416](https://github.com/jshughes416))
-- Issue \#64 CCB-252 Make\_Science\_Facets\_wavelength\_range\_nillable\_BugFix [\#65](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/65) ([jshughes416](https://github.com/jshughes416))
 - Issue \#62 DOMConv Deprecation\_FinalCleanup - Fix Errors Found in Buil… [\#63](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/63) ([jshughes416](https://github.com/jshughes416))
 - Issue \#60 190908b\_DOMConv\_Depcreation\_FinalCleanup\_Remove\_DOM\_From\_Fi… [\#61](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/61) ([jshughes416](https://github.com/jshughes416))
 - Issue \#58 190908\_PDS4\_Information\_Model\_V1D00\_Database\_Update - Part 3 [\#59](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/59) ([jshughes416](https://github.com/jshughes416))
