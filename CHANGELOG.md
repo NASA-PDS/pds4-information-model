@@ -1,17 +1,5 @@
 # Change Log
 
-## [v10.1.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.1) (2019-10-19)
-[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.0...v10.1.1)
-
-**Implemented enhancements:**
-
-- LDDTool: Update version flag \(-v\) to show IM version as well as software version [\#74](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/74)
-
-**Closed issues:**
-
-- IMTool: LDDTool Config Properties Update [\#83](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/83)
-- LDDTool: IngestLDD 'Report' rules do not make it to Schematron [\#1](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/1)
-
 ## [v10.1.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.0) (2019-10-11)
 **Fixed bugs:**
 
