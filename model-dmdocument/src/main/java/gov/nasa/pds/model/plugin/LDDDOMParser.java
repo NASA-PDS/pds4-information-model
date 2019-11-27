@@ -591,10 +591,10 @@ public class LDDDOMParser extends Object
 				if (lVal != null) {
 					TermEntryDefn lTermEntry = new TermEntryDefn ();
 					lTermEntry.language = lVal;
-					if (lObject.getClass().getName().compareTo("AttrDefn") == 0) {
+					if (lObject.getClass().getName().compareTo("DOMAttr") == 0) {
 						DOMAttr lAttr = (DOMAttr) lObject;
 						lAttr.termEntryMap.put(lTermEntry.language, lTermEntry);
-					} else {
+					} else if (lObject.getClass().getName().compareTo("DOMClass") == 0) {
 						DOMClass lClass = (DOMClass) lObject;
 						lClass.termEntryMap.put(lTermEntry.language, lTermEntry);
 					}

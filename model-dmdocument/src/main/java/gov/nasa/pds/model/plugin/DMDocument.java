@@ -83,63 +83,45 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "1.19.1";
+	static String DMDocVersionId  = "1.19.2";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
-	// Desired   VID   MOD
+	// Version   VID    MOD    Build
 	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
 	// 1.1.0.0 - 1.1  - 1.1  - Build 4a
 	// 1.1.0.1 - 1.2  - 1.2  - Build 4a
-	// 1.2.0.0 - 1.3  - 1.3  - Build 4b
+	// 1.2.0.0 - 1.3  - 1.3  - Build 4b - Desired
+	// 1.2.0.0 - 1.3  - 1.3  - Build x4a - Actual
 	// 1.2.0.1 - 1.4  - 1.4  - Build 4b
 	// 1.3.0.0 - 1.5  - 1.5  - Build 5a
 	// 1.3.0.1 - 1.6  - 1.6  - Build 5a
+
 	// 1.4.0.0 - 1.7  - 1.7  - Build 5b
+	// 1.4.0.0 - x1.3 - x1.6 - Build 5b - error
 	// 1.4.0.1 - 1.8  - 1.8  - Build 5b - not released
 	// 1.4.1.0 - 1.8  - 1.8  - Build 5b
-	// 1.5.0.0 - 1.9  - 1.9  - Build 6a
-	// 1.5.1.0 - 1.9  - 1.9  - Build 6b - not released
-	// 1.6.0.0 - 1.10 - 1.10 - Build 6b
-	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
-	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
-	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
-	// 1.9.1.0 - 1.14 - 1.14 - Build 8a
-	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
-	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
-	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
-	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
-	// 1.13.0.0 - 1.19 - 1.19 - Build 10a
-	// 1.14.0.0 - 1.20 - 1.20 - Build 10b
-	
-	// Actual    VID    MOD
-	// 1.0.0.0 - 1.0  - 1.0  - Build 3b
-	// 1.1.0.0 - 1.1  - 1.1  - Build 4a
-	// 1.1.0.1 - 1.2  - 1.2  - Build 4a
-	// 1.2.0.0 - 1.3  - 1.3  - Build x4a - error
-	// 1.2.0.1 - 1.4  - 1.4  - Build 4b
-	// 1.3.0.0 - 1.5  - 1.5  - Build 5a
-	// 1.3.0.1 - 1.6  - 1.6  - Build 5a
-	// 1.4.0.0 - x1.3 - x1.6 - Build 5b - error
-	// 1.4.1.0 - 1.8  - 1.8  - Build 5b 
 	// 1.5.0.0 - 1.9  - 1.9  - Build 6a 
+	// 1.5.1.0 - 1.9  - 1.9  - Build 6b - not released
 	// 1.6.0.0 - 1.10 - 1.10 - Build 6b 
 	// 1.7.0.0 - 1.11 - 1.11 - Build 7a
 	// 1.8.0.0 - 1.12 - 1.12 - Build 7b
 	// 1.9.0.0 - 1.13 - 1.13 - Build 8a
 	// 1.9.1.0 - 1.14 - 1.14 - Build 8a
-	// 1.10.0.0 - 1.15 - 1.15 - Build 8b
-	// 1.10.1.0 - 1.16 - 1.16 - Build 8b
-	// 1.11.0.0 - 1.17 - 1.17 - Build 9a
-	// 1.12.0.0 - 1.18 - 1.18 - Build 9b
-	// 1.13.0.0 - 1.19 - 1.19 - Build 10a
-	// 1.14.0.0 - 1.20 - 1.20 - Build 10b
+	// 1.10.0.0 - 1.15 - 1.15 - Build 8b - 1A00
+	// 1.10.1.0 - 1.16 - 1.16 - Build 8b - 1A10
+	// 1.11.0.0 - 1.17 - 1.17 - Build 9a - 1B00
+	// 1.12.0.0 - 1.18 - 1.18 - Build 9b - 1C00
+	// 1.13.0.0 - 1.19 - 1.19 - Build 10a - 1D00
+	// 1.14.0.0 - 1.20 - 1.20 - Build 10b - 1E00
+	// 1.15.0.0 - 1.21 - 1.21 - Build 11a - 1F00
+	// 1.16.0.0 - 1.22 - 1.22 - Build 11b - 1G00
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "0.2.2.8";
-	static String buildIMVersionId = "1.13.0.0";
+	static String LDDToolVersionId  = "1.19.2";
+	static String buildIMVersionId = "1.14.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
