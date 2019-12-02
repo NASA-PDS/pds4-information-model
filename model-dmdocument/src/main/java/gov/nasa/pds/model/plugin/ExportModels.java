@@ -223,11 +223,11 @@ public class ExportModels extends Object {
 		
 		// print out the histogram for the DEC concepts
 /*		System.out.println("\nConcept Histogram");
-		Set <String> set1 = MasterInfoModel.metricConceptMap.keySet();
+		Set <String> set1 = MasterDOMInfoModel.metricConceptMap.keySet();
 		Iterator <String> iter1 = set1.iterator();
 		while(iter1.hasNext()) {
 			String lId = (String) iter1.next();
-			Integer lCount = MasterInfoModel.metricConceptMap.get(lId);
+			Integer lCount = MasterDOMInfoModel.metricConceptMap.get(lId);
 			System.out.println("Descriptor: " + lId + "    Count: " + lCount);
 		} */	
 		return;
@@ -251,6 +251,13 @@ public class ExportModels extends Object {
 				}
 			}
 		}
+		}
+		
+	    // write the Doc Book - includes common and all stacked LDDs
+		if (DMDocument.exportDDFileFlag) {				
+			WriteDOMDocBook lWriteDOMDocBook  = new WriteDOMDocBook (); 
+			lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);				
+			if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - DD DocBook Done");
 		}
 		
 		// get the LDD SchemaFileDefn - should be just one; but the Master must be skipped
@@ -296,17 +303,10 @@ public class ExportModels extends Object {
 				writeDOMSpecification.printArtifacts();
 				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - Info Model Spec Done");
 			}
-			
-		    // write the Doc Book
-			if (DMDocument.exportDDFileFlag) {				
-				WriteDOMDocBook lWriteDOMDocBook  = new WriteDOMDocBook (); 
-				lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);				
-				if (DMDocument.debugFlag) System.out.println("debug writeLDDArtifacts - DD DocBook Done");
-			}
 			}
 
 			System.out.println(">>info    - LDDTOOL Exit");
 		}
 		return;
-	}	 
+	}
 }
