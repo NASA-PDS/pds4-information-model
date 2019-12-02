@@ -598,9 +598,9 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('1') > -1) {
 					exportSpecFileFlag = true;
 				}
-/*				if (lArg.indexOf('2') > -1) {
+				if (lArg.indexOf('2') > -1) {
 					exportDDFileFlag = true;
-				} */
+				}
 				if (lArg.indexOf('3') > -1) {
 					exportJSONAttrFlag = true;
 				}

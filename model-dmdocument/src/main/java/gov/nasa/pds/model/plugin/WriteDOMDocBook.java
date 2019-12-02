@@ -27,8 +27,8 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
+// package gov.nasa.pds.model.plugin; 
 
-package gov.nasa.pds.model.plugin; 
 import java.io.*;
 import java.util.*;
 
@@ -37,9 +37,15 @@ class WriteDOMDocBook extends Object {
 	TreeMap <String, ClassClassificationDefnDOM> classClassificationMap;
 	ArrayList <ClassClassificationDefnDOM> classClassificationArr;	
 	
+	// namespaces to process
+	ArrayList <SchemaFileDefn> lSchemaFileDefnToWriteArr;
+	
 	// attribute structures
 	TreeMap <String, AttrClassificationDefnDOM> attrClassificationMap;
 	ArrayList <AttrClassificationDefnDOM> attrClassificationArr;
+	
+	// Miscellaneous
+	String writtenNamespaceIds = DMDocument.masterPDSSchemaFileDefn.identifier + " v" + DMDocument.masterPDSSchemaFileDefn.versionId ;
 	
 // Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
 	
@@ -48,50 +54,32 @@ class WriteDOMDocBook extends Object {
 		classClassificationMap = new TreeMap <String, ClassClassificationDefnDOM> ();
 		attrClassificationMap = new TreeMap <String, AttrClassificationDefnDOM> ();
 		
-		// get the current namespaces
-		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+		// get the current namespaces and initialize classification maps
+		if (! DMDocument.LDDToolFlag) {
+			// only the common dictionary (pds)
+			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+		} else {
+			// the common and all LDDs that are stacked for this run
+			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterAllSchemaFileSortMap.values());
+		}
+		System.out.println("\n");
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefnDOM (lSchemaFileDefn.identifier));
-			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefnDOM (lSchemaFileDefn.identifier));		}
+			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefnDOM (lSchemaFileDefn.identifier));
+		}
 
-		
 		classClassificationMap.put("pds.product", new ClassClassificationDefnDOM ("pds.product"));
 		classClassificationMap.put("pds.pds3", new ClassClassificationDefnDOM ("pds.pds3"));
 		classClassificationMap.put("pds.support", new ClassClassificationDefnDOM ("pds.support"));
 		classClassificationMap.put("pds.other", new ClassClassificationDefnDOM ("pds.other"));
+
 		classClassificationMap.put("other", new ClassClassificationDefnDOM ("other"));
 		classClassificationArr = new ArrayList <ClassClassificationDefnDOM> (classClassificationMap.values());
-
-
-		
 		attrClassificationMap.put("other", new AttrClassificationDefnDOM ("other"));
 		attrClassificationArr = new ArrayList <AttrClassificationDefnDOM> (attrClassificationMap.values());
 		
-		return;
-	}
-	
-//	print DocBook File
-	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
-		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-		String lDOMLabelVersionId = lLabelVersionId;
-		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
-		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		writeHeader (prDocBook);
-		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);
-        writeAttrSection (DMDocument.masterNameSpaceIdNCLC, prDocBook); // will  need to iterate for each namespace
-    	writeDataTypeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
-		writeFooter (prDocBook);
-		prDocBook.close();
-		return;
-	}
-	
-	private void writeClassSection (String lNameSpaceId, PrintWriter prDocBook) {
-        prDocBook.println("");	
-        prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
-        prDocBook.println("");
-        
+		// classify attributes and classes
 		// get the class classification maps
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -103,6 +91,141 @@ class WriteDOMDocBook extends Object {
 			ClassClassificationDefnDOM lClassClassificationDefn = (ClassClassificationDefnDOM) i.next();
 			lClassClassificationDefn.classArr = new ArrayList <DOMClass> (lClassClassificationDefn.classMap.values());
 		}
+		
+		// get the attribute classification maps
+		for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) i.next();
+			getAttrClassification (lAttr);
+		}
+		
+		// get the classification arrays
+		for (Iterator <AttrClassificationDefnDOM> i = attrClassificationArr.iterator(); i.hasNext();) {
+			AttrClassificationDefnDOM lAttrClassificationDefn = (AttrClassificationDefnDOM) i.next();
+			lAttrClassificationDefn.attrArr = new ArrayList <DOMAttr> (lAttrClassificationDefn.attrMap.values());
+		}
+		
+		// print out the class and attribute counts
+		if (DMDocument.debugFlag) System.out.println("\n>>info    - DD DocBook Class Counts");
+		Set <String> set9 = classClassificationMap.keySet();
+		Iterator <String> iter9 = set9.iterator();
+		while(iter9.hasNext()) {
+			String lId = (String) iter9.next();
+			ClassClassificationDefnDOM lClassClassificationDefnDOM = classClassificationMap.get(lId);
+			if (lClassClassificationDefnDOM != null ) {
+				if (DMDocument.debugFlag) System.out.println(">>info    - namespace: " + lId + "   size: " + lClassClassificationDefnDOM.classArr.size());
+				if (lClassClassificationDefnDOM.classArr.size() > 0) {
+					if (! (lId.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
+							|| lId.compareTo("pds.product") == 0 
+							|| lId.compareTo("pds.pds3") == 0 
+							|| lId.compareTo("pds.support") == 0 
+							|| lId.compareTo("pds.other") == 0 
+							|| lId.compareTo("other") == 0 )) {
+						writtenNamespaceIds += ", " + lId;
+						SchemaFileDefn lSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lId);
+						if (lSchemaFileDefn != null)
+							writtenNamespaceIds += " v" + lSchemaFileDefn.versionId;
+					}
+				}
+			}
+		} 
+		
+		if (DMDocument.debugFlag) System.out.println("\n>>info    - DD DocBook Attribute Counts");
+		Set <String> set92 = classClassificationMap.keySet();
+		Iterator <String> iter92 = set92.iterator();
+		while(iter92.hasNext()) {
+			String lId = (String) iter92.next();
+			AttrClassificationDefnDOM lAttrClassificationDefnDOM = attrClassificationMap.get(lId);
+			if (lAttrClassificationDefnDOM != null )
+				if (DMDocument.debugFlag) System.out.println(">>info    - namespace: " + lId + "   size: " + lAttrClassificationDefnDOM.attrArr.size());
+		}
+		return;
+	}
+	
+	public void getClassClassification (DOMClass lClass) {
+		if (lClass.isDataType) return;
+		if (lClass.isUnitOfMeasure) return;
+			
+		// classify the class by namespace and other criteria
+		ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lClass.nameSpaceIdNC);
+		if (lClassClassificationDefn != null) {			
+			if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
+				// i.e., the Common directory, pds
+				if (lClass.isRegistryClass) {
+					lClassClassificationDefn = classClassificationMap.get("pds.product");
+					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
+				} else if (lClass.title.indexOf("PDS3") > -1) {
+					lClassClassificationDefn = classClassificationMap.get("pds.pds3");
+					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
+				} else {
+					lClassClassificationDefn = classClassificationMap.get("pds.support");
+					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
+				}
+			} else {
+				// all LDD namespaces
+				lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
+			}
+		} else {
+			lClassClassificationDefn = classClassificationMap.get("other");
+			lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
+		}
+		return;
+	}
+	
+	public void getAttrClassification (DOMAttr lAttr) {
+		if (! (lAttr.isUsedInClass && lAttr.isAttribute)) return;
+
+		// classify the class by namespace and other criteria
+		String lAttrId = lAttr.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
+		AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(lAttr.nameSpaceIdNC);
+		if (lAttrClassificationDefn != null) {	
+			lAttrClassificationDefn.attrMap.put(lAttrId, lAttr);	
+		} else {
+			lAttrClassificationDefn = attrClassificationMap.get("other");
+			lAttrClassificationDefn.attrMap.put(lAttrId, lAttr);
+		}
+		return;
+	}
+	
+//	print DocBook File
+	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
+		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
+		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+		String lDOMLabelVersionId = lLabelVersionId;
+		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
+		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+		writeHeader (prDocBook);
+		
+		// write the Common dictionary
+		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);
+        writeAttrSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
+        
+        // write the LDDs
+		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
+			SchemaFileDefn lSchemaFileDefnToWrite = (SchemaFileDefn) i.next();
+			if (lSchemaFileDefnToWrite.nameSpaceIdNCLC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) continue; // skip master namespace
+			ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
+			if (lClassClassificationDefn != null) {
+				if (lClassClassificationDefn.classArr.size() > 0)
+					writeClassSection (lClassClassificationDefn, prDocBook);
+			}
+			AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
+			if (lAttrClassificationDefn != null) {
+				if (lAttrClassificationDefn.attrArr.size() > 0)
+					writeAttrSection (lAttrClassificationDefn, prDocBook);
+			}
+		}
+        
+        // write the Data Types and Units
+    	writeDataTypeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
+		writeFooter (prDocBook);
+		prDocBook.close();
+		return;
+	}
+	
+	private void writeClassSection (String lNameSpaceId, PrintWriter prDocBook) {
+        prDocBook.println("");	
+        prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
+        prDocBook.println("");
 		
 		ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get("pds.product");
 		if (lClassClassificationDefn != null) {
@@ -146,93 +269,46 @@ class WriteDOMDocBook extends Object {
 			}
 		}
 		
-		lClassClassificationDefn = classClassificationMap.get("rings");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Classes in the Rings discipline namespace.</title>");
-			prDocBook.println("           <para>These classes have been defined for the Rings science discipline and can be used in the label's discipline area. </para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-        
-		lClassClassificationDefn = classClassificationMap.get("img");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Classes in the Imaging discipline namespace.</title>");
-			prDocBook.println("           <para>These classes have been defined for the Imaging science discipline and can be used in the label's discipline area.</para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}		
-		
-		lClassClassificationDefn = classClassificationMap.get("cart");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Classes in the Cartography discipline namespace.</title>");
-			prDocBook.println("           <para>These classes have been defined for Cartography and can be used in the label's discipline area. </para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-        
-		lClassClassificationDefn = classClassificationMap.get("disp");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Classes in the Display namespace.</title>");
-			prDocBook.println("           <para>This dictionary describes how to display Array data on a display device.</para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}		
-		
         prDocBook.println("      <!-- =====================Part2 End=========================== -->");
         prDocBook.println("");
 	}
+	
+	private void writeClassSection (ClassClassificationDefnDOM lClassClassificationDefn, PrintWriter prDocBook) {
+        prDocBook.println("");	
+        prDocBook.println("      <!-- ===================== LDD Class Begin =========================== -->");
+        prDocBook.println("");
 		
-	public void getClassClassification (DOMClass lClass) {
-//		if (DMDocument.omitClass.contains(lClass.title)) return;
-		if (lClass.isDataType) return;
-		if (lClass.isUnitOfMeasure) return;
-		
-//		System.out.println("debug getClass lClass.identifier:" + lClass.identifier);
-//		System.out.println("debug getClass lClass.nameSpaceIdNC:" + lClass.nameSpaceIdNC);
-		
-		// classify the class by namespace and other criteria
-		ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lClass.nameSpaceIdNC);
-		if (lClassClassificationDefn != null) {			
-			if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
-				lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
-			} else {
-				if (lClass.isRegistryClass) {
-					lClassClassificationDefn = classClassificationMap.get("pds.product");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-				} else if (lClass.title.indexOf("PDS3") > -1) {
-					lClassClassificationDefn = classClassificationMap.get("pds.pds3");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-				} else {
-					lClassClassificationDefn = classClassificationMap.get("pds.support");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-
-				}
-			}
-		} else {
-			lClassClassificationDefn = classClassificationMap.get("other");
-			lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
+		prDocBook.println("        <chapter>");
+		prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId + " namespace.</title>");
+		prDocBook.println("           <para>These classes comprise the namespace.</para>");
+		for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
+			DOMClass lClass = (DOMClass) j.next();
+			writeClass (lClass, prDocBook);						
 		}
-		return;
+		prDocBook.println("        </chapter>");
+        prDocBook.println("");
+		
+        prDocBook.println("      <!-- ===================== LDD Class End =========================== -->");
+        prDocBook.println("");
+	}	
+		
+	private void writeAttrSection (AttrClassificationDefnDOM lAttrClassificationDefn, PrintWriter prDocBook) {
+		prDocBook.println("");	
+		prDocBook.println("      <!-- ===================== LDD Attribute Begin =========================== -->");
+		prDocBook.println("");
+
+		prDocBook.println("        <chapter>");
+		prDocBook.println("           <title>Attributes in the " + lAttrClassificationDefn.namespaceId + " namespace.</title>");
+		prDocBook.println("           <para>These attributes are used by the classes in the " + lAttrClassificationDefn.namespaceId + " namespace. </para>");
+		for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) j.next();
+			writeAttr (lAttr, prDocBook);						
+		}
+		prDocBook.println("        </chapter>");
+		prDocBook.println("");
+		
+		prDocBook.println("      <!-- ===================== LDD Attribute Begin =========================== -->");
+		prDocBook.println("");
 	}
 	
 	private void writeClass (DOMClass lClass, PrintWriter prDocBook) {
@@ -435,79 +511,11 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("      <!-- =====================Part3 Begin=========================== -->");
         prDocBook.println("");
 		
-		// get the attribute classification maps
-		for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) i.next();
-//			System.out.println("\ndebug writeAttrSection lAttr.identifier:" + lAttr.identifier);
-//			System.out.println("debug writeAttrSection lAttr.attrNameSpaceIdNC:" + lAttr.attrNameSpaceIdNC);
-			getAttrClassification (lAttr);
-		}
-		
-		// get the classification arrays
-		for (Iterator <AttrClassificationDefnDOM> i = attrClassificationArr.iterator(); i.hasNext();) {
-			AttrClassificationDefnDOM lAttrClassificationDefn = (AttrClassificationDefnDOM) i.next();
-			lAttrClassificationDefn.attrArr = new ArrayList <DOMAttr> (lAttrClassificationDefn.attrMap.values());
-		}
-		
 		AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(DMDocument.masterNameSpaceIdNCLC);
 		if (lAttrClassificationDefn != null) {
 			prDocBook.println("        <chapter>");
 			prDocBook.println("           <title>Attributes in the common namespace.</title>");
 			prDocBook.println("           <para>These attributes are used by the classes in the common namespace. </para>");
-			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-				DOMAttr lAttr = (DOMAttr) j.next();
-				writeAttr (lAttr, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-		
-
-				
-		lAttrClassificationDefn = attrClassificationMap.get("rings");
-		if (lAttrClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the Rings discipline namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes defined for the Rings namespace.</para>");
-			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-				DOMAttr lAttr = (DOMAttr) j.next();
-				writeAttr (lAttr, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-		
-		lAttrClassificationDefn = attrClassificationMap.get("img");
-		if (lAttrClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the Imaging discipline namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes defined for the Imaging namespace.</para>");
-			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-				DOMAttr lAttr = (DOMAttr) j.next();
-				writeAttr (lAttr, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-		
-		lAttrClassificationDefn = attrClassificationMap.get("cart");
-		if (lAttrClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the Cartographic namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes defined for the Cartographic namespace.</para>");
-			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-				DOMAttr lAttr = (DOMAttr) j.next();
-				writeAttr (lAttr, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-			prDocBook.println("");
-		}
-		
-		lAttrClassificationDefn = attrClassificationMap.get("disp");
-		if (lAttrClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the Display namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes defined for the Display namespace.</para>");
 			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) j.next();
 				writeAttr (lAttr, prDocBook);						
@@ -655,25 +663,6 @@ class WriteDOMDocBook extends Object {
 	    prDocBook.println("</para>");
 	  	prDocBook.println("</sect1> ");
 	  	prDocBook.println("");
-	}
-	
-	public void getAttrClassification (DOMAttr lAttr) {
-//		if (lAttr.isDataType || lAttr.isUnitOfMeasure) return; 
-		if (! (lAttr.isUsedInClass && lAttr.isAttribute)) return;
-		
-		// classify the class by namespace and other criteria
-//		String lAttrId = lAttr.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
-		String lAttrId = lAttr.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.classNameSpaceIdNC + "." +  DMDocument.registrationAuthorityIdentifierValue;
-		AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(lAttr.nameSpaceIdNC);
-		if (lAttrClassificationDefn != null) {
-//			lAttrClassificationDefn.attrMap.put(lAttr.identifier, lAttr);	
-			lAttrClassificationDefn.attrMap.put(lAttrId, lAttr);	
-		} else {
-			lAttrClassificationDefn = attrClassificationMap.get("other");
-//			lAttrClassificationDefn.attrMap.put(lAttr.identifier, lAttr);
-			lAttrClassificationDefn.attrMap.put(lAttrId, lAttr);
-		}
-		return;
 	}
 	
 	private void writeDataTypeUnitsSection (String lNameSpaceIdNC, PrintWriter prDocBook) {
@@ -909,6 +898,7 @@ class WriteDOMDocBook extends Object {
 		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
 		prDocBook.println("        </author>");
 		prDocBook.println("        <releaseinfo>Generated from Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
+		prDocBook.println("        <releaseinfo>Contains namespace ids: " + writtenNamespaceIds + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");
 		prDocBook.println("        ");

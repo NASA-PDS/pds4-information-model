@@ -586,7 +586,6 @@ public class LDDDOMParser extends Object
 			for(int i = 0 ; i < nl.getLength();i++) {
 				//get the terminological entry
 				Element el = (Element)nl.item(i);
-				
 				lVal = getTextValue(el,"language");
 				if (lVal != null) {
 					TermEntryDefn lTermEntry = new TermEntryDefn ();
