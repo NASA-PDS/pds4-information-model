@@ -130,7 +130,6 @@ public class DMDocument extends Object {
 	static boolean LDDNuanceFlag = false;				//
 	
 	// import export file flags
-	static boolean exportProdDefnFlag = true;
 	static boolean exportJSONFileFlag = false;			// LDDTool, set by -J option
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
@@ -590,16 +589,13 @@ public class DMDocument extends Object {
 					System.exit(0);
 				}
 				if (lArg.indexOf('D') > -1) {
-					exportProdDefnFlag = false;
+					exportDDFileFlag = true;
 				}
 				if (lArg.indexOf('J') > -1) {
 					exportJSONFileFlag = true;
 				}
 				if (lArg.indexOf('1') > -1) {
 					exportSpecFileFlag = true;
-				}
-				if (lArg.indexOf('2') > -1) {
-					exportDDFileFlag = true;
 				}
 				if (lArg.indexOf('3') > -1) {
 					exportJSONAttrFlag = true;
@@ -734,7 +730,7 @@ public class DMDocument extends Object {
 			System.out.println("  -p, --PDS4      Set the context to PDS4");
 			System.out.println("  -l, --LDD       Process a local data dictionary input file");
 			System.out.println("  -a, --attribute Write definitions for attribute elements.");
-//			System.out.println("  -c, --class     Write definitions for class elements.");
+			System.out.println("  -D, --DataDict  Write the Data Dictionary DocBook file.");
 			System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
 			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
 			System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
