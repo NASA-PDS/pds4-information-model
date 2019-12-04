@@ -409,6 +409,9 @@ public class LDDDOMParser extends Object
 		
 		validateNoDuplicateNames ();
 		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNoDuplicateNames() Done");
+		
+		validateTypeAttributes ();
+		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateTypeAttributes() Done");
 	}
 	
 	private void printClassDebug (String lLable, String lIdentifier) {
@@ -1530,8 +1533,6 @@ public class LDDDOMParser extends Object
 	}
 	
 	private void validateNoDuplicateNames () {
-//		System.out.println("\ndebug validateNoDuplicateNames");
-		
 		// get a list for names
 		ArrayList <String> lNameArr = new ArrayList <String> ();
 		
@@ -1556,7 +1557,25 @@ public class LDDDOMParser extends Object
 		}
 		return;
 	}
-			
+	
+	private void validateTypeAttributes () {
+		// scan for attribute names containing "type"
+		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
+			int lTypeOffset = lDOMAttr.title.length();
+			lTypeOffset = lTypeOffset - 4;
+			if (lDOMAttr.title.indexOf("type") == lTypeOffset) {
+				if (lDOMAttr.domPermValueArr.size() < 1) {
+					if (DMDocument.LDDToolMissionGovernanceFlag)
+						lddErrorMsg.add("   WARNING  Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
+					else
+						lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
+				}
+			}
+		}
+		return;
+	}
+	
 	private ArrayList <Element> getAssocElemFromClassDefn (Element elem) {
 		ArrayList <Element> lAssocElemArr = new ArrayList <Element> ();
 		Node assocElement = elem.getFirstChild();
@@ -1750,34 +1769,6 @@ public class LDDDOMParser extends Object
 			}
 		}
 	}
-	
-	public void OverwriteFrom11179DataDictxxx () {
-	// iterate through the LDD attribute array
-		for (Iterator<DOMAttr> i = attrArr.iterator(); i.hasNext();) {
-			DOMAttr lDOMAttr = (DOMAttr) i.next();
-			
-			System.out.println("\ndebug LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.identifier:" + lDOMAttr.identifier);
-			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - Before - lDOMAttr.valueType:" + lDOMAttr.valueType);
-			
-			
-			DOMAttr lLDDUserAttribute = lDOMAttr.lddUserAttribute;
-			if (lLDDUserAttribute == null) continue;
-			lDOMAttr.isNilable = lLDDUserAttribute.isNilable;
-			lDOMAttr.valueType = lLDDUserAttribute.valueType;
-			lDOMAttr.minimum_value = lLDDUserAttribute.minimum_value;
-			lDOMAttr.maximum_value = lLDDUserAttribute.maximum_value;
-			lDOMAttr.minimum_characters = lLDDUserAttribute.minimum_characters;
-			lDOMAttr.maximum_characters = lLDDUserAttribute.maximum_characters;
-			lDOMAttr.pattern = lLDDUserAttribute.pattern;
-			lDOMAttr.unit_of_measure_type = lLDDUserAttribute.unit_of_measure_type;
-			lDOMAttr.default_unit_id = lLDDUserAttribute.default_unit_id;
-			lDOMAttr.valArr = lLDDUserAttribute.valArr;
-			lDOMAttr.permValueArr = lLDDUserAttribute.permValueArr;
-			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.identifier:" + lDOMAttr.identifier);
-			System.out.println("      LDDDOMParser.OverwriteFrom11179DataDict - After - lDOMAttr.valueType:" + lDOMAttr.valueType);
-		}
-	}
-	
 	
 	private int getIntValue(Element ele, String tagName) {
 		//in production application you would catch the exception
