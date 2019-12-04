@@ -1,4 +1,4 @@
-; Wed Nov 06 09:40:37 PST 2019
+; Wed Dec 04 10:56:01 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10105,6 +10105,12 @@
 	(single-slot instance_id
 ;+		(comment "The instance_id attribute provides an identifier for the single occurrence of an object, for example an XPath.")
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot skos_relation_name
+;+		(comment "The attribute skos_relation_name provides a meaning of the relationship between two associated terms.")
+		(type STRING)
+;+		(value "exactMatch" "closeMatch" "broadMatch" "narrowMatch" "relatedMatch")
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 

@@ -1,4 +1,4 @@
-; Wed Nov 06 11:03:26 PST 2019
+; Wed Dec 04 11:42:33 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1053,6 +1053,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Stream_Text.pds.parsing_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.Telescope.pds.coordinate_source]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.instance_id]
+		[EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.identifier]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.instance_id]
@@ -11829,6 +11830,20 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.preferred_flag])
 	(versionIdentifier "1.14"))
 
+([DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(versionIdentifier "1.14"))
+
 ([DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description] of  DataElement
 
 	(administrationRecord [DD_1.14.0.0])
@@ -15752,6 +15767,7 @@
 		[DE.0001_NASA_PDS_1.pds.Telescope.pds.description]
 		[DE.0001_NASA_PDS_1.pds.Telescope.pds.telescope_altitude]
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.instance_id]
+		[DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name]
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description]
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.identifier]
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.instance_id]
@@ -19854,6 +19870,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Terminological_Entry.pds.preferred_flag] of  Definition
 
 	(definitionText "The preferred_flag indicates whether this entry is  preferred over all other entries.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  Definition
+
+	(definitionText "The attribute skos_relation_name provides a meaning of the relationship between two associated terms.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description] of  Definition
@@ -24844,6 +24865,11 @@
 ([DES.0001_NASA_PDS_1.pds.Terminological_Entry.pds.preferred_flag] of  Designation
 
 	(designationName "preferred_flag")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  Designation
+
+	(designationName "skos_relation_name")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description] of  Designation
@@ -32251,6 +32277,33 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.14"))
 
+([EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.1334127715]
+		[pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-2078734675]
+		[pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.2093327878]
+		[pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-1842912726]
+		[pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.137179226])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
 ([EVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.model_object_type] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
@@ -32323,7 +32376,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.skos_relation_name])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -57689,6 +57742,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
+([PR.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "1060")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
 ([PR.0001_NASA_PDS_1.pds.Terminological_Entry.pds.source.External_Reference_Extended] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -68980,6 +69042,46 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.language.60895824])
 	(value "English"))
 
+([pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-1842912726] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-1842912726])
+	(value "narrowMatch"))
+
+([pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-2078734675] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-2078734675])
+	(value "closeMatch"))
+
+([pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.1334127715] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.1334127715])
+	(value "broadMatch"))
+
+([pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.137179226] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.137179226])
+	(value "relatedMatch"))
+
+([pv.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.2093327878] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.2093327878])
+	(value "exactMatch"))
+
 ([pv.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.model_object_type.-1950842954] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70981,6 +71083,9 @@
 	(measureName "TBD_unit_of_measure_type")
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
+
+([TBD_value_type] of  %3AUNDEFINED
+)
 
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
 
@@ -76244,6 +76349,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Terminological_Entry.pds.preferred_flag])
 	(designation [DES.0001_NASA_PDS_1.pds.Terminological_Entry.pds.preferred_flag])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
+	(designation [DES.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description] of  TerminologicalEntry
@@ -85415,6 +85527,36 @@
 
 	(beginDate "2009-06-09")
 	(description "Values in Terminological_Entry are in English")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-1842912726] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "NarrowMatch is used to state a hierarchical mapping link between two conceptual resources in different concept schemes")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.-2078734675] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "CloseMatch is used to link two concepts that are sufficiently similar that they can be used interchangeably")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.1334127715] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "BroadMatch is used to state a hierarchical mapping link between two conceptual resources in different concept schemes")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.137179226] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "RelatedMatch is used to state an associative mapping link between two conceptual resources in different concept schemes")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Terminological_Entry.pds.skos_relation_name.2093327878] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "ExactMatch is used to link two concepts, indicating a high degree of confidence that the concepts can be used interchangeably")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.model_object_type.-1950842954] of  ValueMeaning
