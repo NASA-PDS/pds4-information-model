@@ -412,6 +412,9 @@ public class LDDDOMParser extends Object
 		
 		validateTypeAttributes ();
 		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateTypeAttributes() Done");
+		
+		validateNoUnitsAttributes();
+		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNoUnitsAttributes() Done");
 	}
 	
 	private void printClassDebug (String lLable, String lIdentifier) {
@@ -1562,15 +1565,35 @@ public class LDDDOMParser extends Object
 		// scan for attribute names containing "type"
 		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
-			int lTypeOffset = lDOMAttr.title.length();
-			lTypeOffset = lTypeOffset - 4;
-			if (lDOMAttr.title.indexOf("type") == lTypeOffset) {
+			int lTitleLength = lDOMAttr.title.length();
+			if ((lTitleLength >= 4) && (lDOMAttr.title.indexOf("type") == lTitleLength - 4)) {
 				if (lDOMAttr.domPermValueArr.size() < 1) {
 					if (DMDocument.LDDToolMissionGovernanceFlag)
 						lddErrorMsg.add("   WARNING  Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 					else
 						lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 				}
+			}
+		}
+		return;
+	}
+	
+	private void validateNoUnitsAttributes () {
+		// scan for attribute names containing "unit", "units", "unit_of_measure", or ending with one of those terms.
+		boolean foundFlag = false;
+		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
+			foundFlag = false;
+			int lTitleLength = lDOMAttr.title.length();;
+			if ((lTitleLength >= 4) && (lDOMAttr.title.indexOf("unit") == lTitleLength - 4)) {
+				foundFlag = true;
+			} else if ((lTitleLength >= 5) && (lDOMAttr.title.indexOf("units") == lTitleLength - 5)) {
+				foundFlag = true;
+			} else if ((lTitleLength >= 15) && (lDOMAttr.title.indexOf("unit_of_measure") == lTitleLength - 15)) {
+				foundFlag = true;
+			}
+			if (foundFlag) {
+				lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute names 'unit', 'units', 'unit_of_measure' cannot be used.");
 			}
 		}
 		return;

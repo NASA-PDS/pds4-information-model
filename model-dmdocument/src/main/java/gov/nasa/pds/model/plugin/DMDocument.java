@@ -462,14 +462,17 @@ public class DMDocument extends Object {
 		System.out.println(">>info    - PARENT_DIR: " + lPARENT_DIR);
 		System.out.println(">>info    - SCRIPT_DIR: " + lSCRIPT_DIR);
 		System.out.println(">>info    - LIB_DIR: " + lLIB_DIR);
+		System.out.println("");
 		
 		// print out the stewards - namespaceid pairs
-		System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
-		for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
-			String lStewardNameSpaceId = (String) i.next();
-			System.out.println(">>info    - " + lStewardNameSpaceId);
+		if (DMDocument.debugFlag) {
+			System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
+			for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
+				String lStewardNameSpaceId = (String) i.next();
+				System.out.println(">>info    - " + lStewardNameSpaceId);
+			}
+			System.out.println(" " );
 		}
-		System.out.println(" " );
 		
 		// set the deprecated flags
 		setObjectDeprecatedFlag();
@@ -701,7 +704,7 @@ public class DMDocument extends Object {
 	static public boolean checkFileName (String inputFileName) {
 		File file=new File (inputFileName);
 		if (file.exists() && (file.isFile())) {
-			System.out.println (">>info    - Found input file: " + inputFileName);
+			if (debugFlag) System.out.println (">>info    - Found input file: " + inputFileName);
 			return true;
 		}
 		System.out.println(">>error   - " + "Input file not found: " + inputFileName);
@@ -963,7 +966,7 @@ public class DMDocument extends Object {
     			lNamespaceIdArr.add(lSchemaFileDefn2.identifier);
     			lSchemaFileDefn2.setVersionIds();
     		}
-    		System.out.println(">>info    - Configured NameSpaceIds:" + lNamespaceIdArr);
+    		if (debugFlag) System.out.println(">>info    - Configured NameSpaceIds:" + lNamespaceIdArr);
     		
     		// update to masterSchemaFileSortMap to process and write the target LDD
     		if (DMDocument.LDDToolFlag) {	
