@@ -68,8 +68,7 @@ public class ProtFramesParser extends Object
 		
 		try {
 			PBReader = new InputStreamReader (new FileInputStream(new File(fname)), "UTF-8");
-			
-			System.out.println(">>info    - Found required file: " + fname);
+			if (DMDocument.debugFlag) System.out.println(">>info    - Found required file: " + fname);
 		} catch (Exception e) {
 			System.out.println(">>error   - Could not find required file: " + fname);     
 			return false;

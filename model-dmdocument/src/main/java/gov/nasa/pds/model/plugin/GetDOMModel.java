@@ -444,32 +444,34 @@ public class GetDOMModel extends Object {
 			}
 		}
 		
-		System.out.println("\n>>info    - Active Namespace Ids:");
-		for (Iterator <String> i = lNameSpaceHasMemberArr.iterator(); i.hasNext();) {
-			String lNameSpaceId = (String) i.next();
-			System.out.println(">>info    - namespace_id:" + lNameSpaceId);
+		if (DMDocument.debugFlag) {		
+			System.out.println("\n>>info    - Active Namespace Ids:");
+			for (Iterator <String> i = lNameSpaceHasMemberArr.iterator(); i.hasNext();) {
+				String lNameSpaceId = (String) i.next();
+				System.out.println(">>info    - namespace_id:" + lNameSpaceId);
+			}
+			
+			System.out.println("\n>>info    - Master DOM Structures Initiated");	
+			System.out.println(">>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
+			System.out.println("\n>>info    - Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
+			System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
+			System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
+			System.out.println("\n>>info    - Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
+			System.out.println("\n>>info    - Master Unit Sizes          - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
+			System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
+			System.out.println(" ");
 		}
-		
-		System.out.println("\n>>info    - Master DOM Structures Initiated");	
-		System.out.println(">>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
-		System.out.println("\n>>info    - Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
-		System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
-		System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
-		System.out.println("\n>>info    - Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
-		System.out.println("\n>>info    - Master Unit Sizes          - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
-		System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
-		System.out.println(" ");
 
 		if (DMDocument.debugFlag) System.out.println("debug GetDOMModel Done");	
 	}
