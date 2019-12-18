@@ -1110,10 +1110,17 @@ public class DMDocument extends Object {
 //		deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds", "Airborne", "pds", "type", "Suborbital Rocket", false));
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Airborne", false));
-//		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Aircraft", false));
-//		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Balloon", false));
-//		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
-
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Aircraft", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Balloon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Computer", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Facility", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Laboratory", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Naked Eye", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Observatory", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Spacecraft", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Observing_System_Component.type", "pds", "Observing_System_Component", "pds", "type", "Artificial Illumination", false));
+		
 		deprecatedObjects2.add(new DeprecatedDefn ("Internal_Reference.reference_type", "pds", "Internal_Reference", "pds", "reference_type", "is_airborne", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Bundle_Member_Entry.reference_type", "pds", "Bundle_Member_Entry", "pds", "reference_type", "bundle_has_member_collection", false));
 

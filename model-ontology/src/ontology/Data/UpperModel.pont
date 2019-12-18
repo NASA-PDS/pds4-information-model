@@ -1,4 +1,4 @@
-; Wed Dec 04 10:56:01 PST 2019
+; Thu Dec 05 16:22:15 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10048,7 +10048,7 @@
 	(single-slot type
 ;+		(comment "The type attribute classifies the observing system component according to its function.")
 		(type STRING)
-;+		(value "Naked Eye" "Laboratory" "Observatory" "Telescope" "Instrument" "Literature Search" "Spacecraft" "Artificial Illumination" "Facility" "Balloon" "Airborne" "Aircraft" "Suborbital Rocket" "Computer")
+;+		(value "Naked Eye" "Laboratory" "Observatory" "Telescope" "Instrument" "Literature Search" "Spacecraft" "Artificial Illumination" "Facility" "Balloon" "Airborne" "Aircraft" "Suborbital Rocket" "Computer" "Host")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
