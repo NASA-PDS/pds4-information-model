@@ -86,23 +86,16 @@ public class ExportModels extends Object {
 		WriteDOMDocBook lWriteDOMDocBook  = new WriteDOMDocBook (); 
 		lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
 		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - DD DocBook Done");
-
-		// write the xmi file
-		XMI2LabelSchemaDOM xmi2LabelSchemaDOM = new XMI2LabelSchemaDOM ();
-		xmi2LabelSchemaDOM.getXMIElements ();
-		xmi2LabelSchemaDOM.writeXMIFile (DMDocument.sTodaysDate);	
-		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XMI1 Done");
-
-		// write the xmi file - original version with relationship names
-//		XMI2LabelSchema2 xmi2LabelSchema2 = new XMI2LabelSchema2 (); *** deprecated ***
-//		xmi2LabelSchema2.writeXMIFile (DMDocument.sTodaysDate);
-		XMI2LabelSchemaWNamesDOM xmi2LabelSchemaWNames = new XMI2LabelSchemaWNamesDOM ();
-		xmi2LabelSchemaWNames.writeXMIFile (DMDocument.sTodaysDate);
 		
-		// DOM  write the xmi file - original version with relationship names
-		XMI2LabelSchema2DOM xmi2LabelSchema2DOM = new XMI2LabelSchema2DOM ();
-		xmi2LabelSchema2DOM.writeXMIFile (DMDocument.sTodaysDate);
-		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - XMI2 Done");
+		// write the new xmi file
+		WriteUML25XMIFile lWriteUML25XMIFile = new WriteUML25XMIFile ();
+		lWriteUML25XMIFile.writeXMIFile (DMDocument.sTodaysDate);
+		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - UML 25 XMI File Done");
+		
+		// write the new Neo4J file
+//		WriteNeo4J lWriteNeo4J = new WriteNeo4J ();
+//		lWriteNeo4J.writeXMIFile (DMDocument.sTodaysDate);
+//		if (DMDocument.debugFlag) System.out.println("debug writeAllArtifacts - Neo4J File Done");
 		
 		// write the RDF
 		// write the DOM RDF
