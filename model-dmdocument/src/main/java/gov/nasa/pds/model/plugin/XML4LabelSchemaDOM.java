@@ -238,14 +238,14 @@ class XML4LabelSchemaDOM extends Object {
 		if (DMDocument.LDDToolFlag) {
 			prXML.println("  <!--                                                                           -->");
 			prXML.println("  <!--               Dictionary Stack                                            -->");
-			String lEntry = DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - " + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + " - " + DMDocument.masterPDSSchemaFileDefn.lddName + " - " + DMDocument.masterPDSSchemaFileDefn.sourceFileName + "                                   ";
+			String lSpaces73 = "                                                                         ";
+			String lEntry = DMDocument.masterPDSSchemaFileDefn.ont_version_id + " - " + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + " - " + DMDocument.masterPDSSchemaFileDefn.lddName + " - " + DMDocument.masterPDSSchemaFileDefn.sourceFileName + lSpaces73;
 			lEntry = lEntry.substring(0, 73);
 			prXML.println("  <!-- " + lEntry + " -->");
 
 			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lFileInfo = (SchemaFileDefn) i.next();
-//				lEntry = lFileInfo.sourceFileName + " - " + lFileInfo.ont_version_id;
-				lEntry = lFileInfo.ont_version_id + " - " + lFileInfo.nameSpaceId + " - " + lFileInfo.lddName + " - " + lFileInfo.sourceFileName + "                                   ";
+				lEntry = lFileInfo.ont_version_id + " - " + lFileInfo.nameSpaceId + " - " + lFileInfo.lddName + " - " + lFileInfo.sourceFileName + lSpaces73;
 				lEntry = lEntry.substring(0, 73);
 				prXML.println("  <!-- " + lEntry + " -->");
 			}
