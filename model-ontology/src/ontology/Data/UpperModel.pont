@@ -1,4 +1,4 @@
-; Thu Dec 05 16:22:15 PST 2019
+; Thu Dec 26 21:12:59 PST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -102,7 +102,7 @@
 ;+		(allowed-classes Modification_Detail)
 		(create-accessor read-write))
 	(multislot id_reference
-;+		(comment "The id_reference provides the identifier of the ending object in a one  directional relationship.")
+;+		(comment "The id_reference provides the identifier of an object in a one  directional relationship.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot white_space
@@ -729,6 +729,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot virtual_area
+;+		(comment "The virtual_area association is a relationship to Virtual Area")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Area)
+		(create-accessor read-write))
 	(multislot has_Delimited_Field
 ;+		(comment "The has_Delimited_Field association is a relationship to field.")
 		(type INSTANCE)
@@ -741,6 +746,10 @@
 	(multislot ldd_version_id
 ;+		(comment "The ldd_version_id attribute provides the version of the Local Data Dictionary.")
 		(type STRING)
+		(create-accessor read-write))
+	(single-slot UpperModel_191218_CCB-256_ReferenceTypes_Retry_Class0
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot lexical_identifier
 ;+		(comment "identifier = initial-letter-like, { pseudo-letter-like } ; initial-letter-like = letter-like | special-like ; letter-like = letter | ISO/IEC-10176-extended-letter ; pseudo-letter-like = letter-like | digit-like | underscore ; digit-like = digit | ISO/IEC-10176-extended-digit ; special-like = underscore | ISO/IEC-10176-extended-special ;")
@@ -1268,6 +1277,11 @@
 ;+		(comment "The instrument_host_version_id attribute provides the version of the instrument host.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lid_reference_from
+;+		(comment "The lid_reference_from provides the identifier of the starting object in a one  directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LID_ID_Reference_From)
 		(create-accessor read-write))
 	(single-slot block_bytes
 ;+		(comment "This attribute is used by the volume class. It is under review.")
@@ -1859,6 +1873,11 @@
 	(multislot member_reference
 ;+		(comment "The member reference attribute provides a identifier for a member.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot virtual_reference
+;+		(comment "The virtual_reference association is a relationship to Virtual_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Reference)
 		(create-accessor read-write))
 	(single-slot a_axis_radius
 ;+		(comment "This attribute is used in the image map projection. Under review. xxx DDWG;DS xxx Also check why minimum value is negative.")
@@ -2772,6 +2791,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot virtual_reference_type
+;+		(comment "The virtual_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot sequence_class
 ;+		(comment "Housekeeping.")
 		(type INSTANCE)
@@ -2791,6 +2814,11 @@
 ;+		(comment "The invalid_constant attribute provides a value that indicates the original value was outside the valid range for the parameter.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lidvid_refernce_to
+;+		(comment "The lidvid_refernce_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LIDVID_ID_Reference_To)
 		(create-accessor read-write))
 	(single-slot band_width
 ;+		(comment "The band_width attributes provides the width, at half height, of the band.")
@@ -2844,6 +2872,11 @@
 	(single-slot upper_120106b_Class1
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lid_reference_to
+;+		(comment "The lid_reference_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LID_ID_Reference_To)
 		(create-accessor read-write))
 	(single-slot bytes
 ;+		(comment "The bytes attribute provides the number of bytes in the object.")
@@ -3091,6 +3124,11 @@
 ;+		(comment "This attribute is used in the image map projection. Under review.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot lidvid_reference_from
+;+		(comment "The lid_reference_from provides the identifier of the starting object in a one  directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LIDVID_ID_Reference_From)
 		(create-accessor read-write))
 	(multislot associated_nested_data_folder
 ;+		(comment "The associated_nested_data_folder association is a relationship to data folders.")
@@ -3601,6 +3639,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot virtual_relation
+;+		(comment "The virtual_relation association is a relationship to Virtual_Relation.")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Relation)
+		(create-accessor read-write))
 	(multislot planet_day_number
 ;+		(comment "The planet_day_number attribute provides the number of solar days (sols) on a rotating solar system body since a reference event, such as the landing of a spacecraft. The day of landing is usually defined as planet_day_number=0.")
 		(type STRING)
@@ -3711,6 +3754,11 @@
 	(multislot revision_id
 ;+		(comment "The revision_id attribute provides the revision level of a document, which may be set outside PDS and may be different from its version_id.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot virtual_structure
+;+		(comment "The virtual_structure association is a relationship to Virtual Structure")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Structure)
 		(create-accessor read-write))
 	(multislot group_number
 ;+		(comment "The group_number attribute provides the position of a group, within a series of groups, counting from 1.  If two groups within a record are physically separated by one or more fields, they have consecutive group numbers; the intervening fields are numbered separately.  Groups within a parent group, but separated by one or more fields, will also have consecutive group numbers.")
@@ -3857,7 +3905,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot rule_statement
-;+		(comment "The rule_statement association is a relationship to DD_Rule_Statement\n.")
+;+		(comment "The rule_statement association is a relationship to DD_Rule_Statement")
 		(type INSTANCE)
 ;+		(allowed-classes DD_Rule_Statement)
 		(create-accessor read-write))
@@ -5269,6 +5317,21 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Product_Virtual "The Product Virtual class describes a composite product comprised of references to existing products and/or product components."
+	(is-a Product)
+	(role concrete)
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Observational)
+		(create-accessor read-write))
+	(single-slot virtual_area
+;+		(comment "The virtual_area association is a relationship to Virtual Area")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Area)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
 	(is-a USER)
 	(role abstract))
@@ -6170,6 +6233,22 @@
 	(single-slot discipline_name
 ;+		(comment "The discipline_name attribute describes the observing discipline (as opposed to a PDS Discipline Node Name, though the concepts and values are similar). Some of these values are, with respect to the PDS Nodes, inter-disciplinary and should be used when they are applicable in perference to the more restrictive values.")
 		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Virtual_Area "The Virtual Area provides the metadata and references necessary to describe a composite of existing products and/or their components."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot has_discipline_area
+;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
+		(type INSTANCE)
+;+		(allowed-classes Discipline_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot virtual_structure
+;+		(comment "The virtual_structure association is a relationship to Virtual Structure")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Structure)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -9680,7 +9759,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot rule_statement
-;+		(comment "The rule_statement association is a relationship to DD_Rule_Statement\n.")
+;+		(comment "The rule_statement association is a relationship to DD_Rule_Statement")
 		(type INSTANCE)
 ;+		(allowed-classes DD_Rule_Statement)
 		(cardinality 1 ?VARIABLE)
@@ -10037,6 +10116,147 @@
 ;+		(allowed-classes Terminological_Entry_SKOS)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
+
+(defclass Virtual_Structure "The Virtual Structure class provides a general framework for defining a structure that relates existing products and/or product components."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot virtual_relation
+;+		(comment "The virtual_relation association is a relationship to Virtual_Relation.")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Relation)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot type_description
+;+		(comment "The type_description attribute provides a description of the object's type.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot virtual_reference
+;+		(comment "The virtual_reference association is a relationship to Virtual_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Reference)
+		(create-accessor read-write)))
+
+(defclass Virtual_Relation "The Virtual_Relation class defines a one directional relationship between two extisting products and/or product components."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot id_reference_from
+;+		(comment "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot lid_reference_to
+;+		(comment "The lid_reference_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LID_ID_Reference_To)
+		(create-accessor read-write))
+	(multislot lid_reference_from
+;+		(comment "The lid_reference_from provides the identifier of the starting object in a one  directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LID_ID_Reference_From)
+		(create-accessor read-write))
+	(single-slot virtual_reference_type
+;+		(comment "The virtual_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lidvid_refernce_to
+;+		(comment "The lidvid_refernce_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LIDVID_ID_Reference_To)
+		(create-accessor read-write))
+	(multislot lidvid_reference_from
+;+		(comment "The lid_reference_from provides the identifier of the starting object in a one  directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LIDVID_ID_Reference_From)
+		(create-accessor read-write)))
+
+(defclass Virtual_Reference "The Virtual_Reference class defines a one directional relationship by referencing an existing product or product component."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot id_reference_to
+;+		(comment "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot lid_reference_to
+;+		(comment "The lid_reference_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LID_ID_Reference_To)
+		(create-accessor read-write))
+	(single-slot virtual_reference_type
+;+		(comment "The virtual_reference_type attribute provides the name of an association between two objects.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot lidvid_refernce_to
+;+		(comment "The lidvid_refernce_to provides the identifier of the ending object in a  one directional relationship.")
+		(type INSTANCE)
+;+		(allowed-classes LIDVID_ID_Reference_To)
+		(create-accessor read-write)))
+
+(defclass LID_ID_Reference "The LID_ID_Reference class defines a one directional relationship by referencing an existing product and an optional product component."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot lid_reference
+;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
+		(type STRING)
+		(default "logical_identifier")
+		(create-accessor read-write))
+	(multislot id_reference
+;+		(comment "The id_reference provides the identifier of an object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass LID_ID_Reference_To "The LID_ID_Reference_To class identifies the ending object of a one directional relationship by referencing an existing product and an optional product component."
+	(is-a LID_ID_Reference)
+	(role concrete))
+
+(defclass LID_ID_Reference_From "The LID_ID_Reference_From class identifies the starting object of a one directional relationship by referencing an existing product and an optional product component."
+	(is-a LID_ID_Reference)
+	(role concrete))
+
+(defclass LIDVID_ID_Reference "The LIDVID_ID_Reference class defines a one directional relationship by referencing an existing product and an optional product component."
+	(is-a TNDO_Supplemental)
+	(role concrete)
+	(multislot lidvid_reference
+;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
+		(type STRING)
+		(default "logical_identifier::version_id")
+		(create-accessor read-write))
+	(multislot id_reference
+;+		(comment "The id_reference provides the identifier of an object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass LIDVID_ID_Reference_To "The LIDVID_ID_Reference_To class identifies the ending object of a one directional relationship by referencing an existing product and an optional product component."
+	(is-a LIDVID_ID_Reference)
+	(role concrete))
+
+(defclass LIDVID_ID_Reference_From "The LIDVID_ID_Reference_From class identifies the starting object of a one directional relationship by referencing an existing product and an optional product component."
+	(is-a LIDVID_ID_Reference)
+	(role concrete))
 
 (defclass Tagged_NonDigital_Child "The Tagged NonDigital Child class is an abstract class for the components  of classes in the tagged nondigital object class hierarchy."
 	(is-a USER)
@@ -10655,7 +10875,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass DD_Associate_External_Class "The DD_Associate_External_Class class allows the definition of permissible values in Ingest_LDD for  attributes defined in external namespaces."
+(defclass DD_Associate_External_Class "The DD_Associate_External_Class class allows the definition of permissible values in Ingest_LDD for attributes defined in external namespaces."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot dd_Context_Value_List
@@ -10671,6 +10891,16 @@
 		(create-accessor read-write))
 	(single-slot class_name
 ;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_occurrences
+;+		(comment "The maximum occurrences attribute indicates the number of times something may occur. It is also called the maximum cardinality. The asterisk character is used as a value to indicate that no upper bound exists.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_occurrences
+;+		(comment "The minimum occurrences attribute indicates the number of times something may occur. It is also called the minimum cardinality.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
