@@ -295,6 +295,9 @@ public class LDDDOMParser extends Object
 		addLDDtoMaster ();
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.addLDDtoMaster() Done");
 		
+		validateNoNestedExposedClasses();
+		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNoNestedExposedClasses() Done");
+		
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD Done");
 	}		
 
@@ -1594,6 +1597,39 @@ public class LDDDOMParser extends Object
 			}
 			if (foundFlag) {
 				lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute names 'unit', 'units', 'unit_of_measure' cannot be used.");
+			}
+		}
+		return;
+	}
+	
+	private void validateNoNestedExposedClasses () {
+		// first find an exposed classe
+		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isExposed) {
+				// check all component classes
+				ArrayList <DOMProp> allAssocArr = new ArrayList <DOMProp> ();
+				allAssocArr.addAll(lClass.ownedAssocArr);
+				allAssocArr.addAll(lClass.inheritedAssocArr);
+				for (Iterator <DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
+					DOMProp lDOMProp = j.next();
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+						DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+						if (lCompClass.isExposed) {
+							lddErrorMsg.add("   ERROR    Class: <" + lClass.title + "> - <" + lCompClass.title + "> - Exposed classes cannot be nested (component_of).");
+						}
+					}
+				}
+				
+				// check all super classes
+				DOMClass lSubClass = lClass;
+				while (lSubClass.subClassOf != null) {
+					DOMClass lSuperClass = lSubClass.subClassOf;
+					if (lSuperClass.isExposed) {
+						lddErrorMsg.add("   ERROR    Class: <" + lClass.title + "> - <" + lSuperClass.title + "> - Exposed classes cannot be nested (parent_of).");						
+					}
+					lSubClass = lSuperClass; 
+				}
 			}
 		}
 		return;
