@@ -418,6 +418,9 @@ public class LDDDOMParser extends Object
 		
 		validateNoUnitsAttributes();
 		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNoUnitsAttributes() Done");
+		
+		validateNilRequiredAttributes();
+		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNilRequiredAttributes() Done");
 	}
 	
 	private void printClassDebug (String lLable, String lIdentifier) {
@@ -1587,7 +1590,7 @@ public class LDDDOMParser extends Object
 		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			foundFlag = false;
-			int lTitleLength = lDOMAttr.title.length();;
+			int lTitleLength = lDOMAttr.title.length();
 			if ((lTitleLength >= 4) && (lDOMAttr.title.indexOf("unit") == lTitleLength - 4)) {
 				foundFlag = true;
 			} else if ((lTitleLength >= 5) && (lDOMAttr.title.indexOf("units") == lTitleLength - 5)) {
@@ -1597,6 +1600,32 @@ public class LDDDOMParser extends Object
 			}
 			if (foundFlag) {
 				lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute names 'unit', 'units', 'unit_of_measure' cannot be used.");
+			}
+		}
+		return;
+	}
+	
+	private void validateNilRequiredAttributes () {
+		// Validate that each "nillable" attribute is a required attribute of at least one class		
+		
+		// first find all nillable attributes in IngestLDD.
+		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
+			if (lDOMAttr.isNilable) {
+
+				// for each nillable attribute (title) find properties with same title
+				boolean foundFlag = false;
+				for (Iterator <DOMProp> j = LDDDOMPropArr.iterator(); j.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) j.next();
+					if (lDOMAttr.title.compareTo (lDOMProp.title) == 0) {
+						if (lDOMProp.cardMinI > 0)	{
+							foundFlag = true;
+						}
+					}
+				}
+				if (! foundFlag) {
+					lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute is 'nilable' however it is not required in at least one class.");
+				}
 			}
 		}
 		return;
