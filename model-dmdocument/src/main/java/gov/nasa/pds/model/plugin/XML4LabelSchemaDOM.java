@@ -536,9 +536,9 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 		} else {
 			if (! (lAttr.isExposed || lAttr.title.compareTo("local_identifier") == 0)) 
-				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+				prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
 			else
-				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.nameSpaceId + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
+				prXML.println(indentSpaces() + "<" + pNS + "element ref=\"" + lAttr.nameSpaceId + lAttr.XMLSchemaName + "\"" + nilableClause + minMaxOccursClause + "> </" + pNS + "element>");
 		}
 		
 		// save the attribute's schema name for writing the simpleType statements
@@ -1055,34 +1055,6 @@ class XML4LabelSchemaDOM extends Object {
 				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
 			} else {
 				prXML.println("  <" + pNS + "element name=\"" + lClass.title + "\" type=\"" + lClass.nameSpaceIdNC + ":" + lClass.title + "\"> </" + pNS + "element>");
-			}
-		}
-	}
-	
-	public void writeUserAttributeElementDefinitons (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {
-		prXML.println("");
-		
-		// get all Owned variables for any class that is a child of the USER class
-		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userDOMClassAttrIdMap.values());
-		for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
-			DOMAttr lDOMAttr = (DOMAttr) i.next();
-			
-			// only write the attributes in this schema's namespace
-			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lDOMAttr.nameSpaceIdNC) != 0) continue;
-			
-			// kludge for common only; fix for LDD
-//			if (lAttr.attrNameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) continue;
-			if (! (lDOMAttr.isUsedInClass && lDOMAttr.isAttribute && lDOMAttr.isPDS4)) continue;
-			
-			String nilableClause = "";
-			if (lDOMAttr.isNilable) {
-				nilableClause = " nillable=\"true\"";
-			}
-			
-			if (lDOMAttr.hasAttributeOverride) {
-				prXML.println("  <" + pNS + "element name=\"" + lDOMAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lDOMAttr.XMLSchemaName + "\">" + " </" + pNS + "element>");
-			} else {
-				prXML.println("  <" + pNS + "element name=\"" + lDOMAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lDOMAttr.valueType     + "\">" + " </" + pNS + "element>");
 			}
 		}
 	}
