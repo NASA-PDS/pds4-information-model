@@ -83,7 +83,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "1.19.1";
+	static String DMDocVersionId  = "10.2.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -138,7 +138,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "1.19.3";
+	static String LDDToolVersionId  = "10.2.1";
 	static String buildIMVersionId = "1.13.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
