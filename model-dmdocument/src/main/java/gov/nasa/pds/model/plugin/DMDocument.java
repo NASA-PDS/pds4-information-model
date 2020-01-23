@@ -83,7 +83,7 @@ public class DMDocument extends Object {
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
 
-	static String DMDocVersionId  = "10.2.0";
+	static String DMDocVersionId  = "0.0.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
 	
@@ -120,7 +120,7 @@ public class DMDocument extends Object {
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
-	static String LDDToolVersionId  = "10.2.1";
+	static String LDDToolVersionId  = "0.0.0";
 	static String buildIMVersionId = "1.14.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
@@ -348,7 +348,7 @@ public class DMDocument extends Object {
 		String configInputFile = dataDirPath + "config.properties";
 		String configInputStr;
     	File configFile = new File(configInputFile); 
-    	try {
+    	try { 
     	    FileReader reader = new FileReader(configFile);
 //    	    Properties props = new Properties();
     	    props.load(reader);
@@ -383,6 +383,11 @@ public class DMDocument extends Object {
     	    configInputStr= props.getProperty("mastModelId");
     	    if (configInputStr != null) mastModelId = configInputStr;
     	    
+    	    configInputStr= props.getProperty("toolVersionId");
+            if (configInputStr != null) {
+                DMDocVersionId = LDDToolVersionId = configInputStr;
+            }
+
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
