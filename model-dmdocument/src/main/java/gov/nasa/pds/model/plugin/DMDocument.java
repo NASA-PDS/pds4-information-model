@@ -121,6 +121,7 @@ public class DMDocument extends Object {
 	//									Modification history will continue with 1.n
 	                         
 	static String LDDToolVersionId  = "0.0.0";
+	static String buildDate  = "";
 	static String buildIMVersionId = "1.14.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
@@ -387,6 +388,11 @@ public class DMDocument extends Object {
             if (configInputStr != null) {
                 DMDocVersionId = LDDToolVersionId = configInputStr;
             }
+            
+            configInputStr= props.getProperty("buildDate");
+            if (configInputStr != null) {
+                buildDate = configInputStr;
+            }
 
     	    reader.close();
     	} catch (FileNotFoundException ex) {
@@ -593,7 +599,9 @@ public class DMDocument extends Object {
 					System.exit(0);
 				}
 				if (lArg.indexOf('v') > -1) {
-					System.out.println("LDDTOOL Version: " + LDDToolVersionId + " - Built with IM Version:" + buildIMVersionId);
+					System.out.println("\nLDDTool Version: " + LDDToolVersionId);
+					System.out.println("Built with IM Version: " + buildIMVersionId);
+					System.out.println("Build Date: " + buildDate + "\n");
 					System.exit(0);
 				}
 				if (lArg.indexOf('D') > -1) {
