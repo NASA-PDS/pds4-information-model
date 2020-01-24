@@ -1,5 +1,24 @@
 # Change Log
 
+## [v10.1.2](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.2) (2020-01-23)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.1...v10.1.2)
+
+**Fixed bugs:**
+
+- LDDTool: Fix invalid examples or link to valid versions online [\#105](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/105)
+
+**Closed issues:**
+
+- Sync up LDDTool version with Maven build version [\#127](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/127)
+- Nillable attributes are not declared nillable in class definitions.   [\#125](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/125)
+- Sync LDDTool version with Maven version [\#124](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/124)
+
+**Merged pull requests:**
+
+- Update tool versioning to move to config file [\#129](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/129) ([jordanpadams](https://github.com/jordanpadams))
+- Sync up LDDTool version with Maven build version [\#128](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/128) ([jshughes](https://github.com/jshughes))
+- Nillable attributes are not declared nillable in class definitions. [\#126](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/126) ([jshughes](https://github.com/jshughes))
+
 ## [v10.1.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.1) (2019-10-19)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.0...v10.1.1)
 
