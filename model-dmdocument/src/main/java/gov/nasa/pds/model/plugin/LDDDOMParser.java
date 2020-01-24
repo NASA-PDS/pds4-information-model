@@ -862,11 +862,51 @@ public class LDDDOMParser extends Object
 						isGroupContent = true;
 					}
 				}
+				
 			} else if (lAssocElem.getNodeName().compareTo("DD_Associate_External_Class") == 0) { 
+				// handle DD_Associate_External_Class
+				// initialize
+				String lnamespaceid = "TBD_namespaceid_LDD";
+				String lclassname = "TBD_classname_LDD";
+				lCardMin = "";
+				lCardMinI = 0;
+				lCardMax = "";
+				lCardMaxI = 0;
 
 				// get common attributes
-				String lnamespace_id = getTextValue(lAssocElem,"namespace_id");
-				String lclass_name = getTextValue(lAssocElem,"class_name");
+				lnamespaceid = getTextValue(lAssocElem,"namespace_id");
+				lclassname = getTextValue(lAssocElem,"class_name");
+				lLocalIdentifier = lnamespaceid + "." + lclassname;
+				
+				lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
+				lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
+				
+				validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lLocalIdentifier);
+				
+				// create new association -- Note that lProperty.identifier will not be set until the associated attribute is located in resolveComponentsForAssociation
+				DOMProp lDOMProp = new DOMProp ();
+				
+				// get common attributes
+				lDOMProp.isAttribute = false;
+				lDOMProp.localIdentifier = lLocalIdentifier;
+				lDOMProp.referenceType = "component_of";
+				lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lDOMProp.localIdentifier + "." + lDOMProp.referenceType + "." + DOMInfoModel.getNextUId();
+				lDOMProp.enclLocalIdentifier = lDOMClass.localIdentifier;					
+				lDOMProp.classOrder = DOMInfoModel.getNextClassOrder();
+				lDOMProp.isChoice = false;	
+				lDOMProp.isAny = false;
+				lDOMProp.maximumOccurrences = lMaximumOccurrences;
+				lDOMProp.minimumOccurrences = lMinimumOccurrences;
+				lDOMProp.groupName = "TBD_groupName";
+				lDOMProp.cardMin = lCardMin;
+				lDOMProp.cardMinI = lCardMinI;
+				lDOMProp.cardMax = lCardMax;
+				lDOMProp.cardMaxI = lCardMaxI;
+				
+				// update property arrays
+				LDDDOMPropArr.add(lDOMProp);
+				lDOMClass.ownedAssocArr.add(lDOMProp);
+				
 				Node lValueListNode = lAssocElem.getFirstChild();
 				while (lValueListNode != null)
 				{
@@ -875,7 +915,7 @@ public class LDDDOMParser extends Object
 						Element lValueListElement = (Element)lValueListNode;
 						String lattribute_name = getTextValue(lValueListElement,"attribute_name");
 						String lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
-						DOMRule lDOMRule = new DOMRule (lnamespace_id + ":" + lclass_name + "." + lXpath);	
+						DOMRule lDOMRule = new DOMRule (lnamespaceid + ":" + lclassname + "." + lXpath);	
 						lDOMRule.setRDFIdentifier();	
 						if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
 							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
@@ -883,8 +923,8 @@ public class LDDDOMParser extends Object
 							lDOMRule.xpath = lXpath;
 							lDOMRule.ruleNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 							lDOMRule.attrTitle = lattribute_name;
-							lDOMRule.attrNameSpaceNC = lnamespace_id;		
-							lDOMRule.classTitle = lclass_name;		
+							lDOMRule.attrNameSpaceNC = lnamespaceid;		
+							lDOMRule.classTitle = lclassname;		
 							lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 							lDOMRule.classSteward = lSchemaFileDefn.nameSpaceIdNC;
 							String lAttrId = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
@@ -913,7 +953,7 @@ public class LDDDOMParser extends Object
 								String assertMsgPre = " must be equal to one of the following values"; 
 								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
 								lDOMAssert.assertStmt =  "";	
-								lDOMAssert.assertMsg =  assertMsgPre + " " + lAssertMsgValueList + ".";	;
+								lDOMAssert.assertMsg =  assertMsgPre + " ";
 								lDOMRule.assertArr.add(lDOMAssert);
 							}
 						}
