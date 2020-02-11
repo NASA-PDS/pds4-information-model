@@ -129,6 +129,10 @@ class GetValueMeanings extends Object{
 
 		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference.reference_type.ancillary_to_data", "ancillary_to_data", "The ancillary product is associated to a data product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
+		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference.reference_type.ancillary_to_investigation", "ancillary_to_investigation", "The ancillary data product is associated to an investigation"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference.reference_type.ancillary_to_target", "ancillary_to_target", "The ancillary data product is associated to a target"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference.reference_type.ancillary_to_document", "ancillary_to_document", "The ancillary data product is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_geometry", "data_to_geometry", "The data product is associated to geometry"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_spice_kernel", "data_to_spice_kernel", "The data product is associated to spice kernel(s)"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_thumbnail", "data_to_thumbnail", "The data product is associated to a thumbnail"); masterValueMeaningMap.put(lPVD.identifier, lPVD);

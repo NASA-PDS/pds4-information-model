@@ -349,7 +349,7 @@ public class DMDocument extends Object {
 		String configInputFile = dataDirPath + "config.properties";
 		String configInputStr;
     	File configFile = new File(configInputFile); 
-    	try { 
+    	try {
     	    FileReader reader = new FileReader(configFile);
 //    	    Properties props = new Properties();
     	    props.load(reader);
@@ -389,11 +389,11 @@ public class DMDocument extends Object {
                 DMDocVersionId = LDDToolVersionId = configInputStr;
             }
             
-            configInputStr= props.getProperty("buildDate");
+          configInputStr= props.getProperty("buildDate");
             if (configInputStr != null) {
                 buildDate = configInputStr;
             }
-
+    	    
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
@@ -516,6 +516,7 @@ public class DMDocument extends Object {
 			ExportModels lExportModels = new ExportModels ();
 			lExportModels.writeAllArtifacts (exportDOMFlag, exportMOFFlag);
 		}
+		if (debugFlag) System.out.println (">>info    - Next UID: " + DOMInfoModel.getNextUId());
 		System.out.println(">>info    - Exit");
 	}
 	
