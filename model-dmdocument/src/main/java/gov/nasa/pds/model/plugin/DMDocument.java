@@ -1246,6 +1246,8 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Field_Bit.start_bit", "pds", "Field_Bit", "pds", "start_bit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Field_Bit.stop_bit", "pds", "Field_Bit", "pds", "stop_bit", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.record_delimiter", "pds", "Table_Delimited", "pds", "record_delimiter", "carriage-return line-feed", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_External.record_delimiter", "pds", "Table_Delimited_Source_Product_External", "pds", "record_delimiter", "carriage-return line-feed", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_Internal.record_delimiter", "pds", "Table_Delimited_Source_Product_Internal", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Character.record_delimiter", "pds", "Table_Character", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Stream_Text.record_delimiter", "pds", "Stream_Text", "pds", "record_delimiter", "carriage-return line-feed", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Checksum_Manifest.record_delimiter", "pds", "Checksum_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
@@ -1254,11 +1256,19 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Uniformly_Sampled.sampling_parameters", "pds", "Uniformly_Sampled", "pds", "sampling_parameters", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Object_Statistics.bit_mask", "pds", "Object_Statistics", "pds", "bit_mask", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Object_Statistics.md5_checksum", "pds", "Object_Statistics", "pds", "md5_checksum", "", false));
-
+		
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "comma", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "horizontal tab", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "semicolon", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited.field_delimiter", "pds", "Table_Delimited", "pds", "field_delimiter", "vertical bar", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_External.field_delimiter", "pds", "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "comma", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_External.field_delimiter", "pds", "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "horizontal tab", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_External.field_delimiter", "pds", "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "semicolon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_External.field_delimiter", "pds", "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "vertical bar", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_Internal.field_delimiter", "pds", "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "comma", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_Internal.field_delimiter", "pds", "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "horizontal tab", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_Internal.field_delimiter", "pds", "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "semicolon", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Table_Delimited_Source_Product_Internal.field_delimiter", "pds", "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "vertical bar", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.field_delimiter", "pds", "Inventory", "pds", "field_delimiter", "comma", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.field_delimiter", "pds", "Inventory", "pds", "field_delimiter", "horizontal tab", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.field_delimiter", "pds", "Inventory", "pds", "field_delimiter", "semicolon", false));

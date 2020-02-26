@@ -1,4 +1,4 @@
-; Tue Jan 07 15:44:05 PST 2020
+; Tue Feb 25 15:40:58 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -712,6 +712,10 @@
 		[EVD.0001_NASA_PDS_1.pds.Investigation.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.type]
+		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
+		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference]
+		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference]
+		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_name]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_start_date]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_stop_date]
@@ -913,6 +917,15 @@
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.unit]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.value]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description]
 		[EVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.curating_node_id]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.medium_type]
@@ -1005,10 +1018,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
-		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_to]
 		[EVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_type]
@@ -1063,6 +1072,8 @@
 		[NEVD.0001_NASA_PDS_1.pds.Special_Constants.pds.valid_maximum]
 		[NEVD.0001_NASA_PDS_1.pds.Special_Constants.pds.valid_minimum]
 		[EVD.0001_NASA_PDS_1.pds.Stream_Text.pds.parsing_standard_id]
+		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type]
+		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type]
 		[NEVD.0001_NASA_PDS_1.pds.Telescope.pds.coordinate_source]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.instance_id]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description]
@@ -1109,16 +1120,6 @@
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Wavenumber.pds.type]
 		[EVD.0001_NASA_PDS_1.pds.Units_of_Wavenumber.pds.unit_id]
 		[EVD.0001_NASA_PDS_1.pds.Update.pds.update_purpose]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description]
 		[NEVD.0001_NASA_PDS_1.pds.XML_Schema.pds.ldd_version_id])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -1242,6 +1243,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Update_Entry.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Vector.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.description]
+		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status_note]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_Set_PDS3.pds.description]
@@ -11640,6 +11642,34 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Table_Delimited.pds.records])
 	(versionIdentifier "1.14"))
 
+([DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type])
+	(versionIdentifier "1.14"))
+
 ([DE.0001_NASA_PDS_1.pds.Target.pds.description] of  DataElement
 
 	(administrationRecord [DD_1.14.0.0])
@@ -16074,6 +16104,8 @@
 		[DE.0001_NASA_PDS_1.pds.Stream_Text.pds.parsing_standard_id]
 		[DE.0001_NASA_PDS_1.pds.Subscriber_PDS3.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Symbolic_Literals_PDS.pds.nil_reason]
+		[DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type]
+		[DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type]
 		[DE.0001_NASA_PDS_1.pds.Telescope.pds.description]
 		[DE.0001_NASA_PDS_1.pds.Telescope.pds.telescope_altitude]
 		[DE.0001_NASA_PDS_1.pds.Terminological_Entry.pds.instance_id]
@@ -20115,6 +20147,16 @@
 ([DEF.0001_NASA_PDS_1.pds.Table_Delimited.pds.records] of  Definition
 
 	(definitionText "The records attribute provides a count of records.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  Definition
+
+	(definitionText "The reference_type attribute provides the name of the association.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  Definition
+
+	(definitionText "The reference_type attribute provides the name of the association.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Target.pds.description] of  Definition
@@ -25210,6 +25252,16 @@
 ([DES.0001_NASA_PDS_1.pds.Table_Delimited.pds.records] of  Designation
 
 	(designationName "records")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  Designation
+
+	(designationName "reference_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  Designation
+
+	(designationName "reference_type")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Target.pds.description] of  Designation
@@ -46530,6 +46582,48 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.14"))
 
+([NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
 ([NEVD.0001_NASA_PDS_1.pds.Target.pds.description] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
@@ -58535,6 +58629,24 @@
 	(administrationRecord [DD_1.14.0.0])
 	(classOrder "1050")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Table_Delimited.pds.uniformly_sampled.Uniformly_Sampled")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
@@ -77499,6 +77611,20 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Table_Delimited.pds.records])
 	(designation [DES.0001_NASA_PDS_1.pds.Table_Delimited.pds.records])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Target.pds.description] of  TerminologicalEntry

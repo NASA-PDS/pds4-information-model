@@ -1,4 +1,4 @@
-; Mon Feb 10 15:51:29 PST 2020
+; Tue Feb 25 15:52:49 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2522,6 +2522,524 @@
 	(attrTitle "doi")
 	(identifier "doi")
 	(specMesg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_External")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.102])
+	(identifier "pds:Table_Delimited_Source_Product_External")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.101] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_External.Field_Delimited does not match the expected number of instances")
+	(assertStmt "count(pds:Record_Delimited/pds:Field_Delimited) eq 4")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.102] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_External.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.102])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be 4.")
+	(assertStmt "pds:fields eq '4'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.101] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.102] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.103] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.104] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have name set to 'Reference Type'.")
+	(assertStmt "pds:name eq 'Reference Type'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.101] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.102] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.103] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have name set to 'External Source Product Identifier'.")
+	(assertStmt "pds:name eq 'External Source Product Identifier'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.104] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[3]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[3]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.101] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have field_number set to 3.")
+	(assertStmt "pds:field_number eq '3'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.102] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.103] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have name set to 'DOI'.")
+	(assertStmt "pds:name eq 'DOI'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.104] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[4]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[4]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.101] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have field_number set to 4.")
+	(assertStmt "pds:field_number eq '4'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.102] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.103] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have name set to 'Curating Facility'.")
+	(assertStmt "pds:name eq 'Curating Facility'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.104] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_External")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527.101])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:reference_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:reference_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:reference_type must be equal to the value 'table_has_source_products'.")
+	(assertStmt ". = ('table_has_source_products')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_Internal")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.102])
+	(identifier "pds:Table_Delimited_Source_Product_Internal")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.101] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_Internal.Field_Delimited does not match the expected number of instances")
+	(assertStmt "(count(pds:Record_Delimited/pds:Field_Delimited) eq 2)")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.102] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_Internal.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.102])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be equal to '2'.")
+	(assertStmt "pds:fields eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.104])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.101] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.102] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.103] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.104] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have name set to 'Reference Type'.")
+	(assertStmt "pds:name eq 'Reference Type'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.104])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.101] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.102] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have data_type set to either 'ASCII_LID' or 'ASCII_LIDVID' or 'ASCII_LIDVID_LID'.")
+	(assertStmt "(pds:data_type eq 'ASCII_LID') or (pds:data_type eq 'ASCII_LIDVID') or (pds:data_type eq 'ASCII_LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.103] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have name set to 'LIDVID_LID'.")
+	(assertStmt "(pds:name eq 'LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.104] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_Internal")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520.101])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:reference_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:reference_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:reference_type must be equal to the value 'table_has_source_products'.")
+	(assertStmt ". = ('table_has_source_products')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556] of  Schematron_Rule
 
