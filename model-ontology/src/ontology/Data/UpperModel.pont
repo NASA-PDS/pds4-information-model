@@ -1,4 +1,4 @@
-; Tue Feb 25 15:52:49 PST 2020
+; Wed Feb 26 08:42:18 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3281,6 +3281,10 @@
 ;+		(comment "The has_Group_Facet1 association is a relationship to Group_Facet1.")
 		(type INSTANCE)
 ;+		(allowed-classes Group_Facet1)
+		(create-accessor read-write))
+	(multislot dictionary_type
+;+		(comment "The dictionary_type attribute provides the name of a dictionary category.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot has_Group_Facet2
 ;+		(comment "The has_Group_Facet2 association is a relationship to Group_Facet2.")
@@ -9392,6 +9396,12 @@
 	(single-slot namespace_id
 ;+		(comment "The namespace_id attribute provides the abbreviation of the XML schema namespace container for this  logical grouping of classes and attributes.  It is assigned by the steward.")
 		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot dictionary_type
+;+		(comment "The dictionary_type attribute provides the name of a dictionary category.")
+		(type STRING)
+;+		(value "Common" "Discipline" "Mission")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot name_
