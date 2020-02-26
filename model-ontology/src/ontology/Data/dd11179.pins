@@ -1,4 +1,4 @@
-; Tue Feb 25 15:40:58 PST 2020
+; Wed Feb 26 09:00:59 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -787,6 +787,8 @@
 		[EVD.0001_NASA_PDS_1.pds.Table_Delimited.pds.field_delimiter]
 		[EVD.0001_NASA_PDS_1.pds.Table_Delimited.pds.parsing_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Table_Delimited.pds.record_delimiter]
+		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type]
+		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type]
 		[NEVD.0001_NASA_PDS_1.pds.Target.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Target.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Target_Identification.pds.alternate_designation]
@@ -1016,6 +1018,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
+		[EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment]
@@ -1072,8 +1075,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Special_Constants.pds.valid_maximum]
 		[NEVD.0001_NASA_PDS_1.pds.Special_Constants.pds.valid_minimum]
 		[EVD.0001_NASA_PDS_1.pds.Stream_Text.pds.parsing_standard_id]
-		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_External.pds.reference_type]
-		[NEVD.0001_NASA_PDS_1.pds.Table_Delimited_Source_Product_Internal.pds.reference_type]
 		[NEVD.0001_NASA_PDS_1.pds.Telescope.pds.coordinate_source]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry.pds.instance_id]
 		[NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.description]
@@ -8364,6 +8365,20 @@
 	(steward [ops])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.comment])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(steward [ops])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
 	(versionIdentifier "1.14"))
 
 ([DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id] of  DataElement
@@ -16034,6 +16049,7 @@
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
+		[DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type]
 		[DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
 		[DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype]
 		[DE.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
@@ -18977,6 +18993,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Ingest_LDD.pds.comment] of  Definition
 
 	(definitionText "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  Definition
+
+	(definitionText "The dictionary_type attribute provides the name of a dictionary category.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id] of  Definition
@@ -24082,6 +24103,11 @@
 ([DES.0001_NASA_PDS_1.pds.Ingest_LDD.pds.comment] of  Designation
 
 	(designationName "comment")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  Designation
+
+	(designationName "dictionary_type")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id] of  Designation
@@ -31546,6 +31572,31 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type])
 	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.2024019467]
+		[pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1941080176]
+		[pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1560864404])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -54475,6 +54526,24 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
+([PR.0001_NASA_PDS_1.pds.File_Area_Observational_Supplemental.pds.has_tagged_data_object.Table_Delimited_Source_Product_External] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Observational_Supplemental.pds.has_tagged_data_object.Table_Delimited_Source_Product_External")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.File_Area_Observational_Supplemental.pds.has_tagged_data_object.Table_Delimited_Source_Product_Internal] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Observational_Supplemental.pds.has_tagged_data_object.Table_Delimited_Source_Product_Internal")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
 ([PR.0001_NASA_PDS_1.pds.File_Area_Service_Description.pds.has_File.File] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -55029,6 +55098,15 @@
 	(administrationRecord [DD_1.14.0.0])
 	(classOrder "1080")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.data_object.Conceptual_Object")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "1025")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
@@ -67385,6 +67463,30 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type.76158])
 	(value "MD5"))
 
+([pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1560864404] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1560864404])
+	(value "Mission"))
+
+([pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1941080176] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1941080176])
+	(value "Discipline"))
+
+([pv.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.2024019467] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.2024019467])
+	(value "Common"))
+
 ([pv.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -75973,6 +76075,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Ingest_LDD.pds.comment])
 	(designation [DES.0001_NASA_PDS_1.pds.Ingest_LDD.pds.comment])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id] of  TerminologicalEntry
@@ -84786,6 +84895,24 @@
 
 	(beginDate "2009-06-09")
 	(description "The value of the checksum is produced by the Message-Digest Algorithm %28MD5%29 output of the MD5 Deep Package %28see http:%2F%2Fmd5deep.sourceforge.net%2F%29.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1560864404] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The dictionary defines classes and attributes specific to a mission, flight project, or independent investigation.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.-1941080176] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The dictionary defines classes and attributes specific to a discipline, such as geometry or spectra.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type.2024019467] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The dictionary defines classes and attributes common to all labels.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Instrument.pds.type.-1103122093] of  ValueMeaning
