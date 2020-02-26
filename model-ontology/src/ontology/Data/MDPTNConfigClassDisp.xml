@@ -50,6 +50,8 @@
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Array_3D_Spectral_Map</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Array_3D_Spectral_Movie</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Table_Delimited</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Table_Delimited_Source_Product_Internal</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Table_Delimited_Source_Product_External</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Record_Delimited</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Field_Delimited</Field> <Field>1MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Group_Field_Delimited</Field> <Field>1MT</Field> <Field>#09</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
