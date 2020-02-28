@@ -1,4 +1,4 @@
-; Wed Feb 26 08:42:18 PST 2020
+; Thu Feb 27 15:54:55 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12412,89 +12412,6 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass ASCII_LID "The ASCII_LID class indicates a logical identifier."
-	(is-a Character_Data_Type)
-	(role concrete)
-	(single-slot formation_rule
-;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
-		(type STRING)
-;+		(value "urn:xxx:yyy:zzzz")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot pattern
-;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_characters
-;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "255")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_value
-;+		(comment "The maximum_value attribute provides the upper, inclusive bound on the value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_characters
-;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "13")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot character_constraint
-;+		(comment "The character_constraint attribute limits the characters allowed.")
-		(type STRING)
-;+		(value "ASCII")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot xml_schema_base_type
-;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
-		(type STRING)
-;+		(value "xsd:string")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_value
-;+		(comment "The minimum_value attribute provides the lower inclusive bound on the value.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass ASCII_LIDVID "The ASCII_LIDVID class indicates a logical identifier and version identifier."
-	(is-a Character_Data_Type)
-	(role concrete)
-	(single-slot formation_rule
-;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
-		(type STRING)
-;+		(value "urn:xxx:yyy:zzzz::M.n")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_characters
-;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "255")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_characters
-;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "18")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot character_constraint
-;+		(comment "The character_constraint attribute limits the characters allowed.")
-		(type STRING)
-;+		(value "ASCII")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot xml_schema_base_type
-;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
-		(type STRING)
-;+		(value "xsd:string")
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
 (defclass ASCII_MD5_Checksum "The ASCII MD5 Checksum class indicates a checksum computed by the Message-Digest algorithm 5 (MD5)."
 	(is-a Character_Data_Type)
 	(role concrete)
@@ -13127,40 +13044,6 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass ASCII_LIDVID_LID "The ASCII_LIDVID_LID class indicates a logical identifier and version identifier or simply the logical identfier."
-	(is-a Character_Data_Type)
-	(role concrete)
-	(single-slot formation_rule
-;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
-		(type STRING)
-;+		(value "urn:xxx:yyy:zzzz/urn:xxx:yyy:zzzz::M.n")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot maximum_characters
-;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "255")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot minimum_characters
-;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
-		(type STRING)
-;+		(value "13")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot character_constraint
-;+		(comment "The character_constraint attribute limits the characters allowed.")
-		(type STRING)
-;+		(value "ASCII")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot xml_schema_base_type
-;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
-		(type STRING)
-;+		(value "xsd:string")
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
 (defclass ASCII_Date_Time_YMD_UTC "The ASCII_Date_Time_YMD_UTC class indicates a date (in YMD format) and time in UTC."
 	(is-a Character_Data_Type)
 	(role concrete)
@@ -13314,6 +13197,164 @@
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
 ;+		(value "xsd:token")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_String_Base_255 "The ASCII_String_Base_255 class provides a base class for a 255 character ASCII string."
+	(is-a Character_Data_Type)
+	(role abstract)
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_LID "The ASCII_LID class indicates a logical identifier."
+	(is-a ASCII_String_Base_255)
+	(role concrete)
+	(single-slot formation_rule
+;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
+		(type STRING)
+;+		(value "urn:xxx:yyy:zzzz")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "urn(:[\\p{Ll}\\p{Nd}\\-._]+){3,5}")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_value
+;+		(comment "The maximum_value attribute provides the upper, inclusive bound on the value.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_value
+;+		(comment "The minimum_value attribute provides the lower inclusive bound on the value.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_LIDVID "The ASCII_LIDVID class indicates a logical identifier and version identifier."
+	(is-a ASCII_String_Base_255)
+	(role concrete)
+	(single-slot formation_rule
+;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
+		(type STRING)
+;+		(value "urn:xxx:yyy:zzzz::M.n")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "urn(:[\\p{Ll}\\p{Nd}\\-._]+){3,5}::\\p{Nd}+\\.\\p{Nd}+")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ASCII_LIDVID_LID "The ASCII_LIDVID_LID class indicates a logical identifier and version identifier or simply the logical identfier."
+	(is-a ASCII_String_Base_255)
+	(role concrete)
+	(single-slot formation_rule
+;+		(comment "The formation_rule attribute provides a 'user friendly' instruction for forming values.")
+		(type STRING)
+;+		(value "urn:xxx:yyy:zzzz/urn:xxx:yyy:zzzz::M.n")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "urn(:[\\p{Ll}\\p{Nd}\\-._]+){3,5}(::\\p{Nd}+\\.\\p{Nd}+)?")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot maximum_characters
+;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "255")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimum_characters
+;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+		(type STRING)
+;+		(value "1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character_constraint
+;+		(comment "The character_constraint attribute limits the characters allowed.")
+		(type STRING)
+;+		(value "ASCII")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot xml_schema_base_type
+;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+		(type STRING)
+;+		(value "xsd:string")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 

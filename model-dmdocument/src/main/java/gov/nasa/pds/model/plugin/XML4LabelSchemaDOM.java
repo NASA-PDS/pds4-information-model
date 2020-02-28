@@ -843,7 +843,7 @@ class XML4LabelSchemaDOM extends Object {
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
-			if (!(lClass.isDataType && lClass.subClassOfTitle.compareTo("Character_Data_Type") == 0)) continue;
+			if (!(lClass.isDataType && (lClass.subClassOfTitle.compareTo("Character_Data_Type") == 0) || (lClass.subClassOfTitle.compareTo("ASCII_String_Base_255") == 0))) continue;
 			sortDataTypeMap.put(lClass.title, lClass);
 		}	
 		ArrayList <DOMClass> sortDataTypeArr = new ArrayList <DOMClass> (sortDataTypeMap.values());	
@@ -867,20 +867,28 @@ class XML4LabelSchemaDOM extends Object {
 
 			prXML.println("");
 			prXML.println("    <" + pNS + "simpleType name=\"" + lClass.title + "\">");
-			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.title.compareTo("xml_schema_base_type") == 0) {
-					DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
-					String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
-					lVal = DMDocument.replaceString (lVal, "xsd:", "");
-					if (lVal != null) {
-						prXML.println("      <" + pNS + "restriction base=\"" + pNS + lVal + "\">");
-					} else {
-						prXML.println("      <" + pNS + "restriction base=\"" + pNS + "string\">");							
+			
+			// check for data types that are subclasses
+			String lRestrictionClassName = lClass.subClassOf.title;
+			String pNSPDS = pNS;
+			if (lRestrictionClassName.compareTo("ASCII_String_Base_255") == 0 ) {
+				pNSPDS = DMDocument.masterNameSpaceIdNCLC + ":";
+			} else {
+				for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
+					DOMProp lProp = (DOMProp) j.next();
+					if (lProp.title.compareTo("xml_schema_base_type") == 0) {
+						DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
+						String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
+						if (lVal != null) {
+							lRestrictionClassName = DMDocument.replaceString (lVal, "xsd:", "");
+						} else {
+							lRestrictionClassName = "TBD_lRestrictionClassName";
+						}
 					}
 				}
 			}
-//			for (Iterator<AttrDefn> j = lClass.ownedAttribute.iterator(); j.hasNext();) {
+			prXML.println("      <" + pNS + "restriction base=\"" + pNSPDS + lRestrictionClassName + "\">");
+			
 			// use attribute list sorted by classOrder
 			for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
