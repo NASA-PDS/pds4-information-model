@@ -1,4 +1,4 @@
-; Wed Feb 26 09:00:59 PST 2020
+; Thu Feb 27 15:50:02 PST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -449,7 +449,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.maximum_value]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_value]
-		[NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule]
@@ -680,6 +680,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component.pds.transfer_manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_label_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_lidvid]
+		[EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.full_name]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.ldd_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name]
@@ -712,10 +713,6 @@
 		[EVD.0001_NASA_PDS_1.pds.Investigation.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.type]
-		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference]
-		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_name]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_start_date]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_stop_date]
@@ -919,15 +916,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.unit]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.value]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description]
 		[EVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.curating_node_id]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.medium_type]
@@ -972,6 +960,8 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.xml_schema_base_type]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.maximum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.minimum_characters]
@@ -983,6 +973,10 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
@@ -1018,7 +1012,6 @@
 		[EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
-		[EVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.dictionary_type]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment]
@@ -1244,7 +1237,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Update_Entry.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Vector.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Vector_Component.pds.description]
-		[NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status_note]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Volume_Set_PDS3.pds.description]
@@ -2957,7 +2949,7 @@
 	(isNillable "false")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
@@ -3033,6 +3025,20 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
 	(versionIdentifier "1.14"))
 
+([DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
+	(versionIdentifier "1.14"))
+
 ([DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type] of  DataElement
 
 	(administrationRecord [DD_1.14.0.0])
@@ -3101,6 +3107,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
 	(versionIdentifier "1.14"))
 
 ([DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type] of  DataElement
@@ -3983,6 +4003,62 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(versionIdentifier "1.14"))
+
+([DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  DataElement
+
+	(administrationRecord [DD_1.14.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
 	(versionIdentifier "1.14"))
 
 ([DE.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint] of  DataElement
@@ -8981,62 +9057,6 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Investigation_Area.pds.type])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference])
 	(versionIdentifier "1.14"))
 
 ([DE.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment] of  DataElement
@@ -14555,146 +14575,6 @@
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Vector_Component.pds.value])
 	(versionIdentifier "1.14"))
 
-([DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title])
-	(versionIdentifier "1.14"))
-
-([DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  DataElement
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description")
-	(expressedBy [DEC_TBD_classConcept])
-	(isNillable "false")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representing [NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description])
-	(steward [pds])
-	(submitter [Submitter_PDS])
-	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description])
-	(versionIdentifier "1.14"))
-
 ([DE.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status] of  DataElement
 
 	(administrationRecord [DD_1.14.0.0])
@@ -15943,8 +15823,10 @@
 		[DE.0001_NASA_PDS_1.pds.ASCII_LID.pds.formation_rule]
 		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule]
+		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern]
 		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule]
+		[DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.maximum_characters]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.minimum_characters]
@@ -15965,6 +15847,10 @@
 		[DE.0001_NASA_PDS_1.pds.ASCII_Short_String_Collapsed.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Short_String_Preserved.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_String.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint]
+		[DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters]
+		[DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters]
+		[DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Text_Preserved.pds.character_constraint]
 		[DE.0001_NASA_PDS_1.pds.ASCII_Time.pds.character_constraint]
@@ -16053,10 +15939,6 @@
 		[DE.0001_NASA_PDS_1.pds.Ingest_LDD.pds.external_property_maps_id]
 		[DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype]
 		[DE.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
-		[DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
-		[DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference]
-		[DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference]
-		[DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference]
 		[DE.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment]
 		[DE.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_to]
 		[DE.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_type]
@@ -16184,16 +16066,6 @@
 		[DE.0001_NASA_PDS_1.pds.Update.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Update.pds.update_purpose]
 		[DE.0001_NASA_PDS_1.pds.Vector.pds.local_identifier]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title]
-		[DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description]
 		[DE.0001_NASA_PDS_1.pds.Volume_PDS3.pds.volume_de_fullname]
 		[DE.0001_NASA_PDS_1.pds.XML_Schema.pds.ldd_version_id])
 	(registeredBy [RA_0001_NASA_PDS_1])
@@ -17090,6 +16962,11 @@
 	(definitionText "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  Definition
+
+	(definitionText "The pattern attribute provides a symbolic instruction for forming values.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type] of  Definition
 
 	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
@@ -17113,6 +16990,11 @@
 ([DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters] of  Definition
 
 	(definitionText "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  Definition
+
+	(definitionText "The pattern attribute provides a symbolic instruction for forming values.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type] of  Definition
@@ -17426,6 +17308,26 @@
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type] of  Definition
+
+	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  Definition
+
+	(definitionText "The character_constraint attribute limits the characters allowed.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  Definition
+
+	(definitionText "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  Definition
+
+	(definitionText "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  Definition
 
 	(definitionText "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 	(isPreferred TRUE))
@@ -19213,26 +19115,6 @@
 ([DEF.0001_NASA_PDS_1.pds.Investigation_Area.pds.type] of  Definition
 
 	(definitionText "The type attribute classifies Investigation_Area according to the scope of the investigation..")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  Definition
-
-	(definitionText "The id_reference provides the identifier of an object in a one  directional relationship.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  Definition
-
-	(definitionText "The lid_reference attribute provides the logical_identifier for a  product.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  Definition
-
-	(definitionText "The id_reference provides the identifier of an object in a one  directional relationship.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  Definition
-
-	(definitionText "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment] of  Definition
@@ -21205,56 +21087,6 @@
 	(definitionText "The value attribute provides a single, allowed numerical or character string value.")
 	(isPreferred TRUE))
 
-([DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  Definition
-
-	(definitionText "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  Definition
-
-	(definitionText "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  Definition
-
-	(definitionText "The virtual_reference_type attribute provides the name of an association between two objects.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  Definition
-
-	(definitionText "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  Definition
-
-	(definitionText "The id_reference_from provides the identifier of the starting object in a  one directional relationship.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  Definition
-
-	(definitionText "The id_reference_to provides the identifier of the ending object in a one  directional relationship.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  Definition
-
-	(definitionText "The virtual_reference_type attribute provides the name of an association between two objects.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  Definition
-
-	(definitionText "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  Definition
-
-	(definitionText "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-	(isPreferred TRUE))
-
-([DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  Definition
-
-	(definitionText "The type_description attribute provides a description of the object%47s type.")
-	(isPreferred TRUE))
-
 ([DEF.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status] of  Definition
 
 	(definitionText "The ARCHIVE_STATUS attribute indicates the stage to which a data set has progressed in the archiving process, from IN QUEUE through ARCHIVED. It can also take on the values SUPERSEDED or SAFED, which indicate that the data set is not part of the active archive. ACCUMULATING can be appended to some values to indicate that the data set is incomplete and%2For that not all components have reached the stage given by the root value; ACCUMULATING would be used, for example, when the archive is being delivered incrementally, as from a mission that lasts many months or years.")
@@ -22200,6 +22032,11 @@
 	(designationName "minimum_characters")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  Designation
+
+	(designationName "pattern")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type] of  Designation
 
 	(designationName "xml_schema_base_type")
@@ -22223,6 +22060,11 @@
 ([DES.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters] of  Designation
 
 	(designationName "minimum_characters")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  Designation
+
+	(designationName "pattern")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type] of  Designation
@@ -22536,6 +22378,26 @@
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type] of  Designation
+
+	(designationName "xml_schema_base_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  Designation
+
+	(designationName "character_constraint")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  Designation
+
+	(designationName "maximum_characters")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  Designation
+
+	(designationName "minimum_characters")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  Designation
 
 	(designationName "xml_schema_base_type")
 	(isPreferred TRUE))
@@ -24323,26 +24185,6 @@
 ([DES.0001_NASA_PDS_1.pds.Investigation_Area.pds.type] of  Designation
 
 	(designationName "type")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  Designation
-
-	(designationName "id_reference")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  Designation
-
-	(designationName "lid_reference")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  Designation
-
-	(designationName "id_reference")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  Designation
-
-	(designationName "lidvid_reference")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment] of  Designation
@@ -26313,56 +26155,6 @@
 ([DES.0001_NASA_PDS_1.pds.Vector_Component.pds.value] of  Designation
 
 	(designationName "value")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  Designation
-
-	(designationName "comment")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  Designation
-
-	(designationName "id_reference_to")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  Designation
-
-	(designationName "virtual_reference_type")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  Designation
-
-	(designationName "comment")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  Designation
-
-	(designationName "id_reference_from")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  Designation
-
-	(designationName "id_reference_to")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  Designation
-
-	(designationName "virtual_reference_type")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  Designation
-
-	(designationName "description")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  Designation
-
-	(designationName "title")
-	(isPreferred TRUE))
-
-([DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  Designation
-
-	(designationName "type_description")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status] of  Designation
@@ -28423,7 +28215,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.49])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -28435,6 +28227,28 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern.1040256785])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -28533,7 +28347,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.49])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -28545,6 +28359,28 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern.-1636461345])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -28643,7 +28479,7 @@
 ([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.49])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -28655,6 +28491,28 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern.-793898117])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -29691,6 +29549,94 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint.62568241])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters.49746])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters.49])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.14"))
+
+([EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.14.0.0])
+	(containedIn1 [pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type.2015311842])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -36847,27 +36793,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.14"))
 
-([NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
 ([NEVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.character_constraint] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
@@ -42290,7 +42215,7 @@
 
 	(administrationRecord [DD_1.14.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier")
-	(datatype [ASCII_Short_String_Collapsed])
+	(datatype [ASCII_LID])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "255")
 	(maximumValue "TBD_maximum_value")
@@ -43329,90 +43254,6 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Investigation_Area.pds.name])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference")
-	(datatype [ASCII_LID])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference")
-	(datatype [ASCII_LIDVID_LID])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -48187,216 +48028,6 @@
 	(valueDomainFormat "TBD_format")
 	(versionIdentifier "1.14"))
 
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description")
-	(datatype [UTF8_Text_Preserved])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description])
-	(representedBy2 [CD_Text])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
-([NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  NonEnumeratedValueDomain
-
-	(administrationRecord [DD_1.14.0.0])
-	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description")
-	(datatype [ASCII_Short_String_Collapsed])
-	(defaultUnitId "TBD_default_unit_id")
-	(maximumCharacterQuantity "TBD_maximum_characters")
-	(maximumValue "TBD_maximum_value")
-	(minimumCharacterQuantity "TBD_minimum_characters")
-	(minimumValue "TBD_minimum_value")
-	(pattern "TBD_pattern")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(representedBy [DE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description])
-	(representedBy2 [CD_Short_String])
-	(steward [Steward_PDS])
-	(submitter [Submitter_PDS])
-	(unitOfMeasure [TBD_unit_of_measure_type])
-	(valueDomainFormat "TBD_format")
-	(versionIdentifier "1.14"))
-
 ([NEVD.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status_note] of  NonEnumeratedValueDomain
 
 	(administrationRecord [DD_1.14.0.0])
@@ -50044,6 +49675,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
+([PR.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
 ([PR.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -50085,6 +49725,15 @@
 	(administrationRecord [DD_1.14.0.0])
 	(classOrder "1020")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
@@ -50652,6 +50301,42 @@
 	(administrationRecord [DD_1.14.0.0])
 	(classOrder "1030")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
+([PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
@@ -55597,42 +55282,6 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
-([PR.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1010")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1010")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
 ([PR.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -57285,24 +56934,6 @@
 	(administrationRecord [DD_1.14.0.0])
 	(classOrder "1020")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Product_Update.pds.reference_list.Reference_List")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Product_Virtual.pds.file_area.File_Area_Observational] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Product_Virtual.pds.file_area.File_Area_Observational")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Product_Virtual.pds.virtual_area.Virtual_Area] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Product_Virtual.pds.virtual_area.Virtual_Area")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
@@ -60673,186 +60304,6 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
-([PR.0001_NASA_PDS_1.pds.Virtual_Area.pds.has_discipline_area.Discipline_Area] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Area.pds.has_discipline_area.Discipline_Area")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Area.pds.virtual_structure.Virtual_Structure] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Area.pds.virtual_structure.Virtual_Structure")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1010")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.lid_reference_to.LID_ID_Reference_To] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1040")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.lid_reference_to.LID_ID_Reference_To")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.lidvid_refernce_to.LIDVID_ID_Reference_To] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1050")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.lidvid_refernce_to.LIDVID_ID_Reference_To")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1010")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1060")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lid_reference_from.LID_ID_Reference_From] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1040")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lid_reference_from.LID_ID_Reference_From")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lid_reference_to.LID_ID_Reference_To] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1070")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lid_reference_to.LID_ID_Reference_To")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lidvid_reference_from.LIDVID_ID_Reference_From] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1050")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lidvid_reference_from.LIDVID_ID_Reference_From")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lidvid_refernce_to.LIDVID_ID_Reference_To] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1080")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.lidvid_refernce_to.LIDVID_ID_Reference_To")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1030")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1010")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1020")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.virtual_reference.Virtual_Reference] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1040")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.virtual_reference.Virtual_Reference")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
-([PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.virtual_relation.Virtual_Relation] of  Property
-
-	(administrationRecord [DD_1.14.0.0])
-	(classOrder "1050")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Virtual_Structure.pds.virtual_relation.Virtual_Relation")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.14"))
-
 ([PR.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -62159,13 +61610,21 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.49] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570])
-	(value "13"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.49])
+	(value "1"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern.1040256785] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern.1040256785])
+	(value "urn%28:%5B%5Cp%7BLl%7D%5Cp%7BNd%7D%5C-._%5D%2B%29%7B3,5%7D"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -62199,13 +61658,21 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.49] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575])
-	(value "18"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.49])
+	(value "1"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern.-1636461345] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern.-1636461345])
+	(value "urn%28:%5B%5Cp%7BLl%7D%5Cp%7BNd%7D%5C-._%5D%2B%29%7B3,5%7D::%5Cp%7BNd%7D%2B%5C.%5Cp%7BNd%7D%2B"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -62239,13 +61706,21 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.maximum_characters.49746])
 	(value "255"))
 
-([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570] of  PermissibleValue
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.49] of  PermissibleValue
 
 	(beginDate "2009-06-09")
 	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
 	(endDate "2019-12-31")
-	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570])
-	(value "13"))
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.49])
+	(value "1"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern.-793898117] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern.-793898117])
+	(value "urn%28:%5B%5Cp%7BLl%7D%5Cp%7BNd%7D%5C-._%5D%2B%29%7B3,5%7D%28::%5Cp%7BNd%7D%2B%5C.%5Cp%7BNd%7D%2B%29?"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type.2015311842] of  PermissibleValue
 
@@ -62630,6 +62105,38 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type.1035609096])
 	(value "xsd:token"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint.62568241] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint.62568241])
+	(value "ASCII"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters.49746] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters.49746])
+	(value "255"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters.49] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters.49])
+	(value "1"))
+
+([pv.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type.2015311842] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type.2015311842])
+	(value "xsd:string"))
 
 ([pv.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint.62568241] of  PermissibleValue
 
@@ -73410,6 +72917,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -73443,6 +72957,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type] of  TerminologicalEntry
@@ -73884,6 +73405,34 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type])
 	(designation [DES.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
+	(designation [DES.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint] of  TerminologicalEntry
@@ -76383,34 +75932,6 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Investigation_Area.pds.type])
 	(designation [DES.0001_NASA_PDS_1.pds.Investigation_Area.pds.type])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference])
-	(designation [DES.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference])
-	(designation [DES.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference])
-	(designation [DES.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference])
-	(designation [DES.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment] of  TerminologicalEntry
@@ -79171,76 +78692,6 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Vector_Component.pds.value])
 	(sectionLanguage [LI_English]))
 
-([TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.description])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.title])
-	(sectionLanguage [LI_English]))
-
-([TE.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description] of  TerminologicalEntry
-
-	(administeredItemContext [NASA_PDS])
-	(definition [DEF.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description])
-	(designation [DES.0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description])
-	(sectionLanguage [LI_English]))
-
 ([TE.0001_NASA_PDS_1.pds.Volume_PDS3.pds.archive_status] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -80919,10 +80370,16 @@
 	(description "Values of ASCII_LID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.1570] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.minimum_characters.49] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LID must have at least 13 characters")
+	(description "Values of ASCII_LID must have at least 1 character")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.pattern.1040256785] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "TBD_value_meaning")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LID.pds.xml_schema_base_type.2015311842] of  ValueMeaning
@@ -80949,10 +80406,16 @@
 	(description "Values of ASCII_LIDVID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.1575] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters.49] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LID must have at least 18 characters")
+	(description "Values of ASCII_LIDVID must have at least 1 character")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern.-1636461345] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "TBD_value_meaning")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type.2015311842] of  ValueMeaning
@@ -80979,10 +80442,16 @@
 	(description "Values of ASCII_LIDVID_LID may have no more than 255 characters")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.1570] of  ValueMeaning
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters.49] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Values of ASCII_LID must have at least 13 characters")
+	(description "Values of ASCII_LIDVID_LID must have at least 1 character")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern.-793898117] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "TBD_value_meaning")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type.2015311842] of  ValueMeaning
@@ -81271,6 +80740,30 @@
 
 	(beginDate "2009-06-09")
 	(description "ASCII_String has an XML schema base type of xsd:token")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint.62568241] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values of ASCII_String_Base_255 must be ASCII")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters.49746] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values of ASCII_String_Base_255 may have no more than 255 characters")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters.49] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Values of ASCII_String_Base_255 must have at least 1 character")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type.2015311842] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "ASCII_String_Base_255 has an XML schema base type of xsd:string")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint.62568241] of  ValueMeaning

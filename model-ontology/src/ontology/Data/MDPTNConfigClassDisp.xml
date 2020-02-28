@@ -369,6 +369,7 @@
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Character_Data_Type</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.UTF8_String</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_String_Base_255</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.ASCII_String</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.UTF8_Text_Preserved</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.UTF8_Text_Collapsed</Field> <Field>1Md</Field> <Field>#21</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
