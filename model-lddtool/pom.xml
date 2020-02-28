@@ -48,7 +48,7 @@
   <description>
     The PDS4 LDDTool uses the Maven plugin "model-dmdocument" as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.
   </description>
-  <url>https://nasa-pds-incubator.github.io/model/model-lddtool/</url>
+  <url>https://nasa-pds-incubator.github.io/pds4-information-model/model-lddtool/</url>
 
   <licenses>
     <license>
@@ -59,22 +59,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.7</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.8.2</version>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
@@ -94,14 +78,6 @@
           </items>
           <doCheck>false</doCheck>
           <doUpdate>false</doUpdate>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
         </configuration>
       </plugin>
       <!-- find the executable jar and rename -->
@@ -152,22 +128,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <failOnError>false</failOnError>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
@@ -179,20 +139,11 @@
     </dependency>
   </dependencies>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <failOnError>false</failOnError>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
-
   <!-- Inherit from parent -->
   <repositories />
+  <developers />
+  <profiles />
+  <distributionManagement />
+  <reporting />
 
 </project>

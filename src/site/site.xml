@@ -40,16 +40,16 @@
 
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>/pds4-information-model</href>
+    <href>https://pds.nasa.gov</href>
   </bannerLeft>
 
   <bannerRight>
-    <name>Model</name>
+    <name>PDS4 Information Model Project</name>
   </bannerRight>
 
   <body>
     <links>
-      <item name="Model" href="/pds4-information-model" />
+      <item name='PDS4 Information Model Project' href='/pds4-information-model' />
     </links>
 
     <menu name="Software Documentation">

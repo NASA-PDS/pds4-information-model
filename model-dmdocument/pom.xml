@@ -49,7 +49,7 @@
         The Model DM-Document component provides Maven plugins that generate DM
         documents and other artifacts from ontologies.
     </description>
-    <url>https://nasa-pds-incubator.github.io/model/model-dmdocument/</url>
+    <url>https://nasa-pds-incubator.github.io/pds4-information-model/model-dmdocument/</url>
 
     <licenses>
       <license>
@@ -68,22 +68,6 @@
           </resource>
         </resources>
         <plugins>
-	  <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.7</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-	  </plugin>
-	  <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.8.2</version>
-	  </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
@@ -129,14 +113,6 @@
               </execution>
             </executions>
           </plugin>
-	  <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-            </configuration>
-	  </plugin>
           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
@@ -200,11 +176,11 @@
             <artifactId>javax.json-api</artifactId>
             <version>1.0</version>
         </dependency>
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>3.1.0</version>
-</dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -214,7 +190,9 @@
     </dependencies>
 
     <!-- Inherit from parent -->
-    <repositories />
+    <developers />
+    <profiles />
+    <distributionManagement />
     <reporting />
 </project>
 

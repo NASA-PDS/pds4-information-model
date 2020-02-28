@@ -34,18 +34,18 @@
 <project name="model-lddtool">
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>/pds4-information-model/</href>
+    <href>https://pds.nasa.gov</href>
   </bannerLeft>
 
   <bannerRight>
-    <name>Local Data Dictionary Tool</name>
+    <name>PDS4 Local Data Dictionary Tool</name>
   </bannerRight>
 
   <version/>
 
   <body>
     <links>
-      <item name="LDDTool" href="index.html" />
+      <item name="PDS4 Local Data Dictionary Tool" href="index.html" />
     </links>
 
     <menu name="Software Documentation">

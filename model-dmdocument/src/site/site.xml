@@ -34,18 +34,18 @@
 <project name='Model DM-Document'>
   <bannerLeft>
     <src>images/pds4_logo.png</src>
-    <href>/pds4-information-model/</href>
+    <href>https://pds.nasa.gov</href>
   </bannerLeft>
 
   <bannerRight>
-    <name>Model DM-Document</name>
+    <name>Model DM-Document Plugin</name>
   </bannerRight>
 
   <version/>
 
   <body>
     <links>
-      <item name='Model DM-Document' href='/pds4-information-model/${project.artifactId}/index.html' />
+      <item name='Model DM-Document Plugin' href='index.html' />
     </links>
 
     <menu name='Software Documentation'>
