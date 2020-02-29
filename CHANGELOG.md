@@ -1,5 +1,72 @@
 # Change Log
 
+## [v11.0.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.0.0) (2020-02-28)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.2...v11.0.0)
+
+**Closed issues:**
+
+- CCB-278: Fix errors in logical\_identifier, ASCII\_LID, ASCIIVID and ASCII\_LIDVID\_LID [\#139](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/139)
+- CCB-274 - Add attribute dictionary\_type to Ingest\_LDD [\#137](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/137)
+- CCB-220: Add ability to specify many source products via table. [\#135](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/135)
+- CCB-271: Add reference\_types for Product\_Ancillary [\#133](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/133)
+- Improve versioning documentation to include IM version information [\#132](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/132)
+- CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/130)
+
+**Merged pull requests:**
+
+- Fix errors in logical\_identifier, ASCII\_LID, ASCIIVID and ASCII\_LIDVI… [\#140](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/140) ([jshughes](https://github.com/jshughes))
+- Add attribute dictionary\_type to Ingest\_LDD [\#138](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/138) ([jshughes](https://github.com/jshughes))
+- CCB-220 Add ability to specify many source products via table. [\#136](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/136) ([jshughes](https://github.com/jshughes))
+- Add reference\_types for Product\_Ancillary [\#134](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/134) ([jordanpadams](https://github.com/jordanpadams))
+- Method for providing permissible value definitions for external names… [\#131](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/131) ([jshughes](https://github.com/jshughes))
+
+## [v10.1.2](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.2) (2020-01-24)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.1...v10.1.2)
+
+**Implemented enhancements:**
+
+- Update LDDTool to write the PDS4 Data Dictionary \(DocBook\) for multiple LDDs [\#93](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/93)
+
+**Fixed bugs:**
+
+- LDDTool: Fix invalid examples or link to valid versions online [\#105](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/105)
+- Improve error handling for LDDTool processing of CTLI IngestLDD file [\#91](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/91)
+
+**Closed issues:**
+
+- Sync up LDDTool version with Maven build version [\#127](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/127)
+- Nillable attributes are not declared nillable in class definitions.   [\#125](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/125)
+- Sync LDDTool version with Maven version [\#124](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/124)
+- CCB-204: Define and enforce best practices for discipline and project dictionaries. Part-4 [\#122](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/122)
+- CCB-204: Define and enforce best practices for discipline and project dictionaries. Part-3 [\#113](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/113)
+- LDDTool aborts on short filename [\#111](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/111)
+- Clean up IMTool/LDDTool UML/XMI file writer for MagicDraw UML Class Diagrams [\#109](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/109)
+- CCB-138 Fix mismatch between context object types and values of \<type\> in \<Observing\_System\_Component\> class [\#103](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/103)
+- CCB-204: Validate that no attribute is named "unit" - Part 2 [\#101](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/101)
+- CCB-268 Add optional attribute to class Terminological\_Entry [\#99](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/99)
+- CCB-204: Define and enforce best practices for discipline and project dictionaries. - Part 1 [\#97](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/97)
+- Multi LDD DataDictionary Cleanup [\#95](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/95)
+- Stage PDS4 Information Model V1E00 Build\_10b [\#89](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/89)
+
+**Merged pull requests:**
+
+- Update tool versioning to move to config file [\#129](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/129) ([jordanpadams](https://github.com/jordanpadams))
+- Sync up LDDTool version with Maven build version [\#128](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/128) ([jshughes](https://github.com/jshughes))
+- Nillable attributes are not declared nillable in class definitions. [\#126](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/126) ([jshughes](https://github.com/jshughes))
+- Nillable attribute must be a required attribute of one class [\#123](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/123) ([jshughes](https://github.com/jshughes))
+- Validate that there are no nested Exposed classes [\#114](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/114) ([jshughes](https://github.com/jshughes))
+- LDDTool aborts on short filename [\#112](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/112) ([jshughes](https://github.com/jshughes))
+- Clean up IMTool/LDDTool UML/XMI file writer for MagicDraw UML Class D… [\#110](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/110) ([jshughes](https://github.com/jshughes))
+- Remove LDDTool Test Cases From Examples Directory [\#108](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/108) ([jshughes](https://github.com/jshughes))
+- CCB-138 Fix mismatch between object types in \<Observing\_System\_Component\> class [\#106](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/106) ([jshughes](https://github.com/jshughes))
+- Issue \#101 CCB-204: Validate that no attribute is named "unit" - Part 2 [\#102](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/102) ([jshughes](https://github.com/jshughes))
+- Issue \#99 Add the optional attribute skos\_relation\_name [\#100](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/100) ([jshughes](https://github.com/jshughes))
+- Issue \#97 CCB-204 Validate that LDD attributes named "type" or with n… [\#98](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/98) ([jshughes](https://github.com/jshughes))
+- Issue 95 Multi LDD DataDictionary Cleanup [\#96](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/96) ([jshughes](https://github.com/jshughes))
+- \#93 Multi\_LDD\_DataDictionary [\#94](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/94) ([jshughes](https://github.com/jshughes))
+- Issue \#91 Fix LDDTOOL CTLI IngestLDD Abort [\#92](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/92) ([jshughes](https://github.com/jshughes))
+- Issue \#89 Stage PDS4 Information Model V1E00 Build 10b [\#90](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/90) ([jshughes](https://github.com/jshughes))
+
 ## [v10.1.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v10.1.1) (2019-10-19)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.0...v10.1.1)
 
