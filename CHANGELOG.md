@@ -1,6 +1,17 @@
 # Change Log
 
-## [v11.0.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.0.0) (2020-02-28)
+## [v11.1.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.1.0) (2020-03-11)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.0.0...v11.1.0)
+
+**Closed issues:**
+
+- CCB-274 - Add attribute dictionary\_type to Ingest\_LDD - Update [\#144](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/144)
+
+**Merged pull requests:**
+
+- Add attribute dictionary\_type to Ingest\_LDD - Remove -M Option [\#145](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/145) ([jshughes](https://github.com/jshughes))
+
+## [v11.0.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.0.0) (2020-02-29)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v10.1.2...v11.0.0)
 
 **Closed issues:**
@@ -10,7 +21,6 @@
 - CCB-220: Add ability to specify many source products via table. [\#135](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/135)
 - CCB-271: Add reference\_types for Product\_Ancillary [\#133](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/133)
 - Improve versioning documentation to include IM version information [\#132](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/132)
-- CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/130)
 
 **Merged pull requests:**
 
