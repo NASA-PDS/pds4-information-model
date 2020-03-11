@@ -144,7 +144,7 @@ public class SchemaFileDefn {
 		modelShortName = "TBD_modelShortName";
 		regAuthId =  "TBD_regAuthId";
 		
-		governanceLevel = DMDocument.governanceLevel;
+		governanceLevel = "TBD_governanceLevel";
 		isMaster = false;
 		isLDD = false;
 		isDiscipline = false;
@@ -211,7 +211,30 @@ public class SchemaFileDefn {
 		regAuthId = lSchemaFileDefn.regAuthId;
 		return;
 	}
-
+	
+	public void setDictionaryType (String lDictionaryType) {
+		if (lDictionaryType.compareTo("Common") == 0) {
+			governanceLevel = "Common";
+			isMaster = true;
+			isLDD = false;
+			isDiscipline = false;
+			isMission = false;
+		} else if (lDictionaryType.compareTo("Discipline") == 0) {
+			governanceLevel = "Discipline";
+			isMaster = false;
+			isLDD = true;
+			isDiscipline = true;
+			isMission = false;
+		} else if (lDictionaryType.compareTo("Mission") == 0) {
+			governanceLevel = "Mission";
+			isMaster = false;
+			isLDD = true;
+			isDiscipline = false;
+			isMission = true;
+		}
+		return;
+	}
+	
 	//	set the various version identifiers
 	public void setVersionIds () {
 		// get a cleaned up version id

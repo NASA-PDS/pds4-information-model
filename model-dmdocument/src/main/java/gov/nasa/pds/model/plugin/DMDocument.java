@@ -272,7 +272,7 @@ public class DMDocument extends Object {
 		LDDDOMModelArr = new ArrayList <LDDDOMParser> ();
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
-		LDDToolMissionGovernanceFlag = false;
+//		LDDToolMissionGovernanceFlag = false;
 
 		// get dates
 		rTodaysDate = new Date();
@@ -576,9 +576,9 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('d') > -1) {
 					LDDToolAnnotateDefinitionFlag = true;
 				}
-				if (lArg.indexOf('M') > -1) {
-					LDDToolMissionGovernanceFlag = true;
-				}
+//				if (lArg.indexOf('M') > -1) {
+//					LDDToolMissionGovernanceFlag = true;
+//				}
 				if (lArg.indexOf('m') > -1) {
 					PDS4MergeFlag = true;
 				}
@@ -644,7 +644,7 @@ public class DMDocument extends Object {
 				lLDDSchemaFileDefn.isLDD = true;
 				lLDDSchemaFileDefn.labelVersionId = "1.0";
 				LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
-				masterLDDSchemaFileDefn = lLDDSchemaFileDefn;
+				masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
 //				System.out.println("debug getCommandArgs - lSchemaFileDefn.sourceFileName:" + lLDDSchemaFileDefn.sourceFileName);
 			}	
 		}
@@ -656,15 +656,15 @@ public class DMDocument extends Object {
 			System.exit(1);
 		}
 		
-		if (LDDToolFlag) {
-			if (LDDToolMissionGovernanceFlag) {
-				governanceLevel = "Mission";
-				LDDToolSingletonClassTitle = "Mission_Area";
-			} else {
-				governanceLevel = "Discipline";
-				LDDToolSingletonClassTitle = "Discipline_Area";
-			}
-		}
+//		if (LDDToolFlag) {
+//			if (LDDToolMissionGovernanceFlag) {
+//				governanceLevel = "Mission";
+//				LDDToolSingletonClassTitle = "Mission_Area";
+//			} else {
+//				governanceLevel = "Discipline";
+//				LDDToolSingletonClassTitle = "Discipline_Area";
+//			}
+//		}
 	}
 
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
@@ -830,11 +830,7 @@ public class DMDocument extends Object {
         	    String value = prop.getProperty(isMasterKey);
         		if (value != null){
         			if (value.equals("true")) {
-          			   lSchemaFileDefn.isMaster = true;
-         			   lSchemaFileDefn.isLDD = false;
-        			} else {
-        				lSchemaFileDefn.isMaster = false;
-        				lSchemaFileDefn.isLDD = true;
+        				lSchemaFileDefn.setDictionaryType ("Common");
         			}
         		} else{
         			System.out.println("Missing schema config item: "+ isMasterKey);
@@ -862,20 +858,16 @@ public class DMDocument extends Object {
         	    value = prop.getProperty(isDisciplineKey);
         		if (value != null){
         			if (value.equals("true")) {
-        			   lSchemaFileDefn.isDiscipline = true;
-        			   lSchemaFileDefn.governanceLevel = "Discipline";
-        			} else
-        			   lSchemaFileDefn.isDiscipline = false;
+        				lSchemaFileDefn.setDictionaryType ("Discipline");
+        			}
         		} 
         		
         		String isMissionKey = SCHEMA_LITERAL+nameSpaceId + ".isMission";
         		value = prop.getProperty(isMissionKey);
             	if (value != null){
             		if (value.equals("true")) {
-            			   lSchemaFileDefn.isMission = true;
-            			   lSchemaFileDefn.governanceLevel = "Mission";
-            		} else
-            		       lSchemaFileDefn.isMission = false;
+        				lSchemaFileDefn.setDictionaryType ("Mission");
+            		}
         	    }    	
         		
           		String stewardArrKey = SCHEMA_LITERAL+nameSpaceId + ".stewardArr";

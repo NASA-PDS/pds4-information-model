@@ -368,7 +368,7 @@ public class GetDOMModel extends Object {
 		//       *** TBD ***
 		if (DMDocument.LDDToolFlag) {
 			String lClassIdentifier;
-			if (DMDocument.LDDToolMissionGovernanceFlag) {
+			if (DMDocument.masterLDDSchemaFileDefn.isMission) {
 				lClassIdentifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, "Mission_Area");
 			} else {
 				lClassIdentifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, "Discipline_Area");

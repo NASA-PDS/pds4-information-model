@@ -119,7 +119,8 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, DOMIndexDefn> cdDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
 	static TreeMap <String, DOMIndexDefn> decDOMAttrMap = new TreeMap <String, DOMIndexDefn>();
 	
-	static DOMClass LDDToolSingletonDOMClass; // Class for LDD singleton attributes (Discipline or Mission)
+//	static String LDDToolSingletonClassTitle = "USER";
+	static DOMClass LDDToolSingletonDOMClass = null; // Class for LDD singleton attributes (Discipline or Mission)
 	
 	// global science discipline facet map 
 	static TreeMap <String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap <String, SFDisciplineFacetDefn> ();

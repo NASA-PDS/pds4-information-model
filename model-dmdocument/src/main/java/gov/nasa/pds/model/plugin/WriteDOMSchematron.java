@@ -82,7 +82,7 @@ class WriteDOMSchematron extends Object {
 								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) continue;
 			} else if (lSchemaFileDefn.isLDD) {
 				// write an LDD schemtron
-				if (! (lRule.isMissionOnly && DMDocument.LDDToolMissionGovernanceFlag)) continue;
+				if (! (lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
 				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
 						&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
 						|| (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0 ))) continue;
@@ -213,7 +213,7 @@ class WriteDOMSchematron extends Object {
 			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "\" prefix=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: ldd
 			String governanceDirectory = "";
-			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";
+			if (lSchemaFileDefn.isMission) governanceDirectory = lSchemaFileDefn.governanceLevel.toLowerCase() +  "/";
 			prSchematron.println("  <sch:ns uri=\"http://pds.nasa.gov/pds4/" + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\"" + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {

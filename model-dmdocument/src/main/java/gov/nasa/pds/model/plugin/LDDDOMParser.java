@@ -336,7 +336,7 @@ public class LDDDOMParser extends Object
 		// find namespace_id in "all" schemaFiles (from config.properties) 
 		SchemaFileDefn lConfigSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
 		if (lConfigSchemaFileDefn == null) {
-			// default to pds if not found
+			// default - set settings to the pds configuration setting if the namespace is not found in config file
 			lConfigSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
 			System.out.println("   WARNING  Init: " + " - Config.Properties Namespace Id Not Found:" + lNameSpaceIdNC);
 		} else {
@@ -349,9 +349,26 @@ public class LDDDOMParser extends Object
 		DMDocument.LDDSchemaFileSortMap.put(lSchemaFileDefn.nameSpaceIdNCLC, lSchemaFileDefn);
 		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);
 		
-		// set namespace and governance level
-		if (DMDocument.governanceLevel.compareTo("Discipline") == 0) lSchemaFileDefn.isDiscipline = true;
-		else lSchemaFileDefn.isMission = true;
+		// get the dictionary type from Ingest_LDD file
+		String ldictionaryType = getTextValue(docEle,"dictionary_type");
+		if (ldictionaryType == null) ldictionaryType = "TBD_dictionary_type";
+		if (ldictionaryType.compareTo("Common") == 0) {
+			lSchemaFileDefn.setDictionaryType ("Discipline");
+			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
+			System.out.println("   WARNING  Init: " + " - LDD Dictionary_Type Found:" + ldictionaryType + "  Defaulting to Discipline");
+		} else if (ldictionaryType.compareTo("Discipline") == 0) {
+			lSchemaFileDefn.setDictionaryType ("Discipline");
+			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
+			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type Found:" + ldictionaryType);
+		} else if (ldictionaryType.compareTo("Mission") == 0) {
+			lSchemaFileDefn.setDictionaryType ("Mission");
+			DMDocument.LDDToolSingletonClassTitle = "Mission_Area";
+			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type Found:" + ldictionaryType);			
+		} else {
+			lSchemaFileDefn.setDictionaryType ("Discipline");
+			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
+			System.out.println("   ERROR    Init: " + " - LDD Dictionary_Type not Found:" + ldictionaryType + "  Defaulting to Discipline");
+		}
 
 		if (! (lComment.indexOf("TBD") == 0)) lSchemaFileDefn.comment = lComment;
 		
@@ -413,7 +430,7 @@ public class LDDDOMParser extends Object
 		validateNoDuplicateNames ();
 		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateNoDuplicateNames() Done");
 		
-		validateTypeAttributes ();
+		validateTypeAttributes (lSchemaFileDefn.isMission);
 		if (DMDocument.debugFlag) System.out.println("debug parseDocument.validateTypeAttributes() Done");
 		
 		validateNoUnitsAttributes();
@@ -1554,8 +1571,6 @@ public class LDDDOMParser extends Object
 	}	
 	
 	private void validateAttributeUsed () {
-//		System.out.println("\ndebug validateAttributeUsed");
-		
 		// get the LDD attributes local_identifiers
 		ArrayList <String> lAttrLocalIdentifiersArr = new ArrayList <String> (attrMapLocal.keySet());
 		
@@ -1607,14 +1622,14 @@ public class LDDDOMParser extends Object
 		return;
 	}
 	
-	private void validateTypeAttributes () {
+	private void validateTypeAttributes (boolean isMission) {
 		// scan for attribute names containing "type"
 		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			int lTitleLength = lDOMAttr.title.length();
 			if ((lTitleLength >= 4) && (lDOMAttr.title.indexOf("type") == lTitleLength - 4)) {
 				if (lDOMAttr.domPermValueArr.size() < 1) {
-					if (DMDocument.LDDToolMissionGovernanceFlag)
+					if (isMission)
 						lddErrorMsg.add("   WARNING  Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 					else
 						lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
@@ -2008,8 +2023,8 @@ public class LDDDOMParser extends Object
         prLocalDD.println("   Input File" + "             " + "[" + lSchemaFileDefn.LDDToolInputFileName + "]");
         prLocalDD.println("   PDS Processing" + "         " + DMDocument.PDSOptionalFlag);
         prLocalDD.println("   LDD Processing" + "         " + DMDocument.LDDToolFlag);
-        prLocalDD.println("   Discipline LDD" + "         " + (! DMDocument.LDDToolMissionGovernanceFlag));
-        prLocalDD.println("   Mission LDD" + "            " + DMDocument.LDDToolMissionGovernanceFlag);
+        prLocalDD.println("   Discipline LDD" + "         " + lSchemaFileDefn.isDiscipline);
+        prLocalDD.println("   Mission LDD" + "            " + lSchemaFileDefn.isMission);
 //		prLocalDD.println("   Write Class Elements" + "   " + DMDocument.LDDClassElementFlag);
         prLocalDD.println("   Write Attr Elements" + "    " + DMDocument.LDDAttrElementFlag);
         prLocalDD.println("   Merge with Master" + "      " + DMDocument.PDS4MergeFlag);

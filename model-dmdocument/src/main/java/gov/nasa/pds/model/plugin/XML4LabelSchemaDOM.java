@@ -54,6 +54,8 @@ class XML4LabelSchemaDOM extends Object {
 
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <DOMClass> lInputClassArr) throws java.io.IOException {
+		
+		if (DMDocument.debugFlag) System.out.println("\ndebug writeXMLSchemaFiles - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
 
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
@@ -131,9 +133,11 @@ class XML4LabelSchemaDOM extends Object {
 		}
 				
 //		Write the classes
+		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles - Write Classes - classHierMap.size():" + classHierMap.size());
 		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (classHierMap.values());
 		for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+//			if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles - Write Class - lClass.identifier:" + lClass.identifier);
 			
 			// skip the subclasses of Science_Facets
 			if (lClass.title.compareTo("Discipline_Facets") == 0) continue;
@@ -253,6 +257,9 @@ class XML4LabelSchemaDOM extends Object {
 		}
 		prXML.println("  <" + pNS + "schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"");
 		
+		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFileHeader - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFileHeader - DMDocument.masterNameSpaceIdNCLC:" + DMDocument.masterNameSpaceIdNCLC);
+		
 		// write namespace statements
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 			// namespaces required: pds - latest version
@@ -261,7 +268,7 @@ class XML4LabelSchemaDOM extends Object {
 		} else {
 			// namespaces required: ldd - latest version
 			String governanceDirectory = "";
-			if (DMDocument.LDDToolMissionGovernanceFlag) governanceDirectory = DMDocument.governanceLevel.toLowerCase() +  "/";
+			if (lSchemaFileDefn.isMission) governanceDirectory = lSchemaFileDefn.governanceLevel.toLowerCase() +  "/";
 			prXML.println("    targetNamespace=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 
