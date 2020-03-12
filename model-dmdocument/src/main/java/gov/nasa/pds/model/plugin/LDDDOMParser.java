@@ -1679,7 +1679,7 @@ public class LDDDOMParser extends Object
 					}
 				}
 				if (! foundFlag) {
-					lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute is 'nilable' however it is not required in at least one class.");
+					lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - A 'nilable' attribute must be a required attribute in at least one class.");
 				}
 			}
 		}
