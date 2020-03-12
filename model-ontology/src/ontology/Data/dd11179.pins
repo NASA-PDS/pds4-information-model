@@ -1,4 +1,4 @@
-; Thu Feb 27 15:50:02 PST 2020
+; Wed Mar 11 20:38:33 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -455,11 +455,13 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.maximum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.minimum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.maximum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.minimum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_MD5_Checksum.pds.formation_rule]
@@ -512,6 +514,10 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_String.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_String.pds.minimum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_String.pds.xml_schema_base_type]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters]
+		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.character_constraint]
 		[NEVD.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.maximum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Text_Collapsed.pds.minimum_characters]
@@ -960,8 +966,6 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.formation_rule]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Date_Time_YMD_UTC.pds.xml_schema_base_type]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID.pds.pattern]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_LIDVID_LID.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.character_constraint]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.maximum_characters]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Local_Identifier.pds.minimum_characters]
@@ -973,10 +977,6 @@
 		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.minimum_value]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_NonNegative_Integer.pds.pattern]
 		[EVD.0001_NASA_PDS_1.pds.ASCII_Real.pds.pattern]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.character_constraint]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.maximum_characters]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.minimum_characters]
-		[EVD.0001_NASA_PDS_1.pds.ASCII_String_Base_255.pds.xml_schema_base_type]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Airborne.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
@@ -53419,6 +53419,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.14"))
 
+([PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Array_1D] of  Property
+
+	(administrationRecord [DD_1.14.0.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Array_1D")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.14"))
+
 ([PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Array_2D] of  Property
 
 	(administrationRecord [DD_1.14.0.0])
@@ -72059,9 +72068,6 @@
 	(measureName "TBD_unit_of_measure_type")
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
-
-([TBD_value_type] of  %3AUNDEFINED
-)
 
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
 
