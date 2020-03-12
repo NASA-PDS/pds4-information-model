@@ -1687,33 +1687,30 @@ public class LDDDOMParser extends Object
 	}
 	
 	private void validateNoNestedExposedClasses () {
-		// first find an exposed classe
+		// first find an exposed class
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isExposed) {
 				// check all component classes
-				ArrayList <DOMProp> allAssocArr = new ArrayList <DOMProp> ();
-				allAssocArr.addAll(lClass.ownedAssocArr);
-				allAssocArr.addAll(lClass.inheritedAssocArr);
-				for (Iterator <DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
-					DOMProp lDOMProp = j.next();
-					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-						DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
-						if (lCompClass.isExposed) {
-							lddErrorMsg.add("   ERROR    Class: <" + lClass.title + "> - <" + lCompClass.title + "> - Exposed classes cannot be nested (component_of).");
-						}
-					}
+				checkAllSubclasses (lClass);
+			}
+		}
+		return;
+	}
+	
+	private void checkAllSubclasses (DOMClass lClass) {
+		// check all component classes
+		ArrayList <DOMProp> allAssocArr = new ArrayList <DOMProp> ();
+		allAssocArr.addAll(lClass.ownedAssocArr);
+		allAssocArr.addAll(lClass.inheritedAssocArr);
+		for (Iterator <DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = j.next();
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+				DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (lCompClass.isExposed) {
+					lddErrorMsg.add("   ERROR    Class: <" + lCompClass.title + "> - An exposed class cannot be nested within another exposed class.");
 				}
-				
-				// check all super classes
-				DOMClass lSubClass = lClass;
-				while (lSubClass.subClassOf != null) {
-					DOMClass lSuperClass = lSubClass.subClassOf;
-					if (lSuperClass.isExposed) {
-						lddErrorMsg.add("   ERROR    Class: <" + lClass.title + "> - <" + lSuperClass.title + "> - Exposed classes cannot be nested (parent_of).");						
-					}
-					lSubClass = lSuperClass; 
-				}
+				checkAllSubclasses (lCompClass);
 			}
 		}
 		return;
