@@ -1,4 +1,4 @@
-; Thu Mar 12 15:01:42 PDT 2020
+; Thu Mar 12 16:33:38 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -227,6 +227,30 @@
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
 	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\""))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axes")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Array")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548.101])
+	(identifier "pds:Array")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Array"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548.101] of  Schematron_Assert
+
+	(assertMsg "The value of pds:axes must match the number of pds:Axis_Array classes in the Array.")
+	(assertStmt "number(pds:axes) = count(pds:Axis_Array)")
+	(assertType "RAW")
+	(attrTitle "axes")
+	(identifier "Array")
+	(specMesg "The value of pds:axes must match the number of pds:Axis_Array classes in the Array."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image.100002513] of  Schematron_Rule
 
