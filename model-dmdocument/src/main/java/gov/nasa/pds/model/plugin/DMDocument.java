@@ -1339,8 +1339,6 @@ public class DMDocument extends Object {
 
 		deprecatedObjects2.add(new DeprecatedDefn ("Units_of_Map_Scale", "pds", "Units_of_Map_Scale", "", "", "", false));		
 		
-		deprecatedObjects2.add(new DeprecatedDefn ("Array_1D", "pds", "Array_1D", "", "", "", false));
-
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time", "pds", "ASCII_Date_Time", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time_UTC", "pds", "ASCII_Date_Time_UTC", "", "", "", false));

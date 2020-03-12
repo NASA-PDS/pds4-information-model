@@ -1,4 +1,4 @@
-; Thu Feb 27 15:54:55 PST 2020
+; Wed Mar 11 20:25:46 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6109,7 +6109,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest)
+;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest Array_1D)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
