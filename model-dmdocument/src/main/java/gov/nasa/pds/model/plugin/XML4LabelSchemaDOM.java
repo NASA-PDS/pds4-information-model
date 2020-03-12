@@ -66,7 +66,7 @@ class XML4LabelSchemaDOM extends Object {
 //		write the XML Schema File Header
 		writeXMLSchemaFileHeader (lSchemaFileDefn, prXML);
 								
-       	// write the Product Class Elements
+       	// write xs:element definitions for classes that are to be "exposed"
     	if (lSchemaFileDefn.isMaster) {
     		// write the xs:elements for the master classes (e.g., the Product classes)
     		prXML.println(" ");
@@ -89,7 +89,7 @@ class XML4LabelSchemaDOM extends Object {
 			}
     	}
 
-		// for non-LDDTool runs, write the Class Elements for all schemas except the master schema 
+		// for non-LDDTool runs, write the xs:element definitions for Classes in all schemas except the master schema 
 		if ((! lSchemaFileDefn.isLDD) && (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0)) {			
 			ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
 			ArrayList <DOMClass> lClassSubArr = new ArrayList <DOMClass> ();
@@ -102,15 +102,12 @@ class XML4LabelSchemaDOM extends Object {
 			writeLDDClassElementDefinition (lSchemaFileDefn, lClassSubArr, prXML);
 		}
 
-		// for LDDTool runs and Class flag on, write the Class Elements for all schemas except the master schema 
+		// for LDDTool runs and Class flag on, write the xs:element definitions for Classes in all schemas except the master schema 
 		if (lSchemaFileDefn.isLDD && lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
-	
 			ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassMap.values());
 			ArrayList <DOMClass> lClassSubArr = new ArrayList <DOMClass> ();
-
 			for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
 				DOMClass lClass = (DOMClass) i.next();
-				
 				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0 && lClass.isFromLDD && lClass.isExposed) { 
 					lClassSubArr.add(lClass);
 				}
@@ -118,7 +115,7 @@ class XML4LabelSchemaDOM extends Object {
 			writeLDDClassElementDefinition (lSchemaFileDefn, lClassSubArr, prXML);
 		}  	
 				
-		// write the Attribute Element definition statements
+		// write the xs:element definitions for Attributes 
 		if (lSchemaFileDefn.isLDD && DMDocument.LDDAttrElementFlag) {
 			ArrayList <DOMAttr> lFilteredAttrArr = new ArrayList <DOMAttr> ();
 			for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
@@ -176,7 +173,7 @@ class XML4LabelSchemaDOM extends Object {
 			}			
 		}
 
-    	// write the attributes
+    	// write the attributes definitions in the schema; for all attributes referenced by the classes written
     	writeXMLAttributes (lSchemaFileDefn, prXML);    	
 
     	// write the data types
@@ -702,9 +699,9 @@ class XML4LabelSchemaDOM extends Object {
 		return;
 	}
 	
-//	write the attributes
+	//	write the attribute definitions for all attributes used by classes that were written
 	public void writeXMLAttributes (SchemaFileDefn lSchemaFileDefn, PrintWriter prXML) throws java.io.IOException {	
-//		Write the header statements
+		// Write the header statements
 		prXML.println("");
 		prXML.println("    <" + pNS + "annotation>");
 		prXML.println("      <" + pNS + "documentation>This section contains the simpleTypes that provide more constraints");
@@ -792,6 +789,7 @@ class XML4LabelSchemaDOM extends Object {
 		
 		lValue = lAttr.getPattern (true);
 		if (! (lValue.indexOf("TBD") == 0)) {
+			lValue = DOMInfoModel.escapeXMLChar(lValue);
 			prXML.println("    	<" + pNS + "pattern value='" + lValue + "'/>");
 		}
 		
