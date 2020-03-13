@@ -1,5 +1,32 @@
 # Change Log
 
+## [v11.2.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.0) (2020-03-13)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.1.0...v11.2.0)
+
+**Fixed bugs:**
+
+- LDDtool: exposed class has a component class with a component exposed class [\#142](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/142)
+
+**Closed issues:**
+
+- Bugfix - Add code to fail gracefully for deprecated -M argument [\#154](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/154)
+- CCB-279: Mis-Matched \<axes\> and Axis\_Array Specifications  [\#152](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/152)
+- CCB-272: Reinstate Array\_1D in the Information Model [\#148](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/148)
+- Bugfix - Change the error message reported for "nillable" attribute error. [\#146](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/146)
+- CCB-268 how to test this [\#143](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/143)
+- LDDtool: unescaped & in output .xml [\#141](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/141)
+- CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/130)
+
+**Merged pull requests:**
+
+- Add code to fail gracefully for deprecated -M argument [\#156](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/156) ([jshughes](https://github.com/jshughes))
+- Add code to fail gracefully for deprecated -M argument [\#155](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/155) ([jshughes](https://github.com/jshughes))
+- Mis-Matched \<axes\> and Axis\_Array Specifications [\#153](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/153) ([jshughes](https://github.com/jshughes))
+- BugFix - Add \<DD\_Associate\_External\_Class\> to \<DD\_Class\> definition [\#151](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/151) ([jshughes](https://github.com/jshughes))
+- Bugfix - Ampersand not escaped in LDDTool generated XML Schema file \(… [\#150](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/150) ([jshughes](https://github.com/jshughes))
+- Reinstate Array\_1D in the Information Model [\#149](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/149) ([jshughes](https://github.com/jshughes))
+- Change the error message reported for "nillable" attribute error. [\#147](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/147) ([jshughes](https://github.com/jshughes))
+
 ## [v11.1.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.1.0) (2020-03-11)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.0.0...v11.1.0)
 
