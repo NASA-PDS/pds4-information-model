@@ -48,6 +48,7 @@
       <p>
       <table>
         <tr><th>PDS4 Standards Version</th><th>Applicable LDDTool Version</th></tr>
+        <tr><td>1.14.0.0 (1E00)</td><td><a href="https://nasa-pds-incubator.github.io/pds4-information-model/model-lddtool/index.html">current</a></td></tr>
         <tr><td>1.13.0.0 (1D00)</td><td><a href="https://nasa-pds-incubator.github.io/pds4-information-model/10.1.2/model-lddtool/index.html">10.1.2</a></td></tr>
         <tr><td>1.12.0.0 (1C00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.1.0/model/model-lddtool/index.html">9.1.0</a></td></tr>
         <tr><td>1.11.0.0 (1B00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.0.0/model/model-lddtool/index.html">9.0.0</a></td></tr>
