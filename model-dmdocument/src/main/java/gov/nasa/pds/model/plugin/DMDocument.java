@@ -576,9 +576,11 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('d') > -1) {
 					LDDToolAnnotateDefinitionFlag = true;
 				}
-//				if (lArg.indexOf('M') > -1) {
-//					LDDToolMissionGovernanceFlag = true;
-//				}
+				if (lArg.indexOf('M') > -1) {
+					System.err.println(" ");
+					System.err.println(">>ERROR: " + "This flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+					System.exit(1);
+				}
 				if (lArg.indexOf('m') > -1) {
 					PDS4MergeFlag = true;
 				}
