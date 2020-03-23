@@ -47,7 +47,7 @@ class WriteDOMSchematron extends Object {
 		prSchematron.close();	
 		return;
 	}
-		
+	
 //	write the schematron rules
 	public void writeSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap, PrintWriter prSchematron) {
 		// write schematron file header
@@ -56,17 +56,10 @@ class WriteDOMSchematron extends Object {
 
 		// select out the rules for this namespace
 		ArrayList <DOMRule> lSelectRuleArr = new ArrayList <DOMRule> ();
-
-// 333
-//		System.out.println("\ndebug --- writeSchematronRule Dump ---");
-//		for (Iterator <DOMRule> i = DOMInfoModel.masterDOMRuleArr.iterator(); i.hasNext();) {
-//			DOMRule lRule = (DOMRule) i.next();
-//			System.out.println(" lAttr.identifier:" + lRule.identifier);
-//		}	
-		
 		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
+			
 			if (lSchemaFileDefn.isMaster) {
 				if (lRule.isMissionOnly) continue;
 				if (! (lRule.alwaysInclude
@@ -74,14 +67,17 @@ class WriteDOMSchematron extends Object {
 								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) continue;
 			} else if (lSchemaFileDefn.isDiscipline) {
 				if (lRule.isMissionOnly) continue;
-				if (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
-								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) continue;
+				if (! (((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
+								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
+							|| lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0 ))) continue;
 			} else if (lSchemaFileDefn.isMission) {
 				if (lRule.isMissionOnly) continue;
-				if (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
-								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) continue;
+				if (! (((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
+								&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
+							|| lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0 ))) continue;
 			} else if (lSchemaFileDefn.isLDD) {
 				// write an LDD schemtron
+				System.out.println("debug writeSchematronRule - Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
 				if (! (lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
 				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
 						&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
@@ -97,7 +93,7 @@ class WriteDOMSchematron extends Object {
 		// write schematron file footer
 		printSchematronFileFtr (prSchematron); 
 	}
-		
+			
 //	find offending rule
 	public void findOffendingRule (String lTitle, ArrayList <DOMRule> lRuleArr) {
 		System.out.println("\ndebug findOffendingRule - " + lTitle);

@@ -82,6 +82,8 @@ public class DMDocument extends Object {
 	
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
+// 222 prototyped in 1E00 - release is delayed to 1D00
+	static String alternateIMVersion = "";   // if no "A" alternate IM version is provided on the command line, then "" is used.
 
 	static String DMDocVersionId  = "0.0.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
@@ -340,12 +342,20 @@ public class DMDocument extends Object {
 		// set classVersionId
 		setClassVersionIdFlag ();
 		
-		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
+// 222
+		// get the command line arguments
+		//    this must be done before config file processing
+		//    the use of the option "A" (alternate IM version) will change the input file directory (config included)
+		getCommandArgs (args);
+		
 		// first get the environment variables
 		getEnvMap();
 		dataDirPath = lPARENT_DIR + "/Data/";
-		
-		// next get the configuration file ("props" are used again below in setupNameSpaceInfoAll)
+// 222		dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+//			System.out.println("debug dataDirPath:" + dataDirPath);
+
+		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
+		// "props" are used again below in setupNameSpaceInfoAll)
 		String configInputFile = dataDirPath + "config.properties";
 		String configInputStr;
     	File configFile = new File(configInputFile); 
@@ -404,7 +414,7 @@ public class DMDocument extends Object {
     	}
 		
 		// get the command line arguments
-		getCommandArgs (args);
+// 222		getCommandArgs (args);
 		
 		// check the files
 		checkRequiredFiles ();
@@ -569,9 +579,13 @@ public class DMDocument extends Object {
 					mapToolFlag = true;
 					PDSOptionalFlag = true;
 				}
+// 222				int begind = lArg.indexOf("A");
+//				if (begind > -1) {
+//					alternateIMVersion = lArg.substring(begind + 1, begind + 5);
+//					System.out.println("debug alternateIMVersion:" + alternateIMVersion);
+//				}
 				if (lArg.indexOf('l') > -1) {
 					LDDToolFlag = true;
-//					LDDToolGeometry = "yrtemoeG";  // geometry backwards so that Geometry LDD can be parsed.
 				}
 				if (lArg.indexOf('d') > -1) {
 					LDDToolAnnotateDefinitionFlag = true;
