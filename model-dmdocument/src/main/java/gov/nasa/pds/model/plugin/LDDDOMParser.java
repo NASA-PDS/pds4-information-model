@@ -940,9 +940,9 @@ public class LDDDOMParser extends Object
 							lDOMRule.xpath = lXpath;
 							lDOMRule.ruleNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 							lDOMRule.attrTitle = lattribute_name;
-							lDOMRule.attrNameSpaceNC = lnamespaceid;		
+							lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;		
 							lDOMRule.classTitle = lclassname;		
-							lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+							lDOMRule.classNameSpaceNC = lnamespaceid;
 							lDOMRule.classSteward = lSchemaFileDefn.nameSpaceIdNC;
 							String lAttrId = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
 							int pvCount = 0;
