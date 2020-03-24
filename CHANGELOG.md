@@ -1,21 +1,31 @@
 # Change Log
 
+## [v11.2.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.1) (2020-03-23)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.2.0...v11.2.1)
+
+**Closed issues:**
+
+- CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/130)
+
+**Merged pull requests:**
+
+- Bugfix - The new permissible values are not being written to the Sche… [\#157](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/157) ([jshughes](https://github.com/jshughes))
+
 ## [v11.2.0](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.0) (2020-03-13)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.1.0...v11.2.0)
 
 **Fixed bugs:**
 
+- Bugfix - Add code to fail gracefully for deprecated -M argument [\#154](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/154)
+- Bugfix - Change the error message reported for "nillable" attribute error. [\#146](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/146)
 - LDDtool: exposed class has a component class with a component exposed class [\#142](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/142)
 
 **Closed issues:**
 
-- Bugfix - Add code to fail gracefully for deprecated -M argument [\#154](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/154)
 - CCB-279: Mis-Matched \<axes\> and Axis\_Array Specifications  [\#152](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/152)
 - CCB-272: Reinstate Array\_1D in the Information Model [\#148](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/148)
-- Bugfix - Change the error message reported for "nillable" attribute error. [\#146](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/146)
 - CCB-268 how to test this [\#143](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/143)
 - LDDtool: unescaped & in output .xml [\#141](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/141)
-- CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/130)
 
 **Merged pull requests:**
 
@@ -124,6 +134,7 @@
 - LDDTool: XMLSchema Fix Null In Import Cleanup [\#81](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/81)
 - LDDTool: XMLSchema Fix Nul In Import File Name [\#79](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/79)
 - LDDTool: Fixed the calculation of class extensions and restrictions [\#77](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/77)
+-  CCB-252 Make\_Science\_Facets\_wavelength\_range\_nillable\_BugFix [\#64](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/64)
 
 **Closed issues:**
 
@@ -132,7 +143,6 @@
 - CCB-256 Permissible\_value\_definitions\_Ingest\_LDD\_Update [\#70](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/70)
 - DOMConv\_Depcreation\_FinalCleanup\_Deprecate\_InfoModel\_and\_Associated\_Classes [\#68](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/68)
 - DOMConv\_Deprecation\_FinalCleanup\_Continued [\#66](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/66)
--  CCB-252 Make\_Science\_Facets\_wavelength\_range\_nillable\_BugFix [\#64](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/64)
 
 **Merged pull requests:**
 
