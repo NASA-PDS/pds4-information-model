@@ -346,7 +346,7 @@ public class DMDocument extends Object {
 		// get the command line arguments
 		//    this must be done before config file processing
 		//    the use of the option "A" (alternate IM version) will change the input file directory (config included)
-		getCommandArgs (args);
+		//		getCommandArgs (args);
 		
 		// first get the environment variables
 		getEnvMap();
@@ -415,6 +415,7 @@ public class DMDocument extends Object {
 		
 		// get the command line arguments
 // 222		getCommandArgs (args);
+		getCommandArgs (args);
 		
 		// check the files
 		checkRequiredFiles ();
