@@ -1,6 +1,17 @@
 # Change Log
 
-## [v11.2.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.1) (2020-03-23)
+## [v11.2.2](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.2) (2020-04-06)
+[Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.2.1...v11.2.2)
+
+**Fixed bugs:**
+
+- LDDTool: Version info bug introduced since v11.2.0 [\#168](https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/168)
+
+**Merged pull requests:**
+
+- Backed out change for command line option to allow choice of Data dir… [\#169](https://github.com/NASA-PDS-Incubator/pds4-information-model/pull/169) ([jshughes](https://github.com/jshughes))
+
+## [v11.2.1](https://github.com/NASA-PDS-Incubator/pds4-information-model/tree/v11.2.1) (2020-03-24)
 [Full Changelog](https://github.com/NASA-PDS-Incubator/pds4-information-model/compare/v11.2.0...v11.2.1)
 
 **Closed issues:**
