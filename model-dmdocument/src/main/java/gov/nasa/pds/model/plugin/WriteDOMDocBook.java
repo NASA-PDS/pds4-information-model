@@ -216,7 +216,8 @@ class WriteDOMDocBook extends Object {
 		}
         
         // write the Data Types and Units
-    	writeDataTypeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
+     	writeDataTypeSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
+    	writeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
 		writeFooter (prDocBook);
 		prDocBook.close();
 		return;
@@ -665,14 +666,14 @@ class WriteDOMDocBook extends Object {
 	  	prDocBook.println("");
 	}
 	
-	private void writeDataTypeUnitsSection (String lNameSpaceIdNC, PrintWriter prDocBook) {
+	private void writeDataTypeSection (String lNameSpaceIdNC, PrintWriter prDocBook) {
 		ArrayList <String> lPatternArr = new ArrayList<String> ();
         prDocBook.println("");
-        prDocBook.println("      <!-- =====================Part4 Begin=========================== -->");
+        prDocBook.println("      <!-- =====================Part4a Begin=========================== -->");
         prDocBook.println("");
-		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Data Types in the common namespace.</title>");
-		prDocBook.println("       <para>These classes define the data types. </para>");
+//		prDocBook.println("    <chapter>");
+//		prDocBook.println("       <title>Data Types in the common namespace.</title>");
+//		prDocBook.println("       <para>These classes define the data types. </para>");
 					
 //		Sort the data types			
 		TreeMap <String, DOMClass> sortDataTypeMap = new TreeMap <String, DOMClass> ();
@@ -683,8 +684,16 @@ class WriteDOMDocBook extends Object {
 			sortDataTypeMap.put(lClass.title, lClass);
 		}	
 		ArrayList <DOMClass> sortDataTypeArr = new ArrayList <DOMClass> (sortDataTypeMap.values());	
-		if (sortDataTypeArr.size() <= 0) return;
-			
+		if (sortDataTypeArr.size() <= 0) {
+	        prDocBook.println("");
+	        prDocBook.println("      <!-- ===================== Part4a End=========================== -->");
+			return;
+		}
+		
+		prDocBook.println("    <chapter>");
+		prDocBook.println("       <title>Data Types in the common namespace.</title>");
+		prDocBook.println("       <para>These classes define the data types. </para>");
+	
 //		Write the data types
 		String lSchemaBaseType = "None", lMinChar = "None", lMaxChar = "None", lMinVal = "None", lMaxVal = "None";
 		for (Iterator<DOMClass> i = sortDataTypeArr.iterator(); i.hasNext();) {
@@ -794,11 +803,20 @@ class WriteDOMDocBook extends Object {
             prDocBook.println("</para>");
           	prDocBook.println("</sect1> ");
 		}
-		
 		prDocBook.println("    </chapter>");		
-		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
-		prDocBook.println("       <para>These classes define the units of measure. </para>");
+        prDocBook.println("");
+        prDocBook.println("      <!-- ===================== Part4a End=========================== -->");
+        prDocBook.println("");
+	}
+	
+	private void writeUnitsSection (String lNameSpaceIdNC, PrintWriter prDocBook) {
+		ArrayList <String> lPatternArr = new ArrayList<String> ();
+        prDocBook.println("");
+        prDocBook.println("      <!-- =====================Part4b Begin=========================== -->");
+        prDocBook.println("");
+//		prDocBook.println("    <chapter>");
+//		prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
+//		prDocBook.println("       <para>These classes define the units of measure. </para>");
 		
 		// get the units
 		ArrayList <DOMProp> lDOMPermValueArr;
@@ -810,7 +828,14 @@ class WriteDOMDocBook extends Object {
 			sortUnitsMap.put(lClass.title, lClass);
 		}	
 		ArrayList <DOMClass> sortUnitsArr = new ArrayList <DOMClass> (sortUnitsMap.values());	
-		if (sortUnitsArr.size() <= 0) return;
+		if (sortUnitsArr.size() <= 0) {
+	        prDocBook.println("      <!-- ===================== Part4b End=========================== -->");
+			return;
+		}
+		
+		prDocBook.println("    <chapter>");
+		prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
+		prDocBook.println("       <para>These classes define the units of measure. </para>");
 
 		for (Iterator<DOMClass> i = sortUnitsArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
@@ -882,7 +907,7 @@ class WriteDOMDocBook extends Object {
 		// finalize Part 4
 		prDocBook.println("         </chapter>");
         prDocBook.println("");
-        prDocBook.println("      <!-- ===================== Part4 End=========================== -->");
+        prDocBook.println("      <!-- ===================== Part4b End=========================== -->");
         prDocBook.println("");
 	}
 	
