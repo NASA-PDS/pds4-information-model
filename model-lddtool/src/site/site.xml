@@ -52,12 +52,13 @@
       <item name="About LDDTool " href="index.html"/>
       <item name="Installation" href="install/index.html"/>
       <item name="Operation" href="operate/index.html"/>
+      <item name="Support" href="index.html#Support"/>
     </menu>
 
     <menu name="Downloads">
       <item name="Current Release (tar.gz)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/releases/download/v${project.version}/lddtool-${project.version}-bin.tar.gz"/>
       <item name="Current Release (zip)" href="https://github.com/NASA-PDS-Incubator/pds4-information-model/releases/download/v${project.version}/lddtool-${project.version}-bin.zip"/>
-      <item name="Past Releases" href="releases.html"/>
+      <item name="Past Releases" href="index.html#PDS4_Standards_and_LDDTool_Versions"/>
     </menu>
 
     <menu ref="reports"/>

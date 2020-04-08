@@ -44,25 +44,45 @@
 
     </section>
     
-    <section name="Contribute">
+    <section name="PDS4 Standards and LDDTool Versions">
+      <p>LDDTool is currently not backwards compatible with older versions of the PDS4 Standards.</p>
+
+      <p>The following lists all previous versions of LDDTool. It is recommended you use the latest version of the PDS4 Standard and LDDTool wherever possible,
+        however, the versions below will tie the applicable PDS4 Standards verson to the necessary LDDTool Version.
+      </p>
+      
+      <p>If you are unsure of what version to use for the version of the information model you are using, please contact the <a href="mailto:pds_operator@jpl.nasa.gov">PDS Operator</a> for assistance at pds_operator@jpl.nasa.gov.</p>
+      
+      <p>
+        <table>
+          <tr><th>PDS4 Standards Version</th><th>Applicable LDDTool Version</th></tr>
+          <tr><td>1.14.0.0 (1E00)</td><td><a href="index.html">current</a></td></tr>
+          <tr><td>1.13.0.0 (1D00)</td><td><a href="https://nasa-pds-incubator.github.io/pds4-information-model/10.1.2/model-lddtool/index.html">10.1.2</a></td></tr>
+          <tr><td>1.12.0.0 (1C00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.1.0/model/model-lddtool/index.html">9.1.0</a></td></tr>
+          <tr><td>1.11.0.0 (1B00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.0.0/model/model-lddtool/index.html">9.0.0</a></td></tr>
+          <tr><td>1.10.0.0 (1A00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/8.1.0/model/model-lddtool/index.html">8.1.0</a></td></tr>
+          <tr><td>1.9.0.0 (1900)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/8.0.0/model/model-lddtool/index.html">8.0.0</a></td></tr>
+          <tr><td>1.8.0.0 (1800)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/7.1.0/model/model-lddtool/index.html">7.1.0</a></td></tr>
+          <tr><td>1.7.0.0 (1700)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/7.0.0/model/model-lddtool/index.html">7.0.0</a></td></tr>
+          <tr><td colspan="2">For earlier versions or questions, please email <a href="mailto:pds_operator@jpl.nasa.gov">pds_operator@jpl.nasa.gov</a> for assistance.</td></tr>
+        </table>
+      </p>
+      
+    </section>
+    
+    <section name="Support">
       <p><b><i>Found a bug?</i></b> Or <b><i>want a new feature?</i></b> would love your feedback and contributions. Here are some links to our public Github repository for submitting issues, contributing documentation, or
-      code updates:</p>
+        code updates:</p>
       
       <ul>
         <li>Issue Tracker: <a href="https://github.com/NASA-PDS-Incubator/pds4-information-model/issues">https://github.com/NASA-PDS-Incubator/pds4-information-model/issues</a></li>
         <li>Source Code: <a href="https://github.com/NASA-PDS-Incubator/pds4-information-model/">https://github.com/NASA-PDS-Incubator/pds4-information-model</a></li>
-        <li>Wiki: <a href="https://github.com/NASA-PDS-Incubator/pds4-information-model/wiki">https://github.com/NASA-PDS-Incubator/pds4-information-model/wiki</a></li>
       </ul>
       
       <p>Any other additional feedback, please contact us at <a href="mailto:pds_operator@jpl.nasa.gov">pds_operator@jpl.nasa.gov</a>.
       </p>
       
       <p></p>
-    </section>
-    
-    <section name="PDS4 Standards Version vs. LDDTool Version">
-      <p>LDDTool is currently not backwards compatible with older versions of the PDS4 Standards. See <a href="releases.html">Past Releases</a> for more details.</p>
-      
     </section>
   </body>
 </document>
