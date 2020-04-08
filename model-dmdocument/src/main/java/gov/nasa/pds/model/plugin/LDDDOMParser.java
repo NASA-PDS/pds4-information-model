@@ -883,17 +883,17 @@ public class LDDDOMParser extends Object
 			} else if (lAssocElem.getNodeName().compareTo("DD_Associate_External_Class") == 0) { 
 				// handle DD_Associate_External_Class
 				// initialize
-				String lnamespaceid = "TBD_namespaceid_LDD";
-				String lclassname = "TBD_classname_LDD";
+				String lClassNameSpaceIdNC = "TBD_lClassNameSpaceIdNC_LDD";
+				String lClassName = "TBD_lClassName_LDD";
 				lCardMin = "";
 				lCardMinI = 0;
 				lCardMax = "";
 				lCardMaxI = 0;
 
 				// get common attributes
-				lnamespaceid = getTextValue(lAssocElem,"namespace_id");
-				lclassname = getTextValue(lAssocElem,"class_name");
-				lLocalIdentifier = lnamespaceid + "." + lclassname;
+				lClassNameSpaceIdNC = getTextValue(lAssocElem,"namespace_id");
+				lClassName = getTextValue(lAssocElem,"class_name");
+				lLocalIdentifier = lClassNameSpaceIdNC + "." + lClassName;
 				
 				lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
 				lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
@@ -932,7 +932,7 @@ public class LDDDOMParser extends Object
 						Element lValueListElement = (Element)lValueListNode;
 						String lattribute_name = getTextValue(lValueListElement,"attribute_name");
 						String lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
-						DOMRule lDOMRule = new DOMRule (lnamespaceid + ":" + lclassname + "." + lXpath);	
+						DOMRule lDOMRule = new DOMRule (lClassNameSpaceIdNC + ":" + lClassName + "." + lXpath);	
 						lDOMRule.setRDFIdentifier();	
 						if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
 							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
@@ -941,14 +941,13 @@ public class LDDDOMParser extends Object
 							lDOMRule.ruleNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 							lDOMRule.attrTitle = lattribute_name;
 							lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;		
-							lDOMRule.classTitle = lclassname;		
-							lDOMRule.classNameSpaceNC = lnamespaceid;
+							lDOMRule.classTitle = lClassName;		
+							lDOMRule.classNameSpaceNC = lClassNameSpaceIdNC;
 							lDOMRule.classSteward = lSchemaFileDefn.nameSpaceIdNC;
 							String lAttrId = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
 							int pvCount = 0;
 							String lAssertMsgValueList = "";
 							DOMAssert lDOMAssert = new DOMAssert (lAttrId);	
-							lDOMAssert.assertType = "EVERY";
 							String lDel = "";
 							Node lPermValueListNode = lValueListElement.getFirstChild();
 							while (lPermValueListNode != null)
@@ -969,8 +968,8 @@ public class LDDDOMParser extends Object
 							if (pvCount >= 1) {
 								String assertMsgPre = " must be equal to one of the following values"; 
 								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
-								lDOMAssert.assertStmt =  "";	
-								lDOMAssert.assertMsg =  assertMsgPre + " ";
+								lDOMAssert.assertStmt =  ". = (" + lAssertMsgValueList  + ")";	
+								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.xpath + ":" + lDOMRule.attrTitle + assertMsgPre + " " + lAssertMsgValueList  + ".";
 								lDOMRule.assertArr.add(lDOMAssert);
 							}
 						}
