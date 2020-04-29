@@ -1,0 +1,51 @@
+To Repository
+
+	1) LDDDOMParser
+	
+	2) DMDocument
+		 
+
+ 
+	   
+Issue Info:
+
+				CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest_LDD.
+				
+				File Name: 200319_CCB256_Permissible_value_definitions_in_Ingest_LDD_130_BugFix.txt
+				
+				*** check ZenHub and GitGub login
+
+				Issue Title (Change Log - Descriptive): Bugfix - LDDTool writing wrong type of Rule to validate attribute permissible values in external namespaces
+				
+				Issue Description: Bugfix - LDDTool writing wrong type of Rule to validate attribute permissible values in external namespaces
+				
+				PR Title (Commit message - Short (72) - no Issue #): Bugfix - LDDTool writing wrong type of Rule to validate attribute permissible values in external namespaces
+								
+				Branch Name (actual issue/ccb identifier - Issue #/CCB #): Issue #130 - CCB-256 - Bug2
+				
+				LDDTool writing wrong type of Rule to validate attribute permissible values in external namespaces.
+				
+						Resolves #130
+						Refs CCB-256
+						
+				https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/256
+
+	
+Problem:
+
+                       
+Solution:
+
+								String assertMsgPre = " must be equal to one of the following values"; 
+								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
+//								lDOMAssert.assertStmt =  "";	
+//								lDOMAssert.assertMsg =  assertMsgPre + " ";
+								lDOMAssert.assertStmt =  ". = (" + lAssertMsgValueList  + ")";	
+//								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle + assertMsgPre + " " + lAssertMsgValueList  + ".";
+//								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.classNameSpaceNC + ":" + lDOMRule.attrTitle + assertMsgPre + " " + lAssertMsgValueList  + ".";
+								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.xpath + ":" + lDOMRule.attrTitle + assertMsgPre + " " + lAssertMsgValueList  + ".";
+								lDOMRule.assertArr.add(lDOMAssert);
+
+
+Testing:
+
