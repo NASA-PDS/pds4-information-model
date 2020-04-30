@@ -141,6 +141,7 @@ public class DMDocument extends Object {
 	static boolean exportDOMFlag = true;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
 	static boolean exportMOFFlag = false;
 	static boolean pds4ModelFlag = true;
+	static boolean printNamespaceFlag = false;			// print the configured namespaces to the log
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
@@ -342,11 +343,10 @@ public class DMDocument extends Object {
 		// set classVersionId
 		setClassVersionIdFlag ();
 		
-// 222
-		// get the command line arguments
+		// get the primary command line arguments
 		//    this must be done before config file processing
 		//    the use of the option "A" (alternate IM version) will change the input file directory (config included)
-		//		getCommandArgs (args);
+		getCommandArgsPrimary (args);
 		
 		// first get the environment variables
 		getEnvMap();
@@ -398,8 +398,7 @@ public class DMDocument extends Object {
             if (configInputStr != null) {
                 DMDocVersionId = LDDToolVersionId = configInputStr;
             }
-            
-          configInputStr= props.getProperty("buildDate");
+            configInputStr= props.getProperty("buildDate");
             if (configInputStr != null) {
                 buildDate = configInputStr;
             }
@@ -413,9 +412,8 @@ public class DMDocument extends Object {
     		System.out.println(">>error    - Configuration file IO Exception. [config.properties]");
     	}
 		
-		// get the command line arguments
-// 222		getCommandArgs (args);
-		getCommandArgs (args);
+		// get the command line arguments - these are the secondary options
+		getCommandArgsSecondary (args);
 		
 		// check the files
 		checkRequiredFiles ();
@@ -567,7 +565,38 @@ public class DMDocument extends Object {
     	lLIB_DIR =  replaceString (lLIB_DIR, "\\", "/");	
 	}
 	
-	static private void getCommandArgs (String args[]) {
+	static private void getCommandArgsPrimary (String args[]) {
+		for (int aind = 0; aind < args.length; aind++) {
+			String lArg = args[aind];
+//			System.out.println ("debug lArg:" + lArg);
+			if (lArg.indexOf('-') == 0) {
+//				System.out.println ("debug lFlag:" + lArg);
+				if (lArg.indexOf('p') > -1) {
+					PDSOptionalFlag = true;
+				}
+				if (lArg.indexOf('l') > -1) {
+					LDDToolFlag = true;
+				}
+				int begind = lArg.indexOf("A");
+				if (begind > -1) {
+					alternateIMVersion = lArg.substring(begind + 1, begind + 5);
+					System.out.println("debug alternateIMVersion:" + alternateIMVersion);
+				}
+				if (lArg.indexOf('h') > -1) {
+					printHelp();
+					System.exit(0);
+				}
+			}
+		}
+		// validate the input arguments
+		if (! PDSOptionalFlag) {
+			System.out.println(">>error   - " + "The -p option must be used for PDS4 processing");
+			printHelp();
+			System.exit(1);
+		}
+	}
+	
+	static private void getCommandArgsSecondary (String args[]) {
 		for (int aind = 0; aind < args.length; aind++) {
 			String lArg = args[aind];
 //			System.out.println ("debug lArg:" + lArg);
@@ -579,14 +608,6 @@ public class DMDocument extends Object {
 					LDDToolFlag = false;
 					mapToolFlag = true;
 					PDSOptionalFlag = true;
-				}
-// 222				int begind = lArg.indexOf("A");
-//				if (begind > -1) {
-//					alternateIMVersion = lArg.substring(begind + 1, begind + 5);
-//					System.out.println("debug alternateIMVersion:" + alternateIMVersion);
-//				}
-				if (lArg.indexOf('l') > -1) {
-					LDDToolFlag = true;
 				}
 				if (lArg.indexOf('d') > -1) {
 					LDDToolAnnotateDefinitionFlag = true;
@@ -602,19 +623,12 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('n') > -1) {
 					LDDNuanceFlag = true;
 				}
-//				if (lArg.indexOf('c') > -1) {
-//					LDDClassElementFlag = true;
-//				}
+				if (lArg.indexOf('N') > -1) {
+					printNamespaceFlag = true;
+				}
 				if (lArg.indexOf('a') > -1) {
 //					LDDAttrElementFlag = true;
 					LDDAttrElementFlag = false;
-				}
-				if (lArg.indexOf('p') > -1) {
-					PDSOptionalFlag = true;
-				}
-				if (lArg.indexOf('h') > -1) {
-					printHelp();
-					System.exit(0);
 				}
 				if (lArg.indexOf('v') > -1) {
 					System.out.println("\nLDDTool Version: " + LDDToolVersionId);
@@ -665,23 +679,6 @@ public class DMDocument extends Object {
 //				System.out.println("debug getCommandArgs - lSchemaFileDefn.sourceFileName:" + lLDDSchemaFileDefn.sourceFileName);
 			}	
 		}
-
-		// validate the input arguments
-		if (! PDSOptionalFlag) {
-			System.out.println(">>error   - " + "The -p option must be used for PDS4 processing");
-			printHelp();
-			System.exit(1);
-		}
-		
-//		if (LDDToolFlag) {
-//			if (LDDToolMissionGovernanceFlag) {
-//				governanceLevel = "Mission";
-//				LDDToolSingletonClassTitle = "Mission_Area";
-//			} else {
-//				governanceLevel = "Discipline";
-//				LDDToolSingletonClassTitle = "Discipline_Area";
-//			}
-//		}
 	}
 
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
@@ -763,12 +760,12 @@ public class DMDocument extends Object {
 			System.out.println("\nProcess control:");
 			System.out.println("  -p, --PDS4      Set the context to PDS4");
 			System.out.println("  -l, --LDD       Process a local data dictionary input file");
-			System.out.println("  -a, --attribute Write definitions for attribute elements.");
 			System.out.println("  -D, --DataDict  Write the Data Dictionary DocBook file.");
 			System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
 			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
-			System.out.println("  -M, --Mission   Indicates mission level governance (includes msn directory specification)");
+			System.out.println("  -M, --Mission   This flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 			System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
+			System.out.println("  -N, --Namespace Print the list of configured namespaces to the log");
 			System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
 			System.out.println("  -v, --version   Returns the LDDTool version number");
 			System.out.println("  -h, --help      Print this message");
@@ -989,8 +986,9 @@ public class DMDocument extends Object {
     			lNamespaceIdArr.add(lSchemaFileDefn2.identifier);
     			lSchemaFileDefn2.setVersionIds();
     		}
-    		if (debugFlag) System.out.println(">>info    - Configured NameSpaceIds:" + lNamespaceIdArr);
     		
+    		if (printNamespaceFlag || debugFlag) System.out.println(">>info    - Configured NameSpaceIds:" + lNamespaceIdArr);
+ 		
     		// update to masterSchemaFileSortMap to process and write the target LDD
     		if (DMDocument.LDDToolFlag) {	
  				masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
