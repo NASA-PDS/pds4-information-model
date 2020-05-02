@@ -28,7 +28,7 @@ Issue Info:
 						Resolves #130
 						Refs CCB-256
 						
-				https://github.com/NASA-PDS-Incubator/pds4-information-model/issues/256
+				https://github.com/NASA-PDS/pds4-information-model/issues/256
 
 	
 Problem:

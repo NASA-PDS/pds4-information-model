@@ -143,9 +143,9 @@ POSSIBILITY OF SUCH DAMAGE.
   </distributionManagement>
   
   <scm>
-    <url>https://github.com/NASA-PDS-Incubator/pds4-information-model</url>
-    <connection>scm:git:git://github.com/NASA-PDS-Incubator/pds4-information-model.git</connection>
-    <developerConnection>scm:git:ssh://github.com:NASA-PDS-Incubator/pds4-information-model.git</developerConnection>
+    <url>https://github.com/NASA-PDS/pds4-information-model</url>
+    <connection>scm:git:git://github.com/NASA-PDS/pds4-information-model.git</connection>
+    <developerConnection>scm:git:ssh://github.com:NASA-PDS/pds4-information-model.git</developerConnection>
   </scm>
 
   <repositories>
