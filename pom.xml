@@ -48,7 +48,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <description>
     The PDS4 Information Model package describes the information model in use by PDS4.
   </description>
-  <url>https://nasa-pds-incubator.github.io/pds4-information-model/</url>
+  <url>https://nasa-pds.github.io/pds4-information-model/</url>
 
   <licenses>
     <license>

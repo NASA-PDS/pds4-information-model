@@ -48,7 +48,7 @@
   <description>
     The PDS4 LDDTool uses the Maven plugin "model-dmdocument" as an executible jar to process an input XML file. The input XML document is parsed and the contents are validated against the master database. The validated contents are integrated into the master database. The XML Schema and Schematron files are written. The process report and spreadsheet are written.
   </description>
-  <url>https://nasa-pds-incubator.github.io/pds4-information-model/model-lddtool/</url>
+  <url>https://nasa-pds.github.io/pds4-information-model/model-lddtool/</url>
 
   <licenses>
     <license>

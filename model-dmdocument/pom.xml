@@ -49,7 +49,7 @@
         The Model DM-Document component provides Maven plugins that generate DM
         documents and other artifacts from ontologies.
     </description>
-    <url>https://nasa-pds-incubator.github.io/pds4-information-model/model-dmdocument/</url>
+    <url>https://nasa-pds.github.io/pds4-information-model/model-dmdocument/</url>
 
     <licenses>
       <license>

@@ -48,7 +48,7 @@ POSSIBILITY OF SUCH DAMAGE.
     <description>
         The PDS4 Model Ontology component conains the Protégé ontology instances for the PDS4 information and data model, and uses the Maven plugin "model-dmdocument" to generate documentation and other artifcats from the ontology into a generated JAR file.
     </description>
-    <url>https://nasa-pds-incubator.github.io/model/model-ontology/</url>
+    <url>https://nasa-pds.github.io/pds4-information-model/model-ontology/</url>
 
   <licenses>
     <license>

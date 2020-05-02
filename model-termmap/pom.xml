@@ -47,7 +47,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <description>
     The Model Terminological Mapping Tool converts CSV formatted PDS3 and PDS4 info into SKOS records. It also provides a web service for the search of SKOS records.
   </description>
-  <url>https://nasa-pds-incubator.github.io/model/model-termmap/</url>
+  <url>https://nasa-pds.github.io/model/model-termmap/</url>
 
   <licenses>
     <license>
