@@ -157,6 +157,19 @@ class XML4LabelSchemaDOM extends Object {
 					isRestriction = false;
 				}
 			}
+			
+			// for xs:any in none PDS4 information models
+			if ((lClass.title.indexOf("Native_Area") > -1) 
+					|| (lClass.title.indexOf("Artifact_Type_Area") > -1) 
+					|| (lClass.title.indexOf("Format_Type_Area") > -1)
+					|| (lClass.title.indexOf("Checksum_Area") > -1)
+					|| (lClass.title.indexOf("Science_Investigation_Area") > -1)
+					|| (lClass.title.indexOf("Date_Time_Area") > -1)
+					) {
+				isExtension = false;
+				isRestriction = false;
+			}
+			
 			boolean isBothExtensionRestriction = isExtension && isRestriction;
 			
 			// write the classes
@@ -455,8 +468,15 @@ class XML4LabelSchemaDOM extends Object {
 		lGroupName = "TBD_groupName";
 
 		upIndentSpaces();
-//		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1) || (lClass.title.indexOf(DMDocument.LDDToolGeometry) > -1)) {
-		if ((lClass.title.indexOf("Mission_Area") > -1) || (lClass.title.indexOf("Discipline_Area") > -1)) {
+		if ((lClass.title.indexOf("Mission_Area") > -1) 
+				|| (lClass.title.indexOf("Discipline_Area") > -1) 
+				|| (lClass.title.indexOf("Native_Area") > -1) 
+				|| (lClass.title.indexOf("Artifact_Type_Area") > -1) 
+				|| (lClass.title.indexOf("Format_Type_Area") > -1)
+				|| (lClass.title.indexOf("Checksum_Area") > -1)
+				|| (lClass.title.indexOf("Science_Investigation_Area") > -1)
+				|| (lClass.title.indexOf("Date_Time_Area") > -1)
+				) {
 			writeClassXSAnyStmts (prXML);
 			downIndentSpaces();
 			return;
@@ -519,10 +539,11 @@ class XML4LabelSchemaDOM extends Object {
 		if ((lProp.isChoice) && (!choiceBlockOpen)) {
 			// set the cardinalities of Master Choice block attributes to (1,1)
 			if (lProp.isChoice && ! lProp.isFromLDD) {
-//				cmin = "1";
-//				cmax = "1";
 				cmin = lProp.cardMin;
 				cmax = lProp.cardMax;
+				if (cmax.compareTo("*") == 0) {
+					cmax = "unbounded";
+				}
 			}
 			prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\">");
 			upIndentSpaces();
