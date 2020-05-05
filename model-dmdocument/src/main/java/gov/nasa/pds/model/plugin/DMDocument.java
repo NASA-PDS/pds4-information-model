@@ -82,8 +82,12 @@ public class DMDocument extends Object {
 	
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
-// 222 prototyped in 1E00 - release is delayed to 1D00
-	static String alternateIMVersion = "";   // if no "A" alternate IM version is provided on the command line, then "" is used.
+	
+	// alternate IM Version
+	// if no option "A" (alternate) IM version is provided on the command line, then "" is used.
+	static String alternateIMVersion = "";  
+	// allowed alternate IM versions
+	static ArrayList <String> alternateIMVersionArr;
 
 	static String DMDocVersionId  = "0.0.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
@@ -275,8 +279,13 @@ public class DMDocument extends Object {
 		LDDDOMModelArr = new ArrayList <LDDDOMParser> ();
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
-//		LDDToolMissionGovernanceFlag = false;
-
+		
+		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1D00");
+		alternateIMVersionArr.add ("1C00");
+		alternateIMVersionArr.add ("1B00");
+		alternateIMVersionArr.add ("1B10");
+		
 		// get dates
 		rTodaysDate = new Date();
 		sTodaysDate  = rTodaysDate.toString();
@@ -351,8 +360,10 @@ public class DMDocument extends Object {
 		// first get the environment variables
 		getEnvMap();
 		dataDirPath = lPARENT_DIR + "/Data/";
-// 222		dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
-//			System.out.println("debug dataDirPath:" + dataDirPath);
+		
+		// if this is an LDDTool run then alternate path is allowed (option "A")
+		if (LDDToolFlag) dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+		if (debugFlag) System.out.println("debug DMDocument -alternateIMVersion- USING dataDirPath:" + dataDirPath);
 
 		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
 		// "props" are used again below in setupNameSpaceInfoAll)
@@ -486,7 +497,8 @@ public class DMDocument extends Object {
 		
 		// print out the stewards - namespaceid pairs
 		if (DMDocument.debugFlag) {
-			System.out.println("\n>>info    - Disposition File Steward/NameSpaceId:");
+			System.out.println(" ");
+			System.out.println(">>info    - Disposition File Steward/NameSpaceId:");
 			for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
 				String lStewardNameSpaceId = (String) i.next();
 				System.out.println(">>info    - " + lStewardNameSpaceId);
@@ -568,19 +580,27 @@ public class DMDocument extends Object {
 	static private void getCommandArgsPrimary (String args[]) {
 		for (int aind = 0; aind < args.length; aind++) {
 			String lArg = args[aind];
-//			System.out.println ("debug lArg:" + lArg);
+//			System.out.println ("debug -1- lArg:" + lArg);
 			if (lArg.indexOf('-') == 0) {
-//				System.out.println ("debug lFlag:" + lArg);
+//				System.out.println ("debug -1- lFlag:" + lArg);
 				if (lArg.indexOf('p') > -1) {
 					PDSOptionalFlag = true;
 				}
 				if (lArg.indexOf('l') > -1) {
 					LDDToolFlag = true;
 				}
-				int begind = lArg.indexOf("A");
-				if (begind > -1) {
-					alternateIMVersion = lArg.substring(begind + 1, begind + 5);
-					System.out.println("debug alternateIMVersion:" + alternateIMVersion);
+				if (LDDToolFlag) {
+					int begind = lArg.indexOf("A");
+					if (begind > -1) {
+						String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
+//						System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
+						if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
+							alternateIMVersion = tAlternateIMVersion;
+							System.out.println(">>info    - " + "The -A (Alternate) option IM Version " + tAlternateIMVersion + " is valid");
+						} else {
+							System.out.println(">>warning - " + "The -A (Alternate) option IM Version " + tAlternateIMVersion + " is not valid");
+						}
+					}
 				}
 				if (lArg.indexOf('h') > -1) {
 					printHelp();
@@ -599,9 +619,13 @@ public class DMDocument extends Object {
 	static private void getCommandArgsSecondary (String args[]) {
 		for (int aind = 0; aind < args.length; aind++) {
 			String lArg = args[aind];
-//			System.out.println ("debug lArg:" + lArg);
+//			System.out.println ("debug -2- lArg:" + lArg);
+			int begind = lArg.indexOf("A");
+			if (begind > -1) {
+				continue; // skip -A option in secondary processing.
+			}
 			if (lArg.indexOf('-') == 0) {
-//				System.out.println ("debug lFlag:" + lArg);
+//				System.out.println ("debug -2- lFlag:" + lArg);
 				String lFlag = lArg;
 				if (lArg.indexOf("map") > -1) {
 					System.out.println("Tool processing");
@@ -631,9 +655,11 @@ public class DMDocument extends Object {
 					LDDAttrElementFlag = false;
 				}
 				if (lArg.indexOf('v') > -1) {
-					System.out.println("\nLDDTool Version: " + LDDToolVersionId);
+					System.out.println(" ");
+					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
-					System.out.println("Build Date: " + buildDate + "\n");
+					System.out.println("Build Date: " + buildDate);
+					System.out.println(" ");
 					System.exit(0);
 				}
 				if (lArg.indexOf('D') > -1) {
@@ -741,7 +767,8 @@ public class DMDocument extends Object {
 		
 	static public void printHelp () {
 		if (mapToolFlag) {
-			System.out.println("\nUsage: termmap -f  inputFileName.CSV");
+			System.out.println(" ");
+			System.out.println("Usage: termmap -f  inputFileName.CSV");
 		
             System.out.println("  -f \"PropertyMapFile.csv\"  the file name is in the following format: ");
             System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV");
@@ -750,14 +777,18 @@ public class DMDocument extends Object {
             System.out.println("  or -f *.csv ");
             System.out.println("   the resulting output file name is: ");
             System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.XML"); 
-            System.out.println("   generated into the map directory \n");
+            System.out.println("   generated into the map directory");
+			System.out.println(" ");
 		} else {
-			System.out.println("\nUsage: lddtool -pl [OPTION]... FILE1 FILE2 ... ");
+			System.out.println(" ");
+			System.out.println("Usage: lddtool -pl [OPTION]... FILE1 FILE2 ... ");
 			System.out.println("Parse a local data dictionary definition file and generate PDS4 data standard files.");
 			
-			System.out.println("\nExample: lddtool -pl  inputFileName");
+			System.out.println(" ");
+			System.out.println("Example: lddtool -pl  inputFileName");
 			
-			System.out.println("\nProcess control:");
+			System.out.println(" ");
+			System.out.println("Process control:");
 			System.out.println("  -p, --PDS4      Set the context to PDS4");
 			System.out.println("  -l, --LDD       Process a local data dictionary input file");
 			System.out.println("  -D, --DataDict  Write the Data Dictionary DocBook file.");
@@ -770,12 +801,17 @@ public class DMDocument extends Object {
 			System.out.println("  -v, --version   Returns the LDDTool version number");
 			System.out.println("  -h, --help      Print this message");
 			
-			System.out.println("\nInput control:");
+			System.out.println(" ");
+			System.out.println("   A, --Alt IM    Use an alternate IM Version - Must follow Process control. - e.g., A1D00");
+			
+			System.out.println(" ");
+			System.out.println("Input control:");
 			System.out.println("  FILE provides the file name of an input file. The file name extension .xml is assumed.");
 			System.out.println("    If there are more than one file, the first files are considered references");
 			System.out.println("    for the last file. The last file is considered the primary local data dictionary.");
 			
-			System.out.println("\nOutput control:");
+			System.out.println(" ");
+			System.out.println("Output control:");
 			System.out.println("  FILE is used to provide the file name for the output files. The file name extensions are distinct.");
 			System.out.println("  .xsd -- XML Schema file");
 			System.out.println("  .sch -- schematron file");
@@ -830,7 +866,8 @@ public class DMDocument extends Object {
 		String SCHEMA_LITERAL = "lSchemaFileDefn.";
 		String IDENTIFIER = ".identifier";
 		
-//		System.out.println("\n>>info    - config.properties:");
+//		System.out.println(" ");
+//		System.out.println(">>info    - config.properties:");
 		
         Set<Object> keys = prop.keySet();	
         for (Object k:keys) {
@@ -947,7 +984,8 @@ public class DMDocument extends Object {
         		masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
         		
 /*				if (DMDocument.debugFlag) {
-	        		System.out.println("\ndebug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
+					System.out.println(" ");
+	        		System.out.println("debug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
 	        		System.out.println("                            lSchemaFileDefn.lddName:" + lSchemaFileDefn.lddName);
 	        		System.out.println("                            lSchemaFileDefn.versionId:" + lSchemaFileDefn.versionId);
 	        		System.out.println("                            lSchemaFileDefn.labelVersionId:" + lSchemaFileDefn.labelVersionId);
