@@ -85,6 +85,7 @@ public class DMDocument extends Object {
 	
 	// alternate IM Version
 	// if no option "A" (alternate) IM version is provided on the command line, then "" is used.
+	static boolean alternateIMVersionFlag = false;
 	static String alternateIMVersion = "";  
 	// allowed alternate IM versions
 	static ArrayList <String> alternateIMVersionArr;
@@ -283,8 +284,8 @@ public class DMDocument extends Object {
 		alternateIMVersionArr = new ArrayList <String> ();
 		alternateIMVersionArr.add ("1D00");
 		alternateIMVersionArr.add ("1C00");
-		alternateIMVersionArr.add ("1B00");
 		alternateIMVersionArr.add ("1B10");
+		alternateIMVersionArr.add ("1B00");
 		
 		// get dates
 		rTodaysDate = new Date();
@@ -362,8 +363,9 @@ public class DMDocument extends Object {
 		dataDirPath = lPARENT_DIR + "/Data/";
 		
 		// if this is an LDDTool run then alternate path is allowed (option "A")
-		if (LDDToolFlag) dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
-		if (debugFlag) System.out.println("debug DMDocument -alternateIMVersion- USING dataDirPath:" + dataDirPath);
+		if (LDDToolFlag && alternateIMVersionFlag) dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+		if (debugFlag) System.out.println("debug DMDocument - alternateIMVersion - USING dataDirPath:" + dataDirPath);
+		if (debugFlag) System.out.println("debug DMDocument - alternateIMVersion - alternateIMVersionArr:" + alternateIMVersionArr);
 
 		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
 		// "props" are used again below in setupNameSpaceInfoAll)
@@ -589,22 +591,25 @@ public class DMDocument extends Object {
 				if (lArg.indexOf('l') > -1) {
 					LDDToolFlag = true;
 				}
-				if (LDDToolFlag) {
-					int begind = lArg.indexOf("A");
-					if (begind > -1) {
-						String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
-//						System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
-						if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
-							alternateIMVersion = tAlternateIMVersion;
-							System.out.println(">>info    - " + "The -A (Alternate) option IM Version " + tAlternateIMVersion + " is valid");
-						} else {
-							System.out.println(">>warning - " + "The -A (Alternate) option IM Version " + tAlternateIMVersion + " is not valid");
-						}
-					}
-				}
 				if (lArg.indexOf('h') > -1) {
 					printHelp();
 					System.exit(0);
+				}
+			}
+			if (LDDToolFlag) {
+				int begind = lArg.indexOf("A");
+				if (begind > -1) {
+					String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
+					System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
+					System.out.println(">>info    - " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
+					if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
+						alternateIMVersion = tAlternateIMVersion;
+						alternateIMVersionFlag = true;
+						System.out.println(">>info    - " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
+					} else {
+						System.out.println(">>error   - " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
+						System.exit(0);
+					}
 				}
 			}
 		}
@@ -659,6 +664,7 @@ public class DMDocument extends Object {
 					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
 					System.out.println("Build Date: " + buildDate);
+					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
 					System.exit(0);
 				}
@@ -803,6 +809,7 @@ public class DMDocument extends Object {
 			
 			System.out.println(" ");
 			System.out.println("   A, --Alt IM    Use an alternate IM Version - Must follow Process control. - e.g., A1D00");
+			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
 			
 			System.out.println(" ");
 			System.out.println("Input control:");
