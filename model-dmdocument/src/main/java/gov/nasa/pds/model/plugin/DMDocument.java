@@ -597,7 +597,8 @@ public class DMDocument extends Object {
 				}
 			}
 			if (LDDToolFlag) {
-				int begind = lArg.indexOf("A");
+// 222				int begind = lArg.indexOf("A");
+				int begind = lArg.indexOf("XXX");
 				if (begind > -1) {
 					String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
 					System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
@@ -612,12 +613,6 @@ public class DMDocument extends Object {
 					}
 				}
 			}
-		}
-		// validate the input arguments
-		if (! PDSOptionalFlag) {
-			System.out.println(">>error   - " + "The -p option must be used for PDS4 processing");
-			printHelp();
-			System.exit(1);
 		}
 	}
 	
@@ -664,7 +659,7 @@ public class DMDocument extends Object {
 					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
 					System.out.println("Build Date: " + buildDate);
-					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
+// 222					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
 					System.exit(0);
 				}
@@ -710,6 +705,12 @@ public class DMDocument extends Object {
 				masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
 //				System.out.println("debug getCommandArgs - lSchemaFileDefn.sourceFileName:" + lLDDSchemaFileDefn.sourceFileName);
 			}	
+		}
+		// validate the input arguments
+		if (! PDSOptionalFlag) {
+			System.out.println(">>error   - " + "The -p option must be used for PDS4 processing");
+			printHelp();
+			System.exit(1);
 		}
 	}
 
@@ -807,9 +808,9 @@ public class DMDocument extends Object {
 			System.out.println("  -v, --version   Returns the LDDTool version number");
 			System.out.println("  -h, --help      Print this message");
 			
-			System.out.println(" ");
-			System.out.println("   A, --Alt IM    Use an alternate IM Version - Must follow Process control. - e.g., A1D00");
-			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
+// 222			System.out.println(" ");
+// 222			System.out.println("   A, --Alt IM    Use an alternate IM Version - Must follow Process control. - e.g., A1D00");
+// 222			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
 			
 			System.out.println(" ");
 			System.out.println("Input control:");
