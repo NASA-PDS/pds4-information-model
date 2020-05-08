@@ -1653,7 +1653,7 @@ public class LDDDOMParser extends Object
 				foundFlag = true;
 			}
 			if (foundFlag) {
-				lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - The attribute names 'unit', 'units', 'unit_of_measure' cannot be used.");
+				lddErrorMsg.add("   WARNING  Attribute: <" + lDOMAttr.title + "> - The terms 'unit', 'units', 'unit_of_measure' should not be used as the rightmost part of an attribute's name.");
 			}
 		}
 		return;
@@ -1678,7 +1678,7 @@ public class LDDDOMParser extends Object
 					}
 				}
 				if (! foundFlag) {
-					lddErrorMsg.add("   ERROR    Attribute: <" + lDOMAttr.title + "> - A 'nilable' attribute must be a required attribute in at least one class.");
+					lddErrorMsg.add("   INFO     Attribute: <" + lDOMAttr.title + "> - A 'nilable' attribute was found that is not a required attribute in at least one class.");
 				}
 			}
 		}
@@ -1707,7 +1707,7 @@ public class LDDDOMParser extends Object
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
 				if (lCompClass.isExposed) {
-					lddErrorMsg.add("   ERROR    Class: <" + lCompClass.title + "> - An exposed class cannot be nested within another exposed class.");
+					lddErrorMsg.add("   WARNING  Class: <" + lCompClass.title + "> - An exposed class was found nested within another exposed class. A single unique 'entry point' is desired.");
 				}
 				checkAllSubclasses (lCompClass);
 			}
