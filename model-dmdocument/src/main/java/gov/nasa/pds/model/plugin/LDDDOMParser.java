@@ -1707,7 +1707,7 @@ public class LDDDOMParser extends Object
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
 				if (lCompClass.isExposed) {
-					lddErrorMsg.add("   WARNING  Class: <" + lCompClass.title + "> - An exposed class was found nested within another exposed class. A single unique 'entry point' is desired.");
+					lddErrorMsg.add("   WARNING  Class: <" + lCompClass.title + "> - An exposed class was found nested within another exposed class. Nested exposed classes should only be present if there is a specific requirement to expose the additional class.");
 				}
 				checkAllSubclasses (lCompClass);
 			}
