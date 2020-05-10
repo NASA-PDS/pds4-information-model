@@ -598,7 +598,7 @@ public class DMDocument extends Object {
 			}
 			if (LDDToolFlag) {
 // 222				int begind = lArg.indexOf("A");
-				int begind = lArg.indexOf("XXX");
+				int begind = lArg.indexOf("XXXX");
 				if (begind > -1) {
 					String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
 					System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
@@ -620,7 +620,7 @@ public class DMDocument extends Object {
 		for (int aind = 0; aind < args.length; aind++) {
 			String lArg = args[aind];
 //			System.out.println ("debug -2- lArg:" + lArg);
-			int begind = lArg.indexOf("A");
+			int begind = lArg.indexOf("XXXX");
 			if (begind > -1) {
 				continue; // skip -A option in secondary processing.
 			}
