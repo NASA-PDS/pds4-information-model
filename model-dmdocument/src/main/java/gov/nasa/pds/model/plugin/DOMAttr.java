@@ -601,7 +601,8 @@ public class DOMAttr extends ISOClassOAIS11179 {
 
 		this.valArr = lOrgAttr.valArr;                              
 		this.allowedUnitId = lOrgAttr.allowedUnitId;	                      
-		this.genAttrMap = lOrgAttr.genAttrMap;                          
+		this.genAttrMap = lOrgAttr.genAttrMap;                         
+		this.domPermValueArr = lOrgAttr.domPermValueArr;
 		this.permValueArr = lOrgAttr.permValueArr;                        
 		this.permValueExtArr = lOrgAttr.permValueExtArr;                     
 		this.termEntryMap = lOrgAttr.termEntryMap;                        

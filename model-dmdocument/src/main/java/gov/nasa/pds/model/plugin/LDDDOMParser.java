@@ -286,7 +286,7 @@ public class LDDDOMParser extends Object
 		
 		parseDocument(gSchemaFileDefn);
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.parseDocument() Done");
-	
+		
 		// validate parsed header
 		validateParsedHeader(gSchemaFileDefn);
 		if (DMDocument.debugFlag) System.out.println("debug getLocalDD.validateParsedHeader() Done");
@@ -351,7 +351,11 @@ public class LDDDOMParser extends Object
 		
 		// get the dictionary type from Ingest_LDD file
 		String ldictionaryType = getTextValue(docEle,"dictionary_type");
-		if (ldictionaryType == null) ldictionaryType = "TBD_dictionary_type";
+		if (ldictionaryType.compareTo("TBD_Ingest_LDD") == 0) {
+			if (DMDocument.LDDToolMissionFlag) ldictionaryType = "Mission";
+			else ldictionaryType = "TBD_dictionary_type";
+		}
+
 		if (ldictionaryType.compareTo("Common") == 0) {
 			lSchemaFileDefn.setDictionaryType ("Discipline");
 			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
@@ -359,11 +363,11 @@ public class LDDDOMParser extends Object
 		} else if (ldictionaryType.compareTo("Discipline") == 0) {
 			lSchemaFileDefn.setDictionaryType ("Discipline");
 			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
-			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type Found:" + ldictionaryType);
+			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type is " + ldictionaryType);
 		} else if (ldictionaryType.compareTo("Mission") == 0) {
 			lSchemaFileDefn.setDictionaryType ("Mission");
 			DMDocument.LDDToolSingletonClassTitle = "Mission_Area";
-			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type Found:" + ldictionaryType);			
+			System.out.println("   INFO     Init: " + " - LDD Dictionary_Type is " + ldictionaryType);			
 		} else {
 			lSchemaFileDefn.setDictionaryType ("Discipline");
 			DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
@@ -663,7 +667,7 @@ public class LDDDOMParser extends Object
 				}
 				String lValueMeaning = getTextValue(el,"value_meaning");
 				if (lValueMeaning == null) {
-					lValue = "TBD_value_meaning";
+					lValueMeaning = "TBD_value_meaning";
 				}
 				lValueMeaning= DOMInfoModel.cleanCharString (lValueMeaning);
 				
@@ -671,15 +675,17 @@ public class LDDDOMParser extends Object
 				String lValueEndDate = getTextValue(el,"value_end_date");
 
 				DOMPermValDefn lDOMPermVal = new DOMPermValDefn (lValue, lValue, lValueMeaning);
+				lDOMPermVal.setRDFIdentifier(lValue);
 				if (lValueBeginDate != null) {
 					lDOMPermVal.value_begin_date = lValueBeginDate;
 				}
 				if (lValueEndDate != null) {
 					lDOMPermVal.value_end_date = lValueEndDate;
 				}
-	            DOMProp lDOMProp = new DOMProp ();
-	            lDOMProp.initDOMPermValProp (lDOMPermVal);
-				lDOMAttr.domPermValueArr.add(lDOMProp);				
+				DOMProp lDOMProp = new DOMProp ();
+				lDOMProp.initForPermValue (lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC, lDOMAttr.title, lValue);
+				lDOMProp.hasDOMObject = lDOMPermVal;
+				lDOMAttr.domPermValueArr.add(lDOMProp);
 			}
 		}
 	}
@@ -1253,7 +1259,7 @@ public class LDDDOMParser extends Object
 					
 					// add the attribute to the property
 					lDOMProp.hasDOMObject = lDOMAttr;
-						
+					
 					// add the association (AttrDefn) to the resolved attribute array
 					attrArrResolved.add(lDOMProp);
 					
@@ -1773,7 +1779,7 @@ public class LDDDOMParser extends Object
 		DOMInfoModel.masterDOMRuleMap.clear(); 
 		DOMInfoModel.masterDOMRuleArr.clear(); 
 		
-		// merge the LDD Classes into the Master
+		// *** Class Merge ***
 		for (Iterator <DOMClass> i = classArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();
 			if (DOMInfoModel.masterDOMClassIdMap.containsKey(lDOMClass.identifier)) {
@@ -1800,11 +1806,11 @@ public class LDDDOMParser extends Object
 			DOMInfoModel.masterDOMClassIdMap.put(lDOMClass.identifier, lDOMClass);
 			DOMInfoModel.masterDOMClassTitleMap.put(lDOMClass.title, lDOMClass);
 		}
-				
+		
 		// build the master array (sorted by identifier)
 		DOMInfoModel.masterDOMClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());		
 		
-		// merge the LDD attributes into the Master
+		// *** Attribute Merge ***
 		for (Iterator <DOMProp> i = attrArrResolved.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
@@ -1832,9 +1838,9 @@ public class LDDDOMParser extends Object
 			DOMInfoModel.masterDOMAttrIdMap.put(lDOMAttr.identifier, lDOMAttr);
 		}
 		// build the master array (sorted by identifier)
-		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());		
-		
-		// merge the LDD associations into the Master
+		DOMInfoModel.masterDOMAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.masterDOMAttrIdMap.values());
+	
+		// *** Property Merge ***		
 		for (Iterator <DOMProp> i = LDDDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp= (DOMProp) i.next();
 			if (DOMInfoModel.masterDOMPropIdMap.containsKey(lDOMProp.identifier)) {
@@ -1858,7 +1864,13 @@ public class LDDDOMParser extends Object
 			DOMInfoModel.masterDOMPropIdMap.put(lDOMProp.identifier, lDOMProp);
 		}
 		// build the master array (sorted by identifier)
-		DOMInfoModel.masterDOMPropArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
+		DOMInfoModel.masterDOMPropArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());	
+		
+		// display the permissible values, in the owned attributes, in the master classes.
+//		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+//			DOMClass lDOMClass = (DOMClass) i.next();
+//			printDebugClass (lDOMClass, "addLDDtoMaster masterDOMClassArr");
+//		}
 		
 		// copy in the LDD Schematron Rules 
 		for (Iterator <DOMRule> i = ruleArr.iterator(); i.hasNext();) {
@@ -2494,5 +2506,51 @@ public class LDDDOMParser extends Object
 	public void printProtegeClassEnd () {	         
         prProtegePont.println(")");
 	}			
+	
+	// print a class
+	public void printDebugClass (DOMClass lDOMClass, String note) {	
+		System.out.println("\n========================================================================================");
+		System.out.println("debug  dump - " + note + " - lDOMClass.identifier:" + lDOMClass.identifier);
+		printDebugPropertyArr (lDOMClass.ownedAttrArr, "Owned Attr");
+		printDebugPropertyArr (lDOMClass.inheritedAttrArr, "Inher Attr");
+		printDebugPropertyArr (lDOMClass.ownedAssocArr, "Owned Assoc");
+		printDebugPropertyArr (lDOMClass.inheritedAssocArr, "Inher Attr");
+	}
+	
+	// print an property
+	public void printDebugPropertyArr (ArrayList <DOMProp> lDOMPropArr, String note) {	
+		System.out.println("\n----------------------------------------------------------------------------------------");
+		System.out.println("debug  dump - " + note + " - lDOMPropArr.size()" + lDOMPropArr.size());
+		for (Iterator <DOMProp> i = lDOMPropArr.iterator(); i.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) i.next();
+			printDebugProperty (lDOMProp, note);
+		}
+	}
+	
+	// print an property
+	public void printDebugProperty (DOMProp lDOMProp, String note) {	
+		System.out.println("\n----------------------------------------------------------------------------------------");
+		System.out.println("debug  dump - " + note + " - lDOMProp.identifier" + lDOMProp.identifier);
+		if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+			DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+			printDebugAttribute (lDOMAttr, "Attribute");
+		}
+	}
+	
+	// print an attribute
+	public void printDebugAttribute (DOMAttr lDOMAttr, String note) {	
+		System.out.println("\n.........................................................................................");
+		System.out.println("debug  dump - " + note + " - lDOMAttr.identifier:" + lDOMAttr.identifier);
+		System.out.println("debug  dump - " + note + " - lDOMAttr.domPermValueArr.size():" + lDOMAttr.domPermValueArr.size());
+		for (Iterator <DOMProp> j = lDOMAttr.domPermValueArr.iterator(); j.hasNext();) {
+			DOMProp lDOMProp = (DOMProp) j.next();
+			System.out.println("debug  dump - " + note + " - lDOMProp.identifier:" + lDOMProp.identifier);
+			System.out.println("debug  dump - " + note + " - lDOMProp.hasDOMObject :" + lDOMProp.hasDOMObject);
+			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+				System.out.println("debug  dump - " + note + " - lDOMPermValDefn.value:" + lDOMPermValDefn.value);
+			}
+		}
+	}
 }
 				

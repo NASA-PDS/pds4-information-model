@@ -258,7 +258,7 @@ public class GetDOMModel extends Object {
 				lLDDDOMParser.getLocalDD();
 			}
 		}		
-						
+		
 		// 009 - set the attrParentClass (attributes parent class) from the class name (temp fix)
 		DMDocument.masterDOMInfoModel.setAttrParentClass (true); // LDD run (master run is above)
 
@@ -448,7 +448,7 @@ public class GetDOMModel extends Object {
 			System.out.println("\n>>info    - Active Namespace Ids:");
 			for (Iterator <String> i = lNameSpaceHasMemberArr.iterator(); i.hasNext();) {
 				String lNameSpaceId = (String) i.next();
-				System.out.println(">>info    - namespace_id:" + lNameSpaceId);
+				System.out.println(">>info      - namespace_id:" + lNameSpaceId);
 			}
 			
 			System.out.println("\n>>info    - Master DOM Structures Initiated");	
