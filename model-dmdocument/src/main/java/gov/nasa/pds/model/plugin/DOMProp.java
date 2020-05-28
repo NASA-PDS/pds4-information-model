@@ -208,6 +208,21 @@ public class DOMProp extends ISOClassOAIS11179 {
 //		maximumOccurrences = "TBD_maximumOccurrences";
 	}
 	
+	public void initForPermValue (String lNameSpaceIdNC, String lTitle, String lNameSpaceIdNC2, String lTitle2, String lValue) {
+		setRDFIdentifier (lTitle2 + "." + lValue); 							
+		setIdentifier(lNameSpaceIdNC, lTitle, lNameSpaceIdNC2, lTitle2 + "." + lValue);
+		title = lTitle;
+		registrationStatus = DMDocument.registrationAuthorityIdentifierValue;  
+		nameSpaceIdNC = lNameSpaceIdNC;
+		nameSpaceId = lNameSpaceIdNC + ":";
+		referenceType = "attribute_of";
+		cardMin = "0";
+		cardMax = "1";
+		cardMinI = 0; 
+		cardMaxI = 1;
+		isPDS4 = true;
+	}
+	
 	public void initDOMPermValProp (DOMPermValDefn lDOMPermValDefn) {
 		rdfIdentifier = lDOMPermValDefn.rdfIdentifier; 														
 		identifier = lDOMPermValDefn.identifier; 

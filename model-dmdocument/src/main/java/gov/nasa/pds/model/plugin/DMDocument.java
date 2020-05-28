@@ -145,16 +145,18 @@ public class DMDocument extends Object {
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean exportDOMFlag = true;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
 	static boolean exportMOFFlag = false;
+	static boolean exportOWLFileFlag = false;
 	static boolean pds4ModelFlag = true;
 	static boolean printNamespaceFlag = false;			// print the configured namespaces to the log
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
-	// in an LDDTool run, when true indicates that a mission LDD is being processed, otherwise a discipline LDD is being processed
-	static boolean LDDToolMissionGovernanceFlag;
-	// governance levels are Common, Discipline, and Mission, consistent with the flags.
-	static String governanceLevel = "Common";
+	
+	// in an LDDTool run, when true indicates that a mission LDD is being processed
+	// this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
+	// however this flag is still needed for LDDTool runs with IM Versions prior to 1E00
+	static boolean LDDToolMissionFlag = false;
 	
 	static boolean LDDToolAnnotateDefinitionFlag;
 	static String LDDToolSingletonClassTitle = "USER";
@@ -595,21 +597,19 @@ public class DMDocument extends Object {
 					printHelp();
 					System.exit(0);
 				}
-			}
-			if (LDDToolFlag) {
-// 222				int begind = lArg.indexOf("A");
-				int begind = lArg.indexOf("XXXX");
-				if (begind > -1) {
-					String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
-					System.out.println("debug DMDocument FOUND tAlternateIMVersion:" + tAlternateIMVersion);
-					System.out.println(">>info    - " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
-					if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
-						alternateIMVersion = tAlternateIMVersion;
-						alternateIMVersionFlag = true;
-						System.out.println(">>info    - " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
-					} else {
-						System.out.println(">>error   - " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
-						System.exit(0);
+				if (LDDToolFlag) {
+					int begind = lArg.indexOf("A");
+					if (begind > -1) {
+						String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
+						System.out.println(">>info    - " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
+						if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
+							alternateIMVersion = tAlternateIMVersion;
+							alternateIMVersionFlag = true;
+							System.out.println(">>info    - " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
+						} else {
+							System.out.println(">>error   - " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
+							System.exit(0);
+						}
 					}
 				}
 			}
@@ -620,12 +620,7 @@ public class DMDocument extends Object {
 		for (int aind = 0; aind < args.length; aind++) {
 			String lArg = args[aind];
 //			System.out.println ("debug -2- lArg:" + lArg);
-			int begind = lArg.indexOf("XXXX");
-			if (begind > -1) {
-				continue; // skip -A option in secondary processing.
-			}
 			if (lArg.indexOf('-') == 0) {
-//				System.out.println ("debug -2- lFlag:" + lArg);
 				String lFlag = lArg;
 				if (lArg.indexOf("map") > -1) {
 					System.out.println("Tool processing");
@@ -637,9 +632,10 @@ public class DMDocument extends Object {
 					LDDToolAnnotateDefinitionFlag = true;
 				}
 				if (lArg.indexOf('M') > -1) {
+					LDDToolMissionFlag = true;
 					System.err.println(" ");
-					System.err.println(">>ERROR: " + "This flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
-					System.exit(1);
+					System.err.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+					System.out.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 				}
 				if (lArg.indexOf('m') > -1) {
 					PDS4MergeFlag = true;
@@ -659,7 +655,7 @@ public class DMDocument extends Object {
 					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
 					System.out.println("Build Date: " + buildDate);
-// 222					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
+					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
 					System.exit(0);
 				}
@@ -677,6 +673,9 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('4') > -1) {
 					importJSONAttrFlag = true;
+				}
+				if (lArg.indexOf('5') > -1) {
+					exportOWLFileFlag = true;
 				}
 				if (lArg.indexOf('f') > -1) {
 					aind++;
@@ -799,18 +798,18 @@ public class DMDocument extends Object {
 			System.out.println("  -p, --PDS4      Set the context to PDS4");
 			System.out.println("  -l, --LDD       Process a local data dictionary input file");
 			System.out.println("  -D, --DataDict  Write the Data Dictionary DocBook file.");
-			System.out.println("  -J, --JSON      Write the master data dictionary to a JSON formatted file.");
+			System.out.println("  -J, --JSON      Write the data dictionary to a JSON formatted file.");
 			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
-			System.out.println("  -M, --Mission   This flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+			System.out.println("  -M, --Mission   This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 			System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
 			System.out.println("  -N, --Namespace Print the list of configured namespaces to the log");
-			System.out.println("  -1, --IM Spec   Write the Information Model Specification with LDD.");
+			System.out.println("  -1, --IM Spec   Write the Information Model Specification for an LDD.");
 			System.out.println("  -v, --version   Returns the LDDTool version number");
 			System.out.println("  -h, --help      Print this message");
 			
-// 222			System.out.println(" ");
-// 222			System.out.println("   A, --Alt IM    Use an alternate IM Version - Must follow Process control. - e.g., A1D00");
-// 222			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
+			System.out.println(" ");
+			System.out.println("  -A, --Alt IM    Use an alternate IM Version, e.g., A1D00 - Must be the last option specified.");
+			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
 			
 			System.out.println(" ");
 			System.out.println("Input control:");
