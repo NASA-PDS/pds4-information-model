@@ -39,12 +39,14 @@
   </skin>
 
   <bannerLeft>
-    <src>images/pds4_logo.png</src>
+    <src>images/pds_banner.png</src>
     <href>https://pds.nasa.gov</href>
+    <width>600</width>
   </bannerLeft>
 
   <bannerRight>
     <name>PDS4 Information Model Project</name>
+    <href>https://github.com/NASA-PDS/pds4-information-model</href>
   </bannerRight>
 
   <body>
