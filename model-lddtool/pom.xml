@@ -97,7 +97,7 @@
                 <artifactItem>
                   <groupId>gov.nasa.pds.model</groupId>
                   <artifactId>model-dmdocument</artifactId>
-                  <version>${pom.version}</version>
+                  <version>${project.version}</version>
                   <type>jar</type>
                   <overWrite>true</overWrite>
                   <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
@@ -123,7 +123,7 @@
                 <descriptor>src/main/assembly/tar-assembly.xml</descriptor>
                 <descriptor>src/main/assembly/zip-assembly.xml</descriptor>
               </descriptors>
-              <finalName>lddtool-${pom.version}</finalName>
+              <finalName>lddtool-${project.version}</finalName>
             </configuration>
           </execution>
         </executions>
@@ -135,7 +135,7 @@
     <dependency>
       <groupId>gov.nasa.pds.model</groupId>
       <artifactId>model-dmdocument</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
