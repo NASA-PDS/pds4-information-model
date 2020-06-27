@@ -55,7 +55,7 @@ class XML4LabelSchemaDOM extends Object {
 //	write the XML Label
 	public void writeXMLSchemaFiles (SchemaFileDefn lSchemaFileDefn, ArrayList <DOMClass> lInputClassArr) throws java.io.IOException {
 		
-		if (DMDocument.debugFlag) System.out.println("\ndebug writeXMLSchemaFiles - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
+		DMDocument.registerMessage ("0>info " + "writeXMLSchemaFiles - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
 
 		// get the classes
 		classHierMap = getPDS4ClassesForSchema (lSchemaFileDefn, lInputClassArr);
@@ -130,11 +130,10 @@ class XML4LabelSchemaDOM extends Object {
 		}
 				
 //		Write the classes
-		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles - Write Classes - classHierMap.size():" + classHierMap.size());
+		DMDocument.registerMessage ("0>info " + "writeXMLSchemaFiles - Write Classes - classHierMap.size():" + classHierMap.size());
 		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (classHierMap.values());
 		for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-//			if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFiles - Write Class - lClass.identifier:" + lClass.identifier);
 			
 			// skip the subclasses of Science_Facets
 			if (lClass.title.compareTo("Discipline_Facets") == 0) continue;
@@ -238,7 +237,6 @@ class XML4LabelSchemaDOM extends Object {
 				}
 			}
 		}
-//		System.out.println("\ndebug getPDS4ClassesForSchema classCount:" + classCount);
 		return lClassMap;
 	}
 	
@@ -271,8 +269,8 @@ class XML4LabelSchemaDOM extends Object {
 		}
 		prXML.println("  <" + pNS + "schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"");
 		
-		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFileHeader - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
-		if (DMDocument.debugFlag) System.out.println("debug writeXMLSchemaFileHeader - DMDocument.masterNameSpaceIdNCLC:" + DMDocument.masterNameSpaceIdNCLC);
+		DMDocument.registerMessage ("0>info " + "writeXMLSchemaFileHeader - lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+		DMDocument.registerMessage ("0>info " + "writeXMLSchemaFileHeader - DMDocument.masterNameSpaceIdNCLC:" + DMDocument.masterNameSpaceIdNCLC);
 		
 		// write namespace statements
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
@@ -312,7 +310,7 @@ class XML4LabelSchemaDOM extends Object {
 						} else {
 							lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 							lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
-			    			System.out.println(">>warning  - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+							DMDocument.registerMessage ("1>warning " + "config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
 						}
 					}
 					prXML.println("    xmlns:" + lNameSpaceIdNC + "=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\"");
@@ -516,7 +514,6 @@ class XML4LabelSchemaDOM extends Object {
 		String lValueType = lAttr.valueType;
 		if (lValueType == null) {
 			lValueType = "ASCII_Short_String_Collapsed";
-//			System.out.println("debug writeClassAttribute - FOUND NULL ValueType - lAttr.identifier:" + lAttr.identifier);
 		}
 			
 		// convert the max cardinality for XML Schema
@@ -629,7 +626,6 @@ class XML4LabelSchemaDOM extends Object {
 	}
 	
 	public void writeVectorUnitAttribute (DOMClass lClass, PrintWriter prXML) throws java.io.IOException {		
-//		System.out.println("\ndebug writeVectorUnitAttribute");
 
 		if (lClass.title.compareTo("Vector_Cartesian_3") == 0) {
 			prXML.println(indentSpaces() + "<" + pNS + "attribute name=\"unit\" type=\"pds:ASCII_Short_String_Collapsed\" use=\"required\" />");			

@@ -240,7 +240,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 			if (lOldStr != null)
 				lDomStrArr.add(lOldStr);
 			else
-				System.out.println(">>error    - InitStringArr - Null DomStr");
+				DMDocument.registerMessage ("1>error " + "InitStringArr - Null DomStr");
 		}
 	}
 	
@@ -521,7 +521,6 @@ public class DOMAttr extends ISOClassOAIS11179 {
 				domPermValueArr.add(lDOMProp);
 				String lClassOrderString = lClassOrder.toString();
 				lDOMProp.classOrder = lClassOrderString;
-//				System.out.println("debug sortPermissibleValues  lDOMAttr.identifier:" + identifier + " - " + "lDOMPermVal.value:" + lDOMPermVal.value + " - " + "lDOMProp.classOrder:" + lDOMProp.classOrder);		
 			}
 			lClassOrder += 10;
 		}

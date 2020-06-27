@@ -115,7 +115,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 			cardMin = lCardMin;
 			cardMinI = new Integer(lCardMin);
 		} else {
-			System.out.println(">>error    - DomProp " + " - Minimum cardinality is invalid: " + lCardMin);
+			DMDocument.registerMessage ("1>error " + "DomProp " + " - Minimum cardinality is invalid: " + lCardMin);
 		}
 		if ((lCardMax.compareTo("*") == 0) || (lCardMax.compareTo("unbounded") == 0)) {
 			cardMax = "*";
@@ -124,10 +124,10 @@ public class DOMProp extends ISOClassOAIS11179 {
 			cardMax = lCardMax;
 			cardMaxI = new Integer(lCardMax);
 		} else {
-			System.out.println(">>error    - DomProp " + " - Maximum cardinality is invalid: " + lCardMax);
+			DMDocument.registerMessage ("1>error " + "DomProp " + " - Maximum cardinality is invalid: " + lCardMax);
 		}
 		if (cardMaxI < cardMinI) {
-			System.out.println(">>error    - DomProp " + " - Maximum cardinality is less than minimum cardinality");
+			DMDocument.registerMessage ("1>error " + "DomProp " + " - Maximum cardinality is less than minimum cardinality");
 		}
 	}
 	

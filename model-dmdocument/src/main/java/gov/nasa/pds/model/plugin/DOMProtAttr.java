@@ -160,7 +160,7 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 			if (lOldStr != null)
 				lDomStrArr.add(lOldStr);
 			else
-				System.out.println(">>error    - InitStringArr - Null DomStr");
+				DMDocument.registerMessage ("1>error " + "InitStringArr - Null DomStr");
 		}
 	}
 	
@@ -195,8 +195,8 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
 					lDomPropComp.domComp = lClassMember;
 					lDomPropCompArr.add(lDomPropComp);
 				} else {
-					System.out.println(">>error   - Could not find the class referenced in an association - identifier:" + this.identifier + "   Class:" + lClassTitle);
-					System.out.println(">>error   - Could not find the class referenced in an association - identifier:" + this.identifier + "   lClassMemberIdentifier:" + lClassMemberIdentifier);
+					DMDocument.registerMessage ("1>error " + "Could not find the class referenced in an association - identifier:" + this.identifier + "   Class:" + lClassTitle);
+					DMDocument.registerMessage ("1>error " + "Could not find the class referenced in an association - identifier:" + this.identifier + "   lClassMemberIdentifier:" + lClassMemberIdentifier);
 				}
 			}
 		}

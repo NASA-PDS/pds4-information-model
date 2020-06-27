@@ -78,7 +78,7 @@ public class GetDOMModel extends Object {
 			if (! DOMInfoModel.masterDOMClassMap.containsKey(lClass.rdfIdentifier)) {
 				DOMInfoModel.masterDOMClassMap.put(lClass.rdfIdentifier, lClass);
 			} else {
-				System.out.println(">>error    - Duplicate Found - ADDING DOM class lClass.rdfIdentifier:" + lClass.rdfIdentifier);
+				DMDocument.registerMessage ("1>error " + "Duplicate Found - ADDING DOM class lClass.rdfIdentifier:" + lClass.rdfIdentifier);
 			}
 		}
 		
@@ -116,7 +116,7 @@ public class GetDOMModel extends Object {
 							lClass.ownedAttrArr.add(lDOMProp);
 							lDOMProp.attrParentClass = lClass;
 						} else {
-							System.out.println(">>error    - Duplicate Found - ADDING Attribute Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
+							DMDocument.registerMessage ("1>error " + "Duplicate Found - ADDING Attribute Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
 						}
 						
 						// add a single DOMAttr to the Attribute map and the DOMProp
@@ -126,7 +126,7 @@ public class GetDOMModel extends Object {
 							lDOMProp.hasDOMObject = lDOMAttr;
 							lDOMAttr.hasDOMPropInverse = lDOMProp;
 						} else {
-							System.out.println(">>error    - Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
+							DMDocument.registerMessage ("1>error " + "Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:" + lDOMAttr.rdfIdentifier);
 						}
 					}
 					
@@ -144,7 +144,7 @@ public class GetDOMModel extends Object {
 							lClass.ownedAssocArr.add(lDOMProp);
 							lDOMProp.attrParentClass = lClass;
 						} else {
-							System.out.println(">>error    - Duplicate Found - ADDING Class Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
+							DMDocument.registerMessage ("1>error " + "Duplicate Found - ADDING Class Property lDOMProp.rdfIdentifier:" + lDOMProp.rdfIdentifier);
 						}
 						
 						// add DOMClass to the DOMProp
@@ -153,7 +153,7 @@ public class GetDOMModel extends Object {
 							lDOMProp.hasDOMObject = lDOMClass;
 							lDOMClass.hasDOMPropInverse = lDOMProp;
 						} else {
-							System.out.println(">>error    - Class not found - ADDING Class lDOMClass.rdfIdentifier:" + lDOMClass.rdfIdentifier);
+							DMDocument.registerMessage ("1>error " + "Class not found - ADDING Class lDOMClass.rdfIdentifier:" + lDOMClass.rdfIdentifier);
 						}
 					}
 				}
@@ -193,15 +193,15 @@ public class GetDOMModel extends Object {
 		// set up the LDDToolSingletonClass - The following classes need to be defined:USER, Discipline_Area, and Mission_Area
 		if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
 			DMDocument.LDDToolSingletonDOMClass = DOMInfoModel.masterDOMUserClass;
-			System.out.println(">>info    - getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
+			DMDocument.registerMessage ("0>info " + "getMasterObjectDict - Set LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
 		} else {
 			String lClassId = DOMInfoModel.getClassIdentifier (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle);
 			DOMClass lLDDToolSingletonClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
 			if (lLDDToolSingletonClass != null) {
 				DMDocument.LDDToolSingletonDOMClass = lLDDToolSingletonClass;
-				System.out.println(">>info    - getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
+				DMDocument.registerMessage ("0>info " + "getMasterObjectDict - Found LDDToolSingletonClass - DMDocument.LDDToolSingletonDOMClass.title:" + DMDocument.LDDToolSingletonDOMClass.title);
 			} else {
-				System.out.println(">>error   - getMasterObjectDict - Could not find LDDToolSingletonClass - lClassId:" + lClassId);
+				DMDocument.registerMessage ("1>error " + "getMasterObjectDict - Could not find LDDToolSingletonClass - lClassId:" + lClassId);
 			}
 		}
 		
@@ -445,35 +445,42 @@ public class GetDOMModel extends Object {
 		}
 		
 		if (DMDocument.debugFlag) {		
-			System.out.println("\n>>info    - Active Namespace Ids:");
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Active Namespace Ids:");
 			for (Iterator <String> i = lNameSpaceHasMemberArr.iterator(); i.hasNext();) {
 				String lNameSpaceId = (String) i.next();
-				System.out.println(">>info      - namespace_id:" + lNameSpaceId);
+				DMDocument.registerMessage ("0>info " + "     - namespace_id:" + lNameSpaceId);
 			}
 			
-			System.out.println("\n>>info    - Master DOM Structures Initiated");	
-			System.out.println(">>info    - Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
-			System.out.println("\n>>info    - Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
-			System.out.println("\n>>info    - Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
-			System.out.println("\n>>info    - Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
-			System.out.println("\n>>info    - Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
-			System.out.println("\n>>info    - Master Unit Sizes          - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
-			System.out.println(">>info                                 - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
-			System.out.println(" ");
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master DOM Structures Initiated");	
+			DMDocument.registerMessage ("0>info " + "Master Class Map Sizes     - DOMInfoModel.masterDOMClassMap.size():" + DOMInfoModel.masterDOMClassMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMClassIdMap.size():" + DOMInfoModel.masterDOMClassIdMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMClassArr.size():" + DOMInfoModel.masterDOMClassArr.size());
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master Property Map Sizes  - DOMInfoModel.masterDOMPropMap.size():" + DOMInfoModel.masterDOMPropMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMPropIdMap.size():" + DOMInfoModel.masterDOMPropIdMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMPropArr.size():" + DOMInfoModel.masterDOMPropArr.size());		
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master Attribute Map Sizes - DOMInfoModel.masterDOMAttrMap.size():" + DOMInfoModel.masterDOMAttrMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMAttrIdMap.size():" + DOMInfoModel.masterDOMAttrIdMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMAttrArr.size():" + DOMInfoModel.masterDOMAttrArr.size());
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master Rule Map Sizes      - DOMInfoModel.masterDOMRuleMap.size():" + DOMInfoModel.masterDOMRuleMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMRuleIdMap.size():" + DOMInfoModel.masterDOMRuleIdMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMRuleArr.size():" + DOMInfoModel.masterDOMRuleArr.size());
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master Data Type Sizes     - DOMInfoModel.masterDOMDataTypeMap.size():" + DOMInfoModel.masterDOMDataTypeMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMDataTypeTitleMap.size():" + DOMInfoModel.masterDOMDataTypeTitleMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMDataTypeArr.size():" + DOMInfoModel.masterDOMDataTypeArr.size());
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "Master Unit Sizes          - DOMInfoModel.masterDOMUnitMap.size():" + DOMInfoModel.masterDOMUnitMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMUnitTitleMap.size():" + DOMInfoModel.masterDOMUnitTitleMap.size());
+			DMDocument.registerMessage ("0>info " + "                           - DOMInfoModel.masterDOMUnitArr.size():" + DOMInfoModel.masterDOMUnitArr.size());
+			DMDocument.registerMessage ("0>info ");
 		}
 
-		if (DMDocument.debugFlag) System.out.println("debug GetDOMModel Done");	
+		DMDocument.registerMessage ("0>info " + "GetDOMModel Done");	
 	}
 
 /**********************************************************************************************************
