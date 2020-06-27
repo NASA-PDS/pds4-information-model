@@ -77,13 +77,13 @@ class WriteDOMSchematron extends Object {
 							|| lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0 ))) continue;
 			} else if (lSchemaFileDefn.isLDD) {
 				// write an LDD schemtron
-				System.out.println("debug writeSchematronRule - Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+				DMDocument.registerMessage ("2>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
 				if (! (lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
 				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
 						&& lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
 						|| (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0 ))) continue;
 			} else {
-				System.out.println(">>warning - Write Schematron - Invalid governance in SchemaFileDefn  - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier); 			
+				DMDocument.registerMessage ("1>warning " + "Write Schematron - Invalid governance in SchemaFileDefn  - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier); 			
 			}
 //			if (lRule.classNameSpaceNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) lSelectRuleArr.add(lRule);
 			lSelectRuleArr.add(lRule);
@@ -93,7 +93,61 @@ class WriteDOMSchematron extends Object {
 		// write schematron file footer
 		printSchematronFileFtr (prSchematron); 
 	}
+	
+//	write the schematron rules
+	public void writeSchematronRuleSimplified (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap, PrintWriter prSchematron) {
+		// write schematron file header
+		printSchematronFileHdr (lSchemaFileDefn, prSchematron); 
+		printSchematronFileCmt (prSchematron);
+
+		// select out the rules for this namespace
+		ArrayList <DOMRule> lSelectRuleArr = new ArrayList <DOMRule> ();
+
+		DMDocument.registerMessage ("0>info ");
+		DMDocument.registerMessage ("0>info " + "writeSchematronRule");
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.isMaster:" + lSchemaFileDefn.isMaster);
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.isDiscipline:" + lSchemaFileDefn.isDiscipline);
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.isLDD:" + lSchemaFileDefn.isLDD);
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
+		DMDocument.registerMessage ("0>info " + "  lSchemaFileDefn.stewardArr:" + lSchemaFileDefn.stewardArr);
+		DMDocument.registerMessage ("0>info " + "  DMDocument.LDDToolSingletonClassTitle:" + DMDocument.LDDToolSingletonClassTitle);
+
+		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
+		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
+			DOMRule lRule = (DOMRule) i.next();
 			
+			DMDocument.registerMessage ("0>info ");
+			DMDocument.registerMessage ("0>info " + "writeSchematronRule");
+			DMDocument.registerMessage ("0>info " + "  lRule.identifier:" + lRule.identifier);
+			DMDocument.registerMessage ("0>info " + "  lRule.ruleNameSpaceNC:" + lRule.ruleNameSpaceNC);
+			DMDocument.registerMessage ("0>info " + "  lRule.isMissionOnly:" + lRule.isMissionOnly);
+			DMDocument.registerMessage ("0>info " + "  lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
+			DMDocument.registerMessage ("0>info " + "  lRule.classSteward:" + lRule.classSteward);
+			DMDocument.registerMessage ("0>info " + "  lRule.attrNameSpaceNC:" + lRule.attrNameSpaceNC);
+			
+			if (lSchemaFileDefn.isMaster) {
+				if (lRule.isMissionOnly) continue;
+				if (! (lRule.alwaysInclude
+						|| (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.ruleNameSpaceNC) == 0))) continue;
+			} else {
+				// write an LDD schemtron
+				DMDocument.registerMessage ("0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+				DMDocument.registerMessage ("0>info " + "Found LDD - lRule.isMissionOnly:" + lRule.isMissionOnly);
+				if (! (lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
+				DMDocument.registerMessage ("0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
+				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.ruleNameSpaceNC) == 0)
+						|| (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0 ))) continue;
+			}
+//			if (lRule.classNameSpaceNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) lSelectRuleArr.add(lRule);
+			lSelectRuleArr.add(lRule);
+		}		
+		writeSchematronRuleClasses (lSchemaFileDefn, lSelectRuleArr, prSchematron);
+		
+		// write schematron file footer
+		printSchematronFileFtr (prSchematron); 
+	}
+	
 //	find offending rule
 	public void findOffendingRule (String lTitle, ArrayList <DOMRule> lRuleArr) {
 		System.out.println("\ndebug findOffendingRule - " + lTitle);
@@ -232,7 +286,7 @@ class WriteDOMSchematron extends Object {
 					} else {
 						lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 						lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
-		    			System.out.println(">>warning  - config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
+						DMDocument.registerMessage ("1>warning " + "config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
 					}
 				}
 				prSchematron.println("  <sch:ns uri=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");

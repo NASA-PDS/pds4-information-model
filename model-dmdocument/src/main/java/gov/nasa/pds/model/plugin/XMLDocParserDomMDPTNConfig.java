@@ -97,10 +97,10 @@ public class XMLDocParserDomMDPTNConfig extends Object
 		//get the root element
 		Element lRootElem = dom.getDocumentElement();
 		if(lRootElem != null) {
-//			System.out.println(">>info    - " + "Found required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
+			DMDocument.registerMessage ("0>info " + "Found required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
 			getRecord (lRootElem);
 		} else {
-			System.out.println(">>error   - " + "Did not find required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
+			DMDocument.registerMessage ("3>error " + "Did not find required file: " + DMDocument.dataDirPath +  "MDPTNConfigClassDisp.xml");
 		}
 	}
 	
@@ -218,7 +218,7 @@ public class XMLDocParserDomMDPTNConfig extends Object
 				classDispositionMap.put(lNameValue, classDisposition);
 			} else {
 				if (! DMDocument.LDDToolFlag) {
-					System.out.println(">>error   - Duplicate class exists - Class Identifier:" + lNameValue);
+					DMDocument.registerMessage ("1>error " + "Duplicate class exists - Class Identifier:" + lNameValue);
 				}
 			}
 		}

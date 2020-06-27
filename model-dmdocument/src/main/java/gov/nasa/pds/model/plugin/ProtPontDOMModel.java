@@ -135,11 +135,11 @@ class ProtPontDOMModel extends DOMInfoModel{
 					} else if (lClassWDisp.used.compareTo("I") == 0) {
 						// class is "hidden" ignore it and do not print warning
 					} else {	// disposition exists but not clear why, print warning 
-						System.out.println(">>warning - Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
+						DMDocument.registerMessage ("1>warning " + "Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
 					}
 				} else {
 					if (! DMDocument.LDDToolFlag) {
-						System.out.println(">>warning - Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
+						DMDocument.registerMessage ("1>warning " + "Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
 					}
 				}
 				lClass.setIdentifier (classNameSpaceIdNC, className);

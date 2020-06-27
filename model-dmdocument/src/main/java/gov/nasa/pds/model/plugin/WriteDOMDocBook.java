@@ -62,7 +62,7 @@ class WriteDOMDocBook extends Object {
 			// the common and all LDDs that are stacked for this run
 			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterAllSchemaFileSortMap.values());
 		}
-		System.out.println("\n");
+		System.out.println("");
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefnDOM (lSchemaFileDefn.identifier));
@@ -105,14 +105,14 @@ class WriteDOMDocBook extends Object {
 		}
 		
 		// print out the class and attribute counts
-		if (DMDocument.debugFlag) System.out.println("\n>>info    - DD DocBook Class Counts");
+		DMDocument.registerMessage ("0>info " + "DD DocBook Class Counts");
 		Set <String> set9 = classClassificationMap.keySet();
 		Iterator <String> iter9 = set9.iterator();
 		while(iter9.hasNext()) {
 			String lId = (String) iter9.next();
 			ClassClassificationDefnDOM lClassClassificationDefnDOM = classClassificationMap.get(lId);
 			if (lClassClassificationDefnDOM != null ) {
-				if (DMDocument.debugFlag) System.out.println(">>info    - namespace: " + lId + "   size: " + lClassClassificationDefnDOM.classArr.size());
+				DMDocument.registerMessage ("0>info " + " - namespace: " + lId + "   size: " + lClassClassificationDefnDOM.classArr.size());
 				if (lClassClassificationDefnDOM.classArr.size() > 0) {
 					if (! (lId.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
 							|| lId.compareTo("pds.product") == 0 
@@ -129,14 +129,14 @@ class WriteDOMDocBook extends Object {
 			}
 		} 
 		
-		if (DMDocument.debugFlag) System.out.println("\n>>info    - DD DocBook Attribute Counts");
+		DMDocument.registerMessage ("0>info " + "DD DocBook Attribute Counts");
 		Set <String> set92 = classClassificationMap.keySet();
 		Iterator <String> iter92 = set92.iterator();
 		while(iter92.hasNext()) {
 			String lId = (String) iter92.next();
 			AttrClassificationDefnDOM lAttrClassificationDefnDOM = attrClassificationMap.get(lId);
 			if (lAttrClassificationDefnDOM != null )
-				if (DMDocument.debugFlag) System.out.println(">>info    - namespace: " + lId + "   size: " + lAttrClassificationDefnDOM.attrArr.size());
+				DMDocument.registerMessage ("0>info " + " - namespace: " + lId + "   size: " + lAttrClassificationDefnDOM.attrArr.size());
 		}
 		return;
 	}

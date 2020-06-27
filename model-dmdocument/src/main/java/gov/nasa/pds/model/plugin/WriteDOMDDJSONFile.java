@@ -134,7 +134,6 @@ class WriteDOMDDJSONFile extends Object{
 			}
 		}
 		
-//		System.out.println("debug writeJSONFile lSelectedClassArr.size():" + lSelectedClassArr.size());
 		if (lSelectedClassArr.size() > 0) {
 			prDDPins.println("      " + formValue("classDictionary") + ": [");
 			printClass (lSelectedClassArr, prDDPins);
@@ -151,7 +150,6 @@ class WriteDOMDDJSONFile extends Object{
 				lSelectedAttrArr.add(lSelectedAttr);
 			}
 		}
-//		System.out.println("debug writeJSONFile lSelectedAttrArr.size():" + lSelectedAttrArr.size());
 		if (lSelectedAttrArr.size() > 0) {
 			prDDPins.println("    , " + formValue("attributeDictionary") + ": [");
 			printAttr (lSelectedAttrArr, prDDPins);
@@ -166,7 +164,6 @@ class WriteDOMDDJSONFile extends Object{
 				lSelectedDataTypeArr.add(lSelectedDataType);
 			}
 		}
-//		System.out.println("debug writeJSONFile lSelectedDataTypeArr.size():" + lSelectedDataTypeArr.size());
 		if (lSelectedDataTypeArr.size() > 0) {
 			prDDPins.println("    , " + formValue("dataTypeDictionary") + ": [");
 			printDataType (lSelectedDataTypeArr, prDDPins);
@@ -181,7 +178,6 @@ class WriteDOMDDJSONFile extends Object{
 				lSelectedUnitArr.add(lSelectedUnit);
 			}
 		}
-//		System.out.println("debug writeJSONFile lSelectedUnitArr.size():" + lSelectedUnitArr.size());
 		if (lSelectedUnitArr.size() > 0) {
 			prDDPins.println("    , " + formValue("unitDictionary") + ": [");
 			printUnits (lSelectedUnitArr, prDDPins);
@@ -196,7 +192,6 @@ class WriteDOMDDJSONFile extends Object{
 				lSelectedPropMapArr.add(lSelectedPropMap);
 			}
 		}
-//		System.out.println("debug writeJSONFile lSelectedPropMapArr.size():" + lSelectedPropMapArr.size());
 		if (lSelectedPropMapArr.size() > 0) {
 			prDDPins.println("    , " + formValue("PropertyMapDictionary") + ": [");
 			printPropertyMaps (lSelectedPropMapArr, prDDPins);
@@ -255,7 +250,7 @@ class WriteDOMDDJSONFile extends Object{
 					lDOMPropGroup.domObjectArr.add(lDOMObject);
 				}
 			} else {
-				System.out.println(">>error    - WriteDOMDDJSONFile - Failed to find DOMObject - lDOMProp.identifier: " + lDOMProp.identifier);
+				DMDocument.registerMessage ("1>error " + "WriteDOMDDJSONFile - Failed to find DOMObject - lDOMProp.identifier: " + lDOMProp.identifier);
 			}
 		}
 		ArrayList <DOMPropGroup> lDOMPropGroupArr = new ArrayList <DOMPropGroup> (lDOMPropGroupMap.values());	

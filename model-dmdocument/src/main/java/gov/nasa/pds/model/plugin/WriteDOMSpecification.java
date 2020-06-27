@@ -547,15 +547,14 @@ public class WriteDOMSpecification extends Object {
 								lAnchorString = lClass.anchorString;	
 							} else {
 								// error
-								System.out.println(">>error   - printTableRow2 - Component Class is missing - lClassId:" + lClassId);							
+								DMDocument.registerMessage ("1>error " + "printTableRow2 - Component Class is missing - lClassId:" + lClassId);							
 							}
 					   } else {
 							lAnchorString = ("value_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_" + lProp.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value).toLowerCase();				
 					   }		            
 					String lValue = replaceString (value, "μ", "&mu;");
-					phvalue = "<a href=\"#" + lAnchorString + "\">" + lValue + "</a>";
-			//		System.out.println("anchor string = "+ phvalue);				    
-				   }else {
+					phvalue = "<a href=\"#" + lAnchorString + "\">" + lValue + "</a>";		    
+				   } else {
 	            	phvalue = "&nbsp;";
 	              }
 				}

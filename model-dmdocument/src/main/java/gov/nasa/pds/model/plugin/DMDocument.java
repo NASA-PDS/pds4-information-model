@@ -260,6 +260,15 @@ public class DMDocument extends Object {
 	// debug flag	
 	static boolean debugFlag = false;
 	
+	// info, warning, and error messages
+	static int msgOrder = 100000;
+	static ArrayList <DOMMsgDefn> mainMsgArr = new ArrayList <DOMMsgDefn> ();
+	static DOMMsgDefn masterDOMMsgDefn = new DOMMsgDefn ();
+	static TreeMap <String, Integer> messageLevelCountMap = new TreeMap <String, Integer> ();
+	static Integer lMessageWarningCount = 0;
+	static Integer lMessageErrorCount = 0;
+	static Integer lMessageFatalErrorCount = 0;
+	
 	// Property List for Config.Properties
 	static Properties props = new Properties();
 	
@@ -288,6 +297,33 @@ public class DMDocument extends Object {
 		alternateIMVersionArr.add ("1C00");
 		alternateIMVersionArr.add ("1B10");
 		alternateIMVersionArr.add ("1B00");
+		
+		//	message handling
+		DOMMsgDefn.init();
+		
+		// message level counts
+		Integer msgCount0info = 0;
+		Integer msgCount0warning = 0;
+		Integer msgCount0error = 0;
+		Integer msgCount1info = 0;
+		Integer msgCount1warning = 0;
+		Integer msgCount1error = 0;
+		Integer msgCount2info = 0;
+		Integer msgCount2warning = 0;
+		Integer msgCount2error = 0;
+		Integer msgCount3error = 0;
+		Integer msgCount4error = 0;
+		messageLevelCountMap.put("0>info", msgCount0info);
+		messageLevelCountMap.put("0>warning", msgCount0warning);
+		messageLevelCountMap.put("0>error", msgCount0error);
+		messageLevelCountMap.put("1>info", msgCount1info);
+		messageLevelCountMap.put("1>warning", msgCount1warning);
+		messageLevelCountMap.put("1>error", msgCount1error);
+		messageLevelCountMap.put("2>info", msgCount2info);
+		messageLevelCountMap.put("2>warning", msgCount2warning);
+		messageLevelCountMap.put("2>error", msgCount2error);
+		messageLevelCountMap.put("3>error", msgCount3error);
+		messageLevelCountMap.put("4>error", msgCount4error);
 		
 		// get dates
 		rTodaysDate = new Date();
@@ -366,8 +402,8 @@ public class DMDocument extends Object {
 		
 		// if this is an LDDTool run then alternate path is allowed (option "A")
 		if (LDDToolFlag && alternateIMVersionFlag) dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
-		if (debugFlag) System.out.println("debug DMDocument - alternateIMVersion - USING dataDirPath:" + dataDirPath);
-		if (debugFlag) System.out.println("debug DMDocument - alternateIMVersion - alternateIMVersionArr:" + alternateIMVersionArr);
+		registerMessage ("0>info DMDocument - alternateIMVersion - USING dataDirPath:" + dataDirPath);
+		registerMessage ("0>info DMDocument - alternateIMVersion - alternateIMVersionArr:" + alternateIMVersionArr);
 
 		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
 		// "props" are used again below in setupNameSpaceInfoAll)
@@ -421,10 +457,10 @@ public class DMDocument extends Object {
     	    reader.close();
     	} catch (FileNotFoundException ex) {
     	    // file does not exist
-    		System.out.println(">>error    - Configuration file does not exist. [config.properties]");
+    		registerMessage ("3>error Configuration file does not exist. [config.properties]");
     	} catch (IOException ex) {
     	    // I/O error
-    		System.out.println(">>error    - Configuration file IO Exception. [config.properties]");
+    		registerMessage ("3>error Configuration file IO Exception. [config.properties]");
     	}
 		
 		// get the command line arguments - these are the secondary options
@@ -481,33 +517,30 @@ public class DMDocument extends Object {
 		
 		// output the context info
 		if (! LDDToolFlag) {
-			System.out.println(">>info    - DMDoc Version: " + DMDocVersionId);
-			System.out.println(">>info    - IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);	
-			System.out.println(">>info    - IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
-			System.out.println(">>info    - IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
+			registerMessage ("1>info DMDoc Version: " + DMDocVersionId);
+			registerMessage ("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);	
+			registerMessage ("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
+			registerMessage ("1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
 		} else {
-			System.out.println(">>info    - LDDTOOL Version: " + LDDToolVersionId);
-			System.out.println(">>info    - IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
-			System.out.println(">>info    - IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
-			System.out.println(">>info    - IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
+			registerMessage ("1>info LDDTOOL Version: " + LDDToolVersionId);
+			registerMessage ("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
+			registerMessage ("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);	
+			registerMessage ("1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);	
 		}	
 		
-		System.out.println(">>info    - Date: " + sTodaysDate);
-		System.out.println(">>info    - JAVAHOME: " + lJAVAHOME);
-		System.out.println(">>info    - PARENT_DIR: " + lPARENT_DIR);
-		System.out.println(">>info    - SCRIPT_DIR: " + lSCRIPT_DIR);
-		System.out.println(">>info    - LIB_DIR: " + lLIB_DIR);
-		System.out.println("");
+		registerMessage ("1>info Date: " + sTodaysDate);
+		registerMessage ("1>info JAVAHOME: " + lJAVAHOME);
+		registerMessage ("1>info PARENT_DIR: " + lPARENT_DIR);
+		registerMessage ("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
+		registerMessage ("1>info LIB_DIR: " + lLIB_DIR);
 		
 		// print out the stewards - namespaceid pairs
 		if (DMDocument.debugFlag) {
-			System.out.println(" ");
-			System.out.println(">>info    - Disposition File Steward/NameSpaceId:");
+			registerMessage ("0>info Disposition File Steward/NameSpaceId:");
 			for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
 				String lStewardNameSpaceId = (String) i.next();
-				System.out.println(">>info    - " + lStewardNameSpaceId);
+				registerMessage ("0>info " + lStewardNameSpaceId);
 			}
-			System.out.println(" " );
 		}
 		
 		// set the deprecated flags
@@ -541,8 +574,8 @@ public class DMDocument extends Object {
 			ExportModels lExportModels = new ExportModels ();
 			lExportModels.writeAllArtifacts (exportDOMFlag, exportMOFFlag);
 		}
-		if (debugFlag) System.out.println (">>info    - Next UID: " + DOMInfoModel.getNextUId());
-		System.out.println(">>info    - Exit");
+		registerMessage ("0>info Next UID: " + DOMInfoModel.getNextUId());
+		printErrorMessages();
 	}
 	
 /**********************************************************************************************************
@@ -554,29 +587,29 @@ public class DMDocument extends Object {
 
     	lJAVAHOME = env.get("JAVA_HOME");
     	if (lJAVAHOME == null) {
-    		System.out.println(">>error    - Environment variable JAVA_HOME is null");
-			System.exit(1);
+    		registerMessage ("3>error Environment variable JAVA_HOME is null");
+			printErrorMessages();
     	}
     	lJAVAHOME =  replaceString (lJAVAHOME, "\\", "/");
     	
     	lPARENT_DIR = env.get("PARENT_DIR");
     	if (lPARENT_DIR == null) {
-    		System.out.println(">>error    - Environment variable PARENT_DIR is null");
-			System.exit(1);
+    		registerMessage ("3>error Environment variable PARENT_DIR is null");
+			printErrorMessages();
     	}
     	lPARENT_DIR =  replaceString (lPARENT_DIR, "\\", "/");
     	
     	lSCRIPT_DIR = env.get("SCRIPT_DIR");
     	if (lSCRIPT_DIR == null) {
-    		System.out.println(">>error    - Environment variable SCRIPT_DIR is null");
-			System.exit(1);
+    		registerMessage ("3>error Environment variable SCRIPT_DIR is null");
+			printErrorMessages();
     	}
     	lSCRIPT_DIR =  replaceString (lSCRIPT_DIR, "\\", "/");
     	
     	lLIB_DIR = env.get("LIB_DIR");
     	if (lLIB_DIR== null) {
-    		System.out.println(">>error    - Environment variable LIB_DIR is null");
-			System.exit(1);
+    		registerMessage ("3>error Environment variable LIB_DIR is null");
+			printErrorMessages();
     	}
     	lLIB_DIR =  replaceString (lLIB_DIR, "\\", "/");	
 	}
@@ -595,20 +628,20 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('h') > -1) {
 					printHelp();
-					System.exit(0);
+					printErrorMessages();
 				}
 				if (LDDToolFlag) {
 					int begind = lArg.indexOf("A");
 					if (begind > -1) {
 						String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
-						System.out.println(">>info    - " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
+						registerMessage ("1>info " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
 						if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
 							alternateIMVersion = tAlternateIMVersion;
 							alternateIMVersionFlag = true;
-							System.out.println(">>info    - " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
+							registerMessage ("1>info " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
 						} else {
-							System.out.println(">>error   - " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
-							System.exit(0);
+							registerMessage ("3>error " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
+							printErrorMessages();
 						}
 					}
 				}
@@ -623,7 +656,7 @@ public class DMDocument extends Object {
 			if (lArg.indexOf('-') == 0) {
 				String lFlag = lArg;
 				if (lArg.indexOf("map") > -1) {
-					System.out.println("Tool processing");
+					registerMessage ("1>info Tool processing");
 					LDDToolFlag = false;
 					mapToolFlag = true;
 					PDSOptionalFlag = true;
@@ -633,9 +666,8 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('M') > -1) {
 					LDDToolMissionFlag = true;
-					System.err.println(" ");
-					System.err.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
-					System.out.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+//					System.err.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+					registerMessage ("1>warning " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 				}
 				if (lArg.indexOf('m') > -1) {
 					PDS4MergeFlag = true;
@@ -657,7 +689,7 @@ public class DMDocument extends Object {
 					System.out.println("Build Date: " + buildDate);
 					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
-					System.exit(0);
+					printErrorMessages();
 				}
 				if (lArg.indexOf('D') > -1) {
 					exportDDFileFlag = true;
@@ -683,12 +715,10 @@ public class DMDocument extends Object {
 						String temFileName = args[aind];                                	                                		
 						if (((temFileName.endsWith(".csv")) || (temFileName.endsWith(".CSV"))) && (temFileName.startsWith("PDS4_"))) {
 							if ( ! checkFileName (args[aind])) {
-								System.out.println(" ");
-								System.out.println(">>ERROR: " + "Input file not found: " + temFileName); 
+								registerMessage ("1>error " + "Input file not found: " + temFileName); 
 							}
 						} else {
-							System.out.println(" ");
-							System.out.println(">>ERROR: " + "Input file name prefix is \"PDS4_\" and suffix is \".CSV\" " + temFileName); 
+							registerMessage ("1>error " + "Input file name prefix is \"PDS4_\" and suffix is \".CSV\" " + temFileName); 
 						}
 						propertyMapFileName.add(temFileName); // accept only valid files
 						aind++; 
@@ -707,9 +737,9 @@ public class DMDocument extends Object {
 		}
 		// validate the input arguments
 		if (! PDSOptionalFlag) {
-			System.out.println(">>error   - " + "The -p option must be used for PDS4 processing");
+			registerMessage ("3>error " + "The -p option must be used for PDS4 processing");
 			printHelp();
-			System.exit(1);
+			printErrorMessages();
 		}
 	}
 
@@ -725,9 +755,9 @@ public class DMDocument extends Object {
 		if (firstSlashInd == 0) isFullPath = true;
 		int lastSlashInd = lSourceFileSpec.lastIndexOf("/");
 		if ((!isFullPath) && lastSlashInd > 0) {
-			System.out.println(">>error   - " + "Input filename is invalid: " + lSchemaFileDefn.sourceFileName + " - filename[.xml] or fullpath allowed");
+			registerMessage ("3>error " + "Input filename is invalid: " + lSchemaFileDefn.sourceFileName + " - filename[.xml] or fullpath allowed");
 			printHelp();
-			System.exit(1);
+			printErrorMessages();
 		}
 		
 		String lSourceFileNameNE = lSourceFileSpec;
@@ -751,23 +781,22 @@ public class DMDocument extends Object {
 			if (! checkFileName (lSchemaFileDefn.LDDToolInputFileName)) {
 				lSchemaFileDefn.LDDToolInputFileName = lSchemaFileDefn.LDDToolInputFileName.toUpperCase();
 				if (! checkFileName (lSchemaFileDefn.LDDToolInputFileName)) {
-					System.out.println(" ");
-					System.out.println(">>error   - " + "Input file not found: " + lSchemaFileDefn.sourceFileName);
+					registerMessage ("3>error " + "Input file not found: " + lSchemaFileDefn.sourceFileName);
 					printHelp();
-					System.exit(1);
+					printErrorMessages();
 				}
 			}
 		}
-//		System.out.println(">>info    - Input File Name Checked: " + lSchemaFileDefn.LDDToolInputFileName);
+//		registerMessage ("1>info Input File Name Checked: " + lSchemaFileDefn.LDDToolInputFileName);
 	}
 	
 	static public boolean checkFileName (String inputFileName) {
 		File file=new File (inputFileName);
 		if (file.exists() && (file.isFile())) {
-			if (debugFlag) System.out.println (">>info    - Found input file: " + inputFileName);
+			registerMessage ("0>info Found input file: " + inputFileName);
 			return true;
 		}
-		System.out.println(">>error   - " + "Input file not found: " + inputFileName);
+		registerMessage ("1>error " + "Input file not found: " + inputFileName);
 		return false;
 	}	
 		
@@ -836,35 +865,35 @@ public class DMDocument extends Object {
 		File file=new File (dataDirPath + "MDPTNConfigClassDisp.xml");
 		boolean isFound = file.exists();
 		if (!isFound) {
-			  System.out.println(">>error   - " + "Required data file was not found: " + dataDirPath + "MDPTNConfigClassDisp.xml");
-			  System.exit(1);
+			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "MDPTNConfigClassDisp.xml");
+			  printErrorMessages();
 		}
 		file=new File (dataDirPath + "UpperModel.pont");
 		isFound = file.exists();
 		if (!isFound) {
-			  System.out.println(">>error   - " + "Required data file was not found: " + dataDirPath + "UpperModel.pont");
-			  System.exit(1);
+			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "UpperModel.pont");
+			  printErrorMessages();
 		}
 		
 		file=new File (dataDirPath + "dd11179.pins");
 		isFound = file.exists();
 		if (!isFound) {
-			  System.out.println(">>error   - " + "Required data file was not found: " + dataDirPath + "dd11179.pins");
-			  System.exit(1);
+			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "dd11179.pins");
+			  printErrorMessages();
 		}
 		
 		file=new File (dataDirPath + "Glossary.pins");
 		isFound = file.exists();
 		if (!isFound) {
-			  System.out.println(">>error   - " + "Required data file was not found: " + dataDirPath + "Glossary.pins");
-			  System.exit(1);
+			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "Glossary.pins");
+			  printErrorMessages();
 		}
 		
 		file=new File (dataDirPath + "DMDocument.pins");
 		isFound = file.exists();
 		if (!isFound) {
-			  System.out.println(">>error   - " + "Required data file was not found: " + dataDirPath + "DMDocument.pins");
-			  System.exit(1);
+			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "DMDocument.pins");
+			  printErrorMessages();
 		}
 	}
 
@@ -874,7 +903,7 @@ public class DMDocument extends Object {
 		String IDENTIFIER = ".identifier";
 		
 //		System.out.println(" ");
-//		System.out.println(">>info    - config.properties:");
+//		registerMessage ("1>info config.properties:");
 		
         Set<Object> keys = prop.keySet();	
         for (Object k:keys) {
@@ -882,7 +911,7 @@ public class DMDocument extends Object {
         	// look for schema entries
         	if (key.startsWith(SCHEMA_LITERAL) && key.endsWith(IDENTIFIER)) {
         		String nameSpaceId = prop.getProperty(key);
-//        		System.out.println(">>info    - namespace_id:"+ nameSpaceId);
+//        		registerMessage ("1>info namespace_id:"+ nameSpaceId);
         		lSchemaFileDefn = new SchemaFileDefn(nameSpaceId);
         		String isMasterKey = SCHEMA_LITERAL+nameSpaceId + ".isMaster";
         	    String value = prop.getProperty(isMasterKey);
@@ -891,7 +920,7 @@ public class DMDocument extends Object {
         				lSchemaFileDefn.setDictionaryType ("Common");
         			}
         		} else{
-        			System.out.println("Missing schema config item: "+ isMasterKey);
+        			registerMessage ("3>error Missing schema config item: "+ isMasterKey);
         		}
         		String versionIdKey = SCHEMA_LITERAL+nameSpaceId + ".versionId";
         	
@@ -901,7 +930,7 @@ public class DMDocument extends Object {
         		} else if (lSchemaFileDefn.isMaster) {
                                 lSchemaFileDefn.versionId = infoModelVersionId;
         		} else {
-        			System.out.println("Missing schema config item: "+ versionIdKey);
+        			registerMessage ("3>error Missing schema config item: "+ versionIdKey);
         		}
         		String labelVersionIdKey = SCHEMA_LITERAL+nameSpaceId + ".labelVersionId";
         	    value = prop.getProperty(labelVersionIdKey);
@@ -910,7 +939,7 @@ public class DMDocument extends Object {
         		} else if (lSchemaFileDefn.isMaster) {
                                 lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
         		} else{
-        			System.out.println("Missing schema config item: "+ labelVersionIdKey);
+        			registerMessage ("3>error Missing schema config item: "+ labelVersionIdKey);
         		}
            		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
@@ -936,7 +965,7 @@ public class DMDocument extends Object {
         			   lSchemaFileDefn.stewardArr.add(stewardArray[i]);
         		   }       	
         		} else{
-        			System.out.println("Missing schema config item: "+ stewardArrKey);
+        			registerMessage ("3>error Missing schema config item: "+ stewardArrKey);
         		}
 //        		lSchemaFileDefn.setVersionIds();
         		
@@ -1032,7 +1061,7 @@ public class DMDocument extends Object {
     			lSchemaFileDefn2.setVersionIds();
     		}
     		
-    		if (printNamespaceFlag || debugFlag) System.out.println(">>info    - Configured NameSpaceIds:" + lNamespaceIdArr);
+    		if (printNamespaceFlag || debugFlag) registerMessage ("1>info Configured NameSpaceIds:" + lNamespaceIdArr);
  		
     		// update to masterSchemaFileSortMap to process and write the target LDD
     		if (DMDocument.LDDToolFlag) {	
@@ -1426,6 +1455,7 @@ public class DMDocument extends Object {
 		// the set of classes and attributes that will be externalized (defined as xs:Element)
 		exposedElementArr = new ArrayList <String> ();
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Ingest_LDD");
+//		exposedElementArr.add("0001_NASA_PDS_1.oais.Archival_Information_Package");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_AIP");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Ancillary");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Attribute_Definition");
@@ -1578,5 +1608,69 @@ public class DMDocument extends Object {
 		classVersionId.put("ASCII_MD5_Checksum", "1.1.0.0");
 		classVersionId.put("ASCII_Time", "1.1.0.0");
 		classVersionId.put("ASCII_VID", "1.1.0.0");
+	}
+	
+	static void registerMessage (String lMessage) {
+		DOMMsgDefn lMessageDefn = new DOMMsgDefn (lMessage);
+		mainMsgArr.add (lMessageDefn);
+//		System.out.println ("");
+//		System.out.println ("debug  registerMessage  lMessage:" + lMessage);
+//		System.out.println ("debug  registerMessage  lMessageDefn.msgOrgText:" + lMessageDefn.msgOrgText);
+//		System.out.println ("debug  registerMessage  lMessageDefn.msgCleanText:" + lMessageDefn.msgCleanText);
+		return;
+	}
+	
+	static void printErrorMessages () {
+		String lPreviousGroupTitle = "";
+		System.out.println (" ");
+//		System.out.println (">> -- Processing Messages --");
+		
+		// first sort error messages
+		TreeMap <String, DOMMsgDefn> lMainMsgMap = new TreeMap <String, DOMMsgDefn> ();
+		for (Iterator <DOMMsgDefn> i = mainMsgArr.iterator(); i.hasNext();) {
+			DOMMsgDefn lMainMsg = (DOMMsgDefn) i.next();
+			String lMapID = lMainMsg.msgTypeLevel + "." + lMainMsg.msgOrder.toString();
+			lMainMsgMap.put(lMapID, lMainMsg);		
+//			System.out.println ("debug printErrorMessages lMainMsg.msgTypeLevel:" + lMainMsg.msgTypeLevel + "   lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
+		}
+
+		// using message sorted array, print each message and count message types
+		ArrayList <DOMMsgDefn> lMainMsgArr = new ArrayList <DOMMsgDefn> (lMainMsgMap.values());
+		for (Iterator <DOMMsgDefn> i = lMainMsgArr.iterator(); i.hasNext();) {
+			DOMMsgDefn lMainMsg = (DOMMsgDefn) i.next();
+			Integer lMessageCount = messageLevelCountMap.get(lMainMsg.msgTypeLevel);
+			if (lMessageCount != null) {
+				lMessageCount++;
+				messageLevelCountMap.put(lMainMsg.msgTypeLevel, lMessageCount);
+			}
+			
+			if (lPreviousGroupTitle.compareTo (lMainMsg.msgGroupTitle) != 0) {
+				lPreviousGroupTitle = lMainMsg.msgGroupTitle;
+				System.out.println ("");
+//					System.out.println ("  - " + lMainMsg.msgGroupTitle + " -");
+			}
+			System.out.println (lMainMsg.msgPrefix + " " + lMainMsg.msgCleanText);
+		}
+		
+	// print out the message counts
+		System.out.println ("");
+		System.out.println (" -- LDDTool Execution Summary --");
+		
+		lMessageWarningCount = messageLevelCountMap.get("1>warning");
+		lMessageWarningCount += messageLevelCountMap.get("2>warning");
+		lMessageErrorCount = messageLevelCountMap.get("1>error");
+		lMessageErrorCount += messageLevelCountMap.get("2>error");
+		lMessageFatalErrorCount = messageLevelCountMap.get("3>error");
+		lMessageFatalErrorCount += messageLevelCountMap.get("4>error");
+		
+		System.out.println ("     " + lMessageWarningCount + " warning(s)");
+		System.out.println ("     " + lMessageErrorCount + " error(s)");
+		System.out.println ("     " + lMessageFatalErrorCount + " fatal error(s)");
+		
+		if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+			System.exit(1);
+		} else {
+			System.exit(0);
+		}
 	}
 }

@@ -38,6 +38,7 @@ class ProtPinsDOMModel extends Object {
 	ProtPins protPinsInst;
 // 444	
 	TreeMap <String, DOMRule> testRuleDefnMap = new TreeMap <String, DOMRule> ();
+	TreeMap <String, DOMUseCase> testUseCaseDefnMap = new TreeMap <String, DOMUseCase> ();
 	TreeMap <String, SFGroupFacetDefn> lSFGroupFacetDefnMap;
 	
 	public ProtPinsDOMModel () {
@@ -136,7 +137,7 @@ class ProtPinsDOMModel extends Object {
 		String lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Discipline_Facets", DMDocument.masterNameSpaceIdNCLC, "discipline_name");
 		DOMAttr lDOMAttrDiscipline = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
 		if (lDOMAttrDiscipline == null) {
-			System.out.println("debug getProtPinsModel ERROR Missing discipline_name - lAttrId:" + lAttrId);
+			DMDocument.registerMessage ("1>error " + "Missing discipline_name - lAttrId:" + lAttrId);
 			return;
 		}
 		
@@ -158,7 +159,7 @@ class ProtPinsDOMModel extends Object {
 				lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet1", DMDocument.masterNameSpaceIdNCLC, "facet1");			
 				DOMAttr lDOMAttrFacet1 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
 				if (lDOMAttrFacet1 == null) {
-					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);
+					DMDocument.registerMessage ("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
 					continue;
 				}
 				lDOMAttrFacet1.isEnumerated = true;
@@ -177,7 +178,7 @@ class ProtPinsDOMModel extends Object {
 				lAttrId = DOMInfoModel.getAttrIdentifier (DMDocument.masterNameSpaceIdNCLC, "Group_Facet2", DMDocument.masterNameSpaceIdNCLC, "facet2");			
 				DOMAttr lDOMAttrFacet2 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
 				if (lDOMAttrFacet2 == null) {
-					System.out.println("debug getProtPinsModel ERROR Missing facet2 - lAttrId:" + lAttrId);
+					DMDocument.registerMessage ("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
 					continue;
 				}
 				lDOMAttrFacet2.isEnumerated = true;
@@ -260,17 +261,53 @@ class ProtPinsDOMModel extends Object {
 						ArrayList <String> lValArr = getValueArray ("testValArr", lAssertInst.genSlotMap);
 						if (lValArr != null) lAssertDefn.testValArr = lValArr;
 					} else {
-						System.out.println(">>error   - " + "getRulesPins - Assert Statement Not Found - lAssertId:" + lAssertId);
+						DMDocument.registerMessage ("1>error " + "getRulesPins - Assert Statement Not Found - lAssertId:" + lAssertId);
 					}
 				}
 			}
 		}
 	}	
 	
+/*	public void getUseCasesPins () {
+		// extract all the use instances from the instance dictionary
+		TreeMap <String, InstDefn> UseCaseInstDefnMap = new TreeMap <String, InstDefn> ();	
+		ArrayList <InstDefn> lInstDefnArr = new ArrayList <InstDefn> (protPinsInst.instDict.values());
+		for (Iterator <InstDefn> i = lInstDefnArr.iterator(); i.hasNext();) {
+			InstDefn lInst = (InstDefn) i.next();			
+			if ( ! ((lInst.className.compareTo("UseCase") == 0))) continue;
+			UseCaseInstDefnMap.put(lInst.title, lInst);	
+		}
+		
+		// process the rule instances
+		ArrayList <InstDefn> UseCaseInstDefnArr = new ArrayList <InstDefn> (UseCaseInstDefnMap.values());
+		for (Iterator <InstDefn> i = UseCaseInstDefnArr.iterator(); i.hasNext();) {
+			InstDefn lUseCaseInst = (InstDefn) i.next();
+						
+			HashMap <String, ArrayList<String>> lInstSlotMap = lUseCaseInst.genSlotMap;
+			if (lUseCaseInst.className.compareTo("UseCase") == 0) {
+
+				// first singleton attributes of rule
+				String lIdentifier = getValueSingleton ("identifier", lInstSlotMap);
+				DOMUseCase lUseCase = new DOMUseCase (lIdentifier);
+				lUseCase.setRDFIdentifier ();
+				testUseCaseDefnMap.put(lUseCase.rdfIdentifier, lUseCase);
+				lUseCase.overview = getValueSingleton ("overview", lInstSlotMap);
+				lUseCase.type = getValueSingleton ("type", lInstSlotMap);
+				lUseCase.actors = getValueSingleton ("actors", lInstSlotMap);
+				lUseCase.preconditions = getValueSingleton ("preconditions", lInstSlotMap);
+				lUseCase.successfulOutcome = getValueSingleton ("successfulOutcome", lInstSlotMap);
+				lUseCase.exceptions = getValueSingleton ("exceptions", lInstSlotMap);
+				lUseCase.context = getValueSingleton ("context", lInstSlotMap);
+				lUseCase.steps = getValueSingleton ("steps", lInstSlotMap);
+				lUseCase.trigger = getValueSingleton ("trigger", lInstSlotMap);
+			}
+		}
+	} */
+	
 	private String getValueSingleton (String lKey, HashMap <String, ArrayList<String>> lInstSlotMap) {
 		ArrayList<String> lValArr = lInstSlotMap.get(lKey); 
 		if (lValArr == null || lValArr.isEmpty()) return "TBD_" + lKey;
-		if (lValArr.size() > 1) System.out.println(">>error   - getSingletonValue - ProtPinsModel - lKey:" + lKey);
+		if (lValArr.size() > 1) DMDocument.registerMessage ("1>error " + "getSingletonValue - ProtPinsModel - lKey:" + lKey);
 		return lValArr.get(0);
 	}
 	

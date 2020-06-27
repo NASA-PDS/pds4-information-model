@@ -128,10 +128,10 @@ class WriteMappingFile extends Object{
                 bReader.close();
            } catch (FileNotFoundException ex) {
             // file does not exist
-                System.out.println(">>error    - csv file does not exist.");
+        	   DMDocument.registerMessage ("1>error " + "csv file does not exist.");
            } catch (IOException ex) {
             // I/O error
-                System.out.println(">>error    - input file IO Exception. ");
+        	   DMDocument.registerMessage ("1>error " + "input file IO Exception.");
           } 
 	
 		} // end while

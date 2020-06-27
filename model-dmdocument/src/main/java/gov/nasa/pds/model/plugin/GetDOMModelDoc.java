@@ -85,7 +85,7 @@ public class GetDOMModelDoc extends Object {
 				lobjectid.getProtPinsGlossary(modelId, DMDocument.dataDirPath + lModelInfo.filename);
 			}
 		}
-		if (DMDocument.debugFlag) System.out.println("debug GetDOMModelDoc Done 555");
+		DMDocument.registerMessage ("0>info " + "GetDOMModelDoc Done");
 	}
 	
 /**********************************************************************************************************
