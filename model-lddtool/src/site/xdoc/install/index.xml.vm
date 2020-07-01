@@ -139,11 +139,25 @@ or
         <p>The following command demonstrates how to set the <i>PATH</i> environment variable (in Bourne shell), by appending to its current setting:
         </p>
 
+        <source>
+#   Assuming we are currently in the directory unpacked from the above .zip|.tar:
+% export PATH=${PATH}:`pwd`/bin
+        </source>
+
         <p>In addition, the shell scripts require that the <i>JAVA_HOME</i> environment variable be set to the appropriate location of the Java installation on the local machine. The following command demonstrates how to set the <i>JAVA_HOME</i> environment variable:
         </p>
 
         <source>
 % export JAVA_HOME=/path/to/java/home
+        </source>
+
+        <h4>Shortcut for MacOS:</h4>
+        <p>
+            If you are developing your DD on a MacOS system, it has a helper function that simplifies setting <i>JAVA_HOME</i> for a selected Java environment:
+        </p>
+
+        <source>
+% export JAVA_HOME=$(/usr/libexec/java_home)
         </source>
 
         <p>The system administrator for the local machine may need to be consulted for this location. The path specified should have a <i>bin</i> sub-directory that contains the <i>java</i> executable. This variable may also be defined within the scripts. Edit the scripts (files without the .bat extension) and change the line in the example above to represent the local Java installation.
