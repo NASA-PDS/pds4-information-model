@@ -6,10 +6,14 @@
 
 **Improvements:**
 
+- LDDTool: Improve error messages to clearly designate between FATAL\_ERROR vs ERROR [\#178](https://github.com/NASA-PDS/pds4-information-model/issues/178)
+- LDDTool: Add error counter or flag to enable unsuccessful termination System.exit [\#176](https://github.com/NASA-PDS/pds4-information-model/issues/176)
 - LDDTool: Add capability to generate LDDs based on user-specified IM version [\#88](https://github.com/NASA-PDS/pds4-information-model/issues/88)
+- LDDTool: Enhance software error handling and logging for improved usability [\#87](https://github.com/NASA-PDS/pds4-information-model/issues/87)
 
 **Closed issues:**
 
+- LDDTool: Better handle LDD generation errors through more clear logging [\#86](https://github.com/NASA-PDS/pds4-information-model/issues/86)
 - LDDTool: Cleanup output log messages to use consistent formatting and remove unnecessary messages [\#85](https://github.com/NASA-PDS/pds4-information-model/issues/85)
 
 ## [v11.3.1](https://github.com/NASA-PDS/pds4-information-model/tree/v11.3.1) (2020-05-22)
