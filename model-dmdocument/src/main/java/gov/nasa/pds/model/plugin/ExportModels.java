@@ -212,6 +212,13 @@ public class ExportModels extends Object {
 			DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBook Done");
 		}
 		
+		// write the OWL File
+		if (DMDocument.exportOWLFileFlag) {
+			WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
+			writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF_DOM);
+			DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - OWL File Done");
+		}
+		
 		// get the LDD SchemaFileDefn - should be just one; but the Master must be skipped
 		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
@@ -238,10 +245,7 @@ public class ExportModels extends Object {
 			DMDocument.registerMessage ("0>info " + "writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier + " - Done");
 
 			// write the 11179 JSON file
-//??
-			if (DMDocument.exportJSONFileFlag) {
-//				Write11179DDJSONFile write11179DDJSONFile = new Write11179DDJSONFile ();
-//				write11179DDJSONFile.writeJSONFile (lSchemaFileDefn);
+			if (DMDocument.exportJSONFileFlag || DMDocument.exportJSONFileAllFlag) {
 				WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile ();
 				writeDOMDDJSONFile.writeJSONFile ();
 				DMDocument.registerMessage ("0>info " + "writeAllArtifacts - JSON Done");

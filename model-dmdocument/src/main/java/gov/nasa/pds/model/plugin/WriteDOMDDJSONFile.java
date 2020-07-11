@@ -47,7 +47,8 @@ class WriteDOMDDJSONFile extends Object{
 
 	// write the JSON file
 	public void writeJSONFile () throws java.io.IOException {	
-		// if not LDDTool, then write separate JSON files for "all" and each namespace 
+		// if IMTool, then write separate JSON files for "all", i.e., each namespace
+		// *** modify - only Common should be written; "all" was only used when LDDs were merged into the Common dictionary ***
 		if (! DMDocument.LDDToolFlag) {
 /*			// write one JSON file for all IM content
 			// PDS4_ALL_JSON_1910_DOM
@@ -80,7 +81,11 @@ class WriteDOMDDJSONFile extends Object{
 			String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
 			PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
 			printPDDPHdr(prDDPins);
-			printPDDPBody (DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
+			if (! DMDocument.exportJSONFileAllFlag) {
+				printPDDPBody (DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
+			} else {
+				printPDDPBody ("all", prDDPins);				
+			}
 			printPDDPFtr(prDDPins);
 			prDDPins.close();
 		}
