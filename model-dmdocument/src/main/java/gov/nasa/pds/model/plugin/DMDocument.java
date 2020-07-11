@@ -139,6 +139,7 @@ public class DMDocument extends Object {
 	
 	// import export file flags
 	static boolean exportJSONFileFlag = false;			// LDDTool, set by -J option
+	static boolean exportJSONFileAllFlag = false;		// LDDTool, set by -6 option
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
@@ -324,7 +325,7 @@ public class DMDocument extends Object {
 		messageLevelCountMap.put("2>error", msgCount2error);
 		messageLevelCountMap.put("3>error", msgCount3error);
 		messageLevelCountMap.put("4>error", msgCount4error);
-		
+
 		// get dates
 		rTodaysDate = new Date();
 		sTodaysDate  = rTodaysDate.toString();
@@ -708,6 +709,9 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('5') > -1) {
 					exportOWLFileFlag = true;
+				}
+				if (lArg.indexOf('6') > -1) {
+					exportJSONFileAllFlag = true;
 				}
 				if (lArg.indexOf('f') > -1) {
 					aind++;
@@ -1622,13 +1626,23 @@ public class DMDocument extends Object {
 	
 	static void printErrorMessages () {
 		String lPreviousGroupTitle = "";
-		System.out.println (" ");
+//		System.out.println (" ");
 //		System.out.println (">> -- Processing Messages --");
 		
 		// first sort error messages
 		TreeMap <String, DOMMsgDefn> lMainMsgMap = new TreeMap <String, DOMMsgDefn> ();
 		for (Iterator <DOMMsgDefn> i = mainMsgArr.iterator(); i.hasNext();) {
 			DOMMsgDefn lMainMsg = (DOMMsgDefn) i.next();
+//			System.out.println ("debug printErrorMessages -SORT- lMainMsg.msgOrgText:" + lMainMsg.msgOrgText + "   lMainMsg.msgTypeLevel:" + lMainMsg.msgTypeLevel + "   lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
+//			System.out.println ("debug printErrorMessages -SORT- lMainMsg.msgTypeLevel.substring(0, 2)):" + lMainMsg.msgTypeLevel.substring(0, 2));
+
+			// if debugFlag is false, skip debug messages
+			// 0>info, 0>warning, 0>error
+			if (! debugFlag) {
+				if ((lMainMsg.msgTypeLevel.substring(0, 2)).compareTo("0>") == 0) {
+					continue;
+				}
+			}
 			String lMapID = lMainMsg.msgTypeLevel + "." + lMainMsg.msgOrder.toString();
 			lMainMsgMap.put(lMapID, lMainMsg);		
 //			System.out.println ("debug printErrorMessages lMainMsg.msgTypeLevel:" + lMainMsg.msgTypeLevel + "   lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
