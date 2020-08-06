@@ -129,7 +129,7 @@ public class DMDocument extends Object {
 	                         
 	static String LDDToolVersionId  = "0.0.0";
 	static String buildDate  = "";
-	static String buildIMVersionId = "1.14.0.0";
+	static String buildIMVersionId = "1.15.0.0";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;

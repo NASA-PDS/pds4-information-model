@@ -424,6 +424,10 @@ public class LDDDOMParser extends Object
 //		get the component for the LDD association 
 		resolveComponentsForAssociation (lSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.resolveComponentsForAssociation() Done");
+
+//		scan DD_Rule to determine if any external namespaces are referenced
+		scanRulesForExternalNamespaces (lSchemaFileDefn);
+		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.scanRulesForExternalNamespaces() Done");
 		
 		validateReservedNames();
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.validateReservedNames() Done");
@@ -1337,7 +1341,7 @@ public class LDDDOMParser extends Object
 					
 					} else if (lDOMProp.referenceType.compareTo("parent_of") == 0) {
 						// add the referenced (LDD) class as the parent of (base_of) this (LDD) Class (lClass)
-						DOMClass lDOMParentClass = getLocalOrExtrnParentClass(lDOMClass, lDOMProp);
+						DOMClass lDOMParentClass = getLocalOrExtrnParentClass(lSchemaFileDefn, lDOMClass, lDOMProp);
 						if (lDOMParentClass != null) {
 							lDOMClass.subClassOfTitle = lDOMParentClass.title;
 							lDOMClass.subClassOfIdentifier = lDOMParentClass.identifier;
@@ -1475,7 +1479,7 @@ public class LDDDOMParser extends Object
 	}	
 
 	// return a local or external class for a parent
-	private DOMClass getLocalOrExtrnParentClass (DOMClass lDOMClass, DOMProp lDOMProp) {
+	private DOMClass getLocalOrExtrnParentClass (SchemaFileDefn lSchemaFileDefn, DOMClass lDOMClass, DOMProp lDOMProp) {
 		DOMClass lParentDOMClass;
 		String lLocalIdentifier = lDOMProp.localIdentifier;
 		
@@ -1489,10 +1493,58 @@ public class LDDDOMParser extends Object
 		String lClassIdentifier = DMDocument.registrationAuthorityIdentifierValue + "." + lLocalIdentifier;
 		lParentDOMClass = DOMInfoModel.masterDOMClassIdMap.get(lClassIdentifier);
 		if (lParentDOMClass != null) {
+			// save the namespace to create an import file
+			if ((lParentDOMClass.nameSpaceIdNC.compareTo("pds") != 0) 
+					&& (lParentDOMClass.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) 
+					&& (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lParentDOMClass.nameSpaceIdNC))) {
+						DMDocument.LDDImportNameSpaceIdNCArr.add(lParentDOMClass.nameSpaceIdNC);
+			}
 			return lParentDOMClass;
 		}
 		DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Parent Class");
 		return null;
+	}
+	
+	private void scanRulesForExternalNamespaces (SchemaFileDefn lSchemaFileDefn) {
+		for (Iterator <DOMRule> i = ruleArr.iterator(); i.hasNext();) {
+			DOMRule lDOMRule = (DOMRule) i.next();
+			ArrayList <String> namespaceArr = new ArrayList <String> ();
+			namespaceArr = extractNamespaces(lDOMRule.xpath);
+			for (Iterator <String> j = namespaceArr.iterator(); j.hasNext();) {
+				String lNamespace = (String) j.next();
+				
+				// save the namespace to create an import file
+				if ((lDOMRule.nameSpaceIdNC.compareTo("pds") != 0)
+						&& (lDOMRule.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) 
+						&& (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lNamespace))) {
+							DMDocument.LDDImportNameSpaceIdNCArr.add(lNamespace);		
+				}
+//				System.out.println("debug extractNamespace DMDocument.LDDImportNameSpaceIdNCArr:" + DMDocument.LDDImportNameSpaceIdNCArr);
+			}
+		}
+	}
+	
+	private ArrayList <String> extractNamespaces(String lRuleXpath) {
+//		msn:Mission_Information/msn:mission_phase_name
+		ArrayList <String> namespaceArr = new ArrayList <String> ();
+//		System.out.println("\ndebug extractNamespace lRuleXpath:" + lRuleXpath);
+		
+		int begNamespaceOffset = 0;
+		int endNamespaceOffset = 0;
+		StringBuffer lInBuff = new StringBuffer(lRuleXpath);
+//		StringBuffer lOutBuff = new StringBuffer();
+		int inCnt = 0, inLmt = lInBuff.length();
+		while (inCnt < inLmt) {
+			Character inChar = lInBuff.charAt(inCnt);
+			if (inChar == '/') begNamespaceOffset = inCnt + 1;
+			if (inChar == ':') {
+				endNamespaceOffset = inCnt;
+				String lNamespace = lRuleXpath.substring(begNamespaceOffset, endNamespaceOffset);
+				namespaceArr.add(lNamespace);
+			}
+			inCnt++;
+		}
+		return namespaceArr;
 	}
 	
 	private void validateReservedNames () {
