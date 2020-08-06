@@ -1551,6 +1551,7 @@ public class LDDDOMParser extends Object
 //		System.out.println("\ndebug validateReservedNames");
 		
 		boolean hasAtLeastOneElementDefined = false;
+		int numClasses = 0;
 		// scan LDD class titles and determine if a reserved name has been used.
 		for (Iterator <DOMClass> i = classArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass= (DOMClass) i.next();
@@ -1566,9 +1567,10 @@ public class LDDDOMParser extends Object
 			}
 			
 			if (lDOMClass.isExposed) hasAtLeastOneElementDefined = true;
+			numClasses++;
 		}
 		
-		if (! hasAtLeastOneElementDefined) {
+		if ((! hasAtLeastOneElementDefined) && numClasses > 0) {
 			DMDocument.registerMessage ("2>error Class: " + " - At least one class must be defined as an xs:Element. (<element_flag> set to \"true\")");
 		}
 		
