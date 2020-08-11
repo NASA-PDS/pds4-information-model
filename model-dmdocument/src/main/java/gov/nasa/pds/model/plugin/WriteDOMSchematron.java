@@ -59,7 +59,6 @@ class WriteDOMSchematron extends Object {
 		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
-			
 			if (lSchemaFileDefn.isMaster) {
 				if (lRule.isMissionOnly) continue;
 				if (! (lRule.alwaysInclude
@@ -120,7 +119,7 @@ class WriteDOMSchematron extends Object {
 			DMDocument.registerMessage ("0>info ");
 			DMDocument.registerMessage ("0>info " + "writeSchematronRule");
 			DMDocument.registerMessage ("0>info " + "  lRule.identifier:" + lRule.identifier);
-			DMDocument.registerMessage ("0>info " + "  lRule.ruleNameSpaceNC:" + lRule.ruleNameSpaceNC);
+			DMDocument.registerMessage ("0>info " + "  lRule.nameSpaceIdNC:" + lRule.nameSpaceIdNC);
 			DMDocument.registerMessage ("0>info " + "  lRule.isMissionOnly:" + lRule.isMissionOnly);
 			DMDocument.registerMessage ("0>info " + "  lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
 			DMDocument.registerMessage ("0>info " + "  lRule.classSteward:" + lRule.classSteward);
@@ -129,14 +128,14 @@ class WriteDOMSchematron extends Object {
 			if (lSchemaFileDefn.isMaster) {
 				if (lRule.isMissionOnly) continue;
 				if (! (lRule.alwaysInclude
-						|| (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.ruleNameSpaceNC) == 0))) continue;
+						|| (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0))) continue;
 			} else {
 				// write an LDD schemtron
 				DMDocument.registerMessage ("0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
 				DMDocument.registerMessage ("0>info " + "Found LDD - lRule.isMissionOnly:" + lRule.isMissionOnly);
 				if (! (lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
 				DMDocument.registerMessage ("0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
-				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.ruleNameSpaceNC) == 0)
+				if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0)
 						|| (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0 ))) continue;
 			}
 //			if (lRule.classNameSpaceNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) lSelectRuleArr.add(lRule);

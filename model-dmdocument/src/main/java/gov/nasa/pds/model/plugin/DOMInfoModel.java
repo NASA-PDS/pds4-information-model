@@ -1497,6 +1497,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("\n==========================  Rule  ===================================");
 		prDOMWriter.println("  lRule.rdfIdentifier:" + lRule.rdfIdentifier);
 		prDOMWriter.println("  lRule.identifier:" + lRule.identifier);
+		prDOMWriter.println("  lRule.nameSpaceIdNC:" + lRule.nameSpaceIdNC);
 		prDOMWriter.println("  lRule.type:" + lRule.type);
 		prDOMWriter.println("  lRule.xpath:" + lRule.xpath);
 		prDOMWriter.println("  lRule.roleId:" + lRule.roleId);

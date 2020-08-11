@@ -299,7 +299,6 @@ class GenDOMRules extends Object {
 	}				
 	
 //	add the schematron rules for UnitId deprecation
-// ****************** this has not been tested since no attributes currently use units of measure with deprecated values **************************
 	public void addSchematronRuleDeprecatedUnitId (SchemaFileDefn lSchemaFileDefn) {
 		DeprecatedDefn lObject = null;
 		String roleWarning = " role=\"warning\"";
@@ -310,48 +309,37 @@ class GenDOMRules extends Object {
 			if (! lAttr.isAttribute) continue;
 			if (lAttr.unit_of_measure_type.indexOf("TBD") == 0) continue;
 			
-			// check if any permissible value is deprecated
-			boolean attributeHasDeprecatedValue = false;
+			// write a rule for each deprecated unit value
 			for (Iterator <DeprecatedDefn> j = lUnitIdDeprecatedArr.iterator(); j.hasNext();) {
 				lObject = (DeprecatedDefn) j.next();
-				if (lObject.className.compareTo(lAttr.unit_of_measure_type) == 0) attributeHasDeprecatedValue = true;
+				if (lObject.className.compareTo(lAttr.unit_of_measure_type) == 0) {
+					String lContext = lAttr.classNameSpaceIdNC + ":" + lAttr.parentClassTitle + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
+					String lRuleId = lContext + roleWarning;
+					DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+					if (lRule == null) {
+						lRule = new DOMRule(lRuleId);
+						DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
+						DOMInfoModel.masterDOMRuleArr.add(lRule);
+						lRule.setRDFIdentifier();
+						DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
+						lRule.xpath = lContext;
+						lRule.roleId = roleWarning;
+						lRule.attrTitle = lAttr.title;		
+						lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;		
+						lRule.classTitle = lAttr.parentClassTitle;		
+						lRule.classNameSpaceNC = lAttr.classNameSpaceIdNC;
+						lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
+					}
+					String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
+					DOMAssert lAssert = new DOMAssert (lAttrId);
+					lRule.assertArr.add(lAssert);
+					lAssert.assertStmt = "@unit != '" + lObject.value + "'";	
+					lAssert.assertMsg =  "The unit value " + lObject.value + " is deprecated and should not be used.";
+				}
 			}
-			if (! attributeHasDeprecatedValue) continue;
-			
-//			  <sch:pattern>
-//			    <sch:rule context="pds:Array/pds:offset" role="warning">
-//			      <sch:assert test="@unit = ('byte')">
-//			        byte is deprecated and should not be used.</sch:assert>
-//			    </sch:rule>
-//			  </sch:pattern>			
-					
-//			String lRuleId = lObject.context + roleWarning;
-			String lContext = lAttr.classNameSpaceIdNC + ":" + lAttr.parentClassTitle + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
-			String lRuleId = lContext + roleWarning;
-			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
-			if (lRule == null) {
-				lRule = new DOMRule(lRuleId);
-				DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
-				DOMInfoModel.masterDOMRuleArr.add(lRule);
-				lRule.setRDFIdentifier();
-				DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
-				lRule.xpath = lContext;
-				lRule.roleId = roleWarning;
-				lRule.attrTitle = lAttr.title;		
-				lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;		
-				lRule.classTitle = lAttr.parentClassTitle;		
-				lRule.classNameSpaceNC = lAttr.classNameSpaceIdNC;
-				lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
-
-			}
-			String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
-			DOMAssert lAssert = new DOMAssert (lAttrId);
-			lRule.assertArr.add(lAssert);
-			lAssert.assertStmt = "false()";	
-			lAssert.assertMsg =  lObject.context + " is deprecated and should not be used.";
 		} 
-	}				
-		
+	}								
+	
 //	add the Discipline schematron rules
 	public void addSchematronRuleDisciplineFacets (SchemaFileDefn lSchemaFileDefn, TreeMap <String, SFDisciplineFacetDefn> lDisciplineFacetMap) {
 		// add attribute enumerated values assertions
