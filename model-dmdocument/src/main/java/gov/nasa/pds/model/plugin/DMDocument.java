@@ -577,6 +577,15 @@ public class DMDocument extends Object {
 		}
 		registerMessage ("0>info Next UID: " + DOMInfoModel.getNextUId());
 		printErrorMessages();
+		
+		if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+			System.out.println("");
+			System.out.println(">>  INFO Exit(1)");
+			System.exit(1);
+		}
+		System.out.println("");
+		System.out.println(">>  INFO Exit(0)");
+//		System.exit(0);
 	}
 	
 /**********************************************************************************************************
@@ -1668,7 +1677,9 @@ public class DMDocument extends Object {
 		
 	// print out the message counts
 		System.out.println ("");
-		System.out.println (" -- LDDTool Execution Summary --");
+		String lToolName = "IMTool";
+		if (LDDToolFlag) lToolName = "LDDTool";
+		System.out.println (" -- " + lToolName + " Execution Summary --");
 		
 		lMessageWarningCount = messageLevelCountMap.get("1>warning");
 		lMessageWarningCount += messageLevelCountMap.get("2>warning");
@@ -1680,11 +1691,5 @@ public class DMDocument extends Object {
 		System.out.println ("     " + lMessageWarningCount + " warning(s)");
 		System.out.println ("     " + lMessageErrorCount + " error(s)");
 		System.out.println ("     " + lMessageFatalErrorCount + " fatal error(s)");
-		
-		if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
-			System.exit(1);
-		} else {
-			System.exit(0);
-		}
 	}
 }
