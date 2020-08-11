@@ -257,7 +257,6 @@ public class ExportModels extends Object {
 				writeDOMSpecification.printArtifacts();
 				DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - Info Model Spec Done");
 			}
-			DMDocument.registerMessage ("2>info " + "LDDTOOL Exit");
 		}
 		return;
 	}
