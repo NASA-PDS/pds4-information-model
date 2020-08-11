@@ -948,7 +948,7 @@ public class LDDDOMParser extends Object
 							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
 							ruleArr.add(lDOMRule);					
 							lDOMRule.xpath = lXpath;
-							lDOMRule.ruleNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+							lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
 							lDOMRule.attrTitle = lattribute_name;
 							lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;		
 							lDOMRule.classTitle = lClassName;		
@@ -1012,6 +1012,7 @@ public class LDDDOMParser extends Object
 				if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
 					ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
 					ruleArr.add(lDOMRule);					
+					lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
 					lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 					lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
 					lDOMRule.classSteward = lSchemaFileDefn.stewardId;
@@ -1516,8 +1517,8 @@ public class LDDDOMParser extends Object
 				// save the namespace to create an import file
 				if ((lDOMRule.nameSpaceIdNC.compareTo("pds") != 0)
 						&& (lDOMRule.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) 
-						&& (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lNamespace))) {
-							DMDocument.LDDImportNameSpaceIdNCArr.add(lNamespace);		
+						&& (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lDOMRule.nameSpaceIdNC))) {
+							DMDocument.LDDImportNameSpaceIdNCArr.add(lDOMRule.nameSpaceIdNC);		
 				}
 //				System.out.println("debug extractNamespace DMDocument.LDDImportNameSpaceIdNCArr:" + DMDocument.LDDImportNameSpaceIdNCArr);
 			}

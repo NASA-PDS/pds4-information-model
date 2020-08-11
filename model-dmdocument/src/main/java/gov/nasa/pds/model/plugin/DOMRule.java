@@ -29,7 +29,9 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 package gov.nasa.pds.model.plugin; 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class DOMRule  extends ISOClassOAIS11179 {
 	String type;
@@ -40,7 +42,6 @@ public class DOMRule  extends ISOClassOAIS11179 {
 	String classTitle;
 	String classNameSpaceNC;
 	String classSteward;
-	String ruleNameSpaceNC;		// the rule namespace
 	boolean alwaysInclude;		// the rule is to always be included in the schematron file
 	boolean isMissionOnly;		// the rule is to be included in an LDDTool generated .sch file at the mission level
 	ArrayList <String> letAssignArr;
@@ -57,7 +58,6 @@ public class DOMRule  extends ISOClassOAIS11179 {
 		classTitle = "TBD_classTitle";
 		classNameSpaceNC = "TBD_NameSpaceNC";
 		classSteward = "TBD_classSteward";
-		ruleNameSpaceNC = "TBD_ruleNameSpaceNC";
 		alwaysInclude = false;
 		isMissionOnly = false;
 		
@@ -68,5 +68,59 @@ public class DOMRule  extends ISOClassOAIS11179 {
 	
 	public void setRDFIdentifier () {
 		rdfIdentifier = DMDocument.rdfPrefix + "." + identifier + "." + DOMInfoModel.getNextUId();
+	}
+	
+	public void printRuleDebug () {
+		System.out.println("\n==========================  Rule  ===================================");
+		System.out.println("  lRule.rdfIdentifier:" + this.rdfIdentifier);
+		System.out.println("  lRule.identifier:" + this.identifier);
+		System.out.println("  lRule.nameSpaceIdNC:" + this.nameSpaceIdNC);
+		System.out.println("  lRule.type:" + this.type);
+		System.out.println("  lRule.xpath:" + this.xpath);
+		System.out.println("  lRule.roleId:" + this.roleId);
+		System.out.println("  lRule.attrTitle:" + this.attrTitle);
+		System.out.println("  lRule.attrNameSpaceNC:" + this.attrNameSpaceNC);
+		System.out.println("  lRule.classTitle:" + this.classTitle);
+		System.out.println("  lRule.classNameSpaceNC:" + this.classNameSpaceNC);
+		System.out.println("  lRule.classSteward:" + this.classSteward);
+		System.out.println("  lRule.alwaysInclude:" + this.alwaysInclude);
+		System.out.println("  lRule.isMissionOnly:" + this.isMissionOnly);
+
+		System.out.println("-------------------------  Let Assignments - Pattern  -----------");
+        if (this.letAssignPatternArr != null) {
+    		for (Iterator <String> i = this.letAssignPatternArr.iterator(); i.hasNext();) {
+    			String lLetAssignPattern = (String) i.next();
+    			System.out.println("    lLetAssignPattern:" + lLetAssignPattern);
+       		}
+        }
+
+        System.out.println("-------------------------  Let Assignments - Rule  --------------");
+        if (this.letAssignArr != null) {
+    		for (Iterator <String> i = this.letAssignArr.iterator(); i.hasNext();) {
+    			String lLetAssign = (String) i.next();
+    			System.out.println("    lLetAssign:" + lLetAssign);
+       		}
+        }
+		
+        System.out.println("-------------------------  Assert Statement  --------------------");
+        if (this.assertArr != null) {
+    		for (Iterator <DOMAssert> i = this.assertArr.iterator(); i.hasNext();) {
+    			DOMAssert lAssert = (DOMAssert) i.next();
+    			System.out.println("    lAssert.identifier:" + lAssert.identifier);
+    			System.out.println("    lAssert.attrTitle:" + lAssert.attrTitle);
+    			System.out.println("    lAssert.assertType:" + lAssert.assertType);
+    			System.out.println("    lAssert.assertMsg:" + lAssert.assertMsg);
+    			System.out.println("    lAssert.assertStmt:" + lAssert.assertStmt);
+    			System.out.println("    lAssert.specMesg:" + lAssert.specMesg);
+    			
+    			System.out.println("-------------------------  Assert Statement Test Values  --------");
+    	        if (lAssert.testValArr != null) {
+        			for (Iterator <String> j = lAssert.testValArr.iterator(); j.hasNext();) {
+        				String lTestValue = (String) j.next();
+        				System.out.println("       lTestValue:" + lTestValue);
+        	   		}	
+    	        }
+       		}
+        }
 	}
 }
