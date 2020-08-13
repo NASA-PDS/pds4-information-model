@@ -599,6 +599,7 @@ public class DMDocument extends Object {
     	if (lJAVAHOME == null) {
     		registerMessage ("3>error Environment variable JAVA_HOME is null");
 			printErrorMessages();
+			System.exit(1);
     	}
     	lJAVAHOME =  replaceString (lJAVAHOME, "\\", "/");
     	
@@ -606,6 +607,7 @@ public class DMDocument extends Object {
     	if (lPARENT_DIR == null) {
     		registerMessage ("3>error Environment variable PARENT_DIR is null");
 			printErrorMessages();
+			System.exit(1);
     	}
     	lPARENT_DIR =  replaceString (lPARENT_DIR, "\\", "/");
     	
@@ -613,6 +615,7 @@ public class DMDocument extends Object {
     	if (lSCRIPT_DIR == null) {
     		registerMessage ("3>error Environment variable SCRIPT_DIR is null");
 			printErrorMessages();
+			System.exit(1);
     	}
     	lSCRIPT_DIR =  replaceString (lSCRIPT_DIR, "\\", "/");
     	
@@ -620,6 +623,7 @@ public class DMDocument extends Object {
     	if (lLIB_DIR== null) {
     		registerMessage ("3>error Environment variable LIB_DIR is null");
 			printErrorMessages();
+			System.exit(1);
     	}
     	lLIB_DIR =  replaceString (lLIB_DIR, "\\", "/");	
 	}
@@ -638,7 +642,7 @@ public class DMDocument extends Object {
 				}
 				if (lArg.indexOf('h') > -1) {
 					printHelp();
-					printErrorMessages();
+					System.exit(0);
 				}
 				if (LDDToolFlag) {
 					int begind = lArg.indexOf("A");
@@ -652,6 +656,7 @@ public class DMDocument extends Object {
 						} else {
 							registerMessage ("3>error " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
 							printErrorMessages();
+							System.exit(1);
 						}
 					}
 				}
@@ -699,7 +704,7 @@ public class DMDocument extends Object {
 					System.out.println("Build Date: " + buildDate);
 					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
-					printErrorMessages();
+					System.exit(0);
 				}
 				if (lArg.indexOf('D') > -1) {
 					exportDDFileFlag = true;
@@ -753,6 +758,7 @@ public class DMDocument extends Object {
 			registerMessage ("3>error " + "The -p option must be used for PDS4 processing");
 			printHelp();
 			printErrorMessages();
+			System.exit(1);
 		}
 	}
 
@@ -771,6 +777,7 @@ public class DMDocument extends Object {
 			registerMessage ("3>error " + "Input filename is invalid: " + lSchemaFileDefn.sourceFileName + " - filename[.xml] or fullpath allowed");
 			printHelp();
 			printErrorMessages();
+			System.exit(1);
 		}
 		
 		String lSourceFileNameNE = lSourceFileSpec;
@@ -797,6 +804,7 @@ public class DMDocument extends Object {
 					registerMessage ("3>error " + "Input file not found: " + lSchemaFileDefn.sourceFileName);
 					printHelp();
 					printErrorMessages();
+					System.exit(1);
 				}
 			}
 		}
@@ -880,12 +888,14 @@ public class DMDocument extends Object {
 		if (!isFound) {
 			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "MDPTNConfigClassDisp.xml");
 			  printErrorMessages();
+			  System.exit(1);
 		}
 		file=new File (dataDirPath + "UpperModel.pont");
 		isFound = file.exists();
 		if (!isFound) {
 			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "UpperModel.pont");
 			  printErrorMessages();
+			  System.exit(1);
 		}
 		
 		file=new File (dataDirPath + "dd11179.pins");
@@ -893,6 +903,7 @@ public class DMDocument extends Object {
 		if (!isFound) {
 			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "dd11179.pins");
 			  printErrorMessages();
+			  System.exit(1);
 		}
 		
 		file=new File (dataDirPath + "Glossary.pins");
@@ -900,6 +911,7 @@ public class DMDocument extends Object {
 		if (!isFound) {
 			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "Glossary.pins");
 			  printErrorMessages();
+			  System.exit(1);
 		}
 		
 		file=new File (dataDirPath + "DMDocument.pins");
@@ -907,6 +919,7 @@ public class DMDocument extends Object {
 		if (!isFound) {
 			  registerMessage ("3>error " + "Required data file was not found: " + dataDirPath + "DMDocument.pins");
 			  printErrorMessages();
+			  System.exit(1);
 		}
 	}
 
