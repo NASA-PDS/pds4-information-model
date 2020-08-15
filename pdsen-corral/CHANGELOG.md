@@ -18,6 +18,7 @@
 
 **Closed issues:**
 
+- CCB-290: Add value 'Field Campaign' to Investigation\_Area type enumerated value list [\#203](https://github.com/NASA-PDS/pds4-information-model/issues/203)
 - LDDTool: System exit in code aborts MAVEN build [\#199](https://github.com/NASA-PDS/pds4-information-model/issues/199)
 - LDDTool: Deprecation Rule being propogated to schematron file with an error in the assert statement. [\#197](https://github.com/NASA-PDS/pds4-information-model/issues/197)
 - LDDTool: MSN namespace declaration is missing from the generated schematron file. [\#194](https://github.com/NASA-PDS/pds4-information-model/issues/194)
