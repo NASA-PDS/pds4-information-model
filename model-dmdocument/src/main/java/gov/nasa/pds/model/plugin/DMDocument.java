@@ -294,6 +294,7 @@ public class DMDocument extends Object {
 		LDDToolAnnotateDefinitionFlag = false;
 		
 		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1E00");
 		alternateIMVersionArr.add ("1D00");
 		alternateIMVersionArr.add ("1C00");
 		alternateIMVersionArr.add ("1B10");
