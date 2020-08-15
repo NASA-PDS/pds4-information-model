@@ -160,8 +160,10 @@ class XML4LabelSchemaDOM extends Object {
 			// for xs:any in none PDS4 information models
 			if ((lClass.title.indexOf("Native_Area") > -1) 
 					|| (lClass.title.indexOf("Artifact_Type_Area") > -1) 
+					|| (lClass.title.indexOf("Name_Type_List_Area") > -1) 
 					|| (lClass.title.indexOf("Format_Type_Area") > -1)
 					|| (lClass.title.indexOf("Checksum_Area") > -1)
+					|| (lClass.title.indexOf("Domain_Area") > -1)
 					|| (lClass.title.indexOf("Science_Investigation_Area") > -1)
 					|| (lClass.title.indexOf("Date_Time_Area") > -1)
 					) {
@@ -469,9 +471,11 @@ class XML4LabelSchemaDOM extends Object {
 		if ((lClass.title.indexOf("Mission_Area") > -1) 
 				|| (lClass.title.indexOf("Discipline_Area") > -1) 
 				|| (lClass.title.indexOf("Native_Area") > -1) 
+				|| (lClass.title.indexOf("Name_Type_List_Area") > -1) 
 				|| (lClass.title.indexOf("Artifact_Type_Area") > -1) 
 				|| (lClass.title.indexOf("Format_Type_Area") > -1)
 				|| (lClass.title.indexOf("Checksum_Area") > -1)
+				|| (lClass.title.indexOf("Domain_Area") > -1)
 				|| (lClass.title.indexOf("Science_Investigation_Area") > -1)
 				|| (lClass.title.indexOf("Date_Time_Area") > -1)
 				) {
@@ -523,16 +527,12 @@ class XML4LabelSchemaDOM extends Object {
 			cmax = "unbounded";
 		}
 		
-		// create the unique attribute identifier
-//		String lSchemaId = lAttr.regAuthId + ":" + lAttr.steward.toUpperCase() + ":" + lAttr.className + ":" + lAttr.title;			
-	
 		if ((choiceBlockOpen) && (! lProp.isChoice || lProp.groupName.compareTo(lGroupName) != 0) ) {
 			downIndentSpaces();
 			prXML.println(indentSpaces() + "</" + pNS + "choice>");
 			choiceBlockOpen = false;
 			lGroupName = "TBD_groupName";
 		}	
-		
 		if ((lProp.isChoice) && (!choiceBlockOpen)) {
 			// set the cardinalities of Master Choice block attributes to (1,1)
 			if (lProp.isChoice && ! lProp.isFromLDD) {
@@ -556,7 +556,7 @@ class XML4LabelSchemaDOM extends Object {
 		if (lAttr.isNilable) {
 			nilableClause = " nillable=\"true\"";
 		}
-
+		
 		// write the XML schema statement
 		if (! DMDocument.LDDToolFlag) {
 			prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + lAttr.XMLSchemaName + "\"" + nilableClause + " type=\"" + lAttr.nameSpaceId  + lAttr.XMLSchemaName + "\"" + minMaxOccursClause + "> </" + pNS + "element>");
@@ -591,25 +591,34 @@ class XML4LabelSchemaDOM extends Object {
 		if (cmax.compareTo("*") == 0) {
 			cmax = "unbounded";
 		}
-		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";
-		if (lProp.isChoice){
-			if (!choiceBlockOpen) {
-				String choiceMinMaxOccursClause = "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\"";
-				prXML.println(indentSpaces() + "<" + pNS + choiceMinMaxOccursClause+ ">");
-				upIndentSpaces();
-				choiceBlockOpen = true;
-				minMaxOccursClause = "";
-			} else {
-				minMaxOccursClause = "";
+		
+		if ((choiceBlockOpen) && (! lProp.isChoice || lProp.groupName.compareTo(lGroupName) != 0) ) {
+			downIndentSpaces();
+			prXML.println(indentSpaces() + "</" + pNS + "choice>");
+			choiceBlockOpen = false;
+			lGroupName = "TBD_groupName";
+		}	
+		
+		if ((lProp.isChoice) && (!choiceBlockOpen)) {
+			// set the cardinalities of Master Choice block attributes to (1,1)
+			if (lProp.isChoice && ! lProp.isFromLDD) {
+				cmin = lProp.cardMin;
+				cmax = lProp.cardMax;
+				if (cmax.compareTo("*") == 0) {
+					cmax = "unbounded";
+				}
 			}
-		} else {
-			if (choiceBlockOpen) {
-				downIndentSpaces();
-				prXML.println(indentSpaces() + "</" + pNS + "choice>");
-				choiceBlockOpen = false;
-			}
+			prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\"" + cmax + "\">");
+			upIndentSpaces();
+			choiceBlockOpen = true;
+			lGroupName = lProp.groupName;
 		}
 
+		String minMaxOccursClause = " minOccurs=\"" + cmin + "\"" + " maxOccurs=\"" + cmax + "\"";
+		if (choiceBlockOpen) {
+			minMaxOccursClause = "";
+		}
+		
 		// get each associated class
 		DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
 					
