@@ -13,6 +13,7 @@
 
 **Defects:**
 
+- LDDtool combining two consecutive choice blocks into one block  [\#192](https://github.com/NASA-PDS/pds4-information-model/issues/192)
 - LDDTool: requires one class with \(element\_flag = true\), even when no classes defined [\#188](https://github.com/NASA-PDS/pds4-information-model/issues/188)
 
 **Closed issues:**
