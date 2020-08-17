@@ -1,4 +1,4 @@
-; Sat Aug 15 10:34:13 PDT 2020
+; Mon Aug 17 14:29:41 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1000,6 +1000,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Discipline_Facets.pds.discipline_name]
 		[EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language]
 		[NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
+		[EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format]
@@ -6999,6 +7000,20 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Element_Array.pds.value_offset])
+	(versionIdentifier "1.15"))
+
+([DE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  DataElement
+
+	(administrationRecord [DD_1.15.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
+	(steward [pds])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
 	(versionIdentifier "1.15"))
 
 ([DE.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id] of  DataElement
@@ -15918,6 +15933,7 @@
 		[DE.0001_NASA_PDS_1.pds.Document_Edition.pds.files]
 		[DE.0001_NASA_PDS_1.pds.Document_Edition.pds.language]
 		[DE.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
+		[DE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id]
 		[DE.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[DE.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
 		[DE.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format]
@@ -18380,6 +18396,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Element_Array.pds.value_offset] of  Definition
 
 	(definitionText "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value %28Ov%29 is calculated from the stored value %28Sv%29 thus: Ov = %28Sv * scaling_factor%29 %2B value_offset. The default value is 0.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  Definition
+
+	(definitionText "The encoding_standard_id attribute provides the formal name of a standard used for the structure of an Encoded Byte Stream digital object.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id] of  Definition
@@ -23450,6 +23471,11 @@
 ([DES.0001_NASA_PDS_1.pds.Element_Array.pds.value_offset] of  Designation
 
 	(designationName "value_offset")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  Designation
+
+	(designationName "encoding_standard_id")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id] of  Designation
@@ -30965,6 +30991,30 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Element_Array.pds.data_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.15"))
+
+([EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.15.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.1168516142]
+		[pv.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.85708])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -52656,6 +52706,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.15"))
 
+([PR.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  Property
+
+	(administrationRecord [DD_1.15.0.0])
+	(classOrder "9999")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.15"))
+
 ([PR.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id] of  Property
 
 	(administrationRecord [DD_1.15.0.0])
@@ -65190,6 +65249,22 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Element_Array.pds.data_type.848372403])
 	(value "IEEE754MSBDouble"))
 
+([pv.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.1168516142] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.1168516142])
+	(value "M4A%2FAAC"))
+
+([pv.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.85708] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.85708])
+	(value "WAV"))
+
 ([pv.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id.1845660144] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -72096,6 +72171,9 @@
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
 
+([TBD_value_type] of  %3AUNDEFINED
+)
+
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -74936,6 +75014,13 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Element_Array.pds.value_offset])
 	(designation [DES.0001_NASA_PDS_1.pds.Element_Array.pds.value_offset])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id] of  TerminologicalEntry
@@ -83073,6 +83158,18 @@
 	(description "Values of Element_Array are stored as 64-bit IEEE binary floating point numbers with the most significant byte first")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.1168516142] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "M4A is a container format and is often paired with the Advanced Audio Coding (AAC) audio codec. AAC is a lossy format and is not suitable for archiving scientific data although it is widely used for streaming audio online.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.85708] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Waveform Audio File Format (also known as WAVE) is a digital format for audio.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id.1845660144] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -84948,7 +85045,7 @@
 ([vm.0001_NASA_PDS_1.pds.Investigation_Area.pds.type.1622534582] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "A set of experiments and/or observations with a clearly defined purpose that is coordinated among one or more individuals and/or one or more organizations. The campaign is characterized primarily by its in situ terrestrial field work.")
+	(description "A set of experiments and%2For observations with a clearly defined purpose that is coordinated among one or more individuals and%2For one or more organizations. The campaign is characterized primarily by its in situ terrestrial field work.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_type.102150552] of  ValueMeaning
