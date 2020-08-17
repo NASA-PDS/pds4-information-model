@@ -162,6 +162,7 @@
   <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Document_Format_Set</Field> <Field>1MC</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Encoded_Image</Field> <Field>1MTC</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Encoded_Binary</Field> <Field>1MT</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Encoded_Audio</Field> <Field>1MT</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Encoded_Native</Field> <Field>1MT</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Encoded_Telemetry</Field> <Field>1MT</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.File_Area_Encoded_Image</Field> <Field>1MC</Field> <Field>#12</Field> <Field>pds</Field> <Field>pds</Field> </Record>

@@ -1,4 +1,4 @@
-; Sat Aug 15 10:22:45 PDT 2020
+; Mon Aug 17 13:47:14 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6428,6 +6428,16 @@
 ;+		(comment "The encoding_standard_id attribute provides the formal name of a standard used for the structure of an Encoded Byte Stream digital object.")
 		(type STRING)
 ;+		(value "CCSDS Packet Telemetry")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Encoded_Audio "The Encoded_Audio class is used for files containing audio data in standard formats, such as WAV."
+	(is-a Encoded_Byte_Stream)
+	(role concrete)
+	(single-slot encoding_standard_id
+;+		(comment "The encoding_standard_id attribute provides the formal name of a standard used for the structure of an Encoded Byte Stream digital object.")
+		(type STRING)
+;+		(value "WAV" "M4A/AAC")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
