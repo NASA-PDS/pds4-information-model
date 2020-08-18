@@ -595,14 +595,6 @@ public class DMDocument extends Object {
 
 	static private void getEnvMap () {
         Map<String, String> env = System.getenv();
-
-    	lJAVAHOME = env.get("JAVA_HOME");
-    	if (lJAVAHOME == null) {
-    		registerMessage ("3>error Environment variable JAVA_HOME is null");
-			printErrorMessages();
-			System.exit(1);
-    	}
-    	lJAVAHOME =  replaceString (lJAVAHOME, "\\", "/");
     	
     	lPARENT_DIR = env.get("PARENT_DIR");
     	if (lPARENT_DIR == null) {
