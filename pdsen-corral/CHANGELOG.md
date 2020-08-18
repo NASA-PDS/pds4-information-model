@@ -2,7 +2,15 @@
 
 ## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.3.1...HEAD)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...HEAD)
+
+**Closed issues:**
+
+- IMTool: Remove read of environment variable JAVA\_HOME [\#209](https://github.com/NASA-PDS/pds4-information-model/issues/209)
+
+## [11.3.2](https://github.com/NASA-PDS/pds4-information-model/tree/11.3.2) (2020-08-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.3.1...11.3.2)
 
 **Improvements:**
 
