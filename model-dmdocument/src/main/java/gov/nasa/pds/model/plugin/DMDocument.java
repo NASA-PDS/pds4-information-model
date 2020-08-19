@@ -637,20 +637,19 @@ public class DMDocument extends Object {
 					printHelp();
 					System.exit(0);
 				}
-				if (LDDToolFlag) {
-					int begind = lArg.indexOf("A");
-					if (begind > -1) {
-						String tAlternateIMVersion = lArg.substring(begind + 1, begind + 5);
-						registerMessage ("1>info " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
-						if (alternateIMVersionArr.contains(tAlternateIMVersion)) {
-							alternateIMVersion = tAlternateIMVersion;
-							alternateIMVersionFlag = true;
-							registerMessage ("1>info " + "The provided alternate IM Version " + tAlternateIMVersion + " is valid");
-						} else {
-							registerMessage ("3>error " + "The provided alternate IM Version " + tAlternateIMVersion + " is not valid");
-							printErrorMessages();
-							System.exit(1);
-						}
+				if (lArg.indexOf('A') > -1) {
+					alternateIMVersionFlag = true;
+				}
+			} else {		
+				if (lArg.length() == 4 && LDDToolFlag && alternateIMVersionFlag) {
+					registerMessage ("1>info " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
+					if (alternateIMVersionArr.contains(lArg)) {
+						alternateIMVersion = lArg;
+						registerMessage ("1>info " + "The provided alternate IM Version " + lArg + " is valid");
+					} else {
+						registerMessage ("3>error " + "The provided alternate IM Version " + lArg + " is not valid");
+						printErrorMessages();
+						System.exit(1);
 					}
 				}
 			}
@@ -736,14 +735,17 @@ public class DMDocument extends Object {
 					}
 				}
 			} else {
-				SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
-				lLDDSchemaFileDefn.sourceFileName = lArg;
-				lLDDSchemaFileDefn.isActive = true;
-				lLDDSchemaFileDefn.isLDD = true;
-				lLDDSchemaFileDefn.labelVersionId = "1.0";
-				LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
-				masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
-//				System.out.println("debug getCommandArgs - lSchemaFileDefn.sourceFileName:" + lLDDSchemaFileDefn.sourceFileName);
+				if (lArg.length() == 4 && LDDToolFlag && alternateIMVersionFlag) {
+					continue;
+				} else {
+					SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
+					lLDDSchemaFileDefn.sourceFileName = lArg;
+					lLDDSchemaFileDefn.isActive = true;
+					lLDDSchemaFileDefn.isLDD = true;
+					lLDDSchemaFileDefn.labelVersionId = "1.0";
+					LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
+					masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
+				}
 			}	
 		}
 		// validate the input arguments
@@ -851,7 +853,7 @@ public class DMDocument extends Object {
 			System.out.println("  -h, --help      Print this message");
 			
 			System.out.println(" ");
-			System.out.println("  -A, --Alt IM    Use an alternate IM Version, e.g., A1D00 - Must be the last option specified.");
+			System.out.println("  -A, --Alt IM    Use an alternate IM Version, e.g., -A 1D00.");
 			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
 			
 			System.out.println(" ");
