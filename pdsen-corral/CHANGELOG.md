@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...HEAD)
 
+**Defects:**
+
+- CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193)
+
 **Closed issues:**
 
 - IMTool: Remove read of environment variable JAVA\_HOME [\#209](https://github.com/NASA-PDS/pds4-information-model/issues/209)
