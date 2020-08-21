@@ -1,4 +1,4 @@
-; Thu Aug 20 20:18:28 PDT 2020
+; Fri Aug 21 11:33:21 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11088,7 +11088,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "Hz" "kHz" "MHz" "GHz" "THz")
+;+		(value "Hz" "kHz" "MHz" "GHz" "THz" "mHz")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
