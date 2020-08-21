@@ -1,4 +1,4 @@
-; Mon Aug 17 14:29:41 PDT 2020
+; Thu Aug 20 20:51:23 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -645,6 +645,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Document_File.pds.document_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Element_Array.pds.data_type]
 		[NEVD.0001_NASA_PDS_1.pds.Element_Array.pds.unit]
+		[EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.Encoded_Byte_Stream.pds.encoding_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Header.pds.encoding_standard_id]
@@ -1000,7 +1001,6 @@
 		[EVD.0001_NASA_PDS_1.pds.Discipline_Facets.pds.discipline_name]
 		[EVD.0001_NASA_PDS_1.pds.Document_Edition.pds.language]
 		[NEVD.0001_NASA_PDS_1.pds.Document_Edition.pds.starting_point_identifier]
-		[EVD.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id]
 		[EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id]
 		[NEVD.0001_NASA_PDS_1.pds.External_Reference_Extended.pds.url]
 		[NEVD.0001_NASA_PDS_1.pds.Field_Character.pds.validation_format]
@@ -33689,7 +33689,12 @@
 ([EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.15.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.70585]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.76351]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.83078]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.105181])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id")
 	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -70633,6 +70638,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.type.1933944124])
 	(value "Frequency"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.105181] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.105181])
+	(value "kHz"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -70640,6 +70653,30 @@
 	(endDate "2019-12-31")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354])
 	(value "Hz"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.70585] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.70585])
+	(value "GHz"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.76351] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.76351])
+	(value "MHz"))
+
+([pv.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.83078] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.83078])
+	(value "THz"))
 
 ([pv.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215] of  PermissibleValue
 
@@ -72170,9 +72207,6 @@
 	(measureName "TBD_unit_of_measure_type")
 	(precision "TBD_precision")
 	(unitId "TBD_unitId"))
-
-([TBD_value_type] of  %3AUNDEFINED
-)
 
 ([TE.0001_NASA_PDS_1.pds.Agency.pds.description] of  TerminologicalEntry
 
@@ -79365,7 +79399,12 @@
 	(defaultUnitId "Hz")
 	(measureName "Units_of_Frequency")
 	(precision "TBD_precision")
-	(unitId "Hz"))
+	(unitId
+		"GHz"
+		"Hz"
+		"MHz"
+		"THz"
+		"kHz"))
 
 ([Units_of_Gmass] of  UnitOfMeasure
 
@@ -83161,13 +83200,13 @@
 ([vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.1168516142] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "M4A is a container format and is often paired with the Advanced Audio Coding (AAC) audio codec. AAC is a lossy format and is not suitable for archiving scientific data although it is widely used for streaming audio online.")
+	(description "M4A is a container format and is often paired with the Advanced Audio Coding %28AAC%29 audio codec. AAC is a lossy format and is not suitable for archiving scientific data although it is widely used for streaming audio online.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Encoded_Audio.pds.encoding_standard_id.85708] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Waveform Audio File Format (also known as WAVE) is a digital format for audio.")
+	(description "Waveform Audio File Format %28also known as WAVE%29 is a digital format for audio.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Encoded_Binary.pds.encoding_standard_id.1845660144] of  ValueMeaning
@@ -87196,10 +87235,34 @@
 	(description "Units_of_Frequency is classified as being of type Frequency")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.105181] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Frequency (10^3 Hz)")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Frequency is Hz")
+	(description "The abbreviated unit for `Units_of_Frequency (Hertz)")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.70585] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Frequency (10^9 Hz)")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.76351] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Frequency (10^6 Hz)")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.83078] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Frequency (10^12 Hz)")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Gmass.pds.specified_unit_id.1375474215] of  ValueMeaning
