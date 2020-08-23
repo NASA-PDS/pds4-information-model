@@ -128,6 +128,7 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_derived_product", "data_to_derived_product", "The data product is associated to a derived product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference.reference_type.ancillary_to_data", "ancillary_to_data", "The ancillary product is associated to a data product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference.reference_type.ancillary_to_browse", "ancillary_to_browse", "The ancillary product is associated to a browse product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference.reference_type.ancillary_to_investigation", "ancillary_to_investigation", "The ancillary data product is associated to an investigation"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Ancillary/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference.reference_type.ancillary_to_target", "ancillary_to_target", "The ancillary data product is associated to a target"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
@@ -237,11 +238,11 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Product_Document/pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:Internal_Reference.reference_type.document_to_instrument_host", "document_to_instrument_host", "The document is associated to an instrument host"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Document/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference.reference_type.document_to_target", "document_to_target", "The document is associated to a target"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		
-		
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_data", "browse_to_data", "The browse product is associated to a data product"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_thumbnail", "browse_to_thumbnail", "The browse product is associated to a thumbnail"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_browse", "browse_to_browse", "The browse product is associated to a different browse product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_document", "browse_to_document", "The browse product is associated to a document."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
+		lPVD = new PermValueDefn ("pds:Product_Browse/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_ancillary", "browse_to_ancillary", "The browse product is associated to an ancillary product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
 
 		lPVD = new PermValueDefn ("pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference.reference_type.thumbnail_to_data", "thumbnail_to_data", "The thumbnail product is associated to a data product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	
 		lPVD = new PermValueDefn ("pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference.reference_type.thumbnail_to_browse", "thumbnail_to_browse", "The thumbnail product is associated to a browse product."); masterValueMeaningMap.put(lPVD.identifier, lPVD);	

@@ -1,4 +1,4 @@
-; Fri Aug 21 11:40:29 PDT 2020
+; Sat Aug 22 16:56:04 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -87254,7 +87254,7 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.107103] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Frequency (1/10^3 Hz)")
+	(description "The abbreviated unit for Units_of_Frequency %281%2F10^3 Hz%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Frequency.pds.unit_id.2354] of  ValueMeaning

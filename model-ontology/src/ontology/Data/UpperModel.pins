@@ -1,4 +1,4 @@
-; Fri Aug 21 11:33:22 PDT 2020
+; Sat Aug 22 16:33:30 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1197,7 +1197,8 @@
 	(specMesg "TBD")
 	(testValArr
 		"ancillary_to_data"
-		"ancillary_to_document"))
+		"ancillary_to_document"
+		"ancillary_to_browse"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
 
@@ -1226,7 +1227,8 @@
 		"browse_to_data"
 		"browse_to_thumbnail"
 		"browse_to_browse"
-		"browse_to_document"))
+		"browse_to_document"
+		"browse_to_ancillary"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534] of  Schematron_Rule
 
