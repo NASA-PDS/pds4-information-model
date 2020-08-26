@@ -194,7 +194,6 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_document", "investigation_to_document", "The investigation is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_facility", "investigation_to_facility", "The investigation is associated to a facility"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_telescope", "investigation_to_telescope", "The investigation is associated to a telescope"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
-		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.investigation_to_facility", "investigation_to_facility", "The investigation is associated to a facility"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_personnel", "node_to_personnel", "The node is associated to a person"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("pds:Product_Context/pds:Reference_List/pds:Internal_Reference.reference_type.node_to_agency", "node_to_agency", "The node is associated to an agency"); masterValueMeaningMap.put(lPVD.identifier, lPVD);

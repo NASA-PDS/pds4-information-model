@@ -1,4 +1,4 @@
-; Sat Aug 22 16:33:30 PDT 2020
+; Wed Aug 26 10:42:40 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1791,7 +1791,6 @@
 		"telescope_to_observatory"
 		"telescope_to_facility"
 		"telescope_to_airborne"
-		"investigation_to_facility"
 		"investigation_to_telescope"
 		"facility_to_investigation"
 		"facility_to_instrument"
