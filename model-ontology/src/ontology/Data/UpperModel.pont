@@ -1,4 +1,4 @@
-; Wed Aug 26 10:42:40 PDT 2020
+; Wed Aug 26 12:38:09 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11660,7 +11660,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "deg/pixel" "arcsec/pixel" "radian/pixel")
+;+		(value "deg/pixel" "arcsec/pixel" "radian/pixel" "HA/pixel")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
