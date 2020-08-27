@@ -1,4 +1,4 @@
-; Sat Aug 22 16:56:04 PDT 2020
+; Wed Aug 26 12:53:32 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -34241,6 +34241,7 @@
 
 	(administrationRecord [DD_1.15.0.0])
 	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-61259280]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2050785475]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696])
@@ -70991,6 +70992,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-2108414696])
 	(value "radian%2Fpixel"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-61259280] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-61259280])
+	(value "HA%2Fpixel"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -79488,6 +79497,7 @@
 	(measureName "Units_of_Pixel_Resolution_Angular")
 	(precision "TBD_precision")
 	(unitId
+		"HA%2Fpixel"
 		"arcsec%2Fpixel"
 		"deg%2Fpixel"
 		"radian%2Fpixel"))
@@ -87507,6 +87517,12 @@
 
 	(beginDate "2009-06-09")
 	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is radian%2Fpixel")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-61259280] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is HA/pixel when the angular measurement is given in units of hour angle.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550] of  ValueMeaning
