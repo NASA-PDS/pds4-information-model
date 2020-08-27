@@ -10,6 +10,8 @@
 
 **Closed issues:**
 
+- CCB-294: Add enumerated value to Units\_of\_Pixel\_Resolution\_Angular [\#218](https://github.com/NASA-PDS/pds4-information-model/issues/218)
+- CCB-296: Duplicated value in enumerated value list of Product\_Context /Internal\_Reference /reference\_type. [\#216](https://github.com/NASA-PDS/pds4-information-model/issues/216)
 - CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
 - IMTool: Remove read of environment variable JAVA\_HOME [\#209](https://github.com/NASA-PDS/pds4-information-model/issues/209)
 
