@@ -1,4 +1,4 @@
-; Wed Aug 26 12:38:09 PDT 2020
+; Thu Aug 27 07:02:26 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2180,11 +2180,7 @@
 	(attrTitle "reference_type")
 	(identifier "reference_type")
 	(specMesg "TBD")
-	(testValArr
-		"data_to_target"
-		"collection_to_target"
-		"bundle_to_target"
-		"document_to_target"))
+	(testValArr "data_to_target"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002553] of  Schematron_Rule
 
