@@ -53,7 +53,6 @@ public class DMDocument extends Object {
 // 444 - Rules moved to .pins file
 	
 	// environment variables
-	static String lJAVAHOME;
 	static String lPARENT_DIR;
 	static String lSCRIPT_DIR;
 	static String lLIB_DIR;
@@ -82,14 +81,7 @@ public class DMDocument extends Object {
 	
 	static String dataDirPath  = "TBD_dataDirPath";
 	static String outputDirPath = "./";
-	
-	// alternate IM Version
-	// if no option "A" (alternate) IM version is provided on the command line, then "" is used.
-	static boolean alternateIMVersionFlag = false;
-	static String alternateIMVersion = "";  
-	// allowed alternate IM versions
-	static ArrayList <String> alternateIMVersionArr;
-
+ 
 	static String DMDocVersionId  = "0.0.0";
 //	static String XMLSchemaLabelBuildNum = "6a";
 	static String XMLSchemaLabelBuildNum;
@@ -130,12 +122,20 @@ public class DMDocument extends Object {
 	static String LDDToolVersionId  = "0.0.0";
 	static String buildDate  = "";
 	static String buildIMVersionId = "1.15.0.0";
+	static String buildIMVersionFolderId = "1F00";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
+
+	// alternate IM Version
+	// if no option "V" is provided on the command line, then the default is the current IM version.
+	static boolean alternateIMVersionFlag = false;
+	static String alternateIMVersion = buildIMVersionFolderId;  		// default
+	// allowed alternate IM versions
+	static ArrayList <String> alternateIMVersionArr;	
 	
 	// import export file flags
 	static boolean exportJSONFileFlag = false;			// LDDTool, set by -J option
@@ -293,7 +293,9 @@ public class DMDocument extends Object {
 		LDDSchemaFileSortArr = new ArrayList <SchemaFileDefn> ();
 		LDDToolAnnotateDefinitionFlag = false;
 		
+		// The current version is included to allow for -V currentIMVersion
 		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1F00");
 		alternateIMVersionArr.add ("1E00");
 		alternateIMVersionArr.add ("1D00");
 		alternateIMVersionArr.add ("1C00");
@@ -395,17 +397,21 @@ public class DMDocument extends Object {
 		
 		// get the primary command line arguments
 		//    this must be done before config file processing
-		//    the use of the option "A" (alternate IM version) will change the input file directory (config included)
+		//    the use of the option "V" (alternate IM version) will change the input file directory (config included)
 		getCommandArgsPrimary (args);
 		
 		// first get the environment variables
 		getEnvMap();
 		dataDirPath = lPARENT_DIR + "/Data/";
 		
-		// if this is an LDDTool run then alternate path is allowed (option "A")
-		if (LDDToolFlag && alternateIMVersionFlag) dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
-		registerMessage ("0>info DMDocument - alternateIMVersion - USING dataDirPath:" + dataDirPath);
-		registerMessage ("0>info DMDocument - alternateIMVersion - alternateIMVersionArr:" + alternateIMVersionArr);
+		// if this is an LDDTool run then an alternate path is allowed (option "V")
+		if (LDDToolFlag && alternateIMVersionFlag) {
+			if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0)  {
+				dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+			}
+		}
+		registerMessage ("0>info - IM Directory Path:" + dataDirPath);
+		registerMessage ("0>info - IM Versions Available:" + alternateIMVersionArr);
 
 		// read the configuration file and initialize key attributes; SchemaFileDefn map is initialized below (setupNameSpaceInfoAll) 
 		// "props" are used again below in setupNameSpaceInfoAll)
@@ -531,7 +537,6 @@ public class DMDocument extends Object {
 		}	
 		
 		registerMessage ("1>info Date: " + sTodaysDate);
-		registerMessage ("1>info JAVAHOME: " + lJAVAHOME);
 		registerMessage ("1>info PARENT_DIR: " + lPARENT_DIR);
 		registerMessage ("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
 		registerMessage ("1>info LIB_DIR: " + lLIB_DIR);
@@ -637,17 +642,17 @@ public class DMDocument extends Object {
 					printHelp();
 					System.exit(0);
 				}
-				if (lArg.indexOf('A') > -1) {
+				if (lArg.indexOf('V') > -1) {
 					alternateIMVersionFlag = true;
 				}
 			} else {		
 				if (lArg.length() == 4 && LDDToolFlag && alternateIMVersionFlag) {
-					registerMessage ("1>info " + "The configured alternate IM Versions are:" + alternateIMVersionArr);
+					registerMessage ("1>info " + "The configured IM Versions are:" + alternateIMVersionArr);
 					if (alternateIMVersionArr.contains(lArg)) {
 						alternateIMVersion = lArg;
-						registerMessage ("1>info " + "The provided alternate IM Version " + lArg + " is valid");
+						registerMessage ("1>info " + "The provided IM Version " + lArg + " is valid");
 					} else {
-						registerMessage ("3>error " + "The provided alternate IM Version " + lArg + " is not valid");
+						registerMessage ("3>error " + "The provided IM Version " + lArg + " is not valid");
 						printErrorMessages();
 						System.exit(1);
 					}
@@ -694,7 +699,7 @@ public class DMDocument extends Object {
 					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
 					System.out.println("Build Date: " + buildDate);
-					System.out.println("Configured alternate IM Versions: " + alternateIMVersionArr);
+					System.out.println("Configured IM Versions: " + alternateIMVersionArr);
 					System.out.println(" ");
 					System.exit(0);
 				}
@@ -853,8 +858,8 @@ public class DMDocument extends Object {
 			System.out.println("  -h, --help      Print this message");
 			
 			System.out.println(" ");
-			System.out.println("  -A, --Alt IM    Use an alternate IM Version, e.g., -A 1D00.");
-			System.out.println("                  The configured alternate IM Versions are:" + alternateIMVersionArr);
+			System.out.println("  -V, --IM Version - E.g., -V 1D00.");
+			System.out.println("        The configured IM Versions are:" + alternateIMVersionArr);
 			
 			System.out.println(" ");
 			System.out.println("Input control:");
