@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...HEAD)
 
+**Improvements:**
+
+- LDDTool: Revise the handling of supplying the IM version \(alternate version\) via command-line [\#222](https://github.com/NASA-PDS/pds4-information-model/issues/222)
+
 **Defects:**
 
 - CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193)
