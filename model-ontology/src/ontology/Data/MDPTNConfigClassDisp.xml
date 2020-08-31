@@ -236,8 +236,8 @@
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Rule</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.DD_Rule_Statement</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Rule</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>N</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Assert</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Rule</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Schematron_Assert</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.External_Reference_Extended</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Agency</Field> <Field>1M</Field> <Field>#18</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
