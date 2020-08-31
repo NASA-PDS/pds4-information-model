@@ -1,4 +1,4 @@
-; Mon Aug 31 07:30:03 PDT 2020
+; Mon Aug 31 09:29:43 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8742,14 +8742,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
-
-(defclass Cartography_Group "The Cartography Group class is a placeholder for soon forthcoming Imaging cartography classes."
-	(is-a TNDO_Supplemental)
-	(role concrete))
-
-(defclass Rings "The Rings class is an abstract class used to identify the RINGS namespace."
-	(is-a TNDO_Supplemental)
-	(role concrete))
 
 (defclass DD_Attribute_Full "The DD_Attribute_Full class provides a more complete definition of an attribute in the data dictionary."
 	(is-a TNDO_Supplemental)
