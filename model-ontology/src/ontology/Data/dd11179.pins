@@ -1,4 +1,4 @@
-; Wed Aug 26 12:53:32 PDT 2020
+; Mon Aug 31 08:46:47 PDT 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -53586,6 +53586,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.15"))
 
+([PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Encoded_Audio] of  Property
+
+	(administrationRecord [DD_1.15.0.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Encoded_Audio")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.15"))
+
 ([PR.0001_NASA_PDS_1.pds.File_Area_Ancillary.pds.has_tagged_data_object.Encoded_Header] of  Property
 
 	(administrationRecord [DD_1.15.0.0])
@@ -53762,6 +53771,15 @@
 	(administrationRecord [DD_1.15.0.0])
 	(classOrder "1020")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Browse.pds.has_tagged_data_object.Array_3D_Spectrum")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.15"))
+
+([PR.0001_NASA_PDS_1.pds.File_Area_Browse.pds.has_tagged_data_object.Encoded_Audio] of  Property
+
+	(administrationRecord [DD_1.15.0.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.File_Area_Browse.pds.has_tagged_data_object.Encoded_Audio")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.15"))
@@ -87522,7 +87540,7 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.-61259280] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is HA/pixel when the angular measurement is given in units of hour angle.")
+	(description "The abbreviated unit for Units_of_Pixel_Resolution_Angular is HA%2Fpixel when the angular measurement is given in units of hour angle.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Pixel_Resolution_Angular.pds.unit_id.314250550] of  ValueMeaning
