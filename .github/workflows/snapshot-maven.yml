@@ -31,21 +31,11 @@ jobs:
 
     - name: Install dependencies
       run: python -m pip install --upgrade pip setuptools wheel
-      
-    - name: Publish package
-      run: mvn -B deploy --file pom.xml
-      env:
-         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
     - name: Adding dependencies
       run: |
          sudo apt-get update && sudo apt-get install -y libxml2-dev libxslt1-dev python-libxml2
 
-    - name: Publish new snapshot release
-      run: |
-         pip install pds-github-util
-         maven-snapshot-release --token ${{ secrets.GITHUB_TOKEN }}
     # the changelog will be available on https://nasa-pds.github.io/<your repo>/pdsen-corral/CHANGELOG
     # - uses: actions/checkout@v2
     #   with:
@@ -72,6 +62,18 @@ jobs:
         echo "update CHANGELOG.md and ${{ env.REQUIREMENT_FILE }} on master branch"
         git add CHANGELOG.md ${{ env.REQUIREMENT_FILE }}
         git commit -m "update changelog and requirements" --allow-empty
+
+    - name: Publish package
+      run: mvn -B deploy --file pom.xml
+      env:
+         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+
+    - name: Publish new snapshot release
+      run: |
+         pip install pds-github-util
+         maven-snapshot-release --token ${{ secrets.GITHUB_TOKEN }}
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
