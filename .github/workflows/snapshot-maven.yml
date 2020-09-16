@@ -68,7 +68,10 @@ jobs:
       env:
          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-
+    - name: Clean previous dev/snapsoht tags
+      run: |
+        git fetch --prune --unshallow --tags
+        git tag -l | grep 'dev' | xargs -t -I arg sh -c 'git tag -d arg;git push --delete origin arg;'
     - name: Publish new snapshot release
       run: |
          pip install pds-github-util
