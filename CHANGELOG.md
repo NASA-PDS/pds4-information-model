@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-16)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...HEAD)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
 **Defects:**
 
@@ -46,11 +46,7 @@
 
 ## [v11.3.1](https://github.com/NASA-PDS/pds4-information-model/tree/v11.3.1) (2020-05-22)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...v11.3.1)
-
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-05-22)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.3.0...11.4.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.3.0...v11.3.1)
 
 ## [v11.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v11.3.0) (2020-05-22)
 
