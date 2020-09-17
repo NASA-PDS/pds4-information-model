@@ -1687,7 +1687,7 @@ public class LDDDOMParser extends Object
 		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr = (DOMAttr) i.next();
 			int lTitleLength = lDOMAttr.title.length();
-			if ((lTitleLength >= 4) && (lDOMAttr.title.indexOf("type") == lTitleLength - 4)) {
+			if (((lTitleLength >= 5) && (lDOMAttr.title.indexOf("_type") == lTitleLength - 5)) || lDOMAttr.title.compareTo("type") == 0) {
 				if (lDOMAttr.domPermValueArr.size() < 1) {
 					if (isMission)
 						DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
