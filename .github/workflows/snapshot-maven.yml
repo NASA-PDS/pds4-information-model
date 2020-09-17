@@ -41,7 +41,7 @@ jobs:
     #   with:
     #     ref: gh-pages
     - name: Create requirements report
-      run: echo ::set-env name=REQUIREMENT_FILE::$(requirement-report --organization NASA-PDS --repository pds4-information-model --token ${{ secrets.GITHUB_TOKEN }} --output pdsen-corral --dev)
+      run: echo ::set-env name=REQUIREMENT_FILE::$(requirement-report --organization NASA-PDS --repository pds4-information-model --token ${{ secrets.GITHUB_TOKEN }} --output docs/requirements --dev)
     - name: create changelog
       run: |
         #sudo gem install github_changelog_generator
