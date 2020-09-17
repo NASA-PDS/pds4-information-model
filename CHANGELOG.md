@@ -1,6 +1,6 @@
 # Changelog
 
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-16)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
