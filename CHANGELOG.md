@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...HEAD)
+
+**Defects:**
+
+- LDDTool: update LDD attribute checking to only check for "type" and "\_type" [\#230](https://github.com/NASA-PDS/pds4-information-model/issues/230) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
+
 ## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
