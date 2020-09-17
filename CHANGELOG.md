@@ -1,13 +1,5 @@
 # Changelog
 
-## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...HEAD)
-
-**Other closed issues:**
-
-- lddtool-11.4.0-SNAPSHOT version output incorrect [\#228](https://github.com/NASA-PDS/pds4-information-model/issues/228)
-
 ## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
@@ -18,6 +10,7 @@
 
 **Other closed issues:**
 
+- lddtool-11.4.0-SNAPSHOT version output incorrect [\#228](https://github.com/NASA-PDS/pds4-information-model/issues/228)
 - IMTool - Cleanup warning messages [\#225](https://github.com/NASA-PDS/pds4-information-model/issues/225)
 - LDDTool: Revise the handling of supplying the IM version \(alternate version\) via command-line [\#222](https://github.com/NASA-PDS/pds4-information-model/issues/222)
 - CCB-294: Add enumerated value to Units\_of\_Pixel\_Resolution\_Angular [\#218](https://github.com/NASA-PDS/pds4-information-model/issues/218)
@@ -58,7 +51,7 @@
 
 ## [v11.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v11.3.0) (2020-05-22)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.0-SNAPSHOT...v11.3.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.2.2...v11.3.0)
 
 **Improvements:**
 
@@ -72,13 +65,6 @@
 
 - LDDTool: Add PDS Namespace Registry information to Help output [\#172](https://github.com/NASA-PDS/pds4-information-model/issues/172) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 - CCB-268 how to test this [\#143](https://github.com/NASA-PDS/pds4-information-model/issues/143)
-
-## [11.3.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.3.0-SNAPSHOT) (2020-04-18)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.2.2...11.3.0-SNAPSHOT)
-
-**Other closed issues:**
-
 - CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS/pds4-information-model/issues/130)
 
 ## [v11.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/v11.2.2) (2020-04-06)
