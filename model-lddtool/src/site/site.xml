@@ -51,7 +51,7 @@
     <menu name="Software Documentation">
       <item name="About LDDTool " href="index.html"/>
       <item name="Installation" href="install/index.html"/>
-      <item name="Operation" href="operate/index.html"/>
+      <item name="Usage" href="usage/index.html"/>
       <item name="Support" href="index.html#Support"/>
     </menu>
 

@@ -1,0 +1,189 @@
+
+Usage
+=====
+
+* [Running LDDTool on the Example Files](#Running_LDDTool_on_the_Example_Files)
+    * [Expected Results](#Expected_Results)
+    * [Checking for Success](#Checking_for_Success)
+* [Generating Discipline LDDs](#Generating_Discipline_LDDs)
+* [Generating Mission LDDs](#Generating_Mission_LDDs)
+* [Generate LDD with Specific PDS4 Version](#Generate_LDD_with_Specific_PDS4_Version)
+* [Common Errors](#Common_Errors)
+
+Once installed you can view the usage information as follows:
+
+    $ lddtool-${project.version}/bin/lddtool -h
+
+    Usage: lddtool -pl [OPTION]... FILE1 FILE2 ...
+    Parse a local data dictionary definition file and generate PDS4 data standard files.
+
+    Example: lddtool -pl  inputFileName
+
+    Process control:
+      -p, --PDS4      Set the context to PDS4
+      -l, --LDD       Process a local data dictionary input file
+      -D, --DataDict  Write the Data Dictionary DocBook file.
+      -J, --JSON      Write the data dictionary to a JSON formatted file.
+      -m, --merge     Generate file to merge the local dictionary into the master dictionary
+      -M, --Mission   This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.
+      -n, --nuance    Write nuance property maps to LDD schema annotation in JSON
+      -N, --Namespace Print the list of configured namespaces to the log
+      -1, --IM Spec   Write the Information Model Specification for an LDD.
+      -v, --version   Returns the LDDTool version number
+      -h, --help      Print this message
+
+      -V, --IM Version - E.g., -V 1D00.
+            The configured IM Versions are:[1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
+
+    Input control:
+      FILE provides the file name of an input file. The file name extension .xml is assumed.
+        If there are more than one file, the first files are considered references
+        for the last file. The last file is considered the primary local data dictionary.
+
+    Output control:
+      FILE is used to provide the file name for the output files. The file name extensions are distinct.
+      .xsd -- XML Schema file
+      .sch -- schematron file
+      .xml -- label file
+      .csv -- data dictionary information in csv formatted file.
+      .JSON -- dump of model in JSON format.
+      .txt -- process report in text format
+      .pont -- ontology file for merge
+
+You can view the version number for the executable:
+
+    $ lddtool-${project.version}/bin/lddtool -v
+
+    LDDTool Version: 10.1.0
+    Built with IM Version: 1.15.0.0
+    Build Date: 2020-07-27 16:17:50
+    Configured IM Versions: [1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
+
+If this does not execute successfully, please return to the installation guide and ensure the software was installed correctly, or contact (PDS Operator)[mailto:pds-operator@jpl.nasa.gov] for assistance.
+
+Running LDDTool on the Example Files
+------------------------------------
+
+To test out running LDDTool, download an existing LDD from the [PDS Data Dictionaries repo](https://github.com/pds-data-dictionaries/). A couple examples:grinning:
+* IMG Discipline LDD - https://github.com/pds-data-dictionaries/ldd-img/blob/master/src/PDS4_IMG_IngestLDD.xml
+* GEOM Discipline LDD - https://github.com/pds-data-dictionaries/ldd-geom/blob/master/src/PDS4_GEOM_IngestLDD.xml
+* M2020 Mission LDD - https://github.com/pds-data-dictionaries/ldd-m2020/blob/master/src/PDS4_MARS2020_IngestLDD.xml
+
+To execute, run:
+
+    lddtool -lp PDS4_IMG_IngestLDD.xml`
+
+
+Expected Results
+----------------
+
+The example *lddtool* command above will generate a total of five output
+files in addition to the *.out* listing file. The files will all have
+the same *lddtool*-generted names but different extensions. Here are
+those extensions, in approximate order of usefulness:
+
+-   **.xsd**: This is the XML Schema file that you will reference in
+    your labels when you want to use classes from this dictionary.
+-   **.sch**: This is the Schematron file that you will also reference
+    in your labels when you want to use classes from this dictionary.
+-   **.csv**: This is a CSV-formatted summary of the dictionary
+    contents. You might find this a useful way to review the results if
+    you\'re averse to reading schema and don\'t have labels already
+    written to exercise the newly-produced schemas. You might also find
+    this to be a useful file for passing to reviewers who want to see
+    class and attribute definitions - though maybe with a little editing
+    first.
+-   **.xml**: This is a label for the XML Schema and Schematron files;
+    probably only useful as a template. SBN strongly recommends that
+    rather than creating a label from scratch each time, you modify an
+    existing label at reasonable intervals in order to maintain a
+    `<Modification_History>` within the label that accurately reflects
+    the development history of the dictionary (as any other product
+    label should for an archival product). At the very least, the schema
+    label should be modified to identify the unique origin and
+    application of the dictionary files it describes. Trying to get the
+    unmodified label produced here through an SBN review is unlikely to
+    be successful.
+
+Checking for Success
+--------------------
+
+If you compare the output files from the above commands to what came in the example zip file, you should see differences in date stamps and local paths, but otherwise nothing else. Mage sure your option string is **-lp** (lowercase letter "ell"), or you will get a slightly different set of output files or a different namespace definition in the output schemas.
+
+If you run the tool on your own input file, the first thing to check is the program output listing, which will scroll past on your screen if you don't redirect it to a file. The last line of that listing should look like this:
+
+       >>info    - LDDTOOL Exit
+
+This indicates at least some measure of success. Depending on how
+complex your input file is, there will be a few dozen to a few hundred
+"INFO" lines containing messages about various override conditions.
+This is normal. It should *not* contain any "ERROR" lines or lines
+beginning with `>>error`. These indicate some sort of failure. There
+may be also be "WARNING" lines that look like this:
+
+       WARNING  Header:  - New steward has been specified:sbn
+       WARNING  Header:  - New namespace id has been specified:ex
+
+unless you are updating a dictionary that is already known to LDDTool.
+Other "WARNING" statements, however, are problematic and should be
+investigated.
+
+Once you've verified expected output, you should be good to go.
+
+
+Generate LDD with Specific PDS4 Version
+----------------------------------------
+
+LDDTool is a reflection of the PDS4 Information Model (IM), and in turn, has a major build in sync with the [PDS4 Build Schedule](https://pds.nasa.gov/datastandards/about/) (every 6 months).
+
+By default, LDDTool builds with the latest version of the IM. As of LDDTool v12.0.0, it can now generate LDDs for older versions of the IM using the -V flag.
+
+      -V, --IM Version - E.g., -V 1D00
+
+
+Common Errors
+---------------
+
+The common failures encountered at this point come from system
+references not resolving. Here are the most likely suspects:
+
+**Cannot find DMDocument jar file in [some directory]**
+
+*   This error is reported back to the command line by the `lddtool`
+    wrapper, which checks for the existence of the *DMDocument.jar* file
+    before invoking java on it. If you haven't previously set
+    `PARENT_DIR` in the wrapper to point to the `LDDTool` installation
+    directory, do so (in some environments this may be required even if
+    you\'re using the default configuration). If you have already
+    modified `PARENT_DIR`, search it for typos. The `PARENT_DIR`
+    directory *must* contain a `lib/` subdirectory, which in turn must
+    contain the `DMDocument.jar` file.
+
+*   You'll also get this message if there is a typo in the `lib/`
+    subdirectory name or `DMDocument.jar` name (case counts).
+
+        >>error - Required data file was not found: [**some path to an XMLfile**]
+
+*   This will show up as the last line in your listing if you forgot to
+    include the `Data/` subdirectory of the *LDDTool* distribution in
+    your installation `LDDTool` directory tree. Spelling and case count,
+    so if you\'re on a linux-based system and accidentally changed
+    "`Data`" to "`data`", for example, you'll get this message.
+
+**/bin/java: No such file or directory (This is the linux version of this error)**
+
+*   Messages like this are reported to the command line and indicate
+    that the `JAVA_HOME` setting either failed or points to the wrong
+    place. If there\'s a typo in the `JAVA_HOME` setting, you might also
+    see characters before \"/bin/java\" indicating what the script
+    thinks `JAVA_HOME` was set to. The `JAVA_HOME` directory *must*
+    contain a `bin/` subdirectory, which in turn must contain the *java*
+    executable.
+
+**<< usage info dump >>**
+
+*   If you get a dump of *lddtool* usage information when you run the
+    test command on the example file, look at the very top - there's
+    probably an error waiting for you. Make sure you spelled the input
+    file name correctly and included the required `-lp` option set.
+
