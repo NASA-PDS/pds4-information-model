@@ -4,6 +4,14 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...HEAD)
 
+**Defects:**
+
+- LDDTool: erroneously replaces TBD values with null in JSON output [\#227](https://github.com/NASA-PDS/pds4-information-model/issues/227) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-18)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
+
 **Improvements:**
 
 - LDDTool: Use sch:value-of to display a variable in Schematron validation [\#167](https://github.com/NASA-PDS/pds4-information-model/issues/167) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
@@ -11,13 +19,6 @@
 **Defects:**
 
 - LDDTool: update LDD attribute checking to only check for "type" and "\_type" [\#230](https://github.com/NASA-PDS/pds4-information-model/issues/230) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
-
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-17)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
-
-**Defects:**
-
 - CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 
 **Other closed issues:**
