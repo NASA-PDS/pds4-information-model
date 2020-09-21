@@ -328,6 +328,10 @@ public class LDDDOMParser extends Object
 		lLastModificationDateTime = getTextValue(docEle,"last_modification_date_time");				
 		lComment = getTextValue(docEle,"comment");
 		if (lComment == null) lComment = "TBD_comment";
+		else {
+			// escape any user provided values of "TBD"
+			if (lComment.indexOf("TBD") == 0) lComment = "_" + lComment;
+		}
 		
 		// get namespace_id from Ingest_LDD
 		String lNameSpaceIdNC = getTextValue(docEle,"namespace_id");
@@ -502,6 +506,8 @@ public class LDDDOMParser extends Object
 					lDOMAttr.steward = lSchemaFileDefn.stewardId;
 					lDOMAttr.submitter = getTextValue(docEle,"submitter_name");
 					String lDescription = getTextValue(el,"definition");
+					// escape any user provided values of "TBD"
+					if (lDescription.indexOf("TBD") == 0) lDescription = "_" + lDescription;
 //					lDescription = lDescription.replaceAll("\\s+"," ");
 					lDescription = DOMInfoModel.cleanCharString(lDescription);
 					lDOMAttr.definition = lDescription;
@@ -722,6 +728,8 @@ public class LDDDOMParser extends Object
 //					}
 
 					String lDescription = getTextValue(el,"definition");
+					// escape any user provided values of "TBD"
+					if (lDescription.indexOf("TBD") == 0) lDescription = "_" + lDescription;
 					lDOMClass.definition = DOMInfoModel.cleanCharString(lDescription);
 					lDOMClass.regAuthId = lRegAuthId;
 					// subClassOF is temporary until true subClassOf is found in main code
@@ -1293,7 +1301,6 @@ public class LDDDOMParser extends Object
 												
 							lDOMProp.nameSpaceIdNC = lDOMClassComponent.nameSpaceIdNC;
 							lDOMProp.title = lDOMClassComponent.title;
-//							lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMProp.nameSpaceIdNC, lDOMProp.title + "_" + lDOMClassComponent.title);
 							lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMClassComponent.nameSpaceIdNC, lDOMClassComponent.title);
 							lDOMProp.parentClassTitle = lDOMClass.title;
 							lDOMProp.attrParentClass = lDOMClass;
@@ -2025,7 +2032,6 @@ public class LDDDOMParser extends Object
 	
 	// print report
 	private void printReport(SchemaFileDefn lSchemaFileDefn) throws java.io.IOException{
-//		String lFileName = lSchemaFileDefn.LDDToolOutputFileNameNE + "_" + lSchemaFileDefn.nameSpaceIdNCUC + "_" + lSchemaFileDefn.lab_version_id +  ".txt";
 		String lFileName = lSchemaFileDefn.relativeFileSpecReportTXT;
 		prLocalDD = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));	
 		
