@@ -6,9 +6,10 @@
 
 **Defects:**
 
+- LDDTool: uses wrong version of XSD when referencing IMG dictionary [\#229](https://github.com/NASA-PDS/pds4-information-model/issues/229) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 - LDDTool: erroneously replaces TBD values with null in JSON output [\#227](https://github.com/NASA-PDS/pds4-information-model/issues/227) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-18)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-21)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
