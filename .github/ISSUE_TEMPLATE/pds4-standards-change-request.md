@@ -4,7 +4,7 @@ about: Tasks related to PDS4 Standards Change Request in design and implementati
   queue
 title: 'CCB-xxx: Copy SCR title here'
 labels: high, pending-scr
-assignees: jordanpadams
+assignees: jshughes, jordanpadams
 
 ---
 

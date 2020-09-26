@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: "<system feature> <is not/does not> <expected behaviour>"
 labels: bug, triage-needed
-assignees: ''
+assignees: jshughes
 
 ---
 

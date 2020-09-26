@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: ''
 labels: enhancement, requirement-needed, triage-needed
-assignees: ''
+assignees: jshughes
 
 ---
 
