@@ -4,32 +4,37 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...HEAD)
 
+**Improvements:**
+
+- CCB-285:  GeoTIFF format as operational PDS4 image [\#166](https://github.com/NASA-PDS/pds4-information-model/issues/166) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-284: Streamline process for adding or removing standard values. [\#165](https://github.com/NASA-PDS/pds4-information-model/issues/165) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+
 **Defects:**
 
 - LDDTool: uses wrong version of XSD when referencing IMG dictionary [\#229](https://github.com/NASA-PDS/pds4-information-model/issues/229) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
-- LDDTool: erroneously replaces TBD values with null in JSON output [\#227](https://github.com/NASA-PDS/pds4-information-model/issues/227) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-21)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
 **Improvements:**
 
+- CCB-294: Add enumerated value to Units\_of\_Pixel\_Resolution\_Angular [\#218](https://github.com/NASA-PDS/pds4-information-model/issues/218)
+- CCB-296: Duplicated value in enumerated value list of Product\_Context /Internal\_Reference /reference\_type. [\#216](https://github.com/NASA-PDS/pds4-information-model/issues/216)
+- CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
+- CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 - LDDTool: Use sch:value-of to display a variable in Schematron validation [\#167](https://github.com/NASA-PDS/pds4-information-model/issues/167) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 
 **Defects:**
 
 - LDDTool: update LDD attribute checking to only check for "type" and "\_type" [\#230](https://github.com/NASA-PDS/pds4-information-model/issues/230) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
-- CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+- LDDTool: erroneously replaces TBD values with null in JSON output [\#227](https://github.com/NASA-PDS/pds4-information-model/issues/227) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 
 **Other closed issues:**
 
 - lddtool-11.4.0-SNAPSHOT version output incorrect [\#228](https://github.com/NASA-PDS/pds4-information-model/issues/228)
 - IMTool - Cleanup warning messages [\#225](https://github.com/NASA-PDS/pds4-information-model/issues/225)
 - LDDTool: Revise the handling of supplying the IM version \(alternate version\) via command-line [\#222](https://github.com/NASA-PDS/pds4-information-model/issues/222)
-- CCB-294: Add enumerated value to Units\_of\_Pixel\_Resolution\_Angular [\#218](https://github.com/NASA-PDS/pds4-information-model/issues/218)
-- CCB-296: Duplicated value in enumerated value list of Product\_Context /Internal\_Reference /reference\_type. [\#216](https://github.com/NASA-PDS/pds4-information-model/issues/216)
-- CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
 - IMTool: Remove read of environment variable JAVA\_HOME [\#209](https://github.com/NASA-PDS/pds4-information-model/issues/209)
 
 ## [11.3.2](https://github.com/NASA-PDS/pds4-information-model/tree/11.3.2) (2020-08-17)
@@ -70,6 +75,7 @@
 **Improvements:**
 
 - LDDTool: Setup and configure CI/CD and Nightly Builds [\#158](https://github.com/NASA-PDS/pds4-information-model/issues/158) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-268 how to test this [\#143](https://github.com/NASA-PDS/pds4-information-model/issues/143)
 
 **Defects:**
 
@@ -78,7 +84,6 @@
 **Other closed issues:**
 
 - LDDTool: Add PDS Namespace Registry information to Help output [\#172](https://github.com/NASA-PDS/pds4-information-model/issues/172) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
-- CCB-268 how to test this [\#143](https://github.com/NASA-PDS/pds4-information-model/issues/143)
 - CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS/pds4-information-model/issues/130)
 
 ## [v11.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/v11.2.2) (2020-04-06)
@@ -97,6 +102,11 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.1.0...v11.2.0)
 
+**Improvements:**
+
+- CCB-279: Mis-Matched \<axes\> and Axis\_Array Specifications  [\#152](https://github.com/NASA-PDS/pds4-information-model/issues/152)
+- CCB-272: Reinstate Array\_1D in the Information Model [\#148](https://github.com/NASA-PDS/pds4-information-model/issues/148)
+
 **Defects:**
 
 - Bugfix - Add code to fail gracefully for deprecated -M argument [\#154](https://github.com/NASA-PDS/pds4-information-model/issues/154)
@@ -105,15 +115,13 @@
 
 **Other closed issues:**
 
-- CCB-279: Mis-Matched \<axes\> and Axis\_Array Specifications  [\#152](https://github.com/NASA-PDS/pds4-information-model/issues/152)
-- CCB-272: Reinstate Array\_1D in the Information Model [\#148](https://github.com/NASA-PDS/pds4-information-model/issues/148)
 - LDDtool: unescaped & in output .xml [\#141](https://github.com/NASA-PDS/pds4-information-model/issues/141)
 
 ## [v11.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v11.1.0) (2020-03-11)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v11.0.0...v11.1.0)
 
-**Other closed issues:**
+**Improvements:**
 
 - CCB-274 - Add attribute dictionary\_type to Ingest\_LDD - Update [\#144](https://github.com/NASA-PDS/pds4-information-model/issues/144)
 
@@ -121,10 +129,13 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v10.1.2...v11.0.0)
 
-**Other closed issues:**
+**Improvements:**
 
 - CCB-278: Fix errors in logical\_identifier, ASCII\_LID, ASCIIVID and ASCII\_LIDVID\_LID [\#139](https://github.com/NASA-PDS/pds4-information-model/issues/139)
 - CCB-274 - Add attribute dictionary\_type to Ingest\_LDD [\#137](https://github.com/NASA-PDS/pds4-information-model/issues/137)
+
+**Other closed issues:**
+
 - CCB-220: Add ability to specify many source products via table. [\#135](https://github.com/NASA-PDS/pds4-information-model/issues/135)
 - CCB-271: Add reference\_types for Product\_Ancillary [\#133](https://github.com/NASA-PDS/pds4-information-model/issues/133)
 - Improve versioning documentation to include IM version information [\#132](https://github.com/NASA-PDS/pds4-information-model/issues/132)
