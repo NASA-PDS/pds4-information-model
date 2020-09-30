@@ -6,14 +6,9 @@
 
 **Improvements:**
 
-- CCB-285:  GeoTIFF format as operational PDS4 image [\#166](https://github.com/NASA-PDS/pds4-information-model/issues/166) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
-- CCB-284: Streamline process for adding or removing standard values. [\#165](https://github.com/NASA-PDS/pds4-information-model/issues/165) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-297: Inappropriate values in permissible values list for Product\_Observational/Observation\_Area/Target\_Identification/Internal\_Reference/reference\_type [\#220](https://github.com/NASA-PDS/pds4-information-model/issues/220)
 
-**Defects:**
-
-- LDDTool: uses wrong version of XSD when referencing IMG dictionary [\#229](https://github.com/NASA-PDS/pds4-information-model/issues/229) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
-
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-23)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
@@ -24,10 +19,13 @@
 - CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
 - CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 - LDDTool: Use sch:value-of to display a variable in Schematron validation [\#167](https://github.com/NASA-PDS/pds4-information-model/issues/167) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-285:  GeoTIFF format as operational PDS4 image [\#166](https://github.com/NASA-PDS/pds4-information-model/issues/166) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-284: Streamline process for adding or removing standard values. [\#165](https://github.com/NASA-PDS/pds4-information-model/issues/165) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 
 **Defects:**
 
 - LDDTool: update LDD attribute checking to only check for "type" and "\_type" [\#230](https://github.com/NASA-PDS/pds4-information-model/issues/230) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
+- LDDTool: uses wrong version of XSD when referencing IMG dictionary [\#229](https://github.com/NASA-PDS/pds4-information-model/issues/229) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 - LDDTool: erroneously replaces TBD values with null in JSON output [\#227](https://github.com/NASA-PDS/pds4-information-model/issues/227) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 
 **Other closed issues:**
