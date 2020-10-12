@@ -52,11 +52,13 @@
       </p>
       
       <p>If you are unsure of what version to use for the version of the information model you are using, please contact the <a href="mailto:pds_operator@jpl.nasa.gov">PDS Operator</a> for assistance at pds_operator@jpl.nasa.gov.</p>
-      
+
+      <p><b>NOTE: As of LDDTool v12.0.0 (October 2020), the software supports generating LDDs with past versions of the PDS4 Information Model. You are encouraged to use the latest version of LDDTool to ensure you receive the latest enhancements to the software.</b></p>
+
       <p>
         <table>
           <tr><th>PDS4 Standards Version</th><th>Applicable LDDTool Version</th></tr>
-          <tr><td>1.14.0.0 (1E00)</td><td><a href="https://github.com/NASA-PDS/pds4-information-model/releases/download/${project.version}/lddtool-${project.version}-bin.tar.gz">current</a></td></tr>
+          <tr><td>1.14.0.0 (1E00) and greater</td><td><a href="https://github.com/NASA-PDS/pds4-information-model/releases/download/${project.version}/lddtool-${project.version}-bin.tar.gz">current</a></td></tr>
           <tr><td>1.13.0.0 (1D00)</td><td><a href="https://nasa-pds.github.io/pds4-information-model/10.1.2/model-lddtool/index.html">10.1.2</a></td></tr>
           <tr><td>1.12.0.0 (1C00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.1.0/model/model-lddtool/index.html">9.1.0</a></td></tr>
           <tr><td>1.11.0.0 (1B00)</td><td><a href="https://pds-engineering.jpl.nasa.gov/development/pds4/9.0.0/model/model-lddtool/index.html">9.0.0</a></td></tr>
