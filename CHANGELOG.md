@@ -1,5 +1,9 @@
 # Changelog
 
+## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-10-12)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.0.0...12.1.0-SNAPSHOT)
+
 ## [12.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/12.0.0) (2020-10-12)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...12.0.0)
