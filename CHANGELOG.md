@@ -1,19 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.4.0-SNAPSHOT...HEAD)
-
-**Improvements:**
-
-- CCB-297: Inappropriate values in permissible values list for Product\_Observational/Observation\_Area/Target\_Identification/Internal\_Reference/reference\_type [\#220](https://github.com/NASA-PDS/pds4-information-model/issues/220)
-
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-26)
+## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-30)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
 
 **Improvements:**
 
+- CCB-297: Inappropriate values in permissible values list for Product\_Observational/Observation\_Area/Target\_Identification/Internal\_Reference/reference\_type [\#220](https://github.com/NASA-PDS/pds4-information-model/issues/220)
 - CCB-294: Add enumerated value to Units\_of\_Pixel\_Resolution\_Angular [\#218](https://github.com/NASA-PDS/pds4-information-model/issues/218)
 - CCB-296: Duplicated value in enumerated value list of Product\_Context /Internal\_Reference /reference\_type. [\#216](https://github.com/NASA-PDS/pds4-information-model/issues/216)
 - CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
