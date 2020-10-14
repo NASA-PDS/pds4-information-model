@@ -149,6 +149,7 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("   </owl:ObjectProperty>");
 		prDDPins.println(" ");	
 		
+		/*
 		prDDPins.println("   <!-- PDS4 Disjoints: http://pds.nasa.gov/pds4/pds#" + DMDocument.registrationAuthorityIdentifierValue + ".pds.___Top Level___ -->");
 		prDDPins.println("   <rdf:Description>");
 		prDDPins.println("      <rdf:type rdf:resource=\"http://www.w3.org/2002/07/owl#AllDisjointClasses\"/>");
@@ -167,6 +168,7 @@ class WriteDOMRDFOWLFile extends Object{
 // 		prDDPins.println("         <rdf:Description rdf:about=\"http://pds.nasa.gov/pds4/pds#" + DMDocument.registrationAuthorityIdentifierValue + ".pds.Permissible_Value\"/>");
 		prDDPins.println("      </owl:members>");
 		prDDPins.println("   </rdf:Description>");
+		*/
 		
 		prDDPins.println(" ");
 		prDDPins.println(" ");		    
@@ -220,7 +222,7 @@ class WriteDOMRDFOWLFile extends Object{
 		prDDPins.println("      -->");
 
 		printAttributes (prDDPins);	
-		printDisjoints ("Attributes", gAttrIdArr, prDDPins);
+// 777		printDisjoints ("Attributes", gAttrIdArr, prDDPins);
 // 		printDisjoints ("Permanent Values", gPermValIdArr, prDDPins);
 		
 		printDataTypes (prDDPins);
@@ -305,7 +307,7 @@ class WriteDOMRDFOWLFile extends Object{
 				if (! ((lDisjointDOMClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDisjointDOMClass.nameSpaceIdNC.compareTo("all") == 0) && (lDisjointDOMClass.steward.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0 || lDisjointDOMClass.steward.compareTo("ops") == 0))) continue;			
 				gClassIdArr.add(lDisjointDOMClass.identifier);
 			}
-			printDisjoints (lDOMClass.identifier, gClassIdArr, prDDPins);
+// 777			printDisjoints (lDOMClass.identifier, gClassIdArr, prDDPins);
 		}
 	}
 	
