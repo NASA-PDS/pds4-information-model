@@ -948,26 +948,16 @@ public class DMDocument extends Object {
         		} else{
         			registerMessage ("3>error Missing schema config item: "+ isMasterKey);
         		}
-        		String versionIdKey = SCHEMA_LITERAL+nameSpaceId + ".versionId";
-        	
-        	    value = prop.getProperty(versionIdKey);
-        		if (value != null){
-        			lSchemaFileDefn.versionId =  value;
-        		} else if (lSchemaFileDefn.isMaster) {
-                                lSchemaFileDefn.versionId = infoModelVersionId;
-        		} else {
-        			registerMessage ("3>error Missing schema config item: "+ versionIdKey);
-        		}
-        		String labelVersionIdKey = SCHEMA_LITERAL+nameSpaceId + ".labelVersionId";
-        	    value = prop.getProperty(labelVersionIdKey);
-        		if (value != null){
-        			lSchemaFileDefn.labelVersionId =  value;
-        		} else if (lSchemaFileDefn.isMaster) {
-                                lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
-        		} else{
-        			registerMessage ("3>error Missing schema config item: "+ labelVersionIdKey);
-        		}
-           		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
+        		
+        		// default to the master values
+        		// the value of versionId will be reset by Ingest_LDD 
+        		// the value of labelVersionId is the same for all dictionaries, namely the master
+        		// the value of labelVersionId is always "1.0"; this is the first label for this product
+        		
+        		lSchemaFileDefn.versionId = infoModelVersionId;
+        		lSchemaFileDefn.labelVersionId = "1.0";
+
+        		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
         		if (value != null){
         			if (value.equals("true")) {
@@ -1482,6 +1472,8 @@ public class DMDocument extends Object {
 		exposedElementArr = new ArrayList <String> ();
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Ingest_LDD");
 //		exposedElementArr.add("0001_NASA_PDS_1.oais.Archival_Information_Package");
+//		exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package");
+//		exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package_Collection");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_AIP");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Ancillary");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Attribute_Definition");
