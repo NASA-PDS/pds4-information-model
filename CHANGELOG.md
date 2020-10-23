@@ -1,8 +1,19 @@
 # Changelog
 
-## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-10-12)
+## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-10-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.0.0...12.1.0-SNAPSHOT)
+
+**Defects:**
+
+- Incorrect error messages for DD\_Associate\_External\_Class [\#235](https://github.com/NASA-PDS/pds4-information-model/issues/235) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+- PDS4\_PDS\_1E00.sch inconsistent rules for type of Investigation vs Investigation\_Area [\#186](https://github.com/NASA-PDS/pds4-information-model/issues/186) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+
+**Other closed issues:**
+
+- \[namespace-registry\] add new namespace "\<chan1\>" [\#245](https://github.com/NASA-PDS/pds4-information-model/issues/245) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- \[namespace-registry\] add new namespace "SURVEY" [\#234](https://github.com/NASA-PDS/pds4-information-model/issues/234)
+- \[namespace-registry\] add new namespace "NUCSPEC" [\#233](https://github.com/NASA-PDS/pds4-information-model/issues/233)
 
 ## [12.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/12.0.0) (2020-10-12)
 
