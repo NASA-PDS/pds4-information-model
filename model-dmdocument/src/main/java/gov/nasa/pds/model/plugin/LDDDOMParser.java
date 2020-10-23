@@ -987,7 +987,7 @@ public class LDDDOMParser extends Object
 								String assertMsgPre = " must be equal to one of the following values"; 
 								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
 								lDOMAssert.assertStmt =  ". = (" + lAssertMsgValueList  + ")";	
-								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.xpath + ":" + lDOMRule.attrTitle + assertMsgPre + " " + lAssertMsgValueList  + ".";
+								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.xpath + assertMsgPre + " " + lAssertMsgValueList  + ".";
 								lDOMRule.assertArr.add(lDOMAssert);
 							}
 						}
