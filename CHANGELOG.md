@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.1.0-SNAPSHOT...HEAD)
+
+**Other closed issues:**
+
+- LDDTool: Enable to ability to set custom namespace base URI in IngestLDD   [\#104](https://github.com/NASA-PDS/pds4-information-model/issues/104)
+
 ## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-10-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.0.0...12.1.0-SNAPSHOT)
