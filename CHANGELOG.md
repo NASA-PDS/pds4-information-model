@@ -4,11 +4,11 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.1.0-SNAPSHOT...HEAD)
 
-**Other closed issues:**
+**Defects:**
 
-- LDDTool: Enable to ability to set custom namespace base URI in IngestLDD   [\#104](https://github.com/NASA-PDS/pds4-information-model/issues/104)
+- LDDTool: Displaying invalid Imaging Discipline Classes [\#175](https://github.com/NASA-PDS/pds4-information-model/issues/175) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
 
-## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-10-23)
+## [12.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/12.1.0-SNAPSHOT) (2020-11-03)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.0.0...12.1.0-SNAPSHOT)
 
@@ -22,6 +22,7 @@
 - \[namespace-registry\] add new namespace "\<chan1\>" [\#245](https://github.com/NASA-PDS/pds4-information-model/issues/245) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 - \[namespace-registry\] add new namespace "SURVEY" [\#234](https://github.com/NASA-PDS/pds4-information-model/issues/234)
 - \[namespace-registry\] add new namespace "NUCSPEC" [\#233](https://github.com/NASA-PDS/pds4-information-model/issues/233)
+- LDDTool: Enable to ability to set custom namespace base URI in IngestLDD   [\#104](https://github.com/NASA-PDS/pds4-information-model/issues/104)
 
 ## [12.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/12.0.0) (2020-10-12)
 
