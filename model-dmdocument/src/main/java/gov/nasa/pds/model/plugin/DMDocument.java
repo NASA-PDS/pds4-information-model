@@ -387,8 +387,6 @@ public class DMDocument extends Object {
 		// set registryAttr
 		setRegistryAttrFlag ();
 		
-		// original location of deprecation code moved to end of file.
-		
 		// set exposed elements 
 		setexposedElementFlag ();
 		
@@ -809,6 +807,27 @@ public class DMDocument extends Object {
 			}
 		}
 //		registerMessage ("1>info Input File Name Checked: " + lSchemaFileDefn.LDDToolInputFileName);
+	}
+	
+	static public boolean checkCreateDirectory (String lDirectoryPathName) {
+		File file = new File(lDirectoryPathName);
+		if (file.exists() && file.isDirectory()) {
+//			System.out.println("debug checkCreateDirectory - Directory FOUND - lDirectoryPathName:" + lDirectoryPathName);
+			registerMessage ("0>info Found directory: " + lDirectoryPathName);
+			return true;
+		} else {
+			//Create the directory
+			boolean bool = file.mkdir();
+			if(bool){
+//				System.out.println("debug checkCreateDirectory - Directory CREATED - lDirectoryPathName:" + lDirectoryPathName);
+				registerMessage ("0>info Created directory: " + lDirectoryPathName);
+				return true;
+			}else{
+//				System.out.println("debug checkCreateDirectory - Directory CREATE FAILED - lDirectoryPathName:" + lDirectoryPathName);
+				registerMessage ("1>error Directory create failed: " + lDirectoryPathName);
+			}
+		}
+		return false;
 	}
 	
 	static public boolean checkFileName (String inputFileName) {
