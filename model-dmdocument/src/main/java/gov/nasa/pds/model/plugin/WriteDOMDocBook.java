@@ -188,6 +188,10 @@ class WriteDOMDocBook extends Object {
 	
 //	print DocBook File
 	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
+		// check that directory exists
+		if (! DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/DD/")) {
+			return;
+		}		
 		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 		String lDOMLabelVersionId = lLabelVersionId;
