@@ -113,16 +113,17 @@ public class DMDocument extends Object {
 	// 1.12.0.0 - 1.18 - 1.18 - Build 9b - 1C00
 	// 1.13.0.0 - 1.19 - 1.19 - Build 10a - 1D00
 	// 1.14.0.0 - 1.20 - 1.20 - Build 10b - 1E00
-	// 1.15.0.0 - 1.21 - 1.21 - Build 11a - 1F00
-	// 1.16.0.0 - 1.22 - 1.22 - Build 11b - 1G00
+	// 1.15.0.0 - 1.21 - 1.21 - Build 11.0 - 1F00
+	// 1.16.0.0 - 1.22 - 1.22 - Build 11.1 - 1G00
+	// 1.17.0.0 - 1.23 - 1.23 - Build 12.0 - 1H00
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
 	static String LDDToolVersionId  = "0.0.0";
 	static String buildDate  = "";
-	static String buildIMVersionId = "1.15.0.0";
-	static String buildIMVersionFolderId = "1F00";
+	static String buildIMVersionId = "1.16.0.0";
+	static String buildIMVersionFolderId = "1G00";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
