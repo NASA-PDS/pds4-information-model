@@ -296,6 +296,7 @@ public class DMDocument extends Object {
 		
 		// The current version is included to allow for -V currentIMVersion
 		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1G00");
 		alternateIMVersionArr.add ("1F00");
 		alternateIMVersionArr.add ("1E00");
 		alternateIMVersionArr.add ("1D00");
@@ -1467,6 +1468,13 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time", "pds", "ASCII_Date_Time", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time_UTC", "pds", "ASCII_Date_Time_UTC", "", "", "", false));
+
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector", "pds", "Vector", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Component", "pds", "Vector_Component", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3", "pds", "Vector_Cartesian_3", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Acceleration", "pds", "Vector_Cartesian_3_Acceleration", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Position", "pds", "Vector_Cartesian_3_Position", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Velocity", "pds", "Vector_Cartesian_3_Velocity", "", "", "", false));		
 		
 		// get ArrayList for *** testing only ***
 		deprecatedAttrValueArr = new ArrayList <String> ();
