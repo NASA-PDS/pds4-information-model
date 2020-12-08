@@ -1,4 +1,4 @@
-; Mon Nov 30 12:51:20 EST 2020
+; Tue Dec 08 12:57:13 EST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3206,7 +3206,7 @@
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
 		(create-accessor read-write))
 	(multislot external_source_product_identifier
-;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section E.2.6.1.2 of the Data Provider's Handbook.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot isMissionOnly
@@ -10900,7 +10900,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot external_source_product_identifier
-;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section E.2.6.1.2 of the Data Provider's Handbook.")
 		(type STRING)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
