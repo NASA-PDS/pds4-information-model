@@ -1,4 +1,4 @@
-; Mon Nov 30 13:46:19 EST 2020
+; Tue Dec 08 13:06:06 EST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -19900,7 +19900,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Source_Product_External.pds.external_source_product_identifier] of  Definition
 
-	(definitionText "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider%47s Handbook.")
+	(definitionText "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section E.2.6.1.2 of the Data Provider%47s Handbook.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Source_Product_External.pds.reference_type] of  Definition
