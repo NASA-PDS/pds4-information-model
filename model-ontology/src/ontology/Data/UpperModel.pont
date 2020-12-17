@@ -1,4 +1,4 @@
-; Mon Aug 31 09:29:43 PDT 2020
+; Wed Dec 16 19:24:38 EST 2020
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6564,7 +6564,7 @@
 	(single-slot parsing_standard_id
 ;+		(comment "The parsing_standard_id attribute provides the formal name of a standard used for the structure of a Parsable Byte Stream digital object.")
 		(type STRING)
-;+		(value "VICAR1" "PDS ODL 2" "FITS 3.0" "PDS3" "Pre-PDS3" "ISIS2" "ISIS3" "7-Bit ASCII Text" "PDS DSV 1" "VICAR2" "UTF-8 Text" "CDF 3.4 ISTP/IACG" "ISIS2 History Label")
+;+		(value "VICAR1" "PDS ODL 2" "FITS 3.0" "PDS3" "Pre-PDS3" "ISIS2" "ISIS3" "7-Bit ASCII Text" "PDS DSV 1" "VICAR2" "UTF-8 Text" "CDF 3.4 ISTP/IACG" "ISIS2 History Label" "FITS 4.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot object_length
