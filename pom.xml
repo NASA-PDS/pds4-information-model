@@ -141,6 +141,10 @@ POSSIBILITY OF SUCH DAMAGE.
       <id>ossrh</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+    <site>
+      <id>dummy URL to enabling doc staging</id>
+      <url>https://{project.artifactId}</url>
+    </site>
   </distributionManagement>
   
   <scm>
