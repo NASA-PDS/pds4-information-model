@@ -332,7 +332,16 @@ class XML4LabelSchemaDOM extends Object {
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+
+	            // get info for XML schema namespace declaration; first try LDD
+	            SchemaFileDefn lLDDSchemaFileDefn = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
+                if (lLDDSchemaFileDefn == null) {
+                	lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+	                if (lLDDSchemaFileDefn == null) {
+	                	lLDDSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
+	                }
+	            }
+
 				String lSchemaLocationFileName2 = "TBD_lSchemaLocation";
 				if (lLDDSchemaFileDefn != null) lSchemaLocationFileName2 = lLDDSchemaFileDefn.relativeFileNameXMLSchema2;
 				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id
