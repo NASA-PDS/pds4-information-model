@@ -42,7 +42,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>12.0.1</version>
+  <version>12.0.2</version>
   <packaging>pom</packaging>
 
   <name>PDS4 Information Model</name>
@@ -141,6 +141,10 @@ POSSIBILITY OF SUCH DAMAGE.
       <id>ossrh</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+    <site>
+      <id>dummy URL to enabling doc staging</id>
+      <url>https://{project.artifactId}</url>
+    </site>
   </distributionManagement>
   
   <scm>
