@@ -113,16 +113,17 @@ public class DMDocument extends Object {
 	// 1.12.0.0 - 1.18 - 1.18 - Build 9b - 1C00
 	// 1.13.0.0 - 1.19 - 1.19 - Build 10a - 1D00
 	// 1.14.0.0 - 1.20 - 1.20 - Build 10b - 1E00
-	// 1.15.0.0 - 1.21 - 1.21 - Build 11a - 1F00
-	// 1.16.0.0 - 1.22 - 1.22 - Build 11b - 1G00
+	// 1.15.0.0 - 1.21 - 1.21 - Build 11.0 - 1F00
+	// 1.16.0.0 - 1.22 - 1.22 - Build 11.1 - 1G00
+	// 1.17.0.0 - 1.23 - 1.23 - Build 12.0 - 1H00
 	
 	// x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
 	//									Modification history will continue with 1.n
 	                         
 	static String LDDToolVersionId  = "0.0.0";
 	static String buildDate  = "";
-	static String buildIMVersionId = "1.15.0.0";
-	static String buildIMVersionFolderId = "1F00";
+	static String buildIMVersionId = "1.16.0.0";
+	static String buildIMVersionFolderId = "1G00";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
 	static boolean PDS4MergeFlag  = false;
@@ -295,6 +296,7 @@ public class DMDocument extends Object {
 		
 		// The current version is included to allow for -V currentIMVersion
 		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1G00");
 		alternateIMVersionArr.add ("1F00");
 		alternateIMVersionArr.add ("1E00");
 		alternateIMVersionArr.add ("1D00");
@@ -386,8 +388,6 @@ public class DMDocument extends Object {
 		
 		// set registryAttr
 		setRegistryAttrFlag ();
-		
-		// original location of deprecation code moved to end of file.
 		
 		// set exposed elements 
 		setexposedElementFlag ();
@@ -811,6 +811,27 @@ public class DMDocument extends Object {
 //		registerMessage ("1>info Input File Name Checked: " + lSchemaFileDefn.LDDToolInputFileName);
 	}
 	
+	static public boolean checkCreateDirectory (String lDirectoryPathName) {
+		File file = new File(lDirectoryPathName);
+		if (file.exists() && file.isDirectory()) {
+//			System.out.println("debug checkCreateDirectory - Directory FOUND - lDirectoryPathName:" + lDirectoryPathName);
+			registerMessage ("0>info Found directory: " + lDirectoryPathName);
+			return true;
+		} else {
+			//Create the directory
+			boolean bool = file.mkdir();
+			if(bool){
+//				System.out.println("debug checkCreateDirectory - Directory CREATED - lDirectoryPathName:" + lDirectoryPathName);
+				registerMessage ("0>info Created directory: " + lDirectoryPathName);
+				return true;
+			}else{
+//				System.out.println("debug checkCreateDirectory - Directory CREATE FAILED - lDirectoryPathName:" + lDirectoryPathName);
+				registerMessage ("1>error Directory create failed: " + lDirectoryPathName);
+			}
+		}
+		return false;
+	}
+	
 	static public boolean checkFileName (String inputFileName) {
 		File file=new File (inputFileName);
 		if (file.exists() && (file.isFile())) {
@@ -948,26 +969,16 @@ public class DMDocument extends Object {
         		} else{
         			registerMessage ("3>error Missing schema config item: "+ isMasterKey);
         		}
-        		String versionIdKey = SCHEMA_LITERAL+nameSpaceId + ".versionId";
-        	
-        	    value = prop.getProperty(versionIdKey);
-        		if (value != null){
-        			lSchemaFileDefn.versionId =  value;
-        		} else if (lSchemaFileDefn.isMaster) {
-                                lSchemaFileDefn.versionId = infoModelVersionId;
-        		} else {
-        			registerMessage ("3>error Missing schema config item: "+ versionIdKey);
-        		}
-        		String labelVersionIdKey = SCHEMA_LITERAL+nameSpaceId + ".labelVersionId";
-        	    value = prop.getProperty(labelVersionIdKey);
-        		if (value != null){
-        			lSchemaFileDefn.labelVersionId =  value;
-        		} else if (lSchemaFileDefn.isMaster) {
-                                lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
-        		} else{
-        			registerMessage ("3>error Missing schema config item: "+ labelVersionIdKey);
-        		}
-           		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
+        		
+        		// default to the master values
+        		// the value of versionId will be reset by Ingest_LDD 
+        		// the value of labelVersionId is the same for all dictionaries, namely the master
+        		// the value of labelVersionId is always "1.0"; this is the first label for this product
+        		
+        		lSchemaFileDefn.versionId = infoModelVersionId;
+        		lSchemaFileDefn.labelVersionId = "1.0";
+
+        		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
         		if (value != null){
         			if (value.equals("true")) {
@@ -1457,6 +1468,13 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time", "pds", "ASCII_Date_Time", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("ASCII_Date_Time_UTC", "pds", "ASCII_Date_Time_UTC", "", "", "", false));
+
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector", "pds", "Vector", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Component", "pds", "Vector_Component", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3", "pds", "Vector_Cartesian_3", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Acceleration", "pds", "Vector_Cartesian_3_Acceleration", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Position", "pds", "Vector_Cartesian_3_Position", "", "", "", false));
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Velocity", "pds", "Vector_Cartesian_3_Velocity", "", "", "", false));		
 		
 		// get ArrayList for *** testing only ***
 		deprecatedAttrValueArr = new ArrayList <String> ();
@@ -1482,6 +1500,8 @@ public class DMDocument extends Object {
 		exposedElementArr = new ArrayList <String> ();
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Ingest_LDD");
 //		exposedElementArr.add("0001_NASA_PDS_1.oais.Archival_Information_Package");
+//		exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package");
+//		exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package_Collection");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_AIP");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Ancillary");
 		exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Attribute_Definition");

@@ -3206,7 +3206,7 @@
 ;+		(value "C" "D" "E" "F" "G" "H" "K" "Ka" "Ku" "Q" "R" "S" "U" "V" "W" "X" "Y")
 		(create-accessor read-write))
 	(multislot external_source_product_identifier
-;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section E.2.6.1.2 of the Data Provider's Handbook.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot isMissionOnly
@@ -5352,7 +5352,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -10900,7 +10900,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot external_source_product_identifier
-;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section 2.6.1.2 of the Data Provider's Handbook.")
+;+		(comment "The external_source_product_identifier provides unique identifiers for one or more source products that are not in the PDS4 Registry. For guidelines on the construction of this identifier, refer to section E.2.6.1.2 of the Data Provider's Handbook.")
 		(type STRING)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
