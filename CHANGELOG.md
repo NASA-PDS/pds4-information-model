@@ -1,8 +1,53 @@
 # Changelog
 
-## [11.4.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/11.4.0-SNAPSHOT) (2020-09-30)
+## [v12.0.3](https://github.com/NASA-PDS/pds4-information-model/tree/v12.0.3) (2020-12-23)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...11.4.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.0.2...v12.0.3)
+
+**Improvements:**
+
+- CCB-285:  GeoTIFF format as operational PDS4 image [\#166](https://github.com/NASA-PDS/pds4-information-model/issues/166) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+
+## [v12.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v12.0.2) (2020-12-22)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.0.1...v12.0.2)
+
+**Defects:**
+
+- LDDTool forces use of LDD versions based upon config [\#271](https://github.com/NASA-PDS/pds4-information-model/issues/271) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+
+**Other closed issues:**
+
+- CCB-317: Add FITS 4.0 to parsing\_standard\_id enumerated values for Header object [\#273](https://github.com/NASA-PDS/pds4-information-model/issues/273) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+
+## [v12.0.1](https://github.com/NASA-PDS/pds4-information-model/tree/v12.0.1) (2020-12-18)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/12.0.0...v12.0.1)
+
+**Improvements:**
+
+- CCB-313: Definition of \<external\_source\_product\_identifier\> refers to non-existent documentation [\#253](https://github.com/NASA-PDS/pds4-information-model/issues/253) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- CCB-304: Cleanup unused Vector classes in IM before 2.0.0.0 [\#252](https://github.com/NASA-PDS/pds4-information-model/issues/252) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- Improvements from Build 11.0 testing [\#241](https://github.com/NASA-PDS/pds4-information-model/issues/241)
+
+**Defects:**
+
+- Incorrect error messages for DD\_Associate\_External\_Class [\#235](https://github.com/NASA-PDS/pds4-information-model/issues/235) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+- PDS4\_PDS\_1E00.sch inconsistent rules for type of Investigation vs Investigation\_Area [\#186](https://github.com/NASA-PDS/pds4-information-model/issues/186) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+- LDDTool: Displaying invalid Imaging Discipline Classes [\#175](https://github.com/NASA-PDS/pds4-information-model/issues/175) [[low](https://github.com/NASA-PDS/pds4-information-model/labels/low)]
+- LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
+
+**Other closed issues:**
+
+- Stage the IMTool system for V1.16.0.0 to allow the implementation of approved SCRs and bug fixes. [\#262](https://github.com/NASA-PDS/pds4-information-model/issues/262)
+- \[namespace-registry\] add new namespace "\<chan1\>" [\#245](https://github.com/NASA-PDS/pds4-information-model/issues/245) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
+- \[namespace-registry\] add new namespace "SURVEY" [\#234](https://github.com/NASA-PDS/pds4-information-model/issues/234)
+- \[namespace-registry\] add new namespace "NUCSPEC" [\#233](https://github.com/NASA-PDS/pds4-information-model/issues/233)
+- LDDTool: Enable to ability to set custom namespace base URI in IngestLDD   [\#104](https://github.com/NASA-PDS/pds4-information-model/issues/104)
+
+## [12.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/12.0.0) (2020-10-12)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/11.3.2...12.0.0)
 
 **Improvements:**
 
@@ -12,7 +57,6 @@
 - CCB-292:	New enumerated values for reference\_type. [\#214](https://github.com/NASA-PDS/pds4-information-model/issues/214)
 - CCB-308: IM schematron needs to be updated to handle SI unit prefixes [\#193](https://github.com/NASA-PDS/pds4-information-model/issues/193) [[medium](https://github.com/NASA-PDS/pds4-information-model/labels/medium)]
 - LDDTool: Use sch:value-of to display a variable in Schematron validation [\#167](https://github.com/NASA-PDS/pds4-information-model/issues/167) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
-- CCB-285:  GeoTIFF format as operational PDS4 image [\#166](https://github.com/NASA-PDS/pds4-information-model/issues/166) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 - CCB-284: Streamline process for adding or removing standard values. [\#165](https://github.com/NASA-PDS/pds4-information-model/issues/165) [[high](https://github.com/NASA-PDS/pds4-information-model/labels/high)]
 
 **Defects:**
@@ -229,4 +273,4 @@
 
 
 
-\* *This Changelog was automatically generated       by [github_changelog_generator]      (https://github.com/github-changelog-generator/github-changelog-generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
