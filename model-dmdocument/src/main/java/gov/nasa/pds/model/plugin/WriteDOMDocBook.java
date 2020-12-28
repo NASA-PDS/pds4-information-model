@@ -60,7 +60,7 @@ class WriteDOMDocBook extends Object {
 			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		} else {
 			// the common and all LDDs that are stacked for this run
-			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterAllSchemaFileSortMap.values());
+			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
 		}
 		System.out.println("");
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
@@ -121,7 +121,7 @@ class WriteDOMDocBook extends Object {
 							|| lId.compareTo("pds.other") == 0 
 							|| lId.compareTo("other") == 0 )) {
 						writtenNamespaceIds += ", " + lId;
-						SchemaFileDefn lSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lId);
+						SchemaFileDefn lSchemaFileDefn = DMDocument.LDDSchemaFileSortMap.get(lId);
 						if (lSchemaFileDefn != null)
 							writtenNamespaceIds += " v" + lSchemaFileDefn.versionId;
 					}
