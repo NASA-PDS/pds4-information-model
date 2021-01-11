@@ -68,7 +68,10 @@ class WriteCoreXMLSchemaLabel extends Object {
 		prSchematron.println("    xsi:schemaLocation=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceURL +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id);		
 		prSchematron.println("    " + DMDocument.masterPDSSchemaFileDefn.nameSpaceURLs +  lMasterFileId + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id + "/" + DMDocument.masterPDSSchemaFileDefn.modelShortName + "_" +  lMasterFileIdUpper + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + ".xsd\">");		
 		prSchematron.println("    <Identification_Area>");
-		String lLID = lSchemaFileDefn.urnPrefix + "system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema";
+		
+		// generated and write the LID
+		String lLID = lSchemaFileDefn.urnPrefix + "system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema" + "_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id;
+		if (DMDocument.LDDToolFlag) lLID += "_" + DMDocument.masterLDDSchemaFileDefn.versionId;
 		prSchematron.println("        <logical_identifier>" + lLID.toLowerCase() + "</logical_identifier>");
 		prSchematron.println("        <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
 		prSchematron.println("        <title>" + DMDocument.masterPDSSchemaFileDefn.modelShortName + " XML Schema" + " - " + lSchemaFileDefn.nameSpaceIdNCUC + " V" + lSchemaFileDefn.ont_version_id + "</title>");
