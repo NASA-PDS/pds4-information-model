@@ -1,5 +1,14 @@
 # Changelog
 
+## [v12.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v12.1.0) (2021-01-11)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.0.3...v12.1.0)
+
+**Defects:**
+
+- LDDTool generated LIDs for XML Schema Label Products  do not contain IM or LDD Version Ids [\#283](https://github.com/NASA-PDS/pds4-information-model/issues/283)
+- LDD versionId list in the Data Dictionary Document introduction does not contain valid versionIds [\#277](https://github.com/NASA-PDS/pds4-information-model/issues/277)
+
 ## [v12.0.3](https://github.com/NASA-PDS/pds4-information-model/tree/v12.0.3) (2020-12-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.0.2...v12.0.3)
