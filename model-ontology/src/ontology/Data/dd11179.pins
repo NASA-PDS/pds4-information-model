@@ -1,4 +1,4 @@
-; Tue Jan 12 17:44:35 EST 2021
+; Wed Jan 13 09:40:55 EST 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -34044,6 +34044,7 @@
 	(administrationRecord [DD_1.16.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.2186]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.-2044572699]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.963944407]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.106680966])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id")
@@ -70934,6 +70935,14 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Misc.pds.type.-1890823218])
 	(value "Miscellaneous"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.-2044572699] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id])
+	(endDate "2019-12-31")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.-2044572699])
+	(value "W%2Fm**2%2Fsr%2Fnm%2F%28DN%2Fs%29"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.106680966] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -79528,6 +79537,7 @@
 	(precision "TBD_precision")
 	(unitId
 		"DN"
+		"W%2Fm**2%2Fsr%2Fnm%2F%28DN%2Fs%29"
 		"electron%2FDN"
 		"pixel"))
 
@@ -87512,6 +87522,12 @@
 
 	(beginDate "2009-06-09")
 	(description "Units_of_Misc is classified as being of type Miscellaneous")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.-2044572699] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "The abbreviated unit for Units_of_Misc is W/m**2/sr/nm/(DN/s)")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Misc.pds.unit_id.106680966] of  ValueMeaning
