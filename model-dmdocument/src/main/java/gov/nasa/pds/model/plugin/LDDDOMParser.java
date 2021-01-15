@@ -391,6 +391,7 @@ public class LDDDOMParser extends Object
 		if (! (lLDDVersionId == null || (lLDDVersionId.indexOf("TBD") == 0))) {
 			lSchemaFileDefn.versionId = lLDDVersionId;
 		}
+		
 		lSchemaFileDefn.setVersionIds(); // set variations of versions and all filenames
 		
 		String lStewardId = getTextValue(docEle,"steward_id");
@@ -450,6 +451,10 @@ public class LDDDOMParser extends Object
 		
 		validateNilRequiredAttributes();
 		DMDocument.registerMessage ("0>info parseDocument.validateNilRequiredAttributes() Done");
+		
+		validateEnumeratedFlags ();
+		DMDocument.registerMessage ("0>info parseDocument.validateEnumeratedFlags() Done");
+		
 	}
 	
 	private void printClassDebug (String lLable, String lIdentifier) {
@@ -1700,6 +1705,27 @@ public class LDDDOMParser extends Object
 						DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 					else
 						DMDocument.registerMessage ("2>error Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
+				}
+			}
+		}
+		return;
+	}
+	
+	private void validateEnumeratedFlags () {
+		// scan for attributes and validate that permissible values exist if the enumeration_flag is true
+		for (Iterator <DOMAttr> i = attrArr.iterator(); i.hasNext();) {
+			DOMAttr lDOMAttr = (DOMAttr) i.next();
+			if (lDOMAttr.isEnumerated) {
+				if (lDOMAttr.domPermValueArr.isEmpty()) {
+					DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An attribute with the enumeration_flag = true must have at least one permissible value.");
+				} else {
+//					DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An attribute with the enumeration_flag = true - NO Problem.");
+				}
+			} else {
+				if (lDOMAttr.domPermValueArr.isEmpty()) {
+//					DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An attribute with the enumeration_flag = false - NO Problem");
+				} else {
+					DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An attribute with the enumeration_flag = false must not have any permissible values.");
 				}
 			}
 		}
