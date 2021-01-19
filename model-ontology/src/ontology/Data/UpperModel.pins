@@ -1,4 +1,4 @@
-; Wed Jan 13 09:28:48 EST 2021
+; Tue Jan 19 17:45:18 EST 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -454,6 +454,60 @@
 	(attrTitle "description")
 	(identifier "description")
 	(specMesg "The description in Citation_Information must be greater than 0 and less than 5000 bytes (not counting spaces)."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Attribute%2Fpds%3AInternal_Reference.100004572] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Attribute%2Fpds%3AInternal_Reference.100004572.101])
+	(identifier "pds:DD_Attribute/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:DD_Attribute/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Attribute%2Fpds%3AInternal_Reference.100004572.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('attribute_to_image', 'attribute_to_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"attribute_to_image"
+		"attribute_to_document"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Class%2Fpds%3AInternal_Reference.100004571] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Class%2Fpds%3AInternal_Reference.100004571.101])
+	(identifier "pds:DD_Class/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:DD_Class/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Class%2Fpds%3AInternal_Reference.100004571.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('class_to_image', 'class_to_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"class_to_image"
+		"class_to_document"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518] of  Schematron_Rule
 

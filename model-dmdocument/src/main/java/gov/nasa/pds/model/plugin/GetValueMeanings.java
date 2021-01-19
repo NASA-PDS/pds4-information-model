@@ -300,6 +300,12 @@ class GetValueMeanings extends Object{
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Reference_Entry_Observing_System_Component.reference_type_<Value>_6", "Instrument", "Reference_Entry_Observing_System_Component has an association of type Instrument"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Reference_Entry_Observing_System_Component.reference_type_<Value>_7", "Literature Search", "Reference_Entry_Observing_System_Component has an association of type Literature Search"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
 		lPVD = new PermValueDefn ("0001_NASA_PDS_1.Reference_Entry_Observing_System_Component.reference_type_<Value>_9", "Spacecraft", "Reference_Entry_Observing_System_Component has an association of type Spacecraft"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+		lPVD = new PermValueDefn ("pds:DD_Class/pds:Internal_Reference.reference_type.class_to_image", "class_to_image", "The class is associated to an image"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:DD_Class/pds:Internal_Reference.reference_type.class_to_document", "class_to_document", "The class is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:DD_Attribute/pds:Internal_Reference.reference_type.attribute_to_image", "attribute_to_image", "The attribute is associated to an image"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		lPVD = new PermValueDefn ("pds:DD_Attribute/pds:Internal_Reference.reference_type.attribute_to_document", "attribute_to_document", "The attribute is associated to a document"); masterValueMeaningMap.put(lPVD.identifier, lPVD);
+		
 		return;
 	}
 }
