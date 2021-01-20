@@ -100,7 +100,7 @@ class WriteDOMDDJSONFile extends Object{
 		prDDPins.println("      " + formValue("Version") + ": " +  formValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + " ,");
 		prDDPins.println("      " + formValue("Date") + ": " +  formValue(DMDocument.sTodaysDate) + " ,");
 		prDDPins.println("      " + formValue("Description") + ": " + formValue("This document is a dump of the contents of the PDS4 Data Dictionary") + " ,");
-		String lNSList = formValue("pds");
+		String lNSList = formValue("pds:");
 		String del = ", ";
 		for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
