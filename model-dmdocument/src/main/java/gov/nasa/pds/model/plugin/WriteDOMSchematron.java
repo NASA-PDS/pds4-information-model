@@ -199,15 +199,19 @@ class WriteDOMSchematron extends Object {
 				if (lAssert.assertType.compareTo("RAW") == 0) {	
 					if (lAssert.assertMsg.indexOf("TBD") == 0) {
 						prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"/>");						
+						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 					} else {
 						prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\">");
+						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
 					}
 				} else if (lAssert.assertType.compareTo("REPORT") == 0) {
 					if (lAssert.assertMsg.indexOf("TBD") == 0) {
 						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\"/>");						
+						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 					} else {
 						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\">");
+						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
 					}
 				} else if (lAssert.assertType.compareTo("EVERY") == 0) {
@@ -220,7 +224,7 @@ class WriteDOMSchematron extends Object {
 					}
 					prSchematron.print(lTestValueString);
 					prSchematron.println(")\">");
-
+					prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 					// print message
 					prSchematron.println("        The attribute " + lRule.attrTitle + lAssert.assertMsg + lTestValueString + ".</sch:assert>");
 				} else if (lAssert.assertType.compareTo("IF") == 0) {
@@ -233,7 +237,7 @@ class WriteDOMSchematron extends Object {
 					}
 					prSchematron.print(lTestValueString);
 					prSchematron.println(") else true ()\">");
-
+					prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
 					// print message
 					prSchematron.println("        The attribute " + lRule.attrTitle + lAssert.assertMsg + lTestValueString + ".</sch:assert>");					
 				}
@@ -269,6 +273,9 @@ class WriteDOMSchematron extends Object {
 				String lNameSpaceIdNC = (String) i.next();
 				String lVersionNSId = "TBD_lVersionNSId";
 				String lNameSpaceURL = "TBD_lNameSpaceURL";
+				
+				// omit this LDD schema file's namespace; namespace used as targetNamespace above
+				if (lNameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) continue;
 				
 				// get info for XML schema namespace declaration; first try LDD 
 				SchemaFileDefn lSchemaFileDefnExternal = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
