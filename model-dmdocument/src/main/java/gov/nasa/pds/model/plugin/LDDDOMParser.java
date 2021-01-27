@@ -353,6 +353,11 @@ public class LDDDOMParser extends Object
 		DMDocument.LDDSchemaFileSortMap.put(lSchemaFileDefn.nameSpaceIdNCLC, lSchemaFileDefn);
 		lSchemaFileDefn.setRegAuthority (lConfigSchemaFileDefn);
 		
+		// intialize the namespace for import file creation
+		if (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lNameSpaceIdNC)) {
+					DMDocument.LDDImportNameSpaceIdNCArr.add(lNameSpaceIdNC);
+		}
+		
 		// get the dictionary type from Ingest_LDD file
 		String ldictionaryType = getTextValue(docEle,"dictionary_type");
 		if (ldictionaryType.compareTo("TBD_Ingest_LDD") == 0) {
@@ -1532,7 +1537,6 @@ public class LDDDOMParser extends Object
 						&& (! DMDocument.LDDImportNameSpaceIdNCArr.contains(lDOMRule.nameSpaceIdNC))) {
 							DMDocument.LDDImportNameSpaceIdNCArr.add(lDOMRule.nameSpaceIdNC);		
 				}
-//				System.out.println("debug extractNamespace DMDocument.LDDImportNameSpaceIdNCArr:" + DMDocument.LDDImportNameSpaceIdNCArr);
 			}
 		}
 	}
@@ -1545,7 +1549,6 @@ public class LDDDOMParser extends Object
 		int begNamespaceOffset = 0;
 		int endNamespaceOffset = 0;
 		StringBuffer lInBuff = new StringBuffer(lRuleXpath);
-//		StringBuffer lOutBuff = new StringBuffer();
 		int inCnt = 0, inLmt = lInBuff.length();
 		while (inCnt < inLmt) {
 			Character inChar = lInBuff.charAt(inCnt);

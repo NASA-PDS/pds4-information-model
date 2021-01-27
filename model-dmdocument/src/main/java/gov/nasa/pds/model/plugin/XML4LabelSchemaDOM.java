@@ -220,8 +220,6 @@ class XML4LabelSchemaDOM extends Object {
     	
 //		close the file
     	prXML.close();
-    	
-	
 	}	
 	
 	// get the PDS4 classes (Products ?)
@@ -297,6 +295,9 @@ class XML4LabelSchemaDOM extends Object {
 					String lVersionNSId = "TBD_lVersionNSId";
 					String lNameSpaceURL = "TBD_lNameSpaceURL";
 					
+					// omit this LDD schema file's namespace; namespace used as targetNamespace above
+					if (lNameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) continue;
+					
 					// get info for XML schema namespace declaration; first try LDD 
 					SchemaFileDefn lSchemaFileDefnExternal = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
 					if (lSchemaFileDefnExternal != null) {
@@ -333,15 +334,15 @@ class XML4LabelSchemaDOM extends Object {
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
 
-	            // get info for XML schema namespace declaration; first try LDD
-	            SchemaFileDefn lLDDSchemaFileDefn = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
-                if (lLDDSchemaFileDefn == null) {
-                	lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
-	                if (lLDDSchemaFileDefn == null) {
-	                	lLDDSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
-	                }
-	            }
-
+				// get info for XML schema namespace declaration; first try LDD 
+				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
+				if (lLDDSchemaFileDefn == null) {
+					lLDDSchemaFileDefn = DMDocument.masterAllSchemaFileSortMap.get(lNameSpaceIdNC);
+					if (lLDDSchemaFileDefn == null) {
+						lLDDSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
+					}
+				}
+				
 				String lSchemaLocationFileName2 = "TBD_lSchemaLocation";
 				if (lLDDSchemaFileDefn != null) lSchemaLocationFileName2 = lLDDSchemaFileDefn.relativeFileNameXMLSchema2;
 				prXML.println("    <" + pNS + "import namespace=\"" + lLDDSchemaFileDefn.nameSpaceURL + lNameSpaceIdNC + "/v" + DMDocument.masterPDSSchemaFileDefn.ns_version_id
