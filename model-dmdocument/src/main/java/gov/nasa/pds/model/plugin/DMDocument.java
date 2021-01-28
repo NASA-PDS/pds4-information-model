@@ -150,6 +150,7 @@ public class DMDocument extends Object {
 	static boolean exportOWLFileFlag = false;
 	static boolean pds4ModelFlag = true;
 	static boolean printNamespaceFlag = false;			// print the configured namespaces to the log
+	static boolean disciplineMissionFlag = false;		//  set by -d; Omit the term "mission" from the namespace of a Mission dictionary
 	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
@@ -703,6 +704,9 @@ public class DMDocument extends Object {
 					System.out.println(" ");
 					System.exit(0);
 				}
+				if (lArg.indexOf('d') > -1) {
+					disciplineMissionFlag = true;
+				}
 				if (lArg.indexOf('D') > -1) {
 					exportDDFileFlag = true;
 				}
@@ -866,17 +870,18 @@ public class DMDocument extends Object {
 			
 			System.out.println(" ");
 			System.out.println("Process control:");
-			System.out.println("  -p, --PDS4      Set the context to PDS4");
-			System.out.println("  -l, --LDD       Process a local data dictionary input file");
-			System.out.println("  -D, --DataDict  Write the Data Dictionary DocBook file.");
-			System.out.println("  -J, --JSON      Write the data dictionary to a JSON formatted file.");
-			System.out.println("  -m, --merge     Generate file to merge the local dictionary into the master dictionary");
-			System.out.println("  -M, --Mission   This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
-			System.out.println("  -n, --nuance    Write nuance property maps to LDD schema annotation in JSON");
-			System.out.println("  -N, --Namespace Print the list of configured namespaces to the log");
-			System.out.println("  -1, --IM Spec   Write the Information Model Specification for an LDD.");
-			System.out.println("  -v, --version   Returns the LDDTool version number");
-			System.out.println("  -h, --help      Print this message");
+			System.out.println("  -p, --PDS4       Set the context to PDS4");
+			System.out.println("  -l, --LDD        Process a local data dictionary input file");
+//			System.out.println("  -d, --discipline Omit the term \"mission\" from the namespace of a Mission dictionary.");
+			System.out.println("  -D, --DataDict   Write the Data Dictionary DocBook file.");
+			System.out.println("  -J, --JSON       Write the data dictionary to a JSON formatted file.");
+			System.out.println("  -m, --merge      Generate file to merge the local dictionary into the master dictionary");
+			System.out.println("  -M, --Mission    This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+			System.out.println("  -n, --nuance     Write nuance property maps to LDD schema annotation in JSON");
+			System.out.println("  -N, --Namespace  Print the list of configured namespaces to the log");
+			System.out.println("  -1, --IM Spec    Write the Information Model Specification for an LDD.");
+			System.out.println("  -v, --version    Returns the LDDTool version number");
+			System.out.println("  -h, --help       Print this message");
 			
 			System.out.println(" ");
 			System.out.println("  -V, --IM Version - E.g., -V 1D00.");
