@@ -1,4 +1,4 @@
-; Thu Jan 21 10:24:02 EST 2021
+; Thu Jan 28 14:54:01 EST 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -509,6 +509,181 @@
 		"class_to_image"
 		"class_to_document"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581.104])
+	(identifier "pds:DD_Value_Domain")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"unitOfMeasureRef\" value=\"pds:unit_of_measure_type\""
+		"name=\"specUnitIDRef\" value=\"pds:specified_unit_id\""
+		"name=\"combinedUnitRef\" value=\"($unitOfMeasureRef and $specUnitIDRef)\"")
+	(type "TBD_type")
+	(xpath "pds:DD_Value_Domain"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:enumeration_flag must be equal to one of the following values 'true', 'false'.")
+	(assertStmt "if (pds:enumeration_flag) then pds:enumeration_flag = ('true', 'false') else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:unit_of_measure_type must be equal to one of the following values 'Units_of_Acceleration', 'Units_of_Amount_Of_Substance', 'Units_of_Angle', 'Units_of_Angular_Velocity', 'Units_of_Area', 'Units_of_Current', 'Units_of_Energy', 'Units_of_Force', 'Units_of_Frame_Rate', 'Units_of_Frequency', 'Units_of_Gmass', 'Units_of_Length', 'Units_of_Map_Scale', 'Units_of_Mass', 'Units_of_Misc', 'Units_of_None', 'Units_of_Optical_Path_Length', 'Units_of_Pixel_Resolution_Angular', 'Units_of_Pixel_Resolution_Linear', 'Units_of_Pixel_Resolution_Map', 'Units_of_Pixel_Scale_Angular', 'Units_of_Pixel_Scale_Linear', 'Units_of_Pixel_Scale_Map', 'Units_of_Pressure', 'Units_of_Radiance', 'Units_of_Rates', 'Units_of_Solid_Angle', 'Units_of_Spectral_Irradiance', 'Units_of_Spectral_Radiance', 'Units_of_Storage', 'Units_of_Temperature', 'Units_of_Time', 'Units_of_Velocity', 'Units_of_Voltage', 'Units_of_Volume', 'Units_of_Wavenumber'.")
+	(assertStmt "if (pds:unit_of_measure_type) then pds:unit_of_measure_type = ('Units_of_Acceleration', 'Units_of_Amount_Of_Substance', 'Units_of_Angle', 'Units_of_Angular_Velocity', 'Units_of_Area', 'Units_of_Current', 'Units_of_Energy', 'Units_of_Force', 'Units_of_Frame_Rate', 'Units_of_Frequency', 'Units_of_Gmass', 'Units_of_Length', 'Units_of_Map_Scale', 'Units_of_Mass', 'Units_of_Misc', 'Units_of_None', 'Units_of_Optical_Path_Length', 'Units_of_Pixel_Resolution_Angular', 'Units_of_Pixel_Resolution_Linear', 'Units_of_Pixel_Resolution_Map', 'Units_of_Pixel_Scale_Angular', 'Units_of_Pixel_Scale_Linear', 'Units_of_Pixel_Scale_Map', 'Units_of_Pressure', 'Units_of_Radiance', 'Units_of_Rates', 'Units_of_Solid_Angle', 'Units_of_Spectral_Irradiance', 'Units_of_Spectral_Radiance', 'Units_of_Storage', 'Units_of_Temperature', 'Units_of_Time', 'Units_of_Velocity', 'Units_of_Voltage', 'Units_of_Volume', 'Units_of_Wavenumber') else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581.103] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:value_data_type must be equal to one of the following values 'ASCII_AnyURI', 'ASCII_BibCode', 'ASCII_Boolean', 'ASCII_DOI', 'ASCII_Date_DOY', 'ASCII_Date_Time_DOY', 'ASCII_Date_Time_DOY_UTC', 'ASCII_Date_Time_YMD', 'ASCII_Date_Time_YMD_UTC', 'ASCII_Date_YMD', 'ASCII_Directory_Path_Name', 'ASCII_File_Name', 'ASCII_File_Specification_Name', 'ASCII_Integer', 'ASCII_LID', 'ASCII_LIDVID', 'ASCII_LIDVID_LID', 'ASCII_MD5_Checksum', 'ASCII_NonNegative_Integer', 'ASCII_Numeric_Base16', 'ASCII_Numeric_Base2', 'ASCII_Numeric_Base8', 'ASCII_Real', 'ASCII_Short_String_Collapsed', 'ASCII_Short_String_Preserved', 'ASCII_Text_Collapsed', 'ASCII_Text_Preserved', 'ASCII_Time', 'ASCII_VID', 'UTF8_Short_String_Collapsed', 'UTF8_Short_String_Preserved', 'UTF8_Text_Collapsed', 'UTF8_Text_Preserved', 'Vector_Cartesian_3', 'Vector_Cartesian_3_Acceleration', 'Vector_Cartesian_3_Pointing', 'Vector_Cartesian_3_Position', 'Vector_Cartesian_3_Velocity'.")
+	(assertStmt "pds:value_data_type = ('ASCII_AnyURI', 'ASCII_BibCode', 'ASCII_Boolean', 'ASCII_DOI', 'ASCII_Date_DOY', 'ASCII_Date_Time_DOY', 'ASCII_Date_Time_DOY_UTC', 'ASCII_Date_Time_YMD', 'ASCII_Date_Time_YMD_UTC', 'ASCII_Date_YMD', 'ASCII_Directory_Path_Name', 'ASCII_File_Name', 'ASCII_File_Specification_Name', 'ASCII_Integer', 'ASCII_LID', 'ASCII_LIDVID', 'ASCII_LIDVID_LID', 'ASCII_MD5_Checksum', 'ASCII_NonNegative_Integer', 'ASCII_Numeric_Base16', 'ASCII_Numeric_Base2', 'ASCII_Numeric_Base8', 'ASCII_Real', 'ASCII_Short_String_Collapsed', 'ASCII_Short_String_Preserved', 'ASCII_Text_Collapsed', 'ASCII_Text_Preserved', 'ASCII_Time', 'ASCII_VID', 'UTF8_Short_String_Collapsed', 'UTF8_Short_String_Preserved', 'UTF8_Text_Collapsed', 'UTF8_Text_Preserved', 'Vector_Cartesian_3', 'Vector_Cartesian_3_Acceleration', 'Vector_Cartesian_3_Pointing', 'Vector_Cartesian_3_Position', 'Vector_Cartesian_3_Velocity')")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain.100004581.104] of  Schematron_Assert
+
+	(assertMsg "Must specify attribute 'unit_of_measure_type' if attribute 'specified_unit_id' has been specified.")
+	(assertStmt "if ($specUnitIDRef) then ($unitOfMeasureRef) else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%2Fpds%3Aunit_of_measure_type.100004582] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%2Fpds%3Aunit_of_measure_type.100004582.101])
+	(identifier "pds:DD_Value_Domain/pds:unit_of_measure_type")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(type "TBD_type")
+	(xpath "DD_Value_Domain/pds:unit_of_measure_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%2Fpds%3Aunit_of_measure_type.100004582.101] of  Schematron_Assert
+
+	(assertMsg "The value 'W*m**-2*sr**-1' in 'Units_of_Radiance' in the attribute pds:unit_of_measure_type is deprecated and must not be used'.")
+	(assertStmt ". != ('Units_of_Radiance')")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Radiance%27%29%5D.100004583] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Radiance%27%29%5D.100004583.101])
+	(identifier "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Radiance')]")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(type "TBD_type")
+	(xpath "DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Radiance')]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Radiance%27%29%5D.100004583.101] of  Schematron_Assert
+
+	(assertMsg "The value '<sch:value-of select=\"pds:specified_unit_id\"/>' in 'Units_of_Radiance' in the attribute pds:unit_of_measure_type is deprecated and must not be used'.")
+	(assertStmt "if (pds:specified_unit_id) then not(pds:specified_unit_id = ('W*m**-2*sr**-1')) else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Irradiance%27%29%5D.100004584] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Irradiance%27%29%5D.100004584.101])
+	(identifier "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Spectral_Irradiance')]")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(type "TBD_type")
+	(xpath "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Spectral_Irradiance')]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Irradiance%27%29%5D.100004584.101] of  Schematron_Assert
+
+	(assertMsg "The value '<sch:value-of select=\"pds:specified_unit_id\"/>' in 'Units_of_Spectral_Irradiance' in the attribute pds:unit_of_measure_type is deprecated and must not be used'.")
+	(assertStmt "if (pds:specified_unit_id) then not(pds:specified_unit_id = ('SFU', 'W*m**-2*Hz**-1', 'W*m**-2*nm**-1', 'W*m**-3', 'uW*cm**-2*um**-1')) else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Radiance%27%29%5D.100004585] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Radiance%27%29%5D.100004585.101])
+	(identifier "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Spectral_Radiance')]")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(type "TBD_type")
+	(xpath "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Spectral_Radiance')]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Spectral_Radiance%27%29%5D.100004585.101] of  Schematron_Assert
+
+	(assertMsg "The value '<sch:value-of select=\"pds:specified_unit_id\"/>' in 'Units_of_Spectral_Radiance' in the attribute pds:unit_of_measure_type is deprecated and must not be used'.")
+	(assertStmt "if (pds:specified_unit_id) then not(pds:specified_unit_id = ('W*m**-2*sr**-1*Hz**-1', 'W*m**-2*sr**-1*nm**-1', 'W*m**-2*sr**-1*um**-1, W*m**-3*sr**-1', 'uW*cm**-2*sr**-1*um**-1')) else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Wavenumber%27%29%5D.100004586] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit_of_measure_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "DD_Value_Domain")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Wavenumber%27%29%5D.100004586.101])
+	(identifier "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Wavenumber')]")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(type "TBD_type")
+	(xpath "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Wavenumber')]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Wavenumber%27%29%5D.100004586.101] of  Schematron_Assert
+
+	(assertMsg "The value '<sch:value-of select=\"pds:specified_unit_id\"/>' in 'Units_of_Wavenumber' in the attribute pds:unit_of_measure_type is deprecated and must not be used'.")
+	(assertStmt "if (pds:specified_unit_id) then not(pds:specified_unit_id = ('cm**-1','m**-1','nm**-1')) else true()")
+	(assertType "RAW")
+	(attrTitle "unit_of_measure_type")
+	(identifier "unit_of_measure_type")
+	(specMesg "TBD_SpecMesg"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518] of  Schematron_Rule
 
 	(alwaysInclude "true")
@@ -595,6 +770,35 @@
 	(attrTitle "field_length")
 	(identifier "field_length")
 	(specMesg "The attribute pds:field_length does not match the 16 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary%2Fpds%3Aunit.100004587] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "unit")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Binary")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary%2Fpds%3Aunit.100004587.101])
+	(identifier "pds:Field_Binary/pds:unit")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(schematronAssign
+		"name=\"unit_radiance\" value=\"'W*m**-2*sr**-1'\""
+		"name=\"unit_spectral_irradiance\" value=\"'SFU', 'W*m**-2*Hz**-1', 'W*m**-2*nm**-1', 'W*m**-3', 'uW*cm**-2*um**-1'\""
+		"name=\"unit_spectral_radiance\" value=\"'W*m**-2*sr**-1*Hz**-1', 'W*m**-2*sr**-1*nm**-1', 'W*m**-2*sr**-1*um**-1', 'W*m**-3*sr**-1', 'uW*cm**-2*sr**-1*um**-1'\""
+		"name=\"unit_wavenumber\" value=\"('cm**-1','m**-1','nm**-1')\"")
+	(type "TBD_type")
+	(xpath "pds:Field_Binary/pds:unit"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary%2Fpds%3Aunit.100004587.101] of  Schematron_Assert
+
+	(assertMsg "The value '<sch:value-of select=\".\"/>' in the attribute 'unit' is deprecated and must not be used'.")
+	(assertStmt "if (.) then not(. = ($unit_radiance, $unit_spectral_irradiance, $unit_spectral_radiance, $unit_wavenumber)) else true()")
+	(assertType "RAW")
+	(attrTitle "unit")
+	(identifier "unit")
+	(specMesg "TBD_SpecMesg"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518] of  Schematron_Rule
 

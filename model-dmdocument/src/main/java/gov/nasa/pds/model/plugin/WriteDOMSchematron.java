@@ -187,6 +187,7 @@ class WriteDOMSchematron extends Object {
 			
 			String lRole = "";
 			if (lRule.roleId.compareTo(" role=\"warning\"") == 0) lRole = " role=\"warning\"";
+			if (lRule.roleId.compareTo("warning") == 0) lRole = " role=\"warning\"";
 			prSchematron.println("    <sch:rule context=\"" + lRule.xpath + "\"" + lRole + ">");
 
 			// write rule level LETs
