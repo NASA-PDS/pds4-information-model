@@ -1,4 +1,4 @@
-; Thu Jan 28 14:54:01 EST 2021
+; Mon Feb 01 13:22:00 EST 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1509,7 +1509,8 @@
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.110]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.111]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.112]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113])
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.114])
 	(identifier "pds:Product_Bundle/pds:Context_Area")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -1530,7 +1531,9 @@
 		"name=\"MissionType\" value=\"some $ref in ($bundMissionRef) satisfies $ref = ('Mission')\""
 		"name=\"PurposeType\" value=\"some $ref in ($bundPurposeRef) satisfies $ref = ('Science')\""
 		"name=\"InstrumentType\" value=\"some $ref in ($bundObsSysCompTypeRef) satisfies $ref = ('Instrument')\""
-		"name=\"isTypeMSD\" value=\"($bundleType and $MissionType and $PurposeType)\"")
+		"name=\"isTypeMSD\" value=\"($bundleType and $MissionType and $PurposeType)\""
+		"name=\"bundStreamTextlRef\" value=\"pds:File_Area_Text/pds:Stream_Text/pds:parsing_standard_id\""
+		"name=\"SteamTextType\" value=\"some $ref in ($bundStreamTextlRef) satisfies $ref = ('PDS3')\"")
 	(type "TBD_type")
 	(xpath "pds:Product_Bundle"))
 
@@ -1649,6 +1652,15 @@
 	(assertType "RAW")
 	(attrTitle "processing_level")
 	(identifier "processing_level")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.114] of  Schematron_Assert
+
+	(assertMsg "For a Bundle, if \"pds:File_Area_Text/pds:Stream_Text\" is present, then value must not be 'PDS3'.")
+	(assertStmt "if ($bundStreamTextlRef) then (not($SteamTextType)) else true()")
+	(assertType "RAW")
+	(attrTitle "parsing_standard_id")
+	(identifier "parsing_standard_id")
 	(specMesg "TBD"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002530] of  Schematron_Rule
