@@ -1707,7 +1707,8 @@ public class LDDDOMParser extends Object
 					if (isMission)
 						DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 					else
-						DMDocument.registerMessage ("2>error Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
+//						DMDocument.registerMessage ("2>error Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
+						DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - The 'type' attribute must have at least one permissible value.");
 				}
 			}
 		}
