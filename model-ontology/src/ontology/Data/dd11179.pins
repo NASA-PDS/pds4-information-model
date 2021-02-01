@@ -1,4 +1,4 @@
-; Thu Jan 21 10:35:55 EST 2021
+; Mon Feb 01 10:07:39 EST 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -82037,25 +82037,25 @@
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.-1850654380] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Report rules are usually used for information-gathering. If the test succeeds, the associated message is displayed.")
+	(description "Report rules are usually used for information-gathering. If the test succeeds, the associated message is displayed. Under PDS4 a report statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.-2012458559] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An Assert Every rule is an extension to the Assert rule that uses the %42every%42 qualifier to indicate every member of a defined set.")
+	(description "An Assert Every rule is an extension to the Assert rule that indicates that the \"every\" qualifier is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.-976674761] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An Assert IF rule is an extension to the Assert rule that limits the rule to the %42if-then%42 pattern.")
+	(description "An Assert IF rule is an extension to the Assert rule that indicates that the \"if-then\" pattern is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.1970626406] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Assert rules are usually used for error detection. If the test fails, the associated message is displayed.")
+	(description "Assert rules are usually used for error detection. If the test fails, the associated message is displayed. Under PDS4 an assert statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Value_Domain.pds.unit_of_measure_type.-1176052196] of  ValueMeaning
