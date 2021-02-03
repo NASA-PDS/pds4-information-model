@@ -62,13 +62,18 @@ class WriteDOMDocBook extends Object {
 			// the common and all LDDs that are stacked for this run
 			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
 		}
-		System.out.println("");
+		
+//		System.out.println("");
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefnDOM (lSchemaFileDefn.identifier));
-			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefnDOM (lSchemaFileDefn.identifier));
+//			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefnDOM (lSchemaFileDefn.identifier));
+//			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefnDOM (lSchemaFileDefn.identifier));
+			classClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new ClassClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
+			attrClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new AttrClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
+//			System.out.println("debug WriteDOMDocBook lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
+//			System.out.println("                      lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 		}
-
+		
 		classClassificationMap.put("pds.product", new ClassClassificationDefnDOM ("pds.product"));
 		classClassificationMap.put("pds.pds3", new ClassClassificationDefnDOM ("pds.pds3"));
 		classClassificationMap.put("pds.support", new ClassClassificationDefnDOM ("pds.support"));
@@ -144,7 +149,7 @@ class WriteDOMDocBook extends Object {
 	public void getClassClassification (DOMClass lClass) {
 		if (lClass.isDataType) return;
 		if (lClass.isUnitOfMeasure) return;
-			
+		
 		// classify the class by namespace and other criteria
 		ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lClass.nameSpaceIdNC);
 		if (lClassClassificationDefn != null) {			

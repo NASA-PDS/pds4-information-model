@@ -164,7 +164,6 @@ public class DMDocument extends Object {
 	static boolean LDDToolAnnotateDefinitionFlag;
 	static String LDDToolSingletonClassTitle = "USER";
 	static DOMClass LDDToolSingletonDOMClass = null;
-	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
 	
 	static boolean mapToolFlag = false;
 	
@@ -178,10 +177,14 @@ public class DMDocument extends Object {
 	static ArrayList <LDDDOMParser> LDDDOMModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
+	// *** initialized from the config file - maybe rename, to be used only during initialization of LDDSchemaFileSortMap ***
 	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
+	// *** deprecate and only use masterPDSSchemaFileDefn, move  ***
 	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
-	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
+	// *** to be use only for LDDs ***
 	static TreeMap <String, SchemaFileDefn> LDDSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		   
+	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
+	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
 	static SchemaFileDefn masterPDSSchemaFileDefn;
@@ -674,7 +677,7 @@ public class DMDocument extends Object {
 					mapToolFlag = true;
 					PDSOptionalFlag = true;
 				}
-				if (lArg.indexOf('d') > -1) {
+				if (lArg.indexOf('t') > -1) {
 					LDDToolAnnotateDefinitionFlag = true;
 				}
 				if (lArg.indexOf('M') > -1) {
