@@ -280,7 +280,7 @@ class XML4LabelSchemaDOM extends Object {
 		} else {
 			// namespaces required: ldd - latest version
 			String governanceDirectory = "";
-			if (lSchemaFileDefn.isMission) governanceDirectory = lSchemaFileDefn.governanceLevel.toLowerCase() +  "/";
+			if (lSchemaFileDefn.isMission && ! DMDocument.disciplineMissionFlag) governanceDirectory = lSchemaFileDefn.governanceLevel.toLowerCase() +  "/";
 			prXML.println("    targetNamespace=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 			prXML.println("    xmlns:" + lSchemaFileDefn.nameSpaceIdNC + "=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\"");
 
