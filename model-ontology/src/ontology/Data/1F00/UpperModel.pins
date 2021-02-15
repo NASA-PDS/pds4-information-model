@@ -1,0 +1,3313 @@
+; Wed Dec 23 09:53:15 EST 2020
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([171209+-+Point+Build+of+IM+V1.9.1.0] of  ChangeLog
+
+	(date "171209")
+	(desc "Point Build of IM V1.9.1.0; Implemented CCB-201; Added values and value meanings for <Internal_Referencere.reference_type>; as used in pds:Product_Context/pds:Reference_List/pds:Internal_Reference; - investigation_to_facility - The investigation is associated to a facility; - investigation_to_telescope - The investigation is associated to a telescope; Temporarily removed <Composite_Structure>, CCB-174, from IM."))
+
+([171209c+-+Added+Change+Log] of  ChangeLog
+
+	(date "171209c")
+	(desc "Added a chamge log to Model_Upper"))
+
+([2D] of  Group_Facet1
+
+	(facet1 "2D"))
+
+([astrometry] of  Group_Facet1
+
+	(facet1 "astrometry"))
+
+([Atmospheres] of  Discipline_Facets
+
+	(discipline_name "Atmospheres")
+	(has_Group_Facet1
+		[Structure]
+		[Meteorology]))
+
+([Background] of  Group_Facet2
+
+	(facet2 "Background"))
+
+([Color] of  Group_Facet1
+
+	(facet1 "Color"))
+
+([Color+Movie] of  Group_Facet1
+
+	(facet1 "Color Movie"))
+
+([Cosmic+Ray] of  Group_Facet2
+
+	(facet2 "Cosmic Ray"))
+
+([Dust+Study] of  Group_Facet1
+
+	(facet1 "Dust Study"))
+
+([Dynamical+Properties] of  Group_Facet1
+
+	(facet1 "Dynamical Properties"))
+
+([Electric] of  Group_Facet1
+
+	(facet1 "Electric"))
+
+([Electrons] of  Group_Facet1
+
+	(facet1 "Electrons"))
+
+([Energetic] of  Group_Facet2
+
+	(facet2 "Energetic"))
+
+([Fields] of  Discipline_Facets
+
+	(discipline_name "Fields")
+	(has_Group_Facet1
+		[Electric]
+		[Magnetic])
+	(has_Group_Facet2
+		[Background]
+		[Waves]))
+
+([Flux+Measurements] of  Discipline_Facets
+
+	(discipline_name "Flux Measurements")
+	(has_Group_Facet1
+		[Photometry]
+		[Polarimetry]))
+
+([Gas+Study] of  Group_Facet1
+
+	(facet1 "Gas Study"))
+
+([Geosciences] of  Discipline_Facets
+
+	(discipline_name "Geosciences"))
+
+([Grayscale] of  Group_Facet1
+
+	(facet1 "Grayscale"))
+
+([Historical+Reference] of  Group_Facet1
+
+	(facet1 "Historical Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot.100002509] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "product_class")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot.100002509.101])
+	(identifier "aaa:Root")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "/*"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot.100002509.101] of  Schematron_Assert
+
+	(assertMsg "The ROOT element must be one of the allowed types.")
+	(assertStmt "name() = ('Product_Attribute_Definition','Product_Browse', 'Product_Ancillary', 'Product_Bundle', 'Product_Class_Definition',  'Product_Collection', 'Product_Context', 'Product_Document', 'Product_File_Repository', 'Product_File_Text', 'Product_Metadata_Supplemental', 'Product_Observational', 'Product_Service', 'Product_Native', 'Product_Software', 'Product_SPICE_Kernel', 'Product_Thumbnail', 'Product_Update', 'Product_XML_Schema', 'Product_Zipped', 'Product_Data_Set_PDS3', 'Product_Instrument_Host_PDS3', 'Product_Instrument_PDS3','Product_Mission_PDS3', 'Product_Proxy_PDS3', 'Product_Subscription_PDS3', 'Product_Target_PDS3', 'Product_Volume_PDS3', 'Product_Volume_Set_PDS3', 'Product_AIP', 'Product_DIP', 'Product_SIP', 'Product_SIP_Deep_Archive', 'Product_DIP_Deep_Archive', 'Ingest_LDD')")
+	(assertType "RAW")
+	(attrTitle "product_class")
+	(identifier "product_class")
+	(specMesg "The ROOT element must be one of the allowed types."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "nilReason")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Product")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556.101])
+	(identifier "aaa:Root/nilReason")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "*[@xsi:nil]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.aaa%3ARoot%2FnilReason.100002556.101] of  Schematron_Assert
+
+	(assertMsg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\"")
+	(assertStmt "(@xsi:nil eq 'true' and @nilReason) or not(@xsi:nil eq 'true' or @nilReason)")
+	(assertType "RAW")
+	(attrTitle "nilReason")
+	(identifier "nilReason")
+	(specMesg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\""))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "disp")
+	(classSteward "img")
+	(classTitle "Discipline_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510.101])
+	(identifier "disp:Discipline_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "disp:Discipline_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510.101] of  Schematron_Assert
+
+	(assertMsg "Display Dictionary: If the Display_Direction class is in the label, it must be contained in a Display_Settings class.")
+	(assertStmt "if (disp:Display_Direction) then (disp:Display_Settings/disp:Display_Direction) else true()")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "Display Dictionary: If the Display_Direction class is in the label, it must be contained in a Display_Settings class."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "local_identifier_reference")
+	(classNameSpaceNC "disp")
+	(classSteward "img")
+	(classTitle "Display_Settings")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.102])
+	(identifier "disp:Display_Settings/pds:Local_Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "disp:Display_Settings/pds:Local_Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.101] of  Schematron_Assert
+
+	(assertMsg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area.")
+	(assertStmt "pds:local_identifier_reference = //pds:*/pds:*/(pds:Array|pds:Array_2D|pds:Array_2D_Image|pds:Array_2D_Map|pds:Array_2D_Spectrum|pds:Array_3D|pds:Array_3D_Image|pds:Array_3D_Movie|pds:Array_3D_Spectrum)/pds:local_identifier")
+	(assertType "RAW")
+	(attrTitle "local_identifier_reference")
+	(identifier "local_identifier_reference")
+	(specMesg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.102] of  Schematron_Assert
+
+	(assertMsg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'.")
+	(assertStmt "pds:local_reference_type = ('display_settings_to_array')")
+	(assertType "RAW")
+	(attrTitle "local_reference_type")
+	(identifier "local_reference_type")
+	(specMesg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101])
+	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "/*[not(contains(name(), 'Ingest') or contains(name(), 'Bundle') or contains(name(), 'Collection'))]/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101] of  Schematron_Assert
+
+	(assertMsg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\"/>).")
+	(assertStmt "string-length(.) - string-length(translate(., ':', '')) eq 5")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\""))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axes")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Array")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548.101])
+	(identifier "pds:Array")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Array"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548.101] of  Schematron_Assert
+
+	(assertMsg "The value of pds:axes must match the number of pds:Axis_Array classes in the Array.")
+	(assertStmt "number(pds:axes) = count(pds:Axis_Array)")
+	(assertType "RAW")
+	(attrTitle "axes")
+	(identifier "Array")
+	(specMesg "The value of pds:axes must match the number of pds:Axis_Array classes in the Array."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image.100002513] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axis_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Axis_Array")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image.100002513.101])
+	(identifier "pds:Array_2D_Image")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Array_2D_Image"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image.100002513.101] of  Schematron_Assert
+
+	(assertMsg "The names of the first and second axis of an Array_2D_Image must be set to Line and Sample.")
+	(assertStmt "pds:Axis_Array[1]/pds:axis_name = ('Line') and pds:Axis_Array[2]/pds:axis_name = ('Sample') or pds:Axis_Array[1]/pds:axis_name = ('Sample') and pds:Axis_Array[2]/pds:axis_name = ('Line')")
+	(assertType "RAW")
+	(attrTitle "axis_name")
+	(identifier "axis_name")
+	(specMesg "The names of the first and second axis of an Array_2D_Image must be set to Line and Sample."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B1%5D.100002514] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axis_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Axis_Array")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B1%5D.100002514.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B1%5D.100002514.102])
+	(identifier "pds:Array_2D_Image/pds:Axis_Array[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Array_2D_Image/pds:Axis_Array[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B1%5D.100002514.101] of  Schematron_Assert
+
+	(assertMsg "The name of the first axis of an Array_2D_Image must be set to either Line or Sample.")
+	(assertStmt "pds:axis_name = ('Line', 'Sample')")
+	(assertType "RAW")
+	(attrTitle "axis_name")
+	(identifier "axis_name")
+	(specMesg "The name of the first axis of an Array_2D_Image must be set to either Line or Sample."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B1%5D.100002514.102] of  Schematron_Assert
+
+	(assertMsg "The sequence number of the first axis of an Array_2D_Image must be set to 1.")
+	(assertStmt "pds:sequence_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "sequence_number")
+	(identifier "sequence_number")
+	(specMesg "The sequence number of the first axis of an Array_2D_Image must be set to 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B2%5D.100002515] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axis_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Axis_Array")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B2%5D.100002515.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B2%5D.100002515.102])
+	(identifier "pds:Array_2D_Image/pds:Axis_Array[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Array_2D_Image/pds:Axis_Array[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B2%5D.100002515.101] of  Schematron_Assert
+
+	(assertMsg "The name of the second axis of an Array_2D_Image must be set to either Line or Sample.")
+	(assertStmt "pds:axis_name = ('Line', 'Sample')")
+	(assertType "RAW")
+	(attrTitle "axis_name")
+	(identifier "axis_name")
+	(specMesg "The name of the second axis of an Array_2D_Image must be set to either Line or Sample."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image%2Fpds%3AAxis_Array%5B2%5D.100002515.102] of  Schematron_Assert
+
+	(assertMsg "The sequence number of the second axis of an Array_2D_Image must be set to 2.")
+	(assertStmt "pds:sequence_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "sequence_number")
+	(identifier "sequence_number")
+	(specMesg "The sequence number of the second axis of an Array_2D_Image must be set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "lidvid_reference")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.106])
+	(identifier "pds:Bundle_Member_Entry")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"lid_num_colons\" value=\"string-length(pds:lid_reference) - string-length(translate(pds:lid_reference, ':', ''))\""
+		"name=\"lidvid_num_colons\" value=\"string-length(pds:lidvid_reference) - string-length(translate(pds:lidvid_reference, ':', ''))\""
+		"name=\"lid_required_colons\" value=\"4\""
+		"name=\"lidvid_required_colons\" value=\"6\""
+		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
+		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
+		"name=\"urn_isro\" value=\"'urn:isro:isda:'\"")
+	(type "TBD_type")
+	(xpath "pds:Bundle_Member_Entry"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.101] of  Schematron_Assert
+
+	(assertMsg "The number of colons found in lid_reference: (<sch:value-of select=\"$lid_num_colons\"/>) is inconsistent with the number expected: <sch:value-of select=\"$lid_required_colons\"/>.")
+	(assertStmt "if (pds:lid_reference) then ($lid_num_colons eq $lid_required_colons) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The number of colons found in the lid_reference is inconsistent with the number expected."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.102] of  Schematron_Assert
+
+	(assertMsg "The number of colons found in lidvid_reference: (<sch:value-of select=\"$lidvid_num_colons\"/>) is inconsistent with the number expected: <sch:value-of select=\"$lidvid_required_colons\"/>.")
+	(assertStmt "if (pds:lidvid_reference) then ($lidvid_num_colons eq $lidvid_required_colons) else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The number of colons found in the lidvid_reference is inconsistent with the number expected."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.103] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_jaxa) or starts-with(pds:lid_reference, $urn_ros) or starts-with(pds:lid_reference, $urn_isro) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.104] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_jaxa) or starts-with(pds:lidvid_reference, $urn_ros) or starts-with(pds:lidvid_reference, $urn_isro) else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.105] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id")
+	(assertStmt "if (pds:lid_reference) then not(contains(pds:lid_reference,'::')) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.106] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id")
+	(assertStmt "if (pds:lidvid_reference) then contains(pds:lidvid_reference,'::') else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "description")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517.101])
+	(identifier "pds:Citation_Information/pds:description")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "//pds:Citation_Information/pds:description"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517.101] of  Schematron_Assert
+
+	(assertMsg "The description in Citation_Information must be greater than 0 and less than 5000 bytes (not counting spaces).")
+	(assertStmt "string-length(translate(., ' ', '')) &gt;= 1 and string-length(translate(., ' ','')) &lt;= 5000")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "The description in Citation_Information must be greater than 0 and less than 5000 bytes (not counting spaces)."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "field_length")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Binary")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.106])
+	(identifier "pds:Field_Binary")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"isPresent\" value=\" boolean(pds:Packed_Data_Fields)\""
+		"name=\"Bit-1_values\" value=\"('SignedByte', 'UnsignedByte')\""
+		"name=\"Bit-2_values\" value=\"('SignedLSB2', 'SignedMSB2', 'UnsignedLSB2', 'UnsignedMSB2')\""
+		"name=\"Bit-4_values\" value=\"('IEEE754LSBSingle', 'IEEE754MSBSingle', 'SignedLSB4', 'SignedMSB4', 'UnsignedLSB4', 'UnsignedMSB4')\""
+		"name=\"Bit-8_values\" value=\"('ComplexLSB8', 'ComplexMSB8', 'IEEE754LSBDouble', 'IEEE754MSBDouble', 'SignedLSB8', 'SignedMSB8', 'UnsignedLSB8', 'UnsignedMSB8')\""
+		"name=\"Bit-16_values\" value=\"('ComplexLSB16', 'ComplexMSB16')\""
+		"name=\"Bit-1_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-1_values)\""
+		"name=\"Bit-2_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-2_values)\""
+		"name=\"Bit-4_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-4_values)\""
+		"name=\"Bit-8_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-8_values)\""
+		"name=\"Bit-16_test\" value=\"(some $ref in (pds:data_type) satisfies $ref = $Bit-16_values)\"")
+	(type "TBD_type")
+	(xpath "pds:Field_Binary"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.101] of  Schematron_Assert
+
+	(assertMsg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'")
+	(assertStmt "if ($isPresent) then (pds:data_type = 'UnsignedBitString') else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "When Field_Binary has a child Packed_Data_Fields, \"pds:Field_Binary/pds:data_type\" must have a value of 'UnsignedBitString'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-1_test)) then (pds:field_length = 1) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "The attribute pds:field_length does not match the 1 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.103] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-2_test)) then (pds:field_length = 2) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "The attribute pds:field_length does not match the 2 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.104] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-4_test)) then (pds:field_length = 4) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "The attribute pds:field_length does not match the 4 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.105] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-8_test)) then (pds:field_length = 8) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "The attribute pds:field_length does not match the 8 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518.106] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:data_type ('<sch:value-of select=\"pds:data_type\" />') is invalid with respect to the value of pds:field_length ('<sch:value-of select=\"pds:field_length\" />')")
+	(assertStmt "if (not($isPresent) and ($Bit-16_test)) then (pds:field_length = 16) else true()")
+	(assertType "RAW")
+	(attrTitle "field_length")
+	(identifier "field_length")
+	(specMesg "The attribute pds:field_length does not match the 16 byte pds:data_type."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "validation_format")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Character")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518.101])
+	(identifier "pds:Field_Character/pds:validation_format")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Field_Character/pds:validation_format"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Character%2Fpds%3Avalidation_format.100002518.101] of  Schematron_Assert
+
+	(assertMsg "If a validation_format is present, its value must be equal to the value in field_format")
+	(assertStmt ". = ../pds:field_format")
+	(assertType "RAW")
+	(attrTitle "validation_format")
+	(identifier "validation_format")
+	(specMesg "If a validation_format is present, its value must be equal to the value in field_format"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Group_Field_Binary")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.103])
+	(identifier "pds:Group_Field_Binary")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Group_Field_Binary"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Binary elements (<sch:value-of select=\"count(pds:Field_Binary)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Binary)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Binary elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Binary.100002518.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Binary elements (<sch:value-of select=\"count(pds:Group_Field_Binary)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Binary)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Binary elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Group_Field_Character")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.103])
+	(identifier "pds:Group_Field_Character")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Group_Field_Character"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Character elements (<sch:value-of select=\"count(pds:Field_Character)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Character)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Character elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Character.100002519.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Character elements (<sch:value-of select=\"count(pds:Group_Field_Character)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Character)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Character elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Group_Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.103])
+	(identifier "pds:Group_Field_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Group_Field_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Delimited elements (<sch:value-of select=\"count(pds:Field_Delimited)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Delimited)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Delimited elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AGroup_Field_Delimited.100002520.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Delimited elements (<sch:value-of select=\"count(pds:Group_Field_Delimited)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Delimited)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Delimited elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104])
+	(identifier "pds:Identification_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
+		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
+		"name=\"urn_isro\" value=\"'urn:isro:isda:'\"")
+	(type "TBD_type")
+	(xpath "pds:Identification_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:product_class must match parent product class of '<sch:value-of select=\"local-name(/*)\" />'.")
+	(assertStmt "pds:product_class = local-name(/*)")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The attribute pds:product_class must match the name of the product's class."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.102] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute logical_identifier must only contain lower-case letters")
+	(assertStmt "pds:logical_identifier eq lower-case(pds:logical_identifier)")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The value of the attribute logical_identifier must only contain lower-case letters."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) else true()")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The value of the attribute logical_identifier must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute logical_identifier must not include a value that contains '::'")
+	(assertStmt "if (pds:logical_identifier) then not(contains(pds:logical_identifier,'::')) else true()")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The value of the attribute logical_identifier must not include a value that contains '::'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Internal_Reference")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Information_Package_Component_Deep_Archive")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521.101])
+	(identifier "pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521.101] of  Schematron_Assert
+
+	(assertMsg "In Product_SIP_Deep_Archive both Internal_Reference and lidvid_reference are required.")
+	(assertStmt "pds:lidvid_reference")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "In Product_SIP_Deep_Archive both Internal_Reference and lidvid_reference are required."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "lidvid_reference")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.106])
+	(identifier "pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"lid_num_colons\" value=\"string-length(pds:lid_reference) - string-length(translate(pds:lid_reference, ':', ''))\""
+		"name=\"lidvid_num_colons\" value=\"string-length(pds:lidvid_reference) - string-length(translate(pds:lidvid_reference, ':', ''))\""
+		"name=\"lid_min_required_colons\" value=\"3\""
+		"name=\"lid_max_required_colons\" value=\"5\""
+		"name=\"lidvid_min_required_colons\" value=\"5\""
+		"name=\"lidvid_max_required_colons\" value=\"7\""
+		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
+		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
+		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
+		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
+		"name=\"urn_isro\" value=\"'urn:isro:isda:'\"")
+	(type "TBD_type")
+	(xpath "pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.101] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id")
+	(assertStmt "if (pds:lid_reference) then not(contains(pds:lid_reference,'::')) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.102] of  Schematron_Assert
+
+	(assertMsg "The number of colons found in lid_reference: (<sch:value-of select=\"$lid_num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$lid_min_required_colons\"/>:<sch:value-of select=\"$lid_max_required_colons\"/>).")
+	(assertStmt "if (pds:lid_reference) then (($lid_num_colons &gt;= $lid_min_required_colons) and ($lid_num_colons &lt;= $lid_max_required_colons)) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The number of colons found in lid_reference is inconsistent with the number expected."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.103] of  Schematron_Assert
+
+	(assertMsg "The number of colons found in lidvid_reference: (<sch:value-of select=\"$lidvid_num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$lidvid_min_required_colons\"/>:<sch:value-of select=\"$lidvid_max_required_colons\"/>).")
+	(assertStmt "if (pds:lidvid_reference) then (($lidvid_num_colons &gt;= $lidvid_min_required_colons) and ($lidvid_num_colons &lt;= $lidvid_max_required_colons)) else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The number of colons found in lidvid_reference is inconsistent with the number expected."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.104] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_jaxa) or starts-with(pds:lid_reference, $urn_ros) or starts-with(pds:lid_reference, $urn_isro) else true()")
+	(assertType "RAW")
+	(attrTitle "lid_reference")
+	(identifier "lid_reference")
+	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.105] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_jaxa) or starts-with(pds:lidvid_reference, $urn_ros) or starts-with(pds:lidvid_reference, $urn_isro) else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInternal_Reference.100002522.106] of  Schematron_Assert
+
+	(assertMsg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id")
+	(assertStmt "if (pds:lidvid_reference) then contains(pds:lidvid_reference,'::') else true()")
+	(assertType "RAW")
+	(attrTitle "lidvid_reference")
+	(identifier "lidvid_reference")
+	(specMesg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Inventory")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523.102])
+	(identifier "pds:Inventory")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Inventory"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523.101] of  Schematron_Assert
+
+	(assertMsg "Inventory.Field_Delimited does not match the expected number of instances")
+	(assertStmt "(count(pds:Record_Delimited/pds:Field_Delimited) eq 2)")
+	(assertType "RAW")
+	(attrTitle "x")
+	(identifier "x")
+	(specMesg "Inventory.Field_Delimited does not match the expected number of instances"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523.102] of  Schematron_Assert
+
+	(assertMsg "Inventory.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "offset")
+	(identifier "offset")
+	(specMesg "Inventory.offset must have a value of '0'"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Record_Delimited")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524.102])
+	(identifier "pds:Inventory/pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Inventory/pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be equal to '2'.")
+	(assertStmt "pds:fields eq '2'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The attribute pds:fields must be equal to '2'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The attribute pds:groups must be equal to '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Field_Delimited")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.104])
+	(identifier "pds:Inventory/pds:Record_Delimited/pds:Field_Delimited[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Inventory/pds:Record_Delimited/pds:Field_Delimited[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.101] of  Schematron_Assert
+
+	(assertMsg "The first field of an Inventory must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "field_number")
+	(identifier "field_number")
+	(specMesg "The first field of an Inventory must have field_number set to 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.102] of  Schematron_Assert
+
+	(assertMsg "The first field of an Inventory must have maximum_field_length set to 1.")
+	(assertStmt "pds:maximum_field_length eq '1'")
+	(assertType "RAW")
+	(attrTitle "maximum_field_length")
+	(identifier "maximum_field_length")
+	(specMesg "The first field of an Inventory must have maximum_field_length set to 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.103] of  Schematron_Assert
+
+	(assertMsg "The first field of an Inventory must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "data_type")
+	(identifier "data_type")
+	(specMesg "The first field of an Inventory must have data type set to 'ASCII_String'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100002524.104] of  Schematron_Assert
+
+	(assertMsg "The first field of an Inventory must have name set to 'Member Status'.")
+	(assertStmt "pds:name eq 'Member Status'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The first field of an Inventory must have name set to 'Member Status'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Field_Delimited")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.104])
+	(identifier "pds:Inventory/pds:Record_Delimited/pds:Field_Delimited[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Inventory/pds:Record_Delimited/pds:Field_Delimited[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.101] of  Schematron_Assert
+
+	(assertMsg "The second field of an Inventory must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "field_number")
+	(identifier "field_number")
+	(specMesg "The second field of an Inventory must have field_number set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.102] of  Schematron_Assert
+
+	(assertMsg "The second field of an Inventory must have data_type set to either 'ASCII_LID' or 'ASCII_LIDVID' or 'ASCII_LIDVID_LID'.")
+	(assertStmt "(pds:data_type eq 'ASCII_LID') or (pds:data_type eq 'ASCII_LIDVID') or (pds:data_type eq 'ASCII_LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "data_type")
+	(identifier "data_type")
+	(specMesg "The second field of an Inventory must have data_type set to either 'ASCII_LID' or 'ASCII_LIDVID' or 'ASCII_LIDVID_LID'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.103] of  Schematron_Assert
+
+	(assertMsg "The second field of an Inventory must have name set to 'LIDVID_LID'.")
+	(assertStmt "(pds:name eq 'LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The second field of an Inventory must have name set to 'LIDVID_LID'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100002525.104] of  Schematron_Assert
+
+	(assertMsg "The second field of an Inventory must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The second field of an Inventory must have maximum_field_length set to 255."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AObserving_System_Component%2Fpds%3AInternal_Reference.100002526] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AObserving_System_Component%2Fpds%3AInternal_Reference.100002526.101])
+	(identifier "pds:Observing_System_Component/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Observing_System_Component/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AObserving_System_Component%2Fpds%3AInternal_Reference.100002526.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_instrument', 'has_instrument_host')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"is_instrument"
+		"is_instrument_host"
+		"is_other"
+		"is_facility"
+		"is_telescope"
+		"is_airborne"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_AIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002527] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_AIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002527.101])
+	(identifier "pds:Product_AIP/pds:Information_Package_Component/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_AIP/pds:Information_Package_Component/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_AIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002527.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"package_has_collection"
+		"package_has_bundle"
+		"package_has_product"
+		"package_compiled_from_package"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100004503] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100004503.101])
+	(identifier "pds:Product_Ancillary/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Ancillary/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100004503.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "ancillary_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100004504] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100004504.101])
+	(identifier "pds:Product_Ancillary/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Ancillary/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100004504.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "ancillary_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002528] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002528.101])
+	(identifier "pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Ancillary/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002528.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('ancillary_to_data')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"ancillary_to_data"
+		"ancillary_to_document"
+		"ancillary_to_browse"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101])
+	(identifier "pds:Product_Browse/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Browse/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_resource', 'has_association', 'has_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"browse_to_data"
+		"browse_to_thumbnail"
+		"browse_to_browse"
+		"browse_to_document"
+		"browse_to_ancillary"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Context_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.106]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.107]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.108]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.109]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.110]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.111]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.112]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113])
+	(identifier "pds:Product_Bundle/pds:Context_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"bundTypeRef\" value=\"pds:Bundle/pds:bundle_type\""
+		"name=\"bundMissionRef\" value=\"pds:Context_Area/pds:Investigation_Area/pds:type\""
+		"name=\"bundPurposeRef\" value=\"pds:Context_Area/pds:Primary_Result_Summary/pds:purpose\""
+		"name=\"bundCI_descriptionRef\" value=\"pds:Identification_Area/pds:Citation_Information/pds:description\""
+		"name=\"bundStartTimeRef\" value=\"pds:Context_Area/pds:Time_Coordinates/pds:start_date_time\""
+		"name=\"bundStopTimeRef\" value=\"pds:Context_Area/pds:Time_Coordinates/pds:stop_date_time\""
+		"name=\"bundTargetNameRef\" value=\"pds:Context_Area/pds:Target_Identification/pds:name\""
+		"name=\"bundTargetTypeRef\" value=\"pds:Context_Area/pds:Target_Identification/pds:type\""
+		"name=\"bundInvestNameRef\" value=\"pds:Context_Area/pds:Investigation_Area/pds:name\""
+		"name=\"bundObsSysCompNameRef\" value=\"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:name\""
+		"name=\"bundObsSysCompTypeRef\" value=\"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\""
+		"name=\"bundPRSlevelRef\" value=\"pds:Context_Area/pds:Primary_Result_Summary/pds:processing_level\""
+		"name=\"bundleType\" value=\"some $ref in ($bundTypeRef) satisfies $ref = ('Archive')\""
+		"name=\"MissionType\" value=\"some $ref in ($bundMissionRef) satisfies $ref = ('Mission')\""
+		"name=\"PurposeType\" value=\"some $ref in ($bundPurposeRef) satisfies $ref = ('Science')\""
+		"name=\"InstrumentType\" value=\"some $ref in ($bundObsSysCompTypeRef) satisfies $ref = ('Instrument')\""
+		"name=\"isTypeMSD\" value=\"($bundleType and $MissionType and $PurposeType)\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.101] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Bundle/pds:type\" must have a value of 'Archive'.")
+	(assertStmt "if ($isTypeMSD) then ($bundleType) else true()")
+	(assertType "RAW")
+	(attrTitle "bundle_type")
+	(identifier "bundle_type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.102] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', at least one instance of \"pds:Context_Area/pds:Investigation_Area/pds:type\" must have a value of 'Mission'.")
+	(assertStmt "if ($isTypeMSD) then ($MissionType) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.103] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', at least one instance of \"pds:Context_Area/pds:Primary_Result_Summary/pds:purpose\" must have a value of 'Science'.")
+	(assertStmt "if ($isTypeMSD) then ($PurposeType) else true()")
+	(assertType "RAW")
+	(attrTitle "purpose")
+	(identifier "purpose")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.104] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Identification_Area/pds:Citation_Information/description\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundCI_descriptionRef) else true()")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.105] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Time_Coordinates/pds:start_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($bundStartTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "start_date_time")
+	(identifier "start_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.106] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Time_Coordinates/pds:stop_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($bundStopTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "stop_date_time")
+	(identifier "stop_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.107] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Target_Identification/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundTargetNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.108] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Target_Identification/pds:type\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundTargetTypeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.109] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Investigation_Area/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundInvestNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.110] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Observing_System/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundObsSysCompNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.111] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundObsSysCompNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.112] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', an instance of \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\" must have a value of 'Instrument'.")
+	(assertStmt "if ($isTypeMSD) then ($InstrumentType) else true()")
+	(assertType "RAW")
+	(attrTitle "start_date_time")
+	(identifier "start_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area.100002534.113] of  Schematron_Assert
+
+	(assertMsg "For a Bundle of type 'Data', \"pds:Context_Area/pds:Primary_Result_Summary/pds:processing_level\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($bundPRSlevelRef) else true()")
+	(assertType "RAW")
+	(attrTitle "processing_level")
+	(identifier "processing_level")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002530] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002530.101])
+	(identifier "pds:Product_Bundle/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002530.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "bundle_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area.100002531] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "description")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area.100002531.101])
+	(identifier "pds:Product_Bundle/pds:Identification_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Identification_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area.100002531.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Bundle both Citation_Information and its description are required.")
+	(assertStmt "pds:Citation_Information/pds:description")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "In Product_Bundle both Citation_Information and its description are required.."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002532] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002532.101])
+	(identifier "pds:Product_Bundle/pds:Identification_Area/pds:logical_identifier")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_colons\" value=\"string-length(.) - string-length(translate(., ':', ''))\""
+		"name=\"required_colons\" value=\"3\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002532.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Bundle, the number of colons found: (<sch:value-of select=\"$num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_colons\"/>).")
+	(assertStmt "$num_colons eq $required_colons")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "In Product_Bundle the number of colons in logical_identifier is valid."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002533] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002533.101])
+	(identifier "pds:Product_Bundle/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002533.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('bundle_to_errata')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"bundle_to_errata"
+		"bundle_to_document"
+		"bundle_to_investigation"
+		"bundle_to_instrument"
+		"bundle_to_instrument_host"
+		"bundle_to_target"
+		"bundle_to_resource"
+		"bundle_to_associate"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Context_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.105]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.106]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.107]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.108])
+	(identifier "pds:Product_Collection/pds:Context_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"collStartTimeRef\" value=\"pds:Time_Coordinates/pds:start_date_time\""
+		"name=\"collStopTimeRef\" value=\"pds:Time_Coordinates/pds:stop_date_time\""
+		"name=\"collTargetNameRef\" value=\"pds:Target_Identification/pds:name\""
+		"name=\"collTargetTypeRef\" value=\"pds:Target_Identification/pds:type\""
+		"name=\"collInvestNameRef\" value=\"pds:Investigation_Area/pds:name\""
+		"name=\"collObsSysCompNameRef\" value=\"pds:Observing_System/pds:Observing_System_Component/pds:name\""
+		"name=\"collObsSysCompTypeRef\" value=\"pds:Observing_System/pds:Observing_System_Component/pds:type\""
+		"name=\"instrumentType\" value=\"some $ref in ($collObsSysCompTypeRef) satisfies $ref = ('Instrument')\""
+		"name=\"collPRSlevelRef\" value=\"pds:Primary_Result_Summary/pds:processing_level\"")
+	(schematronAssignPattern
+		"name=\"collTypeRef\" value=\"pds:Product_Collection/pds:Collection/pds:collection_type\""
+		"name=\"collMissionRef\" value=\"pds:Product_Collection/pds:Context_Area/pds:Investigation_Area/pds:type\""
+		"name=\"collPurposeRef\" value=\"pds:Product_Collection/pds:Context_Area/pds:Primary_Result_Summary/pds:purpose\""
+		"name=\"collObsSysCompTypeRef\" value=\"pds:Product_Collection/pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\""
+		"name=\"collType\" value=\"every $ref in ($collTypeRef) satisfies $ref = ('Data')\""
+		"name=\"missionType\" value=\"some $ref in ($collMissionRef) satisfies $ref = ('Mission')\""
+		"name=\"purposeType\" value=\"every $ref in ($collPurposeRef) satisfies $ref = ('Science')\""
+		"name=\"instrumentType\" value=\"some $ref in ($collObsSysCompTypeRef) satisfies $ref = ('Instrument')\""
+		"name=\"isTypeMSD\" value=\"($collType and $missionType and $purposeType)\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Context_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.101] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Time_Coordinates/pds:start_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($collStartTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "start_date_time")
+	(identifier "start_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.102] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Time_Coordinates/pds:stop_date_time\" must be present and have a (nillable) value.")
+	(assertStmt "if ($isTypeMSD) then ($collStopTimeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "stop_date_time")
+	(identifier "stop_date_time")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.103] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Target_Identification/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($collTargetNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.104] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Target_Identification/pds:type\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($collTargetTypeRef) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.105] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Investigation_Area/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($collInvestNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.106] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:name\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($collObsSysCompNameRef) else true()")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.107] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', an instance of \"pds:Context_Area/pds:Observing_System/pds:Observing_System_Component/pds:type\" must have a value of 'Instrument'.")
+	(assertStmt "if ($isTypeMSD) then ($instrumentType) else true()")
+	(assertType "RAW")
+	(attrTitle "type")
+	(identifier "type")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area.100002534.108] of  Schematron_Assert
+
+	(assertMsg "For a Collection of type 'Mission Science Data', \"pds:Context_Area/pds:Primary_Result_Summary/pds:processing_level\" must be present and have a value.")
+	(assertStmt "if ($isTypeMSD) then ($collPRSlevelRef) else true()")
+	(assertType "RAW")
+	(attrTitle "processing_level")
+	(identifier "processing_level")
+	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002534] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002534.101])
+	(identifier "pds:Product_Collection/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002534.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "collection_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area.100002535] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "description")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area.100002535.101])
+	(identifier "pds:Product_Collection/pds:Identification_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Identification_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area.100002535.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Collection both Citation_Information and its description are required.")
+	(assertStmt "pds:Citation_Information/pds:description")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "In Product_Collection both Citation_Information and its description are required.."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002536] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002536.101])
+	(identifier "pds:Product_Collection/pds:Identification_Area/pds:logical_identifier")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_colons\" value=\"string-length(.) - string-length(translate(., ':', ''))\""
+		"name=\"required_colons\" value=\"4\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002536.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Collection, the number of colons found: (<sch:value-of select=\"$num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_colons\"/>).")
+	(assertStmt "$num_colons eq $required_colons")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "In Product_Collection, the number of colons found in logical identifier is validated."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002537] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002537.101])
+	(identifier "pds:Product_Collection/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002537.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('data_collection_to_resource', 'data_collection_to_associate', 'data_collection_to_calibration', 'data_collection_to_geometry', 'data_collection_to_spice_kernel', 'data_collection_curated_by_node', 'data_collection_to_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"collection_to_resource"
+		"collection_to_associate"
+		"collection_to_calibration"
+		"collection_to_geometry"
+		"collection_to_spice_kernel"
+		"collection_curated_by_node"
+		"collection_to_document"
+		"collection_to_browse"
+		"collection_to_context"
+		"collection_to_data"
+		"collection_to_ancillary"
+		"collection_to_schema"
+		"collection_to_errata"
+		"collection_to_bundle"
+		"collection_to_personnel"
+		"collection_to_investigation"
+		"collection_to_instrument"
+		"collection_to_instrument_host"
+		"collection_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002538] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002538.101])
+	(identifier "pds:Product_Context/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Context/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002538.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_resource', 'has_association', 'has_document', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"context_to_associate"
+		"instrument_to_document"
+		"instrument_to_instrument_host"
+		"instrument_host_to_document"
+		"instrument_host_to_instrument"
+		"instrument_host_to_investigation"
+		"instrument_host_to_target"
+		"investigation_to_document"
+		"investigation_to_instrument"
+		"investigation_to_instrument_host"
+		"investigation_to_target"
+		"node_to_personnel"
+		"node_to_agency"
+		"node_to_manager"
+		"node_to_operator"
+		"node_to_data_archivist"
+		"resource_to_instrument"
+		"resource_to_instrument_host"
+		"resource_to_investigation"
+		"resource_to_target"
+		"target_to_document"
+		"target_to_instrument"
+		"target_to_instrument_host"
+		"target_to_investigation"
+		"instrument_to_telescope"
+		"instrument_to_observatory"
+		"instrument_to_facility"
+		"telescope_to_observatory"
+		"telescope_to_facility"
+		"telescope_to_airborne"
+		"investigation_to_telescope"
+		"facility_to_investigation"
+		"facility_to_instrument"
+		"facility_to_telescope"
+		"investigation_to_facility"
+		"telescope_to_instrument"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539.101])
+	(identifier "pds:Product_DIP/pds:Information_Package_Component/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_DIP/pds:Information_Package_Component/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002539.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"package_has_collection"
+		"package_has_bundle"
+		"package_has_product"
+		"package_compiled_from_package"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP_Deep_Archive%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002540] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP_Deep_Archive%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002540.101])
+	(identifier "pds:Product_DIP_Deep_Archive/pds:Information_Package_Component/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_DIP_Deep_Archive/pds:Information_Package_Component/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_DIP_Deep_Archive%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002540.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"package_has_collection"
+		"package_has_bundle"
+		"package_has_product"
+		"package_compiled_from_package"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002541] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002541.101])
+	(identifier "pds:Product_Document/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Document/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002541.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "document_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002542] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002542.101])
+	(identifier "pds:Product_Document/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Document/pds:Context_Area/pds:Target_Identification/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002542.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "document_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area.100002543] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "description")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area.100002543.101])
+	(identifier "pds:Product_Document/pds:Identification_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Document/pds:Identification_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area.100002543.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Document both Citation_Information and its description are required.")
+	(assertStmt "pds:Citation_Information/pds:description")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "In Product_Document both Citation_Information and its description are required."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002544] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002544.101])
+	(identifier "pds:Product_Document/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Document/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002544.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"document_to_associate"
+		"document_to_investigation"
+		"document_to_instrument_host"
+		"document_to_instrument"
+		"document_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area.100002545] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "description")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area.100002545.101])
+	(identifier "pds:Product_File_Text/pds:Identification_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_File_Text/pds:Identification_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area.100002545.101] of  Schematron_Assert
+
+	(assertMsg "In Product_File_Text both Citation_Information and its description are required.")
+	(assertStmt "pds:Citation_Information/pds:description")
+	(assertType "RAW")
+	(attrTitle "description")
+	(identifier "description")
+	(specMesg "In Product_File_Text both Citation_Information and its description are required."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.103])
+	(identifier "pds:Product_Native/pds:Reference_List")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"collTypeRef\" value=\"pds:Internal_Reference/pds:reference_type\""
+		"name=\"refType\" value=\"some $ref in ($collTypeRef) satisfies $ref = ('native_to_archival')\"")
+	(type "TBD_type")
+	(xpath "pds:Product_Native/pds:Reference_List"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.101] of  Schematron_Assert
+
+	(assertMsg "In Product_Native, at least one instance of 'pds:Internal_Reference/pds:reference_type' must be present.")
+	(assertStmt "($collTypeRef)")
+	(assertType "RAW")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "In Product_Native, at least one instance of 'pds:Internal_Reference/pds:reference_type' must be present."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.102] of  Schematron_Assert
+
+	(assertMsg "In Product_Native, at least one instance of 'pds:Internal_Reference/pds:reference_type' must be set to the following value 'native_to_archival'")
+	(assertStmt "($refType)")
+	(assertType "RAW")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "In Product_Native, at least one instance of 'pds:Internal_Reference/pds:reference_type' must be set to the following value 'native_to_archival'"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546.103] of  Schematron_Assert
+
+	(assertMsg "In Product_Native, every instance of 'pds:Internal_Reference/pds:reference_type' must be set to one of the following values: 'described_by_document', 'native_to_archival'.")
+	(assertStmt "every $ref in ($collTypeRef) satisfies $ref = ('described_by_document', 'native_to_archival')")
+	(assertType "RAW")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "In Product_Native, every instance of 'pds:Internal_Reference/pds:reference_type' must be set to one of the following values: 'described_by_document', 'native_to_archival'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area.100002547] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Investigation_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area.100002547.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Investigation_Area")
+	(isMissionOnly "true")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Investigation_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area.100002547.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:name) satisfies $ref = ('$namexxx')")
+	(assertType "EVERY")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD")
+	(testValArr "$name"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Investigation_Area/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Investigation_Area/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_association', 'has_investigation', 'has_instrument_host', 'has_instrument', 'has_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "data_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System.100002549] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Observing_System")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System.100002549.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Observing_System")
+	(isMissionOnly "true")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Observing_System"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System.100002549.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:name) satisfies $ref = ('$namexxx')")
+	(assertType "EVERY")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD")
+	(testValArr "$name"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System%2Fpds%3AObserving_System_Component.100002550] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Observing_System_Component")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System%2Fpds%3AObserving_System_Component.100002550.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Observing_System/pds:Observing_System_Component")
+	(isMissionOnly "true")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Observing_System/pds:Observing_System_Component"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AObserving_System%2Fpds%3AObserving_System_Component.100002550.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:name) satisfies $ref = ('$namexxx')")
+	(assertType "EVERY")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD")
+	(testValArr "$name"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification.100002551] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Target_Identification")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification.100002551.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification")
+	(isMissionOnly "true")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification.100002551.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:name) satisfies $ref = ('$namexxx')")
+	(assertType "EVERY")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "TBD")
+	(testValArr "$name"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002552] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002552.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100002552.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_instrument', 'has_instrument_host')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "data_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002553] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002553.101])
+	(identifier "pds:Product_Observational/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002553.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('data_to_resource', 'data_to_calibration', 'data_to_geometry', 'data_to_spice_kernel', 'data_to_thumbnail', 'data_to_document', 'data_to_browse', 'bundle_to_document', 'collection_to_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"data_to_associate"
+		"data_to_resource"
+		"data_to_calibration_document"
+		"data_to_calibration_product"
+		"data_to_raw_product"
+		"data_to_calibrated_product"
+		"data_to_derived_product"
+		"data_to_geometry"
+		"data_to_spice_kernel"
+		"data_to_thumbnail"
+		"data_to_document"
+		"data_curated_by_node"
+		"data_to_browse"
+		"data_to_ancillary_data"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002554] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002554.101])
+	(identifier "pds:Product_SIP/pds:Information_Package_Component/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_SIP/pds:Information_Package_Component/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002554.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"package_has_collection"
+		"package_has_bundle"
+		"package_has_product"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP_Deep_Archive%2Fpds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002555] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP_Deep_Archive%2Fpds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002555.101])
+	(identifier "pds:Product_SIP_Deep_Archive/pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_SIP_Deep_Archive/pds:Information_Package_Component_Deep_Archive/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP_Deep_Archive%2Fpds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002555.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "package_has_bundle"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area.100002556] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_Attribute")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Context_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area.100002556.101])
+	(identifier "pds:Product_SPICE_Kernel/pds:Context_Area")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_SPICE_Kernel/pds:Context_Area"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area.100002556.101] of  Schematron_Assert
+
+	(assertMsg "In Product_SPICE_Kernel the Time_Coordinates, Investigation_Area, Target_Identification, and Observing_System classes must be present")
+	(assertStmt "(pds:Time_Coordinates and pds:Investigation_Area and pds:Target_Identification and pds:Observing_System)")
+	(assertType "RAW")
+	(attrTitle "x")
+	(identifier "x")
+	(specMesg "In Product_SPICE_Kernel the Time_Coordinates, Investigation_Area, Target_Identification, and Observing_System classes must be present"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101])
+	(identifier "pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Thumbnail/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('has_resource', 'has_association', 'has_document')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr
+		"thumbnail_to_data"
+		"thumbnail_to_browse"
+		"thumbnail_to_document"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Update%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002557] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Update%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002557.101])
+	(identifier "pds:Product_Update/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Update/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Update%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002557.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('update_to_collection')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "update_to_collection"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Zipped%2Fpds%3AInternal_Reference.100002558] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Zipped%2Fpds%3AInternal_Reference.100002558.101])
+	(identifier "pds:Product_Zipped/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Zipped/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Zipped%2Fpds%3AInternal_Reference.100002558.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('xxx')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "zip_to_package"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "num_fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Binary")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.103])
+	(identifier "pds:Record_Binary")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Record_Binary"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "num_fields")
+	(identifier "num_fields")
+	(specMesg "IThe values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Binary elements (<sch:value-of select=\"count(pds:Field_Binary)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Binary)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Binary elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Binary.100002559.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Binary elements (<sch:value-of select=\"count(pds:Group_Field_Binary)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Binary)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Binary elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "num_fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Character")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.103])
+	(identifier "pds:Record_Character")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Record_Character"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "num_fields")
+	(identifier "num_fields")
+	(specMesg "IThe values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Character elements (<sch:value-of select=\"count(pds:Field_Character)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Character)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Character elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Character.100002560.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Character elements (<sch:value-of select=\"count(pds:Group_Field_Character)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Character)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Character elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "fields")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.103])
+	(identifier "pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_fields\" value=\"(pds:fields)\""
+		"name=\"num_groups\" value=\"(pds:groups)\"")
+	(type "TBD_type")
+	(xpath "pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.101] of  Schematron_Assert
+
+	(assertMsg "The values for 'fields' and 'groups' must not both be '0'.  The number of fields found: (<sch:value-of select=\"$num_fields\"/>).  The number of groups found: (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_fields > '0' or $num_groups > '0'")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The values for 'fields' and 'groups' must not both be '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.102] of  Schematron_Assert
+
+	(assertMsg "The number of Field_Delimited elements (<sch:value-of select=\"count(pds:Field_Delimited)\"/>) does not match the number found in the 'fields' attribute (<sch:value-of select=\"$num_fields\"/>).")
+	(assertStmt "$num_fields = count(pds:Field_Delimited)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Field_Delimited elements does not match the number found in the 'fields' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ARecord_Delimited.100002561.103] of  Schematron_Assert
+
+	(assertMsg "The number of Group_Field_Delimited elements (<sch:value-of select=\"count(pds:Group_Field_Delimited)\"/>) does not match the number found in the 'groups' attribute (<sch:value-of select=\"$num_groups\"/>).")
+	(assertStmt "$num_groups = count(pds:Group_Field_Delimited)")
+	(assertType "RAW")
+	(attrTitle "fields")
+	(identifier "fields")
+	(specMesg "The number of Group_Field_Delimited elements does not match the number found in the 'groups' attribute."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_Attribute")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Source_Product_External")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101])
+	(identifier "pds:Source_Product_External")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Source_Product_External"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ASource_Product_External.100002556.101] of  Schematron_Assert
+
+	(assertMsg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'.")
+	(assertStmt "if ( (not(pds:doi)) and (not(pds:curating_facility)) ) then false() else true()")
+	(assertType "RAW")
+	(attrTitle "doi")
+	(identifier "doi")
+	(specMesg "The class Source_Product_External must contain at least one of the attributes 'pds:doi' or 'pds:curating_facility'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_External")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.102])
+	(identifier "pds:Table_Delimited_Source_Product_External")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.101] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_External.Field_Delimited does not match the expected number of instances")
+	(assertStmt "count(pds:Record_Delimited/pds:Field_Delimited) eq 4")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External.100004521.102] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_External.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.102])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be 4.")
+	(assertStmt "pds:fields eq '4'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited.100004522.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.101] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.102] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.103] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004523.104] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_External must have name set to 'Reference Type'.")
+	(assertStmt "pds:name eq 'Reference Type'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.101] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.102] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.103] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have name set to 'External Source Product Identifier'.")
+	(assertStmt "pds:name eq 'External Source Product Identifier'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004524.104] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[3]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[3]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.101] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have field_number set to 3.")
+	(assertStmt "pds:field_number eq '3'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.102] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.103] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have name set to 'DOI'.")
+	(assertStmt "pds:name eq 'DOI'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B3%5D.100004525.104] of  Schematron_Assert
+
+	(assertMsg "The third field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.104])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[4]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:Record_Delimited/pds:Field_Delimited[4]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.101] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have field_number set to 4.")
+	(assertStmt "pds:field_number eq '4'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.102] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.103] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have name set to 'Curating Facility'.")
+	(assertStmt "pds:name eq 'Curating Facility'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B4%5D.100004526.104] of  Schematron_Assert
+
+	(assertMsg "The fourth field of a Table_Delimited_Source_Product_External must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_External")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527.101])
+	(identifier "pds:Table_Delimited_Source_Product_External/pds:reference_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_External/pds:reference_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_External%2Fpds%3Areference_type.100004527.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:reference_type must be equal to the value 'table_has_source_products'.")
+	(assertStmt ". = ('table_has_source_products')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_Internal")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.102])
+	(identifier "pds:Table_Delimited_Source_Product_Internal")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.101] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_Internal.Field_Delimited does not match the expected number of instances")
+	(assertStmt "(count(pds:Record_Delimited/pds:Field_Delimited) eq 2)")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal.100004515.102] of  Schematron_Assert
+
+	(assertMsg "Table_Delimited_Source_Product_Internal.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.102])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be equal to '2'.")
+	(assertStmt "pds:fields eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited.100004516.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.104])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.101] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.102] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.103] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have data type set to 'ASCII_String'.")
+	(assertStmt "pds:data_type eq 'ASCII_String'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B1%5D.100004517.104] of  Schematron_Assert
+
+	(assertMsg "The first field of a Table_Delimited_Source_Product_Internal must have name set to 'Reference Type'.")
+	(assertStmt "pds:name eq 'Reference Type'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_AttrTitle")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Field_Delimited")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.103]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.104])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:Record_Delimited/pds:Field_Delimited[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.101] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.102] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have data_type set to either 'ASCII_LID' or 'ASCII_LIDVID' or 'ASCII_LIDVID_LID'.")
+	(assertStmt "(pds:data_type eq 'ASCII_LID') or (pds:data_type eq 'ASCII_LIDVID') or (pds:data_type eq 'ASCII_LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.103] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have name set to 'LIDVID_LID'.")
+	(assertStmt "(pds:name eq 'LIDVID_LID')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3ARecord_Delimited%2Fpds%3AField_Delimited%5B2%5D.100004518.104] of  Schematron_Assert
+
+	(assertMsg "The second field of a Table_Delimited_Source_Product_Internal must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Table_Delimited_Source_Product_Internal")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520.101])
+	(identifier "pds:Table_Delimited_Source_Product_Internal/pds:reference_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Table_Delimited_Source_Product_Internal/pds:reference_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATable_Delimited_Source_Product_Internal%2Fpds%3Areference_type.100004520.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:reference_type must be equal to the value 'table_has_source_products'.")
+	(assertStmt ". = ('table_has_source_products')")
+	(assertType "RAW")
+	(attrTitle "TBD_AttrTitle")
+	(identifier "TBD_Identifier")
+	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "TBD_Attribute")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Uniformly_Sampled")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.103])
+	(identifier "pds:Uniformly_Sampled")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"collScaleRef\" value=\"pds:sampling_parameter_scale\""
+		"name=\"collBaseRef\" value=\"pds:sampling_parameter_base\""
+		"name=\"refExpType\" value=\"every $ref in ($collScaleRef) satisfies $ref = ('Exponential')\""
+		"name=\"refNonExpType\" value=\"every $ref in ($collScaleRef) satisfies $ref = ('Linear', 'Logarithmic')\""
+		"name=\"purposeType\" value=\"every $ref in ($collBaseRef) satisfies $ref > 0\"")
+	(type "TBD_type")
+	(xpath "pds:Uniformly_Sampled"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.101] of  Schematron_Assert
+
+	(assertMsg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' not equal 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must not exist.")
+	(assertStmt "if ($refNonExpType) then (not($collBaseRef)) else true()")
+	(assertType "RAW")
+	(attrTitle "sampling_parameter_scale")
+	(identifier "sampling_parameter_scale")
+	(specMesg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' not equal 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must not exist."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.102] of  Schematron_Assert
+
+	(assertMsg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' = 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must exist.")
+	(assertStmt "if ($refExpType) then ($collBaseRef) else true()")
+	(assertType "RAW")
+	(attrTitle "sampling_parameter_scale")
+	(identifier "sampling_parameter_scale")
+	(specMesg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' = 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must exist."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556.103] of  Schematron_Assert
+
+	(assertMsg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' = 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must have a value > '0'.")
+	(assertStmt "if ($refExpType) then ($purposeType) else true()")
+	(assertType "RAW")
+	(attrTitle "sampling_parameter_scale")
+	(identifier "sampling_parameter_scale")
+	(specMesg "For 'pds:Uniformly_Sampled/pds:sampling_parameter_scale' = 'Exponential', 'pds:Uniformly_Sampled/pds:sampling_parameter_base' must have a value > '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AXML_Schema.100002562] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "XML_Schema")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AXML_Schema.100002562.101])
+	(identifier "pds:XML_Schema")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:XML_Schema"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AXML_Schema.100002562.101] of  Schematron_Assert
+
+	(assertMsg "XML_Schema.offset must have a value of '0'")
+	(assertStmt "pds:offset eq '0'")
+	(assertType "RAW")
+	(attrTitle "offset")
+	(identifier "offset")
+	(specMesg "XML_Schema.offset must have a value of '0'"))
+
+([Imaging] of  Discipline_Facets
+
+	(discipline_name "Imaging")
+	(has_Group_Facet1
+		[Grayscale]
+		[Color]
+		[Movie]
+		[Color+Movie]))
+
+([Ions] of  Group_Facet1
+
+	(facet1 "Ions"))
+
+([Lightcurve] of  Group_Facet1
+
+	(facet1 "Lightcurve"))
+
+([Linear] of  Group_Facet1
+
+	(facet1 "Linear"))
+
+([Magnetic] of  Group_Facet1
+
+	(facet1 "Magnetic"))
+
+([Meteoritics] of  Group_Facet1
+
+	(facet1 "Meteoritics"))
+
+([Meteorology] of  Group_Facet1
+
+	(facet1 "Meteorology"))
+
+([Movie] of  Group_Facet1
+
+	(facet1 "Movie"))
+
+([Neutrals] of  Group_Facet1
+
+	(facet1 "Neutrals"))
+
+([Particles] of  Discipline_Facets
+
+	(discipline_name "Particles")
+	(has_Group_Facet1
+		[Ions]
+		[Electrons]
+		[Neutrals])
+	(has_Group_Facet2
+		[Cosmic+Ray]
+		[Solar+Energetic]
+		[Energetic]
+		[Plasma]))
+
+([Photometry] of  Group_Facet1
+
+	(facet1 "Photometry"))
+
+([Physical+Properties] of  Group_Facet1
+
+	(facet1 "Physical Properties"))
+
+([Plasma] of  Group_Facet2
+
+	(facet2 "Plasma"))
+
+([Polarimetry] of  Group_Facet1
+
+	(facet1 "Polarimetry"))
+
+([Product_Image_Grayscale_1_Identification_Area] of  Identification_Area
+
+	(logical_identifier "MPFL-M-IMP-2-EDR-V1.0:PDS4_IMG_IMAGE_GRAYSCALE_ID")
+	(title "MARS PATHFINDER LANDER Experiment")
+	(version_id "1.0"))
+
+([Production+Rates] of  Group_Facet1
+
+	(facet1 "Production Rates"))
+
+([Radio+Science] of  Discipline_Facets
+
+	(discipline_name "Radio Science"))
+
+([Ring+Compositional+Map] of  Group_Facet1
+
+	(facet1 "Ring Compositional Map"))
+
+([Ring+Occultation+Profile] of  Group_Facet1
+
+	(facet1 "Ring Occultation Profile"))
+
+([Ring+Thermal+Map] of  Group_Facet1
+
+	(facet1 "Ring Thermal Map"))
+
+([Ring-Moon+Systems] of  Discipline_Facets
+
+	(discipline_name "Ring-Moon Systems")
+	(has_Group_Facet1
+		[Satellite+Astrometry]
+		[Ring+Compositional+Map]
+		[Ring+Occultation+Profile]
+		[Ring+Thermal+Map]))
+
+([Satellite+Astrometry] of  Group_Facet1
+
+	(facet1 "Satellite Astrometry"))
+
+([Shape+Model] of  Group_Facet1
+
+	(facet1 "Shape Model"))
+
+([Small+Bodies] of  Discipline_Facets
+
+	(discipline_name "Small Bodies")
+	(has_Group_Facet1
+		[Dynamical+Properties]
+		[Lightcurve]
+		[Meteoritics]
+		[Physical+Properties]
+		[Production+Rates]
+		[Shape+Model]
+		[Taxonomy]
+		[Dust+Study]
+		[Historical+Reference]
+		[Gas+Study]))
+
+([Solar+Energetic] of  Group_Facet2
+
+	(facet2 "Solar Energetic"))
+
+([Spectral+Cube] of  Group_Facet1
+
+	(facet1 "Spectral Cube"))
+
+([Spectral+Image] of  Group_Facet1
+
+	(facet1 "Spectral Image"))
+
+([Spectroscopy] of  Discipline_Facets
+
+	(discipline_name "Spectroscopy")
+	(has_Group_Facet1
+		[2D]
+		[Linear]
+		[Spectral+Cube]
+		[Spectral+Image]
+		[Tabulated]))
+
+([Structure] of  Group_Facet1
+
+	(facet1 "Structure"))
+
+([Tabulated] of  Group_Facet1
+
+	(facet1 "Tabulated"))
+
+([Taxonomy] of  Group_Facet1
+
+	(facet1 "Taxonomy"))
+
+([upper_091022_Instance_4] of  %3APAL-CONSTRAINT
+)
+
+([upper_091228_Instance_15] of  %3APAL-CONSTRAINT
+)
+
+([upper_110812b_Class0] of  %3APAL-CONSTRAINT
+)
+
+([Waves] of  Group_Facet2
+
+	(facet2 "Waves"))
