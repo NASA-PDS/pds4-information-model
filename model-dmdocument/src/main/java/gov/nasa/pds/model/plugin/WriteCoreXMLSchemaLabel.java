@@ -70,7 +70,7 @@ class WriteCoreXMLSchemaLabel extends Object {
 		prSchematron.println("    <Identification_Area>");
 		
 		// generated and write the LID
-		String lLID = lSchemaFileDefn.urnPrefix + "system_bundle:xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema" + "_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id;
+		String lLID = lSchemaFileDefn.urnPrefix + lSchemaFileDefn.sysBundleName + ":xml_schema:" +  lSchemaFileDefn.nameSpaceIdNCLC + "-xml_schema" + "_" + DMDocument.masterPDSSchemaFileDefn.ont_version_id;
 		if (DMDocument.LDDToolFlag) lLID += "_" + DMDocument.masterLDDSchemaFileDefn.versionId;
 		prSchematron.println("        <logical_identifier>" + lLID.toLowerCase() + "</logical_identifier>");
 		prSchematron.println("        <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");

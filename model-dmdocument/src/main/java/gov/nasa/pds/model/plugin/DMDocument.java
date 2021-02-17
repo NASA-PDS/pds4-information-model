@@ -1052,8 +1052,14 @@ public class DMDocument extends Object {
         		
           		String modelShortNameKey = SCHEMA_LITERAL+nameSpaceId + ".modelShortName";
         	    value = prop.getProperty(modelShortNameKey);
-        		if (value != null){        		
+        		if (value != null){
             			   lSchemaFileDefn.modelShortName = value;
+        		}
+        		
+          		String sysBundleNameKey = SCHEMA_LITERAL+nameSpaceId + ".sysBundleName";
+        	    value = prop.getProperty(sysBundleNameKey);
+        		if (value != null){        		
+            			   lSchemaFileDefn.sysBundleName = value;
         		}
         		
           		String regAuthIdKey = SCHEMA_LITERAL+nameSpaceId + ".regAuthId";
@@ -1077,6 +1083,7 @@ public class DMDocument extends Object {
 	        		System.out.println("                            lSchemaFileDefn.nameSpaceURL:" + lSchemaFileDefn.nameSpaceURL);
 	        		System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" + lSchemaFileDefn.nameSpaceURLs);
 	        		System.out.println("                            lSchemaFileDefn.modelShortName:" + lSchemaFileDefn.modelShortName);
+	        		System.out.println("                            lSchemaFileDefn.sysBundleName:" + lSchemaFileDefn.sysBundleName);
 	        		System.out.println("                            lSchemaFileDefn.regAuthId:" + lSchemaFileDefn.regAuthId);
 	        		System.out.println("                            lSchemaFileDefn.governanceLevel:" + lSchemaFileDefn.governanceLevel);
 	        		System.out.println("                            lSchemaFileDefn.isMaster:" + lSchemaFileDefn.isMaster);
