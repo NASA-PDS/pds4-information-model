@@ -58,6 +58,7 @@ public class SchemaFileDefn {
 	String nameSpaceURLs;
 	String urnPrefix;
 	String modelShortName;
+	String sysBundleName;
 	String regAuthId;
 	
 	// governance level
@@ -142,6 +143,7 @@ public class SchemaFileDefn {
 		nameSpaceURLs = "TBD_nameSpaceURLs";
 		urnPrefix = "TBD_urnPrefix";
 		modelShortName = "TBD_modelShortName";
+		sysBundleName = "system_bundle"; // default system bundle name, can be overridden in the config.properties file.
 		regAuthId =  "TBD_regAuthId";
 		
 		governanceLevel = "TBD_governanceLevel";
@@ -208,6 +210,7 @@ public class SchemaFileDefn {
 		nameSpaceURLs = lSchemaFileDefn.nameSpaceURLs;
 		urnPrefix = lSchemaFileDefn.urnPrefix;
 		modelShortName = lSchemaFileDefn.modelShortName;
+		sysBundleName = lSchemaFileDefn.sysBundleName;
 		regAuthId = lSchemaFileDefn.regAuthId;
 		return;
 	}
@@ -277,6 +280,7 @@ public class SchemaFileDefn {
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id;			
 			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_CCSDS"  + "_" + lab_version_id;			
 		}
+		
 		relativeFileSpecDDDocXML = DMDocument.outputDirPath + "export/DD/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "DD" + "_" + lab_version_id + ".xml";	
 		relativeFileSpecDDProtPins = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_" + DMDocument.masterTodaysDateyymmdd + ".pins";	
 		relativeFileSpecDDProtPinsSN = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen" + ".pins";	
