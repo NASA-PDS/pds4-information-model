@@ -322,10 +322,15 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Terminological_Entry_SKOS</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Term_Map_SKOS</Field> <Field>oM</Field> <Field>#18</Field> <Field>pds</Field> <Field>ops</Field> </Record> 
 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin_Set</Field> <Field>4MTC</Field> <Field>#10</Field> <Field>pds</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin</Field> <Field>4MTC</Field> <Field>#10</Field> <Field>pds</Field> <Field>img</Field> </Record>
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion</Field> <Field>1MTF</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
-  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion_Component</Field> <Field>1MTF</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin_Set</Field> <Field>4MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Band_Bin</Field> <Field>4MTC</Field> <Field>#09</Field> <Field>pds</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion</Field> <Field>1MTF</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Quaternion_Component</Field> <Field>1MTF</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Direction</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Color_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
+  <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Movie_Display_Settings</Field> <Field>4MS</Field> <Field>#19</Field> <Field>disp</Field> <Field>img</Field> </Record>
 
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Activity</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
   <Record> <Field>Disposition</Field> <Field>I</Field> <Field>UpperModel.0001_NASA_PDS_1.Agent</Field> <Field>4MS</Field> <Field>#19</Field> <Field>pds</Field> <Field>pds</Field> </Record>
