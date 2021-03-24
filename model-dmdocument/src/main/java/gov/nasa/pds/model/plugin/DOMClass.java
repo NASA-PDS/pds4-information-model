@@ -63,6 +63,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isFromLDD;								// has been ingested from Ingest_LDD
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
 	boolean isExposed;							// the class is to be exposed in XML Schema - i.e., defined using xs:Element
+	boolean isAssociatedExternalClass;			// the class was defined using DD_Associate_External_Class
 
 	DOMProp hasDOMPropInverse;					// the owning DOMProp of this Class 
 	ArrayList <DOMProtAttr> hasDOMProtAttr;		// the protege attributes to be converted to DOMProp and either DOMAttr or DOMClass
@@ -115,6 +116,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		includeInThisSchemaFile = false;
 		isFromLDD = false;
 		isReferencedFromLDD = false;
+		isAssociatedExternalClass = false;			// the class was defined using DD_Associate_External_Class
 		
 		hasDOMPropInverse = null;
 		hasDOMProtAttr = new ArrayList <DOMProtAttr> ();

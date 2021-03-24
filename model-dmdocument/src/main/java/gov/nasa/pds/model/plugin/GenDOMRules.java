@@ -98,7 +98,7 @@ class GenDOMRules extends Object {
 			if ((lClass == null) || (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) && lSchemaFileDefn.stewardArr.contains(lClass.steward)))) continue;
 			if (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous) continue;
 			if (lClass.allEnumAttrArr == null || lClass.allEnumAttrArr.isEmpty()) continue;
-
+			
 			// discipline facet and facet group schema rules are hard coded elsewhere.
 			if (lClass.title.compareTo("Discipline_Facets") == 0 || lClass.title.compareTo("Group_Facet1") == 0 || lClass.title.compareTo("Group_Facet2") == 0) continue;
 			
@@ -120,7 +120,7 @@ class GenDOMRules extends Object {
 	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, String lDeprecatedClassIdentifier, ArrayList <DOMAttr> lAttrArr) {	
 		for (Iterator <DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) j.next();
-			String lRuleId = lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;;
+			String lRuleId = lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
 			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
 			if (lRule == null) {
 				lRule = new DOMRule(lRuleId);
