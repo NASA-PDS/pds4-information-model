@@ -1269,23 +1269,28 @@ public abstract class DOMInfoModel extends Object {
 
 		prDOMWriter.println("\n=========================   Attributes  =========================");		
         
-		prDOMWriter.println("-------------------------  ownedAttribute  --------------------------");
+		prDOMWriter.println("\n-------------------------  ownedAttribute  --------------------------");
 		lSortDOMPropArr = sortDOMProp (objClass.ownedAttrArr);
 		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
+			prDOMWriter.println("\n    ownedAttrArr prop:" + lDOMProp.identifier);
+			prDOMWriter.println("                 prop:" + lDOMProp.rdfIdentifier);
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
 				DOMAttrWriter(lDOMAttr, prDOMWriter);
 			}
 		}
 		
-		prDOMWriter.println("-------------------------  ownedAssociation (Class Identifiers) -----");
+		prDOMWriter.println("\n-------------------------  ownedAssociation (Class Identifiers) -----");
 		lSortDOMPropArr = sortDOMProp (objClass.ownedAssocArr);
 		for (Iterator <DOMProp> i = lSortDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
+			prDOMWriter.println("\n    ownedAssocArr prop:" + lDOMProp.identifier);
+			prDOMWriter.println("                  prop:" + lDOMProp.rdfIdentifier);
 			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
 				DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
-				prDOMWriter.println("    ownedAssocArr :" + lDOMClass.identifier);
+				prDOMWriter.println("                 class:" + lDOMClass.identifier);
+				prDOMWriter.println("                 class:" + lDOMClass.rdfIdentifier);
 			}	
 		}
 	}

@@ -794,7 +794,6 @@ public class LDDDOMParser extends Object
 			ArrayList <String> lLocalIdentifierArr;
 			
 			// get DD_Associations
-			// *** this test can be removed --- it is redundant
 			if (lAssocElem.getNodeName().compareTo("DD_Association") == 0) { 
 				// initialize
 				boolean isGroupDelimter = false;
@@ -909,106 +908,245 @@ public class LDDDOMParser extends Object
 				}
 				
 			} else if (lAssocElem.getNodeName().compareTo("DD_Associate_External_Class") == 0) { 
-				// handle DD_Associate_External_Class
-				// initialize
-				String lClassNameSpaceIdNC = "TBD_lClassNameSpaceIdNC_LDD";
-				String lClassName = "TBD_lClassName_LDD";
-				lCardMin = "";
-				lCardMinI = 0;
-				lCardMax = "";
-				lCardMaxI = 0;
-
-				// get common attributes
-				lClassNameSpaceIdNC = getTextValue(lAssocElem,"namespace_id");
-				lClassName = getTextValue(lAssocElem,"class_name");
-				lLocalIdentifier = lClassNameSpaceIdNC + "." + lClassName;
-				
-				lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
-				lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
-				
-				validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lLocalIdentifier);
-				
-				// create new association -- Note that lProperty.identifier will not be set until the associated attribute is located in resolveComponentsForAssociation
-				DOMProp lDOMProp = new DOMProp ();
-				
-				// get common attributes
-				lDOMProp.isAttribute = false;
-				lDOMProp.localIdentifier = lLocalIdentifier;
-				lDOMProp.referenceType = "component_of";
-				lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "." + lDOMClass.title + "." + lDOMProp.localIdentifier + "." + lDOMProp.referenceType + "." + DOMInfoModel.getNextUId();
-				lDOMProp.enclLocalIdentifier = lDOMClass.localIdentifier;					
-				lDOMProp.classOrder = DOMInfoModel.getNextClassOrder();
-				lDOMProp.isChoice = false;	
-				lDOMProp.isAny = false;
-				lDOMProp.maximumOccurrences = lMaximumOccurrences;
-				lDOMProp.minimumOccurrences = lMinimumOccurrences;
-				lDOMProp.groupName = "TBD_groupName";
-				lDOMProp.cardMin = lCardMin;
-				lDOMProp.cardMinI = lCardMinI;
-				lDOMProp.cardMax = lCardMax;
-				lDOMProp.cardMaxI = lCardMaxI;
-				
-				// update property arrays
-				LDDDOMPropArr.add(lDOMProp);
-				lDOMClass.ownedAssocArr.add(lDOMProp);
-				
-				Node lValueListNode = lAssocElem.getFirstChild();
-				while (lValueListNode != null)
-				{
-					if ((lValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
-						(lValueListNode.getNodeName().indexOf("DD_Context_Value_List") == 0)) {
-						Element lValueListElement = (Element)lValueListNode;
-						String lattribute_name = getTextValue(lValueListElement,"attribute_name");
-						String lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
-						DOMRule lDOMRule = new DOMRule (lClassNameSpaceIdNC + ":" + lClassName + "." + lXpath);	
-						lDOMRule.setRDFIdentifier();	
-						if ((DOMRule) ruleMap.get(lDOMRule.rdfIdentifier) == null) {
-							ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
-							ruleArr.add(lDOMRule);					
-							lDOMRule.xpath = lXpath;
-							lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-							lDOMRule.attrTitle = lattribute_name;
-							lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;		
-							lDOMRule.classTitle = lClassName;		
-							lDOMRule.classNameSpaceNC = lClassNameSpaceIdNC;
-							lDOMRule.classSteward = lSchemaFileDefn.nameSpaceIdNC;
-							String lAttrId = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
-							int pvCount = 0;
-							String lAssertMsgValueList = "";
-							DOMAssert lDOMAssert = new DOMAssert (lAttrId);	
-							String lDel = "";
-							Node lPermValueListNode = lValueListElement.getFirstChild();
-							while (lPermValueListNode != null)
-							{
-								if ((lPermValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
-									(lPermValueListNode.getNodeName().indexOf("DD_Permissible_Value") == 0)) {
-									Element lPermValueListElement = (Element)lPermValueListNode;
-									String lValue = getTextValue(lPermValueListElement,"value");	
-									String lValueMeaning = getTextValue(lPermValueListElement,"value_meaning");
-									lDOMAssert.testValArr.add(lValue);
-									pvCount++;
-									String lValString = lDel + "'" + lValue + "'";					
-									lDel = ", ";					
-									lAssertMsgValueList += lValString;	
-								}	
-								lPermValueListNode = lPermValueListNode.getNextSibling();
-							}
-							if (pvCount >= 1) {
-								String assertMsgPre = " must be equal to one of the following values"; 
-								if (pvCount == 1) assertMsgPre = " must be equal to the value"; 
-								lDOMAssert.assertStmt =  ". = (" + lAssertMsgValueList  + ")";	
-								lDOMAssert.assertMsg =  "The attribute " + lDOMRule.xpath + assertMsgPre + " " + lAssertMsgValueList  + ".";
-								lDOMRule.assertArr.add(lDOMAssert);
-							}
-						}
-					}
-					lValueListNode = lValueListNode.getNextSibling();
-				}
+				// get the class, attribute, and permissible values associated with an external class, e.g., pds.Internal_Reference.reference_type = geometry_to_reference_frame
+				get_Class_Attr_Prop_DD_Associate_External_Class (lDOMClass, lSchemaFileDefn, lAssocElem);
 			}
 		}
 		return;
+	}
+	
+	private void get_Class_Attr_Prop_DD_Associate_External_Class (DOMClass lDOMClassBase, SchemaFileDefn lSchemaFileDefn, Element lAssocElem) {	
+		// initialize
+		String lIngestLDDNameSpaceIdNC = "TBD_lIngestLDDNameSpaceIdNC_LDD";
+		String lIngestLDDClassName = "TBD_lIngestLDDClassName_LDD";
+		String lIngestLDDAttrName = "TBD_lIngestLDDAttrName_LDD";
+		String lXpath = "TBD_lXpath_LDD";
+		lCardMin = "";
+		lCardMinI = 0;
+		lCardMax = "";
+		lCardMaxI = 0;
+
+		// get common elements
+		lIngestLDDNameSpaceIdNC = getTextValue(lAssocElem,"namespace_id");	// e.g. pds
+		lIngestLDDClassName = getTextValue(lAssocElem,"class_name");		// e.g., Internal_Reference
+		String lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
+		String lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
+		
+		// create a new DOMAttr, the clone of an external attribute 
+		DOMAttr lDOMAttrExt = new DOMAttr ();
+		lDOMAttrExt.isPDS4 = true;
+		lDOMAttrExt.isFromLDD = true;
+		lDOMAttrExt.nameSpaceIdNC = lDOMClassBase.nameSpaceIdNC;		//e.g., geom
+		lDOMAttrExt.nameSpaceId = lDOMAttrExt.nameSpaceIdNC + ":";						
+		lDOMAttrExt.classNameSpaceIdNC = lDOMClassBase.nameSpaceIdNC;	//e.g., geom
+		lDOMAttrExt.parentClassTitle = lDOMClassBase.title;				//e.g., Frame_Identification_Base
+		lDOMAttrExt.steward = lSchemaFileDefn.stewardId;				//e.g., geom
+		lDOMAttrExt.regAuthId = lRegAuthId;
+		lDOMAttrExt.propType = "ATTRIBUTE";
+		lDOMAttrExt.isAttribute = true;
+		
+		// get the value domain
+		// e.g., reference_type = geometry_to_reference_frame
+		Node lValueListNode = lAssocElem.getFirstChild();
+		while (lValueListNode != null) {
+			if ((lValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+				(lValueListNode.getNodeName().indexOf("DD_Context_Value_List") == 0)) {
+				Element lValueListElement = (Element)lValueListNode;
+				lIngestLDDAttrName = getTextValue(lValueListElement,"attribute_name");
+				lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
+				int pvCount = 0;
+				Node lPermValueListNode = lValueListElement.getFirstChild();
+				while (lPermValueListNode != null)
+				{
+					if ((lPermValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+						(lPermValueListNode.getNodeName().indexOf("DD_Permissible_Value") == 0)) {
+						Element lPermValueListElement = (Element)lPermValueListNode;
+						String lValue = getTextValue(lPermValueListElement,"value");	   // e.g., geometry_to_reference_frame
+						String lValueMeaning = getTextValue(lPermValueListElement,"value_meaning");
+						lDOMAttrExt.valArr.add(lValue);
+						DOMPermValDefn lDOMPermValExt = new DOMPermValDefn (lValue, lValue, lValueMeaning);
+						lDOMPermValExt.setRDFIdentifier(lValue);
+						DOMProp lDOMPropPVExt = new DOMProp ();
+						lDOMPropPVExt.initForPermValue (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lIngestLDDAttrName, lValue);
+						lDOMPropPVExt.hasDOMObject = lDOMPermValExt;
+						lDOMAttrExt.domPermValueArr.add(lDOMPropPVExt);
+						pvCount++;
+					}	
+					lPermValueListNode = lPermValueListNode.getNextSibling();
+				}					
+			}
+			lValueListNode = lValueListNode.getNextSibling();
+		}
+		
+		// now complete the clone DOMAttr
+		lDOMAttrExt.setRDFIdentifier(lIngestLDDAttrName);
+		lDOMAttrExt.lddLocalIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDAttrName;	// e.g. geom.Frame_Identification_Base.pds.reference_type
+		lDOMAttrExt.title = lDOMClassBase.title + "_" + lIngestLDDAttrName;
+		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMProp identifier
+		lDOMAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
+		lDOMAttrExt.XMLSchemaName = lDOMAttrExt.title;
+		if (lDOMAttrExt.domPermValueArr.size() > 0) lDOMAttrExt.isEnumerated = true;
+
+		// get the external attribute
+		String lDOMAttrExternalId = DOMInfoModel.getAttrIdentifier (lIngestLDDNameSpaceIdNC, lIngestLDDClassName, lIngestLDDNameSpaceIdNC, lIngestLDDAttrName);
+		DOMAttr lDOMAttrExternal = DOMInfoModel.masterDOMAttrIdMap.get(lDOMAttrExternalId);
+		if (lDOMAttrExternal != null) {
+			DOMProp lDOMPropExternal  = DOMInfoModel.masterDOMPropIdMap.get(lDOMAttrExternalId);
+			if (lDOMPropExternal != null) {
+				finishInitDOMAttr (lDOMAttrExt, lDOMAttrExternal, lDOMPropExternal);
+			}
+		}
+		
+		// create a new DOMProp for the cloned lDOMAttr
+		DOMProp lDOMPropAttrExt = new DOMProp ();
+		lDOMPropAttrExt.isAttribute = true;
+		lDOMPropAttrExt.localIdentifier = lDOMAttrExt.lddLocalIdentifier;
+		lDOMPropAttrExt.enclLocalIdentifier = lDOMClassBase.localIdentifier;		//	???
+		lDOMPropAttrExt.referenceType = "attribute_of";
+		lDOMPropAttrExt.setRDFIdentifier(lIngestLDDAttrName);
+		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMAttr identifier
+		lDOMPropAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
+
+//		lDOMPropAttrExt.attrParentClass = lDOMClassBase;  /// ****** parent class is defined below ???? *****
+		lDOMPropAttrExt.classOrder = DOMInfoModel.getNextClassOrder();
+		lDOMPropAttrExt.isChoice = false;	
+		lDOMPropAttrExt.isAny = false;
+		lDOMPropAttrExt.maximumOccurrences = lMaximumOccurrences;
+		lDOMPropAttrExt.minimumOccurrences = lMinimumOccurrences;
+		lDOMPropAttrExt.groupName = "TBD_groupName";
+		lDOMPropAttrExt.cardMin = lCardMin;
+		lDOMPropAttrExt.cardMinI = lCardMinI;
+		lDOMPropAttrExt.cardMax = lCardMax;
+		lDOMPropAttrExt.cardMaxI = lCardMaxI;
+		
+		// add attribute to property
+		lDOMPropAttrExt.hasDOMObject = lDOMAttrExt;		// e.g., geom.Frame_Identification_Base.geom.reference_type
+		
+//		// update property arrays with new DOMProp
+		LDDDOMPropArr.add(lDOMPropAttrExt);
+		
+		// now create new DOMProp  e.g., geom.Frame_Identification_Base.geom.Internal_Reference
+		DOMProp lDOMPropClassExt = new DOMProp ();
+		lDOMPropClassExt.isAttribute = false;
+//		lDOMPropClassExt.localIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lIngestLDDClassName;	// e.g. geom.Frame_Identification_Base.geom.Internal_Reference
+		lDOMPropClassExt.localIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDClassName;	// e.g. geom.Frame_Identification_Base.geom.Internal_Reference
+		lDOMPropClassExt.enclLocalIdentifier = lDOMClassBase.localIdentifier;
+		lDOMPropClassExt.referenceType = "component_of";
+		lDOMPropClassExt.setRDFIdentifier(lIngestLDDClassName);
+		// e.g., geom.Frame_Identification_Base.pds.Internal_Reference --- i.e., duplicate DOMAttr identifier
+		lDOMPropClassExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDClassName);		
+		lDOMPropClassExt.attrParentClass = lDOMClassBase;				
+		lDOMPropClassExt.classOrder = DOMInfoModel.getNextClassOrder();
+		lDOMPropClassExt.maximumOccurrences = lMaximumOccurrences;
+		lDOMPropClassExt.minimumOccurrences = lMinimumOccurrences;
+		lDOMPropClassExt.groupName = "TBD_groupName";
+		lDOMPropClassExt.cardMin = lCardMin;
+		lDOMPropClassExt.cardMinI = lCardMinI;
+		lDOMPropClassExt.cardMax = lCardMax;
+		lDOMPropClassExt.cardMaxI = lCardMaxI;
+		
+		// update property arrays with DOMClass property
+		LDDDOMPropArr.add(lDOMPropClassExt);
+		
+		// create new DOMClass
+		// note that this class must initialized in resolveComponentsForAssociation (e.g. pds.Internal_Reference)
+		DOMClass lDOMClassExt = new DOMClass ();		// e.g. geom.Internal_Reference
+		lDOMClassExt.setRDFIdentifier(lIngestLDDClassName);
+		if ((DOMClass) classMap.get(lDOMClassExt.rdfIdentifier) == null) {
+			
+			// get the external class
+			String lDOMClassExternalId = DOMInfoModel.getClassIdentifier (lIngestLDDNameSpaceIdNC, lIngestLDDClassName);
+			DOMClass lDOMClassExternal = DOMInfoModel.masterDOMClassIdMap.get(lDOMClassExternalId);
+			if (lDOMClassExternal != null) {
+				lDOMClassExt.definition = lDOMClassExternal.definition;
+			}
+			// e.g., geom.Frame_Identification_Base.pds.Internal_Reference --- i.e., duplicate DOMAttr identifier
+			lDOMClassExt.setIdentifier(lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDClassName);
+			lDOMPropAttrExt.attrParentClass = lDOMClassExt;	// parent of the attribute class
+			// e.g., Frame_Identification_Base_Internal_Reference
+			lDOMClassExt.title = lDOMClassBase.title + "_" + lIngestLDDClassName;
+			lDOMClassExt.versionId = DMDocument.classVersionIdDefault;
+			classMap.put(lDOMClassExt.identifier, lDOMClassExt);
+			classArr.add(lDOMClassExt);					
+			lDOMClassExt.isFromLDD = true;
+			lDOMClassExt.isAssociatedExternalClass = true;
+			lDOMClassExt.nameSpaceIdNC = lDOMClassBase.nameSpaceIdNC;
+			lDOMClassExt.nameSpaceId = lDOMClassExt.nameSpaceIdNC + ":";					
+			lDOMClassExt.subModelId = "UpperModel";  // *** this was added to allow the IM Spec to be written					
+			lDOMClassExt.steward = lSchemaFileDefn.stewardId;
+			lDOMClassExt.subClassOfTitle = DMDocument.masterUserClassName;
+			lDOMClassExt.subClassOfIdentifier = DOMInfoModel.getClassIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName);
+//			lDOMClassExt.localIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lIngestLDDClassName;	// e.g. geom.Internal_Reference;
+			lDOMClassExt.localIdentifier = lDOMPropClassExt.localIdentifier;	// e.g. geom.Frame_Identification_Base.geom.Internal_Reference
+
+			lDOMClassExt.ownedAttrArr.add(lDOMPropAttrExt);   ///e.g. geom.Frame_Identification_Base.geom.Internal_Reference
+			lDOMPropClassExt.hasDOMObject = lDOMClassExt;  // e.g., geom.Frame_Identification_Base.geom.Internal_Reference
+			lDOMClassBase.ownedAssocArr.add(lDOMPropClassExt);   ///e.g. geom.Frame_Identification_Base.geom.Internal_Reference
+
+			classMapLocal.put(lDOMClassExt.localIdentifier, lDOMClassExt);
+			
+/*			// base class
+			System.out.println("\n\ndebug get_DD_AEC - lDOMClassBase.rdfIdentifier:" + lDOMClassBase.rdfIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassBase.identifier:" + lDOMClassBase.identifier);
+			System.out.println("debug get_DD_AEC - lIngestLDDNameSpaceIdNC:" + lIngestLDDNameSpaceIdNC);
+			System.out.println("debug get_DD_AEC - lIngestLDDClassName:" + lIngestLDDClassName);
+			
+			// extern Internal_Reference class
+			System.out.println("\ndebug get_DD_AEC - lDOMPropClassExt.rdfIdentifier:" + lDOMPropClassExt.rdfIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMPropClassExt.identifier:" + lDOMPropClassExt.identifier);
+			System.out.println("debug get_DD_AEC - lDOMPropClassExt.localIdentifier:" + lDOMPropClassExt.localIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.identifier:" + lDOMClassExt.identifier);		
+			System.out.println("debug get_DD_AEC - lDOMClassExt.rdfIdentifier:" + lDOMClassExt.rdfIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.localIdentifier:" + lDOMClassExt.localIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.definition:" + lDOMClassExt.definition);
+			
+			// extern reference_type attribute
+			System.out.println("\ndebug get_DD_AEC - lDOMPropAttrExt.rdfIdentifier:" + lDOMPropAttrExt.rdfIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMPropAttrExt.identifier:" + lDOMPropAttrExt.identifier);
+			System.out.println("debug get_DD_AEC - lDOMPropAttrExt.localIdentifier:" + lDOMPropAttrExt.localIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.rdfIdentifier:" + lDOMClassExt.rdfIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.identifier:" + lDOMClassExt.identifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.localIdentifier:" + lDOMClassExt.localIdentifier);
+			System.out.println("debug get_DD_AEC - lDOMClassExt.definition:" + lDOMClassExt.definition); */
+		}
+		
+		// final validation
+//		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lClassLocalIdentifier);
+//		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lAttrLocalIdentifier);
+		return;
 	}	
 		
+	private void finishInitDOMAttr (DOMAttr lDOMAttrTo, DOMAttr lDOMAttrFrom, DOMProp lDOMPropFrom) {
+		lDOMAttrTo.classConcept = lDOMAttrFrom.classConcept;   // copy in the values from common attribute e.g., pds.Internal_Reference.pds.reference_type 					              
+		lDOMAttrTo.dataConcept = lDOMAttrFrom.dataConcept;						              
+		lDOMAttrTo.classWord = lDOMAttrFrom.classWord;							              
+		lDOMAttrTo.definition = lDOMAttrFrom.definition; 
+		lDOMAttrTo.xmlBaseDataType = lDOMAttrFrom.xmlBaseDataType;				              
+		lDOMAttrTo.protValType = lDOMAttrFrom.protValType;						              
+		lDOMAttrTo.propType = lDOMAttrFrom.propType;							              
+		lDOMAttrTo.valueType = lDOMAttrFrom.valueType;
+		lDOMAttrTo.minimum_characters = lDOMAttrFrom.minimum_characters;		              
+		lDOMAttrTo.maximum_characters = lDOMAttrFrom.maximum_characters;		              
+		lDOMAttrTo.minimum_value = lDOMAttrFrom.minimum_value;			                  
+		lDOMAttrTo.maximum_value = lDOMAttrFrom.maximum_value;			                  
+		lDOMAttrTo.format = lDOMAttrFrom.format;					                    
+		lDOMAttrTo.pattern = lDOMAttrFrom.pattern;					                    
+		lDOMAttrTo.unit_of_measure_type = lDOMAttrFrom.unit_of_measure_type;	              
+		lDOMAttrTo.default_unit_id = lDOMAttrFrom.default_unit_id;			                
+		lDOMAttrTo.unit_of_measure_precision = lDOMAttrFrom.unit_of_measure_precision;
+		
+		lDOMAttrTo.cardMinI = lDOMPropFrom.cardMinI;
+		lDOMAttrTo.cardMin = lDOMPropFrom.cardMin;
+		lDOMAttrTo.cardMaxI = lDOMPropFrom.cardMaxI;
+		lDOMAttrTo.cardMax = lDOMPropFrom.cardMax;
+		lDOMAttrTo.isChoice = lDOMPropFrom.isChoice;
+		lDOMAttrTo.isAny = lDOMPropFrom.isAny;
+		lDOMAttrTo.groupName = lDOMPropFrom.groupName;
+		lDOMAttrTo.isUsedInClass = true;
+		lDOMAttrTo.isPDS4 = true;
+		lDOMAttrTo.isFromLDD = true;
+	}
+	
 	private void getRule (SchemaFileDefn lSchemaFileDefn, Element docEle) {	
 		String lValue = "";
 		ArrayList <String> lValueArr = new ArrayList <String> ();
@@ -1238,7 +1376,7 @@ public class LDDDOMParser extends Object
 			assocElement = assocElement.getNextSibling();
 		}
 		return lElemArr;
-	}	
+	}
 	
 	// resolve all class associations
 	private void resolveComponentsForAssociation (SchemaFileDefn lSchemaFileDefn) {
@@ -1250,6 +1388,9 @@ public class LDDDOMParser extends Object
 		for (Iterator <DOMClass> i = classArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();
 			
+			// if class was defined using DD_Associate_External_Class there is no need to resolve
+			if (lDOMClass.isAssociatedExternalClass) continue;
+
 			// for each association in a class, get the attribute (AttrDefn) or the association (AttrDefn with class titles as values)
 			boolean isChoiceOrAny = false;
 			boolean isChoiceOrAnyDelimiter = false;
@@ -1264,6 +1405,7 @@ public class LDDDOMParser extends Object
 				DOMAttr lDOMAttr =  getLocalOrExternAttr (lSchemaFileDefn, lDOMClass, lDOMProp);
 				if (lDOMAttr != null) {
 
+					// standard Ingest_LDD defined attribute
 					lDOMAttr.cardMinI = lDOMProp.cardMinI;
 					lDOMAttr.cardMin = lDOMProp.cardMin;
 					lDOMAttr.cardMaxI = lDOMProp.cardMaxI;
@@ -1271,14 +1413,14 @@ public class LDDDOMParser extends Object
 					lDOMAttr.isChoice = lDOMProp.isChoice;
 					lDOMAttr.isAny = lDOMProp.isAny;
 					lDOMAttr.groupName = lDOMProp.groupName;
+					lDOMAttr.isUsedInClass = true;
 					lDOMProp.nameSpaceIdNC = lDOMAttr.nameSpaceIdNC;
 					lDOMProp.title = lDOMAttr.title;
 					lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
 					lDOMProp.nameSpaceIdNC = lDOMAttr.nameSpaceIdNC;
-					lDOMProp.title = lDOMAttr.title;
+					lDOMProp.title = lDOMAttr.title;					// deprecate
 					lDOMProp.parentClassTitle = lDOMClass.title;
 					lDOMProp.attrParentClass = lDOMClass;
-					lDOMAttr.isUsedInClass = true;
 					
 					// add the attribute to the property
 					lDOMProp.hasDOMObject = lDOMAttr;
@@ -1301,8 +1443,8 @@ public class LDDDOMParser extends Object
 						
 						// get the associated local or external class
 						DOMClass lDOMClassComponent = getLocalOrExtrnCompClass (lSchemaFileDefn, lDOMClass, lDOMProp);
-						if (lDOMClassComponent != null) {
-														
+						if (lDOMClassComponent != null) {					
+							
 							// are the following 2 statements useful?
 							lDOMClass.isChoice = lDOMProp.isChoice;
 							lDOMClass.isAny = lDOMProp.isAny;
@@ -1314,14 +1456,6 @@ public class LDDDOMParser extends Object
 							lDOMProp.setIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title, lDOMClassComponent.nameSpaceIdNC, lDOMClassComponent.title);
 							lDOMProp.parentClassTitle = lDOMClass.title;
 							lDOMProp.attrParentClass = lDOMClass;
-//							lAssoc.isChoice = lProperty.isChoice;
-//							lAssoc.isAny = lProperty.isAny;
-//							lAssoc.groupName = lProperty.groupName;
-//							lAssoc.isOwnedAttribute = true;
-//							lAssoc.cardMax = lProperty.cardMax;
-//							lAssoc.cardMaxI = lProperty.cardMaxI;
-//							lAssoc.cardMin = lProperty.cardMin;
-//							lAssoc.cardMinI = lProperty.cardMinI;
 																					
 							// add the associated class
 //							if (! isChoiceOrAny) {
@@ -1348,10 +1482,8 @@ public class LDDDOMParser extends Object
 							
 							// fixup the class associations (AttrDefn)
 							if (! isChoiceOrAny) {
-//								lDOMClass.ownedAssociation.add(lAssoc);
 								lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMProp.nsTitle);
 							} else if (isChoiceOrAnyDelimiter) {
-//								lDOMClass.ownedAssociation.add(lAssoc);
 								lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMProp.nsTitle);
 							}
 						} else DMDocument.registerMessage ("2>error Association: " + lDOMProp.localIdentifier + " - Missing Component - Reference Type: " + lDOMProp.referenceType);
