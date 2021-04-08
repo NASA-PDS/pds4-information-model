@@ -324,7 +324,7 @@ class XML4LabelSchemaDOM extends Object {
 		prXML.println("    attributeFormDefault=\"unqualified\"");
 		prXML.println("    version=\"" + lSchemaFileDefn.sch_version_id + "\">");
 
-		// write import statements for all but pds (common)
+		// write import statements for all but pds (common) and the master LDD namespace
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
 			// imports required: pds - latest version
 			prXML.println(" ");		
@@ -333,7 +333,8 @@ class XML4LabelSchemaDOM extends Object {
 			// imports required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
-
+				if (lNameSpaceIdNC.compareTo(DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNCLC) == 0) continue;
+				
 				// get info for XML schema namespace declaration; first try LDD 
 				SchemaFileDefn lLDDSchemaFileDefn = DMDocument.LDDSchemaFileSortMap.get(lNameSpaceIdNC);
 				if (lLDDSchemaFileDefn == null) {
