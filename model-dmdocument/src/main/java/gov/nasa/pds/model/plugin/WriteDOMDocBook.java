@@ -59,8 +59,25 @@ class WriteDOMDocBook extends Object {
 			// only the common dictionary (pds)
 			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		} else {
-			// the common and all LDDs that are stacked for this run
-			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
+			// intialize array to capture namespaces to be written
+			ArrayList <String> lDDNamespaceArr = new ArrayList <String> ();
+			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
+			
+			// first get the common dictionary
+			ArrayList <SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+            for(SchemaFileDefn lSchemaFileDefn : tempSchemaFileDefnToWriteArr) {
+    			lSchemaFileDefnToWriteArr.add(lSchemaFileDefn);
+    			lDDNamespaceArr.add(lSchemaFileDefn.nameSpaceIdNC);
+            }
+            
+			// now add all the LDDs that are stacked for this run
+            tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
+			for(SchemaFileDefn lSchemaFileDefn : tempSchemaFileDefnToWriteArr) {
+            	if (! lDDNamespaceArr.contains(lSchemaFileDefn.nameSpaceIdNC)) {
+        			lSchemaFileDefnToWriteArr.add(lSchemaFileDefn);
+        			lDDNamespaceArr.add(lSchemaFileDefn.nameSpaceIdNC);
+            	}
+            }
 		}
 		
 //		System.out.println("");
