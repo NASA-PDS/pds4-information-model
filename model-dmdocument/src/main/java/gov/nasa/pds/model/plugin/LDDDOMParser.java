@@ -997,6 +997,9 @@ public class LDDDOMParser extends Object
 			}
 		}
 		
+		// validate min and max occurrences
+		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lDOMAttrExt.lddLocalIdentifier);
+		
 		// create a new DOMProp for the cloned lDOMAttr
 		DOMProp lDOMPropAttrExt = new DOMProp ();
 		lDOMPropAttrExt.isAttribute = true;
@@ -1109,10 +1112,6 @@ public class LDDDOMParser extends Object
 			System.out.println("debug get_DD_AEC - lDOMClassExt.localIdentifier:" + lDOMClassExt.localIdentifier);
 			System.out.println("debug get_DD_AEC - lDOMClassExt.definition:" + lDOMClassExt.definition); */
 		}
-		
-		// final validation
-//		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lClassLocalIdentifier);
-//		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lAttrLocalIdentifier);
 		return;
 	}	
 		
