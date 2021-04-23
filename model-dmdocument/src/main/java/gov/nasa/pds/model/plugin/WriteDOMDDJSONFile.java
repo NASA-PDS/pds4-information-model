@@ -71,7 +71,7 @@ class WriteDOMDDJSONFile extends Object{
 				// PDS4_PDS_JSON_1910_DOM
 				String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
 				PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
-				printPDDPHdr(prDDPins2);
+				printPDDPHdr(lSchemaFileDefn, prDDPins2);
 				printPDDPBody (lSchemaFileDefn.nameSpaceIdNC, prDDPins2);
 				printPDDPFtr(prDDPins2);
 				prDDPins2.close();
@@ -80,7 +80,7 @@ class WriteDOMDDJSONFile extends Object{
 			// write the JSON file for the LDD
 			String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
 			PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-			printPDDPHdr(prDDPins);
+			printPDDPHdr(DMDocument.masterLDDSchemaFileDefn, prDDPins);
 			if (! DMDocument.exportJSONFileAllFlag) {
 				printPDDPBody (DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
 			} else {
@@ -92,12 +92,13 @@ class WriteDOMDDJSONFile extends Object{
 	}
 	
 	// Print the JSON Header
-	public void printPDDPHdr (PrintWriter prDDPins) {
+	public void printPDDPHdr (SchemaFileDefn lSchemaFileDefn2, PrintWriter prDDPins) {
 		prDDPins.println("[");
 		prDDPins.println("  {");
 		prDDPins.println("    " + formValue("dataDictionary") + ": {");
 		prDDPins.println("      " + formValue("Title") + ": " + formValue("PDS4 Data Dictionary") + " ,");
-		prDDPins.println("      " + formValue("Version") + ": " +  formValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + " ,");
+		prDDPins.println("      " + formValue("IM Version") + ": " +  formValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + " ,");
+		prDDPins.println("      " + formValue("LDD Version") + ": " +  formValue(lSchemaFileDefn2.ont_version_id) + " ,");
 		prDDPins.println("      " + formValue("Date") + ": " +  formValue(DMDocument.sTodaysDate) + " ,");
 		prDDPins.println("      " + formValue("Description") + ": " + formValue("This document is a dump of the contents of the PDS4 Data Dictionary") + " ,");
 		String lNSList = formValue("pds:");
