@@ -1,6 +1,6 @@
 # Changelog
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-04-23)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-04-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.1.0...v13.1.0-SNAPSHOT)
 
@@ -18,6 +18,7 @@
 
 **Defects:**
 
+- Version flag does not return the latest information for the tool [\#342](https://github.com/NASA-PDS/pds4-information-model/issues/342) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Invalid output schema when trying to set an Internal\_Reference reference\_type value set [\#331](https://github.com/NASA-PDS/pds4-information-model/issues/331) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool outputs invalid schema with v13.0.0 [\#328](https://github.com/NASA-PDS/pds4-information-model/issues/328) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Repo tests fail when trying to run back-to-back maven steps [\#327](https://github.com/NASA-PDS/pds4-information-model/issues/327) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
