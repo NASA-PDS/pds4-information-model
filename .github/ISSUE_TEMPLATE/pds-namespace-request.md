@@ -2,7 +2,7 @@
 name: PDS Namespace Request
 about: Tasks related to the PDS Namespace Registry, i.e. add new namespace ID
 title: '[namespace-registry] add new namespace "<proposed namespace ID>"'
-labels: ''
+labels: enhancement, p.must-have
 assignees: c-suh, jshughes
 
 ---
@@ -14,3 +14,9 @@ assignees: c-suh, jshughes
 * **LDD Steward Email:** _email address of LDD Steward_
 * **LDD Description:** _brief description of LDD_
 * **Rationale for creation of new LDD:** _describe why this LDD is needed_
+
+---
+<!-- for internal PDS EN -->
+**Engineering Details**
+- [ ] @jshughes update namespace registry
+- [ ] @c-suh if dLDD, update [LDD script config](https://github.com/NASA-PDS/pdsen-operations/blob/master/conf/ldds/config.yml)
