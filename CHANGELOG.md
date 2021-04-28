@@ -1,5 +1,9 @@
 # Changelog
 
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-04-28)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.1...v13.1.0-SNAPSHOT)
+
 ## [v13.0.1](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.1) (2021-04-28)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v12.1.0...v13.0.1)
@@ -18,15 +22,14 @@
 
 **Defects:**
 
-- Version flag does not return the latest information for the tool [\#342](https://github.com/NASA-PDS/pds4-information-model/issues/342)
-- Invalid output schema when trying to set an Internal\_Reference reference\_type value set [\#331](https://github.com/NASA-PDS/pds4-information-model/issues/331)
-- LDDTool outputs invalid schema with v13.0.0 [\#328](https://github.com/NASA-PDS/pds4-information-model/issues/328)
-- Repo tests fail when trying to run back-to-back maven steps [\#327](https://github.com/NASA-PDS/pds4-information-model/issues/327)
+- Version flag does not return the latest information for the tool [\#342](https://github.com/NASA-PDS/pds4-information-model/issues/342) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- Invalid output schema when trying to set an Internal\_Reference reference\_type value set [\#331](https://github.com/NASA-PDS/pds4-information-model/issues/331) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool outputs invalid schema with v13.0.0 [\#328](https://github.com/NASA-PDS/pds4-information-model/issues/328) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- Repo tests fail when trying to run back-to-back maven steps [\#327](https://github.com/NASA-PDS/pds4-information-model/issues/327) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool generates a 1C00 file when -V 1B00 is specified [\#322](https://github.com/NASA-PDS/pds4-information-model/issues/322)
 - The 1F00 directory is missing from the Data directory for the 1G00 development release.  [\#316](https://github.com/NASA-PDS/pds4-information-model/issues/316)
 - LDDTool does not generate the complete "All LDD" version of the  WebHelp PDS4 Data Dictionary Document [\#312](https://github.com/NASA-PDS/pds4-information-model/issues/312)
 - LDDTool does include the PSA namespace [\#304](https://github.com/NASA-PDS/pds4-information-model/issues/304)
-- LDDtool does not insert references to needed namespaces [\#303](https://github.com/NASA-PDS/pds4-information-model/issues/303)
 - LDDTool does not allow the bundle to be specified for generated dictionaries [\#302](https://github.com/NASA-PDS/pds4-information-model/issues/302)
 - LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
 - CSV files fail to escape double quotes. [\#280](https://github.com/NASA-PDS/pds4-information-model/issues/280)
@@ -176,7 +179,6 @@
 **Defects:**
 
 - LDDTool does not handle "unbounded" maximum cardinality in Choice blocks correctly [\#180](https://github.com/NASA-PDS/pds4-information-model/issues/180)
-- LDDTool: Error for when maxOccurs is unbounded in output schema [\#177](https://github.com/NASA-PDS/pds4-information-model/issues/177)
 
 **Other closed issues:**
 
@@ -230,8 +232,6 @@
 - CCB-220: Add ability to specify many source products via table. [\#135](https://github.com/NASA-PDS/pds4-information-model/issues/135)
 - CCB-271: Add reference\_types for Product\_Ancillary [\#133](https://github.com/NASA-PDS/pds4-information-model/issues/133)
 - Improve versioning documentation to include IM version information [\#132](https://github.com/NASA-PDS/pds4-information-model/issues/132)
-- CCB-271: Add appropriate reference\_type values for Product\_Ancillary [\#120](https://github.com/NASA-PDS/pds4-information-model/issues/120)
-- CCB-220: Add ability to specify many source products via table [\#116](https://github.com/NASA-PDS/pds4-information-model/issues/116)
 
 ## [v10.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/v10.1.2) (2020-01-24)
 
@@ -255,7 +255,6 @@
 - CCB-204: Define and enforce best practices for discipline and project dictionaries. Part-3 [\#113](https://github.com/NASA-PDS/pds4-information-model/issues/113)
 - LDDTool aborts on short filename [\#111](https://github.com/NASA-PDS/pds4-information-model/issues/111)
 - Clean up IMTool/LDDTool UML/XMI file writer for MagicDraw UML Class Diagrams [\#109](https://github.com/NASA-PDS/pds4-information-model/issues/109)
-- Remove LDDTool Test Cases From Examples Directory [\#107](https://github.com/NASA-PDS/pds4-information-model/issues/107)
 - CCB-138 Fix mismatch between context object types and values of \<type\> in \<Observing\_System\_Component\> class [\#103](https://github.com/NASA-PDS/pds4-information-model/issues/103)
 - CCB-204: Validate that no attribute is named "unit" - Part 2 [\#101](https://github.com/NASA-PDS/pds4-information-model/issues/101)
 - CCB-268 Add optional attribute to class Terminological\_Entry [\#99](https://github.com/NASA-PDS/pds4-information-model/issues/99)
