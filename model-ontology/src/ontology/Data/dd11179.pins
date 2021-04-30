@@ -1,4 +1,4 @@
-; Mon Feb 01 10:07:39 EST 2021
+; Fri Apr 23 17:10:30 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -18860,7 +18860,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Identification_Area.pds.title] of  Definition
 
-	(definitionText "The name given to the resource. Typically, a Title will be a name by which the resource is formally known. - Dublin Core - The title is used to refer to an object in a version independent manner.")
+	(definitionText "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Identification_Area.pds.version_id] of  Definition
@@ -38209,7 +38209,7 @@
 
 	(administrationRecord [DD_1.16.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Composite_Structure.pds.title")
-	(datatype [ASCII_Short_String_Collapsed])
+	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -38219,7 +38219,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Composite_Structure.pds.title])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -44677,7 +44677,7 @@
 
 	(administrationRecord [DD_1.16.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.title")
-	(datatype [ASCII_Short_String_Collapsed])
+	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -44687,7 +44687,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Map.pds.title])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -44845,7 +44845,7 @@
 
 	(administrationRecord [DD_1.16.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Property_Maps.pds.title")
-	(datatype [ASCII_Short_String_Collapsed])
+	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -44855,7 +44855,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Property_Maps.pds.title])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -47197,7 +47197,7 @@
 
 	(administrationRecord [DD_1.16.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.title")
-	(datatype [ASCII_Short_String_Collapsed])
+	(datatype [UTF8_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -47207,7 +47207,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Terminological_Entry_SKOS.pds.title])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -81275,7 +81275,7 @@
 ([vm.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter.160351191] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Records in the Checksum Manifest are delimited by ASCII line-feed (0x0A)")
+	(description "Records in the Checksum Manifest are delimited by ASCII line-feed %280x0A%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Checksum_Manifest.pds.record_delimiter.2041433472] of  ValueMeaning
@@ -82043,13 +82043,13 @@
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.-2012458559] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An Assert Every rule is an extension to the Assert rule that indicates that the \"every\" qualifier is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
+	(description "An Assert Every rule is an extension to the Assert rule that indicates that the %42every%42 qualifier is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.-976674761] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "An Assert IF rule is an extension to the Assert rule that indicates that the \"if-then\" pattern is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
+	(description "An Assert IF rule is an extension to the Assert rule that indicates that the %42if-then%42 pattern is included in the rule specification. Under PDS4 an assert statement will be generated from the specification provided.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.DD_Rule_Statement.pds.rule_type.1970626406] of  ValueMeaning
@@ -86477,7 +86477,7 @@
 ([vm.0001_NASA_PDS_1.pds.Stream_Text.pds.record_delimiter.160351191] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Records in the Stream Text are delimited by ASCII line-feed (0x0A)")
+	(description "Records in the Stream Text are delimited by ASCII line-feed %280x0A%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Stream_Text.pds.record_delimiter.2041433472] of  ValueMeaning
@@ -86519,7 +86519,7 @@
 ([vm.0001_NASA_PDS_1.pds.Table_Character.pds.record_delimiter.160351191] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Records in the Table Character are delimited by ASCII line-feed (0x0A)")
+	(description "Records in the Table Character are delimited by ASCII line-feed %280x0A%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Table_Character.pds.record_delimiter.2041433472] of  ValueMeaning
@@ -86591,7 +86591,7 @@
 ([vm.0001_NASA_PDS_1.pds.Table_Delimited.pds.record_delimiter.160351191] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Records in the Table Delimited are delimited by ASCII line-feed (0x0A)")
+	(description "Records in the Table Delimited are delimited by ASCII line-feed %280x0A%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Table_Delimited.pds.record_delimiter.2041433472] of  ValueMeaning

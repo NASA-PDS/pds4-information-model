@@ -1,4 +1,4 @@
-; Mon Feb 01 13:22:00 EST 2021
+; Fri Apr 23 16:52:28 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5350,7 +5350,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot title
-;+		(comment "The name given to the resource. Typically, a Title will be a name by which the resource is formally known. - Dublin Core - The title is used to refer to an object in a version independent manner.")
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
