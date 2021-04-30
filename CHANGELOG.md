@@ -1,6 +1,14 @@
 # Changelog
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-04-28)
+## [Unreleased](https://github.com/NASA-PDS/pds4-information-model/tree/HEAD)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...HEAD)
+
+**Defects:**
+
+- CCB-328 : Inconsistency in \<title\> type definition [\#339](https://github.com/NASA-PDS/pds4-information-model/issues/339) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-04-30)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.1...v13.1.0-SNAPSHOT)
 
