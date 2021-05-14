@@ -64,10 +64,11 @@ If this does not execute successfully, please return to the installation guide a
 Running LDDTool on the Example Files
 ------------------------------------
 
-To test out running LDDTool, download an existing LDD from the [PDS Data Dictionaries repo](https://github.com/pds-data-dictionaries/). A couple examples:grinning:
+To test out running LDDTool, download an existing LDD from the [PDS Data Dictionaries repo](https://github.com/pds-data-dictionaries/). A couple examples:
+
 * IMG Discipline LDD - https://github.com/pds-data-dictionaries/ldd-img/blob/master/src/PDS4_IMG_IngestLDD.xml
 * GEOM Discipline LDD - https://github.com/pds-data-dictionaries/ldd-geom/blob/master/src/PDS4_GEOM_IngestLDD.xml
-* M2020 Mission LDD - https://github.com/pds-data-dictionaries/ldd-m2020/blob/master/src/PDS4_MARS2020_IngestLDD.xml
+
 
 To execute, run:
 
