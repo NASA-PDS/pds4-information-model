@@ -6,10 +6,12 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "ml" [\#353](https://github.com/NASA-PDS/pds4-information-model/issues/353)
+- \[namespace-registry\] add new namespace "m2020" [\#352](https://github.com/NASA-PDS/pds4-information-model/issues/352)
 - \[namespace-registry\] add new namespace "ctli" [\#344](https://github.com/NASA-PDS/pds4-information-model/issues/344)
 - \[namespace-registry\] add new namespace "\<clementine\>" [\#332](https://github.com/NASA-PDS/pds4-information-model/issues/332)
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-05-14)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-05-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
