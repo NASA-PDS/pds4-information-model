@@ -1,4 +1,4 @@
-; Fri Apr 23 16:52:28 EDT 2021
+; Tue May 18 17:41:54 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -144,65 +144,6 @@
 	(attrTitle "nilReason")
 	(identifier "nilReason")
 	(specMesg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\""))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510] of  Schematron_Rule
-
-	(alwaysInclude "false")
-	(attrNameSpaceNC "pds")
-	(attrTitle "logical_identifier")
-	(classNameSpaceNC "disp")
-	(classSteward "img")
-	(classTitle "Discipline_Area")
-	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510.101])
-	(identifier "disp:Discipline_Area")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(type "TBD_type")
-	(xpath "disp:Discipline_Area"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADiscipline_Area.100002510.101] of  Schematron_Assert
-
-	(assertMsg "Display Dictionary: If the Display_Direction class is in the label, it must be contained in a Display_Settings class.")
-	(assertStmt "if (disp:Display_Direction) then (disp:Display_Settings/disp:Display_Direction) else true()")
-	(assertType "RAW")
-	(attrTitle "logical_identifier")
-	(identifier "logical_identifier")
-	(specMesg "Display Dictionary: If the Display_Direction class is in the label, it must be contained in a Display_Settings class."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511] of  Schematron_Rule
-
-	(alwaysInclude "false")
-	(attrNameSpaceNC "pds")
-	(attrTitle "local_identifier_reference")
-	(classNameSpaceNC "disp")
-	(classSteward "img")
-	(classTitle "Display_Settings")
-	(has_Schematron_Assert
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.101]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.102])
-	(identifier "disp:Display_Settings/pds:Local_Internal_Reference")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(type "TBD_type")
-	(xpath "disp:Display_Settings/pds:Local_Internal_Reference"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.101] of  Schematron_Assert
-
-	(assertMsg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area.")
-	(assertStmt "pds:local_identifier_reference = //pds:*/pds:*/(pds:Array|pds:Array_2D|pds:Array_2D_Image|pds:Array_2D_Map|pds:Array_2D_Spectrum|pds:Array_3D|pds:Array_3D_Image|pds:Array_3D_Movie|pds:Array_3D_Spectrum)/pds:local_identifier")
-	(assertType "RAW")
-	(attrTitle "local_identifier_reference")
-	(identifier "local_identifier_reference")
-	(specMesg "Display Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_identifier_reference must match the value of the pds:local_identifer of an Array class or sub-class within the File_Area."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.disp%3ADisplay_Settings%2Fpds%3ALocal_Internal_Reference.100002511.102] of  Schematron_Assert
-
-	(assertMsg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'.")
-	(assertStmt "pds:local_reference_type = ('display_settings_to_array')")
-	(assertType "RAW")
-	(attrTitle "local_reference_type")
-	(identifier "local_reference_type")
-	(specMesg "Display_Dictionary: In the pds:Local_Internal_Reference class, the value of the pds:local_reference_type must be 'display_settings_to_array'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
 
