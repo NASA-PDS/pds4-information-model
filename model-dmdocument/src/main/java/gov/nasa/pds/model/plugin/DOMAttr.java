@@ -44,6 +44,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	String classNameSpaceIdNC;
 	String submitter;								// submitter for attribute
 	String parentClassTitle;						// class that this attribute is a member of
+	String extrnTitleQM;							// title of external class for query model
 	DOMClass attrParentClass; 						// class instance that this attribute is a member of
 													// *** deprecate *** moved to DOMProp
 	String classConcept;							// for DEC
@@ -145,6 +146,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		classWord = "TBD_classWord"; 
 		lddLocalIdentifier = "TBD_lddLocalIdentifier";
 		lddUserAttribute = null;
+		extrnTitleQM = "TBD_extrnTitleQM";
 
 		xmlBaseDataType = "TBD_XML_Base_Data_Type";
 		protValType = "TBD_Protege_Value_type";

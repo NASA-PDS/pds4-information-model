@@ -540,7 +540,6 @@ public class LDDDOMParser extends Object
 //					System.out.println("debug getAttributes -External Attribute-  lid:" + lid);
 					DOMAttr lExternAttr = DOMInfoModel.masterDOMAttrIdMap.get(lid);
 					if (lExternAttr != null) {
-						System.out.println("debug getAttributes -External Attribute - SETTING VALUES-  lExternAttr.identifier:" + lExternAttr.identifier);
 					    if (lDOMAttr.definition.indexOf("TBD") == 0) lDOMAttr.definition = lExternAttr.definition;
 						if (! lDOMAttr.isNilable) lDOMAttr.isNilable = lExternAttr.isNilable;
 						if (!lDOMAttr.isEnumerated) lDOMAttr.isEnumerated = lExternAttr.isEnumerated;
@@ -636,19 +635,23 @@ public class LDDDOMParser extends Object
 		//get a nodelist of <Terminological_Entry> elements
 		NodeList nl = docEle.getElementsByTagName("Terminological_Entry");
 		if(nl != null && nl.getLength() > 0) {
+			String termEntryIdPrefix = "TE_";
+			Integer termEntryNum = 1000000;
 			for(int i = 0 ; i < nl.getLength();i++) {
 				//get the terminological entry
 				Element el = (Element)nl.item(i);
+				termEntryNum++;
+				String termEntryId = termEntryIdPrefix + Integer.toString (termEntryNum);
 				lVal = getTextValue(el,"language");
 				if (lVal != null) {
 					TermEntryDefn lTermEntry = new TermEntryDefn ();
 					lTermEntry.language = lVal;
 					if (lObject.getClass().getName().compareTo("DOMAttr") == 0) {
 						DOMAttr lAttr = (DOMAttr) lObject;
-						lAttr.termEntryMap.put(lTermEntry.language, lTermEntry);
+						lAttr.termEntryMap.put(termEntryId, lTermEntry);
 					} else if (lObject.getClass().getName().compareTo("DOMClass") == 0) {
 						DOMClass lClass = (DOMClass) lObject;
-						lClass.termEntryMap.put(lTermEntry.language, lTermEntry);
+						lClass.termEntryMap.put(termEntryId, lTermEntry);
 					}
 					
 					lVal = getTextValue(el,"name");
@@ -656,7 +659,6 @@ public class LDDDOMParser extends Object
 					
 					lVal = getTextValue(el,"definition");
 					if (lVal != null) {
-//						lVal = lVal.replaceAll("\\s+"," ");
 						lVal = DOMInfoModel.cleanCharString(lVal);
 						lTermEntry.definition = lVal;
 					}
@@ -667,6 +669,49 @@ public class LDDDOMParser extends Object
 				}
 			}
 		}
+	}
+	
+	private TreeMap <String, TermEntryQMObject> getTermEntryQueryModel (String lClassName, String lAttrName, Element docEle) {	
+		TreeMap <String, TermEntryQMObject> termEntryQueryModelMap = new TreeMap <String, TermEntryQMObject> ();
+		
+		String lVal;
+		//get a nodelist of <Terminological_Entry> elements
+		NodeList nl = docEle.getElementsByTagName("Terminological_Entry");
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+				//get the terminological entry
+				Element el = (Element)nl.item(i);
+				lVal = getTextValue(el,"language");
+
+				if (lVal != null) {
+					TermEntryDefn lTermEntry = new TermEntryDefn ();
+					lTermEntry.language = lVal;
+					lVal = getTextValue(el,"name");
+					if (lVal != null) lTermEntry.name = lVal;
+					
+					lVal = getTextValue(el,"definition");
+					if (lVal != null) {
+						lVal = DOMInfoModel.cleanCharString(lVal);
+						lTermEntry.definition = lVal;
+					}
+					lVal = getTextValue(el,"preferred_flag");
+					if (lVal != null && (lVal.compareTo("1") == 0) || (lVal.compareTo("true") == 0)) lTermEntry.isPreferred = true;
+
+					lVal = getTextValue(el,"skos_relation_name");
+					lTermEntry.semanticRelation = lVal;
+					
+					// save term entry
+					TermEntryQMObject lTermEntryQMObject = new TermEntryQMObject (lClassName, lAttrName, lTermEntry);
+					String termEntryId = "TE" + "_" + lTermEntry.name + "_" + DOMInfoModel.getNextUId();
+					termEntryQueryModelMap.put(termEntryId, lTermEntryQMObject);
+
+				} else {
+					DMDocument.registerMessage ("2>error Terminological Entry: " + "The <language> attribute is missing.");
+				}
+			}
+			return termEntryQueryModelMap;
+		}
+		return null;
 	}
 	
 	private void getPermissibleValues (DOMAttr lDOMAttr, Element docEle) {	
@@ -765,7 +810,8 @@ public class LDDDOMParser extends Object
 					classMapLocal.put(lDOMClass.localIdentifier, lDOMClass);
 					
 					// get the terminological entry
-					getTermEntry (lDOMClass, el);
+					// temporarily commented out for class level TE
+					// getTermEntry (lDOMClass, el);
 
 					// reset class order
 					DOMInfoModel.resetClassOrder();
@@ -909,11 +955,158 @@ public class LDDDOMParser extends Object
 				
 			} else if (lAssocElem.getNodeName().compareTo("DD_Associate_External_Class") == 0) { 
 				// get the class, attribute, and permissible values associated with an external class, e.g., pds.Internal_Reference.reference_type = geometry_to_reference_frame
-				get_Class_Attr_Prop_DD_Associate_External_Class (lDOMClass, lSchemaFileDefn, lAssocElem);
+				if (gSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
+					get_Class_Attr_Prop_DD_Associate_External_Class (lDOMClass, lSchemaFileDefn, lAssocElem);
+				} else {
+					get_Class_Attr_Prop_DD_Associate_External_Class_Query_Model (lDOMClass, lSchemaFileDefn, lAssocElem);
+				}
 			}
 		}
 		return;
 	}
+	
+	private void get_Class_Attr_Prop_DD_Associate_External_Class_Query_Model (DOMClass lDOMClassBase, SchemaFileDefn lSchemaFileDefn, Element lAssocElem) {	
+		// initialize		
+		String lIngestLDDNameSpaceIdNC = "TBD_lIngestLDDNameSpaceIdNC_LDD";
+		String lIngestLDDClassName = "TBD_lIngestLDDClassName_LDD";
+		String lIngestLDDAttrName = "TBD_lIngestLDDAttrName_LDD";
+		String lXpath = "TBD_lXpath_LDD";
+		lCardMin = "";
+		lCardMinI = 0;
+		lCardMax = "";
+		lCardMaxI = 0;
+
+		// get common elements
+		lIngestLDDNameSpaceIdNC = getTextValue(lAssocElem,"namespace_id");	// e.g. pds
+		lIngestLDDClassName = getTextValue(lAssocElem,"class_name");		// e.g., Internal_Reference
+		lDOMClassBase.extrnTitleQM = lIngestLDDClassName;
+
+		String lMaximumOccurrences = getTextValue(lAssocElem,"maximum_occurrences");	
+		String lMinimumOccurrences = getTextValue(lAssocElem,"minimum_occurrences");
+			
+		// create a new DOMAttr, the clone of an external attribute 
+		DOMAttr lDOMAttrExt = new DOMAttr ();
+		
+		// init
+		lDOMAttrExt.isPDS4 = true;
+		lDOMAttrExt.isFromLDD = true;
+		lDOMAttrExt.nameSpaceIdNC = lDOMClassBase.nameSpaceIdNC;		//e.g., geom
+		lDOMAttrExt.nameSpaceId = lDOMAttrExt.nameSpaceIdNC + ":";						
+		lDOMAttrExt.classNameSpaceIdNC = lDOMClassBase.nameSpaceIdNC;	//e.g., geom
+		lDOMAttrExt.parentClassTitle = lDOMClassBase.title;				//e.g., Frame_Identification_Base
+		lDOMAttrExt.attrParentClass = lDOMClassBase;
+		lDOMAttrExt.steward = lSchemaFileDefn.stewardId;				//e.g., geom
+		lDOMAttrExt.regAuthId = lRegAuthId;
+		lDOMAttrExt.propType = "ATTRIBUTE";
+		lDOMAttrExt.isAttribute = true;
+		
+		// get the value domain
+		// e.g., reference_type = geometry_to_reference_frame
+		Node lValueListNode = lAssocElem.getFirstChild();
+		while (lValueListNode != null) {
+			if ((lValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+				(lValueListNode.getNodeName().indexOf("DD_Context_Value_List") == 0)) {
+				Element lValueListElement = (Element)lValueListNode;
+				lIngestLDDAttrName = getTextValue(lValueListElement,"attribute_name");
+				lXpath = getTextValue(lValueListElement,"attribute_relative_xpath");
+				int pvCount = 0;
+				Node lPermValueListNode = lValueListElement.getFirstChild();
+				while (lPermValueListNode != null)
+				{
+					if ((lPermValueListNode.getNodeType() == Node.ELEMENT_NODE) && 
+						(lPermValueListNode.getNodeName().indexOf("DD_Permissible_Value") == 0)) {
+						Element lPermValueListElement = (Element)lPermValueListNode;
+						String lValue = getTextValue(lPermValueListElement,"value");	   // e.g., geometry_to_reference_frame
+						String lValueMeaning = getTextValue(lPermValueListElement,"value_meaning");
+						lDOMAttrExt.valArr.add(lValue);
+						DOMPermValDefn lDOMPermValExt = new DOMPermValDefn (lValue, lValue, lValueMeaning);
+						lDOMPermValExt.setRDFIdentifier(lValue);
+						DOMProp lDOMPropPVExt = new DOMProp ();
+						lDOMPropPVExt.initForPermValue (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lIngestLDDAttrName, lValue);
+						lDOMPropPVExt.hasDOMObject = lDOMPermValExt;
+												
+						lDOMAttrExt.domPermValueArr.add(lDOMPropPVExt);
+						pvCount++;
+						TreeMap <String, TermEntryQMObject> lTermEntryQMObjectMap = getTermEntryQueryModel (lIngestLDDClassName, lIngestLDDAttrName, lPermValueListElement);	
+						if (lTermEntryQMObjectMap != null) {
+							lDOMClassBase.isQueryModel = true;
+							ArrayList <TermEntryQMObject> lTermEntryQMObjectArr = new ArrayList <TermEntryQMObject> (lTermEntryQMObjectMap.values());
+							for (Iterator <TermEntryQMObject> j = lTermEntryQMObjectArr.iterator(); j.hasNext();) {
+								TermEntryQMObject lTermEntryQMObject = (TermEntryQMObject) j.next();
+								String lTermIdentifier = lTermEntryQMObject.className + "." + lTermEntryQMObject.attrName + "." + lTermEntryQMObject.termEntryDefn.name;
+								lDOMPermValExt.termEntryMap.put(lTermIdentifier, lTermEntryQMObject.termEntryDefn);
+							}
+						}
+					}	
+					lPermValueListNode = lPermValueListNode.getNextSibling();
+				}					
+			}
+			lValueListNode = lValueListNode.getNextSibling();
+		}
+		
+		// copy in values from externally referenced attribute
+		String lDOMAttrExternalId = DOMInfoModel.getAttrIdentifier (lIngestLDDNameSpaceIdNC, lIngestLDDClassName, lIngestLDDNameSpaceIdNC, lIngestLDDAttrName);
+		DOMAttr lDOMAttrExternal = DOMInfoModel.masterDOMAttrIdMap.get(lDOMAttrExternalId);
+		if (lDOMAttrExternal != null) {
+			DOMProp lDOMPropExternal  = DOMInfoModel.masterDOMPropIdMap.get(lDOMAttrExternalId);
+			if (lDOMPropExternal != null) {
+				finishInitDOMAttr (lDOMAttrExt, lDOMAttrExternal, lDOMPropExternal);
+			} else {
+				DMDocument.registerMessage ("2>error Association: " + lDOMAttrExternalId + " - Could not find referenced property - Query Model 1");			
+			}
+		} else {
+// 			*** for qmsre process, when referencing external namespaces, e.g., msn, the attributes are not present locally. Need some other solution. ***
+			if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
+				DMDocument.registerMessage ("2>error Association: " + lDOMAttrExternalId + " - Could not find referenced attribute - Query Model 2");			
+			}
+		}
+		
+		// set identification information
+		lDOMAttrExt.setRDFIdentifier(lIngestLDDAttrName);
+		lDOMAttrExt.lddLocalIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDAttrName;	// e.g. geom.Frame_Identification_Base.pds.reference_type
+		lDOMAttrExt.title = lDOMClassBase.title + "_" + lIngestLDDAttrName;
+		lDOMAttrExt.lddTitle = lIngestLDDAttrName;
+		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMProp identifier
+		lDOMAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
+		lDOMAttrExt.extrnTitleQM = lIngestLDDAttrName;
+		lDOMAttrExt.XMLSchemaName = lDOMAttrExt.title;
+		if (lDOMAttrExt.domPermValueArr.size() > 0) lDOMAttrExt.isEnumerated = true;
+
+		// validate min and max occurrences
+		validateAssociationCardinalities (lMinimumOccurrences, lMaximumOccurrences, lDOMAttrExt.lddLocalIdentifier);
+		
+		// create a new DOMProp for lDOMAttrExt
+		DOMProp lDOMPropAttrExt = new DOMProp ();
+		lDOMPropAttrExt.isAttribute = true;
+		lDOMPropAttrExt.localIdentifier = lDOMAttrExt.lddLocalIdentifier;
+		lDOMPropAttrExt.enclLocalIdentifier = lDOMClassBase.localIdentifier;		//	???
+		lDOMPropAttrExt.referenceType = "attribute_of";
+		lDOMPropAttrExt.setRDFIdentifier(lIngestLDDAttrName);
+		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMAttr identifier
+		lDOMPropAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
+		lDOMPropAttrExt.parentClassTitle = lDOMClassBase.title;				//e.g., Frame_Identification_Base
+		lDOMPropAttrExt.attrParentClass = lDOMClassBase;
+		lDOMPropAttrExt.classOrder = DOMInfoModel.getNextClassOrder();
+		lDOMPropAttrExt.isChoice = false;	
+		lDOMPropAttrExt.isAny = false;
+		lDOMPropAttrExt.maximumOccurrences = lMaximumOccurrences;
+		lDOMPropAttrExt.minimumOccurrences = lMinimumOccurrences;
+		lDOMPropAttrExt.groupName = "TBD_groupName";
+		lDOMPropAttrExt.cardMin = lCardMin;
+		lDOMPropAttrExt.cardMinI = lCardMinI;
+		lDOMPropAttrExt.cardMax = lCardMax;
+		lDOMPropAttrExt.cardMaxI = lCardMaxI;
+		
+		// add attribute to property
+		lDOMPropAttrExt.hasDOMObject = lDOMAttrExt;		// e.g., geom.Frame_Identification_Base.geom.reference_type
+		
+		// update property arrays with new DOMProp
+		LDDDOMPropArr.add(lDOMPropAttrExt);
+		
+		// add lDOMAttrExt via lDOMPropAttrExt to base class
+		lDOMClassBase.ownedAttrArr.add(lDOMPropAttrExt);
+		return;
+	}	
 	
 	private void get_Class_Attr_Prop_DD_Associate_External_Class (DOMClass lDOMClassBase, SchemaFileDefn lSchemaFileDefn, Element lAssocElem) {	
 		// initialize
@@ -978,10 +1171,11 @@ public class LDDDOMParser extends Object
 			lValueListNode = lValueListNode.getNextSibling();
 		}
 		
-		// now complete the clone DOMAttr
+		// now complete the cloning of DOMAttr
 		lDOMAttrExt.setRDFIdentifier(lIngestLDDAttrName);
 		lDOMAttrExt.lddLocalIdentifier = lDOMClassBase.nameSpaceIdNC + "." + lDOMClassBase.title + "." + lIngestLDDNameSpaceIdNC + "." + lIngestLDDAttrName;	// e.g. geom.Frame_Identification_Base.pds.reference_type
 		lDOMAttrExt.title = lDOMClassBase.title + "_" + lIngestLDDAttrName;
+		lDOMAttrExt.lddTitle = lIngestLDDAttrName;
 		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMProp identifier
 		lDOMAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
 		lDOMAttrExt.XMLSchemaName = lDOMAttrExt.title;
@@ -1009,7 +1203,6 @@ public class LDDDOMParser extends Object
 		lDOMPropAttrExt.setRDFIdentifier(lIngestLDDAttrName);
 		// e.g., geom.Frame_Identification_Base.geom.reference_type --- i.e., duplicate DOMAttr identifier
 		lDOMPropAttrExt.setIdentifier (lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title, lDOMAttrExt.nameSpaceIdNC, lDOMAttrExt.title);
-
 //		lDOMPropAttrExt.attrParentClass = lDOMClassBase;  /// ****** parent class is defined below ???? *****
 		lDOMPropAttrExt.classOrder = DOMInfoModel.getNextClassOrder();
 		lDOMPropAttrExt.isChoice = false;	
@@ -1068,6 +1261,7 @@ public class LDDDOMParser extends Object
 			lDOMPropAttrExt.attrParentClass = lDOMClassExt;	// parent of the attribute class
 			// e.g., Frame_Identification_Base_Internal_Reference
 			lDOMClassExt.title = lDOMClassBase.title + "_" + lIngestLDDClassName;
+			lDOMClassExt.lddTitle = lIngestLDDClassName;
 			lDOMClassExt.versionId = DMDocument.classVersionIdDefault;
 			classMap.put(lDOMClassExt.identifier, lDOMClassExt);
 			classArr.add(lDOMClassExt);					
@@ -1087,30 +1281,6 @@ public class LDDDOMParser extends Object
 			lDOMClassBase.ownedAssocArr.add(lDOMPropClassExt);   ///e.g. geom.Frame_Identification_Base.geom.Internal_Reference
 
 			classMapLocal.put(lDOMClassExt.localIdentifier, lDOMClassExt);
-			
-/*			// base class
-			System.out.println("\n\ndebug get_DD_AEC - lDOMClassBase.rdfIdentifier:" + lDOMClassBase.rdfIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassBase.identifier:" + lDOMClassBase.identifier);
-			System.out.println("debug get_DD_AEC - lIngestLDDNameSpaceIdNC:" + lIngestLDDNameSpaceIdNC);
-			System.out.println("debug get_DD_AEC - lIngestLDDClassName:" + lIngestLDDClassName);
-			
-			// extern Internal_Reference class
-			System.out.println("\ndebug get_DD_AEC - lDOMPropClassExt.rdfIdentifier:" + lDOMPropClassExt.rdfIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMPropClassExt.identifier:" + lDOMPropClassExt.identifier);
-			System.out.println("debug get_DD_AEC - lDOMPropClassExt.localIdentifier:" + lDOMPropClassExt.localIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.identifier:" + lDOMClassExt.identifier);		
-			System.out.println("debug get_DD_AEC - lDOMClassExt.rdfIdentifier:" + lDOMClassExt.rdfIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.localIdentifier:" + lDOMClassExt.localIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.definition:" + lDOMClassExt.definition);
-			
-			// extern reference_type attribute
-			System.out.println("\ndebug get_DD_AEC - lDOMPropAttrExt.rdfIdentifier:" + lDOMPropAttrExt.rdfIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMPropAttrExt.identifier:" + lDOMPropAttrExt.identifier);
-			System.out.println("debug get_DD_AEC - lDOMPropAttrExt.localIdentifier:" + lDOMPropAttrExt.localIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.rdfIdentifier:" + lDOMClassExt.rdfIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.identifier:" + lDOMClassExt.identifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.localIdentifier:" + lDOMClassExt.localIdentifier);
-			System.out.println("debug get_DD_AEC - lDOMClassExt.definition:" + lDOMClassExt.definition); */
 		}
 		return;
 	}	
@@ -1431,7 +1601,11 @@ public class LDDDOMParser extends Object
 					// deprecate			lDOMClass.ownedAttrArr.add(lAttr);
 					lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMAttr.nsTitle);
 				} else {
-					DMDocument.registerMessage ("2>error Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
+//					DMDocument.registerMessage ("2>error Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
+//		 			*** for qmsre process, when referencing external namespaces, e.g., msn, the attributes are not present locally. Need some other solution. ***
+					if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
+						DMDocument.registerMessage ("2>error Association: " + lDOMProp.localIdentifier + " - Could not find referenced attribute - Reference Type: " + lDOMProp.referenceType);
+					}
 				}
 			}
 			for (Iterator <DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
@@ -1569,7 +1743,12 @@ public class LDDDOMParser extends Object
 			if (lDOMAttr != null) {
 //				System.out.println("debug getLocalOrExternAttr - FOUND IN USER - lLocalIdentifier:" + lLocalIdentifier);
 			} else {
-				DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier + "  Attribute: " + lLocalIdentifier + " - Missing Attribute");
+//				DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier + "  Attribute: " + lLocalIdentifier + " - Missing Attribute");
+//				return null;
+//	 			*** for qmsre process, when referencing external namespaces, e.g., msn, the attributes are not present locally. Need some other solution. ***
+				if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
+					DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier + "  Attribute: " + lLocalIdentifier + " - Missing Attribute");
+				}
 				return null;
 			}
 		}
@@ -1907,7 +2086,7 @@ public class LDDDOMParser extends Object
 					}
 				}
 				if (! foundFlag) {
-					DMDocument.registerMessage ("2>info Attribute: <" + lDOMAttr.title + "> - A 'nilable' attribute was found that is not a required attribute in at least one class.");
+					DMDocument.registerMessage ("2>info Attribute: <" + lDOMAttr.title + "> - A 'nillable' attribute was found that is not a required attribute in at least one class.");
 				}
 			}
 		}
@@ -2772,6 +2951,18 @@ public class LDDDOMParser extends Object
 				DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
 				System.out.println("debug  dump - " + note + " - lDOMPermValDefn.value:" + lDOMPermValDefn.value);
 			}
+		}
+	}
+	
+	public class TermEntryQMObject {
+		String className;
+		String attrName;
+		TermEntryDefn termEntryDefn;
+		
+		public TermEntryQMObject (String lClassName, String lAttrName, TermEntryDefn lTermEntryDefn) {
+			className = lClassName;
+			attrName = lAttrName;
+			termEntryDefn = lTermEntryDefn;
 		}
 	}
 }

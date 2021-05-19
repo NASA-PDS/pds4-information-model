@@ -83,12 +83,8 @@ class WriteDOMDocBook extends Object {
 //		System.out.println("");
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-//			classClassificationMap.put(lSchemaFileDefn.identifier, new ClassClassificationDefnDOM (lSchemaFileDefn.identifier));
-//			attrClassificationMap.put(lSchemaFileDefn.identifier, new AttrClassificationDefnDOM (lSchemaFileDefn.identifier));
 			classClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new ClassClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
 			attrClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new AttrClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
-//			System.out.println("debug WriteDOMDocBook lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
-//			System.out.println("                      lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
 		}
 		
 		classClassificationMap.put("pds.product", new ClassClassificationDefnDOM ("pds.product"));
