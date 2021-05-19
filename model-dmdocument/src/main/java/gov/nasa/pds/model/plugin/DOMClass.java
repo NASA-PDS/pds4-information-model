@@ -43,6 +43,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	String baseClassName;							// Fundamental structure class title
 	String localIdentifier;							// used temporarily for ingest of LDD
 	String used;									// MDPTNConfig used flag - Y, N, or I - Inactive
+	String extrnTitleQM;							// title of external class for query model
 	
 	int subClassLevel;
 	boolean isUSERClass;							// The class of all classes
@@ -64,6 +65,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 	boolean isReferencedFromLDD;				// is a class in the master that is referenced from an LDD
 	boolean isExposed;							// the class is to be exposed in XML Schema - i.e., defined using xs:Element
 	boolean isAssociatedExternalClass;			// the class was defined using DD_Associate_External_Class
+	boolean isQueryModel;						// this class was defined DD_Associate_External_Class is a query model 
 
 	DOMProp hasDOMPropInverse;					// the owning DOMProp of this Class 
 	ArrayList <DOMProtAttr> hasDOMProtAttr;		// the protege attributes to be converted to DOMProp and either DOMAttr or DOMClass
@@ -97,6 +99,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		baseClassName = "TBD_base_class_name";
 		localIdentifier = "TBD_localIdentifier";
 		used = "TBD_used";
+		extrnTitleQM = "TBD_extrnTitleQM";
 		subClassLevel = 0;
 		isUSERClass = false;
 //		isUsedInClass = false;
@@ -117,6 +120,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		isFromLDD = false;
 		isReferencedFromLDD = false;
 		isAssociatedExternalClass = false;			// the class was defined using DD_Associate_External_Class
+		isQueryModel = false;
 		
 		hasDOMPropInverse = null;
 		hasDOMProtAttr = new ArrayList <DOMProtAttr> ();

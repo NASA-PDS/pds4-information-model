@@ -211,6 +211,18 @@ class WriteDOMDDJSONFile extends Object{
 			printPropertyMaps (lSelectedPropMapArr, prDDPins);
 			prDDPins.println("      ]");
 		}
+		
+		// Write Terminological Entry - Query Model
+		ArrayList <DOMClass> lSelectedTEClassArr = new ArrayList <DOMClass> ();
+		for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+			DOMClass lDOMClass = (DOMClass) j.next();
+			if (! lDOMClass.isQueryModel) continue;
+			lSelectedTEClassArr.add(lDOMClass);
+		}
+
+		if (lSelectedTEClassArr.size() > 0) {
+			getTermEntriesQM (lSelectedTEClassArr, prDDPins);
+		}
 	}
 	
 	// Print the classes
@@ -298,7 +310,7 @@ class WriteDOMDDJSONFile extends Object{
 						delimiter2 = ",\n";
 					}
 				}
-				prDDPins.print("\n");
+				prDDPins.println("");
 				prDDPins.println("                 ]");
 				prDDPins.println("              }");
 				prDDPins.println("            }");
@@ -326,7 +338,7 @@ class WriteDOMDDJSONFile extends Object{
 						delimiter2 = ",\n";
 					}
 				}
-				prDDPins.print("\n");
+				prDDPins.println("");
 				prDDPins.println("                 ]");
 				prDDPins.println("              }");
 				prDDPins.println("            }");				
@@ -358,7 +370,7 @@ class WriteDOMDDJSONFile extends Object{
 		prDDPins.println("                " + formValue("attributeId") + ": [");							
 		prDDPins.print("");
 		prDDPins.print("                  " + formValue(lSuperClass.identifier));	
-		prDDPins.print("\n");
+		prDDPins.println("");
 		prDDPins.println("                 ]");
 		prDDPins.println("              }");
 		prDDPins.println("            } ,");  // other associations must always follow
@@ -557,6 +569,106 @@ class WriteDOMDDJSONFile extends Object{
 			}
 			prDDPins.println("                    ]");	
 	}
+		
+		// Print the Terminological Entries - Query Model
+		public  void getTermEntriesQM (ArrayList <DOMClass> lSelectedDOMClassArr, PrintWriter prDDPins) {
+			
+			// start the TE list
+			prDDPins.println("    , " + formValue("TerminologicalEntries") + ": [");
+			
+			// scan select classes -  QM classes
+			boolean hasNextQMClass = true;
+			for (Iterator<DOMClass> i = lSelectedDOMClassArr.iterator(); i.hasNext();) {
+				DOMClass lDOMClass = (DOMClass) i.next();
+				if (! i.hasNext()) hasNextQMClass = false;
+				
+				// get all QM attributes 
+				boolean hasNextQMAttr = true;
+				for (Iterator <DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) j.next();
+					if (! j.hasNext()) hasNextQMAttr = false;
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.hasDOMObject;
+
+						// get all QM PV for this QM attribute
+						boolean hasNextQMPV = true;
+						for (Iterator <DOMProp> m = lDOMAttrQM.domPermValueArr.iterator(); m.hasNext();) {
+							DOMProp lDOMPropPV = (DOMProp) m.next();
+							if (! m.hasNext()) hasNextQMPV = false;
+							if (lDOMPropPV.hasDOMObject != null && lDOMPropPV.hasDOMObject instanceof DOMPermValDefn) {
+								DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.hasDOMObject;
+
+								// for one PV print all QM term entrires
+								ArrayList <TermEntryDefn> lPVQMTermEntryDefnArr = new ArrayList <TermEntryDefn> (lPVQM.termEntryMap.values());
+								printTermEntryDefnQM (lDOMClass.title, lDOMAttrQM.title, lDOMClass.extrnTitleQM, lDOMAttrQM.extrnTitleQM, lPVQM.value, lPVQMTermEntryDefnArr, hasNextQMClass || hasNextQMAttr || hasNextQMPV, prDDPins);
+							}
+						} // PV
+					}
+				} // Attr
+			}
+			// end TE list
+			prDDPins.println("      ]");
+		}
+				
+		// Print the Terminological Entries
+		public  void printTermEntryDefnQM (String lDOMClassQMtitle, String lDOMAttrQMtitle, String lDOMClassExtrnTitle, String lDOMAttrExtrnTitle, String lPVQMValue, ArrayList <TermEntryDefn> lTermEntryDefnArr, boolean hasNext, PrintWriter prDDPins) {
+			String delOuter = "";
+			if (hasNext) delOuter = ",";
+			prDDPins.println("          {" + formValue(lDOMClassQMtitle)  + ":");
+			prDDPins.println("             {" + formValue(lDOMAttrQMtitle)  + ":");
+			prDDPins.println("                   [");
+			prDDPins.println("                      {" + formValue("class") + ":" + formValue(lDOMClassExtrnTitle) + ",");
+			prDDPins.println("                       " + formValue("attribute") + ":" + formValue(lDOMAttrExtrnTitle) + ",");
+			prDDPins.println("                       " + formValue("value") + ":" + formValue(lPVQMValue) + "},");
+			printTermEntryDefnQMTermEntryList (lDOMClassQMtitle, lDOMAttrQMtitle, lTermEntryDefnArr, prDDPins);
+			prDDPins.println("                   ]");
+			prDDPins.println("             }");
+			prDDPins.println("          }" + delOuter);
+		}
+
+		// Print the Query Model Term Entry List
+		public  void printTermEntryDefnQMTermEntryList (String lDOMClassQMtitle, String lDOMAttrQMtitle, ArrayList <TermEntryDefn> lTermEntryDefnArr, PrintWriter prDDPins) {
+			prDDPins.println("                      {" + formValue("TermEntryList")  + ":");
+			prDDPins.println("                         [");
+			String delInner = ", ";
+			for (Iterator<TermEntryDefn> i = lTermEntryDefnArr.iterator(); i.hasNext();) {
+				TermEntryDefn lTermEntryDefn = (TermEntryDefn) i.next();
+				if (! i.hasNext()) delInner = "";
+				prDDPins.println("                            {" + formValue("name") + ":" + formValue(lTermEntryDefn.name) + ", ");
+				prDDPins.println("                            " + formValue("semanticRelation") + ":" + formValue(lTermEntryDefn.semanticRelation) + "}" + delInner);
+			}
+			prDDPins.println("                         ]");
+			prDDPins.println("                      }");
+		}
+		
+		public  void printTermEntriesList (DOMClass lSelectedDOMClass, String delimiter1, PrintWriter prDDPins) {
+			prDDPins.println("          [");
+			int count = 1;
+			String delimiter2 = ",";
+			Set <String> set9 = lSelectedDOMClass.termEntryMap.keySet();
+			Iterator <String> iter9 = set9.iterator();
+			while(iter9.hasNext()) {
+				String lTitle = (String) iter9.next();
+				TermEntryDefn lTermEntryDefn = lSelectedDOMClass.termEntryMap.get(lTitle);
+				if (! iter9.hasNext()) delimiter2 = "";
+				String lObjectName = "List-" + Integer.toString(count);
+				printTermEntryObject (lTermEntryDefn, delimiter2, prDDPins);
+				count++;
+			}
+			prDDPins.println("          ]" + delimiter1);
+		}
+		
+		public  void printTermEntryObject (TermEntryDefn lTermEntryDefn, String delimiter2, PrintWriter prDDPins) {
+			prDDPins.println("          {");
+			prDDPins.println("            " + formValue("name") + ": " + formValue(lTermEntryDefn.name) + " ,");		
+			prDDPins.println("            " + formValue("semanticRelation") + ": " + formValue(lTermEntryDefn.semanticRelation) + " ,");				
+			String lIsPreferred = Boolean.toString(lTermEntryDefn.isPreferred);
+			prDDPins.println("            " + formValue("isPreferred") + ": " + formValue(lIsPreferred) + " ,");	
+			prDDPins.println("            " + formValue("definition") + ": " + formValue(lTermEntryDefn.definition));	
+			prDDPins.println("          }" + delimiter2);
+		}	
+		
+// ===============================================================================================================		
 						
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
