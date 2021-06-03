@@ -1,24 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-06-03)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
-
-**Requirements:**
-
-- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
-
-**Defects:**
-
-- LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-05-20)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-03)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
 **Requirements:**
 
 - As a developer I want to generate a query model that relates semantically similar permissible values. [\#361](https://github.com/NASA-PDS/pds4-information-model/issues/361)
+- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
 
 **Improvements:**
 
@@ -26,6 +15,10 @@
 - \[namespace-registry\] add new namespace "m2020" [\#352](https://github.com/NASA-PDS/pds4-information-model/issues/352)
 - \[namespace-registry\] add new namespace "ctli" [\#344](https://github.com/NASA-PDS/pds4-information-model/issues/344)
 - \[namespace-registry\] add new namespace "\<clementine\>" [\#332](https://github.com/NASA-PDS/pds4-information-model/issues/332)
+
+**Defects:**
+
+- LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
 
