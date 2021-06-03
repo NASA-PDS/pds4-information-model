@@ -439,7 +439,7 @@ public class LDDDOMParser extends Object
 		scanRulesForExternalNamespaces (lSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.scanRulesForExternalNamespaces() Done");
 		
-		validateReservedNames();
+		validateReservedNames(lSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.validateReservedNames() Done");
 				
 		validateAttributeUsed();
@@ -1873,7 +1873,7 @@ public class LDDDOMParser extends Object
 		return namespaceArr;
 	}
 	
-	private void validateReservedNames () {
+	private void validateReservedNames (SchemaFileDefn lSchemaFileDefn) {
 //		System.out.println("\ndebug validateReservedNames");
 		
 		boolean hasAtLeastOneElementDefined = false;
@@ -1897,7 +1897,9 @@ public class LDDDOMParser extends Object
 		}
 		
 		if ((! hasAtLeastOneElementDefined) && numClasses > 0) {
-			DMDocument.registerMessage ("2>error Class: " + " - At least one class must be defined as an xs:Element. (<element_flag> set to \"true\")");
+			DMDocument.registerMessage (lSchemaFileDefn.nameSpaceIdNCLC, "2>error NameSpaceId:" + lSchemaFileDefn.nameSpaceId + " - At least one class must be defined as an xs:Element. (<element_flag> set to \"true\")");
+		} else {
+			DMDocument.nameSpaceIdExtrnFlagArr.add(lSchemaFileDefn.nameSpaceIdNCLC);
 		}
 		
 		// scan LDD attributes titles and determine if a reserved name has been used.
