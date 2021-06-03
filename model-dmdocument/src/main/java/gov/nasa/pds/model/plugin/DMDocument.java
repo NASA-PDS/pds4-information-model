@@ -177,14 +177,20 @@ public class DMDocument extends Object {
 	static ArrayList <LDDDOMParser> LDDDOMModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
+	
 	// *** initialized from the config file - maybe rename, to be used only during initialization of LDDSchemaFileSortMap ***
 	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
+	
 	// *** deprecate and only use masterPDSSchemaFileDefn, move  ***
 	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
+	
 	// *** to be use only for LDDs ***
 	static TreeMap <String, SchemaFileDefn> LDDSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		   
 	static ArrayList <SchemaFileDefn> LDDSchemaFileSortArr;
 	static ArrayList <String> LDDImportNameSpaceIdNCArr = new ArrayList <String> ();
+	
+	// *** to be used to detect issues by namespace
+	static ArrayList <String> nameSpaceIdExtrnFlagArr = new ArrayList <String> ();	// <element_flag> set to true in each namespace
 	
 	// Master Schemas, Stewards and Namespaces (SchemaFileDefn)
 	static SchemaFileDefn masterPDSSchemaFileDefn;
@@ -1674,25 +1680,27 @@ public class DMDocument extends Object {
 	static void registerMessage (String lMessage) {
 		DOMMsgDefn lMessageDefn = new DOMMsgDefn (lMessage);
 		mainMsgArr.add (lMessageDefn);
-//		System.out.println ("");
-//		System.out.println ("debug  registerMessage  lMessage:" + lMessage);
-//		System.out.println ("debug  registerMessage  lMessageDefn.msgOrgText:" + lMessageDefn.msgOrgText);
-//		System.out.println ("debug  registerMessage  lMessageDefn.msgCleanText:" + lMessageDefn.msgCleanText);
 		return;
 	}
 	
+	static void registerMessage (String lNameSpaceIdNCLC, String lMessage) {
+		DOMMsgDefn lMessageDefn = new DOMMsgDefn (lMessage);
+		lMessageDefn.nameSpaceIdNCLC = lNameSpaceIdNCLC;
+		mainMsgArr.add (lMessageDefn);
+		return;
+	}	
+	
 	static void printErrorMessages () {
 		String lPreviousGroupTitle = "";
-//		System.out.println (" ");
-//		System.out.println (">> -- Processing Messages --");
 		
 		// first sort error messages
 		TreeMap <String, DOMMsgDefn> lMainMsgMap = new TreeMap <String, DOMMsgDefn> ();
 		for (Iterator <DOMMsgDefn> i = mainMsgArr.iterator(); i.hasNext();) {
 			DOMMsgDefn lMainMsg = (DOMMsgDefn) i.next();
-//			System.out.println ("debug printErrorMessages -SORT- lMainMsg.msgOrgText:" + lMainMsg.msgOrgText + "   lMainMsg.msgTypeLevel:" + lMainMsg.msgTypeLevel + "   lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
-//			System.out.println ("debug printErrorMessages -SORT- lMainMsg.msgTypeLevel.substring(0, 2)):" + lMainMsg.msgTypeLevel.substring(0, 2));
-
+			
+			// eliminate certain messages
+			if (nameSpaceIdExtrnFlagArr.contains(lMainMsg.nameSpaceIdNCLC)) continue;
+			
 			// if debugFlag is false, skip debug messages
 			// 0>info, 0>warning, 0>error
 			if (! debugFlag) {

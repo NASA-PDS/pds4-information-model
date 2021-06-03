@@ -47,6 +47,7 @@ public class DOMMsgDefn extends Object {
 	String msgOrgText;
 	String msgCleanText;
 	String msgGroupTitle;
+	String nameSpaceIdNCLC;
 
 	public DOMMsgDefn () {
 		// messageLevelArr is initialized (init()) when masterDOMMsgDefn is created in DMDocument
@@ -59,6 +60,7 @@ public class DOMMsgDefn extends Object {
 		msgOrgText = "TBD_msgOrgText";
 		msgCleanText = "TBD_msgCleanText";
 		msgGroupTitle = "TBD_msgGroupTitle";
+		nameSpaceIdNCLC = "TBD_nameSpaceIdNCLC";
 		
 		int lMessageLength = lMessage.length();
 		if (lMessageLength <= 0) return;
