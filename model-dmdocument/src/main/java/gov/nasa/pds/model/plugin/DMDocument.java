@@ -881,7 +881,7 @@ public class DMDocument extends Object {
 			System.out.println("Process control:");
 			System.out.println("  -p, --PDS4       Set the context to PDS4");
 			System.out.println("  -l, --LDD        Process a local data dictionary input file");
-//			System.out.println("  -d, --discipline Omit the term \"mission\" from the namespace of a Mission dictionary.");
+			System.out.println("  -d, --discipline Omit the term \"mission\" from the namespace of a dictionary.");
 			System.out.println("  -D, --DataDict   Write the Data Dictionary DocBook file.");
 			System.out.println("  -J, --JSON       Write the data dictionary to a JSON formatted file.");
 			System.out.println("  -m, --merge      Generate file to merge the local dictionary into the master dictionary");
