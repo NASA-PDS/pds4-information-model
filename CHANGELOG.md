@@ -1,6 +1,18 @@
 # Changelog
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-05-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-06-03)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Requirements:**
+
+- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
+
+**Defects:**
+
+- LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-05-20)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -30,7 +42,6 @@
 **Requirements:**
 
 - As a developer, I want to know the dLDD version from the output JSON data [\#338](https://github.com/NASA-PDS/pds4-information-model/issues/338)
-- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
 
 **Improvements:**
 
@@ -50,7 +61,6 @@
 - LDDTool does not generate the complete "All LDD" version of the  WebHelp PDS4 Data Dictionary Document [\#312](https://github.com/NASA-PDS/pds4-information-model/issues/312)
 - LDDTool does include the PSA namespace [\#304](https://github.com/NASA-PDS/pds4-information-model/issues/304)
 - LDDTool does not allow the bundle to be specified for generated dictionaries [\#302](https://github.com/NASA-PDS/pds4-information-model/issues/302)
-- LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
 - CSV files fail to escape double quotes. [\#280](https://github.com/NASA-PDS/pds4-information-model/issues/280)
 - Throw WARNING message when enumeration\_flag = false but enumerations are specified [\#266](https://github.com/NASA-PDS/pds4-information-model/issues/266)
 
@@ -117,7 +127,6 @@
 - Incorrect error messages for DD\_Associate\_External\_Class [\#235](https://github.com/NASA-PDS/pds4-information-model/issues/235)
 - PDS4\_PDS\_1E00.sch inconsistent rules for type of Investigation vs Investigation\_Area [\#186](https://github.com/NASA-PDS/pds4-information-model/issues/186)
 - LDDTool: Displaying invalid Imaging Discipline Classes [\#175](https://github.com/NASA-PDS/pds4-information-model/issues/175)
-- LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170)
 
 **Other closed issues:**
 
