@@ -1634,6 +1634,7 @@ public class LDDDOMParser extends Object
 //							if (! isChoiceOrAny) {
 							lDOMProp.valArr.add(lDOMClassComponent.title);
 							lDOMProp.hasDOMObject = lDOMClassComponent;
+							lDOMClassComponent.hasDOMPropInverse = lDOMProp;
 							
 							// get all block headers and components
 							if (lDOMProp.groupName.indexOf("XSChoice#") == 0 || lDOMProp.groupName.indexOf("XSAny#") == 0) {

@@ -34,28 +34,23 @@ import java.util.*;
 
 class GenDOMRules extends Object {	
 	ArrayList <DeprecatedDefn> lUnitIdDeprecatedArr = new ArrayList <DeprecatedDefn> (); 
+	TreeMap <String, InheritedClasses> inheritedClassesMap = new TreeMap <String, InheritedClasses> ();
 	
 	public GenDOMRules () {
+		
+		findInheritedAssociatedExternalClass();
+		
 		return;
 	}
 	
 //	generate schematron rules
 	public void genSchematronRules () throws java.io.IOException {
-//		System.out.println("\n>debug - Gen DOM Rules - Custom Rule Counts - Before generation");
-//		System.out.println("debug - Rule count for Arr: " + DOMInfoModel.masterDOMRuleArr.size());
-//		System.out.println("debug - Rule count for Map: " + DOMInfoModel.masterDOMRuleMap.size());
-//		System.out.println("debug - Rule count for Id Map: " + DOMInfoModel.masterDOMRuleIdMap.size());		
-		
 		// for each namespace, generate the schematron rules
 		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
 			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 			genSchematronRule(lSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
 		}
-//		System.out.println("\n>debug - Gen DOM Rules - Custom Rule Counts - After generation");
-//		System.out.println("debug - Rule count for Arr: " + DOMInfoModel.masterDOMRuleArr.size());
-//		System.out.println("debug - Rule count for Map: " + DOMInfoModel.masterDOMRuleMap.size());
-//		System.out.println("debug - Rule count for Id Map: " + DOMInfoModel.masterDOMRuleIdMap.size());		
 		return;
 	}
 		
@@ -63,6 +58,9 @@ class GenDOMRules extends Object {
 	public void genSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) {
 		// add the enumerated value schematron rules		
 		addSchematronRuleEnumerated (lSchemaFileDefn, lMasterDOMClassMap);
+
+		// add the enumerated value schematron rules		
+		addSchematronRuleEnumeratedInherited (lSchemaFileDefn);
 		
 		// add the boolean (true, false) schematron rules		
 		addSchematronRuleBoolean (lSchemaFileDefn, lMasterDOMClassMap);
@@ -102,8 +100,8 @@ class GenDOMRules extends Object {
 			// discipline facet and facet group schema rules are hard coded elsewhere.
 			if (lClass.title.compareTo("Discipline_Facets") == 0 || lClass.title.compareTo("Group_Facet1") == 0 || lClass.title.compareTo("Group_Facet2") == 0) continue;
 			
-			String lDeprecatedClassIdentifier = lClass.nameSpaceIdNC + "." + lClass.title;
-			addClassSchematronRuleEnumerated (lClass.nameSpaceIdNC, lClass.title, lClass.steward, lDeprecatedClassIdentifier, lClass.allEnumAttrArr);
+			// add the rules
+			addClassSchematronRuleEnumerated (lClass.nameSpaceIdNC, lClass.title, lClass.steward, lClass.allEnumAttrArr);
 		} 
 		
 		// add no-class attributes
@@ -114,10 +112,10 @@ class GenDOMRules extends Object {
 			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.nameSpaceIdNC) != 0)) continue;
 			lEnumAttrArr.add(lAttr);
 		}
-		if (! lEnumAttrArr.isEmpty()) addClassSchematronRuleEnumerated (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle, lSchemaFileDefn.stewardArr.get(0), "", lEnumAttrArr); 
+		if (! lEnumAttrArr.isEmpty()) addClassSchematronRuleEnumerated (DMDocument.masterNameSpaceIdNCLC, DMDocument.LDDToolSingletonClassTitle, lSchemaFileDefn.stewardArr.get(0), lEnumAttrArr); 
 	}
 	
-	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, String lDeprecatedClassIdentifier, ArrayList <DOMAttr> lAttrArr) {	
+	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, ArrayList <DOMAttr> lAttrArr) {	
 		for (Iterator <DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) j.next();
 			String lRuleId = lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
@@ -135,7 +133,6 @@ class GenDOMRules extends Object {
 				lRule.classNameSpaceNC = lClassNameSpaceIdNC;
 				lRule.classSteward = lClassSteward;
 			}
-//			String lDeprecatedAttrIdentifier = lDeprecatedClassIdentifier + "." + lAttr.title;
 			if (lAttr.valArr == null || lAttr.valArr.isEmpty()) continue;
 			lRule.attrTitle = lAttr.title;		
 			lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;
@@ -182,6 +179,81 @@ class GenDOMRules extends Object {
 					lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValue + ".";
 				else
 					lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValue + ".";	
+			}
+		}
+	}
+	
+//	add rules for inherited classes defined using Associated External Class
+	public void addSchematronRuleEnumeratedInherited (SchemaFileDefn lSchemaFileDefn) {
+		// use the set of inherited classes defined using Associated External Class
+		ArrayList <InheritedClasses> lInheritedClassesArr = new ArrayList <InheritedClasses> (inheritedClassesMap.values());
+		for (Iterator <InheritedClasses> i = lInheritedClassesArr.iterator(); i.hasNext();) {
+			InheritedClasses lInheritedClasses = (InheritedClasses) i.next();
+			
+			// get the inherited class defined using Associated External Class
+			DOMClass lInheritedDOMClass = lInheritedClasses.inheritedClass;
+
+			// get the classes that inherit the class defined using Associated External Class
+			for (Iterator <DOMClass> j = lInheritedClasses.inheritedbyClassArr.iterator(); j.hasNext();) {
+				DOMClass lInheritedByDOMClass = (DOMClass) j.next();
+				addClassSchematronRuleEnumeratedInherited (lInheritedDOMClass.nameSpaceIdNC, lInheritedDOMClass.title, lInheritedDOMClass.steward, lInheritedDOMClass.allEnumAttrArr, lInheritedByDOMClass.nameSpaceIdNC, lInheritedByDOMClass.title);
+			}
+		} 
+	}
+	
+	public void addClassSchematronRuleEnumeratedInherited (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, ArrayList <DOMAttr> lAttrArr, String lInheritedByClassNameSpaceIdNC, String lInheritedByDOMClassTitle) {	
+		// for each attribute, write out the rule
+		for (Iterator <DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
+			DOMAttr lAttr = (DOMAttr) j.next();		
+			String lRuleId = lInheritedByClassNameSpaceIdNC + ":" + lInheritedByDOMClassTitle  + "/" + lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
+			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+			if (lRule == null) {
+				lRule = new DOMRule(lRuleId);
+				DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
+				DOMInfoModel.masterDOMRuleArr.add(lRule);
+				lRule.setRDFIdentifier();
+				DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
+				lRule.xpath = lRuleId;
+				lRule.attrTitle = "TBD_AttrTitle";		
+				lRule.attrNameSpaceNC = "TBD_attrNameSpaceNC";		
+				lRule.classTitle = lClassTitle;		
+				lRule.classNameSpaceNC = lClassNameSpaceIdNC;
+				lRule.classSteward = lClassSteward;
+			}
+			if (lAttr.valArr == null || lAttr.valArr.isEmpty()) continue;
+			lRule.attrTitle = lAttr.title;		
+			lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;
+			String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
+			if (foundAssertStmt (lAttrId, lRule.assertArr)) continue;
+			DOMAssert lAssert = new DOMAssert (lAttrId);	
+			lRule.assertArr.add(lAssert);
+			
+			String lDel = "";
+			String lDelimitedValueArr = "";
+			
+			for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
+				String lValue = (String) k.next();
+				String lDelimitedValue = lDel + "'" + lValue + "'";					
+				lDel = ", ";					
+				lDelimitedValueArr += lDelimitedValue;	
+			}
+
+			if (lAttr.valArr.size() > 1) {
+				if (! lAttr.isNilable) {
+					lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to one of the following values " + lDelimitedValueArr + ".";
+				} else {
+					lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
+				}
+			} else {
+				if (! lAttr.isNilable) {
+					lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValueArr + ".";
+				} else {
+					lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
+					lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
+				}
 			}
 		}
 	}		
@@ -580,5 +652,55 @@ class GenDOMRules extends Object {
 			}
 		}
 		return false;
+	}
+	
+	private void findInheritedAssociatedExternalClass () {
+		// find all classes with isAssociatedExternalClass = true - e.g., geom.Body_Identification_Base.geom.Body_Identification_Base_Internal_Reference and  Body_Identification_Base
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lDOMClass = (DOMClass) i.next();	
+			if (lDOMClass.isUSERClass || lDOMClass.isUnitOfMeasure || lDOMClass.isDataType || lDOMClass.isVacuous) continue;
+			if (! lDOMClass.isAssociatedExternalClass) continue;
+			InheritedClasses lInheritedClasses = inheritedClassesMap.get(lDOMClass.identifier);
+			if (lInheritedClasses == null) {
+				lInheritedClasses = new InheritedClasses (lDOMClass);
+				inheritedClassesMap.put(lDOMClass.identifier, lInheritedClasses); 
+			} else {
+				DMDocument.registerMessage ("1>error " + "Duplicate Found - Adding Extern Class to inheritedClassesMap - lDOMClass.identifier:" + lDOMClass.identifier);
+			}
+		}
+		
+		// find all classes that inherit a class with isAssociatedExternalClass = true - e.g., Central_Body_Identification
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lDOMClass = (DOMClass) i.next();	
+			if (lDOMClass.isUSERClass || lDOMClass.isUnitOfMeasure || lDOMClass.isDataType || lDOMClass.isVacuous) continue;
+			if (! lDOMClass.inheritedAssocArr.isEmpty()) {
+				for (Iterator <DOMProp> j = lDOMClass.inheritedAssocArr.iterator(); j.hasNext();) {
+					DOMProp lDOMProp = (DOMProp) j.next();
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
+						DOMClass lDOMInheritedClass = (DOMClass) lDOMProp.hasDOMObject;
+						InheritedClasses lInheritedClasses = inheritedClassesMap.get(lDOMInheritedClass.identifier);
+						if (lInheritedClasses != null) {
+							lInheritedClasses.inheritedbyClassArr.add(lDOMClass);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// class for capturing inherited and inherited by classes
+	private class InheritedClasses {
+		DOMClass inheritedClass;
+		ArrayList <DOMClass> inheritedbyClassArr;
+		
+		private InheritedClasses (DOMClass lInheritedClass) {
+			inheritedClass = lInheritedClass;
+			inheritedbyClassArr = new ArrayList <DOMClass> ();			
+		}
+		
+		void addInheritedbyClass (DOMClass lInheritedbyClass) {
+			inheritedbyClassArr.add(lInheritedbyClass);
+			return;
+		}
 	}
 }
