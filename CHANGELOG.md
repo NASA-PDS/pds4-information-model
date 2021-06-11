@@ -1,15 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-06-10)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
-
-**Defects:**
-
-- LDDTool does not generate valid xpath for schematron rules for classes defined using associate\_external\_class [\#367](https://github.com/NASA-PDS/pds4-information-model/issues/367)
-- LDDTool generates a 1C00 file when -V 1B00 is specified [\#322](https://github.com/NASA-PDS/pds4-information-model/issues/322)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-03)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -26,6 +17,8 @@
 
 **Defects:**
 
+- LDDTool does not generate valid xpath for schematron rules for classes defined using associate\_external\_class [\#367](https://github.com/NASA-PDS/pds4-information-model/issues/367)
+- LDDTool generates a 1C00 file when -V 1B00 is specified [\#322](https://github.com/NASA-PDS/pds4-information-model/issues/322)
 - LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
