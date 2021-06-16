@@ -1,6 +1,14 @@
 # Changelog
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-10)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-06-16)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- The Version Id of the Product\_XML\_Schema label is not being set to the proper value. [\#371](https://github.com/NASA-PDS/pds4-information-model/issues/371)
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-11)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
