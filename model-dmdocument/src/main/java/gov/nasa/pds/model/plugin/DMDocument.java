@@ -167,13 +167,11 @@ public class DMDocument extends Object {
 	
 	static boolean mapToolFlag = false;
 	
-	// Master Model
+	// Master DOM Info Model
 	static MasterDOMInfoModel masterDOMInfoModel;
 	
-	// Master LDD Model
+	// Master and Secondary LDD LDDDOMParsers
 	static LDDDOMParser primaryLDDDOMModel;
-	
-	// Secondary LDD Models
 	static ArrayList <LDDDOMParser> LDDDOMModelArr;
 	
 	// Schemas, Stewards and Namespaces (SchemaFileDefn)
@@ -760,7 +758,7 @@ public class DMDocument extends Object {
 					lLDDSchemaFileDefn.sourceFileName = lArg;
 					lLDDSchemaFileDefn.isActive = true;
 					lLDDSchemaFileDefn.isLDD = true;
-					lLDDSchemaFileDefn.labelVersionId = "1.0";
+					lLDDSchemaFileDefn.labelVersionId = schemaLabelVersionId;
 					LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
 					masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
 				}
@@ -990,7 +988,7 @@ public class DMDocument extends Object {
         		// the value of labelVersionId is always "1.0"; this is the first label for this product
         		
         		lSchemaFileDefn.versionId = infoModelVersionId;
-        		lSchemaFileDefn.labelVersionId = "1.0";
+        		lSchemaFileDefn.labelVersionId = schemaLabelVersionId;
 
         		String isDisciplineKey = SCHEMA_LITERAL+nameSpaceId + ".isDiscipline";
         	    value = prop.getProperty(isDisciplineKey);
