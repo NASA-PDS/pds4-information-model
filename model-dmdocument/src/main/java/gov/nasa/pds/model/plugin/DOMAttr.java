@@ -89,6 +89,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 	boolean hasRetiredValue;		// at least one permissible value has been retired.
 	boolean isCharDataType;			// the data type (aka valueType) of the attribute is character. XML Schema allows only max/min length for value.
 	boolean isExposed;				// the attribute is to be exposed in XML Schema - i.e., defined using xs:Element
+	boolean isAssociatedExternalAttr;	// the attribute was defined using DD_Associate_External_Class
 	
 	DOMProp hasDOMPropInverse;		// the owning DOMProp of this Class 
 	ArrayList <DOMProp> domPermValueArr;
@@ -183,6 +184,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
 		hasRetiredValue = false;
 		isCharDataType = true;
 		isExposed = false;
+		isAssociatedExternalAttr = false;			// the attribute was defined using DD_Associate_External_Class
 		
 		hasDOMPropInverse = null;
 		domPermValueArr = new ArrayList <DOMProp> ();

@@ -760,6 +760,10 @@ class XML4LabelSchemaDOM extends Object {
 			for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) i.next();
 				if (lAttr.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) continue;
+				
+				// ignore attributes defined using dd_associate_external_class; used only to create schematron rules
+				if (lAttr.isAssociatedExternalAttr) continue;
+				
 				DOMProp lDOMProp = new DOMProp();
 				lDOMProp.createDOMPropSingletonsNoAssoc(lAttr);
 				allAttrTypeMap.put(lAttr.XMLSchemaName, lDOMProp);	
@@ -775,11 +779,8 @@ class XML4LabelSchemaDOM extends Object {
 		for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
 			DOMProp lProp = (DOMProp) i.next();
 		    DOMAttr lAttr = (DOMAttr)lProp.hasDOMObject;
-
-		
 			if (lAttr.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) continue;
 			hasUnits = false;
-			
 			if (lAttr.unit_of_measure_type.indexOf("TBD") != 0) hasUnits = true;
 			if (! lAttr.isNilable || hasUnits) {
 				writeXMLExtendedRestrictedNonEnumerated (lSchemaFileDefn, hasUnits, lAttr, prXML);			
@@ -787,14 +788,11 @@ class XML4LabelSchemaDOM extends Object {
 				prXML.println("");
 				prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
 				prXML.println("    <" + pNS + "annotation>");		
-//				prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
 				String lLine = "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";		
 				DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 				prXML.println("    </" + pNS + "annotation>");		
 				prXML.println("    <" + pNS + "simpleContent>");
-//				prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.valueType + "\">");
 				prXML.println("      <" + pNS + "extension base=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.valueType + "\">");
-//				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
 				prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC  + ":nil_reason\" use=\"optional\" />");
 				prXML.println("      </" + pNS + "extension>");
 				prXML.println("    </" + pNS + "simpleContent>");
@@ -814,13 +812,10 @@ class XML4LabelSchemaDOM extends Object {
 			prXML.println("");
 			prXML.println("  <" + pNS + "simpleType name=\"" + lAttr.XMLSchemaName + "\">");
 			prXML.println("    <" + pNS + "annotation>");		
-//			prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>", 6, 72));		
 			String lLine = "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";		
 			DOMInfoModel.printWrappedTextArr (DOMInfoModel.wrapTextNew(lLine, 6, 72 ), prXML);
 			prXML.println("    </" + pNS + "annotation>");
 		}
-	
-//		prXML.println("    <" + pNS + "restriction base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.getValueType (true) + "\">");
 		prXML.println("    <" + pNS + "restriction base=\"" + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.getValueType (true) + "\">");
 
 		lValue = lAttr.getFormat (true);

@@ -1299,7 +1299,7 @@ public abstract class DOMInfoModel extends Object {
 	 * print one attribute
 	 */
 	static public void DOMAttrWriter (DOMAttr attr,  PrintWriter prDOMWriter) {	
-        prDOMWriter.println("\n    debug Attribute Definition" + " - identifier:" + attr.identifier);
+        prDOMWriter.println("\n    debug Attribute Definition" + " - identifier:" + attr.identifier + "|");
         prDOMWriter.println("        attr.rdfIdentifier:" + attr.rdfIdentifier);
 		prDOMWriter.println("        attr.identifier:" + attr.identifier);
         prDOMWriter.println("        attr.versionId:" + attr.versionId);
