@@ -882,15 +882,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 //				}
 			}
 			
-			// set the xpath
-			for (Iterator <DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lDOMProp = (DOMProp) j.next();
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-					lDOMAttr.xPath = lClass.xPath + "/" + lDOMAttr.title;
-				}
-			}
-			
 //			for (Iterator <DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
 //				DOMProp lDOMProp = (DOMProp) j.next();
 //				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
