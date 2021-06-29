@@ -99,6 +99,9 @@ class GenDOMRules extends Object {
 			
 			// discipline facet and facet group schema rules are hard coded elsewhere.
 			if (lClass.title.compareTo("Discipline_Facets") == 0 || lClass.title.compareTo("Group_Facet1") == 0 || lClass.title.compareTo("Group_Facet2") == 0) continue;
+
+			// skip abstract classes defined using dd_associate_external_class
+			if (lClass.isAbstract && lClass.isAssociatedExternalClass) continue;
 			
 			// add the rules
 			addClassSchematronRuleEnumerated (lClass.nameSpaceIdNC, lClass.title, lClass.steward, lClass.allEnumAttrArr);
@@ -118,6 +121,7 @@ class GenDOMRules extends Object {
 	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, ArrayList <DOMAttr> lAttrArr) {	
 		for (Iterator <DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) j.next();
+			if (lAttr.isAbstract && lAttr.isAssociatedExternalAttr) continue;						
 			String lXPath;
 			if (! lAttr.isAssociatedExternalAttr) {
 				lXPath = lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
@@ -213,7 +217,7 @@ class GenDOMRules extends Object {
 					
 						// get the child classes of the parent Associated External Class - e.g., geom:Central_Body_Identification
 						for (Iterator <DOMClass> l = lParentChildrenRelation.childClassArr.iterator(); l.hasNext();) {
-							DOMClass lChildDOMClass = (DOMClass) l.next();		
+							DOMClass lChildDOMClass = (DOMClass) l.next();
 							addClassSchematronRuleEnumeratedChildOfAssocExtrnClass (lInheritedDOMAttr, lParentDOMClass, lChildDOMClass);
 						}
 					}
@@ -239,6 +243,7 @@ class GenDOMRules extends Object {
 			lRule.classTitle = lChildDOMClass.title;		
 			lRule.classNameSpaceNC = lChildDOMClass.nameSpaceIdNC;
 			lRule.classSteward = lChildDOMClass.steward;
+			lRule.isAssociatedExternalClass = lParentDOMClass.isAssociatedExternalClass;
 		}
 		if (lInheritedDOMAttr.valArr == null || lInheritedDOMAttr.valArr.isEmpty()) return;
 		lRule.attrTitle = lInheritedDOMAttr.title;		
@@ -261,20 +266,27 @@ class GenDOMRules extends Object {
 		if (lInheritedDOMAttr.valArr.size() > 1) {
 			if (! lInheritedDOMAttr.isNilable) {
 				lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
-				lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to one of the following values " + lDelimitedValueArr + ".";
+				lAssert.assertMsg = "The attribute " + getAssertMsg (lRule) + " must be equal to one of the following values " + lDelimitedValueArr + ".";
 			} else {
 				lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
-				lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
+				lAssert.assertMsg = "The attribute " + getAssertMsg (lRule) + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
 			}
 		} else {
 			if (! lInheritedDOMAttr.isNilable) {
 				lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
-				lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValueArr + ".";
+				lAssert.assertMsg = "The attribute " + getAssertMsg (lRule) + " must be equal to the value " + lDelimitedValueArr + ".";
 			} else {
 				lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
-				lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
+				lAssert.assertMsg = "The attribute " + getAssertMsg (lRule) + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
 			}
 		}
+	}
+	
+	// get the Assert Message
+	public String getAssertMsg (DOMRule lDOMRule) {
+		String lAssertMsg = lDOMRule.attrNameSpaceNC + ":" + lDOMRule.attrTitle;
+		if (lDOMRule.isAssociatedExternalClass) lAssertMsg = lDOMRule.xpath;
+		return lAssertMsg;
 	}
 	
 //	add the boolean schematron rules

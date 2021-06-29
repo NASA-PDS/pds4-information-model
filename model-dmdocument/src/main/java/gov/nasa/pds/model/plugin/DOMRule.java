@@ -44,6 +44,8 @@ public class DOMRule  extends ISOClassOAIS11179 {
 	String classSteward;
 	boolean alwaysInclude;		// the rule is to always be included in the schematron file
 	boolean isMissionOnly;		// the rule is to be included in an LDDTool generated .sch file at the mission level
+	boolean isAssociatedExternalClass;			// the class was defined using DD_Associate_External_Class
+	
 	ArrayList <String> letAssignArr;
 	ArrayList <String> letAssignPatternArr;
 	ArrayList <DOMAssert> assertArr;
@@ -60,6 +62,7 @@ public class DOMRule  extends ISOClassOAIS11179 {
 		classSteward = "TBD_classSteward";
 		alwaysInclude = false;
 		isMissionOnly = false;
+		isAssociatedExternalClass = false;
 		
 		letAssignArr = new ArrayList <String>();
 		letAssignPatternArr = new ArrayList <String>();

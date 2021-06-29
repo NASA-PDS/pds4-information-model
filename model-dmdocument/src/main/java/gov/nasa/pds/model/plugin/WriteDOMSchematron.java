@@ -200,19 +200,19 @@ class WriteDOMSchematron extends Object {
 				if (lAssert.assertType.compareTo("RAW") == 0) {	
 					if (lAssert.assertMsg.indexOf("TBD") == 0) {
 						prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"/>");						
-						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+						prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 					} else {
 						prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\">");
-						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+						prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
 					}
 				} else if (lAssert.assertType.compareTo("REPORT") == 0) {
 					if (lAssert.assertMsg.indexOf("TBD") == 0) {
 						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\"/>");						
-						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+						prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 					} else {
 						prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\">");
-						prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+						prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 						prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
 					}
 				} else if (lAssert.assertType.compareTo("EVERY") == 0) {
@@ -225,7 +225,7 @@ class WriteDOMSchematron extends Object {
 					}
 					prSchematron.print(lTestValueString);
 					prSchematron.println(")\">");
-					prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+					prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 					// print message
 					prSchematron.println("        The attribute " + lRule.attrTitle + lAssert.assertMsg + lTestValueString + ".</sch:assert>");
 				} else if (lAssert.assertType.compareTo("IF") == 0) {
@@ -238,7 +238,7 @@ class WriteDOMSchematron extends Object {
 					}
 					prSchematron.print(lTestValueString);
 					prSchematron.println(") else true ()\">");
-					prSchematron.println("        <title>" + lRule.identifier + "/" + lAssert.identifier + "</title>");						
+					prSchematron.println("        <title>" + getRuleTitle (lRule, lAssert) + "</title>");						
 					// print message
 					prSchematron.println("        The attribute " + lRule.attrTitle + lAssert.assertMsg + lTestValueString + ".</sch:assert>");					
 				}
@@ -246,7 +246,16 @@ class WriteDOMSchematron extends Object {
 			prSchematron.println("    </sch:rule>");
 			prSchematron.println("  </sch:pattern>");
 		} 
-	}	
+	}
+	
+//	get the rule title
+	public String getRuleTitle (DOMRule lRule, DOMAssert lAssert) {
+		String lTitle = lRule.identifier + "/" + lAssert.identifier;
+		if (lRule.isAssociatedExternalClass) {
+			lTitle = lRule.identifier;
+		}
+		return lTitle;
+	}
 	
 //	write the schematron file header
 	public void printSchematronFileHdr (SchemaFileDefn lSchemaFileDefn, PrintWriter prSchematron) {
