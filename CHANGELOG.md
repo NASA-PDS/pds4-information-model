@@ -1,18 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-06-27)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
-
-**Improvements:**
-
-- Evolution of CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD. [\#369](https://github.com/NASA-PDS/pds4-information-model/issues/369)
-
-**Other closed issues:**
-
-- Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-22)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-06-27)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -23,6 +11,7 @@
 **Improvements:**
 
 - \[namespace-registry\] update path "\<clementine\>" in registry PDF \(possibly shorten name\) [\#373](https://github.com/NASA-PDS/pds4-information-model/issues/373)
+- Evolution of CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD. [\#369](https://github.com/NASA-PDS/pds4-information-model/issues/369)
 - \[namespace-registry\] add new namespace "ml" [\#353](https://github.com/NASA-PDS/pds4-information-model/issues/353)
 - \[namespace-registry\] add new namespace "m2020" [\#352](https://github.com/NASA-PDS/pds4-information-model/issues/352)
 - \[namespace-registry\] add new namespace "ctli" [\#344](https://github.com/NASA-PDS/pds4-information-model/issues/344)
@@ -34,6 +23,10 @@
 - LDDTool does not generate valid xpath for schematron rules for classes defined using associate\_external\_class [\#367](https://github.com/NASA-PDS/pds4-information-model/issues/367)
 - LDDTool generates a 1C00 file when -V 1B00 is specified [\#322](https://github.com/NASA-PDS/pds4-information-model/issues/322)
 - LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
+
+**Other closed issues:**
+
+- Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
 
