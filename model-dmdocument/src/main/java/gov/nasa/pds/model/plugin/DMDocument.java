@@ -180,7 +180,7 @@ public class DMDocument extends Object {
 	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
 	
 	// *** deprecate and only use masterPDSSchemaFileDefn, move  ***
-	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
+//	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
 	
 	// *** to be use only for LDDs ***
 	static TreeMap <String, SchemaFileDefn> LDDSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		   
@@ -1098,7 +1098,7 @@ public class DMDocument extends Object {
         		
      			if (lSchemaFileDefn.isMaster) {
 //           		   System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn - lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
-           		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
+//           		   masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
           		   masterPDSSchemaFileDefn = lSchemaFileDefn;
            		   masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
            		   lSchemaFileDefn.isActive = true; // 7777 isActive is set here temporarily until DOM is used; isActive is set above for all IngestLDD
@@ -1120,9 +1120,9 @@ public class DMDocument extends Object {
     		if (printNamespaceFlag || debugFlag) registerMessage ("1>info Configured NameSpaceIds:" + lNamespaceIdArr);
  		
     		// update to masterSchemaFileSortMap to process and write the target LDD
-    		if (DMDocument.LDDToolFlag) {	
- 				masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
-    		}
+ //   		if (DMDocument.LDDToolFlag) {	
+ //				masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
+ //   		}
         }
 
 /**********************************************************************************************************

@@ -412,36 +412,31 @@ public class GetDOMModel extends Object {
 		
 		// 040 - set isActive flag
 		// initialize masterNameSpaceHasMemberArr; used to determine if a file needs to be written.
-		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
 		ArrayList <String> lNameSpaceHasMemberArr = new ArrayList <String> ();
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
-			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-			boolean foundObject = false;
-			for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
-				DOMClass lSelectedClass = (DOMClass) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) foundObject = true;
-			}
-			for (Iterator <DOMAttr> j = DOMInfoModel.masterDOMAttrArr.iterator(); j.hasNext();) {
-				DOMAttr lSelectedAttr = (DOMAttr) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedAttr.nameSpaceIdNC) == 0) foundObject = true;
-			}
-			for (Iterator <DOMDataType> j = DOMInfoModel.masterDOMDataTypeArr.iterator(); j.hasNext();) {
-				DOMDataType lSelectedDataType = (DOMDataType) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedDataType.nameSpaceIdNC) == 0) foundObject = true;
-			}
-			for (Iterator <DOMUnit> j = DOMInfoModel.masterDOMUnitArr.iterator(); j.hasNext();) {
-				DOMUnit lSelectedUnit = (DOMUnit) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedUnit.nameSpaceIdNC) == 0) foundObject = true;
-			}
-			for (Iterator <PropertyMapsDefn> j = DOMInfoModel.masterPropertyMapsArr.iterator(); j.hasNext();) {
-				PropertyMapsDefn lSelectedPropMap = (PropertyMapsDefn) j.next();
-				if (lSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedPropMap.namespace_id) == 0) foundObject = true;
-			}
-			
-			if (foundObject) {
-				lSchemaFileDefn.isActive = true;
-				lNameSpaceHasMemberArr.add(lSchemaFileDefn.nameSpaceIdNC);
-			}
+		boolean foundObject = false;
+		for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
+			DOMClass lSelectedClass = (DOMClass) j.next();
+			if (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) foundObject = true;
+		}
+		for (Iterator <DOMAttr> j = DOMInfoModel.masterDOMAttrArr.iterator(); j.hasNext();) {
+			DOMAttr lSelectedAttr = (DOMAttr) j.next();
+			if (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedAttr.nameSpaceIdNC) == 0) foundObject = true;
+		}
+		for (Iterator <DOMDataType> j = DOMInfoModel.masterDOMDataTypeArr.iterator(); j.hasNext();) {
+			DOMDataType lSelectedDataType = (DOMDataType) j.next();
+			if (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedDataType.nameSpaceIdNC) == 0) foundObject = true;
+		}
+		for (Iterator <DOMUnit> j = DOMInfoModel.masterDOMUnitArr.iterator(); j.hasNext();) {
+			DOMUnit lSelectedUnit = (DOMUnit) j.next();
+			if (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedUnit.nameSpaceIdNC) == 0) foundObject = true;
+		}
+		for (Iterator <PropertyMapsDefn> j = DOMInfoModel.masterPropertyMapsArr.iterator(); j.hasNext();) {
+			PropertyMapsDefn lSelectedPropMap = (PropertyMapsDefn) j.next();
+			if (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC.compareTo(lSelectedPropMap.namespace_id) == 0) foundObject = true;
+		}
+		if (foundObject) {
+			DMDocument.masterPDSSchemaFileDefn.isActive = true;
+			lNameSpaceHasMemberArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
 		}
 		
 		if (DMDocument.debugFlag) {		
