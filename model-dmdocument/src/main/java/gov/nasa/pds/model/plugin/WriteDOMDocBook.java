@@ -57,18 +57,18 @@ class WriteDOMDocBook extends Object {
 		// get the current namespaces and initialize classification maps
 		if (! DMDocument.LDDToolFlag) {
 			// only the common dictionary (pds)
-			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
+			lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
 		} else {
 			// intialize array to capture namespaces to be written
 			ArrayList <String> lDDNamespaceArr = new ArrayList <String> ();
 			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
 			
 			// first get the common dictionary
-			ArrayList <SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-            for(SchemaFileDefn lSchemaFileDefn : tempSchemaFileDefnToWriteArr) {
-    			lSchemaFileDefnToWriteArr.add(lSchemaFileDefn);
-    			lDDNamespaceArr.add(lSchemaFileDefn.nameSpaceIdNC);
-            }
+			ArrayList <SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
+			tempSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
+    		lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
+    		lDDNamespaceArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
             
 			// now add all the LDDs that are stacked for this run
             tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());

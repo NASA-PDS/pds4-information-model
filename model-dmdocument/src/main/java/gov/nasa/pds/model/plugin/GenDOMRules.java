@@ -45,14 +45,24 @@ class GenDOMRules extends Object {
 	
 //	generate schematron rules
 	public void genSchematronRules () throws java.io.IOException {
-		// for each namespace, generate the schematron rules
-		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
-			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-			genSchematronRule(lSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
+		// generate the schematron rules for both the common and the master LDD
+		genSchematronRule(DMDocument.masterPDSSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
+		if (DMDocument.LDDToolFlag) {
+			genSchematronRule(DMDocument.masterLDDSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
 		}
 		return;
 	}
+	
+	//	generate schematron rules
+//	public void genSchematronRules () throws java.io.IOException {
+		// for each namespace, generate the schematron rules
+//		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
+//		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
+//			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+//			genSchematronRule(lSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
+//		}
+//		return;
+//	}
 		
 //	write the schematron rules
 	public void genSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) {

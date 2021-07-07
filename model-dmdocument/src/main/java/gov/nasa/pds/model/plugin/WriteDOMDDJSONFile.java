@@ -47,35 +47,14 @@ class WriteDOMDDJSONFile extends Object{
 
 	// write the JSON file
 	public void writeJSONFile () throws java.io.IOException {	
-		// if IMTool, then write separate JSON files for "all", i.e., each namespace
-		// *** modify - only Common should be written; "all" was only used when LDDs were merged into the Common dictionary ***
 		if (! DMDocument.LDDToolFlag) {
-/*			// write one JSON file for all IM content
-			// PDS4_ALL_JSON_1910_DOM
-			String lFileName = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
-			lFileName = DMDocument.replaceString (lFileName, "PDS_JSON", "ALL_JSON");
-			PrintWriter prDDPins = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-			printPDDPHdr(prDDPins);
-			printPDDPBody ("all", prDDPins);
-			printPDDPFtr(prDDPins);
-			prDDPins.close(); */
-			
-			//	now write a JSON file for each namespace
-			ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-			
-			//	write a JSON file for each namespace
-			for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
-				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-				if (! lSchemaFileDefn.isActive) continue;
-				
-				// PDS4_PDS_JSON_1910_DOM
-				String lFileName2 = lSchemaFileDefn.relativeFileSpecDOMModelJSON;
-				PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
-				printPDDPHdr(lSchemaFileDefn, prDDPins2);
-				printPDDPBody (lSchemaFileDefn.nameSpaceIdNC, prDDPins2);
-				printPDDPFtr(prDDPins2);
-				prDDPins2.close();
-			}
+			// PDS4_PDS_JSON_1910_DOM
+			String lFileName2 = DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDOMModelJSON;
+			PrintWriter prDDPins2 = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName2)), "UTF-8"));
+			printPDDPHdr(DMDocument.masterPDSSchemaFileDefn, prDDPins2);
+			printPDDPBody (DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC, prDDPins2);
+			printPDDPFtr(prDDPins2);
+			prDDPins2.close();
 		} else {
 			// write the JSON file for the LDD
 			String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
