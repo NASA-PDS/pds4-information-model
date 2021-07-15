@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-07-15)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "clipper" [\#374](https://github.com/NASA-PDS/pds4-information-model/issues/374)
+
 ## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-08)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
@@ -10,7 +18,6 @@
 
 **Improvements:**
 
-- \[namespace-registry\] add new namespace "clipper" [\#374](https://github.com/NASA-PDS/pds4-information-model/issues/374)
 - \[namespace-registry\] update path "\<clementine\>" in registry PDF \(possibly shorten name\) [\#373](https://github.com/NASA-PDS/pds4-information-model/issues/373)
 - Evolution of CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD. [\#369](https://github.com/NASA-PDS/pds4-information-model/issues/369)
 - \[namespace-registry\] add new namespace "ml" [\#353](https://github.com/NASA-PDS/pds4-information-model/issues/353)
@@ -59,12 +66,12 @@
 - Invalid output schema when trying to set an Internal\_Reference reference\_type value set [\#331](https://github.com/NASA-PDS/pds4-information-model/issues/331) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool outputs invalid schema with v13.0.0 [\#328](https://github.com/NASA-PDS/pds4-information-model/issues/328) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Repo tests fail when trying to run back-to-back maven steps [\#327](https://github.com/NASA-PDS/pds4-information-model/issues/327) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
-- The 1F00 directory is missing from the Data directory for the 1G00 development release.  [\#316](https://github.com/NASA-PDS/pds4-information-model/issues/316)
-- LDDTool does not generate the complete "All LDD" version of the  WebHelp PDS4 Data Dictionary Document [\#312](https://github.com/NASA-PDS/pds4-information-model/issues/312)
-- LDDTool does include the PSA namespace [\#304](https://github.com/NASA-PDS/pds4-information-model/issues/304)
-- LDDTool does not allow the bundle to be specified for generated dictionaries [\#302](https://github.com/NASA-PDS/pds4-information-model/issues/302)
-- CSV files fail to escape double quotes. [\#280](https://github.com/NASA-PDS/pds4-information-model/issues/280)
-- Throw WARNING message when enumeration\_flag = false but enumerations are specified [\#266](https://github.com/NASA-PDS/pds4-information-model/issues/266)
+- The 1F00 directory is missing from the Data directory for the 1G00 development release.  [\#316](https://github.com/NASA-PDS/pds4-information-model/issues/316) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool does not generate the complete "All LDD" version of the  WebHelp PDS4 Data Dictionary Document [\#312](https://github.com/NASA-PDS/pds4-information-model/issues/312) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- LDDTool does not include the PSA namespace [\#304](https://github.com/NASA-PDS/pds4-information-model/issues/304) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- LDDTool does not allow the bundle to be specified for generated dictionaries [\#302](https://github.com/NASA-PDS/pds4-information-model/issues/302) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- CSV files fail to escape double quotes. [\#280](https://github.com/NASA-PDS/pds4-information-model/issues/280) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+- Throw WARNING message when enumeration\_flag = false but enumerations are specified [\#266](https://github.com/NASA-PDS/pds4-information-model/issues/266) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 
 **Other closed issues:**
 
@@ -88,8 +95,8 @@
 
 **Defects:**
 
-- LDDTool generated LIDs for XML Schema Label Products  do not contain IM or LDD Version Ids [\#283](https://github.com/NASA-PDS/pds4-information-model/issues/283)
-- LDD versionId list in the Data Dictionary Document introduction does not contain valid versionIds [\#277](https://github.com/NASA-PDS/pds4-information-model/issues/277)
+- LDDTool generated LIDs for XML Schema Label Products  do not contain IM or LDD Version Ids [\#283](https://github.com/NASA-PDS/pds4-information-model/issues/283) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDD versionId list in the Data Dictionary Document introduction does not contain valid versionIds [\#277](https://github.com/NASA-PDS/pds4-information-model/issues/277) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 
 **Other closed issues:**
 
@@ -109,7 +116,7 @@
 
 **Defects:**
 
-- LDDTool forces use of LDD versions based upon config [\#271](https://github.com/NASA-PDS/pds4-information-model/issues/271)
+- LDDTool forces use of LDD versions based upon config [\#271](https://github.com/NASA-PDS/pds4-information-model/issues/271) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
 **Other closed issues:**
 
@@ -180,7 +187,7 @@
 **Defects:**
 
 - LDDtool combining two consecutive choice blocks into one block  [\#192](https://github.com/NASA-PDS/pds4-information-model/issues/192)
-- LDDTool: requires one class with \(element\_flag = true\), even when no classes defined [\#188](https://github.com/NASA-PDS/pds4-information-model/issues/188)
+- LDDTool: requires one class with \(element\_flag = true\), even when no classes defined [\#188](https://github.com/NASA-PDS/pds4-information-model/issues/188) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
