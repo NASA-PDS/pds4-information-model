@@ -1,15 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-07-16)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-07-22)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
 
-**Other closed issues:**
+**Improvements:**
 
-- Stage the IMTool system for V1.17.0.0 [\#384](https://github.com/NASA-PDS/pds4-information-model/issues/384)
-- Deploy new Amazon Neptune instance for PDS4 IM prototype [\#359](https://github.com/NASA-PDS/pds4-information-model/issues/359)
+- \[namespace-registry\] add new namespace "Earth-Based Telescope Namespace" [\#386](https://github.com/NASA-PDS/pds4-information-model/issues/386)
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-15)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -37,6 +36,8 @@
 
 **Other closed issues:**
 
+- Stage the IMTool system for V1.17.0.0 [\#384](https://github.com/NASA-PDS/pds4-information-model/issues/384)
+- Deploy new Amazon Neptune instance for PDS4 IM prototype [\#359](https://github.com/NASA-PDS/pds4-information-model/issues/359)
 - Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
