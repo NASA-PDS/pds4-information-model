@@ -1,14 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-07-22)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
-
-**Improvements:**
-
-- \[namespace-registry\] add new namespace "Earth-Based Telescope Namespace" [\#386](https://github.com/NASA-PDS/pds4-information-model/issues/386)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-16)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-22)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -18,6 +10,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "Earth-Based Telescope Namespace" [\#386](https://github.com/NASA-PDS/pds4-information-model/issues/386)
 - \[namespace-registry\] add new namespace "clipper" [\#374](https://github.com/NASA-PDS/pds4-information-model/issues/374)
 - \[namespace-registry\] update path "\<clementine\>" in registry PDF \(possibly shorten name\) [\#373](https://github.com/NASA-PDS/pds4-information-model/issues/373)
 - Evolution of CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD. [\#369](https://github.com/NASA-PDS/pds4-information-model/issues/369)
