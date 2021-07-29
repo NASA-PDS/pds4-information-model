@@ -66,6 +66,9 @@ public class DMDocument extends Object {
 	// variables for the class %3ACLIPS_TOP_LEVEL_SLOT_CLASS
 	static final String TopLevelAttrClassName  = "%3ACLIPS_TOP_LEVEL_SLOT_CLASS";
 	
+	// process state for used flags, files, and directories
+	static DMProcessState dmProcessState;
+	
 	static boolean PDSOptionalFlag;
 	
 	// configuration file variables
@@ -128,7 +131,7 @@ public class DMDocument extends Object {
 	static String buildIMVersionFolderId = "1H00";
 	static String classVersionIdDefault = "1.0.0.0";
 //	static String LDDToolGeometry = "Geometry";
-	static boolean PDS4MergeFlag  = false;
+	static boolean PDS4MergeFlag  = false;				// *** Deprecate ***
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
@@ -147,13 +150,11 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
-	static boolean exportDOMFlag = true;				// if false do not write any DOM file; For LDDTool the parse classes from IngestLDD are not in the DOM structures.
-	static boolean exportMOFFlag = false;
 	static boolean exportOWLFileFlag = false;
 	static boolean pds4ModelFlag = true;
 	static boolean printNamespaceFlag = false;			// print the configured namespaces to the log
 	static boolean disciplineMissionFlag = false;		//  set by -d; Omit the term "mission" from the namespace of a Mission dictionary
-	static int writeDOMCount = 0;						// LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
+	static int writeDOMCount = 0;						// *** Deprecate *** LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
 	
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
@@ -270,7 +271,7 @@ public class DMDocument extends Object {
 	static TreeMap <String, String> classVersionId;
 	
 	// debug flag	
-	static boolean debugFlag = false;
+	static boolean debugFlag = true;
 	
 	// info, warning, and error messages
 	static int msgOrder = 100000;
@@ -296,7 +297,9 @@ public class DMDocument extends Object {
 	
 	public static void main (String args[]) throws Throwable {
 		
-//		boolean PDSOptionalFlag = false;
+		// process state for used flags, files, and directories
+		dmProcessState = new DMProcessState ();
+		
 		PDSOptionalFlag = false;
 		LDDToolFlag = false;
 		// Secondary LDD Models
@@ -575,22 +578,20 @@ public class DMDocument extends Object {
 		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
 		
 		// get the DOM Model
-		if (exportDOMFlag) {
-			GetDOMModel lGetDOMModel = new GetDOMModel();
-			lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
-		}
+		GetDOMModel lGetDOMModel = new GetDOMModel();
+		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
 		if (debugFlag) DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 		// export the models
 		if (DMDocument.LDDToolFlag) {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeLDDArtifacts (exportDOMFlag, exportMOFFlag);
+			lExportModels.writeLDDArtifacts ();
 		} else if ( DMDocument.mapToolFlag) {
             WriteMappingFile writeMappingFile = new WriteMappingFile();
             writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
 		} else {
 			ExportModels lExportModels = new ExportModels ();
-			lExportModels.writeAllArtifacts (exportDOMFlag, exportMOFFlag);
+			lExportModels.writeAllArtifacts ();
 		}
 		registerMessage ("0>info Next UID: " + DOMInfoModel.getNextUId());
 		printErrorMessages();
@@ -644,16 +645,20 @@ public class DMDocument extends Object {
 			if (lArg.indexOf('-') == 0) {
 //				System.out.println ("debug -1- lFlag:" + lArg);
 				if (lArg.indexOf('p') > -1) {
+					dmProcessState.setPDSOptionalFlag (); 
 					PDSOptionalFlag = true;
 				}
 				if (lArg.indexOf('l') > -1) {
+					dmProcessState.setLDDToolFlag (); 
 					LDDToolFlag = true;
 				}
 				if (lArg.indexOf('h') > -1) {
+					dmProcessState.sethelpFlag (); 					
 					printHelp();
 					System.exit(0);
 				}
 				if (lArg.indexOf('V') > -1) {
+					dmProcessState.setalternateIMVersionFlag (); 
 					alternateIMVersionFlag = true;
 				}
 			} else {		
@@ -680,32 +685,39 @@ public class DMDocument extends Object {
 				String lFlag = lArg;
 				if (lArg.indexOf("map") > -1) {
 					registerMessage ("1>info Tool processing");
+					dmProcessState.setmapToolFlag (); 
 					LDDToolFlag = false;
 					mapToolFlag = true;
 					PDSOptionalFlag = true;
 				}
 				if (lArg.indexOf('t') > -1) {
+					dmProcessState.setLDDToolAnnotateDefinitionFlag (); 
 					LDDToolAnnotateDefinitionFlag = true;
 				}
 				if (lArg.indexOf('M') > -1) {
+					dmProcessState.setLDDToolMissionFlag (); 
 					LDDToolMissionFlag = true;
-//					System.err.println(">>WARNING: " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 					registerMessage ("1>warning " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
 				}
 				if (lArg.indexOf('m') > -1) {
+					dmProcessState.setPDS4MergeFlag (); 
 					PDS4MergeFlag = true;
 				}
 				if (lArg.indexOf('n') > -1) {
+					dmProcessState.setLDDNuanceFlag (); 
 					LDDNuanceFlag = true;
 				}
 				if (lArg.indexOf('N') > -1) {
+					dmProcessState.setprintNamespaceFlag (); 
 					printNamespaceFlag = true;
 				}
 				if (lArg.indexOf('a') > -1) {
+					dmProcessState.setLDDAttrElementFlag (); 
 //					LDDAttrElementFlag = true;
 					LDDAttrElementFlag = false;
 				}
 				if (lArg.indexOf('v') > -1) {
+					dmProcessState.setversionFlag (); 
 					System.out.println(" ");
 					System.out.println("LDDTool Version: " + LDDToolVersionId);
 					System.out.println("Built with IM Version: " + buildIMVersionId);
@@ -715,30 +727,39 @@ public class DMDocument extends Object {
 					System.exit(0);
 				}
 				if (lArg.indexOf('d') > -1) {
+					dmProcessState.setdisciplineMissionFlag (); 
 					disciplineMissionFlag = true;
 				}
 				if (lArg.indexOf('D') > -1) {
+					dmProcessState.setexportDDFileFlag (); 
 					exportDDFileFlag = true;
 				}
 				if (lArg.indexOf('J') > -1) {
+					dmProcessState.setexportJSONFileFlag (); 
 					exportJSONFileFlag = true;
 				}
 				if (lArg.indexOf('1') > -1) {
+					dmProcessState.setexportSpecFileFlag (); 
 					exportSpecFileFlag = true;
 				}
 				if (lArg.indexOf('3') > -1) {
+					dmProcessState.setexportJSONAttrFlag (); 
 					exportJSONAttrFlag = true;
 				}
 				if (lArg.indexOf('4') > -1) {
+					dmProcessState.setimportJSONAttrFlag (); 
 					importJSONAttrFlag = true;
 				}
 				if (lArg.indexOf('5') > -1) {
+					dmProcessState.setexportOWLFileFlag ();
 					exportOWLFileFlag = true;
 				}
 				if (lArg.indexOf('6') > -1) {
+					dmProcessState.setexportJSONFileAllFlag (); 
 					exportJSONFileAllFlag = true;
 				}
 				if (lArg.indexOf('f') > -1) {
+					dmProcessState.setcheckFileNameFlag (); 
 					aind++;
 					while (aind < args.length) { 
 						String temFileName = args[aind];                                	                                		
@@ -1748,5 +1769,46 @@ public class DMDocument extends Object {
 		System.out.println ("     " + lMessageWarningCount + " warning(s)");
 		System.out.println ("     " + lMessageErrorCount + " error(s)");
 		System.out.println ("     " + lMessageFatalErrorCount + " fatal error(s)");
+		
+		printFlags ();
+		printInputFileNames ();
+		printOutputFileNames ();
+	}
+	
+	static private void printFlags() {
+		// print set flags in flag array
+		System.out.println("");
+		System.out.println("Input:");		
+		System.out.println("");		
+		
+		for (String processFlagName : dmProcessState.getSortedProcessFlagNameArr()) {
+			System.out.println("     - " + processFlagName + ": true");
+		}
+	}
+	
+	static private void printInputFileNames() {
+		// print set flags in flag array
+		System.out.println("");
+		System.out.print ("     - Ingest LDD(s): ");		
+	
+		if (LDDToolFlag) {
+			String del = "";
+			for (SchemaFileDefn lLDDSchemaFile : LDDSchemaFileSortArr) {
+				System.out.print (del + lLDDSchemaFile.LDDToolInputFileName);
+				del = ", ";
+			}
+		}		
+		System.out.println("");	
+	}
+	
+	static private void printOutputFileNames() {
+		// print filenames used
+		System.out.println("");
+		System.out.println("Output:");		
+		System.out.println("");	
+		
+		for (String writtenFileName : dmProcessState.getSortedWrittenFileNameArr()) {
+			System.out.println("     - " + writtenFileName);
+		}	
 	}
 }
