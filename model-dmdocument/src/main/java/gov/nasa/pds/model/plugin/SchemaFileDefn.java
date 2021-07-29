@@ -77,7 +77,6 @@ public class SchemaFileDefn {
 	boolean isMission;
 
 	// relative File Specification Names
-	String relativeFileSpecModelSpec;
 	String relativeFileSpecModelSpec_DOM;
 	String relativeFileSpecXMLSchema;		// base dir path, xml schema dir, base file name, file extension
 	String relativeFileSpecSchematron;		// base dir path, xml schema dir, base file name, file extension	
@@ -90,13 +89,9 @@ public class SchemaFileDefn {
 	String relativeFileSpecCCSDSCSV;			
 	String relativeFileSpecDDProtPins;		
 	String relativeFileSpecDDProtPinsSN;	// short name - used for DD diff comparisons
-	String relativeFileSpecModelRulePins;		
-	String relativeFileSpecModelJSON;	
 	String relativeFileSpecDOMModelJSON;	
 	String relativeFileSpecModelRDF;
-	String relativeFileSpecOWLRDF;
 	String relativeFileSpecOWLRDF_DOM;
-	String relativeFileSpecSKOSTTL;
 	String relativeFileSpecSKOSTTL_DOM;
 	String relativeFileSpecReportTXT;		
 	String relativeFileSpecUMLXMI;
@@ -151,7 +146,6 @@ public class SchemaFileDefn {
 		isLDD = false;
 		isDiscipline = false;
 		isMission = false;
-		relativeFileSpecModelSpec = "TBD_relativeFileSpecModelSpec";
 		relativeFileSpecModelSpec_DOM = "TBD_relativeFileSpecModelSpec_DOM";
 		relativeFileSpecXMLSchema = "TBD_relativeFileSpecXMLSchema";  // set after setting version_id; see below
 		relativeFileSpecSchematron = "TBD_relativeFileSpecSchematron";
@@ -163,14 +157,10 @@ public class SchemaFileDefn {
 		relativeFileSpecDDCSV = "TBD_relativeFileSpecDDCSV";
 		relativeFileSpecCCSDSCSV = "TBD_relativeFileSpecCCSDSCSV";
 		relativeFileSpecDDProtPins = "relativeFileSpecDDProtPins";	
-		relativeFileSpecDDProtPinsSN = "relativeFileSpecDDProtPinsSN";	
-		relativeFileSpecModelRulePins = "TBD_relativeFileSpecModelRulePins";	
-		relativeFileSpecModelJSON = "TBD_relativeFileSpecModelJSON";	
+		relativeFileSpecDDProtPinsSN = "relativeFileSpecDDProtPinsSN";
 		relativeFileSpecDOMModelJSON = "TBD_relativeFileSpecDOMModelJSON";	
 		relativeFileSpecModelRDF = "TBD_relativeFileSpecModelRDF";
-		relativeFileSpecOWLRDF = "TBD_relativeFileSpecOWLRDF";
 		relativeFileSpecOWLRDF_DOM = "TBD_relativeFileSpecOWLRDF_DOM";
-		relativeFileSpecSKOSTTL = "TBD_relativeFileSpecSKOSTTL";
 		relativeFileSpecSKOSTTL_DOM = "TBD_relativeFileSpecSKOSTTL_DOM";
 		relativeFileSpecReportTXT = "TBD_relativeFileSpecReportTXT";
 		relativeFileSpecUMLXMI = "TBD_relativeFileSpecUMLXMI";
@@ -253,7 +243,6 @@ public class SchemaFileDefn {
 		String lLabelVersionId = getCleanLabelVersionId(DMDocument.infoModelVersionId);
 		
 		// set the relative file spec now that we have a version id
-		relativeFileSpecModelSpec = DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
 		relativeFileSpecModelSpec_DOM = DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
 		if (! isLDD) {
 			relativeFileSpecXMLSchema = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
@@ -262,7 +251,6 @@ public class SchemaFileDefn {
 			relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lLabelVersionId + "_" + lab_version_id + ".xsd";
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
-			relativeFileSpecModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
 			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
 			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
@@ -273,7 +261,6 @@ public class SchemaFileDefn {
 			relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xml";
-			relativeFileSpecModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
 			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
 			relativeFileSpecLDDPontMerge = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".pont";
 			relativeFileSpecReportTXT = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".txt";	
@@ -284,11 +271,8 @@ public class SchemaFileDefn {
 		relativeFileSpecDDDocXML = DMDocument.outputDirPath + "export/DD/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "DD" + "_" + lab_version_id + ".xml";	
 		relativeFileSpecDDProtPins = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_" + DMDocument.masterTodaysDateyymmdd + ".pins";	
 		relativeFileSpecDDProtPinsSN = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen" + ".pins";	
-		relativeFileSpecModelRulePins = DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "MODEL_RULES" + "_" + lab_version_id + ".txt";	
 		relativeFileSpecModelRDF = DMDocument.outputDirPath + "export/rdf/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "MODEL" + "_" + lab_version_id + ".rdf";		
-		relativeFileSpecOWLRDF = DMDocument.outputDirPath + "export/owl/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";
 		relativeFileSpecOWLRDF_DOM = DMDocument.outputDirPath + "export/owl/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";
-		relativeFileSpecSKOSTTL = DMDocument.outputDirPath + "export/skos/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl";
 		relativeFileSpecSKOSTTL_DOM = DMDocument.outputDirPath + "export/skos/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl";
 		relativeFileSpecUMLXMI = DMDocument.outputDirPath + "export/xmi/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "XMI" + "_clean" + "_" + lab_version_id + ".xmi";	
 		relativeFileSpecUMLXMI2 = DMDocument.outputDirPath + "export/xmi/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "XMI" + "_wNames" + "_" + lab_version_id + ".xmi";	
