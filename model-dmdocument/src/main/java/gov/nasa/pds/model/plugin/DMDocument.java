@@ -1780,6 +1780,7 @@ public class DMDocument extends Object {
 		System.out.println("");
 		System.out.println("Input:");		
 		System.out.println("");		
+		System.out.println("     - IM Version: " + alternateIMVersion);
 		
 		for (String processFlagName : dmProcessState.getSortedProcessFlagNameArr()) {
 			System.out.println("     - " + processFlagName + ": true");
