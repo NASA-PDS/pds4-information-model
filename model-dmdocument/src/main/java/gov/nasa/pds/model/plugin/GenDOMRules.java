@@ -176,18 +176,18 @@ class GenDOMRules extends Object {
 				if (lAttr.valArr.size() > 1) {
 					if (! lAttr.isNilable) {
 						lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
-						lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to one of the following values " + lDelimitedValueArr + ".";
+						lAssert.assertMsg = "The attribute " + lXPath + " must be equal to one of the following values " + lDelimitedValueArr + ".";
 					} else {
 						lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
-						lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
+						lAssert.assertMsg = "The attribute " + lXPath + " must be nulled or equal to one of the following values " + lDelimitedValueArr + ".";	
 					}
 				} else {
 					if (! lAttr.isNilable) {
 						lAssert.assertStmt = ". = (" + lDelimitedValueArr + ")";
-						lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValueArr + ".";
+						lAssert.assertMsg = "The attribute " + lXPath + " must be equal to the value " + lDelimitedValueArr + ".";
 					} else {
 						lAssert.assertStmt = "if (not(@xsi:nil eq 'true') and (not(. = (" + lDelimitedValueArr + ")))) then false() else true()";
-						lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
+						lAssert.assertMsg = "The attribute " + lXPath + " must be nulled or equal to the value " + lDelimitedValueArr + ".";	
 					}
 				}
 
@@ -196,9 +196,9 @@ class GenDOMRules extends Object {
 				String lDelimitedValue = "'" + DMDocument.masterPDSSchemaFileDefn.versionId + "'";										
 				lAssert.assertStmt = ". = (" + lDelimitedValue + ")";	
 				if (! lAttr.isNilable)
-					lAssert.assertMsg = "The attribute " + lAttrId + " must be equal to the value " + lDelimitedValue + ".";
+					lAssert.assertMsg = "The attribute " + lXPath + " must be equal to the value " + lDelimitedValue + ".";
 				else
-					lAssert.assertMsg = "The attribute " + lAttrId + " must be nulled or equal to the value " + lDelimitedValue + ".";	
+					lAssert.assertMsg = "The attribute " + lXPath + " must be nulled or equal to the value " + lDelimitedValue + ".";	
 			}
 		}
 	}
