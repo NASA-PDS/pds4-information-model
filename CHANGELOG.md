@@ -1,6 +1,15 @@
 # Changelog
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-07-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-08-05)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- Issue with DD\_Associate\_External\_Class when trying to reference pds:Internal\_Reference and pds:Local\_Internal\_Reference [\#391](https://github.com/NASA-PDS/pds4-information-model/issues/391) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- lddtool's doc directory is not in tgz file [\#346](https://github.com/NASA-PDS/pds4-information-model/issues/346) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
