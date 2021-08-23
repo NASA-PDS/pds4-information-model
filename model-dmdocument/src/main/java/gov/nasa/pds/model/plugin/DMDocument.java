@@ -44,6 +44,13 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
+import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.helper.HelpScreenException;
+import net.sourceforge.argparse4j.impl.Arguments;
+import net.sourceforge.argparse4j.inf.ArgumentParser;
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
+
 /** Main for creating Document
  *
  */ 
@@ -148,7 +155,6 @@ public class DMDocument extends Object {
 	static boolean exportJSONFileAllFlag = false;		// LDDTool, set by -6 option
 	static boolean exportSpecFileFlag = false;
 	static boolean exportDDFileFlag = false;
-	static boolean exportJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean exportOWLFileFlag = false;
 	static boolean pds4ModelFlag = true;
@@ -287,6 +293,9 @@ public class DMDocument extends Object {
 	
 	static ArrayList <String> propertyMapFileName = new ArrayList <String> ();
 	
+	// command line argument parser
+	static ArgumentParser parser;		
+	
 	// need a place to store the LDD schema file definition until it is created.
 //	static String LDDToolSchemaFileVersionId;
 
@@ -409,10 +418,13 @@ public class DMDocument extends Object {
 		// set classVersionId
 		setClassVersionIdFlag ();
 		
-		// get the primary command line arguments
+		// get the command line arguments using argparse4j
+		Namespace argparse4jNamespace = getArgumentParserNamespace(args);
+		
+		// process first set of arguments
 		//    this must be done before config file processing
 		//    the use of the option "V" (alternate IM version) will change the input file directory (config included)
-		getCommandArgsPrimary (args);
+		processArgumentParserNamespacePhase1(argparse4jNamespace);
 		
 		// first get the environment variables
 		getEnvMap();
@@ -485,8 +497,8 @@ public class DMDocument extends Object {
     		registerMessage ("3>error Configuration file IO Exception. [config.properties]");
     	}
 		
-		// get the command line arguments - these are the secondary options
-		getCommandArgsSecondary (args);
+		// process second set of arguments
+		processArgumentParserNamespacePhase2(argparse4jNamespace);    	
 		
 		// check the files
 		checkRequiredFiles ();
@@ -637,165 +649,6 @@ public class DMDocument extends Object {
     	}
     	lLIB_DIR =  replaceString (lLIB_DIR, "\\", "/");	
 	}
-	
-	static private void getCommandArgsPrimary (String args[]) {
-		for (int aind = 0; aind < args.length; aind++) {
-			String lArg = args[aind];
-//			System.out.println ("debug -1- lArg:" + lArg);
-			if (lArg.indexOf('-') == 0) {
-//				System.out.println ("debug -1- lFlag:" + lArg);
-				if (lArg.indexOf('p') > -1) {
-					dmProcessState.setPDSOptionalFlag (); 
-					PDSOptionalFlag = true;
-				}
-				if (lArg.indexOf('l') > -1) {
-					dmProcessState.setLDDToolFlag (); 
-					LDDToolFlag = true;
-				}
-				if (lArg.indexOf('h') > -1) {
-					dmProcessState.sethelpFlag (); 					
-					printHelp();
-					System.exit(0);
-				}
-				if (lArg.indexOf('V') > -1) {
-					dmProcessState.setalternateIMVersionFlag (); 
-					alternateIMVersionFlag = true;
-				}
-			} else {		
-				if (lArg.length() == 4 && LDDToolFlag && alternateIMVersionFlag) {
-					registerMessage ("1>info " + "The configured IM Versions are:" + alternateIMVersionArr);
-					if (alternateIMVersionArr.contains(lArg)) {
-						alternateIMVersion = lArg;
-						registerMessage ("1>info " + "The provided IM Version " + lArg + " is valid");
-					} else {
-						registerMessage ("3>error " + "The provided IM Version " + lArg + " is not valid");
-						printErrorMessages();
-						System.exit(1);
-					}
-				}
-			}
-		}
-	}
-	
-	static private void getCommandArgsSecondary (String args[]) {
-		for (int aind = 0; aind < args.length; aind++) {
-			String lArg = args[aind];
-//			System.out.println ("debug -2- lArg:" + lArg);
-			if (lArg.indexOf('-') == 0) {
-				String lFlag = lArg;
-				if (lArg.indexOf("map") > -1) {
-					registerMessage ("1>info Tool processing");
-					dmProcessState.setmapToolFlag (); 
-					LDDToolFlag = false;
-					mapToolFlag = true;
-					PDSOptionalFlag = true;
-				}
-				if (lArg.indexOf('t') > -1) {
-					dmProcessState.setLDDToolAnnotateDefinitionFlag (); 
-					LDDToolAnnotateDefinitionFlag = true;
-				}
-				if (lArg.indexOf('M') > -1) {
-					dmProcessState.setLDDToolMissionFlag (); 
-					LDDToolMissionFlag = true;
-					registerMessage ("1>warning " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
-				}
-				if (lArg.indexOf('m') > -1) {
-					dmProcessState.setPDS4MergeFlag (); 
-					PDS4MergeFlag = true;
-				}
-				if (lArg.indexOf('n') > -1) {
-					dmProcessState.setLDDNuanceFlag (); 
-					LDDNuanceFlag = true;
-				}
-				if (lArg.indexOf('N') > -1) {
-					dmProcessState.setprintNamespaceFlag (); 
-					printNamespaceFlag = true;
-				}
-				if (lArg.indexOf('a') > -1) {
-					dmProcessState.setLDDAttrElementFlag (); 
-//					LDDAttrElementFlag = true;
-					LDDAttrElementFlag = false;
-				}
-				if (lArg.indexOf('v') > -1) {
-					dmProcessState.setversionFlag (); 
-					System.out.println(" ");
-					System.out.println("LDDTool Version: " + LDDToolVersionId);
-					System.out.println("Built with IM Version: " + buildIMVersionId);
-					System.out.println("Build Date: " + buildDate);
-					System.out.println("Configured IM Versions: " + alternateIMVersionArr);
-					System.out.println(" ");
-					System.exit(0);
-				}
-				if (lArg.indexOf('d') > -1) {
-					dmProcessState.setdisciplineMissionFlag (); 
-					disciplineMissionFlag = true;
-				}
-				if (lArg.indexOf('D') > -1) {
-					dmProcessState.setexportDDFileFlag (); 
-					exportDDFileFlag = true;
-				}
-				if (lArg.indexOf('J') > -1) {
-					dmProcessState.setexportJSONFileFlag (); 
-					exportJSONFileFlag = true;
-				}
-				if (lArg.indexOf('1') > -1) {
-					dmProcessState.setexportSpecFileFlag (); 
-					exportSpecFileFlag = true;
-				}
-				if (lArg.indexOf('3') > -1) {
-					dmProcessState.setexportJSONAttrFlag (); 
-					exportJSONAttrFlag = true;
-				}
-				if (lArg.indexOf('4') > -1) {
-					dmProcessState.setimportJSONAttrFlag (); 
-					importJSONAttrFlag = true;
-				}
-				if (lArg.indexOf('5') > -1) {
-					dmProcessState.setexportOWLFileFlag ();
-					exportOWLFileFlag = true;
-				}
-				if (lArg.indexOf('6') > -1) {
-					dmProcessState.setexportJSONFileAllFlag (); 
-					exportJSONFileAllFlag = true;
-				}
-				if (lArg.indexOf('f') > -1) {
-					dmProcessState.setcheckFileNameFlag (); 
-					aind++;
-					while (aind < args.length) { 
-						String temFileName = args[aind];                                	                                		
-						if (((temFileName.endsWith(".csv")) || (temFileName.endsWith(".CSV"))) && (temFileName.startsWith("PDS4_"))) {
-							if ( ! checkFileName (args[aind])) {
-								registerMessage ("1>error " + "Input file not found: " + temFileName); 
-							}
-						} else {
-							registerMessage ("1>error " + "Input file name prefix is \"PDS4_\" and suffix is \".CSV\" " + temFileName); 
-						}
-						propertyMapFileName.add(temFileName); // accept only valid files
-						aind++; 
-					}
-				}
-			} else {
-				if (lArg.length() == 4 && LDDToolFlag && alternateIMVersionFlag) {
-					continue;
-				} else {
-					SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(lArg);
-					lLDDSchemaFileDefn.sourceFileName = lArg;
-					lLDDSchemaFileDefn.isActive = true;
-					lLDDSchemaFileDefn.isLDD = true;
-					lLDDSchemaFileDefn.labelVersionId = schemaLabelVersionId;
-					LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
-					masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
-				}
-			}	
-		}
-		// validate the input arguments
-		if (! PDSOptionalFlag) {
-			registerMessage ("3>error " + "The -p option must be used for PDS4 processing");
-			printHelp();
-			printErrorMessages();
-			System.exit(1);
-		}
-	}
 
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
 		boolean hasExtension = false;
@@ -810,7 +663,7 @@ public class DMDocument extends Object {
 		int lastSlashInd = lSourceFileSpec.lastIndexOf("/");
 		if ((!isFullPath) && lastSlashInd > 0) {
 			registerMessage ("3>error " + "Input filename is invalid: " + lSchemaFileDefn.sourceFileName + " - filename[.xml] or fullpath allowed");
-			printHelp();
+			parser.printHelp();
 			printErrorMessages();
 			System.exit(1);
 		}
@@ -837,7 +690,7 @@ public class DMDocument extends Object {
 				lSchemaFileDefn.LDDToolInputFileName = lSchemaFileDefn.LDDToolInputFileName.toUpperCase();
 				if (! checkFileName (lSchemaFileDefn.LDDToolInputFileName)) {
 					registerMessage ("3>error " + "Input file not found: " + lSchemaFileDefn.sourceFileName);
-					printHelp();
+					parser.printHelp();
 					printErrorMessages();
 					System.exit(1);
 				}
@@ -875,67 +728,6 @@ public class DMDocument extends Object {
 		}
 		registerMessage ("1>error " + "Input file not found: " + inputFileName);
 		return false;
-	}	
-		
-	static public void printHelp () {
-		if (mapToolFlag) {
-			System.out.println(" ");
-			System.out.println("Usage: termmap -f  inputFileName.CSV");
-		
-            System.out.println("  -f \"PropertyMapFile.csv\"  the file name is in the following format: ");
-            System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV");
-            System.out.println("	e.g. PDS4_INSIGHT_DEEN_PDS3_MAP_1A00.CSV");
-            System.out.println("      <value_types> can be {PDS3, VICR, NUANCE, ....} ");
-            System.out.println("  or -f *.csv ");
-            System.out.println("   the resulting output file name is: ");
-            System.out.println("   PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.XML"); 
-            System.out.println("   generated into the map directory");
-			System.out.println(" ");
-		} else {
-			System.out.println(" ");
-			System.out.println("Usage: lddtool -pl [OPTION]... FILE1 FILE2 ... ");
-			System.out.println("Parse a local data dictionary definition file and generate PDS4 data standard files.");
-			
-			System.out.println(" ");
-			System.out.println("Example: lddtool -pl  inputFileName");
-			
-			System.out.println(" ");
-			System.out.println("Process control:");
-			System.out.println("  -p, --PDS4       Set the context to PDS4");
-			System.out.println("  -l, --LDD        Process a local data dictionary input file");
-			System.out.println("  -d, --discipline Omit the term \"mission\" from the namespace of a dictionary.");
-			System.out.println("  -D, --DataDict   Write the Data Dictionary DocBook file.");
-			System.out.println("  -J, --JSON       Write the data dictionary to a JSON formatted file.");
-			System.out.println("  -m, --merge      Generate file to merge the local dictionary into the master dictionary");
-			System.out.println("  -M, --Mission    This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
-			System.out.println("  -n, --nuance     Write nuance property maps to LDD schema annotation in JSON");
-			System.out.println("  -N, --Namespace  Print the list of configured namespaces to the log");
-			System.out.println("  -1, --IM Spec    Write the Information Model Specification for an LDD.");
-			System.out.println("  -v, --version    Returns the LDDTool version number");
-			System.out.println("  -h, --help       Print this message");
-			
-			System.out.println(" ");
-			System.out.println("  -V, --IM Version - E.g., -V 1D00.");
-			System.out.println("        The configured IM Versions are:" + alternateIMVersionArr);
-			
-			System.out.println(" ");
-			System.out.println("Input control:");
-			System.out.println("  FILE provides the file name of an input file. The file name extension .xml is assumed.");
-			System.out.println("    If there are more than one file, the first files are considered references");
-			System.out.println("    for the last file. The last file is considered the primary local data dictionary.");
-			
-			System.out.println(" ");
-			System.out.println("Output control:");
-			System.out.println("  FILE is used to provide the file name for the output files. The file name extensions are distinct.");
-			System.out.println("  .xsd -- XML Schema file");
-			System.out.println("  .sch -- schematron file");
-			System.out.println("  .xml -- label file");
-			System.out.println("  .csv -- data dictionary information in csv formatted file.");
-			System.out.println("  .JSON -- dump of model in JSON format.");
-			System.out.println("  .txt -- process report in text format");
-			System.out.println("  .pont -- ontology file for merge");
-			System.out.println(" ");
-		}
 	}
 	
 	static public void checkRequiredFiles () {
@@ -1710,7 +1502,328 @@ public class DMDocument extends Object {
 		lMessageDefn.nameSpaceIdNCLC = lNameSpaceIdNCLC;
 		mainMsgArr.add (lMessageDefn);
 		return;
-	}	
+	}
+
+	static Namespace getArgumentParserNamespace(String args[]) {
+		parser = ArgumentParsers.newFor("LDDTool").build()
+                .defaultHelp(true)
+                .version(LDDToolVersionId) 
+                .description("LDDTool process control:");
+        
+        parser.addArgument("-p", "--PDS4 processing")
+                .dest("p")
+                .type(Boolean.class)
+                .nargs(1)
+        		.action(Arguments.storeTrue())
+                .help("Set the context to PDS4");
+        
+        parser.addArgument("-l", "--LDD")
+                .dest("l")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Process one or more local data dictionary input files");
+        
+/*        parser.addArgument("-map", "--map")
+        		.dest("map")
+        		.type(Boolean.class)
+        		.nargs(1)
+        		.action(Arguments.storeTrue())
+        		.setDefault("false")
+        		.help("Map Tool Processing");        */
+        
+        parser.addArgument("-d", "--discipline")
+                .dest("d")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Omit the term \"mission\" from the namespace of a dictionary");
+        
+        parser.addArgument("-D", "--DataDict")
+                .dest("D")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Write the Data Dictionary DocBook file");
+        
+        parser.addArgument("-J", "--JSON")
+                .dest("J")
+                .type(Boolean.class)
+                .nargs(1)
+        		.action(Arguments.storeTrue())
+                .help("Write the data dictionary to a JSON formatted file");
+        
+        parser.addArgument("-m", "--merge")
+                .dest("m")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Generate file to merge the local dictionary into the master dictionary");
+        
+        parser.addArgument("-M", "--Mission")
+                .dest("M")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+        
+        parser.addArgument("-n", "--nuance")
+                .dest("n")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Write nuance property maps to LDD schema annotation in JSON");
+        
+        parser.addArgument("-N", "--Namespace")
+                .dest("N")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Print the list of configured namespaces to the log");
+        
+/*        parser.addArgument("-t", "--Annotate")
+                .dest("t")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Annotate Definition"); */
+        
+/*        parser.addArgument("-a", "--Attr Element")
+                .dest("a")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Element Definition (Attribute)"); */
+        
+        	parser.addArgument("-1", "--IM Spec")
+                .dest("1")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Write the Information Model Specification for an LDD");
+        
+//	The following are hidden and temporarily deprecated        
+        
+/*        parser.addArgument("-4", "--Import JSON")
+                .dest("4")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Import JSON Attribute File"); */
+        
+/*        parser.addArgument("-5", "--Export OWL")
+                .dest("5")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Export OWL File"); */
+        
+/*        parser.addArgument("-6", "--Export JSON All")
+                .dest("6")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Export JSON Attribute File - All"); */
+        
+/*        parser.addArgument("-f", "--Check")
+                .dest("f")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Check File Name"); */
+    
+        parser.addArgument("-v", "--version")
+                .dest("v")
+                .type(Boolean.class)
+                .nargs(1)
+                .action(Arguments.storeTrue())
+                .help("Returns the LDDTool version number");
+               
+        parser.addArgument("-V", "--IM Version")
+                .dest("V")
+                .type(String.class)
+                .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00").setDefault(buildIMVersionFolderId)
+                .help("Set the IM Version");
+        
+        parser.addArgument("fileNameArr")
+                .dest("fileNameArr")
+                .nargs("*")
+                .help("Ingest_LDD files to process.");
+
+        Namespace namespace = null;
+        
+        try {
+        	namespace = parser.parseArgs(args);
+        } catch (HelpScreenException e) {
+            System.out.println(">>  INFO Exit(0)");
+//            parser.handleError(e);
+//            e.printStackTrace();
+            System.exit(0);
+        } catch (ArgumentParserException e) {
+            System.out.println(">>  ERROR Invalid argument list");
+            parser.printHelp();
+            System.out.println(">>  INFO  Exit(1)");
+//            parser.handleError(e);
+//            e.printStackTrace();
+            System.exit(1);
+        }
+		return namespace;
+	}
+	
+	static void processArgumentParserNamespacePhase1 (Namespace ns) {
+        
+        // handle processing flags
+        Boolean pFlag = ns.getBoolean("p");
+		if (pFlag) {
+			dmProcessState.setPDSOptionalFlag (); 
+			PDSOptionalFlag = true;
+		}
+		
+		Boolean lddFlag = ns.getBoolean("l");
+		if (lddFlag) {
+			dmProcessState.setLDDToolFlag (); 
+			LDDToolFlag = true;
+		}
+
+		// set up the alternate versions if any
+		String altVersion = ns.getString("V");
+		if (altVersion.compareTo(buildIMVersionFolderId) != 0) {  	// it is not the current version of the IM
+			if (alternateIMVersionArr.contains(altVersion)) {		// is it an allowed prior version; was validated in argument parser
+				alternateIMVersion = altVersion;
+				dmProcessState.setalternateIMVersionFlag (); 
+				alternateIMVersionFlag = true;
+			}
+		}
+		
+/*		registerMessage ("1>info " + "The configured IM Versions are:" + alternateIMVersionArr);
+		if (alternateIMVersionArr.contains(lArg)) {
+			alternateIMVersion = lArg;
+			registerMessage ("1>info " + "The provided IM Version " + lArg + " is valid");
+		} else {
+			registerMessage ("3>error " + "The provided IM Version " + lArg + " is not valid");
+			printErrorMessages();
+			System.exit(1);
+		} */
+		return;
+	}
+	
+	static void processArgumentParserNamespacePhase2 (Namespace ns) {
+		
+		// handle the request for version
+		Boolean vFlag = ns.getBoolean("v");
+		if (vFlag) {
+			dmProcessState.setversionFlag (); 
+			System.out.println(" ");
+			System.out.println("LDDTool Version: " + LDDToolVersionId);
+			System.out.println("Built with IM Version: " + buildIMVersionId);
+			System.out.println("Build Date: " + buildDate);
+			System.out.println("Configured IM Versions: " + alternateIMVersionArr);
+			System.out.println(" ");
+			System.exit(0);
+		}
+		
+		// validate the input arguments
+		if (! PDSOptionalFlag) {
+			registerMessage ("3>error " + "The -p option must be used for PDS4 processing");
+			parser.printHelp();
+            System.out.println(">>  INFO  Exit(1)");			
+			System.exit(1);
+		}
+		
+/*        String mapFlag = ns.getBoolean("map");
+		if (mapFlag) {
+			registerMessage ("1>info Tool processing");
+			dmProcessState.setmapToolFlag (); 
+			LDDToolFlag = false;
+			mapToolFlag = true;
+			PDSOptionalFlag = true;
+		} */
+/*        Boolean tFlag = ns.getBoolean("t");
+		if (tFlag) {
+			dmProcessState.setLDDToolAnnotateDefinitionFlag (); 
+			LDDToolAnnotateDefinitionFlag = true;
+		} */
+		Boolean MFlag = ns.getBoolean("M");
+		if (MFlag) {
+			dmProcessState.setLDDToolMissionFlag (); 
+			LDDToolMissionFlag = true;
+			registerMessage ("1>warning " + "The -M flag has been deprecated as of PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+		}
+		Boolean mFlag = ns.getBoolean("m");
+		if (mFlag) {
+			dmProcessState.setPDS4MergeFlag (); 
+			PDS4MergeFlag = true;
+		}
+		Boolean nFlag = ns.getBoolean("n");
+		if (nFlag) {
+			dmProcessState.setLDDNuanceFlag (); 
+			LDDNuanceFlag = true;
+		}
+		Boolean NFlag = ns.getBoolean("N");
+		if (NFlag) {
+			dmProcessState.setprintNamespaceFlag (); 
+			printNamespaceFlag = true;
+		}
+/*        String aFlag = ns.getBoolean("a");
+		if (aFlag) {
+			dmProcessState.setLDDAttrElementFlag (); 
+//			LDDAttrElementFlag = true;
+			LDDAttrElementFlag = false;
+		} */
+		
+		
+		Boolean dFlag = ns.getBoolean("d");
+		if (dFlag) {
+			dmProcessState.setdisciplineMissionFlag (); 
+			disciplineMissionFlag = true;
+		}
+		Boolean DFlag = ns.getBoolean("D");
+		if (DFlag) {
+			dmProcessState.setexportDDFileFlag (); 
+			exportDDFileFlag = true;
+		}
+		Boolean JFlag = ns.getBoolean("J");
+		if (JFlag) {
+			dmProcessState.setexportJSONFileFlag (); 
+			exportJSONFileFlag = true;
+		}
+		Boolean n1Flag = ns.getBoolean("1");
+		if (n1Flag) {
+			dmProcessState.setexportSpecFileFlag (); 
+			exportSpecFileFlag = true;
+		}
+		/*        Boolean n4Flag = ns.getBoolean("4");
+		if (n4Flag) {
+			dmProcessState.setimportJSONAttrFlag (); 
+			importJSONAttrFlag = true;
+		} */
+		/*        Boolean n5Flag = ns.getBoolean("5");
+		if (n5Flag) {
+			dmProcessState.setexportOWLFileFlag ();
+			exportOWLFileFlag = true;
+		} */
+		/*        Boolean n6Flag = ns.getBoolean("6");
+		if (n6Flag) {
+			dmProcessState.setexportJSONFileAllFlag (); 
+			exportJSONFileAllFlag = true;
+		}  */
+/*        Boolean fFlag = ns.getBoolean("f");
+		if (fFlag) {
+			dmProcessState.setcheckFileNameFlag (); 
+		} */
+        
+		// get the LDDIngest file names
+        for (String fileName : ns.<String> getList("fileNameArr")) {
+    		SchemaFileDefn lLDDSchemaFileDefn = new SchemaFileDefn(fileName);
+    		lLDDSchemaFileDefn.sourceFileName = fileName;
+    		lLDDSchemaFileDefn.isActive = true;
+    		lLDDSchemaFileDefn.isLDD = true;
+    		lLDDSchemaFileDefn.labelVersionId = schemaLabelVersionId;
+    		LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
+    		masterLDDSchemaFileDefn = lLDDSchemaFileDefn;  // the last Ingest_LDD named is the master.
+        }
+		return;
+	}
 	
 	static void printErrorMessages () {
 		String lPreviousGroupTitle = "";

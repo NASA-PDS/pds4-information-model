@@ -53,11 +53,6 @@ public class ExportModels extends Object {
 		writeDOMSpecification.printArtifacts();
 		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - Specification Done");
 		
-		if (DMDocument.exportJSONAttrFlag)  {
-			WriteModelAttrJSONFile lWriteModelAttrJSONFile = new WriteModelAttrJSONFile ();
-			lWriteModelAttrJSONFile.writeJSONFile (DMDocument.masterPDSSchemaFileDefn);
-		}
-		
 		//	write the label schema - new version 4		
 		DMDocument.dmProcessState.setRelativeFileSpecXMLSchema (DMDocument.masterPDSSchemaFileDefn);
 		XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM ();
@@ -183,7 +178,7 @@ public class ExportModels extends Object {
 		if (DMDocument.exportDDFileFlag) {				
 			DMDocument.dmProcessState.setRelativeFileSpecDDDocXML (DMDocument.masterLDDSchemaFileDefn);
 			WriteDOMDocBook lWriteDOMDocBook  = new WriteDOMDocBook (); 
-			lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);				
+			lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
 			DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBook Done");
 		}
 		
