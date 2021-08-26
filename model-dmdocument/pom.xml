@@ -116,9 +116,9 @@
           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.6.1</version>
                 <configuration>
-                    <goalPrefix>pds-model-dmdocument</goalPrefix>
+                    <goalPrefix>model-dmdocument</goalPrefix>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
                 <executions>
@@ -158,23 +158,23 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>2.0</version>
+            <version>3.6.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.2</version>
+            <version>3.6.1</version>
             <scope>provided</scope>
       </dependency>
       <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>3.0.8</version>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>
-            <version>1.0</version>
+            <version>1.1.4</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -186,6 +186,11 @@
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.argparse4j</groupId>
+            <artifactId>argparse4j</artifactId>
+            <version>0.9.0</version>
         </dependency>
     </dependencies>
 

@@ -196,12 +196,6 @@ public class DMProcessState {
 		return false;
 	}
 	
-	public Boolean getexportJSONAttrFlag () {
-		Integer lProcessOrder = processFlagMap.get("Export JSON Attr Flag");
-		if (lProcessOrder != null) return true;
-		return false;
-	}
-	
 	public Boolean getimportJSONAttrFlag () {
 		Integer lProcessOrder = processFlagMap.get("Import JSON Attr Flag");
 		if (lProcessOrder != null) return true;
@@ -320,11 +314,6 @@ public class DMProcessState {
 	
 	public void setexportSpecFileFlag () {
 		processFlagMap.put("Export IM Spec Flag", 1160);
-		return;
-	}
-	
-	public void setexportJSONAttrFlag () {
-		processFlagMap.put("Export JSON Attr Flag", 1170);
 		return;
 	}
 	
