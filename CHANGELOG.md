@@ -1,15 +1,24 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-08-05)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-08-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "dart" [\#395](https://github.com/NASA-PDS/pds4-information-model/issues/395)
+- \[namespace-registry\] add new namespace "kpds" [\#390](https://github.com/NASA-PDS/pds4-information-model/issues/390)
 
 **Defects:**
 
 - Issue with DD\_Associate\_External\_Class when trying to reference pds:Internal\_Reference and pds:Local\_Internal\_Reference [\#391](https://github.com/NASA-PDS/pds4-information-model/issues/391) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
-- lddtool's doc directory is not in tgz file [\#346](https://github.com/NASA-PDS/pds4-information-model/issues/346) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-02)
+**Other closed issues:**
+
+- Replicate diagram from PDS4 IM Spec [\#358](https://github.com/NASA-PDS/pds4-information-model/issues/358)
+- Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -34,6 +43,7 @@
 - IMTool/LDDTool still attempts to process dLDD ingested into Protege [\#378](https://github.com/NASA-PDS/pds4-information-model/issues/378)
 - The Version Id of the Product\_XML\_Schema label is not being set to the proper value. [\#371](https://github.com/NASA-PDS/pds4-information-model/issues/371)
 - LDDTool does not generate valid xpath for schematron rules for classes defined using associate\_external\_class [\#367](https://github.com/NASA-PDS/pds4-information-model/issues/367)
+- lddtool's doc directory is not in tgz file [\#346](https://github.com/NASA-PDS/pds4-information-model/issues/346) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - LDDTool generates a 1C00 file when -V 1B00 is specified [\#322](https://github.com/NASA-PDS/pds4-information-model/issues/322)
 - LDDTool does not generate the correct namespace for PSA dictionaries [\#301](https://github.com/NASA-PDS/pds4-information-model/issues/301)
 
