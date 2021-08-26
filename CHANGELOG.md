@@ -4,21 +4,11 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
 
-**Improvements:**
-
-- \[namespace-registry\] add new namespace "dart" [\#395](https://github.com/NASA-PDS/pds4-information-model/issues/395)
-- \[namespace-registry\] add new namespace "kpds" [\#390](https://github.com/NASA-PDS/pds4-information-model/issues/390)
-
 **Defects:**
 
-- Issue with DD\_Associate\_External\_Class when trying to reference pds:Internal\_Reference and pds:Local\_Internal\_Reference [\#391](https://github.com/NASA-PDS/pds4-information-model/issues/391) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool does not resolve refererences across files for a partitioned namespace. [\#398](https://github.com/NASA-PDS/pds4-information-model/issues/398)
 
-**Other closed issues:**
-
-- Replicate diagram from PDS4 IM Spec [\#358](https://github.com/NASA-PDS/pds4-information-model/issues/358)
-- Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-05)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -29,6 +19,8 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "dart" [\#395](https://github.com/NASA-PDS/pds4-information-model/issues/395)
+- \[namespace-registry\] add new namespace "kpds" [\#390](https://github.com/NASA-PDS/pds4-information-model/issues/390)
 - \[namespace-registry\] add new namespace "Earth-Based Telescope Namespace" [\#386](https://github.com/NASA-PDS/pds4-information-model/issues/386)
 - \[namespace-registry\] add new namespace "clipper" [\#374](https://github.com/NASA-PDS/pds4-information-model/issues/374)
 - \[namespace-registry\] update path "\<clementine\>" in registry PDF \(possibly shorten name\) [\#373](https://github.com/NASA-PDS/pds4-information-model/issues/373)
@@ -40,6 +32,7 @@
 
 **Defects:**
 
+- Issue with DD\_Associate\_External\_Class when trying to reference pds:Internal\_Reference and pds:Local\_Internal\_Reference [\#391](https://github.com/NASA-PDS/pds4-information-model/issues/391) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - IMTool/LDDTool still attempts to process dLDD ingested into Protege [\#378](https://github.com/NASA-PDS/pds4-information-model/issues/378)
 - The Version Id of the Product\_XML\_Schema label is not being set to the proper value. [\#371](https://github.com/NASA-PDS/pds4-information-model/issues/371)
 - LDDTool does not generate valid xpath for schematron rules for classes defined using associate\_external\_class [\#367](https://github.com/NASA-PDS/pds4-information-model/issues/367)
@@ -51,7 +44,9 @@
 
 - Stage the IMTool system for V1.17.0.0 [\#384](https://github.com/NASA-PDS/pds4-information-model/issues/384)
 - Deploy new Amazon Neptune instance for PDS4 IM prototype [\#359](https://github.com/NASA-PDS/pds4-information-model/issues/359)
+- Replicate diagram from PDS4 IM Spec [\#358](https://github.com/NASA-PDS/pds4-information-model/issues/358)
 - Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
+- Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
 
