@@ -51,7 +51,6 @@ public class GetDOMModel extends Object {
 		
 		PDSOptionalFlag = oflag;
 		
-// 333 - Remove the following after updating the writers.
 		// use the master version 
 		DOMInfoModel.ont_version_id = DMDocument.masterPDSSchemaFileDefn.ont_version_id;
 		DOMInfoModel.lab_version_id = DMDocument.masterPDSSchemaFileDefn.lab_version_id;
@@ -229,7 +228,6 @@ public class GetDOMModel extends Object {
 		}
 		DOMInfoModel.masterDOMRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 
-// 555 usecases
 		// 006 - get usecases from UpperModel.pins file
 /*		lProtPinsDOMModel.getUseCasesPins ();
 		
@@ -249,6 +247,8 @@ public class GetDOMModel extends Object {
 		
 		// 008 - if this is an LDD Tool run, parse the LDD(s)
 		if (DMDocument.LDDToolFlag) {
+			
+			// phase one - parse the Ingest_LDD
 			for (Iterator <SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
 				SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
 				LDDDOMParser lLDDDOMParser = new LDDDOMParser ();
@@ -257,7 +257,13 @@ public class GetDOMModel extends Object {
 				lLDDDOMParser.gSchemaFileDefn = lSchemaFileDefn;	// the schema definition file for this LDDParser.
 				lLDDDOMParser.getLocalDD();
 			}
-		}		
+			
+			// phase 2 - resolve component references (cross namespace DD_Association references)
+			DMDocument.primaryLDDDOMModel.getLocalDDPhase2 ();
+			
+			// phase 3 - add to master and validate
+			DMDocument.primaryLDDDOMModel.getLocalDDPhase3 ();
+		}
 		
 		// 009 - set the attrParentClass (attributes parent class) from the class name (temp fix)
 		DMDocument.masterDOMInfoModel.setAttrParentClass (true); // LDD run (master run is above)
