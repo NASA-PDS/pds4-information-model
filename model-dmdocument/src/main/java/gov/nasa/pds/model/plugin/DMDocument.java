@@ -165,6 +165,9 @@ public class DMDocument extends Object {
 	// when true this flag indicates an LDDTool run for a namespace other than pds (i.e., Common)
 	static boolean LDDToolFlag;
 	
+	// misc flags
+	static boolean debugFlag = true;
+	
 	// in an LDDTool run, when true indicates that a mission LDD is being processed
 	// this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
 	// however this flag is still needed for LDDTool runs with IM Versions prior to 1E00
@@ -275,9 +278,6 @@ public class DMDocument extends Object {
 
 	// class version identifiers (only updated classes; v1.0.0.0 is assumed)
 	static TreeMap <String, String> classVersionId;
-	
-	// debug flag	
-	static boolean debugFlag = true;
 	
 	// info, warning, and error messages
 	static int msgOrder = 100000;

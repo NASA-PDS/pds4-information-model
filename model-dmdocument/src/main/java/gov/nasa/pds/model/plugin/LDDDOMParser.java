@@ -59,36 +59,33 @@ public class LDDDOMParser extends Object
 	SchemaFileDefn gSchemaFileDefn;
 	
 	// initialize the class structures
-	TreeMap <String, DOMClass> classMap = new TreeMap <String, DOMClass> (); 	
-	TreeMap <String, DOMClass> classMapLocal = new TreeMap <String, DOMClass> (); 	
-	ArrayList <DOMClass> classArr = new ArrayList <DOMClass> ();	
+	static TreeMap <String, DOMClass> classMap = new TreeMap <String, DOMClass> (); 	
+	static TreeMap <String, DOMClass> classMapLocal = new TreeMap <String, DOMClass> (); 	
+	static ArrayList <DOMClass> classArr = new ArrayList <DOMClass> ();	
 
 	// initialize the attribute structures
-	ArrayList <DOMAttr> attrArr = new ArrayList <DOMAttr> (); 
-	TreeMap <String, DOMAttr> attrMap = new TreeMap <String, DOMAttr> (); 	
-	TreeMap <String, DOMAttr> attrMapLocal = new TreeMap <String, DOMAttr> (); 	
+	static ArrayList <DOMAttr> attrArr = new ArrayList <DOMAttr> (); 
+	static TreeMap <String, DOMAttr> attrMap = new TreeMap <String, DOMAttr> (); 	
+	static TreeMap <String, DOMAttr> attrMapLocal = new TreeMap <String, DOMAttr> (); 	
 
 	// initialize the resolved properties (after LDD Attr or Class has been mapped to a class)
-	ArrayList <DOMProp> attrArrResolved = new ArrayList <DOMProp> (); 
+	static ArrayList <DOMProp> attrArrResolved = new ArrayList <DOMProp> (); 
 	
 	// initialize the Property structures
-	ArrayList <DOMProp> LDDDOMPropArr = new ArrayList <DOMProp> (); 	
+	static ArrayList <DOMProp> LDDDOMPropArr = new ArrayList <DOMProp> (); 	
 		
 	// initialize the Rule structures
-	ArrayList <DOMRule> ruleArr = new ArrayList <DOMRule> (); 	
-	TreeMap <String, DOMRule> ruleMap = new TreeMap <String, DOMRule> ();
+	static ArrayList <DOMRule> ruleArr = new ArrayList <DOMRule> (); 	
+	static TreeMap <String, DOMRule> ruleMap = new TreeMap <String, DOMRule> ();
 
 	// initialize the Reference
-	ArrayList <RuleReferenceTypeDefn> ruleReferenceArr = new ArrayList <RuleReferenceTypeDefn> ();
+	static ArrayList <RuleReferenceTypeDefn> ruleReferenceArr = new ArrayList <RuleReferenceTypeDefn> ();
 	
 	// initialize the Property Map structures
-	ArrayList <PropertyMapsDefn> propertyMapsArr = new ArrayList <PropertyMapsDefn> (); 	
-	TreeMap <String, PropertyMapsDefn> propertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
+	static ArrayList <PropertyMapsDefn> propertyMapsArr = new ArrayList <PropertyMapsDefn> (); 	
+	static TreeMap <String, PropertyMapsDefn> propertyMapsMap = new TreeMap <String, PropertyMapsDefn> ();
 	
 	PrintWriter prLocalDD, prProtegePont;
-
-	// local_identifier to RDF_Identifier map 
-	TreeMap <String, String> lIdToRDFId = new TreeMap <String, String> (); 	
 	
 	// info, warning, and error messages
 	ArrayList <String> lddErrorMsg = new ArrayList <String> ();
@@ -127,26 +124,34 @@ public class LDDDOMParser extends Object
 	public void getLocalDD() throws java.io.IOException {
 		//parse the xml file and get the dom object
 		parseXmlFile(gSchemaFileDefn);
-		
 		DMDocument.registerMessage ("0>info getLocalDD.parseXmlFile() Done");
 		
+		// process the dom document for classes, attributes, etc
 		parseDocument(gSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument() Done");
+	}
+	
+	public void getLocalDDPhase2() {
+		// resolve component references (cross namespace DD_Association references)
+		resolveComponentsReferences (gSchemaFileDefn);
+		DMDocument.registerMessage ("0>info resolveComponentsReferences() Done");		
 		
 		// validate parsed header
 		validateParsedHeader(gSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.validateParsedHeader() Done");
-		
+	}
+	
+	public void getLocalDDPhase3() {
 		// add the LDD artifacts to the master
 		addLDDtoMaster ();
 		DMDocument.registerMessage ("0>info getLocalDD.addLDDtoMaster() Done");
 		
 		validateNoNestedExposedClasses();
-		DMDocument.registerMessage ("0>info parseDocument.validateNoNestedExposedClasses() Done");
+		DMDocument.registerMessage ("0>info getLocalDD.validateNoNestedExposedClasses() Done");
 		
 		DMDocument.registerMessage ("0>info getLocalDD Done");
-	}		
-
+	}
+	
 	private void parseXmlFile(SchemaFileDefn lSchemaFileDefn){
 		//get the factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -276,7 +281,10 @@ public class LDDDOMParser extends Object
 //		get the LDD property map
 		getPropMap (docEle);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.getPropMap() Done");
-				
+	}
+		
+	private void resolveComponentsReferences (SchemaFileDefn lSchemaFileDefn){
+		
 //		get the component for the LDD association 
 		resolveComponentsForAssociation (lSchemaFileDefn);
 		DMDocument.registerMessage ("0>info getLocalDD.parseDocument.resolveComponentsForAssociation() Done");
@@ -305,7 +313,6 @@ public class LDDDOMParser extends Object
 		
 		validateEnumeratedFlags ();
 		DMDocument.registerMessage ("0>info parseDocument.validateEnumeratedFlags() Done");
-		
 	}
 	
 	private void printClassDebug (String lLable, String lIdentifier) {
@@ -653,7 +660,10 @@ public class LDDDOMParser extends Object
 						}
 					}
 					
+					// put both local and cross domain localIdentifiers in classMapLocal for resolution
 					classMapLocal.put(lDOMClass.localIdentifier, lDOMClass);
+					String crossLocalIdentifier = lSchemaFileDefn.nameSpaceIdNCLC + "." + lDOMClass.localIdentifier;	// for referencing across stacked LDD namespaces
+					classMapLocal.put(crossLocalIdentifier, lDOMClass);
 					
 					// get the terminological entry
 					// temporarily commented out for class level TE
@@ -1614,7 +1624,7 @@ public class LDDDOMParser extends Object
 //		String lLocalIdentifier = lProperty.localIdentifierArr.get(0);
 		DOMClass lComponentDOMClass;
 		String lLocalIdentifier = lDOMProp.localIdentifier;
-				
+		
 		// Is the class local 
 		lComponentDOMClass = classMapLocal.get(lLocalIdentifier);
 		if (lComponentDOMClass  != null) {
