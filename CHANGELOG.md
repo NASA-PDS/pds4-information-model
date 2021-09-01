@@ -1,12 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-08-26)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-09-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
 
-**Defects:**
+**Requirements:**
 
-- LDDTool does not resolve refererences across files for a partitioned namespace. [\#398](https://github.com/NASA-PDS/pds4-information-model/issues/398)
+- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
 
 ## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-26)
 
@@ -32,6 +32,7 @@
 
 **Defects:**
 
+- LDDTool does not resolve refererences across files for a partitioned namespace. [\#398](https://github.com/NASA-PDS/pds4-information-model/issues/398)
 - Issue with DD\_Associate\_External\_Class when trying to reference pds:Internal\_Reference and pds:Local\_Internal\_Reference [\#391](https://github.com/NASA-PDS/pds4-information-model/issues/391) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - IMTool/LDDTool still attempts to process dLDD ingested into Protege [\#378](https://github.com/NASA-PDS/pds4-information-model/issues/378)
 - The Version Id of the Product\_XML\_Schema label is not being set to the proper value. [\#371](https://github.com/NASA-PDS/pds4-information-model/issues/371)
