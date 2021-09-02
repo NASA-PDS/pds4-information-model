@@ -1,14 +1,18 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-09-01)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-09-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
 
-**Requirements:**
+**Improvements:**
 
-- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
+- \[namespace-registry\] add new namespace "\<kpds\>" [\#402](https://github.com/NASA-PDS/pds4-information-model/issues/402)
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-08-26)
+**Other closed issues:**
+
+- CCB-283: Add reference\_type value document\_to\_data [\#164](https://github.com/NASA-PDS/pds4-information-model/issues/164)
+
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-09-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -16,6 +20,7 @@
 
 - As a developer I want to generate a query model that relates semantically similar permissible values. [\#361](https://github.com/NASA-PDS/pds4-information-model/issues/361)
 - As a user I want to know the output of the tool after it completes execution. [\#330](https://github.com/NASA-PDS/pds4-information-model/issues/330)
+- An LDD developer desires to inherit a class/attribute defined using DD\_Associate\_External\_Class [\#324](https://github.com/NASA-PDS/pds4-information-model/issues/324)
 
 **Improvements:**
 
