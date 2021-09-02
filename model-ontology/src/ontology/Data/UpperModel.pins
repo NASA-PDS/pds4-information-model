@@ -1,4 +1,4 @@
-; Thu Jul 15 21:13:19 EDT 2021
+; Thu Sep 02 18:54:19 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2169,7 +2169,8 @@
 		"document_to_investigation"
 		"document_to_instrument_host"
 		"document_to_instrument"
-		"document_to_target"))
+		"document_to_target"
+		"document_to_data"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area.100002545] of  Schematron_Rule
 
