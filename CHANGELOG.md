@@ -1,18 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-09-02)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
-
-**Improvements:**
-
-- \[namespace-registry\] add new namespace "\<kpds\>" [\#402](https://github.com/NASA-PDS/pds4-information-model/issues/402)
-
-**Other closed issues:**
-
-- CCB-283: Add reference\_type value document\_to\_data [\#164](https://github.com/NASA-PDS/pds4-information-model/issues/164)
-
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-09-01)
+## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-09-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
 
@@ -24,6 +12,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "\<kpds\>" [\#402](https://github.com/NASA-PDS/pds4-information-model/issues/402)
 - \[namespace-registry\] add new namespace "dart" [\#395](https://github.com/NASA-PDS/pds4-information-model/issues/395)
 - \[namespace-registry\] add new namespace "kpds" [\#390](https://github.com/NASA-PDS/pds4-information-model/issues/390)
 - \[namespace-registry\] add new namespace "Earth-Based Telescope Namespace" [\#386](https://github.com/NASA-PDS/pds4-information-model/issues/386)
@@ -53,6 +42,7 @@
 - Replicate diagram from PDS4 IM Spec [\#358](https://github.com/NASA-PDS/pds4-information-model/issues/358)
 - Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
 - Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
+- CCB-283: Add reference\_type value document\_to\_data [\#164](https://github.com/NASA-PDS/pds4-information-model/issues/164)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
 
