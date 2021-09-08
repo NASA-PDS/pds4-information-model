@@ -1,4 +1,4 @@
-; Thu Jul 15 21:20:55 EDT 2021
+; Wed Sep 08 12:39:13 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20155,7 +20155,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Telescope.pds.aperture] of  Definition
 
-	(definitionText "The aperture attribute provides the diameter of an opening, usually circular, that limits the quantity of light that can enter an optical instrument.")
+	(definitionText "The aperture attribute provides a measure of the effective collecting area of the telescope -- its diameter %28if single and circular%29 or its equivalent diameter %28if non-circular and%2For an array%29.  For purposes of this definition, aperture efficiency is assumed to be 100 percent.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Telescope.pds.coordinate_source] of  Definition

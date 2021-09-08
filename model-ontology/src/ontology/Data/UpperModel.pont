@@ -1,4 +1,4 @@
-; Thu Sep 02 18:54:18 EDT 2021
+; Wed Sep 08 12:33:54 EDT 2021
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1200,7 +1200,7 @@
 ;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot aperture
-;+		(comment "The aperture attribute provides the diameter of an opening, usually circular, that limits the quantity of light that can enter an optical instrument.")
+;+		(comment "The aperture attribute provides a measure of the effective collecting area of the telescope -- its diameter (if single and circular) or its equivalent diameter (if non-circular and/or an array).  For purposes of this definition, aperture efficiency is assumed to be 100 percent.")
 		(type FLOAT)
 		(create-accessor read-write))
 	(multislot property_map_id
@@ -8005,7 +8005,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot aperture
-;+		(comment "The aperture attribute provides the diameter of an opening, usually circular, that limits the quantity of light that can enter an optical instrument.")
+;+		(comment "The aperture attribute provides a measure of the effective collecting area of the telescope -- its diameter (if single and circular) or its equivalent diameter (if non-circular and/or an array).  For purposes of this definition, aperture efficiency is assumed to be 100 percent.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
