@@ -1,5 +1,17 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-09-13)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...«unknown»)
+
+**Requirements:**
+
+- CCB-329 - Broaden Definition of Attribute aperture [\#403](https://github.com/NASA-PDS/pds4-information-model/issues/403)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "kplo" [\#406](https://github.com/NASA-PDS/pds4-information-model/issues/406)
+
 ## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-09-07)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
