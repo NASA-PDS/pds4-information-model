@@ -17,4 +17,4 @@ The following table describes which versions of the PDS4 Information Model are s
 
 ## 🚨 Reporting a Vulnerability
 
-To report a vulnerability, [please submit an issue on our tracker](https://github.com/NASA-PDS/pds4-information-model/issues/new).
+To report a vulnerability, [please submit an issue on our tracker](https://github.com/NASA-PDS/pds4-information-model/issues/new?template=vulnerability-issue.md).
