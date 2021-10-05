@@ -31,9 +31,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -48,7 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>13.1.0-SNAPSHOT</version>
+  <version>13.1.0</version>
   <packaging>pom</packaging>
 
   <name>PDS4 Information Model</name>
@@ -74,6 +72,7 @@ POSSIBILITY OF SUCH DAMAGE.
     <url>https://github.com/NASA-PDS/pds4-information-model</url>
     <connection>scm:git:git://github.com/NASA-PDS/pds4-information-model.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/NASA-PDS/pds4-information-model.git</developerConnection>
+    <tag>v13.1.0</tag>
   </scm>
 
   <profiles>
