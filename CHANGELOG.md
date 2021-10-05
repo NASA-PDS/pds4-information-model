@@ -2,11 +2,11 @@
 
 ## [v13.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0) (2021-10-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0-SNAPSHOT...v13.1.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...v13.1.0)
 
-## [v13.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0-SNAPSHOT) (2021-10-05)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-10-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.2.0-SNAPSHOT)
 
 **Requirements:**
 
