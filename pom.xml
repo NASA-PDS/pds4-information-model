@@ -73,7 +73,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <scm>
     <url>https://github.com/NASA-PDS/pds4-information-model</url>
     <connection>scm:git:git://github.com/NASA-PDS/pds4-information-model.git</connection>
-    <developerConnection>scm:git:ssh://git@github.comr/NASA-PDS/pds4-information-model.git</developerConnection>
+    <developerConnection>scm:git:ssh://git@github.com/NASA-PDS/pds4-information-model.git</developerConnection>
   </scm>
 
   <profiles>
