@@ -1,12 +1,24 @@
 # Changelog
 
-## [v13.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0) (2021-10-05)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-10-20)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...v13.1.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+
+**Requirements:**
+
+- As an operator, I want to be able to convert from XML to RDF using the PDS4 Information Model [\#387](https://github.com/NASA-PDS/pds4-information-model/issues/387)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "radar" [\#409](https://github.com/NASA-PDS/pds4-information-model/issues/409)
 
 ## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-10-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.2.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
+
+## [v13.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0) (2021-10-05)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.0.2...v13.1.0)
 
 **Requirements:**
 
