@@ -33,10 +33,7 @@ import java.util.*;
 
 public class GetDOMModel extends Object {
 
-//	ISO11179MDR ISO79MDR;
 	ISO11179DOMMDR lISO11179DOMMDR;
-	
-	boolean PDSOptionalFlag = false;
 	
 	public GetDOMModel () {
 	}
@@ -47,9 +44,7 @@ public class GetDOMModel extends Object {
 	  * the document, glossary, etc are handled in GetDOMModelDoc
 ***********************************************************************************************************/
 	
-	public void getDOMModel (boolean oflag, String docFileName)  throws Throwable {
-		
-		PDSOptionalFlag = oflag;
+	public void getDOMModel (String docFileName)  throws Throwable {
 		
 		// use the master version 
 		DOMInfoModel.ont_version_id = DMDocument.masterPDSSchemaFileDefn.ont_version_id;
@@ -238,7 +233,8 @@ public class GetDOMModel extends Object {
 			DOMInfoModel.masterDOMUseCaseMap.put(lUseCase.rdfIdentifier, lUseCase);
 			DOMInfoModel.masterDOMUseCaseIdMap.put(lUseCase.identifier, lUseCase);
 		}
-		DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase> (DOMInfoModel.masterDOMUseCaseIdMap.values()); */
+		DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase> (DOMInfoModel.masterDOMUseCaseIdMap.values());
+*/
 		
 		// 007 - get list of USER attributes (owned attributes)
 		//        This must be done before LDD parsing since it needs the USER attributes

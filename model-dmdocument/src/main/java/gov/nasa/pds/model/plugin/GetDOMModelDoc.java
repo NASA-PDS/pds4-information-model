@@ -44,8 +44,6 @@ public class GetDOMModelDoc extends Object {
 	
 	ArrayList <String> texSectionFormats;
 	
-	boolean PDSOptionalFlag = false;
-	
 	public GetDOMModelDoc () {
 		
 		//	set up the Tex markers *** delete the following. ***
@@ -59,9 +57,7 @@ public class GetDOMModelDoc extends Object {
 	  initialize the models (document, information, data dictionaries) and master dictionaries (attribute and class)
 ***********************************************************************************************************/
 	
-	public void getModels (boolean oflag, String docFileName)  throws Throwable {
-
-		PDSOptionalFlag = oflag;
+	public void getModels (String docFileName)  throws Throwable {
 
 		// get the Spec Document Information from the Protege DMDocuemt Pins file
 		ProtPins protPinsInst = new ProtPins();

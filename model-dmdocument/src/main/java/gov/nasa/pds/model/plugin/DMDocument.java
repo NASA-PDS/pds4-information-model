@@ -56,9 +56,6 @@ import net.sourceforge.argparse4j.inf.Namespace;
  */ 
 public class DMDocument extends Object {
 	
-// change markers
-// 444 - Rules moved to .pins file
-	
 	// environment variables
 	static String lPARENT_DIR;
 	static String lSCRIPT_DIR;
@@ -76,6 +73,8 @@ public class DMDocument extends Object {
 	// process state for used flags, files, and directories
 	static DMProcessState dmProcessState;
 	
+	// set by -p flag; needs to remain however is deprecated for any processing; 
+	// use mastModelId=PDS4 set in config.properties file
 	static boolean PDSOptionalFlag;
 	
 	// configuration file variables
@@ -137,8 +136,7 @@ public class DMDocument extends Object {
 	static String buildIMVersionId = "1.17.0.0";
 	static String buildIMVersionFolderId = "1H00";
 	static String classVersionIdDefault = "1.0.0.0";
-//	static String LDDToolGeometry = "Geometry";
-	static boolean PDS4MergeFlag  = false;				// *** Deprecate ***
+	static boolean PDS4MergeFlag  = false;				// create protege output; not currently used
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
@@ -157,7 +155,7 @@ public class DMDocument extends Object {
 	static boolean exportDDFileFlag = false;
 	static boolean importJSONAttrFlag = false;			// non PDS processing - not currently used
 	static boolean exportOWLFileFlag = false;
-	static boolean pds4ModelFlag = true;
+	static boolean pds4ModelFlag = false;				// set in config.properties files (read by WriteDOMDocBook to exclude PDS3 from generated DD)
 	static boolean printNamespaceFlag = false;			// print the configured namespaces to the log
 	static boolean disciplineMissionFlag = false;		//  set by -d; Omit the term "mission" from the namespace of a Mission dictionary
 	static int writeDOMCount = 0;						// *** Deprecate *** LDDParser DOM Error write count; if exportDOMFlag=true then DOM code is executed and so error/warning messages are duplicated in log and txt file.
@@ -190,9 +188,6 @@ public class DMDocument extends Object {
 	
 	// *** initialized from the config file - maybe rename, to be used only during initialization of LDDSchemaFileSortMap ***
 	static TreeMap <String, SchemaFileDefn> masterAllSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();	// all namespaces in config.properties file.
-	
-	// *** deprecate and only use masterPDSSchemaFileDefn, move  ***
-//	static TreeMap <String, SchemaFileDefn> masterSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		// namespaces that will be written to XML Schema, etc (*** One only, since LDDs are not ingested anymore ***)
 	
 	// *** to be use only for LDDs ***
 	static TreeMap <String, SchemaFileDefn> LDDSchemaFileSortMap = new TreeMap <String, SchemaFileDefn> ();		   
@@ -294,11 +289,7 @@ public class DMDocument extends Object {
 	static ArrayList <String> propertyMapFileName = new ArrayList <String> ();
 	
 	// command line argument parser
-	static ArgumentParser parser;		
-	
-	// need a place to store the LDD schema file definition until it is created.
-//	static String LDDToolSchemaFileVersionId;
-
+	static ArgumentParser parser;
 
 /**********************************************************************************************************
 	main
@@ -580,18 +571,16 @@ public class DMDocument extends Object {
 		setObjectDeprecatedFlag();
 		
 		// get the 11179 Attribute Dictionary - .pins file
-//		ProtPins11179DD protPins11179DD  = new ProtPins11179DD ();
-//		protPins11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");
 		ProtPinsDOM11179DD lProtPinsDOM11179DD  = new ProtPinsDOM11179DD ();
 		lProtPinsDOM11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue, DMDocument.dataDirPath + "dd11179.pins");
 		
 		// get the models
 		GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
-		lGetDOMModelDoc.getModels (PDSOptionalFlag, docFileName + ".pins");
+		lGetDOMModelDoc.getModels (docFileName + ".pins");
 		
 		// get the DOM Model
 		GetDOMModel lGetDOMModel = new GetDOMModel();
-		lGetDOMModel.getDOMModel (PDSOptionalFlag, docFileName + ".pins");
+		lGetDOMModel.getDOMModel (docFileName + ".pins");
 		if (debugFlag) DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
 		
 		// export the models
@@ -832,7 +821,6 @@ public class DMDocument extends Object {
         		} else{
         			registerMessage ("3>error Missing schema config item: "+ stewardArrKey);
         		}
-//        		lSchemaFileDefn.setVersionIds();
         		
           		String commentKey = SCHEMA_LITERAL+nameSpaceId + ".comment";
         	    value = prop.getProperty(commentKey);
@@ -934,11 +922,6 @@ public class DMDocument extends Object {
     		}
     		
     		if (printNamespaceFlag || debugFlag) registerMessage ("1>info Configured NameSpaceIds:" + lNamespaceIdArr);
- 		
-    		// update to masterSchemaFileSortMap to process and write the target LDD
- //   		if (DMDocument.LDDToolFlag) {	
- //				masterSchemaFileSortMap.put(masterLDDSchemaFileDefn.identifier, masterLDDSchemaFileDefn);
- //   		}
         }
 
 /**********************************************************************************************************
@@ -1694,16 +1677,6 @@ public class DMDocument extends Object {
 				alternateIMVersionFlag = true;
 			}
 		}
-		
-/*		registerMessage ("1>info " + "The configured IM Versions are:" + alternateIMVersionArr);
-		if (alternateIMVersionArr.contains(lArg)) {
-			alternateIMVersion = lArg;
-			registerMessage ("1>info " + "The provided IM Version " + lArg + " is valid");
-		} else {
-			registerMessage ("3>error " + "The provided IM Version " + lArg + " is not valid");
-			printErrorMessages();
-			System.exit(1);
-		} */
 		return;
 	}
 	

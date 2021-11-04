@@ -36,7 +36,6 @@ import java.util.*;
  *
  */
 public class ExportModels extends Object {
-	boolean PDSOptionalFlag = false;
 	
 	public ExportModels () {
 				
@@ -46,13 +45,17 @@ public class ExportModels extends Object {
 		write the various documents and files
 ***********************************************************************************************************/
 
-	public void writeAllArtifacts () throws java.io.IOException {	    
+	public void writeAllArtifacts () throws java.io.IOException {
+		
+		// check if the export/ directory exists; if not create it
+		DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/");
+		
 	    // write the model specification
 		DMDocument.dmProcessState.setRelativeFileSpecModelSpec_DOM (DMDocument.masterPDSSchemaFileDefn);
-		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo, PDSOptionalFlag);
+		WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo);
 		writeDOMSpecification.printArtifacts();
 		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - Specification Done");
-		
+				
 		//	write the label schema - new version 4		
 		DMDocument.dmProcessState.setRelativeFileSpecXMLSchema (DMDocument.masterPDSSchemaFileDefn);
 		XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM ();
@@ -158,6 +161,10 @@ public class ExportModels extends Object {
 	}
 
 	public void writeLDDArtifacts () throws java.io.IOException {
+		
+		// check if the export directory exists; if not create it
+		DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/");
+		
 		// DOM
 		ArrayList <DOMClass> lLDDDOMClassArr = new ArrayList <DOMClass> ();
 		TreeMap <String, DOMClass> lLDDDOMClassMap = new TreeMap <String, DOMClass> ();
@@ -215,7 +222,7 @@ public class ExportModels extends Object {
 		// write the Info Spec file 
 		if (DMDocument.exportSpecFileFlag) {
 			DMDocument.dmProcessState.setRelativeFileSpecModelSpec_DOM (DMDocument.masterLDDSchemaFileDefn);
-			WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification (DMDocument.docInfo, PDSOptionalFlag); 
+			WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification (DMDocument.docInfo); 
 			writeDOMSpecification.printArtifacts();
 			DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - Info Model Spec Done");
 		}
