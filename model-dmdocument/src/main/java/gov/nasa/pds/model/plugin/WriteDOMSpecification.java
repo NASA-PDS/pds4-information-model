@@ -44,7 +44,7 @@ public class WriteDOMSpecification extends Object {
 	ArrayList <String> emwfHTML;
 	
 	boolean includeAllAttrFlag = false;
-	boolean PDSOptionalFlag = false;
+	boolean PDSOptionalFlag = false;		// to be deprecated in WriteDOMSpecification
 	boolean lDebugPrint = false;
 	int figNum;
 	Date rTodaysDate;
@@ -53,9 +53,8 @@ public class WriteDOMSpecification extends Object {
 	
 	PrintWriter prhtml;
 	
-	public WriteDOMSpecification (DocDefn lDocInfo, boolean lflag) {
+	public WriteDOMSpecification (DocDefn lDocInfo) {
 		docInfo = lDocInfo;
-		PDSOptionalFlag = lflag;
 		
 		//	set up the HTML Headers
 		begSectionFormats = new ArrayList <String>();

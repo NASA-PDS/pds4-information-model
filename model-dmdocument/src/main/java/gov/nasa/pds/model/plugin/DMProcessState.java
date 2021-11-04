@@ -342,37 +342,37 @@ public class DMProcessState {
 	
 	public void setRelativeFileSpecModelSpec_DOM (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecModelSpec_DOM, 1020);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecXMLSchema (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecXMLSchema, 1030);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecSchematron (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecSchematron, 1040);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecXMLLabel (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecXMLLabel, 1080);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecDOMModelJSON (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDOMModelJSON, 1100);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecDDCSV (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDDCSV, 1110);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
@@ -384,13 +384,13 @@ public class DMProcessState {
 	
 	public void setRelativeFileSpecLDDPontMerge (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecLDDPontMerge, 1130);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecReportTXT (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecReportTXT, 1140);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
@@ -402,13 +402,13 @@ public class DMProcessState {
 	
 	public void setRelativeFileSpecDDProtPins (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDDProtPins, 1160);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
 	public void setRelativeFileSpecDDProtPinsSN (SchemaFileDefn lSchemaFileDefn) {
 		writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDDProtPinsSN, 1170);
-//		if (lSchemaFileDefn.isLDD) DMDocument.checkCreateDirectory (DMDocument.outputDirPath + "export/xxx/");
+		// checkCreateDirectory not needed, file is in root directory
 		return;
 	}
 	
