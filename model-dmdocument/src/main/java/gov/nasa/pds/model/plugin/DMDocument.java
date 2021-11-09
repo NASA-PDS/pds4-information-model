@@ -243,10 +243,6 @@ public class DMDocument extends Object {
 	
 	// master class disposition maps
 	static TreeMap <String, DispDefn> masterClassDispoMap2;
-	static ArrayList <DispDefn> masterClassDispoArr;
-	static ArrayList <String> masterStewardArr;
-	static ArrayList <String> masterNameSpaceIDArr;
-	static ArrayList <String> masterStewardNameSpaceIDArr;
 	
 	// registry classes and attributes
 	static ArrayList <String> registryClass;
@@ -502,36 +498,7 @@ public class DMDocument extends Object {
 		}
 		// get the disposition file, parse out allowed stewards and namespaceids
 		XMLDocParserDomMDPTNConfig lMDPTNConfig = new XMLDocParserDomMDPTNConfig();
-		masterClassDispoMap2 = lMDPTNConfig.getXMLTable2(dataDirPath + "MDPTNConfigClassDisp.xml"); 
-		masterClassDispoArr = new ArrayList <DispDefn> (masterClassDispoMap2.values());
-		masterStewardArr = new ArrayList <String> ();
-		masterNameSpaceIDArr = new ArrayList <String> ();
-		masterStewardNameSpaceIDArr = new ArrayList <String> ();
-		
-		TreeMap <String, String> lStewardMap = new TreeMap <String, String> ();
-		TreeMap <String, String> lNameSpaceIdMap = new TreeMap <String, String> ();
-		TreeMap <String, String> lStewardNameSpaceIdMap = new TreeMap <String, String> ();
-		
-		// get the allowed stewards and namespaces from the configuration file
-		for (Iterator <DispDefn> i = masterClassDispoArr.iterator(); i.hasNext();) {
-			DispDefn lDispDefn = (DispDefn) i.next();
-			String lStewardNameSpaceId = lDispDefn.intSteward + " - " + lDispDefn.intNSId;
-			if (! masterStewardNameSpaceIDArr.contains(lStewardNameSpaceId)) {
-				masterStewardNameSpaceIDArr.add(lStewardNameSpaceId);
-				lStewardNameSpaceIdMap.put(lStewardNameSpaceId, lStewardNameSpaceId);
-			}
-			if (! masterStewardArr.contains(lDispDefn.intSteward)) {
-				masterStewardArr.add(lDispDefn.intSteward);
-				lStewardMap.put(lDispDefn.intSteward, lDispDefn.intSteward);
-			}
-			if (! masterNameSpaceIDArr.contains(lDispDefn.intNSId)) {
-				masterNameSpaceIDArr.add(lDispDefn.intNSId);
-				lNameSpaceIdMap.put(lDispDefn.intNSId, lDispDefn.intNSId);
-			}
-		}
-		masterStewardArr = new ArrayList <String> (lStewardMap.values());
-		masterNameSpaceIDArr = new ArrayList <String> (lNameSpaceIdMap.values());
-		masterStewardNameSpaceIDArr = new ArrayList <String> (lStewardNameSpaceIdMap.values());
+		masterClassDispoMap2 = lMDPTNConfig.getXMLTable2(dataDirPath + "MDPTNConfigClassDisp.xml");
 		
 		// set up the System Build version
 		XMLSchemaLabelBuildNum = pds4BuildId;
@@ -557,15 +524,6 @@ public class DMDocument extends Object {
 		registerMessage ("1>info PARENT_DIR: " + lPARENT_DIR);
 		registerMessage ("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
 		registerMessage ("1>info LIB_DIR: " + lLIB_DIR);
-		
-		// print out the stewards - namespaceid pairs
-		if (DMDocument.debugFlag) {
-			registerMessage ("0>info Disposition File Steward/NameSpaceId:");
-			for (Iterator <String> i = masterStewardNameSpaceIDArr.iterator(); i.hasNext();) {
-				String lStewardNameSpaceId = (String) i.next();
-				registerMessage ("0>info " + lStewardNameSpaceId);
-			}
-		}
 		
 		// set the deprecated flags
 		setObjectDeprecatedFlag();
