@@ -1,15 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-11-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-11-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
 
 **Defects:**
 
-- PDS4 Information Model Release Notes have errors.  [\#412](https://github.com/NASA-PDS/pds4-information-model/issues/412)
-- LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- LDDTool WARNING Header - New namespace id has been specified:ml [\#416](https://github.com/NASA-PDS/pds4-information-model/issues/416)
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-10-20)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-11-04)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
@@ -20,6 +19,11 @@
 **Improvements:**
 
 - \[namespace-registry\] add new namespace "radar" [\#409](https://github.com/NASA-PDS/pds4-information-model/issues/409)
+
+**Defects:**
+
+- PDS4 Information Model Release Notes have errors.  [\#412](https://github.com/NASA-PDS/pds4-information-model/issues/412)
+- LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 ## [v13.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0) (2021-10-05)
 
