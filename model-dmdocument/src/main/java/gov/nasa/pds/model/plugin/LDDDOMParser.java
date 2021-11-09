@@ -2405,16 +2405,6 @@ public class LDDDOMParser extends Object
 		if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") == 0) {
 			DMDocument.registerMessage ("2>error Header: " + " - Master namespace is not allowed as a local data dictionary namespace:" + lSchemaFileDefn.nameSpaceIdNC);
 		}
-
-		String lSteward = lSchemaFileDefn.stewardId;
-		String lNameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-//		ArrayList <String> lStewardArr = new ArrayList <String> (DMDocument.masterClassStewardSortMap.keySet());
-		if (! DMDocument.masterStewardArr.contains(lSteward)) {
-			DMDocument.registerMessage ("2>warning Header: " + " - New steward has been specified:" + lSteward);
-		}
-		if (! DMDocument.masterNameSpaceIDArr.contains(lNameSpaceIdNC)) {
-			DMDocument.registerMessage ("2>warning Header: " + " - New namespace id has been specified:" + lNameSpaceIdNC);
-		}
 	}
 	
 	// finish copying in the values of the USER attribute
