@@ -1,14 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-11-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-11-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
 
 **Defects:**
 
-- LDDTool WARNING Header - New namespace id has been specified:ml [\#416](https://github.com/NASA-PDS/pds4-information-model/issues/416)
+- Contradictory DISP rule assertions exist in the PDS4 IM from legacy ingestion [\#351](https://github.com/NASA-PDS/pds4-information-model/issues/351) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-11-04)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-11-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
@@ -22,6 +22,7 @@
 
 **Defects:**
 
+- LDDTool WARNING Header - New namespace id has been specified:ml [\#416](https://github.com/NASA-PDS/pds4-information-model/issues/416)
 - PDS4 Information Model Release Notes have errors.  [\#412](https://github.com/NASA-PDS/pds4-information-model/issues/412)
 - LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
