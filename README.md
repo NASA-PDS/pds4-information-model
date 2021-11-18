@@ -29,9 +29,21 @@ For development installation, use maven:
 ```console
 $ # Package the software
 $ mvn clean package
-$ # Generate the site
-$ mvn site:stage
+
+$ # Generate the site (must run package first)
+$ mvn site:site site:stage
+
+$ # To view generated docs
+$ open target/staging/model/index.html
 ```
+
+To update the site documentation, see each components `src/site` directory (this is common for all Java Maven software):
+| Component | Site Directory | Online Documentation |
+|-----------|----------------|----------------------|
+| Top-level Page | `src/site` | https://nasa-pds.github.io/pds4-information-model/ |
+| LDDTool | `model-lddtool/src/site` | https://nasa-pds.github.io/pds4-information-model/model-lddtool/ |
+| DMDocument | `model-dmdocument/src/site` | https://nasa-pds.github.io/pds4-information-model/model-dmdocument/ |
+| Ontology | `model-ontology/src/site` | https://nasa-pds.github.io/pds4-information-model/model-ontology/ |
 
 
 ## 💁‍♀️ Usage
