@@ -1,6 +1,14 @@
 # Changelog
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-11-18)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-12-02)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- LDDTool documentation inconsistency [\#375](https://github.com/NASA-PDS/pds4-information-model/issues/375) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-11-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
