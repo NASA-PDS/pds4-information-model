@@ -1,5 +1,7 @@
 # 🪐 NASA PDS4 Information Model Repo
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5755795.svg)](https://doi.org/10.5281/zenodo.5755795)
+
 The software tools and data necessary for generating the Information Model including PDS4 ontology, data, and information model.
 
 Please visit our website at https://nasa-pds.github.io/pds4-information-model/ for information about the modules that comrpise the information model.
