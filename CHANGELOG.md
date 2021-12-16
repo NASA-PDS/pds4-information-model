@@ -1,6 +1,15 @@
 # Changelog
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-12-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2021-12-16)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- Missing JSON LDDs \(alt & particle\) [\#424](https://github.com/NASA-PDS/pds4-information-model/issues/424) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+- Inconsistent naming of JSON schema files [\#418](https://github.com/NASA-PDS/pds4-information-model/issues/418) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2021-12-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
