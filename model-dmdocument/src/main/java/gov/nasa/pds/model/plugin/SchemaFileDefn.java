@@ -251,7 +251,7 @@ public class SchemaFileDefn {
 			relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lLabelVersionId + "_" + lab_version_id + ".xsd";
 			relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
 			relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
-			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + "JSON" + "_" + lab_version_id + ".JSON";	
+			relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".JSON";	
 			relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id;			
 			relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_CCSDS"  + "_" + lab_version_id;			
 		} else {

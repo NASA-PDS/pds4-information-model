@@ -1506,7 +1506,7 @@ public class DMDocument extends Object {
                 .type(Boolean.class)
                 .nargs(1)
                 .action(Arguments.storeTrue())
-                .help("This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool User's Manual for more information on how to provide this information.");
+                .help("This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool Usage document for more information on how to provide this information.");
         
         parser.addArgument("-n", "--nuance")
                 .dest("n")
