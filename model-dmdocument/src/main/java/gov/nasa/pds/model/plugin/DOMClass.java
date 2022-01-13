@@ -90,6 +90,19 @@ public class DOMClass extends ISOClassOAIS11179 {
 
 	ArrayList <DOMAttr> allEnumAttrArr;						// all enumerated attributes, this.class and all superclasses
 	
+	String dataIdentifier; 						// data identifier
+	String ocDataIdentifier;					// object class
+	String desDataIdentifier;					// designation 
+	String defDataIdentifier;					// definition
+	String teDataIdentifier;					// terminological entry
+	String administrationRecordValue;
+	String registeredByValue;
+//	
+//  **** move registeredByValue to ISOClassOAIS11179
+//	**** deprecate registrationAuthorityIdentifierValue and use ISOClassOAIS11179.regAuthId
+//  **** add both to DOMProtAttr ???
+// 	String registrationAuthorityIdentifierValue;
+	
 	public DOMClass () {
 		section = "TBD_section";
 		role = "TBD_role";
@@ -145,6 +158,13 @@ public class DOMClass extends ISOClassOAIS11179 {
 		ownedPropNSTitleMap = new TreeMap <String, DOMProp> ();
 		ownedAttrAssocNSTitleMap = new TreeMap <String, DOMAttr> ();
 		allEnumAttrArr = new ArrayList <DOMAttr> ();
+		
+		ocDataIdentifier = "TBD_ocDataIdentifier";				// data element 
+		desDataIdentifier = "TBD_desDataIdentifier";			// designation 
+		defDataIdentifier = "TBD_defDataIdentifier";			// definition
+		teDataIdentifier = "TBD_teDataIdentifier";				// terminlogical entry			
+		administrationRecordValue = "TBD_administrationRecordValue";                                                               
+		registeredByValue = "TBD_registeredByValue";                   
 	}
 	
 	public String getSection() {
@@ -168,12 +188,16 @@ public class DOMClass extends ISOClassOAIS11179 {
 			this.section = lDispDefn.section;
 			String lDisp = lDispDefn.disposition;
 			this.steward = lDispDefn.intSteward;
-			String lClassNameSpaceIdNC = lDispDefn.intNSId;
+			String lClassNameSpaceIdNC = lDispDefn.intNSId; // needed below for identifier
 			this.nameSpaceIdNC = lClassNameSpaceIdNC;
 			this.nameSpaceId = lClassNameSpaceIdNC + ":";
 			
 			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
-			if (isFromProtege) this.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, this.title);
+			if (isFromProtege) {
+				this.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, this.title);
+				set11179Attr (this.identifier);
+//				System.out.println("debug getDOMClassDisposition this.identifier:" + this.identifier);
+			}
 			this.isMasterClass = true;
 			if (lDisp.indexOf("V") > -1) {
 				this.isVacuous = true;
@@ -196,5 +220,59 @@ public class DOMClass extends ISOClassOAIS11179 {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 *   get the disposition of a class (from Protege)
+	 */
+	public boolean getDOMClassDisposition2 () {
+		if (this.title.compareTo(DMDocument.TopLevelAttrClassName) != 0)
+			this.nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC;
+		else 
+			this.nameSpaceIdNC = "tbd";  // %3ACLIPS_TOP_LEVEL_SLOT_CLASS is not in the Common namespace
+		this.nameSpaceId = this.nameSpaceIdNC + ":";
+		this.identifier = DOMInfoModel.getClassIdentifier(this.nameSpaceIdNC, this.title);
+		set11179Attr (this.identifier);
+		System.out.println("debug getDOMClassDisposition2 this.identifier:" + this.identifier);
+		return true;
+	}	
+	
+	public void set11179Attr (String lIdentifier) {
+		// object class identifiers	
+		dataIdentifier = lIdentifier;
+		ocDataIdentifier = "OC." + lIdentifier;				// data element
+		desDataIdentifier = "DES." + lIdentifier;			// designation 
+		defDataIdentifier = "DEF." + lIdentifier;			// definition
+		teDataIdentifier = "TE." + lIdentifier;				// terminological entry		
+	}
+	
+	static ArrayList <DOMClass> sortDOMClass (ArrayList <DOMClass> ISOArr) {
+		TreeMap <String, DOMClass> lISOMap = new TreeMap <String, DOMClass> ();
+		for (Iterator<DOMClass> i = ISOArr.iterator(); i.hasNext();) {
+			DOMClass lISO = (DOMClass) i.next();
+			lISOMap.put(lISO.identifier, lISO);
+		}
+		ArrayList <DOMClass> lISOArr = new ArrayList <DOMClass> (lISOMap.values());
+		return lISOArr;
+	}
+	
+	static ArrayList <DOMAttr> sortDOMAttr (ArrayList <DOMAttr> ISOArr) {
+		TreeMap <String, DOMAttr> lISOMap = new TreeMap <String, DOMAttr> ();
+		for (Iterator<DOMAttr> i = ISOArr.iterator(); i.hasNext();) {
+			DOMAttr lISO = (DOMAttr) i.next();
+			lISOMap.put(lISO.identifier, lISO);
+		}
+		ArrayList <DOMAttr> lISOArr = new ArrayList <DOMAttr> (lISOMap.values());
+		return lISOArr;
+	}
+	
+	static ArrayList <DOMProp> sortDOMProp (ArrayList <DOMProp> ISOArr) {
+		TreeMap <String, DOMProp> lISOMap = new TreeMap <String, DOMProp> ();
+		for (Iterator<DOMProp> i = ISOArr.iterator(); i.hasNext();) {
+			DOMProp lISO = (DOMProp) i.next();
+			lISOMap.put(lISO.identifier, lISO);
+		}
+		ArrayList <DOMProp> lISOArr = new ArrayList <DOMProp> (lISOMap.values());
+		return lISOArr;
 	}
 }

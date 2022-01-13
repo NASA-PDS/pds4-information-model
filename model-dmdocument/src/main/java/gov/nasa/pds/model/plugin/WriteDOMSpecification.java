@@ -44,7 +44,6 @@ public class WriteDOMSpecification extends Object {
 	ArrayList <String> emwfHTML;
 	
 	boolean includeAllAttrFlag = false;
-	boolean PDSOptionalFlag = false;		// to be deprecated in WriteDOMSpecification
 	boolean lDebugPrint = false;
 	int figNum;
 	Date rTodaysDate;
@@ -228,7 +227,7 @@ public class WriteDOMSpecification extends Object {
 				accumClassNameArr.add(locClass2.title);
 			}
 			accumClassNameArr.add(lClass.title);
-			Integer numSupClass = new Integer (lClass.superClassHierArr.size());
+			Integer numSupClass = lClass.superClassHierArr.size();
 			classParentCountMap.put(lClass.rdfIdentifier, numSupClass);
 			concatClassName = "";
 			for (Iterator <String> j = accumClassNameArr.iterator(); j.hasNext();) {
@@ -271,7 +270,8 @@ public class WriteDOMSpecification extends Object {
 			SectionContentDefn content = (SectionContentDefn) docInfo.sectionContentMap.get(cid);
             Collection<DOMClass> classArr =  DOMInfoModel.masterDOMClassIdMap.values();
 			for (Iterator <DOMClass> j = classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();			
+				DOMClass lClass = (DOMClass) j.next();
+				if (lClass.isInactive) continue;
 				if (content.includeClassId.contains(lClass.section)) {					
 					lClassSortMap.put(lClass.title, lClass);
 				}
@@ -488,21 +488,6 @@ public class WriteDOMSpecification extends Object {
 			String cardval = cmin + ".." + cmax;
 			if (cardval.compareTo("1..0") == 0) { 		
 				cardval = "none";
-			} else if (PDSOptionalFlag) {															// Needed for PDS info model - Optional Attributes
-				if (myIsInteger(cmin) && myIsInteger(cmax)) {			// if mincard > maxcard then we have an optional attribute
-					Integer iccmin = new Integer (cmin);									//    if so calc mincard = mincard-maxcard - 1 
-					int icmin = iccmin.intValue();												//    e.g. 7,3 ->  3,3; 4,3 -> 0,3
-					Integer iccmax = new Integer (cmax);
-					int icmax = iccmax.intValue();
-					if (icmin > icmax) {
-						icmin = (icmin - icmax) - 1;
-						iccmin = new Integer (icmin);
-						cmin = iccmin.toString();
-						cardval = cmin + ".." + cmax;
-					}
-				} else {
-					phindicator = "&nbsp;";
-				}
 			}
 			if (lProp.isRestrictedInSubclass) {		// attribute is restricted in a subclass as opposed to restricted relative to the attribute in the "USER" class
 				phindicator += "R";
@@ -613,23 +598,7 @@ public class WriteDOMSpecification extends Object {
 				String cardval = cmin + ".." + cmax;
 				if (cardval.compareTo("1..0") == 0) { 		
 					cardval = "none";
-				} else if (PDSOptionalFlag) {															// Needed for PDS info model - Optional Attributes
-					if (myIsInteger(cmin) && myIsInteger(cmax)) {			// if mincard > maxcard then we have an optional attribute
-						Integer iccmin = new Integer (cmin);									//    if so calc mincard = mincard-maxcard - 1 
-						int icmin = iccmin.intValue();												//    e.g. 7,3 ->  3,3; 4,3 -> 0,3
-						Integer iccmax = new Integer (cmax);
-						int icmax = iccmax.intValue();
-						if (icmin > icmax) {
-							icmin = (icmin - icmax) - 1;
-							iccmin = new Integer (icmin);
-							cmin = iccmin.toString();
-							cardval = cmin + ".." + cmax;
-						}
-					} else {
-						phindicator = "&nbsp;";
-					}
 				}
-	
 				if (cmin.compareTo(cmax) == 0) {
 					cardval = cmin;
 				}
@@ -653,24 +622,15 @@ public class WriteDOMSpecification extends Object {
 		*  Print HTML table Header
 		*/
 	private void printHTMLTableHdr () {
-		if (PDSOptionalFlag) {
-			prhtml.println("<table border=1>");
-			prhtml.println("<tr> <th>&nbsp;</th> <th>Entity</th> <th>Card</th> <th>Value/Class</th> <th>Ind</th> </tr>");
-		} else {
-			prhtml.println("<table border=1>");
-			prhtml.println("<tr> <th>&nbsp;</th> <th>Entity</th> <th>Card</th> <th>Value/Class</th> <th>Ind</th> </tr>");
-		}
+		prhtml.println("<table border=1>");
+		prhtml.println("<tr> <th>&nbsp;</th> <th>Entity</th> <th>Card</th> <th>Value/Class</th> <th>Ind</th> </tr>");
 	}
 
 	/**
 		*  Print a HTML table row
 		*/
 	private void printHTMLTableRow (String phRelation, String phtitle, String phcard, String phvalue, String phindicator) {
-		if (PDSOptionalFlag) {
-		  prhtml.println("<tr><td><b>" + phRelation + "</b></td><td>" + phtitle + "</td><td>" + phcard + "</td><td>" + phvalue + "</td><td>" + phindicator + "</td></tr>");
-		} else {
-		  prhtml.println("<tr><td><b>" + phRelation + "</b></td><td>" + phtitle + "</td><td>" + phcard + "</td><td>" + phvalue + "</td><td>" + phindicator + "</td></tr>");
-		}
+		 prhtml.println("<tr><td><b>" + phRelation + "</b></td><td>" + phtitle + "</td><td>" + phcard + "</td><td>" + phvalue + "</td><td>" + phindicator + "</td></tr>");
 	}
 	
 	/**
@@ -716,6 +676,7 @@ public class WriteDOMSpecification extends Object {
 		for (Iterator <DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;
+			if (lClass.isInactive) continue;
 			for (Iterator <DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
 				DOMProp lProp = (DOMProp) j.next();
 			
@@ -774,67 +735,62 @@ public class WriteDOMSpecification extends Object {
 		if (lProp.hasDOMObject != null) {
 			if ( lProp.hasDOMObject instanceof DOMAttr) {
 				DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
-				if (lAttr.isUsedInClass || includeAllAttrFlag) {
+				if (! lAttr.isInactive) {
+					if (lAttr.isUsedInClass || includeAllAttrFlag) {
 					
-		    // get lClassAnchorString
-		       DOMClass lClass = lAttr.attrParentClass;
-		       String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
-		       String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
-		       String lRegistrationStatus = "";
-		       if (lAttr.registrationStatus.compareTo("Retired") == 0)
-                           lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-		
-                       phtitle = "<a name=\"" + lAttr.anchorString + "\"><b>" + lAttr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
-		       desc = lAttr.definition;
-		       altflag = false; altlist = ""; fflag = true;
-		       HashMap lmap = (HashMap) lAttr.genAttrMap;
- 		       if (lmap != null) {
-		       	ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
-			if (attraliasarr != null) {
-				for (Iterator <String> i = attraliasarr.iterator(); i.hasNext();) {
-					if (fflag) {
-					   fflag = false;
-					   altflag = true;
-					   altlist = " {Alternatives: ";
-					} else {
-					   altlist += ", ";
+						// get lClassAnchorString
+						DOMClass lClass = lAttr.attrParentClass;
+						String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
+						String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
+						String lRegistrationStatus = "";
+						if (lAttr.registrationStatus.compareTo("Retired") == 0)
+							lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
+						phtitle = "<a name=\"" + lAttr.anchorString + "\"><b>" + lAttr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
+						desc = lAttr.definition;
+						altflag = false; altlist = ""; fflag = true;
+						HashMap lmap = (HashMap) lAttr.genAttrMap;
+						if (lmap != null) {
+							ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
+							if (attraliasarr != null) {
+								for (Iterator <String> i = attraliasarr.iterator(); i.hasNext();) {
+									if (fflag) {
+										fflag = false;
+										altflag = true;
+										altlist = " {Alternatives: ";
+									} else {
+										altlist += ", ";
+									}
+									altlist += (String) i.next();
+								}
+								if (altflag) {
+									altlist += "} ";
+								}
+							}
+						}
+						prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
 					}
-					altlist += (String) i.next();
+
+					printAttrType (lProp);
+					printAttrUnit (lAttr);
+					printAttrMisc (lAttr);
+					printAttrValue (lAttr);
+					printAttrValueExtended (lAttr);
+					printAttrSchematronRuleMsg(lAttr);
 				}
-				if (altflag) {
-					altlist += "} ";
+			} else {
+				DOMClass lDOMClass = lProp.attrParentClass;
+				if (! lDOMClass.isInactive) {
+					String lClassAnchorString = ("attribute_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title +"_"+ lDOMClass.nameSpaceIdNC + "_" + lProp.title).toLowerCase();
+					String lClassHrefString = "<a href=\"#" + "class_"+ lDOMClass.nameSpaceIdNC +"_" + lDOMClass.title.toLowerCase() +   "\">" + lDOMClass.title + "</a>";
+					phtitle = "<a name=\"" + lClassAnchorString + "\"><b>" + lProp.title + "</b> in " + lClassHrefString + "</a>";
+					desc = lProp.definition;
+					altlist = "";
+					prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
+					printAttrType (lProp);
 				}
-			 }
-		        }
-		        prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
-                       }
-
-		       printAttrType (lProp);
-		       printAttrUnit (lAttr);
-	               printAttrMisc (lAttr);
-	       	       printAttrValue (lAttr);
-		       printAttrValueExtended (lAttr);
-		       printAttrSchematronRuleMsg(lAttr);
-	         } else {
-                       DOMClass lDOMMemberClass = (DOMClass) lProp.hasDOMObject;
-                       DOMClass lDOMClass = lProp.attrParentClass;
-                       String lMemberTitle = lDOMMemberClass.title;
-		       String lClassAnchorString = ("attribute_" + lDOMClass.nameSpaceIdNC + "_" + lDOMClass.title +"_"+ lDOMClass.nameSpaceIdNC + "_" + lProp.title).toLowerCase();
-		       String lClassHrefString = "<a href=\"#" + "class_"+ lDOMClass.nameSpaceIdNC +"_" + lDOMClass.title.toLowerCase() +   "\">" + lDOMClass.title + "</a>";
-		       String lRegistrationStatus = "";
-		      // if (lProp.registrationStatus.compareTo("Retired") == 0)
-                       //    lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-                       phtitle = "<a name=\"" + lClassAnchorString + "\"><b>" + lProp.title + "</b> in " + lClassHrefString + "</a>";
-
-		       desc = lProp.definition;
-                       altlist = "";
-		        prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
-		   printAttrType (lProp);
-
-                 }   	
-          }
-        }
-
+			}   	
+		}
+	}
 	
 	/**
 	*  Print an attributes unit
@@ -1052,23 +1008,6 @@ private void printAttrUnit (DOMAttr attr) {
 	*  Print schematron rule for the attribute
 	*/
 	private void printAttrSchematronRuleMsg(DOMAttr lAttr) {
-		/*
-		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleNewArr);
-		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
-			DOMRule lRule = (DOMRule) i.next();
-			for (Iterator <DOMAssert> j = lRule.assertArr.iterator(); j.hasNext();) {
-				DOMAssert lAssert = (DOMAssert) j.next();
-				if (! ((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0) && lAssert.attrTitle.compareTo(lAttr.title) == 0)) continue;
-				if (lAssert.assertMsg.indexOf("TBD") == 0) continue;				
-				if (lAssert.specMesg.indexOf("TBD") == 0) continue;				
-				if (lAssert.assertType.compareTo("RAW") != 0) continue;
-//				prhtml.println("<i>Schematron Rule: " + lAssert.assertMsg + "</i><br>");
-				prhtml.println("<i>Schematron Rule: " + lAssert.specMesg + "</i><br>");
-			}
-		} 
-		*/
-		//revert back to legacy code - DOMInfoModel.masterDOMRuleNewArr is null
-		//fix later
 		ArrayList <DOMRule> lRuleArr = new ArrayList <DOMRule> (DOMInfoModel.masterDOMRuleIdMap.values());
 		for (Iterator <DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
 			DOMRule lRule = (DOMRule) i.next();
@@ -1160,26 +1099,20 @@ private void printAttrUnit (DOMAttr attr) {
 		*  bump current level by one
 		*/
 	public void itemNumPlus (ArrayList <String> itemNum) {
-
 		int ind = itemNum.size() - 1;
-		Integer ival = new Integer ((String) itemNum.get(ind));
-		int val = ival.intValue();
-		val += 1;
-		Integer nval = new Integer (val);
-		itemNum.set(ind, nval.toString());
+		Integer ival = Integer.parseInt(itemNum.get(ind));
+		ival += 1;
+		itemNum.set(ind, ival.toString());
 	}
 
 	/**
 		*  decrement current level by one
 		*/
 	public void itemNumMinus (ArrayList <String> itemNum) {
-
 		int ind = itemNum.size() - 1;
-		Integer ival = new Integer ((String) itemNum.get(ind));
-		int val = ival.intValue();
-		val -= 1;
-		Integer nval = new Integer (val);
-		itemNum.set(ind, nval.toString());
+		Integer ival = Integer.parseInt(itemNum.get(ind));
+		ival -= 1;
+		itemNum.set(ind, ival.toString());
 	}
 
 	/**
@@ -1236,10 +1169,8 @@ private void printAttrUnit (DOMAttr attr) {
 			tc = sbuff1.charAt(p1);
 			if ((tc == '\\') && (p2 < str1len) && (sbuff1.charAt(p2) == '|')) {
 				p1 += 2;
-				tc = sbuff1.charAt(p1);
-				ctc = new Character (tc);
-				Integer Iind = new Integer (ctc.toString());
-				int ind = Iind.intValue();
+				ctc = sbuff1.charAt(p1);
+				int ind = Integer.parseInt(ctc.toString());
 				sbuff2.append(formSet.get(ind));
 			} else {
 				sbuff2.append(tc);
@@ -1267,73 +1198,4 @@ private void printAttrUnit (DOMAttr attr) {
 			result.append(str.substring(s));
 			return result.toString();
 	 }
-
-/**********************************************************************************************************
-		routines for printing the data dictionary
-***********************************************************************************************************/
-
-	public void printDataDictLegacy () {
-		boolean pflag = false;
-//	write the description heading
-		prhtml.println("<dl>");
-
-		for (Iterator <DOMAttr> i = DOMInfoModel.getAttArrByTitleStewardClassSteward().iterator(); i.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) i.next();
-			if (lAttr.isUsedInClass || includeAllAttrFlag) {
-				DOMClass lClass = lAttr.attrParentClass;
-				if (lClass == null) continue;
-				printDataElement2 (lAttr);
-				pflag = true;
-			}
-		}
-		if (! pflag) {
-			prhtml.println("<dt><b>" + "Unknown" +  "</b><dd>" +  "Unknown Description");		
-		}
-		prhtml.println("</dl>");		
-	}
-	
-	/**
-		*  Print a data element
-		*/
-	private void printDataElement2 (DOMAttr attr) {
-		boolean fflag, altflag;		
-		String phtitle, desc, altlist;
-		
-		// get lClassAnchorString
-		DOMClass lClass = attr.attrParentClass;
-		String lClassAnchorString = ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
-		String lClassHrefString = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
-		String lRegistrationStatus = "";
-		if (attr.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = " - " + DMDocument.Literal_DEPRECATED;
-		phtitle = "<a name=\"" + attr.anchorString + "\"><b>" + attr.title + lRegistrationStatus + "</b> in " + lClassHrefString + "</a>";
-		desc = attr.definition;
-		altflag = false; altlist = ""; fflag = true;
-		HashMap lmap = (HashMap) attr.genAttrMap;
-		if (lmap != null) {
-			ArrayList <String> attraliasarr = (ArrayList) lmap.get("alias_name");
-			if (attraliasarr != null) {
-				for (Iterator <String> i = attraliasarr.iterator(); i.hasNext();) {
-					if (fflag) {
-						fflag = false;
-						altflag = true;
-						altlist = " {Alternatives: ";
-					} else {
-						altlist += ", ";
-					}
-					altlist += (String) i.next();
-				}
-				if (altflag) {
-					altlist += "} ";
-				}
-			}
-		}
-		prhtml.println("<dt>" + phtitle +  "<dd><i>" + altlist + "</i>" + desc);
-
-//		printAttrType (attr);
-		printAttrUnit (attr);
-		printAttrMisc (attr);
-		printAttrValue (attr);
-		printAttrValueExtended (attr);
-		printAttrSchematronRuleMsg(attr);
-	}
 }

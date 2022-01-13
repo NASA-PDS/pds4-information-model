@@ -296,10 +296,15 @@ public class GetDOMModel extends Object {
 		// 016 - set the attribute isUsedInClass flag				
 		DMDocument.masterDOMInfoModel.setMasterAttrisUsedInClassFlag ();
 		
-		// 017 - overwrite master attributes from the 11179 DD
+		// 017a - overwrite master attributes from the 11179 DD
 		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
 		//		Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???		
 		lISO11179DOMMDR.OverwriteFrom11179DataDict();
+		
+		// 017b - overwrite master classes from the 11179 DD
+		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
+		//		Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
+		if (DMDocument.overWriteClass) lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
 		
 		// 018 - overwrite any LDD attributes from the cloned USER attributes
 		//       this is not really needed since the definitions are in the external class
@@ -313,6 +318,9 @@ public class GetDOMModel extends Object {
 		}
 		
 		// ******* overwrite completed - start final cleanup *******
+		
+		// 018.5 - propagate the class.inactive flag; these are classes with "I" (Ignore) or "N" (not used) use flags.
+		DMDocument.masterDOMInfoModel.setInactiveFlag ();
 		
 		// 019 - general master attribute fixup
 		// anchorString; sort_identifier; sort attribute.valArr
@@ -412,7 +420,7 @@ public class GetDOMModel extends Object {
 			if (lAttr != null) lAttr.isExposed = true;
 		}
 		
-		// 040 - set isActive flag
+		// 040 - set isActive flag for masterPDSSchemaFileDefn
 		// initialize masterNameSpaceHasMemberArr; used to determine if a file needs to be written.
 		ArrayList <String> lNameSpaceHasMemberArr = new ArrayList <String> ();
 		boolean foundObject = false;

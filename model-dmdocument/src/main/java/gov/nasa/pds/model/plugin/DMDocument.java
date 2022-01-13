@@ -68,7 +68,8 @@ public class DMDocument extends Object {
 	static final String upperModelFileName  = "UpperModel.pont";
 	
 	// variables for the class %3ACLIPS_TOP_LEVEL_SLOT_CLASS
-	static final String TopLevelAttrClassName  = "%3ACLIPS_TOP_LEVEL_SLOT_CLASS";
+	static final String TopLevelAttrClassName = "%3ACLIPS_TOP_LEVEL_SLOT_CLASS";
+	static final String ANAME = "%3ANAME";
 	
 	// process state for used flags, files, and directories
 	static DMProcessState dmProcessState;
@@ -140,7 +141,9 @@ public class DMDocument extends Object {
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
-
+	static boolean overWriteClass = false;				// use dd11179.pins to provide class disp information; also deprecation flags.
+	static boolean useMDPTNConfig = true;				// use MDPTNConfigClassDisp in protPont class parsing
+	
 	// alternate IM Version
 	// if no option "V" is provided on the command line, then the default is the current IM version.
 	static boolean alternateIMVersionFlag = false;
@@ -952,49 +955,6 @@ public class DMDocument extends Object {
 		  }
 		  return buf.toString();
 		}
-	
-	/**
-	 *   get the disposition of a class (from Protege)
-	 */
-	static public DOMClass getDOMClassDisposition (DOMClass lClass, String lClassName, boolean isFromProtege) {
-		// get disposition identifier - if isFromProtege, then the identifier is set else it is not since it is from an LDD.
-		String lDispId = lClass.subModelId + "." + registrationAuthorityIdentifierValue + "." + lClassName;
-		if (! isFromProtege) lDispId = "LDD_" + lDispId;
-		DispDefn lDispDefn = masterClassDispoMap2.get(lDispId);
-		if (lDispDefn != null) {
-			lClass.used = lDispDefn.used;
-			lClass.section = lDispDefn.section;
-			String lDisp = lDispDefn.disposition;
-			lClass.steward = lDispDefn.intSteward;
-			String lClassNameSpaceIdNC = lDispDefn.intNSId;
-			lClass.nameSpaceIdNC = lClassNameSpaceIdNC;
-			lClass.nameSpaceId = lClassNameSpaceIdNC + ":";
-			
-			// if from protege, the identifier needs to be set; if from LDD it cannot be set here.
-			if (isFromProtege) lClass.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
-			lClass.isMasterClass = true;
-			if (lDisp.indexOf("V") > -1) {
-				lClass.isVacuous = true;
-			}
-			if (lDisp.indexOf("S") > -1) {
-				lClass.isSchema1Class = true;
-			}
-			if (lDisp.indexOf("R") > -1) {
-				lClass.isRegistryClass = true;
-			}
-			if (lDisp.indexOf("T") > -1) {
-				lClass.isTDO = true;
-			}
-			if (lDisp.indexOf("d") > -1) {
-				lClass.isDataType = true;
-			}
-			if (lDisp.indexOf("u") > -1) {
-				lClass.isUnitOfMeasure = true;
-			}
-			return lClass;
-		}
-		return null;
-	}		
 	
 /**********************************************************************************************************
 	set object flags, e.g., deprecated

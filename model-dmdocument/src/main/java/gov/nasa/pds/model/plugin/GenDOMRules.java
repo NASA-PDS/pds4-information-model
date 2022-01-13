@@ -105,6 +105,7 @@ class GenDOMRules extends Object {
 			DOMClass lClass = (DOMClass) i.next();
 			if ((lClass == null) || (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) && lSchemaFileDefn.stewardArr.contains(lClass.steward)))) continue;
 			if (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous) continue;
+			if (lClass.isInactive) continue;
 			if (lClass.allEnumAttrArr == null || lClass.allEnumAttrArr.isEmpty()) continue;
 			
 			// discipline facet and facet group schema rules are hard coded elsewhere.

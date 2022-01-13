@@ -267,22 +267,11 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	}
 	
 	// 012 - remove URI Attribute
-	public void removeURIAttribute () {
-		// BEWARE of this code to remove the attribute %3ANAME or the protege :NAME meta attribute	
-		// iterate through the classes and remove %3ANAME		
-		for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();			
-			int ind = 0, targInd = -1;
-			for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-				DOMProp lProp = (DOMProp) j.next();
-				if (lProp.title.compareTo("%3ANAME") == 0) {
-					targInd = ind;
-					break;
-				}
-				ind++;
-			}
-			if (targInd > -1) {
-				lClass.ownedAttrArr.remove(targInd);
+	public void removeURIAttribute () {	
+		// iterate through the attributes and make %3ANAME inactive		
+		for (DOMAttr lDOMAttr : masterDOMAttrArr) {
+			if (lDOMAttr.title.compareTo("%3ANAME") == 0) {
+				lDOMAttr.isInactive = true;
 			}
 		} 
 	}
@@ -848,9 +837,11 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		for (Iterator<DOMClass> i = masterDOMClassArr.iterator(); i.hasNext();) {			// get the target class
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.isUSERClass) continue;
+			if (lClass.isInactive) continue;
 			ArrayList <DOMClass> lSubClassHierArr = new ArrayList <DOMClass> ();
 			for (Iterator<DOMClass> j = masterDOMClassArr.iterator(); j.hasNext();) {		// get class to check
 				DOMClass lCandidateClass = (DOMClass) j.next();	
+				if (lCandidateClass.isInactive) continue;
 				if (lClass.identifier.compareTo(lCandidateClass.identifier) == 0) continue;	//	ignore self
 				if (lClass.identifier.compareTo(lCandidateClass.subClassOfIdentifier) == 0) lSubClassHierArr.add(lCandidateClass);
 			}
@@ -908,6 +899,28 @@ class MasterDOMInfoModel extends DOMInfoModel{
 		return;
 	}
 	
+	// 018.5 - propagate the inactive flag
+	public void setInactiveFlag () {
+		// iterate through the classes
+		for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+
+			// iterate through the owned attribute properties and the attributes
+			for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
+				lDOMProp.isInactive = lDOMClass.isInactive;
+				if (lDOMProp.hasDOMObject != null) {
+					if (lDOMProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+						lDOMAttr.isInactive = lDOMClass.isInactive;
+					}
+				}
+			}
+			
+			// interate through the owned associations - ignore the classes since they are already set
+			for (DOMProp lDOMProp : lDOMClass.ownedAssocArr) {
+				lDOMProp.isInactive = lDOMClass.isInactive;
+			}
+		}
+	}
 
 	// 019 - general master attribute fixup
 	// anchorString; sort_identifier; sorts valArr; get DEC
@@ -1003,6 +1016,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						PermValueDefn lPermValue = (PermValueDefn) j.next();
 						if (lPermValue.value.compareTo(lDeprecatedDefn.value) == 0) {
 							lPermValue.registrationStatus = "Retired";
+							lPermValue.isDeprecated = true;
 						}
 					}
 					for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
@@ -1011,6 +1025,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 							DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
 							if (lDOMPermValDefn.value.compareTo(lDeprecatedDefn.value) == 0) {
 								lDOMPermValDefn.registrationStatus = "Retired";
+								lDOMPermValDefn.isDeprecated = true;
 							}
 						}
 					}
@@ -1020,15 +1035,23 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lDeprecatedDefn.identifier);
 				if (lClass != null) {
 					lClass.registrationStatus = "Retired";
+					lClass.isDeprecated = true;
 					// update property
-					if (lClass.hasDOMPropInverse != null) lClass.hasDOMPropInverse.registrationStatus = lClass.registrationStatus;
+					if (lClass.hasDOMPropInverse != null) {
+						lClass.hasDOMPropInverse.registrationStatus = lClass.registrationStatus;
+						lClass.hasDOMPropInverse.isDeprecated = lClass.isDeprecated;
+					}
 				} else {
 					// is it an attribute
 					DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lDeprecatedDefn.identifier);
 					if (lAttr != null) {
 						lAttr.registrationStatus = "Retired";
+						lAttr.isDeprecated = true;
 						// update property
-						if (lAttr.hasDOMPropInverse != null) lAttr.hasDOMPropInverse.registrationStatus = lAttr.registrationStatus;
+						if (lAttr.hasDOMPropInverse != null) {
+							lAttr.hasDOMPropInverse.registrationStatus = lAttr.registrationStatus;
+							lAttr.hasDOMPropInverse.isDeprecated = lAttr.isDeprecated;
+						}
 					}
 				}				
 			}
