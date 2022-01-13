@@ -46,7 +46,6 @@ class ProtPontDOMModel extends DOMInfoModel{
 	TreeMap <String, String> masterClassDispo = new TreeMap <String, String> ();
 	
 	public ProtPontDOMModel () {
-		parsedClassArr = new ArrayList <DOMClass> ();
 		parsedClassMap = new TreeMap <String, DOMClass> ();
 		
 		parsedProtAttrArr = new ArrayList <DOMProtAttr> ();		
@@ -118,31 +117,75 @@ class ProtPontDOMModel extends DOMInfoModel{
 				lClass.versionId = DMDocument.classVersionIdDefault;
 				lClass.docSecType = className;
 				lClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
+				lClass.registeredByValue = DMDocument.registeredByValue;
 				lClass.subModelId = subModelId;
 
-				// get disposition for the class
-				DOMClass lClassWDisp = DMDocument.getDOMClassDisposition (lClass, className, true);
-				classNameSpaceIdNC = "tbd";
-				if (lClassWDisp != null) {
-					if (lClassWDisp.used.compareTo("Y") == 0) {
-						classNameSpaceIdNC = lClassWDisp.nameSpaceIdNC;  // global needed for parser
-						parsedClassMap.put(lClassWDisp.rdfIdentifier, lClassWDisp);
-						parsedClassArr.add(lClassWDisp);
-						String token1 = (String) tokenIter.next();
-						if (token1.compareTo("(") != 0) {
-							lClassWDisp.definition = DOMInfoModel.unEscapeProtegeString(token1);
+				// get disposition for the class from MDPTNConfig
+				boolean isInParsedClassMap = false;
+				if (DMDocument.useMDPTNConfig) {
+					classNameSpaceIdNC = "tbd";
+					lClass.getDOMClassDisposition (true);
+					if (lClass != null) {
+						if (lClass.used.compareTo("Y") == 0) {
+							classNameSpaceIdNC = lClass.nameSpaceIdNC;  // global needed for parser
+							parsedClassMap.put(lClass.rdfIdentifier, lClass);
+							isInParsedClassMap = true;
+							String token1 = (String) tokenIter.next();
+							if (token1.compareTo("(") != 0) {
+								lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
+							}
+						} else if (lClass.used.compareTo("I") == 0) {
+							// class is "hidden" ignore it and do not print warning
+
+							// *** added ***
+						/*	if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;   // omit %3ACLIPS_TOP_LEVEL_SLOT_CLASS
+							lClass.isInactive = true;
+							classNameSpaceIdNC = lClass.nameSpaceIdNC;  // global needed for parser
+							parsedClassMap.put(lClass.rdfIdentifier, lClass);
+							isInParsedClassMap = true;
+							String token1 = (String) tokenIter.next();
+							if (token1.compareTo("(") != 0) {
+								lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
+							} */
+							// *** end of added ***
+						
+						} else {	// disposition exists but not clear why, print warning 
+							if (lClass.identifier.compareTo("TBD_identifier") != 0) {
+								DMDocument.registerMessage ("1>warning " + "Class omitted from build - Class Identifier:" + lClass.identifier);
+							}
+
+						/*  lClass.isInactive = true;
+							classNameSpaceIdNC = lClass.nameSpaceIdNC;  // global needed for parser
+							parsedClassMap.put(lClass.rdfIdentifier, lClass);
+							isInParsedClassMap = true;
+							String token1 = (String) tokenIter.next();
+							if (token1.compareTo("(") != 0) {
+								lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
+							} */
+							// *** end of added ***
+
 						}
-					} else if (lClassWDisp.used.compareTo("I") == 0) {
-						// class is "hidden" ignore it and do not print warning
-					} else {	// disposition exists but not clear why, print warning 
-						DMDocument.registerMessage ("1>warning " + "Class omitted from build - Class Identifier:" + lClassWDisp.identifier);
+					} else {
+						if (! DMDocument.LDDToolFlag) {
+							DMDocument.registerMessage ("1>warning " + "Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
+						}
 					}
-				} else {
-					if (! DMDocument.LDDToolFlag) {
-						DMDocument.registerMessage ("1>warning " + "Class disposition was not found - " + "<Record> <Field>Y</Field> <Field>UpperModel." + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>"); 
-					}
+					lClass.setIdentifier (classNameSpaceIdNC, className);
 				}
-				lClass.setIdentifier (classNameSpaceIdNC, className);
+				
+				// get disposition for the class from dd11179
+//				if (DMDocument.overWriteClass) {
+				if (false) {
+					lClass.getDOMClassDisposition2 ();
+					if (! isInParsedClassMap) {
+					parsedClassMap.put(lClass.rdfIdentifier, lClass);
+					}
+					String token1 = (String) tokenIter.next();
+					if (token1.compareTo("(") != 0) {
+						lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
+					}
+					lClass.setIdentifier (lClass.nameSpaceIdNC, className);
+				}
 				type = 0;
 				break;
 			case 2: // subClassOf

@@ -226,42 +226,12 @@ class WriteDOM11179DDPinsFile extends Object{
 
 	// Print the the Protege Pins Properties
 	public  void printPDDPPR (PrintWriter prDDPins) {
-		
-// 888 Comparison Change
-//		ArrayList <String> lUsedIdentifiers = new ArrayList <String> ();
-//		String lPrevDOMPropId = "TBD_lPrevDOMPropId";
-		
 		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
 		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
-			
-// 888 Comparison Change
+			if (lDOMProp.isInactive) continue;
+			if (lDOMProp.identifier.indexOf(DMDocument.ANAME) > -1) continue;  // %3ANAME for protege attribute name; e.g., Schematron_Rule
 			String prDataIdentifier = "PR." + lDOMProp.identifier;
-			
-/* for Comparing MOF and DOM Pins Files.
-			String lDOMPropId = lDOMProp.identifier;
-			System.out.println("\ndebug printPDDPPR lDOMPropId:" + lDOMPropId);
-	        int count = 0;        
-	        for(int k = 0; k < lDOMPropId.length(); k++) {    
-	            if(lDOMPropId.charAt(k) == '.')    
-	                count++;    
-	        }
-			System.out.println("                  count:" + count);
-	        if (count > 4) {
-	        	int offset = lDOMPropId.lastIndexOf(".");
-				System.out.println("                  offset:" + offset);
-	        	lDOMPropId = lDOMPropId.substring(0, offset);
-				System.out.println("                  lDOMPropId:" + lDOMPropId);
-	        }
-        	String prDataIdentifier = "PR." + lDOMPropId;
-        	if (lUsedIdentifiers.contains(prDataIdentifier)) {
-				System.out.println("                  Previous lDOMProp.identifier:" + lPrevDOMPropId);
-				System.out.println("                           lDOMProp.identifier:" + lDOMProp.identifier);
-        		continue;
-        	}
-        	lUsedIdentifiers.add(prDataIdentifier);
-        	lPrevDOMPropId = lDOMProp.identifier; */
-			
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("  (dataIdentifier \"" + prDataIdentifier + "\")");
@@ -297,9 +267,9 @@ class WriteDOM11179DDPinsFile extends Object{
 
 			lfc = "";
 			prDDPins.println("  (representing2 ");
-//			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
 			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) j.next();
+				if (lAttr.isInactive) continue;
 				prDDPins.print(lfc);
 				if (lAttr.isEnumerated) {
 					prDDPins.print("    [" + lAttr.evdDataIdentifier + "]");
@@ -345,9 +315,9 @@ class WriteDOM11179DDPinsFile extends Object{
 
 			String lfc = "";
 			prDDPins.println("  (expressing ");
-//			for (Iterator<AttrDefn> j = lIndex.identifier1Arr.iterator(); j.hasNext();) {
 			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) j.next();
+				if (lAttr.isInactive) continue;
 				prDDPins.print(lfc);
 				prDDPins.print("    [" + lAttr.deDataIdentifier + "]");
 				lfc = "\n";
@@ -391,17 +361,10 @@ class WriteDOM11179DDPinsFile extends Object{
 	// Print the the Protege Pins TE
 	public  void printPDDPTE (PrintWriter prDDPins) {
 		
-		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-			DOMAttr lDOMAttr= (DOMAttr) i.next();
-			if (lDOMAttr.isUsedInClass && lDOMAttr.isAttribute) {
-//	            System.out.println("debug printPDDPTE lDOMAttr.identifier:" + lDOMAttr.identifier);
-//	            System.out.println("debug printPDDPTE lDOMAttr.definition:" + lDOMAttr.definition);
-			}
-		}
-		
 		// print the Terminological Entry
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lDOMAttr= (DOMAttr) i.next();
+			if (lDOMAttr.isInactive) continue;
 			if (lDOMAttr.isUsedInClass && lDOMAttr.isAttribute) {
 				// print TE section
 				prDDPins.println("([" + lDOMAttr.teDataIdentifier + "] of TerminologicalEntry");
@@ -564,6 +527,7 @@ class WriteDOM11179DDPinsFile extends Object{
 		TreeMap <String, DOMAttr> lTreeMap = new TreeMap <String, DOMAttr>();
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
+			if (lAttr.isInactive) continue;
 			if (lAttr.isUsedInClass && lAttr.isAttribute) {
 				String sortKey = lAttr.title + ":" + lAttr.steward + "." + lAttr.parentClassTitle + ":" + lAttr.classSteward;
 				sortKey = sortKey.toUpperCase();

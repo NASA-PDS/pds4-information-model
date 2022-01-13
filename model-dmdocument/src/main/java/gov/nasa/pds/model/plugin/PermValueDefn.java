@@ -29,7 +29,6 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 package gov.nasa.pds.model.plugin; 
-
 public class PermValueDefn {
 	String identifier;		// identifier from raw value meaning files - e.g. 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
 	String searchKey;		// identifier from raw value meaning files - e.g. 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
@@ -38,6 +37,7 @@ public class PermValueDefn {
 	String value_meaning;	// the meaning of the value
 	String value_begin_date;	// the value begin date
 	String value_end_date;		// the value end date
+	boolean isDeprecated;		// class is deprecated
 	
 	public PermValueDefn (String lId, String lValue, String lValueMeaning) {
 		identifier = lId; 
@@ -47,6 +47,7 @@ public class PermValueDefn {
 		value_meaning = lValueMeaning;
 		value_begin_date = "TBD_value_begin_date";
 		value_end_date = "TBD_value_end_date";
+		isDeprecated = false;
 	} 
 	
 	public PermValueDefn (String lId, String lValue) {
@@ -57,5 +58,6 @@ public class PermValueDefn {
 		value_meaning = "TBD_value_meaning";
 		value_begin_date = "TBD_value_begin_date";
 		value_end_date = "TBD_value_end_date";
+		isDeprecated = false;
 	} 	
 }

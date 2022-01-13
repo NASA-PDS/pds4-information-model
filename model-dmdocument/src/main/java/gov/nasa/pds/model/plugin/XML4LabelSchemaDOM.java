@@ -230,7 +230,7 @@ class XML4LabelSchemaDOM extends Object {
 			DOMClass lClass = (DOMClass) i.next();
 			lClass.includeInThisSchemaFile = false;
 			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) && lSchemaFileDefn.stewardArr.contains(lClass.steward)) {				
-				if (! (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous)) {
+				if (! (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous || lClass.isInactive)) {
 					lClass.includeInThisSchemaFile = true;
 					classCount++;
 					lClassMap.put(lClass.identifier, lClass);

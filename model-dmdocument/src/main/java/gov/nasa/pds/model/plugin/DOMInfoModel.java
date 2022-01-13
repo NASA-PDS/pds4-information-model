@@ -147,7 +147,6 @@ public abstract class DOMInfoModel extends Object {
 	static TreeMap <String, PermValueDefn> masterValueMeaningMap;
 	
 //  Parsed Classes, Props, and Attributes
-	static ArrayList <DOMClass> parsedClassArr;
 	static TreeMap <String, DOMClass> parsedClassMap;
 	
 	static ArrayList <DOMProtAttr> parsedProtAttrArr;
@@ -360,6 +359,30 @@ public abstract class DOMInfoModel extends Object {
 		texSectionFormats.add("\\subsubsection");
 	}
 
+/**********************************************************************************************************
+		getters and setters
+***********************************************************************************************************/
+	
+	static public ArrayList <DOMClass> getMasterDOMClassArr () {
+		return masterDOMClassArr;
+	}	
+	
+	static public ArrayList <DOMProp> getMasterDOMPropArr () {
+		return new ArrayList <DOMProp> (masterDOMPropIdMap.values());
+	}
+	
+	static public ArrayList <DOMAttr> getMasterDOMAttrArr () {
+		return masterDOMAttrArr;
+	}
+	
+	static public ArrayList <DOMDataType> getMasterDOMDataTypeArr () {
+		return masterDOMDataTypeArr;
+	}
+	
+	static public ArrayList <DOMUnit> getMasterDOMUnitArr () {
+		return masterDOMUnitArr;
+	}
+	
 /**********************************************************************************************************
 		miscellaneous routines
 ***********************************************************************************************************/
@@ -920,7 +943,7 @@ public abstract class DOMInfoModel extends Object {
 		return lRefTypeArr;
 	}
 	
-	// clone an attribute 
+	// clone an attribute *** Move to GetCSVMetadataFile and remove here ***
 	static public DOMAttr cloneDOMAttr (String lClassNameSpaceIdNC, String lClassTitle, String lAttrNameSpaceIdNC, String lAttrTitle, DOMAttr lOrgAttr) {
 		DOMAttr lNewAttr = new DOMAttr ();				              					              
 //		lNewAttr.uid = lOrgAttr.uid;										              
@@ -1102,6 +1125,8 @@ public abstract class DOMInfoModel extends Object {
 		TreeMap <String, DOMProp> lDOMPropMap = new TreeMap <String, DOMProp>();
 		for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) i.next();
+			if (lDOMProp.isInactive) continue;
+			if (lDOMProp.title.compareTo("%3ANAME") == 0) continue;
 			lDOMPropMap.put(lDOMProp.sortKeyIMSPec, lDOMProp);
 		}
 		ArrayList <DOMProp> lDOMPropArr = new ArrayList <DOMProp>(lDOMPropMap.values());	

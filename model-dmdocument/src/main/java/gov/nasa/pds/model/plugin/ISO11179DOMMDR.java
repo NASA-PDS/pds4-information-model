@@ -242,6 +242,110 @@ class ISO11179DOMMDR extends Object {
 		}
 	}
 	
+//	scan through the master class list and overwrite with the latest from the 11179 DD database.
+	public void OverwriteClassFrom11179DataDict () {
+		HashMap <String, ArrayList<String>> lInstMap = new HashMap <String, ArrayList<String>> ();
+		String lSuffix;
+		String lInstId;
+		String lVal;
+		boolean lDebugFlag = false;	
+		
+		// iterate through the master attribute array
+		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
+			DOMClass lDOMClass = (DOMClass) i.next();
+			if (lDOMClass.isFromLDD) continue;			
+			lSuffix = DOMInfoModel.getClassIdentifier (lDOMClass.nameSpaceIdNC, lDOMClass.title);
+			lInstId = "ObjectClass" + "." + "OC" + "." + lSuffix;		
+			InstDefn lOCInst = DOMInfoModel.master11179DataDict.get(lInstId);
+			if (lOCInst != null) {
+				lInstMap = lOCInst.genSlotMap;
+
+				// update used
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "used", lDOMClass.used);                        
+				if (lVal != null) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.used + "  - with lVal:" + lVal); }
+					lDOMClass.used = lVal;
+				}
+
+				// update section
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "section", lDOMClass.section);                        
+				if (lVal != null) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.section + "  - with lVal:" + lVal); }
+					lDOMClass.section = lVal;
+				}
+
+				// update steward
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "steward", lDOMClass.steward);                        
+				if (lVal != null) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.steward + "  - with lVal:" + lVal); }
+					lDOMClass.steward = lVal;
+				}
+
+				// update nameSpaceIdNC
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "nameSpaceIdNC", lDOMClass.nameSpaceIdNC);                        
+				if (lVal != null) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.nameSpaceIdNC + "  - with lVal:" + lVal); }
+					lDOMClass.nameSpaceIdNC = lVal;
+				}
+
+				// update isVacuous
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isVacuous", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isVacuous + "  - with lVal:" + lVal); }
+					lDOMClass.isVacuous = true;
+				}
+
+				// update isSchema1Class
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isSchema1Class", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isSchema1Class + "  - with lVal:" + lVal); }
+					lDOMClass.isSchema1Class = true;
+				}
+
+				// update isRegistryClass
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isRegistryClass", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isRegistryClass + "  - with lVal:" + lVal); }
+					lDOMClass.isRegistryClass = true;
+				}
+
+				// update isTDO
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isTDO", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isTDO + "  - with lVal:" + lVal); }
+					lDOMClass.isTDO = true;
+				}
+
+				// update isDataType
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isDataType", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isDataType + "  - with lVal:" + lVal); }
+					lDOMClass.isDataType = true;
+				}
+
+				// update isUnitOfMeasure
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isUnitOfMeasure", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isUnitOfMeasure + "  - with lVal:" + lVal); }
+					lDOMClass.isUnitOfMeasure = true;
+				}
+
+				// update versionIdentifier
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "versionIdentifier", lDOMClass.versionId);                        
+				if (lVal != null) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.versionId + "  - with lVal:" + lVal); }
+					lDOMClass.versionId = lVal;
+				}			
+
+			} else {
+//				DMDocument.registerMessage ("1>error " + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+				if (lDOMClass.title.compareTo("USER") != 0) {
+					DMDocument.registerMessage ("1>error " + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+				}
+			}
+		}
+	}	
+	
 //	Get class order
 	public void getClassOrder () {
 		// iterate through the associations
