@@ -122,6 +122,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMClass> lSelectedClassArr = new ArrayList <DOMClass> ();
 		for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
 			DOMClass lSelectedClass = (DOMClass) j.next();
+			if (lSelectedClass.isInactive) continue;
 			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0) {
 				lSelectedClassArr.add(lSelectedClass);
 			}
@@ -139,6 +140,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMAttr> lSelectedAttrArr = new ArrayList <DOMAttr> ();
 		for (Iterator <DOMAttr> j = DOMInfoModel.masterDOMAttrArr.iterator(); j.hasNext();) {
 			DOMAttr lSelectedAttr = (DOMAttr) j.next();
+			if (lSelectedAttr.isInactive) continue;
 			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedAttr.classNameSpaceIdNC) == 0) {
 				lSelectedAttrArr.add(lSelectedAttr);
 			}
@@ -153,6 +155,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMDataType> lSelectedDataTypeArr = new ArrayList <DOMDataType> ();
 		for (Iterator <DOMDataType> j = DOMInfoModel.masterDOMDataTypeArr.iterator(); j.hasNext();) {
 			DOMDataType lSelectedDataType = (DOMDataType) j.next();
+			if (lSelectedDataType.isInactive) continue;
 			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedDataType.nameSpaceIdNC) == 0) {
 				lSelectedDataTypeArr.add(lSelectedDataType);
 			}
@@ -167,6 +170,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMUnit> lSelectedUnitArr = new ArrayList <DOMUnit> ();
 		for (Iterator <DOMUnit> j = DOMInfoModel.masterDOMUnitArr.iterator(); j.hasNext();) {
 			DOMUnit lSelectedUnit = (DOMUnit) j.next();
+			if (lSelectedUnit.isInactive) continue;
 			if (isAllFlag || lNameSpaceIdNC.compareTo(lSelectedUnit.nameSpaceIdNC) == 0) {
 				lSelectedUnitArr.add(lSelectedUnit);
 			}
@@ -195,6 +199,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMClass> lSelectedTEClassArr = new ArrayList <DOMClass> ();
 		for (Iterator <DOMClass> j = DOMInfoModel.masterDOMClassArr.iterator(); j.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) j.next();
+			if (lDOMClass.isInactive) continue;
 			if (! lDOMClass.isQueryModel) continue;
 			lSelectedTEClassArr.add(lDOMClass);
 		}
@@ -207,7 +212,6 @@ class WriteDOMDDJSONFile extends Object{
 	// Print the classes
 	public  void printClass (ArrayList <DOMClass> lSelectedClassArr, PrintWriter prDDPins) {
 		String delimiter1 = "  ";
-//		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
 		for (Iterator<DOMClass> i = lSelectedClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
 			if (lClass.title.indexOf("PDS3") > -1) continue;
@@ -278,15 +282,15 @@ class WriteDOMDDJSONFile extends Object{
 				prDDPins.println("                " + formValue("minimumCardinality") + ": " + formValue(lDOMProp.cardMin) + " ,");	
 				prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
 				prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
-				prDDPins.println("                " + formValue("attributeId") + ": [");				
-				String delimiter2 = "";				
+				prDDPins.println("                " + formValue("attributeId") + ": [");
+				boolean isNewLine = false;
 				for (Iterator<ISOClassOAIS11179> j = lDOMPropGroup2.domObjectArr.iterator(); j.hasNext();) {
 					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
 					if (lISOClass instanceof DOMAttr) {
 						DOMAttr lDOMAttr = (DOMAttr) lISOClass;	
-						prDDPins.print(delimiter2);
+						if (isNewLine) prDDPins.println(",");
 						prDDPins.print("                  " + formValue(lDOMAttr.identifier));	
-						delimiter2 = ",\n";
+						isNewLine = true;
 					}
 				}
 				prDDPins.println("");
@@ -307,14 +311,14 @@ class WriteDOMDDJSONFile extends Object{
 				prDDPins.println("                " + formValue("maximumCardinality") + ": " + formValue(lDOMProp.cardMax) + " ,");	
 				prDDPins.println("                " + formValue("classOrder") + ": " + formValue(lDOMProp.classOrder) + " ,");	
 				prDDPins.println("                " + formValue("classId") + ": [");	
-				String delimiter2 = "";
+				boolean isNewLine = false;
 				for (Iterator<ISOClassOAIS11179> j = lDOMPropGroup2.domObjectArr.iterator(); j.hasNext();) {
 					ISOClassOAIS11179 lISOClass = (ISOClassOAIS11179) j.next();
 					if (lISOClass instanceof DOMClass) {
 						DOMClass lDOMAttr = (DOMClass) lISOClass;	
-						prDDPins.print(delimiter2);
+						if (isNewLine) prDDPins.println(",");
 						prDDPins.print("                  " + formValue(lDOMAttr.identifier));	
-						delimiter2 = ",\n";
+						isNewLine = true;
 					}
 				}
 				prDDPins.println("");
@@ -654,6 +658,7 @@ class WriteDOMDDJSONFile extends Object{
 		ArrayList <DOMProp> lSortedAssocArr = new ArrayList <DOMProp> (DOMInfoModel.masterDOMPropIdMap.values());
 		for (Iterator<DOMProp> i = lSortedAssocArr.iterator(); i.hasNext();) {
 			DOMProp lAssoc = (DOMProp) i.next();
+			if (lAssoc.isInactive) continue;
 			String prDataIdentifier = "PR." + lAssoc.identifier;
 			prDDPins.println("([" + prDataIdentifier + "] of Property");
 			prDDPins.println("  (administrationRecord [" + DMDocument.administrationRecordValue + "])");
@@ -676,31 +681,31 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("	(administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("	(dataIdentifier \"" + dbIdentifier  + "\")");
 
-			String lfc = "";
 			prDDPins.println("  (having ");
+			boolean isNewLine = false;
 			for (Iterator<String> j = lIndex.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
 				String lDEC = (String) j.next();
-				prDDPins.print(lfc);
+				if (isNewLine) prDDPins.println("");
 				prDDPins.print("    [" + "DEC_" + lDEC + "]");
-				lfc = "\n";
+				isNewLine = true;
 			}
-			prDDPins.print(")\n");
+			prDDPins.println(")");
 			prDDPins.println(" 	(registeredBy [" + DMDocument.registeredByValue+ "])");
 			prDDPins.println(" 	(registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");
 
-			lfc = "";
 			prDDPins.println("  (representing2 ");
+			isNewLine = false;
 			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) j.next();
-				prDDPins.print(lfc);
+				if (isNewLine) prDDPins.println("");
 				if (lAttr.isEnumerated) {
 					prDDPins.print("    [" + lAttr.evdDataIdentifier + "]");
 				} else {
 					prDDPins.print("    [" + lAttr.nevdDataIdentifier + "]");
 				}
-				lfc = "\n";
+				isNewLine = true;
 			}
-			prDDPins.print(")\n");
+			prDDPins.println(")");
 			prDDPins.println(" 	(steward [" + DMDocument.stewardValue + "])");
 			prDDPins.println(" 	(submitter [" + DMDocument.submitterValue + "])");
 			prDDPins.println(" 	(terminologicalEntry [" + "TE." + gIdentifier + "])");
@@ -735,26 +740,26 @@ class WriteDOMDDJSONFile extends Object{
 			prDDPins.println("	(administrationRecord [" + DMDocument.administrationRecordValue + "])");
 			prDDPins.println("	(dataIdentifier \"" + dbIdentifier  + "\")");
 
-			String lfc = "";
+			boolean isNewLine = false;
 			prDDPins.println("  (expressing ");
 			for (Iterator<DOMAttr> j = lIndex.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
 				DOMAttr lAttr = (DOMAttr) j.next();
-				prDDPins.print(lfc);
+				if (isNewLine) prDDPins.println("");
 				prDDPins.print("    [" + lAttr.deDataIdentifier + "]");
-				lfc = "\n";
+				isNewLine = true;
 			}
-			prDDPins.print(")\n");
+			prDDPins.println(")");
 			prDDPins.println(" 	(registeredBy [" + DMDocument.registeredByValue+ "])");
 			prDDPins.println(" 	(registrationAuthorityIdentifier [" + DMDocument.registrationAuthorityIdentifierValue + "])");
-			lfc = "";
 			prDDPins.println("  (specifying ");
+			isNewLine = false;
 			for (Iterator<String> j = lIndex.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
 				String lCD = (String) j.next();
-				prDDPins.print(lfc);
+				if (isNewLine) prDDPins.println("");
 				prDDPins.print("    [" + "CD_" + lCD + "]");
-				lfc = "\n";
+				isNewLine = true;
 			}
-			prDDPins.print(")\n");
+			prDDPins.println(")");
 			prDDPins.println(" 	(steward [" + DMDocument.stewardValue + "])");
 			prDDPins.println(" 	(submitter [" + DMDocument.submitterValue + "])");
 			prDDPins.println(" 	(terminologicalEntry [" + "TE." + gIdentifier + "])");
@@ -784,6 +789,7 @@ class WriteDOMDDJSONFile extends Object{
 		// print the Terminological Entry
 		for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
+			if (lAttr.isInactive) continue;
 			if (lAttr.isUsedInClass && lAttr.isAttribute) {
 				// print TE section
 				prDDPins.println("([" + lAttr.teDataIdentifier + "] of TerminologicalEntry");
@@ -887,6 +893,7 @@ class WriteDOMDDJSONFile extends Object{
 		// write the unitOfMeasure
 		for (Iterator<DOMUnit> i = DOMInfoModel.masterDOMUnitArr.iterator(); i.hasNext();) {
 			DOMUnit lUnit = (DOMUnit) i.next();		
+			if (lUnit.isInactive) continue;
 			prDDPins.println("([" + lUnit.title + "] of UnitOfMeasure");
 			prDDPins.println("	(measureName \"" + lUnit.title + "\")");
 			prDDPins.println("	(defaultUnitId \"" + DOMInfoModel.escapeProtegeString(lUnit.default_unit_id) + "\")");
@@ -915,6 +922,7 @@ class WriteDOMDDJSONFile extends Object{
 		// print data types
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lDataType = (DOMClass) i.next();
+			if (lDataType.isInactive) continue;
 			if (! lDataType.isDataType) continue;
 			prDDPins.println("([" + lDataType.title + "] of DataType");
 			prDDPins.println("  (dataTypeName \"" + lDataType.title + "\")");

@@ -138,7 +138,7 @@ class ProtPontDOMModel extends DOMInfoModel{
 							// class is "hidden" ignore it and do not print warning
 
 							// *** added ***
-						/*	if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;   // omit %3ACLIPS_TOP_LEVEL_SLOT_CLASS
+							if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;   // omit %3ACLIPS_TOP_LEVEL_SLOT_CLASS
 							lClass.isInactive = true;
 							classNameSpaceIdNC = lClass.nameSpaceIdNC;  // global needed for parser
 							parsedClassMap.put(lClass.rdfIdentifier, lClass);
@@ -146,7 +146,7 @@ class ProtPontDOMModel extends DOMInfoModel{
 							String token1 = (String) tokenIter.next();
 							if (token1.compareTo("(") != 0) {
 								lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
-							} */
+							}
 							// *** end of added ***
 						
 						} else {	// disposition exists but not clear why, print warning 
@@ -154,14 +154,14 @@ class ProtPontDOMModel extends DOMInfoModel{
 								DMDocument.registerMessage ("1>warning " + "Class omitted from build - Class Identifier:" + lClass.identifier);
 							}
 
-						/*  lClass.isInactive = true;
+						  lClass.isInactive = true;
 							classNameSpaceIdNC = lClass.nameSpaceIdNC;  // global needed for parser
 							parsedClassMap.put(lClass.rdfIdentifier, lClass);
 							isInParsedClassMap = true;
 							String token1 = (String) tokenIter.next();
 							if (token1.compareTo("(") != 0) {
 								lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
-							} */
+							}
 							// *** end of added ***
 
 						}
@@ -175,7 +175,8 @@ class ProtPontDOMModel extends DOMInfoModel{
 				
 				// get disposition for the class from dd11179
 //				if (DMDocument.overWriteClass) {
-				if (false) {
+//				if (false) {
+				if (true) {
 					lClass.getDOMClassDisposition2 ();
 					if (! isInParsedClassMap) {
 					parsedClassMap.put(lClass.rdfIdentifier, lClass);

@@ -1166,6 +1166,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("  title:" + objClass.title);
 		prDOMWriter.println("  definition:" + objClass.definition);
 		prDOMWriter.println("  registrationStatus:" + objClass.registrationStatus);
+		prDOMWriter.println("  isInactive:" + objClass.isInactive);
 		prDOMWriter.println("  isDeprecated:" + objClass.isDeprecated);
 		
 		prDOMWriter.println("  isDigital:" + objClass.isDigital);
@@ -1332,6 +1333,7 @@ public abstract class DOMInfoModel extends Object {
         prDOMWriter.println("        attr.title:" + attr.title);
         prDOMWriter.println("        attr.definition:" + attr.definition);
         prDOMWriter.println("        attr.registrationStatus:" + attr.registrationStatus);
+		prDOMWriter.println("        attr.isInactive:" + attr.isInactive);
         prDOMWriter.println("        attr.isDeprecated:" + attr.isDeprecated);
 
         prDOMWriter.println("        attr.isDigital:" + attr.isDigital);
@@ -1412,7 +1414,7 @@ public abstract class DOMInfoModel extends Object {
 				DOMProp lDOMProp = (DOMProp) j.next();
 				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
 					DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
-					prDOMWriter.println("          lDOMPermVal.value:" + lDOMPermVal.value + "  lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "  lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
+					prDOMWriter.println("          lDOMPermVal.value:" + lDOMPermVal.value + "  lDOMPermVal.isInactive:" + lDOMPermVal.isInactive + "  lDOMPermVal.isDeprecated:" + lDOMPermVal.isDeprecated + "  lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "  lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
 				}
 			}
 		} else {
@@ -1430,6 +1432,7 @@ public abstract class DOMInfoModel extends Object {
 		prDOMWriter.println("        lProp.title:" + lProp.title);
 		prDOMWriter.println("        lProp.definition:" + lProp.definition);
 		prDOMWriter.println("        lProp.registrationStatus:" + lProp.registrationStatus);
+		prDOMWriter.println("        lProp.isInactive:" + lProp.isInactive);
 		prDOMWriter.println("        lProp.isDeprecated:" + lProp.isDeprecated);
 		
 		prDOMWriter.println("        lProp.isDigital:" + lProp.isDigital);

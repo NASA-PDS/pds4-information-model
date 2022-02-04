@@ -145,7 +145,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 						lUnit.identifier = lClass.title;
 						lUnit.createDOMUnitSingletons (lClass.title, lClass);
 						DOMInfoModel.masterDOMUnitMap.put(lUnit.title, lUnit);
-// 333	-- deprecate masterDOMUnitMap, use title
 						DOMInfoModel.masterDOMUnitTitleMap.put(lUnit.title, lUnit);
 						// for each attribute of the class
 						for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
@@ -193,7 +192,7 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				lClass.subClassOfTitle = lSupClass.title;;
 				lClass.subClassOfIdentifier = lSupClass.identifier;
 			} else {
-				DMDocument.registerMessage ("1>error " + "missing superClass in master while trying to set subClassOf - lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
+				DMDocument.registerMessage ("1>error " + "missing superClass in master while trying to set subClassOf - lClass.identifier:" + lClass.identifier + " -  lClass.subClassOfTitle:" + lClass.subClassOfTitle);					
 			}
 		}
 		return;
@@ -921,6 +920,55 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			}
 		}
 	}
+	
+	// 018.7 - get the Deprecated Objects array
+	public ArrayList <DeprecatedDefn>  getDeprecatedObjectsArr () {
+		ArrayList <DeprecatedDefn> deprecatedObjectsArr = new ArrayList <DeprecatedDefn> ();
+		
+		// iterate through the classes for class deprecation
+		for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+			if (lDOMClass.isInactive) continue;
+			if (! lDOMClass.isDeprecated) continue;
+			String deprecatedClassTitle = lDOMClass.title;
+			DeprecatedDefn deprecatedDefn = new DeprecatedDefn (deprecatedClassTitle, lDOMClass.nameSpaceIdNC, lDOMClass.title, "", "", "", lDOMClass.isUnitOfMeasure);
+			deprecatedObjectsArr.add(deprecatedDefn);
+		}
+		
+		// iterate through the attributes for attribute deprecation
+		for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
+			if (lDOMAttr.isInactive) continue;
+			if (! lDOMAttr.isDeprecated) continue;
+			DOMClass lDOMClass = lDOMAttr.attrParentClass;
+			String deprecatedAttrTitle = lDOMClass.title + "." + lDOMAttr.title;
+
+			DeprecatedDefn deprecatedDefn = new DeprecatedDefn (deprecatedAttrTitle, lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC, lDOMAttr.title, "", lDOMClass.isUnitOfMeasure);
+			deprecatedObjectsArr.add(deprecatedDefn);
+		}
+		
+		// iterate through the attributes for permissible value deprecation
+		for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
+			if (lDOMAttr.isInactive) continue;
+			DOMClass lDOMClass = lDOMAttr.attrParentClass;
+			String deprecatedAttrTitle = lDOMClass.title + "." + lDOMAttr.title;
+			
+			if (lDOMAttr.domPermValueArr != null && lDOMAttr.domPermValueArr.size() > 0) {
+				for (DOMProp lDOMProp : lDOMAttr.domPermValueArr) {
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+						DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+						if (lDOMPermVal.isInactive) continue;
+						if (! lDOMPermVal.isDeprecated) continue;
+//						System.out.println("debug getDeprecatedObjectsArr lDOMPermVal.value:" + lDOMPermVal.value + "  lDOMPermVal.isInactive:" + lDOMPermVal.isInactive + "  lDOMPermVal.isDeprecated:" + lDOMPermVal.isDeprecated + "  lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "  lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
+// 3331					String deprecatedValueTitle = deprecatedAttrTitle + "." + lDOMPermVal.value;
+						String deprecatedValueTitle = deprecatedAttrTitle;
+						DeprecatedDefn deprecatedDefn2 = new DeprecatedDefn (deprecatedValueTitle, lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC, lDOMAttr.title, lDOMPermVal.value, lDOMClass.isUnitOfMeasure);
+						deprecatedObjectsArr.add(deprecatedDefn2);
+					}
+				}
+			}
+		}
+		
+		return deprecatedObjectsArr;
+	}
 
 	// 019 - general master attribute fixup
 	// anchorString; sort_identifier; sorts valArr; get DEC
@@ -1000,60 +1048,51 @@ class MasterDOMInfoModel extends DOMInfoModel{
 			}
 		}	
 		return;
-	}	
+	}
 	
 	// 022 - set Registration Status
 	public void setRegistrationStatus () {
-		for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
-			DeprecatedDefn lDeprecatedDefn = (DeprecatedDefn) i.next();
-			// is it a value
-			if (lDeprecatedDefn.value.compareTo("") != 0) {
-				String lId = DOMInfoModel.getAttrIdentifier (lDeprecatedDefn.classNameSpaceIdNC, lDeprecatedDefn.className, lDeprecatedDefn.attrNameSpaceIdNC, lDeprecatedDefn.attrName);
-				DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lId);
-				if (lAttr != null) {
-					lAttr.hasRetiredValue = true;
-					for (Iterator<PermValueDefn> j = lAttr.permValueArr.iterator(); j.hasNext();) {
-						PermValueDefn lPermValue = (PermValueDefn) j.next();
-						if (lPermValue.value.compareTo(lDeprecatedDefn.value) == 0) {
-							lPermValue.registrationStatus = "Retired";
-							lPermValue.isDeprecated = true;
-						}
-					}
-					for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
-						DOMProp lDOMProp = (DOMProp) j.next();
-						if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-							DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
-							if (lDOMPermValDefn.value.compareTo(lDeprecatedDefn.value) == 0) {
-								lDOMPermValDefn.registrationStatus = "Retired";
-								lDOMPermValDefn.isDeprecated = true;
-							}
-						}
+		
+		// scan all classes and set registration status
+		for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+			if (lDOMClass.isDeprecated) {
+				lDOMClass.registrationStatus = "Retired";
+				
+				// update property
+				if (lDOMClass.hasDOMPropInverse != null) {
+					lDOMClass.hasDOMPropInverse.registrationStatus = lDOMClass.registrationStatus;
+					lDOMClass.hasDOMPropInverse.isDeprecated = lDOMClass.isDeprecated;
+				}
+			}
+		}
+		
+		// scan all attributes and set registration status
+		for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {			
+			if (lDOMAttr.isDeprecated) {
+				lDOMAttr.registrationStatus = "Retired";
+								
+				// update property
+				if (lDOMAttr.hasDOMPropInverse != null) {
+					lDOMAttr.hasDOMPropInverse.registrationStatus = lDOMAttr.registrationStatus;
+					lDOMAttr.hasDOMPropInverse.isDeprecated = lDOMAttr.isDeprecated;
+				}
+			}
+			
+			for (PermValueDefn lPermValue : lDOMAttr.permValueArr) {
+				if (lPermValue.isDeprecated) {
+					lPermValue.registrationStatus = "Retired";
+					lDOMAttr.hasRetiredValue = true;
+				}
+			}
+
+			for (DOMProp lDOMProp : lDOMAttr.domPermValueArr) {
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
+					DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+					if (lDOMPermValDefn.isDeprecated) {
+						lDOMPermValDefn.registrationStatus = "Retired";
+						lDOMAttr.hasRetiredValue = true;
 					}
 				}
-			} else {
-				// is it a class
-				DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lDeprecatedDefn.identifier);
-				if (lClass != null) {
-					lClass.registrationStatus = "Retired";
-					lClass.isDeprecated = true;
-					// update property
-					if (lClass.hasDOMPropInverse != null) {
-						lClass.hasDOMPropInverse.registrationStatus = lClass.registrationStatus;
-						lClass.hasDOMPropInverse.isDeprecated = lClass.isDeprecated;
-					}
-				} else {
-					// is it an attribute
-					DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lDeprecatedDefn.identifier);
-					if (lAttr != null) {
-						lAttr.registrationStatus = "Retired";
-						lAttr.isDeprecated = true;
-						// update property
-						if (lAttr.hasDOMPropInverse != null) {
-							lAttr.hasDOMPropInverse.registrationStatus = lAttr.registrationStatus;
-							lAttr.hasDOMPropInverse.isDeprecated = lAttr.isDeprecated;
-						}
-					}
-				}				
 			}
 		}
 	}
@@ -1395,21 +1434,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 	// 034 - get the LDDToolSingletonClass, the class for LDD singleton attributes (Discipline or Mission)
 	// currently defined in GetDOMModel
 	
-	// 038 - set the class version identifiers (stop gap until class are stored in OWL	
-	public void setClassVersionIds () {
-		Set <String> set = DMDocument.classVersionId.keySet();
-		Iterator <String> iter = set.iterator();
-		while(iter.hasNext()) {
-			String lClassName = (String) iter.next();
-			String lClassId = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClassName);
-			DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
-			if (lClass != null) {		
-				String lClassVersionId = DMDocument.classVersionId.get(lClassName);;		
-				lClass.versionId = lClassVersionId;
-			}
-		}
-	}
-	
 	// 039 - set exposed flag
 	// currently defined in GetDOMModel
 	
@@ -1480,16 +1504,6 @@ class MasterDOMInfoModel extends DOMInfoModel{
 				}
 			}
 			return;
-		}
-		
-		public void dumpClassVersionIds () {
-			//	set the class version identifiers
-			 ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (DOMInfoModel.masterDOMClassIdMap.values());
-			for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
-				DOMClass lClass = (DOMClass) i.next();
-				System.out.println("debug dumpClassVersionIds  lClass.identifier:" + lClass.identifier);		
-				System.out.println("debug dumpClassVersionIds  lClass.versionId:" + lClass.versionId);		
-			}
 		}
 		
 	/**********************************************************************************************************

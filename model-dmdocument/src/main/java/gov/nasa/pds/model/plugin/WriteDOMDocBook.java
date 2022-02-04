@@ -32,6 +32,8 @@ package gov.nasa.pds.model.plugin;
 import java.io.*;
 import java.util.*;
 
+// Write the PDS4 Data Dictionary DocBook file.
+
 class WriteDOMDocBook extends Object {
 	// class structures
 	TreeMap <String, ClassClassificationDefnDOM> classClassificationMap;
@@ -101,6 +103,7 @@ class WriteDOMDocBook extends Object {
 		// get the class classification maps
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isInactive) continue;
 			getClassClassification (lClass);
 		}
 		
@@ -113,6 +116,7 @@ class WriteDOMDocBook extends Object {
 		// get the attribute classification maps
 		for (Iterator <DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) i.next();
+			if (lAttr.isInactive) continue;
 			getAttrClassification (lAttr);
 		}
 		
@@ -697,6 +701,7 @@ class WriteDOMDocBook extends Object {
 		TreeMap <String, DOMClass> sortDataTypeMap = new TreeMap <String, DOMClass> ();
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isInactive) continue;
 			if (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
 			if (!lClass.isDataType) continue;
 			sortDataTypeMap.put(lClass.title, lClass);
@@ -841,6 +846,7 @@ class WriteDOMDocBook extends Object {
 		TreeMap <String, DOMClass> sortUnitsMap = new TreeMap <String, DOMClass> ();
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isInactive) continue;
 			if (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0) continue;
 			if (! lClass.isUnitOfMeasure) continue;
 			sortUnitsMap.put(lClass.title, lClass);
@@ -1161,6 +1167,7 @@ class WriteDOMDocBook extends Object {
 		ArrayList <DOMClass> refClassArr = new ArrayList <DOMClass> ();
 		for (Iterator <DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
+			if (lClass.isInactive) continue;
 			if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
 				for (Iterator <DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
 					DOMProp lProp = j.next();

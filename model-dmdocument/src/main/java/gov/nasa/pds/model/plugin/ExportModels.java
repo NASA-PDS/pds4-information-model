@@ -109,10 +109,16 @@ public class ExportModels extends Object {
 //		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - CCSDS CSV Done");
 		
 		// write the 11179 DD pins file
-		WriteDOM11179DDPinsFile lWriteDOM11179DDPinsFile = new WriteDOM11179DDPinsFile ();
-		lWriteDOM11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);	
-		lWriteDOM11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);	
-		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - DD Pins File Done");
+//		WriteDOM11179DDPinsFile lWriteDOM11179DDPinsFile = new WriteDOM11179DDPinsFile ();
+//		lWriteDOM11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);	
+//		lWriteDOM11179DDPinsFile.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);	
+//		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - DD Pins File Done");
+
+		// write the 11179 DD pins file - Plus Class Version
+		WriteDOM11179DDPinsFilePClass lWriteDOM11179DDPinsFilePClass = new WriteDOM11179DDPinsFilePClass ();
+		lWriteDOM11179DDPinsFilePClass.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);	
+		lWriteDOM11179DDPinsFilePClass.writePINSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);	
+		DMDocument.registerMessage ("0>info " + "writeAllArtifacts - DD Pins *** plus class *** File Done");
 		
 		// write the 11179 DOM JSON file - requires DOMInfoModel to be executed
 		DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON (DMDocument.masterPDSSchemaFileDefn);

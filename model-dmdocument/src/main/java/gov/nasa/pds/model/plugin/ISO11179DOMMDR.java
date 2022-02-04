@@ -34,11 +34,13 @@ import java.util.*;
 class ISO11179DOMMDR extends Object {
 	TreeMap <String, String> hashCodedPersmissibleValueMap;
 	TreeMap <String, String> hashCodedValueMeaningMap;
+	TreeMap <String, String> hashCodedIsDeprecatedMap;
 	TreeMap <String, String> valueChangeMap;
 
 	public ISO11179DOMMDR () {
 		hashCodedPersmissibleValueMap = new TreeMap <String, String> ();
 		hashCodedValueMeaningMap = new TreeMap <String, String> ();
+		hashCodedIsDeprecatedMap = new TreeMap <String, String> ();
 		valueChangeMap = new TreeMap <String, String> ();
 				
 		// set up permissible value / value meaning map; need identifier from map
@@ -46,6 +48,8 @@ class ISO11179DOMMDR extends Object {
 		for (Iterator <InstDefn> i = lMaster11179DataDictArr.iterator(); i.hasNext();) {
 			InstDefn lInstDefn = (InstDefn) i.next();
 			if (lInstDefn.className.compareTo ("PermissibleValue") == 0) {
+				
+				// get value
 				ArrayList <String> lValArr = lInstDefn.genSlotMap.get("value");
 				if (lValArr != null) {
 					String lValue = lValArr.get(0);					
@@ -65,6 +69,18 @@ class ISO11179DOMMDR extends Object {
 								hashCodedValueMeaningMap.put(lKey, lDescription);
 							}
 						}
+					}
+				}
+				// get isDeprecated
+				String lSlotIsDeprecated = lInstDefn.getSlotValueSingleton ("isDeprecated");
+				if (lSlotIsDeprecated != null && lSlotIsDeprecated.compareTo("true") == 0) {
+					String lSlotValue = lInstDefn.getSlotValueSingleton ("value");
+					if (lSlotValue != null) {
+						String lKey = lInstDefn.title;
+						int lOffset = lInstDefn.title.lastIndexOf(".");
+						if (lOffset > -1) lKey = lInstDefn.title.substring(0, lOffset);
+						lKey += "." + lSlotValue;
+						hashCodedIsDeprecatedMap.put(lKey, lSlotIsDeprecated);
 					}
 				}
 			}
@@ -116,6 +132,13 @@ class ISO11179DOMMDR extends Object {
 			InstDefn lDEInst = DOMInfoModel.master11179DataDict.get(lInstId);
 			if (lDEInst != null) {
 				lInstMap = lDEInst.genSlotMap;
+				
+				// update isDeprecated
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isDeprecated", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite with 11179 - got lInstId:" + lInstId + " - updating lAttr.isDeprecated:" + lAttr.isDeprecated + "  - with lVal:" + lVal); }
+					lAttr.isDeprecated = true;
+				}				
 
 				// update steward
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "steward", lAttr.steward);                        
@@ -229,11 +252,19 @@ class ISO11179DOMMDR extends Object {
 						DOMProp lDOMProp = (DOMProp) j.next();
 						if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
 							DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+		
 							// title:vm.0001_NASA_PDS_1.pds.DD_Class_Full.steward_id.111209
 							String lKey = "pv." + DOMInfoModel.getAttrIdentifier(lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.title) + "." + lDOMPermVal.value;
 							String lValueMeaning = hashCodedValueMeaningMap.get(lKey);
 							if (lValueMeaning != null) {
 								lDOMPermVal.value_meaning = lValueMeaning;
+							}
+							
+							// update isDeprecated
+							String lIsDeprecatedKey = "pv" + "." + lSuffix + "." + lDOMPermVal.value;
+							String lIsDeprecated = hashCodedIsDeprecatedMap.get(lIsDeprecatedKey);
+							if (lIsDeprecated != null) {
+								lDOMPermVal.isDeprecated = true;
 							}
 						}
 					}
@@ -250,7 +281,7 @@ class ISO11179DOMMDR extends Object {
 		String lVal;
 		boolean lDebugFlag = false;	
 		
-		// iterate through the master attribute array
+		// iterate through the master class array
 		for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
 			DOMClass lDOMClass = (DOMClass) i.next();
 			if (lDOMClass.isFromLDD) continue;			
@@ -259,18 +290,25 @@ class ISO11179DOMMDR extends Object {
 			InstDefn lOCInst = DOMInfoModel.master11179DataDict.get(lInstId);
 			if (lOCInst != null) {
 				lInstMap = lOCInst.genSlotMap;
+				
+				// update isDeprecated
+				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isDeprecated", "false");                        
+				if (lVal != null && lVal.compareTo("true") == 0) {
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isDeprecated:" + lDOMClass.isDeprecated + "  - with lVal:" + lVal); }
+					lDOMClass.isDeprecated = true;
+				}
 
 				// update used
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "used", lDOMClass.used);                        
 				if (lVal != null) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.used + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.used:" + lDOMClass.used + "  - with lVal:" + lVal); }
 					lDOMClass.used = lVal;
 				}
 
 				// update section
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "section", lDOMClass.section);                        
 				if (lVal != null) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.section + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.section:" + lDOMClass.section + "  - with lVal:" + lVal); }
 					lDOMClass.section = lVal;
 				}
 
@@ -284,56 +322,56 @@ class ISO11179DOMMDR extends Object {
 				// update nameSpaceIdNC
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "nameSpaceIdNC", lDOMClass.nameSpaceIdNC);                        
 				if (lVal != null) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.nameSpaceIdNC + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.nameSpaceIdNC:" + lDOMClass.nameSpaceIdNC + "  - with lVal:" + lVal); }
 					lDOMClass.nameSpaceIdNC = lVal;
 				}
 
 				// update isVacuous
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isVacuous", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isVacuous + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isVacuous:" + lDOMClass.isVacuous + "  - with lVal:" + lVal); }
 					lDOMClass.isVacuous = true;
 				}
 
 				// update isSchema1Class
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isSchema1Class", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isSchema1Class + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isSchema1Class:" + lDOMClass.isSchema1Class + "  - with lVal:" + lVal); }
 					lDOMClass.isSchema1Class = true;
 				}
 
 				// update isRegistryClass
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isRegistryClass", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isRegistryClass + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isRegistryClass:" + lDOMClass.isRegistryClass + "  - with lVal:" + lVal); }
 					lDOMClass.isRegistryClass = true;
 				}
 
 				// update isTDO
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isTDO", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isTDO + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isTDO:" + lDOMClass.isTDO + "  - with lVal:" + lVal); }
 					lDOMClass.isTDO = true;
 				}
 
 				// update isDataType
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isDataType", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isDataType + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isDataType:" + lDOMClass.isDataType + "  - with lVal:" + lVal); }
 					lDOMClass.isDataType = true;
 				}
 
 				// update isUnitOfMeasure
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "isUnitOfMeasure", "false");                        
 				if (lVal != null && lVal.compareTo("true") == 0) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.isUnitOfMeasure + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.isUnitOfMeasure:" + lDOMClass.isUnitOfMeasure + "  - with lVal:" + lVal); }
 					lDOMClass.isUnitOfMeasure = true;
 				}
 
 				// update versionIdentifier
 				lVal = ProtPinsDOM11179DD.getStringValueUpdate (false, lInstMap, "versionIdentifier", lDOMClass.versionId);                        
 				if (lVal != null) {
-					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.steward:" + lDOMClass.versionId + "  - with lVal:" + lVal); }
+					if (lDebugFlag) { System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId + " - updating Class.versionId:" + lDOMClass.versionId + "  - with lVal:" + lVal); }
 					lDOMClass.versionId = lVal;
 				}			
 

@@ -1,4 +1,4 @@
-; Wed Sep 08 12:33:54 EDT 2021
+; Thu Feb 03 21:40:39 EST 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9653,7 +9653,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Schematron_Rule
+(defclass Schematron_Rule "The Schematron_Rule Class is used to capture schemtron rule statements."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot identifier
@@ -9727,7 +9727,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Schematron_Assert
+(defclass Schematron_Assert "The Schematron_Assert Class is used to capture schemtron assert statements."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot identifier
@@ -10029,7 +10029,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Output_Data
+(defclass Output_Data "The Output_Data Class is used to"
 	(is-a Entity)
 	(role concrete)
 	(single-slot was_generated_by
@@ -10038,15 +10038,15 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Input_Data
+(defclass Input_Data "The Input_Data Class is used to"
 	(is-a Entity)
 	(role concrete))
 
-(defclass Methods
+(defclass Methods "The Methods Class is used to"
 	(is-a Entity)
 	(role concrete))
 
-(defclass Config
+(defclass Config "The Config Class is used to"
 	(is-a Entity)
 	(role concrete))
 
@@ -10776,7 +10776,7 @@
 ;+		(allowed-classes DD_Permissible_Value_Full)
 		(create-accessor read-write)))
 
-(defclass DD_Static_Permissible_Value
+(defclass DD_Static_Permissible_Value "The DD_Static_Permissible_Value Class is used to"
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
 	(single-slot local_identifier
@@ -13476,7 +13476,7 @@
 	(is-a USER)
 	(role concrete))
 
-(defclass ChangeLog
+(defclass ChangeLog "The ChangeLog Class is used to capture chages."
 	(is-a USER)
 	(role concrete)
 	(single-slot desc
