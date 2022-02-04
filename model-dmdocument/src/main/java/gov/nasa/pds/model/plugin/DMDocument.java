@@ -141,8 +141,11 @@ public class DMDocument extends Object {
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
 	static boolean LDDAttrElementFlag = false;			// if true, write  XML elements for attributes
 	static boolean LDDNuanceFlag = false;				//
-	static boolean overWriteClass = false;				// use dd11179.pins to provide class disp information; also deprecation flags.
-	static boolean useMDPTNConfig = true;				// use MDPTNConfigClassDisp in protPont class parsing
+	
+	// refactor into Protege switches
+	static boolean overWriteClass = true;				// use dd11179.pins class disp, isDeprecated, and versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
+	static boolean useMDPTNConfig = true;				// ProtPontDOMModel; get disposition for the class from MDPTNConfigClassDisp
+	static boolean overWriteDeprecated = false;			// use dd11179.pins isDeprecated to overwrite DMDocument.deprecatedObjects2
 	
 	// alternate IM Version
 	// if no option "V" is provided on the command line, then the default is the current IM version.
@@ -262,16 +265,12 @@ public class DMDocument extends Object {
 		
 	// the set of deprecated classes, attributes, and values	
 	static ArrayList <DeprecatedDefn> deprecatedObjects2;
-	static ArrayList <String> deprecatedAttrValueArr;
 	static String Literal_DEPRECATED = " *Deprecated*";
 	static boolean deprecatedAdded;
 	static boolean deprecatedAddedDOM;
 	
 	// the set of classes and attributes that will be externalized (defined as xs:Element)	
 	static ArrayList <String> exposedElementArr;
-
-	// class version identifiers (only updated classes; v1.0.0.0 is assumed)
-	static TreeMap <String, String> classVersionId;
 	
 	// info, warning, and error messages
 	static int msgOrder = 100000;
@@ -404,10 +403,7 @@ public class DMDocument extends Object {
 		
 		// set exposed elements 
 		setexposedElementFlag ();
-		
-		// set classVersionId
-		setClassVersionIdFlag ();
-		
+				
 		// get the command line arguments using argparse4j
 		Namespace argparse4jNamespace = getArgumentParserNamespace(args);
 		
@@ -1003,64 +999,6 @@ public class DMDocument extends Object {
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds", "type", "", false));                            
 	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));                            
 
-/*
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Accelerometer", "pds", "Instrument", "pds", "type", "Accelerometer", false));                            
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle Detector", "pds", "Instrument", "pds", "type", "Alpha Particle Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Alpha Particle X-Ray Spectrometer", "pds", "Instrument", "pds", "type", "Alpha Particle X-Ray Spectrometer", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Altimeter", "pds", "Instrument", "pds", "type", "Altimeter", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Anemometer", "pds", "Instrument", "pds", "type", "Anemometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Atomic Force Microscope", "pds", "Instrument", "pds", "type", "Atomic Force Microscope", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Barometer", "pds", "Instrument", "pds", "type", "Barometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Biology Experiments", "pds", "Instrument", "pds", "type", "Biology Experiments", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Bolometer", "pds", "Instrument", "pds", "type", "Bolometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Camera", "pds", "Instrument", "pds", "type", "Camera", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Cosmic Ray Detector", "pds", "Instrument", "pds", "type", "Cosmic Ray Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Drilling Tool", "pds", "Instrument", "pds", "type", "Drilling Tool", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Dust Detector", "pds", "Instrument", "pds", "type", "Dust Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Electrical Probe", "pds", "Instrument", "pds", "type", "Electrical Probe", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Energetic Particle Detector", "pds", "Instrument", "pds", "type", "Energetic Particle Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Gamma Ray Detector", "pds", "Instrument", "pds", "type", "Gamma Ray Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Gas Analyzer", "pds", "Instrument", "pds", "type", "Gas Analyzer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Grinding Tool", "pds", "Instrument", "pds", "type", "Grinding Tool", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Hygrometer", "pds", "Instrument", "pds", "type", "Hygrometer", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Imager", "pds", "Instrument", "pds", "type", "Imager", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Imaging Spectrometer", "pds", "Instrument", "pds", "type", "Imaging Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Inertial Measurement Unit", "pds", "Instrument", "pds", "type", "Inertial Measurement Unit", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Infrared Spectrometer", "pds", "Instrument", "pds", "type", "Infrared Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Laser Induced Breakdown Spectrometer", "pds", "Instrument", "pds", "type", "Laser Induced Breakdown Spectrometer", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Magnetometer", "pds", "Instrument", "pds", "type", "Magnetometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Mass Spectrometer", "pds", "Instrument", "pds", "type", "Mass Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Microwave Spectrometer", "pds", "Instrument", "pds", "type", "Microwave Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Moessbauer Spectrometer", "pds", "Instrument", "pds", "type", "Moessbauer Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Naked Eye", "pds", "Instrument", "pds", "type", "Naked Eye", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Neutral Particle Detector", "pds", "Instrument", "pds", "type", "Neutral Particle Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Neutron Detector", "pds", "Instrument", "pds", "type", "Neutron Detector", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Photometer", "pds", "Instrument", "pds", "type", "Photometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Analyzer", "pds", "Instrument", "pds", "type", "Plasma Analyzer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Detector", "pds", "Instrument", "pds", "type", "Plasma Detector", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Plasma Wave Spectrometer", "pds", "Instrument", "pds", "type", "Plasma Wave Spectrometer", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Polarimeter", "pds", "Instrument", "pds", "type", "Polarimeter", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radar", "pds", "Instrument", "pds", "type", "Radar", false));
-//		Undeprecate Radio Science as per CCB-247
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Science", "pds", "Instrument", "pds", "type", "Radio Science", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Spectrometer", "pds", "Instrument", "pds", "type", "Radio Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radio Telescope", "pds", "Instrument", "pds", "type", "Radio Telescope", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Radiometer", "pds", "Instrument", "pds", "type", "Radiometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Reflectometer", "pds", "Instrument", "pds", "type", "Reflectometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Robotic Arm", "pds", "Instrument", "pds", "type", "Robotic Arm", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Spectrograph Imager", "pds", "Instrument", "pds", "type", "Spectrograph Imager", false));
-//	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Spectrometer", "pds", "Instrument", "pds", "type", "Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermal Imager", "pds", "Instrument", "pds", "type", "Thermal Imager", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermal Probe", "pds", "Instrument", "pds", "type", "Thermal Probe", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Thermometer", "pds", "Instrument", "pds", "type", "Thermometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Ultraviolet Spectrometer", "pds", "Instrument", "pds", "type", "Ultraviolet Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Weather Station", "pds", "Instrument", "pds", "type", "Weather Station", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.Wet Chemistry Laboratory", "pds", "Instrument", "pds", "type", "Wet Chemistry Laboratory", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Detector", "pds", "Instrument", "pds", "type", "X-ray Detector", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Diffraction Spectrometer", "pds", "Instrument", "pds", "type", "X-ray Diffraction Spectrometer", false));
-	    deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type.X-ray Fluorescence Spectrometer", "pds", "Instrument", "pds", "type", "X-ray Fluorescence Spectrometer", false));
-*/
-
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Calibration", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Open Cluster", false));
 	    deprecatedObjects2.add(new DeprecatedDefn ("Target_Identification.type", "pds", "Target_Identification", "pds", "type", "Globular Cluster", false));
@@ -1129,31 +1067,6 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Inventory.field_delimiter", "pds", "Inventory", "pds", "field_delimiter", "vertical bar", false));
 
 //		deprecatedObjects2.add(new DeprecatedDefn ("Update.Update_Entry", "pds", "Update_Entry", "", "", "", false));
-
-/*		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Aerial survey - North American (1983) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Adindan datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Australian datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Campo Inchauspe (Argentina) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Cape (South Africa) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Corregio Alegre (Brazil) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - datum unknown", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - European 1979 datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - European datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - GRS 80 datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Hermannskogel datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Indian datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - La Canoa (Venezuela) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - New Zealand datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - North American (1927) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Old Hawaiian datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Ordnance Survey of Great Britain (1936) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Ordnance Survey of Great Britain (SN) 1980 datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Potsdam datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Puerto Rican (1940) datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - South American datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - Tokyo datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Geodetic - WGS 84 datum", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.coordinate_source", "pds", "Telescope", "pds", "coordinate_source", "Satellite determined - datum unknown", false)); */
 		
 		deprecatedObjects2.add(new DeprecatedDefn ("Telescope.altitude", "pds", "Telescope", "pds", "altitude", "", false));
 
@@ -1210,24 +1123,13 @@ public class DMDocument extends Object {
 		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3", "pds", "Vector_Cartesian_3", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Acceleration", "pds", "Vector_Cartesian_3_Acceleration", "", "", "", false));
 		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Position", "pds", "Vector_Cartesian_3_Position", "", "", "", false));
-		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Velocity", "pds", "Vector_Cartesian_3_Velocity", "", "", "", false));		
-		
-		// get ArrayList for *** testing only ***
-		deprecatedAttrValueArr = new ArrayList <String> ();
-		for (Iterator <DeprecatedDefn> i = deprecatedObjects2.iterator(); i.hasNext();) {
-			DeprecatedDefn lObject = (DeprecatedDefn) i.next();
-			if (lObject.value.compareTo("") != 0) {
-				String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className + "." + lObject.attrName + "." + lObject.value;			
-				deprecatedAttrValueArr.add(lIdentifier);
-				continue;
-			}
-			if (lObject.attrName.compareTo("") != 0) {
-				String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className + "." + lObject.attrName;
-				deprecatedAttrValueArr.add(lIdentifier);
-				continue;
-			}
-			String lIdentifier = lObject.classNameSpaceIdNC + "." + lObject.className;
-			deprecatedAttrValueArr.add(lIdentifier);
+		deprecatedObjects2.add(new DeprecatedDefn ("Vector_Cartesian_3_Velocity", "pds", "Vector_Cartesian_3_Velocity", "", "", "", false));
+	}
+	
+	static void Dump333DeprecatedObjects2 (String title, ArrayList <DeprecatedDefn> lDeprecatedObjectsArr) {
+		System.out.println("\n debug Dump333DeprecatedObjects2 - " + title);
+		for (DeprecatedDefn lDep : lDeprecatedObjectsArr) {
+			System.out.println("debug lDep.title:" + lDep.title + " |  lDep.classNameSpaceIdNC:" + lDep.classNameSpaceIdNC + " |  lDep.className:" + lDep.className + " |  lDep.attrNameSpaceIdNC:" + lDep.attrNameSpaceIdNC + " |  lDep.attrName:" + lDep.attrName + " |  lDep.value:" + lDep.value + " |  lDep.isValue:" + lDep.isValue + " |  lDep.isAttribute:" + lDep.isAttribute + " |  lDep.isUnitId:" + lDep.isUnitId);
 		}
 	}
 	
@@ -1299,97 +1201,6 @@ public class DMDocument extends Object {
 		registryAttr.add("stop_date");
 		registryAttr.add("logical_identifier"); 
 		registryAttr.add("version_id");
-	}
-	
-	static void setClassVersionIdFlag () {
-		// class version ids
-		classVersionId = new TreeMap <String, String> ();
-		classVersionId.put("Array", "2.0.0.0");
-		classVersionId.put("Array_2D_Image", "1.1.0.0");
-		classVersionId.put("Axis_Array", "1.3.0.0");
-		classVersionId.put("Bundle_Member_Entry", "1.1.0.0");
-		classVersionId.put("Checksum_Manifest", "1.1.0.0");
-		classVersionId.put("Citation_Information", "1.2.0.0");
-		classVersionId.put("Data_Set_PDS3", "1.1.0.0");
-		classVersionId.put("DD_Association", "1.2.0.0");
-		classVersionId.put("DD_Association_External", "1.1.0.0");
-		classVersionId.put("DD_Permissible_Value", "1.1.0.0");
-		classVersionId.put("Display_Settings", "1.1.0.0");
-		classVersionId.put("Document", "2.0.0.0");
-		classVersionId.put("Document_File", "1.4.0.0");
-		classVersionId.put("Encoded_Binary", "1.1.0.0");
-		classVersionId.put("Encoded_Telemetry", "1.1.0.0");
-		classVersionId.put("Field", "1.1.0.0");
-		classVersionId.put("File", "1.1.0.0");
-		classVersionId.put("File_Area_Browse", "1.1.0.0");
-		classVersionId.put("File_Area_Ancillary", "1.1.0.0");
-		classVersionId.put("File_Area_Browse", "1.2.0.0");
-		classVersionId.put("File_Area_Observational", "1.3.0.0");
-		classVersionId.put("File_Area_Observational_Supplemental", "1.3.0.0");
-		classVersionId.put("File_Area_Update", "1.1.0.0");
-		classVersionId.put("Group", "1.1.0.0");
-		classVersionId.put("Group_Field_Binary", "1.1.0.0");
-		classVersionId.put("Group_Field_Character", "1.1.0.0");
-		classVersionId.put("Header", "1.1.0.0");
-		classVersionId.put("Identification_Area", "1.4.0.0");
-		classVersionId.put("Ingest_LDD", "1.1.0.0");
-		classVersionId.put("Instrument", "1.3.0.0");
-		classVersionId.put("Instrument_Host", "1.3.0.0");
-		classVersionId.put("Internal_Reference", "1.1.0.0");
-		classVersionId.put("Inventory", "1.2.0.0");
-//		classVersionId.put("NOT Spice_Kernel", "");
-		classVersionId.put("Observing_System_Component", "1.1.0.0"); 
-		classVersionId.put("Primary_Result_Summary", "2.3.0.0");
-
-		classVersionId.put("Product_Document", "2.1.0.0");
-		classVersionId.put("Investigation_Area", "1.1.0.0");        //  <Internal_Reference.reference_type>
-		classVersionId.put("Product_Bundle", "1.1.0.0");         		//  <Internal_Reference.reference_type>
-		classVersionId.put("Product_Collection", "1.1.0.0");        //  <Internal_Reference.reference_type>
-		classVersionId.put("Product_Context", "1.1.0.0");         	//  <Internal_Reference.reference_type>
-		classVersionId.put("Product_Observational", "1.7.0.0");      //  <Internal_Reference.reference_type>
-		classVersionId.put("Product_Native", "1.2.0.0");
-		classVersionId.put("Product_Service", "1.1.0.0");
-		classVersionId.put("Product_XML_Schema", "1.2.0.0");
-		classVersionId.put("Product_SIP_Deep_Archive", "1.1.0.0");
-
-		classVersionId.put("Record_Character", "1.1.0.0");
-		classVersionId.put("Special_Constants", "1.1.0.0");
-		classVersionId.put("Spectral_Radiance", "1.1.0.0");
-		classVersionId.put("Spectral_Irradiance", "1.1.0.0");
-		classVersionId.put("Table_Binary", "1.1.0.0");
-		classVersionId.put("Target", "1.3.0.0");
-		classVersionId.put("Target_Identification", "1.4.0.0");
-		classVersionId.put("Telescope", "1.3.0.0");
-		classVersionId.put("Terminological_Entry", "1.1.0.0");
-		classVersionId.put("Transfer_Manifest", "1.1.0.0");
-		classVersionId.put("Uniformly_Sampled", "1.1.0.0");
-		classVersionId.put("Unit_Of_Measure", "1.1.0.0");
-		classVersionId.put("Units_of_Current", "1.1.0.0");
-		classVersionId.put("Units_of_Radiance", "1.1.0.0");
-		classVersionId.put("XML_Schema", "1.2.0.0");
-
-		classVersionId.put("ASCII_Date", "1.1.0.0");
-		classVersionId.put("ASCII_DOI", "1.1.0.0");
-		classVersionId.put("ASCII_Date_Time", "1.1.0.0");
-		classVersionId.put("ASCII_Date_Time_DOY", "1.2.0.0");
-		classVersionId.put("ASCII_Date_Time_UTC", "1.3.0.0");
-		classVersionId.put("ASCII_Date_Time_YMD", "1.1.0.0");
-		classVersionId.put("ASCII_Date_YMD", "1.1.0.0");
-		classVersionId.put("ASCII_Integer", "1.1.0.0");
-		classVersionId.put("ASCII_MD5_Checksum", "1.1.0.0");
-		classVersionId.put("ASCII_Numeric_Base2", "1.2.0.0");
-		classVersionId.put("ASCII_Numeric_Base8", "1.2.0.0");
-		classVersionId.put("ASCII_Time", "1.1.0.0");
-		classVersionId.put("ASCII_VID", "1.1.0.0");
-		classVersionId.put("ASCII_Directory_Path_Name", "1.1.0.0");
-		classVersionId.put("ASCII_File_Name", "1.1.0.0");
-		classVersionId.put("ASCII_File_Specification_Name", "1.1.0.0");
-		classVersionId.put("ASCII_LID", "1.1.0.0");
-		classVersionId.put("ASCII_LIDVID", "1.1.0.0");
-		classVersionId.put("ASCII_LIDVID_LID", "1.1.0.0");
-		classVersionId.put("ASCII_MD5_Checksum", "1.1.0.0");
-		classVersionId.put("ASCII_Time", "1.1.0.0");
-		classVersionId.put("ASCII_VID", "1.1.0.0");
 	}
 	
 	static void registerMessage (String lMessage) {

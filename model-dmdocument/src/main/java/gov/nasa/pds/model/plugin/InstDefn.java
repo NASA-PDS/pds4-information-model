@@ -56,5 +56,20 @@ public class InstDefn extends Object {
 		description = "TBD_description";
 		
 		genSlotMap = new HashMap <String, ArrayList<String>> ();
-	}  	
+	}
+	
+	// get a singleton slot value given a keyName (Protege dd11179 attribute)
+	public String getSlotValueSingleton (String keyName) {
+		ArrayList <String> lValArr = getSlotValueArr (keyName);
+		if (lValArr == null) return null;
+		String lValue = lValArr.get(0);
+		if (lValue == null) return null;
+		return lValue;
+	}	
+
+	// get the slot value array given a keyName (Protege dd11179 attribute)
+	public ArrayList <String> getSlotValueArr (String keyName) {
+		ArrayList <String> lValArr = genSlotMap.get(keyName);
+		return lValArr;
+	}
 } 	

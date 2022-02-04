@@ -304,7 +304,7 @@ public class GetDOMModel extends Object {
 		// 017b - overwrite master classes from the 11179 DD
 		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
 		//		Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-		if (DMDocument.overWriteClass) lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
+		lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
 		
 		// 018 - overwrite any LDD attributes from the cloned USER attributes
 		//       this is not really needed since the definitions are in the external class
@@ -321,6 +321,10 @@ public class GetDOMModel extends Object {
 		
 		// 018.5 - propagate the class.inactive flag; these are classes with "I" (Ignore) or "N" (not used) use flags.
 		DMDocument.masterDOMInfoModel.setInactiveFlag ();
+
+		// 333
+		// 018.7 - get the Deprecated Objects array
+//		DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
 		
 		// 019 - general master attribute fixup
 		// anchorString; sort_identifier; sort attribute.valArr
@@ -334,9 +338,14 @@ public class GetDOMModel extends Object {
 		
 		// 022 - set the registration status
 		DMDocument.masterDOMInfoModel.setRegistrationStatus ();
+
+		// 018.7 - get the Deprecated Objects array
+// 333	
+		if (DMDocument.overWriteDeprecated) DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
 		
-		// 023 - set the class version identifiers (stop gap until class are stored in OWL) (was 038)
-		DMDocument.masterDOMInfoModel.setClassVersionIds ();
+// 333		DMDocument.Dump333DeprecatedObjects2 ("DMDocument", DMDocument.deprecatedObjects2);
+
+// 333		DMDocument.Dump333DeprecatedObjects2 ("DD11179", DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr());
 		
 		// 024 - set up master data types - the data type map
 		DMDocument.masterDOMInfoModel.setMasterDataType2 ();
