@@ -1,14 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-01-13)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-04)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
 
 **Improvements:**
 
-- Refactor Class information from config to Data Dictionary Protege ontology [\#239](https://github.com/NASA-PDS/pds4-information-model/issues/239)
+- IMTool Refactoring - Phase 2 - Move deprecated values to Protege ontology file [\#428](https://github.com/NASA-PDS/pds4-information-model/issues/428)
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-01-08)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-01-13)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
@@ -19,6 +19,7 @@
 **Improvements:**
 
 - \[namespace-registry\] add new namespace "radar" [\#409](https://github.com/NASA-PDS/pds4-information-model/issues/409)
+- Refactor Class information from config to Data Dictionary Protege ontology [\#239](https://github.com/NASA-PDS/pds4-information-model/issues/239)
 
 **Defects:**
 
