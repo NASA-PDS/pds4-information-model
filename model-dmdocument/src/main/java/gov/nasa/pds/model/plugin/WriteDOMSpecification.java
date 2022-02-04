@@ -987,8 +987,14 @@ private void printAttrUnit (DOMAttr attr) {
 			} else {
 				prhtml.println("<p><i>Extended Value for: " + lPermValueExt.xpath + "</i><br>");
 			}
-		
-			for (Iterator <PermValueDefn> j = lPermValueExt.permValueExtArr.iterator(); j.hasNext();) {
+			
+			// sort the permissible values
+			TreeMap <String, PermValueDefn> sortPermValueDefnMap = new TreeMap <String, PermValueDefn> ();
+			for (PermValueDefn lPermValueDefn : lPermValueExt.permValueExtArr) {
+				sortPermValueDefnMap.put(lPermValueDefn.identifier + lPermValueDefn.value, lPermValueDefn);
+			}
+			ArrayList <PermValueDefn> sortPermValueDefnArr = new ArrayList <PermValueDefn> (sortPermValueDefnMap.values());
+			for (Iterator <PermValueDefn> j = sortPermValueDefnArr.iterator(); j.hasNext();) {
 				PermValueDefn lPermValueDefn = (PermValueDefn) j.next();
 				if (lPermValueDefn.value.compareTo("...") == 0) {
 					elipflag = true;
