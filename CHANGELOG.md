@@ -1,12 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
 
-**Defects:**
+**Other closed issues:**
 
-- The PDS4 IM Specification Document is not consistent in the ordering of Permissible Values [\#269](https://github.com/NASA-PDS/pds4-information-model/issues/269) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- Stage IMTool for V1.18.0.0 [\#431](https://github.com/NASA-PDS/pds4-information-model/issues/431)
 
 ## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-02-04)
 
@@ -30,6 +30,7 @@
 - PDS4 Information Model Release Notes have errors.  [\#412](https://github.com/NASA-PDS/pds4-information-model/issues/412)
 - LDDTool documentation inconsistency [\#375](https://github.com/NASA-PDS/pds4-information-model/issues/375) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - Contradictory DISP rule assertions exist in the PDS4 IM from legacy ingestion [\#351](https://github.com/NASA-PDS/pds4-information-model/issues/351) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- The PDS4 IM Specification Document is not consistent in the ordering of Permissible Values [\#269](https://github.com/NASA-PDS/pds4-information-model/issues/269) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool: DocBook generation does not work from any file system location [\#170](https://github.com/NASA-PDS/pds4-information-model/issues/170) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 ## [v13.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v13.1.0) (2021-10-05)
