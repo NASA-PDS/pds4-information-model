@@ -134,8 +134,8 @@ public class DMDocument extends Object {
 	                         
 	static String LDDToolVersionId  = "0.0.0";
 	static String buildDate  = "";
-	static String buildIMVersionId = "1.17.0.0";
-	static String buildIMVersionFolderId = "1H00";
+	static String buildIMVersionId = "1.18.0.0";
+	static String buildIMVersionFolderId = "1I00";
 	static String classVersionIdDefault = "1.0.0.0";
 	static boolean PDS4MergeFlag  = false;				// create protege output; not currently used
 //	static boolean LDDClassElementFlag = false;			// if true, write XML elements for classes
@@ -307,6 +307,7 @@ public class DMDocument extends Object {
 		
 		// The current version is included to allow for -V currentIMVersion
 		alternateIMVersionArr = new ArrayList <String> ();
+		alternateIMVersionArr.add ("1I00");
 		alternateIMVersionArr.add ("1H00");
 		alternateIMVersionArr.add ("1G00");
 		alternateIMVersionArr.add ("1F00");
@@ -1354,7 +1355,7 @@ public class DMDocument extends Object {
         parser.addArgument("-V", "--IM Version")
                 .dest("V")
                 .type(String.class)
-                .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00").setDefault(buildIMVersionFolderId)
+                .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00").setDefault(buildIMVersionFolderId)
                 .help("Set the IM Version");
         
         parser.addArgument("fileNameArr")
