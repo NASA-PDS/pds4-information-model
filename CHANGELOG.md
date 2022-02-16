@@ -1,28 +1,18 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-16)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
-
-**Requirements:**
-
-- CCB-337 - Change data type Modification\_Detail/modification\_date to ASCII\_Date\_Time\_YMD [\#436](https://github.com/NASA-PDS/pds4-information-model/issues/436)
-
-**Improvements:**
-
-- \[namespace-registry\] add new namespace "\<neas\>" [\#421](https://github.com/NASA-PDS/pds4-information-model/issues/421)
-
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-02-10)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-02-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
 **Requirements:**
 
+- CCB-337 - Change data type Modification\_Detail/modification\_date to ASCII\_Date\_Time\_YMD [\#436](https://github.com/NASA-PDS/pds4-information-model/issues/436)
 - As an operator, I want to be able to convert from XML to RDF using the PDS4 Information Model [\#387](https://github.com/NASA-PDS/pds4-information-model/issues/387)
 
 **Improvements:**
 
 - IMTool Refactoring - Phase 2 - Move deprecated values to Protege ontology file [\#428](https://github.com/NASA-PDS/pds4-information-model/issues/428)
+- \[namespace-registry\] add new namespace "\<neas\>" [\#421](https://github.com/NASA-PDS/pds4-information-model/issues/421)
 - \[namespace-registry\] add new namespace "radar" [\#409](https://github.com/NASA-PDS/pds4-information-model/issues/409)
 - Refactor Class information from config to Data Dictionary Protege ontology [\#239](https://github.com/NASA-PDS/pds4-information-model/issues/239)
 
