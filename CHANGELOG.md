@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+
+**Improvements:**
+
+- Tag ops classes/attributes in IM so they are easily identifiable by users [\#281](https://github.com/NASA-PDS/pds4-information-model/issues/281)
+
 ## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-02-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
