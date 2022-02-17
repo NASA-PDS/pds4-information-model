@@ -90,7 +90,7 @@ class WriteDOMDocBook extends Object {
 		}
 		
 		classClassificationMap.put("pds.product", new ClassClassificationDefnDOM ("pds.product"));
-		classClassificationMap.put("pds.pds3", new ClassClassificationDefnDOM ("pds.pds3"));
+		if (DMDocument.pds4ModelFlag) classClassificationMap.put("pds.ops", new ClassClassificationDefnDOM ("pds.ops"));
 		classClassificationMap.put("pds.support", new ClassClassificationDefnDOM ("pds.support"));
 		classClassificationMap.put("pds.other", new ClassClassificationDefnDOM ("pds.other"));
 
@@ -138,7 +138,7 @@ class WriteDOMDocBook extends Object {
 				if (lClassClassificationDefnDOM.classArr.size() > 0) {
 					if (! (lId.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
 							|| lId.compareTo("pds.product") == 0 
-							|| lId.compareTo("pds.pds3") == 0 
+							|| lId.compareTo("pds.ops") == 0 
 							|| lId.compareTo("pds.support") == 0 
 							|| lId.compareTo("pds.other") == 0 
 							|| lId.compareTo("other") == 0 )) {
@@ -172,11 +172,11 @@ class WriteDOMDocBook extends Object {
 		if (lClassClassificationDefn != null) {			
 			if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 				// i.e., the Common directory, pds
-				if (lClass.isRegistryClass) {
+				if (lClass.steward.compareTo("ops") == 0) {
+					lClassClassificationDefn = classClassificationMap.get("pds.ops");
+					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
+				} else if (lClass.isRegistryClass) {
 					lClassClassificationDefn = classClassificationMap.get("pds.product");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-				} else if (lClass.title.indexOf("PDS3") > -1) {
-					lClassClassificationDefn = classClassificationMap.get("pds.pds3");
 					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
 				} else {
 					lClassClassificationDefn = classClassificationMap.get("pds.support");
@@ -278,11 +278,11 @@ class WriteDOMDocBook extends Object {
 		}
 		
 		if (! DMDocument.importJSONAttrFlag) {  // if a JSON run, dont write the following
-			lClassClassificationDefn = classClassificationMap.get("pds.pds3");
+			lClassClassificationDefn = classClassificationMap.get("pds.ops");
 			if (lClassClassificationDefn != null) {
 				prDocBook.println("        <chapter>");
-				prDocBook.println("           <title>PDS3 catalog classes in the common namespace.</title>");
-				prDocBook.println("           <para>These classes are used to archive PDS3 catalog information. </para>");
+				prDocBook.println("           <title>OPS catalog classes in the common namespace.</title>");
+				prDocBook.println("           <para>These classes support operations. </para>");
 				for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 					DOMClass lClass = (DOMClass) j.next();
 					writeClass (lClass, prDocBook);						
@@ -1203,5 +1203,35 @@ class WriteDOMDocBook extends Object {
 		String lString = aString;
 //		lString = replaceString (lString, "\\", "\\\\");
 		return lString;
+	}
+	 
+	 // locally defined classes for classifying classes and attributes
+	 
+	public class ClassClassificationDefnDOM {
+		String identifier;
+		String namespaceId;
+		ArrayList <DOMClass> classArr;
+		TreeMap <String, DOMClass> classMap;
+		
+		public ClassClassificationDefnDOM (String id) {
+			identifier = id; 
+			namespaceId = id;
+			classArr = new ArrayList <DOMClass> ();
+			classMap = new TreeMap <String, DOMClass> ();
+		} 
+	}
+	 
+	public class AttrClassificationDefnDOM {
+		String identifier;
+		String namespaceId;
+		ArrayList <DOMAttr> attrArr;
+		TreeMap <String, DOMAttr> attrMap;
+		
+		public AttrClassificationDefnDOM (String id) {
+			identifier = id; 
+			namespaceId = id;
+			attrArr = new ArrayList <DOMAttr> ();
+	        attrMap = new TreeMap <String, DOMAttr> ();
+		} 
 	}
 }

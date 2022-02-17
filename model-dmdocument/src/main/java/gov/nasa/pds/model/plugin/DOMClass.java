@@ -233,7 +233,7 @@ public class DOMClass extends ISOClassOAIS11179 {
 		this.nameSpaceId = this.nameSpaceIdNC + ":";
 		this.identifier = DOMInfoModel.getClassIdentifier(this.nameSpaceIdNC, this.title);
 		set11179Attr (this.identifier);
-		System.out.println("debug getDOMClassDisposition2 this.identifier:" + this.identifier);
+//		System.out.println("debug getDOMClassDisposition2 this.identifier:" + this.identifier);
 		return true;
 	}	
 	
