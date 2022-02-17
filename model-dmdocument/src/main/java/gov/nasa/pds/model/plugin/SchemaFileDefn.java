@@ -331,6 +331,10 @@ public class SchemaFileDefn {
 			if (lDigit.compareTo("15") == 0) lDigit = "F";
 			if (lDigit.compareTo("16") == 0) lDigit = "G";
 			if (lDigit.compareTo("17") == 0) lDigit = "H";
+			if (lDigit.compareTo("18") == 0) lDigit = "I";
+			if (lDigit.compareTo("19") == 0) lDigit = "J";
+			if (lDigit.compareTo("20") == 0) lDigit = "K";
+			if (lDigit.compareTo("21") == 0) lDigit = "L";
 			lId += lDigit;
 		}
 		lab_version_id = lId;
@@ -387,6 +391,10 @@ public class SchemaFileDefn {
 			if (lDigit.compareTo("15") == 0) lDigit = "F";
 			if (lDigit.compareTo("16") == 0) lDigit = "G";
 			if (lDigit.compareTo("17") == 0) lDigit = "H";
+			if (lDigit.compareTo("18") == 0) lDigit = "I";
+			if (lDigit.compareTo("19") == 0) lDigit = "J";
+			if (lDigit.compareTo("20") == 0) lDigit = "K";
+			if (lDigit.compareTo("21") == 0) lDigit = "L";
 			lId += lDigit;
 		}
 		labelVersionID = lId;
