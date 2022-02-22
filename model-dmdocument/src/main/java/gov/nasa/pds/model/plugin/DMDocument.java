@@ -596,40 +596,15 @@ public class DMDocument extends Object {
     	}
     	lLIB_DIR =  replaceString (lLIB_DIR, "\\", "/");	
 	}
-
+	
 	static private void cleanupLDDInputFileName (SchemaFileDefn lSchemaFileDefn) {
-		boolean hasExtension = false;
-		boolean isFullPath = false;
 		String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
 		lSourceFileSpec =  replaceString (lSourceFileSpec, "\\", "/");
-		String lSourceFileSpecToLower = lSourceFileSpec.toLowerCase();
-		int xmlInd = lSourceFileSpecToLower.indexOf(".xml");
-		if (xmlInd > 0) hasExtension = true;
-		int firstSlashInd = lSourceFileSpec.indexOf("/");
-		if (firstSlashInd == 0) isFullPath = true;
-		int lastSlashInd = lSourceFileSpec.lastIndexOf("/");
-		if ((!isFullPath) && lastSlashInd > 0) {
-			registerMessage ("3>error " + "Input filename is invalid: " + lSchemaFileDefn.sourceFileName + " - filename[.xml] or fullpath allowed");
-			parser.printHelp();
-			printErrorMessages();
-			System.exit(1);
-		}
+//		String lSourceFileSpecToLower = lSourceFileSpec.toLowerCase();
 		
-		String lSourceFileNameNE = lSourceFileSpec;
-		if (hasExtension) lSourceFileNameNE = lSourceFileSpec.substring(0, xmlInd);
-		
-		if (isFullPath) {
-			lSchemaFileDefn.LDDToolInputFileName = lSourceFileSpec;
-			if (lastSlashInd > 0) lSchemaFileDefn.LDDToolOutputFileNameNE = lSourceFileNameNE.substring(lastSlashInd, lSourceFileNameNE.length());
-		} else {
-			if (hasExtension) {
-				lSchemaFileDefn.LDDToolInputFileName = lSourceFileSpec;
-				lSchemaFileDefn.LDDToolOutputFileNameNE = lSourceFileNameNE;
-			} else {
-				lSchemaFileDefn.LDDToolInputFileName = lSourceFileSpec + ".xml";
-				lSchemaFileDefn.LDDToolOutputFileNameNE = lSourceFileNameNE;
-			}
-		}
+		lSchemaFileDefn.LDDToolInputFileName = lSourceFileSpec;
+		lSchemaFileDefn.LDDToolOutputFileNameNE = null;				// *** deprecate ***
+
 
 		if (! checkFileName (lSchemaFileDefn.LDDToolInputFileName)) {
 			lSchemaFileDefn.LDDToolInputFileName = lSchemaFileDefn.LDDToolInputFileName.toLowerCase();
@@ -643,7 +618,6 @@ public class DMDocument extends Object {
 				}
 			}
 		}
-//		registerMessage ("1>info Input File Name Checked: " + lSchemaFileDefn.LDDToolInputFileName);
 	}
 	
 	static public boolean checkCreateDirectory (String lDirectoryPathName) {
