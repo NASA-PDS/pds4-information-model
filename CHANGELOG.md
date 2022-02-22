@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-02-22)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+
+**Requirements:**
+
+- As a user, I want to specify an IngestLDD using a relative path [\#341](https://github.com/NASA-PDS/pds4-information-model/issues/341)
+
 ## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-02-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
