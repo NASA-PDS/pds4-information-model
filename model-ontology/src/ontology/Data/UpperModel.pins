@@ -1,4 +1,4 @@
-; Wed Feb 23 14:02:28 EST 2022
+; Wed Mar 02 09:20:23 EST 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2431,7 +2431,8 @@
 		"data_to_document"
 		"data_curated_by_node"
 		"data_to_browse"
-		"data_to_ancillary_data"))
+		"data_to_ancillary_data"
+		"data_to_partially_processed_product"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002554] of  Schematron_Rule
 
