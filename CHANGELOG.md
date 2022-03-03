@@ -6,14 +6,15 @@
 
 **Requirements:**
 
-- CCB-344:  Add data\_to\_partially\_processed\_product to reference types for Internal\_Reference [\#446](https://github.com/NASA-PDS/pds4-information-model/issues/446)
+- CCB-343: Revise Product\_Metadata\_Supplemental [\#448](https://github.com/NASA-PDS/pds4-information-model/issues/448)
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-03-02)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-03-03)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
 **Requirements:**
 
+- CCB-344:  Add data\_to\_partially\_processed\_product to reference types for Internal\_Reference [\#446](https://github.com/NASA-PDS/pds4-information-model/issues/446)
 - CCB-339: add Units\_of\_Power with SI watts as option [\#443](https://github.com/NASA-PDS/pds4-information-model/issues/443)
 - CCB-337 - Change data type Modification\_Detail/modification\_date to ASCII\_Date\_Time\_YMD [\#436](https://github.com/NASA-PDS/pds4-information-model/issues/436)
 - As an operator, I want to be able to convert from XML to RDF using the PDS4 Information Model [\#387](https://github.com/NASA-PDS/pds4-information-model/issues/387)
