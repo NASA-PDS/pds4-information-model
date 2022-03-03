@@ -260,10 +260,6 @@ class XML4LabelSchemaDOM extends Object {
 				lEntry = lFileInfo.ont_version_id + " - " + lFileInfo.nameSpaceId + " - " + lFileInfo.lddName + lSpaces73;
 				lEntry = lEntry.substring(0, 73);
 				prXML.println("  <!-- " + lEntry + " -->");
-				
-//				lEntry = "file:" + lFileInfo.sourceFileName + lSpaces73;
-//				lEntry = lEntry.substring(0, 71);
-//				prXML.println("  <!--   " + lEntry + " -->");
 			}
 			prXML.println("  <!--                                                                           -->");
 		}

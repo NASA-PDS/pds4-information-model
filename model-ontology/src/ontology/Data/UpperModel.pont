@@ -1,4 +1,4 @@
-; Wed Mar 02 09:20:23 EST 2022
+; Thu Mar 03 10:34:10 EST 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5289,7 +5289,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Product_Metadata_Supplemental "The Product_Metadata_Supplemental class is used to provide new, and/or improved, metadata for some or all of the basic products in a single collection. More than one Product_Metadata_Supplemental may apply to any given collection, but a Product_Metadata_Supplemental may only be associated with a single collection. Each Product_Metadata_Supplemental will be a primary member of the collection to which it applies."
+(defclass Product_Metadata_Supplemental "The Product_Metadata_Supplemental class is used to provide new, and/or improved, metadata for some or all of the basic products in a single collection. More than one Product_Metadata_Supplemental may apply to any given collection."
 	(is-a Product)
 	(role concrete)
 	(single-slot reference_list
