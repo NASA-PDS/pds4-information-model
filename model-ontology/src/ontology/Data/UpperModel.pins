@@ -1,4 +1,4 @@
-; Thu Mar 03 18:24:12 EST 2022
+; Thu Mar 10 09:29:41 EST 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1103,8 +1103,8 @@
 	(assertMsg "Inventory.Field_Delimited does not match the expected number of instances")
 	(assertStmt "(count(pds:Record_Delimited/pds:Field_Delimited) eq 2)")
 	(assertType "RAW")
-	(attrTitle "x")
-	(identifier "x")
+	(attrTitle "Inventory")
+	(identifier "Inventory")
 	(specMesg "Inventory.Field_Delimited does not match the expected number of instances"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory.100002523.102] of  Schematron_Assert
@@ -1115,6 +1115,30 @@
 	(attrTitle "offset")
 	(identifier "offset")
 	(specMesg "Inventory.offset must have a value of '0'"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3Afield_delimiter.100004627] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "field_delimiter")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Inventory")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3Afield_delimiter.100004627.101])
+	(identifier "pds:Inventory/pds:field_delimiter")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Inventory/pds:field_delimiter"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3Afield_delimiter.100004627.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:Inventory/pds:field_delimiter must ONLY be equal to the value 'Comma'.")
+	(assertStmt ". = ('Comma')")
+	(assertType "RAW")
+	(attrTitle "field_delimiter")
+	(identifier "field_delimiter")
+	(specMesg "The attribute pds:Inventory/pds:field_delimiter must ONLY be equal to the value 'Comma'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInventory%2Fpds%3ARecord_Delimited.100002524] of  Schematron_Rule
 
