@@ -1,4 +1,4 @@
-; Thu Mar 10 09:29:41 EST 2022
+; Thu Mar 24 08:27:10 EDT 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -518,7 +518,7 @@
 	(isMissionOnly "false")
 	(roleId "warning")
 	(type "TBD_type")
-	(xpath "DD_Value_Domain/pds:unit_of_measure_type"))
+	(xpath "pds:DD_Value_Domain/pds:unit_of_measure_type"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%2Fpds%3Aunit_of_measure_type.100004582.101] of  Schematron_Assert
 
@@ -542,7 +542,7 @@
 	(isMissionOnly "false")
 	(roleId "warning")
 	(type "TBD_type")
-	(xpath "DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Radiance')]"))
+	(xpath "pds:DD_Value_Domain[pds:unit_of_measure_type = ('Units_of_Radiance')]"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADD_Value_Domain%5Bpds%3Aunit_of_measure_type+%3D+%28%27Units_of_Radiance%27%29%5D.100004583.101] of  Schematron_Assert
 
