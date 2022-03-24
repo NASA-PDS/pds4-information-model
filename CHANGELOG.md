@@ -1,23 +1,23 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-03-10)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-03-24)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
 
-**Requirements:**
+**Improvements:**
 
-- CCB-335: Inventory Specification Allows Too Many Delimiters [\#453](https://github.com/NASA-PDS/pds4-information-model/issues/453)
+- remaining code cleanup / refactoring [\#440](https://github.com/NASA-PDS/pds4-information-model/issues/440)
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-03-08)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-03-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
 **Requirements:**
 
+- CCB-335: Inventory Specification Allows Too Many Delimiters [\#453](https://github.com/NASA-PDS/pds4-information-model/issues/453)
 - CCB-340 : \<Local\_Internal\_Reference\>.\<local\_identifier\_reference\> cardinality [\#450](https://github.com/NASA-PDS/pds4-information-model/issues/450)
 - CCB-343: Revise Product\_Metadata\_Supplemental [\#448](https://github.com/NASA-PDS/pds4-information-model/issues/448)
 - CCB-344:  Add data\_to\_partially\_processed\_product to reference types for Internal\_Reference [\#446](https://github.com/NASA-PDS/pds4-information-model/issues/446)
-- CCB-339: add Units\_of\_Power with SI watts as option [\#443](https://github.com/NASA-PDS/pds4-information-model/issues/443)
 - CCB-337 - Change data type Modification\_Detail/modification\_date to ASCII\_Date\_Time\_YMD [\#436](https://github.com/NASA-PDS/pds4-information-model/issues/436)
 - As an operator, I want to be able to convert from XML to RDF using the PDS4 Information Model [\#387](https://github.com/NASA-PDS/pds4-information-model/issues/387)
 - As a user, I want to specify an IngestLDD using a relative path [\#341](https://github.com/NASA-PDS/pds4-information-model/issues/341)
@@ -276,7 +276,6 @@
 
 **Other closed issues:**
 
-- CCB-268 how to test this [\#143](https://github.com/NASA-PDS/pds4-information-model/issues/143)
 - CCB-256: Need method for providing permissible value definitions for external namespaces in Ingest\_LDD [\#130](https://github.com/NASA-PDS/pds4-information-model/issues/130)
 
 ## [v11.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/v11.2.2) (2020-04-06)
