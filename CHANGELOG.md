@@ -1,14 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-04-12)
+## [14.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/14.0.0) (2022-04-13)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...14.0.0)
 
 **Defects:**
 
-- ASCII\_Date\_Time\_\* do not sufficiently check valid days of a month or seconds [\#434](https://github.com/NASA-PDS/pds4-information-model/issues/434) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- PDS4\_PDS\_1I00.sch has two bugs regarding CCB-339 [\#455](https://github.com/NASA-PDS/pds4-information-model/issues/455) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
-## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-04-11)
+## [v13.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v13.2.0-SNAPSHOT) (2022-04-12)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.1.0...v13.2.0-SNAPSHOT)
 
@@ -37,6 +37,7 @@
 
 **Defects:**
 
+- ASCII\_Date\_Time\_\* do not sufficiently check valid days of a month or seconds [\#434](https://github.com/NASA-PDS/pds4-information-model/issues/434) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Missing JSON LDDs \(alt & particle\) [\#424](https://github.com/NASA-PDS/pds4-information-model/issues/424) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - Inconsistent naming of JSON schema files [\#418](https://github.com/NASA-PDS/pds4-information-model/issues/418) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool WARNING Header - New namespace id has been specified:ml [\#416](https://github.com/NASA-PDS/pds4-information-model/issues/416)
