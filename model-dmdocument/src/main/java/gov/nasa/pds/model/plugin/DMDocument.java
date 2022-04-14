@@ -143,7 +143,19 @@ public class DMDocument extends Object {
 	static boolean LDDNuanceFlag = false;				//
 	
 	// refactor into Protege switches
-	static boolean overWriteClass = true;				// use dd11179.pins class disp, isDeprecated, and versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
+	/*
+	 Possibilities re: refactoring fix.
+	 1) Check buildIMVersionId, if less than 1.18.0.0, then process MDPTNConfig, else use protege.
+	 	a) currently lISO11179DOMMDR.OverwriteClassFrom11179DataDict is only used for IMTool runs, not LDDTool runs.
+==>  	b) currently all IM version prior to 1.18.0.0 do not have object classes
+	 2) lISO11179DOMMDR.OverwriteClassFrom11179DataDict requires "Object Classes" in protege
+	 3) Removing MDPTNConfig requires that "I" and "N"  classes be included in protege as "Object Classes"
+	 4) ProtPontDOMModel is currently ignoring "I" and "N" classes
+	 	a) this means that dd11179_GenPClass.pins does not include "I" and "N" classes
+	 */
+	
+// 555	static boolean overWriteClass = true;				// use dd11179.pins class disp, isDeprecated, and versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
+	static boolean overWriteClass = false;				// use dd11179.pins class disp, isDeprecated, and versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
 	static boolean useMDPTNConfig = true;				// ProtPontDOMModel; get disposition for the class from MDPTNConfigClassDisp
 	static boolean overWriteDeprecated = false;			// use dd11179.pins isDeprecated to overwrite DMDocument.deprecatedObjects2
 	

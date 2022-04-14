@@ -304,7 +304,9 @@ public class GetDOMModel extends Object {
 		// 017b - overwrite master classes from the 11179 DD
 		//     - either import from JSON 11179 file or overwrite from 11179 dictionary
 		//		Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-		lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
+// 555
+		if (!DMDocument.LDDToolFlag)
+			lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
 		
 		// 018 - overwrite any LDD attributes from the cloned USER attributes
 		//       this is not really needed since the definitions are in the external class
