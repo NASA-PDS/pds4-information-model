@@ -1,8 +1,16 @@
 # Changelog
 
-## [14.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/14.0.0) (2022-04-13)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-04-14)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...14.0.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.0...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] move namespace "wave" [\#460](https://github.com/NASA-PDS/pds4-information-model/issues/460)
+
+## [v14.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.0) (2022-04-13)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v13.2.0-SNAPSHOT...v14.0.0)
 
 **Defects:**
 
