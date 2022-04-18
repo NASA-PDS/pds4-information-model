@@ -1,20 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-04-14)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.0-SNAPSHOT...«unknown»)
-
-**Defects:**
-
-- LDDTool 14 is not generating against past versions of the IM correctly [\#463](https://github.com/NASA-PDS/pds4-information-model/issues/463) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
-
-## [v15.0.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.0-SNAPSHOT) (2022-04-14)
+## [v15.0.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.0-SNAPSHOT) (2022-04-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.0...v15.0.0-SNAPSHOT)
 
 **Improvements:**
 
 - \[namespace-registry\] move namespace "wave" [\#460](https://github.com/NASA-PDS/pds4-information-model/issues/460)
+
+**Defects:**
+
+- LDDTool 14 is not generating against past versions of the IM correctly [\#463](https://github.com/NASA-PDS/pds4-information-model/issues/463) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
 ## [v14.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.0) (2022-04-13)
 
