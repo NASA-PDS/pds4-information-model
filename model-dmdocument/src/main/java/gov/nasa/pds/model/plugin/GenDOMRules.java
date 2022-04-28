@@ -139,10 +139,9 @@ class GenDOMRules extends Object {
 			} else {
 				lXPath = lAttr.xPath;
 			}
-			String lRuleId = lXPath;
-			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXPath);
 			if (lRule == null) {
-				lRule = new DOMRule(lRuleId);
+				lRule = new DOMRule(lXPath);
 				DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
 				DOMInfoModel.masterDOMRuleArr.add(lRule);
 				lRule.setRDFIdentifier();
@@ -240,15 +239,14 @@ class GenDOMRules extends Object {
 	public void addClassSchematronRuleEnumeratedChildOfAssocExtrnClass (DOMAttr lInheritedDOMAttr, DOMClass lParentDOMClass, DOMClass lChildDOMClass) {	
 		// for each attribute, write out the rule
 		String lXpath = lChildDOMClass.nameSpaceIdNC + ":" + lChildDOMClass.title  + "/" + lInheritedDOMAttr.lddUserAttribute.classNameSpaceIdNC + ":" + lInheritedDOMAttr.lddUserAttribute.attrParentClass.title  + "/" + lInheritedDOMAttr.lddUserAttribute.nameSpaceIdNC + ":" + lInheritedDOMAttr.lddUserAttribute.title  + "";
-		String lRuleId = lXpath;
-		DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+		DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
 		if (lRule == null) {
-			lRule = new DOMRule(lRuleId);
+			lRule = new DOMRule(lXpath);
 			DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
 			DOMInfoModel.masterDOMRuleArr.add(lRule);
 			lRule.setRDFIdentifier();
 			DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
-			lRule.xpath = lRuleId;
+			lRule.xpath = lXpath;
 			lRule.attrTitle = "TBD_AttrTitle";		
 			lRule.attrNameSpaceNC = "TBD_attrNameSpaceNC";		
 			lRule.classTitle = lChildDOMClass.title;		
@@ -332,16 +330,16 @@ class GenDOMRules extends Object {
 		// create rules for the boolean attributes
 		for (Iterator <DOMClass> i = lBooleanClassArr.iterator(); i.hasNext();) {
 			DOMClass lClass = (DOMClass) i.next();
-			String lRuleId = lClass.nameSpaceId + lClass.title;
-			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+			String lXpath = lClass.nameSpaceId + lClass.title;
+			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
 			if (lRule == null) {
-				lRule = new DOMRule(lRuleId);
+				lRule = new DOMRule(lXpath);
 				DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
 				DOMInfoModel.masterDOMRuleArr.add(lRule);
 				lRule.setRDFIdentifier();
 				DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 				
-				lRule.xpath = lRuleId;
+				lRule.xpath = lXpath;
 				lRule.attrTitle = "TBD_AttrTitle";		
 				lRule.attrNameSpaceNC = "TBD_attrNameSpaceNC";		
 				lRule.classTitle = lClass.title;		
@@ -462,15 +460,15 @@ class GenDOMRules extends Object {
 		ArrayList <String> lDiscNameFacet2Arr = new ArrayList <String> ();
 		
 		// set up the Primary Result Summary rule
-		String lRuleId = "pds:Primary_Result_Summary/pds:Science_Facets";
-		DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
-		lRule = new DOMRule(lRuleId);
+		String lXpath = "pds:Primary_Result_Summary/pds:Science_Facets";
+		DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
+		lRule = new DOMRule(lXpath);
 		DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);		
 		DOMInfoModel.masterDOMRuleArr.add(lRule);
 		lRule.setRDFIdentifier();
 		DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 		
-		lRule.xpath = lRuleId;
+		lRule.xpath = lXpath;
 		lRule.attrTitle = "discipline_name";		
 		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
@@ -585,15 +583,15 @@ class GenDOMRules extends Object {
 		}
 		
 		// set up the Primary Result Summary rule
-		lRuleId = "pds:Primary_Result_Summary/pds:Science_Facets/pds:subfacet1";
-		lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
-		lRule = new DOMRule(lRuleId);
+		lXpath = "pds:Primary_Result_Summary/pds:Science_Facets/pds:subfacet1";
+		lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
+		lRule = new DOMRule(lXpath);
 		DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);		
 		DOMInfoModel.masterDOMRuleArr.add(lRule);
 		lRule.setRDFIdentifier();
 		DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 		
-		lRule.xpath = lRuleId;
+		lRule.xpath = lXpath;
 		lRule.attrTitle = "subfacet1";		
 		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
@@ -605,15 +603,15 @@ class GenDOMRules extends Object {
 		lAssert.assertStmt = "name() = 'pds:Primary_Result_Summary/pds:Science_Facets/pds:subfacet1'";	
 		lAssert.assertMsg =  "pds:subfacet1 should not be used. No values have been provided.";
 		
-		lRuleId = "pds:Primary_Result_Summary/pds:Science_Facets/pds:subfacet2";
-		lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
-		lRule = new DOMRule(lRuleId);
+		lXpath = "pds:Primary_Result_Summary/pds:Science_Facets/pds:subfacet2";
+		lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
+		lRule = new DOMRule(lXpath);
 		DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);		
 		DOMInfoModel.masterDOMRuleArr.add(lRule);
 		lRule.setRDFIdentifier();
 		DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 		
-		lRule.xpath = lRuleId;
+		lRule.xpath = lXpath;
 		lRule.attrTitle = "subfacet2";		
 		lRule.attrNameSpaceNC = DMDocument.masterNameSpaceIdNCLC;		
 		lRule.classTitle = "Science_Facets";		
@@ -644,17 +642,17 @@ class GenDOMRules extends Object {
 					if (lDOMAttr.unit_of_measure_type == null || lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0) continue;				
 					String lUnitsValueString = lDOMAttr.getUnits(true);
 					if (lUnitsValueString == null) continue;					
-					String lRuleId = lClass.nameSpaceId + lClass.title + "/" + lClass.nameSpaceId + lDOMAttr.title;
-					DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+					String lXpath = lClass.nameSpaceId + lClass.title + "/" + lClass.nameSpaceId + lDOMAttr.title;
+					DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
 					if (lRule == null) {
-						lRule = new DOMRule(lRuleId);		
+						lRule = new DOMRule(lXpath);		
 						DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
 						DOMInfoModel.masterDOMRuleArr.add(lRule);
 						lRule.setRDFIdentifier();
 						DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
 						
-						lRule.xpath = lRuleId;
-						lRule.attrTitle = lDOMAttr.title;		
+						lRule.xpath = lXpath;
+						lRule.attrTitle = lDOMAttr.title;
 						lRule.attrNameSpaceNC = lDOMAttr.nameSpaceIdNC;		
 						lRule.classTitle = lClass.title;		
 						lRule.classNameSpaceNC = lClass.nameSpaceIdNC;	
