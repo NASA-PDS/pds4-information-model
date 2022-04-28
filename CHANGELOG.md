@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-04-28)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- LDDTool is not combining Schematron Contexts correctly when adding to an auto-generated context [\#459](https://github.com/NASA-PDS/pds4-information-model/issues/459) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
 ## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-04-21)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.1...v14.1.0-SNAPSHOT)
