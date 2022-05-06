@@ -198,7 +198,7 @@
 		(default "logical_identifier::version_id")
 		(create-accessor read-write))
 	(multislot schematronAssign
-;+		(comment "The schematronAssign attribute provides values for schemtron rule assignments at the rule level.")
+;+		(comment "The schematronAssign attribute provides values for schematron rule assignments at the rule level.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot collection_id
@@ -1787,7 +1787,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot schematronAssignPattern
-;+		(comment "The schematronAssignPattern attribute provides values for schemtron rule assignments at the pattern level.")
+;+		(comment "The schematronAssignPattern attribute provides values for schematron rule assignments at the pattern level.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot aip_lidvid
@@ -9653,7 +9653,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Schematron_Rule "The Schematron_Rule Class is used to capture schemtron rule statements."
+(defclass Schematron_Rule "The Schematron_Rule Class is used to capture schematron rule statements."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot identifier
@@ -9662,7 +9662,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot schematronAssign
-;+		(comment "The schematronAssign attribute provides values for schemtron rule assignments at the rule level.")
+;+		(comment "The schematronAssign attribute provides values for schematron rule assignments at the rule level.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot classNameSpaceNC
@@ -9685,7 +9685,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot schematronAssignPattern
-;+		(comment "The schematronAssignPattern attribute provides values for schemtron rule assignments at the pattern level.")
+;+		(comment "The schematronAssignPattern attribute provides values for schematron rule assignments at the pattern level.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot isMissionOnly
@@ -9727,7 +9727,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Schematron_Assert "The Schematron_Assert Class is used to capture schemtron assert statements."
+(defclass Schematron_Assert "The Schematron_Assert Class is used to capture schematron assert statements."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot identifier
