@@ -1,24 +1,27 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-05-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-05-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
 
-**Defects:**
-
-- Data Provider’s Handbook v1.18.0 is missing the Appendix F text requested in the CCB-340 [\#480](https://github.com/NASA-PDS/pds4-information-model/issues/480) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
-
 **Other closed issues:**
 
-- \[namespace-registry\] add existing vg1 and vg2 [\#474](https://github.com/NASA-PDS/pds4-information-model/issues/474)
+- \[namespace-registry\] add new namespace "hst" [\#482](https://github.com/NASA-PDS/pds4-information-model/issues/482)
+- \[namespace-registry\] add "vgr" [\#476](https://github.com/NASA-PDS/pds4-information-model/issues/476)
+- Update code to develop the TTL/OWL per user request for updates [\#466](https://github.com/NASA-PDS/pds4-information-model/issues/466)
 
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-05-06)
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-05-19)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.1...v14.1.0-SNAPSHOT)
 
 **Defects:**
 
+- Data Provider’s Handbook v1.18.0 is missing the Appendix F text requested in the CCB-340 [\#480](https://github.com/NASA-PDS/pds4-information-model/issues/480) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool is not combining Schematron Contexts correctly when adding to an auto-generated context [\#459](https://github.com/NASA-PDS/pds4-information-model/issues/459) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+**Other closed issues:**
+
+- \[namespace-registry\] add existing vg1 and vg2 [\#474](https://github.com/NASA-PDS/pds4-information-model/issues/474)
 
 ## [v14.0.1](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.1) (2022-04-18)
 
