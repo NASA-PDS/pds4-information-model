@@ -1,16 +1,15 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-05-26)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-06-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
 
 **Other closed issues:**
 
-- \[namespace-registry\] add new namespace "hst" [\#482](https://github.com/NASA-PDS/pds4-information-model/issues/482)
-- \[namespace-registry\] add "vgr" [\#476](https://github.com/NASA-PDS/pds4-information-model/issues/476)
-- Update code to develop the TTL/OWL per user request for updates [\#466](https://github.com/NASA-PDS/pds4-information-model/issues/466)
+- \[namespace-registry\] add new namespace "ody" [\#485](https://github.com/NASA-PDS/pds4-information-model/issues/485)
+- \[namespace-registry\] add new namespace "near" [\#484](https://github.com/NASA-PDS/pds4-information-model/issues/484)
 
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-05-19)
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-05-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.1...v14.1.0-SNAPSHOT)
 
@@ -21,7 +20,10 @@
 
 **Other closed issues:**
 
+- \[namespace-registry\] add new namespace "hst" [\#482](https://github.com/NASA-PDS/pds4-information-model/issues/482)
+- \[namespace-registry\] add "vgr" [\#476](https://github.com/NASA-PDS/pds4-information-model/issues/476)
 - \[namespace-registry\] add existing vg1 and vg2 [\#474](https://github.com/NASA-PDS/pds4-information-model/issues/474)
+- Update code to develop the TTL/OWL per user request for updates [\#466](https://github.com/NASA-PDS/pds4-information-model/issues/466)
 
 ## [v14.0.1](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.1) (2022-04-18)
 
