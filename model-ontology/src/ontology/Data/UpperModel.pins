@@ -1,4 +1,4 @@
-; Tue Apr 12 17:27:40 EDT 2022
+; Thu Mar 24 08:27:10 EDT 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3298,62 +3298,6 @@
 	(attrTitle "TBD_AttrTitle")
 	(identifier "TBD_Identifier")
 	(specMesg "TBD_SpecMesg"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astart_date_time.100004629] of  Schematron_Rule
-
-	(alwaysInclude "false")
-	(attrNameSpaceNC "pds")
-	(attrTitle "TBD_AttrTitle")
-	(classNameSpaceNC "pds")
-	(classSteward "pds")
-	(classTitle "Time_Coordinates")
-	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astart_date_time.100004629.101])
-	(identifier "pds:Time_Coordinates/pds:start_date_time")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(schematronAssign
-		"name=\"leapsecs\" value=\"contains(.,'60')\""
-		"name=\"type-date\" value=\"if (contains(.,'T')) then (xs:dateTime(.)) else (xs:date(.))\""
-		"name=\"date-sansZ\" value=\"translate(., 'Z', '')\"")
-	(type "TBD_type")
-	(xpath "pds:Time_Coordinates/pds:start_date_time"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astart_date_time.100004629.101] of  Schematron_Assert
-
-	(assertMsg "The value for \"pds:Time_Coordinates/pds:start_date_time\" does not appear to be a valid date-time: '<sch:value-of select=\".\"/>' - '<sch:value-of select=\"$type-date\"/>'")
-	(assertStmt "if ($leapsecs) then ($type-date = .) else (true())")
-	(assertType "RAW")
-	(attrTitle "start_date_time")
-	(identifier "start_date_time")
-	(specMesg "TBD"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astop_date_time.100004630] of  Schematron_Rule
-
-	(alwaysInclude "false")
-	(attrNameSpaceNC "pds")
-	(attrTitle "TBD_AttrTitle")
-	(classNameSpaceNC "pds")
-	(classSteward "pds")
-	(classTitle "Time_Coordinates")
-	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astop_date_time.100004630.101])
-	(identifier "pds:Time_Coordinates/pds:stop_date_time")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(schematronAssign
-		"name=\"leapsecs\" value=\"contains(.,'60')\""
-		"name=\"type-date\" value=\"if (contains(.,'T')) then (xs:dateTime(.)) else (xs:date(.))\""
-		"name=\"date-sansZ\" value=\"translate(., 'Z', '')\"")
-	(type "TBD_type")
-	(xpath "pds:Time_Coordinates/pds:stop_date_time"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATime_Coordinates%2Fpds%3Astop_date_time.100004630.101] of  Schematron_Assert
-
-	(assertMsg "The value for \"pds:Time_Coordinates/pds:stop_date_time\" does not appear to be a valid date-time: '<sch:value-of select=\".\"/>' - '<sch:value-of select=\"$type-date\"/>'")
-	(assertStmt "if ($leapsecs) then ($type-date = .) else (true())")
-	(assertType "RAW")
-	(attrTitle "stop_date_time")
-	(identifier "stop_date_time")
-	(specMesg "TBD"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556] of  Schematron_Rule
 
