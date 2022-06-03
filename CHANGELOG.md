@@ -1,15 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-06-01)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
-
-**Other closed issues:**
-
-- \[namespace-registry\] add new namespace "ody" [\#485](https://github.com/NASA-PDS/pds4-information-model/issues/485)
-- \[namespace-registry\] add new namespace "near" [\#484](https://github.com/NASA-PDS/pds4-information-model/issues/484)
-
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-05-26)
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-06-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.1...v14.1.0-SNAPSHOT)
 
@@ -20,6 +11,8 @@
 
 **Other closed issues:**
 
+- \[namespace-registry\] add new namespace "ody" [\#485](https://github.com/NASA-PDS/pds4-information-model/issues/485)
+- \[namespace-registry\] add new namespace "near" [\#484](https://github.com/NASA-PDS/pds4-information-model/issues/484)
 - \[namespace-registry\] add new namespace "hst" [\#482](https://github.com/NASA-PDS/pds4-information-model/issues/482)
 - \[namespace-registry\] add "vgr" [\#476](https://github.com/NASA-PDS/pds4-information-model/issues/476)
 - \[namespace-registry\] add existing vg1 and vg2 [\#474](https://github.com/NASA-PDS/pds4-information-model/issues/474)
@@ -67,7 +60,6 @@
 **Defects:**
 
 - PDS4\_PDS\_1I00.sch has two bugs regarding CCB-339 [\#455](https://github.com/NASA-PDS/pds4-information-model/issues/455) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
-- ASCII\_Date\_Time\_\* do not sufficiently check valid days of a month or seconds [\#434](https://github.com/NASA-PDS/pds4-information-model/issues/434) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Missing JSON LDDs \(alt & particle\) [\#424](https://github.com/NASA-PDS/pds4-information-model/issues/424) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - Inconsistent naming of JSON schema files [\#418](https://github.com/NASA-PDS/pds4-information-model/issues/418) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool WARNING Header - New namespace id has been specified:ml [\#416](https://github.com/NASA-PDS/pds4-information-model/issues/416)
