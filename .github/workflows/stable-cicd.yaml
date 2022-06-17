@@ -73,6 +73,7 @@ jobs:
                     assembly: stable
                     maven-build-phases: package
                     maven-doc-phases: install,site,site:stage
+                    maven-stable-artifact-phases: clean,site,deploy
                 env:
                     ossrh_username: ${{secrets.OSSRH_USERNAME}}
                     ossrh_password: ${{secrets.OSSRH_PASSWORD}}
