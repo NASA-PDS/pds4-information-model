@@ -1,5 +1,9 @@
 # Changelog
 
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-06-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.11...v14.1.0-SNAPSHOT)
+
 ## [v14.0.11](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.11) (2022-06-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.10...v14.0.11)
@@ -10,11 +14,7 @@
 
 ## [v14.0.9](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.9) (2022-06-17)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...v14.0.9)
-
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-06-17)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.7...v14.1.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.7...v14.0.9)
 
 ## [v14.0.7](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.7) (2022-06-17)
 
