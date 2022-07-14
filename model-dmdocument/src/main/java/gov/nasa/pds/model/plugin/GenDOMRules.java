@@ -53,19 +53,9 @@ class GenDOMRules extends Object {
 		return;
 	}
 	
-	//	generate schematron rules
-//	public void genSchematronRules () throws java.io.IOException {
-		// for each namespace, generate the schematron rules
-//		ArrayList <SchemaFileDefn> lSchemaFileDefnArr = new ArrayList <SchemaFileDefn> (DMDocument.masterSchemaFileSortMap.values());
-//		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnArr.iterator(); i.hasNext();) {
-//			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
-//			genSchematronRule(lSchemaFileDefn, DOMInfoModel.masterDOMClassMap);
-//		}
-//		return;
-//	}
-		
 //	write the schematron rules
 	public void genSchematronRule (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) {
+		
 		// add the enumerated value schematron rules		
 		addSchematronRuleEnumerated (lSchemaFileDefn, lMasterDOMClassMap);
 
@@ -101,8 +91,7 @@ class GenDOMRules extends Object {
 	public void addSchematronRuleEnumerated (SchemaFileDefn lSchemaFileDefn, TreeMap <String, DOMClass> lMasterDOMClassMap) {
 		// add class attributes
 		ArrayList <DOMClass> lSortClassArr = new ArrayList <DOMClass> (lMasterDOMClassMap.values());
-		for (Iterator <DOMClass> i = lSortClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();
+		for (DOMClass lClass : lSortClassArr) {
 			if ((lClass == null) || (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) && lSchemaFileDefn.stewardArr.contains(lClass.steward)))) continue;
 			if (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous) continue;
 			if (lClass.isInactive) continue;
@@ -121,8 +110,7 @@ class GenDOMRules extends Object {
 		// add no-class attributes - e.g., created from DD_Associate_External_Class
 		ArrayList <DOMAttr> lEnumAttrArr = new ArrayList <DOMAttr> ();
 		ArrayList <DOMAttr> lAttrArr = new ArrayList <DOMAttr> (DOMInfoModel.userSingletonDOMClassAttrIdMap.values());
-		for (Iterator <DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) i.next();
+		for (DOMAttr lAttr : lAttrArr) {
 			if ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.nameSpaceIdNC) != 0)) continue;
 			lEnumAttrArr.add(lAttr);
 		}
@@ -130,9 +118,9 @@ class GenDOMRules extends Object {
 	}
 	
 	public void addClassSchematronRuleEnumerated (String lClassNameSpaceIdNC, String lClassTitle, String lClassSteward, ArrayList <DOMAttr> lAttrArr) {	
-		for (Iterator <DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
-			DOMAttr lAttr = (DOMAttr) j.next();
-			if (lAttr.isAbstract && lAttr.isAssociatedExternalAttr) continue;						
+		for (DOMAttr lAttr : lAttrArr) {
+			if (lAttr.isAbstract && lAttr.isAssociatedExternalAttr) continue;
+			if (lAttr.valueType.compareTo ("ASCII_Boolean") == 0) continue;	
 			String lXPath;
 			if (! lAttr.isAssociatedExternalAttr) {
 				lXPath = lClassNameSpaceIdNC + ":" + lClassTitle  + "/" + lAttr.nameSpaceIdNC + ":" + lAttr.title;
@@ -166,8 +154,7 @@ class GenDOMRules extends Object {
 			
 			// test for special attributes
 			if (! (lAttr.title.compareTo("information_model_version") == 0)) {
-				for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
-					String lValue = (String) k.next();
+				for (String lValue : lAttr.valArr) {
 					String lDelimitedValue = lDel + "'" + lValue + "'";					
 					lDel = ", ";					
 					lDelimitedValueArr += lDelimitedValue;	
@@ -303,8 +290,7 @@ class GenDOMRules extends Object {
 		// get the set of reasonable classes
 		ArrayList <DOMClass> lSelectClassArr = new ArrayList <DOMClass> ();
 		ArrayList <DOMClass> lClassArr = new ArrayList <DOMClass> (lMasterDOMClassMap.values());
-		for (Iterator <DOMClass> i = lClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();
+		for (DOMClass lClass : lClassArr) {
 			if ((lClass == null) || (! ((lSchemaFileDefn.nameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) == 0) && lSchemaFileDefn.stewardArr.contains(lClass.steward)))) continue;
 			if (lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous) continue;
 			if (lClass.allEnumAttrArr == null || lClass.allEnumAttrArr.isEmpty()) continue;
@@ -313,10 +299,8 @@ class GenDOMRules extends Object {
 		
 		// get the set of classes with Boolean data types
 		ArrayList <DOMClass> lBooleanClassArr = new ArrayList <DOMClass> ();
-		for (Iterator <DOMClass> i = lSelectClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();
-			for (Iterator <DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-				DOMProp lDOMProp = (DOMProp) j.next();	
+		for (DOMClass lClass : lSelectClassArr) {
+			for (DOMProp lDOMProp : lClass.allAttrAssocArr) {
 				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
 					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;				
 					if (lDOMAttr.valueType.compareTo("ASCII_Boolean") == 0) {
@@ -328,46 +312,44 @@ class GenDOMRules extends Object {
 		}
 		
 		// create rules for the boolean attributes
-		for (Iterator <DOMClass> i = lBooleanClassArr.iterator(); i.hasNext();) {
-			DOMClass lClass = (DOMClass) i.next();
+		for (DOMClass lClass : lBooleanClassArr) {
 			String lXpath = lClass.nameSpaceId + lClass.title;
+
 			DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
 			if (lRule == null) {
 				lRule = new DOMRule(lXpath);
 				DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);			
 				DOMInfoModel.masterDOMRuleArr.add(lRule);
 				lRule.setRDFIdentifier();
-				DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
-				
+				DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);				
 				lRule.xpath = lXpath;
 				lRule.attrTitle = "TBD_AttrTitle";		
 				lRule.attrNameSpaceNC = "TBD_attrNameSpaceNC";		
 				lRule.classTitle = lClass.title;		
 				lRule.classNameSpaceNC = lClass.nameSpaceIdNC;	
 				lRule.classSteward = lClass.steward;
-			}
-			for (Iterator <DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-				DOMProp lDOMProp = (DOMProp) j.next();	
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;				
-					if (lDOMAttr.valueType.compareTo("ASCII_Boolean") != 0) continue;
-					String assertMsgPre = " must be equal to one of the following values "; 
-					lRule.attrTitle = lDOMAttr.title;		
-					lRule.attrNameSpaceNC = lDOMAttr.nameSpaceIdNC;
-					String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
-					if (foundAssertStmt (lAttrId, lRule.assertArr)) continue;
-					DOMAssert lAssert = new DOMAssert (lAttrId);
-					lAssert.assertStmt = "if (" + lRule.attrNameSpaceNC + ":" + lRule.attrTitle + ") then " + lRule.attrNameSpaceNC + ":" + lRule.attrTitle + " = (";	
-					lAssert.assertMsg =  "The attribute " + lAttrId + assertMsgPre;
-					lRule.assertArr.add(lAssert);
-					lAssert.assertStmt += "'true', 'false'";	
-					lAssert.assertMsg += "'true', 'false'";
-					lAssert.assertStmt += ") else true()";	
-					lAssert.assertMsg +=  ".";
+				for (DOMProp lDOMProp : lClass.allAttrAssocArr) {
+					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+						DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;				
+						if (lDOMAttr.valueType.compareTo("ASCII_Boolean") != 0) continue;
+						String assertMsgPre = " must be equal to one of the following values "; 
+						lRule.attrTitle = lDOMAttr.title;		
+						lRule.attrNameSpaceNC = lDOMAttr.nameSpaceIdNC;
+						String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
+						if (foundAssertStmt (lAttrId, lRule.assertArr)) continue;
+						DOMAssert lAssert = new DOMAssert (lAttrId);
+						lAssert.assertStmt = "if (" + lRule.attrNameSpaceNC + ":" + lRule.attrTitle + ") then " + lRule.attrNameSpaceNC + ":" + lRule.attrTitle + " = (";	
+						lAssert.assertMsg =  "The attribute " + lAttrId + assertMsgPre;
+						lRule.assertArr.add(lAssert);
+						lAssert.assertStmt += "'true', 'false'";	
+						lAssert.assertMsg += "'true', 'false'";
+						lAssert.assertStmt += ") else true()";	
+						lAssert.assertMsg +=  ".";
+					}
 				}
 			}
 		} 
-	}				
+	}
 	
 //	add the schematron rules for deprecation
 	public void addSchematronRuleDeprecated (SchemaFileDefn lSchemaFileDefn) {
