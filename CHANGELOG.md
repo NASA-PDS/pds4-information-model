@@ -1,8 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-06-23)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-07-18)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
+
+**Defects:**
+
+- LDDTool is generating multiple Schematron rules to test the same condition [\#468](https://github.com/NASA-PDS/pds4-information-model/issues/468) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-06-23)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0-SNAPSHOT)
 
 **Other closed issues:**
 
@@ -10,11 +18,7 @@
 
 ## [v14.0.13](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.13) (2022-06-21)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13SNAPSHOT...v14.0.13)
-
-## [v14.0.13SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.13SNAPSHOT) (2022-06-21)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.12...v14.0.13SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.12...v14.0.13)
 
 ## [v14.0.12](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.12) (2022-06-21)
 
