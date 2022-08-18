@@ -1,14 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-08-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-08-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
 
 **Other closed issues:**
 
-- Stage the PDS4 Information Model Version 1.19.0.0 \(1.J.0.0\) for Update [\#493](https://github.com/NASA-PDS/pds4-information-model/issues/493)
+- \[namespace-registry\] add new namespace "apollo" [\#495](https://github.com/NASA-PDS/pds4-information-model/issues/495)
 
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-07-18)
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-08-04)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0-SNAPSHOT)
 
@@ -18,6 +18,7 @@
 
 **Other closed issues:**
 
+- Stage the PDS4 Information Model Version 1.19.0.0 \(1.J.0.0\) for Update [\#493](https://github.com/NASA-PDS/pds4-information-model/issues/493)
 - \[namespace-registry\] add new namespace "iras" [\#490](https://github.com/NASA-PDS/pds4-information-model/issues/490)
 
 ## [v14.0.13](https://github.com/NASA-PDS/pds4-information-model/tree/v14.0.13) (2022-06-21)
