@@ -1,4 +1,4 @@
-; Thu Aug 04 14:41:50 EDT 2022
+; Thu Aug 25 12:32:45 EDT 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10707,7 +10707,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass" "Units_of_Power")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Acceleration" "Units_of_Frame_Rate" "Units_of_Spectral_Irradiance" "Units_of_Spectral_Radiance" "Units_of_Wavenumber" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass" "Units_of_Power" "Units_of_Mass_Density")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot formation_rule
@@ -10798,7 +10798,7 @@
 	(single-slot unit_of_measure_type
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
-;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass" "Units_of_Power")
+;+		(value "Units_of_Amount_Of_Substance" "Units_of_Angle" "Units_of_Angular_Velocity" "Units_of_Area" "Units_of_Frequency" "Units_of_Length" "Units_of_Mass" "Units_of_Misc" "Units_of_None" "Units_of_Optical_Path_Length" "Units_of_Pressure" "Units_of_Radiance" "Units_of_Rates" "Units_of_Map_Scale" "Units_of_Solid_Angle" "Units_of_Storage" "Units_of_Temperature" "Units_of_Time" "Units_of_Velocity" "Units_of_Voltage" "Units_of_Volume" "Units_of_Frame_Rate" "Units_of_Wavenumber" "Units_of_Spectral_Radiance" "Units_of_Spectral_Irradiance" "Units_of_Current" "Units_of_Pixel_Scale_Linear" "Units_of_Pixel_Scale_Angular" "Units_of_Pixel_Resolution_Linear" "Units_of_Pixel_Resolution_Angular" "Units_of_Acceleration" "Units_of_Pixel_Resolution_Map" "Units_of_Pixel_Scale_Map" "Units_of_Energy" "Units_of_Force" "Units_of_Gmass" "Units_of_Power" "Units_of_Mass_Density")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot value_data_type
@@ -11863,6 +11863,28 @@
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
 ;+		(value "YW" "ZW" "EW" "PW" "TW" "GW" "MW" "kW" "hW" "daW" "W" "dW" "cW" "mW" "microW" "nW" "pW" "fW" "aW" "zW" "yW" "dBm")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Units_of_Mass_Density "Units_of_Mass_Density is a magnitude of mass density."
+	(is-a Unit_Of_Measure)
+	(role concrete)
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Density")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specified_unit_id
+;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
+		(type STRING)
+;+		(value "kg/m**3")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot unit_id
+;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
+		(type STRING)
+;+		(value "kg/m**3" "g/cm**3")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
