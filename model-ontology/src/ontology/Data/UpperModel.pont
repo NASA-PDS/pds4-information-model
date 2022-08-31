@@ -1,4 +1,4 @@
-; Thu Aug 25 12:32:45 EDT 2022
+; Wed Aug 31 16:01:09 EDT 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4603,1671 +4603,15 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Product "A Product is a uniquely identified object that is managed by a registry/repository. It consists of one or more tagged data objects."
-	(is-a USER)
-	(role concrete)
-	(single-slot has_identification_area
-;+		(comment "The has_identification_area association is a relationship to Identification Area.")
-		(type INSTANCE)
-;+		(allowed-classes Identification_Area)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Observational "A Product_Observational is a set of one or more information objects produced by an observing system."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Observational)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot observation_area
-;+		(comment "The observation_area association is a relationship to Observation_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Observation_Area)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot file_area_supplemental
-;+		(comment "The file_area_supplemental association is a relationship to File Area Supplemental.")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Observational_Supplemental)
-		(create-accessor read-write)))
-
-(defclass Product_Browse "The Product Browse class defines a product consisting of one  encoded byte stream digital object."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Browse)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_Document "A Product Document is a product consisting of a single logical document that may comprise one or more document editions."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_document
-;+		(comment "The has_document association is a relationship to one Document.")
-		(type INSTANCE)
-;+		(allowed-classes Document)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_File_Text "The Product File Text consists of a single text file with ASCII character encoding."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Text)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_SPICE_Kernel "The Product SPICE Kernel class defines a SPICE kernel product."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_SPICE_Kernel)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Thumbnail "The Product Thumbnail class defines a product consisting of one encoded byte stream digital object."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Encoded_Image)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Update "The Product Update class defines a product consisting of update information and optional references to other products."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Update)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Update)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_XML_Schema "The Product_XML_Schema  describes a resource used for the PDS4 implementation into XML."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_XML_Schema)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_Zipped "The Product_Zipped  is a product with references to other products. The referenced products and all associated products and files are packaged into a single ZIP file."
-	(is-a Product)
-	(role concrete)
-	(single-slot file
-;+		(comment "The file association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_zip
-;+		(comment "The has_ZIP association is a relationship to ZIP")
-		(type INSTANCE)
-;+		(allowed-classes Zip)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Attribute_Definition "The Product Attribute Definition provides an attribute definition in XML encoding."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes DD_Attribute_Full)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_File_Repository "The Product File Repository class consists of a single text file. This product is used to register a file in a repository."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Binary)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Proxy_PDS3 "The Product Proxy PDS3 class defines a product with enough information to register a PDS3 data product."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Binary)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_Service "The Product Service class defines a product for registering services. Service descriptions from this product are used to register services as intrinsic registry objects."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Service_Description)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Service)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Software "Product Software is a product consisting of a set of one or more software formats."
-	(is-a Product)
-	(role concrete)
-	(single-slot product_description
-;+		(comment "Description at the identifiable layer.")
-		(type INSTANCE)
-;+		(allowed-classes Software)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot software_format_set
-;+		(comment "The software_format_set association is a relationship to a set of one or more software formats.")
-		(type INSTANCE)
-;+		(allowed-classes Software_Binary Software_Source Software_Script)
-		(create-accessor read-write)))
-
-(defclass Product_Bundle "A Product_Bundle is an aggregate product and has a table of references to one or more collections."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot member_entry
-;+		(comment "The member_entry association is a relationship to Member_Entry.")
-		(type INSTANCE)
-;+		(allowed-classes Bundle_Member_Entry)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Text)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Bundle)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Collection "A Product_Collection has a table of references to one or more basic products. The references are stored in a table called the inventory."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Collection)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot file_area_inventory
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Inventory)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Volume_PDS3 "A Product Volume PDS3 product captures the PDS3 volume information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Volume_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Volume_Set_PDS3 "A Product Volume Set PDS3 product captures the PDS3 volume set information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Volume_Set_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Data_Set_PDS3 "The Data Set PDS3 product  is used to create proxy labels for the data sets in the PDS3 Data Set catalog."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Data_Set_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Instrument_Host_PDS3 "An Instrument Host product describes an instrument host. This product captures the PDS3 catalog instrument host information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Instrument_Host_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Instrument_PDS3 "An Instrument product describes an instrument. This product captures the PDS3 catalog instrument information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Instrument_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Mission_PDS3 "An Mission product describes a mission. This product captures the PDS3 catalog mission information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Mission_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Target_PDS3 "A target product describes a target. This product captures a reduced set of the PDS3 catalog target information."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Target_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Context "The Product Context class describes something that provides context and provenance for an observational product."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Investigation Instrument_Host Instrument Target Resource PDS_Guest PDS_Affiliate Node Other Agency Facility Telescope XSChoice%23 Airborne)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_discipline_area
-;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
-		(type INSTANCE)
-;+		(allowed-classes Discipline_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Product_Subscription_PDS3 "The Product_Subscription_PDS3 class provides the list of subscriptions for a PDS3 subscriber."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot subscriber
-;+		(comment "The subscriber association is a relationship to a Subscriber_PDS3 class.")
-		(type INSTANCE)
-;+		(allowed-classes Subscriber_PDS3)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Class_Definition "The Product Class Definition provides a class definition in XML encoding."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes DD_Class_Full)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_AIP "The Product AIP class defines a product for the Archival Information Package."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_Information_Package_Component
-;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
-		(type INSTANCE)
-;+		(allowed-classes Information_Package_Component)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Archival_Information_Package)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_DIP "The Product DIP class defines a product for the Dissemination Information Package."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_Information_Package_Component
-;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
-		(type INSTANCE)
-;+		(allowed-classes Information_Package_Component)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Dissemination_Information_Package)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_DIP_Deep_Archive "The Product DIP_Deep_Archive class defines a product for the Dissemination Information Package for the deep archive."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_Information_Package_Component
-;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
-		(type INSTANCE)
-;+		(allowed-classes Information_Package_Component)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes DIP_Deep_Archive)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_SIP "The Product SIP class defines a product for the Submission Information Package."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_Information_Package_Component
-;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
-		(type INSTANCE)
-;+		(allowed-classes Information_Package_Component)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Submission_Information_Package)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Native "Product_Native is used to describe digital objects in the original format returned by the spacecraft or experimental system when that format  cannot be described using one of the PDS4 formats specified for observational data (tables or arrays,  excluding Array_1D)."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Native)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_Telemetry "Prototype - Product_Telemetry is used to describe digital objects in telemetry format."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Telemetry)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_SIP_Deep_Archive "The Product SIP Deep Archive class defines a Submission Information Package (SIP) for the NASA planetary science deep archive."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_Information_Package_Component
-;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
-		(type INSTANCE)
-;+		(allowed-classes Information_Package_Component_Deep_Archive)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes SIP_Deep_Archive)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Ancillary "The Product_Ancillary class defines a product that contains data that are supplementary to observational data and cannot reasonably be associated with any other non-observational data class. Use of Product_Ancillary must be approved by the curating node."
-	(is-a Product)
-	(role concrete)
-	(single-slot context_area
-;+		(comment "The context_area association is a relationship to Context_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Context_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Ancillary)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Product_Metadata_Supplemental "The Product_Metadata_Supplemental class is used to provide new, and/or improved, metadata for some or all of the basic products in a single collection. More than one Product_Metadata_Supplemental may apply to any given collection."
-	(is-a Product)
-	(role concrete)
-	(single-slot reference_list
-;+		(comment "The reference_list association is a relationship to Reference_List.")
-		(type INSTANCE)
-;+		(allowed-classes Reference_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Metadata)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Ingest_LDD "The Product_Ingest_LDD describes the components of a dictionary product which includes the Ingest_LDD file."
-	(is-a Product)
-	(role concrete)
-	(single-slot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Ingest_LDD)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot product_data_object
-;+		(comment "The product_data_object association is a relationship to a data object.")
-		(type INSTANCE)
-;+		(allowed-classes Ingest_LDD_File_Desc)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Product_Virtual "The Product Virtual class describes a composite product comprised of references to existing products and/or product components."
-	(is-a Product)
-	(role concrete)
-	(single-slot virtual_area
-;+		(comment "The virtual_area association is a relationship to Virtual Area")
-		(type INSTANCE)
-;+		(allowed-classes Virtual_Area)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot file_area
-;+		(comment "The file_area association is a relationship to File Area")
-		(type INSTANCE)
-;+		(allowed-classes File_Area_Observational)
-		(create-accessor read-write)))
-
-(defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
-	(is-a USER)
-	(role abstract))
-
-(defclass Identification_Area "The identification area consists of attributes that identify and name an object."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot modification_history
-;+		(comment "The modification_history association is a relationship to Modification_History, a history of changes made to the product.")
-		(type INSTANCE)
-;+		(allowed-classes Modification_History)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot title
-;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot alias_list
-;+		(comment "The alias_list association is a relationship to Alias_List, a list of alternate names and identifications.")
-		(type INSTANCE)
-;+		(allowed-classes Alias_List)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot logical_identifier
-;+		(comment "A logical identifier identifies the set of all versions of an object. It is an object identifier without a version.")
-		(type STRING)
-		(default "URN:NASA:PDS:identifier")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot version_id
-;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
-		(type STRING)
-		(default "major.minor")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot product_class
-;+		(comment "The product_class attribute provides the name of the product class.")
-		(type STRING)
-		(default "class_name")
-;+		(value "Product_Attribute_Definition" "Product_Browse" "Product_Bundle" "Product_Context" "Product_Collection" "Product_Document" "Product_File_Repository" "Product_File_Text" "Product_Observational" "Product_Service" "Product_Software" "Product_SPICE_Kernel" "Product_Thumbnail" "Product_Update" "Product_XML_Schema" "Product_Zipped" "Product_Data_Set_PDS3" "Product_Instrument_Host_PDS3" "Product_Instrument_PDS3" "Product_Mission_PDS3" "Product_Proxy_PDS3" "Product_Subscription_PDS3" "Product_Target_PDS3" "Product_Volume_PDS3" "Product_Volume_Set_PDS3" "Product_AIP" "Product_DIP" "Product_DIP_Deep_Archive" "Product_SIP" "Product_Class_Definition" "Product_Native" "Product_SIP_Deep_Archive" "Product_Ancillary" "Product_Metadata_Supplemental")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot information_model_version
-;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
-		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot citation_information
-;+		(comment "The citation_information is a relationship to Citation_Information, fields often used in citing the product.")
-		(type INSTANCE)
-;+		(allowed-classes Citation_Information)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Context_Area "The Context Area provides context information for a product."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot has_investigation_area
-;+		(comment "The hsa_investigation_area association is a relationship to Investigation_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Investigation_Area)
-		(create-accessor read-write))
-	(single-slot has_primary_result_description
-;+		(comment "The has_primary_result_description association is a relationship to Primary_Result_Description.")
-		(type INSTANCE)
-;+		(allowed-classes Primary_Result_Summary)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_mission_area
-;+		(comment "The has_mission_area association is a relationship to Mission Area.")
-		(type INSTANCE)
-;+		(allowed-classes Mission_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_observing_system
-;+		(comment "The has_observing_system association is a relationship to Observing_System.")
-		(type INSTANCE)
-;+		(allowed-classes Observing_System)
-		(create-accessor read-write))
-	(single-slot has_time_coordinates
-;+		(comment "The has_time_coordinates association is a relationship to Time_Coordinates.")
-		(type INSTANCE)
-;+		(allowed-classes Time_Coordinates)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_discipline_area
-;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
-		(type INSTANCE)
-;+		(allowed-classes Discipline_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_target_identification
-;+		(comment "The has_target_identification association is a relationship to Target_Identification.")
-		(type INSTANCE)
-;+		(allowed-classes Target_Identification)
-		(create-accessor read-write)))
-
-(defclass Observation_Area "The observation area consists of attributes that provide information about the circumstances under which the data were collected."
-	(is-a Context_Area)
-	(role concrete)
-	(multislot has_investigation_area
-;+		(comment "The hsa_investigation_area association is a relationship to Investigation_Area.")
-		(type INSTANCE)
-;+		(allowed-classes Investigation_Area)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot has_observing_system
-;+		(comment "The has_observing_system association is a relationship to Observing_System.")
-		(type INSTANCE)
-;+		(allowed-classes Observing_System)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_time_coordinates
-;+		(comment "The has_time_coordinates association is a relationship to Time_Coordinates.")
-		(type INSTANCE)
-;+		(allowed-classes Time_Coordinates)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot has_target_identification
-;+		(comment "The has_target_identification association is a relationship to Target_Identification.")
-		(type INSTANCE)
-;+		(allowed-classes Target_Identification)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Discipline_Area "The Discipline area allows the insertion of discipline specific metadata."
-	(is-a Product_Components)
-	(role concrete))
-
-(defclass Mission_Area "The mission area allows the insertion of mission specific metadata."
-	(is-a Product_Components)
-	(role concrete))
-
-(defclass Update_Entry "The Update Entry class provides the date and description of an update."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot full_name
-;+		(comment "The full_name attribute provides the complete name for a person and includes titles and suffixes.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot date_time
-;+		(comment "The date_time attribute provides the date and time of an event.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Target_Identification "The Target_Identification class provides detailed target identification information."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot alternate_designation
-;+		(comment "The alternate_designation attribute provides aliases.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot type
-;+		(comment "The type attribute classifies a target according to its size and properties so that correct nomenclature can be applied.")
-		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical")
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a human-readable primary name/identification in the standard format for the target type.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides additional information or clarification, as needed.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Alias_List "The Alias_List class provides a list of paired alternate names and identifications for this product in this or some other archive or data system."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot alias
-;+		(comment "The alias association is a relationship to Alias, an alternate name and identification.")
-		(type INSTANCE)
-;+		(allowed-classes Alias)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Alias "The Alias class provides a single alternate name and identification for this product in this or some other archive or data system."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot alternate_title
-;+		(comment "The alternate _title attribute provides an alternate title for the product.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot alternate_id
-;+		(comment "The alternate_id attribute provides an additional identifier supplied by the data provider.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Citation_Information "The Citation_Information class provides specific fields often used in citing the product in journal articles, abstract services, and other reference contexts."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot editor_list
-;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot keyword
-;+		(comment "The keyword attribute provides one or more words to be used for  keyword search.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot publication_year
-;+		(comment "The publication_year attribute provides the year in which the product should be considered as published. Generally, this will be the year the data were declared \"Certified\" or \"Archived\".")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot doi
-;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a short (5KB or less) description of the product as a whole.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot author_list
-;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Modification_History "The Modification_History class tracks the history of changes made to the product once it enters the registry system."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot modification_detail
-;+		(comment "The modification_detail association is a relationship to Modification_Detail, the details of one round of modification for the product.")
-		(type INSTANCE)
-;+		(allowed-classes Modification_Detail)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write)))
-
-(defclass Modification_Detail "The Modification_Detail class provides the details of one round of modification for the product.  The first, required, instance of this class documents the date the product was first registered."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot modification_date
-;+		(comment "The modification_date attribute provides date the modifications were completed")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot version_id
-;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Time_Coordinates "The Time_Coordinates class provides a list of time coordinates."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot start_date_time
-;+		(comment "The start_date_time attribute provides the date and time appropriate to the beginning of the product being labeled.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot stop_date_time
-;+		(comment "The stop_date_time attribute provides the date and time appropriate to the end of the product being labeled.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot solar_longitude
-;+		(comment "The solar_longitude attribute provides the angle between the body-Sun line at the time of interest and the body-Sun line at its vernal equinox.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot local_mean_solar_time
-;+		(comment "The local_mean_solar_time attribute provides the hour angle of the fictitious mean Sun at a fixed point on a rotating solar system body.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot local_true_solar_time
-;+		(comment "The local_true_solar_time (LTST) attribute provides the local time on a rotating solar system body where LTST is 12 h at the sub-solar point (SSP) and increases 1 h for each 15 degree increase in east longitude away from the SSP for prograde rotation.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Primary_Result_Summary "The Primary_Result_Summary class provides a high-level description of the types of products included in the collection or bundle"
-	(is-a Product_Components)
-	(role concrete)
-	(multislot data_regime
-;+		(comment "The data_regime attribute provides the wavelength (or an analogous concept for things like particle detectors) of the observations, stated as a category.")
-		(type STRING)
-;+		(value "Gamma Ray" "X-Ray" "Ultraviolet" "Visible" "Infrared" "Near Infrared" "Far Infrared" "Microwave" "Sub-Millimeter" "Millimeter" "Radio" "Magnetic Field" "Electric Field" "Ions" "Electrons" "Particles" "Dust" "Temperature" "Pressure")
-		(create-accessor read-write))
-	(single-slot type
-;+		(comment "The type attribute provides a classification for the resource.")
-		(type STRING)
-;+		(value "Astrometry" "E/B-Field Vectors" "Count" "Gravity Model" "Image" "Map" "Null Result" "Photometry" "Polarimetry" "Radiometry" "Shape Model" "Spectrum" "Altimetry" "Occultation" "Physical Parameters" "Lightcurves" "Reference" "Meteorology")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot processing_level
-;+		(comment "The processing_level attribute provides a broad classification of data processing level.")
-		(type STRING)
-;+		(value "Raw" "Calibrated" "Partially Processed" "Derived" "Telemetry")
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot purpose
-;+		(comment "The purpose attribute provides an indication of the primary purpose of the observations included.")
-		(type STRING)
-;+		(value "Science" "Navigation" "Calibration" "Checkout" "Engineering" "Observation Geometry" "Supporting Observation")
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(multislot has_Science_Facet
-;+		(comment "The has_Science_Facet association is a relationship Science_Facet.")
-		(type INSTANCE)
-;+		(allowed-classes Science_Facets)
-		(create-accessor read-write))
-	(single-slot processing_level_id
-;+		(comment "The processing_level_id attribute provides a broad indication of data processing level.")
-		(type STRING)
-;+		(value "Raw" "Calibrated" "Partially Processed" "Derived" "Telemetry")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Investigation_Area "The Investigation_Area class provides information about an investigation (mission, observing campaign or other coordinated, large-scale data collection effort)."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot type
-;+		(comment "The type attribute classifies Investigation_Area according to the scope of the investigation..")
-		(type STRING)
-;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Reference_List "The Reference_List class provides general references, cross-references, and source products for the product. References cited elsewhere in the label need not be repeated here."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot external_reference
-;+		(comment "The external_reference association is a relationship to External_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes External_Reference)
-		(create-accessor read-write))
-	(multislot source_product_external
-;+		(comment "The source_product_external association is a relationship to Source Product External.")
-		(type INSTANCE)
-;+		(allowed-classes Source_Product_External)
-		(create-accessor read-write))
-	(multislot internal_reference
-;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
-		(type INSTANCE)
-;+		(allowed-classes Internal_Reference)
-		(create-accessor read-write))
-	(multislot source_product_internal
-;+		(comment "The source_product_internal association is a relationship to Source_Product_Internal.")
-		(type INSTANCE)
-;+		(allowed-classes Source_Product_Internal)
-		(create-accessor read-write)))
-
-(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in PDS4-compliant registries of PDS and its recognized international partners."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot lid_reference
-;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
-		(type STRING)
-		(default "XSChoice#1")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot lidvid_reference
-;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
-		(type STRING)
-		(default "XSChoice#1")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot comment
-;+		(comment "The comment attribute provides one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_type
-;+		(comment "The reference_type attribute provides the name of the association.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass External_Reference "The External_Reference class is used to reference a source outside the PDS registry system."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot doi
-;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot description
-;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot reference_text
-;+		(comment "The reference_text attribute provides a complete bibliographic citation for a published work.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass External_Reference_Extended "The External_Reference_Extended class is used to reference a source outside the PDS registry system. This extension is used in the local data dictionary."
-	(is-a External_Reference)
-	(role concrete)
-	(single-slot url
-;+		(comment "The url attribute provides a Uniform Resource Identifier (URI) that specifies where a resource is available and the mechanism for retrieving it.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot name_
-;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Bundle_Member_Entry "The Bundle Member Entry class provides a member reference to a collection."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot lid_reference
-;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
-		(type STRING)
-		(default "XSChoice#1")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot lidvid_reference
-;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
-		(type STRING)
-		(default "XSChoice#1")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot reference_type
-;+		(comment "The reference_type attribute provides the name of the association.")
-		(type STRING)
-;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection" "bundle_has_miscellaneous_collection")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot member_status
-;+		(comment "The member_status attribute indicates whether the collection is primary and whether the file_specification_name has been provided for the product_collection label.")
-		(type STRING)
-;+		(value "Primary" "Secondary")
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area "The File_Area class defines a File and its component data objects."
-	(is-a Product_Components)
-	(role concrete))
-
-(defclass File_Area_XML_Schema "The File Area XML Schema class describes a file that contains a resource used for the PDS4 implementation into XML."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes XML_Schema)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Text "The File Area Text class describes a file that contains a text stream object."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Stream_Text)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_SPICE_Kernel "The File Area SPICE Kernel class describes a file that contains a SPICE Kernel object."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes SPICE_Kernel)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Service_Description "The File Area Service Description class describes a file that contains a service description."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Service_Description)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Observational "The File Area Observational class describes, for an observational product, a file and one or more tagged_data_objects contained within the file."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_composite_structure
-;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
-		(type INSTANCE)
-;+		(allowed-classes Composite_Structure)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Encoded_Image "The File Area Encoded Image class describes a file that contains an Encoded Image object."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Encoded_Image)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Browse "The File Area Browse class describes a file and one or more tagged_data_objects contained within the file."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Encoded_Image Table_Character Header Encoded_Header Table_Delimited Array_2D Array_3D XSChoice%23 Array_1D Array Encoded_Audio)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Inventory "The File Area Inventory class describes a file and an inventory consisting of references to  members."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Inventory)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Binary "The File Area Binary class describes a file that contains an encoded byte stream."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Encoded_Binary)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Checksum_Manifest "The File Area Checksum Manifest class describes a file that contains a two column table for file references and checksums."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Checksum_Manifest)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Transfer_Manifest "The File Area Transfer Manifest class describes a file that contains a two column table that maps the logical identifiers and version ids of products to their file specification names."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Transfer_Manifest)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Observational_Supplemental "The File Area Observational Supplemental class describes, for an observational product, additional files and tagged_data_objects contained within the file."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array Table_Delimited_Source_Product_Internal Table_Delimited_Source_Product_External)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_composite_structure
-;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
-		(type INSTANCE)
-;+		(allowed-classes Composite_Structure)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Native "The File Area Native describes tagged_data_objects collected from an instrument."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Encoded_Native)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Telemetry "The File Area Telemetry describes tagged_data_objects in telemetry format."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Encoded_Telemetry)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Update "The File Area Update class is a File Area that describes a file that contains one or  more digital objects used to provide additional metadata for registered products."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object2
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Header)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes XSChoice%23 Table_Character Table_Delimited)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_SIP_Deep_Archive "The File Area SIP Deep Archive class describes the File Area for the Submission Information Package (SIP) for the NASA planetary science deep archive."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Manifest_SIP_Deep_Archive)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Ancillary "The File Area Ancillary class describes a file and one or more tagged_data_objects contained within the file."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest Array_1D Encoded_Audio)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Metadata "The File Area Metadata class describes a table which provides new, and/or improved, metadata. All field names provided must be attributes defined in PDS4, either in the common dictionary, or in a PDS4 discipline or mission dictionary."
-	(is-a File_Area)
-	(role concrete)
-	(single-slot has_tagged_data_object2
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Header)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Table_Character Table_Delimited XSChoice%23)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass File_Area_Ingest_LDD "The File_Area_Ingest_LDD class describes a file that contains the Ingest_LDD file, the source document that defines a Local Data Dictionary (LDD)."
-	(is-a File_Area)
-	(role concrete)
-	(multislot has_tagged_data_object
-;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
-		(type INSTANCE)
-;+		(allowed-classes Ingest_LDD_File)
-		(create-accessor read-write))
-	(single-slot has_File
-;+		(comment "The has_File association is a relationship to File.")
-		(type INSTANCE)
-;+		(allowed-classes File)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Science_Facets "The Science_Facets class contains the science-related search facets.  It is optional and may be repeated if an product has facets related to, for example, two different disciplines (as defined by the discipline_name facet). Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot domain
-;+		(comment "The radial %42zone%42 or %42shell%42 of the target for which the observations were collected or which are represented in the product(s).  The value may depend on wavelength_range and size of the target.")
-		(type STRING)
-;+		(value "Interior" "Surface" "Atmosphere" "Ionosphere" "Magnetosphere" "Heliosphere" "Interstellar" "Rings" "Dynamics" "Heliosheath")
-		(create-accessor read-write))
-	(multislot wavelength_range
-;+		(comment "The wavelength range attribute specifies the wavelength range over which the data were collected or which otherwise characterizes the observation(s). Boundaries are vague, and there is overlap.")
-		(type STRING)
-;+		(value "Radio" "Microwave" "Millimeter" "Submillimeter" "Far Infrared" "Infrared" "Near Infrared" "Visible" "Ultraviolet" "X-ray" "Gamma Ray")
-		(create-accessor read-write))
-	(single-slot has_Discipline_Facets
-;+		(comment "The has_Discipline_Facets association is a relationship to Discipline_Facets.")
-		(type INSTANCE)
-;+		(allowed-classes Discipline_Facets)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Group_Facet1 "The Group_Facet1 class contains a single facet restricted according to the value of discipline_name. It also contains zero or more subfacets restricted according to the value of the facet. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot subfacet1
-;+		(comment "The subfacet1 attribute provides a sub-categorization under the facet1 value.  The allowed values are restricted according to the value of facet1.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot facet1
-;+		(comment "The facet1 attribute provides a sub-categorization under the discipline_name.  The values are restricted according to the value of discipline_name.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Group_Facet2 "The Group_Facet2 class contains a single facet restricted according to the value of discipline_name. It also contains zero or more subfacets restricted according to the value of the facet. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot subfacet2
-;+		(comment "The subfacet2 attribute provides a sub-categorization under the facet2 value.  The allowed values are restricted according to the value of facet2.")
-		(type STRING)
-		(create-accessor read-write))
-	(single-slot facet2
-;+		(comment "The facet2 attribute provides a sub-categorization (under the discipline_name) of the type of data being described by Primary_Result_Summary.  The  facet1  and  factet2  values are intended to provide independent sub-categorizations. The values are restricted according to the value of discipline_name. Type: ASCII_Short_String_Collapsed")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Local_Internal_Reference "The Local Internal_Reference class is used to cross-reference other Description Objects in a PDS4 label."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot comment
-;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot local_identifier_reference
-;+		(comment "The local_identifier_reference attribute provides the value of the local_identifier of the entity described by the referencing class. Note that a local_identifier attribute, with the same value as this local_identifier_reference, must be present within the label.")
-		(type STRING)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
-	(single-slot local_reference_type
-;+		(comment "The local_reference_type attribute provides the name of an association between an entity identified by a local_identifier_reference and another corresponding entity identified by a local_identifier. The values for the local_reference_type are expected to be enumerated for appropriate contexts in the Schematron files of local (i.e., discipline and mission) data dictionaries.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Discipline_Facets "The Discipline_Facets class contains the discipline-related search facets.  It is required and may not be repeated. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
-	(is-a Product_Components)
-	(role concrete)
-	(multislot has_Group_Facet2
-;+		(comment "The has_Group_Facet2 association is a relationship to Group_Facet2.")
-		(type INSTANCE)
-;+		(allowed-classes Group_Facet2)
-		(create-accessor read-write))
-	(multislot has_Group_Facet1
-;+		(comment "The has_Group_Facet1 association is a relationship to Group_Facet1.")
-		(type INSTANCE)
-;+		(allowed-classes Group_Facet1)
-		(create-accessor read-write))
-	(single-slot discipline_name
-;+		(comment "The discipline_name attribute describes the observing discipline (as opposed to a PDS Discipline Node Name, though the concepts and values are similar). Some of these values are, with respect to the PDS Nodes, inter-disciplinary and should be used when they are applicable in perference to the more restrictive values.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write)))
-
-(defclass Virtual_Area "The Virtual Area provides the metadata and references necessary to describe a composite of existing products and/or their components."
-	(is-a Product_Components)
-	(role concrete)
-	(single-slot virtual_structure
-;+		(comment "The virtual_structure association is a relationship to Virtual Structure")
-		(type INSTANCE)
-;+		(allowed-classes Virtual_Structure)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot has_discipline_area
-;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
-		(type INSTANCE)
-;+		(allowed-classes Discipline_Area)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
 (defclass Tagged_Digital_Object "The Tagged Digital Object class is an abstract class for the digital class hierarchy. A tagged object is an information object."
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot data_object
+;+		(comment "The data_object association is a relationship to Data Object.")
+		(type INSTANCE)
+;+		(allowed-classes Digital_Object)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
 
 (defclass Byte_Stream "The Byte Stream class defines a stream of bytes."
 	(is-a Tagged_Digital_Object)
@@ -6299,12 +4643,6 @@
 	(single-slot records
 ;+		(comment "The records attribute provides a count of records.")
 		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -6366,12 +4704,6 @@
 	(single-slot offset
 ;+		(comment "The offset attribute provides the displacement of the object starting position from the beginning of the parent structure (file, record, etc.).  If there is no displacement, offset=0.")
 		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot encoding_standard_id
@@ -6456,12 +4788,6 @@
 	(single-slot offset
 ;+		(comment "The offset attribute provides the displacement of the object starting position from the beginning of the parent structure (file, record, etc.).  If there is no displacement, offset=0.")
 		(type INTEGER)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot parsing_standard_id
@@ -6674,12 +5000,6 @@
 ;+		(allowed-classes Object_Statistics)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Digital_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot has_Element_Array
 ;+		(comment "The has_Element_Array association is a relationship to Element_Array")
 		(type INSTANCE)
@@ -6846,12 +5166,6 @@
 ;+		(comment "The file_name attribute provides the name of a file.")
 		(type STRING)
 		(default "file_name-period-file_extension")
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot comment
@@ -10357,6 +8671,1668 @@
 	(single-slot definition
 ;+		(comment "The definition attribute provides a statement, picture in words, or account that defines the term.")
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Product "A Product is a uniquely identified object that is managed by a registry/repository. It consists of one or more tagged data objects."
+	(is-a Tagged_NonDigital_Object)
+	(role concrete)
+	(single-slot has_identification_area
+;+		(comment "The has_identification_area association is a relationship to Identification Area.")
+		(type INSTANCE)
+;+		(allowed-classes Identification_Area)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Observational "A Product_Observational is a set of one or more information objects produced by an observing system."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Observational)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot observation_area
+;+		(comment "The observation_area association is a relationship to Observation_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Observation_Area)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot file_area_supplemental
+;+		(comment "The file_area_supplemental association is a relationship to File Area Supplemental.")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Observational_Supplemental)
+		(create-accessor read-write)))
+
+(defclass Product_Browse "The Product Browse class defines a product consisting of one  encoded byte stream digital object."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Browse)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_Document "A Product Document is a product consisting of a single logical document that may comprise one or more document editions."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_document
+;+		(comment "The has_document association is a relationship to one Document.")
+		(type INSTANCE)
+;+		(allowed-classes Document)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_File_Text "The Product File Text consists of a single text file with ASCII character encoding."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Text)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_SPICE_Kernel "The Product SPICE Kernel class defines a SPICE kernel product."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_SPICE_Kernel)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Thumbnail "The Product Thumbnail class defines a product consisting of one encoded byte stream digital object."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Encoded_Image)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Update "The Product Update class defines a product consisting of update information and optional references to other products."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Update)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Update)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_XML_Schema "The Product_XML_Schema  describes a resource used for the PDS4 implementation into XML."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_XML_Schema)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_Zipped "The Product_Zipped  is a product with references to other products. The referenced products and all associated products and files are packaged into a single ZIP file."
+	(is-a Product)
+	(role concrete)
+	(single-slot file
+;+		(comment "The file association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_zip
+;+		(comment "The has_ZIP association is a relationship to ZIP")
+		(type INSTANCE)
+;+		(allowed-classes Zip)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Attribute_Definition "The Product Attribute Definition provides an attribute definition in XML encoding."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Attribute_Full)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_File_Repository "The Product File Repository class consists of a single text file. This product is used to register a file in a repository."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Binary)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Proxy_PDS3 "The Product Proxy PDS3 class defines a product with enough information to register a PDS3 data product."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Binary)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_Service "The Product Service class defines a product for registering services. Service descriptions from this product are used to register services as intrinsic registry objects."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Service_Description)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Service)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Software "Product Software is a product consisting of a set of one or more software formats."
+	(is-a Product)
+	(role concrete)
+	(single-slot product_description
+;+		(comment "Description at the identifiable layer.")
+		(type INSTANCE)
+;+		(allowed-classes Software)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot software_format_set
+;+		(comment "The software_format_set association is a relationship to a set of one or more software formats.")
+		(type INSTANCE)
+;+		(allowed-classes Software_Binary Software_Source Software_Script)
+		(create-accessor read-write)))
+
+(defclass Product_Bundle "A Product_Bundle is an aggregate product and has a table of references to one or more collections."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot member_entry
+;+		(comment "The member_entry association is a relationship to Member_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Bundle_Member_Entry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Text)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Bundle)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Collection "A Product_Collection has a table of references to one or more basic products. The references are stored in a table called the inventory."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Collection)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot file_area_inventory
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Inventory)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Volume_PDS3 "A Product Volume PDS3 product captures the PDS3 volume information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Volume_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Volume_Set_PDS3 "A Product Volume Set PDS3 product captures the PDS3 volume set information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Volume_Set_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Data_Set_PDS3 "The Data Set PDS3 product  is used to create proxy labels for the data sets in the PDS3 Data Set catalog."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Data_Set_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Instrument_Host_PDS3 "An Instrument Host product describes an instrument host. This product captures the PDS3 catalog instrument host information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Instrument_Host_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Instrument_PDS3 "An Instrument product describes an instrument. This product captures the PDS3 catalog instrument information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Instrument_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Mission_PDS3 "An Mission product describes a mission. This product captures the PDS3 catalog mission information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Mission_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Target_PDS3 "A target product describes a target. This product captures a reduced set of the PDS3 catalog target information."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Target_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Context "The Product Context class describes something that provides context and provenance for an observational product."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Investigation Instrument_Host Instrument Target Resource PDS_Guest PDS_Affiliate Node Other Agency Facility Telescope XSChoice%23 Airborne)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_discipline_area
+;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
+		(type INSTANCE)
+;+		(allowed-classes Discipline_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Product_Subscription_PDS3 "The Product_Subscription_PDS3 class provides the list of subscriptions for a PDS3 subscriber."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot subscriber
+;+		(comment "The subscriber association is a relationship to a Subscriber_PDS3 class.")
+		(type INSTANCE)
+;+		(allowed-classes Subscriber_PDS3)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Class_Definition "The Product Class Definition provides a class definition in XML encoding."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Class_Full)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_AIP "The Product AIP class defines a product for the Archival Information Package."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Information_Package_Component
+;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
+		(type INSTANCE)
+;+		(allowed-classes Information_Package_Component)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Archival_Information_Package)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_DIP "The Product DIP class defines a product for the Dissemination Information Package."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Information_Package_Component
+;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
+		(type INSTANCE)
+;+		(allowed-classes Information_Package_Component)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Dissemination_Information_Package)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_DIP_Deep_Archive "The Product DIP_Deep_Archive class defines a product for the Dissemination Information Package for the deep archive."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Information_Package_Component
+;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
+		(type INSTANCE)
+;+		(allowed-classes Information_Package_Component)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes DIP_Deep_Archive)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_SIP "The Product SIP class defines a product for the Submission Information Package."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Information_Package_Component
+;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
+		(type INSTANCE)
+;+		(allowed-classes Information_Package_Component)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Submission_Information_Package)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Native "Product_Native is used to describe digital objects in the original format returned by the spacecraft or experimental system when that format  cannot be described using one of the PDS4 formats specified for observational data (tables or arrays,  excluding Array_1D)."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Native)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_Telemetry "Prototype - Product_Telemetry is used to describe digital objects in telemetry format."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Telemetry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_SIP_Deep_Archive "The Product SIP Deep Archive class defines a Submission Information Package (SIP) for the NASA planetary science deep archive."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Information_Package_Component
+;+		(comment "The has_Information_Package_Component association is a relationship to a Information_Package_Component.")
+		(type INSTANCE)
+;+		(allowed-classes Information_Package_Component_Deep_Archive)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes SIP_Deep_Archive)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Ancillary "The Product_Ancillary class defines a product that contains data that are supplementary to observational data and cannot reasonably be associated with any other non-observational data class. Use of Product_Ancillary must be approved by the curating node."
+	(is-a Product)
+	(role concrete)
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Ancillary)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Product_Metadata_Supplemental "The Product_Metadata_Supplemental class is used to provide new, and/or improved, metadata for some or all of the basic products in a single collection. More than one Product_Metadata_Supplemental may apply to any given collection."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Metadata)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Ingest_LDD "The Product_Ingest_LDD describes the components of a dictionary product which includes the Ingest_LDD file."
+	(is-a Product)
+	(role concrete)
+	(single-slot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Ingest_LDD)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Ingest_LDD_File_Desc)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Product_Virtual "The Product Virtual class describes a composite product comprised of references to existing products and/or product components."
+	(is-a Product)
+	(role concrete)
+	(single-slot virtual_area
+;+		(comment "The virtual_area association is a relationship to Virtual Area")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Area)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_Observational)
+		(create-accessor read-write)))
+
+(defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
+	(is-a Tagged_NonDigital_Object)
+	(role abstract))
+
+(defclass Identification_Area "The identification area consists of attributes that identify and name an object."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot modification_history
+;+		(comment "The modification_history association is a relationship to Modification_History, a history of changes made to the product.")
+		(type INSTANCE)
+;+		(allowed-classes Modification_History)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot title
+;+		(comment "The title attribute provides a short, descriptive text string suitable use as a title or brief description in display or listing of products.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot alias_list
+;+		(comment "The alias_list association is a relationship to Alias_List, a list of alternate names and identifications.")
+		(type INSTANCE)
+;+		(allowed-classes Alias_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot logical_identifier
+;+		(comment "A logical identifier identifies the set of all versions of an object. It is an object identifier without a version.")
+		(type STRING)
+		(default "URN:NASA:PDS:identifier")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot version_id
+;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
+		(type STRING)
+		(default "major.minor")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot product_class
+;+		(comment "The product_class attribute provides the name of the product class.")
+		(type STRING)
+		(default "class_name")
+;+		(value "Product_Attribute_Definition" "Product_Browse" "Product_Bundle" "Product_Context" "Product_Collection" "Product_Document" "Product_File_Repository" "Product_File_Text" "Product_Observational" "Product_Service" "Product_Software" "Product_SPICE_Kernel" "Product_Thumbnail" "Product_Update" "Product_XML_Schema" "Product_Zipped" "Product_Data_Set_PDS3" "Product_Instrument_Host_PDS3" "Product_Instrument_PDS3" "Product_Mission_PDS3" "Product_Proxy_PDS3" "Product_Subscription_PDS3" "Product_Target_PDS3" "Product_Volume_PDS3" "Product_Volume_Set_PDS3" "Product_AIP" "Product_DIP" "Product_DIP_Deep_Archive" "Product_SIP" "Product_Class_Definition" "Product_Native" "Product_SIP_Deep_Archive" "Product_Ancillary" "Product_Metadata_Supplemental")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot information_model_version
+;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
+		(type STRING)
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot citation_information
+;+		(comment "The citation_information is a relationship to Citation_Information, fields often used in citing the product.")
+		(type INSTANCE)
+;+		(allowed-classes Citation_Information)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Context_Area "The Context Area provides context information for a product."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_investigation_area
+;+		(comment "The hsa_investigation_area association is a relationship to Investigation_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Investigation_Area)
+		(create-accessor read-write))
+	(single-slot has_primary_result_description
+;+		(comment "The has_primary_result_description association is a relationship to Primary_Result_Description.")
+		(type INSTANCE)
+;+		(allowed-classes Primary_Result_Summary)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_mission_area
+;+		(comment "The has_mission_area association is a relationship to Mission Area.")
+		(type INSTANCE)
+;+		(allowed-classes Mission_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_observing_system
+;+		(comment "The has_observing_system association is a relationship to Observing_System.")
+		(type INSTANCE)
+;+		(allowed-classes Observing_System)
+		(create-accessor read-write))
+	(single-slot has_time_coordinates
+;+		(comment "The has_time_coordinates association is a relationship to Time_Coordinates.")
+		(type INSTANCE)
+;+		(allowed-classes Time_Coordinates)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_discipline_area
+;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
+		(type INSTANCE)
+;+		(allowed-classes Discipline_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_target_identification
+;+		(comment "The has_target_identification association is a relationship to Target_Identification.")
+		(type INSTANCE)
+;+		(allowed-classes Target_Identification)
+		(create-accessor read-write)))
+
+(defclass Observation_Area "The observation area consists of attributes that provide information about the circumstances under which the data were collected."
+	(is-a Context_Area)
+	(role concrete)
+	(multislot has_investigation_area
+;+		(comment "The hsa_investigation_area association is a relationship to Investigation_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Investigation_Area)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot has_observing_system
+;+		(comment "The has_observing_system association is a relationship to Observing_System.")
+		(type INSTANCE)
+;+		(allowed-classes Observing_System)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_time_coordinates
+;+		(comment "The has_time_coordinates association is a relationship to Time_Coordinates.")
+		(type INSTANCE)
+;+		(allowed-classes Time_Coordinates)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_target_identification
+;+		(comment "The has_target_identification association is a relationship to Target_Identification.")
+		(type INSTANCE)
+;+		(allowed-classes Target_Identification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Discipline_Area "The Discipline area allows the insertion of discipline specific metadata."
+	(is-a Product_Components)
+	(role concrete))
+
+(defclass Mission_Area "The mission area allows the insertion of mission specific metadata."
+	(is-a Product_Components)
+	(role concrete))
+
+(defclass Update_Entry "The Update Entry class provides the date and description of an update."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot full_name
+;+		(comment "The full_name attribute provides the complete name for a person and includes titles and suffixes.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot date_time
+;+		(comment "The date_time attribute provides the date and time of an event.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Target_Identification "The Target_Identification class provides detailed target identification information."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot alternate_designation
+;+		(comment "The alternate_designation attribute provides aliases.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot type
+;+		(comment "The type attribute classifies a target according to its size and properties so that correct nomenclature can be applied.")
+		(type STRING)
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a human-readable primary name/identification in the standard format for the target type.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides additional information or clarification, as needed.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Alias_List "The Alias_List class provides a list of paired alternate names and identifications for this product in this or some other archive or data system."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot alias
+;+		(comment "The alias association is a relationship to Alias, an alternate name and identification.")
+		(type INSTANCE)
+;+		(allowed-classes Alias)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Alias "The Alias class provides a single alternate name and identification for this product in this or some other archive or data system."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot alternate_title
+;+		(comment "The alternate _title attribute provides an alternate title for the product.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot alternate_id
+;+		(comment "The alternate_id attribute provides an additional identifier supplied by the data provider.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Citation_Information "The Citation_Information class provides specific fields often used in citing the product in journal articles, abstract services, and other reference contexts."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot editor_list
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot keyword
+;+		(comment "The keyword attribute provides one or more words to be used for  keyword search.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot publication_year
+;+		(comment "The publication_year attribute provides the year in which the product should be considered as published. Generally, this will be the year the data were declared \"Certified\" or \"Archived\".")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot doi
+;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a short (5KB or less) description of the product as a whole.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot author_list
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Modification_History "The Modification_History class tracks the history of changes made to the product once it enters the registry system."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot modification_detail
+;+		(comment "The modification_detail association is a relationship to Modification_Detail, the details of one round of modification for the product.")
+		(type INSTANCE)
+;+		(allowed-classes Modification_Detail)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Modification_Detail "The Modification_Detail class provides the details of one round of modification for the product.  The first, required, instance of this class documents the date the product was first registered."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot modification_date
+;+		(comment "The modification_date attribute provides date the modifications were completed")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot version_id
+;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Time_Coordinates "The Time_Coordinates class provides a list of time coordinates."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot start_date_time
+;+		(comment "The start_date_time attribute provides the date and time appropriate to the beginning of the product being labeled.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot stop_date_time
+;+		(comment "The stop_date_time attribute provides the date and time appropriate to the end of the product being labeled.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot solar_longitude
+;+		(comment "The solar_longitude attribute provides the angle between the body-Sun line at the time of interest and the body-Sun line at its vernal equinox.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot local_mean_solar_time
+;+		(comment "The local_mean_solar_time attribute provides the hour angle of the fictitious mean Sun at a fixed point on a rotating solar system body.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot local_true_solar_time
+;+		(comment "The local_true_solar_time (LTST) attribute provides the local time on a rotating solar system body where LTST is 12 h at the sub-solar point (SSP) and increases 1 h for each 15 degree increase in east longitude away from the SSP for prograde rotation.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Primary_Result_Summary "The Primary_Result_Summary class provides a high-level description of the types of products included in the collection or bundle"
+	(is-a Product_Components)
+	(role concrete)
+	(multislot data_regime
+;+		(comment "The data_regime attribute provides the wavelength (or an analogous concept for things like particle detectors) of the observations, stated as a category.")
+		(type STRING)
+;+		(value "Gamma Ray" "X-Ray" "Ultraviolet" "Visible" "Infrared" "Near Infrared" "Far Infrared" "Microwave" "Sub-Millimeter" "Millimeter" "Radio" "Magnetic Field" "Electric Field" "Ions" "Electrons" "Particles" "Dust" "Temperature" "Pressure")
+		(create-accessor read-write))
+	(single-slot type
+;+		(comment "The type attribute provides a classification for the resource.")
+		(type STRING)
+;+		(value "Astrometry" "E/B-Field Vectors" "Count" "Gravity Model" "Image" "Map" "Null Result" "Photometry" "Polarimetry" "Radiometry" "Shape Model" "Spectrum" "Altimetry" "Occultation" "Physical Parameters" "Lightcurves" "Reference" "Meteorology")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot processing_level
+;+		(comment "The processing_level attribute provides a broad classification of data processing level.")
+		(type STRING)
+;+		(value "Raw" "Calibrated" "Partially Processed" "Derived" "Telemetry")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot purpose
+;+		(comment "The purpose attribute provides an indication of the primary purpose of the observations included.")
+		(type STRING)
+;+		(value "Science" "Navigation" "Calibration" "Checkout" "Engineering" "Observation Geometry" "Supporting Observation")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot has_Science_Facet
+;+		(comment "The has_Science_Facet association is a relationship Science_Facet.")
+		(type INSTANCE)
+;+		(allowed-classes Science_Facets)
+		(create-accessor read-write))
+	(single-slot processing_level_id
+;+		(comment "The processing_level_id attribute provides a broad indication of data processing level.")
+		(type STRING)
+;+		(value "Raw" "Calibrated" "Partially Processed" "Derived" "Telemetry")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Investigation_Area "The Investigation_Area class provides information about an investigation (mission, observing campaign or other coordinated, large-scale data collection effort)."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot type
+;+		(comment "The type attribute classifies Investigation_Area according to the scope of the investigation..")
+		(type STRING)
+;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Reference_List "The Reference_List class provides general references, cross-references, and source products for the product. References cited elsewhere in the label need not be repeated here."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot external_reference
+;+		(comment "The external_reference association is a relationship to External_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes External_Reference)
+		(create-accessor read-write))
+	(multislot source_product_external
+;+		(comment "The source_product_external association is a relationship to Source Product External.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_External)
+		(create-accessor read-write))
+	(multislot internal_reference
+;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
+		(type INSTANCE)
+;+		(allowed-classes Internal_Reference)
+		(create-accessor read-write))
+	(multislot source_product_internal
+;+		(comment "The source_product_internal association is a relationship to Source_Product_Internal.")
+		(type INSTANCE)
+;+		(allowed-classes Source_Product_Internal)
+		(create-accessor read-write)))
+
+(defclass Internal_Reference "The Internal_Reference class is used to cross-reference other products in PDS4-compliant registries of PDS and its recognized international partners."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot lid_reference
+;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
+		(type STRING)
+		(default "XSChoice#1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot lidvid_reference
+;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
+		(type STRING)
+		(default "XSChoice#1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute provides one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_type
+;+		(comment "The reference_type attribute provides the name of the association.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass External_Reference "The External_Reference class is used to reference a source outside the PDS registry system."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot doi
+;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot reference_text
+;+		(comment "The reference_text attribute provides a complete bibliographic citation for a published work.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass External_Reference_Extended "The External_Reference_Extended class is used to reference a source outside the PDS registry system. This extension is used in the local data dictionary."
+	(is-a External_Reference)
+	(role concrete)
+	(single-slot url
+;+		(comment "The url attribute provides a Uniform Resource Identifier (URI) that specifies where a resource is available and the mechanism for retrieving it.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Bundle_Member_Entry "The Bundle Member Entry class provides a member reference to a collection."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot lid_reference
+;+		(comment "The lid_reference attribute provides the logical_identifier for a  product.")
+		(type STRING)
+		(default "XSChoice#1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot lidvid_reference
+;+		(comment "The lidvid_reference attribute provides the logical_identifier plus version_id, which uniquely identifies a product.")
+		(type STRING)
+		(default "XSChoice#1")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot reference_type
+;+		(comment "The reference_type attribute provides the name of the association.")
+		(type STRING)
+;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection" "bundle_has_miscellaneous_collection")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot member_status
+;+		(comment "The member_status attribute indicates whether the collection is primary and whether the file_specification_name has been provided for the product_collection label.")
+		(type STRING)
+;+		(value "Primary" "Secondary")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area "The File_Area class defines a File and its component data objects."
+	(is-a Product_Components)
+	(role concrete))
+
+(defclass File_Area_XML_Schema "The File Area XML Schema class describes a file that contains a resource used for the PDS4 implementation into XML."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes XML_Schema)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Text "The File Area Text class describes a file that contains a text stream object."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Stream_Text)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_SPICE_Kernel "The File Area SPICE Kernel class describes a file that contains a SPICE Kernel object."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes SPICE_Kernel)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Service_Description "The File Area Service Description class describes a file that contains a service description."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Service_Description)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Observational "The File Area Observational class describes, for an observational product, a file and one or more tagged_data_objects contained within the file."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_composite_structure
+;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
+		(type INSTANCE)
+;+		(allowed-classes Composite_Structure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Encoded_Image "The File Area Encoded Image class describes a file that contains an Encoded Image object."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Encoded_Image)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Browse "The File Area Browse class describes a file and one or more tagged_data_objects contained within the file."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Encoded_Image Table_Character Header Encoded_Header Table_Delimited Array_2D Array_3D XSChoice%23 Array_1D Array Encoded_Audio)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Inventory "The File Area Inventory class describes a file and an inventory consisting of references to  members."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Inventory)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Binary "The File Area Binary class describes a file that contains an encoded byte stream."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Encoded_Binary)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Checksum_Manifest "The File Area Checksum Manifest class describes a file that contains a two column table for file references and checksums."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Checksum_Manifest)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Transfer_Manifest "The File Area Transfer Manifest class describes a file that contains a two column table that maps the logical identifiers and version ids of products to their file specification names."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Transfer_Manifest)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Observational_Supplemental "The File Area Observational Supplemental class describes, for an observational product, additional files and tagged_data_objects contained within the file."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Parsable_Byte_Stream Encoded_Byte_Stream Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Table_Delimited Header Table_Binary Table_Character Encoded_Header Encoded_Image Encoded_Binary XSChoice%23 Array_1D Array Table_Delimited_Source_Product_Internal Table_Delimited_Source_Product_External)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_composite_structure
+;+		(comment "The has_Composite_Structure association is a relationship to Composite_Structure.")
+		(type INSTANCE)
+;+		(allowed-classes Composite_Structure)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Native "The File Area Native describes tagged_data_objects collected from an instrument."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Encoded_Native)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Telemetry "The File Area Telemetry describes tagged_data_objects in telemetry format."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Encoded_Telemetry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Update "The File Area Update class is a File Area that describes a file that contains one or  more digital objects used to provide additional metadata for registered products."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object2
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Header)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes XSChoice%23 Table_Character Table_Delimited)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_SIP_Deep_Archive "The File Area SIP Deep Archive class describes the File Area for the Submission Information Package (SIP) for the NASA planetary science deep archive."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Manifest_SIP_Deep_Archive)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Ancillary "The File Area Ancillary class describes a file and one or more tagged_data_objects contained within the file."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest Array_1D Encoded_Audio)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Metadata "The File Area Metadata class describes a table which provides new, and/or improved, metadata. All field names provided must be attributes defined in PDS4, either in the common dictionary, or in a PDS4 discipline or mission dictionary."
+	(is-a File_Area)
+	(role concrete)
+	(single-slot has_tagged_data_object2
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Header)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Table_Character Table_Delimited XSChoice%23)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_Ingest_LDD "The File_Area_Ingest_LDD class describes a file that contains the Ingest_LDD file, the source document that defines a Local Data Dictionary (LDD)."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Ingest_LDD_File)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Science_Facets "The Science_Facets class contains the science-related search facets.  It is optional and may be repeated if an product has facets related to, for example, two different disciplines (as defined by the discipline_name facet). Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot domain
+;+		(comment "The radial %42zone%42 or %42shell%42 of the target for which the observations were collected or which are represented in the product(s).  The value may depend on wavelength_range and size of the target.")
+		(type STRING)
+;+		(value "Interior" "Surface" "Atmosphere" "Ionosphere" "Magnetosphere" "Heliosphere" "Interstellar" "Rings" "Dynamics" "Heliosheath")
+		(create-accessor read-write))
+	(multislot wavelength_range
+;+		(comment "The wavelength range attribute specifies the wavelength range over which the data were collected or which otherwise characterizes the observation(s). Boundaries are vague, and there is overlap.")
+		(type STRING)
+;+		(value "Radio" "Microwave" "Millimeter" "Submillimeter" "Far Infrared" "Infrared" "Near Infrared" "Visible" "Ultraviolet" "X-ray" "Gamma Ray")
+		(create-accessor read-write))
+	(single-slot has_Discipline_Facets
+;+		(comment "The has_Discipline_Facets association is a relationship to Discipline_Facets.")
+		(type INSTANCE)
+;+		(allowed-classes Discipline_Facets)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Group_Facet1 "The Group_Facet1 class contains a single facet restricted according to the value of discipline_name. It also contains zero or more subfacets restricted according to the value of the facet. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot subfacet1
+;+		(comment "The subfacet1 attribute provides a sub-categorization under the facet1 value.  The allowed values are restricted according to the value of facet1.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot facet1
+;+		(comment "The facet1 attribute provides a sub-categorization under the discipline_name.  The values are restricted according to the value of discipline_name.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Group_Facet2 "The Group_Facet2 class contains a single facet restricted according to the value of discipline_name. It also contains zero or more subfacets restricted according to the value of the facet. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot subfacet2
+;+		(comment "The subfacet2 attribute provides a sub-categorization under the facet2 value.  The allowed values are restricted according to the value of facet2.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot facet2
+;+		(comment "The facet2 attribute provides a sub-categorization (under the discipline_name) of the type of data being described by Primary_Result_Summary.  The  facet1  and  factet2  values are intended to provide independent sub-categorizations. The values are restricted according to the value of discipline_name. Type: ASCII_Short_String_Collapsed")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Local_Internal_Reference "The Local Internal_Reference class is used to cross-reference other Description Objects in a PDS4 label."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot local_identifier_reference
+;+		(comment "The local_identifier_reference attribute provides the value of the local_identifier of the entity described by the referencing class. Note that a local_identifier attribute, with the same value as this local_identifier_reference, must be present within the label.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot local_reference_type
+;+		(comment "The local_reference_type attribute provides the name of an association between an entity identified by a local_identifier_reference and another corresponding entity identified by a local_identifier. The values for the local_reference_type are expected to be enumerated for appropriate contexts in the Schematron files of local (i.e., discipline and mission) data dictionaries.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Discipline_Facets "The Discipline_Facets class contains the discipline-related search facets.  It is required and may not be repeated. Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_Group_Facet2
+;+		(comment "The has_Group_Facet2 association is a relationship to Group_Facet2.")
+		(type INSTANCE)
+;+		(allowed-classes Group_Facet2)
+		(create-accessor read-write))
+	(multislot has_Group_Facet1
+;+		(comment "The has_Group_Facet1 association is a relationship to Group_Facet1.")
+		(type INSTANCE)
+;+		(allowed-classes Group_Facet1)
+		(create-accessor read-write))
+	(single-slot discipline_name
+;+		(comment "The discipline_name attribute describes the observing discipline (as opposed to a PDS Discipline Node Name, though the concepts and values are similar). Some of these values are, with respect to the PDS Nodes, inter-disciplinary and should be used when they are applicable in perference to the more restrictive values.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Virtual_Area "The Virtual Area provides the metadata and references necessary to describe a composite of existing products and/or their components."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot virtual_structure
+;+		(comment "The virtual_structure association is a relationship to Virtual Structure")
+		(type INSTANCE)
+;+		(allowed-classes Virtual_Structure)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_discipline_area
+;+		(comment "The has_discipline_area association is a relationship to Discipline Area.")
+		(type INSTANCE)
+;+		(allowed-classes Discipline_Area)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
