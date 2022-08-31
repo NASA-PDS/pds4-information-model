@@ -1,16 +1,20 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-08-25)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2022-08-31)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...«unknown»)
+
+**Other closed issues:**
+
+- CCB-209: Correct Definitions of Tagged\_\*\_Object [\#159](https://github.com/NASA-PDS/pds4-information-model/issues/159)
+
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-08-25)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0-SNAPSHOT)
 
 **Requirements:**
 
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
-
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-08-18)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0-SNAPSHOT)
 
 **Defects:**
 
