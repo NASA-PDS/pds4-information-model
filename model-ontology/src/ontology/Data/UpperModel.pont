@@ -1,4 +1,4 @@
-; Wed Aug 31 16:01:09 EDT 2022
+; Thu Sep 15 16:12:45 EDT 2022
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -939,6 +939,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot local_attribute_extended
+;+		(comment "The local_attribute_extended association is a relationship to Local_Attribute_Extended.")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
 	(multislot maximum_ring_radius
 ;+		(comment "maximum_ring_radius indicates the largest ring radius value in the data table. Units are km and are always positive. Required in label files for ring occultation data.")
 		(type FLOAT)
@@ -1674,6 +1679,11 @@
 ;+		(comment "The spheroid_name attribute provides the identification given to established representations of a planet%47s shape. ")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot local_class_extended
+;+		(comment "The local_class_extended association is a relationship to DD_Class_Extended.")
+		(type INSTANCE)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(single-slot has_Element_Array
 ;+		(comment "The has_Element_Array association is a relationship to Element_Array")
@@ -7747,6 +7757,11 @@
 		(type INSTANCE)
 ;+		(allowed-classes DD_Class)
 		(create-accessor read-write))
+	(multislot local_class_extended
+;+		(comment "The local_class_extended association is a relationship to DD_Class_Extended.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Class_Extended)
+		(create-accessor read-write))
 	(single-slot data_object
 ;+		(comment "The data_object association is a relationship to Data Object.")
 		(type INSTANCE)
@@ -7782,6 +7797,11 @@
 ;+		(comment "The has_Property_Maps association is a relationship to a Property Maps class")
 		(type INSTANCE)
 ;+		(allowed-classes Property_Maps)
+		(create-accessor read-write))
+	(multislot local_attribute_extended
+;+		(comment "The local_attribute_extended association is a relationship to Local_Attribute_Extended.")
+		(type INSTANCE)
+;+		(allowed-classes DD_Attribute_Extended)
 		(create-accessor read-write))
 	(single-slot dictionary_type
 ;+		(comment "The dictionary_type attribute provides the name of a dictionary category.")
@@ -8611,7 +8631,7 @@
 	(is-a LIDVID_ID_Reference)
 	(role concrete))
 
-(defclass DD_Attribute_External "The DD_Attribute_External class references an existing attribute."
+(defclass DD_Attribute_Extended "The DD_Attribute_Extended class allows the extension of an existing attribute."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(multislot terminological_entry
@@ -8645,7 +8665,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass DD_Class_External "The DD_Class_External class references an existing class."
+(defclass DD_Class_Extended "The DD_Class_Extended class allows the extension of an existing class."
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(multislot terminological_entry
