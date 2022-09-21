@@ -1,6 +1,18 @@
 # Changelog
 
-## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-08-31)
+## [14.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/14.1.0) (2022-09-21)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.1.0...14.1.0)
+
+**Requirements:**
+
+- CCB-351: Term Mapping [\#503](https://github.com/NASA-PDS/pds4-information-model/issues/503)
+
+## [release/14.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.1.0) (2022-09-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0-SNAPSHOT...release/14.1.0)
+
+## [v14.1.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0-SNAPSHOT) (2022-09-06)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0-SNAPSHOT)
 
