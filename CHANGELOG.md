@@ -2,7 +2,15 @@
 
 ## [14.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/14.1.0) (2022-09-29)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0...14.1.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...14.1.0)
+
+**Defects:**
+
+- hyb2 has incorrect namespace for IM v1.14 [\#506](https://github.com/NASA-PDS/pds4-information-model/issues/506) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-09-29)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0...v14.2.0-SNAPSHOT)
 
 **Other closed issues:**
 
