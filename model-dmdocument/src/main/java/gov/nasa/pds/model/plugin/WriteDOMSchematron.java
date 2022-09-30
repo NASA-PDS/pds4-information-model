@@ -277,12 +277,13 @@ class WriteDOMSchematron extends Object {
 			// namespaces required: ldd
 			String governanceDirectory = "";
 			if (lSchemaFileDefn.isMission && ! DMDocument.disciplineMissionFlag) governanceDirectory = lSchemaFileDefn.governanceLevel.toLowerCase() +  "/";
-			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNC + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\"" + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
+			prSchematron.println("  <sch:ns uri=\"" + lSchemaFileDefn.nameSpaceURL + governanceDirectory + lSchemaFileDefn.nameSpaceIdNCDir + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\"" + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
 			// namespaces required: all other LDD discipline levels referenced; no mission level allowed
 			for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
 				String lNameSpaceIdNC = (String) i.next();
 				String lVersionNSId = "TBD_lVersionNSId";
 				String lNameSpaceURL = "TBD_lNameSpaceURL";
+				String lNameSpaceIdNCDIR = "TBD_lNameSpaceIdNCDIR";
 				// omit this LDD schema file's namespace; namespace used as targetNamespace above
 				if (lNameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) continue;
 				
@@ -291,6 +292,7 @@ class WriteDOMSchematron extends Object {
 				if (lSchemaFileDefnExternal != null) {
 					lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
 					lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+					lNameSpaceIdNCDIR = lSchemaFileDefnExternal.nameSpaceIdNCDir;
 				} else {
 					
 					// next try config.properties
@@ -298,13 +300,15 @@ class WriteDOMSchematron extends Object {
 					if (lSchemaFileDefnExternal != null) {
 						lVersionNSId = lSchemaFileDefnExternal.ns_version_id;
 						lNameSpaceURL = lSchemaFileDefnExternal.nameSpaceURL;
+						lNameSpaceIdNCDIR = lSchemaFileDefnExternal.nameSpaceIdNCDir;
 					} else {
 						lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
 						lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
+						lNameSpaceIdNCDIR = DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCDir;
 						DMDocument.registerMessage ("1>warning " + "config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
 					}
 				}
-				prSchematron.println("  <sch:ns uri=\"" + lNameSpaceURL + lNameSpaceIdNC + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
+				prSchematron.println("  <sch:ns uri=\"" + lNameSpaceURL + lNameSpaceIdNCDIR + "/v" + lVersionNSId + "\" prefix=\"" + lNameSpaceIdNC + "\"/>");
 			}
 		}
 	}

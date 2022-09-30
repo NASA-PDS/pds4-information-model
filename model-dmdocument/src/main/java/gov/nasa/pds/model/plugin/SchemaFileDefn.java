@@ -52,6 +52,7 @@ public class SchemaFileDefn {
 	String nameSpaceIdNCLC;		// no colon, lower cased
 	String nameSpaceIdNCUC;		// no colon, upper cased
 	String nameSpaceId;			// colon, lower cased
+	String nameSpaceIdNCDir;		// colon, lower cased, underscores replace by slashes, urn:esa:psa:
 	
 	// nameSpace URL
 	String nameSpaceURL;
@@ -131,6 +132,7 @@ public class SchemaFileDefn {
 		labelVersionId = "0.0";
 		stewardId = "TBD_stewardId";
 		nameSpaceIdNC = id;
+		nameSpaceIdNCDir = nameSpaceIdNC;
 		nameSpaceIdNCLC = nameSpaceIdNC.toLowerCase();
 		nameSpaceIdNCUC = nameSpaceIdNC.toUpperCase();
 		nameSpaceId = nameSpaceIdNCLC + ":";
@@ -192,6 +194,7 @@ public class SchemaFileDefn {
 		nameSpaceIdNCLC = nameSpaceIdNC.toLowerCase();
 		nameSpaceIdNCUC = nameSpaceIdNC.toUpperCase();
 		nameSpaceId = nameSpaceIdNCLC + ":";
+		nameSpaceIdNCDir = nameSpaceIdNC;
 		return;
 	}
 	
@@ -202,6 +205,9 @@ public class SchemaFileDefn {
 		modelShortName = lSchemaFileDefn.modelShortName;
 		sysBundleName = lSchemaFileDefn.sysBundleName;
 		regAuthId = lSchemaFileDefn.regAuthId;
+		if (urnPrefix.compareTo("urn:esa:psa:") == 0) {
+			nameSpaceIdNCDir = nameSpaceIdNCDir.replace('_','/');
+		}
 		return;
 	}
 	
