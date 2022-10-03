@@ -1,8 +1,12 @@
 # Changelog
 
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-09-30)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-10-01)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0...v14.2.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.1.1...v14.2.0-SNAPSHOT)
+
+## [release/14.1.1](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.1.1) (2022-10-01)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.0...release/14.1.1)
 
 **Defects:**
 
@@ -15,18 +19,11 @@
 
 ## [v14.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.0) (2022-09-21)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.1.0...v14.1.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...v14.1.0)
 
 **Requirements:**
 
 - CCB-351: Term Mapping [\#503](https://github.com/NASA-PDS/pds4-information-model/issues/503)
-
-## [release/14.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.1.0) (2022-09-17)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.0.13...release/14.1.0)
-
-**Requirements:**
-
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 
 **Defects:**
