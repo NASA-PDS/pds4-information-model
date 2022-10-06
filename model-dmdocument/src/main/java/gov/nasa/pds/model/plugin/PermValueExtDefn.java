@@ -28,17 +28,18 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 import java.util.ArrayList;
 
 public class PermValueExtDefn {
-	String identifier;									// attribute name
-	String xpath;										// class path to attribute
-	ArrayList <PermValueDefn> permValueExtArr;			// set of permissible values
-	
-	public PermValueExtDefn (String lId) {
-		identifier = lId; 
-		xpath = "TBD_xpath";
-		permValueExtArr = new ArrayList <PermValueDefn> (); 
-	} 
+  String identifier; // attribute name
+  String xpath; // class path to attribute
+  ArrayList<PermValueDefn> permValueExtArr; // set of permissible values
+
+  public PermValueExtDefn(String lId) {
+    identifier = lId;
+    xpath = "TBD_xpath";
+    permValueExtArr = new ArrayList<>();
+  }
 }

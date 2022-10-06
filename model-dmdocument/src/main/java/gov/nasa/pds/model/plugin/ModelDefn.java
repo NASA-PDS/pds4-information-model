@@ -28,20 +28,21 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 public class ModelDefn extends Object {
 
-	String identifier; // e.g.UpperPontModel 
-	String type;       // e.g.ProtPontModel
-	String filename;   // e.g.ProdModel.pont
-	boolean ddincludeflag;
-	Object objectid;
+  String identifier; // e.g.UpperPontModel
+  String type; // e.g.ProtPontModel
+  String filename; // e.g.ProdModel.pont
+  boolean ddincludeflag;
+  Object objectid;
 
-	public ModelDefn (String id) {
-		identifier = id; 
-		type = "TBD_type"; 
-		filename = "TBD_filename"; 
-		ddincludeflag = false;
-		objectid = null;
-	}  	
-} 	
+  public ModelDefn(String id) {
+    identifier = id;
+    type = "TBD_type";
+    filename = "TBD_filename";
+    ddincludeflag = false;
+    objectid = null;
+  }
+}

@@ -27,25 +27,26 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 import java.util.ArrayList;
 
 public class AssertDefn2 {
-	String identifier;
-	String attrTitle;
-	String assertType;
-	String assertMsg;
-	String assertStmt;
-	String specMesg;			// a cleaned up assertMsg for the DD and Specification
-	ArrayList <String> testValArr;
+  String identifier;
+  String attrTitle;
+  String assertType;
+  String assertMsg;
+  String assertStmt;
+  String specMesg; // a cleaned up assertMsg for the DD and Specification
+  ArrayList<String> testValArr;
 
-	public AssertDefn2 (String id) {
-		identifier = id; 		
-		attrTitle = id;
-		assertType = "RAW";								// RAW, EVERY, IF
-		assertMsg = "TBD_assertMsg";
-		assertStmt = "TBD_assertMsg";
-		specMesg = "TBD_specMessage";
-		testValArr = new ArrayList <String>();
-	} 
+  public AssertDefn2(String id) {
+    identifier = id;
+    attrTitle = id;
+    assertType = "RAW"; // RAW, EVERY, IF
+    assertMsg = "TBD_assertMsg";
+    assertStmt = "TBD_assertMsg";
+    specMesg = "TBD_specMessage";
+    testValArr = new ArrayList<>();
+  }
 }

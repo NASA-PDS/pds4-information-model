@@ -35,18 +35,19 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 
 /**
-* Documentation generation plugin. This is a Maven plugin to create lots of various
-* documentation from PDS ontology sources (which themselves come from Protégé).
-*/
-@Mojo(name="generateDocumentation", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
+ * Documentation generation plugin. This is a Maven plugin to create lots of various documentation
+ * from PDS ontology sources (which themselves come from Protégé).
+ */
+@Mojo(name = "generateDocumentation", defaultPhase = LifecyclePhase.PROCESS_SOURCES)
 public class DocumentationGenerationPlugin extends AbstractGenerationPlugin {
-    protected void generateArtifacts() throws MojoExecutionException {
-        try {
-            DMDocument.main(new String[]{"-p"});
-        } catch (RuntimeException ex) {
-            throw ex;
-        } catch (Throwable ex) {
-            throw new MojoExecutionException("DMDocument error", ex);
-        }
+  @Override
+  protected void generateArtifacts() throws MojoExecutionException {
+    try {
+      DMDocument.main(new String[] {"-p"});
+    } catch (RuntimeException ex) {
+      throw ex;
+    } catch (Throwable ex) {
+      throw new MojoExecutionException("DMDocument error", ex);
     }
+  }
 }

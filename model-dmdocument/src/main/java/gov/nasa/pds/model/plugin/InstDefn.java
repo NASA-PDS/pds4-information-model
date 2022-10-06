@@ -28,48 +28,56 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
-import java.util.*;
+package gov.nasa.pds.model.plugin;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class InstDefn extends Object {
 
-	// note that the master11179DataDict Map key = className + "." title
-	String rdfIdentifier;							// e.g. dd79.DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
-	String identifier; 								// e.g. dd79.DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
-	String title;  									// e.g. DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
-	String className;								// ISO 11179 Class Name, e.g. DataElement
-	String steward;
-	String nameSpaceId;
-	String nameSpaceIdNC;
-	String description;
+  // note that the master11179DataDict Map key = className + "." title
+  String rdfIdentifier; // e.g.
+                        // dd79.DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
+  String identifier; // e.g.
+                     // dd79.DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
+  String title; // e.g. DE.0001_NASA_PDS_1.rings.Stellar_Occultation.radial_sampling_interval
+  String className; // ISO 11179 Class Name, e.g. DataElement
+  String steward;
+  String nameSpaceId;
+  String nameSpaceIdNC;
+  String description;
 
-	HashMap <String, ArrayList<String>> genSlotMap; 
+  HashMap<String, ArrayList<String>> genSlotMap;
 
-	public InstDefn (String lRDFIdentifier) { 
-		rdfIdentifier = lRDFIdentifier; 
-		identifier = "TBD_identifier";
-		title = "TBD_title"; 
-		className = "TBD_className";
-		steward = "TBD_steward";
-		nameSpaceId = "TBD_nameSpaceId";
-		nameSpaceIdNC = "TBD_nameSpaceIdNC";
-		description = "TBD_description";
-		
-		genSlotMap = new HashMap <String, ArrayList<String>> ();
-	}
-	
-	// get a singleton slot value given a keyName (Protege dd11179 attribute)
-	public String getSlotValueSingleton (String keyName) {
-		ArrayList <String> lValArr = getSlotValueArr (keyName);
-		if (lValArr == null) return null;
-		String lValue = lValArr.get(0);
-		if (lValue == null) return null;
-		return lValue;
-	}	
+  public InstDefn(String lRDFIdentifier) {
+    rdfIdentifier = lRDFIdentifier;
+    identifier = "TBD_identifier";
+    title = "TBD_title";
+    className = "TBD_className";
+    steward = "TBD_steward";
+    nameSpaceId = "TBD_nameSpaceId";
+    nameSpaceIdNC = "TBD_nameSpaceIdNC";
+    description = "TBD_description";
 
-	// get the slot value array given a keyName (Protege dd11179 attribute)
-	public ArrayList <String> getSlotValueArr (String keyName) {
-		ArrayList <String> lValArr = genSlotMap.get(keyName);
-		return lValArr;
-	}
-} 	
+    genSlotMap = new HashMap<>();
+  }
+
+  // get a singleton slot value given a keyName (Protege dd11179 attribute)
+  public String getSlotValueSingleton(String keyName) {
+    ArrayList<String> lValArr = getSlotValueArr(keyName);
+    if (lValArr == null) {
+      return null;
+    }
+    String lValue = lValArr.get(0);
+    if (lValue == null) {
+      return null;
+    }
+    return lValue;
+  }
+
+  // get the slot value array given a keyName (Protege dd11179 attribute)
+  public ArrayList<String> getSlotValueArr(String keyName) {
+    ArrayList<String> lValArr = genSlotMap.get(keyName);
+    return lValArr;
+  }
+}

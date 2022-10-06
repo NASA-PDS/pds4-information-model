@@ -28,18 +28,19 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
-class DOMAssocClassDefn extends Object{
-	String identifier;
-	int cardMin; 
-	int cardMax;
-	DOMClass assocClass;
-	
-	public DOMAssocClassDefn (String lId, int lCardMin, int lCardMax, DOMClass lAssocClass) {
-		identifier = lId;
-		cardMin = lCardMin; 
-		cardMax = lCardMax;
-		assocClass = lAssocClass;
-		return;
-	}
+package gov.nasa.pds.model.plugin;
+
+class DOMAssocClassDefn extends Object {
+  String identifier;
+  int cardMin;
+  int cardMax;
+  DOMClass assocClass;
+
+  public DOMAssocClassDefn(String lId, int lCardMin, int lCardMax, DOMClass lAssocClass) {
+    identifier = lId;
+    cardMin = lCardMin;
+    cardMax = lCardMax;
+    assocClass = lAssocClass;
+    return;
+  }
 }

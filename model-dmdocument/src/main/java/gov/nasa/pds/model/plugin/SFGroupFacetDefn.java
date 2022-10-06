@@ -28,17 +28,18 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 import java.util.ArrayList;
 
 public class SFGroupFacetDefn {
-	String identifier;
-	String facet;
-	ArrayList <String> subfacetArr;
+  String identifier;
+  String facet;
+  ArrayList<String> subfacetArr;
 
-	public SFGroupFacetDefn (String lClassName, String lFacetName) {
-		identifier = lFacetName + "." + lClassName;
-		facet = DMDocument.replaceString (lFacetName, "+", " ");
-		subfacetArr = new ArrayList <String>();
-	} 
+  public SFGroupFacetDefn(String lClassName, String lFacetName) {
+    identifier = lFacetName + "." + lClassName;
+    facet = DMDocument.replaceString(lFacetName, "+", " ");
+    subfacetArr = new ArrayList<>();
+  }
 }

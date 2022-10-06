@@ -28,14 +28,15 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 public class PropertyMapEntryDefn {
-	String property_name;
-	String property_value;
+  String property_name;
+  String property_value;
 
-	public PropertyMapEntryDefn (String id) {
+  public PropertyMapEntryDefn(String id) {
 
-		property_name = "TBD_property_name";
-		property_value = "TBD_property_value";
-	} 
+    property_name = "TBD_property_name";
+    property_value = "TBD_property_value";
+  }
 }

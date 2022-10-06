@@ -28,42 +28,46 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
-public class DeprecatedDefn {
-	String identifier;
-	String title;
-	String classNameSpaceIdNC;
-	String className;
-	String attrNameSpaceIdNC;
-	String attrName;
-	String value;
-	String context;
-	boolean isAttribute;
-	boolean isValue;
-	boolean isUnitId;
+package gov.nasa.pds.model.plugin;
 
-	public DeprecatedDefn (String lTitle, String lClassNameSpaceIdNC, String lClassName, String lAttrNameSpaceIdNC, String lAttrName, String lValue, boolean lIsUnitId) {
-		title = lTitle;
-		classNameSpaceIdNC = lClassNameSpaceIdNC;
-		className = lClassName;
-		attrNameSpaceIdNC = lAttrNameSpaceIdNC;
-		attrName = lAttrName;
-		value = lValue;
-		isValue = false;
-		isAttribute = false;
-		isUnitId = lIsUnitId;
-		if (value.compareTo("") != 0) {
-			identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
-			isValue = true;
-			isAttribute = true;
-			context = classNameSpaceIdNC + ":" + lClassName;
-		} else if (lAttrName.compareTo("") != 0) {
-			identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName, lAttrNameSpaceIdNC, lAttrName);
-			isAttribute = true;
-			context = classNameSpaceIdNC + ":" + lClassName + "/" + lAttrNameSpaceIdNC + ":" + lAttrName;
-		} else {
-			identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
-			context = classNameSpaceIdNC + ":" + lClassName;
-		}
-	} 
+public class DeprecatedDefn {
+  String identifier;
+  String title;
+  String classNameSpaceIdNC;
+  String className;
+  String attrNameSpaceIdNC;
+  String attrName;
+  String value;
+  String context;
+  boolean isAttribute;
+  boolean isValue;
+  boolean isUnitId;
+
+  public DeprecatedDefn(String lTitle, String lClassNameSpaceIdNC, String lClassName,
+      String lAttrNameSpaceIdNC, String lAttrName, String lValue, boolean lIsUnitId) {
+    title = lTitle;
+    classNameSpaceIdNC = lClassNameSpaceIdNC;
+    className = lClassName;
+    attrNameSpaceIdNC = lAttrNameSpaceIdNC;
+    attrName = lAttrName;
+    value = lValue;
+    isValue = false;
+    isAttribute = false;
+    isUnitId = lIsUnitId;
+    if (value.compareTo("") != 0) {
+      identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName,
+          lAttrNameSpaceIdNC, lAttrName);
+      isValue = true;
+      isAttribute = true;
+      context = classNameSpaceIdNC + ":" + lClassName;
+    } else if (lAttrName.compareTo("") != 0) {
+      identifier = DOMInfoModel.getAttrIdentifier(lClassNameSpaceIdNC, lClassName,
+          lAttrNameSpaceIdNC, lAttrName);
+      isAttribute = true;
+      context = classNameSpaceIdNC + ":" + lClassName + "/" + lAttrNameSpaceIdNC + ":" + lAttrName;
+    } else {
+      identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
+      context = classNameSpaceIdNC + ":" + lClassName;
+    }
+  }
 }

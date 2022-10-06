@@ -28,8 +28,9 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 public class DOMPropComp extends Object {
-	DOMProp domProp;
-	ISOClassOAIS11179 domComp;
+  DOMProp domProp;
+  ISOClassOAIS11179 domComp;
 }

@@ -28,46 +28,51 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
-import java.util.*;
+package gov.nasa.pds.model.plugin;
 
-class ProtPinsGlossary extends Object{
-	TreeMap <String, DOMAttr> glossMap;
-	TreeMap <String, String> glossTitleIdMap;
-	
-	ProtPins protPinsInst;   
-	
-	public ProtPinsGlossary () {
-		glossMap = new TreeMap <String, DOMAttr> ();
-		glossTitleIdMap = new TreeMap <String, String> ();
-		return;
-	}
-	
-	public void getProtPinsGlossary (String subModelId, String fname) throws Throwable {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeMap;
 
-		protPinsInst = new ProtPins();
-		protPinsInst.getProtInst("PDS3", "pds3", fname);
-		
-		HashMap <String, InstDefn> tDict = protPinsInst.instDict;
-		Set <String> set1 = tDict.keySet();
-		Iterator <String> iter1 = set1.iterator();
-		while(iter1.hasNext()) {
-			String instRDFId = (String) iter1.next();		
-			InstDefn localInst = (InstDefn) tDict.get(instRDFId);
-			DOMAttr lDOMAttr = new DOMAttr();
-			lDOMAttr.setRDFIdentifier(localInst.rdfIdentifier);
-			lDOMAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
-			lDOMAttr.subModelId = subModelId;
-			lDOMAttr.title = DOMInfoModel.unEscapeProtegeString(localInst.title);
-			lDOMAttr.genAttrMap = localInst.genSlotMap;
-			ArrayList <String> attrdescarr = (ArrayList<String>) lDOMAttr.genAttrMap.get("column_desc");
-			String lDescription = (String) attrdescarr.get(0);
-			lDescription =  DOMInfoModel.unEscapeProtegeString(lDescription);
-			lDOMAttr.definition = lDescription;
-			
-			glossMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
-			glossTitleIdMap.put(lDOMAttr.title, lDOMAttr.rdfIdentifier);
-		}
-		return;
-	}
+class ProtPinsGlossary extends Object {
+  TreeMap<String, DOMAttr> glossMap;
+  TreeMap<String, String> glossTitleIdMap;
+
+  ProtPins protPinsInst;
+
+  public ProtPinsGlossary() {
+    glossMap = new TreeMap<>();
+    glossTitleIdMap = new TreeMap<>();
+    return;
+  }
+
+  public void getProtPinsGlossary(String subModelId, String fname) throws Throwable {
+
+    protPinsInst = new ProtPins();
+    protPinsInst.getProtInst("PDS3", "pds3", fname);
+
+    HashMap<String, InstDefn> tDict = protPinsInst.instDict;
+    Set<String> set1 = tDict.keySet();
+    Iterator<String> iter1 = set1.iterator();
+    while (iter1.hasNext()) {
+      String instRDFId = iter1.next();
+      InstDefn localInst = tDict.get(instRDFId);
+      DOMAttr lDOMAttr = new DOMAttr();
+      lDOMAttr.setRDFIdentifier(localInst.rdfIdentifier);
+      lDOMAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
+      lDOMAttr.subModelId = subModelId;
+      lDOMAttr.title = DOMInfoModel.unEscapeProtegeString(localInst.title);
+      lDOMAttr.genAttrMap = localInst.genSlotMap;
+      ArrayList<String> attrdescarr = lDOMAttr.genAttrMap.get("column_desc");
+      String lDescription = attrdescarr.get(0);
+      lDescription = DOMInfoModel.unEscapeProtegeString(lDescription);
+      lDOMAttr.definition = lDescription;
+
+      glossMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
+      glossTitleIdMap.put(lDOMAttr.title, lDOMAttr.rdfIdentifier);
+    }
+    return;
+  }
 }

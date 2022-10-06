@@ -28,75 +28,76 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class DOMUnit extends ISOClassOAIS11179 {
-	String pds4Identifier;
-	String type;
-	String precision;
-	String default_unit_id;
-	
-	ArrayList <String> unit_id; 
-	
-	public DOMUnit () {          
-		pds4Identifier = "TBD_pds4Identifier";
-		type = "TBD_type";              
-		precision = "TBD precision";                        
-		default_unit_id = "TBD_default_unit_id";                                         
+  String pds4Identifier;
+  String type;
+  String precision;
+  String default_unit_id;
 
-		unit_id = new ArrayList <String>();
-	}
+  ArrayList<String> unit_id;
 
-	public String getType() {
-		return type;
-	}
-	
-	public void setType(String type) {
-		this.type = type;
-	}
+  public DOMUnit() {
+    pds4Identifier = "TBD_pds4Identifier";
+    type = "TBD_type";
+    precision = "TBD precision";
+    default_unit_id = "TBD_default_unit_id";
 
-	public String getPrecision() {
-		return precision;
-	}
-	
-	public void setPrecision(String precision) {
-		this.precision = precision;
-	}
+    unit_id = new ArrayList<>();
+  }
 
-	public String getDefault_unit_id() {
-		return default_unit_id;
-	}
-	
-	public void setDefault_unit_id(String default_unit_id) {
-		this.default_unit_id = default_unit_id;
-	}
+  public String getType() {
+    return type;
+  }
 
-	public ArrayList<String> getUnit_id() {
-		return unit_id;
-	}
-	
-	public void setUnit_id(ArrayList<String> unit_id) {
-		this.unit_id = unit_id;
-	}
-	
-	public void createDOMUnitSingletons (String lId, DOMClass lClass) {
-//		rdfIdentifier = "TBD"; 
-		identifier = lId;
-		versionId = "1.0.0.0";
-		pds4Identifier = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
-		title = this.identifier;
-		type = this.identifier;
-		nameSpaceIdNC = lClass.nameSpaceIdNC;
-		nameSpaceId = lClass.nameSpaceId;
-		steward = lClass.steward;
-		regAuthId = DMDocument.registrationAuthorityIdentifierValue; 
-		definition = lClass.definition;
-		registrationStatus = lClass.registrationStatus; 
-		isDeprecated = lClass.isDeprecated;
-//		precision = lUnitDefn.precision;
-//		default_unit_id = lUnitDefn.default_unit_id;
-		return;
-	}
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public String getPrecision() {
+    return precision;
+  }
+
+  public void setPrecision(String precision) {
+    this.precision = precision;
+  }
+
+  public String getDefault_unit_id() {
+    return default_unit_id;
+  }
+
+  public void setDefault_unit_id(String default_unit_id) {
+    this.default_unit_id = default_unit_id;
+  }
+
+  public ArrayList<String> getUnit_id() {
+    return unit_id;
+  }
+
+  public void setUnit_id(ArrayList<String> unit_id) {
+    this.unit_id = unit_id;
+  }
+
+  public void createDOMUnitSingletons(String lId, DOMClass lClass) {
+    // rdfIdentifier = "TBD";
+    identifier = lId;
+    versionId = "1.0.0.0";
+    pds4Identifier =
+        DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
+    title = this.identifier;
+    type = this.identifier;
+    nameSpaceIdNC = lClass.nameSpaceIdNC;
+    nameSpaceId = lClass.nameSpaceId;
+    steward = lClass.steward;
+    regAuthId = DMDocument.registrationAuthorityIdentifierValue;
+    definition = lClass.definition;
+    registrationStatus = lClass.registrationStatus;
+    isDeprecated = lClass.isDeprecated;
+    // precision = lUnitDefn.precision;
+    // default_unit_id = lUnitDefn.default_unit_id;
+    return;
+  }
 }

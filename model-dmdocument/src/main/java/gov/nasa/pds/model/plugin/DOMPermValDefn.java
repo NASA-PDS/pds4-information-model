@@ -28,34 +28,38 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
+package gov.nasa.pds.model.plugin;
+
 public class DOMPermValDefn extends ISOClassOAIS11179 {
-//	String identifier;		// identifier from raw value meaning files - e.g. 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
-	String searchKey;		// identifier from raw value meaning files - e.g. 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
-	String registrationStatus;	// ISO 11179 item registration status
-	String value;			// the value
-	String value_meaning;	// the meaning of the value
-	String value_begin_date;	// the value begin date
-	String value_end_date;		// the value end date
-	boolean isPattern;
-	
-	public DOMPermValDefn () {
-		searchKey = "TBD_searchKey";
-		registrationStatus = "TBD_registrationStatus";
-		value = "TBD_registrationStatus";
-		value_meaning = "TBD_value_meaning";
-		value_begin_date = "TBD_value_begin_date";
-		value_end_date = "TBD_value_end_date";
-		isPattern = false; // pattern special characters (e.g. back slashes) are invalid for OWL RDF identifiers.
-	}
-	
-	public DOMPermValDefn (String lId, String lValue, String lValueMeaning) {
-		identifier = lId; 
-		searchKey = "TBD_searchKey";
-		registrationStatus = "TBD_registrationStatus";
-		value = lValue;
-		value_meaning = lValueMeaning;
-		value_begin_date = "TBD_value_begin_date";
-		value_end_date = "TBD_value_end_date";
-	}
+  // String identifier; // identifier from raw value meaning files - e.g.
+  // 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
+  String searchKey; // identifier from raw value meaning files - e.g.
+                    // 0001_NASA_PDS_1.Table_Delimited.record_delimiter_Value_1
+  String registrationStatus; // ISO 11179 item registration status
+  String value; // the value
+  String value_meaning; // the meaning of the value
+  String value_begin_date; // the value begin date
+  String value_end_date; // the value end date
+  boolean isPattern;
+
+  public DOMPermValDefn() {
+    searchKey = "TBD_searchKey";
+    registrationStatus = "TBD_registrationStatus";
+    value = "TBD_registrationStatus";
+    value_meaning = "TBD_value_meaning";
+    value_begin_date = "TBD_value_begin_date";
+    value_end_date = "TBD_value_end_date";
+    isPattern = false; // pattern special characters (e.g. back slashes) are invalid for OWL RDF
+                       // identifiers.
+  }
+
+  public DOMPermValDefn(String lId, String lValue, String lValueMeaning) {
+    identifier = lId;
+    searchKey = "TBD_searchKey";
+    registrationStatus = "TBD_registrationStatus";
+    value = lValue;
+    value_meaning = lValueMeaning;
+    value_begin_date = "TBD_value_begin_date";
+    value_end_date = "TBD_value_end_date";
+  }
 }

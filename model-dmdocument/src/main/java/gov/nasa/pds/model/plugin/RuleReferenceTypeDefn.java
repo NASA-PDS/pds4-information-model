@@ -28,14 +28,15 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package gov.nasa.pds.model.plugin; 
-public class RuleReferenceTypeDefn {
-	String ruleReferenceXPath;
-	boolean isLocal;
+package gov.nasa.pds.model.plugin;
 
-	public RuleReferenceTypeDefn (String lRuleReferenceXPath, boolean lIsLocal) {
-		ruleReferenceXPath = lRuleReferenceXPath; 
-		isLocal = lIsLocal;
-	} 
+public class RuleReferenceTypeDefn {
+  String ruleReferenceXPath;
+  boolean isLocal;
+
+  public RuleReferenceTypeDefn(String lRuleReferenceXPath, boolean lIsLocal) {
+    ruleReferenceXPath = lRuleReferenceXPath;
+    isLocal = lIsLocal;
+  }
 }
 

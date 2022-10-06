@@ -27,39 +27,41 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-package gov.nasa.pds.model.plugin; 
-import java.util.*;
+package gov.nasa.pds.model.plugin;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DocDefn extends Object {
 
-	String identifier; 
-	String title; 
-	String subTitle; 
-	String description;
-	String author;
-	String version;
-	
-	SectionDefn docSection;	
-	ModelDefn docModel;	
-	
-	HashMap <String, SectionDefn> sectionMap;
-	HashMap <String, ModelDefn> modelMap;
-	HashMap <String, SectionContentDefn> sectionContentMap;
-	
-	ArrayList <String> sectionArray;
+  String identifier;
+  String title;
+  String subTitle;
+  String description;
+  String author;
+  String version;
 
-	public DocDefn (String id) {
-		identifier = id; 
-		title = id; 
-		subTitle = "TBD_subtitle"; 
-		description = "TBD_description"; 
-		author = "TBD_author"; 
-		version = "TBD_version"; 
+  SectionDefn docSection;
+  ModelDefn docModel;
 
-		sectionMap = new HashMap <String, SectionDefn> ();
-		modelMap = new HashMap <String, ModelDefn> ();
-		sectionContentMap = new HashMap <String, SectionContentDefn>  ();
-		
-		sectionArray = new ArrayList <String> ();		
-	}
-} 	
+  HashMap<String, SectionDefn> sectionMap;
+  HashMap<String, ModelDefn> modelMap;
+  HashMap<String, SectionContentDefn> sectionContentMap;
+
+  ArrayList<String> sectionArray;
+
+  public DocDefn(String id) {
+    identifier = id;
+    title = id;
+    subTitle = "TBD_subtitle";
+    description = "TBD_description";
+    author = "TBD_author";
+    version = "TBD_version";
+
+    sectionMap = new HashMap<>();
+    modelMap = new HashMap<>();
+    sectionContentMap = new HashMap<>();
+
+    sectionArray = new ArrayList<>();
+  }
+}
