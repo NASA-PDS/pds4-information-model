@@ -1,16 +1,16 @@
 # Changelog
 
-## [14.1.1](https://github.com/NASA-PDS/pds4-information-model/tree/14.1.1) (2022-10-19)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-10-19)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...14.1.1)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.1.2...v14.2.0-SNAPSHOT)
+
+## [release/14.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.1.2) (2022-10-19)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.1...release/14.1.2)
 
 **Defects:**
 
 - LDDTool does not support IM version 1J00 [\#512](https://github.com/NASA-PDS/pds4-information-model/issues/512) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
-
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-10-06)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.1...v14.2.0-SNAPSHOT)
 
 ## [v14.1.1](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.1) (2022-10-03)
 
