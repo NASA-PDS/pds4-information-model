@@ -126,9 +126,11 @@ public class DMDocument extends Object {
   // 1.15.0.0 - 1.21 - 1.21 - Build 11.0 - 1F00
   // 1.16.0.0 - 1.22 - 1.22 - Build 11.1 - 1G00
   // 1.17.0.0 - 1.23 - 1.23 - Build 12.0 - 1H00
-  // 1.18.0.0 - 1.24 - 1.24 - Build 12.1 - 1I00
-  // 1.19.0.0 - 1.25 - 1.25 - Build 13.0 - 1J00
-
+	// 1.18.0.0 - 1.24 - 1.24 - Build 12.1 - 1I00 - Mar/22
+	// 1.19.0.0 - 1.25 - 1.25 - Build 13.0 - 1J00 - Sep/22
+	// 1.20.0.0 - 1.26 - 1.26 - Build 13.1 - 1K00 - Mar/23
+	// 1.21.0.0 - 1.27 - 1.27 - Build 14.0 - 1L00 - Sep/23
+	
   // x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
   // Modification history will continue with 1.n
 
@@ -1517,7 +1519,7 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
     parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
-        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00")
+        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
     parser.addArgument("fileNameArr").dest("fileNameArr").nargs("*")
