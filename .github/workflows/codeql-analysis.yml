@@ -37,9 +37,10 @@ jobs:
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
+        queries: security-and-quality, security-extended
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
@@ -48,7 +49,7 @@ jobs:
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+      uses: github/codeql-action/autobuild@v2
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
@@ -62,4 +63,28 @@ jobs:
     #   make release
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      uses: github/codeql-action/analyze@v2
+      
+    - run: |
+        pip install nasa-scrub
+        
+        results_dir=`realpath ${{ github.workspace }}/../results`
+        sarif_files=`find $results_dir -name '*.sarif'`
+        
+        for sarif_file in $sarif_files
+        do
+          output_file="$results_dir/$(basename $sarif_file .sarif).scrub"
+          
+          python3 -m scrub.tools.parsers.translate_results $sarif_file $output_file ${{ github.workspace }} scrub
+        done
+        
+        python3 -m scrub.tools.parsers.csv_parser $results_dir
+        
+        echo "RESULTS_DIR=$results_dir" >> $GITHUB_ENV
+        
+      
+    - name: Upload CodeQL Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: codeql-artifacts
+        path: ${{ env.RESULTS_DIR }}
