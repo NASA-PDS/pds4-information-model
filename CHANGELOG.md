@@ -1,6 +1,6 @@
 # Changelog
 
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-11-23)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-11-29)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
