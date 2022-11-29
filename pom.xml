@@ -103,7 +103,7 @@ POSSIBILITY OF SUCH DAMAGE.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.0-M7</version>
         <configuration>
           <tagNameFormat>v@{project.version}</tagNameFormat>
         </configuration>
