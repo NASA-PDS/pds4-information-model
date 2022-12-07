@@ -32,7 +32,6 @@
 **Requirements:**
 
 - CCB-351: Term Mapping [\#503](https://github.com/NASA-PDS/pds4-information-model/issues/503)
-- CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 
 **Defects:**
 
