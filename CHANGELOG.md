@@ -1,17 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-01-02)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-01-02)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
 **Requirements:**
 
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
-
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2022-12-12)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
 ## [v14.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.2) (2022-10-19)
 
