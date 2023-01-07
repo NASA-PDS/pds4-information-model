@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-01-07)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...«unknown»)
+
+**Other closed issues:**
+
+- \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
+
 ## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-01-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
