@@ -1,14 +1,14 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-01-07)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-01-17)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...«unknown»)
 
 **Other closed issues:**
 
-- \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
+- Issue \#552 : \[namespace-registry\] add new namespace "sb" [\#563](https://github.com/NASA-PDS/pds4-information-model/issues/563)
 
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-01-02)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-01-07)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
@@ -16,6 +16,10 @@
 
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
+
+**Other closed issues:**
+
+- \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
 
 ## [v14.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.2) (2022-10-19)
 
