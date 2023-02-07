@@ -1,14 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-02-02)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...«unknown»)
-
-**Other closed issues:**
-
-- \[namespace-registry\] add new namespace "lucy" [\#575](https://github.com/NASA-PDS/pds4-information-model/issues/575)
-
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-01-26)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-02-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
@@ -19,6 +11,7 @@
 
 **Other closed issues:**
 
+- \[namespace-registry\] add new namespace "lucy" [\#575](https://github.com/NASA-PDS/pds4-information-model/issues/575)
 - \[namespace-registry\] add new namespace "msl" [\#566](https://github.com/NASA-PDS/pds4-information-model/issues/566)
 - Issue \#552 : \[namespace-registry\] add new namespace "sb" [\#563](https://github.com/NASA-PDS/pds4-information-model/issues/563)
 - \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
