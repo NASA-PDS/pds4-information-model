@@ -96,6 +96,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
   boolean isExposed; // the attribute is to be exposed in XML Schema - i.e., defined using
                      // xs:Element
   boolean isAssociatedExternalAttr; // the attribute was defined using DD_Associate_External_Class
+  boolean isExtendedAttribute; 	// indicate that attribute was defined using getAttributesExternal
 
   DOMProp hasDOMPropInverse; // the owning DOMProp of this Class
   ArrayList<DOMProp> domPermValueArr;
@@ -191,6 +192,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
     isCharDataType = true;
     isExposed = false;
     isAssociatedExternalAttr = false; // the attribute was defined using DD_Associate_External_Class
+	isExtendedAttribute = false;
 
     hasDOMPropInverse = null;
     domPermValueArr = new ArrayList<>();
