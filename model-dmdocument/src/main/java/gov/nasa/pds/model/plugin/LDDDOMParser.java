@@ -283,6 +283,10 @@ public class LDDDOMParser extends Object {
     getAttributes(lSchemaFileDefn, docEle);
     DMDocument.registerMessage("0>info getLocalDD.parseDocument.getAttributes() Done");
 
+    //	get the LDD attributes Extended
+	getAttributesExtended (lSchemaFileDefn, docEle);
+	DMDocument.registerMessage ("0>info getLocalDD.parseDocument.getAttributesExtended() Done");
+	
     // get the LDD classes
     getClass(lSchemaFileDefn, docEle);
     DMDocument.registerMessage("0>info getLocalDD.parseDocument.getClass() Done");
@@ -348,115 +352,111 @@ public class LDDDOMParser extends Object {
     }
   }
 
-  private void getAttributes(SchemaFileDefn lSchemaFileDefn, Element docEle) {
-    // get a nodelist of <DD_Attribute> elements
-    NodeList nl = docEle.getElementsByTagName("DD_Attribute");
-    if (nl != null && nl.getLength() > 0) {
-      for (int i = 0; i < nl.getLength(); i++) {
-        // get the elements
-        Element el = (Element) nl.item(i);
-        String lLocalIdentifier = getTextValue(el, "local_identifier");
-        String lTitle = getTextValue(el, "name");
+	
+	// get the list of all DD_Attribute nodes
+	private void getAttributes (SchemaFileDefn lSchemaFileDefn, Element docEle) {			
+		//get a nodelist of <DD_Attribute> elements and iterate
+		NodeList nl = docEle.getElementsByTagName("DD_Attribute");
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+				//get the element
+				Element el = (Element)nl.item(i);
+				getAttribute_properties (lSchemaFileDefn, docEle, el, false);
+			}
+		}
+	}
+	
+	// get the list of all DD_Attribute_External nodes
+	private void getAttributesExtended (SchemaFileDefn lSchemaFileDefn, Element docEle) {			
+		//get a nodelist of <DD_Attribute> elements and iterate
+//		NodeList nl = docEle.getElementsByTagName("DD_Attribute_External");
+		NodeList nl = docEle.getElementsByTagName("DD_Attribute_Extended");
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+				//get the element
+				Element el = (Element)nl.item(i);	
+//				System.out.println("debug getAttributesExtended -- FOUND -- getTextValue(el,\"name\"):" + getTextValue(el,"name"));
+						
+				getAttribute_properties (lSchemaFileDefn, docEle, el, true);
+			}
+		}
+	}	
 
-        // create the rdfIdentifier; at this time only the LDD local identifier is known; the class
-        // is obtained from the association processing later.
-        String lAttrRdfIdentifier = DMDocument.rdfPrefix + lSchemaFileDefn.nameSpaceIdNC + "."
-            + lTitle + "." + DOMInfoModel.getNextUId();
-        // System.out.println("debug getAttributes INITIAL lAttrRdfIdentifier:" +
-        // lAttrRdfIdentifier);
-        DOMAttr lDOMAttr = attrMap.get(lAttrRdfIdentifier);
-        if (lDOMAttr == null) {
-          // lDOMAttr = new DOMAttr (lAttrRdfIdentifier);
-          lDOMAttr = new DOMAttr();
-          lDOMAttr.setRDFIdentifier(lAttrRdfIdentifier);
-          attrArr.add(lDOMAttr);
-          attrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
-          lDOMAttr.lddLocalIdentifier = lLocalIdentifier;
-          attrMapLocal.put(lDOMAttr.lddLocalIdentifier, lDOMAttr);
-          lDOMAttr.isPDS4 = true;
-          lDOMAttr.isFromLDD = true;
-          lDOMAttr.versionIdentifierValue = getTextValue(docEle, "version_id");
-          lDOMAttr.title = lTitle;
+	// get the properties of one Attribute 
+	private void getAttribute_properties (SchemaFileDefn lSchemaFileDefn, Element docEle, Element el, Boolean isExtendedAttribute) {			
 
-          // at this point lAttr.className is defaulted to the USER class, however it is updated
-          // later in association processing if it is owned by a class.
-          // lAttr.setIdentifier ("pds", "USER", localDDSchemaFileDefn.nameSpaceIdNC, lAttr.title);
-          lDOMAttr.setIdentifier(DMDocument.masterUserClassNamespaceIdNC,
-              DMDocument.masterUserClassName, lSchemaFileDefn.nameSpaceIdNC, lDOMAttr.title);
+		// get the attribute's local identifier and name
+		String lLocalIdentifier = getTextValue(el,"local_identifier");
+		String lLocalIdentifierCleaned = lSchemaFileDefn.nameSpaceId + lLocalIdentifier;
+		String lTitle = getTextValue(el,"name");
+		
+		// create the rdfIdentifier; at this time only the LDD local identifier is known; the class is obtained from the association processing later.
+		// get the next unique sequence number; create the rdfIdentifier
+		String lSequenceId = DOMInfoModel.getNextUId();
+		String lAttrRdfIdentifier = DMDocument.rdfPrefix + lSchemaFileDefn.nameSpaceIdNC + "." + lTitle + "." + lSequenceId;
+		
+		DOMAttr lDOMAttr= (DOMAttr) attrMap.get(lAttrRdfIdentifier);
+		if (lDOMAttr == null) {
+			lDOMAttr = new DOMAttr ();
+			lDOMAttr.rdfIdentifier = lAttrRdfIdentifier;
+			lDOMAttr.sequenceId = lSequenceId;
+			attrArr.add(lDOMAttr);
+			attrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
+			lDOMAttr.lddLocalIdentifier = lLocalIdentifierCleaned;
+			attrMapLocal.put(lDOMAttr.lddLocalIdentifier, lDOMAttr);
+			lDOMAttr.isPDS4 = true;
+			lDOMAttr.isFromLDD = true;
+			lDOMAttr.isExtendedAttribute = isExtendedAttribute;
+			lDOMAttr.versionIdentifierValue = getTextValue(docEle,"version_id");				
+			lDOMAttr.title = lTitle;
 
-          lDOMAttr.XMLSchemaName = lDOMAttr.title;
-          lDOMAttr.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMAttr.classNameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMAttr.nameSpaceId = lDOMAttr.nameSpaceIdNC + ":";
-          lDOMAttr.steward = lSchemaFileDefn.stewardId;
-          lDOMAttr.submitter = getTextValue(docEle, "submitter_name");
-          String lDescription = getTextValue(el, "definition");
-          // escape any user provided values of "TBD"
-          if (lDescription.indexOf("TBD") == 0) {
-            lDescription = "_" + lDescription;
-          }
-          // lDescription = lDescription.replaceAll("\\s+"," ");
-          lDescription = DOMInfoModel.cleanCharString(lDescription);
-          lDOMAttr.definition = lDescription;
-          lDOMAttr.regAuthId = lRegAuthId;
-          String lNillableFlag = getTextValue(el, "nillable_flag");
-          if ((lNillableFlag.compareTo("true") == 0) || (lNillableFlag.compareTo("1") == 0)) {
-            lDOMAttr.isNilable = true;
-          }
-          // lAttr.isUsedInClass = true;
-          lDOMAttr.propType = "ATTRIBUTE";
-          lDOMAttr.isAttribute = true;
-
-          // get the value domain
-          getValueDomain(lDOMAttr, el);
-
-          // get the terminological entry
-          getTermEntry(lDOMAttr, el);
-
-          // *** Not sure that this code is doing anything - check out ***
-          // check if attribute already exists
-          String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
-          // System.out.println("debug getAttributes -External Attribute- lid:" + lid);
-          DOMAttr lExternAttr = DOMInfoModel.masterDOMAttrIdMap.get(lid);
-          if (lExternAttr != null) {
-            if (lDOMAttr.definition.indexOf("TBD") == 0) {
-              lDOMAttr.definition = lExternAttr.definition;
-            }
-            if (!lDOMAttr.isNilable) {
-              lDOMAttr.isNilable = lExternAttr.isNilable;
-            }
-            if (!lDOMAttr.isEnumerated) {
-              lDOMAttr.isEnumerated = lExternAttr.isEnumerated;
-            }
-            if (lDOMAttr.minimum_characters.indexOf("TBD") == 0) {
-              lDOMAttr.minimum_characters = lExternAttr.minimum_characters;
-            }
-            if (lDOMAttr.maximum_characters.indexOf("TBD") == 0) {
-              lDOMAttr.maximum_characters = lExternAttr.maximum_characters;
-            }
-            if (lDOMAttr.minimum_value.indexOf("TBD") == 0) {
-              lDOMAttr.minimum_value = lExternAttr.minimum_value;
-            }
-            if (lDOMAttr.maximum_value.indexOf("TBD") == 0) {
-              lDOMAttr.maximum_value = lExternAttr.maximum_value;
-            }
-            if (lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0) {
-              lDOMAttr.unit_of_measure_type = lExternAttr.unit_of_measure_type;
-            }
-            if (lDOMAttr.valueType.indexOf("TBD") == 0) {
-              lDOMAttr.valueType = lExternAttr.valueType;
-            }
-            if (lDOMAttr.dataConcept.indexOf("TBD") == 0) {
-              lDOMAttr.dataConcept = lExternAttr.dataConcept;
-            }
-            if (lDOMAttr.pattern.indexOf("TBD") == 0) {
-              lDOMAttr.pattern = lExternAttr.pattern;
-            }
-          }
-        }
-      }
-    }
-  }
+			// at this point lAttr.className is defaulted to the USER class, however it is updated later in association processing if it is owned by a class.
+			lDOMAttr.setIdentifier (DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName, lSchemaFileDefn.nameSpaceIdNC, lDOMAttr.title);
+			
+			lDOMAttr.XMLSchemaName = lDOMAttr.title;
+			lDOMAttr.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
+			lDOMAttr.classNameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
+			lDOMAttr.nameSpaceId = lDOMAttr.nameSpaceIdNC + ":";						
+			lDOMAttr.steward = lSchemaFileDefn.stewardId;
+			lDOMAttr.submitter = getTextValue(docEle,"submitter_name");
+			String lDescription = getTextValue(el,"definition");
+			// escape any user provided values of "TBD"
+			if (lDescription.indexOf("TBD") == 0) lDescription = "_" + lDescription;
+			lDescription = DOMInfoModel.cleanCharString(lDescription);
+			lDOMAttr.definition = lDescription;
+			lDOMAttr.regAuthId = lRegAuthId;
+			String lNillableFlag = getTextValue(el,"nillable_flag");
+			if ((lNillableFlag.compareTo("true") == 0) || (lNillableFlag.compareTo("1") == 0)) lDOMAttr.isNilable = true;
+			lDOMAttr.propType = "ATTRIBUTE";
+			lDOMAttr.isAttribute = true;
+//			System.out.println("debug getAttribute_properties -- FOUND -- getTextValue(el,\"name\"):" + getTextValue(el,"name"));
+			
+			// get the value domain
+			getValueDomain (lDOMAttr, el);
+			
+			// get the terminological entry
+			getTermEntry (lDOMAttr, el);
+			
+			// check if attribute already exists
+			// 666
+//			String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
+			String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifierCleaned;
+			DOMAttr lExternAttr = DOMInfoModel.masterDOMAttrIdMap.get(lid);
+			if (lExternAttr != null) {
+			    if (lDOMAttr.definition.indexOf("TBD") == 0) lDOMAttr.definition = lExternAttr.definition;
+				if (! lDOMAttr.isNilable) lDOMAttr.isNilable = lExternAttr.isNilable;
+				if (!lDOMAttr.isEnumerated) lDOMAttr.isEnumerated = lExternAttr.isEnumerated;
+				if (lDOMAttr.minimum_characters.indexOf("TBD") == 0) lDOMAttr.minimum_characters = lExternAttr.minimum_characters;
+				if (lDOMAttr.maximum_characters.indexOf("TBD") == 0) lDOMAttr.maximum_characters = lExternAttr.maximum_characters;
+				if (lDOMAttr.minimum_value.indexOf("TBD") == 0) lDOMAttr.minimum_value = lExternAttr.minimum_value;
+				if (lDOMAttr.maximum_value.indexOf("TBD") == 0) lDOMAttr.maximum_value = lExternAttr.maximum_value;
+				if (lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0) lDOMAttr.unit_of_measure_type = lExternAttr.unit_of_measure_type;
+				if (lDOMAttr.valueType.indexOf("TBD") == 0) lDOMAttr.valueType = lExternAttr.valueType;
+				if (lDOMAttr.dataConcept.indexOf("TBD") == 0) lDOMAttr.dataConcept = lExternAttr.dataConcept;
+				if (lDOMAttr.pattern.indexOf("TBD") == 0) lDOMAttr.pattern = lExternAttr.pattern;
+			}
+		}		
+	}
 
   private void getValueDomain(DOMAttr lDOMAttr, Element docEle) {
     String lVal;
