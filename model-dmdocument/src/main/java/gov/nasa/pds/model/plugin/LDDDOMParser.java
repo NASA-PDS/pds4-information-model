@@ -438,8 +438,6 @@ public class LDDDOMParser extends Object {
 			getTermEntry (lDOMAttr, el);
 			
 			// check if attribute already exists
-			// 666
-//			String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifier;
 			String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifierCleaned;
 			DOMAttr lExternAttr = DOMInfoModel.masterDOMAttrIdMap.get(lid);
 			if (lExternAttr != null) {
@@ -534,6 +532,13 @@ public class LDDDOMParser extends Object {
 
   private void getTermEntry(Object lObject, Element docEle) {
     String lVal;
+	
+	// get the instance id
+	String fromInstanceId = getTextValue(docEle,"instance_id");
+	
+	// get the SKOS semantic relation
+	String semanticRelation = getTextValue(docEle,"skos_relation_name");
+    
     // get a nodelist of <Terminological_Entry> elements
     NodeList nl = docEle.getElementsByTagName("Terminological_Entry");
     if (nl != null && nl.getLength() > 0) {
@@ -546,8 +551,12 @@ public class LDDDOMParser extends Object {
         String termEntryId = termEntryIdPrefix + Integer.toString(termEntryNum);
         lVal = getTextValue(el, "language");
         if (lVal != null) {
-          TermEntryDefn lTermEntry = new TermEntryDefn();
-          lTermEntry.language = lVal;
+            TermEntryDefn lTermEntry = new TermEntryDefn();
+			String toInstanceId = getTextValue(el,"instance_id");
+			lTermEntry.fromInstanceId = DOMInfoModel.cleanCharString(fromInstanceId);
+			lTermEntry.toInstanceId = DOMInfoModel.cleanCharString(toInstanceId);
+			lTermEntry.semanticRelation = DOMInfoModel.cleanCharString(semanticRelation); 
+			lTermEntry.language = lVal;
           if (lObject.getClass().getName().compareTo("DOMAttr") == 0) {
             DOMAttr lAttr = (DOMAttr) lObject;
             lAttr.termEntryMap.put(termEntryId, lTermEntry);
@@ -561,6 +570,10 @@ public class LDDDOMParser extends Object {
             lTermEntry.name = lVal;
           }
 
+          // get the LDD name and version id
+          lTermEntry.lddName = DOMInfoModel.cleanCharString(lLDDName);
+          lTermEntry.lddVersion = DOMInfoModel.cleanCharString(lLDDVersionId);
+			
           lVal = getTextValue(el, "definition");
           if (lVal != null) {
             lVal = DOMInfoModel.cleanCharString(lVal);
@@ -831,8 +844,7 @@ public class LDDDOMParser extends Object {
 
         // iterate through the local identifiers for this DD association and set up a property for
         // each
-        for (Iterator<String> j = lLocalIdentifierArr.iterator(); j.hasNext();) {
-          lLocalIdentifier = j.next();
+		for (String lLocalIdentifier2 : lLocalIdentifierArr ) {
 
           // create new association -- Note that lProperty.identifier will not be set until the
           // associated attribute is located in resolveComponentsForAssociation
@@ -854,8 +866,8 @@ public class LDDDOMParser extends Object {
 
           // get common attributes
           lDOMProp.isAttribute = lIsAttribute;
-          lDOMProp.localIdentifier = lLocalIdentifier;
-          // lProperty.localIdentifierArr = lLocalIdentifierArr;
+          String lLocalIdentifierCleaned = lSchemaFileDefn.nameSpaceId + lLocalIdentifier2;
+          lDOMProp.localIdentifier = lLocalIdentifierCleaned;
           lDOMProp.referenceType = lReferenceType;
           lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "."
               + lDOMClass.title + "." + lDOMProp.localIdentifier + "." + lDOMProp.referenceType

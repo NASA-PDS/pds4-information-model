@@ -32,22 +32,30 @@ package gov.nasa.pds.model.plugin;
 
 public class TermEntryDefn {
   String name;
+  String lddName;
+  String lddVersion;
   String definition;
   String language;
   // from SKOS
   String semanticRelation;
   String mappingProperty;
   String sourceNamespaceId;
+  String fromInstanceId;
+  String toInstanceId;
 
   boolean isPreferred;
 
   public TermEntryDefn() {
     name = "TBD_name";
+    lddName = "TBD_lddName";
+    lddVersion = "TBD_lddVersion";
     definition = "TBD_definition";
     language = "TBD_language";
     semanticRelation = "TBD_semanticRelation";
     mappingProperty = "TBD_mappingProperty";
     sourceNamespaceId = "TBD_sourceNamespaceId";
+    fromInstanceId = "TBD_fromInstanceId";
+	toInstanceId = "TBD_toInstanceId";
     isPreferred = false;
   }
 }
