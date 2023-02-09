@@ -64,7 +64,7 @@ public class DOMProp extends ISOClassOAIS11179 {
                                   // superclass
 
   // LDD Attributes
-  String enclLocalIdentifier; // local_identifier of enclosing class
+  String enclLocalIdentifier; // local_identifier of enclosing class *** Deprecate 230209 ***
   String minimumOccurrences;
   String maximumOccurrences;
 

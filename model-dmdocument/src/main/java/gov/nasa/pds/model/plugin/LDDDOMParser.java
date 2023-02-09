@@ -82,6 +82,9 @@ public class LDDDOMParser extends Object {
   // initialize the Property Map structures
   static ArrayList<PropertyMapsDefn> propertyMapsArr = new ArrayList<>();
   static TreeMap<String, PropertyMapsDefn> propertyMapsMap = new TreeMap<>();
+  
+  static final String PDSINTERNALREFERENCE = "pds.Internal_Reference";
+  static final String PDSLOCALINTERNALREFERENCE = "pds.Local_Internal_Reference";
 
   PrintWriter prLocalDD, prProtegePont;
 
@@ -387,7 +390,7 @@ public class LDDDOMParser extends Object {
 
 		// get the attribute's local identifier and name
 		String lLocalIdentifier = getTextValue(el,"local_identifier");
-		String lLocalIdentifierCleaned = lSchemaFileDefn.nameSpaceId + lLocalIdentifier;
+		String lLocalIdentifierCleaned = getLocalIdentifierNamespacePrefix(lSchemaFileDefn.nameSpaceId, lLocalIdentifier);
 		String lTitle = getTextValue(el,"name");
 		
 		// create the rdfIdentifier; at this time only the LDD local identifier is known; the class is obtained from the association processing later.
@@ -722,8 +725,10 @@ public class LDDDOMParser extends Object {
           // subClassOF is temporary until true subClassOf is found in main code
           lDOMClass.subClassOfTitle = DMDocument.masterUserClassName;
           lDOMClass.subClassOfIdentifier = DOMInfoModel.getClassIdentifier(
-              DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName);
-          lDOMClass.localIdentifier = getTextValue(el, "local_identifier");
+          DMDocument.masterUserClassNamespaceIdNC, DMDocument.masterUserClassName);
+          String lLocalIdentifier3 = getTextValue(el, "local_identifier");
+          String lLocalIdentifierCleaned = getLocalIdentifierNamespacePrefix(lSchemaFileDefn.nameSpaceId, lLocalIdentifier3);
+         lDOMClass.localIdentifier = lLocalIdentifierCleaned;
 
           String lBooleanStringValue = getTextValue(el, "abstract_flag");
           lDOMClass.isAbstract = false;
@@ -796,9 +801,9 @@ public class LDDDOMParser extends Object {
         lMinimumOccurrences = getTextValue(lAssocElem, "minimum_occurrences");
 
         // get all of the identifiers
-        lLocalIdentifierArr = getXMLValueArr("identifier_reference", lAssocElem);
+        lLocalIdentifierArr = getXMLValueArr("identifier_reference", lAssocElem);  // standard identifier reference; needs to allow dot notation
         if (lLocalIdentifierArr.size() == 0) {
-          lLocalIdentifierArr = getXMLValueArr("local_identifier", lAssocElem);
+          lLocalIdentifierArr = getXMLValueArr("local_identifier", lAssocElem);  // old identifier reference
           if (lLocalIdentifierArr.size() == 0) {
             DMDocument.registerMessage("2>error Association - Reference_Type: " + lReferenceType
                 + " - No identifiers were provided for this association.");
@@ -825,13 +830,13 @@ public class LDDDOMParser extends Object {
         }
 
         // save the Internal_Reference or Local_Internal_Reference for rule checking
-        if (lLocalIdentifier.compareTo("pds.Internal_Reference") == 0) {
+          if (lLocalIdentifier.compareTo(PDSINTERNALREFERENCE) == 0) {
           String lRuleReferenceXPath = gSchemaFileDefn.nameSpaceId + lDOMClass.title + "/"
               + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + "Internal_Reference";
           RuleReferenceTypeDefn lRuleReferenceTypeDefn =
               new RuleReferenceTypeDefn(lRuleReferenceXPath, false);
           ruleReferenceArr.add(lRuleReferenceTypeDefn);
-        } else if (lLocalIdentifier.compareTo("pds.Local_Internal_Reference") == 0) {
+        } else if (lLocalIdentifier.compareTo(PDSLOCALINTERNALREFERENCE) == 0) {
           String lRuleReferenceXPath = gSchemaFileDefn.nameSpaceId + lDOMClass.title + "/"
               + DMDocument.masterPDSSchemaFileDefn.nameSpaceId + "Local_Internal_Reference";
           RuleReferenceTypeDefn lRuleReferenceTypeDefn =
@@ -851,22 +856,22 @@ public class LDDDOMParser extends Object {
           DOMProp lDOMProp = new DOMProp();
 
           // test for choice and any
-          if (lLocalIdentifier.indexOf("XSChoice#") == 0) {
+          if (lLocalIdentifier2.indexOf("XSChoice#") == 0) {
             isGroupDelimter = true;
             isGroupContent = false;
             lIsChoice = true;
-            lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum(); // i.e., XSChoice#26
+            lGroupName = lLocalIdentifier2 + DOMInfoModel.getNextGroupNum(); // i.e., XSChoice#26
           }
-          if (lLocalIdentifier.compareTo("XSAny#") == 0) {
+          if (lLocalIdentifier2.compareTo("XSAny#") == 0) {
             isGroupDelimter = true;
             isGroupContent = false;
             lIsAny = true;
-            lGroupName = lLocalIdentifier + DOMInfoModel.getNextGroupNum();
+            lGroupName = lLocalIdentifier2 + DOMInfoModel.getNextGroupNum();
           }
 
           // get common attributes
           lDOMProp.isAttribute = lIsAttribute;
-          String lLocalIdentifierCleaned = lSchemaFileDefn.nameSpaceId + lLocalIdentifier2;
+          String lLocalIdentifierCleaned = getLocalIdentifierNamespacePrefix(lSchemaFileDefn.nameSpaceId, lLocalIdentifier2);
           lDOMProp.localIdentifier = lLocalIdentifierCleaned;
           lDOMProp.referenceType = lReferenceType;
           lDOMProp.rdfIdentifier = DMDocument.rdfPrefix + lDOMClass.nameSpaceIdNC + "."
@@ -2414,6 +2419,18 @@ public class LDDDOMParser extends Object {
         // lDOMAttr.valueType:" + lDOMAttr.valueType);
       }
     }
+  }
+  
+  // append the local identifier with the namespace prefix
+  private String getLocalIdentifierNamespacePrefix(String lNamespaceId, String lLocalIdentifier) {
+	  String newLocalIdentifier;
+	  if (lLocalIdentifier.indexOf(".") > -1) {
+//		  newLocalIdentifier = DOMInfoModel.replaceString(lLocalIdentifier, ".", ":");
+		  newLocalIdentifier = lLocalIdentifier;
+	  } else {
+		  newLocalIdentifier = lNamespaceId + lLocalIdentifier;
+	  }
+	  return newLocalIdentifier;
   }
 
   private int getIntValue(Element ele, String tagName) {
