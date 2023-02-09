@@ -92,9 +92,9 @@ public class ExportModels extends Object {
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
 
     // write the custom files
-    // ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
-    // lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
-    // DMDocument.masterPDSSchemaFileDefn);
+    ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
+    lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
+        DMDocument.masterPDSSchemaFileDefn);
 
     // write the DOM RDF
     WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
