@@ -1,14 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-02-08)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0-SNAPSHOT...«unknown»)
-
-**Defects:**
-
-- LDDTool is not including permissible values from certain Type\_Lists in the DD DocBook file [\#580](https://github.com/NASA-PDS/pds4-information-model/issues/580)
-
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-02-07)
+## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-02-08)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
 
@@ -16,6 +8,10 @@
 
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
+
+**Defects:**
+
+- LDDTool is not including permissible values from certain Type\_Lists in the DD DocBook file [\#580](https://github.com/NASA-PDS/pds4-information-model/issues/580)
 
 **Other closed issues:**
 
