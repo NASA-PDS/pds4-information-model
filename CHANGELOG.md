@@ -1,8 +1,8 @@
 # Changelog
 
-## [v14.2.0-SNAPSHOT](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0-SNAPSHOT) (2023-02-08)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-02-16)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0-SNAPSHOT)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
 **Requirements:**
 
@@ -11,7 +11,7 @@
 
 **Defects:**
 
-- LDDTool is not including permissible values from certain Type\_Lists in the DD DocBook file [\#580](https://github.com/NASA-PDS/pds4-information-model/issues/580)
+- LDDTool is not including permissible values from certain Type\_Lists in the DD DocBook file [\#580](https://github.com/NASA-PDS/pds4-information-model/issues/580) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
 **Other closed issues:**
 
@@ -19,6 +19,7 @@
 - \[namespace-registry\] add new namespace "msl" [\#566](https://github.com/NASA-PDS/pds4-information-model/issues/566)
 - Issue \#552 : \[namespace-registry\] add new namespace "sb" [\#563](https://github.com/NASA-PDS/pds4-information-model/issues/563)
 - \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
+- Add flags to support generation of TTL/OWL files [\#467](https://github.com/NASA-PDS/pds4-information-model/issues/467)
 
 ## [v14.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.2) (2022-10-19)
 
