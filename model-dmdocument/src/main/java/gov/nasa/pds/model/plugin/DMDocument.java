@@ -178,8 +178,11 @@ public class DMDocument extends Object {
   static boolean exportJSONFileAllFlag = false; // LDDTool, set by -6 option
   static boolean exportSpecFileFlag = false;
   static boolean exportDDFileFlag = false;
-  static boolean importJSONAttrFlag = false; // non PDS processing - not currently used
+  static boolean exportTermMapFileFlag = false;
   static boolean exportOWLFileFlag = false;
+  static boolean exportCustomFileFlag = false;
+  
+  static boolean importJSONAttrFlag = false; // non PDS processing - not currently used
   static boolean pds4ModelFlag = false; // set in config.properties files (read by WriteDOMDocBook
                                         // to exclude PDS3 from generated DD)
   static boolean printNamespaceFlag = false; // print the configured namespaces to the log
@@ -1490,25 +1493,20 @@ public class DMDocument extends Object {
      * .action(Arguments.storeTrue()) .help("Element Definition (Attribute)");
      */
 
-    parser.addArgument("-1", "--IM Spec").dest("1").type(Boolean.class).nargs(1)
-        .action(Arguments.storeTrue()).help("Write the Information Model Specification for an LDD");
+	parser.addArgument("-1", "--IM Spec").dest("1").type(Boolean.class).nargs(1)
+        .action(Arguments.storeTrue())
+        .help("Write the Information Model Specification for an LDD");
+	
+    parser.addArgument("-T", "--TermMap").dest("T").type(Boolean.class).nargs(1)
+        .action(Arguments.storeTrue()).help("Terminological mapping to alternate names");
 
-    // The following are hidden and temporarily deprecated
+    parser.addArgument("-O", "--OWL") .dest("O") .type(Boolean.class) .nargs(1)
+        .action(Arguments.storeTrue()) .help("OWL/RDF output in TTL format");
 
-    /*
-     * parser.addArgument("-4", "--Import JSON") .dest("4") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Import JSON Attribute File");
-     */
+    parser.addArgument("-C", "--Custom") .dest("C") .type(Boolean.class) .nargs(1)
+        .action(Arguments.storeTrue()) .help("Customized processing and reporting");
 
-    /*
-     * parser.addArgument("-5", "--Export OWL") .dest("5") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Export OWL File");
-     */
-
-    /*
-     * parser.addArgument("-6", "--Export JSON All") .dest("6") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Export JSON Attribute File - All");
-     */
+     // The following are hidden and temporarily deprecated
 
     /*
      * parser.addArgument("-f", "--Check") .dest("f") .type(Boolean.class) .nargs(1)
@@ -1654,18 +1652,22 @@ public class DMDocument extends Object {
       dmProcessState.setexportSpecFileFlag();
       exportSpecFileFlag = true;
     }
-    /*
-     * Boolean n4Flag = ns.getBoolean("4"); if (n4Flag) { dmProcessState.setimportJSONAttrFlag ();
-     * importJSONAttrFlag = true; }
-     */
-    /*
-     * Boolean n5Flag = ns.getBoolean("5"); if (n5Flag) { dmProcessState.setexportOWLFileFlag ();
-     * exportOWLFileFlag = true; }
-     */
-    /*
-     * Boolean n6Flag = ns.getBoolean("6"); if (n6Flag) { dmProcessState.setexportJSONFileAllFlag
-     * (); exportJSONFileAllFlag = true; }
-     */
+    Boolean TFlag = ns.getBoolean("T");
+    if (TFlag) {
+    	dmProcessState.setExportTermMapFileFlag ();
+    	exportTermMapFileFlag = true;
+    }
+    Boolean OFlag = ns.getBoolean("O");
+    if (OFlag) {
+    	dmProcessState.setExportOWLFileFlag ();
+    	exportOWLFileFlag = true;
+   	}
+    Boolean CFlag = ns.getBoolean("C");
+    if (CFlag) {
+    	dmProcessState.setExportCustomFileFlag();
+    	exportCustomFileFlag = true;
+    }
+
     /*
      * Boolean fFlag = ns.getBoolean("f"); if (fFlag) { dmProcessState.setcheckFileNameFlag (); }
      */

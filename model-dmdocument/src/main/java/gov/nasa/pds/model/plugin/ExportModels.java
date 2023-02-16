@@ -101,24 +101,11 @@ public class ExportModels extends Object {
     writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
 
-    // write the IM to RDF
-    // WriteDOMIMToRDF lWriteDOMIMToRDF = new WriteDOMIMToRDF ();
-    // lWriteDOMIMToRDF.domIMToRDFWriter (DMDocument.sTodaysDate);
-
-    // write the Lucid Ingest file
-    // WriteLucidMySQLFiles WriteLucidFiles = new WriteLucidMySQLFiles ();
-    // WriteLucidFiles.WriteLucidFile();
-
     // write the DOM PDS4 DD CSV file
     WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles();
     ArrayList<DOMClass> domSortClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());
     writeDOMCSVFiles.writeDOMCSVFile(domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - DD CSV Done");
-
-    // write the PDS4 CCSDS CSV file
-    // WriteDocCSV writeDocCSV = new WriteDocCSV ();
-    // writeDocCSV.writeDocCSV (DMDocument.masterPDSSchemaFileDefn);
-    // DMDocument.registerMessage ("0>info " + "writeAllArtifacts - CCSDS CSV Done");
 
     // write the 11179 DD pins file
     // WriteDOM11179DDPinsFile lWriteDOM11179DDPinsFile = new WriteDOM11179DDPinsFile ();
@@ -161,29 +148,21 @@ public class ExportModels extends Object {
         DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Class Defn Done");
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Attr Defn Done");
+    
+	
+	// write the RDF/TTL file
+	String lClassificationType = "TBD_default";   // default
+	lClassificationType = "";   // default
+	lClassificationType = "PDS4.All.Products.Class.Prop"; // works
+//	lClassificationType = "EIMEntity";   // works
+//	lClassificationType = "PDS4.LDD.All";   
+//	lClassificationType = "OAISIF";
+	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
+	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterPDSSchemaFileDefn);
+	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
+	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
+	DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
 
-    // write the registry configuration files *** Reg needs conversion.
-    if (false) {
-      RegConfig regConfig = new RegConfig();
-      regConfig.writeRegRIM(DMDocument.sTodaysDate);
-      regConfig.writeRegRIM3(DMDocument.sTodaysDate);
-      regConfig.writeRegRIM4(DMDocument.sTodaysDate);
-    }
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - Regisry Config Done");
-
-    // write the standard id extract file
-    WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract();
-    writeDOMStandardIdExtract.writeExtractFile();
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - Standard Id Done");
-
-    // print out the histogram for the DEC concepts
-    /*
-     * System.out.println("\nConcept Histogram"); Set <String> set1 =
-     * MasterDOMInfoModel.metricConceptMap.keySet(); Iterator <String> iter1 = set1.iterator();
-     * while(iter1.hasNext()) { String lId = (String) iter1.next(); Integer lCount =
-     * MasterDOMInfoModel.metricConceptMap.get(lId); System.out.println("Descriptor: " + lId +
-     * "    Count: " + lCount); }
-     */
     return;
   }
 
@@ -217,9 +196,11 @@ public class ExportModels extends Object {
     }
 
     // write the custom files
-    // ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
-    // lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
-    // DMDocument.masterLDDSchemaFileDefn);
+    if (DMDocument.exportCustomFileFlag) {
+    	ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
+    	lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
+    			DMDocument.masterLDDSchemaFileDefn);
+    }
 
     // write the schema - new version 4
     DMDocument.dmProcessState.setRelativeFileSpecXMLSchema(DMDocument.masterLDDSchemaFileDefn);
@@ -261,6 +242,17 @@ public class ExportModels extends Object {
       writeDOMSpecification.printArtifacts();
       DMDocument.registerMessage("0>info " + "writeLDDArtifacts - Info Model Spec Done");
     }
+	
+	// write the RDF/TTL file
+	String lClassificationType = "TBD_default";   // default
+	lClassificationType = "";   // default
+	lClassificationType = ("PDS4.LDD.All");
+	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterLDDSchemaFileDefn);
+	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
+	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
+	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
+	DMDocument.registerMessage ("0>info " + "ExportModelsCustom - RDF/TTL Done");
+
     return;
   }
 }

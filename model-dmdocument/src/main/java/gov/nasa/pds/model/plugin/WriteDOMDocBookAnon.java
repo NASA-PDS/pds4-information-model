@@ -32,9 +32,10 @@ package gov.nasa.pds.model.plugin;
 import java.io.*;
 import java.util.*;
 
-// Write the PDS4 Data Dictionary DocBook file. - Modified to write a DocBook file for each namespace id
+// Write the Data Dictionary DocBook file with PDS mentioned removed
+// Writes a DocBook file for each namespace id
 
-class WriteDOMDocBooks extends Object {
+class WriteDOMDocBookAnon extends Object {
 	// class structures
 	TreeMap <String, ClassClassificationDefnDOM> classClassificationMap;
 	ArrayList <ClassClassificationDefnDOM> classClassificationArr;	
@@ -51,7 +52,7 @@ class WriteDOMDocBooks extends Object {
 	
 // Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
 	
-	public WriteDOMDocBooks () {
+	public WriteDOMDocBookAnon () {
 		// class structures
 		classClassificationMap = new TreeMap <String, ClassClassificationDefnDOM> ();
 		attrClassificationMap = new TreeMap <String, AttrClassificationDefnDOM> ();
@@ -214,7 +215,7 @@ class WriteDOMDocBooks extends Object {
 		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
 		String lDOMLabelVersionId = lLabelVersionId;
 		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
-        
+		
         // iterate over the namespace ids
 		for (SchemaFileDefn lSchemaFileDefnToWrite : lSchemaFileDefnToWriteArr) {
 			ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
@@ -236,11 +237,11 @@ class WriteDOMDocBooks extends Object {
         // write the sections
 			if (lClassClassificationDefn != null) {
 				if (lClassClassificationDefn.classArr.size() > 0)
-					writeClassSection (lClassClassificationDefn, prDocBook);
+					writeClassSection (lSchemaFileDefn, lClassClassificationDefn, prDocBook);
 			}
 			if (lAttrClassificationDefn != null) {
 				if (lAttrClassificationDefn.attrArr.size() > 0)
-					writeAttrSection (lAttrClassificationDefn, prDocBook);
+					writeAttrSection (lSchemaFileDefn, lAttrClassificationDefn, prDocBook);
 			}
         
         // write the Data Types and Units
@@ -251,102 +252,14 @@ class WriteDOMDocBooks extends Object {
 		return;
 	}
 	
-	
-//	print DocBook File
-/*	public void writeDocBook (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-		String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
-		String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
-		String lDOMLabelVersionId = lLabelVersionId;
-		lFileName = DMDocument.replaceString (lFileName, lLabelVersionId, lDOMLabelVersionId);
-		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
-		writeHeader (prDocBook);
-		
-		// write the Common dictionary
-		writeClassSection (DMDocument.masterNameSpaceIdNCLC,prDocBook);
-        writeAttrSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
-        
-        // write the LDDs
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
-			SchemaFileDefn lSchemaFileDefnToWrite = (SchemaFileDefn) i.next();
-			if (lSchemaFileDefnToWrite.nameSpaceIdNCLC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) continue; // skip master namespace
-			ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
-			if (lClassClassificationDefn != null) {
-				if (lClassClassificationDefn.classArr.size() > 0)
-					writeClassSection (lClassClassificationDefn, prDocBook);
-			}
-			AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
-			if (lAttrClassificationDefn != null) {
-				if (lAttrClassificationDefn.attrArr.size() > 0)
-					writeAttrSection (lAttrClassificationDefn, prDocBook);
-			}
-		}
-        
-        // write the Data Types and Units
-     	writeDataTypeSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
-    	writeUnitsSection (DMDocument.masterNameSpaceIdNCLC, prDocBook);
-		writeFooter (prDocBook);
-		prDocBook.close();
-		return;
-	}	*/
-	
-	private void writeClassSection (String lNameSpaceId, PrintWriter prDocBook) {
-        prDocBook.println("");	
-        prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
-        prDocBook.println("");
-		
-		ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get("pds.product");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Product Classes in the common namespace.</title>");
-			prDocBook.println("           <para>These classes define the products.</para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-
-		lClassClassificationDefn = classClassificationMap.get("pds.support");
-		if (lClassClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Support classes in the common namespace.</title>");
-			prDocBook.println("           <para>The classes in this section are used by the product classes.</para>");
-			for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-				DOMClass lClass = (DOMClass) j.next();
-				writeClass (lClass, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-
-		}
-		
-		if (! DMDocument.importJSONAttrFlag) {  // if a JSON run, dont write the following
-			lClassClassificationDefn = classClassificationMap.get("pds.ops");
-			if (lClassClassificationDefn != null) {
-				prDocBook.println("        <chapter>");
-				prDocBook.println("           <title>OPS catalog classes in the common namespace.</title>");
-				prDocBook.println("           <para>These classes support operations. </para>");
-				for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-					DOMClass lClass = (DOMClass) j.next();
-					writeClass (lClass, prDocBook);						
-				}
-				prDocBook.println("        </chapter>");
-				prDocBook.println("");
-			}
-		}
-		
-        prDocBook.println("      <!-- =====================Part2 End=========================== -->");
-        prDocBook.println("");
-	}
-	
-	private void writeClassSection (ClassClassificationDefnDOM lClassClassificationDefn, PrintWriter prDocBook) {
+	private void writeClassSection (SchemaFileDefn lSchemaFileDefn, ClassClassificationDefnDOM lClassClassificationDefn, PrintWriter prDocBook) {
         prDocBook.println("");	
         prDocBook.println("      <!-- ===================== LDD Class Begin =========================== -->");
         prDocBook.println("");
 		
 		prDocBook.println("        <chapter>");
-		prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId + " namespace.</title>");
+//		prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId + " namespace.</title>");
+		prDocBook.println("           <title>Classes in the " + lSchemaFileDefn.lddName + " dictionary.</title>");
 		prDocBook.println("           <para>These classes comprise the namespace.</para>");
 		for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 			DOMClass lClass = (DOMClass) j.next();
@@ -359,13 +272,14 @@ class WriteDOMDocBooks extends Object {
         prDocBook.println("");
 	}	
 		
-	private void writeAttrSection (AttrClassificationDefnDOM lAttrClassificationDefn, PrintWriter prDocBook) {
+	private void writeAttrSection (SchemaFileDefn lSchemaFileDefn, AttrClassificationDefnDOM lAttrClassificationDefn, PrintWriter prDocBook) {
 		prDocBook.println("");	
 		prDocBook.println("      <!-- ===================== LDD Attribute Begin =========================== -->");
 		prDocBook.println("");
 
 		prDocBook.println("        <chapter>");
-		prDocBook.println("           <title>Attributes in the " + lAttrClassificationDefn.namespaceId + " namespace.</title>");
+//		prDocBook.println("           <title>Attributes in the " + lAttrClassificationDefn.namespaceId + " namespace.</title>");
+		prDocBook.println("           <title>Attributes in the " + lSchemaFileDefn.lddName  + " dictionary.</title>");
 		prDocBook.println("           <para>These attributes are used by the classes in the " + lAttrClassificationDefn.namespaceId + " namespace. </para>");
 		for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) j.next();
@@ -400,7 +314,6 @@ class WriteDOMDocBooks extends Object {
         prDocBook.println("            <thead>");
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">" + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
-//        prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");        
         prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue(lClass.versionId) + "</entry>");
         prDocBook.println("                </row>");
         prDocBook.println("            </thead>");
@@ -617,7 +530,6 @@ class WriteDOMDocBooks extends Object {
 	    prDocBook.println("                <row>");
 	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">" + getPrompt("Name: ") + getAttrAnchor(lAttr) + getValue(lAttr.title) + lRegistrationStatusInsert + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue(lAttr.versionId) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("            </thead>");
 	    prDocBook.println("            <tbody>");
@@ -625,20 +537,12 @@ class WriteDOMDocBooks extends Object {
 	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" + getPrompt("Description: ") + getValue(lAttr.definition) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.attrNameSpaceIdNC) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceIdNC ()) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.steward) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getValueBreak(lAttr.className) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lParentClass) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lAttr.attrParentClass) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Type: ") + getDataTypeLink(lAttr.valueType) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ") + getValueReplaceTBDWithNone(lAttr.minimum_value) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ") + getValueReplaceTBDWithNone(lAttr.maximum_value) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ") + getValueReplaceTBDWithNone(lAttr.minimum_characters) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ") + getValueReplaceTBDWithNone(lAttr.maximum_characters) + "</entry>");
 
 	    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ") + getValueReplaceTBDWithNone(lAttr.getMinimumValue (true, false)) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ") + getValueReplaceTBDWithNone(lAttr.getMaximumValue (true, false)) + "</entry>");
@@ -758,7 +662,7 @@ class WriteDOMDocBooks extends Object {
 		}
 		
 		prDocBook.println("    <chapter>");
-		prDocBook.println("       <title>Data Types in the common namespace.</title>");
+		prDocBook.println("       <title>Data Types for the dictionary.</title>");
 		prDocBook.println("       <para>These classes define the data types. </para>");
 	
 //		Write the data types
@@ -980,41 +884,46 @@ class WriteDOMDocBooks extends Object {
 	}
 	
 	private void writeHeader (SchemaFileDefn lSchemaFileDefn, PrintWriter prDocBook) {
+		
 		prDocBook.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		prDocBook.println("<?xml-model href=\"http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng\" schematypens=\"http://relaxng.org/ns/structure/1.0\"?>");
 		prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
-		prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
-		prDocBook.println("        <subtitle>Abridged - Versionxxx " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
-		prDocBook.println("        <author>");
-		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
-		prDocBook.println("        </author>");
-		prDocBook.println("        <releaseinfo>Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
-		prDocBook.println("        <releaseinfo>Data Dictionary: " + lSchemaFileDefn.lddName + "</releaseinfo>");
+		prDocBook.println("        <title>" + DMDocument.ddDocTitle + " - " + lSchemaFileDefn.lddName + "</title>");
+//		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
+		prDocBook.println("        <subtitle>Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
+//		prDocBook.println("        <subtitle>Data Dictionary: " + lSchemaFileDefn.lddName + "</subtitle>");
+//		prDocBook.println("        <author>");
+//		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
+//		prDocBook.println("        </author>");
+//		prDocBook.println("        <releaseinfo>Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
+		prDocBook.println("        <releaseinfo>" + DMDocument.sTodaysDate + "</releaseinfo>");
+//		prDocBook.println("        <releaseinfo>Data Dictionary: " + lSchemaFileDefn.lddName + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");
 		prDocBook.println("        ");
 		prDocBook.println("        <chapter>");
 		prDocBook.println("            <title>Introduction</title>");
-		prDocBook.println("            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
+// 333	prDocBook.println("            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
+		prDocBook.println("            <para>This is the Enterprise 2.0 Data Dictionary for " + lSchemaFileDefn.lddName + ".</para>");
 		prDocBook.println("            <para>");
 		prDocBook.println("            </para>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Audience</title>");
-		prDocBook.println("                <para>The Data Dictionary - Abridged - has been abstracted from the unabridged version with the needs of data providers and data end users in mind. It contains full definitions but not all the fine detail or repetition necessary to support the underlying Information Model.</para>");
+		prDocBook.println("                <para>This Data Dictionary is designed to be used by anyone who needs an enterprise-level or domain-level controlled vocabulary.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Acknowledgements</title>");
-		prDocBook.println("                <para>The Data Dictionary and the Information Model is a joint effort involving discipline experts functioning as a data design working group.</para>");
+		prDocBook.println("                <para>This Data Dictionary is a joint effort involving " + lSchemaFileDefn.lddName + " experts.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Scope</title>");
-		prDocBook.println("                <para>The Data Dictionary defines the common and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
+		prDocBook.println("                <para>This Data Dictionary defines classes and attributes used in the " + lSchemaFileDefn.lddName + " domain and are proposed for use where interoperability based on common terms and definitions are desired.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
@@ -1026,11 +935,6 @@ class WriteDOMDocBooks extends Object {
 		prDocBook.println("                    <itemizedlist>");
 		prDocBook.println("                        <listitem>");
 		prDocBook.println("                            <para>");
-		prDocBook.println("                                Information Model Specification - The Information Model is used as the source for class, attribute, and data type definitions. The model is presented in document format as the Information Model Specification.");
-		prDocBook.println("                            </para>");
-		prDocBook.println("                        </listitem>");
-		prDocBook.println("                        <listitem>");
-		prDocBook.println("                            <para>");
 		prDocBook.println("                                ISO/IEC 11179:3 Registry Metamodel and Basic Attributes Specification, 2003. - The ISO/IEC 11179 specification provides the schema for the data dictionary.");
 		prDocBook.println("                            </para>");
 		prDocBook.println("                        </listitem>");
@@ -1040,7 +944,7 @@ class WriteDOMDocBooks extends Object {
 			prDocBook.println("                    <itemizedlist>");
 			prDocBook.println("                        <listitem>");
 			prDocBook.println("                            <para>");
-			prDocBook.println("                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
+			prDocBook.println("                                Domain Source Documents - This data dictionary was derived from source documents in the domain.");
 			prDocBook.println("                            </para>");
 			prDocBook.println("                        </listitem>");
 			prDocBook.println("                        ");
@@ -1053,43 +957,72 @@ class WriteDOMDocBooks extends Object {
 		prDocBook.println("                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
 		prDocBook.println("                <para>Following are some definitions of essential terms used throughout this document.</para>");
 		prDocBook.println("                <itemizedlist>");
+
+		
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, 'color' and 'length' are possible attributes. </para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Artifact</emphasis> - An object made by a human being.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic - a template from which individual members of the family may be constructed.");
-		prDocBook.println("                        </para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Conceptual Object</emphasis> - Something which is neither digital or physical, but conceptual in nature such as a project.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Conceptual Data Object</emphasis> - A digital object that represents a concept.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Data</emphasis> - A representation of information in a formalized manner suitable for communication, interpretation, or processing. Examples of data include a sequence of bits, a table of numbers, the characters on a page, the recording of sounds, or a descriptive attributes of a moon rock specimen.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Data Artifact</emphasis> - A data object produced within, or generated from, a digital ecosystem.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data - for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Data Object</emphasis> - A data object is either digital, physical, or conceptual. Examples of digital data objects include a time series or image. Examples of physical data objects are descriptions of such things as spacecraft, instruments, and facilities. Conceptual data objects include description of such things as projects and organizations.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Formal</emphasis> as used in the definition of attributes that are names indicates that an established procedure was involved in creating the name.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Data Repository</emphasis> - A digital store of managed JPL data artifacts that provides reliable, long-term access, now and in the future.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">unique identifier</emphasis> is a special type of identifier used to provide a reference number which is unique in a context.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Digital Object</emphasis> - A sequence of digital bits, 0's and 1's.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Local</emphasis> refers to the context within a single label.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Digital Data Object</emphasis> - A digital object along with its representation metadata.</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Logical</emphasis> as used in the definition of logical identifier indicates that the identifier logically groups a set of objects. </para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Gold Source</emphasis> - Used interchangeably with “official” in some cases, a gold source is the authoritative system or repository that contains data or information maintained by an organization responsible for its integrity. The management of gold sources follows the Controlled Content requirements of Document and Data Control (JPL Rules! DocID 57034). For example, Hardware Build Books (HBBs) may contain convenience copies of Inspection Reports (IRs), but the gold source for IRs is the Quality Assurance Reporting System (QARS). While most gold sources are now digitized, it is important to know that some hardcopy gold sources remain (e.g., legacy drawings).</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">JPL Data Artifact</emphasis> - A data artifact determined to be of value to JPL to preserve, share, and use both internally and externally to the organization. Formal definition can be found here on JPL Rules!</para>");
 		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para>A <emphasis role=\"italic\">resource</emphasis> is the target (referent) of any Uniform Resource Identifier; the thing to which a URI points.</para>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Knowledge</emphasis> - Understanding gained through experience or association. It is often characterized as propositional (know-that), competence (know-how), or acquaintance (know-about) , with relative levels of expertise determined by the depth of understanding of the subject matter, breadth of undertanding of that subject matter in relationship to other and larger domains, and skillfulness in applying it. Knowledge also is often categorized as tacit (hard to express because it is embedded in what we do) and explicit (more readily formalized and codified).</para>");
 		prDocBook.println("                    </listitem>");
+
+		prDocBook.println("                    <listitem>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Metadata</emphasis> - A digital object (data) that describes a digital data object.</para>");
+		prDocBook.println("                    </listitem>");
+
+		prDocBook.println("                    <listitem>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Physical Object</emphasis> - Something that physically exists that can be described such as a spacecraft or building</para>");
+		prDocBook.println("                    </listitem>");
+
+		prDocBook.println("                    <listitem>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Physical Data Object</emphasis> - A digital object that represents a physical Thing.</para>");
+		prDocBook.println("                    </listitem>");
+
+		prDocBook.println("                    <listitem>");
+		prDocBook.println("                        <para><emphasis role=\"italic\">Trusted Data Repository</emphasis> - A data repository that meets the CoreTrustSeal Certification requirements.</para>");
+		prDocBook.println("                    </listitem>");
+
 		prDocBook.println("                </itemizedlist>");
 		prDocBook.println("");
 		prDocBook.println("                <para>");
@@ -1107,8 +1040,6 @@ class WriteDOMDocBooks extends Object {
 	}
 
 	private String getPrompt (String lPrompt) {
-//		return "<emphasis role=\"italic\">" + "<emphasis role=\"bold\">" + lPrompt + "</emphasis>" + "</emphasis>";
-//		return "<emphasis role=\"italic\">" + lPrompt + "</emphasis>";
 		return "<emphasis>" + lPrompt + "</emphasis>";
 	}
 	
@@ -1127,8 +1058,6 @@ class WriteDOMDocBooks extends Object {
 	}
 			
 	private String getValueAnchor(DOMAttr lAttr, String lValue) {
-//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
-//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title + "." + lValue;
 		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.title + "." + lValue;
 		int lAnchorI = lAnchor.hashCode();
 		lAnchor = "N" + Integer.toString(lAnchorI);
@@ -1146,8 +1075,6 @@ class WriteDOMDocBooks extends Object {
 	}
 	
 	private String getAttrAnchor(DOMAttr lAttr) {
-//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
-//		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC + "." + lAttr.title;
 		String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.title;
 		int lAnchorI = lAnchor.hashCode();
 		lAnchor = "N" + Integer.toString(lAnchorI);
@@ -1243,11 +1170,6 @@ class WriteDOMDocBooks extends Object {
 	/**
 	* escape certain characters for DocBook
 	*/
-	 String escapeDocBookChar (String aString) {
-		String lString = aString;
-//		lString = replaceString (lString, "\\", "\\\\");
-		return lString;
-	}
 	 
 	 // locally defined classes for classifying classes and attributes
 	 

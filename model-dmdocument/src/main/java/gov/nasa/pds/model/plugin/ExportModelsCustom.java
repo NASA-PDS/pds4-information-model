@@ -32,13 +32,13 @@ package gov.nasa.pds.model.plugin;
 
 import java.util.*;
 
-/** Driver for getting document
+/** Driver for Customized Document Writers
  *
  */
 public class ExportModelsCustom extends Object {
 	
 	public ExportModelsCustom () {
-		
+		// noop
 	}
 
 /**********************************************************************************************************
@@ -50,27 +50,69 @@ public class ExportModelsCustom extends Object {
 						
 		// need to pass SchemaFileDefn to get namespace; set static for now.
 		// SchemaFileDefn lSchemaFileDefn;
-		String lNameSpaceIdNC = "pds";
 		
+//		System.out.println("debug ExportModelsCustom lLDDToolFlag:" + lLDDToolFlag);
+//		System.out.println("debug ExportModelsCustom DMDocument.exportDDFileFlag:" + DMDocument.exportDDFileFlag);
+//		System.out.println("debug ExportModelsCustom DMDocument.exportCustomFileFlag:" + DMDocument.exportCustomFileFlag);
 		
 		// write the doc book files - one per namespace id
 		if (lLDDToolFlag) {
-			if (DMDocument.exportDDFileFlag) {	
-				
-				System.out.println ("debug *** lWriteDOMDocBooks ***");
-				
+			if (DMDocument.exportDDFileFlag) {
 				DMDocument.dmProcessState.setRelativeFileSpecDDDocXML (DMDocument.masterLDDSchemaFileDefn);
-				WriteDOMDocBooks lWriteDOMDocBooks  = new WriteDOMDocBooks (); 
+				WriteDOMDocBookAnon lWriteDOMDocBooks  = new WriteDOMDocBookAnon (); 
 				lWriteDOMDocBooks.writeDocBooks(DMDocument.masterPDSSchemaFileDefn);
 				DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBooks - One Per LDD -  Done");
 			}
 		}
 		
+		// write the Terminological Mapping defined in the TermMap LDD to JSON
+		if (lLDDToolFlag) {
+			if (DMDocument.exportTermMapFileFlag) {
+				// write the terminological entry files
+				WriteDOMTermEntryJSON writeDOMTermEntryJSON = new WriteDOMTermEntryJSON ();
+				writeDOMTermEntryJSON.WriteDOMTermEntries (DMDocument.masterPDSSchemaFileDefn);
+				DMDocument.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done");
+			}
+		}
+		
+	    // write the standard id extract file
+	    // WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract();
+		// writeDOMStandardIdExtract.writeExtractFile();
+		// DMDocument.registerMessage("0>info " + "writeAllArtifacts - Standard Id Done");
+		
+	    // write the registry configuration files *** Reg needs conversion.
+		//   RegConfig regConfig = new RegConfig();
+		//   regConfig.writeRegRIM(DMDocument.sTodaysDate);
+		//   regConfig.writeRegRIM3(DMDocument.sTodaysDate);
+		//   regConfig.writeRegRIM4(DMDocument.sTodaysDate);
+		// DMDocument.registerMessage("0>info " + "writeAllArtifacts - Regisry Config Done");
+		
+	    // write the IM to RDF
+	    // WriteDOMIMToRDF lWriteDOMIMToRDF = new WriteDOMIMToRDF ();
+	    // lWriteDOMIMToRDF.domIMToRDFWriter (DMDocument.sTodaysDate);
+
+	    // write the Lucid Ingest file
+	    // WriteLucidMySQLFiles WriteLucidFiles = new WriteLucidMySQLFiles ();
+	    // WriteLucidFiles.WriteLucidFile();
+
+	    // write the PDS4 CCSDS CSV file
+	    // WriteDocCSV writeDocCSV = new WriteDocCSV ();
+	    // writeDocCSV.writeDocCSV (DMDocument.masterPDSSchemaFileDefn);
+	    // DMDocument.registerMessage ("0>info " + "writeAllArtifacts - CCSDS CSV Done");
+
+	    // print out the histogram for the DEC concepts
+	    /*
+	     * System.out.println("\nConcept Histogram"); Set <String> set1 =
+	     * MasterDOMInfoModel.metricConceptMap.keySet(); Iterator <String> iter1 = set1.iterator();
+	     * while(iter1.hasNext()) { String lId = (String) iter1.next(); Integer lCount =
+	     * MasterDOMInfoModel.metricConceptMap.get(lId); System.out.println("Descriptor: " + lId +
+	     * "    Count: " + lCount); }
+	     */
+		
 		// write the new xmi file
 /*		if (! lLDDToolFlag) {
 			DMDocument.dmProcessState.setRelativeFileSpecUMLXMI (lSchemaFileDefn);
 			WriteUML25XMIFile lWriteUML25XMIFile = new WriteUML25XMIFile ();
-//			lWriteUML25XMIFile.writeXMIFile (configureClassesToWriteList_EIM_Entity_Titles (), DMDocument.sTodaysDate);
 			lWriteUML25XMIFile.writeXMIFile (configureClassesToWriteList_PDS4_Common (), DMDocument.sTodaysDate);			
 			DMDocument.registerMessage ("0>info " + "ExportModelsCustom - UML 25 XMI File - Common - Done");
 		} else {
@@ -80,34 +122,7 @@ public class ExportModelsCustom extends Object {
 			lWriteUML25XMIFile.writeXMIFile (lClassesToWrite, DMDocument.sTodaysDate);
 			DMDocument.registerMessage ("0>info " + "ExportModelsCustom - UML 25 XMI File - LDD - Done");
 		}
-		
-		// write the RDF/TTL file
-		String lClassificationType = "TBD_default";   // default
-		lClassificationType = "";   // default
-		if (! lLDDToolFlag) {
-			lClassificationType = "PDS4.All.Products.Class.Prop"; // works
-//			lClassificationType = "OAISIF";
-//			lClassificationType = "EIMEntity";   // works
-//			lClassificationType = "PDS4.LDD.All";   
-//			System.out.println("debug ExportModelsCustom lClassificationType:" + lClassificationType);
-			ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
-			DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (lSchemaFileDefn);
-//			WriteDOMRDFTTLFileOAIS writeDOMRDFTTLFile = new WriteDOMRDFTTLFileOAIS ();
-//			writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-			WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
-			writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-		
-		} else {
-			lClassificationType = ("PDS4.LDD.All");
-			DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (lSchemaFileDefn);
-			ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
-//			WriteDOMRDFTTLFilePDS4 writeDOMRDFTTLFile = new WriteDOMRDFTTLFilePDS4 ();
-//			writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-			WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
-			writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-		}
-		DMDocument.registerMessage ("0>info " + "ExportModelsCustom - RDF/TTL Done"); */
-		
+		*/
 		
 		// **** NEO4J *** write the Neo4J file
 /*		String lClassificationTypeNeo4J = "PDS4.All.Products.Class.Prop";   // default
