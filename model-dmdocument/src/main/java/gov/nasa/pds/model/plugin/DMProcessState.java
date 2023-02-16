@@ -375,7 +375,21 @@ public class DMProcessState {
     processFlagMap.put("Check File Name Flag", 1210);
     return;
   }
+  
+  public void setExportTermMapFileFlag() {
+	  processFlagMap.put("ExportTermMapFileFlag", 1220);
+	  return;
+  }
+	        
+  public void setExportOWLFileFlag() {
+     processFlagMap.put("ExportOWLFileFlag", 1230);
+     return;
+  }
 
+  public void setExportCustomFileFlag() {
+      processFlagMap.put("ExportCustomFileFlag", 1240);
+      return;
+  }  
 
   // written files map
 
