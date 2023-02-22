@@ -149,19 +149,20 @@ public class ExportModels extends Object {
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Class Defn Done");
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Attr Defn Done");
     
-	
 	// write the RDF/TTL file
-	String lClassificationType = "TBD_default";   // default
-	lClassificationType = "";   // default
-	lClassificationType = "PDS4.All.Products.Class.Prop"; // works
-//	lClassificationType = "EIMEntity";   // works
-//	lClassificationType = "PDS4.LDD.All";   
-//	lClassificationType = "OAISIF";
-	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
-	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterPDSSchemaFileDefn);
-	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
-	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-	DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
+    if (DMDocument.exportOWLFileFlag) {
+    	String lClassificationType = "TBD_default";   // default
+    	lClassificationType = "";   // default
+    	lClassificationType = "PDS4.All.Products.Class.Prop"; // works
+    	//	lClassificationType = "EIMEntity";   // works
+    	//	lClassificationType = "PDS4.LDD.All";   
+    	//	lClassificationType = "OAISIF";
+    	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
+    	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterPDSSchemaFileDefn);
+    	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
+    	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
+    	DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
+    }
 
     return;
   }
@@ -244,14 +245,17 @@ public class ExportModels extends Object {
     }
 	
 	// write the RDF/TTL file
-	String lClassificationType = "TBD_default";   // default
-	lClassificationType = "";   // default
-	lClassificationType = ("PDS4.LDD.All");
-	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterLDDSchemaFileDefn);
-	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
-	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
-	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-	DMDocument.registerMessage ("0>info " + "ExportModelsCustom - RDF/TTL Done");
+	if (DMDocument.exportOWLFileFlag) {
+		String lClassificationType = "TBD_default";   // default
+		lClassificationType = "";   // default
+//		lClassificationType = ("PDS4.LDD.All");
+		lClassificationType = "PDS4.LDD.All";
+		DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterLDDSchemaFileDefn);
+		ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
+		WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
+		writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
+		DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
+	}
 
     return;
   }
