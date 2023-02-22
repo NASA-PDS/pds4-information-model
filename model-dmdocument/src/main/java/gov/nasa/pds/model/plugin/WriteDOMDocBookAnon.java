@@ -52,7 +52,38 @@ class WriteDOMDocBookAnon extends Object {
 	
 // Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
 	
+	// DOM Steward Id map to EIM Steward title
+	protected TreeMap <String, String> dom2EIMStewardMap = new TreeMap <String, String> ();
+	
 	public WriteDOMDocBookAnon () {
+		
+		// DOM Steward Id map to EIM Steward title
+		dom2EIMStewardMap.put("eim","CDAO");
+		dom2EIMStewardMap.put("eimtldjplcoremetadata","319");
+		dom2EIMStewardMap.put("datacite","CDAO");
+		dom2EIMStewardMap.put("eimdurs","184/Amanda Beckett");
+		dom2EIMStewardMap.put("eimdtrs","319/Chris Dixon");
+		dom2EIMStewardMap.put("eimdbusworkdefndd","SDWG / Holly Hargis.");
+		dom2EIMStewardMap.put("xxx","PDS");
+		dom2EIMStewardMap.put("xxx","ESDS");
+		dom2EIMStewardMap.put("eimdlsmdecsv","LSMD / Myche McAuley");
+		dom2EIMStewardMap.put("xxx","EOTO / Steve Flanagan");
+		dom2EIMStewardMap.put("eimtlmime","CDAO");
+		dom2EIMStewardMap.put("eimtlsens","319 / Enterprise");
+		dom2EIMStewardMap.put("eimprov","CDAO");
+		dom2EIMStewardMap.put("eimtlchksum","CDAO");
+		dom2EIMStewardMap.put("eimdscitax","Div 32 / Susan Jones");
+		dom2EIMStewardMap.put("eimtlddomain","EOTO / Steve Flanagan");
+		dom2EIMStewardMap.put("eimtldart","not provided");
+		dom2EIMStewardMap.put("eimtldfmt","not provided");
+		dom2EIMStewardMap.put("eimtldmsn","not provided");
+		dom2EIMStewardMap.put("eimtldhost","not provided");
+		dom2EIMStewardMap.put("ctli","not provided");
+		dom2EIMStewardMap.put("eimdgateprod","not provided");
+		dom2EIMStewardMap.put("eimroles","not provided");
+		dom2EIMStewardMap.put("eimtldjsearch","not provided");
+		dom2EIMStewardMap.put("oais","OAIS RM");
+		
 		// class structures
 		classClassificationMap = new TreeMap <String, ClassClassificationDefnDOM> ();
 		attrClassificationMap = new TreeMap <String, AttrClassificationDefnDOM> ();
@@ -323,7 +354,8 @@ class WriteDOMDocBookAnon extends Object {
         prDocBook.println("                </row>");
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lClass.nameSpaceIdNC) + "</entry>");
-        prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lClass.steward) + "</entry>");
+//        prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lClass.steward) + "</entry>");
+        prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(getEIMSteward (lClass.steward)) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Role: ") + getValue(lClass.role) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
         prDocBook.println("                </row>");
@@ -538,7 +570,8 @@ class WriteDOMDocBookAnon extends Object {
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
 	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceIdNC ()) + "</entry>");
-	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
+//	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
+	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(getEIMSteward (lAttr.steward)) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lAttr.attrParentClass) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Type: ") + getDataTypeLink(lAttr.valueType) + "</entry>");
 	    prDocBook.println("                </row>");
@@ -890,7 +923,8 @@ class WriteDOMDocBookAnon extends Object {
 		prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
-		prDocBook.println("        <title>" + DMDocument.ddDocTitle + " - " + lSchemaFileDefn.lddName + "</title>");
+		prDocBook.println("        <title>" + "Domain Data Dictionary" + " - " + lSchemaFileDefn.lddName + "</title>");
+//		prDocBook.println("        <title>" + DMDocument.ddDocTitle + " - " + lSchemaFileDefn.lddName + "</title>");
 //		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 		prDocBook.println("        <subtitle>Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
 //		prDocBook.println("        <subtitle>Data Dictionary: " + lSchemaFileDefn.lddName + "</subtitle>");
@@ -906,24 +940,25 @@ class WriteDOMDocBookAnon extends Object {
 		prDocBook.println("        <chapter>");
 		prDocBook.println("            <title>Introduction</title>");
 // 333	prDocBook.println("            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
-		prDocBook.println("            <para>This is the Enterprise 2.0 Data Dictionary for " + lSchemaFileDefn.lddName + ".</para>");
+//		prDocBook.println("            <para>This is the Enterprise 2.0 Data Dictionary for " + lSchemaFileDefn.lddName + ".</para>");
+		prDocBook.println("            <para>This is the Domain Data Dictionary: " + lSchemaFileDefn.lddName + ".</para>");
 		prDocBook.println("            <para>");
 		prDocBook.println("            </para>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Audience</title>");
-		prDocBook.println("                <para>This Data Dictionary is designed to be used by anyone who needs an enterprise-level or domain-level controlled vocabulary.</para>");
+		prDocBook.println("                <para>This Data Dictionary is designed to be used by anyone who needs to reference a domain-level vocabulary.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Acknowledgements</title>");
-		prDocBook.println("                <para>This Data Dictionary is a joint effort involving " + lSchemaFileDefn.lddName + " experts.</para>");
+		prDocBook.println("                <para>This " + lSchemaFileDefn.lddName + " Data Dictionary is developed from efforts by a domain data working group.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Scope</title>");
-		prDocBook.println("                <para>This Data Dictionary defines classes and attributes used in the " + lSchemaFileDefn.lddName + " domain and are proposed for use where interoperability based on common terms and definitions are desired.</para>");
+		prDocBook.println("                <para>The " + lSchemaFileDefn.lddName + " Data Dictionary provides domain-level standard definitions for data elements and their permissible value. They are useful for standardizing the capture of metadata and data itself for constructing database, metadata labels for documents, images, spreadsheets, and other datasets, and for labeling data for machine learning.</para>");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
@@ -944,7 +979,7 @@ class WriteDOMDocBookAnon extends Object {
 			prDocBook.println("                    <itemizedlist>");
 			prDocBook.println("                        <listitem>");
 			prDocBook.println("                            <para>");
-			prDocBook.println("                                Domain Source Documents - This data dictionary was derived from source documents in the domain.");
+			prDocBook.println("                                Domain Source Documents - This data dictionary was developed from source documents in the domain.");
 			prDocBook.println("                            </para>");
 			prDocBook.println("                        </listitem>");
 			prDocBook.println("                        ");
@@ -1162,10 +1197,15 @@ class WriteDOMDocBookAnon extends Object {
 				}
 			}
 		}
-			
-		
 		return refClassArr;
 	}	
+	
+//	replace the DOM steward id (namespace id) with an EIM steward title
+	private String getEIMSteward (String domSteward) {
+		String eimSteward = dom2EIMStewardMap.get(domSteward);
+		if (eimSteward == null) eimSteward = "no mapping";
+		return eimSteward;
+	}
 	
 	/**
 	* escape certain characters for DocBook
