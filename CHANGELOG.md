@@ -15,6 +15,7 @@
 
 **Other closed issues:**
 
+- Stage the PDS4 Information Model Version 1.20.0.0 \(1.K.0.0\) for Update [\#596](https://github.com/NASA-PDS/pds4-information-model/issues/596)
 - \[namespace-registry\] add new namespace "lucy" [\#575](https://github.com/NASA-PDS/pds4-information-model/issues/575)
 - \[namespace-registry\] add new namespace "msl" [\#566](https://github.com/NASA-PDS/pds4-information-model/issues/566)
 - Issue \#552 : \[namespace-registry\] add new namespace "sb" [\#563](https://github.com/NASA-PDS/pds4-information-model/issues/563)
