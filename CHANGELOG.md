@@ -6,6 +6,7 @@
 
 **Requirements:**
 
+- CCB-360: Add new permissible value to Units\_of\_Misc [\#599](https://github.com/NASA-PDS/pds4-information-model/issues/599)
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
 - As a developer I want to have the PDS4 Information Model expressed in the RDF/OWL/TTL format.  [\#458](https://github.com/NASA-PDS/pds4-information-model/issues/458)
