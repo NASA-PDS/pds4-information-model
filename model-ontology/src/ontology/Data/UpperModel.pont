@@ -1,4 +1,4 @@
-; Mon Feb 27 19:41:38 EST 2023
+; Tue Feb 28 16:00:57 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11088,7 +11088,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "deg" "rad" "mrad" "arcsec" "arcmin" "hr")
+;+		(value "deg" "rad" "mrad" "arcsec" "arcmin" "hr" "microrad")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
