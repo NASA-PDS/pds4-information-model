@@ -1,12 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-02-28)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
 **Requirements:**
 
 - CCB-362: Add a permissible value of nm/mm to Units\_of\_Misc [\#603](https://github.com/NASA-PDS/pds4-information-model/issues/603)
+- CCB-361: Add a permissible value for microradians to Units\_of\_Angle [\#602](https://github.com/NASA-PDS/pds4-information-model/issues/602)
 - CCB-360: Add new permissible value to Units\_of\_Misc [\#599](https://github.com/NASA-PDS/pds4-information-model/issues/599)
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
