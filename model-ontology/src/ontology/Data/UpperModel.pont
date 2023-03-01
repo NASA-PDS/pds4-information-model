@@ -1,4 +1,4 @@
-; Tue Feb 28 16:00:57 EST 2023
+; Wed Mar 01 06:58:59 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11220,7 +11220,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "pixel" "DN" "electron/DN" "W/m**2/sr/nm/(DN/s)" "electrons")
+;+		(value "pixel" "DN" "electron/DN" "W/m**2/sr/nm/(DN/s)" "electrons" "nm/mm")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
