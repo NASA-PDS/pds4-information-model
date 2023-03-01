@@ -6,6 +6,7 @@
 
 **Requirements:**
 
+- CCB-362: Add a permissible value of nm/mm to Units\_of\_Misc [\#603](https://github.com/NASA-PDS/pds4-information-model/issues/603)
 - CCB-360: Add new permissible value to Units\_of\_Misc [\#599](https://github.com/NASA-PDS/pds4-information-model/issues/599)
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
