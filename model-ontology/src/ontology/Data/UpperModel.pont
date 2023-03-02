@@ -1,4 +1,4 @@
-; Wed Mar 01 19:40:04 EST 2023
+; Thu Mar 02 07:45:09 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6103,7 +6103,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Plasma Stream" "Equipment" "Calibration" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical" "Sky")
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -9611,7 +9611,7 @@
 	(multislot type
 ;+		(comment "The type attribute classifies a target according to its size and properties so that correct nomenclature can be applied.")
 		(type STRING)
-;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical")
+;+		(value "Asteroid" "Comet" "Dust" "Galaxy" "Globular Cluster" "Meteorite" "Meteoroid" "Meteoroid Stream" "Nebula" "Open Cluster" "Planet" "Planetary Nebula" "Planetary System" "Plasma Cloud" "Ring" "Satellite" "Star" "Star Cluster" "Terrestrial Sample" "Trans-Neptunian Object" "Dwarf Planet" "Calibration" "Plasma Stream" "Equipment" "Lunar Sample" "Synthetic Sample" "Calibrator" "Exoplanet System" "Calibration Field" "Magnetic Field" "Centaur" "Laboratory Analog" "Sample" "Astrophysical" "Sky")
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot description
