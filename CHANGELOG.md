@@ -6,6 +6,7 @@
 
 **Requirements:**
 
+- CCB-357: Create Product\_External [\#614](https://github.com/NASA-PDS/pds4-information-model/issues/614)
 - CCB-355: Add Funding\_Acknowledgement class to Citation\_Information Class [\#611](https://github.com/NASA-PDS/pds4-information-model/issues/611)
 - CCB-354: Add new permissible values to Header/parsing\_standard\_id to support new versions of CDF [\#608](https://github.com/NASA-PDS/pds4-information-model/issues/608)
 - CCB-362: Add a permissible value of nm/mm to Units\_of\_Misc [\#603](https://github.com/NASA-PDS/pds4-information-model/issues/603)
@@ -28,6 +29,7 @@
 - Issue \#552 : \[namespace-registry\] add new namespace "sb" [\#563](https://github.com/NASA-PDS/pds4-information-model/issues/563)
 - \[namespace-registry\] add new namespace "sbn" [\#552](https://github.com/NASA-PDS/pds4-information-model/issues/552)
 - Add flags to support generation of TTL/OWL files [\#467](https://github.com/NASA-PDS/pds4-information-model/issues/467)
+- Testing CCB-268 [\#143](https://github.com/NASA-PDS/pds4-information-model/issues/143)
 
 ## [v14.1.2](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.2) (2022-10-19)
 
