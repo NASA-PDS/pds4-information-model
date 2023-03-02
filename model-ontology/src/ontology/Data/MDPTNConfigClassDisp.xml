@@ -130,6 +130,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Observation_Area</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Observing_System</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Observing_System_Component</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Funding_Acknowledgement</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Product_Components</Field> <Field>1MV</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Special_Constants</Field> <Field>1MTC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Uniformly_Sampled</Field> <Field>1MTC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
