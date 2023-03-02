@@ -1,4 +1,4 @@
-; Thu Mar 02 07:45:09 EST 2023
+; Thu Mar 02 10:38:38 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -513,6 +513,10 @@
 ;+		(comment "The unit_of_measure_type attribute identifies the class from which the attribute being defined in this data dictionary draws its possible expressions for units.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot funding_award
+;+		(comment "The funding_award attribute provides a unique alphanumeric identifier of the funding award within the funding_source.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot copied_to
 ;+		(comment "Associated physical volumes.")
 		(type INSTANCE)
@@ -680,6 +684,10 @@
 ;+		(comment "non-quote-character = letter | digit | special | underscore | apostrophe | space ;")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot funding_acknowledgement_text
+;+		(comment "The funding_acknowledgement_text attribute provides a text description of the relationship between the funding source and the archival data.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot dd_Context_Value_List
 ;+		(comment "The dd_Context_Value_List association is a relationship to dd_Context_Value_List.")
@@ -2713,6 +2721,11 @@
 ;+		(comment "The update purpose attribute indicates the intended objective of this update.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_Funding_Acknowledgement
+;+		(comment "The has_Funding_Acknowledgement association is a relationship to Funding_Acknowledgement.")
+		(type INSTANCE)
+;+		(allowed-classes Funding_Acknowledgement)
+		(create-accessor read-write))
 	(single-slot repertoire_list
 ;+		(comment "UTF-8 (8-bit UCS/Unicode Transformation Format) is a variable-length character encoding for Unicode. It is able to represent any character in the Unicode standard, yet is backwards compatible with ASCII.")
 		(type STRING)
@@ -2727,6 +2740,10 @@
 ;+		(comment "The volume_de_fullname attribute provide the full name of the data engineer.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot funding_source
+;+		(comment "The funding_source attribute provides the identifier for an agency or other entity that provided financial assistance in the poroduction of the archival data.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot product_type
 ;+		(comment "The product type attribute provides the name of a class of which this object is a member.")
@@ -4314,6 +4331,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot funding_year
+;+		(comment "The funding_year attribute provides the year that funding was awarded.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot enumeration_flag
 ;+		(comment "The enumeration_flag attribute indicates whether there is an enumerated set of permissible values.")
@@ -9691,6 +9712,11 @@
 ;+		(comment "The doi attribute provides the Digital Object Identifier for an object, assigned by the appropriate DOI System Registration Agency.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Funding_Acknowledgement
+;+		(comment "The has_Funding_Acknowledgement association is a relationship to Funding_Acknowledgement.")
+		(type INSTANCE)
+;+		(allowed-classes Funding_Acknowledgement)
 		(create-accessor read-write)))
 
 (defclass Modification_History "The Modification_History class tracks the history of changes made to the product once it enters the registry system."
@@ -11027,6 +11053,31 @@
 		(type INSTANCE)
 ;+		(allowed-classes DD_Permissible_Value)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Funding_Acknowledgement "The Funding_Acknowledgement class cites a funding source which supported production of the archival data."
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot funding_award
+;+		(comment "The funding_award attribute provides a unique alphanumeric identifier of the funding award within the funding_source.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_source
+;+		(comment "The funding_source attribute provides the identifier for an agency or other entity that provided financial assistance in the poroduction of the archival data.")
+		(type STRING)
+;+		(value "NASA" "NSF" "RAS")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot funding_acknowledgement_text
+;+		(comment "The funding_acknowledgement_text attribute provides a text description of the relationship between the funding source and the archival data.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot funding_year
+;+		(comment "The funding_year attribute provides the year that funding was awarded.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Unit_Of_Measure "The Unit_Of_Measure is a definite magnitude of a quantity."
