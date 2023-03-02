@@ -1,4 +1,4 @@
-; Thu Mar 02 10:38:38 EST 2023
+; Thu Mar 02 14:48:57 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2361,6 +2361,10 @@
 		(type SYMBOL)
 		(allowed-values FALSE TRUE)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot file_URL
+;+		(comment "The file_URL holds a reference or link to a version of the data that can be downloaded, streamed, or even accessed/visualized via a Web service. URL stands for Uniform Resource Locator and is the address of a given unique resource on the Web, whether it is linked to an image, table, HTML page, or other Web resource.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot domain
 ;+		(comment "The radial ‘zone’ or ‘shell’ of the target for which the observations were collected or which are represented in the product(s).  The value may depend on wavelength_range and size of the target.")
@@ -4813,6 +4817,10 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Encoded_External "The Encoded External class describes an encoded byte stream that has been encoded using an encoding scheme that is compliant to an external standard."
+	(is-a Encoded_Byte_Stream)
+	(role concrete))
+
 (defclass Parsable_Byte_Stream "The Parsable Byte Stream class defines byte streams that have standard parsing rules. The Parsable Byte Stream class is the parent class for all parsable byte streams."
 	(is-a Byte_Stream)
 	(role concrete)
@@ -5203,6 +5211,10 @@
 ;+		(comment "The creation_date_time attribute provides a date and time when the object was created.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_URL
+;+		(comment "The file_URL holds a reference or link to a version of the data that can be downloaded, streamed, or even accessed/visualized via a Web service. URL stands for Uniform Resource Locator and is the address of a given unique resource on the Web, whether it is linked to an image, table, HTML page, or other Web resource.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot comment
 ;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
@@ -7215,7 +7227,7 @@
 	(single-slot collection_type
 ;+		(comment "The collection_type attribute provides a classification for the collection.")
 		(type STRING)
-;+		(value "Data" "Document" "SPICE Kernel" "XML Schema" "Geometry" "Context" "Calibration" "Browse" "Miscellaneous")
+;+		(value "Data" "Document" "SPICE Kernel" "XML Schema" "Geometry" "Context" "Calibration" "Browse" "Miscellaneous" "External")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot description
@@ -7241,7 +7253,7 @@
 	(single-slot bundle_type
 ;+		(comment "The bundle_type attribute provides a classification for the bundle.")
 		(type STRING)
-;+		(value "Archive" "Supplemental")
+;+		(value "Archive" "Supplemental" "External")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -9457,6 +9469,28 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass Product_External "The Product External class defines a product that does not reside within the PDS archives."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot file_area
+;+		(comment "The file_area association is a relationship to File Area")
+		(type INSTANCE)
+;+		(allowed-classes File_Area_External)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot context_area
+;+		(comment "The context_area association is a relationship to Context_Area.")
+		(type INSTANCE)
+;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
 	(is-a Tagged_NonDigital_Object)
 	(role abstract))
@@ -10274,6 +10308,22 @@
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
 ;+		(allowed-classes Ingest_LDD_File)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass File_Area_External "The File Area External class describes a file and one or more tagged_data_objects contained within the file."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Encoded_External)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
 ;+		(comment "The has_File association is a relationship to File.")
