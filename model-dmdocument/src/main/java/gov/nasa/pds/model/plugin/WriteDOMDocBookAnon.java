@@ -52,6 +52,9 @@ class WriteDOMDocBookAnon extends Object {
 	
 // Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
 	
+	// Common Namespace ID
+	final String commonNamespaceId = "eim";
+	
 	// DOM Steward Id map to EIM Steward title
 	protected TreeMap <String, String> dom2EIMStewardMap = new TreeMap <String, String> ();
 	
@@ -87,36 +90,21 @@ class WriteDOMDocBookAnon extends Object {
 		// class structures
 		classClassificationMap = new TreeMap <String, ClassClassificationDefnDOM> ();
 		attrClassificationMap = new TreeMap <String, AttrClassificationDefnDOM> ();
-		
-		// get the current namespaces and initialize classification maps
-		if (! DMDocument.LDDToolFlag) {
-			// only the common dictionary (pds)
-			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
-			lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
-		} else {
-			// intialize array to capture namespaces to be written
-			ArrayList <String> lDDNamespaceArr = new ArrayList <String> ();
-			lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
-			
-			// first get the common dictionary
-			ArrayList <SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
-			tempSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
-    		lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
-    		lDDNamespaceArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
-            
-			// now add all the LDDs that are stacked for this run
-            tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
-			for(SchemaFileDefn lSchemaFileDefn : tempSchemaFileDefnToWriteArr) {
-            	if (! lDDNamespaceArr.contains(lSchemaFileDefn.nameSpaceIdNC)) {
-        			lSchemaFileDefnToWriteArr.add(lSchemaFileDefn);
-        			lDDNamespaceArr.add(lSchemaFileDefn.nameSpaceIdNC);
-            	}
-            }
+
+		// intialize array to capture namespaces to be written
+		ArrayList <String> lDDNamespaceArr = new ArrayList <String> ();
+		lSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> ();
+           
+		// add common and all LDDs that are stacked for this run
+		ArrayList <SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList <SchemaFileDefn> (DMDocument.LDDSchemaFileSortMap.values());
+		tempSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn); // add common namespace
+		for(SchemaFileDefn lSchemaFileDefn : tempSchemaFileDefnToWriteArr) {
+           	if (! lDDNamespaceArr.contains(lSchemaFileDefn.nameSpaceIdNC)) {
+       			lSchemaFileDefnToWriteArr.add(lSchemaFileDefn);
+       			lDDNamespaceArr.add(lSchemaFileDefn.nameSpaceIdNC);
+           	}
 		}
-		
-//		System.out.println("");
-		for (Iterator <SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
-			SchemaFileDefn lSchemaFileDefn = (SchemaFileDefn) i.next();
+		for (SchemaFileDefn lSchemaFileDefn : lSchemaFileDefnToWriteArr) {
 			classClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new ClassClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
 			attrClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC, new AttrClassificationDefnDOM (lSchemaFileDefn.nameSpaceIdNC));
 		}
@@ -204,16 +192,7 @@ class WriteDOMDocBookAnon extends Object {
 		if (lClassClassificationDefn != null) {			
 			if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
 				// i.e., the Common directory, pds
-				if (lClass.steward.compareTo("ops") == 0) {
-					lClassClassificationDefn = classClassificationMap.get("pds.ops");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
-				} else if (lClass.isRegistryClass) {
-					lClassClassificationDefn = classClassificationMap.get("pds.product");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-				} else {
-					lClassClassificationDefn = classClassificationMap.get("pds.support");
-					lClassClassificationDefn.classMap.put(lClass.identifier, lClass);	
-				}
+				lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
 			} else {
 				// all LDD namespaces
 				lClassClassificationDefn.classMap.put(lClass.identifier, lClass);
@@ -249,6 +228,7 @@ class WriteDOMDocBookAnon extends Object {
 		
         // iterate over the namespace ids
 		for (SchemaFileDefn lSchemaFileDefnToWrite : lSchemaFileDefnToWriteArr) {
+//			if (lSchemaFileDefnToWrite.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) continue;
 			ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
 			AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
 			writeDocBook (lSchemaFileDefnToWrite, lClassClassificationDefn, lAttrClassificationDefn);
@@ -287,10 +267,16 @@ class WriteDOMDocBookAnon extends Object {
         prDocBook.println("");	
         prDocBook.println("      <!-- ===================== LDD Class Begin =========================== -->");
         prDocBook.println("");
-		
+
 		prDocBook.println("        <chapter>");
 //		prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId + " namespace.</title>");
-		prDocBook.println("           <title>Classes in the " + lSchemaFileDefn.lddName + " dictionary.</title>");
+	
+	
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("           <title>Classes in the " + lSchemaFileDefn.lddName + " dictionary.</title>");
+		} else {
+			prDocBook.println("           <title>Classes in the " + lSchemaFileDefn.lddName + ".</title>");
+		}
 		prDocBook.println("           <para>These classes comprise the namespace.</para>");
 		for (Iterator <DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
 			DOMClass lClass = (DOMClass) j.next();
@@ -310,7 +296,13 @@ class WriteDOMDocBookAnon extends Object {
 
 		prDocBook.println("        <chapter>");
 //		prDocBook.println("           <title>Attributes in the " + lAttrClassificationDefn.namespaceId + " namespace.</title>");
-		prDocBook.println("           <title>Attributes in the " + lSchemaFileDefn.lddName  + " dictionary.</title>");
+		
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("           <title>Attributes in the " + lSchemaFileDefn.lddName + " dictionary.</title>");
+		} else {
+			prDocBook.println("           <title>Attributes in the " + lSchemaFileDefn.lddName + ".</title>");
+		}
+		
 		prDocBook.println("           <para>These attributes are used by the classes in the " + lAttrClassificationDefn.namespaceId + " namespace. </para>");
 		for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
 			DOMAttr lAttr = (DOMAttr) j.next();
@@ -354,7 +346,6 @@ class WriteDOMDocBookAnon extends Object {
         prDocBook.println("                </row>");
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lClass.nameSpaceIdNC) + "</entry>");
-//        prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lClass.steward) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(getEIMSteward (lClass.steward)) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Role: ") + getValue(lClass.role) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
@@ -507,7 +498,6 @@ class WriteDOMDocBookAnon extends Object {
  	 		lValueString = "None";
  		}
         prDocBook.println("                <row>");
-//        prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" + getPrompt("Referenced from: ") + getValue(lValueString) + "</entry>");
         prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" + getPrompt("Referenced from: ") + lValueString + "</entry>");
         prDocBook.println("                </row>");
         prDocBook.println("            </tbody>");
@@ -516,28 +506,6 @@ class WriteDOMDocBookAnon extends Object {
         prDocBook.println("</para>");
     	prDocBook.println("</sect1> ");
         return;
-	}	
-				
-	private void writeAttrSection (String lNameSpaceId, PrintWriter prDocBook) {
-        prDocBook.println("");	
-        prDocBook.println("      <!-- =====================Part3 Begin=========================== -->");
-        prDocBook.println("");
-		
-		AttrClassificationDefnDOM lAttrClassificationDefn = attrClassificationMap.get(DMDocument.masterNameSpaceIdNCLC);
-		if (lAttrClassificationDefn != null) {
-			prDocBook.println("        <chapter>");
-			prDocBook.println("           <title>Attributes in the common namespace.</title>");
-			prDocBook.println("           <para>These attributes are used by the classes in the common namespace. </para>");
-			for (Iterator <DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-				DOMAttr lAttr = (DOMAttr) j.next();
-				writeAttr (lAttr, prDocBook);						
-			}
-			prDocBook.println("        </chapter>");
-	        prDocBook.println("");
-		}
-		
-        prDocBook.println("      <!-- =====================Part3 End=========================== -->");
-        prDocBook.println("");
 	}
 	
 	private void writeAttr (DOMAttr lAttr, PrintWriter prDocBook) {
@@ -570,7 +538,6 @@ class WriteDOMDocBookAnon extends Object {
 	    prDocBook.println("                </row>");
 	    prDocBook.println("                <row>");
 	    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lAttr.getNameSpaceIdNC ()) + "</entry>");
-//	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(lAttr.getSteward ()) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(getEIMSteward (lAttr.steward)) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Class Name: ") + getClassLink(lAttr.attrParentClass) + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Type: ") + getDataTypeLink(lAttr.valueType) + "</entry>");
@@ -594,7 +561,6 @@ class WriteDOMDocBookAnon extends Object {
 	    prDocBook.println("                <row>");
 	    prDocBook.println("                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
 	    prDocBook.println("                    <entry>" + getPrompt("Nillable: ") + lAttr.isNilable + "</entry>");            
-//	    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.pattern) + "</entry>");
 	    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.getPattern(true)) + "</entry>");
 	    prDocBook.println("                </row>");
 	    prDocBook.println("");
@@ -760,7 +726,6 @@ class WriteDOMDocBookAnon extends Object {
             prDocBook.println("            <thead>");
             prDocBook.println("                <row>");
             prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">" + getPrompt("Name: ") + getValue(lClass.title) + "</entry>");
-//            prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");
             prDocBook.println("                    <entry>" + getPrompt("Version Id: ") + getValue(lClass.versionId) + "</entry>");
             prDocBook.println("                </row>");
             prDocBook.println("            </thead>");
@@ -923,42 +888,50 @@ class WriteDOMDocBookAnon extends Object {
 		prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
 		prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
 		prDocBook.println("    <info>");
-		prDocBook.println("        <title>" + "Domain Data Dictionary" + " - " + lSchemaFileDefn.lddName + "</title>");
-//		prDocBook.println("        <title>" + DMDocument.ddDocTitle + " - " + lSchemaFileDefn.lddName + "</title>");
-//		prDocBook.println("        <subtitle>Abridged - Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("        <title>" + "Domain Data Dictionary" + " - " + lSchemaFileDefn.lddName + "</title>");
+		} else {
+			prDocBook.println("        <title>" + "Enterprise Common Data Dictionary" + "</title>");	
+		}
 		prDocBook.println("        <subtitle>Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
-//		prDocBook.println("        <subtitle>Data Dictionary: " + lSchemaFileDefn.lddName + "</subtitle>");
-//		prDocBook.println("        <author>");
-//		prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
-//		prDocBook.println("        </author>");
-//		prDocBook.println("        <releaseinfo>Information Model Version " + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate + "</releaseinfo>");
 		prDocBook.println("        <releaseinfo>" + DMDocument.sTodaysDate + "</releaseinfo>");
-//		prDocBook.println("        <releaseinfo>Data Dictionary: " + lSchemaFileDefn.lddName + "</releaseinfo>");
 		prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
 		prDocBook.println("    </info>");
 		prDocBook.println("        ");
 		prDocBook.println("        <chapter>");
 		prDocBook.println("            <title>Introduction</title>");
-// 333	prDocBook.println("            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
-//		prDocBook.println("            <para>This is the Enterprise 2.0 Data Dictionary for " + lSchemaFileDefn.lddName + ".</para>");
-		prDocBook.println("            <para>This is the Domain Data Dictionary: " + lSchemaFileDefn.lddName + ".</para>");
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("            <para>This is the Domain Data Dictionary: " + lSchemaFileDefn.lddName + ".</para>");
+		}
 		prDocBook.println("            <para>");
 		prDocBook.println("            </para>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Audience</title>");
-		prDocBook.println("                <para>This Data Dictionary is designed to be used by anyone who needs to reference a domain-level vocabulary.</para>");
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("                <para>This Data Dictionary is designed to be used by anyone who needs to reference a domain-level vocabulary.</para>");
+		} else {
+			prDocBook.println("                <para>The Common Data Dictionary is designed to be used by anyone who needs a reference to an enterprise-level vocabulary.</para>");
+		}
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Acknowledgements</title>");
-		prDocBook.println("                <para>This " + lSchemaFileDefn.lddName + " Data Dictionary is developed from efforts by a domain data working group.</para>");
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("                <para>This " + lSchemaFileDefn.lddName + " Data Dictionary is developed from efforts by a domain data working group.</para>");
+		} else {
+			prDocBook.println("                <para>The Common Data Dictionary under the auspices of the CDAO.</para>");
+		}
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Scope</title>");
-		prDocBook.println("                <para>The " + lSchemaFileDefn.lddName + " Data Dictionary provides domain-level standard definitions for data elements and their permissible value. They are useful for standardizing the capture of metadata and data itself for constructing database, metadata labels for documents, images, spreadsheets, and other datasets, and for labeling data for machine learning.</para>");
+		if (lSchemaFileDefn.nameSpaceIdNCLC.compareTo(commonNamespaceId) != 0) {
+			prDocBook.println("                <para>The " + lSchemaFileDefn.lddName + " Data Dictionary provides domain-level standard definitions for data elements and their permissible value. They are useful for standardizing the capture of metadata and data itself for constructing database, metadata labels for documents, images, spreadsheets, and other datasets, and for labeling data for machine learning.</para>");
+		} else {
+			prDocBook.println("                <para>The Enterprise Common Data Dictionary provides JPL-wide standard definitions for data elements and their permissible value. They are useful for standardizing the capture of metadata and data itself for constructing database, metadata labels for documents, images, spreadsheets, and other datasets, and for labeling data for machine learning.</para>");
+		}
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
 		prDocBook.println("            </sect1>");
