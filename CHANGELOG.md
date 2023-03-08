@@ -6,6 +6,7 @@
 
 **Requirements:**
 
+- CCB-325: Support for video and audio as product observational [\#616](https://github.com/NASA-PDS/pds4-information-model/issues/616)
 - CCB-357: Create Product\_External [\#614](https://github.com/NASA-PDS/pds4-information-model/issues/614)
 - CCB-355: Add Funding\_Acknowledgement class to Citation\_Information Class [\#611](https://github.com/NASA-PDS/pds4-information-model/issues/611)
 - CCB-354: Add new permissible values to Header/parsing\_standard\_id to support new versions of CDF [\#608](https://github.com/NASA-PDS/pds4-information-model/issues/608)
