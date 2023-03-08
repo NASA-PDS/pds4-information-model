@@ -66,11 +66,12 @@ class WriteDOMRDFOWLFile extends Object {
   }
 
   // write the RDF/OWL file
-  public void writeOWLFile(String lFileName) throws java.io.IOException {
+  public void writeOWLFile(SchemaFileDefn schemaFileDefn) throws java.io.IOException {
+	String lFileName = schemaFileDefn.relativeFileSpecOWLRDF_DOM;
     prDDPins =
         new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));
     printPDDPHdr();
-    printPDDPBody();
+    printPDDPBody(schemaFileDefn);
     printPDDPFtr();
     prDDPins.close();
   }
@@ -247,7 +248,7 @@ class WriteDOMRDFOWLFile extends Object {
   }
 
   // print the RDF/OWL body
-  public void printPDDPBody() {
+  public void printPDDPBody(SchemaFileDefn schemaFileDefn) {
     prDDPins.println(" ");
     prDDPins.println("   <!-- ");
     prDDPins.println(
@@ -258,7 +259,7 @@ class WriteDOMRDFOWLFile extends Object {
     prDDPins.println(
         "   ///////////////////////////////////////////////////////////////////////////////////////");
     prDDPins.println("      -->");
-    printClasses(prDDPins);
+    printClasses(schemaFileDefn, prDDPins);
 
     prDDPins.println(" ");
     prDDPins.println("   <!-- ");
@@ -280,7 +281,19 @@ class WriteDOMRDFOWLFile extends Object {
   }
 
   // write the PDS4 classes as OWL classes
-  public void printClasses(PrintWriter prDDPins) {
+  public void printClasses(SchemaFileDefn schemaFileDefn, PrintWriter prDDPins) {
+    ArrayList<DOMClass> lDOMClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassIdMap.values());
+    for (DOMClass lDOMClass : lDOMClassArr) {
+      if (lDOMClass.identifier.indexOf("PDS3") > -1) continue;
+      if (lDOMClass.nameSpaceIdNC.compareTo(schemaFileDefn.nameSpaceIdNCLC) != 0) continue;
+      if (lDOMClass.steward.compareTo("ops") == 0) continue;
+      printClass(lDOMClass, prDDPins);
+    }
+  }
+  
+
+  // write the PDS4 classes as OWL classes
+/*  public void printClasses(PrintWriter prDDPins) {
     ArrayList<DOMClass> lDOMClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassIdMap.values());
     for (Iterator<DOMClass> i = lDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lDOMClass = i.next();
@@ -298,7 +311,8 @@ class WriteDOMRDFOWLFile extends Object {
       }
       printClass(lDOMClass, prDDPins);
     }
-  }
+  } */
+  
 
   // write a single PDS4 classes as an OWL class
   public void printClass(DOMClass lDOMClass, PrintWriter prDDPins) {

@@ -149,8 +149,8 @@ public class ExportModels extends Object {
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Class Defn Done");
     DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Attr Defn Done");
     
-	// write the RDF/TTL file
-    if (DMDocument.exportOWLFileFlag) {
+	// write the OWL/RDF/TTL output in TTL format (IM Classification)
+    if (DMDocument.exportOWLRDFTTLFileFlag) {
     	String lClassificationType = "TBD_default";   // default
     	lClassificationType = "";   // default
     	lClassificationType = "PDS4.All.Products.Class.Prop"; // works
@@ -158,10 +158,18 @@ public class ExportModels extends Object {
     	//	lClassificationType = "PDS4.LDD.All";   
     	//	lClassificationType = "OAISIF";
     	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
-    	DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterPDSSchemaFileDefn);
+    	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
     	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
     	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-    	DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
+    	DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
+    }
+    
+	// write the OWL/RDF output in RDF format (IM Export)
+    if (DMDocument.exportOWLRDFFileFlag) {
+    	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
+		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
+		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn);
+		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
     }
 
     return;
@@ -243,18 +251,26 @@ public class ExportModels extends Object {
       writeDOMSpecification.printArtifacts();
       DMDocument.registerMessage("0>info " + "writeLDDArtifacts - Info Model Spec Done");
     }
-	
-	// write the RDF/TTL file
-	if (DMDocument.exportOWLFileFlag) {
+    
+	// write the OWL/RDF/TTL output in TTL format (IM Classification)
+	if (DMDocument.exportOWLRDFTTLFileFlag) {
 		String lClassificationType = "TBD_default";   // default
 		lClassificationType = "";   // default
 //		lClassificationType = ("PDS4.LDD.All");
 		lClassificationType = "PDS4.LDD.All";
-		DMDocument.dmProcessState.setRelativeFileSpecSKOSTTL_DOM (DMDocument.masterLDDSchemaFileDefn);
+		DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterLDDSchemaFileDefn);
 		ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
 		WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
 		writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-		DMDocument.registerMessage ("0>info " + "ExportModels - RDF/TTL Done");
+		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
+	}    
+	
+	// write the OWL/RDF output in RDF format (IM Export)
+	if (DMDocument.exportOWLRDFFileFlag) {
+		DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterLDDSchemaFileDefn);
+		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
+		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterLDDSchemaFileDefn);
+		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
 	}
 
     return;
