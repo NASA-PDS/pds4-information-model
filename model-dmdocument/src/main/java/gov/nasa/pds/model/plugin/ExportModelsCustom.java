@@ -190,21 +190,6 @@ public class ExportModelsCustom extends Object {
 		writeLODSKOSDOMFile.writeDOMSKOSFile (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecSKOSTTL_DOM);
 		DMDocument.registerMessage ("0>info " + "ExportModelsCustom - SKOS Done"); */
 
-		// write the RDF/OWL file
-		
-/*		if (! lLDDToolFlag) {
-			WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
-			writeDOMRDFOWLFile.writeOWLFile (configureClassesToWriteList_PDS4_Common (), DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF_DOM);
-			DMDocument.registerMessage ("0>info " + "ExportModelsCustom - RDF/OWL Done");
-		} else {
-			if (DMDocument.exportOWLFileFlag) {
-				ArrayList <DOMClass> lClassesToWrite = configureClassesToWriteList_PDS4_LDD ();
-				WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
-				writeDOMRDFOWLFile.writeOWLFile (lClassesToWrite, DMDocument.masterPDSSchemaFileDefn.relativeFileSpecOWLRDF_DOM);
-				DMDocument.registerMessage ("0>info " + "ExportModelsCustom - RDF/OWL Done");
-			}
-		} */
-
 		// write the 11179 DOM DD Class Definition XML Files
 		/*
 		WriteDDProductDOMClassDefinitions writeDDProductDOMClassDefinitions = new WriteDDProductDOMClassDefinitions ();
