@@ -235,14 +235,21 @@ public class DMProcessState {
     return false;
   }
 
-  public Boolean getexportOWLFileFlag() {
-    Integer lProcessOrder = processFlagMap.get("Export OWL File Flag");
+  public Boolean getexportOWLRDFTTLFileFlag() {
+    Integer lProcessOrder = processFlagMap.get("Export OWL/RDF/TTL File Flag");
     if (lProcessOrder != null) {
       return true;
     }
     return false;
   }
 
+  public Boolean getexportOWLRDFFileFlag() {
+    Integer lProcessOrder = processFlagMap.get("Export OWL/RDF File Flag");
+    if (lProcessOrder != null) {
+      return true;
+    }
+    return false;
+  }
   public Boolean getexportJSONFileAllFlag() {
     Integer lProcessOrder = processFlagMap.get("Export JSON File All Flag");
     if (lProcessOrder != null) {
@@ -361,9 +368,14 @@ public class DMProcessState {
     return;
   }
 
-  public void setexportOWLFileFlag() {
-    processFlagMap.put("Export OWL File Flag", 1190);
+  public void setExportOWLRDFTTLFileFlag() {
+    processFlagMap.put("Export OWL/RDF/TTL Flag - Classifications", 1190);
     return;
+  }
+  
+  public void setExportOWLRDFFileFlag() {
+	processFlagMap.put("Export OWL/RDF Flag - Model", 1195);
+	return;
   }
 
   public void setexportJSONFileAllFlag() {
@@ -381,10 +393,10 @@ public class DMProcessState {
 	  return;
   }
 	        
-  public void setExportOWLFileFlag() {
+/*  public void setExportOWLFileFlag() {
      processFlagMap.put("ExportOWLFileFlag", 1230);
      return;
-  }
+  } */
 
   public void setExportCustomFileFlag() {
       processFlagMap.put("ExportCustomFileFlag", 1240);
@@ -489,6 +501,22 @@ public class DMProcessState {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecSKOSTTL_DOM, 1230);
     if (lSchemaFileDefn.isLDD) {
       DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/skos/");
+    }
+    return;
+  }
+  
+  public void setRelativeFileSpecOWLRDFTTL(SchemaFileDefn lSchemaFileDefn) {
+    writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecOWLRDF_DOM, 1231);
+    if (lSchemaFileDefn.isLDD) {
+      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/owl/");
+    }
+    return;
+  }
+  
+  public void setRelativeFileSpecOWLRDF(SchemaFileDefn lSchemaFileDefn) {
+    writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecOWLRDF_DOM, 1232);
+    if (lSchemaFileDefn.isLDD) {
+      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/owl/");
     }
     return;
   }

@@ -179,7 +179,8 @@ public class DMDocument extends Object {
   static boolean exportSpecFileFlag = false;
   static boolean exportDDFileFlag = false;
   static boolean exportTermMapFileFlag = false;
-  static boolean exportOWLFileFlag = false;
+  static boolean exportOWLRDFTTLFileFlag = false;
+  static boolean exportOWLRDFFileFlag = false;
   static boolean exportCustomFileFlag = false;
   
   static boolean importJSONAttrFlag = false; // non PDS processing - not currently used
@@ -1501,8 +1502,11 @@ public class DMDocument extends Object {
     parser.addArgument("-T", "--TermMap").dest("T").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Terminological mapping to alternate names");
 
-    parser.addArgument("-O", "--OWL") .dest("O") .type(Boolean.class) .nargs(1)
-        .action(Arguments.storeTrue()) .help("OWL/RDF output in TTL format");
+    parser.addArgument("-O", "--OWL/RDF/TTL") .dest("O") .type(Boolean.class) .nargs(1)
+        .action(Arguments.storeTrue()) .help("OWL/RDF/TTL output in TTL format (IM Classification)");
+
+    parser.addArgument("-o", "--OWL/RDF") .dest("o") .type(Boolean.class) .nargs(1)
+        .action(Arguments.storeTrue()) .help("OWL/RDF output in RDF format (IM Export)");
 
     parser.addArgument("-C", "--Custom") .dest("C") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("Customized processing and reporting");
@@ -1660,8 +1664,13 @@ public class DMDocument extends Object {
     }
     Boolean OFlag = ns.getBoolean("O");
     if (OFlag) {
-    	dmProcessState.setExportOWLFileFlag ();
-    	exportOWLFileFlag = true;
+    	dmProcessState.setExportOWLRDFTTLFileFlag ();
+    	exportOWLRDFTTLFileFlag = true;
+   	}
+    Boolean oFlag = ns.getBoolean("o");
+    if (oFlag) {
+    	dmProcessState.setExportOWLRDFFileFlag ();
+    	exportOWLRDFFileFlag = true;
    	}
     Boolean CFlag = ns.getBoolean("C");
     if (CFlag) {
