@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-08)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
@@ -19,7 +19,8 @@
 
 **Defects:**
 
-- LDDTool does not write a DocBook file for the Common Dictionary [\#606](https://github.com/NASA-PDS/pds4-information-model/issues/606)
+- Information Model does not have Product\_External included in Identification\_Area.product\_class [\#618](https://github.com/NASA-PDS/pds4-information-model/issues/618) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+- LDDTool does not write a DocBook file for the Common Dictionary [\#606](https://github.com/NASA-PDS/pds4-information-model/issues/606) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - LDDTool is not including permissible values from certain Type\_Lists in the DD DocBook file [\#580](https://github.com/NASA-PDS/pds4-information-model/issues/580) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
 **Other closed issues:**
