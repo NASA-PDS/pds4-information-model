@@ -32,6 +32,7 @@ package gov.nasa.pds.model.plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ class WriteDOMRDFOWLFile extends Object {
   }
 
   // write the RDF/OWL file
-  public void writeOWLFile(SchemaFileDefn schemaFileDefn) throws java.io.IOException {
+  public void writeOWLFile(SchemaFileDefn schemaFileDefn) throws IOException {
 	String lFileName = schemaFileDefn.relativeFileSpecOWLRDF_DOM;
     prDDPins =
         new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));
