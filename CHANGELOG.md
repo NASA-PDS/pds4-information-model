@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-15)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
@@ -18,6 +18,7 @@
 - CCB-348: Add Units\_of\_Mass\_Density as a unit of measure [\#499](https://github.com/NASA-PDS/pds4-information-model/issues/499)
 - As a user, I want to describe a relationship between an attribute in the model and the column of a table [\#473](https://github.com/NASA-PDS/pds4-information-model/issues/473)
 - As a developer I want to have the PDS4 Information Model expressed in the RDF/OWL/TTL format.  [\#458](https://github.com/NASA-PDS/pds4-information-model/issues/458)
+- CCB-260: PDS4 label files do not have a unique file extension [\#119](https://github.com/NASA-PDS/pds4-information-model/issues/119)
 
 **Defects:**
 
@@ -27,6 +28,7 @@
 
 **Other closed issues:**
 
+- Release of the PDS4 Information Model Version 1.20.0.0 \(1K00\) [\#624](https://github.com/NASA-PDS/pds4-information-model/issues/624)
 - Stage the PDS4 Information Model Version 1.20.0.0 \(1.K.0.0\) for Update [\#596](https://github.com/NASA-PDS/pds4-information-model/issues/596)
 - \[namespace-registry\] add new namespace "lucy" [\#575](https://github.com/NASA-PDS/pds4-information-model/issues/575)
 - \[namespace-registry\] add new namespace "msl" [\#566](https://github.com/NASA-PDS/pds4-information-model/issues/566)
@@ -210,6 +212,7 @@
 - \[namespace-registry\] add new namespace "m2020" [\#352](https://github.com/NASA-PDS/pds4-information-model/issues/352)
 - \[namespace-registry\] add new namespace "ctli" [\#344](https://github.com/NASA-PDS/pds4-information-model/issues/344)
 - \[namespace-registry\] add new namespace "\<clementine\>" [\#332](https://github.com/NASA-PDS/pds4-information-model/issues/332)
+- Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
 
 **Defects:**
 
@@ -229,7 +232,6 @@
 - Deploy new Amazon Neptune instance for PDS4 IM prototype [\#359](https://github.com/NASA-PDS/pds4-information-model/issues/359)
 - Replicate diagram from PDS4 IM Spec [\#358](https://github.com/NASA-PDS/pds4-information-model/issues/358)
 - Ingest PDS4 IM into BlazeGraph [\#357](https://github.com/NASA-PDS/pds4-information-model/issues/357)
-- Improve argument handling using argument parsing library [\#240](https://github.com/NASA-PDS/pds4-information-model/issues/240)
 - CCB-283: Add reference\_type value document\_to\_data [\#164](https://github.com/NASA-PDS/pds4-information-model/issues/164)
 
 ## [v13.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v13.0.2) (2021-05-04)
