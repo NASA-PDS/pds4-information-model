@@ -52,9 +52,9 @@ class WriteDOMTermEntryJSON extends Object {
 	
 //	write terminological entries
 	public void WriteDOMTermEntries (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-		String lFileName = lSchemaFileDefn.relativeFileSpecCCSDSCSV;			
-		lFileName += "_termmap.txt";
-//		PrintWriter prDocBook = new PrintWriter(new OutputStreamWriter (new FileOutputStream(new File(lFileName)), "UTF-8"));
+//		String lFileName = lSchemaFileDefn.relativeFileSpecCCSDSCSV;	
+		String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
+		lFileName = lFileName.replace(".JSON", "_TM.JSON");
 
 		// get the term mappings
 		TreeMap <String, TermEntryDefnGroup> TermEntryDefnGroupMap = getTermMappings ();

@@ -65,16 +65,6 @@ public class ExportModelsCustom extends Object {
 			}
 		}
 		
-		// write the Terminological Mapping defined in the TermMap LDD to JSON
-		if (lLDDToolFlag) {
-			if (DMDocument.exportTermMapFileFlag) {
-				// write the terminological entry files
-				WriteDOMTermEntryJSON writeDOMTermEntryJSON = new WriteDOMTermEntryJSON ();
-				writeDOMTermEntryJSON.WriteDOMTermEntries (DMDocument.masterPDSSchemaFileDefn);
-				DMDocument.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done");
-			}
-		}
-		
 	    // write the standard id extract file
 	    // WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract();
 		// writeDOMStandardIdExtract.writeExtractFile();

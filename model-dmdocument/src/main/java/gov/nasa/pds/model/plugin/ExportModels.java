@@ -92,9 +92,11 @@ public class ExportModels extends Object {
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
 
     // write the custom files
-    ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
-    lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
-        DMDocument.masterPDSSchemaFileDefn);
+    if (DMDocument.exportCustomFileFlag) {
+    	ExportModelsCustom lExportModelsCustom = new ExportModelsCustom ();
+    	lExportModelsCustom.writeArtifacts (DMDocument.LDDToolFlag,
+    			DMDocument.masterPDSSchemaFileDefn);
+    }
 
     // write the DOM RDF
     WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
@@ -271,6 +273,14 @@ public class ExportModels extends Object {
 		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
 		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterLDDSchemaFileDefn);
 		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
+	}
+	
+	// write the Terminological Mapping defined in the TermMap LDD to JSON
+	if (DMDocument.exportTermMapFileFlag) {
+		// write the terminological entry files
+		WriteDOMTermEntryJSON writeDOMTermEntryJSON = new WriteDOMTermEntryJSON ();
+		writeDOMTermEntryJSON.WriteDOMTermEntries (DMDocument.masterPDSSchemaFileDefn);
+		DMDocument.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done");
 	}
 
     return;
