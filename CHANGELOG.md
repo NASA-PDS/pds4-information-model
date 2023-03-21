@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-15)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-21)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
@@ -22,6 +22,7 @@
 
 **Defects:**
 
+- Repository for Released IM distribution package needs reorganization [\#636](https://github.com/NASA-PDS/pds4-information-model/issues/636)
 - Maven did not allow the addition of new folders under pds4-information-model/docs [\#630](https://github.com/NASA-PDS/pds4-information-model/issues/630)
 - Information Model does not have Product\_External included in Identification\_Area.product\_class [\#618](https://github.com/NASA-PDS/pds4-information-model/issues/618) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 - LDDTool does not write a DocBook file for the Common Dictionary [\#606](https://github.com/NASA-PDS/pds4-information-model/issues/606) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
@@ -31,6 +32,7 @@
 
 - Release of the PDS4 Information Model Version 1.20.0.0 \(1K00\) [\#624](https://github.com/NASA-PDS/pds4-information-model/issues/624)
 - Review and update code per Sonatype inputs on PR \#621 [\#622](https://github.com/NASA-PDS/pds4-information-model/issues/622)
+- Develop initial target ontology for planetary systems [\#612](https://github.com/NASA-PDS/pds4-information-model/issues/612)
 - Stage the PDS4 Information Model Version 1.20.0.0 \(1.K.0.0\) for Update [\#596](https://github.com/NASA-PDS/pds4-information-model/issues/596)
 - \[namespace-registry\] add new namespace "lucy" [\#575](https://github.com/NASA-PDS/pds4-information-model/issues/575)
 - \[namespace-registry\] add new namespace "msl" [\#566](https://github.com/NASA-PDS/pds4-information-model/issues/566)
