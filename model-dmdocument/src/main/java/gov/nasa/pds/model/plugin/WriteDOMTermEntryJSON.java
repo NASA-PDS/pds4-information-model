@@ -51,8 +51,7 @@ class WriteDOMTermEntryJSON extends Object {
 	}
 	
 //	write terminological entries
-	public void WriteDOMTermEntries (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-//		String lFileName = lSchemaFileDefn.relativeFileSpecCCSDSCSV;	
+	public void WriteDOMTermEntries (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {	
 		String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
 		lFileName = lFileName.replace(".JSON", "_TM.JSON");
 
@@ -63,7 +62,8 @@ class WriteDOMTermEntryJSON extends Object {
 		JSONObject jsonObjectRoot = getJSONObject (TermEntryDefnGroupMap);
 
 		// write the JSON object
-		writeJson(jsonObjectRoot, "C:\\AA7Ontologies\\A01PDS4\\Document\\LDDTool\\export\\csv\\PDS4_PDS_CCSDS_1I00_termmap.JSON");
+//		writeJson(jsonObjectRoot, "C:\\AA7Ontologies\\A01PDS4\\Document\\LDDTool\\export\\csv\\PDS4_PDS_CCSDS_1I00_termmap.JSON");
+		writeJson(jsonObjectRoot, lFileName);
 		return;
 	}
 	
@@ -95,21 +95,10 @@ class WriteDOMTermEntryJSON extends Object {
 						lddName = lTermEntryDefn.lddName;
 						lddVersion = lTermEntryDefn.lddVersion;
 						String lKey = lDOMAttr.identifier + "_" + lTermEntryDefn.name + "_" + DOMInfoModel.getNextUId();
-						
 						TermEntryDefnGroup termEntryDefnGroup = new TermEntryDefnGroup ();
 						termEntryDefnGroup.identifier = lKey;
 						termEntryDefnGroup.attrId = lDOMAttr.nameSpaceId + lDOMAttr.title;
 						termEntryDefnGroup.termEntryDefn = lTermEntryDefn;
-						
-/*						System.out.println("\ndebug getTermMappings termEntryDefnGroup.identifier:" + termEntryDefnGroup.identifier);
-						System.out.println("debug getTermMappings termEntryDefnGroup.attrId:" + termEntryDefnGroup.attrId);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.fromInstanceId:" + termEntryDefnGroup.termEntryDefn.fromInstanceId);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.toInstanceId:" + termEntryDefnGroup.termEntryDefn.toInstanceId);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.name:" + termEntryDefnGroup.termEntryDefn.name);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.semanticRelation:" + termEntryDefnGroup.termEntryDefn.semanticRelation);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.lddName:" + termEntryDefnGroup.termEntryDefn.lddName);
-						System.out.println("debug getTermMappings termEntryDefnGroup.termEntryDefn.lddVersion:" + termEntryDefnGroup.termEntryDefn.lddVersion);
-*/
 						termEntryDefnGroupMap.put(lKey, termEntryDefnGroup);
 					}
 				}
