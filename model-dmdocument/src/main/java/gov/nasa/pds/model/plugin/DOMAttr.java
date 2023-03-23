@@ -646,6 +646,10 @@ public class DOMAttr extends ISOClassOAIS11179 {
     this.isChoice = lOrgAttr.isChoice;
     this.isAny = lOrgAttr.isAny;
     this.isFromLDD = lOrgAttr.isFromLDD;
+    this.isExposed = lOrgAttr.isExposed;
+    this.isAssociatedExternalAttr = lOrgAttr.isAssociatedExternalAttr; 
+    this.isExtendedAttribute = lOrgAttr.isExtendedAttribute;
+    
     this.hasRetiredValue = lOrgAttr.hasRetiredValue;
 
     this.valArr = lOrgAttr.valArr;

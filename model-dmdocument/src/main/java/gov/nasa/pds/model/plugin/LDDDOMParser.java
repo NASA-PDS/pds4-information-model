@@ -372,14 +372,11 @@ public class LDDDOMParser extends Object {
 	// get the list of all DD_Attribute_External nodes
 	private void getAttributesExtended (SchemaFileDefn lSchemaFileDefn, Element docEle) {			
 		//get a nodelist of <DD_Attribute> elements and iterate
-//		NodeList nl = docEle.getElementsByTagName("DD_Attribute_External");
 		NodeList nl = docEle.getElementsByTagName("DD_Attribute_Extended");
 		if(nl != null && nl.getLength() > 0) {
 			for(int i = 0 ; i < nl.getLength();i++) {
 				//get the element
 				Element el = (Element)nl.item(i);	
-//				System.out.println("debug getAttributesExtended -- FOUND -- getTextValue(el,\"name\"):" + getTextValue(el,"name"));
-						
 				getAttribute_properties (lSchemaFileDefn, docEle, el, true);
 			}
 		}
@@ -432,13 +429,14 @@ public class LDDDOMParser extends Object {
 			if ((lNillableFlag.compareTo("true") == 0) || (lNillableFlag.compareTo("1") == 0)) lDOMAttr.isNilable = true;
 			lDOMAttr.propType = "ATTRIBUTE";
 			lDOMAttr.isAttribute = true;
-//			System.out.println("debug getAttribute_properties -- FOUND -- getTextValue(el,\"name\"):" + getTextValue(el,"name"));
 			
 			// get the value domain
 			getValueDomain (lDOMAttr, el);
 			
 			// get the terminological entry
 			getTermEntry (lDOMAttr, el);
+			
+//			DMDebugUtils.dumpTermEntryMap("0", lDOMAttr);
 			
 			// check if attribute already exists
 			String lid = DMDocument.registrationAuthorityIdentifierValue + lLocalIdentifierCleaned;
@@ -552,6 +550,7 @@ public class LDDDOMParser extends Object {
         Element el = (Element) nl.item(i);
         termEntryNum++;
         String termEntryId = termEntryIdPrefix + Integer.toString(termEntryNum);
+
         lVal = getTextValue(el, "language");
         if (lVal != null) {
             TermEntryDefn lTermEntry = new TermEntryDefn();
@@ -560,13 +559,14 @@ public class LDDDOMParser extends Object {
 			lTermEntry.toInstanceId = DOMInfoModel.cleanCharString(toInstanceId);
 			lTermEntry.semanticRelation = DOMInfoModel.cleanCharString(semanticRelation); 
 			lTermEntry.language = lVal;
-          if (lObject.getClass().getName().compareTo("DOMAttr") == 0) {
+                         
+          if (lObject instanceof DOMAttr) {
             DOMAttr lAttr = (DOMAttr) lObject;
-            lAttr.termEntryMap.put(termEntryId, lTermEntry);
-          } else if (lObject.getClass().getName().compareTo("DOMClass") == 0) {
+            lAttr.termEntryMap.put(termEntryId, lTermEntry);            
+          } else if (lObject instanceof DOMClass) {
             DOMClass lClass = (DOMClass) lObject;
             lClass.termEntryMap.put(termEntryId, lTermEntry);
-          }
+          }            
 
           lVal = getTextValue(el, "name");
           if (lVal != null) {
@@ -2701,13 +2701,13 @@ public class LDDDOMParser extends Object {
   }
 
   public void validateLDDAttributes() {
-    for (Iterator<DOMAttr> i = attrArr.iterator(); i.hasNext();) {
-      DOMAttr lDOMAttr = i.next();
+    for (DOMAttr lDOMAttr : attrArr) {
       validateAttribute(lDOMAttr);
     }
   }
 
   private void validateAttribute(DOMAttr lDOMAttr) {
+	if (lDOMAttr.isExtendedAttribute) return;
     int numMatches = 0, maxMatches = 7;
     DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lDOMAttr.valueType);
     if (lDOMDataType == null) {
