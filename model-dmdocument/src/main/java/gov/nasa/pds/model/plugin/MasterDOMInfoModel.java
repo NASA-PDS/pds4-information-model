@@ -1290,16 +1290,13 @@ class MasterDOMInfoModel extends DOMInfoModel {
     }
   }
 
-
   // 027 - Set Master Attribute XML Base Data Type From the Data Type
   public void SetMasterAttrXMLBaseDataTypeFromDataType() {
     // for each PDS4 attribute set the xml_schema_base_type from the data type
 
-    for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
-      if (lAttr.isInactive) {
-        continue;
-      }
+    for (DOMAttr lAttr : DOMInfoModel.masterDOMAttrArr) {
+      if (lAttr.isInactive) continue;
+      if (lAttr.isExtendedAttribute) continue;
       if (lAttr.isPDS4) {
         DOMDataType lDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lAttr.valueType);
         if (lDataType != null) {
@@ -1318,13 +1315,10 @@ class MasterDOMInfoModel extends DOMInfoModel {
 
   // 029.1 - find attributes that have no overrides; compare to data type
   public void sethasAttributeOverride1(ArrayList<DOMAttr> lMasterDOMAttrArr) {
-    for (Iterator<DOMAttr> i = lMasterDOMAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
-      if (lAttr.isInactive) {
-        continue;
-      }
+    for (DOMAttr lAttr : lMasterDOMAttrArr) {
+      if (lAttr.isInactive) continue;
+      if (lAttr.isExtendedAttribute) continue;
       if (lAttr.isAttribute) {
-        // DOMDataType lValueType = DOMInfoModel.masterDOMDataTypeMap.get(lAttr.valueType);
         DOMDataType lValueType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lAttr.valueType);
         if (lValueType == null) {
           DMDocument.registerMessage("1>error "

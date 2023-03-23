@@ -1476,8 +1476,11 @@ public abstract class DOMInfoModel extends Object {
     prDOMWriter.println("        attr.isChoice:" + attr.isChoice);
     prDOMWriter.println("        attr.isAny:" + attr.isAny);
     prDOMWriter.println("        attr.isFromLDD:" + attr.isFromLDD);
+    prDOMWriter.println("        attr.isExposed:" + attr.isExposed);
+    prDOMWriter.println("        attr.isExtendedAttribute:" + attr.isExtendedAttribute);
+    prDOMWriter.println("        attr.isAssociatedExternalAttr:" + attr.isAssociatedExternalAttr);
+    
     prDOMWriter.println("        attr.hasRetiredValue:" + attr.hasRetiredValue);
-
     prDOMWriter.println("        attr.classWord:" + attr.classWord);
     prDOMWriter.println("        attr.deDataIdentifier:" + attr.deDataIdentifier);
 
@@ -1503,6 +1506,27 @@ public abstract class DOMInfoModel extends Object {
       prDOMWriter.println("            attr.domPermValueArr:" + "null");
     } else {
       prDOMWriter.println("            attr.domPermValueArr.size():" + attr.domPermValueArr.size());
+    }
+    
+    // Terminological Entries
+    if (attr.termEntryMap != null && attr.termEntryMap.size() > 0) {
+      prDOMWriter.println("\n        termEntryMap");
+//      TreeMap<String, TermEntryDefn> termEntryMap
+      ArrayList <TermEntryDefn> termEntryDefnArr = new ArrayList <TermEntryDefn> (attr.termEntryMap.values());
+      
+      for (TermEntryDefn termEntryDefn : termEntryDefnArr) {
+          prDOMWriter.println("          termEntryDefn.name:" + termEntryDefn.name);
+          prDOMWriter.println("          termEntryDefn.lddName:" + termEntryDefn.lddName);
+          prDOMWriter.println("          termEntryDefn.lddVersion:" + termEntryDefn.lddVersion);
+          prDOMWriter.println("          termEntryDefn.definition:" + termEntryDefn.definition);
+          prDOMWriter.println("          termEntryDefn.language:" + termEntryDefn.language);
+          prDOMWriter.println("          termEntryDefn.semanticRelation:" + termEntryDefn.semanticRelation);
+          prDOMWriter.println("          termEntryDefn.mappingProperty:" + termEntryDefn.mappingProperty);
+          prDOMWriter.println("          termEntryDefn.sourceNamespaceId:" + termEntryDefn.sourceNamespaceId);
+          prDOMWriter.println("          termEntryDefn.fromInstanceId:" + termEntryDefn.fromInstanceId);
+          prDOMWriter.println("          termEntryDefn.toInstanceId:" + termEntryDefn.toInstanceId);
+          prDOMWriter.println("          termEntryDefn.isPreferred:" + termEntryDefn.isPreferred);
+      }
     }
   }
 
