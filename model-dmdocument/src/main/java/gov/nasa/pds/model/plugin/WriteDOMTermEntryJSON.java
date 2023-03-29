@@ -112,7 +112,7 @@ class WriteDOMTermEntryJSON extends Object {
 	private JSONObject getJSONObject (TreeMap <String, TermEntryDefnGroup> termEntryDefnGroupMap) {
 		// create the JSON object
 		JSONObject jsonObjectRoot = new JSONObject ();
-		jsonObjectRoot.put("datetime", DMDocument.masterTodaysDateTimeUTCwT);
+		jsonObjectRoot.put("datetime", DMDocument.masterTodaysDateTimeUTCFromInstant);
 		jsonObjectRoot.put("infoModelVersionId", DMDocument.infoModelVersionId);
 		jsonObjectRoot.put("title", "PDS4 Term Mappings");
 		jsonObjectRoot.put("lddName", lddName);

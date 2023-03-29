@@ -66,7 +66,6 @@ class WriteDOM11179DDPinsFilePClass extends Object {
   // Print the Protege Pins Header
   private void printPDDPHdr() {
     prDDPins.println("	; Tue Jan 26 07:52:47 PST 2010"); // protege write resets date
-    // prDDPins.println(" ; " + DMDocument.masterTodaysDateTimeUTCwT);
     prDDPins.println("	; ");
     prDDPins.println("	;+ (version \"3.3.1\")");
     prDDPins.println("	;+ (build \"Build 430\")");

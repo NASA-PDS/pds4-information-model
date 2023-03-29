@@ -35,6 +35,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -248,7 +252,8 @@ public class DMDocument extends Object {
   static String masterTodaysDate;
   static String masterTodaysDateUTC;
   static String masterTodaysDateTimeUTC;
-  static String masterTodaysDateTimeUTCwT;
+//  static String masterTodaysDateTimeUTCwT;
+  static String masterTodaysDateTimeUTCFromInstant;
   static String masterTodaysDateyymmdd;
 
   // 11179 and RDF global variables
@@ -387,7 +392,8 @@ public class DMDocument extends Object {
     masterTodaysDateyymmdd = masterTodaysDateUTC.substring(2, 4)
         + masterTodaysDateUTC.substring(5, 7) + masterTodaysDateUTC.substring(8, 10);
     masterTodaysDateTimeUTC = getUTCDateTime();
-    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
+//    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
+    masterTodaysDateTimeUTCFromInstant = getUTCDateTimeFromInstant();
 
     rdfPrefix = "http://pds.nasa.gov/infomodel/pds#";
     creationDateValue = masterTodaysDateUTC;
@@ -984,6 +990,16 @@ public class DMDocument extends Object {
     }
     return true;
   }
+
+  /**
+   * get a UTC Formated Date/Time from Instant 
+   */
+  static String getUTCDateTimeFromInstant() {
+      Instant now = Instant.now();
+      now = now.truncatedTo(ChronoUnit.SECONDS);
+      String dateTimeUTC = now.toString();
+    return dateTimeUTC;
+  }   
 
   /**
    * get a UTC Formated Date/Time from the machine date
