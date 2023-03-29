@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-28)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-29)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
 
@@ -31,6 +31,7 @@
 **Other closed issues:**
 
 - \[namespace-registry\] add new namespace "clps" [\#640](https://github.com/NASA-PDS/pds4-information-model/issues/640)
+- \[namespace-registry\] add new namespace "psyche" [\#638](https://github.com/NASA-PDS/pds4-information-model/issues/638)
 - Release of the PDS4 Information Model Version 1.20.0.0 \(1K00\) [\#624](https://github.com/NASA-PDS/pds4-information-model/issues/624)
 - Review and update code per Sonatype inputs on PR \#621 [\#622](https://github.com/NASA-PDS/pds4-information-model/issues/622)
 - Develop initial target ontology for planetary systems [\#612](https://github.com/NASA-PDS/pds4-information-model/issues/612)
