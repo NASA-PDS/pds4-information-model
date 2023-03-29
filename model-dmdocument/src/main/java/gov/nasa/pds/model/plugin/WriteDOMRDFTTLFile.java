@@ -98,7 +98,7 @@ class WriteDOMRDFTTLFile extends Object{
 		}
 		prRDFFile.println("###########################################");
 		prRDFFile.println("########## Class definitions");
-		prRDFFile.println("########## DateTime:" + DMDocument.masterTodaysDateTimeUTCwT);
+		prRDFFile.println("########## DateTime:" + DMDocument.masterTodaysDateTimeUTCFromInstant);
 		prRDFFile.println("###########################################");
 	}
 

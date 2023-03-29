@@ -91,7 +91,7 @@ class WriteDOMDDJSONFile extends Object {
     prDDPins.println("      " + formValue("LDD Version") + ": "
         + formValue(lSchemaFileDefn2.ont_version_id) + " ,");
     prDDPins.println("      " + formValue("Date") + ": "
-        + formValue(DMDocument.masterTodaysDateTimeUTCwT) + " ,");
+        + formValue(DMDocument.masterTodaysDateTimeUTCFromInstant) + " ,");
     prDDPins.println("      " + formValue("Description") + ": "
         + formValue("This document is a dump of the contents of the PDS4 Data Dictionary") + " ,");
     String lNSList = formValue("pds:");
