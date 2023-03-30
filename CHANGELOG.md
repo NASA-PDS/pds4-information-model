@@ -20,6 +20,10 @@
 - As a developer I want to have the PDS4 Information Model expressed in the RDF/OWL/TTL format.  [\#458](https://github.com/NASA-PDS/pds4-information-model/issues/458)
 - CCB-260: PDS4 label files do not have a unique file extension [\#119](https://github.com/NASA-PDS/pds4-information-model/issues/119)
 
+**Improvements:**
+
+- Update date format to be timezone aware [\#641](https://github.com/NASA-PDS/pds4-information-model/issues/641)
+
 **Defects:**
 
 - Repository for Released IM distribution package needs reorganization [\#636](https://github.com/NASA-PDS/pds4-information-model/issues/636)

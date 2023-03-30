@@ -517,7 +517,8 @@ class WriteDOMDocBookAnon extends Object {
         }
 	    prDocBook.println("<sect1>");
 
-	    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  " + getClassLink(lAttr.attrParentClass) + lRegistrationStatusInsert + "</title>");
+//	    prDocBook.println("    <title>" + getValue(lAttr.title) + " ___member of___ " + getClassLink(lAttr.attrParentClass) + lRegistrationStatusInsert + "</title>");
+	    prDocBook.println("    <title>" + getValue(lAttr.title) + "</title>");
 	    prDocBook.println("");
 	    prDocBook.println("<para>");
 	    prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
@@ -963,75 +964,8 @@ class WriteDOMDocBookAnon extends Object {
 		prDocBook.println("            <sect1>");
 		prDocBook.println("                <title>Terminology</title>");
 		prDocBook.println("                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
-		prDocBook.println("                <para>Following are some definitions of essential terms used throughout this document.</para>");
-		prDocBook.println("                <itemizedlist>");
-
-		
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Artifact</emphasis> - An object made by a human being.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Conceptual Object</emphasis> - Something which is neither digital or physical, but conceptual in nature such as a project.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Conceptual Data Object</emphasis> - A digital object that represents a concept.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Data</emphasis> - A representation of information in a formalized manner suitable for communication, interpretation, or processing. Examples of data include a sequence of bits, a table of numbers, the characters on a page, the recording of sounds, or a descriptive attributes of a moon rock specimen.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Data Artifact</emphasis> - A data object produced within, or generated from, a digital ecosystem.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Data Object</emphasis> - A data object is either digital, physical, or conceptual. Examples of digital data objects include a time series or image. Examples of physical data objects are descriptions of such things as spacecraft, instruments, and facilities. Conceptual data objects include description of such things as projects and organizations.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Data Repository</emphasis> - A digital store of managed JPL data artifacts that provides reliable, long-term access, now and in the future.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Digital Object</emphasis> - A sequence of digital bits, 0's and 1's.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Digital Data Object</emphasis> - A digital object along with its representation metadata.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Gold Source</emphasis> - Used interchangeably with “official” in some cases, a gold source is the authoritative system or repository that contains data or information maintained by an organization responsible for its integrity. The management of gold sources follows the Controlled Content requirements of Document and Data Control (JPL Rules! DocID 57034). For example, Hardware Build Books (HBBs) may contain convenience copies of Inspection Reports (IRs), but the gold source for IRs is the Quality Assurance Reporting System (QARS). While most gold sources are now digitized, it is important to know that some hardcopy gold sources remain (e.g., legacy drawings).</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">JPL Data Artifact</emphasis> - A data artifact determined to be of value to JPL to preserve, share, and use both internally and externally to the organization. Formal definition can be found here on JPL Rules!</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Knowledge</emphasis> - Understanding gained through experience or association. It is often characterized as propositional (know-that), competence (know-how), or acquaintance (know-about) , with relative levels of expertise determined by the depth of understanding of the subject matter, breadth of undertanding of that subject matter in relationship to other and larger domains, and skillfulness in applying it. Knowledge also is often categorized as tacit (hard to express because it is embedded in what we do) and explicit (more readily formalized and codified).</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Metadata</emphasis> - A digital object (data) that describes a digital data object.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Physical Object</emphasis> - Something that physically exists that can be described such as a spacecraft or building</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Physical Data Object</emphasis> - A digital object that represents a physical Thing.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                    <listitem>");
-		prDocBook.println("                        <para><emphasis role=\"italic\">Trusted Data Repository</emphasis> - A data repository that meets the CoreTrustSeal Certification requirements.</para>");
-		prDocBook.println("                    </listitem>");
-
-		prDocBook.println("                </itemizedlist>");
+		String lLink = "<link xlink:href=\"https://data.jpl.nasa.gov/data-standards/glossary/\">EIM Terminology website</link>";
+		prDocBook.println("                <para>Some essential terms and their definition used in this document can be found at the " + lLink + ".</para>");
 		prDocBook.println("");
 		prDocBook.println("                <para>");
 		prDocBook.println("                </para>");
