@@ -112,7 +112,7 @@ class WriteCoreXMLSchemaLabel extends Object {
     prSchematron.println("        <product_class>Product_XML_Schema</product_class>");
     prSchematron.println("        <Modification_History>");
     prSchematron.println("            <Modification_Detail>");
-    prSchematron.println("                <modification_date>" + DMDocument.masterTodaysDateTimeUTCFromInstant
+    prSchematron.println("                <modification_date>" + DMDocument.masterTodaysDateTimeUTCwT
         + "</modification_date>");
     prSchematron
         .println("                <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
@@ -127,7 +127,7 @@ class WriteCoreXMLSchemaLabel extends Object {
     prSchematron.println("        <File>");
     prSchematron.println(
         "            <file_name>" + lSchemaFileDefn.relativeFileNameXMLSchema + "</file_name>");
-    prSchematron.println("            <creation_date_time>" + DMDocument.masterTodaysDateTimeUTCFromInstant
+    prSchematron.println("            <creation_date_time>" + DMDocument.masterTodaysDateTimeUTCwT
         + "</creation_date_time>");
     prSchematron.println("            <file_size unit=\"byte\">"
         + getFileSize(lSchemaFileDefn.relativeFileSpecXMLSchema) + "</file_size>");
@@ -149,7 +149,7 @@ class WriteCoreXMLSchemaLabel extends Object {
     prSchematron.println("        <File>");
     prSchematron.println(
         "            <file_name>" + lSchemaFileDefn.relativeFileNameSchematron + "</file_name>");
-    prSchematron.println("            <creation_date_time>" + DMDocument.masterTodaysDateTimeUTCFromInstant
+    prSchematron.println("            <creation_date_time>" + DMDocument.masterTodaysDateTimeUTCwT
         + "</creation_date_time>");
     prSchematron.println("            <file_size unit=\"byte\">"
         + getFileSize(lSchemaFileDefn.relativeFileSpecSchematron) + "</file_size>");
