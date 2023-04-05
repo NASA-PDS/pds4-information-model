@@ -35,7 +35,6 @@ import java.util.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-
 // Write the Terminological Entries to a file
 
 class WriteDOMTermEntryJSON extends Object {
@@ -44,13 +43,14 @@ class WriteDOMTermEntryJSON extends Object {
 	String lddName;
 	String lddVersion;
 	    
+	//	write terminological entries to a file in JSON format
 	public WriteDOMTermEntryJSON () {
 		lddName = "TBD_lddName";
 		lddVersion = "TBD_lddVersion";
 		return;
 	}
 	
-//	write terminological entries
+	//	write terminological entries
 	public void WriteDOMTermEntries (SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {	
 		String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
 		lFileName = lFileName.replace(".JSON", "_TM.JSON");
@@ -62,7 +62,6 @@ class WriteDOMTermEntryJSON extends Object {
 		JSONObject jsonObjectRoot = getJSONObject (TermEntryDefnGroupMap);
 
 		// write the JSON object
-//		writeJson(jsonObjectRoot, "C:\\AA7Ontologies\\A01PDS4\\Document\\LDDTool\\export\\csv\\PDS4_PDS_CCSDS_1I00_termmap.JSON");
 		writeJson(jsonObjectRoot, lFileName);
 		return;
 	}
@@ -86,11 +85,7 @@ class WriteDOMTermEntryJSON extends Object {
 					// skip attribute with no terminological entry map
 					if (lDOMAttr.termEntryMap == null || lDOMAttr.termEntryMap.isEmpty() ) continue;
 					
-//					System.out.println("\ndebug getTermMappings lDOMClass.identifier:" + lDOMClass.identifier);
-//					System.out.println("debug getTermMappings lDOMAttr.identifier:" + lDOMAttr.identifier);
-//					System.out.println("debug getTermMappings -- FOUND -- lDOMAttr.identifier:" + lDOMAttr.identifier);
-					
-					// found a terminological entry map; get the TermEntryDefns of the map as an array
+					// found a terminological entry map; create an array of Term Entry Definition Groups
 					for (TermEntryDefn lTermEntryDefn : lDOMAttr.termEntryMap.values()) {
 						lddName = lTermEntryDefn.lddName;
 						lddVersion = lTermEntryDefn.lddVersion;
@@ -104,11 +99,12 @@ class WriteDOMTermEntryJSON extends Object {
 				}
 			}
 		}
-//       return termEntryDefnMap;
+		//  return termEntryDefnMap;
        return termEntryDefnGroupMap;
 	}
 	
 	// get the term mappings as a JSON object
+	@SuppressWarnings("unchecked")
 	private JSONObject getJSONObject (TreeMap <String, TermEntryDefnGroup> termEntryDefnGroupMap) {
 		// create the JSON object
 		JSONObject jsonObjectRoot = new JSONObject ();
@@ -131,25 +127,25 @@ class WriteDOMTermEntryJSON extends Object {
 
 			// get the From (new) term
 			JSONObject jsonFromObject = new JSONObject ();
-			String fromInstanceId = getEscapedValue(termEntryDefnGroup.termEntryDefn.fromInstanceId);
+			String fromInstanceId = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.fromInstanceId);
 			jsonFromObject.put("from", fromInstanceId);
 			jsonFromToArr.add(jsonFromObject);
 			
 			// get the To (PDS4) term
 			JSONObject jsonToObject = new JSONObject ();
-			String toInstanceId = getEscapedValue(termEntryDefnGroup.termEntryDefn.toInstanceId);
+			String toInstanceId = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.toInstanceId);
 			jsonToObject.put("to", toInstanceId);
 			jsonFromToArr.add(jsonToObject);
 			
 			// get the SKOS semanticRelation
 			JSONObject jsonSKOSObject = new JSONObject ();
-			String semanticRelation = getEscapedValue(termEntryDefnGroup.termEntryDefn.semanticRelation);
+			String semanticRelation = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.semanticRelation);
 			jsonSKOSObject.put("skos", semanticRelation);
 			jsonFromToArr.add(jsonSKOSObject);
 			
 			// get the description of the mapping
 			JSONObject jsonDefinitionObject = new JSONObject ();
-			String definition = getEscapedValue(termEntryDefnGroup.termEntryDefn.definition);
+			String definition = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.definition);
 			jsonDefinitionObject.put("defn", definition);
 			jsonFromToArr.add(jsonDefinitionObject);
 			
@@ -164,11 +160,10 @@ class WriteDOMTermEntryJSON extends Object {
         return jsonObjectRoot;
 	}
 
-	
-    public static void writeJson(JSONObject jsonObject, String file) {
+	// write the JSON string to a file
+    private void writeJson(JSONObject jsonObject, String file) {
     	// write the JSON Object
         try {
-//            System.out.println(jsonObject);
             FileWriter jsonFileWriter = new FileWriter(file);
             jsonFileWriter.write(jsonObject.toJSONString());
             jsonFileWriter.flush();
@@ -177,11 +172,8 @@ class WriteDOMTermEntryJSON extends Object {
             e.printStackTrace();
         }
     }
-	
-	private String getEscapedValue (String lValue) {
-		return DOMInfoModel.escapeXMLChar(lValue);
-	}
-	
+    
+    // structure for sorting termEntryDefns
 	class TermEntryDefnGroup {
 		String identifier;
 		String attrId;
