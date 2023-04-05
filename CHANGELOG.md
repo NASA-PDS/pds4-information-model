@@ -1,8 +1,8 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-03-29)
+## [release/14.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.0) (2023-03-30)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...release/14.2.0)
 
 **Requirements:**
 
@@ -34,6 +34,7 @@
 
 **Other closed issues:**
 
+- LDDTool to generate one DocBook file per LDD - Custom Modifications [\#645](https://github.com/NASA-PDS/pds4-information-model/issues/645)
 - \[namespace-registry\] add new namespace "clps" [\#640](https://github.com/NASA-PDS/pds4-information-model/issues/640)
 - \[namespace-registry\] add new namespace "psyche" [\#638](https://github.com/NASA-PDS/pds4-information-model/issues/638)
 - Release of the PDS4 Information Model Version 1.20.0.0 \(1K00\) [\#624](https://github.com/NASA-PDS/pds4-information-model/issues/624)
