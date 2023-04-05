@@ -252,7 +252,7 @@ public class DMDocument extends Object {
   static String masterTodaysDate;
   static String masterTodaysDateUTC;
   static String masterTodaysDateTimeUTC;
-//  static String masterTodaysDateTimeUTCwT;
+  static String masterTodaysDateTimeUTCwT;
   static String masterTodaysDateTimeUTCFromInstant;
   static String masterTodaysDateyymmdd;
 
@@ -392,7 +392,7 @@ public class DMDocument extends Object {
     masterTodaysDateyymmdd = masterTodaysDateUTC.substring(2, 4)
         + masterTodaysDateUTC.substring(5, 7) + masterTodaysDateUTC.substring(8, 10);
     masterTodaysDateTimeUTC = getUTCDateTime();
-//    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
+    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
     masterTodaysDateTimeUTCFromInstant = getUTCDateTimeFromInstant();
 
     rdfPrefix = "http://pds.nasa.gov/infomodel/pds#";

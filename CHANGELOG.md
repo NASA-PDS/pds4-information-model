@@ -1,8 +1,16 @@
 # Changelog
 
-## [release/14.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.0) (2023-03-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-04-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...release/14.2.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0...«unknown»)
+
+**Defects:**
+
+- Update date format to be timezone aware - backout the changes made to WriteCoreXMLSchemaLabel [\#648](https://github.com/NASA-PDS/pds4-information-model/issues/648)
+
+## [v14.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0) (2023-03-30)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0)
 
 **Requirements:**
 
