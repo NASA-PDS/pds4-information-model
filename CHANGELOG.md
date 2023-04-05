@@ -1,8 +1,8 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-04-05)
+## [release/14.2.1](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.1) (2023-04-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0...release/14.2.1)
 
 **Defects:**
 
