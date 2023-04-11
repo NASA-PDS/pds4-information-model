@@ -112,7 +112,7 @@ class WriteCoreXMLSchemaLabel extends Object {
     prSchematron.println("        <product_class>Product_XML_Schema</product_class>");
     prSchematron.println("        <Modification_History>");
     prSchematron.println("            <Modification_Detail>");
-    prSchematron.println("                <modification_date>" + DMDocument.masterTodaysDateTimeUTCwT
+    prSchematron.println("                <modification_date>" + DMDocument.masterTodaysDateUTC
         + "</modification_date>");
     prSchematron
         .println("                <version_id>" + lSchemaFileDefn.labelVersionId + "</version_id>");
