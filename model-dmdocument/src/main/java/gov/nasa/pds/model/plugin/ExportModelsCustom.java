@@ -65,6 +65,16 @@ public class ExportModelsCustom extends Object {
 			}
 		}
 		
+		// write the doc book files - one per namespace id
+		if (lLDDToolFlag) {
+			if (DMDocument.exportDDFileFlag) {
+				DMDocument.dmProcessState.setRelativeFileSpecDDDocXML (DMDocument.masterLDDSchemaFileDefn);
+				WriteDOMClassesMarkdown writeDOMClassesMarkdown  = new WriteDOMClassesMarkdown (); 
+				writeDOMClassesMarkdown.writeMarkdownFile(DMDocument.masterPDSSchemaFileDefn);
+				DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - Classes in Markdown format -  Done");
+			}
+		}
+		
 	    // write the standard id extract file
 	    // WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract();
 		// writeDOMStandardIdExtract.writeExtractFile();
