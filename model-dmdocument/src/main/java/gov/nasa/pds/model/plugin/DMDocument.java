@@ -1538,7 +1538,7 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
     parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
-        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00")
+        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
     parser.addArgument("fileNameArr").dest("fileNameArr").nargs("*")
