@@ -1,8 +1,16 @@
 # Changelog
 
-## [release/14.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.2) (2023-04-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-04-20)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.3...release/14.2.2)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.2...«unknown»)
+
+**Defects:**
+
+- Bug trying to generate LDD and missing files [\#658](https://github.com/NASA-PDS/pds4-information-model/issues/658) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+
+## [v14.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.2) (2023-04-19)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.3...v14.2.2)
 
 ## [v14.1.3](https://github.com/NASA-PDS/pds4-information-model/tree/v14.1.3) (2023-04-12)
 
