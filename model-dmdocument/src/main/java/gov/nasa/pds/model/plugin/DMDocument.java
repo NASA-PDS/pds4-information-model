@@ -141,7 +141,7 @@ public class DMDocument extends Object {
   static String LDDToolVersionId = "0.0.0";
   static String buildDate = "";
   static String buildIMVersionId = "1.20.0.0";
-  static String buildIMVersionFolderId = "1.K.0.0";
+  static String buildIMVersionFolderId = "1K00";
   static String classVersionIdDefault = "1.0.0.0";
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
