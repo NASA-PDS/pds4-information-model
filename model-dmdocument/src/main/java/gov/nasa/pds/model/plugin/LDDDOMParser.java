@@ -1825,6 +1825,15 @@ public class LDDDOMParser extends Object {
     if (lComponentDOMClass != null) {
       return lComponentDOMClass;
     }
+    
+    // try with dot converted to colon
+	String newLocalIdentifier = DOMInfoModel.replaceString(lLocalIdentifier, ".", ":");
+
+    // Is the class local
+    lComponentDOMClass = classMapLocal.get(newLocalIdentifier);
+    if (lComponentDOMClass != null) {
+      return lComponentDOMClass;
+    }
 
     // Assume class is external
     String lClassIdentifier =
