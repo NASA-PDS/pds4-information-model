@@ -1,8 +1,16 @@
 # Changelog
 
-## [release/14.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.3) (2023-04-20)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-05-06)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.2...release/14.2.3)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.3...«unknown»)
+
+**Defects:**
+
+- LDDTool fails for dependent LDDs since v14.2.0 [\#661](https://github.com/NASA-PDS/pds4-information-model/issues/661) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+
+## [v14.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.3) (2023-05-03)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.2...v14.2.3)
 
 **Defects:**
 
