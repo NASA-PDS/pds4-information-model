@@ -1,8 +1,20 @@
 # Changelog
 
-## [release/14.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.4) (2023-05-06)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-03)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.3...release/14.2.4)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
+
+**Improvements:**
+
+- Add TermMaps to default output JSON [\#651](https://github.com/NASA-PDS/pds4-information-model/issues/651)
+
+**Other closed issues:**
+
+- Implement Term Mapping Example for EPNCore Attributes [\#545](https://github.com/NASA-PDS/pds4-information-model/issues/545)
+
+## [v14.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.4) (2023-05-08)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.3...v14.2.4)
 
 **Defects:**
 
