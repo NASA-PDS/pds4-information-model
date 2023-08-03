@@ -132,6 +132,14 @@ public class ExportModels extends Object {
     WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
     writeDOMDDJSONFile.writeJSONFile();
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+    
+    // write the 11179 DOM JSON file - requires DOMInfoModel to be executed
+    // *** NEW VERSION ***
+//    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
+    WriteDOMDDJSONFileLib writeDOMDDJSONFileNew = new WriteDOMDDJSONFileLib();
+    writeDOMDDJSONFileNew.writeJSONFile(false, DMDocument.masterPDSSchemaFileDefn); // false -> not LDDToolFlag
+    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON *** NEW *** Done");
+    
 
     // write the 11179 DD Data Element Definition XML Files
     DMDocument.registerMessage("0>info " + "writeAllArtifacts - Class Defn Done");
