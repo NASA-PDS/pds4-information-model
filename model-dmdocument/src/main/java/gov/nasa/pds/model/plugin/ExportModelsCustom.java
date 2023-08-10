@@ -156,12 +156,6 @@ public class ExportModelsCustom extends Object {
 		WriteLucidFiles.WriteLucidFile();
 		*/
 		
-		// write the terminological entry files
-/*		WriteDOMTermEntryJSON writeDOMTermEntryJSON = new WriteDOMTermEntryJSON ();
-		writeDOMTermEntryJSON.WriteDOMTermEntries (DMDocument.masterPDSSchemaFileDefn);
-		DMDocument.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done"); */
-
-		
 		// write the PDS4 CCSDS CSV file 
 		/*
 		WriteDocCSV writeDocCSV = new WriteDocCSV ();

@@ -30,19 +30,15 @@
 
 package gov.nasa.pds.model.plugin;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.TreeMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+// import gov.nasa.pds.model.plugin.WriteDOMTermEntryJSON.TermEntryDefnGroup;
 
 /**
  * Writes the PDS4 DOM DD content to a JSON file
@@ -51,71 +47,66 @@ import org.json.simple.JSONObject;
 
 class WriteDOMDDJSONFileLib {
 
-  ArrayList<String> adminRecUsedArr, adminRecTitleArr;
+	ArrayList<String> adminRecUsedArr, adminRecTitleArr;
+
+	int bnNum = 1;
+	ArrayList <String> selectNamespaceArr = new ArrayList <> ();
+
+	public WriteDOMDDJSONFileLib() {
+		selectNamespaceArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
+		return;
+	}
   
-  int bnNum = 1;
+	// write the JSON file
+	public void writeJSONFile(SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
+		if (!DMDocument.LDDToolFlag) {	// write Common Dictionary to JSON file
 
-  public WriteDOMDDJSONFileLib() {
-    return;
-  }
-  
-  // write the JSON file
-  public void writeJSONFile(boolean LDDToolFlag, SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-    if (!LDDToolFlag) {	// write Common Dictionary to JSON file
-    	
-    	// determine if all namespaces are to be included
-        boolean isAllFlag = false;
-        if (lSchemaFileDefn.nameSpaceIdNC.compareTo("all") == 0) {
-          isAllFlag = true;
-        }
+			// get the level 0 JSON Object with name=null and value=empty JSON Array
+			JSONArray jsonArrayLevel0 = (JSONArray) getJSONArrayLevel1 (lSchemaFileDefn);
+			if (jsonArrayLevel0 != null) {
 
-        // get the level 0 JSON Object with name=null and value=empty JSON Array
-        JSONArray jsonArrayLevel0 = (JSONArray) getJSONArrayLevel1 (isAllFlag, lSchemaFileDefn);
-    	if (jsonArrayLevel0 != null) {
+				// write the JSON object
+				String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
+//				lFileName = lFileName.replace(".JSON", "_NEW2.JSON");
+				writeJson(jsonArrayLevel0, lFileName);
+			}
 
-    		// write the JSON object
-    		String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
-    		lFileName = lFileName.replace(".JSON", "_NEW.JSON");
-    		writeJson(jsonArrayLevel0, lFileName);
-    	}
-		
-    } else {	// write Local Data Dictionary to JSON file
-      // write the JSON file for the LDD
-      String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
-      PrintWriter prDDPins = new PrintWriter(
-          new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));
-//      printPDDPHdr(DMDocument.masterLDDSchemaFileDefn, prDDPins);
-      if (!DMDocument.exportJSONFileAllFlag) {
-//        printPDDPBody(DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
-      } else {
-//        printPDDPBody("all", prDDPins);
-      }
-//      printPDDPFtr(prDDPins);
-      prDDPins.close();
-    }
-  }
+		} else {
+			// add all LDD namespaces for this run
+			selectNamespaceArr.addAll(DMDocument.LDDImportNameSpaceIdNCArr);
 
-  
-    // get JSON Array with name=null and value= one JSON Object
+			// get the level 0 JSON Object with name=null and value=empty JSON Array
+			JSONArray jsonArrayLevel0 = (JSONArray) getJSONArrayLevel1 (lSchemaFileDefn);
+			//  	  	System.out.println("debug writeJSONFile LDD - jsonArrayLevel0:" + jsonArrayLevel0);
+			if (jsonArrayLevel0 != null) {
+
+				// write the JSON file for the LDD
+				String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
+//				lFileName = lFileName.replace(".JSON", "_NEW3.JSON");
+				writeJson(jsonArrayLevel0, lFileName);
+			}
+		}
+	}
+
+	// get JSON Array with name=null and value= one JSON Object
 	@SuppressWarnings("unchecked")
-	private JSONArray getJSONArrayLevel1 (boolean isAllFlag, SchemaFileDefn lSchemaFileDefn) {
-		
+	private JSONArray getJSONArrayLevel1 (SchemaFileDefn lSchemaFileDefn) {
 		JSONArray jsonArrayLevel1 = new JSONArray();
-		jsonArrayLevel1.add(getJSONObjectLevel2 (isAllFlag, lSchemaFileDefn));
-    	return jsonArrayLevel1;
+		jsonArrayLevel1.add(getJSONObjectLevel2 (lSchemaFileDefn));
+		return jsonArrayLevel1;
 	}
 	
-    // get JSON Object with name=dataDictionary and value=JSON Object dataDictionary
-	private JSONObject getJSONObjectLevel2 (boolean isAllFlag, SchemaFileDefn lSchemaFileDefn) {
-		
+	// get JSON Object with name=dataDictionary and value=JSON Object dataDictionary
+	private JSONObject getJSONObjectLevel2 (SchemaFileDefn lSchemaFileDefn) {
+
 		// get the get the Data Dictionary
-		JSONObject jsonObjectDataDictionary = (JSONObject) getNameValuePair ("dataDictionary", getValueDataDictionary (isAllFlag, lSchemaFileDefn));
+		JSONObject jsonObjectDataDictionary = (JSONObject) getNameValuePair ("dataDictionary", getValueDataDictionary (lSchemaFileDefn));
 		return jsonObjectDataDictionary;
 	}
 	
 	// get the JSON Object dataDictionary
 	@SuppressWarnings("unchecked")
-	private JSONObject getValueDataDictionary (boolean isAllFlag, SchemaFileDefn lSchemaFileDefn) {
+	private JSONObject getValueDataDictionary (SchemaFileDefn lSchemaFileDefn) {
 
 		// put the the header information
 		JSONObject jsonObjectDataDictionary = new JSONObject ();
@@ -133,23 +124,41 @@ class WriteDOMDDJSONFileLib {
 	    }
 	    
 		jsonObjectDataDictionary.put(formatValue("namespaces"), jsonArrayNamespaces);
-		
+
 		// get the classDictionary
-		jsonObjectDataDictionary.put(formatValue("classDictionary"), (Object) getValueClassDictionary(isAllFlag, lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("classDictionary"), (Object) getValueClassDictionary(lSchemaFileDefn.nameSpaceIdNC));
 
 		// get the attributeDictionary
-		jsonObjectDataDictionary.put(formatValue("attributeDictionary"), (Object) getValueAttributeDictionary(isAllFlag, lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("attributeDictionary"), (Object) getValueAttributeDictionary(lSchemaFileDefn.nameSpaceIdNC));
 
 		// get the dataTypeDictionary
-		jsonObjectDataDictionary.put(formatValue("dataTypeDictionary"), (Object) getValueDataTypeDictionary(isAllFlag, lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("dataTypeDictionary"), (Object) getValueDataTypeDictionary(lSchemaFileDefn.nameSpaceIdNC));
 
 		// get the UnitDictionary
-		jsonObjectDataDictionary.put(formatValue("UnitDictionary"), (Object) getValueUnitDictionary(isAllFlag, lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("UnitDictionary"), (Object) getValueUnitDictionary(lSchemaFileDefn.nameSpaceIdNC));
 
 		// get the Property Maps
-		ArrayList<PropertyMapsDefn> selectedPropMapArr = getSelectedPropMapsArr(isAllFlag, lSchemaFileDefn.nameSpaceIdNC);
+		ArrayList<PropertyMapsDefn> selectedPropMapArr = getSelectedPropMapsArr(lSchemaFileDefn.nameSpaceIdNC);
 		if (! selectedPropMapArr.isEmpty())
 			jsonObjectDataDictionary.put(formatValue("PropertyMapDictionary"), (Object) getValuePropertyMapDictionary(selectedPropMapArr));
+
+		// get Terminological Entry - External to PDS4 - e.g. EPN =======
+		if (DMDocument.LDDToolFlag) {
+			TermEntryDefnGroupMapStruct termEntryDefnGroupMapStruct = getTermEntryDefnGroupMapStruct ();
+			jsonObjectDataDictionary.put(formatValue("ExternTermMapDictionary"), getValueJSONObjectExternTermMapDictionary (termEntryDefnGroupMapStruct));
+		}
+
+		/* option -5 is no longer working -- query model is in abeyance until needed.
+	    // Write Terminological Entry - Query Model
+	    ArrayList<DOMClass> lSelectedTEClassArr = new ArrayList<>();
+	    for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+	      if (lDOMClass.isInactive || !lDOMClass.isQueryModel) continue;
+	      lSelectedTEClassArr.add(lDOMClass);
+	    }
+
+	    if (lSelectedTEClassArr.size() > 0) {
+	      getTermEntriesQM(lSelectedTEClassArr);
+	    } */
 		
 		return jsonObjectDataDictionary;
 	}
@@ -157,10 +166,10 @@ class WriteDOMDDJSONFileLib {
 	// ======= get selected entities =======
 	
 	// 
-	private ArrayList<PropertyMapsDefn> getSelectedPropMapsArr(boolean isAllFlag, String nameSpaceIdNC) {
+	private ArrayList<PropertyMapsDefn> getSelectedPropMapsArr(String nameSpaceIdNC) {
 		ArrayList<PropertyMapsDefn> selectedPropMapsArr = new ArrayList<> ();
 	    for (PropertyMapsDefn propMaps : DOMInfoModel.masterPropertyMapsArr) {
-	        if (isAllFlag || nameSpaceIdNC.compareTo(propMaps.namespace_id) == 0) {
+	        if (nameSpaceIdNC.compareTo(propMaps.namespace_id) == 0) {
 	        	selectedPropMapsArr.add(propMaps);
 	        }
 	    }
@@ -171,7 +180,7 @@ class WriteDOMDDJSONFileLib {
 	
 	// get the value for the JSONObject classDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueClassDictionary (boolean isAllFlag, String nameSpaceIdNC) {
+	private JSONArray getValueClassDictionary (String nameSpaceIdNC) {
 
 		// create the classDictionary JSON Array
 		JSONArray jsonArrayClassDictionary = new JSONArray ();
@@ -180,7 +189,7 @@ class WriteDOMDDJSONFileLib {
 		for (DOMClass lSelectedClass : DOMInfoModel.masterDOMClassArr) {
 			if (lSelectedClass.isInactive) continue;
 			if (lSelectedClass.title.indexOf("PDS3") > -1) continue;
-			if (! (isAllFlag || nameSpaceIdNC.compareTo(lSelectedClass.nameSpaceIdNC) == 0)) continue;
+			if (! (selectNamespaceArr.contains(lSelectedClass.nameSpaceIdNC))) continue;
 			
 			JSONObject jsonObjectClass = (JSONObject) getNameValuePair ("class", getValueJSONObjectClass (lSelectedClass));
 			jsonArrayClassDictionary.add(jsonObjectClass);
@@ -333,7 +342,6 @@ class WriteDOMDDJSONFileLib {
 	    
 	    // get the super class identifier
 	    JSONObject jsonObjectSuperClassIdentifier = new JSONObject ();									// jsonObject for Super Class Identifer
-//	    jsonObjectSuperClassIdentifier.put ("null8", formatValue(lSuperClass.identifier));
 	    jsonObjectSuperClassIdentifier.put ("bn" + Integer.toString(bnNum++), formatValue(lSuperClass.identifier));
 
 	    // get the super class identifier, as a member of a JSON array
@@ -355,7 +363,7 @@ class WriteDOMDDJSONFileLib {
 	
 	// get the value for the JSONObject attributeDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueAttributeDictionary (boolean isAllFlag, String nameSpaceIdNC) {
+	private JSONArray getValueAttributeDictionary (String nameSpaceIdNC) {
 
 		// create the attributeDictionary JSON Array
 		JSONArray jsonArrayAttrDictionary = new JSONArray ();
@@ -363,7 +371,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Attributes
 		for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
 			if (!(lDOMAttr.isUsedInClass && lDOMAttr.isAttribute)) continue;
-			if (! (isAllFlag || nameSpaceIdNC.compareTo(lDOMAttr.nameSpaceIdNC) == 0)) continue;
+			if (! (selectNamespaceArr.contains(lDOMAttr.nameSpaceIdNC))) continue;
 
 			// add to the Class Dictionary
 			jsonArrayAttrDictionary.add((JSONObject) getNameValuePair ("attribute", getValueJSONObjectAttr (lDOMAttr)));
@@ -435,7 +443,7 @@ class WriteDOMDDJSONFileLib {
 
 	// get the value for the JSONObject DataTypeDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueDataTypeDictionary (boolean isAllFlag, String nameSpaceIdNC) {
+	private JSONArray getValueDataTypeDictionary (String nameSpaceIdNC) {
 		
 		// create the DataTypeDictionary JSON Array
 		JSONArray jsonArrayDataTypeDictionary = new JSONArray ();
@@ -443,7 +451,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Data Types
 		for (DOMDataType lDOMDataType : DOMInfoModel.masterDOMDataTypeArr) {
 			if (lDOMDataType.isInactive) continue;
-			if (! (isAllFlag || lDOMDataType.nameSpaceIdNC.compareTo(lDOMDataType.nameSpaceIdNC) == 0)) continue;
+			if (! (selectNamespaceArr.contains(lDOMDataType.nameSpaceIdNC))) continue;
 			
 			// get the nesting JSONObject for the classDictionary
 			JSONObject jsonObjectDataType = (JSONObject) getNameValuePair ("DataType", getValueJSONObjectDataType (lDOMDataType));
@@ -473,7 +481,7 @@ class WriteDOMDDJSONFileLib {
 
 	// get the value for unitDictionary, a JSONArray
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueUnitDictionary (boolean isAllFlag, String nameSpaceIdNC) {
+	private JSONArray getValueUnitDictionary (String nameSpaceIdNC) {
 
 		// create the unitDictionary JSON Array
 		JSONArray jsonArrayUnitDictionary = new JSONArray ();
@@ -481,7 +489,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Data Types
 		for (DOMUnit lDOMUnit : DOMInfoModel.masterDOMUnitArr) {
 			if (lDOMUnit.isInactive) continue;
-			if (! (isAllFlag || nameSpaceIdNC.compareTo(lDOMUnit.nameSpaceIdNC) == 0)) continue;
+			if (! (selectNamespaceArr.contains(lDOMUnit.nameSpaceIdNC))) continue;
 			
 			// get the nesting JSONObject for the classDictionary
 			JSONObject jsonObjectUnitOfMeasure = (JSONObject) getNameValuePair ("Unit", getValueJSONObjectUnit (lDOMUnit));
@@ -524,6 +532,128 @@ class WriteDOMDDJSONFileLib {
 		}
 		return jsonArrayUnitIdDictionary;
 	}
+	
+	
+	// ======= Terminological Entry - External to PDS4 - e.g. EPN =======
+	
+	// get the TermEntryDefnGroupMapStructs - find the term mappings and create structure
+	private TermEntryDefnGroupMapStruct getTermEntryDefnGroupMapStruct () {
+		// map of Term Entry Definitions index by class and attribute identifier
+		TermEntryDefnGroupMapStruct termEntryDefnGroupMapStruct = new TermEntryDefnGroupMapStruct ();
+
+        // scan all the classes for terminological entries at the attribute level
+		for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+			
+			// skip inactive
+			if (lDOMClass.isInactive) continue;
+			
+			// scan through all owned attributes of the class
+			for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
+				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+					
+					// skip attribute with no terminological entry map
+					if (lDOMAttr.termEntryMap == null || lDOMAttr.termEntryMap.isEmpty() ) continue;
+					
+					// found a terminological entry map; create an array of Term Entry Definition Groups
+					boolean isFirst = true;
+					for (TermEntryDefn lTermEntryDefn : lDOMAttr.termEntryMap.values()) {
+						String lKey = lDOMAttr.identifier + "_" + lTermEntryDefn.name + "_" + DOMInfoModel.getNextUId();
+						TermEntryDefnGroup termEntryDefnGroup = new TermEntryDefnGroup ();
+						if (isFirst) {
+							isFirst = false;
+							termEntryDefnGroupMapStruct.lddName = lTermEntryDefn.lddName; // needed only once
+							termEntryDefnGroupMapStruct.lddVersion = lTermEntryDefn.lddVersion;
+						}
+						termEntryDefnGroup.identifier = lKey;
+						termEntryDefnGroup.attrId = lDOMAttr.nameSpaceId + lDOMAttr.title;
+						termEntryDefnGroup.termEntryDefn = lTermEntryDefn;
+						termEntryDefnGroupMapStruct.termEntryDefnGroupMap.put(lKey, termEntryDefnGroup);
+					}
+				}
+			}
+		}
+		//  return termEntryDefnMap;
+       return termEntryDefnGroupMapStruct;
+	}
+	
+	
+	// get the term mappings as a JSON object
+	@SuppressWarnings("unchecked")
+	private JSONArray getValueJSONObjectExternTermMapDictionary (TermEntryDefnGroupMapStruct termEntryDefnGroupMapStruct) {
+		// create the JSON object
+		JSONObject jsonObjectRoot = new JSONObject ();
+		jsonObjectRoot.put("datetime", DMDocument.masterTodaysDateTimeUTCFromInstant);
+		jsonObjectRoot.put("infoModelVersionId", DMDocument.infoModelVersionId);
+		jsonObjectRoot.put("title", "PDS4 Term Mappings");
+		jsonObjectRoot.put("lddName", termEntryDefnGroupMapStruct.lddName);
+		jsonObjectRoot.put("lddVersion", termEntryDefnGroupMapStruct.lddVersion);
+
+		// create array of one element {from, to} arrays
+		JSONArray jsonTermMapElementArrArr = new JSONArray();
+		
+		// scan over the term entry definitions
+		for (TermEntryDefnGroup termEntryDefnGroup : termEntryDefnGroupMapStruct.termEntryDefnGroupMap.values()) {
+			
+			// get the term map elements
+					
+			// create a one {from, to} array
+			JSONArray jsonFromToArr = new JSONArray();
+
+			// get the From (new) term
+			JSONObject jsonFromObject = new JSONObject ();
+			String fromInstanceId = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.fromInstanceId);
+			jsonFromObject.put("from", fromInstanceId);
+			jsonFromToArr.add(jsonFromObject);
+			
+			// get the To (PDS4) term
+			JSONObject jsonToObject = new JSONObject ();
+			String toInstanceId = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.toInstanceId);
+			jsonToObject.put("to", toInstanceId);
+			jsonFromToArr.add(jsonToObject);
+			
+			// get the SKOS semanticRelation
+			JSONObject jsonSKOSObject = new JSONObject ();
+			String semanticRelation = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.semanticRelation);
+			jsonSKOSObject.put("skos", semanticRelation);
+			jsonFromToArr.add(jsonSKOSObject);
+			
+			// get the description of the mapping
+			JSONObject jsonDefinitionObject = new JSONObject ();
+			String definition = DOMInfoModel.escapeXMLChar(termEntryDefnGroup.termEntryDefn.definition);
+			jsonDefinitionObject.put("defn", definition);
+			jsonFromToArr.add(jsonDefinitionObject);
+			
+			// create one {from, to} enclosing object
+			JSONObject jsonFromToObj = new JSONObject ();
+			jsonFromToObj.put("termmap", jsonFromToArr);
+			
+			// add one {from, to} enclosing object 
+			jsonTermMapElementArrArr.add(jsonFromToObj);
+		}
+		jsonObjectRoot.put("termmaps", jsonTermMapElementArrArr);
+		
+		// create the ExternTermMapDictionary, a JSONArray
+		JSONArray jsonArrayExternTermMapDictionary = new JSONArray ();
+		jsonArrayExternTermMapDictionary.add(jsonObjectRoot);
+		
+        return jsonArrayExternTermMapDictionary;
+	}
+    
+    // TermEntryDefn Group Map - structure for sorting termEntryDefns
+	class TermEntryDefnGroupMapStruct {
+		String lddName;
+		String lddVersion;
+		TreeMap <String, TermEntryDefnGroup> termEntryDefnGroupMap = new TreeMap <String, TermEntryDefnGroup> ();
+	}
+    
+    // structure for sorting termEntryDefns
+	class TermEntryDefnGroup {
+		String identifier;
+		String attrId;
+		TermEntryDefn termEntryDefn;
+	}
+
 	
 	// ======= Property Maps =======
 	
@@ -626,36 +756,19 @@ class WriteDOMDDJSONFileLib {
 	// ======= Query Model =======
     
   // Print the Terminological Entries - Query Model
-  public void getTermEntriesQM(ArrayList<DOMClass> lSelectedDOMClassArr, PrintWriter prDDPins) {
-
-    // start the TE list
-    prDDPins.println("    , " + formatValue("TerminologicalEntries") + ": [");
+  public void getTermEntriesQM(ArrayList<DOMClass> lSelectedDOMClassArr) {
 
     // scan select classes - QM classes
-    boolean hasNextQMClass = true;
-    for (Iterator<DOMClass> i = lSelectedDOMClassArr.iterator(); i.hasNext();) {
-      DOMClass lDOMClass = i.next();
-      if (!i.hasNext()) {
-        hasNextQMClass = false;
-      }
+    for (DOMClass lDOMClass : lSelectedDOMClassArr) {
 
       // get all QM attributes
-      boolean hasNextQMAttr = true;
-      for (Iterator<DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
-        DOMProp lDOMProp = j.next();
-        if (!j.hasNext()) {
-          hasNextQMAttr = false;
-        }
+      for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
         if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
           DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.hasDOMObject;
 
           // get all QM PV for this QM attribute
-          boolean hasNextQMPV = true;
-          for (Iterator<DOMProp> m = lDOMAttrQM.domPermValueArr.iterator(); m.hasNext();) {
-            DOMProp lDOMPropPV = m.next();
-            if (!m.hasNext()) {
-              hasNextQMPV = false;
-            }
+          for (DOMProp lDOMPropPV : lDOMAttrQM.domPermValueArr) {
+
             if (lDOMPropPV.hasDOMObject != null
                 && lDOMPropPV.hasDOMObject instanceof DOMPermValDefn) {
               DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.hasDOMObject;
@@ -664,22 +777,20 @@ class WriteDOMDDJSONFileLib {
               ArrayList<TermEntryDefn> lPVQMTermEntryDefnArr =
                   new ArrayList<>(lPVQM.termEntryMap.values());
               printTermEntryDefnQM(lDOMClass.title, lDOMAttrQM.title, lDOMClass.extrnTitleQM,
-                  lDOMAttrQM.extrnTitleQM, lPVQM.value, lPVQMTermEntryDefnArr,
-                  hasNextQMClass || hasNextQMAttr || hasNextQMPV);
+                  lDOMAttrQM.extrnTitleQM, lPVQM.value, lPVQMTermEntryDefnArr);
             }
           } // PV
         }
       } // Attr
     }
     // end TE list
-    prDDPins.println("      ]");
   }
 
   // Print the Query Model Terminological Entries
   @SuppressWarnings("unchecked")
 public JSONObject printTermEntryDefnQM(String lDOMClassQMtitle, String lDOMAttrQMtitle,
 		  String lDOMClassExtrnTitle, String lDOMAttrExtrnTitle, String lPVQMValue,
-		  ArrayList<TermEntryDefn> lTermEntryDefnArr, boolean hasNext) {
+		  ArrayList<TermEntryDefn> lTermEntryDefnArr) {
 
 	  // get the class, title, and query model value JSONObject
 	  JSONObject jsonObject999 = new JSONObject ();
@@ -729,6 +840,7 @@ public JSONObject printTermEntryDefnQMTermEntryList(String lDOMClassQMtitle, Str
 	  return jsonObject666;
   }
 
+/*   Not invokrf either in original WriteDOMDDJSONFile or new WriteDOMDDJSONFileLib
   @SuppressWarnings("unchecked")
 public JSONArray printTermEntriesList(DOMClass lSelectedDOMClass) {
 	  JSONArray jsonAssociationList = new JSONArray ();
@@ -754,7 +866,7 @@ public JSONArray printTermEntriesList(DOMClass lSelectedDOMClass) {
 	  jsonObjectPropertyMap.put(formatValue("isPreferred"), formatValue(lIsPreferred));
 	  jsonObjectPropertyMap.put(formatValue("definition"), formatValue(lTermEntryDefn.definition));
 	  return jsonObjectPropertyMap;
-  }
+  }  */
   
   // --- utilities ---
   

@@ -128,17 +128,16 @@ public class ExportModels extends Object {
         .registerMessage("0>info " + "writeAllArtifacts - DD Pins *** plus class *** File Done");
 
     // write the 11179 DOM JSON file - requires DOMInfoModel to be executed
-    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
-    WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
-    writeDOMDDJSONFile.writeJSONFile();
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+//    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
+//    WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
+//    writeDOMDDJSONFile.writeJSONFile();
+//    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
     
     // write the 11179 DOM JSON file - requires DOMInfoModel to be executed
-    // *** NEW VERSION ***
-//    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
-    WriteDOMDDJSONFileLib writeDOMDDJSONFileNew = new WriteDOMDDJSONFileLib();
-    writeDOMDDJSONFileNew.writeJSONFile(false, DMDocument.masterPDSSchemaFileDefn); // false -> not LDDToolFlag
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON *** NEW *** Done");
+    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
+    WriteDOMDDJSONFileLib writeDOMDDJSONFileLib = new WriteDOMDDJSONFileLib();
+    writeDOMDDJSONFileLib.writeJSONFile(DMDocument.masterPDSSchemaFileDefn);
+    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
     
 
     // write the 11179 DD Data Element Definition XML Files
@@ -246,12 +245,20 @@ public class ExportModels extends Object {
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
 
     // write the 11179 JSON file
-    if (DMDocument.exportJSONFileFlag || DMDocument.exportJSONFileAllFlag) {
-      DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterLDDSchemaFileDefn);
-      WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
-      writeDOMDDJSONFile.writeJSONFile();
-      DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
-    }
+//    if (DMDocument.exportJSONFileFlag || DMDocument.exportJSONFileAllFlag) {
+//      DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterLDDSchemaFileDefn);
+//      WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
+//      writeDOMDDJSONFile.writeJSONFile();
+//      DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+//    }
+    
+    // write the 11179 DOM JSON file
+      if (DMDocument.exportJSONFileFlag) {
+    	  DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
+    	  WriteDOMDDJSONFileLib writeDOMDDJSONFileLib = new WriteDOMDDJSONFileLib();
+    	  writeDOMDDJSONFileLib.writeJSONFile(DMDocument.masterPDSSchemaFileDefn);
+    	  DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+      }
 
     // write the Info Spec file
     if (DMDocument.exportSpecFileFlag) {
@@ -283,6 +290,7 @@ public class ExportModels extends Object {
 		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
 	}
 	
+	// *** To be deprecated ***
 	// write the Terminological Mapping defined in the TermMap LDD to JSON
 	if (DMDocument.exportTermMapFileFlag) {
 		// write the terminological entry files
