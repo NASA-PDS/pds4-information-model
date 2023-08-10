@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-08)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
@@ -10,7 +10,9 @@
 
 **Other closed issues:**
 
+- Adds to default output JSON TermMap [\#670](https://github.com/NASA-PDS/pds4-information-model/issues/670)
 - B14.0 Prep IM and LDDTool for new IM Version [\#666](https://github.com/NASA-PDS/pds4-information-model/issues/666)
+- \[namespace-registry\] add new namespace "mgn" [\#664](https://github.com/NASA-PDS/pds4-information-model/issues/664)
 - Implement Term Mapping Example for EPNCore Attributes [\#545](https://github.com/NASA-PDS/pds4-information-model/issues/545)
 
 ## [v14.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.4) (2023-05-08)
