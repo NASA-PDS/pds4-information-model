@@ -179,7 +179,7 @@ public class DMDocument extends Object {
 
   // import export file flags
   static boolean exportJSONFileFlag = false; // LDDTool, set by -J option
-  static boolean exportJSONFileAllFlag = false; // LDDTool, set by -6 option
+  static boolean exportJSONFileAllFlag = false; // LDDTool, set by -6 option *** Not Currently Used - Deprecate? ***
   static boolean exportSpecFileFlag = false;
   static boolean exportDDFileFlag = false;
   static boolean exportTermMapFileFlag = false;

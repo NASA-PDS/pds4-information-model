@@ -250,13 +250,14 @@ public class DMProcessState {
     }
     return false;
   }
-  public Boolean getexportJSONFileAllFlag() {
-    Integer lProcessOrder = processFlagMap.get("Export JSON File All Flag");
-    if (lProcessOrder != null) {
-      return true;
-    }
-    return false;
-  }
+  
+//  public Boolean getexportJSONFileAllFlag() {
+//    Integer lProcessOrder = processFlagMap.get("Export JSON File All Flag");
+//    if (lProcessOrder != null) {
+//      return true;
+//    }
+//    return false;
+//  }
 
   public Boolean getcheckFileNameFlag() {
     Integer lProcessOrder = processFlagMap.get("Check File Name Flag");
@@ -378,10 +379,10 @@ public class DMProcessState {
 	return;
   }
 
-  public void setexportJSONFileAllFlag() {
-    processFlagMap.put("Export JSON File All Flag", 1200);
-    return;
-  }
+//  public void setexportJSONFileAllFlag() {
+//    processFlagMap.put("Export JSON File All Flag", 1200);
+//    return;
+//  }
 
   public void setcheckFileNameFlag() {
     processFlagMap.put("Check File Name Flag", 1210);
