@@ -66,28 +66,21 @@ class WriteDOMSchematron extends Object {
     // select out the rules for this namespace
     ArrayList<DOMRule> lSelectRuleArr = new ArrayList<>();
     ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
-    for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
-      DOMRule lRule = i.next();
+    for (DOMRule lRule : lRuleArr) {     
       if (lSchemaFileDefn.isMaster) {
         if (lRule.isMissionOnly || !(lRule.alwaysInclude
             || (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
-                && lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) {
-          continue;
-        }
+                && lSchemaFileDefn.stewardArr.contains(lRule.classSteward)))) continue;
       } else if (lSchemaFileDefn.isDiscipline) {
         if (lRule.isMissionOnly
             || !(((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
                 && lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
-                || lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0))) {
-          continue;
-        }
+                || lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0))) continue;
       } else if (lSchemaFileDefn.isMission) {
         if (lRule.isMissionOnly
             || !(((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
                 && lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
-                || lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0))) {
-          continue;
-        }
+                || lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0))) continue;
       } else if (lSchemaFileDefn.isLDD) {
         // write an LDD schemtron
         DMDocument.registerMessage(
@@ -95,16 +88,12 @@ class WriteDOMSchematron extends Object {
         if (!(lRule.isMissionOnly && lSchemaFileDefn.isMission)
             || !((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
                 && lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
-                || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) {
-          continue;
-        }
+                || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) continue;
       } else {
         DMDocument.registerMessage("1>warning "
             + "Write Schematron - Invalid governance in SchemaFileDefn  - lSchemaFileDefn.identifier:"
             + lSchemaFileDefn.identifier);
       }
-      // if (lRule.classNameSpaceNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0)
-      // lSelectRuleArr.add(lRule);
       lSelectRuleArr.add(lRule);
     }
     writeSchematronRuleClasses(lSchemaFileDefn, lSelectRuleArr, prSchematron);
@@ -140,9 +129,7 @@ class WriteDOMSchematron extends Object {
         + DMDocument.LDDToolSingletonClassTitle);
 
     ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
-    for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
-      DOMRule lRule = i.next();
-
+    for (DOMRule lRule : lRuleArr) {
       DMDocument.registerMessage("0>info ");
       DMDocument.registerMessage("0>info " + "writeSchematronRule");
       DMDocument.registerMessage("0>info " + "  lRule.identifier:" + lRule.identifier);
@@ -154,27 +141,19 @@ class WriteDOMSchematron extends Object {
 
       if (lSchemaFileDefn.isMaster) {
         if (lRule.isMissionOnly || !(lRule.alwaysInclude
-            || (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0))) {
-          continue;
-        }
+            || (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0))) continue;
       } else {
         // write an LDD schemtron
         DMDocument.registerMessage(
             "0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
         DMDocument
             .registerMessage("0>info " + "Found LDD - lRule.isMissionOnly:" + lRule.isMissionOnly);
-        if (!(lRule.isMissionOnly && lSchemaFileDefn.isMission)) {
-          continue;
-        }
+        if (!(lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
         DMDocument.registerMessage(
             "0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
         if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0)
-            || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) {
-          continue;
-        }
+            || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) continue;
       }
-      // if (lRule.classNameSpaceNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0)
-      // lSelectRuleArr.add(lRule);
       lSelectRuleArr.add(lRule);
     }
     writeSchematronRuleClasses(lSchemaFileDefn, lSelectRuleArr, prSchematron);
@@ -183,23 +162,9 @@ class WriteDOMSchematron extends Object {
     printSchematronFileFtr(prSchematron);
   }
 
-  // find offending rule
-  public void findOffendingRule(String lTitle, ArrayList<DOMRule> lRuleArr) {
-    System.out.println("\ndebug findOffendingRule - " + lTitle);
-    for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
-      DOMRule lRule = i.next();
-      if (lRule.classTitle.indexOf("Discipline_Facets") > -1
-          || lRule.identifier.indexOf("Discipline_Facets") > -1) {
-        System.out.println("debug findOffendingRule - lRule.identifier:" + lRule.identifier);
-      }
-    }
-    return;
-  }
-
   // check if assert statement already exists
   public boolean foundAssertStmt(String lAttrId, ArrayList<DOMAssert> lAssertArr) {
-    for (Iterator<DOMAssert> i = lAssertArr.iterator(); i.hasNext();) {
-      DOMAssert lAssert = i.next();
+    for (DOMAssert lAssert : lAssertArr) {
       if (lAssert.identifier.compareTo(lAttrId) == 0) {
         return true;
       }
@@ -212,14 +177,11 @@ class WriteDOMSchematron extends Object {
       ArrayList<DOMRule> lRuleArr, PrintWriter prSchematron) {
     // write class based assertions
 
-    for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
-      DOMRule lRule = i.next();
-
+    for (DOMRule lRule : lRuleArr) {
       prSchematron.println("  <sch:pattern>");
 
       // write pattern level LETs
-      for (Iterator<String> j = lRule.letAssignPatternArr.iterator(); j.hasNext();) {
-        String lLetAssignPattern = j.next();
+      for (String lLetAssignPattern : lRule.letAssignPatternArr) {
         prSchematron.println("    <sch:let " + lLetAssignPattern + "/>");
       }
 
@@ -233,12 +195,10 @@ class WriteDOMSchematron extends Object {
       prSchematron.println("    <sch:rule context=\"" + lRule.xpath + "\"" + lRole + ">");
 
       // write rule level LETs
-      for (Iterator<String> j = lRule.letAssignArr.iterator(); j.hasNext();) {
-        String lLetAssign = j.next();
+      for (String lLetAssign : lRule.letAssignArr) {
         prSchematron.println("      <sch:let " + lLetAssign + "/>");
       }
-      for (Iterator<DOMAssert> j = lRule.assertArr.iterator(); j.hasNext();) {
-        DOMAssert lAssert = j.next();
+      for (DOMAssert lAssert : lRule.assertArr) {
         if (lAssert.assertType.compareTo("RAW") == 0) {
           if (lAssert.assertMsg.indexOf("TBD") == 0) {
             prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"/>");
@@ -246,8 +206,8 @@ class WriteDOMSchematron extends Object {
           } else {
             prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\">");
             prSchematron.println("        <title>" + getRuleTitle(lRule, lAssert) + "</title>");
-            prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
           }
+          prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
         } else if (lAssert.assertType.compareTo("REPORT") == 0) {
           if (lAssert.assertMsg.indexOf("TBD") == 0) {
             prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\"/>");
@@ -255,8 +215,8 @@ class WriteDOMSchematron extends Object {
           } else {
             prSchematron.println("      <sch:report test=\"" + lAssert.assertStmt + "\">");
             prSchematron.println("        <title>" + getRuleTitle(lRule, lAssert) + "</title>");
-            prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
           }
+          prSchematron.println("        " + lAssert.assertMsg + "</sch:report>");
         } else if (lAssert.assertType.compareTo("EVERY") == 0) {
           String lDel = "";
           prSchematron.print("      <sch:assert test=\"" + "every $ref in (" + lRule.attrNameSpaceNC
@@ -344,15 +304,12 @@ class WriteDOMSchematron extends Object {
           + lSchemaFileDefn.nameSpaceIdNCDir + "/v" + lSchemaFileDefn.ns_version_id + "\" prefix=\""
           + lSchemaFileDefn.nameSpaceIdNC + "\"/>");
       // namespaces required: all other LDD discipline levels referenced; no mission level allowed
-      for (Iterator<String> i = DMDocument.LDDImportNameSpaceIdNCArr.iterator(); i.hasNext();) {
-        String lNameSpaceIdNC = i.next();
+      for (String lNameSpaceIdNC : DMDocument.LDDImportNameSpaceIdNCArr) {
         String lVersionNSId = "TBD_lVersionNSId";
         String lNameSpaceURL = "TBD_lNameSpaceURL";
         String lNameSpaceIdNCDIR = "TBD_lNameSpaceIdNCDIR";
         // omit this LDD schema file's namespace; namespace used as targetNamespace above
-        if (lNameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) {
-          continue;
-        }
+        if (lNameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) == 0) continue;
 
         // get info for XML schema namespace declaration; first try LDD
         SchemaFileDefn lSchemaFileDefnExternal =
