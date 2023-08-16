@@ -1,12 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-10)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
 **Improvements:**
 
 - Add TermMaps to default output JSON [\#651](https://github.com/NASA-PDS/pds4-information-model/issues/651)
+
+**Defects:**
+
+- lddtool does not generate the correct closing tag for rule\_type = Report [\#667](https://github.com/NASA-PDS/pds4-information-model/issues/667) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
