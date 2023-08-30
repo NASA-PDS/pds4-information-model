@@ -1,8 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-30)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
+
+**Requirements:**
+
+- CCB-336 Add a License\_Information class to the Identification\_Area [\#679](https://github.com/NASA-PDS/pds4-information-model/issues/679)
 
 **Improvements:**
 
