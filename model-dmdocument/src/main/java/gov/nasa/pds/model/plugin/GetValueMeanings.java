@@ -168,6 +168,11 @@ class GetValueMeanings extends Object {
     // masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
     lPVD = new PermValueDefn(
+        "pds:Product_Observational/pds:Identification_Area/pds:License_Information/pds:Internal_Reference.reference_type.product_to_license",
+        "product_to_license", "A reference to a document or context product containing the full text of the license, terms, or public domain classification");
+        masterValueMeaningMap.put(lPVD.identifier, lPVD);
+    
+    lPVD = new PermValueDefn(
         "pds:Product_Observational/pds:Observation_Area/pds:Investigation_Area/pds:Internal_Reference.reference_type.data_to_investigation",
         "data_to_investigation", "The data product is associated to an investigation");
     masterValueMeaningMap.put(lPVD.identifier, lPVD);

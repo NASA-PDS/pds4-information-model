@@ -565,6 +565,10 @@ public class DMDocument extends Object {
     XMLDocParserDomMDPTNConfig lMDPTNConfig = new XMLDocParserDomMDPTNConfig();
     masterClassDispoMap2 = lMDPTNConfig.getXMLTable2(dataDirPath + "MDPTNConfigClassDisp.xml");
 
+//    // 222 test
+//    DMCheckDispositions dmCheckDispositions = new DMCheckDispositions ();
+//    dmCheckDispositions.printDispositions("", masterClassDispoMap2);
+    
     // set up the System Build version
     XMLSchemaLabelBuildNum = pds4BuildId;
 

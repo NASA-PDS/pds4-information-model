@@ -1,4 +1,4 @@
-; Fri Aug 04 18:30:06 EDT 2023
+; Wed Aug 30 12:54:04 EDT 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2267,6 +2267,31 @@
 	(attrTitle "reference_type")
 	(identifier "reference_type")
 	(specMesg "In Product_Native, every instance of 'pds:Internal_Reference/pds:reference_type' must be set to one of the following values: 'described_by_document', 'native_to_archival'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Observational/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area.100002547] of  Schematron_Rule
 
