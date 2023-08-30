@@ -95,6 +95,7 @@
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Discipline_Area</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Object_Statistics</Field> <Field>1MTC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Time_Coordinates</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
+  <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.License_Information</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Composite_Structure</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
   <Record> <Field>Disposition</Field> <Field>Y</Field> <Field>UpperModel.0001_NASA_PDS_1.Local_ID_Reference</Field> <Field>1MC</Field> <Field>#10</Field> <Field>pds</Field> <Field>pds</Field> </Record> 
