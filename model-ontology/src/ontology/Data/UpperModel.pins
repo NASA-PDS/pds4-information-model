@@ -1,4 +1,4 @@
-; Wed Aug 30 12:54:04 EDT 2023
+; Thu Aug 31 16:30:18 EDT 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1395,6 +1395,31 @@
 	(specMesg "TBD")
 	(testValArr "ancillary_to_target"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Ancillary/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Ancillary/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Ancillary%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002528] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -1422,6 +1447,31 @@
 		"ancillary_to_data"
 		"ancillary_to_document"
 		"ancillary_to_browse"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Browse/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Browse/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
 
@@ -1677,6 +1727,31 @@
 	(identifier "description")
 	(specMesg "In Product_Bundle both Citation_Information and its description are required.."))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Bundle/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002532] of  Schematron_Rule
 
 	(alwaysInclude "true")
@@ -1901,6 +1976,31 @@
 	(identifier "description")
 	(specMesg "In Product_Collection both Citation_Information and its description are required.."))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Collection/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002536] of  Schematron_Rule
 
 	(alwaysInclude "true")
@@ -1971,6 +2071,31 @@
 		"collection_to_instrument"
 		"collection_to_instrument_host"
 		"collection_to_target"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Context/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Context/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Context%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002538] of  Schematron_Rule
 
@@ -2165,6 +2290,31 @@
 	(identifier "description")
 	(specMesg "In Product_Document both Citation_Information and its description are required."))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Document/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Document/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Document%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002544] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -2196,6 +2346,31 @@
 		"document_to_target"
 		"document_to_data"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_External/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_External/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area.100002545] of  Schematron_Rule
 
 	(alwaysInclude "true")
@@ -2219,6 +2394,81 @@
 	(attrTitle "description")
 	(identifier "description")
 	(specMesg "In Product_File_Text both Citation_Information and its description are required."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_File_Text/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_File_Text/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_File_Text%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Metadata_Supplemental%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Metadata_Supplemental%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Metadata_Supplemental/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Metadata_Supplemental/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Metadata_Supplemental%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101])
+	(identifier "pds:Product_Native/pds:Identification_Area/pds:License_Information/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Native/pds:Identification_Area/pds:License_Information/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('product_to_license')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "product_to_license"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AReference_List.100002546] of  Schematron_Rule
 
