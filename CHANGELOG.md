@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-31)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
@@ -18,6 +18,7 @@
 
 **Other closed issues:**
 
+- Add a License\_Information class to the Identification\_Area Redux Update [\#681](https://github.com/NASA-PDS/pds4-information-model/issues/681)
 - IMTool Refactoring - Phase 3 - Cleanup - update prior versions of the IM's ontology files [\#676](https://github.com/NASA-PDS/pds4-information-model/issues/676)
 - Adds to default output JSON TermMap [\#670](https://github.com/NASA-PDS/pds4-information-model/issues/670)
 - B14.0 Prep IM and LDDTool for new IM Version [\#666](https://github.com/NASA-PDS/pds4-information-model/issues/666)
