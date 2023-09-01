@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-08-31)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-09-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
@@ -18,6 +18,8 @@
 
 **Other closed issues:**
 
+- B14.0 Release of the PDS4 Information Model and LDDTool for System Integration and Test [\#684](https://github.com/NASA-PDS/pds4-information-model/issues/684)
+- \[namespace-registry\] add new namespace "vco" [\#683](https://github.com/NASA-PDS/pds4-information-model/issues/683)
 - Add a License\_Information class to the Identification\_Area Redux Update [\#681](https://github.com/NASA-PDS/pds4-information-model/issues/681)
 - IMTool Refactoring - Phase 3 - Cleanup - update prior versions of the IM's ontology files [\#676](https://github.com/NASA-PDS/pds4-information-model/issues/676)
 - Adds to default output JSON TermMap [\#670](https://github.com/NASA-PDS/pds4-information-model/issues/670)
