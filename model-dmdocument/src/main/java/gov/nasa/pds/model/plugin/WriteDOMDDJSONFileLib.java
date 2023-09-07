@@ -29,9 +29,11 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 package gov.nasa.pds.model.plugin;
-
-import java.io.FileWriter;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -126,16 +128,16 @@ class WriteDOMDDJSONFileLib {
 		jsonObjectDataDictionary.put(formatValue("namespaces"), jsonArrayNamespaces);
 
 		// get the classDictionary
-		jsonObjectDataDictionary.put(formatValue("classDictionary"), (Object) getValueClassDictionary(lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("classDictionary"), (Object) getValueClassDictionary());
 
 		// get the attributeDictionary
-		jsonObjectDataDictionary.put(formatValue("attributeDictionary"), (Object) getValueAttributeDictionary(lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("attributeDictionary"), (Object) getValueAttributeDictionary());
 
 		// get the dataTypeDictionary
-		jsonObjectDataDictionary.put(formatValue("dataTypeDictionary"), (Object) getValueDataTypeDictionary(lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("dataTypeDictionary"), (Object) getValueDataTypeDictionary());
 
 		// get the UnitDictionary
-		jsonObjectDataDictionary.put(formatValue("UnitDictionary"), (Object) getValueUnitDictionary(lSchemaFileDefn.nameSpaceIdNC));
+		jsonObjectDataDictionary.put(formatValue("UnitDictionary"), (Object) getValueUnitDictionary());
 
 		// get the Property Maps
 		ArrayList<PropertyMapsDefn> selectedPropMapArr = getSelectedPropMapsArr(lSchemaFileDefn.nameSpaceIdNC);
@@ -180,7 +182,7 @@ class WriteDOMDDJSONFileLib {
 	
 	// get the value for the JSONObject classDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueClassDictionary (String nameSpaceIdNC) {
+	private JSONArray getValueClassDictionary () {
 
 		// create the classDictionary JSON Array
 		JSONArray jsonArrayClassDictionary = new JSONArray ();
@@ -189,7 +191,7 @@ class WriteDOMDDJSONFileLib {
 		for (DOMClass lSelectedClass : DOMInfoModel.masterDOMClassArr) {
 			if (lSelectedClass.isInactive) continue;
 			if (lSelectedClass.title.indexOf("PDS3") > -1) continue;
-			if (! (selectNamespaceArr.contains(lSelectedClass.nameSpaceIdNC))) continue;
+			if (!  selectNamespaceArr.contains(lSelectedClass.nameSpaceIdNC)) continue;
 			
 			JSONObject jsonObjectClass = (JSONObject) getNameValuePair ("class", getValueJSONObjectClass (lSelectedClass));
 			jsonArrayClassDictionary.add(jsonObjectClass);
@@ -363,7 +365,7 @@ class WriteDOMDDJSONFileLib {
 	
 	// get the value for the JSONObject attributeDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueAttributeDictionary (String nameSpaceIdNC) {
+	private JSONArray getValueAttributeDictionary () {
 
 		// create the attributeDictionary JSON Array
 		JSONArray jsonArrayAttrDictionary = new JSONArray ();
@@ -371,7 +373,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Attributes
 		for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
 			if (!(lDOMAttr.isUsedInClass && lDOMAttr.isAttribute)) continue;
-			if (! (selectNamespaceArr.contains(lDOMAttr.nameSpaceIdNC))) continue;
+			if (! selectNamespaceArr.contains(lDOMAttr.nameSpaceIdNC)) continue;
 
 			// add to the Class Dictionary
 			jsonArrayAttrDictionary.add((JSONObject) getNameValuePair ("attribute", getValueJSONObjectAttr (lDOMAttr)));
@@ -443,7 +445,7 @@ class WriteDOMDDJSONFileLib {
 
 	// get the value for the JSONObject DataTypeDictionary
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueDataTypeDictionary (String nameSpaceIdNC) {
+	private JSONArray getValueDataTypeDictionary () {
 		
 		// create the DataTypeDictionary JSON Array
 		JSONArray jsonArrayDataTypeDictionary = new JSONArray ();
@@ -451,7 +453,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Data Types
 		for (DOMDataType lDOMDataType : DOMInfoModel.masterDOMDataTypeArr) {
 			if (lDOMDataType.isInactive) continue;
-			if (! (selectNamespaceArr.contains(lDOMDataType.nameSpaceIdNC))) continue;
+			if (! selectNamespaceArr.contains(lDOMDataType.nameSpaceIdNC)) continue;
 			
 			// get the nesting JSONObject for the classDictionary
 			JSONObject jsonObjectDataType = (JSONObject) getNameValuePair ("DataType", getValueJSONObjectDataType (lDOMDataType));
@@ -481,7 +483,7 @@ class WriteDOMDDJSONFileLib {
 
 	// get the value for unitDictionary, a JSONArray
 	@SuppressWarnings("unchecked")
-	private JSONArray getValueUnitDictionary (String nameSpaceIdNC) {
+	private JSONArray getValueUnitDictionary () {
 
 		// create the unitDictionary JSON Array
 		JSONArray jsonArrayUnitDictionary = new JSONArray ();
@@ -489,7 +491,7 @@ class WriteDOMDDJSONFileLib {
 		// scan the Data Types
 		for (DOMUnit lDOMUnit : DOMInfoModel.masterDOMUnitArr) {
 			if (lDOMUnit.isInactive) continue;
-			if (! (selectNamespaceArr.contains(lDOMUnit.nameSpaceIdNC))) continue;
+			if (! selectNamespaceArr.contains(lDOMUnit.nameSpaceIdNC)) continue;
 			
 			// get the nesting JSONObject for the classDictionary
 			JSONObject jsonObjectUnitOfMeasure = (JSONObject) getNameValuePair ("Unit", getValueJSONObjectUnit (lDOMUnit));
@@ -641,14 +643,14 @@ class WriteDOMDDJSONFileLib {
 	}
     
     // TermEntryDefn Group Map - structure for sorting termEntryDefns
-	class TermEntryDefnGroupMapStruct {
+	private static class TermEntryDefnGroupMapStruct {
 		String lddName;
 		String lddVersion;
 		TreeMap <String, TermEntryDefnGroup> termEntryDefnGroupMap = new TreeMap <String, TermEntryDefnGroup> ();
 	}
     
     // structure for sorting termEntryDefns
-	class TermEntryDefnGroup {
+	private static class TermEntryDefnGroup {
 		String identifier;
 		String attrId;
 		TermEntryDefn termEntryDefn;
@@ -665,19 +667,12 @@ class WriteDOMDDJSONFileLib {
 		JSONArray jsonArrayPropertyMapDictionary = new JSONArray ();
 		
 		// scan the Data Types
-		for (PropertyMapsDefn propertyMaps : selectedPropMapArr) {
-		    if (propertyMaps.propertyMapArr.isEmpty()) continue;	    
+		for (PropertyMapsDefn lPropertyMaps : selectedPropMapArr) {
+		    if (lPropertyMaps.propertyMapArr.isEmpty()) continue;	    
 			
 			// get PropertyMaps, a JSONObject
 			JSONObject jsonObjectPropertyMaps = new JSONObject ();
-			jsonObjectPropertyMaps.put("PropertyMaps", getValuePropertyMaps(propertyMaps));
-			
-			// nest PropertyMaps
-//			JSONObject jsonObjectNest = new JSONObject ();
-//			jsonObjectNest.put(formatValue("null6"), jsonObjectPropertyMaps);
-			
-			// add to the PropertyMapDictionary
-//			jsonArrayPropertyMapDictionary.add(jsonObjectNest);
+			jsonObjectPropertyMaps.put("PropertyMaps", getValuePropertyMaps(lPropertyMaps));
 			jsonArrayPropertyMapDictionary.add(jsonObjectPropertyMaps);
 		}
 		return jsonArrayPropertyMapDictionary;
@@ -716,6 +711,7 @@ class WriteDOMDDJSONFileLib {
 	    	jsonObjectPropertyMap.put(formatValue("description"), formatValue(lPropertyMap.description));
 		    if (! lPropertyMap.propertyMapEntryArr.isEmpty())
 		    	jsonObjectPropertyMap.put(formatValue("propertyMapEntryList"), getValuePropertyMapEntryList (lPropertyMap));
+		    jsonArrayValuePropertyMapList.add(jsonObjectPropertyMap);
 	    }
 		return jsonArrayValuePropertyMapList;
 	}
@@ -731,7 +727,6 @@ class WriteDOMDDJSONFileLib {
 			jsonObjectPropertyMapEntry.put("property_name", formatValue(lPropertyMapEntry.property_name));
 			jsonObjectPropertyMapEntry.put("property_value", formatValue(lPropertyMapEntry.property_value));
 	    	JSONObject jsonObjectNullObject = new JSONObject ();
-//	    	jsonObjectNullObject.put("null7", jsonObjectPropertyMapEntry);
 	    	jsonObjectNullObject.put("bn" + Integer.toString(bnNum++), jsonObjectPropertyMapEntry);
 			jsonArrayValuePropertyMapEntryList.add(jsonObjectNullObject);
 	    }
@@ -744,10 +739,10 @@ class WriteDOMDDJSONFileLib {
     private void writeJson(JSONArray jsonObjectLevel0, String file) {
     	// write the JSON level 0 Object
         try {
-            FileWriter jsonFileWriter = new FileWriter(file);            
+        	Writer jsonFileWriter = Files.newBufferedWriter(Paths.get(file), UTF_8);            
             jsonFileWriter.write(jsonObjectLevel0.toJSONString());
             jsonFileWriter.flush();
-            jsonFileWriter.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -898,7 +893,7 @@ public JSONArray printTermEntriesList(DOMClass lSelectedDOMClass) {
   } 
 
 // group attributes and classes under a single property
-  public class DOMPropGroup { 
+  private static class DOMPropGroup { 
 	  DOMProp domProp; // this is the property
 	  ArrayList<ISOClassOAIS11179> domObjectArr; // these are the attributes and classes
 
