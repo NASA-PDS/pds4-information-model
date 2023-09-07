@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-09-01)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-09-07)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
@@ -10,6 +10,7 @@
 
 **Improvements:**
 
+- Verify LDDTool Processing of the Discipline LDDs matches previous releases [\#686](https://github.com/NASA-PDS/pds4-information-model/issues/686)
 - Add TermMaps to default output JSON [\#651](https://github.com/NASA-PDS/pds4-information-model/issues/651)
 
 **Defects:**
@@ -18,6 +19,7 @@
 
 **Other closed issues:**
 
+- Sonatype - Suggested Modifications - WriteDOMDDJSONFileLib - 230810 [\#687](https://github.com/NASA-PDS/pds4-information-model/issues/687)
 - B14.0 Release of the PDS4 Information Model and LDDTool for System Integration and Test [\#684](https://github.com/NASA-PDS/pds4-information-model/issues/684)
 - \[namespace-registry\] add new namespace "vco" [\#683](https://github.com/NASA-PDS/pds4-information-model/issues/683)
 - Add a License\_Information class to the Identification\_Area Redux Update [\#681](https://github.com/NASA-PDS/pds4-information-model/issues/681)
