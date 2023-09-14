@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-09-07)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-09-14)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...«unknown»)
 
@@ -10,8 +10,8 @@
 
 **Improvements:**
 
-- Verify LDDTool Processing of the Discipline LDDs matches previous releases [\#686](https://github.com/NASA-PDS/pds4-information-model/issues/686)
-- Add TermMaps to default output JSON [\#651](https://github.com/NASA-PDS/pds4-information-model/issues/651)
+- Verify LDDTool Processing of the Discipline LDDs matches outputs previous releases [\#686](https://github.com/NASA-PDS/pds4-information-model/issues/686)
+- Adds to default output JSON TermMap [\#670](https://github.com/NASA-PDS/pds4-information-model/issues/670)
 
 **Defects:**
 
@@ -19,12 +19,12 @@
 
 **Other closed issues:**
 
+- Issue \#426 add new namespace "vco" [\#690](https://github.com/NASA-PDS/pds4-information-model/issues/690)
 - Sonatype - Suggested Modifications - WriteDOMDDJSONFileLib - 230810 [\#687](https://github.com/NASA-PDS/pds4-information-model/issues/687)
 - B14.0 Release of the PDS4 Information Model and LDDTool for System Integration and Test [\#684](https://github.com/NASA-PDS/pds4-information-model/issues/684)
 - \[namespace-registry\] add new namespace "vco" [\#683](https://github.com/NASA-PDS/pds4-information-model/issues/683)
 - Add a License\_Information class to the Identification\_Area Redux Update [\#681](https://github.com/NASA-PDS/pds4-information-model/issues/681)
 - IMTool Refactoring - Phase 3 - Cleanup - update prior versions of the IM's ontology files [\#676](https://github.com/NASA-PDS/pds4-information-model/issues/676)
-- Adds to default output JSON TermMap [\#670](https://github.com/NASA-PDS/pds4-information-model/issues/670)
 - B14.0 Prep IM and LDDTool for new IM Version [\#666](https://github.com/NASA-PDS/pds4-information-model/issues/666)
 - \[namespace-registry\] add new namespace "mgn" [\#664](https://github.com/NASA-PDS/pds4-information-model/issues/664)
 - Implement Term Mapping Example for EPNCore Attributes [\#545](https://github.com/NASA-PDS/pds4-information-model/issues/545)
