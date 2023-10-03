@@ -68,7 +68,8 @@ class WriteDOMCSVFiles extends Object {
         + "Maximum Cardinality" + DELM_MID + "Minimum Value" + DELM_MID + "Maximum Value" + DELM_MID
         + "Minimum Characters" + DELM_MID + "Maximum Characters" + DELM_MID + "Unit of Measure Type"
         + DELM_MID + "Specified Unit Id" + DELM_MID + "Attribute Concept" + DELM_MID
-        + "Conceptual Domain" + DELM_END + "\r\n");
+        + "Conceptual Domain" + DELM_END);
+	prCSVAttr.newLine();
     for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
       if ((lClass.isUSERClass || lClass.isUnitOfMeasure || lClass.isDataType || lClass.isVacuous)) {
