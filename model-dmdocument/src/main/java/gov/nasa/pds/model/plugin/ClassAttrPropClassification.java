@@ -643,15 +643,4 @@ public class ClassAttrPropClassification {
 		if (lAlias == null) lAlias = lTitle;
 		return lAlias;
 	}
-	
-	// dump ClassAttrPropClassification
-	public  void dump (int id) {
-		ArrayList <ClassPropertiesOWL> lClassPropertiesOWLArr = getClassPropertiesOWL ();
-		ArrayList <String> lClassPropertyIdArr = new ArrayList <String> ();
-		for (ClassPropertiesOWL lClassPropertiesOWL: lClassPropertiesOWLArr) {
-			lClassPropertyIdArr.add(lClassPropertiesOWL.identifier);
-		}
-//		System.out.println("debug ClassAttrPropClassification - Dump:" + id + " -  lClassPropertyIdArr:" + lClassPropertyIdArr);
-	}
-
 }

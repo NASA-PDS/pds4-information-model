@@ -90,6 +90,12 @@ public class ExportModelsCustom extends Object {
 	    // writeDocCSV.writeDocCSV (DMDocument.masterPDSSchemaFileDefn);
 	    // DMDocument.registerMessage ("0>info " + "writeAllArtifacts - CCSDS CSV Done");
 
+	    // write DOM CSV as a class hierarchy in a spreadSheet.
+	    ArrayList<DOMClass> domSortClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());	
+		WriteDOMCSVFileClassHier writeDOMCSVFileClassHier = new WriteDOMCSVFileClassHier ();
+		writeDOMCSVFileClassHier.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
+	    DMDocument.registerMessage ("0>info " + "writeAllArtifacts - WriteDOMCSVFileClassHier Done");
+
 	    // print out the histogram for the DEC concepts
 	    /*
 	     * System.out.println("\nConcept Histogram"); Set <String> set1 =
