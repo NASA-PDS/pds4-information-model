@@ -1,0 +1,74 @@
+name: Feature request
+description: Suggest a new idea or new requirement for this project
+title: As a <what is the user's role?>, I want to <what is the user trying to accomplish?>
+labels: "needs:triage,requirement"
+assignees: jordanpadams
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > _Thanks for filing a new feature request. We appreciate your time and effort. Please answer a few questions. For more information on how to populate this new feature request, see the PDS Wiki on User Story Development: https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Issue-Tracking#user-story-development_
+  - type: dropdown
+    id: checked-for-duplicates
+    attributes:
+      label: Checked for duplicates
+      description: Have you checked for duplicate issue tickets?
+      multiple: false
+      options:
+        - "Yes - I've already checked"
+        - "No - I haven't checked"
+    validations:
+      required: yes
+      
+  - type: textarea
+    id: personas
+    attributes:
+      label: 🧑‍🔬 User Persona(s)
+      description: What specific types of users to you think this feature applies to?
+      placeholder: Node Operator, Data Engineer, Data User, etc.
+    validations:
+      required: false
+      
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 💪 Motivation
+      description: Why? Finish the user story in the title.
+      value: "...so that I can [why do you want to do this?]"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: details
+    attributes:
+      label: 📖 Additional Details
+      description: Provide any additional details, related problems, or information that could help provide some context for the user story.
+    validations:
+      required: false
+      
+  - type: markdown
+    attributes:
+      value: |
+        ## For Internal Dev Team To Complete
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: To be filled out by Engineering Node Team
+      value: |
+          **Given** <!-- a condition -->
+          **When I perform** <!-- an action -->
+          **Then I expect** <!-- the result -->
+    validations:
+      required: false
+      
+  - type: textarea
+    id: engineering-details
+    attributes:
+      label: ⚙️ Engineering Details
+      description: To be filled out by Engineering Node Team
+      placeholder:  Provide some design / implementation details and/or a sub-task checklist as needed. Convert issue to Epic if estimate is outside the scope of 1 sprint.
+    validations:
+      required: false
