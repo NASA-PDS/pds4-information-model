@@ -1,8 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-10-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-10-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
+
+**Improvements:**
+
+- \[vg1\] add new namespace "\<vg1\>" [\#695](https://github.com/NASA-PDS/pds4-information-model/issues/695)
 
 **Other closed issues:**
 
