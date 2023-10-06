@@ -59,18 +59,20 @@ class WriteDOMCSVFileClassHier extends Object {
 	  // set up the output file
 	  String lFileName = lSchemaFileDefn.relativeFileSpecDDCSV;
 	  lFileName = lSchemaFileDefn.relativeFileSpecDDCSV + "_EIMSpreadSheet" ;
-//	  lFileName += ".csv";
 	  lFileName += ".txt";
 	  FileOutputStream lFileOutputStream = new FileOutputStream(lFileName);
 	  BufferedWriter prCSVAttr =
 			  new BufferedWriter(new OutputStreamWriter(lFileOutputStream, "UTF8"));
-	  System.out.println("\ndebug WriteDOMCSVFileEIMSpreadSheet selectedClasses:" + selectedUpperLevelClasses);
+	  prCSVAttr.write("Class Name" + "	" + "Class Definition" + "	" + "Attribute Name" + "	" + "Attribute Definition" + "	" + "Attribute Value" + "	" + "Value Meaning");
+	  prCSVAttr.newLine();
     
 	  // get the selected classes
 	  for (DOMClass selectedInputClass : inputClassArr) {
 		  if ((selectedInputClass.isInactive || selectedInputClass.isUSERClass || selectedInputClass.isUnitOfMeasure || selectedInputClass.isDataType || selectedInputClass.isVacuous)) continue;
 		  if (selectedInputClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue;
 		  if (! selectedUpperLevelClasses.contains(selectedInputClass.title)) continue;
+		  prCSVAttr.write(selectedInputClass.title + "	" + selectedInputClass.definition);
+		  prCSVAttr.newLine();
 		  
 		  // *** get all components of the selected class ***
 		  getAllComponentClasses(selectedInputClass, 1);
