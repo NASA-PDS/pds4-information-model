@@ -1,4 +1,4 @@
-; Thu Aug 31 16:30:18 EDT 2023
+; Thu Oct 05 14:38:16 EDT 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -158,7 +158,7 @@
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(type "TBD_type")
-	(xpath "/*[not(contains(name(), 'Ingest') or contains(name(), 'Bundle') or contains(name(), 'Collection'))]/pds:Identification_Area/pds:logical_identifier"))
+	(xpath "/*[not(contains(name(), 'External') or contains(name(), 'Ingest') or contains(name(), 'Bundle') or contains(name(), 'Collection'))]/pds:Identification_Area/pds:logical_identifier"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101] of  Schematron_Assert
 
@@ -168,6 +168,41 @@
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
 	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\""))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102])
+	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier_external")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "/*[contains(name(), 'External')]/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101] of  Schematron_Assert
+
+	(assertMsg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:productID...\"/>).")
+	(assertStmt "string-length(.) - string-length(translate(., ':', '')) lt 4")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:productID...\"/>)."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102] of  Schematron_Assert
+
+	(assertMsg "The parent-value of the attribute logical_identifier must start with 'urn:'/>.")
+	(assertStmt "starts-with(., 'urn:')")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The parent-value of the attribute logical_identifier must start with 'urn:'/>."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548] of  Schematron_Rule
 
@@ -930,7 +965,8 @@
 		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
 		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
 		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
-		"name=\"urn_isro\" value=\"'urn:isro:isda:'\"")
+		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
+		"name=\"parentObj\" value=\"local-name(/*) = 'Product_External'\"")
 	(type "TBD_type")
 	(xpath "pds:Identification_Area"))
 
@@ -954,12 +990,12 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
-	(assertStmt "if (pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) else true()")
+	(assertMsg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>")
+	(assertStmt "if (not ($parentObj) and pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The value of the attribute logical_identifier must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
+	(specMesg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104] of  Schematron_Assert
 
