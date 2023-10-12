@@ -1,8 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-10-05)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-10-12)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
+
+**Requirements:**
+
+- CCB-357: Create Product\_External - LID Schematron Rule Update [\#698](https://github.com/NASA-PDS/pds4-information-model/issues/698)
 
 **Improvements:**
 
