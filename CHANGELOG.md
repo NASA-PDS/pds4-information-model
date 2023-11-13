@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-10-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2023-11-13)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
 **Requirements:**
 
+- Add KARI as a new agency `urn:kari:kpds` [\#709](https://github.com/NASA-PDS/pds4-information-model/issues/709)
 - CCB-357: Create Product\_External - LID Schematron Rule Update [\#698](https://github.com/NASA-PDS/pds4-information-model/issues/698)
 
 **Improvements:**
@@ -16,6 +17,7 @@
 **Other closed issues:**
 
 - Fix code scanning alert - Container contents are never accessed [\#693](https://github.com/NASA-PDS/pds4-information-model/issues/693)
+- Develop first iteration of provenance model [\#692](https://github.com/NASA-PDS/pds4-information-model/issues/692)
 
 ## [v14.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.3.0) (2023-09-18)
 
