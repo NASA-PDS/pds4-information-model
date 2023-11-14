@@ -1,4 +1,4 @@
-; Fri Nov 10 19:55:26 EST 2023
+; Mon Nov 13 21:53:10 EST 2023
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -350,7 +350,7 @@
 		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
 		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
 		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
-		"name=\"urn_kari\" value=\"urn:kari:kpds:\"")
+		"name=\"urn_kari\" value=\"'urn:kari:kpds:'\"")
 	(type "TBD_type")
 	(xpath "pds:Bundle_Member_Entry"))
 
@@ -968,7 +968,7 @@
 		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
 		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
 		"name=\"parentObj\" value=\"local-name(/*) = 'Product_External'\""
-		"name=\"urn_kari\" value=\"urn:kari:kpds:\"")
+		"name=\"urn_kari\" value=\"'urn:kari:kpds:'\"")
 	(type "TBD_type")
 	(xpath "pds:Identification_Area"))
 
@@ -1062,7 +1062,7 @@
 		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
 		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
 		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
-		"name=\"urn_kari\" value=\"urn:kari:kpds:\"")
+		"name=\"urn_kari\" value=\"'urn:kari:kpds:'\"")
 	(type "TBD_type")
 	(xpath "pds:Internal_Reference"))
 
