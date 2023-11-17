@@ -31,6 +31,7 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -38,6 +39,45 @@ import java.util.Set;
 public class GetDOMModel extends Object {
 
   ISO11179DOMMDR lISO11179DOMMDR;
+  
+  // 555
+  ArrayList <String> classInactiveIdentifierArr = new ArrayList <> (Arrays.asList(
+		  "0001_NASA_PDS_1.pds.Activity",
+		  "0001_NASA_PDS_1.pds.Agent",
+		  "0001_NASA_PDS_1.pds.Array_3D_Map",
+		  "0001_NASA_PDS_1.pds.Array_3D_Spectral_Map",
+		  "0001_NASA_PDS_1.pds.Array_3D_Spectral_Movie",
+		  "0001_NASA_PDS_1.pds.ChangeLog",
+		  "0001_NASA_PDS_1.pds.Config",
+		  "0001_NASA_PDS_1.pds.DD_Static_Permissible_Value",
+		  "0001_NASA_PDS_1.pds.Encoded_Telemetry",
+		  "0001_NASA_PDS_1.pds.Entity",
+		  "0001_NASA_PDS_1.pds.File_Area_Ingest_LDD",
+		  "0001_NASA_PDS_1.pds.File_Area_Telemetry",
+		  "0001_NASA_PDS_1.pds.Ingest_LDD_File",
+		  "0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc",
+		  "0001_NASA_PDS_1.pds.Input_Data",
+		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference",
+		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference_From",
+		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference_To",
+		  "0001_NASA_PDS_1.pds.LID_ID_Reference",
+		  "0001_NASA_PDS_1.pds.LID_ID_Reference_From",
+		  "0001_NASA_PDS_1.pds.LID_ID_Reference_To",
+		  "0001_NASA_PDS_1.pds.Methods",
+		  "0001_NASA_PDS_1.pds.Output_Data",
+		  "0001_NASA_PDS_1.pds.Product_Ingest_LDD",
+		  "0001_NASA_PDS_1.pds.Product_Telemetry",
+		  "0001_NASA_PDS_1.pds.Product_Virtual",
+		  "0001_NASA_PDS_1.pds.Property_Map_External",
+		  "0001_NASA_PDS_1.pds.Schematron_Assert",
+		  "0001_NASA_PDS_1.pds.Schematron_Rule",
+		  "0001_NASA_PDS_1.pds.Tracking",
+		  "0001_NASA_PDS_1.pds.Tracking_Detail",
+		  "0001_NASA_PDS_1.pds.Virtual_Area",
+		  "0001_NASA_PDS_1.pds.Virtual_Reference",
+		  "0001_NASA_PDS_1.pds.Virtual_Relation",
+		  "0001_NASA_PDS_1.pds.Virtual_Structure",
+		  "0001_NASA_PDS_1.pds.XSChoice%23"));
 
   public GetDOMModel() {}
 
@@ -72,9 +112,12 @@ public class GetDOMModel extends Object {
     ArrayList<DOMClass> lClassArr = new ArrayList<>(DOMInfoModel.parsedClassMap.values());
     for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
-      if (!lClass.isMasterClass) {
-        continue;
-      }
+      
+// 555
+//      if (!lClass.isMasterClass) {
+//        continue;
+//      }
+      
       if (!DOMInfoModel.masterDOMClassMap.containsKey(lClass.rdfIdentifier)) {
         DOMInfoModel.masterDOMClassMap.put(lClass.rdfIdentifier, lClass);
       } else {
@@ -131,6 +174,11 @@ public class GetDOMModel extends Object {
               DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
               lDOMProp.hasDOMObject = lDOMAttr;
               lDOMAttr.hasDOMPropInverse = lDOMProp;
+              
+// 555
+              lDOMProp.isInactive = lClass.isInactive;
+              lDOMAttr.isInactive = lClass.isInactive;
+
             } else {
               DMDocument.registerMessage(
                   "1>error " + "Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:"
@@ -164,6 +212,10 @@ public class GetDOMModel extends Object {
                 && DOMInfoModel.masterDOMClassMap.get(lDOMClass.rdfIdentifier) != null) {
               lDOMProp.hasDOMObject = lDOMClass;
               lDOMClass.hasDOMPropInverse = lDOMProp;
+              
+              // 5555
+              lDOMProp.isInactive = lClass.isInactive;
+              
             } else {
               DMDocument.registerMessage(
                   "1>error " + "Class not found - ADDING Class lDOMClass.rdfIdentifier:"
@@ -336,10 +388,20 @@ public class GetDOMModel extends Object {
     // 017b - overwrite master classes from the 11179 DD
     // - either import from JSON 11179 file or overwrite from 11179 dictionary
     // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-    // 555
+
+// 555
+//  for (DOMClass lClass : DOMInfoModel.masterDOMClassArr) {
+//		System.out.println("identifier:" + lClass.identifier + "	used:" + lClass.used + "	isMasterClass:" + lClass.isMasterClass + "	isVacuous:" + lClass.isVacuous + "	isSchema1Class:" + lClass.isSchema1Class + "	isRegistryClass:" + lClass.isRegistryClass + "	isTDO:" + lClass.isTDO + "	isDataType:" + lClass.isDataType + "	isUnitOfMeasure:" + lClass.isUnitOfMeasure + "	section:" + lClass.section + "	nameSpaceIdNC:" + lClass.nameSpaceIdNC + "	steward:" + lClass.steward + "	-protege1-");
+//	}
+    
     if (!DMDocument.LDDToolFlag) {
       lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
     }
+    
+// 555
+//  for (DOMClass lClass : DOMInfoModel.masterDOMClassArr) {
+//    System.out.println("identifier:" + lClass.identifier + "	used:" + lClass.used + "	isMasterClass:" + lClass.isMasterClass + "	isVacuous:" + lClass.isVacuous + "	isSchema1Class:" + lClass.isSchema1Class + "	isRegistryClass:" + lClass.isRegistryClass + "	isTDO:" + lClass.isTDO + "	isDataType:" + lClass.isDataType + "	isUnitOfMeasure:" + lClass.isUnitOfMeasure + "	section:" + lClass.section + "	nameSpaceIdNC:" + lClass.nameSpaceIdNC + "	steward:" + lClass.steward + "	-protege2-");
+//  }    
 
     // 018 - overwrite any LDD attributes from the cloned USER attributes
     // this is not really needed since the definitions are in the external class

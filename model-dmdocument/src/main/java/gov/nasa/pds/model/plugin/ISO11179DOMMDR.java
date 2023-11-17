@@ -131,9 +131,14 @@ class ISO11179DOMMDR extends Object {
     // iterate through the master attribute array
     for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
       DOMAttr lAttr = i.next();
-      if (!lAttr.isAttribute || lAttr.isFromLDD) {
-        continue;
-      }
+      
+// 555
+      if (!lAttr.isAttribute || lAttr.isFromLDD || lAttr.isInactive) continue;
+      
+//      if (!lAttr.isAttribute || lAttr.isFromLDD) {
+//        continue;
+//      }
+      
       DOMClass lParentClass = lAttr.attrParentClass;
       if (lParentClass == null) {
         continue;
@@ -359,9 +364,14 @@ class ISO11179DOMMDR extends Object {
     // iterate through the master class array
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lDOMClass = i.next();
-      if (lDOMClass.isFromLDD) {
-        continue;
-      }
+      
+// 555
+      if (lDOMClass.isInactive || lDOMClass.isFromLDD) continue;
+  
+//      if (lDOMClass.isFromLDD) {
+//        continue;
+//      }
+      
       lSuffix = DOMInfoModel.getClassIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title);
       lInstId = "ObjectClass" + "." + "OC" + "." + lSuffix;
       InstDefn lOCInst = DOMInfoModel.master11179DataDict.get(lInstId);
