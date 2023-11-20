@@ -4,6 +4,7 @@ about: Tasks related to PDS4 Standards Change Request in design and implementati
   queue
 title: 'CCB-xxx: Copy SCR title here'
 labels: needs:triage, p.must-have, pending-scr, requirement
+projects: "NASA-PDS/6"
 assignees: jordanpadams
 
 ---
