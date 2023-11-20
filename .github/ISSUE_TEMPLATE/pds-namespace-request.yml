@@ -1,14 +1,10 @@
----
 name: PDS Namespace Request
-about: Tasks related to the PDS Namespace Registry, i.e. add new namespace ID
+description: Tasks related to the PDS Namespace Registry, i.e. add new namespace ID
 title: '[namespace-registry] add new namespace <proposed namespace ID here>'
 labels: enhancement, p.must-have, skip-i&t
 projects: "NASA-PDS/6"
 assignees: c-suh, jshughes
 
----
-
-* **Namespace ID Requested:** _examples: img, geom, speclib, mars2020, ladee, etc._
 body:
   - type: textarea
     id: namespace
