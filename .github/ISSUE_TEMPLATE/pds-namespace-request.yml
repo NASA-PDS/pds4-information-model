@@ -1,0 +1,43 @@
+---
+name: PDS Namespace Request
+about: Tasks related to the PDS Namespace Registry, i.e. add new namespace ID
+title: '[namespace-registry] add new namespace `<proposed namespace ID here>`
+labels: enhancement, p.must-have, skip-i&t
+projects: "NASA-PDS/6"
+assignees: c-suh, jshughes
+
+---
+
+* **Namespace ID Requested:** _examples: img, geom, speclib, mars2020, ladee, etc._
+body:
+  - type: textarea
+    id: namespace
+    attributes:
+      label: Namespace ID Requested
+      description: Short identifier for the namespace to add to the registry
+      placeholder: e.g. img, geom, speclib, mars2020, ladee, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: Associated Namespace Details
+      description: Reference to associated PDSEN Operations issue where new namespace was requested.
+      placeholder: NASA-PDS/operations#123
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## For Internal Dev Team To Complete
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: Associated Namespace Details
+      description: Reference to associated PDSEN Operations issue where new namespace was requested.
+      placeholder: NASA-PDS/operations#123
+      value: |
+        - [ ] @jshughes update namespace registry
