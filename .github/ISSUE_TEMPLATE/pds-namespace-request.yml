@@ -30,9 +30,9 @@ body:
         ## For Internal Dev Team To Complete
 
   - type: textarea
-    id: reference
+    id: engineering
     attributes:
-      label: Associated Namespace Details
+      label: :gear: Engineering Details
       description: Reference to associated PDSEN Operations issue where new namespace was requested.
       placeholder: NASA-PDS/operations#123
       value: |
