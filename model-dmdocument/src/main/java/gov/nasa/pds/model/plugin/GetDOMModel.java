@@ -39,45 +39,6 @@ import java.util.Set;
 public class GetDOMModel extends Object {
 
   ISO11179DOMMDR lISO11179DOMMDR;
-  
-  // 555
-  ArrayList <String> classInactiveIdentifierArr = new ArrayList <> (Arrays.asList(
-		  "0001_NASA_PDS_1.pds.Activity",
-		  "0001_NASA_PDS_1.pds.Agent",
-		  "0001_NASA_PDS_1.pds.Array_3D_Map",
-		  "0001_NASA_PDS_1.pds.Array_3D_Spectral_Map",
-		  "0001_NASA_PDS_1.pds.Array_3D_Spectral_Movie",
-		  "0001_NASA_PDS_1.pds.ChangeLog",
-		  "0001_NASA_PDS_1.pds.Config",
-		  "0001_NASA_PDS_1.pds.DD_Static_Permissible_Value",
-		  "0001_NASA_PDS_1.pds.Encoded_Telemetry",
-		  "0001_NASA_PDS_1.pds.Entity",
-		  "0001_NASA_PDS_1.pds.File_Area_Ingest_LDD",
-		  "0001_NASA_PDS_1.pds.File_Area_Telemetry",
-		  "0001_NASA_PDS_1.pds.Ingest_LDD_File",
-		  "0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc",
-		  "0001_NASA_PDS_1.pds.Input_Data",
-		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference",
-		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference_From",
-		  "0001_NASA_PDS_1.pds.LIDVID_ID_Reference_To",
-		  "0001_NASA_PDS_1.pds.LID_ID_Reference",
-		  "0001_NASA_PDS_1.pds.LID_ID_Reference_From",
-		  "0001_NASA_PDS_1.pds.LID_ID_Reference_To",
-		  "0001_NASA_PDS_1.pds.Methods",
-		  "0001_NASA_PDS_1.pds.Output_Data",
-		  "0001_NASA_PDS_1.pds.Product_Ingest_LDD",
-		  "0001_NASA_PDS_1.pds.Product_Telemetry",
-		  "0001_NASA_PDS_1.pds.Product_Virtual",
-		  "0001_NASA_PDS_1.pds.Property_Map_External",
-		  "0001_NASA_PDS_1.pds.Schematron_Assert",
-		  "0001_NASA_PDS_1.pds.Schematron_Rule",
-		  "0001_NASA_PDS_1.pds.Tracking",
-		  "0001_NASA_PDS_1.pds.Tracking_Detail",
-		  "0001_NASA_PDS_1.pds.Virtual_Area",
-		  "0001_NASA_PDS_1.pds.Virtual_Reference",
-		  "0001_NASA_PDS_1.pds.Virtual_Relation",
-		  "0001_NASA_PDS_1.pds.Virtual_Structure",
-		  "0001_NASA_PDS_1.pds.XSChoice%23"));
 
   public GetDOMModel() {}
 

@@ -365,18 +365,31 @@ class ISO11179DOMMDR extends Object {
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lDOMClass = i.next();
       
-// 555
-      if (lDOMClass.isInactive || lDOMClass.isFromLDD) continue;
-  
-//      if (lDOMClass.isFromLDD) {
-//        continue;
-//      }
+// 555   
+//     earlier attribute and property classes are set from Class, so need yet another flag
+//      if (lDOMClass.isInactive || lDOMClass.isFromLDD) continue;
+      if (lDOMClass.isFromLDD) continue;
       
       lSuffix = DOMInfoModel.getClassIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title);
       lInstId = "ObjectClass" + "." + "OC" + "." + lSuffix;
       InstDefn lOCInst = DOMInfoModel.master11179DataDict.get(lInstId);
       if (lOCInst != null) {
         lInstMap = lOCInst.genSlotMap;
+        
+     // 555
+        // update isInactive
+        // *** ProtPontDOMModel - All .pont classes have isInactive = false during initial parse;
+        // during overwrite from dd11179, if isInactive = true then set class.isInactive = true
+        // note that some classes are defined in the .pont file (inactive) but not in dd11179
+        lVal = ProtPinsDOM11179DD.getStringValueUpdate(false, lInstMap, "isInactive", "false");
+        if (lVal != null && lVal.compareTo("true") == 0) {
+          if (lDebugFlag) {
+            System.out.println("debug Overwrite Class with 11179 - got lInstId:" + lInstId
+                + " - updating Class.isInactive:" + lDOMClass.isInactive + "  - with lVal:"
+                + lVal);
+          }
+          lDOMClass.isInactive = true;
+        }        
 
         // update isDeprecated
         lVal = ProtPinsDOM11179DD.getStringValueUpdate(false, lInstMap, "isDeprecated", "false");
@@ -507,11 +520,17 @@ class ISO11179DOMMDR extends Object {
           lDOMClass.versionId = lVal;
         }
 
-      } else // DMDocument.registerMessage ("1>error " + "11179 data dictionary class is missing for
-             // overwrite - Identifier:" + lInstId);
-      if (lDOMClass.title.compareTo("USER") != 0) {
-        DMDocument.registerMessage("1>error "
-            + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+      } else {
+    	  
+    	  // the class does not exist in dd11179; set the class and its components to inactive
+    	  lDOMClass.setIsInactive(true);
+    	  
+// 555    	  
+    	  if (lDOMClass.title.compareTo("USER") != 0) {
+    		  DMDocument.registerMessage("1>error "
+// 555 change needed   		  DMDocument.registerMessage("1>warning "
+    				  + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+    	  }
       }
     }
   }
