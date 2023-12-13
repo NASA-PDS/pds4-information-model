@@ -73,12 +73,6 @@ public class GetDOMModel extends Object {
     ArrayList<DOMClass> lClassArr = new ArrayList<>(DOMInfoModel.parsedClassMap.values());
     for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
-      
-// 555
-//      if (!lClass.isMasterClass) {
-//        continue;
-//      }
-      
       if (!DOMInfoModel.masterDOMClassMap.containsKey(lClass.rdfIdentifier)) {
         DOMInfoModel.masterDOMClassMap.put(lClass.rdfIdentifier, lClass);
       } else {
@@ -135,11 +129,8 @@ public class GetDOMModel extends Object {
               DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
               lDOMProp.hasDOMObject = lDOMAttr;
               lDOMAttr.hasDOMPropInverse = lDOMProp;
-              
-// 555
               lDOMProp.isInactive = lClass.isInactive;
               lDOMAttr.isInactive = lClass.isInactive;
-
             } else {
               DMDocument.registerMessage(
                   "1>error " + "Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:"
@@ -174,7 +165,6 @@ public class GetDOMModel extends Object {
               lDOMProp.hasDOMObject = lDOMClass;
               lDOMClass.hasDOMPropInverse = lDOMProp;
               
-              // 5555
               lDOMProp.isInactive = lClass.isInactive;
               
             } else {
@@ -348,21 +338,11 @@ public class GetDOMModel extends Object {
 
     // 017b - overwrite master classes from the 11179 DD
     // - either import from JSON 11179 file or overwrite from 11179 dictionary
-    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-
-// 555
-//  for (DOMClass lClass : DOMInfoModel.masterDOMClassArr) {
-//		System.out.println("identifier:" + lClass.identifier + "	used:" + lClass.used + "	isMasterClass:" + lClass.isMasterClass + "	isVacuous:" + lClass.isVacuous + "	isSchema1Class:" + lClass.isSchema1Class + "	isRegistryClass:" + lClass.isRegistryClass + "	isTDO:" + lClass.isTDO + "	isDataType:" + lClass.isDataType + "	isUnitOfMeasure:" + lClass.isUnitOfMeasure + "	section:" + lClass.section + "	nameSpaceIdNC:" + lClass.nameSpaceIdNC + "	steward:" + lClass.steward + "	-protege1-");
-//	}
+    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179
     
     if (!DMDocument.LDDToolFlag) {
       lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
     }
-    
-// 555
-//  for (DOMClass lClass : DOMInfoModel.masterDOMClassArr) {
-//    System.out.println("identifier:" + lClass.identifier + "	used:" + lClass.used + "	isMasterClass:" + lClass.isMasterClass + "	isVacuous:" + lClass.isVacuous + "	isSchema1Class:" + lClass.isSchema1Class + "	isRegistryClass:" + lClass.isRegistryClass + "	isTDO:" + lClass.isTDO + "	isDataType:" + lClass.isDataType + "	isUnitOfMeasure:" + lClass.isUnitOfMeasure + "	section:" + lClass.section + "	nameSpaceIdNC:" + lClass.nameSpaceIdNC + "	steward:" + lClass.steward + "	-protege2-");
-//  }    
 
     // 018 - overwrite any LDD attributes from the cloned USER attributes
     // this is not really needed since the definitions are in the external class

@@ -126,11 +126,9 @@ class ProtPontDOMModel extends DOMInfoModel {
           // get disposition for the class from MDPTNConfig
           boolean isInParsedClassMap = false;
 
-// 555
           // get disposition for the class from dd11179
           if (DMDocument.overWriteClass && (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0)) {
             lClass.getDOMClassDisposition2(); // from protege (new)
-            // 555
             lClass.isInactive = false; // could be reset in overwrite from dd11179
             parsedClassMap.put(lClass.rdfIdentifier, lClass);
             classNameSpaceIdNC = lClass.nameSpaceIdNC;  // set the namespace for the attributes

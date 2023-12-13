@@ -291,7 +291,6 @@ public class DOMClass extends ISOClassOAIS11179 {
     return lISOArr;
   }
   
-  // 555
   // set the Class and owned Properties, Attributes, and the PermissibleValue isInactive flags
   void setIsInactive(Boolean lIsInactive) {
 	  

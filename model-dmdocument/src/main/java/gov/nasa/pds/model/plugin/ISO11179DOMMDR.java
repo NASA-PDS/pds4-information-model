@@ -131,14 +131,7 @@ class ISO11179DOMMDR extends Object {
     // iterate through the master attribute array
     for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
       DOMAttr lAttr = i.next();
-      
-// 555
       if (!lAttr.isAttribute || lAttr.isFromLDD || lAttr.isInactive) continue;
-      
-//      if (!lAttr.isAttribute || lAttr.isFromLDD) {
-//        continue;
-//      }
-      
       DOMClass lParentClass = lAttr.attrParentClass;
       if (lParentClass == null) {
         continue;
@@ -364,20 +357,14 @@ class ISO11179DOMMDR extends Object {
     // iterate through the master class array
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lDOMClass = i.next();
-      
-// 555   
-//     earlier attribute and property classes are set from Class, so need yet another flag
-//      if (lDOMClass.isInactive || lDOMClass.isFromLDD) continue;
       if (lDOMClass.isFromLDD) continue;
-      
       lSuffix = DOMInfoModel.getClassIdentifier(lDOMClass.nameSpaceIdNC, lDOMClass.title);
       lInstId = "ObjectClass" + "." + "OC" + "." + lSuffix;
       InstDefn lOCInst = DOMInfoModel.master11179DataDict.get(lInstId);
       if (lOCInst != null) {
         lInstMap = lOCInst.genSlotMap;
         
-     // 555
-        // update isInactive
+        // set isInactive
         // *** ProtPontDOMModel - All .pont classes have isInactive = false during initial parse;
         // during overwrite from dd11179, if isInactive = true then set class.isInactive = true
         // note that some classes are defined in the .pont file (inactive) but not in dd11179
@@ -523,9 +510,7 @@ class ISO11179DOMMDR extends Object {
       } else {
     	  
     	  // the class does not exist in dd11179; set the class and its components to inactive
-    	  lDOMClass.setIsInactive(true);
-    	  
-// 555    	  
+    	  lDOMClass.setIsInactive(true); 	  
     	  if (lDOMClass.title.compareTo("USER") != 0) {
     		  DMDocument.registerMessage("1>error "
 // 555 change needed   		  DMDocument.registerMessage("1>warning "
