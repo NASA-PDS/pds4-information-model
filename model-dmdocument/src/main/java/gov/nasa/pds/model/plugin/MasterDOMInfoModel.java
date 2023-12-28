@@ -1366,15 +1366,13 @@ class MasterDOMInfoModel extends DOMInfoModel {
   public void sethasAttributeOverride2(ArrayList<DOMAttr> lMasterDOMAttrArr) {
     TreeMap<String, DOMAttr> lSortAttrMap = new TreeMap<>();
     TreeMap<String, ArrayList<DOMAttr>> lTitleAttrsMap = new TreeMap<>();
-    
-	System.out.println("\n\ndebug MasterDOMInfoModel -sethasAttributeOverride2");
-
 
     // *** Need to add steward to partition attributes ***
 
     // put attributes in sorted order; attr.title_class.title
     for (Iterator<DOMAttr> i = lMasterDOMAttrArr.iterator(); i.hasNext();) {
       DOMAttr lAttr = i.next();
+      if (lAttr.isInactive) continue;
       if ((lAttr.XMLSchemaName.indexOf("TBD") == 0) && lAttr.isAttribute) {
         // all remaining attributes have overrides, i.e. different constraints than those in the
         // data type
@@ -1387,14 +1385,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
     ArrayList<DOMAttr> lSortAttrArr = new ArrayList<>(lSortAttrMap.values());
     ArrayList<DOMAttr> lAttrArr = new ArrayList<>();
     for (Iterator<DOMAttr> i = lSortAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
-      
-      if (lAttr.title.compareTo("archive_status_note") == 0) {
-			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr.identifier:" + lAttr.identifier);
-			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr.parentClassTitle:" + lAttr.parentClassTitle);
-			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr.title:" + lAttr.title);
-      }
-      
+      DOMAttr lAttr = i.next();      
       if (lTitleArr.contains(lAttr.title)) {
         lAttrArr.add(lAttr);
       } else {
@@ -1411,17 +1402,11 @@ class MasterDOMInfoModel extends DOMInfoModel {
     while (iter1.hasNext()) {
       String lTitle = iter1.next();
       ArrayList<DOMAttr> lAttrArr2 = lTitleAttrsMap.get(lTitle);
-
+		
       // iterate through this attribute array
       boolean isFirst = true;
       for (Iterator<DOMAttr> i = lAttrArr2.iterator(); i.hasNext();) {
         DOMAttr lAttr1 = i.next();
-        
-        if (lAttr1.title.compareTo("archive_status_note") == 0) {
-  			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr1.identifier:" + lAttr1.identifier);
-  			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr1.parentClassTitle:" + lAttr1.parentClassTitle);
-  			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr1.title:" + lAttr1.title);
-        }
 
         // if this is the first attribute, it gets to use its own name
         if (isFirst) {
@@ -1432,13 +1417,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
           // nested iteration through this attribute array to find the duplicates
           boolean isEquivalentAll = true;
           for (Iterator<DOMAttr> j = lAttrArr2.iterator(); j.hasNext();) {
-            DOMAttr lAttr2 = j.next();
-            
-            if (lAttr1.title.compareTo("archive_status_note") == 0) {
-      			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr2.identifier:" + lAttr2.identifier);
-      			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr2.parentClassTitle:" + lAttr2.parentClassTitle);
-      			System.out.println("debug MasterDOMInfoModel -sethasAttributeOverride2 - lAttr2.title:" + lAttr2.title);
-            }            
+            DOMAttr lAttr2 = j.next();            
 
             // omit checking an attribute against itself
             if (lAttr1.rdfIdentifier.compareTo(lAttr2.rdfIdentifier) == 0) {
