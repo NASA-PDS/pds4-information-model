@@ -31,6 +31,7 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -72,9 +73,6 @@ public class GetDOMModel extends Object {
     ArrayList<DOMClass> lClassArr = new ArrayList<>(DOMInfoModel.parsedClassMap.values());
     for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
-      if (!lClass.isMasterClass) {
-        continue;
-      }
       if (!DOMInfoModel.masterDOMClassMap.containsKey(lClass.rdfIdentifier)) {
         DOMInfoModel.masterDOMClassMap.put(lClass.rdfIdentifier, lClass);
       } else {
@@ -131,6 +129,8 @@ public class GetDOMModel extends Object {
               DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
               lDOMProp.hasDOMObject = lDOMAttr;
               lDOMAttr.hasDOMPropInverse = lDOMProp;
+              lDOMProp.isInactive = lClass.isInactive;
+              lDOMAttr.isInactive = lClass.isInactive;
             } else {
               DMDocument.registerMessage(
                   "1>error " + "Duplicate Found - ADDING Attribute lDOMAttr.rdfIdentifier:"
@@ -164,6 +164,9 @@ public class GetDOMModel extends Object {
                 && DOMInfoModel.masterDOMClassMap.get(lDOMClass.rdfIdentifier) != null) {
               lDOMProp.hasDOMObject = lDOMClass;
               lDOMClass.hasDOMPropInverse = lDOMProp;
+              
+              lDOMProp.isInactive = lClass.isInactive;
+              
             } else {
               DMDocument.registerMessage(
                   "1>error " + "Class not found - ADDING Class lDOMClass.rdfIdentifier:"
@@ -335,8 +338,8 @@ public class GetDOMModel extends Object {
 
     // 017b - overwrite master classes from the 11179 DD
     // - either import from JSON 11179 file or overwrite from 11179 dictionary
-    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-    // 555
+    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179
+    
     if (!DMDocument.LDDToolFlag) {
       lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
     }

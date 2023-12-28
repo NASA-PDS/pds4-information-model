@@ -125,69 +125,19 @@ class ProtPontDOMModel extends DOMInfoModel {
 
           // get disposition for the class from MDPTNConfig
           boolean isInParsedClassMap = false;
-          if (DMDocument.useMDPTNConfig) {
-            classNameSpaceIdNC = "tbd";
-            lClass.getDOMClassDisposition(true);
-            if (lClass != null) {
-              if (lClass.used.compareTo("Y") == 0) {
-                classNameSpaceIdNC = lClass.nameSpaceIdNC; // global needed for parser
-                parsedClassMap.put(lClass.rdfIdentifier, lClass);
-                isInParsedClassMap = true;
-                String token1 = tokenIter.next();
-                if (token1.compareTo("(") != 0) {
-                  lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
-                }
-              } else if (lClass.used.compareTo("I") == 0) {
-                // class is "hidden" ignore it and do not print warning
-
-                // *** added ***
-                /*
-                 * if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) == 0) continue; //
-                 * omit %3ACLIPS_TOP_LEVEL_SLOT_CLASS lClass.isInactive = true; classNameSpaceIdNC =
-                 * lClass.nameSpaceIdNC; // global needed for parser
-                 * parsedClassMap.put(lClass.rdfIdentifier, lClass); isInParsedClassMap = true;
-                 * String token1 = (String) tokenIter.next(); if (token1.compareTo("(") != 0) {
-                 * lClass.definition = DOMInfoModel.unEscapeProtegeString(token1); }
-                 */
-                // *** end of added ***
-
-              } else { // disposition exists but not clear why, print warning
-                if (lClass.identifier.compareTo("TBD_identifier") != 0) {
-                  DMDocument.registerMessage("1>warning "
-                      + "Class omitted from build - Class Identifier:" + lClass.identifier);
-                }
-
-                // *** added ***
-                /*
-                 * 555 lClass.isInactive = true; classNameSpaceIdNC = lClass.nameSpaceIdNC; //
-                 * global needed for parser parsedClassMap.put(lClass.rdfIdentifier, lClass);
-                 * isInParsedClassMap = true; String token1 = (String) tokenIter.next(); if
-                 * (token1.compareTo("(") != 0) { lClass.definition =
-                 * DOMInfoModel.unEscapeProtegeString(token1); }
-                 */
-                // *** end of added ***
-
-              }
-            } else if (!DMDocument.LDDToolFlag) {
-              DMDocument.registerMessage("1>warning " + "Class disposition was not found - "
-                  + "<Record> <Field>Y</Field> <Field>UpperModel."
-                  + DMDocument.registrationAuthorityIdentifierValue + "." + lClass.title
-                  + "</Field> <Field>1M</Field> <Field>#nm</Field> <Field>ns</Field> </Record>");
-            }
-            lClass.setIdentifier(classNameSpaceIdNC, className);
-          }
 
           // get disposition for the class from dd11179
-          if (DMDocument.overWriteClass) {
+          if (DMDocument.overWriteClass && (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0)) {
             lClass.getDOMClassDisposition2(); // from protege (new)
-            if (!isInParsedClassMap) {
-              parsedClassMap.put(lClass.rdfIdentifier, lClass);
-            }
+            lClass.isInactive = false; // could be reset in overwrite from dd11179
+            parsedClassMap.put(lClass.rdfIdentifier, lClass);
+            classNameSpaceIdNC = lClass.nameSpaceIdNC;  // set the namespace for the attributes
             String token1 = tokenIter.next();
             if (token1.compareTo("(") != 0) {
               lClass.definition = DOMInfoModel.unEscapeProtegeString(token1);
             }
             lClass.setIdentifier(lClass.nameSpaceIdNC, className);
+//            System.out.println("debug ProtPontDOMModel lClass.identifier2:" + lClass.identifier + " - Protege");
           }
           type = 0;
           break;

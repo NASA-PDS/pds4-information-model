@@ -162,10 +162,10 @@ public class DMDocument extends Object {
 
   // 555 static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and
   // versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
-  static boolean overWriteClass = false; // use dd11179.pins class disp, isDeprecated, and versionId
+  static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
-  static boolean useMDPTNConfig = true; // ProtPontDOMModel; get disposition for the class from
+  static boolean useMDPTNConfig = false; // ProtPontDOMModel; get disposition for the class from
                                         // MDPTNConfigClassDisp
   static boolean overWriteDeprecated = false; // use dd11179.pins isDeprecated to overwrite
                                               // DMDocument.deprecatedObjects2

@@ -290,4 +290,32 @@ public class DOMClass extends ISOClassOAIS11179 {
     ArrayList<DOMProp> lISOArr = new ArrayList<>(lISOMap.values());
     return lISOArr;
   }
+  
+  // set the Class and owned Properties, Attributes, and the PermissibleValue isInactive flags
+  void setIsInactive(Boolean lIsInactive) {
+	  
+	  // set the class inactive
+	  this.isInactive = lIsInactive;
+		  
+	  // iterate through the owned attributes - via their properties
+      for (DOMProp lDOMProp : ownedAttrArr) {
+    	  lDOMProp.isInactive = lIsInactive;
+    	  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+    		  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+    		  lDOMAttr.isInactive = lIsInactive;
+    		  
+    		  // iterate through the permissible values - via their properties
+    		  for (DOMProp lDOMProp2 : lDOMAttr.domPermValueArr) {
+    			  if (lDOMProp2.hasDOMObject != null && lDOMProp2.hasDOMObject instanceof DOMPermValDefn) {
+    				  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp2.hasDOMObject;
+    				  lDOMPermVal.isInactive = lIsInactive;
+    			  }
+    		  }
+    	  }
+      }
+      // interate through the owned associations - ignore the classes since they are already set
+      for (DOMProp lDOMProp : ownedAssocArr) {
+        lDOMProp.isInactive = lIsInactive;
+      }
+  }
 }

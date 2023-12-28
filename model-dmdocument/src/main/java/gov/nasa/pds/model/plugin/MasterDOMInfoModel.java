@@ -1372,6 +1372,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // put attributes in sorted order; attr.title_class.title
     for (Iterator<DOMAttr> i = lMasterDOMAttrArr.iterator(); i.hasNext();) {
       DOMAttr lAttr = i.next();
+      if (lAttr.isInactive) continue;
       if ((lAttr.XMLSchemaName.indexOf("TBD") == 0) && lAttr.isAttribute) {
         // all remaining attributes have overrides, i.e. different constraints than those in the
         // data type
@@ -1384,7 +1385,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
     ArrayList<DOMAttr> lSortAttrArr = new ArrayList<>(lSortAttrMap.values());
     ArrayList<DOMAttr> lAttrArr = new ArrayList<>();
     for (Iterator<DOMAttr> i = lSortAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
+      DOMAttr lAttr = i.next();      
       if (lTitleArr.contains(lAttr.title)) {
         lAttrArr.add(lAttr);
       } else {
@@ -1401,7 +1402,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
     while (iter1.hasNext()) {
       String lTitle = iter1.next();
       ArrayList<DOMAttr> lAttrArr2 = lTitleAttrsMap.get(lTitle);
-
+		
       // iterate through this attribute array
       boolean isFirst = true;
       for (Iterator<DOMAttr> i = lAttrArr2.iterator(); i.hasNext();) {
@@ -1416,7 +1417,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
           // nested iteration through this attribute array to find the duplicates
           boolean isEquivalentAll = true;
           for (Iterator<DOMAttr> j = lAttrArr2.iterator(); j.hasNext();) {
-            DOMAttr lAttr2 = j.next();
+            DOMAttr lAttr2 = j.next();            
 
             // omit checking an attribute against itself
             if (lAttr1.rdfIdentifier.compareTo(lAttr2.rdfIdentifier) == 0) {

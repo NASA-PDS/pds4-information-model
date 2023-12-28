@@ -474,6 +474,7 @@ public class WriteDOMSpecification extends Object {
 
     TreeMap<String, DOMClass> lDOMClassMap = new TreeMap<>();
     for (DOMClass lClass : subClasses) {
+      if (lClass.isInactive) continue;
       String className = lClass.title;
       lDOMClassMap.put(className, lClass);
     }
