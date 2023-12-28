@@ -201,7 +201,7 @@ public class DMDocument extends Object {
   static boolean LDDToolFlag;
 
   // misc flags
-  static boolean debugFlag = true;
+  static boolean debugFlag = false;
 
   // in an LDDTool run, when true indicates that a mission LDD is being processed
   // this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
