@@ -101,39 +101,49 @@ public class DMDocument extends Object {
   static String XMLSchemaLabelBuildNum;
 
   // Version VID MOD Build
-  // 1.0.0.0 - 1.0 - 1.0 - Build 3b
-  // 1.1.0.0 - 1.1 - 1.1 - Build 4a
-  // 1.1.0.1 - 1.2 - 1.2 - Build 4a
-  // 1.2.0.0 - 1.3 - 1.3 - Build 4b - Desired
-  // 1.2.0.0 - 1.3 - 1.3 - Build x4a - Actual
-  // 1.2.0.1 - 1.4 - 1.4 - Build 4b
-  // 1.3.0.0 - 1.5 - 1.5 - Build 5a
-  // 1.3.0.1 - 1.6 - 1.6 - Build 5a
+  // 1.0.0.0 - 1.0 - Build 3b 
+  // 1.1.0.0 - 1.1 - Build 4a 
+  // 1.1.0.1 - 1.2 - Build 4a 
+  // 1.2.0.0 - 1.3 - Build 4b - Desired 
+  // 1.2.0.0 - 1.3 - Build x4a - Actual 
+  // 1.2.0.1 - 1.4 - Build 4b 
+  // 1.3.0.0 - 1.5 - Build 5a 
+  // 1.3.0.1 - 1.6 - Build 5a 
+  // 1.4.0.0 - 1.7 - Build 5b 
+  // 1.4.0.0 - x1.3 - x1.6 - Build 5b - error 
+  // 1.4.0.1 - 1.8 - Build 5b - not released  
+  // 1.4.1.0 - 1.8 - Build 5b 
+  // 1.5.0.0 - 1.9 - Build 6a 
+  // 1.5.1.0 - 1.9 - Build 6b - not released  
+  // 1.6.0.0 - 1.10 - Build 6b 
+  // 1.7.0.0 - 1.11 - Build 7a 
+  // 1.8.0.0 - 1.12 - Build 7b 
+  // 1.9.0.0 - 1.13 - Build 8a 
+  // 1.9.1.0 - 1.14 - Build 8a 
+  // 1.10.0.0 - 1.15 - Build 8b - 1A00 
+  // 1.10.1.0 - 1.16 - Build 8b - 1A10 
+  // 1.11.0.0 - 1.17 - Build 9a - 1B00 
+  // 1.12.0.0 - 1.18 - Build 9b - 1C00 
+  // 1.13.0.0 - 1.19 - Build 10a - 1D00  
+  // 1.14.0.0 - 1.20 - Build 10b - 1E00  
+  // 1.15.0.0 - 1.21 - Build 11.0 - 1F00 
+  // 1.16.0.0 - 1.22 - Build 11.1 - 1G00 
+  // 1.17.0.0 - 1.23 - Build 12.0 - 1H00 
+  // 1.18.0.0 - 1.24 - Build 12.1 - 1I00 - Mar/22
+  // 1.19.0.0 - 1.25 - Build 13.0 - 1J00 - Sep/22
+  // 1.20.0.0 - 1.26 - Build 13.1 - 1K00 - Mar/23
+  // 1.21.0.0 - 1.27 - Build 14.0 - 1L00 - Sep/23
+  
+  // 1.22.0.0 - 1.0 - Build 14.1 - 1M00 - Mar/24
+  // 1.23.0.0 - 1.0 - Build 15.0 - 1N00 - Sep/24
+  // 1.24.0.0 - 1.0 - Build 15.1 - 1O00 - Mar/25
+  // 1.25.0.0 - 1.0 - Build 16.0 - 1P00 - Sep/25
+  // 1.26.0.0 - 1.0 - Build 16.1 - 1Q00 - Mar/26
+  // 1.27.0.0 - 1.0 - Build 17.0 - 1R00 - Sep/26
+  // 1.28.0.0 - 1.0 - Build 17.1 - 1S00 - Mar/27
+  // 1.29.0.0 - 1.0 - Build 18.0 - 1T00 - Sep/27
 
-  // 1.4.0.0 - 1.7 - 1.7 - Build 5b
-  // 1.4.0.0 - x1.3 - x1.6 - Build 5b - error
-  // 1.4.0.1 - 1.8 - 1.8 - Build 5b - not released
-  // 1.4.1.0 - 1.8 - 1.8 - Build 5b
-  // 1.5.0.0 - 1.9 - 1.9 - Build 6a
-  // 1.5.1.0 - 1.9 - 1.9 - Build 6b - not released
-  // 1.6.0.0 - 1.10 - 1.10 - Build 6b
-  // 1.7.0.0 - 1.11 - 1.11 - Build 7a
-  // 1.8.0.0 - 1.12 - 1.12 - Build 7b
-  // 1.9.0.0 - 1.13 - 1.13 - Build 8a
-  // 1.9.1.0 - 1.14 - 1.14 - Build 8a
-  // 1.10.0.0 - 1.15 - 1.15 - Build 8b - 1A00
-  // 1.10.1.0 - 1.16 - 1.16 - Build 8b - 1A10
-  // 1.11.0.0 - 1.17 - 1.17 - Build 9a - 1B00
-  // 1.12.0.0 - 1.18 - 1.18 - Build 9b - 1C00
-  // 1.13.0.0 - 1.19 - 1.19 - Build 10a - 1D00
-  // 1.14.0.0 - 1.20 - 1.20 - Build 10b - 1E00
-  // 1.15.0.0 - 1.21 - 1.21 - Build 11.0 - 1F00
-  // 1.16.0.0 - 1.22 - 1.22 - Build 11.1 - 1G00
-  // 1.17.0.0 - 1.23 - 1.23 - Build 12.0 - 1H00
-	// 1.18.0.0 - 1.24 - 1.24 - Build 12.1 - 1I00 - Mar/22
-	// 1.19.0.0 - 1.25 - 1.25 - Build 13.0 - 1J00 - Sep/22
-	// 1.20.0.0 - 1.26 - 1.26 - Build 13.1 - 1K00 - Mar/23
-	// 1.21.0.0 - 1.27 - 1.27 - Build 14.0 - 1L00 - Sep/23
+  
 	
   // x.x.x.x - 1.0 - 1.n - Build nm - first version of product will always be 1.0
   // Modification history will continue with 1.n
