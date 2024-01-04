@@ -129,7 +129,7 @@
     </plugins>
   </build>
 
-  <dependencies>
+  <dependencies>  
     <dependency>
       <groupId>gov.nasa.pds.model</groupId>
       <artifactId>model-dmdocument</artifactId>
@@ -139,6 +139,24 @@
         <groupId>net.sourceforge.argparse4j</groupId>
         <artifactId>argparse4j</artifactId>
         <version>0.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>6.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>6.9.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
