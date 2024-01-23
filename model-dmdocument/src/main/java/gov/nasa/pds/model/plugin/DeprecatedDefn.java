@@ -30,6 +30,8 @@
 
 package gov.nasa.pds.model.plugin;
 
+import java.util.ArrayList;
+
 public class DeprecatedDefn {
   String identifier;
   String title;
@@ -69,5 +71,15 @@ public class DeprecatedDefn {
       identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, lClassName);
       context = classNameSpaceIdNC + ":" + lClassName;
     }
+  }
+  
+  // 555
+  String getDeprecatedDefnSerialized() {
+	  String deprecatedDefnSerialized = "title:" + title + " |  classNameSpaceIdNC:"
+          + classNameSpaceIdNC + " |  className:" + className
+          + " |  attrNameSpaceIdNC:" + attrNameSpaceIdNC + " |  attrName:"
+          + attrName + " |  value:" + value + " |  isValue:" + isValue
+          + " |  isAttribute:" + isAttribute + " |  isUnitId:" + isUnitId;
+	  return deprecatedDefnSerialized;
   }
 }

@@ -1011,6 +1011,10 @@ class MasterDOMInfoModel extends DOMInfoModel {
   // 018.7 - get the Deprecated Objects array
   public ArrayList<DeprecatedDefn> getDeprecatedObjectsArr() {
     ArrayList<DeprecatedDefn> deprecatedObjectsArr = new ArrayList<>();
+    
+    // 555 test 
+    DeprecatedDefn deprecatedDefnD = new DeprecatedDefn("DUMMY", "", "", "", "", "", false);
+    deprecatedObjectsArr.add(deprecatedDefnD);
 
     // iterate through the classes for class deprecation
     for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
