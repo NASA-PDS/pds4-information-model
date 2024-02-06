@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-01-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-01-24)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
@@ -11,6 +11,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\]update namespace URL for KPDS [\#716](https://github.com/NASA-PDS/pds4-information-model/issues/716)
 - \[vg2\] add new namespace "\<vg2\>" [\#696](https://github.com/NASA-PDS/pds4-information-model/issues/696)
 - \[vg1\] add new namespace "\<vg1\>" [\#695](https://github.com/NASA-PDS/pds4-information-model/issues/695)
 
