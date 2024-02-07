@@ -73,7 +73,6 @@ public class DeprecatedDefn {
     }
   }
   
-  // 555
   String getDeprecatedDefnSerialized() {
 	  String deprecatedDefnSerialized = "title:" + title + " |  classNameSpaceIdNC:"
           + classNameSpaceIdNC + " |  className:" + className

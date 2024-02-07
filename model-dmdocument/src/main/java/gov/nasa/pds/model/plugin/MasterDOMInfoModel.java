@@ -1006,73 +1006,198 @@ class MasterDOMInfoModel extends DOMInfoModel {
         lDOMProp.isInactive = lDOMClass.isInactive;
       }
     }
-  }
+  } 
 
   // 018.7 - get the Deprecated Objects array
   public ArrayList<DeprecatedDefn> getDeprecatedObjectsArr() {
-    ArrayList<DeprecatedDefn> deprecatedObjectsArr = new ArrayList<>();
+	  ArrayList<DeprecatedDefn> deprecatedObjectsArr = new ArrayList<>();
+
+	  // iterate through the classes
+	  for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
+		  if (lDOMClass.isInactive) continue;
+		  if (lDOMClass.isDeprecated) {
+			  // get deprecated class
+			  String deprecatedClassTitle = lDOMClass.title;
+			  DeprecatedDefn deprecatedClassDefn = new DeprecatedDefn(deprecatedClassTitle,
+					  lDOMClass.nameSpaceIdNC, lDOMClass.title, "", "", "", lDOMClass.isUnitOfMeasure);
+			  deprecatedObjectsArr.add(deprecatedClassDefn);
+		  }
+
+		  // get all deprecated attributes for this class
+		  ArrayList<DOMProp> attrPropArr = new ArrayList<>();
+		  attrPropArr.addAll(lDOMClass.ownedAttrArr);
+		  attrPropArr.addAll(lDOMClass.inheritedAttrArr);
+
+		  // iterate through the owned/inherited attributes for deprecated attributes
+		  for (DOMProp lDOMProp : attrPropArr) {
+			  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
+				  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				  if (lDOMAttr.isInactive) continue;
+			      
+			      // handle inherited attributes
+			      String xPathClassTitle = lDOMAttr.parentClassTitle;
+			      String xPathClassNameSpaceIdNC = lDOMAttr.classNameSpaceIdNC;
+			      if (xPathClassTitle.compareTo(lDOMClass.title) != 0) {
+			    	  xPathClassTitle = lDOMClass.title;
+			    	  xPathClassNameSpaceIdNC = lDOMClass.nameSpaceIdNC;
+			      }
+				  
+				  if (lDOMAttr.isDeprecated) {		  
+				      String deprecatedAttrTitle = xPathClassTitle + "." + lDOMAttr.title;			      
+				      
+					  // get deprecated attribute
+					  DeprecatedDefn deprecatedAttrDefn = new DeprecatedDefn(deprecatedAttrTitle,
+							  xPathClassNameSpaceIdNC, xPathClassTitle, lDOMAttr.nameSpaceIdNC,
+							  lDOMAttr.title, "", lDOMClass.isUnitOfMeasure);
+					  deprecatedObjectsArr.add(deprecatedAttrDefn);
+				  }
+
+				  // iterate through the permissible values for deprecated values
+				  if (lDOMAttr.domPermValueArr != null && lDOMAttr.domPermValueArr.size() > 0) {
+					  for (DOMProp lDOMValueProp : lDOMAttr.domPermValueArr) {
+						  if (lDOMValueProp.hasDOMObject != null && lDOMValueProp.hasDOMObject instanceof DOMPermValDefn) {
+							  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMValueProp.hasDOMObject;
+							  if (lDOMPermVal.isInactive || !lDOMPermVal.isDeprecated) continue;
+						      String deprecatedValueTitle = xPathClassTitle + "." + lDOMAttr.title;
+							  DeprecatedDefn deprecatedValueDefn = new DeprecatedDefn(deprecatedValueTitle,
+									  xPathClassNameSpaceIdNC, xPathClassTitle, lDOMAttr.nameSpaceIdNC,
+									  lDOMAttr.title, lDOMPermVal.value, lDOMClass.isUnitOfMeasure);
+							  deprecatedObjectsArr.add(deprecatedValueDefn);
+						  }
+					  }
+				  }
+			  }
+		  }
+	  }
+	  
+	  TreeMap<String, DeprecatedDefn> sortedDeprecatedObjectsAMap = new TreeMap<>();
+	  ArrayList<DeprecatedDefn> sortDeprecatedObjectsArr = new ArrayList<>();
+	  sortDeprecatedObjectsArr = addOddDeprecations(deprecatedObjectsArr);
+	  for (DeprecatedDefn lDeprecatedDefn : sortDeprecatedObjectsArr) {
+		  sortedDeprecatedObjectsAMap.put(getNormalizedTitle(lDeprecatedDefn), lDeprecatedDefn);
+	  }
+	  return(new ArrayList <DeprecatedDefn> (sortedDeprecatedObjectsAMap.values()));
+	  
+	  
+//	  return deprecatedObjectsArr;
+//    return addOddDeprecations(deprecatedObjectsArr);
+//    return getDeprecatedObjectsArrReordered(addOddDeprecations(deprecatedObjectsArr));
+//    return getDeprecatedObjectsArrReordered(deprecatedObjectsArr);
+  }
+
+  // reorder deprecated object array as before 1.21.0.0 -- order listed in DMDocument.deprecatedObjects2
+  public ArrayList<DeprecatedDefn> getDeprecatedObjectsArrReordered(ArrayList<DeprecatedDefn> deprecatedObjectsArr) {
+
+	// get the order of the original deprecated ArrayList - deprecatedObjects2
+	TreeMap <String, String> deprecatedObjectsTitleMap = new TreeMap <> ();
+    TreeMap <String, DeprecatedDefn> deprecatedObjectsNewMap = new TreeMap <> ();
+    ArrayList<String> titles20Arr = new ArrayList <> ();
+    ArrayList<String> seqNum20Arr = new ArrayList <> ();
+    int seqNum = 1000;
+    for (DeprecatedDefn lDeprecatedDefn2 : DMDocument.deprecatedObjects2) {
+    	seqNum += 10;
+    	String seqNumStr = String.valueOf(seqNum);
+    	String normTitle = getNormalizedTitle(lDeprecatedDefn2);
+    	deprecatedObjectsTitleMap.put(normTitle, seqNumStr);
+    	seqNum20Arr.add(seqNumStr);
+    	titles20Arr.add(normTitle);
+    }
     
-    // 555 test 
-    DeprecatedDefn deprecatedDefnD = new DeprecatedDefn("DUMMY", "", "", "", "", "", false);
-    deprecatedObjectsArr.add(deprecatedDefnD);
-
-    // iterate through the classes for class deprecation
-    for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
-      if (lDOMClass.isInactive || !lDOMClass.isDeprecated) {
-        continue;
-      }
-      String deprecatedClassTitle = lDOMClass.title;
-      DeprecatedDefn deprecatedDefn = new DeprecatedDefn(deprecatedClassTitle,
-          lDOMClass.nameSpaceIdNC, lDOMClass.title, "", "", "", lDOMClass.isUnitOfMeasure);
-      deprecatedObjectsArr.add(deprecatedDefn);
+    // add odd deprecations - not in protege entity model
+    ArrayList<String> titles1Arr = new ArrayList <> ();
+    for (DeprecatedDefn lDeprecatedDefn : deprecatedObjectsArr) {
+    	String normTitle = getNormalizedTitle(lDeprecatedDefn);
+    	titles1Arr.add(normTitle);
+    	String newSeqno = deprecatedObjectsTitleMap.get(normTitle);
+    	if (newSeqno == null) {
+//    	    System.out.println ("\ndebug MasterDOMInfoModel - NOTFOUND - normTitle:" + normTitle);
+    		newSeqno = "9999";
+    	}
+    	deprecatedObjectsNewMap.put(newSeqno, lDeprecatedDefn);
     }
+    
+//    // reorder deprecated object array as before 1.21.0.0 -- order listed in DMDocument.deprecatedObjects2
+//    public ArrayList<DeprecatedDefn> getDeprecatedObjectsArrReordered(ArrayList<DeprecatedDefn> deprecatedObjectsArr) {
+//
+//  	// get the order of the original deprecated ArrayList - deprecatedObjects2
+//  	TreeMap <String, String> deprecatedObjectsTitleMap = new TreeMap <> ();
+//      TreeMap <String, DeprecatedDefn> deprecatedObjectsNewMap = new TreeMap <> ();
+//      ArrayList<String> titles20Arr = new ArrayList <> ();
+//      ArrayList<String> seqNum20Arr = new ArrayList <> ();
+//      int seqNum = 1000;
+//      for (DeprecatedDefn lDeprecatedDefn2 : DMDocument.deprecatedObjects2) {
+//      	seqNum += 10;
+//      	String seqNumStr = String.valueOf(seqNum);
+//      	String normTitle = getNormalizedTitle(lDeprecatedDefn2);
+//      	deprecatedObjectsTitleMap.put(normTitle, seqNumStr);
+//      	seqNum20Arr.add(seqNumStr);
+//      	titles20Arr.add(normTitle);
+//      }
+//      
+//      // add odd deprecations - not in protege entity model
+//      ArrayList<String> titles1Arr = new ArrayList <> ();
+//      for (DeprecatedDefn lDeprecatedDefn : addOddDeprecations(deprecatedObjectsArr)) {
+//      	String normTitle = getNormalizedTitle(lDeprecatedDefn);
+//      	titles1Arr.add(normTitle);
+//      	String newSeqno = deprecatedObjectsTitleMap.get(normTitle);
+//      	if (newSeqno == null) {
+////      	    System.out.println ("\ndebug MasterDOMInfoModel - NOTFOUND - normTitle:" + normTitle);
+//      		newSeqno = "9999";
+//      	}
+//      	deprecatedObjectsNewMap.put(newSeqno, lDeprecatedDefn);
+//      }
+    
+    // debug print
+//    System.out.println ("debug MasterDOMInfoModel - titles1Arr:" + titles1Arr);				// titles of new
+//    ArrayList<String> seqNum3Arr = new ArrayList <> (deprecatedObjectsNewMap.keySet());
+//    System.out.println ("debug MasterDOMInfoModel - deprecatedObjectsNewMap.keySet() - newSeqno3Arr:" + seqNum3Arr);				// seqNum of original
+//    ArrayList<DeprecatedDefn> defn3Arr = new ArrayList <> (deprecatedObjectsNewMap.values());
+//    ArrayList<String> defn3TitleArr = new ArrayList <> ();
+//    for (DeprecatedDefn defn3 : defn3Arr) defn3TitleArr.add(defn3.title);
+//    System.out.println ("debug MasterDOMInfoModel - deprecatedObjectsNewMap.values() - defn3TitleArr:" + defn3TitleArr);				// titles of original
 
-    // iterate through the attributes for attribute deprecation
-    for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
-      if (lDOMAttr.isInactive || !lDOMAttr.isDeprecated) {
-        continue;
+    ArrayList<DeprecatedDefn> deprecatedObjectsArrReordered = new ArrayList <> (deprecatedObjectsNewMap.values());
+    return deprecatedObjectsArrReordered;
+  }
+  
+  public String getNormalizedTitle(DeprecatedDefn lDeprecatedDefn) {
+	  String normTitle = "TBD_normTitle";
+      if (!lDeprecatedDefn.isAttribute) {
+    	  normTitle = lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.className;
       }
-      DOMClass lDOMClass = lDOMAttr.attrParentClass;
-      String deprecatedAttrTitle = lDOMClass.title + "." + lDOMAttr.title;
 
-      DeprecatedDefn deprecatedDefn = new DeprecatedDefn(deprecatedAttrTitle,
-          lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC,
-          lDOMAttr.title, "", lDOMClass.isUnitOfMeasure);
-      deprecatedObjectsArr.add(deprecatedDefn);
-    }
-
-    // iterate through the attributes for permissible value deprecation
-    for (DOMAttr lDOMAttr : DOMInfoModel.masterDOMAttrArr) {
-      if (lDOMAttr.isInactive) {
-        continue;
+      if (lDeprecatedDefn.isAttribute && !lDeprecatedDefn.isValue) {
+    	  normTitle = lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.className + "/"
+            + lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.attrName;
       }
-      DOMClass lDOMClass = lDOMAttr.attrParentClass;
-      String deprecatedAttrTitle = lDOMClass.title + "." + lDOMAttr.title;
-
-      if (lDOMAttr.domPermValueArr != null && lDOMAttr.domPermValueArr.size() > 0) {
-        for (DOMProp lDOMProp : lDOMAttr.domPermValueArr) {
-          if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-            DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
-            if (lDOMPermVal.isInactive || !lDOMPermVal.isDeprecated) {
-              continue;
-            }
-            // System.out.println("debug getDeprecatedObjectsArr lDOMPermVal.value:" +
-            // lDOMPermVal.value + " lDOMPermVal.isInactive:" + lDOMPermVal.isInactive + "
-            // lDOMPermVal.isDeprecated:" + lDOMPermVal.isDeprecated + "
-            // lDOMPermVal.registrationStatus:" + lDOMPermVal.registrationStatus + "
-            // lDOMPermVal.value_meaning:" + lDOMPermVal.value_meaning);
-            // 3331 String deprecatedValueTitle = deprecatedAttrTitle + "." + lDOMPermVal.value;
-            String deprecatedValueTitle = deprecatedAttrTitle;
-            DeprecatedDefn deprecatedDefn2 = new DeprecatedDefn(deprecatedValueTitle,
-                lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle, lDOMAttr.nameSpaceIdNC,
-                lDOMAttr.title, lDOMPermVal.value, lDOMClass.isUnitOfMeasure);
-            deprecatedObjectsArr.add(deprecatedDefn2);
-          }
-        }
+      
+      if (lDeprecatedDefn.isAttribute && lDeprecatedDefn.isValue) {
+    	  normTitle = lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.className + "/"
+            + lDeprecatedDefn.classNameSpaceIdNC + ":" + lDeprecatedDefn.attrName + " - "
+            + lDeprecatedDefn.value;
       }
-    }
+      return normTitle;
+  }
+  
+  
+  public ArrayList<DeprecatedDefn> addOddDeprecations(ArrayList<DeprecatedDefn> deprecatedObjectsArr) {
 
-    return deprecatedObjectsArr;
+	  deprecatedObjectsArr.add(new DeprecatedDefn("Internal_Reference.reference_type", "pds",
+			  "Internal_Reference", "pds", "reference_type", "is_airborne", false));
+
+	  deprecatedObjectsArr.add(new DeprecatedDefn("Document_Format.format_type", "pds",
+			  "Document_Format", "pds", "format_type", "single file", false));
+
+	  deprecatedObjectsArr.add(new DeprecatedDefn("Document_Format.format_type", "pds",
+			  "Document_Format", "pds", "format_type", "multiple file", false));
+
+	  deprecatedObjectsArr.add(new DeprecatedDefn("Node.type", "pds", "Node", "pds", "name",
+			  "Navigation Ancillary Information Facility", false));
+
+	  deprecatedObjectsArr.add(new DeprecatedDefn("PDS_Affiliate.team_name", "pds", "PDS_Affiliate",
+			  "pds", "team_name", "Navigation Ancillary Information Facility", false));
+	  
+      return deprecatedObjectsArr;
   }
 
   // 019 - general master attribute fixup

@@ -384,12 +384,6 @@ public class GetDOMModel extends Object {
       DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
     }
     DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-    
- // 555
-	System.out.println("--- ");
-    for (DeprecatedDefn lDeprecatedDefn : DMDocument.deprecatedObjects2) {
-    	System.out.println("debug2  - " + lDeprecatedDefn.getDeprecatedDefnSerialized());
-    }
 
     // 333 DMDocument.Dump333DeprecatedObjects2 ("DMDocument", DMDocument.deprecatedObjects2);
 

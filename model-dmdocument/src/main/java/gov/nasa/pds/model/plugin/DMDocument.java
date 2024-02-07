@@ -609,10 +609,6 @@ public class DMDocument extends Object {
 
     // set the deprecated flags
     setObjectDeprecatedFlag();
-// 555
-    for (DeprecatedDefn lDeprecatedDefn : deprecatedObjects2) {
-    	System.out.println("debug1  - " + lDeprecatedDefn.getDeprecatedDefnSerialized());
-    }
 
     // get the 11179 Attribute Dictionary - .pins file
     ProtPinsDOM11179DD lProtPinsDOM11179DD = new ProtPinsDOM11179DD();
@@ -629,7 +625,7 @@ public class DMDocument extends Object {
     if (debugFlag) {
       DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
     }
-
+    
     // export the models
     if (DMDocument.LDDToolFlag) {
       ExportModels lExportModels = new ExportModels();
