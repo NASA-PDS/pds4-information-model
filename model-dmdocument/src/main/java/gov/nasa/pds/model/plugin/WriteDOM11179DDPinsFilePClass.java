@@ -155,7 +155,6 @@ class WriteDOM11179DDPinsFilePClass extends Object {
   // Print the the Protege Pins VD
   private void printPDDPVD(PrintWriter prDDPins) {
     // print the value domain
-
     ArrayList<DOMAttr> lSortedAttrArr = getSortedAttrs();
     for (Iterator<DOMAttr> i = lSortedAttrArr.iterator(); i.hasNext();) {
       DOMAttr lDOMAttr = i.next();

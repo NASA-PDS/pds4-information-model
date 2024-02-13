@@ -66,7 +66,7 @@ class WriteDOMSchematron extends Object {
     // select out the rules for this namespace
     ArrayList<DOMRule> lSelectRuleArr = new ArrayList<>();
     ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
-    for (DOMRule lRule : lRuleArr) {     
+    for (DOMRule lRule : lRuleArr) {
       if (lSchemaFileDefn.isMaster) {
         if (lRule.isMissionOnly || !(lRule.alwaysInclude
             || (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0

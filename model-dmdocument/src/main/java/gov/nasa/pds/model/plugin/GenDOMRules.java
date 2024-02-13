@@ -31,11 +31,12 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeMap;
 
 class GenDOMRules extends Object {
-  ArrayList<DeprecatedDefn> lUnitIdDeprecatedArr = new ArrayList<>();
+  TreeMap <String, DeprecatedDefn> lUnitIdDeprecatedMap = new TreeMap <String, DeprecatedDefn> ();
   TreeMap<String, ParentChildrenRelation> parentChildrenRelationMap = new TreeMap<>();
 
   public GenDOMRules() {
@@ -434,8 +435,8 @@ class GenDOMRules extends Object {
     // iterate for each deprecation
     for (Iterator<DeprecatedDefn> i = DMDocument.deprecatedObjects2.iterator(); i.hasNext();) {
       DeprecatedDefn lObject = i.next();
-      if (lObject.isUnitId) {
-        lUnitIdDeprecatedArr.add(lObject);
+      if (lObject.isUnitId && lObject.identifier.compareTo("0001_NASA_PDS_1.pds.Units_of_Map_Scale") != 0) {
+        lUnitIdDeprecatedMap.put(lObject.identifier, lObject);
         continue;
       }
       String lRuleId = lObject.context + roleWarning;
@@ -469,49 +470,54 @@ class GenDOMRules extends Object {
       }
     }
   }
-
+  
   // add the schematron rules for UnitId deprecation
   public void addSchematronRuleDeprecatedUnitId(SchemaFileDefn lSchemaFileDefn) {
-    DeprecatedDefn lObject = null;
     String roleWarning = " role=\"warning\"";
 
-    // iterate over all attributes and find those with units of measure
-    for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
-      if (!lAttr.isAttribute || (lAttr.unit_of_measure_type.indexOf("TBD") == 0)) {
-        continue;
-      }
+    ArrayList<DeprecatedDefn> lUnitIdDeprecatedArr2 = new ArrayList<>(lUnitIdDeprecatedMap.values());
 
-      // write a rule for each deprecated unit value
-      for (Iterator<DeprecatedDefn> j = lUnitIdDeprecatedArr.iterator(); j.hasNext();) {
-        lObject = j.next();
-        if (lObject.className.compareTo(lAttr.unit_of_measure_type) == 0) {
-          String lContext = lAttr.classNameSpaceIdNC + ":" + lAttr.parentClassTitle + "/"
-              + lAttr.nameSpaceIdNC + ":" + lAttr.title;
-          String lRuleId = lContext + roleWarning;
-          DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
-          if (lRule == null) {
-            lRule = new DOMRule(lRuleId);
-            DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
-            DOMInfoModel.masterDOMRuleArr.add(lRule);
-            lRule.setRDFIdentifier();
-            DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
-            lRule.xpath = lContext;
-            lRule.roleId = roleWarning;
-            lRule.attrTitle = lAttr.title;
-            lRule.attrNameSpaceNC = lAttr.nameSpaceIdNC;
-            lRule.classTitle = lAttr.parentClassTitle;
-            lRule.classNameSpaceNC = lAttr.classNameSpaceIdNC;
-            lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
-          }
-          String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
-          DOMAssert lAssert = new DOMAssert(lAttrId);
-          lRule.assertArr.add(lAssert);
-          lAssert.assertStmt = "@unit != '" + lObject.value + "'";
-          lAssert.assertMsg =
-              "The unit value " + lObject.value + " is deprecated and should not be used.";
-        }
-      }
+    // special cases- these unit_ids for deprecated Units_of_Measure were simply dropped since no attributes used them (remove clutter)
+    ArrayList <String> ignoreUnitsList = new ArrayList<>( Arrays.asList(
+    		"0001_NASA_PDS_1.pds.Units_of_Radiance.pds.unit_id", 
+    		"0001_NASA_PDS_1.pds.Units_of_Spectral_Irradiance.pds.unit_id", 
+    		"0001_NASA_PDS_1.pds.Units_of_Spectral_Radiance.pds.unit_id",
+    		"0001_NASA_PDS_1.pds.Units_of_Wavenumber.pds.unit_id",
+    		"0001_NASA_PDS_1.pds.Units_of_Map_Scale.pds.unit_id"));
+    
+    // write a rule for each deprecated unit value
+    for (DeprecatedDefn lObject : lUnitIdDeprecatedArr2) {
+    	String lClassNameSpaceIdNC = lObject.classNameSpaceIdNC;
+    	String lParentClassTitle = lObject.className;
+    	String lAttrNameSpaceIdNC = lObject.attrNameSpaceIdNC;
+    	String lAttrTitle = lObject.attrName;
+
+    	if (ignoreUnitsList.contains(lObject.identifier)) continue;
+
+    	String lContext = lClassNameSpaceIdNC + ":" + lParentClassTitle + "/"
+    			+ lAttrNameSpaceIdNC + ":" + lAttrTitle;
+    	String lRuleId = lContext + roleWarning;
+    	DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lRuleId);
+    	if (lRule == null) {
+    		lRule = new DOMRule(lRuleId);
+    		DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
+    		DOMInfoModel.masterDOMRuleArr.add(lRule);
+    		lRule.setRDFIdentifier();
+    		DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
+    		lRule.xpath = lContext;
+    		lRule.roleId = roleWarning;
+    		lRule.attrTitle = lAttrTitle;
+    		lRule.attrNameSpaceNC = lAttrNameSpaceIdNC;
+    		lRule.classTitle = lParentClassTitle;
+    		lRule.classNameSpaceNC = lClassNameSpaceIdNC;
+    		lRule.classSteward = DMDocument.masterNameSpaceIdNCLC;
+    	}
+    	String lAttrId = lRule.attrNameSpaceNC + ":" + lRule.attrTitle;
+    	DOMAssert lAssert = new DOMAssert(lAttrId);
+    	lRule.assertArr.add(lAssert);
+    	lAssert.assertStmt = "@unit != '" + lObject.value + "'";
+    	lAssert.assertMsg =
+    			"The unit value " + lObject.value + " is deprecated and should not be used.";       
     }
   }
 
