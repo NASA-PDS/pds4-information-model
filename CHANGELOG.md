@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-01-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-02-13)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
@@ -17,6 +17,7 @@
 
 **Other closed issues:**
 
+- IMTool Refactoring - Deprecate the Java "Deprecated Object Array" [\#724](https://github.com/NASA-PDS/pds4-information-model/issues/724)
 - IMTool Refactoring Phase 6 - Use Protege dd11179.pins for class disposition [\#717](https://github.com/NASA-PDS/pds4-information-model/issues/717)
 - Fix code scanning alert - Container contents are never accessed [\#693](https://github.com/NASA-PDS/pds4-information-model/issues/693)
 - Develop first iteration of provenance model [\#692](https://github.com/NASA-PDS/pds4-information-model/issues/692)
