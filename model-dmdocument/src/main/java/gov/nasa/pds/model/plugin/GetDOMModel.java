@@ -383,6 +383,7 @@ public class GetDOMModel extends Object {
     if (DMDocument.overWriteDeprecated) {
       DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
     }
+    DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
 
     // 333 DMDocument.Dump333DeprecatedObjects2 ("DMDocument", DMDocument.deprecatedObjects2);
 

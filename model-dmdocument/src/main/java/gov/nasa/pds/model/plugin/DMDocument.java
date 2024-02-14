@@ -625,7 +625,7 @@ public class DMDocument extends Object {
     if (debugFlag) {
       DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
     }
-
+    
     // export the models
     if (DMDocument.LDDToolFlag) {
       ExportModels lExportModels = new ExportModels();
