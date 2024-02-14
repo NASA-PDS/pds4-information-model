@@ -1,0 +1,399 @@
+; Mon Feb 19 09:43:01 PST 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Archive] of  Data_Element
+
+	(column_desc "A place in which public records or historical documents are preserved; also the material preserved - often used in plural. Sometimes capitalized when referring to all of PDS holdings - the PDS Archive.")
+	(column_name "Archive"))
+
+([Array] of  Data_Element
+
+	(column_desc "An N-dimensional data structure in which every element has an identical data type. For example, a structure with 5 rows and 3 columns in which each element is a 2-byte signed integer would be an array.")
+	(column_name "Array"))
+
+([Association] of  Data_Element
+
+	(column_desc "An attribute that establishes a unidirectional relationship between two classes. For example, a table has records; 'has record' is the relationship between one entity (the table) and another (a record).")
+	(column_name "Association"))
+
+([Attribute] of  Data_Element
+
+	(column_desc "A property or characteristic that provides a unit of information. For example, 'color' and 'length' are possible attributes.")
+	(column_name "Attribute"))
+
+([Basic_Product] of  Data_Element
+
+	(column_desc "The simplest product in PDS4; one or more data objects (and their description objects), which constitute (typically) a single observation, document, etc. The only PDS4 products that are not basic products are Product_Collection and Product_Bundle. Every basic product must be a primary member of one (and only one) collection. Basic products may be secondary members of any number of collections.")
+	(column_name "Basic_Product"))
+
+([Bundle] of  Data_Element
+
+	(column_desc "A list of collections. Product_Bundle, the bundle's manifestation, is itself a product (because it is simply a list embedded within a label); but it is not a basic product. For example, a bundle could list a collection of raw data obtained by an instrument during its mission lifetime, a collection of the calibration products associated with the instrument, and a collection of all documentation relevant to the first two collections.")
+	(column_name "Bundle"))
+
+([Cardinality] of  Data_Element
+
+	(column_desc "The number of values allowed to an attribute or association in a single class. Cardinality in general is stated as a range with a minimum and maximum. For example, an optional attribute that may be multi-valued will have a cardinality of \"0..*\". A cardinality where the minimum and maximum are the same is often shown as the single value; for example, an attribute required to have exactly one value will have a cardinality of \"1\". When a value is required, the minimum cardinality is at least 1.")
+	(column_name "Cardinality"))
+
+([Class] of  Data_Element
+
+	(column_desc "The set of attributes (including a name) which defines a family. A class is generic - a template from which individual members of the family may be constructed. If the class 'rope' (its name) is defined by attributes 'color' and 'length', we can construct a family of ropes - e.g., red and 3 m long, red and 4 m long, blue and 2 m long, ...")
+	(column_name "Class"))
+
+([Class_Hierarchy] of  Data_Element
+
+	(column_desc "An ordering of classes which shows parent-child relationships.")
+	(column_name "Class Hierarchy"))
+
+([Collection] of  Data_Element
+
+	(column_desc "A list of basic products, all of which are closely related in some way. The collection's manifestation, Product_Collection, is itself a product (because it is simply a list, with its label); but it is not a basic product.")
+	(column_name "Collection"))
+
+([Component] of  Data_Element
+
+	(column_desc "A digital object in a file of observational data that is identified as part of a composite structure.")
+	(column_name "Component"))
+
+([Composite_Structure] of  Data_Element
+
+	(column_desc "A class that identifies two or more objects in a single data file as components of a logically integrated structure and provides the relationships between them.")
+	(column_name "Composite_Structure"))
+
+([Conceptual_Object] of  Data_Element
+
+	(column_desc "An object which is intangible (and, because it is intangible, does not fit into a digital archive). Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration. Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object).")
+	(column_name "Conceptual_Object"))
+
+([Consulting_Node] of  Data_Element
+
+	(column_desc "A PDS discipline node assigned as the contact for a mission, instrument, or project.")
+	(column_name "Consulting_Node"))
+
+([Container] of  Data_Element
+
+	(column_desc "The physical equivalent of a package (see below); the product manifest and all related files wrapped together for transfer - for example, in a ZIP, GZIP, or TAR file.")
+	(column_name "Container"))
+
+([Data_Dictionary] of  Data_Element
+
+	(column_desc "A repository for definitions of classes and attributes")
+	(column_name "Data_Dictionary"))
+
+([Data_Object] of  Data_Element
+
+	(column_desc "A physical, conceptual, or digital object.")
+	(column_name "Data_Object"))
+
+([Data_Preparer] of  Data_Element
+
+	(column_desc "Same as data provider")
+	(column_name "Data_Preparer"))
+
+([Data_Provider] of  Data_Element
+
+	(column_desc "A person or organization that assembles archival data for delivery to PDS.")
+	(column_name "Data_Provider"))
+
+([Data_Structure] of  Data_Element
+
+	(column_desc "A particular way of storing data in a computer that facilitates efficient use.")
+	(column_name "Data_Structure"))
+
+([Description_Object] of  Data_Element
+
+	(column_desc "Something that describes an object. As appropriate, it will have structural and descriptive components. Technically speaking, a 'description object' in PDS4 is a 'digital object' - a string of bits; but we assume that we can read it and, on that basis, give it a special name.")
+	(column_name "Description_Object"))
+
+([Digital_Object] of  Data_Element
+
+	(column_desc "An object which is real data - for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.")
+	(column_name "Digital_Object"))
+
+([Discipline_Area] of  Data_Element
+
+	(column_desc "That part of a label which is specified by a discipline.")
+	(column_name "Discipline_Area"))
+
+([Encoded_Byte_Stream] of  Data_Element
+
+	(column_desc "A byte stream that may only be interpreted after it has been 'decoded' according to some well known standard")
+	(column_name "Encoded_Byte_Stream"))
+
+([Entity] of  Data_Element
+
+	(column_desc "Something that has a distinct, separate existence.")
+	(column_name "Entity"))
+
+([Extension] of  Data_Element
+
+	(column_desc "(1) See subclass. (2) The character string following the last period in a file name.")
+	(column_name "Extension"))
+
+([Identifier] of  Data_Element
+
+	(column_desc "A unique character string by which a product, object, or other entity may be identified and located. Identifiers can be global, in which case they are unique across all of PDS (and its federation partners). A local identifier must be unique within a label.")
+	(column_name "Identifier"))
+
+([Information_Model] of  Data_Element
+
+	(column_desc "A representation of concepts, relationships, constraints, rules, and operations to specify data semantics for a chosen domain of discourse. Specifically, the PDS Information Model (IM) is the representation that specifies PDS4.")
+	(column_name "Information_Model"))
+
+([Information_Object] of  Data_Element
+
+	(column_desc "A data object paired with its description")
+	(column_name "Information_Object"))
+
+([Inventory] of  Data_Element
+
+	(column_desc "An itemized list of current assets or holdings")
+	(column_name "Inventory"))
+
+([Label] of  Data_Element
+
+	(column_desc "The aggregation of one or more description objects such that the aggregation describes a single PDS product. In the PDS4 implementation, labels are constructed using XML, which imposes a small amount of overhead.")
+	(column_name "Label"))
+
+([Label_Template] of  Data_Element
+
+	(column_desc "A text file which serves as a pattern for constructing labels.")
+	(column_name "Label_Template"))
+
+([Lead_Node] of  Data_Element
+
+	(column_desc "One of several consulting nodes designated as the PDS coordinator and primary contact with a mission.")
+	(column_name "Lead_Node"))
+
+([Local] of  Data_Element
+
+	(column_desc "(1) Within a single label. (2) Within an archiving entity - e.g., local data dictionary.")
+	(column_name "Local"))
+
+([Local_Data_Dictionary_%28LDD%29] of  Data_Element
+
+	(column_desc "A data dictionary for classes and attributes which are not defined across the entire PDS. Examples include data dictionaries for discipline nodes, missions, and individual archiving projects.")
+	(column_name "Local_Data_Dictionary_(LDD)"))
+
+([Logical_Identifier_%28LID%29] of  Data_Element
+
+	(column_desc "An identifier which identifies the set of all versions of an object")
+	(column_name "Logical_Identifier_(LID)"))
+
+([Manifest] of  Data_Element
+
+	(column_desc "A list of contents")
+	(column_name "Manifest"))
+
+([Meta-Attribute] of  Data_Element
+
+	(column_desc "An attribute of an attribute - that is, a 'dictionary' attribute, which is used to define one or more attributes in the PDS4 Information Model. For example, 'conceptual_domain' and 'maximum_value' are used in defining some attributes.")
+	(column_name "Meta-Attribute"))
+
+([Metadata] of  Data_Element
+
+	(column_desc "Data about data - for example, a 'description object' contains information (metadata) about an 'object.'")
+	(column_name "Metadata"))
+
+([Mission] of  Data_Element
+
+	(column_desc "A task with which a group of people have been charged, usually by a government agency and including priority (if not exclusive) use of one or more spacecraft (see attribute type within class Investigation_Area)")
+	(column_name "Mission"))
+
+([Mission_Area] of  Data_Element
+
+	(column_desc "That part of a label which is specified by a mission")
+	(column_name "Mission_Area"))
+
+([Model] of  Data_Element
+
+	(column_desc "A representation or description designed to show an entity and its composition.")
+	(column_name "Model"))
+
+([Namespace] of  Data_Element
+
+	(column_desc "A context for defining classes and attributes. Two items with the same name but from different namespaces generally have different definitions. For example, \"title\" has a very different meaning in a movie namespace compared with its meaning in an automobile namespace.")
+	(column_name "Namespace"))
+
+([Object] of  Data_Element
+
+	(column_desc "The realization of a single member of a family defined by a class. If the class 'rope' has attributes 'color' and 'length', we can construct a 'rope' family with three members - red and 3 m long, red and 4 m long, and blue and 2 m long. Each member is an object.")
+	(column_name "Object"))
+
+([Observational_Data] of  Data_Element
+
+	(column_desc "Raw measurements from one or more instruments, or the results from processing such raw measurements.")
+	(column_name "Observational_Data"))
+
+([Observing_Campaign] of  Data_Element
+
+	(column_desc "An observational assignment with which a group of people have been charged (sometimes voluntarily) which extends over some period of time and which can be accomplished without significant construction of new equipment. (see attribute type within class Investigation_Area)")
+	(column_name "Observing_Campaign"))
+
+([Package] of  Data_Element
+
+	(column_desc "A product manifest and all related files logically grouped together for transfer.")
+	(column_name "Package"))
+
+([Parsable_Byte_Stream] of  Data_Element
+
+	(column_desc "A byte stream which can be parsed with standard rules - e.g., comma separated entries or standard punctuation; 'decoding software' is not needed.")
+	(column_name "Parsable_Byte_Stream"))
+
+([Physical_Object] of  Data_Element
+
+	(column_desc "An object which is physical or tangible (and, therefore, does not itself fit into a digital archive). Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer. Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).")
+	(column_name "Physical_Object"))
+
+([Primary_Component] of  Data_Element
+
+	(column_desc "The central, or most important, among several components; the component which has relationships (either directly or indirectly) to all other components in a composite structure.")
+	(column_name "Primary_Component"))
+
+([Primary_Member] of  Data_Element
+
+	(column_desc "A basic product is a primary member of the collection within which it first enters PDS4. Every basic product must be a primary member of one (and only one) collection. A product's member status (primary or secondary) is based on its first association with the collection. Although the product may be omitted from a later version of the collection, it retains its primary or secondary member status through all subsequent versions of the collection based on its initial association. In a similar way, collections are categorized as having either primary or secondary 'member status' in their bundles.")
+	(column_name "Primary_Member"))
+
+([Product] of  Data_Element
+
+	(column_desc "One or more tagged objects (digital, non-digital, or both) grouped together and having a single PDS-unique identifier. In the PDS4 implementation, the descriptions are combined into a single XML label. Although it may be possible to locate individual objects within PDS (and to find specific bit strings within digital objects), PDS4 defines 'products' to be the smallest granular unit of addressable data within its complete holdings.")
+	(column_name "Product"))
+
+([Registration_Authority] of  Data_Element
+
+	(column_desc "An organization responsible for maintaining a registry - in this case, the PDS4 Information Model and its components. The registration authority for the Planetary Data System is 'PDS'.")
+	(column_name "Registration_Authority"))
+
+([Registry] of  Data_Element
+
+	(column_desc "A data base that provides services for sharing content and metadata.")
+	(column_name "Registry"))
+
+([Repository] of  Data_Element
+
+	(column_desc "A place, room, or container where something is deposited or stored (often for safety or preservation)")
+	(column_name "Repository"))
+
+([Resource] of  Data_Element
+
+	(column_desc "The target (referent) of any Uniform Resource Identifier; the thing to which a URI points.")
+	(column_name "Resource"))
+
+([Restored_Data] of  Data_Element
+
+	(column_desc "Data which have been recovered from storage and successfully prepared for archive in PDS")
+	(column_name "Restored_Data"))
+
+([Restriction] of  Data_Element
+
+	(column_desc "A limit placed on the range of a variable; specifically, the narrowing of possible choices for a class or attribute. For example, attribute axes may have values between 1 and 16 in the definition of Array, but it is restricted to the value '2' in Array_2D.")
+	(column_name "Restriction"))
+
+([Schema] of  Data_Element
+
+	(column_desc "A structural definition given in a formal language which serves as a blueprint for construction.")
+	(column_name "Schema"))
+
+([Science_Bundle] of  Data_Element
+
+	(column_desc "Observational data from a science investigation, documentation, and other supplementary data organized into a bundle structure for delivery to PDS.")
+	(column_name "Science_Bundle"))
+
+([Secondary_Member] of  Data_Element
+
+	(column_desc "A basic product may be a secondary member of any number of collections. A collection which lists references to basic products already registered in PDS would identify those products as its secondary members. For example, if all Voyager images were in one primary collection, an analyst could define a new (subset) collection containing images which had Saturn's rings within the field of view; each of those image products would be a secondary member of the new collection. A product's member status (primary or secondary) is based on its first association with the collection. Although the product may be omitted from a later version of the collection, it retains its primary or secondary member status through all subsequent versions of the collection based on its initial association. In a similar way, collections are categorized as having either primary or secondary 'member status' in their bundles.")
+	(column_name "Secondary_Member"))
+
+([Steward] of  Data_Element
+
+	(column_desc "A person or organization that manages a set of registered attributes and classes, typically as an agent for another or others. A registration authority must have at least one steward; it may have many. Stewards for PDS4 include PDS, the discipline nodes, and any mission wishing to conform to the PDS4 Information Model.")
+	(column_name "Steward"))
+
+([Subclass] of  Data_Element
+
+	(column_desc "In PDS4 a subclass is a class extension. Subclasses are more specialized versions of a class. They inherit attributes and behaviors from their parent classes, and they can have attributes of their own. For example, Array_2D is a PDS4 subclass of Array_Base.")
+	(column_name "Subclass"))
+
+([Supplementary_Data] of  Data_Element
+
+	(column_desc "Additional archival material which is useful in understanding observational data. Examples include browse products, descriptions of instruments and other facilities important to data acquisition, information about observing geometry, calibrations, and observing and command logs.")
+	(column_name "Supplementary_Data"))
+
+([Table] of  Data_Element
+
+	(column_desc "A two-dimensional data structure composed of records, which themselves are heterogeneous but which repeat throughout the table. For example, a table could have 20 ASCII records, each of which has a 10-character date field, a comma, an 8-character time field, a comma, a 3-digit integer temperature field, and a 'carriage-return line-feed' record delimiter.")
+	(column_name "Table"))
+
+([Tag] of  Data_Element
+
+	(column_desc "Fundamental syntax in XML; a tag is a character string delimited by \"<\" and \">\". For example '<date>' is a tag.")
+	(column_name "Tag"))
+
+([Tagged_Digital_Object] of  Data_Element
+
+	(column_desc "A digital object paired with its companion description object. [Note: In the OAIS RM this pair is known as an 'information object']")
+	(column_name "Tagged_Digital_Object"))
+
+([Tagged_Non-Digital_Object] of  Data_Element
+
+	(column_desc "A physical object or a conceptual object paired with its companion description object. [Note: In the OAIS RM this pair is known as an 'information object']")
+	(column_name "Tagged_Non-Digital_Object"))
+
+([Version_Identifier_%28VID%29] of  Data_Element
+
+	(column_desc "An identifier which identifies the version of something else")
+	(column_name "Version_Identifier_(VID)"))
+
+([Versioned_Identifier_%28LIDVID%29] of  Data_Element
+
+	(column_desc "The concatenation of a logical identifier (LID) with a version identifier (VID).")
+	(column_name "Versioned_Identifier_(LIDVID)"))
+
+([XML_Attribute] of  Data_Element
+
+	(column_desc "An attribute-value pair that is inserted into an XML element to provide additional information, such as units; the value is always enclosed in double quotes. For example <date unit=\"year\">2009</date>")
+	(column_name "XML_Attribute"))
+
+([XML_Document] of  Data_Element
+
+	(column_desc "A file that contains syntactically correct XML-formatted text")
+	(column_name "XML_Document"))
+
+([XML_Editor] of  Data_Element
+
+	(column_desc "An editor, which has special features allowing XML tag completion, XML validation, etc.")
+	(column_name "XML_Editor"))
+
+([XML_Element] of  Data_Element
+
+	(column_desc "An XML structure that begins with <tag>, contains 'content', and ends with </tag>. For example, \"<date>2009</date>\" is an XML element establishing the date as 2009. The allowed 'content' is specified in the PDS4 Information Model, which is propagated to the PDS4 Data Dictionary.")
+	(column_name "XML_Element"))
+
+([XML_Label] of  Data_Element
+
+	(column_desc "A label written using XML")
+	(column_name "XML_Label"))
+
+([XML_Root_Tag] of  Data_Element
+
+	(column_desc "The first (and highest-level) XML tag in an XML document")
+	(column_name "XML_Root_Tag"))
+
+([XML_Schema] of  Data_Element
+
+	(column_desc "The definition of an XML document, specifying required and optional XML elements, their order, and parent-child relationships.")
+	(column_name "XML_Schema"))
+
+([XML_Tag] of  Data_Element
+
+	(column_desc "Same as tag.")
+	(column_name "XML_Tag"))
+
+([XML_Template] of  Data_Element
+
+	(column_desc "A text file which serves as a pattern for constructing XML documents")
+	(column_name "XML_Template"))

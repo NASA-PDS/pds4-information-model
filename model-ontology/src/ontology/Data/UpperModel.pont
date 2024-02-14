@@ -1,4 +1,4 @@
-; Mon Nov 13 21:53:10 EST 2023
+; Wed Feb 14 12:30:04 CST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -9522,7 +9522,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0" "1.20.0.0" "1.21.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0" "1.20.0.0" "1.21.0.0" "1.22.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
