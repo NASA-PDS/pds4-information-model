@@ -414,6 +414,9 @@ public class SchemaFileDefn {
       if (lDigit.compareTo("21") == 0) {
         lDigit = "L";
       }
+      if (lDigit.compareTo("22") == 0) {
+          lDigit = "M";
+      }
       lId += lDigit;
     }
     lab_version_id = lId;
