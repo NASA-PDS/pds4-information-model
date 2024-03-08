@@ -32,6 +32,8 @@ echo "Test 2: ldd-cart"
 rm -fr ldd-repo
 git clone git@github.com:pds-data-dictionaries/ldd-cart.git ldd-repo/
 
+cd ldd-repo/; git submodule update --init --force --remote; cd ..
+
 # Run lddtool
 lddtool-pkg/lddtool*/bin/lddtool -lpJ -V 1L00 ldd-repo/src/*IngestLDD.xml ldd-repo/src/dependencies/ldd-*/src/*IngestLDD.xml
 
