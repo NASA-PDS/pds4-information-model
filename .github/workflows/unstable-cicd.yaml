@@ -76,6 +76,11 @@ jobs:
                     CODE_SIGNING_KEY: ${{secrets.CODE_SIGNING_KEY}}
                     ADMIN_GITHUB_TOKEN: ${{secrets.ADMIN_GITHUB_TOKEN}}
 
+            -
+                name: ∫ Smoke Tests with Discipline LDDs
+                run: |
+                    test/smoke-tests.sh
+
 ...
 
 # -*- mode: yaml; indent: 4; fill-column: 120; coding: utf-8 -*-
