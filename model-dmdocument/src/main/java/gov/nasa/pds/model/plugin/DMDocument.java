@@ -211,7 +211,8 @@ public class DMDocument extends Object {
   static boolean LDDToolFlag;
 
   // misc flags
-  static boolean debugFlag = false;
+  static boolean debugFlag = true;
+
 
   // in an LDDTool run, when true indicates that a mission LDD is being processed
   // this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
@@ -343,6 +344,8 @@ public class DMDocument extends Object {
 
   public static void main(String args[]) throws Throwable {
 
+	if (debugFlag) System.out.println(">>  DEBUG DMDocument 240311.2.0");
+	  
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
 

@@ -36,6 +36,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 // import org.apache.commons.lang.WordUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeMap;
 
@@ -133,6 +134,10 @@ public abstract class DOMInfoModel extends Object {
   // static String LDDToolSingletonClassTitle = "USER";
   static DOMClass LDDToolSingletonDOMClass = null; // Class for LDD singleton attributes (Discipline
                                                    // or Mission)
+  
+  // 666
+  // Inactive Attributes Array *** temporary until attr.isInactive is added to dd11179
+  static ArrayList <String> attrIsInactiveArr;
 
   // global science discipline facet map
   static TreeMap<String, SFDisciplineFacetDefn> sfDisciplineFacetDefnMap = new TreeMap<>();
@@ -181,7 +186,50 @@ public abstract class DOMInfoModel extends Object {
     // set up special rdfIdentifiers
     protegeRootClassRdfId = DMDocument.rdfPrefix + "USER";
     protegeSlotClassRdfId = DMDocument.rdfPrefix + "%3ASYSTEM-CLASS";
-
+    
+    // 666
+    // Inactive Attributes Array *** temporary until attr.isInactive is added to dd11179
+    attrIsInactiveArr = new ArrayList<>( Arrays.asList(
+    		"0001_NASA_PDS_1.pds.Activity.pds.activity_type", 
+    		"0001_NASA_PDS_1.pds.Activity.pds.description", 
+    		"0001_NASA_PDS_1.pds.Activity.pds.title", 
+    		"0001_NASA_PDS_1.pds.Agent.pds.agent_type", 
+    		"0001_NASA_PDS_1.pds.Agent.pds.description", 
+    		"0001_NASA_PDS_1.pds.Agent.pds.title", 
+    		"0001_NASA_PDS_1.pds.ChangeLog.pds.date", 
+    		"0001_NASA_PDS_1.pds.ChangeLog.pds.desc", 
+    		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value.pds.local_identifier", 
+    		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value.pds.value", 
+    		"0001_NASA_PDS_1.pds.Encoded_Telemetry.pds.encoding_standard_id", 
+    		"0001_NASA_PDS_1.pds.Entity.pds.description", 
+    		"0001_NASA_PDS_1.pds.Entity.pds.entity_type", 
+    		"0001_NASA_PDS_1.pds.Entity.pds.title", 
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File.pds.parsing_standard_id", 
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.description", 
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.ldd_version_id", 
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.name", 
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference", 
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference", 
+    		"0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference", 
+    		"0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference", 
+    		"0001_NASA_PDS_1.pds.Property_Map_External.pds.description", 
+    		"0001_NASA_PDS_1.pds.Property_Map_External.pds.property_map_id", 
+    		"0001_NASA_PDS_1.pds.Tracking.pds.description", 
+    		"0001_NASA_PDS_1.pds.Tracking.pds.identifier", 
+    		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.archive_status", 
+    		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.archive_status_note", 
+    		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.certified_flag", 
+    		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.modification_date", 
+    		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment", 
+    		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to", 
+    		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type", 
+    		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment", 
+    		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from", 
+    		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to", 
+    		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type", 
+    		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.description", 
+    		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.title", 
+    		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description"));
 
     // masterMetaAttribute list
     masterMetaAttribute = new ArrayList<>();
@@ -422,6 +470,13 @@ public abstract class DOMInfoModel extends Object {
     return masterDOMUnitArr;
   }
 
+  // 666
+  // test for inactive attribute
+  static public boolean isAttInactive (String lIdentifier) {
+	  if (attrIsInactiveArr.contains(lIdentifier)) return true;
+	  return false;
+  }
+  
   /**********************************************************************************************************
    * miscellaneous routines
    ***********************************************************************************************************/

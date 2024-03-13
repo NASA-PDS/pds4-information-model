@@ -273,7 +273,13 @@ public class GetDOMModel extends Object {
     // 007 - get list of USER attributes (owned attributes)
     // This must be done before LDD parsing since it needs the USER attributes
     // The attributes are updated later (data type, etc)
+    
     DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
+    
+    // 666
+    ArrayList <String> userDOMClassAttrIdArr = new ArrayList <> (DOMInfoModel.userDOMClassAttrIdMap.keySet());
+    System.out.println("debug GetDOMModel - ID LIST - userDOMClassAttrIdArr:" + userDOMClassAttrIdArr);
+
 
     // 008 - if this is an LDD Tool run, parse the LDD(s)
     if (DMDocument.LDDToolFlag) {
@@ -333,16 +339,10 @@ public class GetDOMModel extends Object {
 
     // 017a - overwrite master attributes from the 11179 DD
     // - either import from JSON 11179 file or overwrite from 11179 dictionary
-    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179 ???
-    lISO11179DOMMDR.OverwriteFrom11179DataDict();
+    // Overwrite is needed to set classes and attribute defined in protege
 
-    // 017b - overwrite master classes from the 11179 DD
-    // - either import from JSON 11179 file or overwrite from 11179 dictionary
-    // Overwrite is needed to set classes and attribute defined in protege but not in JSON11179
-    
-    if (!DMDocument.LDDToolFlag) {
-      lISO11179DOMMDR.OverwriteClassFrom11179DataDict();
-    }
+    lISO11179DOMMDR.OverwriteFrom11179DataDict(); 			// Attribute overwrite
+    lISO11179DOMMDR.OverwriteClassFrom11179DataDict();		// Class overwrite
 
     // 018 - overwrite any LDD attributes from the cloned USER attributes
     // this is not really needed since the definitions are in the external class

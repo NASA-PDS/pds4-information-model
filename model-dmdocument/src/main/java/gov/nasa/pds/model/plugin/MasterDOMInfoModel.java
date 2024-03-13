@@ -128,20 +128,37 @@ class MasterDOMInfoModel extends DOMInfoModel {
   public void getUserClassAttrIdMap() {
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
-      if (!lClass.isMasterClass || (lClass.title.indexOf("PDS3") > -1)) {
-        continue; // kludge until boolean is set up
-      }
+      
+      // 666
+//      if (!lClass.isMasterClass || (lClass.title.indexOf("PDS3") > -1)) continue;
+      if (lClass.isInactive || (lClass.title.indexOf("PDS3") > -1)) continue;
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
         if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
           DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-
           // the namespace of the USER class for any attribute is the same as the namespace of the
           // attribute
+          
+          if (isAttInactive (lDOMAttr.identifier)) continue;
+          
           String lUserAttrIdentifier =
               DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
                   DMDocument.masterUserClassName, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
+          // 666
+//          if (lUserAttrIdentifier.compareTo("0001_NASA_PDS_1.all.USER.pds.comment") == 0) { 
+           if (lDOMAttr.title.compareTo("comment") == 0 || lDOMAttr.title.compareTo("name") == 0) { 
+//    		  System.out.println("\ndebug MasterDOMInfoModel -FOUND- getUserClassAttrIdMap - lClass.identifier:" + lClass.identifier);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lClass.isInactive:" + lClass.isInactive);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lUserAttrIdentifier:" + lUserAttrIdentifier);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.identifier:" + lDOMAttr.identifier);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.isInactive:" + lDOMAttr.isInactive);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.valueType:" + lDOMAttr.valueType);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.isInactive:" + lDOMAttr.isInactive);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.protValType:" + lDOMAttr.protValType);
+//    		  System.out.println("debug MasterDOMInfoModel -FOUND-  getUserClassAttrIdMap - lDOMAttr.xmlBaseDataType:" + lDOMAttr.xmlBaseDataType);
+          }
+         
           DOMInfoModel.userDOMClassAttrIdMap.put(lUserAttrIdentifier, lDOMAttr);
         }
       }
@@ -989,7 +1006,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
   public void setInactiveFlag() {
     // iterate through the classes
     for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
-
+    	
       // iterate through the owned attribute properties and the attributes
       for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
         lDOMProp.isInactive = lDOMClass.isInactive;
