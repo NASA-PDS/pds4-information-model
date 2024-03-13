@@ -1747,21 +1747,9 @@ public class LDDDOMParser extends Object {
     // will be looking for something like "0001_NASA_PDS_1.pds.USER.standard_deviation"
     String lLocalIdentifier = lDOMProp.localIdentifier;
     
-//    // 666
-//    if (lLocalIdentifier.contains("pds.comment")) System.out.println("debug LDDDOMParser getLocalOrExternAttr -1- lDOMProp.localIdentifier:" + lDOMProp.localIdentifier);
-
     // check if attribute is an LDD attribute or an external added in an earlier iteration
     DOMAttr lDOMAttr = attrMapLocal.get(lLocalIdentifier);
-    if (lDOMAttr != null) {
-      // System.out.println("debug getLocalOrExternAttr - FOUND IN attrMapLocal - lLocalIdentifier:"
-      // + lLocalIdentifier);
-    } else {
-      // System.out.println("debug getLocalOrExternAttr - NOT FOUND IN attrMapLocal -
-      // lLocalIdentifier:" + lLocalIdentifier);
-      // else get a USER attribute
-    	
-    //  if (lLocalIdentifier.contains("pds.comment")) System.out.println("debug LDDDOMParser getLocalOrExternAttr -2- lLocalIdentifier:" + lLocalIdentifier);
-    	
+    if (lDOMAttr == null) {
       int lStringInd = lLocalIdentifier.lastIndexOf(".");
       String lLDDExtTitle = lLocalIdentifier;
       String lLDDExtNS = "xxx";
@@ -1775,37 +1763,16 @@ public class LDDDOMParser extends Object {
       String lAttrIdentifier =
           DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
               DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
-      
-//      if (lLocalIdentifier.contains("pds.comment")) {
-//    	  System.out.println("debug LDDDOMParser getLocalOrExternAttr -3- lAttrIdentifier:" + lAttrIdentifier);
-////    	  ArrayList <String> userDOMClassAttrIdArr = new ArrayList <> (DOMInfoModel.userDOMClassAttrIdMap.keySet());
-////    	  System.out.println("debug GetDOMModel - ID LIST2 - userDOMClassAttrIdArr:" + userDOMClassAttrIdArr);
-//      }
-      
       lDOMAttr = DOMInfoModel.userDOMClassAttrIdMap.get(lAttrIdentifier);
       if (lDOMAttr == null) {
-        // DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + " Association:" +
-        // lDOMProp.localIdentifier + " Attribute: " + lLocalIdentifier + " - Missing Attribute");
-        // return null;
         // *** for qmsre process, when referencing external namespaces, e.g., msn, the attributes
         // are not present locally. Need some other solution. ***
-    	  
-//        if (lLocalIdentifier.contains("pds.comment")) System.out.println("debug LDDDOMParser getLocalOrExternAttr -4- NOT FOUND - lAttrIdentifier:" + lAttrIdentifier);
-	  
         if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
           DMDocument.registerMessage(
               "2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier
                   + "  Attribute: " + lLocalIdentifier + " - Missing Attribute");
         }
         return null;
-      } else {
-//          if (lLocalIdentifier.contains("pds.comment")) {
-//        	  System.out.println("debug LDDDOMParser getLocalOrExternAttr -5- FOUND - lAttrIdentifier:" + lAttrIdentifier);
-//        	  if (lDOMAttr.valueType == null)
-//            	  System.out.println("debug LDDDOMParser getLocalOrExternAttr -5- lDOMAttr.valueType:" +  "-NULL-");
-//        	  else
-//        		  System.out.println("debug LDDDOMParser getLocalOrExternAttr -5- lDOMAttr.valueType:" +  lDOMAttr.valueType);
-//          }
       }
     }
 

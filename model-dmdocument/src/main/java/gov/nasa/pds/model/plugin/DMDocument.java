@@ -156,22 +156,7 @@ public class DMDocument extends Object {
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
-  static boolean LDDNuanceFlag = false; //
-
-  // refactor into Protege switches
-  /*
-   * Possibilities re: refactoring fix. 1) Check buildIMVersionId, if less than 1.18.0.0, then
-   * process MDPTNConfig, else use protege. a) currently
-   * lISO11179DOMMDR.OverwriteClassFrom11179DataDict is only used for IMTool runs, not LDDTool runs.
-   * ==> b) currently all IM version prior to 1.18.0.0 do not have object classes 2)
-   * lISO11179DOMMDR.OverwriteClassFrom11179DataDict requires "Object Classes" in protege 3)
-   * Removing MDPTNConfig requires that "I" and "N" classes be included in protege as
-   * "Object Classes" 4) ProtPontDOMModel is currently ignoring "I" and "N" classes a) this means
-   * that dd11179_GenPClass.pins does not include "I" and "N" classes
-   */
-
-  // 555 static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and
-  // versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
+  static boolean LDDNuanceFlag = false; 
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
@@ -211,8 +196,7 @@ public class DMDocument extends Object {
   static boolean LDDToolFlag;
 
   // misc flags
-  static boolean debugFlag = true;
-
+  static boolean debugFlag = false;
 
   // in an LDDTool run, when true indicates that a mission LDD is being processed
   // this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00

@@ -193,21 +193,6 @@ public class GetDOMModel extends Object {
     }
     DOMInfoModel.masterDOMAttrArr = new ArrayList<>(DOMInfoModel.masterDOMAttrIdMap.values());
 
-    // Overwrite from JSON 11179 file (new classes and attributes)
-    // if (DMDocument.mastModelId.compareTo("WRC") == 0) {
-    // GetJSON11179 lGetJSON11179 = new GetJSON11179 ();
-    // lGetJSON11179.parseJSON();
-    // GetCSVMetadataFile lGetCSVMetadataFile = new GetCSVMetadataFile ();
-    // lGetCSVMetadataFile.readParseCSVFile ();
-    // ArrayList <DOMClass> lDOMClassArr = new ArrayList <DOMClass>
-    // (DOMInfoModel.masterDOMClassIdMap.values());
-    // DOMInfoModel.domWriter (lDOMClassArr, "GetCSVMetadataFile.txt");
-    // }
-    // if (DMDocument.mastModelId.compareTo("SWOT") == 0) {
-    // GetCSV lGetCSV = new GetCSV ();
-    // lGetCSV.readParseCSVFile();
-    // }
-
     // set up the LDDToolSingletonClass - The following classes need to be defined:USER,
     // Discipline_Area, and Mission_Area
     if (DMDocument.LDDToolSingletonClassTitle.compareTo("USER") == 0) {
@@ -275,11 +260,6 @@ public class GetDOMModel extends Object {
     // The attributes are updated later (data type, etc)
     
     DMDocument.masterDOMInfoModel.getUserClassAttrIdMap();
-    
-    // 666
-    ArrayList <String> userDOMClassAttrIdArr = new ArrayList <> (DOMInfoModel.userDOMClassAttrIdMap.keySet());
-    System.out.println("debug GetDOMModel - ID LIST - userDOMClassAttrIdArr:" + userDOMClassAttrIdArr);
-
 
     // 008 - if this is an LDD Tool run, parse the LDD(s)
     if (DMDocument.LDDToolFlag) {
@@ -338,9 +318,7 @@ public class GetDOMModel extends Object {
     DMDocument.masterDOMInfoModel.setMasterAttrisUsedInClassFlag();
 
     // 017a - overwrite master attributes from the 11179 DD
-    // - either import from JSON 11179 file or overwrite from 11179 dictionary
     // Overwrite is needed to set classes and attribute defined in protege
-
     lISO11179DOMMDR.OverwriteFrom11179DataDict(); 			// Attribute overwrite
     lISO11179DOMMDR.OverwriteClassFrom11179DataDict();		// Class overwrite
 

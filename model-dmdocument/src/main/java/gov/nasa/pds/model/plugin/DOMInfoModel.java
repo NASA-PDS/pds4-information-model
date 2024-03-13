@@ -135,7 +135,6 @@ public abstract class DOMInfoModel extends Object {
   static DOMClass LDDToolSingletonDOMClass = null; // Class for LDD singleton attributes (Discipline
                                                    // or Mission)
   
-  // 666
   // Inactive Attributes Array *** temporary until attr.isInactive is added to dd11179
   static ArrayList <String> attrIsInactiveArr;
 
@@ -187,7 +186,6 @@ public abstract class DOMInfoModel extends Object {
     protegeRootClassRdfId = DMDocument.rdfPrefix + "USER";
     protegeSlotClassRdfId = DMDocument.rdfPrefix + "%3ASYSTEM-CLASS";
     
-    // 666
     // Inactive Attributes Array *** temporary until attr.isInactive is added to dd11179
     attrIsInactiveArr = new ArrayList<>( Arrays.asList(
     		"0001_NASA_PDS_1.pds.Activity.pds.activity_type", 
@@ -470,7 +468,6 @@ public abstract class DOMInfoModel extends Object {
     return masterDOMUnitArr;
   }
 
-  // 666
   // test for inactive attribute
   static public boolean isAttInactive (String lIdentifier) {
 	  if (attrIsInactiveArr.contains(lIdentifier)) return true;
