@@ -1,8 +1,8 @@
 # Changelog
 
-## [release/14.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.4.0) (2024-03-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-03-14)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...release/14.4.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
 **Requirements:**
 
@@ -15,6 +15,10 @@
 - \[vg2\] add new namespace "\<vg2\>" [\#696](https://github.com/NASA-PDS/pds4-information-model/issues/696)
 - \[vg1\] add new namespace "\<vg1\>" [\#695](https://github.com/NASA-PDS/pds4-information-model/issues/695)
 
+**Defects:**
+
+- LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing -  [\#733](https://github.com/NASA-PDS/pds4-information-model/issues/733) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+
 **Other closed issues:**
 
 - Stage the PDS4 Information Model V 1.22.0.0 \(1.M.0.0\) for Build 14.1 [\#726](https://github.com/NASA-PDS/pds4-information-model/issues/726)
@@ -26,11 +30,7 @@
 
 ## [v14.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.3.0) (2023-09-18)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/l...v14.3.0)
-
-## [l](https://github.com/NASA-PDS/pds4-information-model/tree/l) (2023-09-14)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...l)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...v14.3.0)
 
 **Requirements:**
 
