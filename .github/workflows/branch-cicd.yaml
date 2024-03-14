@@ -62,7 +62,7 @@ jobs:
                     java-version: ${{matrix.java-version}}
             -
                 name: 🩺 Test Software
-                run: mvn test package
+                run: mvn package
 
             -
                 name: ∫ Smoke Tests with Discipline LDDs
