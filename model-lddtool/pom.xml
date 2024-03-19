@@ -144,7 +144,7 @@
     </plugins>
   </build>
 
-  <dependencies>  
+  <dependencies>
     <dependency>
       <groupId>gov.nasa.pds.model</groupId>
       <artifactId>model-dmdocument</artifactId>
