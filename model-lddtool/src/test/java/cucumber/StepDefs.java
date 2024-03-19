@@ -1,52 +1,58 @@
-package stepdefinitions;
+package cucumber;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import static org.junit.Assert.*;
+// import org.apache.maven.plugin.MojoExecutionException;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class StepDefinitions {
+public class StepDefs {
+    // Class used as a glue to connect a feature file with the Cucumber test code
 
+    // The values of these variables should come from a row in the table in the
+    // feature file.
+    private String testName;
+    private String[] commandArgs;
     private String runCommandOutput;
 
-    @Given("I have lddtool installed")
-    public void i_have_lddtool_installed() {
-        // Here you could check if lddtool is installed by trying to run it
-        // For the sake of example, we'll assume it's installed and do nothing here
+    @Given("a test {string} with {string} as arguments")
+    public void i_have_lddtool_installed(String testName, String commandArgs) {
+        this.testName = testName;
+        this.commandArgs = commandArgs.split(" ");  // split the commandArgs into a String array
     }
 
-    @When("I run lddtool with {string}")
-    public void i_run_lddtool_with(String parameters) {
-        // Here you would run lddtool with the given parameters and capture the output
-        // This is a simplified representation. Actual implementation would involve invoking the command line.
-        runCommandOutput = runLddtool(parameters);
+    @When("I execute lddtool")
+    public void i_run_lddtool_with() {
+        try {
+            // run lddtool with the commandArgs and capture the output
+            this.runCommandOutput = LddToolRunner.runLddTool(this.commandArgs);
+            // this.runCommandOutput = runLddTool(this.commandArgs);
+        } catch (RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex) {
+            throw new RuntimeException("DMDocument error", ex);
+        }
     }
 
-    @Then("I should receive {string}")
+    @Then("the produced output from lddtool command should be similar to {string} or no error reported.")
     public void i_should_receive(String expectedResponse) {
-        // Here you would compare the actual output of running lddtool with the expected response
-        assertEquals(expectedResponse, runCommandOutput);
+        // compare the actual output of running lddtool with the expected response
+        assertEquals(expectedResponse, this.runCommandOutput);
     }
 
-    // Assuming you have a specific configuration step for a scenario
-    @Given("I have a specific configuration")
-    public void i_have_a_specific_configuration() {
-        // Setup specific configuration for lddtool
-        // This might involve preparing a configuration file or setting environment variables
-    }
-
-    // Method to simulate running lddtool with parameters and returning a mocked response
-    private String runLddtool(String parameters) {
-        // Mocked response based on parameters, in a real scenario you would invoke the CLI tool
-        switch (parameters) {
+    // simulate running lddtool with parameters and returning a mocked response
+    private String runLddTool(String[] parameters) {
+        // Mocked response based on parameters. 
+        // Only testing single arugment commands
+        switch (parameters[0]) {
             case "--help":
-                return "Shows help information";
+                return "usage: LDDTool";
             case "--version":
-                return "Displays version number";
-            case "some invalid input":
+                return "LDDTool Version: 14.4.0-SNAPSHOT";
+            case "invalid":
                 return "Shows error message";
             default:
-                return "a specific expected response"; // For the specific configuration test
+                return "Argument not recognized";
         }
     }
 }
