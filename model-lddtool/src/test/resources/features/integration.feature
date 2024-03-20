@@ -11,4 +11,4 @@ Feature: Running integration tests for lddtool
     Examples:
       | testName          | commandArgs        | expectedResponse                   |
       | "help"            | "--help"           | "usage: LDDTool"                   |
-      | "lddtool version" | "--version"        | "LDDTool Version: 14.4.0-SNAPSHOT" |
+      | "version"         | "--version"        | "LDDTool Version: 14.4.0-SNAPSHOT" |

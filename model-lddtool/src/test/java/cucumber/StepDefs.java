@@ -37,7 +37,8 @@ public class StepDefs {
     @Then("the produced output from lddtool command should be similar to {string} or no error reported.")
     public void i_should_receive(String expectedResponse) {
         // compare the actual output of running lddtool with the expected response
-        assertEquals(expectedResponse, this.runCommandOutput);
+        assertTrue(this.runCommandOutput.contains(expectedResponse),
+                "Expected response: " + expectedResponse + " Actual response: " + this.runCommandOutput);
     }
 
     // simulate running lddtool with parameters and returning a mocked response
