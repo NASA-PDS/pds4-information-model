@@ -62,9 +62,6 @@ public class DMDocument extends Object {
 
   // environment variables
   static String lPARENT_DIR;
-// 666
-  static String lSCRIPT_DIR;
-  static String lLIB_DIR;
   static String lUSERNAME;
 
   // specification document info
@@ -470,37 +467,23 @@ public class DMDocument extends Object {
     processArgumentParserNamespacePhase1(argparse4jNamespace);
 
     // first get the environment variables
-
-// 666
     String USER_DIR = System.getProperty("user.dir");
     if (USER_DIR == null) {
       registerMessage("3>error Environment variable USER_DIR is null");
       printErrorMessages();
       System.exit(1);
     }
-    
-//    >>  INFO PARENT_DIR: C:/AA7Ontologies/A01PDS4/Document/bin/..
-//    >>  INFO SCRIPT_DIR: C:/AA7Ontologies/A01PDS4/Document/bin/
-//    >>  INFO LIB_DIR: C:/AA7Ontologies/A01PDS4/Document/bin/../lib
-    
-    System.out.println ("debug DMDocument -1- USER_DIR:" + USER_DIR);
+    // 666
+//    System.out.println ("debug DMDocument -1- USER_DIR:" + USER_DIR);
     USER_DIR = USER_DIR.replace('\\', '/');
-    System.out.println ("debug DMDocument upd1 USER_DIR:" + USER_DIR);
-    String lPARENT2_DIR = USER_DIR + "/bin/..";
-    String lSCRIPT2_DIR = USER_DIR + "/bin/";
-    String lLIB2_DIR = USER_DIR + "/bin/../lib";
-    System.out.println ("\ndebug DMDocument upd2 lPARENT2_DIR:" + lPARENT2_DIR);
-    System.out.println ("                      lSCRIPT2_DIR:" + lSCRIPT2_DIR);
-    System.out.println ("                      lLIB2_DIR:" + lLIB2_DIR);
-    
-    getEnvMap();
-    dataDirPath = lPARENT_DIR + "/Data/";
-    System.out.println ("debug DMDocument - lPARENT_DIR + \"/Data/\" - dataDirPath:" + dataDirPath);
-
-//    lPARENT_DIR = lPARENT2_DIR;
-//    dataDirPath = lPARENT_DIR + "/Data/";
-//    System.out.println ("debug DMDocument - lPARENT_DIR + \"/Data/\" - dataDirPath:" + dataDirPath);
-
+//    System.out.println ("debug DMDocument -2- USER_DIR:" + USER_DIR);
+    lPARENT_DIR = USER_DIR;
+//    System.out.println ("\ndebug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
+    String dirExt = "/model-ontology/src/ontology/Data/";
+    if (debugFlag) dirExt = "/bin/../Data/";
+    if (true) dirExt = "/bin/../Data/";
+    dataDirPath = lPARENT_DIR + dirExt;
+//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
     // if this is an LDDTool run then an alternate path is allowed (option "V")
     if (LDDToolFlag && alternateIMVersionFlag) {
       if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
@@ -514,11 +497,6 @@ public class DMDocument extends Object {
     // below (setupNameSpaceInfoAll)
     // "props" are used again below in setupNameSpaceInfoAll)
     String configInputFile = dataDirPath + "config.properties";
-    
-    // 666
-    System.out.println ("debug DMDocument configInputFile:" + configInputFile);
-
-    
     String configInputStr;
     File configFile = new File(configInputFile);
     try {
@@ -639,8 +617,8 @@ public class DMDocument extends Object {
 
     registerMessage("1>info Date: " + sTodaysDate);
     registerMessage("1>info PARENT_DIR: " + lPARENT_DIR);
-    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
-    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
+//    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
+//    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
 
     // set the deprecated flags
     setObjectDeprecatedFlag();
@@ -688,36 +666,6 @@ public class DMDocument extends Object {
   /**********************************************************************************************************
    * local utilities
    ***********************************************************************************************************/
-
-  static private void getEnvMap() {
-    Map<String, String> env = System.getenv();
-
-    lPARENT_DIR = env.get("PARENT_DIR");
-    if (lPARENT_DIR == null) {
-      registerMessage("3>error Environment variable PARENT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lPARENT_DIR = replaceString(lPARENT_DIR, "\\", "/");
-    
-// 666
-
-    lSCRIPT_DIR = env.get("SCRIPT_DIR");
-    if (lSCRIPT_DIR == null) {
-      registerMessage("3>error Environment variable SCRIPT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lSCRIPT_DIR = replaceString(lSCRIPT_DIR, "\\", "/");
-
-    lLIB_DIR = env.get("LIB_DIR");
-    if (lLIB_DIR == null) {
-      registerMessage("3>error Environment variable LIB_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lLIB_DIR = replaceString(lLIB_DIR, "\\", "/");
-  }
 
   static private void cleanupLDDInputFileName(SchemaFileDefn lSchemaFileDefn) {
     String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
