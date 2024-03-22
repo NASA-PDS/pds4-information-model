@@ -481,7 +481,6 @@ public class DMDocument extends Object {
 //    System.out.println ("\ndebug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
     String dirExt = "/model-ontology/src/ontology/Data/";
     if (debugFlag) dirExt = "/bin/../Data/";
-    if (true) dirExt = "/bin/../Data/";
     dataDirPath = lPARENT_DIR + dirExt;
 //    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
     // if this is an LDDTool run then an alternate path is allowed (option "V")
@@ -886,47 +885,6 @@ public class DMDocument extends Object {
         }
 
         masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-
-        /*
-         * if (DMDocument.debugFlag) { System.out.println(" ");
-         * System.out.println("debug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" +
-         * lSchemaFileDefn.identifier);
-         * System.out.println("                            lSchemaFileDefn.lddName:" +
-         * lSchemaFileDefn.lddName);
-         * System.out.println("                            lSchemaFileDefn.versionId:" +
-         * lSchemaFileDefn.versionId);
-         * System.out.println("                            lSchemaFileDefn.labelVersionId:" +
-         * lSchemaFileDefn.labelVersionId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" +
-         * lSchemaFileDefn.nameSpaceIdNC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" +
-         * lSchemaFileDefn.nameSpaceIdNCLC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" +
-         * lSchemaFileDefn.nameSpaceIdNCUC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceId:" +
-         * lSchemaFileDefn.nameSpaceId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURL:" +
-         * lSchemaFileDefn.nameSpaceURL);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" +
-         * lSchemaFileDefn.nameSpaceURLs);
-         * System.out.println("                            lSchemaFileDefn.modelShortName:" +
-         * lSchemaFileDefn.modelShortName);
-         * System.out.println("                            lSchemaFileDefn.sysBundleName:" +
-         * lSchemaFileDefn.sysBundleName);
-         * System.out.println("                            lSchemaFileDefn.regAuthId:" +
-         * lSchemaFileDefn.regAuthId);
-         * System.out.println("                            lSchemaFileDefn.governanceLevel:" +
-         * lSchemaFileDefn.governanceLevel);
-         * System.out.println("                            lSchemaFileDefn.isMaster:" +
-         * lSchemaFileDefn.isMaster);
-         * System.out.println("                            lSchemaFileDefn.isLDD:" +
-         * lSchemaFileDefn.isLDD);
-         * System.out.println("                            lSchemaFileDefn.isDiscipline:" +
-         * lSchemaFileDefn.isDiscipline);
-         * System.out.println("                            lSchemaFileDefn.isMission:" +
-         * lSchemaFileDefn.isMission); }
-         */
-
         if (lSchemaFileDefn.isMaster) {
           // System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn -
           // lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
