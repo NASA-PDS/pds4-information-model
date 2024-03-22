@@ -5,6 +5,12 @@ import java.io.PrintStream;
 import java.security.Permission;
 import gov.nasa.pds.model.plugin.DMDocument;
 
+/**
+ * This class is used to run lddtool and capture its output
+ * It prevents lddtool from terminating the JVM by overriding System.exit()
+ * It also captures the output of System.out and System.err for testing purposes
+ */
+
 public class LddToolRunner {
     // ByteArrayOutputStreams to capture output and error streams
     private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -54,7 +60,7 @@ public class LddToolRunner {
         @Override
         public void checkPermission(Permission perm) {
             // Allow most actions by default
-            // This is where you could restrict permissions if necessary, but for now, it permits everything.
+            // This is where to restrict permissions if necessary. For now, it permits everything.
         }
 
         @Override
@@ -65,16 +71,16 @@ public class LddToolRunner {
 
         @Override
         public void checkExit(int status) {
-            super.checkExit(status); // Call the original checkExit method
-            // Throw a custom exception instead of exiting
-            // This prevents the application from terminating the JVM
+            super.checkExit(status); // call original checkExit method
+            // throw a custom exception instead of exiting
+            // prevents the application from terminating the JVM
             throw new ExitException(status);
         }
     }
 
     // A custom SecurityException to handle the prevention of System.exit()
     private static class ExitException extends SecurityException {
-        public final int status; // The exit status requested by the application
+        public final int status; // exit status requested by the application
 
         public ExitException(int status) {
             super("Prevented System.exit");

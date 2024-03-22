@@ -3,12 +3,12 @@ package cucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-// import org.apache.maven.plugin.MojoExecutionException;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class connects the feature files with the Cucumber test code
+ */
 public class StepDefs {
-    // Class used as a glue to connect a feature file with the Cucumber test code
-
     // The values of these variables should come from a row in the table in the
     // feature file.
     private String testName;
@@ -19,6 +19,10 @@ public class StepDefs {
     public void i_have_lddtool_installed(String testName, String commandArgs) {
         this.testName = testName;
         this.commandArgs = commandArgs.split(" ");  // split the commandArgs into a String array
+
+        for (String arg : this.commandArgs) {
+            System.out.println("arg: " + arg);
+        }
     }
 
     @When("I execute lddtool")
@@ -26,7 +30,7 @@ public class StepDefs {
         try {
             // run lddtool with the commandArgs and capture the output
             this.runCommandOutput = LddToolRunner.runLddTool(this.commandArgs);
-            // this.runCommandOutput = runLddTool(this.commandArgs);
+            // this.runCommandOutput = runLddTool(this.commandArgs); // mock response
         } catch (RuntimeException ex) {
             throw ex;
         } catch (Throwable ex) {
