@@ -1746,16 +1746,10 @@ public class LDDDOMParser extends Object {
       DOMProp lDOMProp) {
     // will be looking for something like "0001_NASA_PDS_1.pds.USER.standard_deviation"
     String lLocalIdentifier = lDOMProp.localIdentifier;
-
+    
     // check if attribute is an LDD attribute or an external added in an earlier iteration
     DOMAttr lDOMAttr = attrMapLocal.get(lLocalIdentifier);
-    if (lDOMAttr != null) {
-      // System.out.println("debug getLocalOrExternAttr - FOUND IN attrMapLocal - lLocalIdentifier:"
-      // + lLocalIdentifier);
-    } else {
-      // System.out.println("debug getLocalOrExternAttr - NOT FOUND IN attrMapLocal -
-      // lLocalIdentifier:" + lLocalIdentifier);
-      // else get a USER attribute
+    if (lDOMAttr == null) {
       int lStringInd = lLocalIdentifier.lastIndexOf(".");
       String lLDDExtTitle = lLocalIdentifier;
       String lLDDExtNS = "xxx";
@@ -1771,9 +1765,6 @@ public class LDDDOMParser extends Object {
               DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
       lDOMAttr = DOMInfoModel.userDOMClassAttrIdMap.get(lAttrIdentifier);
       if (lDOMAttr == null) {
-        // DMDocument.registerMessage ("2>error Class:" + lDOMClass.identifier + " Association:" +
-        // lDOMProp.localIdentifier + " Attribute: " + lLocalIdentifier + " - Missing Attribute");
-        // return null;
         // *** for qmsre process, when referencing external namespaces, e.g., msn, the attributes
         // are not present locally. Need some other solution. ***
         if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {

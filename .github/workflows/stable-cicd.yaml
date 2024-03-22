@@ -75,11 +75,17 @@ jobs:
                     maven-build-phases: package
                     maven-doc-phases: install,site,site:stage
                     maven-stable-artifact-phases: clean,install,site,site:stage
+                    packages: openjdk11-jdk
                 env:
                     ossrh_username: ${{secrets.OSSRH_USERNAME}}
                     ossrh_password: ${{secrets.OSSRH_PASSWORD}}
                     CODE_SIGNING_KEY: ${{secrets.CODE_SIGNING_KEY}}
                     ADMIN_GITHUB_TOKEN: ${{secrets.ADMIN_GITHUB_TOKEN}}
+
+            -
+                name: ∫ Smoke Tests with Discipline LDDs
+                run: |
+                    test/smoke-tests.sh
 
 ...
 
