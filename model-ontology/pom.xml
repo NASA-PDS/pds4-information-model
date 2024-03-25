@@ -114,7 +114,7 @@ POSSIBILITY OF SUCH DAMAGE.
             <plugin>
                 <groupId>gov.nasa.pds.model</groupId>
                 <artifactId>model-dmdocument</artifactId>
-                <version>${pom.version}</version>
+                <version>${project.version}</version>
                 <configuration>
                     <ontologySrc>${basedir}/src/ontology</ontologySrc>
                 </configuration>

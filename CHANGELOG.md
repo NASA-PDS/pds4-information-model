@@ -1,8 +1,8 @@
 # Changelog
 
-## [release/14.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.4.0) (2024-03-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-03-16)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...release/14.4.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
 **Requirements:**
 
@@ -11,9 +11,15 @@
 
 **Improvements:**
 
+- Add LDDTool Execution Smoke Test to Branch Testing and Unstable testing [\#734](https://github.com/NASA-PDS/pds4-information-model/issues/734)
 - \[namespace-registry\]update namespace URL for KPDS [\#716](https://github.com/NASA-PDS/pds4-information-model/issues/716)
 - \[vg2\] add new namespace "\<vg2\>" [\#696](https://github.com/NASA-PDS/pds4-information-model/issues/696)
 - \[vg1\] add new namespace "\<vg1\>" [\#695](https://github.com/NASA-PDS/pds4-information-model/issues/695)
+
+**Defects:**
+
+- LDDTool is not creating valid URL for KPLO [\#738](https://github.com/NASA-PDS/pds4-information-model/issues/738) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing -  [\#733](https://github.com/NASA-PDS/pds4-information-model/issues/733) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 
 **Other closed issues:**
 
@@ -26,11 +32,7 @@
 
 ## [v14.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.3.0) (2023-09-18)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/l...v14.3.0)
-
-## [l](https://github.com/NASA-PDS/pds4-information-model/tree/l) (2023-09-14)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...l)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...v14.3.0)
 
 **Requirements:**
 
