@@ -17,7 +17,7 @@ on:
         branches:
             -   '**'
             -   '!main'
-
+    workflow_dispatch:
 
 # What to Do
 # ----------
