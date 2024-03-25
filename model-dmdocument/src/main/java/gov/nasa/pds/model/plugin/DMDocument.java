@@ -62,8 +62,6 @@ public class DMDocument extends Object {
 
   // environment variables
   static String lPARENT_DIR;
-  static String lSCRIPT_DIR;
-  static String lLIB_DIR;
   static String lUSERNAME;
 
   // specification document info
@@ -456,9 +454,22 @@ public class DMDocument extends Object {
     processArgumentParserNamespacePhase1(argparse4jNamespace);
 
     // first get the environment variables
-    getEnvMap();
-    dataDirPath = lPARENT_DIR + "/Data/";
-
+    String USER_DIR = System.getProperty("user.dir");
+    if (USER_DIR == null) {
+      registerMessage("3>error Environment variable USER_DIR is null");
+      printErrorMessages();
+      System.exit(1);
+    }
+    // 666
+//    System.out.println ("debug DMDocument -1- USER_DIR:" + USER_DIR);
+    USER_DIR = USER_DIR.replace('\\', '/');
+//    System.out.println ("debug DMDocument -2- USER_DIR:" + USER_DIR);
+    lPARENT_DIR = USER_DIR;
+//    System.out.println ("\ndebug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
+    String dirExt = "/model-ontology/src/ontology/Data/";
+    if (debugFlag) dirExt = "/bin/../Data/";
+    dataDirPath = lPARENT_DIR + dirExt;
+//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
     // if this is an LDDTool run then an alternate path is allowed (option "V")
     if (LDDToolFlag && alternateIMVersionFlag) {
       if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
@@ -592,8 +603,8 @@ public class DMDocument extends Object {
 
     registerMessage("1>info Date: " + sTodaysDate);
     registerMessage("1>info PARENT_DIR: " + lPARENT_DIR);
-    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
-    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
+//    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
+//    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
 
     // set the deprecated flags
     setObjectDeprecatedFlag();
@@ -641,34 +652,6 @@ public class DMDocument extends Object {
   /**********************************************************************************************************
    * local utilities
    ***********************************************************************************************************/
-
-  static private void getEnvMap() {
-    Map<String, String> env = System.getenv();
-
-    lPARENT_DIR = env.get("PARENT_DIR");
-    if (lPARENT_DIR == null) {
-      registerMessage("3>error Environment variable PARENT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lPARENT_DIR = replaceString(lPARENT_DIR, "\\", "/");
-
-    lSCRIPT_DIR = env.get("SCRIPT_DIR");
-    if (lSCRIPT_DIR == null) {
-      registerMessage("3>error Environment variable SCRIPT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lSCRIPT_DIR = replaceString(lSCRIPT_DIR, "\\", "/");
-
-    lLIB_DIR = env.get("LIB_DIR");
-    if (lLIB_DIR == null) {
-      registerMessage("3>error Environment variable LIB_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lLIB_DIR = replaceString(lLIB_DIR, "\\", "/");
-  }
 
   static private void cleanupLDDInputFileName(SchemaFileDefn lSchemaFileDefn) {
     String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
@@ -889,47 +872,6 @@ public class DMDocument extends Object {
         }
 
         masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-
-        /*
-         * if (DMDocument.debugFlag) { System.out.println(" ");
-         * System.out.println("debug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" +
-         * lSchemaFileDefn.identifier);
-         * System.out.println("                            lSchemaFileDefn.lddName:" +
-         * lSchemaFileDefn.lddName);
-         * System.out.println("                            lSchemaFileDefn.versionId:" +
-         * lSchemaFileDefn.versionId);
-         * System.out.println("                            lSchemaFileDefn.labelVersionId:" +
-         * lSchemaFileDefn.labelVersionId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" +
-         * lSchemaFileDefn.nameSpaceIdNC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" +
-         * lSchemaFileDefn.nameSpaceIdNCLC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" +
-         * lSchemaFileDefn.nameSpaceIdNCUC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceId:" +
-         * lSchemaFileDefn.nameSpaceId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURL:" +
-         * lSchemaFileDefn.nameSpaceURL);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" +
-         * lSchemaFileDefn.nameSpaceURLs);
-         * System.out.println("                            lSchemaFileDefn.modelShortName:" +
-         * lSchemaFileDefn.modelShortName);
-         * System.out.println("                            lSchemaFileDefn.sysBundleName:" +
-         * lSchemaFileDefn.sysBundleName);
-         * System.out.println("                            lSchemaFileDefn.regAuthId:" +
-         * lSchemaFileDefn.regAuthId);
-         * System.out.println("                            lSchemaFileDefn.governanceLevel:" +
-         * lSchemaFileDefn.governanceLevel);
-         * System.out.println("                            lSchemaFileDefn.isMaster:" +
-         * lSchemaFileDefn.isMaster);
-         * System.out.println("                            lSchemaFileDefn.isLDD:" +
-         * lSchemaFileDefn.isLDD);
-         * System.out.println("                            lSchemaFileDefn.isDiscipline:" +
-         * lSchemaFileDefn.isDiscipline);
-         * System.out.println("                            lSchemaFileDefn.isMission:" +
-         * lSchemaFileDefn.isMission); }
-         */
-
         if (lSchemaFileDefn.isMaster) {
           // System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn -
           // lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);

@@ -67,51 +67,12 @@ public abstract class AbstractGenerationPlugin extends AbstractMojo {
       getLog().info("Writing artifacts from those sources to ‘" + this.target + "’");
       File d = new File(this.target);
       d.mkdirs();
-      Map<String, String> envvars = new HashMap<>();
-      envvars.put("PARENT_DIR", this.ontologySrc);
-      envvars.put("SCRIPT_DIR", "foo");
-      envvars.put("LIB_DIR", "foo");
-      envvars.put("JAVA_HOME", System.getProperty("java.home"));
-      this.setEnv(envvars);
       DMDocument.outputDirPath = d.toString() + "/";
       this.generateArtifacts();
     } catch (RuntimeException ex) {
       throw ex;
     } catch (Throwable ex) {
       throw new MojoExecutionException(" error", ex);
-    }
-  }
-
-  /**
-   * Courtesy of
-   * http://stackoverflow.com/questions/318239/how-do-i-set-environment-variables-from-java
-   */
-  protected void setEnv(Map<String, String> newenv) throws Throwable {
-    try {
-      Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-      Field theEnvironmentField = processEnvironmentClass.getDeclaredField("theEnvironment");
-      theEnvironmentField.setAccessible(true);
-      Map<String, String> env = (Map<String, String>) theEnvironmentField.get(null);
-      env.putAll(newenv);
-      Field theCaseInsensitiveEnvironmentField =
-          processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
-      theCaseInsensitiveEnvironmentField.setAccessible(true);
-      Map<String, String> cienv =
-          (Map<String, String>) theCaseInsensitiveEnvironmentField.get(null);
-      cienv.putAll(newenv);
-    } catch (NoSuchFieldException e) {
-      Class[] classes = Collections.class.getDeclaredClasses();
-      Map<String, String> env = System.getenv();
-      for (Class cl : classes) {
-        if ("java.util.Collections$UnmodifiableMap".equals(cl.getName())) {
-          Field field = cl.getDeclaredField("m");
-          field.setAccessible(true);
-          Object obj = field.get(env);
-          Map<String, String> map = (Map<String, String>) obj;
-          map.clear();
-          map.putAll(newenv);
-        }
-      }
     }
   }
 }
