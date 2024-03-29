@@ -156,18 +156,6 @@ public class DMDocument extends Object {
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
   static boolean LDDNuanceFlag = false; //
 
-  // refactor into Protege switches
-  /*
-   * Possibilities re: refactoring fix. 1) Check buildIMVersionId, if less than 1.18.0.0, then
-   * process MDPTNConfig, else use protege. a) currently
-   * lISO11179DOMMDR.OverwriteClassFrom11179DataDict is only used for IMTool runs, not LDDTool runs.
-   * ==> b) currently all IM version prior to 1.18.0.0 do not have object classes 2)
-   * lISO11179DOMMDR.OverwriteClassFrom11179DataDict requires "Object Classes" in protege 3)
-   * Removing MDPTNConfig requires that "I" and "N" classes be included in protege as
-   * "Object Classes" 4) ProtPontDOMModel is currently ignoring "I" and "N" classes a) this means
-   * that dd11179_GenPClass.pins does not include "I" and "N" classes
-   */
-
   // 555 static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and
   // versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
@@ -209,7 +197,7 @@ public class DMDocument extends Object {
   static boolean LDDToolFlag;
 
   // misc flags
-  static boolean debugFlag = false;
+  static boolean debugFlag = true;
 
   // in an LDDTool run, when true indicates that a mission LDD is being processed
   // this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
@@ -484,6 +472,7 @@ public class DMDocument extends Object {
     dataDirPath = lPARENT_DIR + dirExt;
 //    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
     // if this is an LDDTool run then an alternate path is allowed (option "V")
+    // IMTool runs ignore the -V option
     if (LDDToolFlag && alternateIMVersionFlag) {
       if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
         dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
@@ -1438,8 +1427,17 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Omit the term \"mission\" from the namespace of a dictionary");
 
-    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
-        .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
+    // 666
+//    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
+//        .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
+
+//    -Ddata.home=${PARENT_DIR}/Data
+    parser.addArgument("-D", "--DataHome").dest("D").type(String.class).nargs(1)
+    .setDefault(buildIMVersionFolderId).help("xxxxx")
+    .help("System property providing the home directory for the Data directory");
+
+//    parser.addArgument("-B", "--docBook").dest("B").type(Boolean.class).nargs(1)
+//    .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
 
     parser.addArgument("-J", "--JSON").dest("J").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the data dictionary to a JSON formatted file");
@@ -1548,6 +1546,18 @@ public class DMDocument extends Object {
         alternateIMVersionFlag = true;
       }
     }
+
+    // 666
+    ////  -Ddata.home=${PARENT_DIR}/Data
+    //  parser.addArgument("-D", "--DataHome").dest("D").type(Boolean.class).nargs(1)
+    //  .action(Arguments.storeTrue()).help("System property providing the home directory for the Data directory");
+
+    // set up DataHome
+    String dataHome = ns.getString("D");
+    if (dataHome == null || dataHome.compareTo("") == 0) dataHome = null; 
+    
+    System.out.println("debug dataHome:" + dataHome);
+    
     return;
   }
 
@@ -1616,11 +1626,12 @@ public class DMDocument extends Object {
       dmProcessState.setdisciplineMissionFlag();
       disciplineMissionFlag = true;
     }
-    Boolean DFlag = ns.getBoolean("D");
-    if (DFlag) {
-      dmProcessState.setexportDDFileFlag();
-      exportDDFileFlag = true;
-    }
+    // 666
+//    Boolean DFlag = ns.getBoolean("D");
+//    if (DFlag) {
+//      dmProcessState.setexportDDFileFlag();
+//      exportDDFileFlag = true;
+//    }
     Boolean JFlag = ns.getBoolean("J");
     if (JFlag) {
       dmProcessState.setexportJSONFileFlag();
