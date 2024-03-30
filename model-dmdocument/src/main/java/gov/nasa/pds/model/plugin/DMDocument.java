@@ -197,7 +197,7 @@ public class DMDocument extends Object {
   static boolean LDDToolFlag;
 
   // misc flags
-  static boolean debugFlag = true;
+  static boolean debugFlag = false;
 
   // in an LDDTool run, when true indicates that a mission LDD is being processed
   // this flag was deprecated with the addition of <dictionary_type> to Ingest_LDD IM V1E00
@@ -453,31 +453,47 @@ public class DMDocument extends Object {
     // the use of the option "V" (alternate IM version) will change the input file directory (config
     // included)
     processArgumentParserNamespacePhase1(argparse4jNamespace);
+    
+    String sysDataHome = System.getProperty("data.home");
+//    System.out.println ("debug DMDocument HERE");
+//    System.out.println ("debug DMDocument -0- sysDataHome:" + sysDataHome);
 
-    // first get the environment variables
-    String USER_DIR = System.getProperty("user.dir");
-    if (USER_DIR == null) {
-      registerMessage("3>error Environment variable USER_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    // 666
-//    System.out.println ("debug DMDocument -1- USER_DIR:" + USER_DIR);
-    USER_DIR = USER_DIR.replace('\\', '/');
-//    System.out.println ("debug DMDocument -2- USER_DIR:" + USER_DIR);
-    lPARENT_DIR = USER_DIR;
-//    System.out.println ("\ndebug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
-    String dirExt = "/model-ontology/src/ontology/Data/";
-    if (debugFlag) dirExt = "/bin/../Data/";
-    dataDirPath = lPARENT_DIR + dirExt;
-//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
-    // if this is an LDDTool run then an alternate path is allowed (option "V")
-    // IMTool runs ignore the -V option
-    if (LDDToolFlag && alternateIMVersionFlag) {
-      if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-        dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+    if (sysDataHome != null) {
+//      System.out.println ("debug DMDocument -1- sysDataHome:" + sysDataHome);
+      sysDataHome = sysDataHome.replace('\\', '/');
+      lPARENT_DIR = sysDataHome + "/";
+      dataDirPath = lPARENT_DIR;
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+            dataDirPath = lPARENT_DIR + alternateIMVersion + "/";
+        }
       }
+    } else {
+      String sysUserDir = System.getProperty("user.dir");
+      if (sysUserDir == null) {
+        registerMessage("3>error Environment variable sysUserDir is null");
+        printErrorMessages();
+        System.exit(1);
+      }
+//      System.out.println ("debug DMDocument -2- sysUserDir:" + sysUserDir);
+      sysUserDir = sysUserDir.replace('\\', '/');
+      lPARENT_DIR = sysUserDir;
+      String dirExt = "/model-ontology/src/ontology/Data/";
+      if (debugFlag) dirExt = "/bin/../Data/";
+      dataDirPath = lPARENT_DIR + dirExt;
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+          dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+        }
+       }
     }
+//    System.out.println ("debug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
+//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
+
     registerMessage("0>info - IM Directory Path:" + dataDirPath);
     registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
 
@@ -681,21 +697,15 @@ public class DMDocument extends Object {
   static public boolean checkCreateDirectory(String lDirectoryPathName) {
     File file = new File(lDirectoryPathName);
     if (file.exists() && file.isDirectory()) {
-      // System.out.println("debug checkCreateDirectory - Directory FOUND - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Found directory: " + lDirectoryPathName);
       return true;
     }
     // Create the directory
     boolean bool = file.mkdir();
     if (bool) {
-      // System.out.println("debug checkCreateDirectory - Directory CREATED - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Created directory: " + lDirectoryPathName);
       return true;
     } else {
-      // System.out.println("debug checkCreateDirectory - Directory CREATE FAILED -
-      // lDirectoryPathName:" + lDirectoryPathName);
       registerMessage("1>error Directory create failed: " + lDirectoryPathName);
     }
     return false;
@@ -762,9 +772,6 @@ public class DMDocument extends Object {
     SchemaFileDefn lSchemaFileDefn;
     String SCHEMA_LITERAL = "lSchemaFileDefn.";
     String IDENTIFIER = ".identifier";
-
-    // System.out.println(" ");
-    // registerMessage ("1>info config.properties:");
 
     Set<Object> keys = prop.keySet();
     for (Object k : keys) {
@@ -875,9 +882,6 @@ public class DMDocument extends Object {
 
         masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
         if (lSchemaFileDefn.isMaster) {
-          // System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn -
-          // lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
-          // masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
           masterPDSSchemaFileDefn = lSchemaFileDefn;
           masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
           lSchemaFileDefn.isActive = true; // 7777 isActive is set here temporarily until DOM is
@@ -1312,18 +1316,6 @@ public class DMDocument extends Object {
         "Vector_Cartesian_3_Velocity", "", "", "", false));
   }
 
-  static void Dump333DeprecatedObjects2(String title,
-      ArrayList<DeprecatedDefn> lDeprecatedObjectsArr) {
-    System.out.println("\n debug Dump333DeprecatedObjects2 - " + title);
-    for (DeprecatedDefn lDep : lDeprecatedObjectsArr) {
-      System.out.println("debug lDep.title:" + lDep.title + " |  lDep.classNameSpaceIdNC:"
-          + lDep.classNameSpaceIdNC + " |  lDep.className:" + lDep.className
-          + " |  lDep.attrNameSpaceIdNC:" + lDep.attrNameSpaceIdNC + " |  lDep.attrName:"
-          + lDep.attrName + " |  lDep.value:" + lDep.value + " |  lDep.isValue:" + lDep.isValue
-          + " |  lDep.isAttribute:" + lDep.isAttribute + " |  lDep.isUnitId:" + lDep.isUnitId);
-    }
-  }
-
   static void setexposedElementFlag() {
     // the set of classes and attributes that will be externalized (defined as xs:Element)
     exposedElementArr = new ArrayList<>();
@@ -1427,17 +1419,8 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Omit the term \"mission\" from the namespace of a dictionary");
 
-    // 666
-//    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
-//        .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
-
-//    -Ddata.home=${PARENT_DIR}/Data
-    parser.addArgument("-D", "--DataHome").dest("D").type(String.class).nargs(1)
-    .setDefault(buildIMVersionFolderId).help("xxxxx")
-    .help("System property providing the home directory for the Data directory");
-
-//    parser.addArgument("-B", "--docBook").dest("B").type(Boolean.class).nargs(1)
-//    .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
+    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
+        .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
 
     parser.addArgument("-J", "--JSON").dest("J").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the data dictionary to a JSON formatted file");
@@ -1546,18 +1529,6 @@ public class DMDocument extends Object {
         alternateIMVersionFlag = true;
       }
     }
-
-    // 666
-    ////  -Ddata.home=${PARENT_DIR}/Data
-    //  parser.addArgument("-D", "--DataHome").dest("D").type(Boolean.class).nargs(1)
-    //  .action(Arguments.storeTrue()).help("System property providing the home directory for the Data directory");
-
-    // set up DataHome
-    String dataHome = ns.getString("D");
-    if (dataHome == null || dataHome.compareTo("") == 0) dataHome = null; 
-    
-    System.out.println("debug dataHome:" + dataHome);
-    
     return;
   }
 
@@ -1626,12 +1597,11 @@ public class DMDocument extends Object {
       dmProcessState.setdisciplineMissionFlag();
       disciplineMissionFlag = true;
     }
-    // 666
-//    Boolean DFlag = ns.getBoolean("D");
-//    if (DFlag) {
-//      dmProcessState.setexportDDFileFlag();
-//      exportDDFileFlag = true;
-//    }
+    Boolean DFlag = ns.getBoolean("D");
+    if (DFlag) {
+      dmProcessState.setexportDDFileFlag();
+      exportDDFileFlag = true;
+    }
     Boolean JFlag = ns.getBoolean("J");
     if (JFlag) {
       dmProcessState.setexportJSONFileFlag();
@@ -1702,8 +1672,6 @@ public class DMDocument extends Object {
       }
       String lMapID = lMainMsg.msgTypeLevel + "." + lMainMsg.msgOrder.toString();
       lMainMsgMap.put(lMapID, lMainMsg);
-      // System.out.println ("debug printErrorMessages lMainMsg.msgTypeLevel:" +
-      // lMainMsg.msgTypeLevel + " lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
     }
 
     // using message sorted array, print each message and count message types
@@ -1719,7 +1687,6 @@ public class DMDocument extends Object {
       if (lPreviousGroupTitle.compareTo(lMainMsg.msgGroupTitle) != 0) {
         lPreviousGroupTitle = lMainMsg.msgGroupTitle;
         System.out.println("");
-        // System.out.println (" - " + lMainMsg.msgGroupTitle + " -");
       }
       System.out.println(lMainMsg.msgPrefix + " " + lMainMsg.msgCleanText);
     }
