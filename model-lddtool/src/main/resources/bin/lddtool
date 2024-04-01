@@ -64,5 +64,5 @@ DMDOC_JAR=`ls "${LIB_DIR}"/DMDocument.jar`
 
 # Executes lddtool via the executable jar file
 # Arguments are passed in to the tool via '$@'
-"${JAVA_CMD}" -jar "${DMDOC_JAR}" "$@"
+"${JAVA_CMD}" -Ddata.home=${PARENT_DIR}/Data -jar "${DMDOC_JAR}" "$@"
 
