@@ -128,17 +128,17 @@ class MasterDOMInfoModel extends DOMInfoModel {
   public void getUserClassAttrIdMap() {
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
-      if (!lClass.isMasterClass || (lClass.title.indexOf("PDS3") > -1)) {
-        continue; // kludge until boolean is set up
-      }
+      if (lClass.isInactive || (lClass.title.indexOf("PDS3") > -1)) continue;
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
         if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
           DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
-
           // the namespace of the USER class for any attribute is the same as the namespace of the
           // attribute
+          
+          if (isAttInactive (lDOMAttr.identifier)) continue;
+          
           String lUserAttrIdentifier =
               DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
                   DMDocument.masterUserClassName, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
@@ -989,7 +989,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
   public void setInactiveFlag() {
     // iterate through the classes
     for (DOMClass lDOMClass : DOMInfoModel.masterDOMClassArr) {
-
+    	
       // iterate through the owned attribute properties and the attributes
       for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
         lDOMProp.isInactive = lDOMClass.isInactive;

@@ -329,6 +329,8 @@ public class DMDocument extends Object {
 
   public static void main(String args[]) throws Throwable {
 
+	if (debugFlag) System.out.println(">>  DEBUG DMDocument 240311.2.0");
+	  
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
 
