@@ -62,8 +62,6 @@ public class DMDocument extends Object {
 
   // environment variables
   static String lPARENT_DIR;
-  static String lSCRIPT_DIR;
-  static String lLIB_DIR;
   static String lUSERNAME;
 
   // specification document info
@@ -156,7 +154,10 @@ public class DMDocument extends Object {
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
-  static boolean LDDNuanceFlag = false; 
+  static boolean LDDNuanceFlag = false; //
+
+  // 555 static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and
+  // versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
@@ -454,17 +455,47 @@ public class DMDocument extends Object {
     // the use of the option "V" (alternate IM version) will change the input file directory (config
     // included)
     processArgumentParserNamespacePhase1(argparse4jNamespace);
+    
+    String sysDataHome = System.getProperty("data.home");
+//    System.out.println ("debug DMDocument HERE");
+//    System.out.println ("debug DMDocument -0- sysDataHome:" + sysDataHome);
 
-    // first get the environment variables
-    getEnvMap();
-    dataDirPath = lPARENT_DIR + "/Data/";
-
-    // if this is an LDDTool run then an alternate path is allowed (option "V")
-    if (LDDToolFlag && alternateIMVersionFlag) {
-      if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-        dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+    if (sysDataHome != null) {
+//      System.out.println ("debug DMDocument -1- sysDataHome:" + sysDataHome);
+      sysDataHome = sysDataHome.replace('\\', '/');
+      lPARENT_DIR = sysDataHome + "/";
+      dataDirPath = lPARENT_DIR;
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+            dataDirPath = lPARENT_DIR + alternateIMVersion + "/";
+        }
       }
+    } else {
+      String sysUserDir = System.getProperty("user.dir");
+      if (sysUserDir == null) {
+        registerMessage("3>error Environment variable sysUserDir is null");
+        printErrorMessages();
+        System.exit(1);
+      }
+//      System.out.println ("debug DMDocument -2- sysUserDir:" + sysUserDir);
+      sysUserDir = sysUserDir.replace('\\', '/');
+      lPARENT_DIR = sysUserDir;
+      String dirExt = "/model-ontology/src/ontology/Data/";
+      if (debugFlag) dirExt = "/bin/../Data/";
+      dataDirPath = lPARENT_DIR + dirExt;
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+          dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+        }
+       }
     }
+//    System.out.println ("debug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
+//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
+
     registerMessage("0>info - IM Directory Path:" + dataDirPath);
     registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
 
@@ -592,8 +623,8 @@ public class DMDocument extends Object {
 
     registerMessage("1>info Date: " + sTodaysDate);
     registerMessage("1>info PARENT_DIR: " + lPARENT_DIR);
-    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
-    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
+//    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
+//    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
 
     // set the deprecated flags
     setObjectDeprecatedFlag();
@@ -642,34 +673,6 @@ public class DMDocument extends Object {
    * local utilities
    ***********************************************************************************************************/
 
-  static private void getEnvMap() {
-    Map<String, String> env = System.getenv();
-
-    lPARENT_DIR = env.get("PARENT_DIR");
-    if (lPARENT_DIR == null) {
-      registerMessage("3>error Environment variable PARENT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lPARENT_DIR = replaceString(lPARENT_DIR, "\\", "/");
-
-    lSCRIPT_DIR = env.get("SCRIPT_DIR");
-    if (lSCRIPT_DIR == null) {
-      registerMessage("3>error Environment variable SCRIPT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lSCRIPT_DIR = replaceString(lSCRIPT_DIR, "\\", "/");
-
-    lLIB_DIR = env.get("LIB_DIR");
-    if (lLIB_DIR == null) {
-      registerMessage("3>error Environment variable LIB_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lLIB_DIR = replaceString(lLIB_DIR, "\\", "/");
-  }
-
   static private void cleanupLDDInputFileName(SchemaFileDefn lSchemaFileDefn) {
     String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
     lSourceFileSpec = replaceString(lSourceFileSpec, "\\", "/");
@@ -696,21 +699,15 @@ public class DMDocument extends Object {
   static public boolean checkCreateDirectory(String lDirectoryPathName) {
     File file = new File(lDirectoryPathName);
     if (file.exists() && file.isDirectory()) {
-      // System.out.println("debug checkCreateDirectory - Directory FOUND - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Found directory: " + lDirectoryPathName);
       return true;
     }
     // Create the directory
     boolean bool = file.mkdir();
     if (bool) {
-      // System.out.println("debug checkCreateDirectory - Directory CREATED - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Created directory: " + lDirectoryPathName);
       return true;
     } else {
-      // System.out.println("debug checkCreateDirectory - Directory CREATE FAILED -
-      // lDirectoryPathName:" + lDirectoryPathName);
       registerMessage("1>error Directory create failed: " + lDirectoryPathName);
     }
     return false;
@@ -777,9 +774,6 @@ public class DMDocument extends Object {
     SchemaFileDefn lSchemaFileDefn;
     String SCHEMA_LITERAL = "lSchemaFileDefn.";
     String IDENTIFIER = ".identifier";
-
-    // System.out.println(" ");
-    // registerMessage ("1>info config.properties:");
 
     Set<Object> keys = prop.keySet();
     for (Object k : keys) {
@@ -889,51 +883,7 @@ public class DMDocument extends Object {
         }
 
         masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-
-        /*
-         * if (DMDocument.debugFlag) { System.out.println(" ");
-         * System.out.println("debug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" +
-         * lSchemaFileDefn.identifier);
-         * System.out.println("                            lSchemaFileDefn.lddName:" +
-         * lSchemaFileDefn.lddName);
-         * System.out.println("                            lSchemaFileDefn.versionId:" +
-         * lSchemaFileDefn.versionId);
-         * System.out.println("                            lSchemaFileDefn.labelVersionId:" +
-         * lSchemaFileDefn.labelVersionId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" +
-         * lSchemaFileDefn.nameSpaceIdNC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" +
-         * lSchemaFileDefn.nameSpaceIdNCLC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" +
-         * lSchemaFileDefn.nameSpaceIdNCUC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceId:" +
-         * lSchemaFileDefn.nameSpaceId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURL:" +
-         * lSchemaFileDefn.nameSpaceURL);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" +
-         * lSchemaFileDefn.nameSpaceURLs);
-         * System.out.println("                            lSchemaFileDefn.modelShortName:" +
-         * lSchemaFileDefn.modelShortName);
-         * System.out.println("                            lSchemaFileDefn.sysBundleName:" +
-         * lSchemaFileDefn.sysBundleName);
-         * System.out.println("                            lSchemaFileDefn.regAuthId:" +
-         * lSchemaFileDefn.regAuthId);
-         * System.out.println("                            lSchemaFileDefn.governanceLevel:" +
-         * lSchemaFileDefn.governanceLevel);
-         * System.out.println("                            lSchemaFileDefn.isMaster:" +
-         * lSchemaFileDefn.isMaster);
-         * System.out.println("                            lSchemaFileDefn.isLDD:" +
-         * lSchemaFileDefn.isLDD);
-         * System.out.println("                            lSchemaFileDefn.isDiscipline:" +
-         * lSchemaFileDefn.isDiscipline);
-         * System.out.println("                            lSchemaFileDefn.isMission:" +
-         * lSchemaFileDefn.isMission); }
-         */
-
         if (lSchemaFileDefn.isMaster) {
-          // System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn -
-          // lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
-          // masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
           masterPDSSchemaFileDefn = lSchemaFileDefn;
           masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
           lSchemaFileDefn.isActive = true; // 7777 isActive is set here temporarily until DOM is
@@ -1368,18 +1318,6 @@ public class DMDocument extends Object {
         "Vector_Cartesian_3_Velocity", "", "", "", false));
   }
 
-  static void Dump333DeprecatedObjects2(String title,
-      ArrayList<DeprecatedDefn> lDeprecatedObjectsArr) {
-    System.out.println("\n debug Dump333DeprecatedObjects2 - " + title);
-    for (DeprecatedDefn lDep : lDeprecatedObjectsArr) {
-      System.out.println("debug lDep.title:" + lDep.title + " |  lDep.classNameSpaceIdNC:"
-          + lDep.classNameSpaceIdNC + " |  lDep.className:" + lDep.className
-          + " |  lDep.attrNameSpaceIdNC:" + lDep.attrNameSpaceIdNC + " |  lDep.attrName:"
-          + lDep.attrName + " |  lDep.value:" + lDep.value + " |  lDep.isValue:" + lDep.isValue
-          + " |  lDep.isAttribute:" + lDep.isAttribute + " |  lDep.isUnitId:" + lDep.isUnitId);
-    }
-  }
-
   static void setexposedElementFlag() {
     // the set of classes and attributes that will be externalized (defined as xs:Element)
     exposedElementArr = new ArrayList<>();
@@ -1736,8 +1674,6 @@ public class DMDocument extends Object {
       }
       String lMapID = lMainMsg.msgTypeLevel + "." + lMainMsg.msgOrder.toString();
       lMainMsgMap.put(lMapID, lMainMsg);
-      // System.out.println ("debug printErrorMessages lMainMsg.msgTypeLevel:" +
-      // lMainMsg.msgTypeLevel + " lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
     }
 
     // using message sorted array, print each message and count message types
@@ -1753,7 +1689,6 @@ public class DMDocument extends Object {
       if (lPreviousGroupTitle.compareTo(lMainMsg.msgGroupTitle) != 0) {
         lPreviousGroupTitle = lMainMsg.msgGroupTitle;
         System.out.println("");
-        // System.out.println (" - " + lMainMsg.msgGroupTitle + " -");
       }
       System.out.println(lMainMsg.msgPrefix + " " + lMainMsg.msgCleanText);
     }
