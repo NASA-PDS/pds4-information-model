@@ -186,45 +186,117 @@ public abstract class DOMInfoModel extends Object {
     protegeRootClassRdfId = DMDocument.rdfPrefix + "USER";
     protegeSlotClassRdfId = DMDocument.rdfPrefix + "%3ASYSTEM-CLASS";
     
-    // Inactive Attributes Array *** temporary until attr.isInactive is added to dd11179
+    // Inactive Class Attribute Array
     attrIsInactiveArr = new ArrayList<>( Arrays.asList(
+    		"0001_NASA_PDS_1.pds.Array_3D_Map",
+    		"0001_NASA_PDS_1.pds.Array_3D_Spectral_Map",
+    		"0001_NASA_PDS_1.pds.Array_3D_Spectral_Movie",
+    		"0001_NASA_PDS_1.pds.Config",
+    		"0001_NASA_PDS_1.pds.File_Area_Ingest_LDD",
+    		"0001_NASA_PDS_1.pds.File_Area_Telemetry",
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc",
+    		"0001_NASA_PDS_1.pds.Input_Data",
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference_From",
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference_To",
+    		"0001_NASA_PDS_1.pds.LID_ID_Reference_From",
+    		"0001_NASA_PDS_1.pds.LID_ID_Reference_To",
+    		"0001_NASA_PDS_1.pds.Methods",
+    		"0001_NASA_PDS_1.pds.Output_Data",
+    		"0001_NASA_PDS_1.pds.Product_Ingest_LDD",
+    		"0001_NASA_PDS_1.pds.Product_Telemetry",
+    		"0001_NASA_PDS_1.pds.Product_Virtual",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule",
+    		"0001_NASA_PDS_1.pds.Virtual_Area",
+    		"0001_NASA_PDS_1.pds.XSChoice%23",
+    		
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.assertMsg",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.assertStmt",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.assertType",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.attrTitle",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.identifier",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.specMesg",
+    		"0001_NASA_PDS_1.pds.Schematron_Assert.pds.testValArr",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.alwaysInclude",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.attrNameSpaceNC",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.attrTitle",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.classNameSpaceNC",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.classSteward",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.classTitle",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.identifier",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.isMissionOnly",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.roleId",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.schematronAssign",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.schematronAssignPattern",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.type",
+    		"0001_NASA_PDS_1.pds.Schematron_Rule.pds.xpath",
+    		
+    		"0001_NASA_PDS_1.pds.Activity", 
     		"0001_NASA_PDS_1.pds.Activity.pds.activity_type", 
     		"0001_NASA_PDS_1.pds.Activity.pds.description", 
     		"0001_NASA_PDS_1.pds.Activity.pds.title", 
+    		
+    		"0001_NASA_PDS_1.pds.Agent", 
     		"0001_NASA_PDS_1.pds.Agent.pds.agent_type", 
     		"0001_NASA_PDS_1.pds.Agent.pds.description", 
     		"0001_NASA_PDS_1.pds.Agent.pds.title", 
+    		
+    		"0001_NASA_PDS_1.pds.ChangeLog", 
     		"0001_NASA_PDS_1.pds.ChangeLog.pds.date", 
     		"0001_NASA_PDS_1.pds.ChangeLog.pds.desc", 
+    		
+    		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value", 
     		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value.pds.local_identifier", 
-    		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value.pds.value", 
+    		"0001_NASA_PDS_1.pds.DD_Static_Permissible_Value.pds.value",
+    		 
+    		"0001_NASA_PDS_1.pds.Encoded_Telemetry", 
     		"0001_NASA_PDS_1.pds.Encoded_Telemetry.pds.encoding_standard_id", 
+    		
+    		"0001_NASA_PDS_1.pds.Entity", 
     		"0001_NASA_PDS_1.pds.Entity.pds.description", 
     		"0001_NASA_PDS_1.pds.Entity.pds.entity_type", 
     		"0001_NASA_PDS_1.pds.Entity.pds.title", 
+    		
+    		"0001_NASA_PDS_1.pds.Ingest_LDD_File", 
     		"0001_NASA_PDS_1.pds.Ingest_LDD_File.pds.parsing_standard_id", 
     		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.description", 
     		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.ldd_version_id", 
     		"0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.name", 
+    		
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference", 
     		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference", 
-    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference", 
+    		"0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference",
+    		 
+    		"0001_NASA_PDS_1.pds.LID_ID_Reference", 
     		"0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference", 
     		"0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference", 
+    		
+    		"0001_NASA_PDS_1.pds.Property_Map_External", 
     		"0001_NASA_PDS_1.pds.Property_Map_External.pds.description", 
     		"0001_NASA_PDS_1.pds.Property_Map_External.pds.property_map_id", 
+    		
+    		"0001_NASA_PDS_1.pds.Tracking", 
     		"0001_NASA_PDS_1.pds.Tracking.pds.description", 
     		"0001_NASA_PDS_1.pds.Tracking.pds.identifier", 
+    		
+    		"0001_NASA_PDS_1.pds.Tracking_Detail", 
     		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.archive_status", 
     		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.archive_status_note", 
     		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.certified_flag", 
     		"0001_NASA_PDS_1.pds.Tracking_Detail.pds.modification_date", 
+    		
+    		"0001_NASA_PDS_1.pds.Virtual_Reference", 
     		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.comment", 
     		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.id_reference_to", 
     		"0001_NASA_PDS_1.pds.Virtual_Reference.pds.virtual_reference_type", 
+    		
+    		"0001_NASA_PDS_1.pds.Virtual_Relation", 
     		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.comment", 
     		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_from", 
     		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.id_reference_to", 
     		"0001_NASA_PDS_1.pds.Virtual_Relation.pds.virtual_reference_type", 
+    		
+    		"0001_NASA_PDS_1.pds.Virtual_Structure", 
     		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.description", 
     		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.title", 
     		"0001_NASA_PDS_1.pds.Virtual_Structure.pds.type_description"));
