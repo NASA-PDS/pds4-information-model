@@ -434,10 +434,11 @@ class XML4LabelSchemaDOM extends Object {
     prXML.println(" ");
     prXML.println("  <" + pNS + "annotation>");
     if (!DMDocument.LDDToolFlag) {
-      // prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lSchemaFileDefn.comment
-      // + "</" + pNS + "documentation>", (indentSpaces + 2) * 2, 72));
       String lLine =
           "<" + pNS + "documentation>" + lSchemaFileDefn.comment + "</" + pNS + "documentation>";
+      if (addOptionalBlank(lLine, (indentSpaces + 2) * 2, 72))
+          lLine =
+          "<" + pNS + "documentation>" + lSchemaFileDefn.comment + " </" + pNS + "documentation>";
       DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 2) * 2, 72),
           prXML);
     } else {
@@ -470,6 +471,9 @@ class XML4LabelSchemaDOM extends Object {
     // prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</"
     // + pNS + "documentation>", (indentSpaces + 1) * 2, 72));
     String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";
+    if (addOptionalBlank(lLine, (indentSpaces + 1) * 2, 72))
+        lLine =
+        "<" + pNS + "documentation>" + lClass.definition + " </" + pNS + "documentation>";
     DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72),
         prXML);
     prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -515,6 +519,9 @@ class XML4LabelSchemaDOM extends Object {
     // prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</"
     // + pNS + "documentation>", (indentSpaces + 1) * 2, 72));
     String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";
+    if (addOptionalBlank(lLine, (indentSpaces + 1) * 2, 72))
+        lLine =
+        "<" + pNS + "documentation>" + lClass.definition + " </" + pNS + "documentation>";
     DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72),
         prXML);
     prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -548,9 +555,10 @@ class XML4LabelSchemaDOM extends Object {
     prXML.println("");
     prXML.println(indentSpacesUp() + "<" + pNS + "complexType name=\"" + lClass.title + "\">");
     prXML.println(indentSpacesUp() + "<" + pNS + "annotation>");
-    // prXML.println (DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lClass.definition + "</"
-    // + pNS + "documentation>", (indentSpaces + 1) * 2, 72));
     String lLine = "<" + pNS + "documentation>" + lClass.definition + "</" + pNS + "documentation>";
+    if (addOptionalBlank(lLine, (indentSpaces + 1) * 2, 72))
+        lLine =
+        "<" + pNS + "documentation>" + lClass.definition + " </" + pNS + "documentation>";
     DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, (indentSpaces + 1) * 2, 72),
         prXML);
     prXML.println(indentSpaces() + "</" + pNS + "annotation>");
@@ -842,8 +850,6 @@ class XML4LabelSchemaDOM extends Object {
     }
     prXML.println("      <!-- When creating a specific XML schema, remove the '" + pNS
         + "any' element. You may insert any described nondigital object, one or more times. -->");
-    // prXML.println(" <" + pNS + "any namespace=\"##other\" processContents=\"lax\" minOccurs=\"0\"
-    // maxOccurs=\"unbounded\" />");
     prXML.println("      <" + pNS
         + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
     prXML.println("      <!-- <" + pNS
@@ -880,8 +886,6 @@ class XML4LabelSchemaDOM extends Object {
     prXML.println("    <" + pNS + "sequence>");
     prXML.println("      <!-- When creating a specific XML schema, remove the '" + pNS
         + "any' element. You may insert any described nondigital object, one or more times. -->");
-    // prXML.println(" <" + pNS + "any namespace=\"##other\" processContents=\"lax\" minOccurs=\"0\"
-    // maxOccurs=\"unbounded\" />");
     prXML.println("      <" + pNS
         + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"0\" maxOccurs=\"unbounded\" />");
     prXML.println("      <!-- <" + pNS
@@ -954,6 +958,9 @@ class XML4LabelSchemaDOM extends Object {
         prXML.println("    <" + pNS + "annotation>");
         String lLine =
             "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";
+        if (addOptionalBlank(lLine, 6, 72))
+            lLine =
+            "<" + pNS + "documentation>" + lAttr.definition + " </" + pNS + "documentation>";
         DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, 6, 72), prXML);
         prXML.println("    </" + pNS + "annotation>");
         prXML.println("    <" + pNS + "simpleContent>");
@@ -983,6 +990,9 @@ class XML4LabelSchemaDOM extends Object {
       prXML.println("    <" + pNS + "annotation>");
       String lLine =
           "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";
+      if (addOptionalBlank(lLine, 6, 72))
+          lLine =
+          "<" + pNS + "documentation>" + lAttr.definition + " </" + pNS + "documentation>";
       DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, 6, 72), prXML);
       prXML.println("    </" + pNS + "annotation>");
     }
@@ -1031,24 +1041,20 @@ class XML4LabelSchemaDOM extends Object {
       prXML.println("");
       prXML.println("  <" + pNS + "complexType name=\"" + lAttr.XMLSchemaName + "\">");
       prXML.println("    <" + pNS + "annotation>");
-      // prXML.println(DOMInfoModel.wrapText ("<" + pNS + "documentation>" + lAttr.definition + "</"
-      // + pNS + "documentation>", 6, 72));
       String lLine =
           "<" + pNS + "documentation>" + lAttr.definition + "</" + pNS + "documentation>";
+      if (addOptionalBlank(lLine, 6, 72))
+          lLine =
+          "<" + pNS + "documentation>" + lAttr.definition + " </" + pNS + "documentation>";
       DOMInfoModel.printWrappedTextArr(DOMInfoModel.wrapTextNew(lLine, 6, 72), prXML);
       prXML.println("    </" + pNS + "annotation>");
       prXML.println("    <" + pNS + "simpleContent>");
       prXML.println("      <" + pNS + "extension base=\"" + lSchemaFileDefn.nameSpaceIdNC + ":"
           + lAttr.XMLSchemaName + "_WO_Units\">");
-      // prXML.println(" <" + pNS + "attribute name=\"unit\" type=\"" +
-      // lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.unit_of_measure_type + "\" use=\"required\"
-      // />");
       prXML.println("        <" + pNS + "attribute name=\"unit\" type=\""
           + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC + ":" + lAttr.unit_of_measure_type
           + "\" use=\"required\" />");
       if (lAttr.isNilable) {
-        // prXML.println(" <" + pNS + "attribute name=\"nilReason\" type=\"" +
-        // DMDocument.masterNameSpaceIdNCLC + ":nil_reason\" use=\"optional\" />");
         prXML.println("        <" + pNS + "attribute name=\"nilReason\" type=\""
             + DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCLC
             + ":nil_reason\" use=\"optional\" />");
@@ -1378,5 +1384,29 @@ class XML4LabelSchemaDOM extends Object {
       return "";
     }
     return indentSpacesString.substring(0, (indentSpaces * 2));
+  }  
+  
+  // return the input string with an optional append blank if it does not have a whitespace in its last 72 chars
+  public static boolean addOptionalBlank(String input, int indentSpaces, int lineWidth) {
+
+	  int segmentWidth = lineWidth - indentSpaces;
+
+	  if (input == null || input.length() < segmentWidth) {
+		  return false; // String is either null or shorter than segmentWidth characters
+	  }
+
+	  // Extract the last segmentWidth characters of the string
+	  String last72Chars = input.substring(input.length() - segmentWidth);
+
+	  // Check if any character in the last segmentWidth characters is a blank space
+	  boolean hasWhiteSpace = false;
+	  for (int i = 0; i < last72Chars.length(); i++) {
+		  if (Character.isWhitespace(last72Chars.charAt(i))) {
+			  hasWhiteSpace = true;
+			  break;
+		  }
+	  }
+	  if (! hasWhiteSpace) return true; // Did not find a blank space
+	  return false; // found a blank space
   }
 }
