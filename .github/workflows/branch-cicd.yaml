@@ -65,6 +65,10 @@ jobs:
                 run: mvn package
 
             -
+                name: 🩺 Test Site
+                run: mvn clean site
+
+            -
                 name: ∫ Smoke Tests with Discipline LDDs
                 run: |
                     test/smoke-tests.sh
