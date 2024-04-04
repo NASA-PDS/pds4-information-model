@@ -66,7 +66,6 @@ src/test/temp/
 # other stuff
 *.xpr
 *.swp
-/bin/
 .*.swp
 *.sublime-*
 *.DS_Store

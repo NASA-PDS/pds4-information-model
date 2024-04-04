@@ -61,7 +61,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class DMDocument extends Object {
 
   // environment variables
-  static String lPARENT_DIR;
+  static String parentDir;
   static String lUSERNAME;
 
   // specification document info
@@ -154,10 +154,7 @@ public class DMDocument extends Object {
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
-  static boolean LDDNuanceFlag = false; //
-
-  // 555 static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and
-  // versionId to overwrite Master DOMClasses, DOMAttrs, and DOMPermvalues
+  static boolean LDDNuanceFlag = false;
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
@@ -329,8 +326,6 @@ public class DMDocument extends Object {
 
   public static void main(String args[]) throws Throwable {
 
-	if (debugFlag) System.out.println(">>  DEBUG DMDocument 240311.2.0");
-	  
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
 
@@ -457,19 +452,15 @@ public class DMDocument extends Object {
     processArgumentParserNamespacePhase1(argparse4jNamespace);
     
     String sysDataHome = System.getProperty("data.home");
-//    System.out.println ("debug DMDocument HERE");
-//    System.out.println ("debug DMDocument -0- sysDataHome:" + sysDataHome);
-
     if (sysDataHome != null) {
-//      System.out.println ("debug DMDocument -1- sysDataHome:" + sysDataHome);
       sysDataHome = sysDataHome.replace('\\', '/');
-      lPARENT_DIR = sysDataHome + "/";
-      dataDirPath = lPARENT_DIR;
+      parentDir = sysDataHome + "/";
+      dataDirPath = parentDir;
       // if this is an LDDTool run then an alternate path is allowed (option "V")
       // IMTool runs ignore the -V option
       if (LDDToolFlag && alternateIMVersionFlag) {
         if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-            dataDirPath = lPARENT_DIR + alternateIMVersion + "/";
+            dataDirPath = parentDir + alternateIMVersion + "/";
         }
       }
     } else {
@@ -479,23 +470,19 @@ public class DMDocument extends Object {
         printErrorMessages();
         System.exit(1);
       }
-//      System.out.println ("debug DMDocument -2- sysUserDir:" + sysUserDir);
       sysUserDir = sysUserDir.replace('\\', '/');
-      lPARENT_DIR = sysUserDir;
+      parentDir = sysUserDir;
       String dirExt = "/model-ontology/src/ontology/Data/";
       if (debugFlag) dirExt = "/bin/../Data/";
-      dataDirPath = lPARENT_DIR + dirExt;
+      dataDirPath = parentDir + dirExt;
       // if this is an LDDTool run then an alternate path is allowed (option "V")
       // IMTool runs ignore the -V option
       if (LDDToolFlag && alternateIMVersionFlag) {
         if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-          dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
         }
        }
     }
-//    System.out.println ("debug DMDocument -3- lPARENT_DIR:" + lPARENT_DIR);
-//    System.out.println ("debug DMDocument -4- dataDirPath:" + dataDirPath);
-
     registerMessage("0>info - IM Directory Path:" + dataDirPath);
     registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
 
@@ -622,9 +609,7 @@ public class DMDocument extends Object {
     }
 
     registerMessage("1>info Date: " + sTodaysDate);
-    registerMessage("1>info PARENT_DIR: " + lPARENT_DIR);
-//    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
-//    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
+    registerMessage("1>info PARENT_DIR: " + parentDir);
 
     // set the deprecated flags
     setObjectDeprecatedFlag();

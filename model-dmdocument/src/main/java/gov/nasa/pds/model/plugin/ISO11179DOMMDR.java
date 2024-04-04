@@ -94,21 +94,7 @@ class ISO11179DOMMDR extends Object {
           }
         }
       }
-    }
-    
-//    // get attributes with isInactive = true
-//    for (Iterator<InstDefn> i = lMaster11179DataDictArr.iterator(); i.hasNext();) {
-//        InstDefn lInstDefn = i.next();
-//        if (lInstDefn.className.compareTo("PermissibleValue") == 0) {
-//            // get isInactive
-//            String lSlotIsInactive = lInstDefn.getSlotValueSingleton("isInactive");
-//            if (lSlotIsInactive != null && lSlotIsInactive.compareTo("true") == 0) {
-//            	hashCodedIsInactiveArr.add("xxx");
-//            }
-//        }
-//    }
-    
-    
+    }    
     return;
   }
 
@@ -186,11 +172,14 @@ class ISO11179DOMMDR extends Object {
         if (lVal != null && lVal.compareTo("true") == 0) {
           lAttr.isNilable = true;
         }
-
-      } else if (!(lAttr.title.compareTo("%3ANAME") == 0)) {
-        DMDocument.registerMessage("1>error "
-            + "11179 data dictionary attribute is missing for overwrite - Identifier:" + lInstId);
+      } else {
+	    if (lAttr.title.compareTo("%3ANAME") != 0) {
+		    if (! DOMInfoModel.isAttInactive (lAttr.identifier)) {
+		        DMDocument.registerMessage("1>error " + "11179 data dictionary attribute is missing for overwrite - Identifier:" + lInstId);
+		    }
+	    }
       }
+      
       boolean hasVD = false;
       isEnumerated = false;
       lInstId = "EnumeratedValueDomain" + "." + "EVD" + "." + lSuffix;
@@ -402,11 +391,11 @@ class ISO11179DOMMDR extends Object {
       } else {
     	  
     	  // the class does not exist in dd11179; set the class and its components to inactive
-    	  lDOMClass.setIsInactive(true); 	  
+    	  lDOMClass.setIsInactive(true);
     	  if (lDOMClass.title.compareTo("USER") != 0) {
-    		  DMDocument.registerMessage("1>error "
-// 555 change needed   		  DMDocument.registerMessage("1>warning "
-    				  + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+    		  if (! DOMInfoModel.isAttInactive (lDOMClass.identifier)) {
+    	   		  DMDocument.registerMessage("1>error " + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+    		  }
     	  }
       }
     }
@@ -417,9 +406,6 @@ class ISO11179DOMMDR extends Object {
     // iterate through the associations
     for (Iterator<DOMProp> i = DOMInfoModel.masterDOMPropArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
-      // String lSuffix = DOMInfoModel.getAttrIdentifier (lProp.classNameSpaceIdNC,
-      // lProp.parentClassTitle, lProp.nameSpaceIdNC, lProp.title);
-      // String lInstId = "Property" + "." + "PR" + "." + lSuffix;
       String lInstId = "Property" + "." + "PR" + "." + lProp.identifier;
       InstDefn lPRInst = DOMInfoModel.master11179DataDict.get(lInstId);
       if (lPRInst == null) {
