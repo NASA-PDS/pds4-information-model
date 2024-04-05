@@ -111,24 +111,28 @@ POSSIBILITY OF SUCH DAMAGE.
                 </execution>
             </executions>
             </plugin>
-            <plugin>
-                <groupId>gov.nasa.pds.model</groupId>
-                <artifactId>model-dmdocument</artifactId>
-                <version>${project.version}</version>
-                <configuration>
-                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generateDocumentation</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
+        <pluginManagement>
+			<plugins>
+				<plugin>
+	                <groupId>gov.nasa.pds.model</groupId>
+	                <artifactId>model-dmdocument</artifactId>
+	                <version>${project.version}</version>
+	                <configuration>
+	                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
+	                </configuration>
+	                <executions>
+	                    <execution>
+	                        <id>default-compile</id>
+	                        <phase>compile</phase>
+	                        <goals>
+	                            <goal>generateDocumentation</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+            	</plugin>
+            </plugins>
+		</pluginManagement>
     </build>
 
   <!-- Inherit from parent -->
