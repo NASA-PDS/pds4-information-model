@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
 
@@ -18,6 +18,9 @@
 
 **Defects:**
 
+- Unable to build maven site after JDK17 upgrade [\#750](https://github.com/NASA-PDS/pds4-information-model/issues/750) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- JDK17 issue re-introduced bug per \#733 [\#746](https://github.com/NASA-PDS/pds4-information-model/issues/746) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool producing invalid XSD for Voyager LDD [\#744](https://github.com/NASA-PDS/pds4-information-model/issues/744) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is not creating valid URL for KPLO [\#738](https://github.com/NASA-PDS/pds4-information-model/issues/738) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing -  [\#733](https://github.com/NASA-PDS/pds4-information-model/issues/733) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 
