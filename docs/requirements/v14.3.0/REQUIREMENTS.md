@@ -172,3 +172,11 @@ This requirement is not impacted by the current version
 
 
 This requirement is not impacted by the current version
+## CCB-15: Update Constraints on Author/Editor Lists (JIRA-CCB-356) ([#752](https://github.com/NASA-PDS/pds4-information-model/issues/752)) 
+
+
+This requirement is not impacted by the current version
+## CCB-16: Allow micro amps and nano amps as units of current ([#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)) 
+
+
+This requirement is not impacted by the current version
