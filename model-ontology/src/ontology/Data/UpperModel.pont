@@ -1,4 +1,4 @@
-; Wed Feb 14 12:30:04 CST 2024
+; Wed Apr 10 14:39:11 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -250,6 +250,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot has_List_Contributor
+;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Contributor)
+		(create-accessor read-write))
 	(single-slot sample_last_pixel
 ;+		(comment "This attribute is used in the image map projection. Under review.")
 		(type STRING)
@@ -292,10 +297,6 @@
 	(multislot parsing_standard_id
 ;+		(comment "The parsing_standard_id attribute provides the formal name of a standard used for the structure of a Parsable Byte Stream digital object.")
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot upper_120214_Class0
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot targetclass_name
 		(type STRING)
@@ -376,7 +377,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot editor_list
-;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot field_description
@@ -523,10 +524,6 @@
 ;+		(allowed-classes)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot upper_120227b_Class2
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot maximum_occurrences
 ;+		(comment "The maximum occurrences attribute indicates the number of times something may occur. It is also called the maximum cardinality. The asterisk character is used as a value to indicate that no upper bound exists.")
 		(type STRING)
@@ -622,10 +619,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot upper_110709_Class0
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot assertStmt
 		(type STRING)
 		(create-accessor read-write))
@@ -634,18 +627,10 @@
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot upper_110709_Class1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot semi_minor_radius
 ;+		(comment "The semi_minor_radius attribute provides the value of the intermediate axis of the ellipsoid that defines the approximate shape of a target body. The semi-minor axis is usually in the equatorial plane.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot upper_110709_Class2
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot model_id
 ;+		(comment "The model_id attribute helps discriminate instrument hardware. For example \"flight\", \"engineering\", or \"proto\" have been used.")
@@ -760,10 +745,6 @@
 ;+		(comment "The ldd_version_id attribute provides the version of the Local Data Dictionary.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot UpperModel_191218_CCB-256_ReferenceTypes_Retry_Class0
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot lexical_identifier
 ;+		(comment "identifier = initial-letter-like, { pseudo-letter-like } ; initial-letter-like = letter-like | special-like ; letter-like = letter | ISO/IEC-10176-extended-letter ; pseudo-letter-like = letter-like | digit-like | underscore ; digit-like = digit | ISO/IEC-10176-extended-digit ; special-like = underscore | ISO/IEC-10176-extended-special ;")
 		(type STRING)
@@ -811,11 +792,20 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot given_name
+;+		(comment "The given_name attribute provides the forename, first name, and/or other names or initials of the person being identified.  If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed after a comma (,) -- e.g., Earl P., Jr.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot has_Data_Brick_Sequence
 ;+		(comment "The has_Data_Brick_Sequence association is a relationship to data brick.")
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot organization_rorid
+;+		(comment "The organization_rorid attribute provides the Research Organization Registry ID that reliably, unambiguously, and permanently connects the organization’s name with its citable research, publications, grants, and other information. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot node_desc
 		(type STRING)
@@ -824,6 +814,11 @@
 	(multislot keyword
 ;+		(comment "The keyword attribute provides one or more words to be used for  keyword search.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Parent_Organization
+;+		(comment "The has_Parent_Organization association is a relationship to Parent_Organization.")
+		(type INSTANCE)
+;+		(allowed-classes Parent_Organization)
 		(create-accessor read-write))
 	(multislot attribute_name
 ;+		(comment "The attribute_name attribute provides the common name by which an attribute is known.")
@@ -893,8 +888,18 @@
 ;+		(comment "The context reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_List_Author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
+		(create-accessor read-write))
 	(single-slot min_inclusive
 ;+		(comment "The min inclusive attribute provides a value that is less than or equal to all the values in the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot display_full_name
+;+		(comment "The display_full_name attribute provides the full name of the person being identified in a human readable format inclusive of any suffixes or additional identifying information -- e.g., Lord Andres Felipe Alzate Lopera, Jr.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1146,6 +1151,11 @@
 		(default "file_name-period-file_extension")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot contributor_type
+;+		(comment "The contributor_type attribute provides the type of contribution made by the identified resource.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot field_length
 ;+		(comment "The field_length attribute provides the number of bytes in the field.")
 		(type INTEGER)
@@ -1231,10 +1241,6 @@
 		(create-accessor read-write))
 	(single-slot telemetry_format_id
 ;+		(comment "The telemetry_format_id attribute supplies a telemetry format code.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot upper_111205b_Class0
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1351,10 +1357,6 @@
 		(create-accessor read-write))
 	(single-slot reference_latitude
 ;+		(comment "This attribute is used in the image map projection. Under review.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot upper_110503_Slot_9
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -1539,6 +1541,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot family_name
+;+		(comment "The family_name attribute provides the last name or patronymic (https://en.wikipedia.org/wiki/Personal_name) of the person being identified.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot product_creation_time
 		(type STRING)
 ;+		(cardinality 1 1)
@@ -1705,10 +1711,6 @@
 ;+		(comment "The campaign name attribute provides a word or a combination of words by which a campaign is designated, called, or known.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot UpperModel_180912x_1B00_Prov_Class5
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot target_desc
 ;+		(comment "The target_desc attribute describes the characteristics of a particular target.")
 		(type STRING)
@@ -1732,10 +1734,6 @@
 	(multislot source_pds3_id
 ;+		(comment "source_pds3_id is the PDS3 product identifier for the source product. If the source product has been archived under PDS4, use the Internal_Reference class in the Investigation_Area. source_pds3_id is constructed as PDS3 dataset_id, a colon, then the PDS3 product_id. The acceptable nil_reasons are 'inapplicable' and 'unknown'.")
 		(type STRING)
-		(create-accessor read-write))
-	(single-slot upper_110917_Class1
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot record_delimiter
 ;+		(comment "The record_delimiter attribute provides the character or characters used to indicate the end of a record.")
@@ -2004,6 +2002,11 @@
 ;+		(comment "The modification_date attribute provides date the modifications were completed")
 		(type STRING)
 		(create-accessor read-write))
+	(single-slot organization_name
+;+		(comment "The organization_name attribute provides the name of the organization being identified. Do not include commas.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(multislot data_set_id
 ;+		(comment "The data set id provides a formal name used to refer to a data set.")
 		(type STRING)
@@ -2042,10 +2045,6 @@
 		(type STRING)
 		(default "logical_identifier")
 		(create-accessor read-write))
-	(single-slot upper_120127c_Class0
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot group_length
 ;+		(comment "The group_length attribute provides the total length, in bytes, of a repeating field and/or group structure. It is the number of bytes in the repeating fields/groups plus any embedded unused bytes that are also repeated multiplied by the number of repetitions.")
 		(type INTEGER)
@@ -2079,10 +2078,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes XSChoice%23)
 		(create-accessor read-write))
-	(single-slot upper_111230e_Class0
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot specified_unit_id
 ;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
 		(type STRING)
@@ -2111,6 +2106,11 @@
 ;+		(comment "The class_name attribute provides the common name by which the class is identified, as well as the class within which the attribute is used.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Organization
+;+		(comment "The has_Organization association is a relationship to Organization.")
+		(type INSTANCE)
+;+		(allowed-classes Organization)
 		(create-accessor read-write))
 	(single-slot cross_reference_area
 ;+		(comment "The cross_reference_area association is a relationship to Cross_Reference_Area a set of identifiers that reference other products.")
@@ -2195,6 +2195,11 @@
 ;+		(comment "The subscriber association is a relationship to a Subscriber_PDS3 class.")
 		(type INSTANCE)
 ;+		(allowed-classes Subscriber_PDS3)
+		(create-accessor read-write))
+	(single-slot person_orcid
+;+		(comment "The person_orcid attribute provides the Open Researcher and Contributor ID that reliably, unambiguously, and permanently connects a person’s name with citable research, publications, grants, and other biographical information. The ORCID is expressed as a fully formed URI (e.g., http://orcid.org/0000-0000-0000-0000).")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot mean
 ;+		(comment "The mean attribute provides the sum of the values divided by the number of values (empty or Special_Constants values are excluded).")
@@ -2601,7 +2606,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot author_list
-;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot bearing_reference_direction
@@ -2625,6 +2630,11 @@
 		(create-accessor read-write))
 	(single-slot digit_string
 ;+		(comment "digit-string = digit-like, { digit-like } ; digit-like = digit | ISO/IEC-10176-extended-digit ;")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent_organization_name
+;+		(comment "The parent_organization_name attribute provides the name of the parent organization of the identified organization. Do not include commas.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -2909,10 +2919,6 @@
 ;+		(comment "The instrument_host_puid attribute provides a globally unique identifer for an instrument_host.")
 		(type STRING)
 		(create-accessor read-write))
-	(single-slot upper_120106b_Class1
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(multislot lid_reference_to
 ;+		(comment "The lid_reference_to provides the identifier of the ending object in a  one directional relationship.")
 		(type INSTANCE)
@@ -2943,6 +2949,11 @@
 	(multislot install_note
 ;+		(comment "The install note attribute provides a brief statement giving particulars about the installation of the software.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Affiliation
+;+		(comment "The has_Affiliation association is a relationship to Affiliation.")
+		(type INSTANCE)
+;+		(allowed-classes Affiliation)
 		(create-accessor read-write))
 	(single-slot node_name
 ;+		(comment "The node_name attribute provides the name of a PDS Node.")
@@ -3048,6 +3059,11 @@
 	(multislot telescope_longitude
 ;+		(comment "The telescope_longitude attribute provides the angular distance of the telescope east (positive), measured by the angle contained between the meridian of the telescope and the reference figure (or datum) prime meridian.")
 		(type FLOAT)
+		(create-accessor read-write))
+	(multislot has_Person
+;+		(comment "The has_Person association is a relationship to Person.")
+		(type INSTANCE)
+;+		(allowed-classes Person)
 		(create-accessor read-write))
 	(multislot local_identifier
 ;+		(comment "The local_identifier attribute provides a character string which uniquely identifies the containing object within the label.")
@@ -3411,6 +3427,11 @@
 ;+		(comment "This attribute is used in by the data set release class. It is under review.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_List_Author_or_List_Editor
+;+		(comment "The has_List_Author_or_List_Editor association is a relationship to either List_Author or List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author List_Editor XSChoice%23)
 		(create-accessor read-write))
 	(multislot minimum_characters
 ;+		(comment "The minimum_characters attribute provides the lower, inclusive bound on the number of characters.")
@@ -3780,10 +3801,6 @@
 ;+		(comment "The dd_class_reference association is a relationship to DD_Class_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes DD_Class_Reference)
-		(create-accessor read-write))
-	(single-slot UpperModel_140908c_1300_CCB63_Class1
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot pixel_scale_y
 ;+		(comment " The pixel_scale_x and pixel_scale_y attributes indicate the image array pixel scale %28pixel%2Fdegree or pixel%2Fdistance%29 relative to the Cartesian %28x,y%29 coordinate system as defined by the map projection. Due to varying properties across different map projections, actual surface distances for an individual pixel may be accurate only at specific location%28s%29 within the image array %28e.g. reference latitude or longitude, standard parallels, etc%29. For most PDS products, x and y scale values are equal %28%47square%47 pixels%29. The inclusion of both x and y attributes allows for anticipated products where scale may differ for each axis %28%47rectangular%47 pixels%29. NOTE1: For presentation of hard-copy maps, a map scale is traditionally expressed as a %47representative fraction%47 %28the ratio of a hard-copy map to the actual subject surface %28e.g. 1:250,000, where one unit of measure on the map equals 250,000 of the same unit on the body surface%29%29. This usage is relevant when map%2Fdata are presented on hard-copy media %28paper, computer screen,etc%29. When defining pixel scale within a stored image%2Farray context here, we are expressing a ratio between the image array and the actual surface %28thus, pixel%2Fdegree or pixel%2Fdistance units%29. NOTE2: Definition of this PDS4 attribute differs from how %47scale%47 was defined within PDS3 ")
@@ -4223,10 +4240,6 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
-	(single-slot upper_110304_forked_DONesting_Slot_12
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot primary_body_name
 ;+		(comment "The primary_body_name attribute identifies the primary body with which a given target body is associated as a secondary body.")
 		(type STRING)
@@ -4308,10 +4321,6 @@
 	(multislot files
 ;+		(comment "The files attribute provides the number of files.")
 		(type INTEGER)
-		(create-accessor read-write))
-	(single-slot upper_110421_test_Slot_0
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot minimum_ring_longitude
 ;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
@@ -4533,6 +4542,10 @@
 		(type FLOAT)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot organization_type
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot has_Spatial_Reference_Information
 ;+		(comment "The xxx association is a relationship to yyy.")
 		(type INSTANCE)
@@ -4601,6 +4614,11 @@
 ;+		(comment "The collected_under association is a relationship to circumstances of observation.")
 		(type INSTANCE)
 ;+		(allowed-classes Context_Area)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent_organization_rorid
+;+		(comment "The parent_organization_rorid attribute provides the Research Organization Registry ID of the identified parent organization. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot lowest_detectable_opacity
@@ -7311,13 +7329,18 @@
 ;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot has_List_Author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
+		(create-accessor read-write))
 	(single-slot users_manual_id
 ;+		(comment "The users manual id attribute provides a formal name used to refer to a manual that describes how to use the software.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot author_list
-;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7361,7 +7384,7 @@
 	(is-a TNDO_Supplemental)
 	(role concrete)
 	(single-slot author_list
-;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -7369,6 +7392,11 @@
 ;+		(comment "The acknowledgement_text attribute is a character string which recognizes another's contribution, authority, or right.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_List_Author_or_List_Editor
+;+		(comment "The has_List_Author_or_List_Editor association is a relationship to either List_Author or List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author List_Editor XSChoice%23)
 		(create-accessor read-write))
 	(single-slot document_name
 ;+		(comment "The document_title attribute provides the full name of the published document. This optional attribute is used only if the title in the identification area of the document product is not sufficient.")
@@ -7413,7 +7441,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot editor_list
-;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -9740,9 +9768,14 @@
 	(is-a Product_Components)
 	(role concrete)
 	(single-slot author_list
-;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final author. All authors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_List_Contributor
+;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Contributor)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a short (5KB or less) description of the product as a whole.")
@@ -9750,9 +9783,14 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot editor_list
-;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.) it should be placed before the comma (,). Do not include the word \"and\" before the final editor. All editors should be listed explicitly - do not elide the list using \"et al.\".")
+;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_List_Author_or_List_Editor
+;+		(comment "The has_List_Author_or_List_Editor association is a relationship to either List_Author or List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author List_Editor XSChoice%23)
 		(create-accessor read-write))
 	(multislot keyword
 ;+		(comment "The keyword attribute provides one or more words to be used for  keyword search.")
@@ -10451,6 +10489,135 @@
 		(type INSTANCE)
 ;+		(allowed-classes Virtual_Structure)
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass List_Author "The List_Author class is a container for the classes that describe each author."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_Organization
+;+		(comment "The has_Organization association is a relationship to Organization.")
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+		(create-accessor read-write))
+	(multislot has_Person
+;+		(comment "The has_Person association is a relationship to Person.")
+		(type INSTANCE)
+;+		(allowed-classes Person)
+		(create-accessor read-write)))
+
+(defclass List_Editor "The List_Editor class is a container for the classes that describe each editor."
+	(is-a List_Author)
+	(role concrete))
+
+(defclass List_Contributor "The List_Contributor class is a container for the classes that describe each contributor.  Contributors are not authors or editors."
+	(is-a List_Author)
+	(role concrete))
+
+(defclass Person "The Person class is a container for the child attributes and classes that describe a person."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_Affiliation
+;+		(comment "The has_Affiliation association is a relationship to Affiliation.")
+		(type INSTANCE)
+;+		(allowed-classes Affiliation)
+		(create-accessor read-write))
+	(single-slot contributor_type
+;+		(comment "The contributor_type attribute provides the type of contribution made by the identified resource.")
+		(type STRING)
+;+		(value "DataCollector" "DataCurator" "Producer")
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot given_name
+;+		(comment "The given_name attribute provides the forename, first name, and/or other names or initials of the person being identified.  If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed after a comma (,) -- e.g., Earl P., Jr.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot sequence_number
+;+		(comment "The sequence_number attribute provides a number that is used to unambiguously order the Person and Organization classes.")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot display_full_name
+;+		(comment "The display_full_name attribute provides the full name of the person being identified in a human readable format inclusive of any suffixes or additional identifying information -- e.g., Lord Andres Felipe Alzate Lopera, Jr.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot person_orcid
+;+		(comment "The person_orcid attribute provides the Open Researcher and Contributor ID that reliably, unambiguously, and permanently connects a person’s name with citable research, publications, grants, and other biographical information. The ORCID is expressed as a fully formed URI (e.g., http://orcid.org/0000-0000-0000-0000).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot family_name
+;+		(comment "The family_name attribute provides the last name or patronymic (https://en.wikipedia.org/wiki/Personal_name) of the person being identified.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Affiliation "The Affiliation class is a container for the child attributes that describe the affiliation of a person."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot sequence_number
+;+		(comment "The sequence_number attribute provides a number that is used to unambiguously order the Person and Organization classes.")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organization_rorid
+;+		(comment "The organization_rorid attribute provides the Research Organization Registry ID that reliably, unambiguously, and permanently connects the organization’s name with its citable research, publications, grants, and other information. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organization_name
+;+		(comment "The organization_name attribute provides the name of the organization being identified. Do not include commas.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Organization "The Organization class is a container for the child attributes that describe an organization, institution, or company."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot contributor_type
+;+		(comment "The contributor_type attribute provides the type of contribution made by the identified resource.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sequence_number
+;+		(comment "The sequence_number attribute provides a number that is used to unambiguously order the Person and Organization classes.")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_Parent_Organization
+;+		(comment "The has_Parent_Organization association is a relationship to Parent_Organization.")
+		(type INSTANCE)
+;+		(allowed-classes Parent_Organization)
+		(create-accessor read-write))
+	(single-slot organization_rorid
+;+		(comment "The organization_rorid attribute provides the Research Organization Registry ID that reliably, unambiguously, and permanently connects the organization’s name with its citable research, publications, grants, and other information. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organization_name
+;+		(comment "The organization_name attribute provides the name of the organization being identified. Do not include commas.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Parent_Organization "The Parent_Organization class is a container for the child attributes and classes that describe the parent organization."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot parent_organization_name
+;+		(comment "The parent_organization_name attribute provides the name of the parent organization of the identified organization. Do not include commas.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sequence_number
+;+		(comment "The sequence_number attribute provides a number that is used to unambiguously order the Person and Organization classes.")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot parent_organization_rorid
+;+		(comment "The parent_organization_rorid attribute provides the Research Organization Registry ID of the identified parent organization. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Tagged_NonDigital_Child "The Tagged NonDigital Child class is an abstract class for the components  of classes in the tagged nondigital object class hierarchy."
