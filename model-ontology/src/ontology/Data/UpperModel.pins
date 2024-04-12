@@ -1,4 +1,4 @@
-; Wed Apr 10 14:39:11 EDT 2024
+; Fri Apr 12 11:20:19 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1390,13 +1390,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Organization")
-	(has_Schematron_Assert
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.101]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.102]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.103]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.104]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.105]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.106])
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.106])
 	(identifier "pds:Organization/pds:contributor_type")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")

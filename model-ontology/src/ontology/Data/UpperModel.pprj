@@ -1,4 +1,4 @@
-; Wed Apr 10 14:39:11 EDT 2024
+; Fri Apr 12 11:20:19 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class112]
-		[UpperModel_ProjectKB_Class113]
-		[UpperModel_ProjectKB_Class114]
-		[UpperModel_ProjectKB_Class115]))
+		[UpperModel_ProjectKB_Class135]
+		[UpperModel_ProjectKB_Class136]
+		[UpperModel_ProjectKB_Class137]
+		[UpperModel_ProjectKB_Class138]))
 
 ([CLSES_TAB] of  Widget
 
@@ -426,9 +426,6 @@
 ([KB_663782_Class0] of  Map
 )
 
-([KB_795984_Class0] of  Map
-)
-
 ([KB_887149_Instance_43] of  String
 
 	(name "factory_class_name")
@@ -550,6 +547,9 @@
 
 	(name "instances_file_name")
 	(string_value "UpperModel.pins"))
+
+([KB_976809_Class0] of  Map
+)
 
 ([PAL_FORM_WIDGET] of  Widget
 
@@ -1138,22 +1138,22 @@
 	(property_list [UpperModel_240322d_CCB356_15_schematron_ProjectKB_Class10])
 	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
 
-([UpperModel_ProjectKB_Class112] of  String
+([UpperModel_ProjectKB_Class135] of  String
 
 	(name "ChangeLog")
 	(string_value "date"))
 
-([UpperModel_ProjectKB_Class113] of  String
+([UpperModel_ProjectKB_Class136] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([UpperModel_ProjectKB_Class114] of  String
+([UpperModel_ProjectKB_Class137] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([UpperModel_ProjectKB_Class115] of  String
+([UpperModel_ProjectKB_Class138] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
