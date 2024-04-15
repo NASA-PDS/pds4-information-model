@@ -1,8 +1,8 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-02)
+## [v15.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.2) (2024-04-10)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...v15.0.2)
 
 **Requirements:**
 
@@ -18,8 +18,12 @@
 
 **Defects:**
 
+- Unable to build maven site after JDK17 upgrade [\#750](https://github.com/NASA-PDS/pds4-information-model/issues/750) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- JDK17 issue re-introduced bug per \#733 [\#746](https://github.com/NASA-PDS/pds4-information-model/issues/746) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool producing invalid XSD for Voyager LDD [\#744](https://github.com/NASA-PDS/pds4-information-model/issues/744) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is not creating valid URL for KPLO [\#738](https://github.com/NASA-PDS/pds4-information-model/issues/738) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing -  [\#733](https://github.com/NASA-PDS/pds4-information-model/issues/733) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+- PDS4 IM repo fails with openjdk 17+ [\#471](https://github.com/NASA-PDS/pds4-information-model/issues/471) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 
 **Other closed issues:**
 
@@ -27,6 +31,7 @@
 - IMTool Refactoring - Deprecate the Java "Deprecated Object Array" [\#724](https://github.com/NASA-PDS/pds4-information-model/issues/724)
 - Set Product\_XML\_Schema label version id to 1.0 for all future releases. [\#719](https://github.com/NASA-PDS/pds4-information-model/issues/719)
 - IMTool Refactoring Phase 6 - Use Protege dd11179.pins for class disposition [\#717](https://github.com/NASA-PDS/pds4-information-model/issues/717)
+- Update to Support for OpenJDK17 [\#702](https://github.com/NASA-PDS/pds4-information-model/issues/702)
 - Fix code scanning alert - Container contents are never accessed [\#693](https://github.com/NASA-PDS/pds4-information-model/issues/693)
 - Develop first iteration of provenance model [\#692](https://github.com/NASA-PDS/pds4-information-model/issues/692)
 

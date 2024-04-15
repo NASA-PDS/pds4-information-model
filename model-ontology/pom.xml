@@ -35,7 +35,7 @@ POSSIBILITY OF SUCH DAMAGE.
     <parent>
         <groupId>gov.nasa.pds</groupId>
         <artifactId>model</artifactId>
-        <version>14.5.0-SNAPSHOT</version>
+        <version>15.1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>gov.nasa.pds.model</groupId>
@@ -111,24 +111,28 @@ POSSIBILITY OF SUCH DAMAGE.
                 </execution>
             </executions>
             </plugin>
-            <plugin>
-                <groupId>gov.nasa.pds.model</groupId>
-                <artifactId>model-dmdocument</artifactId>
-                <version>${project.version}</version>
-                <configuration>
-                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generateDocumentation</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
+        <pluginManagement>
+			<plugins>
+				<plugin>
+	                <groupId>gov.nasa.pds.model</groupId>
+	                <artifactId>model-dmdocument</artifactId>
+	                <version>${project.version}</version>
+	                <configuration>
+	                    <ontologySrc>${basedir}/src/ontology</ontologySrc>
+	                </configuration>
+	                <executions>
+	                    <execution>
+	                        <id>default-compile</id>
+	                        <phase>compile</phase>
+	                        <goals>
+	                            <goal>generateDocumentation</goal>
+	                        </goals>
+	                    </execution>
+	                </executions>
+            	</plugin>
+            </plugins>
+		</pluginManagement>
     </build>
 
   <!-- Inherit from parent -->
