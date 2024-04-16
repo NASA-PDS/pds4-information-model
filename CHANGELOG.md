@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-16)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.2...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace VIPER [\#748](https://github.com/NASA-PDS/pds4-information-model/issues/748)
+
 ## [v15.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.2) (2024-04-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...v15.0.2)
