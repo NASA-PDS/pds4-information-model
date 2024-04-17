@@ -78,6 +78,19 @@ POSSIBILITY OF SUCH DAMAGE.
     <developerConnection>scm:git:ssh://git@github.com/NASA-PDS/pds4-information-model.git</developerConnection>
   </scm>
   
+  <!-- Override maven-site-plugin from parent which turns site generation off; we want it on -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>  <!-- This is `true` in parent pom -->
+          <skipDeploy>false</skipDeploy>  <!-- This is `true` in parent pom -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   
   <repositories />
   <distributionManagement />
