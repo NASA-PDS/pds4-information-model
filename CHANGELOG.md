@@ -1,8 +1,20 @@
 # Changelog
 
-## [release/15.0.4](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.0.4) (2024-04-16)
+## [15.0.5](https://github.com/NASA-PDS/pds4-information-model/tree/15.0.5) (2024-04-17)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.2...release/15.0.4)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/15.0.5...15.0.5)
+
+**Defects:**
+
+- webpage links are not working [\#754](https://github.com/NASA-PDS/pds4-information-model/issues/754) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [release/15.0.5](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.0.5) (2024-04-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.4...release/15.0.5)
+
+## [v15.0.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.4) (2024-04-16)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.2...v15.0.4)
 
 **Improvements:**
 
