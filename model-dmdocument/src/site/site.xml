@@ -32,14 +32,33 @@
 -->
 
 <project name='Model DM-Document'>
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>2.0.0-M6</version>
+  </skin>
+  <custom>
+    <fluidoSkin>
+      <gitHub>
+        <projectId>nasa-pds/${project.artifactId}</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>black</ribbonColor>
+      </gitHub>
+      <googleSearch>
+        <sitesearch/>
+      </googleSearch>
+    </fluidoSkin>
+  </custom>
+  
   <bannerLeft>
-    <src>images/pds4_logo.png</src>
+    <name>Model DM-Document Plugin</name>
     <href>https://pds.nasa.gov</href>
   </bannerLeft>
-
-  <bannerRight>
-    <name>Model DM-Document Plugin</name>
-  </bannerRight>
+  
+  <poweredBy>
+    <logo name="PDS" href="https://pds.nasa.gov"
+      img="images/pds4_logo.png"/>
+  </poweredBy>
 
   <version/>
 
