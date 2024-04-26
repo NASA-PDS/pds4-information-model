@@ -1,8 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-26)
+## [15.0.6](https://github.com/NASA-PDS/pds4-information-model/tree/15.0.6) (2024-04-26)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.5...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/15.0.6...15.0.6)
+
+**Defects:**
+
+- Version flag no longer works on Windows [\#763](https://github.com/NASA-PDS/pds4-information-model/issues/763)
+
+## [release/15.0.6](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.0.6) (2024-04-26)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.5...release/15.0.6)
 
 **Requirements:**
 
