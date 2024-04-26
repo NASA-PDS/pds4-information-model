@@ -64,6 +64,6 @@ goto END
 
 :: echo %DMDOC_JAR%
 
-"%JAVA_HOME%\bin\java" -jar "%DMDOC_JAR%" %*
+"%JAVA_HOME%\bin\java" -Ddata.home="%PARENT_DIR%"\Data -jar "%DMDOC_JAR%" %*
 
 :END
