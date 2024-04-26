@@ -1,12 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-25)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-04-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.5...«unknown»)
 
 **Requirements:**
 
 - CCB-15: Update Constraints on Author/Editor Lists \(JIRA-CCB-356\) [\#752](https://github.com/NASA-PDS/pds4-information-model/issues/752)
+
+**Defects:**
+
+- Documentation broken with latest upgrade for maven site plugin [\#761](https://github.com/NASA-PDS/pds4-information-model/issues/761) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 ## [v15.0.5](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.5) (2024-04-17)
 
