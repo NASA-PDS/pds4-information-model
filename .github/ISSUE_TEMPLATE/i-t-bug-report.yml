@@ -83,3 +83,12 @@ body:
     id: details
     attributes:
        label: ⚙️ Engineering Details
+
+  - type: textarea
+    id: i-n-t
+    attributes:
+      label: 🎉 Integration & Test
+      description: To be filled out by Engineering Node Team
+      placeholder:  Provide testing information and/or trace to TestRail ID
+    validations:
+      required: false
