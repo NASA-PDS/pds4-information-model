@@ -709,12 +709,6 @@ public class LDDDOMParser extends Object {
                                                // written
           lDOMClass.steward = lSchemaFileDefn.stewardId;
 
-          // get disposition
-          // if (! lDOMClass.getDOMClassDisposition(false)) {
-          // System.out.println("debug getClass getLDDClassDisposition FAILED lClass.identifier:" +
-          // lDOMClass.identifier);
-          // }
-
           String lDescription = getTextValue(el, "definition");
           // escape any user provided values of "TBD"
           if (lDescription.indexOf("TBD") == 0) {
@@ -2547,7 +2541,6 @@ public class LDDDOMParser extends Object {
         "   IM Label Version Id:" + "   " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);
     prLocalDD.println("   IM Object Model" + "        " + "[" + "UpperModel.pont" + "]");
     prLocalDD.println("   IM Data Dictionary" + "     " + "[" + "dd11179.pins" + "]");
-    prLocalDD.println("   IM Configuration File" + "  " + "[" + "MDPTNConfigClassDisp.xml" + "]");
     prLocalDD.println("   IM Glossary" + "            " + "[" + "Glossary.pins" + "]");
     prLocalDD.println("   IM Document Spec" + "       " + "[" + "DMDocument.pins" + "]");
 

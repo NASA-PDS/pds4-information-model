@@ -158,8 +158,6 @@ public class DMDocument extends Object {
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
-  static boolean useMDPTNConfig = false; // ProtPontDOMModel; get disposition for the class from
-                                        // MDPTNConfigClassDisp
   static boolean overWriteDeprecated = false; // use dd11179.pins isDeprecated to overwrite
                                               // DMDocument.deprecatedObjects2
 
@@ -277,9 +275,6 @@ public class DMDocument extends Object {
 
   // master class order
   static int masterGroupNum;
-
-  // master class disposition maps
-  static TreeMap<String, DispDefn> masterClassDispoMap2;
 
   // registry classes and attributes
   static ArrayList<String> registryClass;
@@ -577,13 +572,6 @@ public class DMDocument extends Object {
         cleanupLDDInputFileName(lSchemaFileDefn);
       }
     }
-    // get the disposition file, parse out allowed stewards and namespaceids
-    XMLDocParserDomMDPTNConfig lMDPTNConfig = new XMLDocParserDomMDPTNConfig();
-    masterClassDispoMap2 = lMDPTNConfig.getXMLTable2(dataDirPath + "MDPTNConfigClassDisp.xml");
-
-//    // 222 test
-//    DMCheckDispositions dmCheckDispositions = new DMCheckDispositions ();
-//    dmCheckDispositions.printDispositions("", masterClassDispoMap2);
     
     // set up the System Build version
     XMLSchemaLabelBuildNum = pds4BuildId;
@@ -710,16 +698,9 @@ public class DMDocument extends Object {
 
   static public void checkRequiredFiles() {
     // check that all the required data files exist
-    File file = new File(dataDirPath + "MDPTNConfigClassDisp.xml");
+
+    File file = new File(dataDirPath + "UpperModel.pont");
     boolean isFound = file.exists();
-    if (!isFound) {
-      registerMessage("3>error " + "Required data file was not found: " + dataDirPath
-          + "MDPTNConfigClassDisp.xml");
-      printErrorMessages();
-      System.exit(1);
-    }
-    file = new File(dataDirPath + "UpperModel.pont");
-    isFound = file.exists();
     if (!isFound) {
       registerMessage(
           "3>error " + "Required data file was not found: " + dataDirPath + "UpperModel.pont");
