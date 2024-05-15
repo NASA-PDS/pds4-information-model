@@ -339,10 +339,6 @@ public class GetDOMModel extends Object {
     // used) use flags.
     DMDocument.masterDOMInfoModel.setInactiveFlag();
 
-    // 333
-    // 018.7 - get the Deprecated Objects array
-    // DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-
     // 019 - general master attribute fixup
     // anchorString; sort_identifier; sort attribute.valArr
     DMDocument.masterDOMInfoModel.setMasterAttrGeneral();
@@ -357,16 +353,7 @@ public class GetDOMModel extends Object {
     DMDocument.masterDOMInfoModel.setRegistrationStatus();
 
     // 018.7 - get the Deprecated Objects array
-    // 333
-    if (DMDocument.overWriteDeprecated) {
-      DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-    }
     DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-
-    // 333 DMDocument.Dump333DeprecatedObjects2 ("DMDocument", DMDocument.deprecatedObjects2);
-
-    // 333 DMDocument.Dump333DeprecatedObjects2 ("DD11179",
-    // DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr());
 
     // 024 - set up master data types - the data type map
     DMDocument.masterDOMInfoModel.setMasterDataType2();

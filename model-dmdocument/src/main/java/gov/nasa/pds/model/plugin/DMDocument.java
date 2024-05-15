@@ -158,9 +158,6 @@ public class DMDocument extends Object {
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
-  static boolean overWriteDeprecated = false; // use dd11179.pins isDeprecated to overwrite
-                                              // DMDocument.deprecatedObjects2
-
   // alternate IM Version
   // if no option "V" is provided on the command line, then the default is the current IM version.
   static boolean alternateIMVersionFlag = false;
@@ -292,8 +289,7 @@ public class DMDocument extends Object {
   // the set of deprecated classes, attributes, and values
   static ArrayList<DeprecatedDefn> deprecatedObjects2;
   static String Literal_DEPRECATED = " *Deprecated*";
-  static boolean deprecatedAdded;
-  static boolean deprecatedAddedDOM;
+  static boolean deprecatedAddedDOM = false;
 
   // the set of classes and attributes that will be externalized (defined as xs:Element)
   static ArrayList<String> exposedElementArr;
@@ -323,6 +319,8 @@ public class DMDocument extends Object {
 
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
+    
+    // System.out.println("Debug main 240515");
 
     PDSOptionalFlag = false;
     LDDToolFlag = false;
@@ -598,9 +596,6 @@ public class DMDocument extends Object {
 
     registerMessage("1>info Date: " + sTodaysDate);
     registerMessage("1>info PARENT_DIR: " + parentDir);
-
-    // set the deprecated flags
-    setObjectDeprecatedFlag();
 
     // get the 11179 Attribute Dictionary - .pins file
     ProtPinsDOM11179DD lProtPinsDOM11179DD = new ProtPinsDOM11179DD();
@@ -958,331 +953,8 @@ public class DMDocument extends Object {
   }
 
   /**********************************************************************************************************
-   * set object flags, e.g., deprecated
+   * set object flags
    ***********************************************************************************************************/
-
-  static void setObjectDeprecatedFlag() {
-    // deprecated objects *** Inconsistency here to be fixed - Earth base identifier is different
-    // ***
-    deprecatedAdded = false;
-    deprecatedAddedDOM = false;
-    deprecatedObjects2 = new ArrayList<>();
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Product_Update", "pds", "Product_Update", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Update", "pds", "Update", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Update.update_purpose", "pds", "Update", "pds",
-        "update_purpose", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Information_Package_Component_Deep_Archive.checksum_type", "pds",
-            "Information_Package_Component_Deep_Archive", "pds", "checksum_type", "MD5Deep 4.n",
-            false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Airborne", "pds", "Airborne", "", "", "", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Aircraft", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Balloon", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Suborbital Rocket", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Airborne", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Aircraft", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Balloon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Computer", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Facility", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Laboratory", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Naked Eye", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Observatory", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Spacecraft", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Artificial Illumination", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Internal_Reference.reference_type", "pds",
-        "Internal_Reference", "pds", "reference_type", "is_airborne", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Bundle_Member_Entry.reference_type", "pds",
-        "Bundle_Member_Entry", "pds", "reference_type", "bundle_has_member_collection", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Display_2D_Image", "pds", "Display_2D_Image", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Band_Bin", "pds", "Band_Bin", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Array.Local_Internal_Reference", "pds", "Array",
-        "pds", "Local_Internal_Reference", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.type.Earth Based", "pds",
-        "Instrument_Host", "pds", "type", "Earth Based", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.type.Earth-based", "pds",
-        "Instrument_Host", "pds", "type", "Earth-based", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Instrument.type", "pds", "Instrument", "pds", "type", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Calibration", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Open Cluster", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Globular Cluster", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Terrestrial Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Lunar Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Synthetic Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Meteorite", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Globular Cluster", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Terrestrial Sample", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Lunar Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Synthetic Sample", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Meteorite", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Node.name.Planetary Rings", "pds", "Node", "pds",
-        "name", "Planetary Rings", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name.Imaging", "pds",
-        "PDS_Affiliate", "pds", "team_name", "Imaging", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name.Planetary Rings", "pds",
-        "PDS_Affiliate", "pds", "team_name", "Planetary Rings", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.data_regime", "pds",
-        "Primary_Result_Summary", "pds", "data_regime", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.type", "pds",
-        "Primary_Result_Summary", "pds", "type", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.processing_level_id", "pds",
-        "Primary_Result_Summary", "pds", "processing_level_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "subclass_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "restriction_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "extension_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association_External", "pds",
-        "DD_Association_External", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.local_identifier", "pds",
-        "DD_Association", "pds", "local_identifier", "", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "subclass_of", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "restriction_of", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "extension_of", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Binary.record_delimiter", "pds",
-        "Table_Binary", "pds", "record_delimiter", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Field_Bit.start_bit", "pds", "Field_Bit", "pds",
-        "start_bit", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Field_Bit.stop_bit", "pds", "Field_Bit", "pds", "stop_bit", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.record_delimiter", "pds",
-        "Table_Delimited", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.record_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "record_delimiter",
-            "carriage-return line-feed", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.record_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "record_delimiter",
-            "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Character.record_delimiter", "pds",
-        "Table_Character", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Stream_Text.record_delimiter", "pds", "Stream_Text",
-        "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Checksum_Manifest.record_delimiter", "pds",
-        "Checksum_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.record_delimiter", "pds", "Inventory",
-        "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Transfer_Manifest.record_delimiter", "pds",
-        "Transfer_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Uniformly_Sampled.sampling_parameters", "pds",
-        "Uniformly_Sampled", "pds", "sampling_parameters", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Object_Statistics.bit_mask", "pds",
-        "Object_Statistics", "pds", "bit_mask", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Object_Statistics.md5_checksum", "pds",
-        "Object_Statistics", "pds", "md5_checksum", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "horizontal tab", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "vertical bar", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "horizontal tab",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn(
-        "Table_Delimited_Source_Product_External.field_delimiter", "pds",
-        "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "vertical bar",
-            false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "horizontal tab",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn(
-        "Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-        "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "vertical bar",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "horizontal tab", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "vertical bar", false));
-
-    // deprecatedObjects2.add(new DeprecatedDefn ("Update.Update_Entry", "pds", "Update_Entry", "",
-    // "", "", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Telescope.altitude", "pds", "Telescope", "pds", "altitude", "", false));
-
-
-    deprecatedObjects2.add(new DeprecatedDefn("Document_Format.format_type", "pds",
-        "Document_Format", "pds", "format_type", "single file", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_Format.format_type", "pds",
-        "Document_Format", "pds", "format_type", "multiple file", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Thermal And Electrical Conductivity Probe", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "X-ray Defraction Spectrometer", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Alpha Particle Xray Spectrometer", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "X-ray Fluorescence", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Grinding And Drilling Tool", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Node.type", "name", "Node", "pds", "name",
-        "Navigation Ancillary Information Facility", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name", "pds", "PDS_Affiliate",
-        "pds", "team_name", "Navigation Ancillary Information Facility", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Binary.encoding_standard_id", "pds",
-    // "Encoded_Binary", "pds", "encoding_standard_id", "CCSDS Communications Protocols", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Encoded_Binary.encoding_standard_id", "pds", "Encoded_Binary",
-            "pds", "encoding_standard_id", "CCSDS Space Communications Protocols", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Image.encoding_standard_id", "pds",
-    // "Encoded_Image", "pds", "encoding_standard_id", "J2C", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Software.version_id", "pds", "Software", "pds",
-        "version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.version_id", "pds",
-        "Instrument_Host", "pds", "version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.instrument_host_version_id", "pds",
-        "Instrument_Host", "pds", "instrument_host_version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Data_Set_PDS3.start_date_time", "pds",
-        "Data_Set_PDS3", "pds", "start_date_time", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Data_Set_PDS3.stop_date_time", "pds",
-        "Data_Set_PDS3", "pds", "stop_date_time", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 2.0", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 3.2", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 4.0", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 4.01", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Radiance.unit_id", "pds",
-        "Units_of_Radiance", "pds", "unit_id", "W*m**-2*sr**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "SFU", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-2*Hz**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-2*nm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-3", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "uW*cm**-2*um**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*Hz**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*nm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*um**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-3*sr**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "uW*cm**-2*sr**-1*um**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "cm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "m**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "nm**-1", true));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Units_of_Map_Scale", "pds", "Units_of_Map_Scale", "", "", "", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("ASCII_Date_Time", "pds", "ASCII_Date_Time", "", "", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("ASCII_Date_Time_UTC", "pds", "ASCII_Date_Time_UTC", "", "", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Vector", "pds", "Vector", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Vector_Component", "pds", "Vector_Component", "", "", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Vector_Cartesian_3", "pds", "Vector_Cartesian_3", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Acceleration", "pds",
-        "Vector_Cartesian_3_Acceleration", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Position", "pds",
-        "Vector_Cartesian_3_Position", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Velocity", "pds",
-        "Vector_Cartesian_3_Velocity", "", "", "", false));
-  }
 
   static void setexposedElementFlag() {
     // the set of classes and attributes that will be externalized (defined as xs:Element)
