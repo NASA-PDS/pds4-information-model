@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-05-21)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.6...«unknown»)
+
+**Other closed issues:**
+
+- Remove the MDPTNConfigClassDisp file  [\#766](https://github.com/NASA-PDS/pds4-information-model/issues/766)
+
 ## [v15.0.6](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.6) (2024-04-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.5...v15.0.6)
