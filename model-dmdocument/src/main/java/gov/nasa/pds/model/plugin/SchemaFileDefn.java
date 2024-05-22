@@ -31,6 +31,7 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class SchemaFileDefn {
@@ -43,8 +44,13 @@ public class SchemaFileDefn {
   // each namespace has a version identifier - model version id
   String versionId;
 
-  // each namespace has a label version identifier - xml product version id
-  String labelVersionId;
+  // various version identifiers
+  String ont_version_id; // 0.1.0.0
+  String lab_version_id; // 0100
+  String sch_version_id; // 1.0.0
+  String ns_version_id; // 01
+  String identifier_version_id; // 0.1
+  String labelVersionId; // each namespace has a label version identifier - xml product version id
 
   // steward_id is the primary steward identifier; the steward assigns the namespaceid
   String stewardId;
@@ -120,13 +126,6 @@ public class SchemaFileDefn {
   // stewarArr is a list of all stewards that share authority over this namespaceid
   ArrayList<String> stewardArr;
 
-  // various version identifiers
-  String ont_version_id; // 0.1.0.0.a
-  String lab_version_id; // 0100a
-  String sch_version_id; // 1.0.0
-  String ns_version_id; // 01
-  String identifier_version_id; // 0.1
-
   public SchemaFileDefn(String id) {
     identifier = id;
     versionId = "0.0.0.0.n";
@@ -188,6 +187,38 @@ public class SchemaFileDefn {
     stewardArr = new ArrayList<>();
   }
 
+  // getters
+  
+  //get ont_version_id
+  public String getOntologyVersionId() {
+	  return ont_version_id;
+  }
+
+  //get lab_version_id
+  public String getLabVersionId() {
+	  return lab_version_id;
+  }
+
+  //get sch_version_id
+  public String getSchemaVersionId() {
+	  return sch_version_id;
+  }
+
+  //get ns_version_id
+  public String getNameSpaceVersionId() {
+	  return ns_version_id;
+  }
+
+  //get identifier_version_id
+  public String getIdentiferVersionId() {
+	  return identifier_version_id;
+  }
+
+  //get labelVersionId
+  public String getLabelVersionId() {
+	  return labelVersionId;
+  }
+ 
   public void setStewardIds(String lSteward) {
     stewardId = lSteward;
     stewardArr.add(lSteward);
@@ -241,17 +272,12 @@ public class SchemaFileDefn {
 
   // set the various version identifiers
   public void setVersionIds() {
-    // get a cleaned up version id
-    // the following attributes are updated.
-    // ont_version_id, lab_version_id, identifier_version_id
+    // cleanup version id; ont_version_id, lab_version_id, identifier_version_id
     getCleanVersionId(versionId);
-    // *** ont_version_id = DOMInfoModel.ont_version_id; // 1.0.0.0
-    sch_version_id = ont_version_id; // 1.0.0.0
-    // *** identifier_version_id = DOMInfoModel.identifier_version_id; // 1.0
-    // ***lab_version_id = DOMInfoModel.lab_version_id; // 1000
-    ns_version_id = lab_version_id.substring(0, 1); // 1
+//    sch_version_id = ont_version_id; // 1.0.0.0
+//    ns_version_id = lab_version_id.substring(0, 1); // 1
 
-    String lLabelVersionId = getCleanLabelVersionId(DMDocument.infoModelVersionId);
+    String lFileNameIMVersionId = getCleanLabelVersionId(DMDocument.infoModelVersionId);
 
     // set the relative file spec now that we have a version id
     relativeFileSpecModelSpec_DOM =
@@ -264,7 +290,7 @@ public class SchemaFileDefn {
       relativeFileNameXMLSchema =
           DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
       relativeFileNameXMLSchema2 = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
-          + lLabelVersionId + "_" + lab_version_id + ".xsd";
+          + lFileNameIMVersionId + "_" + lab_version_id + ".xsd";
       relativeFileNameSchematron =
           DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
       relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId
@@ -336,180 +362,81 @@ public class SchemaFileDefn {
     relativeFileSpecClassDefn = DMDocument.outputDirPath + "export/defnClass/";
     return;
   }
-
+  
   // get clean version id
-  void getCleanVersionId(String versionId) {
-    // parse out the version id into an array of strings, one string for each digit
-    char ic = 'x';
-    ArrayList<String> vIdDigitArr = new ArrayList<>();
-    String vIdDigit = "";
-    StringBuffer sbVersionId = new StringBuffer(versionId);
-    for (int i = 0; i < sbVersionId.length(); i++) {
-      ic = sbVersionId.charAt(i);
-      if (ic != '.') {
-        if (Character.isDigit(ic)) {
-          vIdDigit += new Character(ic).toString();
-        } else {
-          vIdDigit += "x";
-        }
-      } else {
-        vIdDigitArr.add(vIdDigit);
-        vIdDigit = "";
-      }
-    }
-    vIdDigitArr.add(vIdDigit);
+  void getCleanVersionId(String versionId) { 
+	  
+	// split the version id on "." 
+    ArrayList<String> versionIdPartArr = new ArrayList<>(Arrays.asList(versionId.split("\\.")));
 
-    // ensure that there are four digits
-    for (int i = vIdDigitArr.size(); i < 4; i++) {
-      vIdDigitArr.add("0");
-    }
-
-    // get ont_version_id - 1.0.0.0
-    String lId = "";
-    String lDel = "";
-    for (Iterator<String> i = vIdDigitArr.iterator(); i.hasNext();) {
-      String lDigit = i.next();
-      lId += lDel + lDigit;
-      lDel = ".";
-    }
-    ont_version_id = lId;
-
-    // get lab_version_id - 1000
-    lId = "";
-    for (Iterator<String> i = vIdDigitArr.iterator(); i.hasNext();) {
-      String lDigit = i.next();
-      if (lDigit.compareTo("10") == 0) {
-        lDigit = "A";
-      }
-      if (lDigit.compareTo("11") == 0) {
-        lDigit = "B";
-      }
-      if (lDigit.compareTo("12") == 0) {
-        lDigit = "C";
-      }
-      if (lDigit.compareTo("13") == 0) {
-        lDigit = "D";
-      }
-      if (lDigit.compareTo("14") == 0) {
-        lDigit = "E";
-      }
-      if (lDigit.compareTo("15") == 0) {
-        lDigit = "F";
-      }
-      if (lDigit.compareTo("16") == 0) {
-        lDigit = "G";
-      }
-      if (lDigit.compareTo("17") == 0) {
-        lDigit = "H";
-      }
-      if (lDigit.compareTo("18") == 0) {
-        lDigit = "I";
-      }
-      if (lDigit.compareTo("19") == 0) {
-        lDigit = "J";
-      }
-      if (lDigit.compareTo("20") == 0) {
-        lDigit = "K";
-      }
-      if (lDigit.compareTo("21") == 0) {
-        lDigit = "L";
-      }
-      if (lDigit.compareTo("22") == 0) {
-          lDigit = "M";
-      }
-      lId += lDigit;
-    }
-    lab_version_id = lId;
-
-    // get identifier_version_id - 1.0
-    lId = "";
-    int cnt = 0;
-    lDel = "";
-    for (Iterator<String> i = vIdDigitArr.iterator(); i.hasNext();) {
-      String lDigit = i.next();
-      lId += lDel + lDigit;
-      lDel = ".";
-      cnt++;
-      if (cnt >= 2) {
-        break;
-      }
-    }
-    identifier_version_id = lId;
+    // ensure that there are at least four parts
+    for (int i = versionIdPartArr.size(); i < 4; i++) {
+    	versionIdPartArr.add("0");
+    }	  
+	
+    // set the version ids
+	ont_version_id = getIMVersionId(versionIdPartArr);
+	lab_version_id = getFileNameVersionId(versionIdPartArr);	  
+	sch_version_id = ont_version_id; // 1.0.0.0
+	ns_version_id = versionIdPartArr.get(0);
+    identifier_version_id = versionIdPartArr.get(0) + "." + versionIdPartArr.get(1);
     return;
   }
 
   // get clean label version id
   String getCleanLabelVersionId(String versionId) {
-    // parse out the version id into an array of strings, one string for each digit
-    String labelVersionID = "";
-    char ic = 'x';
-    ArrayList<String> vIdDigitArr = new ArrayList<>();
-    String vIdDigit = "";
-    StringBuffer sbVersionId = new StringBuffer(versionId);
-    for (int i = 0; i < sbVersionId.length(); i++) {
-      ic = sbVersionId.charAt(i);
-      if (ic != '.') {
-        if (Character.isDigit(ic)) {
-          vIdDigit += new Character(ic).toString();
-        } else {
-          vIdDigit += "x";
+	  
+		// split the version id on "." 
+	    ArrayList<String> versionIdPartArr = new ArrayList<>(Arrays.asList(versionId.split("\\.")));
+
+	    // ensure that there are at least four parts
+	    for (int i = versionIdPartArr.size(); i < 4; i++) {
+	    	versionIdPartArr.add("0");
+	    }	  
+		
+	    // set the version ids
+	    return getFileNameVersionId(versionIdPartArr);	  
+  }
+  
+  // validate version id (1.12.0.0)
+  private String getIMVersionId(ArrayList<String> versionIdPartArr) {
+
+    // get lab_version_id - 1.0.0.0
+    String lab_version_id = "";
+    String lDel = "";
+    for (String versionIdPart: versionIdPartArr) {
+    	lab_version_id += lDel + versionIdPart;
+      lDel = ".";
+    }
+    return lab_version_id;
+  }
+  
+  // get filename version id (1C00)
+  private String getFileNameVersionId(ArrayList<String> versionIdPartArr) {
+
+    // get lab_version_id - 1X00
+    String lab_version_id = "";
+    int versionIdPartInt;
+    for (String versionIdPart : versionIdPartArr) {
+        try {
+            versionIdPartInt = Integer.parseInt(versionIdPart);
+            // use 0..9 otherwise 10..35 -> A ..Z
+    		if (versionIdPartInt > 9) {
+    			int digit = versionIdPartInt - 9;
+    			if (digit >= 1 && digit <= 26) {
+    				char letter = (char) (digit + 64); // ASCII value of 'A' is 65
+    				versionIdPart = String.valueOf(letter);
+    			} else {
+    	        	versionIdPart = "x";	
+    			}
+    		} else if (versionIdPartInt < 0) {
+	        	versionIdPart = "x";
+    		}
+        } catch (NumberFormatException e) {
+        	versionIdPart = "x";
         }
-      } else {
-        vIdDigitArr.add(vIdDigit);
-        vIdDigit = "";
-      }
+    	lab_version_id += versionIdPart;
     }
-    vIdDigitArr.add(vIdDigit);
-
-    // ensure that there are four digits
-    for (int i = vIdDigitArr.size(); i < 4; i++) {
-      vIdDigitArr.add("0");
-    }
-
-    // get lab_version_id - 1000
-    String lId = "";
-    for (Iterator<String> i = vIdDigitArr.iterator(); i.hasNext();) {
-      String lDigit = i.next();
-      if (lDigit.compareTo("10") == 0) {
-        lDigit = "A";
-      }
-      if (lDigit.compareTo("11") == 0) {
-        lDigit = "B";
-      }
-      if (lDigit.compareTo("12") == 0) {
-        lDigit = "C";
-      }
-      if (lDigit.compareTo("13") == 0) {
-        lDigit = "D";
-      }
-      if (lDigit.compareTo("14") == 0) {
-        lDigit = "E";
-      }
-      if (lDigit.compareTo("15") == 0) {
-        lDigit = "F";
-      }
-      if (lDigit.compareTo("16") == 0) {
-        lDigit = "G";
-      }
-      if (lDigit.compareTo("17") == 0) {
-        lDigit = "H";
-      }
-      if (lDigit.compareTo("18") == 0) {
-        lDigit = "I";
-      }
-      if (lDigit.compareTo("19") == 0) {
-        lDigit = "J";
-      }
-      if (lDigit.compareTo("20") == 0) {
-        lDigit = "K";
-      }
-      if (lDigit.compareTo("21") == 0) {
-        lDigit = "L";
-      }
-      lId += lDigit;
-    }
-    labelVersionID = lId;
-
-    return labelVersionID;
+    return lab_version_id;
   }
 }
