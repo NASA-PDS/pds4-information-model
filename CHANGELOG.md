@@ -1,8 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-05-22)
+## [15.0.7](https://github.com/NASA-PDS/pds4-information-model/tree/15.0.7) (2024-05-22)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.6...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/15.0.7...15.0.7)
+
+**Defects:**
+
+- ERROR 11179 data dictionary class is missing for overwrite [\#770](https://github.com/NASA-PDS/pds4-information-model/issues/770) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+
+## [release/15.0.7](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.0.7) (2024-05-22)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.6...release/15.0.7)
 
 **Other closed issues:**
 
