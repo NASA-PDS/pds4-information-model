@@ -1,4 +1,4 @@
-; Fri Apr 12 11:20:18 EDT 2024
+; Wed May 22 16:49:23 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -250,11 +250,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot has_List_Contributor
-;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Contributor)
-		(create-accessor read-write))
 	(single-slot sample_last_pixel
 ;+		(comment "This attribute is used in the image map projection. Under review.")
 		(type STRING)
@@ -361,6 +356,11 @@
 		(type STRING)
 		(default "logical_identifier")
 		(create-accessor read-write))
+	(multislot has_alias_index_entry
+;+		(comment "The has_alias_index_entry association is a relationship to Alias_Index_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Alias_Index_Entry)
+		(create-accessor read-write))
 	(multislot refer_data_supplier
 ;+		(comment "This attribute is used in by the volume class. It is under review.")
 		(type INSTANCE)
@@ -455,6 +455,11 @@
 	(multislot y
 ;+		(comment "The y attribute provides the value of the y coordinate in a position vector.")
 		(type FLOAT)
+		(create-accessor read-write))
+	(multislot has_list_author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
 		(create-accessor read-write))
 	(multislot z
 ;+		(comment "The z attribute provides the value of the z coordinate in a position vector.")
@@ -888,11 +893,6 @@
 ;+		(comment "The context reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
 		(type STRING)
 		(create-accessor read-write))
-	(multislot has_List_Author
-;+		(comment "The has_List_Author association is a relationship to List_Author.")
-		(type INSTANCE)
-;+		(allowed-classes List_Author)
-		(create-accessor read-write))
 	(single-slot min_inclusive
 ;+		(comment "The min inclusive attribute provides a value that is less than or equal to all the values in the object.")
 		(type STRING)
@@ -956,6 +956,11 @@
 ;+		(comment "The vertical_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the vertical or 'line' dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_acronym_index_entry
+;+		(comment "The has_acronym_index_entry association is a relationship to Acronym_Index_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Acronym_Index_Entry)
 		(create-accessor read-write))
 	(multislot sampling_parameter_scale
 ;+		(comment "The sampling_parameter_scale element specifies whether the sampling interval is linear or something other such as logarithmic.")
@@ -1508,6 +1513,11 @@
 ;+		(comment "The data type unit of measurement name attribute provides the unit of measure used with a value.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot has_acronym_index
+;+		(comment "The has_acronym_index association is a relationship to Acronym_Index.")
+		(type INSTANCE)
+;+		(allowed-classes Acronym_Index)
+		(create-accessor read-write))
 	(single-slot start_orbit_number
 ;+		(comment "The start_orbit_number attribute provides the first in a series of numbers that represent a set of orbital revolutions of one body around another.")
 		(type STRING)
@@ -1585,6 +1595,11 @@
 ;+		(comment "bound-character = non-quote-character  |  quote ; The bound-characters, and the escape character, are required in any implementation to be associated with particular members of the implementation character set. - A bound-character is required to be associated with the member having the corresponding symbol, if any, in any implementation character-set derived from ISO/IEC 10646.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_list_editor
+;+		(comment "The has_list_editor association is a relationship to List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Editor)
 		(create-accessor read-write))
 	(multislot high_instrument_saturation
 ;+		(comment "The high_instrument_saturation attribute specifies a special value whose presence indicates the measuring instrument was saturated at the high end. The value must be less than the value of the valid_minimum attribute or more than the value of the valid_maximum attribute. Values of this attribute should be represented in the same data_type as the elements in the object with which the Special_Constants class is associated.")
@@ -1842,6 +1857,10 @@
 ;+		(comment "The attrNameSpaceNC attribute provides the attribute name space Id without a colon.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot acronym
+;+		(comment "The acronym attribute provides a word formed from the initial letters or groups of letters of words in a set phrase or series of words and pronounced as a separate word.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot member_table
 ;+		(comment "Associated table of member references.")
 		(type INSTANCE)
@@ -1932,6 +1951,10 @@
 ;+		(comment "The south_bounding_coordinate attribute provides the southern-most coordinate of the limit of coverage expressed in latitude.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot priority_order
+;+		(comment "The attribute priority_order assigns a value to list items based on their ranking of importance.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot document_editions
 ;+		(comment "The document_editions attribute provides a count of the total number of complete, distinct editions of the document.")
@@ -2112,6 +2135,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Organization)
 		(create-accessor read-write))
+	(multislot terse_description
+;+		(comment "The terse_description attribute provides a short statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot cross_reference_area
 ;+		(comment "The cross_reference_area association is a relationship to Cross_Reference_Area a set of identifiers that reference other products.")
 		(type INSTANCE)
@@ -2181,6 +2208,11 @@
 	(multislot spacecraft_event_start_time_utc
 ;+		(comment "spacecraft_event_start_time_utc gives the UTC time corresponding to the earliest time given by spacecraft_event_time in the data table. However, while spacecraft_event_time is given as seconds offset from a reference time, spacecraft_event_start_time_utc is given as a UTC date time. Required in the label for radio occultation data. Not used for stellar occultations.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_mission_phase
+;+		(comment "The has_mission_phase association is a relationship to Mission_Phase.")
+		(type INSTANCE)
+;+		(allowed-classes Mission_Phase)
 		(create-accessor read-write))
 	(multislot member_relation_name
 ;+		(comment "The member relation name provides the name of the relationship.")
@@ -3084,10 +3116,18 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot UpperModel_240507_MSN_Prototype_Class7
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot polar_radius
 ;+		(comment "The polar_radius attribute provides the value of the semiminor axis of the ellipsoid that defines the approximate shape of a target body. The polar radius is normal to the plane defined by the semi-major and semi-minor axes.")
 		(type FLOAT)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot UpperModel_240507_MSN_Prototype_Class8
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot was_informed_by
 ;+		(comment "The was_informed_by association is a recursive relationship on activity.")
@@ -3318,6 +3358,11 @@
 ;+		(comment "The volume_id attribute provides a unique identifier for a data volume. Example: MG_1001.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_list_contributor
+;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Contributor)
 		(create-accessor read-write))
 	(multislot personnel_reference
 ;+		(comment "The personnel reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
@@ -3689,6 +3734,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Citation_Information)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot product_type_name
+;+		(comment "The product_type_name attribute identifies a group of data products within a collection that have some property in common, such as processing level, resolution, or instrument-specific setting.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot sample_display_direction
 ;+		(comment "The sample_display_direction attribute provides the preferred orientation of samples within a line for viewing on a display device. The default is right, meaning samples are viewed from left to right on the display. sample_display_direction must be used with line_display_direction.")
@@ -4335,6 +4384,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Target_Identification)
 		(create-accessor read-write))
+	(multislot release_number
+;+		(comment "The release_number attribute is the number of a scheduled release of data from the provider to PDS. The first data release is typically Release 1. The release_number for a given product is always the first release in which it appears, and does not change if the product is revised later.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot star_name
 ;+		(comment "star_name provides the identifying name of star, including the catalog name if necessary. Examples include 'sigma Sgr' and 'SAO 123456' %28for star number 123456 in the Smithsonian Astrophysical Observatory catalog%29. Use 'Sun' for solar occultations. Required in labels for stellar and solar occultations. Not used for radio occultations.")
 		(type STRING)
@@ -4457,6 +4510,11 @@
 ;+		(comment "The publication reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
 		(type STRING)
 		(default "logical_identifier")
+		(create-accessor read-write))
+	(multislot has_alias_index
+;+		(comment "The has_alias_index association is a relationship to Alias_Index.")
+		(type INSTANCE)
+;+		(allowed-classes Alias_Index)
 		(create-accessor read-write))
 	(single-slot ring_observation_id
 ;+		(comment "The ring_observation_id uniquely identifies a single experiment or observation %28image, occultation profile, spectrum, etc.%29 within a rings-related data set. This is the common id by which data are identified within the Rings Node catalog. It describes the smallest quantity of data that can be usefully cataloged or analyzed by itself. Note that a single observation may be associated with multiple data products %28e.g. raw and calibrated versions of an image%29. Note also that a single data product may be associated with multiple observations %28e.g. a single WFPC2 image file containing four different images%29. A ring observation id is constructed using numbers, upper case letters, forward slash, colon, period, dash, and underscore as follows: p%2Ftype%2Fhost%2Finst%2Ftime%2F... where p is a single-letter planet id %28one of J, S, U, or N%29; type is IMG for images, OCC for occultation profile, etc.; host is the instrument host id, inst is the instrument id; time is the observation time as a date or instrument clock count; further information identifying the observation can then be appended as appropriate. Optional in labels. Nillable, in which case the nil_reason should be 'inapplicable'. Examples: J%2FIMG%2FVG2%2FISS%2F20693.01%2FN J%2FIMG%2FVG2%2FISS%2F20693.02%2FW S%2FIMG%2FHST%2FWFPC2%2F1995-08-10%2FU2TF020B%2FPC1 U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FS U%2FOCC%2FVG2%2FRSS%2F1986-01-24%2FX N%2FOCC%2FVG2%2FPPS%2F1989-08-25%2FSIGMA_SGR ")
@@ -6019,8 +6077,18 @@
 ;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot has_mission_phase
+;+		(comment "The has_mission_phase association is a relationship to Mission_Phase.")
+		(type INSTANCE)
+;+		(allowed-classes Mission_Phase)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot terse_description
+;+		(comment "The terse_description attribute provides a short statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
@@ -6033,6 +6101,16 @@
 ;+		(comment "The stop_date attribute provides the date when an activity ended.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_alias_index
+;+		(comment "The has_alias_index association is a relationship to Alias_Index.")
+		(type INSTANCE)
+;+		(allowed-classes Alias_Index)
+		(create-accessor read-write))
+	(multislot has_acronym_index
+;+		(comment "The has_acronym_index association is a relationship to Acronym_Index.")
+		(type INSTANCE)
+;+		(allowed-classes Acronym_Index)
 		(create-accessor read-write)))
 
 (defclass Observing_System "The Observing System class describes the entire suite used to collect the data."
@@ -7329,11 +7407,6 @@
 ;+		(allowed-classes Digital_Object)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot has_List_Author
-;+		(comment "The has_List_Author association is a relationship to List_Author.")
-		(type INSTANCE)
-;+		(allowed-classes List_Author)
-		(create-accessor read-write))
 	(single-slot users_manual_id
 ;+		(comment "The users manual id attribute provides a formal name used to refer to a manual that describes how to use the software.")
 		(type STRING)
@@ -7343,6 +7416,11 @@
 ;+		(comment "The author_list attribute contains a semi-colon-separated list of names of people to be cited as authors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_list_author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -9550,7 +9628,7 @@
 	(single-slot information_model_version
 ;+		(comment "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
 		(type STRING)
-;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0" "1.20.0.0" "1.21.0.0" "1.22.0.0")
+;+		(value "1.4.0.0" "1.0.0.0" "1.1.0.0" "1.2.0.0" "1.2.0.1" "1.3.0.0" "1.3.0.1" "1.5.0.0" "1.6.0.0" "1.7.0.0" "1.8.0.0" "1.9.0.0" "1.9.1.0" "1.10.0.0" "1.10.1.0" "1.11.0.0" "1.12.0.0" "1.13.0.0" "1.14.0.0" "1.15.0.0" "1.16.0.0" "1.17.0.0" "1.18.0.0" "1.19.0.0" "1.20.0.0" "1.21.0.0" "1.22.0.0" "1.23.0.0")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot version_id
@@ -9772,15 +9850,15 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot has_List_Contributor
-;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Contributor)
-		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a short (5KB or less) description of the product as a whole.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_list_contributor
+;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Contributor)
 		(create-accessor read-write))
 	(single-slot editor_list
 ;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
@@ -9825,10 +9903,25 @@
 (defclass Modification_Detail "The Modification_Detail class provides the details of one round of modification for the product.  The first, required, instance of this class documents the date the product was first registered."
 	(is-a Product_Components)
 	(role concrete)
+	(multislot has_list_editor
+;+		(comment "The has_list_editor association is a relationship to List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Editor)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_list_author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
+		(create-accessor read-write))
+	(multislot has_list_contributor
+;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Contributor)
 		(create-accessor read-write))
 	(single-slot version_id
 ;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
@@ -10616,6 +10709,98 @@
 		(create-accessor read-write))
 	(single-slot parent_organization_rorid
 ;+		(comment "The parent_organization_rorid attribute provides the Research Organization Registry ID of the identified parent organization. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Alias_Index "The Alias_Index class provides a sequential arrangement of names for this entity in this or some other archive or data system."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_alias_index_entry
+;+		(comment "The has_alias_index_entry association is a relationship to Alias_Index_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Alias_Index_Entry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Acronym_Index "The Acronym_Index class provides a sequential arrangement of acronyms for this entity in this or some other archive or data system."
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_acronym_index_entry
+;+		(comment "The has_acronym_index_entry association is a relationship to Acronym_Index_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Acronym_Index_Entry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Acronym_Index_Entry "The Acronym_Index_Entry class provides an item for a sequential arrangement of acronyms for an entity."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot priority_order
+;+		(comment "The attribute priority_order assigns a value to list items based on their ranking of importance.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot acronym
+;+		(comment "The acronym attribute provides a word formed from the initial letters or groups of letters of words in a set phrase or series of words and pronounced as a separate word.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Alias_Index_Entry "The Alias_Index_Entry class provides an item for a sequential arrangement of names for an entity."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot priority_order
+;+		(comment "The attribute priority_order assigns a value to list items based on their ranking of importance.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Mission_Phase
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot mission_phase_identifier
+;+		(comment "The mission_phase_identifier attribute provides an identifier for a mission phase.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot start_date
+;+		(comment "The start_date attribute provides the date when an activity began.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spacecraft_clock_stop_count
+;+		(comment "The spacecraft_clock_stop_count attribute provides the value of the spacecraft clock at the end of a time period of interest.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot spacecraft_clock_start_count
+;+		(comment "The spacecraft_clock_start_count attribute provides the value of the spacecraft clock at the beginning of a time period of interest.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot stop_date
+;+		(comment "The stop_date attribute provides the date when an activity ended.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot release_number
+;+		(comment "The release_number attribute is the number of a scheduled release of data from the provider to PDS. The first data release is typically Release 1. The release_number for a given product is always the first release in which it appears, and does not change if the product is revised later.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot mission_phase_name
+;+		(comment "The mission_phase_name attribute provides the commonly recognized name for a mission phase.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot product_type_name
+;+		(comment "The product_type_name attribute identifies a group of data products within a collection that have some property in common, such as processing level, resolution, or instrument-specific setting.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
