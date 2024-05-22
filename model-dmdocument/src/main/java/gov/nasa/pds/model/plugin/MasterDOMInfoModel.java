@@ -1077,12 +1077,6 @@ class MasterDOMInfoModel extends DOMInfoModel {
 		  sortedDeprecatedObjectsAMap.put(getNormalizedTitle(lDeprecatedDefn), lDeprecatedDefn);
 	  }
 	  return(new ArrayList <DeprecatedDefn> (sortedDeprecatedObjectsAMap.values()));
-	  
-	  
-//	  return deprecatedObjectsArr;
-//    return addOddDeprecations(deprecatedObjectsArr);
-//    return getDeprecatedObjectsArrReordered(addOddDeprecations(deprecatedObjectsArr));
-//    return getDeprecatedObjectsArrReordered(deprecatedObjectsArr);
   }
 
   // reorder deprecated object array as before 1.21.0.0 -- order listed in DMDocument.deprecatedObjects2
@@ -1110,52 +1104,10 @@ class MasterDOMInfoModel extends DOMInfoModel {
     	titles1Arr.add(normTitle);
     	String newSeqno = deprecatedObjectsTitleMap.get(normTitle);
     	if (newSeqno == null) {
-//    	    System.out.println ("\ndebug MasterDOMInfoModel - NOTFOUND - normTitle:" + normTitle);
     		newSeqno = "9999";
     	}
     	deprecatedObjectsNewMap.put(newSeqno, lDeprecatedDefn);
     }
-    
-//    // reorder deprecated object array as before 1.21.0.0 -- order listed in DMDocument.deprecatedObjects2
-//    public ArrayList<DeprecatedDefn> getDeprecatedObjectsArrReordered(ArrayList<DeprecatedDefn> deprecatedObjectsArr) {
-//
-//  	// get the order of the original deprecated ArrayList - deprecatedObjects2
-//  	TreeMap <String, String> deprecatedObjectsTitleMap = new TreeMap <> ();
-//      TreeMap <String, DeprecatedDefn> deprecatedObjectsNewMap = new TreeMap <> ();
-//      ArrayList<String> titles20Arr = new ArrayList <> ();
-//      ArrayList<String> seqNum20Arr = new ArrayList <> ();
-//      int seqNum = 1000;
-//      for (DeprecatedDefn lDeprecatedDefn2 : DMDocument.deprecatedObjects2) {
-//      	seqNum += 10;
-//      	String seqNumStr = String.valueOf(seqNum);
-//      	String normTitle = getNormalizedTitle(lDeprecatedDefn2);
-//      	deprecatedObjectsTitleMap.put(normTitle, seqNumStr);
-//      	seqNum20Arr.add(seqNumStr);
-//      	titles20Arr.add(normTitle);
-//      }
-//      
-//      // add odd deprecations - not in protege entity model
-//      ArrayList<String> titles1Arr = new ArrayList <> ();
-//      for (DeprecatedDefn lDeprecatedDefn : addOddDeprecations(deprecatedObjectsArr)) {
-//      	String normTitle = getNormalizedTitle(lDeprecatedDefn);
-//      	titles1Arr.add(normTitle);
-//      	String newSeqno = deprecatedObjectsTitleMap.get(normTitle);
-//      	if (newSeqno == null) {
-////      	    System.out.println ("\ndebug MasterDOMInfoModel - NOTFOUND - normTitle:" + normTitle);
-//      		newSeqno = "9999";
-//      	}
-//      	deprecatedObjectsNewMap.put(newSeqno, lDeprecatedDefn);
-//      }
-    
-    // debug print
-//    System.out.println ("debug MasterDOMInfoModel - titles1Arr:" + titles1Arr);				// titles of new
-//    ArrayList<String> seqNum3Arr = new ArrayList <> (deprecatedObjectsNewMap.keySet());
-//    System.out.println ("debug MasterDOMInfoModel - deprecatedObjectsNewMap.keySet() - newSeqno3Arr:" + seqNum3Arr);				// seqNum of original
-//    ArrayList<DeprecatedDefn> defn3Arr = new ArrayList <> (deprecatedObjectsNewMap.values());
-//    ArrayList<String> defn3TitleArr = new ArrayList <> ();
-//    for (DeprecatedDefn defn3 : defn3Arr) defn3TitleArr.add(defn3.title);
-//    System.out.println ("debug MasterDOMInfoModel - deprecatedObjectsNewMap.values() - defn3TitleArr:" + defn3TitleArr);				// titles of original
-
     ArrayList<DeprecatedDefn> deprecatedObjectsArrReordered = new ArrayList <> (deprecatedObjectsNewMap.values());
     return deprecatedObjectsArrReordered;
   }
@@ -1178,7 +1130,6 @@ class MasterDOMInfoModel extends DOMInfoModel {
       }
       return normTitle;
   }
-  
   
   public ArrayList<DeprecatedDefn> addOddDeprecations(ArrayList<DeprecatedDefn> deprecatedObjectsArr) {
 
