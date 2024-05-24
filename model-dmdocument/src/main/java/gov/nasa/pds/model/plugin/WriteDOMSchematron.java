@@ -65,7 +65,7 @@ class WriteDOMSchematron extends Object {
 
     // select out the rules for this namespace
     ArrayList<DOMRule> lSelectRuleArr = new ArrayList<>();
-    ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
+    ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleMap.values()); // use unique rdfIdentifier
     for (DOMRule lRule : lRuleArr) {
       if (lSchemaFileDefn.isMaster) {
         if (lRule.isMissionOnly || !(lRule.alwaysInclude
@@ -93,66 +93,6 @@ class WriteDOMSchematron extends Object {
         DMDocument.registerMessage("1>warning "
             + "Write Schematron - Invalid governance in SchemaFileDefn  - lSchemaFileDefn.identifier:"
             + lSchemaFileDefn.identifier);
-      }
-      lSelectRuleArr.add(lRule);
-    }
-    writeSchematronRuleClasses(lSchemaFileDefn, lSelectRuleArr, prSchematron);
-
-    // write schematron file footer
-    printSchematronFileFtr(prSchematron);
-  }
-
-  // write the schematron rules
-  public void writeSchematronRuleSimplified(SchemaFileDefn lSchemaFileDefn,
-      TreeMap<String, DOMClass> lMasterDOMClassMap, PrintWriter prSchematron) {
-    // write schematron file header
-    printSchematronFileHdr(lSchemaFileDefn, prSchematron);
-    printSchematronFileCmt(prSchematron);
-
-    // select out the rules for this namespace
-    ArrayList<DOMRule> lSelectRuleArr = new ArrayList<>();
-
-    DMDocument.registerMessage("0>info ");
-    DMDocument.registerMessage("0>info " + "writeSchematronRule");
-    DMDocument
-        .registerMessage("0>info " + "  lSchemaFileDefn.isMaster:" + lSchemaFileDefn.isMaster);
-    DMDocument.registerMessage(
-        "0>info " + "  lSchemaFileDefn.isDiscipline:" + lSchemaFileDefn.isDiscipline);
-    DMDocument
-        .registerMessage("0>info " + "  lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
-    DMDocument.registerMessage("0>info " + "  lSchemaFileDefn.isLDD:" + lSchemaFileDefn.isLDD);
-    DMDocument.registerMessage(
-        "0>info " + "  lSchemaFileDefn.nameSpaceIdNC:" + lSchemaFileDefn.nameSpaceIdNC);
-    DMDocument
-        .registerMessage("0>info " + "  lSchemaFileDefn.stewardArr:" + lSchemaFileDefn.stewardArr);
-    DMDocument.registerMessage("0>info " + "  DMDocument.LDDToolSingletonClassTitle:"
-        + DMDocument.LDDToolSingletonClassTitle);
-
-    ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
-    for (DOMRule lRule : lRuleArr) {
-      DMDocument.registerMessage("0>info ");
-      DMDocument.registerMessage("0>info " + "writeSchematronRule");
-      DMDocument.registerMessage("0>info " + "  lRule.identifier:" + lRule.identifier);
-      DMDocument.registerMessage("0>info " + "  lRule.nameSpaceIdNC:" + lRule.nameSpaceIdNC);
-      DMDocument.registerMessage("0>info " + "  lRule.isMissionOnly:" + lRule.isMissionOnly);
-      DMDocument.registerMessage("0>info " + "  lRule.classNameSpaceNC:" + lRule.classNameSpaceNC);
-      DMDocument.registerMessage("0>info " + "  lRule.classSteward:" + lRule.classSteward);
-      DMDocument.registerMessage("0>info " + "  lRule.attrNameSpaceNC:" + lRule.attrNameSpaceNC);
-
-      if (lSchemaFileDefn.isMaster) {
-        if (lRule.isMissionOnly || !(lRule.alwaysInclude
-            || (lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0))) continue;
-      } else {
-        // write an LDD schemtron
-        DMDocument.registerMessage(
-            "0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
-        DMDocument
-            .registerMessage("0>info " + "Found LDD - lRule.isMissionOnly:" + lRule.isMissionOnly);
-        if (!(lRule.isMissionOnly && lSchemaFileDefn.isMission)) continue;
-        DMDocument.registerMessage(
-            "0>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
-        if (!((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.nameSpaceIdNC) == 0)
-            || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) continue;
       }
       lSelectRuleArr.add(lRule);
     }
