@@ -458,6 +458,7 @@ public class DMDocument extends Object {
         }
       }
     } else {
+      registerMessage("0>info - Property data.home is null");   
       String sysUserDir = System.getProperty("user.dir");
       if (sysUserDir == null) {
         registerMessage("3>error Environment variable sysUserDir is null");
@@ -467,8 +468,12 @@ public class DMDocument extends Object {
       sysUserDir = sysUserDir.replace('\\', '/');
       parentDir = sysUserDir;
       String dirExt = "/model-ontology/src/ontology/Data/";
-      if (debugFlag) dirExt = "/bin/../Data/";
+//      if (debugFlag) dirExt = "/bin/../Data/";
       dataDirPath = parentDir + dirExt;
+      if (debugFlag) {
+          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
+    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
+      }
       // if this is an LDDTool run then an alternate path is allowed (option "V")
       // IMTool runs ignore the -V option
       if (LDDToolFlag && alternateIMVersionFlag) {
@@ -477,6 +482,7 @@ public class DMDocument extends Object {
         }
        }
     }
+    registerMessage("0>info - Parent Directory:" + parentDir);
     registerMessage("0>info - IM Directory Path:" + dataDirPath);
     registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
 

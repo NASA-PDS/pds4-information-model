@@ -1118,7 +1118,7 @@ public class WriteDOMSpecification extends Object {
    * Print schematron rule for the attribute
    */
   private void printAttrSchematronRuleMsg(DOMAttr lAttr) {
-    ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
+    ArrayList<DOMRule> lRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleMap.values()); // use unique rdfIdentifier
     for (Iterator<DOMRule> i = lRuleArr.iterator(); i.hasNext();) {
       DOMRule lRule = i.next();
       for (Iterator<DOMAssert> j = lRule.assertArr.iterator(); j.hasNext();) {
