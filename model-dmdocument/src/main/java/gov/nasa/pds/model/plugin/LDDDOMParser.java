@@ -2249,7 +2249,7 @@ public class LDDDOMParser extends Object {
     ArrayList<DOMRule> tempSchematronRuleArr;
 
     // save the masters
-    tempSchematronRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
+    tempSchematronRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleMap.values());  // use unique rdfIdentifier
 
     // clear the masters
     DOMInfoModel.masterDOMRuleIdMap.clear();
