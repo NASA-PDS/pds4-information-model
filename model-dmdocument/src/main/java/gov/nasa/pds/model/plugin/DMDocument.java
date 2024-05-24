@@ -470,8 +470,8 @@ public class DMDocument extends Object {
 //      if (debugFlag) dirExt = "/bin/../Data/";
       dataDirPath = parentDir + dirExt;
       if (debugFlag) {
-          parentDir = System.getProperty("data.home") + "/git/pds4-information-model/model-ontology/src/ontology";
-    	  dataDirPath = System.getProperty("data.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
+          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
+    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
       }
       // if this is an LDDTool run then an alternate path is allowed (option "V")
       // IMTool runs ignore the -V option
