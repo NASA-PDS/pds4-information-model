@@ -148,8 +148,8 @@ public class DMDocument extends Object {
 
   static String LDDToolVersionId = "0.0.0";
   static String buildDate = "";
-  static String buildIMVersionId = "1.22.0.0";
-  static String buildIMVersionFolderId = "1M00";
+  static String buildIMVersionId = "1.23.0.0";
+  static String buildIMVersionFolderId = "1N00";
   static String classVersionIdDefault = "1.0.0.0";
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
@@ -331,7 +331,8 @@ public class DMDocument extends Object {
 
     // The current version is included to allow for -V currentIMVersion
     alternateIMVersionArr = new ArrayList<>();
-    alternateIMVersionArr.add("1M00"); // current
+    alternateIMVersionArr.add("1N00"); // current
+    alternateIMVersionArr.add("1M00");
     alternateIMVersionArr.add("1L00");
     alternateIMVersionArr.add("1K00");
     alternateIMVersionArr.add("1J00");
@@ -1123,7 +1124,7 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
     parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
-        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00")
+        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
     parser.addArgument("fileNameArr").dest("fileNameArr").nargs("*")
