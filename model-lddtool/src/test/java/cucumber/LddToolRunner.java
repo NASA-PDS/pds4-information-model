@@ -10,7 +10,6 @@ import gov.nasa.pds.model.plugin.DMDocument;
  * It prevents lddtool from terminating the JVM by overriding System.exit()
  * It also captures the output of System.out and System.err for testing purposes
  */
-
 public class LddToolRunner {
     // ByteArrayOutputStreams to capture output and error streams
     private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -28,7 +27,7 @@ public class LddToolRunner {
             // Set a custom SecurityManager that throws an exception instead of exiting
             System.setSecurityManager(new NoExitSecurityManager());
             try {
-                // Call lddtool's main method and capture its output
+                // Call lddtool's main method with arguments and capture its output
                 DMDocument.main(args);
             } catch (ExitException e) {
                 // Handle the exception thrown by our NoExitSecurityManager when System.exit() is called

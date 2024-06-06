@@ -11,26 +11,42 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StepDefs {
     // The values of these variables should come from a row in the table in the
     // feature file.
-    private String testName;
-    private String[] commandArgs;
-    private String runCommandOutput;
+    private String resourceDirectory;
+    private String testDirectory;
+    private String commandArgs;
+    private String actualResponse;
 
-    @Given("a test {string} with {string} as arguments")
-    public void i_have_lddtool_installed(String testName, String commandArgs) {
-        this.testName = testName;
-        this.commandArgs = commandArgs.split(" ");  // split the commandArgs into a String array
-
-        for (String arg : this.commandArgs) {
-            System.out.println("arg: " + arg);
+    private String[] resolveArgumentStrings() {
+        String array1[] = this.commandArgs.split("\\s+");  // split the commandArgs into a String array
+        String[] args = new String[array1.length];
+        int argIndex = 0;
+        String resolvedToken = "";
+        for (String temp : array1) {
+            // Replace every occurence of "{resourceDirectory}" with actual value
+            resolvedToken = temp.replace("{resourceDirectory}", this.resourceDirectory);
+            // Replace every occurence of "{testDirectory}" with actual value.
+            resolvedToken = resolvedToken.replace("{testDirectory}", this.testDirectory);
+            // Replace every occurence of "%20" with a space
+            resolvedToken = resolvedToken.replace("%20", " ");
+            args[argIndex++] = resolvedToken;  // add the resolved token to the args array
         }
+
+        return args;
     }
 
-    @When("I execute lddtool")
+    @Given("the test directories {string} and {string} and command arguments {string}")
+    public void i_have_lddtool_installed(String resourceDirectory, String testDirectory, String commandArgs) {
+        this.resourceDirectory = resourceDirectory;
+        this.testDirectory = testDirectory;
+        this.commandArgs = commandArgs;
+    }
+
+    @When("the lddtool tool is run")
     public void i_run_lddtool_with() {
+        String[] args = this.resolveArgumentStrings();  // resolve the commandArgs into a String array
         try {
             // run lddtool with the commandArgs and capture the output
-            this.runCommandOutput = LddToolRunner.runLddTool(this.commandArgs);
-            // this.runCommandOutput = runLddTool(this.commandArgs); // mock response
+            this.actualResponse = LddToolRunner.runLddTool(args);
         } catch (RuntimeException ex) {
             throw ex;
         } catch (Throwable ex) {
@@ -38,26 +54,10 @@ public class StepDefs {
         }
     }
 
-    @Then("the produced output from lddtool command should be similar to {string} or no error reported.")
+    @Then("the produced output from lddtool command should match or be similar to the expected results {string}")
     public void i_should_receive(String expectedResponse) {
         // compare the actual output of running lddtool with the expected response
-        assertTrue(this.runCommandOutput.contains(expectedResponse),
-                "Expected response: " + expectedResponse + " Actual response: " + this.runCommandOutput);
-    }
-
-    // simulate running lddtool with parameters and returning a mocked response
-    private String runLddTool(String[] parameters) {
-        // Mocked response based on parameters. 
-        // Only testing single arugment commands
-        switch (parameters[0]) {
-            case "--help":
-                return "usage: LDDTool";
-            case "--version":
-                return "LDDTool Version: 14.4.0-SNAPSHOT";
-            case "invalid":
-                return "Shows error message";
-            default:
-                return "Argument not recognized";
-        }
+        assertTrue(this.actualResponse.contains(expectedResponse),
+                "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
     }
 }

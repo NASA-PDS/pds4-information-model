@@ -4,11 +4,10 @@ Feature: Running integration tests for lddtool
   So that I can verify if it provides the expected response
 
   Scenario Outline: Running lddtool with different parameters
-    Given a test <testName> with <commandArgs> as arguments
-    When I execute lddtool
-    Then the produced output from lddtool command should be similar to <expectedResponse> or no error reported.
+    Given the test directories <resourceDirectory> and <testDirectory> and command arguments <commandArgs>
+    When the lddtool tool is run
+    Then the produced output from lddtool command should match or be similar to the expected results <expectedResponse>
 
     Examples:
-      | testName          | commandArgs        | expectedResponse                   |
-      | "help"            | "--help"           | "usage: LDDTool"                   |
-      | "version"         | "--version"        | "LDDTool Version: 14.4.0-SNAPSHOT" |
+      | testName                                                                         | resourceDirectory    | testDirectory | commandArgs                    | expectedResponse            |
+      | "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources" | "github738"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "LDDTool Execution Summary" |
