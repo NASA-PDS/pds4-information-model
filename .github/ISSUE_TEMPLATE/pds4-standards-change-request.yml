@@ -20,6 +20,8 @@ body:
     attributes:
       label: 💡 SCR Summary
       description: Copy-paste the original SCR's **Problem Statement** and **Requested Changes** to provide public overview to proposed changes.
+    validations:
+      required: true
 
   - type: dropdown
     id: added-to-parent-epic
@@ -29,4 +31,6 @@ body:
       multiple: false
       options:
         - "Will do"
-        - "No change"
+        - "No chance"
+    validations:
+      required: true
