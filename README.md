@@ -26,6 +26,7 @@ For operational installation of LDDTool, see the deployed documentation for inst
 
 
 ### Development
+
 For development installation, use maven:
 
 ```console
@@ -39,6 +40,34 @@ $ # To view generated docs
 $ open target/staging/model/index.html
 ```
 
+### Testing
+
+Tests are ran using Cucumber and Maven.
+
+#### Running Tests
+
+```bash
+# Package the software
+mvn clean package
+
+# Run Cucumber tests
+mvn clean test
+```
+
+#### Adding New Tests
+
+To add additional tests:
+
+- Create a directory within the [resources](model-lddtool/src/test/resources) directory and place your test data there
+- In either the [developer](model-lddtool/src/test/resources/features/developer.feature) or [integration](model-lddtool/src/test/resources/features/integration.feature) feature file, add your test case to the table under `Examples`. For example,
+
+```feature
+| testName | resourceDirectory    | testDirectory | commandArgs | expectedResponse |
+| "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources" | "github738"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "0 error(s)"     |
+```
+
+### Update Site Documentation
+
 To update the site documentation, see each components `src/site` directory (this is common for all Java Maven software):
 | Component | Site Directory | Online Documentation |
 |-----------|----------------|----------------------|
@@ -48,6 +77,7 @@ To update the site documentation, see each components `src/site` directory (this
 | Ontology | `model-ontology/src/site` | https://nasa-pds.github.io/pds4-information-model/model-ontology/ |
 
 ### Detect Secrets
+
 The Planetary Data System's Engineering Node uses [detect-secrets](https://github.com/Yelp/detect-secrets), specifically a version forked by the [SLIM Team](https://nasa-ammos.github.io/slim/), called [slim-detect-secrets](https://github.com/NASA-AMMOS/slim-detect-secrets/tree/exp). This tool replaces Git Secrets but serves the same purpose: it helps prevent committing information to a repository that should remain secret. Unlike Git Secrets, though, the kinds of secrets detect-secrets finds includes not just passwords or API keys, but also hostnames and email addresses. It also uses entropy analysis to detect randomized strings that could be passwords.
 
 To install, [see the wiki](https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Git-and-Github-Guide#detect-secrets). To update a new `.secrets.baseline` file, run the custom script in the repo to generate the secrets. https://github.com/NASA-PDS/pds4-information-model/tree/main/bin. This is needed because there are numerous additional files that should be ignored in this repo.
