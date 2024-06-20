@@ -1,0 +1,1756 @@
+; Wed May 22 17:38:43 EDT 2024
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot grouping
+		(type INSTANCE)
+;+		(allowed-classes Context)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot isUnitOfMeasure
+;+		(comment "The isUnitOfMeasure attribute indicates whether the Object Class is a Unit of Measure.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot contactNamex
+;+		(type ANY)
+		(create-accessor read-write))
+	(multislot measureType
+		(type STRING)
+		(create-accessor read-write))
+	(multislot relationship
+		(type INSTANCE)
+;+		(allowed-classes Relationship ClassificationSchemeItemRelationship)
+		(create-accessor read-write))
+	(single-slot unresolvedIssue
+;+		(comment "any problem that remains unresolved regarding proper documentation of the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contactInformation
+;+		(comment "contact information - information to enable a Contact to be located or communicated with NOTE Metamodel construct is: Attribute of Contact.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contactPhone
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes ClassificationScheme AdministeredItem)
+		(cardinality 0 2)
+		(create-accessor read-write))
+	(multislot languageUsed
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot input
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot unitId
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot dataTypeName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot dataTypeSchemaReference
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot rule
+		(type INSTANCE)
+;+		(allowed-classes DerivationRule)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot description
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organization
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot organizationMailingAddress
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot isRegistryClass
+;+		(comment "The isRegistryClass attribute indicates whether the Object Class is to be reqistered by the system.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot isDataType
+;+		(comment "The isDataType attribute indicates whether the Object Class is a Data Type.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot administeredItemTerminologicalEntry
+		(type INSTANCE)
+;+		(allowed-classes TerminologicalEntry)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot dataTypeAnnotation
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrarIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot beginDate
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot terminologicalEntry2
+		(type INSTANCE)
+;+		(allowed-classes TerminologicalEntry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot classOrder
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot property
+		(type INSTANCE)
+;+		(allowed-classes Property)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot representing
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot administrativeNote
+;+		(comment "administrative note - any general note about the Administered Item NOTE Metamodel construct is: Attribute of Administration Record.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot internationalCodeDesignator
+;+		(comment "the identifier of an organization identification scheme")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot classificationSchemeItemValue
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot having
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot objectClassQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot precision
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot registering
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot isSchema1Class
+;+		(comment "The isSchema1Class indicates whether the Object Class is to be written to an XML Schema.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot versionIdentifier
+;+		(comment "the unique version identifier of the Administered Item")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot contactEmailAddress
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot organizationPartIdentifier
+;+		(comment "an identifier allocated to a particular organization part")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot specificDefinition
+		(type INSTANCE)
+;+		(allowed-classes Definition)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot datatypeSchemeReference
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot section
+;+		(comment "The section attribute indicates the section within the Information Model Specification that this Object Class is presented.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot classification_scheme_type_name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot isTDO
+;+		(comment "The isTDO attribute indicates whether the Object Class is a Tagged Digital Object.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot expressing
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(create-accessor read-write))
+	(single-slot contactMailingAddress
+;+		(comment "the physical, postal or delivery address of the Organization")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrationAuthorityIdentifier
+;+		(comment "an identifier assigned to a Registration Authority")
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthorityIdentifier)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot exemplifiedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElementExample)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot designation
+		(type INSTANCE)
+;+		(allowed-classes Designation)
+		(create-accessor read-write))
+	(multislot dataTypename
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot dataTypeDescription
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot sectionLanguage
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organizationName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Upper_Model_080418_Slot_9
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot countryIdentifier
+;+		(comment "a country identifier further specifying the geopolitical area associated with the language")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contextLanguageIdentification
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot referent
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthority ValueMeaning ReferenceDocument AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entryContext
+		(type INSTANCE)
+;+		(allowed-classes Context)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot format
+;+		(type ANY)
+		(create-accessor read-write))
+	(single-slot registrationAuthorityIdentifier_v
+;+		(comment "identifier assigned to a  Registration_Authority")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot endDate
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lastChangeDate
+;+		(comment "the date the Administered Item was last changed")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot documentationLanguageIdentifier
+;+		(comment "the identifier of the language used for documentation by the Registration Authority")
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot expressedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElementConcept)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot derviedElement
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot documentIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot defaultUnitId
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot referenceDocumentTypeDescription
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot partioning
+		(type INSTANCE)
+;+		(allowed-classes LanguageSection)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot effectiveDate
+;+		(comment "the date an administered item became/becomes available to registry users")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot representing2
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot maximumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contactName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot changeDescription
+;+		(comment "change description -  the description of what has changed in the Administered Item since the prior version of the Administered Item NOTE Metamodel construct is: Attribute of Administration Record.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot aggregate
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot isNillable
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot nameSpaceIdNC
+;+		(comment "The nameSpaceIdNC attribute provides the namespace id of the Object Class, without a colon")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot opiSource
+;+		(comment "the source for the organization part identifier")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot registeredBy
+;+		(comment "an Organization responsible for maintaining a register")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot dataElementPrecision
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot languageIdentifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot entryItem
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot instance
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain DataElement)
+		(create-accessor read-write))
+	(single-slot maximumCharacterQuantity
+;+		(comment "11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot describing
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot derivation
+		(type INSTANCE)
+;+		(allowed-classes DataElementDerivation)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot typedBy
+		(type INSTANCE)
+;+		(allowed-classes RepresentationClass)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot representedBy2
+		(type INSTANCE)
+;+		(allowed-classes ConceptualDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot classifiedBy
+;+		(comment "administered item classification - the relationship where an Administered Item is classified based on a specified Classification Scheme NOTE Metamodel construct is: Relationship.")
+		(type INSTANCE)
+;+		(allowed-classes ClassificationSchemeItem)
+		(create-accessor read-write))
+	(multislot reference
+		(type INSTANCE)
+;+		(allowed-classes ReferenceDocument)
+		(create-accessor read-write))
+	(single-slot administrativeStatus
+;+		(comment "administrative status - a designation of the status in the administrative process of a Registration Authority for handling registration requests NOTE 1 Metamodel construct is: Attribute of Administration Record. NOTE 2 The values and associated meanings of “administrative status” are determined by each Registration Authority. C.f. “registration status”.")
+		(type SYMBOL)
+		(allowed-values In_Quality_Review Final)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot isVacuous
+;+		(comment "The isVacuous attribute indicates whether the Object Class is vacuous, having no role as an operational class.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot example
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot origin
+;+		(comment "the source (document, project, discipline or model) for the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrarIdentifier_why
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot isDeprecated
+;+		(comment "The isDeprecated attribute indicates that the entity is deprecated.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot classificationSchemeItemTypeName
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrationStatus
+;+		(comment "designation of the status in the registration life-cycle of an Administered_Item")
+		(type SYMBOL)
+		(allowed-values Incomplete Candidate Recorded Qualified Standard Preferred Retired Superseded Application Historical)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isPreferred
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrar
+;+		(comment "association between a Registrar and the Registration_Authority s/he represents")
+		(type INSTANCE)
+;+		(allowed-classes Registrar)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot datatype
+		(type INSTANCE)
+;+		(allowed-classes DataType)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot specificDesignation
+		(type INSTANCE)
+;+		(allowed-classes Designation)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot containedIn1
+		(type INSTANCE)
+;+		(allowed-classes PermissibleValue)
+		(create-accessor read-write))
+	(single-slot contextDescription
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot typeDescription
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot containedIn2
+		(type INSTANCE)
+;+		(allowed-classes ValueMeaning)
+		(create-accessor read-write))
+	(multislot containedIn3
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(multislot has
+		(type INSTANCE)
+;+		(allowed-classes PermissibleValue)
+		(create-accessor read-write))
+	(single-slot usedIn
+;+		(comment "data element concept expression the relationship between a Data Element and a Data Element Concept NOTE Metamodel construct is: Relationship.")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot documentTitle
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contactTitle
+;+		(comment "title the name of the position held")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot unitOfMeasure
+		(type INSTANCE)
+;+		(allowed-classes UnitOfMeasure)
+		(create-accessor read-write))
+	(single-slot organizationIdentifier
+;+		(comment "the identifier assigned to an Organization within an organization identification scheme, and unique within that scheme")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot untilDate
+;+		(comment "the date an Administered Item is no longer effective in the registry")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot designationName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot representationClassQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot used
+;+		(comment "The used attribute indicates whether the Object Class is Used, to be Ignored, or Not used.")
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot dataIdentifier
+;+		(comment "the unique identifier for an Administered Item within a Registration Authority")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot administrationRecord
+;+		(comment "conceptual domain administration record the Administration Record for a Conceptual Domain NOTE Metamodel construct is: Attribute of Conceptual Domain.")
+		(type INSTANCE)
+;+		(allowed-classes AdministrationRecord)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes ReferenceDocument)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot creationDate
+;+		(comment "the date the Administered Item was created")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot measureName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot propertyQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot specifying
+		(type INSTANCE)
+;+		(allowed-classes ConceptualDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot valueDomainFormat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot representedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(create-accessor read-write))
+	(single-slot dimensionality
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot RuleSpecification
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot administeredItem
+;+		(comment "Associated AdministeredItem")
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot terminologicalEntry
+		(type INSTANCE)
+;+		(allowed-classes TerminologicalEntry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot definitionText
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot administeredItemContext
+		(type INSTANCE)
+;+		(allowed-classes Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot containing1
+		(type INSTANCE)
+;+		(allowed-classes EnumeratedValueDomain)
+		(create-accessor read-write))
+	(multislot represents
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthority)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot string
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot valueMeaningIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot containing3
+;+		(comment "Associated Classification Scheme Item")
+		(type INSTANCE)
+;+		(allowed-classes ClassificationSchemeItem)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot isInactive
+;+		(comment "The isInactive attribute indicates that the entity is inactive.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot containing2
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot steward
+		(type INSTANCE)
+;+		(allowed-classes Steward)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot objectClass
+		(type INSTANCE)
+;+		(allowed-classes ObjectClass)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot definition
+		(type INSTANCE)
+;+		(allowed-classes Definition)
+		(create-accessor read-write))
+	(single-slot minimumCharacterQuantity
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot explanatoryComment
+;+		(comment "descriptive comments about the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot classifying
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot submitter
+		(type INSTANCE)
+;+		(allowed-classes Submitter)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot contact
+;+		(comment "the contact information associated with a Registrar")
+		(type INSTANCE)
+;+		(allowed-classes Contact)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ISO_IEC_11179_2003 "Information technology — Metadata Registries (MDR) — Part 3 - Registry metamodel and basic attributes"
+	(is-a USER)
+	(role concrete))
+
+(defclass Organization "Organization - a unique framework of authority within which a person or persons act, or are designated to act, towards some purpose NOTE 1 Metamodel construct is: Class. NOTE 2 The kinds of organizations covered by ISO/IEC 6523-1 include the following examples: a) an organization incorporated under law; b) an unincorporated organization or activity providing goods and/or services including: 1) partnerships; 2) social or other non-profit organizations or similar bodies in which ownership or control is vested in a group of individuals; 3) sole proprietorships 4) governmental bodies . c) groupings of the above types of organizations where there is a need to identify these in information interchange."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot organizationName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot organizationMailingAddress
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass RegistrationAuthority "Registration Authority - an Organization responsible for maintaining a register NOTE Metamodel construct is: Class."
+	(is-a Organization)
+	(role concrete)
+	(multislot registering
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot documentationLanguageIdentifier
+;+		(comment "the identifier of the language used for documentation by the Registration Authority")
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot languageUsed
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot registrar
+;+		(comment "association between a Registrar and the Registration_Authority s/he represents")
+		(type INSTANCE)
+;+		(allowed-classes Registrar)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot registrationAuthorityIdentifier_v
+;+		(comment "identifier assigned to a  Registration_Authority")
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthorityIdentifier)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass PermissibleValue "Permissible Value - an expression of a Value Meaning allowed in a specific Value Domain NOTE Metamodel construct is: Class."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot usedIn
+;+		(comment "data element concept expression the relationship between a Data Element and a Data Element Concept NOTE Metamodel construct is: Relationship.")
+		(type INSTANCE)
+;+		(allowed-classes ValueMeaning)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot beginDate
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot value
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isDeprecated
+;+		(comment "The isDeprecated attribute indicates that the entity is deprecated.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot aggregate
+		(type INSTANCE)
+;+		(allowed-classes EnumeratedValueDomain)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot containing1
+		(type INSTANCE)
+;+		(allowed-classes EnumeratedValueDomain)
+		(create-accessor read-write))
+	(single-slot endDate
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass AdministrationRecord "Administration Record - a collection of administrative information for an Administered Item NOTE Metamodel construct is: Composite datatype."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot administeredItem
+;+		(comment "Associated AdministeredItem")
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot lastChangeDate
+;+		(comment "the date the Administered Item was last changed")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot unresolvedIssue
+;+		(comment "any problem that remains unresolved regarding proper documentation of the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot untilDate
+;+		(comment "the date an Administered Item is no longer effective in the registry")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot administrativeStatus
+;+		(comment "designation of the status in the administrative process of a Registration_Authority")
+		(type SYMBOL)
+		(allowed-values In_Quality_Review Final)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot origin
+;+		(comment "the source (document, project, discipline or model) for the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot effectiveDate
+;+		(comment "the date an administered item became/becomes available to registry users")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot creationDate
+;+		(comment "the date the Administered Item was created")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot explanatoryComment
+;+		(comment "descriptive comments about the Administered Item")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot administrativeNote
+;+		(comment "administrative note - any general note about the Administered Item NOTE Metamodel construct is: Attribute of Administration Record.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot changeDescription
+;+		(comment "change description -  the description of what has changed in the Administered Item since the prior version of the Administered Item NOTE Metamodel construct is: Attribute of Administration Record.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot registrationStatus
+;+		(comment "designation of the status in the registration life-cycle of an Administered_Item")
+		(type SYMBOL)
+		(allowed-values Incomplete Candidate Recorded Qualified Standard Preferred Retired Superseded Application Historical)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass AdministeredItem "Administered Item - registry item for which administrative information is recorded in an Administration Record NOTE 1 Metamodel construct is: Class. NOTE 2 The types of Administered Item specified by ISO/IEC 11179-3 are listed in 4.7.2."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(multislot terminologicalEntry
+		(type INSTANCE)
+;+		(allowed-classes TerminologicalEntry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot administrationRecord
+;+		(comment "conceptual domain administration record the Administration Record for a Conceptual Domain NOTE Metamodel construct is: Attribute of Conceptual Domain.")
+		(type INSTANCE)
+;+		(allowed-classes AdministrationRecord)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot dataIdentifier
+;+		(comment "the unique identifier for an Administered Item within a Registration Authority")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot versionIdentifier
+;+		(comment "the unique version identifier of the Administered Item")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot registrationAuthorityIdentifier
+;+		(comment "an identifier assigned to a Registration Authority")
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthorityIdentifier)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot submitter
+		(type INSTANCE)
+;+		(allowed-classes Submitter)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot reference
+;+		(comment "reference from one metadata item to another - NOTE A Registration_Authority could choose to use a Reference_Document, an administrative_note or an explanatory_comment to record a related metadata reference.")
+		(type INSTANCE)
+;+		(allowed-classes ReferenceDocument)
+		(create-accessor read-write))
+	(multislot classifiedBy
+;+		(comment "administered item classification - the relationship where an Administered Item is classified based on a specified Classification Scheme NOTE Metamodel construct is: Relationship.")
+		(type INSTANCE)
+;+		(allowed-classes ClassificationSchemeItem)
+		(create-accessor read-write))
+	(multislot registeredBy
+;+		(comment "an Organization responsible for maintaining a register")
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthority)
+		(create-accessor read-write))
+	(single-slot steward
+		(type INSTANCE)
+;+		(allowed-classes Steward)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ClassificationScheme "Classification Scheme -  the descriptive information for an arrangement or division of objects into groups based on characteristics, which the objects have in common EXAMPLE Origin, composition, structure, application, function, etc.; See ISO/IEC 11179-2. NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot classification_scheme_type_name
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot containing3
+;+		(comment "Associated Classification Scheme Item")
+		(type INSTANCE)
+;+		(allowed-classes ClassificationSchemeItem)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass ConceptualDomain "Conceptual Domain - a set of valid Value Meanings NOTE 1 Metamodel construct is: Class. NOTE 2 The Value Meanings may either be enumerated or expressed via a description."
+	(is-a AdministeredItem)
+	(role concrete)
+	(multislot representing2
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain PermissibleValue DataElement)
+		(create-accessor read-write))
+	(multislot relationship
+		(type INSTANCE)
+;+		(allowed-classes Relationship ClassificationSchemeItemRelationship)
+		(create-accessor read-write))
+	(multislot having
+		(type INSTANCE)
+;+		(allowed-classes DataElementConcept)
+		(create-accessor read-write))
+	(single-slot dimensionality
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass EnumeratedConceptualDomain "Enumerated Conceptual Domain - a Conceptual Domain that is specified by a list of all its Value Meanings NOTE Metamodel construct is: Class."
+	(is-a ConceptualDomain)
+	(role concrete)
+	(multislot containedIn2
+		(type INSTANCE)
+;+		(allowed-classes ValueMeaning)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot representing2
+		(type INSTANCE)
+;+		(allowed-classes EnumeratedValueDomain)
+		(create-accessor read-write)))
+
+(defclass NonEnumeratedConceptualDomain "Non-enumerated Conceptual Domain - a Conceptual Domain that is not specified by a list of all valid Value Meanings NOTE Metamodel construct is: Class."
+	(is-a ConceptualDomain)
+	(role concrete)
+	(single-slot description
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot representing2
+		(type INSTANCE)
+;+		(allowed-classes NonEnumeratedValueDomain)
+		(create-accessor read-write)))
+
+(defclass Context
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot contextDescription
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot contextLanguageIdentification
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DataElementConcept "Data Element Concept - a concept that can be represented in the form of a Data Element, described independently of any particular representation NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot property
+		(type INSTANCE)
+;+		(allowed-classes Property)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot objectClass
+		(type INSTANCE)
+;+		(allowed-classes ObjectClass)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot relationship
+		(type INSTANCE)
+;+		(allowed-classes Relationship ClassificationSchemeItemRelationship)
+		(create-accessor read-write))
+	(multislot expressing
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(create-accessor read-write))
+	(single-slot objectClassQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot propertyQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot specifying
+		(type INSTANCE)
+;+		(allowed-classes ConceptualDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass DataElement "Data Element - a unit of data for which the definition, identification, representation and Permissible Values are specified by means of a set of attributes NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot dataElementPrecision
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot expressedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElementConcept)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot representing
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isDeprecated
+;+		(comment "The isDeprecated attribute indicates that the entity is deprecated.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isNillable
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot derivation
+		(type INSTANCE)
+;+		(allowed-classes DataElementDerivation)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot exemplifiedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElementExample)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot typedBy
+		(type INSTANCE)
+;+		(allowed-classes RepresentationClass)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot representationClassQualifier
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ObjectClass "Object Class - a set of ideas, abstractions, or things in the real world that are identified with explicit boundaries and meaning and whose properties and behaviour follow the same rules NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot isRegistryClass
+;+		(comment "The isRegistryClass attribute indicates whether the Object Class is to be reqistered by the system.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot section
+;+		(comment "The section attribute indicates the section within the Information Model Specification that this Object Class is presented.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isVacuous
+;+		(comment "The isVacuous attribute indicates whether the Object Class is vacuous, having no role as an operational class.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot used
+;+		(comment "The used attribute indicates whether the Object Class is Used, to be Ignored, or Not used.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isTDO
+;+		(comment "The isTDO attribute indicates whether the Object Class is a Tagged Digital Object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isDataType
+;+		(comment "The isDataType attribute indicates whether the Object Class is a Data Type.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isSchema1Class
+;+		(comment "The isSchema1Class indicates whether the Object Class is to be written to an XML Schema.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isUnitOfMeasure
+;+		(comment "The isUnitOfMeasure attribute indicates whether the Object Class is a Unit of Measure.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isDeprecated
+;+		(comment "The isDeprecated attribute indicates that the entity is deprecated.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot nameSpaceIdNC
+;+		(comment "The nameSpaceIdNC attribute provides the namespace id of the Object Class, without a colon")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot isInactive
+;+		(comment "The isInactive attribute indicates that the entity is inactive.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Concept "Concept - unit of knowledge created by a unique combination of characteristics NOTE Metamodel construct is: Class."
+	(is-a ObjectClass)
+	(role concrete))
+
+(defclass ConceptRelationship1 "Concept Relationship - concept relationship a semantic link among two or more Concepts NOTE 1 Metamodel construct is: Association Class. NOTE 2 An association class is both an association and a class. The name of the association uses lowercase. The name of the class is capitalized."
+	(is-a ObjectClass)
+	(role concrete))
+
+(defclass Property "Property - a characteristic common to all members of an Object Class NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot classOrder
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass RepresentationClass "Representation Class - the classification of types of representations NOTE Metamodel construct is: Class."
+	(is-a AdministeredItem)
+	(role concrete)
+	(multislot instance
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain DataElement)
+		(create-accessor read-write)))
+
+(defclass ValueDomain "Value Domain - a set of Permissible Values NOTE 1 Metamodel construct is: Class. NOTE 2 The Value Domain provides representation, but has no implication as to what Data Element Concept the Values may be associated with nor what the Values mean NOTE 3 The Permissible Values may either be enumerated or expressed via a description."
+	(is-a AdministeredItem)
+	(role concrete)
+	(single-slot defaultUnitId
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot relationship
+		(type INSTANCE)
+;+		(allowed-classes Relationship ClassificationSchemeItemRelationship)
+		(create-accessor read-write))
+	(multislot unitOfMeasure
+		(type INSTANCE)
+;+		(allowed-classes UnitOfMeasure)
+		(create-accessor read-write))
+	(single-slot maximumCharacterQuantity
+;+		(comment "11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot representedBy
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(create-accessor read-write))
+	(single-slot typedBy
+		(type INSTANCE)
+;+		(allowed-classes RepresentationClass)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot valueDomainFormat
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot representedBy2
+		(type INSTANCE)
+;+		(allowed-classes ConceptualDomain)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot datatype
+		(type INSTANCE)
+;+		(allowed-classes DataType)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass EnumeratedValueDomain "Enumerated Value Domain - a Value Domain that is specified by a list of all its Permissible Values NOTE Metamodel construct is: Class."
+	(is-a ValueDomain)
+	(role concrete)
+	(single-slot pattern
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot containedIn1
+		(type INSTANCE)
+;+		(allowed-classes PermissibleValue)
+		(create-accessor read-write))
+	(single-slot minimumCharacterQuantity
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot format
+;+		(type ANY)
+		(create-accessor read-write)))
+
+(defclass NonEnumeratedValueDomain "Non-enumerated Value Domain - a Value Domain that is specified by a description rather than a list of all Permissible Values NOTE Metamodel construct is: Class."
+	(is-a ValueDomain)
+	(role concrete)
+	(single-slot pattern
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot description
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot minimumCharacterQuantity
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot maximumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot minimumValue
+;+		(comment "non11179 attribute")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot format
+;+		(type ANY)
+		(create-accessor read-write)))
+
+(defclass ValueMeaning
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot description
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has
+		(type INSTANCE)
+;+		(allowed-classes PermissibleValue)
+		(create-accessor read-write))
+	(single-slot beginDate
+;+		(comment "effective_date of this Value_Meaning in the Conceptual_Domain")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot containing2
+		(type INSTANCE)
+;+		(allowed-classes EnumeratedConceptualDomain)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot endDate
+;+		(comment "date this Value_Meaning became/becomes invalid")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass TerminologicalEntry "Terminological Entry - an entry containing information on terminological units for a specific Administered Item within a Context (subject field) NOTE Metamodel construct is: Class. - Modified 10/03/11 - Definition, Designation, and LanguageIdentification were moved from Language_Section to TerminologicalEntry."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot sectionLanguage
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot definition
+		(type INSTANCE)
+;+		(allowed-classes Definition)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot administeredItemContext
+		(type INSTANCE)
+;+		(allowed-classes Context)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot designation
+		(type INSTANCE)
+;+		(allowed-classes Designation)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass LanguageSection
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot sectionLanguage
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot definition
+		(type INSTANCE)
+;+		(allowed-classes Definition)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot designation
+		(type INSTANCE)
+;+		(allowed-classes Designation)
+		(create-accessor read-write)))
+
+(defclass LanguageIdentification "Language Identification - the collection of identifiers required to identify a language or language variation for a particular purpose NOTE Metamodel construct is: Composite datatype."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot languageIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot countryIdentifier
+;+		(comment "a country identifier further specifying the geopolitical area associated with the language")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass ClassificationSchemeItem "Classification Scheme Item -I an item of content in a Classification Scheme. NOTE 1 Metamodel construct is: Class. NOTE 2 This may be a node in a taxonomy or ontology, a term in a thesaurus, etc."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(multislot containedIn3
+;+		(comment "Associated Classification Scheme")
+		(type INSTANCE)
+;+		(allowed-classes ClassificationScheme)
+		(create-accessor read-write))
+	(multislot relationship
+		(type INSTANCE)
+;+		(allowed-classes Relationship ClassificationSchemeItemRelationship)
+		(create-accessor read-write))
+	(single-slot classificationSchemeItemTypeName
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot classificationSchemeItemValue
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot classifying
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Designation "Designation (of Administered Item) -  the designation of an Administered Item within a Context NOTE 1 Metamodel construct is: Class. NOTE 2 See also designation (3.2.13)."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot isPreferred
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot designationName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Definition
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot source
+		(type INSTANCE)
+;+		(allowed-classes ReferenceDocument)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot definitionText
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot isPreferred
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass DataElementDerivation
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot rule
+		(type INSTANCE)
+;+		(allowed-classes DerivationRule)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot derviedElement
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot input
+		(type INSTANCE)
+;+		(allowed-classes DataElement)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass DataType "Datatype - a set of distinct values, characterized by properties of those values and by operations on those values NOTE Metamodel construct is: Composite Datatype."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot dataTypeName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot dataTypeAnnotation
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot dataTypeDescription
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot datatypeSchemeReference
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Identifier
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass RegistrationAuthorityIdentifier "identifier of the Registration Authority registering the item"
+	(is-a Identifier)
+	(role concrete)
+	(single-slot internationalCodeDesignator
+;+		(comment "the identifier of an organization identification scheme")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot organizationPartIdentifier
+;+		(comment "an identifier allocated to a particular organization part")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot organizationIdentifier
+;+		(comment "the identifier assigned to an Organization within an organization identification scheme, and unique within that scheme")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot opiSource
+;+		(comment "the source for the organization part identifier")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Contact "Contact - an instance of a role of an individual or an organization (or organization part or organization person) to whom an information item(s), a material object(s) and/or person(s) can be sent to or from in a specified context NOTE Metamodel construct is: Composite Datatype."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot contactName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot contactInformation
+;+		(comment "contact information - information to enable a Contact to be located or communicated with NOTE Metamodel construct is: Attribute of Contact.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot contactTitle
+;+		(comment "title the name of the position held by the Contact")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contactPhone
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot contactEmailAddress
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot contactMailingAddress
+;+		(comment "the physical, postal or delivery address of the Organization")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Steward
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot organization
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contact
+;+		(comment "the contact information associated with a Registrar")
+		(type INSTANCE)
+;+		(allowed-classes Contact)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Submitter
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot organization
+		(type INSTANCE)
+;+		(allowed-classes Organization)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contact
+;+		(comment "the contact information associated with a Submission")
+		(type INSTANCE)
+;+		(allowed-classes Contact)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ReferenceDocument "Reference Document - a document that provides pertinent details for consultation about a subject NOTE Metamodel construct is: Class."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot referenceDocumentTypeDescription
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot documentTitle
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot documentIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot describing
+		(type INSTANCE)
+;+		(allowed-classes AdministeredItem)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot languageUsed
+		(type INSTANCE)
+;+		(allowed-classes LanguageIdentification)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Registrar "Registrar - a representative of a Registration Authority NOTE Metamodel construct is: Class."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot registrarIdentifier
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot contact
+;+		(comment "the contact information associated with a Registrar")
+		(type INSTANCE)
+;+		(allowed-classes Contact)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot represents
+		(type INSTANCE)
+;+		(allowed-classes RegistrationAuthority)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Relationship
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot typeDescription
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes ClassificationScheme AdministeredItem)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass ClassificationSchemeItemRelationship
+	(is-a Relationship)
+	(role concrete)
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes ClassificationScheme)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass ConceptRelationship2
+	(is-a Relationship)
+	(role concrete)
+	(single-slot administrationRecord
+;+		(comment "conceptual domain administration record the Administration Record for a Conceptual Domain NOTE Metamodel construct is: Attribute of Conceptual Domain.")
+		(type INSTANCE)
+;+		(allowed-classes AdministrationRecord)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot submitter
+		(type INSTANCE)
+;+		(allowed-classes Submitter)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes Concept)
+		(cardinality 0 2)
+		(create-accessor read-write))
+	(multislot reference
+		(type INSTANCE)
+;+		(allowed-classes ReferenceDocument)
+		(create-accessor read-write))
+	(multislot terminologicalEntry2
+		(type INSTANCE)
+;+		(allowed-classes TerminologicalEntry)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot registrationAuthorityIdentifier_v
+;+		(comment "identifier assigned to a  Registration_Authority")
+		(type INSTANCE)
+;+		(allowed-classes)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot registeredBy
+;+		(comment "an Organization responsible for maintaining a register")
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot steward
+		(type INSTANCE)
+;+		(allowed-classes Steward)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass ConceptualDomainRelationship "Conceptual Domain Relationship - conceptual domain relationship a relationship among two or more Conceptual Domains NOTE 1 Metamodel construct is: Association Class. NOTE 2 An association class is both an association and a class. The name of the association uses lowercase. The name of the class is capitalized."
+	(is-a Relationship)
+	(role concrete)
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes ConceptualDomain)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass DataElementConceptRelationship "Data Element Concept Relationship - data element concept relationship the relationship among two or more Data Element Concepts NOTE 1 Metamodel construct is: Association Class. NOTE 2 An association class is both an association and a class. The name of the association uses lowercase. The name of the class is capitalized."
+	(is-a Relationship)
+	(role concrete)
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes DataElementConcept)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass ValueDomainRelationship "Value Domain Relationship - a relationship among two or more Value Domains NOTE 1 Metamodel construct is: Association Class. NOTE 2 An association class is both an association and a class. The name of the association uses lowercase. The name of the class is capitalized."
+	(is-a Relationship)
+	(role concrete)
+	(multislot item
+		(type INSTANCE)
+;+		(allowed-classes ValueDomain)
+		(cardinality 0 2)
+		(create-accessor read-write)))
+
+(defclass UnitOfMeasure "Unit of Measure -  the actual units in which the associated values are measured"
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot defaultUnitId
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot precision
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot measureName
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3ANAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot unitId
+		(type STRING)
+		(create-accessor read-write)))
+
+(defclass DerivationRule "Derivation Rule - the logical, mathematical, and/or other operations specifying derivation NOTE Metamodel construct is: Class."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete)
+	(single-slot RuleSpecification
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass DataElementExample "Data Element Example representative illustration of the Data Element NOTE Metamodel construct is: Class."
+	(is-a ISO_IEC_11179_2003)
+	(role concrete))
+
+(defclass %3AUNDEFINED
+	(is-a USER)
+	(role concrete))
+
+(defclass Data_Type
+	(is-a %3AUNDEFINED)
+	(role concrete))

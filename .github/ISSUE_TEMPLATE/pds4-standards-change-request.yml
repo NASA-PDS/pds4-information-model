@@ -1,15 +1,15 @@
 name: PDS4 Standards Change Request
 description: "Tasks related to PDS4 Standards Change Request in design and implementation queue"
 title: 'CCB-xxx: Copy SCR title here'
-labels: "needs:triage, p.must-have, pending-scr, requirement"
-projects: "NASA-PDS/6"
-assignees: jordanpadams
+labels: "p.must-have, pending-scr, requirement, sprint-backlogs, B15.0"
+projects: "NASA-PDS/6, NASA-PDS/9"
+assignees: jshughes,jordanpadams
 
 body:
   - type: textarea
     id: scr
     attributes:
-      label: 🦄 Parent SCR
+      label: 🦄 Sibling SCR
       description: Link to parent SCR in PDS4 CCB repo
       value: NASA-PDS/PDS4-CCB#xxxx
     validations:
@@ -20,3 +20,17 @@ body:
     attributes:
       label: 💡 SCR Summary
       description: Copy-paste the original SCR's **Problem Statement** and **Requested Changes** to provide public overview to proposed changes.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: added-to-parent-epic
+    attributes:
+      label: Added to parent epic?
+      description: Reminder once this issue is created to add it to whatever the parent SCR epic is for this build.
+      multiple: false
+      options:
+        - "Will do"
+        - "No chance"
+    validations:
+      required: true

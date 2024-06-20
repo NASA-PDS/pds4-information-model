@@ -43,7 +43,7 @@ public class DOMClass extends ISOClassOAIS11179 {
   String rootClass; // RDF identifier
   String baseClassName; // Fundamental structure class title
   String localIdentifier; // used temporarily for ingest of LDD
-  String used; // MDPTNConfig used flag - Y, N, or I - Inactive
+  String used; // used flag - Y, N, or I - Inactive
   String extrnTitleQM; // title of external class for query model
 
   int subClassLevel;
@@ -188,57 +188,6 @@ public class DOMClass extends ISOClassOAIS11179 {
   /**
    * get the disposition of a class (from Protege)
    */
-  public boolean getDOMClassDisposition(boolean isFromProtege) {
-    // get disposition identifier - if isFromProtege, then the identifier is set else it is not
-    // since it is from an LDD.
-    String lDispId =
-        this.subModelId + "." + DMDocument.registrationAuthorityIdentifierValue + "." + this.title;
-    if (!isFromProtege) {
-      lDispId = "LDD_" + lDispId;
-    }
-    DispDefn lDispDefn = DMDocument.masterClassDispoMap2.get(lDispId);
-    if (lDispDefn != null) {
-      this.used = lDispDefn.used;
-      this.section = lDispDefn.section;
-      String lDisp = lDispDefn.disposition;
-      this.steward = lDispDefn.intSteward;
-      String lClassNameSpaceIdNC = lDispDefn.intNSId; // needed below for identifier
-      this.nameSpaceIdNC = lClassNameSpaceIdNC;
-      this.nameSpaceId = lClassNameSpaceIdNC + ":";
-
-      // if from protege, the identifier needs to be set; if from LDD it cannot be set here.
-      if (isFromProtege) {
-        this.identifier = DOMInfoModel.getClassIdentifier(lClassNameSpaceIdNC, this.title);
-        set11179Attr(this.identifier);
-        // System.out.println("debug getDOMClassDisposition this.identifier:" + this.identifier);
-      }
-      this.isMasterClass = true;
-      if (lDisp.indexOf("V") > -1) {
-        this.isVacuous = true;
-      }
-      if (lDisp.indexOf("S") > -1) {
-        this.isSchema1Class = true;
-      }
-      if (lDisp.indexOf("R") > -1) {
-        this.isRegistryClass = true;
-      }
-      if (lDisp.indexOf("T") > -1) {
-        this.isTDO = true;
-      }
-      if (lDisp.indexOf("d") > -1) {
-        this.isDataType = true;
-      }
-      if (lDisp.indexOf("u") > -1) {
-        this.isUnitOfMeasure = true;
-      }
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * get the disposition of a class (from Protege)
-   */
   public boolean getDOMClassDisposition2() {
     if (this.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
       this.nameSpaceIdNC = DMDocument.masterNameSpaceIdNCLC;
@@ -248,7 +197,6 @@ public class DOMClass extends ISOClassOAIS11179 {
     this.nameSpaceId = this.nameSpaceIdNC + ":";
     this.identifier = DOMInfoModel.getClassIdentifier(this.nameSpaceIdNC, this.title);
     set11179Attr(this.identifier);
-    // System.out.println("debug getDOMClassDisposition2 this.identifier:" + this.identifier);
     return true;
   }
 

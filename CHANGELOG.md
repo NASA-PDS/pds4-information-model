@@ -1,8 +1,66 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-03-16)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-06)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
+
+**Other closed issues:**
+
+- Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
+
+## [v15.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v15.1.0) (2024-05-24)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.7...v15.1.0)
+
+**Defects:**
+
+- LDDTool does not include all rules from IngestLDD file [\#771](https://github.com/NASA-PDS/pds4-information-model/issues/771) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+
+## [v15.0.7](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.7) (2024-05-22)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.6...v15.0.7)
+
+**Defects:**
+
+- ERROR 11179 data dictionary class is missing for overwrite [\#770](https://github.com/NASA-PDS/pds4-information-model/issues/770) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+
+**Other closed issues:**
+
+- Remove Deprecated Objects Array [\#768](https://github.com/NASA-PDS/pds4-information-model/issues/768)
+- Remove the MDPTNConfigClassDisp file  [\#766](https://github.com/NASA-PDS/pds4-information-model/issues/766)
+
+## [v15.0.6](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.6) (2024-04-26)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.5...v15.0.6)
+
+**Requirements:**
+
+- CCB-15: Update Constraints on Author/Editor Lists \(JIRA-CCB-356\) [\#752](https://github.com/NASA-PDS/pds4-information-model/issues/752)
+
+**Defects:**
+
+- Version flag no longer works on Windows [\#763](https://github.com/NASA-PDS/pds4-information-model/issues/763)
+- Documentation broken with latest upgrade for maven site plugin [\#761](https://github.com/NASA-PDS/pds4-information-model/issues/761) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [v15.0.5](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.5) (2024-04-17)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.4...v15.0.5)
+
+**Defects:**
+
+- webpage links are not working [\#754](https://github.com/NASA-PDS/pds4-information-model/issues/754) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+## [v15.0.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.4) (2024-04-16)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.0.2...v15.0.4)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace VIPER [\#748](https://github.com/NASA-PDS/pds4-information-model/issues/748)
+
+## [v15.0.2](https://github.com/NASA-PDS/pds4-information-model/tree/v15.0.2) (2024-04-10)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.3.0...v15.0.2)
 
 **Requirements:**
 
@@ -18,8 +76,12 @@
 
 **Defects:**
 
+- Unable to build maven site after JDK17 upgrade [\#750](https://github.com/NASA-PDS/pds4-information-model/issues/750) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- JDK17 issue re-introduced bug per \#733 [\#746](https://github.com/NASA-PDS/pds4-information-model/issues/746) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- LDDTool producing invalid XSD for Voyager LDD [\#744](https://github.com/NASA-PDS/pds4-information-model/issues/744) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is not creating valid URL for KPLO [\#738](https://github.com/NASA-PDS/pds4-information-model/issues/738) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing -  [\#733](https://github.com/NASA-PDS/pds4-information-model/issues/733) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
+- PDS4 IM repo fails with openjdk 17+ [\#471](https://github.com/NASA-PDS/pds4-information-model/issues/471) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 
 **Other closed issues:**
 
@@ -27,6 +89,7 @@
 - IMTool Refactoring - Deprecate the Java "Deprecated Object Array" [\#724](https://github.com/NASA-PDS/pds4-information-model/issues/724)
 - Set Product\_XML\_Schema label version id to 1.0 for all future releases. [\#719](https://github.com/NASA-PDS/pds4-information-model/issues/719)
 - IMTool Refactoring Phase 6 - Use Protege dd11179.pins for class disposition [\#717](https://github.com/NASA-PDS/pds4-information-model/issues/717)
+- Update to Support for OpenJDK17 [\#702](https://github.com/NASA-PDS/pds4-information-model/issues/702)
 - Fix code scanning alert - Container contents are never accessed [\#693](https://github.com/NASA-PDS/pds4-information-model/issues/693)
 - Develop first iteration of provenance model [\#692](https://github.com/NASA-PDS/pds4-information-model/issues/692)
 

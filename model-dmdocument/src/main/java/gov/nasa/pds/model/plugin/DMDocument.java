@@ -61,9 +61,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
 public class DMDocument extends Object {
 
   // environment variables
-  static String lPARENT_DIR;
-  static String lSCRIPT_DIR;
-  static String lLIB_DIR;
+  static String parentDir;
   static String lUSERNAME;
 
   // specification document info
@@ -150,21 +148,16 @@ public class DMDocument extends Object {
 
   static String LDDToolVersionId = "0.0.0";
   static String buildDate = "";
-  static String buildIMVersionId = "1.22.0.0";
-  static String buildIMVersionFolderId = "1M00";
+  static String buildIMVersionId = "1.23.0.0";
+  static String buildIMVersionFolderId = "1N00";
   static String classVersionIdDefault = "1.0.0.0";
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
-  static boolean LDDNuanceFlag = false; 
+  static boolean LDDNuanceFlag = false;
   static boolean overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
                                          // to overwrite Master DOMClasses, DOMAttrs, and
                                          // DOMPermvalues
-  static boolean useMDPTNConfig = false; // ProtPontDOMModel; get disposition for the class from
-                                        // MDPTNConfigClassDisp
-  static boolean overWriteDeprecated = false; // use dd11179.pins isDeprecated to overwrite
-                                              // DMDocument.deprecatedObjects2
-
   // alternate IM Version
   // if no option "V" is provided on the command line, then the default is the current IM version.
   static boolean alternateIMVersionFlag = false;
@@ -280,9 +273,6 @@ public class DMDocument extends Object {
   // master class order
   static int masterGroupNum;
 
-  // master class disposition maps
-  static TreeMap<String, DispDefn> masterClassDispoMap2;
-
   // registry classes and attributes
   static ArrayList<String> registryClass;
   static ArrayList<String> registryAttr;
@@ -299,8 +289,7 @@ public class DMDocument extends Object {
   // the set of deprecated classes, attributes, and values
   static ArrayList<DeprecatedDefn> deprecatedObjects2;
   static String Literal_DEPRECATED = " *Deprecated*";
-  static boolean deprecatedAdded;
-  static boolean deprecatedAddedDOM;
+  static boolean deprecatedAddedDOM = false;
 
   // the set of classes and attributes that will be externalized (defined as xs:Element)
   static ArrayList<String> exposedElementArr;
@@ -328,10 +317,10 @@ public class DMDocument extends Object {
 
   public static void main(String args[]) throws Throwable {
 
-	if (debugFlag) System.out.println(">>  DEBUG DMDocument 240311.2.0");
-	  
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
+    
+    // System.out.println("Debug main 240515");
 
     PDSOptionalFlag = false;
     LDDToolFlag = false;
@@ -342,7 +331,8 @@ public class DMDocument extends Object {
 
     // The current version is included to allow for -V currentIMVersion
     alternateIMVersionArr = new ArrayList<>();
-    alternateIMVersionArr.add("1M00"); // current
+    alternateIMVersionArr.add("1N00"); // current
+    alternateIMVersionArr.add("1M00");
     alternateIMVersionArr.add("1L00");
     alternateIMVersionArr.add("1K00");
     alternateIMVersionArr.add("1J00");
@@ -454,17 +444,45 @@ public class DMDocument extends Object {
     // the use of the option "V" (alternate IM version) will change the input file directory (config
     // included)
     processArgumentParserNamespacePhase1(argparse4jNamespace);
-
-    // first get the environment variables
-    getEnvMap();
-    dataDirPath = lPARENT_DIR + "/Data/";
-
-    // if this is an LDDTool run then an alternate path is allowed (option "V")
-    if (LDDToolFlag && alternateIMVersionFlag) {
-      if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-        dataDirPath = lPARENT_DIR + "/Data/" + alternateIMVersion + "/";
+    
+    String sysDataHome = System.getProperty("data.home");
+    if (sysDataHome != null) {
+      sysDataHome = sysDataHome.replace('\\', '/');
+      parentDir = sysDataHome + "/";
+      dataDirPath = parentDir;
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+            dataDirPath = parentDir + alternateIMVersion + "/";
+        }
       }
+    } else {
+      registerMessage("0>info - Property data.home is null");   
+      String sysUserDir = System.getProperty("user.dir");
+      if (sysUserDir == null) {
+        registerMessage("3>error Environment variable sysUserDir is null");
+        printErrorMessages();
+        System.exit(1);
+      }
+      sysUserDir = sysUserDir.replace('\\', '/');
+      parentDir = sysUserDir;
+      String dirExt = "/model-ontology/src/ontology/Data/";
+//      if (debugFlag) dirExt = "/bin/../Data/";
+      dataDirPath = parentDir + dirExt;
+      if (debugFlag) {
+          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
+    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
+      }
+      // if this is an LDDTool run then an alternate path is allowed (option "V")
+      // IMTool runs ignore the -V option
+      if (LDDToolFlag && alternateIMVersionFlag) {
+        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
+        }
+       }
     }
+    registerMessage("0>info - Parent Directory:" + parentDir);
     registerMessage("0>info - IM Directory Path:" + dataDirPath);
     registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
 
@@ -559,13 +577,6 @@ public class DMDocument extends Object {
         cleanupLDDInputFileName(lSchemaFileDefn);
       }
     }
-    // get the disposition file, parse out allowed stewards and namespaceids
-    XMLDocParserDomMDPTNConfig lMDPTNConfig = new XMLDocParserDomMDPTNConfig();
-    masterClassDispoMap2 = lMDPTNConfig.getXMLTable2(dataDirPath + "MDPTNConfigClassDisp.xml");
-
-//    // 222 test
-//    DMCheckDispositions dmCheckDispositions = new DMCheckDispositions ();
-//    dmCheckDispositions.printDispositions("", masterClassDispoMap2);
     
     // set up the System Build version
     XMLSchemaLabelBuildNum = pds4BuildId;
@@ -591,12 +602,7 @@ public class DMDocument extends Object {
     }
 
     registerMessage("1>info Date: " + sTodaysDate);
-    registerMessage("1>info PARENT_DIR: " + lPARENT_DIR);
-    registerMessage("1>info SCRIPT_DIR: " + lSCRIPT_DIR);
-    registerMessage("1>info LIB_DIR: " + lLIB_DIR);
-
-    // set the deprecated flags
-    setObjectDeprecatedFlag();
+    registerMessage("1>info PARENT_DIR: " + parentDir);
 
     // get the 11179 Attribute Dictionary - .pins file
     ProtPinsDOM11179DD lProtPinsDOM11179DD = new ProtPinsDOM11179DD();
@@ -642,34 +648,6 @@ public class DMDocument extends Object {
    * local utilities
    ***********************************************************************************************************/
 
-  static private void getEnvMap() {
-    Map<String, String> env = System.getenv();
-
-    lPARENT_DIR = env.get("PARENT_DIR");
-    if (lPARENT_DIR == null) {
-      registerMessage("3>error Environment variable PARENT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lPARENT_DIR = replaceString(lPARENT_DIR, "\\", "/");
-
-    lSCRIPT_DIR = env.get("SCRIPT_DIR");
-    if (lSCRIPT_DIR == null) {
-      registerMessage("3>error Environment variable SCRIPT_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lSCRIPT_DIR = replaceString(lSCRIPT_DIR, "\\", "/");
-
-    lLIB_DIR = env.get("LIB_DIR");
-    if (lLIB_DIR == null) {
-      registerMessage("3>error Environment variable LIB_DIR is null");
-      printErrorMessages();
-      System.exit(1);
-    }
-    lLIB_DIR = replaceString(lLIB_DIR, "\\", "/");
-  }
-
   static private void cleanupLDDInputFileName(SchemaFileDefn lSchemaFileDefn) {
     String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
     lSourceFileSpec = replaceString(lSourceFileSpec, "\\", "/");
@@ -696,21 +674,15 @@ public class DMDocument extends Object {
   static public boolean checkCreateDirectory(String lDirectoryPathName) {
     File file = new File(lDirectoryPathName);
     if (file.exists() && file.isDirectory()) {
-      // System.out.println("debug checkCreateDirectory - Directory FOUND - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Found directory: " + lDirectoryPathName);
       return true;
     }
     // Create the directory
     boolean bool = file.mkdir();
     if (bool) {
-      // System.out.println("debug checkCreateDirectory - Directory CREATED - lDirectoryPathName:" +
-      // lDirectoryPathName);
       registerMessage("0>info Created directory: " + lDirectoryPathName);
       return true;
     } else {
-      // System.out.println("debug checkCreateDirectory - Directory CREATE FAILED -
-      // lDirectoryPathName:" + lDirectoryPathName);
       registerMessage("1>error Directory create failed: " + lDirectoryPathName);
     }
     return false;
@@ -728,16 +700,9 @@ public class DMDocument extends Object {
 
   static public void checkRequiredFiles() {
     // check that all the required data files exist
-    File file = new File(dataDirPath + "MDPTNConfigClassDisp.xml");
+
+    File file = new File(dataDirPath + "UpperModel.pont");
     boolean isFound = file.exists();
-    if (!isFound) {
-      registerMessage("3>error " + "Required data file was not found: " + dataDirPath
-          + "MDPTNConfigClassDisp.xml");
-      printErrorMessages();
-      System.exit(1);
-    }
-    file = new File(dataDirPath + "UpperModel.pont");
-    isFound = file.exists();
     if (!isFound) {
       registerMessage(
           "3>error " + "Required data file was not found: " + dataDirPath + "UpperModel.pont");
@@ -777,9 +742,6 @@ public class DMDocument extends Object {
     SchemaFileDefn lSchemaFileDefn;
     String SCHEMA_LITERAL = "lSchemaFileDefn.";
     String IDENTIFIER = ".identifier";
-
-    // System.out.println(" ");
-    // registerMessage ("1>info config.properties:");
 
     Set<Object> keys = prop.keySet();
     for (Object k : keys) {
@@ -889,51 +851,7 @@ public class DMDocument extends Object {
         }
 
         masterAllSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
-
-        /*
-         * if (DMDocument.debugFlag) { System.out.println(" ");
-         * System.out.println("debug setupNameSpaceInfoAll lSchemaFileDefn.identifier:" +
-         * lSchemaFileDefn.identifier);
-         * System.out.println("                            lSchemaFileDefn.lddName:" +
-         * lSchemaFileDefn.lddName);
-         * System.out.println("                            lSchemaFileDefn.versionId:" +
-         * lSchemaFileDefn.versionId);
-         * System.out.println("                            lSchemaFileDefn.labelVersionId:" +
-         * lSchemaFileDefn.labelVersionId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNC:" +
-         * lSchemaFileDefn.nameSpaceIdNC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCLC:" +
-         * lSchemaFileDefn.nameSpaceIdNCLC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceIdNCUC:" +
-         * lSchemaFileDefn.nameSpaceIdNCUC);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceId:" +
-         * lSchemaFileDefn.nameSpaceId);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURL:" +
-         * lSchemaFileDefn.nameSpaceURL);
-         * System.out.println("                            lSchemaFileDefn.nameSpaceURLs:" +
-         * lSchemaFileDefn.nameSpaceURLs);
-         * System.out.println("                            lSchemaFileDefn.modelShortName:" +
-         * lSchemaFileDefn.modelShortName);
-         * System.out.println("                            lSchemaFileDefn.sysBundleName:" +
-         * lSchemaFileDefn.sysBundleName);
-         * System.out.println("                            lSchemaFileDefn.regAuthId:" +
-         * lSchemaFileDefn.regAuthId);
-         * System.out.println("                            lSchemaFileDefn.governanceLevel:" +
-         * lSchemaFileDefn.governanceLevel);
-         * System.out.println("                            lSchemaFileDefn.isMaster:" +
-         * lSchemaFileDefn.isMaster);
-         * System.out.println("                            lSchemaFileDefn.isLDD:" +
-         * lSchemaFileDefn.isLDD);
-         * System.out.println("                            lSchemaFileDefn.isDiscipline:" +
-         * lSchemaFileDefn.isDiscipline);
-         * System.out.println("                            lSchemaFileDefn.isMission:" +
-         * lSchemaFileDefn.isMission); }
-         */
-
         if (lSchemaFileDefn.isMaster) {
-          // System.out.println("debug setupNameSpaceInfoAll - set masterPDSSchemaFileDefn -
-          // lSchemaFileDefn.identifier:" + lSchemaFileDefn.identifier);
-          // masterSchemaFileSortMap.put(lSchemaFileDefn.identifier, lSchemaFileDefn);
           masterPDSSchemaFileDefn = lSchemaFileDefn;
           masterNameSpaceIdNCLC = lSchemaFileDefn.nameSpaceIdNCLC;
           lSchemaFileDefn.isActive = true; // 7777 isActive is set here temporarily until DOM is
@@ -1042,343 +960,8 @@ public class DMDocument extends Object {
   }
 
   /**********************************************************************************************************
-   * set object flags, e.g., deprecated
+   * set object flags
    ***********************************************************************************************************/
-
-  static void setObjectDeprecatedFlag() {
-    // deprecated objects *** Inconsistency here to be fixed - Earth base identifier is different
-    // ***
-    deprecatedAdded = false;
-    deprecatedAddedDOM = false;
-    deprecatedObjects2 = new ArrayList<>();
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Product_Update", "pds", "Product_Update", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Update", "pds", "Update", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("File_Area_Update", "pds", "File_Area_Update", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Update.update_purpose", "pds", "Update", "pds",
-        "update_purpose", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Information_Package_Component_Deep_Archive.checksum_type", "pds",
-            "Information_Package_Component_Deep_Archive", "pds", "checksum_type", "MD5Deep 4.n",
-            false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Airborne", "pds", "Airborne", "", "", "", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Aircraft", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Balloon", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Product_Context.Airborne.type", "pds",
-    // "Airborne", "pds", "type", "Suborbital Rocket", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Airborne", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Aircraft", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Balloon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Suborbital Rocket", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Computer", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Facility", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Laboratory", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Naked Eye", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Observatory", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Spacecraft", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Observing_System_Component.type", "pds",
-        "Observing_System_Component", "pds", "type", "Artificial Illumination", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Internal_Reference.reference_type", "pds",
-        "Internal_Reference", "pds", "reference_type", "is_airborne", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Bundle_Member_Entry.reference_type", "pds",
-        "Bundle_Member_Entry", "pds", "reference_type", "bundle_has_member_collection", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Display_2D_Image", "pds", "Display_2D_Image", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Band_Bin_Set", "pds", "Band_Bin_Set", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Band_Bin", "pds", "Band_Bin", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Axis_Array.unit", "pds", "Axis_Array", "pds", "unit", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Array.Local_Internal_Reference", "pds", "Array",
-        "pds", "Local_Internal_Reference", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.type.Earth Based", "pds",
-        "Instrument_Host", "pds", "type", "Earth Based", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.type.Earth-based", "pds",
-        "Instrument_Host", "pds", "type", "Earth-based", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Instrument.type", "pds", "Instrument", "pds", "type", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Instrument.subtype", "pds", "Instrument", "pds", "subtype", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Calibration", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Open Cluster", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Globular Cluster", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Terrestrial Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Lunar Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Synthetic Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target_Identification.type", "pds",
-        "Target_Identification", "pds", "type", "Meteorite", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Calibration", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Open Cluster", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Globular Cluster", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Terrestrial Sample", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Lunar Sample", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type",
-        "Synthetic Sample", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Target.type", "pds", "Target", "pds", "type", "Meteorite", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Node.name.Imaging", "pds", "Node", "pds", "name", "Imaging", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Node.name.Planetary Rings", "pds", "Node", "pds",
-        "name", "Planetary Rings", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name.Imaging", "pds",
-        "PDS_Affiliate", "pds", "team_name", "Imaging", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name.Planetary Rings", "pds",
-        "PDS_Affiliate", "pds", "team_name", "Planetary Rings", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.data_regime", "pds",
-        "Primary_Result_Summary", "pds", "data_regime", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.type", "pds",
-        "Primary_Result_Summary", "pds", "type", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Primary_Result_Summary.processing_level_id", "pds",
-        "Primary_Result_Summary", "pds", "processing_level_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "subclass_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "restriction_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.reference_type", "pds",
-        "DD_Association", "pds", "reference_type", "extension_of", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association_External", "pds",
-        "DD_Association_External", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("DD_Association.local_identifier", "pds",
-        "DD_Association", "pds", "local_identifier", "", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "subclass_of", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "restriction_of", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("DD_Association_External.reference_type", "pds",
-    // "DD_Association_External", "pds", "reference_type", "extension_of", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Binary.record_delimiter", "pds",
-        "Table_Binary", "pds", "record_delimiter", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Field_Bit.start_bit", "pds", "Field_Bit", "pds",
-        "start_bit", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Field_Bit.stop_bit", "pds", "Field_Bit", "pds", "stop_bit", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.record_delimiter", "pds",
-        "Table_Delimited", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.record_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "record_delimiter",
-            "carriage-return line-feed", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.record_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "record_delimiter",
-            "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Character.record_delimiter", "pds",
-        "Table_Character", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Stream_Text.record_delimiter", "pds", "Stream_Text",
-        "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Checksum_Manifest.record_delimiter", "pds",
-        "Checksum_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.record_delimiter", "pds", "Inventory",
-        "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Transfer_Manifest.record_delimiter", "pds",
-        "Transfer_Manifest", "pds", "record_delimiter", "carriage-return line-feed", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Uniformly_Sampled.sampling_parameters", "pds",
-        "Uniformly_Sampled", "pds", "sampling_parameters", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Object_Statistics.bit_mask", "pds",
-        "Object_Statistics", "pds", "bit_mask", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Object_Statistics.md5_checksum", "pds",
-        "Object_Statistics", "pds", "md5_checksum", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "horizontal tab", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Table_Delimited.field_delimiter", "pds",
-        "Table_Delimited", "pds", "field_delimiter", "vertical bar", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "horizontal tab",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn(
-        "Table_Delimited_Source_Product_External.field_delimiter", "pds",
-        "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_External.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_External", "pds", "field_delimiter", "vertical bar",
-            false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "horizontal tab",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn(
-        "Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-        "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Table_Delimited_Source_Product_Internal.field_delimiter", "pds",
-            "Table_Delimited_Source_Product_Internal", "pds", "field_delimiter", "vertical bar",
-            false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "comma", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "horizontal tab", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "semicolon", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Inventory.field_delimiter", "pds", "Inventory",
-        "pds", "field_delimiter", "vertical bar", false));
-
-    // deprecatedObjects2.add(new DeprecatedDefn ("Update.Update_Entry", "pds", "Update_Entry", "",
-    // "", "", false));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Telescope.altitude", "pds", "Telescope", "pds", "altitude", "", false));
-
-
-    deprecatedObjects2.add(new DeprecatedDefn("Document_Format.format_type", "pds",
-        "Document_Format", "pds", "format_type", "single file", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_Format.format_type", "pds",
-        "Document_Format", "pds", "format_type", "multiple file", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Thermal And Electrical Conductivity Probe", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "X-ray Defraction Spectrometer", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Alpha Particle Xray Spectrometer", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "X-ray Fluorescence", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Instrument.type", "pds", "Instrument", "pds",
-    // "type", "Grinding And Drilling Tool", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Node.type", "name", "Node", "pds", "name",
-        "Navigation Ancillary Information Facility", false));
-    deprecatedObjects2.add(new DeprecatedDefn("PDS_Affiliate.team_name", "pds", "PDS_Affiliate",
-        "pds", "team_name", "Navigation Ancillary Information Facility", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Binary.encoding_standard_id", "pds",
-    // "Encoded_Binary", "pds", "encoding_standard_id", "CCSDS Communications Protocols", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Encoded_Binary.encoding_standard_id", "pds", "Encoded_Binary",
-            "pds", "encoding_standard_id", "CCSDS Space Communications Protocols", false));
-    // deprecatedObjects2.add(new DeprecatedDefn ("Encoded_Image.encoding_standard_id", "pds",
-    // "Encoded_Image", "pds", "encoding_standard_id", "J2C", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Software.version_id", "pds", "Software", "pds",
-        "version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.version_id", "pds",
-        "Instrument_Host", "pds", "version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Instrument_Host.instrument_host_version_id", "pds",
-        "Instrument_Host", "pds", "instrument_host_version_id", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Data_Set_PDS3.start_date_time", "pds",
-        "Data_Set_PDS3", "pds", "start_date_time", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Data_Set_PDS3.stop_date_time", "pds",
-        "Data_Set_PDS3", "pds", "stop_date_time", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 2.0", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 3.2", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 4.0", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Document_File.document_standard_id", "pds",
-        "Document_File", "pds", "document_standard_id", "HTML 4.01", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Radiance.unit_id", "pds",
-        "Units_of_Radiance", "pds", "unit_id", "W*m**-2*sr**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "SFU", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-2*Hz**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-2*nm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "W*m**-3", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Irradiance.unit_id", "pds",
-        "Units_of_Spectral_Irradiance", "pds", "unit_id", "uW*cm**-2*um**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*Hz**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*nm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-2*sr**-1*um**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "W*m**-3*sr**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Spectral_Radiance.unit_id", "pds",
-        "Units_of_Spectral_Radiance", "pds", "unit_id", "uW*cm**-2*sr**-1*um**-1", true));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "cm**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "m**-1", true));
-    deprecatedObjects2.add(new DeprecatedDefn("Units_of_Wavenumber.unit_id", "pds",
-        "Units_of_Wavenumber", "pds", "unit_id", "nm**-1", true));
-
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Units_of_Map_Scale", "pds", "Units_of_Map_Scale", "", "", "", false));
-
-    deprecatedObjects2
-        .add(new DeprecatedDefn("ASCII_Date", "pds", "ASCII_Date", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("ASCII_Date_Time", "pds", "ASCII_Date_Time", "", "", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("ASCII_Date_Time_UTC", "pds", "ASCII_Date_Time_UTC", "", "", "", false));
-
-    deprecatedObjects2.add(new DeprecatedDefn("Vector", "pds", "Vector", "", "", "", false));
-    deprecatedObjects2
-        .add(new DeprecatedDefn("Vector_Component", "pds", "Vector_Component", "", "", "", false));
-    deprecatedObjects2.add(
-        new DeprecatedDefn("Vector_Cartesian_3", "pds", "Vector_Cartesian_3", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Acceleration", "pds",
-        "Vector_Cartesian_3_Acceleration", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Position", "pds",
-        "Vector_Cartesian_3_Position", "", "", "", false));
-    deprecatedObjects2.add(new DeprecatedDefn("Vector_Cartesian_3_Velocity", "pds",
-        "Vector_Cartesian_3_Velocity", "", "", "", false));
-  }
-
-  static void Dump333DeprecatedObjects2(String title,
-      ArrayList<DeprecatedDefn> lDeprecatedObjectsArr) {
-    System.out.println("\n debug Dump333DeprecatedObjects2 - " + title);
-    for (DeprecatedDefn lDep : lDeprecatedObjectsArr) {
-      System.out.println("debug lDep.title:" + lDep.title + " |  lDep.classNameSpaceIdNC:"
-          + lDep.classNameSpaceIdNC + " |  lDep.className:" + lDep.className
-          + " |  lDep.attrNameSpaceIdNC:" + lDep.attrNameSpaceIdNC + " |  lDep.attrName:"
-          + lDep.attrName + " |  lDep.value:" + lDep.value + " |  lDep.isValue:" + lDep.isValue
-          + " |  lDep.isAttribute:" + lDep.isAttribute + " |  lDep.isUnitId:" + lDep.isUnitId);
-    }
-  }
 
   static void setexposedElementFlag() {
     // the set of classes and attributes that will be externalized (defined as xs:Element)
@@ -1541,7 +1124,7 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
     parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
-        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00")
+        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
     parser.addArgument("fileNameArr").dest("fileNameArr").nargs("*")
@@ -1736,8 +1319,6 @@ public class DMDocument extends Object {
       }
       String lMapID = lMainMsg.msgTypeLevel + "." + lMainMsg.msgOrder.toString();
       lMainMsgMap.put(lMapID, lMainMsg);
-      // System.out.println ("debug printErrorMessages lMainMsg.msgTypeLevel:" +
-      // lMainMsg.msgTypeLevel + " lMainMsg.msgOrder.toString():" + lMainMsg.msgOrder.toString());
     }
 
     // using message sorted array, print each message and count message types
@@ -1753,7 +1334,6 @@ public class DMDocument extends Object {
       if (lPreviousGroupTitle.compareTo(lMainMsg.msgGroupTitle) != 0) {
         lPreviousGroupTitle = lMainMsg.msgGroupTitle;
         System.out.println("");
-        // System.out.println (" - " + lMainMsg.msgGroupTitle + " -");
       }
       System.out.println(lMainMsg.msgPrefix + " " + lMainMsg.msgCleanText);
     }

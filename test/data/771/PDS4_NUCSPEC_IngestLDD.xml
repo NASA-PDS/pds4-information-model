@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Ingest_LDD xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1F00.xsd">
+  <name>nucspec</name>
+  <ldd_version_id>1.1.0.0</ldd_version_id>
+  <dictionary_type>Discipline</dictionary_type>
+  <full_name>Small Bodies Node</full_name>
+  <steward_id>sbn</steward_id>
+  <namespace_id>nucspec</namespace_id>
+  <comment>This dictionary covers nuclear spectroscopy observations.</comment>
+  <last_modification_date_time>2022-05-10T18:44:16Z</last_modification_date_time>
+
+  <DD_Attribute>
+    <name>coefficient</name>
+    <version_id>1.1</version_id>
+    <local_identifier>coefficient</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The coefficient of a single term of the polynomial relating channel number to pulse height.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>order</name>
+    <version_id>1.1</version_id>
+    <local_identifier>order</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The order of a single term of the polynomial relating channel number to pulse height.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>state_index</name>
+    <version_id>1.1</version_id>
+    <local_identifier>state_index</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The state_index points to a row of a look up table containing the instrument settings.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>first_record</name>
+    <version_id>1.1</version_id>
+    <local_identifier>first_record</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The first record for which the state applies, inclusive.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>last_record</name>
+    <version_id>1.1</version_id>
+    <local_identifier>last_record</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The last record for which this state applies, inclusive.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>record_count</name>
+    <version_id>1.1</version_id>
+    <local_identifier>record_count</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The number of consecutive records, including the first, for which this state applies.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>1</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>state_time_field_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>state_time_field_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The name of the field in the referenced data table that contains the time.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>UTF8_String</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>et_start</name>
+    <version_id>2.0</version_id>
+    <local_identifier>et_start</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The earliest ephemeris time, as defined by the referenced field, for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <unit_of_measure_type>Units_of_Time</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>et_stop</name>
+    <version_id>2.0</version_id>
+    <local_identifier>et_stop</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The latest ephemeris time, as defined by the referenced field, for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <unit_of_measure_type>Units_of_Time</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sclk_start_time</name>
+    <version_id>1.1</version_id>
+    <local_identifier>sclk_start_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The earliest spacecraft clock time, in ticks since spacecraft clock start, for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sclk_stop_time</name>
+    <version_id>1.1</version_id>
+    <local_identifier>sclk_stop_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The latest spacecraft clock time, in ticks since spacecraft clock start, for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>utc_start_time</name>
+    <version_id>1.0</version_id>
+    <local_identifier>utc_start_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The earliest Universal Coordinated Time for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Date_Time_YMD_UTC</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>utc_stop_time</name>
+    <version_id>1.0</version_id>
+    <local_identifier>utc_stop_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The latest Universal Coordinated Time for which this state or condition is applicable.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Date_Time_YMD_UTC</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The name of the detector.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>UTF8_Short_String_Collapsed</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>description</name>
+    <version_id>1.0</version_id>
+    <local_identifier>description</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>A description for the detector.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>UTF8_Text_Preserved</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>comment</name>
+    <version_id>1.0</version_id>
+    <local_identifier>comment</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Any notes about the state at the time of observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>UTF8_Text_Preserved</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>condition_type</name>
+    <version_id>1.0</version_id>
+    <local_identifier>condition_type</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>GRaND Instrument</submitter_name>
+    <definition>Remarks about the containing object.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <DD_Permissible_Value>
+        <value>SEP</value>
+        <value_meaning>Solar Energetic Particles</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Solar Flare</value>
+        <value_meaning>Solar Flare</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Gamma-ray Burst</value>
+        <value_meaning>Gamma-ray Burst</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Electron Burst</value>
+        <value_meaning>Electron Burst</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Data Glitch</value>
+        <value_meaning>Data Glitch</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>condition_active</name>
+    <version_id>1.0</version_id>
+    <local_identifier>condition_active</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>GRaND Instrument</submitter_name>
+    <definition>A flag indicating whether the condition was in effect at the given time.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Boolean</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>condition_source</name>
+    <version_id>1.0</version_id>
+    <local_identifier>condition_source</local_identifier>
+    <nillable_flag>true</nillable_flag>
+    <submitter_name>GRaND Instrument</submitter_name>
+    <definition>A string identifying the source of the condition at the given time.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <DD_Class>
+    <name>NucSpec_Observation_Properties</name>
+    <version_id>1.0</version_id>
+    <local_identifier>NucSpec_Observation_Properties</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>This class specifies properties pertaining to a nuclear spectroscopy observation.</definition>
+    <element_flag>true</element_flag>
+    <DD_Association>
+      <identifier_reference>Energy_Calibration</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Instrument_Settings</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Detectors</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Observing_Conditions</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Energy_Calibration</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Energy_Calibration</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Specifies methods and data used to determine the pulse height in energy units (e.g. MeV) for each channel of a pulse height spectrum.</definition>
+    <DD_Association>
+      <identifier_reference>Polynomial</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Calibration_Reference</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Calibration_Reference</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Calibration_Reference</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Contains a reference to a document that describes the energy calibration for the product.</definition>
+    <DD_Association>
+      <identifier_reference>pds.Internal_Reference</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Instrument_Settings</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Instrument_Settings</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>This class specifies instrument settings. Instrument settings are driven via a state table, which are associated with specific observations within the data product, either by directly indicating those records, or indicating the observation times at which certain states apply.</definition>
+    <DD_Association>
+      <identifier_reference>State_Table</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Polynomial</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Polynomial</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The pulse height in energy units (e.g. MeV) is determined for a given channel number using the polynomial: H(x) = a0 + a1 x + a2 x^2 + ..., where H is pulse height with energy units and x is channel number.</definition>
+    <DD_Association>
+      <identifier_reference>Polynomial_Term</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Polynomial_Term</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Polynomial_Term</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Describes a single term in the polynomial function.</definition>
+    <DD_Association>
+      <identifier_reference>order</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>coefficient</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>State_Table</name>
+    <version_id>1.0</version_id>
+    <local_identifier>State_Table</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Specifies an additional look-up table that provides additional information about specific observations within the product.</definition>
+    <DD_Association>
+      <identifier_reference>pds.Internal_Reference</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>pds.Local_Internal_Reference</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>State_Table_Entry</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>State_Table_Entry</name>
+    <version_id>1.0</version_id>
+    <local_identifier>State_Table_Entry</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Associates individual observations in the data product with a record in the state table, providing additional information on those observations.</definition>
+    <DD_Association>
+      <identifier_reference>state_index</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>comment</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>XSChoice#</identifier_reference>
+      <identifier_reference>Applicable_Records</identifier_reference>
+      <identifier_reference>State_Time</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Applicable_Records</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Applicable_Records</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The records to which this state applies.</definition>
+    <DD_Association>
+      <identifier_reference>XSChoice#</identifier_reference>
+      <identifier_reference>First_Last</identifier_reference>
+      <identifier_reference>First_Count</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>State_Time</name>
+    <version_id>1.0</version_id>
+    <local_identifier>State_Time</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>The time during which this state was applicable. The state table entry is applicable to records in the referenced data table if the time of the data record, as given by state_time_field_name, is between the start time and stop time given in State_Time.</definition>
+    <DD_Association>
+      <identifier_reference>state_time_field_name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>XSChoice#</identifier_reference>
+      <identifier_reference>Time_Range_ET</identifier_reference>
+      <identifier_reference>Time_Range_SCLK</identifier_reference>
+      <identifier_reference>Time_Range_UTC</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>First_Last</name>
+    <version_id>1.0</version_id>
+    <local_identifier>First_Last</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Defines the first and last records for which this state applies.
+
+The record numbers are one-based and inclusive.</definition>
+    <DD_Association>
+      <identifier_reference>first_record</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>last_record</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>First_Count</name>
+    <version_id>1.0</version_id>
+    <local_identifier>First_Count</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Defines the records to which this state applies by identifying the first record (inclusive), and the number of contiguous records, including the first.</definition>
+    <DD_Association>
+      <identifier_reference>first_record</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>record_count</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Detectors</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Detectors</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Specifies which detectors were active on an instrument at the time of observation.</definition>
+    <DD_Association>
+      <identifier_reference>Detector</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Detector</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Detector</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Specifies a single detector which was active at the time of observation.</definition>
+    <DD_Association>
+      <identifier_reference>name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>description</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>comment</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Time_Range_ET</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Time_Range_ET</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Ephemeris time, as defined by the referenced field, for the first and last science data records for a temporally contiguous block of records with the same state or affected by the same conditions. These records need not be contiguous within the file, but there must be no records with a different state between the start and stop time.</definition>
+    <DD_Association>
+      <identifier_reference>et_start</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>et_stop</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Time_Range_SCLK</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Time_Range_SCLK</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Spacecraft clock time in ticks since spacecraft clock start for the first and last science data records for a temporally contiguous block of records with the same state or affected by the same conditions. These records need not be contiguous within the file, but there must be no records with a different state between the start and stop time.</definition>
+    <DD_Association>
+      <identifier_reference>sclk_start_time</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>sclk_stop_time</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Time_Range_UTC</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Time_Range_UTC</local_identifier>
+    <submitter_name>Small Bodies Node</submitter_name>
+    <definition>Universal Coordinated Time for the first and last science data records for a temporally contiguous block of records with the same state or affected by the same conditions. These records need not be contiguous within the file, but there must be no records with a different state between the start and stop time.</definition>
+    <DD_Association>
+      <identifier_reference>utc_start_time</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>utc_stop_time</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Observing_Conditions</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Observing_Conditions</local_identifier>
+    <submitter_name>GRaND Instrument</submitter_name>
+    <definition>Describes activity that may affect nuclear spectroscopy observations.</definition>
+    <DD_Association>
+      <identifier_reference>condition_type</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Observing_Condition</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Observing_Condition</name>
+    <version_id>1.1</version_id>
+    <local_identifier>Observing_Condition</local_identifier>
+    <submitter_name>GRaND Instrument</submitter_name>
+    <definition>Describes the times that the activity affecting nuclear spectroscopy observations was in effect, along with the sources of the activity, if applicable.</definition>
+    <DD_Association>
+      <identifier_reference>condition_active</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>condition_source</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>comment</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>XSChoice#</identifier_reference>
+      <identifier_reference>Time_Range_UTC</identifier_reference>
+      <identifier_reference>Time_Range_ET</identifier_reference>
+      <identifier_reference>Time_Range_SCLK</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+
+  <DD_Rule>
+    <local_identifier>state_table_ref</local_identifier>
+    <rule_context>nucspec:State_Table/pds:Internal_Reference</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>pds:reference_type = ('nucspec_product_to_state_table')</rule_test>
+      <rule_message>In the nucspec:State_Table class, the attribute pds:reference_type must be equal to 'nucspec_product_to_state_table'.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>cal_ref_doc</local_identifier>
+    <rule_context>nucspec:Calibration_Reference/pds:Internal_Reference</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>pds:reference_type = ('energy_calibration_to_calibration_document')</rule_test>
+      <rule_message>In the nucspec:Calibration_Reference class, the attribute pds:reference_type must be equal to 'energy_calibration_to_calibration_document'.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>first_last_ordering</local_identifier>
+    <rule_context>nucspec:First_Last</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>nucspec:last_record >= nucspec:first_record</rule_test>
+      <rule_message>In the nucspec:First_Last class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>applicable_records_local_reference_type</local_identifier>
+    <rule_context>nucspec:State_Table/pds:Local_Internal_Reference</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>pds:local_reference_type = ('state_table_to_data_table')</rule_test>
+      <rule_message>In the nucspec:State_Table class, the attribute pds:local_reference_type must be equal to 'state_table_to_data_table'.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>state_table_single_local_identfier_reference</local_identifier>
+    <rule_context>nucspec:State_Table/pds:Local_Internal_Reference</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>count(pds:local_identifier_reference) = 1</rule_test>
+      <rule_message>In the nucspec:State_Table class, the class pds:Local_Internal_Reference must contain only a single pds:local_identifier_reference.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+
+  <DD_Rule>
+    <local_identifier>applicable_records_require_record_count</local_identifier>
+    <rule_context>nucspec:Applicable_Records</rule_context>
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>//*[pds:local_identifier=$local_id]/pds:records</rule_test>
+      <rule_message>In the nucspec:Applicable_Records class, the local_identifier_reference (&lt;sch:value-of select='$local_id'/&gt;) must reference a table with a record count.</rule_message>
+      <rule_description>In the nucspec:Applicable_Records class, the local_identifier_reference must reference a table with a record count.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+
+
+  <DD_Rule>
+    <local_identifier>state_table_entry_table_exists</local_identifier>
+    <rule_context>nucspec:State_Table_Entry</rule_context>
+    <rule_assign>name="local_id" value="../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>//(pds:Table_Character | pds:Table_Delimited | pds:Table_Binary)[pds:local_identifier = $local_id]</rule_test>
+      <rule_message>In the nucspec:State_Table_Entry class, the local_identifier_reference (&lt;sch:value-of select='$local_id'/&gt;) must reference a table.</rule_message>
+      <rule_description>In the nucspec:State_Table_Entry class, the local_identifier_reference must reference a table.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>last_bounds_check</local_identifier>
+    <rule_context>nucspec:First_Last</rule_context>
+    <rule_assign>name="local_id" value="../../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
+    <rule_assign>name="last_record" value="number(nucspec:last_record)"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>$record_count >= $last_record</rule_test>
+      <rule_message>In the nucspec:First_Last class, the index of the last record (&lt;sch:value-of select='$last_record'/&gt;) must be less than or equal to the record count of the referenced table (&lt;sch:value-of select='$record_count'/&gt;).</rule_message>
+      <rule_description>In the nucspec:First_Last class, the index of the last record must be less than or equal to the record count of the referenced table.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>first_count_bounds_check</local_identifier>
+    <rule_context>nucspec:First_Count</rule_context>
+    <rule_assign>name="local_id" value="../../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
+    <rule_assign>name="last_record" value="number(nucspec:first_record) + number(nucspec:record_count) - 1"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>$record_count >= $last_record</rule_test>
+      <rule_message>In the nucspec:First_Count class, the index of the last record (&lt;sch:value-of select='$last_record'/&gt;) must be less than or equal to the record count of the referenced table (&lt;sch:value-of select='$record_count'/&gt;).</rule_message>
+      <rule_description>In the nucspec:First_Count class, the index of the last record must be less than or equal to the record count of the referenced table.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>state_time_field_exists</local_identifier>
+    <rule_context>nucspec:State_Time</rule_context>
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="field_name" value="nucspec:state_time_field_name"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>//(pds:Table_Character | pds:Table_Delimited | pds:Table_Binary)[pds:local_identifier = $local_id]//(pds:Field_Character | pds:Field_Delimited | pds:Field_Binary)[pds:name=$field_name]</rule_test>
+      <rule_message>In the nucspec:State_Time class, state_time_field_name (&lt;sch:value-of select='$field_name'/&gt;) must reference a field in the referenced data table (&lt;sch:value-of select='$local_id'/&gt;).</rule_message>
+      <rule_description>In the nucspec:State_Time class, state_time_field_name must reference a field in the referenced data table.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>observing_condition_source_or_active</local_identifier>
+    <rule_context>nucspec:Observing_Condition</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>(nucspec:condition_source | nucspec:condition_active)</rule_test>
+      <rule_message>In the nucspec:Observing_Condition class, condition_source and/or condition_active must be specified.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+</Ingest_LDD>

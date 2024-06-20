@@ -123,9 +123,6 @@ class ProtPontDOMModel extends DOMInfoModel {
           lClass.registeredByValue = DMDocument.registeredByValue;
           lClass.subModelId = subModelId;
 
-          // get disposition for the class from MDPTNConfig
-          boolean isInParsedClassMap = false;
-
           // get disposition for the class from dd11179
           if (DMDocument.overWriteClass && (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0)) {
             lClass.getDOMClassDisposition2(); // from protege (new)

@@ -239,21 +239,7 @@ public class GetDOMModel extends Object {
       DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
       DOMInfoModel.masterDOMRuleIdMap.put(lRule.identifier, lRule);
     }
-    DOMInfoModel.masterDOMRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleIdMap.values());
-
-    // 006 - get usecases from UpperModel.pins file
-    /*
-     * lProtPinsDOMModel.getUseCasesPins ();
-     * 
-     * // 006.5 - copy in parsed rules from uppermodel.pins ArrayList <DOMUseCase>
-     * testUseCaseDefnArr = new ArrayList <DOMUseCase>
-     * (lProtPinsDOMModel.testUseCaseDefnMap.values()); for (Iterator <DOMUseCase> i =
-     * testUseCaseDefnArr.iterator(); i.hasNext();) { DOMUseCase lUseCase = (DOMUseCase) i.next();
-     * DOMInfoModel.masterDOMUseCaseMap.put(lUseCase.rdfIdentifier, lUseCase);
-     * DOMInfoModel.masterDOMUseCaseIdMap.put(lUseCase.identifier, lUseCase); }
-     * DOMInfoModel.masterDOMUseCaseArr = new ArrayList <DOMUseCase>
-     * (DOMInfoModel.masterDOMUseCaseIdMap.values());
-     */
+    DOMInfoModel.masterDOMRuleArr = new ArrayList<>(DOMInfoModel.masterDOMRuleMap.values()); // use unique rdfIdentifier
 
     // 007 - get list of USER attributes (owned attributes)
     // This must be done before LDD parsing since it needs the USER attributes
@@ -339,10 +325,6 @@ public class GetDOMModel extends Object {
     // used) use flags.
     DMDocument.masterDOMInfoModel.setInactiveFlag();
 
-    // 333
-    // 018.7 - get the Deprecated Objects array
-    // DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-
     // 019 - general master attribute fixup
     // anchorString; sort_identifier; sort attribute.valArr
     DMDocument.masterDOMInfoModel.setMasterAttrGeneral();
@@ -357,16 +339,7 @@ public class GetDOMModel extends Object {
     DMDocument.masterDOMInfoModel.setRegistrationStatus();
 
     // 018.7 - get the Deprecated Objects array
-    // 333
-    if (DMDocument.overWriteDeprecated) {
-      DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-    }
     DMDocument.deprecatedObjects2 = DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr();
-
-    // 333 DMDocument.Dump333DeprecatedObjects2 ("DMDocument", DMDocument.deprecatedObjects2);
-
-    // 333 DMDocument.Dump333DeprecatedObjects2 ("DD11179",
-    // DMDocument.masterDOMInfoModel.getDeprecatedObjectsArr());
 
     // 024 - set up master data types - the data type map
     DMDocument.masterDOMInfoModel.setMasterDataType2();

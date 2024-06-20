@@ -1,4 +1,4 @@
-; Wed Feb 14 12:30:04 CST 2024
+; Wed May 22 16:49:23 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -992,12 +992,12 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>")
-	(assertStmt "if (pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) or starts-with(pds:logical_identifier, $urn_kari) else true()")
+	(assertMsg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>")
+	(assertStmt "if (not ($parentObj) and pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) or starts-with(pds:logical_identifier, $urn_kari) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/>"))
+	(specMesg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104] of  Schematron_Assert
 
@@ -1354,6 +1354,101 @@
 		"is_facility"
 		"is_telescope"
 		"is_airborne"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004777] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "sequence_number")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Organization")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004777.101])
+	(identifier "pds:Organization")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"parentNode\" value=\"local-name(parent::*)\""
+		"name=\"parentObj\" value=\"$parentNode = ('Person', 'Organization', 'Parent_Organization', 'Affiliation')\"")
+	(type "TBD_type")
+	(xpath "pds:sequence_number"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004777.101] of  Schematron_Assert
+
+	(assertMsg "The minimum value of sequence_number within the context of 'Person' or 'Organization' or 'Parent_Organization' or 'Affiliation' is 1.")
+	(assertStmt "(not(. = 0 and $parentObj))")
+	(assertType "RAW")
+	(attrTitle "sequence_number")
+	(identifier "sequence_number")
+	(specMesg "The minimum value of sequence_number within the context of 'Person' or 'Organization' or 'Parent_Organization' or 'Affiliation' is 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "contributor_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Organization")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.106])
+	(identifier "pds:Organization/pds:contributor_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"parentNode\" value=\"local-name(parent::*)\""
+		"name=\"parentObj\" value=\"$parentNode = ('List_Contributor')\""
+		"name=\"parentNode2\" value=\"local-name(parent::*/parent::*)\""
+		"name=\"parentObj2\" value=\"$parentNode2 = ('List_Contributor')\"")
+	(type "TBD_type")
+	(xpath "pds:Organization/pds:contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.101] of  Schematron_Assert
+
+	(assertMsg "sequence_number = '<sch:value-of select=\".\" />'.")
+	(assertStmt "false()")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.102] of  Schematron_Assert
+
+	(assertMsg "parentObj = '<sch:value-of select=\"$parentObj\" />'.")
+	(assertStmt "false()")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.103] of  Schematron_Assert
+
+	(assertMsg "parentNode = '<sch:value-of select=\"$parentNode\" />'")
+	(assertStmt "false()")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.104] of  Schematron_Assert
+
+	(assertMsg "parentNode2 = '<sch:value-of select=\"$parentNode2\" />'.")
+	(assertStmt "false()")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.105] of  Schematron_Assert
+
+	(assertMsg "parentObj2 = '<sch:value-of select=\"$parentObj2\" />'.")
+	(assertStmt "false()")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AOrganization.100004778.106] of  Schematron_Assert
+
+	(assertMsg "The atribute 'pds:Organization/pds:contributor_type' can only be used within the context of 'List_Contributor'.")
+	(assertStmt "($parentObj2)")
+	(assertType "RAW")
+	(attrTitle "contributor_type")
+	(identifier "contributor_type"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_AIP%2Fpds%3AInformation_Package_Component%2Fpds%3AInternal_Reference.100002527] of  Schematron_Rule
 
