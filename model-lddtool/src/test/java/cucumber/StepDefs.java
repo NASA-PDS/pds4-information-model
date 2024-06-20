@@ -35,14 +35,14 @@ public class StepDefs {
     }
 
     @Given("the test directories {string} and {string} and command arguments {string}")
-    public void i_have_lddtool_installed(String resourceDirectory, String testDirectory, String commandArgs) {
+    public void test_directories_and_command_arguments(String resourceDirectory, String testDirectory, String commandArgs) {
         this.resourceDirectory = resourceDirectory;
         this.testDirectory = testDirectory;
         this.commandArgs = commandArgs;
     }
 
     @When("the lddtool tool is run")
-    public void i_run_lddtool_with() {
+    public void run_lddtool() {
         String[] args = this.resolveArgumentStrings();  // resolve the commandArgs into a String array
         try {
             // run lddtool with the commandArgs and capture the output
@@ -54,8 +54,8 @@ public class StepDefs {
         }
     }
 
-    @Then("the produced output from lddtool command should match or be similar to the expected results {string}")
-    public void i_should_receive(String expectedResponse) {
+    @Then("the produced output from lddtool command should match or be similar to the expected response {string}")
+    public void output_should_match_expected_response(String expectedResponse) {
         // compare the actual output of running lddtool with the expected response
         assertTrue(this.actualResponse.contains(expectedResponse),
                 "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
