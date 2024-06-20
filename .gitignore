@@ -76,7 +76,10 @@ pom.xml.versionsBackup
 .gwt/
 target/
 validate_stack_traces*
+.java-version
 
 # macOS specific stuff
 .DS_Store
 
+# VSCode stuff
+.vscode/
