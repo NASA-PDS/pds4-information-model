@@ -1,12 +1,21 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-06)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-20)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
+
+**Requirements:**
+
+- Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
+
+**Defects:**
+
+- Unable to build LDDs for 1E00 [\#776](https://github.com/NASA-PDS/pds4-information-model/issues/776) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
 - Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
+- Initial Implementation of Cucumber Framework for LDDTool Tests [\#714](https://github.com/NASA-PDS/pds4-information-model/issues/714)
 
 ## [v15.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v15.1.0) (2024-05-24)
 
