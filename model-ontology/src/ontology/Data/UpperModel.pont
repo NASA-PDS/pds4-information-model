@@ -1,4 +1,4 @@
-; Wed May 22 16:49:23 EDT 2024
+; Thu Jun 20 16:08:21 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12132,7 +12132,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "A" "mA")
+;+		(value "A" "mA" "microA" "nA")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
