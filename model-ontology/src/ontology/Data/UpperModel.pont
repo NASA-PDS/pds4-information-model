@@ -1,4 +1,4 @@
-; Thu Jun 20 16:08:21 EDT 2024
+; Thu Jun 20 21:07:12 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11542,7 +11542,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a magnitude of mass."
+(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a magnitude of quantity of chemically unique and identifiable particles (atoms, molecules, ions, etc.)."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
