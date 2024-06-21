@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-20)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-21)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
 **Requirements:**
 
+- Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
 - Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
 
 **Defects:**
