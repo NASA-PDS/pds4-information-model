@@ -1,4 +1,4 @@
-; Thu Jun 20 21:07:12 EDT 2024
+; Mon Jun 24 14:56:07 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10250,7 +10250,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Encoded_Image Table_Character Header Encoded_Header Table_Delimited Array_2D Array_3D XSChoice%23 Array_1D Array Encoded_Audio)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Encoded_Image Table_Character Header Encoded_Header Table_Delimited Array_2D Array_3D XSChoice%23 Array_1D Array Encoded_Audio Encoded_Video)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
@@ -10421,7 +10421,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest Array_1D Encoded_Audio)
+;+		(allowed-classes Table_Binary Table_Delimited Table_Character XSChoice%23 Array_3D_Movie Array_2D_Spectrum Array_2D Array_3D Array Array_2D_Image Array_2D_Map Array_3D_Image Array_3D_Spectrum Stream_Text Encoded_Image Header Encoded_Header Checksum_Manifest Array_1D Encoded_Audio Encoded_Video)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_File
