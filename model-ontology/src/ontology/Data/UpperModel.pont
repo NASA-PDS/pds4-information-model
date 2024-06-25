@@ -1,4 +1,4 @@
-; Mon Jun 24 14:56:07 EDT 2024
+; Mon Jun 24 20:07:52 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6077,18 +6077,8 @@
 ;+		(value "Individual Investigation" "Mission" "Observing Campaign" "Other Investigation" "Field Campaign")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot has_mission_phase
-;+		(comment "The has_mission_phase association is a relationship to Mission_Phase.")
-		(type INSTANCE)
-;+		(allowed-classes Mission_Phase)
-		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot terse_description
-;+		(comment "The terse_description attribute provides a short statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
@@ -6101,16 +6091,6 @@
 ;+		(comment "The stop_date attribute provides the date when an activity ended.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot has_alias_index
-;+		(comment "The has_alias_index association is a relationship to Alias_Index.")
-		(type INSTANCE)
-;+		(allowed-classes Alias_Index)
-		(create-accessor read-write))
-	(multislot has_acronym_index
-;+		(comment "The has_acronym_index association is a relationship to Acronym_Index.")
-		(type INSTANCE)
-;+		(allowed-classes Acronym_Index)
 		(create-accessor read-write)))
 
 (defclass Observing_System "The Observing System class describes the entire suite used to collect the data."
@@ -9903,25 +9883,10 @@
 (defclass Modification_Detail "The Modification_Detail class provides the details of one round of modification for the product.  The first, required, instance of this class documents the date the product was first registered."
 	(is-a Product_Components)
 	(role concrete)
-	(multislot has_list_editor
-;+		(comment "The has_list_editor association is a relationship to List_Editor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Editor)
-		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(multislot has_list_author
-;+		(comment "The has_List_Author association is a relationship to List_Author.")
-		(type INSTANCE)
-;+		(allowed-classes List_Author)
-		(create-accessor read-write))
-	(multislot has_list_contributor
-;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Contributor)
 		(create-accessor read-write))
 	(single-slot version_id
 ;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
