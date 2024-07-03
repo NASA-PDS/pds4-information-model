@@ -54,10 +54,19 @@ public class StepDefs {
         }
     }
 
-    @Then("the produced output from lddtool command should match or be similar to the expected response {string}")
-    public void output_should_match_expected_response(String expectedResponse) {
-        // compare the actual output of running lddtool with the expected response
-        assertTrue(this.actualResponse.contains(expectedResponse),
+    @Then("the produced output from lddtool command should {string} expected response {string}")
+    public void output_should_match_expected_response(String assertType, String expectedResponse) {
+        switch (assertType) {
+            case "contain":
+                assertTrue(this.actualResponse.contains(expectedResponse),
                 "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
+                break;
+            case "not contain":
+                assertFalse(this.actualResponse.contains(expectedResponse),
+                "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
+                break;
+            default:
+                throw new RuntimeException("Invalid assert type: " + assertType);
+        }
     }
 }
