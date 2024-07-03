@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-06-21)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-07-03)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -15,6 +15,7 @@
 
 **Other closed issues:**
 
+- Complete CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
 - Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
 - Initial Implementation of Cucumber Framework for LDDTool Tests [\#714](https://github.com/NASA-PDS/pds4-information-model/issues/714)
 
