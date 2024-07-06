@@ -69,6 +69,7 @@
               <cucumber.plugin>pretty,html:target/cucumber.html</cucumber.plugin>
               <cucumber.features>classpath:features</cucumber.features>
               <cucumber.glue>cucumber</cucumber.glue>
+              <data.home>${project.basedir}/../model-ontology/src/ontology/Data</data.home>
           </systemPropertyVariables>
         </configuration>
       </plugin>
