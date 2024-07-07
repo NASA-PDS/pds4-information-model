@@ -5,9 +5,10 @@ Feature: Running integration tests for lddtool
 
   Scenario Outline: Running lddtool with different parameters
     Given the test directories <resourceDirectory> and <testDirectory> and command arguments <commandArgs>
-    When the lddtool tool is run
-    Then the produced output from lddtool command should <assertType> expected response <expectedResponse>
+    When lddtool is run
+    Then the produced output from lddtool command should <assertType> <output>
 
     Examples:
-      | testName                                                                         | resourceDirectory    | testDirectory | commandArgs                                                        | assertType | expectedResponse |
-      | "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources" | "github738"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "contain" | "0 xerror(s)"     |
+      | testName                                                                                                                        | resourceDirectory    | testDirectory | commandArgs                                                        | assertType    | output                                           |
+      | "NASA-PDS/pds4-information-model#733 LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing" | "src/test/resources" | "github733"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "not contain" | "ERROR SetMasterAttrXMLBaseDataTypeFromDataType" |
+      | "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO"                                                | "src/test/resources" | "github738"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "contain"     | "0 error(s)"                                     |

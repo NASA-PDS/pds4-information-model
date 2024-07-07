@@ -3,6 +3,7 @@ package cucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.After;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -34,6 +35,14 @@ public class StepDefs {
         return args;
     }
 
+    /*
+     * This method is called after each test case to clean up the test environment
+     */
+    @After
+    public void tearDown() {
+        
+    }
+
     @Given("the test directories {string} and {string} and command arguments {string}")
     public void test_directories_and_command_arguments(String resourceDirectory, String testDirectory, String commandArgs) {
         this.resourceDirectory = resourceDirectory;
@@ -41,7 +50,7 @@ public class StepDefs {
         this.commandArgs = commandArgs;
     }
 
-    @When("the lddtool tool is run")
+    @When("lddtool is run")
     public void run_lddtool() {
         String[] args = this.resolveArgumentStrings();  // resolve the commandArgs into a String array
         try {
@@ -54,16 +63,16 @@ public class StepDefs {
         }
     }
 
-    @Then("the produced output from lddtool command should {string} expected response {string}")
-    public void output_should_match_expected_response(String assertType, String expectedResponse) {
+    @Then("the produced output from lddtool command should {string} {string}")
+    public void output_should_match_expected_response(String assertType, String output) {
         switch (assertType) {
             case "contain":
-                assertTrue(this.actualResponse.contains(expectedResponse),
-                "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
+                assertTrue(this.actualResponse.contains(output),
+                "Output: " + output + "\nActual response: " + this.actualResponse);
                 break;
             case "not contain":
-                assertFalse(this.actualResponse.contains(expectedResponse),
-                "Expected response: " + expectedResponse + " Actual response: " + this.actualResponse);
+                assertFalse(this.actualResponse.contains(output),
+                "Output: " + output + "\nActual response: " + this.actualResponse);
                 break;
             default:
                 throw new RuntimeException("Invalid assert type: " + assertType);
