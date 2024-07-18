@@ -900,19 +900,6 @@ public class DMDocument extends Object {
   }
 
   /**
-   * check to see if string is numeric
-   */
-  static public boolean isInteger(String s) {
-    StringBuffer sb = new StringBuffer(s);
-    for (int i = 0; i < sb.length(); i++) {
-      if (!Character.isDigit(sb.charAt(i))) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
    * get a UTC Formated Date/Time from Instant 
    */
   static String getUTCDateTimeFromInstant() {

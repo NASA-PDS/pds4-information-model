@@ -1195,19 +1195,6 @@ public class WriteDOMSpecification extends Object {
   }
 
   /**
-   * check to see if string is numeric
-   */
-  public boolean myIsInteger(String s) {
-    StringBuffer sb = new StringBuffer(s);
-    for (int i = 0; i < sb.length(); i++) {
-      if (!Character.isDigit(sb.charAt(i))) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
    * bump current level by one
    */
   public void itemNumPlus(ArrayList<String> itemNum) {

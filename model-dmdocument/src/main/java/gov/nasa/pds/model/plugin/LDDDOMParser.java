@@ -2780,31 +2780,42 @@ public class LDDDOMParser extends Object {
       getPartialMatches(lDOMAttr, numMatches, maxMatches);
     }
   }
+  
+  public void validateAssociationCardinalities(String lMinCard, String lMaxCard,
+	      String lLocalIdentifier) {
+	    if (lMinCard != null) {
+	        try {
+	        	lCardMinI = Integer.valueOf(lMinCard);
+	        	lCardMin = lMinCard;
+	        } catch (NumberFormatException e) {
+	        	lCardMinI = 0;
+	        	lCardMin = "0";
+	        	DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	        			+ " - Minimum occurrences is invalid: " + lMinCard);
+	        }
+	    }
 
-  private void validateAssociationCardinalities(String lMinCard, String lMaxCard,
-      String lLocalIdentifier) {
-    if (DMDocument.isInteger(lMinCard)) {
-      lCardMin = lMinCard;
-      lCardMinI = new Integer(lMinCard);
-    } else {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Minimum occurrences is invalid: " + lMinCard);
-    }
-    if ((lMaxCard.compareTo("*") == 0) || (lMaxCard.compareTo("unbounded") == 0)) {
-      lCardMax = "*";
-      lCardMaxI = 9999999;
-    } else if (DMDocument.isInteger(lMaxCard)) {
-      lCardMax = lMaxCard;
-      lCardMaxI = new Integer(lMaxCard);
-    } else {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Maximum occurrences is invalid: " + lMaxCard);
-    }
-    if (lCardMaxI < lCardMinI) {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Maximum occurrences is less than minimum occurrences");
-    }
-  }
+	    if (lMaxCard != null) {
+	    	if ((lMaxCard.compareTo("*") == 0) || (lMaxCard.compareTo("unbounded") == 0)) {
+	    		lCardMax = "*";
+	    		lCardMaxI = 9999999;
+	    	} else {
+	    		try {
+	    			lCardMaxI = Integer.valueOf(lMaxCard);
+	    			lCardMax = lMaxCard;
+	    		} catch (NumberFormatException e) {
+	    			lCardMaxI = 0;
+	    			lCardMax = "0";
+	    			DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    					+ " - Maximum occurrences is invalid: " + lMaxCard);
+	    		}
+	    	}
+	    	if (lCardMaxI < lCardMinI) {
+	    		DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    				+ " - Maximum occurrences is less than minimum occurrences");
+	    	}
+	    }
+}
 
   // print one line
   public void printLine(int lLevel, String lLeftPart, String lRightPart) {

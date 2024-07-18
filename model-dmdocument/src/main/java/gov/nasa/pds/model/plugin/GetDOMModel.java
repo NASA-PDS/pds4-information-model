@@ -596,19 +596,6 @@ public class GetDOMModel extends Object {
     return null;
   }
 
-  /**
-   * check to see if string is numeric
-   */
-  static public boolean isInteger(String s) {
-    StringBuffer sb = new StringBuffer(s);
-    for (int i = 0; i < sb.length(); i++) {
-      if (!Character.isDigit(sb.charAt(i))) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   public void printInst(HashMap<String, InstDefn> instMap) throws Throwable {
     Set<String> set1 = instMap.keySet();
     Iterator<String> iter1 = set1.iterator();

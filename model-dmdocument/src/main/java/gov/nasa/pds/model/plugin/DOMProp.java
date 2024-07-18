@@ -115,27 +115,38 @@ public class DOMProp extends ISOClassOAIS11179 {
   }
 
   public void setCardMinMax(String lCardMin, String lCardMax) {
-    if (DMDocument.isInteger(lCardMin)) {
-      cardMin = lCardMin;
-      cardMinI = new Integer(lCardMin);
-    } else {
-      DMDocument.registerMessage(
-          "1>error " + "DomProp " + " - Minimum cardinality is invalid: " + lCardMin);
-    }
-    if ((lCardMax.compareTo("*") == 0) || (lCardMax.compareTo("unbounded") == 0)) {
-      cardMax = "*";
-      cardMaxI = 9999999;
-    } else if (DMDocument.isInteger(lCardMax)) {
-      cardMax = lCardMax;
-      cardMaxI = new Integer(lCardMax);
-    } else {
-      DMDocument.registerMessage(
-          "1>error " + "DomProp " + " - Maximum cardinality is invalid: " + lCardMax);
-    }
-    if (cardMaxI < cardMinI) {
-      DMDocument.registerMessage(
-          "1>error " + "DomProp " + " - Maximum cardinality is less than minimum cardinality");
-    }
+	    if (lCardMin != null) {
+	        try {
+	        	cardMinI = Integer.valueOf(lCardMin);
+	        	cardMin = lCardMin;
+	        } catch (NumberFormatException e) {
+	        	cardMinI = 0;
+	        	cardMin = "0";
+	  	      DMDocument.registerMessage(
+	  		          "1>error " + "DomProp " + " - Minimum cardinality is invalid: " + lCardMin);
+	        }
+	    }
+
+	    if (lCardMax != null) {
+	    	if ((lCardMax.compareTo("*") == 0) || (lCardMax.compareTo("unbounded") == 0)) {
+	    		cardMax = "*";
+	    		cardMaxI = 9999999;
+	    	} else {
+	    		try {
+	    			cardMaxI = Integer.valueOf(lCardMax);
+	    			cardMax = lCardMax;
+	    		} catch (NumberFormatException e) {
+	    			cardMaxI = 0;
+		        	cardMax = "0";
+	    			DMDocument.registerMessage(
+	    					"1>error " + "DomProp " + " - Maximum cardinality is invalid: " + lCardMax);
+	    		}
+	    	}
+	    	if (cardMaxI < cardMinI) {
+	    		DMDocument.registerMessage(
+	    				"1>error " + "DomProp " + " - Maximum cardinality is less than minimum cardinality");
+	    	}
+	    }
   }
 
   public String getCardMax() {
