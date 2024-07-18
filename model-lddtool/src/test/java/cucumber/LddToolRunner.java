@@ -12,12 +12,12 @@ import gov.nasa.pds.model.plugin.DMDocument;
  */
 public class LddToolRunner {
     // ByteArrayOutputStreams to capture output and error streams
-    private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private static final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    static final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     
     // Original System.out and System.err streams to restore them after execution
-    private static final PrintStream originalOut = System.out;
-    private static final PrintStream originalErr = System.err;
+    static final PrintStream originalOut = System.out;
+    static final PrintStream originalErr = System.err;
 
     // This method runs the Lddtool and captures its output
     public static String runLddTool(String[] args) throws Throwable {
@@ -42,8 +42,18 @@ public class LddToolRunner {
         return outContent.toString(); // Return the captured output
     }
 
-    // Sets up custom PrintStreams to capture System.out and System.err output
-    private static void setupStreams() {
+    /**
+     * Clears the content of output and error streams.
+     */
+    public static void clearStreams() {
+        outContent.reset();
+        errContent.reset();
+    }
+
+    /**
+     * Sets up custom PrintStreams to capture System.out and System.err output 
+     */
+    static void setupStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
