@@ -3,6 +3,7 @@ package cucumber;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.security.Permission;
+
 import gov.nasa.pds.model.plugin.DMDocument;
 
 /**
@@ -19,7 +20,12 @@ public class LddToolRunner {
     static final PrintStream originalOut = System.out;
     static final PrintStream originalErr = System.err;
 
-    // This method runs the Lddtool and captures its output
+    /**
+     *  This method runs the Lddtool and captures its output
+     * @param args the command line arguments to pass to lddtool
+     * @return the output of lddtool
+     * @throws Throwable if an error occurs while running lddtool
+     */
     public static String runLddTool(String[] args) throws Throwable {
         setupStreams(); // Redirect System.out and System.err to capture them
         try {
@@ -58,26 +64,39 @@ public class LddToolRunner {
         System.setErr(new PrintStream(errContent));
     }
 
-    // Restores the original System.out and System.err streams
+    /**  
+     * Restores the original System.out and System.err streams
+     */
     private static void restoreStreams() {
         System.setOut(originalOut);
         System.setErr(originalErr);
     }
 
-    // A custom SecurityManager that prevents System.exit() from terminating the JVM
+    /** 
+     * A custom SecurityManager that prevents System.exit() from terminating the JVM
+     */
     private static class NoExitSecurityManager extends SecurityManager {
+        /**
+         * This method is called by the JVM when an application tries to exit
+         */
         @Override
         public void checkPermission(Permission perm) {
             // Allow most actions by default
             // This is where to restrict permissions if necessary. For now, it permits everything.
         }
 
+        /**
+         * This method is called by the JVM when an application tries to exit
+         */
         @Override
         public void checkPermission(Permission perm, Object context) {
             // Allow most actions by default
             // Similar to checkPermission(Permission perm), this version is used in context-restricted scenarios.
         }
 
+        /**
+         * This method is called by the JVM when an application tries to exit
+         */
         @Override
         public void checkExit(int status) {
             super.checkExit(status); // call original checkExit method
@@ -87,10 +106,17 @@ public class LddToolRunner {
         }
     }
 
-    // A custom SecurityException to handle the prevention of System.exit()
+    /**
+     * A custom SecurityException to handle the prevention of System.exit()
+     * It captures the exit status requested by the application
+     */
     private static class ExitException extends SecurityException {
         public final int status; // exit status requested by the application
 
+        /**
+         * Constructor for ExitException
+         * @param status the exit status requested by the application
+         */
         public ExitException(int status) {
             super("Prevented System.exit");
             this.status = status;

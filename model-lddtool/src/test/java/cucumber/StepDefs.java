@@ -1,17 +1,19 @@
 package cucumber;
 
-import io.cucumber.java.Before;
+import static org.junit.jupiter.api.Assertions.*;
+
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This class connects the feature files with the Cucumber test code
@@ -59,7 +61,9 @@ public class StepDefs {
 
         // Create the target directory if it does not exist
         if (!target.exists()) {
-            target.mkdirs();
+            if (!target.mkdirs()) {
+                throw new IOException("Failed to create directory: " + targetDir);
+            }
         }
 
         // Move files that match the pattern from the source directory to the target directory
@@ -106,7 +110,6 @@ public class StepDefs {
      * @param resourceDirectory the resource directory
      * @param testDirectory the test directory
      * @param commandArgs the command arguments
-     * @throws IOException if an I/O error occurs
      */
     @Given("the test directories {string} and {string} and command arguments {string}")
     public void test_directories_and_command_arguments(String resourceDirectory, String testDirectory, String commandArgs) {
@@ -125,6 +128,8 @@ public class StepDefs {
         try {
             // run lddtool with the commandArgs and capture the output
             this.actualResponse = LddToolRunner.runLddTool(args);
+
+            // create an output file from the lddtool output and save it to target/generated-files directory
             this.createOutputFile(this.actualResponse, "target/generated-files/" + this.testDirectory + "/lddtool-output.txt");
 
             // move lddtool-generated files to target/generated-files directory
