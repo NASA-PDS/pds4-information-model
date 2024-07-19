@@ -66,11 +66,21 @@ public class StepDefs {
             }
         }
 
-        // Move files that match the pattern from the source directory to the target directory
+        // Save the files that match the pattern to an array
         File[] filesToMove = source.listFiles((dir, name) -> name.startsWith(pattern));
+
         if (filesToMove != null) {
             for (File file : filesToMove) {
-                Files.move(file.toPath(), new File(target, file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                Path sourcePath = file.toPath(); // source file path
+                Path targePath = target.toPath().resolve(file.getName()); // target file path
+                
+                // Move the file to the target directory
+                try {
+                    Files.move(sourcePath, targePath, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    throw new IOException("Failed to move file: " + file.getName(), ex);
+                
+                }
             }
         }
     }
@@ -85,13 +95,21 @@ public class StepDefs {
         File file = new File(fileName);
         Path filePath = file.toPath();
 
+        File parentDir = file.getParentFile();
+
         // Create the parent directories if they do not exist
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
+        if (parentDir != null && !parentDir.exists()) {
+            if (!parentDir.mkdirs()) {
+                throw new IOException("Failed to create directory: " + parentDir);
+            }
         }
 
-        // Create the output file with the specified content
-        Files.write(filePath, output.getBytes(StandardCharsets.UTF_8));
+        try {
+            // Create the output file with the specified content
+            Files.write(filePath, output.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException ex) {
+            throw new IOException("Failed to write to file: " + fileName, ex);
+        }
     }
 
     /**

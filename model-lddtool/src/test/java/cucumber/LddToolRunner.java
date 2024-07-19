@@ -72,12 +72,14 @@ public class LddToolRunner {
         System.setErr(originalErr);
     }
 
+
     /** 
      * A custom SecurityManager that prevents System.exit() from terminating the JVM
      */
     private static class NoExitSecurityManager extends SecurityManager {
         /**
          * This method is called by the JVM when an application tries to exit
+         * @param perm the permission to check
          */
         @Override
         public void checkPermission(Permission perm) {
@@ -87,6 +89,8 @@ public class LddToolRunner {
 
         /**
          * This method is called by the JVM when an application tries to exit
+         * @param perm the permission to check
+         * @param context the context in which the permission is checked
          */
         @Override
         public void checkPermission(Permission perm, Object context) {
@@ -96,6 +100,7 @@ public class LddToolRunner {
 
         /**
          * This method is called by the JVM when an application tries to exit
+         * @param status the exit status requested by the application
          */
         @Override
         public void checkExit(int status) {
@@ -105,6 +110,7 @@ public class LddToolRunner {
             throw new ExitException(status);
         }
     }
+
 
     /**
      * A custom SecurityException to handle the prevention of System.exit()
