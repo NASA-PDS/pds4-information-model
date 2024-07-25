@@ -93,15 +93,17 @@ class XML4LabelSchemaDOM extends Object {
       // write the xs:element definitions for the master attributes (e.g., local_identifier and
       // logical_identifier)
       prXML.println(" ");
+      ArrayList<String> exposedAttrId = new ArrayList <> ();
       ArrayList<DOMAttr> lAttrArr = new ArrayList<>(DOMInfoModel.masterDOMAttrMap.values());
       for (Iterator<DOMAttr> i = lAttrArr.iterator(); i.hasNext();) {
         DOMAttr lAttr = i.next();
         if (!(lAttr.isExposed)
-            || !(lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.nameSpaceIdNC) == 0)) {
-          continue;
-        }
+            || !(lSchemaFileDefn.nameSpaceIdNC.compareTo(lAttr.nameSpaceIdNC) == 0)) continue;
+        String lAttrId = lAttr.nameSpaceIdNC + "." + lAttr.title;
+        if (exposedAttrId.contains(lAttrId)) continue;  // print each once
         prXML.println("  <" + pNS + "element name=\"" + lAttr.title + "\" type=\""
-            + lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.title + "\"> </" + pNS + "element>");
+        			+ lSchemaFileDefn.nameSpaceIdNC + ":" + lAttr.title + "\"> </" + pNS + "element>");
+        exposedAttrId.add(lAttrId);
       }
     }
 

@@ -417,16 +417,12 @@ public class GetDOMModel extends Object {
     // 038 - set the class version identifiers (stop gap until class are stored in OWL
     // DMDocument.masterDOMInfoModel.setClassVersionIds ();
 
-    // 039 - set exposed flag
+    // 039 - set exposed flag - the identifier in the exposedElementArr must match the identifier in the master file
     for (Iterator<String> i = DMDocument.exposedElementArr.iterator(); i.hasNext();) {
       String lIdentifier = i.next();
       DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lIdentifier);
       if (lClass != null) {
         lClass.isExposed = true;
-      }
-      DOMAttr lAttr = DOMInfoModel.masterDOMAttrIdMap.get(lIdentifier);
-      if (lAttr != null) {
-        lAttr.isExposed = true;
       }
     }
 

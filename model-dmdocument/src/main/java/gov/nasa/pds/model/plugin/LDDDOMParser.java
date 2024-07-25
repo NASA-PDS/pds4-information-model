@@ -53,6 +53,7 @@ import org.xml.sax.SAXException;
  */
 
 public class LDDDOMParser extends Object {
+	
   // Schema File Definition
   SchemaFileDefn gSchemaFileDefn;
 
@@ -1567,7 +1568,7 @@ public class LDDDOMParser extends Object {
             || (lDOMProp.localIdentifier.compareTo("XSAny#") == 0)) {
           continue;
         }
-
+        
         DOMAttr lDOMAttr = getLocalOrExternAttr(lSchemaFileDefn, lDOMClass, lDOMProp);
         if (lDOMAttr != null) {
 
@@ -1609,6 +1610,7 @@ public class LDDDOMParser extends Object {
               + lDOMProp.referenceType);
         }
       }
+      
       for (Iterator<DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
@@ -1738,9 +1740,11 @@ public class LDDDOMParser extends Object {
   // return a local or external attribute
   private DOMAttr getLocalOrExternAttr(SchemaFileDefn lSchemaFileDefn, DOMClass lDOMClass,
       DOMProp lDOMProp) {
+	  
+
     // will be looking for something like "0001_NASA_PDS_1.pds.USER.standard_deviation"
     String lLocalIdentifier = lDOMProp.localIdentifier;
-    
+        
     // check if attribute is an LDD attribute or an external added in an earlier iteration
     DOMAttr lDOMAttr = attrMapLocal.get(lLocalIdentifier);
     if (lDOMAttr == null) {
@@ -1754,6 +1758,7 @@ public class LDDDOMParser extends Object {
         lLDDExtNS = lLocalIdentifier.substring(0, lStringInd);
       }
       lLDDExtNS = lLDDExtNS.toLowerCase();
+      // e.g., 0001_NASA_PDS_1.all.USER.pds.kernel_type
       String lAttrIdentifier =
           DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
               DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
@@ -1775,6 +1780,15 @@ public class LDDDOMParser extends Object {
         && (lDOMAttr.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0)
         && (!DMDocument.LDDImportNameSpaceIdNCArr.contains(lDOMAttr.nameSpaceIdNC))) {
       DMDocument.LDDImportNameSpaceIdNCArr.add(lDOMAttr.nameSpaceIdNC);
+    }
+    
+    // validate that referenced attribute is exposed
+    if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
+    	if (lDOMAttr.isEnumerated) {
+            DMDocument.registerMessage("2>error Attribute: " + " - The referenced enumerated attribute " + lLocalIdentifier + " must be exposed.");
+    	} else {
+    		DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " + lLocalIdentifier + " is not exposed.");
+    	}
     }
 
     // clone the USER or LDD attribute for use as a Resolved attribute

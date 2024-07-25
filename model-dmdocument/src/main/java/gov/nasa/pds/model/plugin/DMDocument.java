@@ -293,7 +293,10 @@ public class DMDocument extends Object {
 
   // the set of classes and attributes that will be externalized (defined as xs:Element)
   static ArrayList<String> exposedElementArr;
-
+  
+  // the set of attributes that will be externalized (defined as xs:Element)
+  static ArrayList<String> exposedAttributeArr;
+  
   // info, warning, and error messages
   static int msgOrder = 100000;
   static ArrayList<DOMMsgDefn> mainMsgArr = new ArrayList<>();
@@ -320,7 +323,7 @@ public class DMDocument extends Object {
     // process state for used flags, files, and directories
     dmProcessState = new DMProcessState();
     
-    // System.out.println("Debug main 240515");
+    // System.out.println("debug main 240719");
 
     PDSOptionalFlag = false;
     LDDToolFlag = false;
@@ -435,6 +438,9 @@ public class DMDocument extends Object {
 
     // set exposed elements
     setexposedElementFlag();
+
+    // set exposed attributes
+    setexposedAttributeFlag();
 
     // get the command line arguments using argparse4j
     Namespace argparse4jNamespace = getArgumentParserNamespace(args);
@@ -954,9 +960,6 @@ public class DMDocument extends Object {
     // the set of classes and attributes that will be externalized (defined as xs:Element)
     exposedElementArr = new ArrayList<>();
     exposedElementArr.add("0001_NASA_PDS_1.pds.Ingest_LDD");
-    // exposedElementArr.add("0001_NASA_PDS_1.oais.Archival_Information_Package");
-    // exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package");
-    // exposedElementArr.add("0001_NASA_PDS_1.oais.Information_Package_Collection");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Product_AIP");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Ancillary");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Product_Attribute_Definition");
@@ -994,8 +997,17 @@ public class DMDocument extends Object {
     exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-    exposedElementArr.add("0001_NASA_PDS_1.pds.DD_Class.pds.local_identifier");
-    exposedElementArr.add("0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier");
+  }
+  
+  static void setexposedAttributeFlag() {
+    // the set of attributes that will be externalized (defined as xs:Element)
+    exposedAttributeArr = new ArrayList<>();
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.comment");
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.description");
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.local_identifier");
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.logical_identifier");
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.name");
+    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.kernel_type");
   }
 
   static void setRegistryAttrFlag() {
