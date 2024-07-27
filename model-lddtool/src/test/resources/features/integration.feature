@@ -18,7 +18,7 @@ Feature: Running integration tests for lddtool
   Scenario Outline: Comparing lddtool output files to expected files
     Given the directories <inputDirectory>, <outputDirectory>, and command arguments <commandArgs>
     When lddtool is run
-    Then the contents of file <actualOutputFile> should match <expectedOutputFile> except for comma-separated strings in <excludeStrings>
+    Then the contents of file <actualOutputFile> should match <expectedOutputFile> except for lines containing comma-separated strings in <excludeStrings>
 
     Examples:
       | testName                                                                         | inputDirectory                  | outputDirectory                    | commandArgs                                     | expectedOutputFile         | actualOutputFile    | excludeStrings                            |

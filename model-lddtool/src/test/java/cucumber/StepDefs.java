@@ -293,7 +293,7 @@ public class StepDefs {
      * @param expectedOutputFile the source of the expected output
      * @param excludeStrings the lines to exclude from the comparison
      */
-    @Then("the contents of file {string} should match {string} except for comma-separated strings in {string}")
+    @Then("the contents of file {string} should match {string} except for lines containing comma-separated strings in {string}")
     public void output_should_match_expected_file(String actualOutputFile, String expectedOutputFile, String excludeStrings) {
         List<String> actualLines;
         List<String> expectedLines;
@@ -336,6 +336,5 @@ public class StepDefs {
         this.inputDirectory = null;
         this.outputDirectory = null;
         this.commandArgs = null;
-        LddToolRunner.clearStreams();
     }
 }

@@ -28,6 +28,7 @@ public class LddToolRunner {
      */
     public static String runLddTool(String[] args) throws Throwable {
         setupStreams(); // Redirect System.out and System.err to capture them
+        String output = null; // output of lddtool
         try {
             SecurityManager originalSecurityManager = System.getSecurityManager();
             // Set a custom SecurityManager that throws an exception instead of exiting
@@ -35,6 +36,7 @@ public class LddToolRunner {
             try {
                 // Call lddtool's main method with arguments and capture its output
                 DMDocument.main(args);
+                output = outContent.toString();
             } catch (ExitException e) {
                 // Handle the exception thrown by our NoExitSecurityManager when System.exit() is called
                 System.err.println("DMDocument attempted to exit with status: " + e.status);
@@ -44,8 +46,9 @@ public class LddToolRunner {
             }
         } finally {
             restoreStreams(); // Restore the original System.out and System.err
+            clearStreams(); // Clear the captured output and error streams
         }
-        return outContent.toString(); // Return the captured output
+        return output; // Return the captured output
     }
 
     /**
