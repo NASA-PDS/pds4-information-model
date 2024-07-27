@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -120,7 +121,6 @@ public class StepDefs {
      * @param fileName the name of the file to read
      * @return the content of the file
      * @throws IOException if an I/O error occurs
-     * TODO: might need to use a method to read lines from file instead of reading the whole file
      */
     private static String readFileContent(String fileName) throws IOException {
         File file = new File(fileName);
@@ -141,7 +141,7 @@ public class StepDefs {
      * @return the file as a string
      * @throws Exception if the file is not found, multiple files are found, or the directory is invalid
      */
-    private static String findFileByExtension(String directoryPath, String fileExtension) throws Exception {
+    private static String findFileByExtension(String directoryPath, String fileExtension) throws IOException {
         File directory = new File(directoryPath);
 
         if (!directory.exists() || !directory.isDirectory()) {
@@ -152,11 +152,11 @@ public class StepDefs {
         File[] matchingFiles = directory.listFiles(filter);
 
         if (matchingFiles == null || matchingFiles.length == 0) {
-            throw new Exception("No file found with extension: " + fileExtension);
+            throw new FileNotFoundException("No file found with extension: " + fileExtension);
         }
 
         if (matchingFiles.length > 1) {
-            throw new Exception("Multiple files found with extension: " + fileExtension);
+            throw new IOException("Multiple files found with extension: " + fileExtension);
         }
 
         return matchingFiles[0].getName();
