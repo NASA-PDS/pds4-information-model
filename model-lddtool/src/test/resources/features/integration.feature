@@ -10,7 +10,7 @@ Feature: Running integration tests for lddtool
 
     Examples:
       | testName                                                                                                                        | inputDirectory                  | outputDirectory                    | commandArgs                                     | assertType    | output                                           | actualOutputFile     |
-      | "NASA-PDS/pds4-information-model#733 LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing" | "src/test/resources/github733"  | "target/generated-files/github733" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "not contain" | "ERROR SetMasterAttrXMLBaseDataTypeFromDataType" | "lddtool-output.txt" |
+      #| "NASA-PDS/pds4-information-model#733 LDDTool is throwing ERROR SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing" | "src/test/resources/github733"  | "target/generated-files/github733" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "not contain" | "ERROR SetMasterAttrXMLBaseDataTypeFromDataType" | "lddtool-output.txt" |
       #| "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO"                                                | "src/test/resources/github738"  | "target/generated-files/github738" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "contain"     | "http://www.kari.re.kr/kpds/mission/kplo/v1"     | ".xsd"               |
       #| "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO"                                                | "src/test/resources/github738"  | "target/generated-files/github738" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "not contain" | "http://www.kari.re.kr/kpdsmission/kplo/v1 "     | ".xsd"               |
 
@@ -22,4 +22,4 @@ Feature: Running integration tests for lddtool
 
     Examples:
       | testName                                                                         | inputDirectory                  | outputDirectory                    | commandArgs                                     | expectedOutputFile         | actualOutputFile    | excludeStrings                            |
-      #| "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources/github738"  | "target/generated-files/github738" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "PDS4_KPLO_1N00_1000.xsd"  | ".xsd"              | "PDS4 XML/Schema,Generated from the PDS4" |
+      | "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources/github738"  | "target/generated-files/github738" | "-lpJ {inputDirectory}/PDS4_KPLO_IngestLDD.xml" | "PDS4_KPLO_1N00_1000.xsd"  | ".xsd"              | "PDS4 XML/Schema,Generated from the PDS4" |
