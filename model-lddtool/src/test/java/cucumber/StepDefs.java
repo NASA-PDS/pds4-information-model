@@ -33,22 +33,19 @@ public class StepDefs {
 
     /**
      * This method resolves the command arguments by replacing placeholders with actual values
+     * @param args the command arguments
      * @return a String array containing the resolved command arguments
      */
     private String[] resolveArgumentStrings(String[] args) {
         String[] resolvedArgs = new String[args.length];
         int argIndex = 0;
-        String resolvedToken = "";
+        // Replace the placeholders with actual values
         for (String temp : args) {
-            // Replace every occurence of "{inputDirectory}" with actual value
-            resolvedToken = temp.replace("{inputDirectory}", this.inputDirectory);
-            // Replace every occurence of "{outputDirectory}" with actual value.
-            resolvedToken = resolvedToken.replace("{outputDirectory}", this.outputDirectory);
-            // Replace every occurence of "%20" with a space
-            resolvedToken = resolvedToken.replace("%20", " ");
-            resolvedArgs[argIndex++] = resolvedToken;  // add the resolved token to the args array
+            String resolvedToken = temp.replace("{inputDirectory}", this.inputDirectory)
+                                       .replace("{outputDirectory}", this.outputDirectory)
+                                       .replace("%20", " ");
+            resolvedArgs[argIndex++] = resolvedToken;
         }
-
         return resolvedArgs;
     }
 
@@ -73,6 +70,7 @@ public class StepDefs {
         // Save the files that match the pattern to an array
         File[] filesToMove = source.listFiles((dir, name) -> name.startsWith(pattern));
 
+        // Move the files to the target directory
         if (filesToMove != null) {
             for (File file : filesToMove) {
                 Path sourcePath = file.toPath(); // source file path
@@ -83,10 +81,15 @@ public class StepDefs {
                     Files.move(sourcePath, targePath, StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException ex) {
                     throw new IOException("Failed to move file: " + file.getName(), ex);
-                
+                } finally {
+                    sourcePath = null;
+                    targePath = null;
                 }
             }
         }
+        filesToMove = null;
+        source = null;
+        target = null; 
     }
 
     /**
@@ -98,7 +101,6 @@ public class StepDefs {
     private static void createOutputFile(String output, String fileName) throws IOException {
         File file = new File(fileName);
         Path filePath = file.toPath();
-
         File parentDir = file.getParentFile();
 
         // Create the parent directories if they do not exist
@@ -113,6 +115,10 @@ public class StepDefs {
             Files.write(filePath, output.getBytes(StandardCharsets.UTF_8));
         } catch (IOException ex) {
             throw new IOException("Failed to write to file: " + fileName, ex);
+        } finally {
+            file = null;
+            filePath = null;
+            parentDir = null;
         }
     }
 
@@ -131,6 +137,9 @@ public class StepDefs {
             return Files.readString(filePath, StandardCharsets.UTF_8);
         } catch (IOException ex) {
             throw new IOException("Failed to read file: " + fileName, ex);
+        } finally {
+            file = null;
+            filePath = null;
         }
     }
 
@@ -144,22 +153,31 @@ public class StepDefs {
     private static String findFileByExtension(String directoryPath, String fileExtension) throws IOException {
         File directory = new File(directoryPath);
 
+        // Check if the directory exists and is a valid directory
         if (!directory.exists() || !directory.isDirectory()) {
             throw new IllegalArgumentException("The provided path is not a valid directory: " + directoryPath);
         }
 
+        // Filter the files based on the extension
         FilenameFilter filter = (dir, name) -> name.endsWith(fileExtension);
         File[] matchingFiles = directory.listFiles(filter);
 
+        // Check if the file is found
         if (matchingFiles == null || matchingFiles.length == 0) {
             throw new FileNotFoundException("No file found with extension: " + fileExtension);
         }
 
+        // Check if multiple files are found
         if (matchingFiles.length > 1) {
             throw new IOException("Multiple files found with extension: " + fileExtension);
         }
 
-        return matchingFiles[0].getName();
+        String foundFile = matchingFiles[0].getName();
+        directory = null;
+        matchingFiles = null;
+        filter = null;
+
+        return foundFile;
     }
 
     /**
@@ -169,6 +187,7 @@ public class StepDefs {
      * @return the filtered lines
      */
     private static List<String> filterLines(List<String> lines, List<String> excludeStrings) {
+        // Filter the lines based on excludeStrings
         return lines.stream()
                 .filter(line -> excludeStrings.stream().noneMatch(line::contains))
                 .collect(Collectors.toList());
@@ -203,9 +222,10 @@ public class StepDefs {
     @When("lddtool is run")
     public void run_lddtool() {
         String[] args = resolveArgumentStrings(this.commandArgs.split("\\s+"));  // resolve the commandArgs into a String array
+        String actualResponse;
         try {
             // run lddtool with the commandArgs and capture the output
-            String actualResponse = LddToolRunner.runLddTool(args);
+            actualResponse = LddToolRunner.runLddTool(args);
 
             // create an output file from the lddtool output and save it to target/generated-files directory
             createOutputFile(actualResponse, this.outputDirectory + "/lddtool-output.txt");
@@ -217,6 +237,8 @@ public class StepDefs {
         } catch (Throwable ex) {
             throw new RuntimeException("DMDocument error", ex);
         }
+        args = null;
+        actualResponse = null;
     }
 
     /**
@@ -238,6 +260,7 @@ public class StepDefs {
             }
         }
 
+        // Read the content of the actual output file
         actualOutputFile = this.outputDirectory + "/" + actualOutputFile;
         try {
             actualResponse = readFileContent(actualOutputFile);
@@ -245,6 +268,7 @@ public class StepDefs {
             throw new RuntimeException("Failed to read file", ex);
         }
 
+        // Perform the assertion based on the assertType
         switch (assertType) {
             case "contain":
                 assertTrue(actualResponse.contains(output),
@@ -257,6 +281,10 @@ public class StepDefs {
             default:
                 throw new RuntimeException("Invalid assert type: " + assertType);
         }
+
+        actualResponse = null;
+        actualOutputFile = null;
+        output = null;
     }
 
     /**
@@ -280,6 +308,7 @@ public class StepDefs {
             }
         }
         
+        // Read the content of the actual and expected output files by line
         try {
             actualLines = Files.readAllLines(Paths.get(this.outputDirectory, actualOutputFile));
             expectedLines = Files.readAllLines(Paths.get(this.inputDirectory, expectedOutputFile));
@@ -291,8 +320,12 @@ public class StepDefs {
         actualLines = filterLines(actualLines, excludeList);
         expectedLines = filterLines(expectedLines, excludeList);
 
+        // Perform the assertion
         assertEquals(expectedLines, actualLines);
-        
+
+        actualLines = null;
+        expectedLines = null;
+        excludeList = null;
     }
 
     /*
