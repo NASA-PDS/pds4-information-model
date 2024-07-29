@@ -44,6 +44,9 @@ public class LddToolRunner {
                 // Restore the original security manager
                 System.setSecurityManager(originalSecurityManager);
             }
+        } catch (Exception e) {
+            // Throw an exception if an error occurs while setting the SecurityManager
+            throw new Exception("An error occurred while setting the SecurityManager in runLddTool", e);
         } finally {
             restoreStreams(); // Restore the original System.out and System.err
             clearStreams(); // Clear the captured output and error streams
