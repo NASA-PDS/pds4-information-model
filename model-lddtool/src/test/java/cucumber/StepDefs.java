@@ -247,7 +247,7 @@ public class StepDefs {
      * @param output the expected output
      * @param actualOutputFile the source of the actual output
      */
-    @Then("the produced output from lddtool command should {string} {string} in {string}")
+    @Then("the produced output from lddtool command should {string} {string} in {string} file")
     public void output_should_match_expected_response(String assertType, String output, String actualOutputFile) {
         String actualResponse = null;
 
