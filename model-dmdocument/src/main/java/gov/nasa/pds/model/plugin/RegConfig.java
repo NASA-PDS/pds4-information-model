@@ -40,8 +40,8 @@ import java.util.TreeMap;
 
 class RegConfig extends Object {
 
-  static String reference_string = "_reference";
-  static int reference_string_length = reference_string.length();
+  private static final String REFERENCE_STRING = "_reference";
+  private static final int REFERENCE_STRING_LENGTH = REFERENCE_STRING.length();
 
   ArrayList<String> associationsArr = new ArrayList<>();
   ArrayList<DOMAttr> allSearchAttrArr = new ArrayList<>();
@@ -125,11 +125,11 @@ class RegConfig extends Object {
       for (DOMAttr lAttr : lAttrArr) {
         String lTitle = lAttr.title;
         // System.out.println("debug writeRegRIM slot lAttr.title:" + lAttr.title);
-        int lIndex = lTitle.indexOf(reference_string);
+        int lIndex = lTitle.indexOf(REFERENCE_STRING);
         if (lIndex > -1) {
           prRIM1.println("           rel_label:" + lTitle);
           int lLength = lTitle.length();
-          String lObjectType = lTitle.substring(0, (lLength - reference_string_length));
+          String lObjectType = lTitle.substring(0, (lLength - REFERENCE_STRING_LENGTH));
         }
       }
     }

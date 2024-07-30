@@ -36,17 +36,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.TreeMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.helper.HelpScreenException;
 import net.sourceforge.argparse4j.impl.Arguments;
@@ -59,6 +60,8 @@ import net.sourceforge.argparse4j.inf.Namespace;
  *
  */
 public class DMDocument extends Object {
+	
+  protected static final Logger log = LoggerFactory.getLogger(DMDocument.class);
 
   // environment variables
   static String parentDir;
@@ -311,329 +314,17 @@ public class DMDocument extends Object {
   // command line argument parser
   static ArgumentParser parser;
 
-  /**********************************************************************************************************
-   * main
-   ***********************************************************************************************************/
-
-  public static void main(String args[]) throws Throwable {
-
-    // process state for used flags, files, and directories
-    dmProcessState = new DMProcessState();
+  /**
+   * main method
+   * 
+   * @param args
+   * @throws Throwable
+   */
+  public static void main(String[] args) throws Throwable {
+	  
+	
+	  run(args);
     
-    // System.out.println("Debug main 240515");
-
-    PDSOptionalFlag = false;
-    LDDToolFlag = false;
-    // Secondary LDD Models
-    LDDDOMModelArr = new ArrayList<>();
-    LDDSchemaFileSortArr = new ArrayList<>();
-    LDDToolAnnotateDefinitionFlag = false;
-
-    // The current version is included to allow for -V currentIMVersion
-    alternateIMVersionArr = new ArrayList<>();
-    alternateIMVersionArr.add("1N00"); // current
-    alternateIMVersionArr.add("1M00");
-    alternateIMVersionArr.add("1L00");
-    alternateIMVersionArr.add("1K00");
-    alternateIMVersionArr.add("1J00");
-    alternateIMVersionArr.add("1I00");
-    alternateIMVersionArr.add("1H00");
-    alternateIMVersionArr.add("1G00");
-    alternateIMVersionArr.add("1F00");
-    alternateIMVersionArr.add("1E00");
-    alternateIMVersionArr.add("1D00");
-    alternateIMVersionArr.add("1C00");
-    alternateIMVersionArr.add("1B10");
-    alternateIMVersionArr.add("1B00");
-
-    // message handling
-    DOMMsgDefn.init();
-
-    // message level counts
-    Integer msgCount0info = 0;
-    Integer msgCount0warning = 0;
-    Integer msgCount0error = 0;
-    Integer msgCount1info = 0;
-    Integer msgCount1warning = 0;
-    Integer msgCount1error = 0;
-    Integer msgCount2info = 0;
-    Integer msgCount2warning = 0;
-    Integer msgCount2error = 0;
-    Integer msgCount3error = 0;
-    Integer msgCount4error = 0;
-    messageLevelCountMap.put("0>info", msgCount0info);
-    messageLevelCountMap.put("0>warning", msgCount0warning);
-    messageLevelCountMap.put("0>error", msgCount0error);
-    messageLevelCountMap.put("1>info", msgCount1info);
-    messageLevelCountMap.put("1>warning", msgCount1warning);
-    messageLevelCountMap.put("1>error", msgCount1error);
-    messageLevelCountMap.put("2>info", msgCount2info);
-    messageLevelCountMap.put("2>warning", msgCount2warning);
-    messageLevelCountMap.put("2>error", msgCount2error);
-    messageLevelCountMap.put("3>error", msgCount3error);
-    messageLevelCountMap.put("4>error", msgCount4error);
-
-    // get dates
-    rTodaysDate = new Date();
-    sTodaysDate = rTodaysDate.toString();
-    masterTodaysDate = sTodaysDate;
-    masterTodaysDateUTC = getUTCDate();
-    masterTodaysDateyymmdd = masterTodaysDateUTC.substring(2, 4)
-        + masterTodaysDateUTC.substring(5, 7) + masterTodaysDateUTC.substring(8, 10);
-    masterTodaysDateTimeUTC = getUTCDateTime();
-    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
-    masterTodaysDateTimeUTCFromInstant = getUTCDateTimeFromInstant();
-
-    rdfPrefix = "http://pds.nasa.gov/infomodel/pds#";
-    creationDateValue = masterTodaysDateUTC;
-    beginDatePDS4Value = "2009-06-09";
-
-    endDateValue = "2019-12-31";
-    futureDateValue = "2019-12-31";
-    versionIdentifierValue = "TBD_versionIdentifierValue";
-    administrationRecordValue = "TBD_administrationRecordValue"; // set in GetModels
-    stewardValue = "Steward_PDS";
-    submitterValue = "Submitter_PDS";
-
-    // registeredByValue = "RA_0001_NASA_PDS_1";
-    registeredByValue = "TBD_registeredByValue";
-    registrationAuthorityIdentifierValue = "TBD_registrationAuthorityIdentifierValue";
-
-    // Master User Class Name
-    masterUserClassNamespaceIdNC = "all";
-    masterUserClassName = "USER";
-
-    // master unique sequence number
-    masterUId = 100000000;
-
-    // master class order
-    masterClassOrder = 1000;
-
-    // master group number
-    masterGroupNum = 10;
-
-    // reserved Class names
-    reservedClassNames = new ArrayList<>();
-    reservedClassNames.add("Internal_Reference");
-    reservedClassNames.add("Local_Internal_Reference");
-    reservedClassNames.add("Reference_Pixel_Regression_Test");
-
-    // reserved Attribute names
-    reservedAttrNames = new ArrayList<>();
-    reservedAttrNames.add("logical_identifier");
-    reservedAttrNames.add("local_identifier");
-    reservedAttrNames.add("pixel_latitude_Regression_Test");
-
-    omitClass = new ArrayList<>();
-    omitClass.add("Data_Object");
-    omitClass.add("Digital_Object");
-    omitClass.add("Physical_Object");
-    omitClass.add("Conceptual_Object");
-
-    // set registryAttr
-    setRegistryAttrFlag();
-
-    // set exposed elements
-    setexposedElementFlag();
-
-    // get the command line arguments using argparse4j
-    Namespace argparse4jNamespace = getArgumentParserNamespace(args);
-
-    // process first set of arguments
-    // this must be done before config file processing
-    // the use of the option "V" (alternate IM version) will change the input file directory (config
-    // included)
-    processArgumentParserNamespacePhase1(argparse4jNamespace);
-    
-    String sysDataHome = System.getProperty("data.home");
-    if (sysDataHome != null) {
-      sysDataHome = sysDataHome.replace('\\', '/');
-      parentDir = sysDataHome + "/";
-      dataDirPath = parentDir;
-      // if this is an LDDTool run then an alternate path is allowed (option "V")
-      // IMTool runs ignore the -V option
-      if (LDDToolFlag && alternateIMVersionFlag) {
-        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-            dataDirPath = parentDir + alternateIMVersion + "/";
-        }
-      }
-    } else {
-      registerMessage("0>info - Property data.home is null");   
-      String sysUserDir = System.getProperty("user.dir");
-      if (sysUserDir == null) {
-        registerMessage("3>error Environment variable sysUserDir is null");
-        printErrorMessages();
-        System.exit(1);
-      }
-      sysUserDir = sysUserDir.replace('\\', '/');
-      parentDir = sysUserDir;
-      String dirExt = "/model-ontology/src/ontology/Data/";
-//      if (debugFlag) dirExt = "/bin/../Data/";
-      dataDirPath = parentDir + dirExt;
-      if (debugFlag) {
-          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
-    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
-      }
-      // if this is an LDDTool run then an alternate path is allowed (option "V")
-      // IMTool runs ignore the -V option
-      if (LDDToolFlag && alternateIMVersionFlag) {
-        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
-        }
-       }
-    }
-    registerMessage("0>info - Parent Directory:" + parentDir);
-    registerMessage("0>info - IM Directory Path:" + dataDirPath);
-    registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
-
-    // read the configuration file and initialize key attributes; SchemaFileDefn map is initialized
-    // below (setupNameSpaceInfoAll)
-    // "props" are used again below in setupNameSpaceInfoAll)
-    String configInputFile = dataDirPath + "config.properties";
-    String configInputStr;
-    File configFile = new File(configInputFile);
-    try {
-      FileReader reader = new FileReader(configFile);
-      // Properties props = new Properties();
-      props.load(reader);
-      configInputStr = props.getProperty("infoModelVersionId");
-      if (configInputStr != null) {
-        infoModelVersionId = configInputStr;
-      }
-      configInputStr = props.getProperty("schemaLabelVersionId");
-      if (configInputStr != null) {
-        schemaLabelVersionId = configInputStr;
-      }
-      configInputStr = props.getProperty("pds4BuildId");
-      if (configInputStr != null) {
-        pds4BuildId = configInputStr;
-      }
-      configInputStr = props.getProperty("imSpecDocTitle");
-      if (configInputStr != null) {
-        imSpecDocTitle = configInputStr;
-      }
-      configInputStr = props.getProperty("imSpecDocAuthor");
-      if (configInputStr != null) {
-        imSpecDocAuthor = configInputStr;
-      }
-      configInputStr = props.getProperty("imSpecDocSubTitle");
-      if (configInputStr != null) {
-        imSpecDocSubTitle = configInputStr;
-      }
-      configInputStr = props.getProperty("ddDocTitle");
-      if (configInputStr != null) {
-        ddDocTitle = configInputStr;
-      }
-      configInputStr = props.getProperty("debugFlag");
-      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
-        debugFlag = true;
-      }
-      // configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
-      configInputStr = props.getProperty("mastRegAuthId");
-      if (configInputStr != null) {
-        registrationAuthorityIdentifierValue = configInputStr;
-        registeredByValue = "RA_" + registrationAuthorityIdentifierValue;
-      }
-      configInputStr = props.getProperty("ddDocTeam");
-      if (configInputStr != null) {
-        ddDocTeam = configInputStr;
-      }
-      configInputStr = props.getProperty("pds4ModelFlag");
-      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
-        pds4ModelFlag = true;
-      }
-      configInputStr = props.getProperty("mastModelId");
-      if (configInputStr != null) {
-        mastModelId = configInputStr;
-      }
-
-      configInputStr = props.getProperty("toolVersionId");
-      if (configInputStr != null) {
-        DMDocVersionId = LDDToolVersionId = configInputStr;
-      }
-      configInputStr = props.getProperty("buildDate");
-      if (configInputStr != null) {
-        buildDate = configInputStr;
-      }
-
-      reader.close();
-    } catch (FileNotFoundException ex) {
-      // file does not exist
-      registerMessage("3>error Configuration file does not exist. [config.properties]");
-    } catch (IOException ex) {
-      // I/O error
-      registerMessage("3>error Configuration file IO Exception. [config.properties]");
-    }
-
-    // process second set of arguments
-    processArgumentParserNamespacePhase2(argparse4jNamespace);
-
-    // check the files
-    checkRequiredFiles();
-
-    if (LDDToolFlag) {
-      for (Iterator<SchemaFileDefn> i = LDDSchemaFileSortArr.iterator(); i.hasNext();) {
-        SchemaFileDefn lSchemaFileDefn = i.next();
-        cleanupLDDInputFileName(lSchemaFileDefn);
-      }
-    }
-    
-    // set up the System Build version
-    XMLSchemaLabelBuildNum = pds4BuildId;
-
-    // intialize the masterAllSchemaFileSortMap - all namespaces in config.properties file
-    // set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces,
-    // etc)
-    setupNameSpaceInfoAll(props);
-
-    // output the context info
-    if (!LDDToolFlag) {
-      registerMessage("1>info DMDoc Version: " + DMDocVersionId);
-      registerMessage("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
-      registerMessage("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);
-      registerMessage(
-          "1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);
-    } else {
-      registerMessage("1>info LDDTOOL Version: " + LDDToolVersionId);
-      registerMessage("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
-      registerMessage("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);
-      registerMessage(
-          "1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);
-    }
-
-    registerMessage("1>info Date: " + sTodaysDate);
-    registerMessage("1>info PARENT_DIR: " + parentDir);
-
-    // get the 11179 Attribute Dictionary - .pins file
-    ProtPinsDOM11179DD lProtPinsDOM11179DD = new ProtPinsDOM11179DD();
-    lProtPinsDOM11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue,
-        DMDocument.dataDirPath + "dd11179.pins");
-
-    // get the models
-    GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
-    lGetDOMModelDoc.getModels(docFileName + ".pins");
-
-    // get the DOM Model
-    GetDOMModel lGetDOMModel = new GetDOMModel();
-    lGetDOMModel.getDOMModel(docFileName + ".pins");
-    if (debugFlag) {
-      DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
-    }
-    
-    // export the models
-    if (DMDocument.LDDToolFlag) {
-      ExportModels lExportModels = new ExportModels();
-      lExportModels.writeLDDArtifacts();
-    } else if (DMDocument.mapToolFlag) {
-      WriteMappingFile writeMappingFile = new WriteMappingFile();
-      writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
-    } else {
-      ExportModels lExportModels = new ExportModels();
-      lExportModels.writeAllArtifacts();
-    }
-    registerMessage("0>info Next UID: " + DOMInfoModel.getNextUId());
-    printErrorMessages();
-
     if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
       System.out.println("");
       System.out.println(">>  INFO Exit(1)");
@@ -641,7 +332,221 @@ public class DMDocument extends Object {
     }
     System.out.println("");
     System.out.println(">>  INFO Exit(0)");
-    // System.exit(0);
+    System.exit(0);
+  }
+  
+  /**
+   * DMDocument Plugin Runner
+ * @throws Throwable 
+ * @throws IOException 
+   */
+  public static void run(String[] args) throws Throwable {
+	  init();
+	  
+	    // get the command line arguments using argparse4j
+	    Namespace argparse4jNamespace = getArgumentParserNamespace(args);
+
+	    // process first set of arguments
+	    // this must be done before config file processing
+	    // the use of the option "V" (alternate IM version) will change the input file directory (config
+	    // included)
+	    processArgumentParserNamespacePhase1(argparse4jNamespace);
+	    
+	    String sysDataHome = System.getProperty("data.home");
+	    if (sysDataHome != null) {
+	      sysDataHome = sysDataHome.replace('\\', '/');
+	      parentDir = sysDataHome + "/";
+	      dataDirPath = parentDir;
+	      // if this is an LDDTool run then an alternate path is allowed (option "V")
+	      // IMTool runs ignore the -V option
+	      if (LDDToolFlag && alternateIMVersionFlag) {
+	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	            dataDirPath = parentDir + alternateIMVersion + "/";
+	        }
+	      }
+	    } else {
+	      registerMessage("0>info - Property data.home is null");   
+	      String sysUserDir = System.getProperty("user.dir");
+	      if (sysUserDir == null) {
+	        registerMessage("3>error Environment variable sysUserDir is null");
+	        printErrorMessages();
+	        System.exit(1);
+	      }
+	      sysUserDir = sysUserDir.replace('\\', '/');
+	      parentDir = sysUserDir;
+	      String dirExt = "/model-ontology/src/ontology/Data/";
+//	      if (debugFlag) dirExt = "/bin/../Data/";
+	      dataDirPath = parentDir + dirExt;
+	      if (debugFlag) {
+	          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
+	    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
+	      }
+	      // if this is an LDDTool run then an alternate path is allowed (option "V")
+	      // IMTool runs ignore the -V option
+	      if (LDDToolFlag && alternateIMVersionFlag) {
+	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
+	        }
+	       }
+	    }
+	    registerMessage("0>info - Parent Directory:" + parentDir);
+	    registerMessage("0>info - IM Directory Path:" + dataDirPath);
+	    registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
+
+	    // read the configuration file and initialize key attributes; SchemaFileDefn map is initialized
+	    // below (setupNameSpaceInfoAll)
+	    // "props" are used again below in setupNameSpaceInfoAll)
+	    String configInputFile = dataDirPath + "config.properties";
+	    String configInputStr;
+	    File configFile = new File(configInputFile);
+	    FileReader reader = null;
+	    try {
+	      reader = new FileReader(configFile);
+	      // Properties props = new Properties();
+	      props.load(reader);
+	      configInputStr = props.getProperty("infoModelVersionId");
+	      if (configInputStr != null) {
+	        infoModelVersionId = configInputStr;
+	      }
+	      configInputStr = props.getProperty("schemaLabelVersionId");
+	      if (configInputStr != null) {
+	        schemaLabelVersionId = configInputStr;
+	      }
+	      configInputStr = props.getProperty("pds4BuildId");
+	      if (configInputStr != null) {
+	        pds4BuildId = configInputStr;
+	      }
+	      configInputStr = props.getProperty("imSpecDocTitle");
+	      if (configInputStr != null) {
+	        imSpecDocTitle = configInputStr;
+	      }
+	      configInputStr = props.getProperty("imSpecDocAuthor");
+	      if (configInputStr != null) {
+	        imSpecDocAuthor = configInputStr;
+	      }
+	      configInputStr = props.getProperty("imSpecDocSubTitle");
+	      if (configInputStr != null) {
+	        imSpecDocSubTitle = configInputStr;
+	      }
+	      configInputStr = props.getProperty("ddDocTitle");
+	      if (configInputStr != null) {
+	        ddDocTitle = configInputStr;
+	      }
+	      configInputStr = props.getProperty("debugFlag");
+	      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
+	        debugFlag = true;
+	      }
+	      // configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
+	      configInputStr = props.getProperty("mastRegAuthId");
+	      if (configInputStr != null) {
+	        registrationAuthorityIdentifierValue = configInputStr;
+	        registeredByValue = "RA_" + registrationAuthorityIdentifierValue;
+	      }
+	      configInputStr = props.getProperty("ddDocTeam");
+	      if (configInputStr != null) {
+	        ddDocTeam = configInputStr;
+	      }
+	      configInputStr = props.getProperty("pds4ModelFlag");
+	      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
+	        pds4ModelFlag = true;
+	      }
+	      configInputStr = props.getProperty("mastModelId");
+	      if (configInputStr != null) {
+	        mastModelId = configInputStr;
+	      }
+
+	      configInputStr = props.getProperty("toolVersionId");
+	      if (configInputStr != null) {
+	        DMDocVersionId = LDDToolVersionId = configInputStr;
+	      }
+	      configInputStr = props.getProperty("buildDate");
+	      if (configInputStr != null) {
+	        buildDate = configInputStr;
+	      }
+	    } catch (FileNotFoundException ex) {
+	      // file does not exist
+	      registerMessage("3>error Configuration file does not exist. [config.properties]");
+	    } catch (IOException ex) {
+	      // I/O error
+	      registerMessage("3>error Configuration file IO Exception. [config.properties]");
+	    } finally {
+	    	try {
+	    		reader.close();
+	    	} catch (IOException|NullPointerException e) {
+	    		// Do nothing
+	    	}
+	    }
+
+	    // process second set of arguments
+	    processArgumentParserNamespacePhase2(argparse4jNamespace);
+
+	    // check the files
+	    checkRequiredFiles();
+
+	    if (LDDToolFlag) {
+	      for (Iterator<SchemaFileDefn> i = LDDSchemaFileSortArr.iterator(); i.hasNext();) {
+	        SchemaFileDefn lSchemaFileDefn = i.next();
+	        cleanupLDDInputFileName(lSchemaFileDefn);
+	      }
+	    }
+	    
+	    // set up the System Build version
+	    XMLSchemaLabelBuildNum = pds4BuildId;
+
+	    // intialize the masterAllSchemaFileSortMap - all namespaces in config.properties file
+	    // set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces,
+	    // etc)
+	    setupNameSpaceInfoAll(props);
+
+	    // output the context info
+	    if (!LDDToolFlag) {
+	      registerMessage("1>info DMDoc Version: " + DMDocVersionId);
+	      registerMessage("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
+	      registerMessage("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);
+	      registerMessage(
+	          "1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);
+	    } else {
+	      registerMessage("1>info LDDTOOL Version: " + LDDToolVersionId);
+	      registerMessage("1>info IM Version Id: " + DMDocument.masterPDSSchemaFileDefn.versionId);
+	      registerMessage("1>info IM Namespace Id: " + DMDocument.masterPDSSchemaFileDefn.identifier);
+	      registerMessage(
+	          "1>info IM Label Version Id: " + DMDocument.masterPDSSchemaFileDefn.labelVersionId);
+	    }
+
+	    registerMessage("1>info Date: " + sTodaysDate);
+	    registerMessage("1>info PARENT_DIR: " + parentDir);
+
+	    // get the 11179 Attribute Dictionary - .pins file
+	    ProtPinsDOM11179DD lProtPinsDOM11179DD = new ProtPinsDOM11179DD();
+	    lProtPinsDOM11179DD.getProtPins11179DD(DMDocument.registrationAuthorityIdentifierValue,
+	        DMDocument.dataDirPath + "dd11179.pins");
+
+	    // get the models
+	    GetDOMModelDoc lGetDOMModelDoc = new GetDOMModelDoc();
+	    lGetDOMModelDoc.getModels(docFileName + ".pins");
+
+	    // get the DOM Model
+	    GetDOMModel lGetDOMModel = new GetDOMModel();
+	    lGetDOMModel.getDOMModel(docFileName + ".pins");
+	    if (debugFlag) {
+	      DOMInfoModel.domWriter(DOMInfoModel.masterDOMClassArr, "DOMModelListPerm.txt");
+	    }
+	    
+	    // export the models
+	    if (DMDocument.LDDToolFlag) {
+	      ExportModels lExportModels = new ExportModels();
+	      lExportModels.writeLDDArtifacts();
+	    } else if (DMDocument.mapToolFlag) {
+	      WriteMappingFile writeMappingFile = new WriteMappingFile();
+	      writeMappingFile.writeMappingFile(registrationAuthorityIdentifierValue, propertyMapFileName);
+	    } else {
+	      ExportModels lExportModels = new ExportModels();
+	      lExportModels.writeAllArtifacts();
+	    }
+	    registerMessage("0>info Next UID: " + DOMInfoModel.getNextUId());
+	    printErrorMessages();
+	    
+	    reset();
   }
 
   /**********************************************************************************************************
@@ -736,6 +641,205 @@ public class DMDocument extends Object {
       printErrorMessages();
       System.exit(1);
     }
+  }
+  
+  static private void init() {
+	  // configuration file variables
+	  infoModelVersionId = "0.0.0.0";
+	  schemaLabelVersionId = "0.0";
+	  pds4BuildId = "0a";
+
+	  imSpecDocTitle = "TBD_imSpecDocTitle";
+	  imSpecDocAuthor = "TBD_imSpecDocAuthor";
+	  imSpecDocSubTitle = "TBD_imSpecDocSubTitle";
+	  ddDocTitle = "TBD_ddDocTitle";
+	  ddDocTeam = "TBD_ddDocTeam";
+
+	  dataDirPath = "TBD_dataDirPath";
+	  outputDirPath = "./";
+
+	  DMDocVersionId = "0.0.0";
+
+	  LDDToolVersionId = "0.0.0";
+	  buildDate = "";
+	  buildIMVersionId = "1.23.0.0";
+	  buildIMVersionFolderId = "1N00";
+	  classVersionIdDefault = "1.0.0.0";
+	  PDS4MergeFlag = false; // create protege output; not currently used
+	  LDDAttrElementFlag = false; // if true, write XML elements for attributes
+	  LDDNuanceFlag = false;
+	  overWriteClass = true; // use dd11179.pins class disp, isDeprecated, and versionId
+	                                         // to overwrite Master DOMClasses, DOMAttrs, and
+	                                         // DOMPermvalues
+	  // alternate IM Version
+	  // if no option "V" is provided on the command line, then the default is the current IM version.
+	  alternateIMVersionFlag = false;
+	  alternateIMVersion = buildIMVersionFolderId; // default
+
+	  // import export file flags
+	  exportJSONFileFlag = false; // LDDTool, set by -J option
+	  exportJSONFileAllFlag = false; // LDDTool, set by -6 option *** Not Currently Used - Deprecate? ***
+	  exportSpecFileFlag = false;
+	  exportDDFileFlag = false;
+	  exportTermMapFileFlag = false;
+	  exportOWLRDFTTLFileFlag = false;
+	  exportOWLRDFFileFlag = false;
+	  exportCustomFileFlag = false;
+	  
+	  importJSONAttrFlag = false; // non PDS processing - not currently used
+	  pds4ModelFlag = false; // set in config.properties files (read by WriteDOMDocBook
+	                                        // to exclude PDS3 from generated DD)
+	  printNamespaceFlag = false; // print the configured namespaces to the log
+	  disciplineMissionFlag = false; // set by -d; Omit the term "mission" from the
+	                                                // namespace of a Mission dictionary
+	  writeDOMCount = 0; // *** Deprecate *** LDDParser DOM Error write count; if
+	                                // exportDOMFlag=true then DOM code is executed and so error/warning
+	                                // messages are duplicated in log and txt file.
+	  LDDToolMissionFlag = false;
+	  LDDToolSingletonClassTitle = "USER";
+	  LDDToolSingletonDOMClass = null;
+
+	  mapToolFlag = false;
+	  masterAllSchemaFileSortMap = new TreeMap<>();
+	  LDDSchemaFileSortMap = new TreeMap<>();
+	  LDDImportNameSpaceIdNCArr = new ArrayList<>();
+	  nameSpaceIdExtrnFlagArr = new ArrayList<>();
+	  masterNameSpaceIdNCLC = "TBD_masterNameSpaceIdNCLC";
+	  Literal_DEPRECATED = " *Deprecated*";
+	  deprecatedAddedDOM = false;
+	  msgOrder = 100000;
+	  mainMsgArr = new ArrayList<>();
+	  masterDOMMsgDefn = new DOMMsgDefn();
+	  messageLevelCountMap = new TreeMap<>();
+	  lMessageWarningCount = 0;
+	  lMessageErrorCount = 0;
+	  lMessageFatalErrorCount = 0;
+	  props = new Properties();
+	  propertyMapFileName = new ArrayList<>();
+	  
+	// process state for used flags, files, and directories
+	    dmProcessState = new DMProcessState();
+	    
+	    // System.out.println("Debug main 240515");
+
+	    PDSOptionalFlag = false;
+	    LDDToolFlag = false;
+	    // Secondary LDD Models
+	    LDDDOMModelArr = new ArrayList<>();
+	    LDDSchemaFileSortArr = new ArrayList<>();
+	    LDDToolAnnotateDefinitionFlag = false;
+
+	    // The current version is included to allow for -V currentIMVersion
+	    alternateIMVersionArr = new ArrayList<>();
+	    alternateIMVersionArr.add("1N00"); // current
+	    alternateIMVersionArr.add("1M00");
+	    alternateIMVersionArr.add("1L00");
+	    alternateIMVersionArr.add("1K00");
+	    alternateIMVersionArr.add("1J00");
+	    alternateIMVersionArr.add("1I00");
+	    alternateIMVersionArr.add("1H00");
+	    alternateIMVersionArr.add("1G00");
+	    alternateIMVersionArr.add("1F00");
+	    alternateIMVersionArr.add("1E00");
+	    alternateIMVersionArr.add("1D00");
+	    alternateIMVersionArr.add("1C00");
+	    alternateIMVersionArr.add("1B10");
+	    alternateIMVersionArr.add("1B00");
+
+	    // message handling
+	    DOMMsgDefn.init();
+
+	    // message level counts
+	    Integer msgCount0info = 0;
+	    Integer msgCount0warning = 0;
+	    Integer msgCount0error = 0;
+	    Integer msgCount1info = 0;
+	    Integer msgCount1warning = 0;
+	    Integer msgCount1error = 0;
+	    Integer msgCount2info = 0;
+	    Integer msgCount2warning = 0;
+	    Integer msgCount2error = 0;
+	    Integer msgCount3error = 0;
+	    Integer msgCount4error = 0;
+	    messageLevelCountMap.put("0>info", msgCount0info);
+	    messageLevelCountMap.put("0>warning", msgCount0warning);
+	    messageLevelCountMap.put("0>error", msgCount0error);
+	    messageLevelCountMap.put("1>info", msgCount1info);
+	    messageLevelCountMap.put("1>warning", msgCount1warning);
+	    messageLevelCountMap.put("1>error", msgCount1error);
+	    messageLevelCountMap.put("2>info", msgCount2info);
+	    messageLevelCountMap.put("2>warning", msgCount2warning);
+	    messageLevelCountMap.put("2>error", msgCount2error);
+	    messageLevelCountMap.put("3>error", msgCount3error);
+	    messageLevelCountMap.put("4>error", msgCount4error);
+
+	    // get dates
+	    rTodaysDate = new Date();
+	    sTodaysDate = rTodaysDate.toString();
+	    masterTodaysDate = sTodaysDate;
+	    masterTodaysDateUTC = getUTCDate();
+	    masterTodaysDateyymmdd = masterTodaysDateUTC.substring(2, 4)
+	        + masterTodaysDateUTC.substring(5, 7) + masterTodaysDateUTC.substring(8, 10);
+	    masterTodaysDateTimeUTC = getUTCDateTime();
+	    masterTodaysDateTimeUTCwT = replaceString(masterTodaysDateTimeUTC, " ", "T");
+	    masterTodaysDateTimeUTCFromInstant = getUTCDateTimeFromInstant();
+
+	    rdfPrefix = "http://pds.nasa.gov/infomodel/pds#";
+	    creationDateValue = masterTodaysDateUTC;
+	    beginDatePDS4Value = "2009-06-09";
+
+	    endDateValue = "2019-12-31";
+	    futureDateValue = "2019-12-31";
+	    versionIdentifierValue = "TBD_versionIdentifierValue";
+	    administrationRecordValue = "TBD_administrationRecordValue"; // set in GetModels
+	    stewardValue = "Steward_PDS";
+	    submitterValue = "Submitter_PDS";
+
+	    // registeredByValue = "RA_0001_NASA_PDS_1";
+	    registeredByValue = "TBD_registeredByValue";
+	    registrationAuthorityIdentifierValue = "TBD_registrationAuthorityIdentifierValue";
+
+	    // Master User Class Name
+	    masterUserClassNamespaceIdNC = "all";
+	    masterUserClassName = "USER";
+
+	    // master unique sequence number
+	    masterUId = 100000000;
+
+	    // master class order
+	    masterClassOrder = 1000;
+
+	    // master group number
+	    masterGroupNum = 10;
+
+	    // reserved Class names
+	    reservedClassNames = new ArrayList<>();
+	    reservedClassNames.add("Internal_Reference");
+	    reservedClassNames.add("Local_Internal_Reference");
+	    reservedClassNames.add("Reference_Pixel_Regression_Test");
+
+	    // reserved Attribute names
+	    reservedAttrNames = new ArrayList<>();
+	    reservedAttrNames.add("logical_identifier");
+	    reservedAttrNames.add("local_identifier");
+	    reservedAttrNames.add("pixel_latitude_Regression_Test");
+
+	    omitClass = new ArrayList<>();
+	    omitClass.add("Data_Object");
+	    omitClass.add("Digital_Object");
+	    omitClass.add("Physical_Object");
+	    omitClass.add("Conceptual_Object");
+
+	    // set registryAttr
+	    setRegistryAttrFlag();
+
+	    // set exposed elements
+	    setexposedElementFlag();
+  }
+  
+  static private void reset() {
+	  DOMInfoModel.reset();
+	  init();
   }
 
   static void setupNameSpaceInfoAll(Properties prop) {

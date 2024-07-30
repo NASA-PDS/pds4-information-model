@@ -197,5 +197,9 @@ class ProtPinsDOM11179DD extends Object {
       }
     }
   }
+  
+  public void flush() {
+	  this.protPinsInst = null;
+  }
 }
 
