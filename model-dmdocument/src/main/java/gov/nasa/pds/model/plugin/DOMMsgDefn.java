@@ -52,6 +52,9 @@ public class DOMMsgDefn extends Object {
 
   public DOMMsgDefn() {
     // messageLevelArr is initialized (init()) when masterDOMMsgDefn is created in DMDocument
+	  messageLevelArr = new ArrayList<>();
+	  messageLevelTitleMap = new TreeMap<>();
+	  messagePrefixMap = new TreeMap<>();
   }
 
   public DOMMsgDefn(String lMessage) {

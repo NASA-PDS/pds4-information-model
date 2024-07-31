@@ -37,15 +37,18 @@ import java.util.TreeMap;
 class UMLModelClassifications extends Object {
   // classification map and array - categories {method, binding, ...} with an order, title,
   // description, and a set of IM classes.
-  static TreeMap<String, ClassDOMCCSDSClassificationDefn> classClassificationMap = new TreeMap<>();
+  static TreeMap<String, ClassDOMCCSDSClassificationDefn> classClassificationMap;
   static ArrayList<ClassDOMCCSDSClassificationDefn> classClassificationArr;
 
   static ArrayList<String> activeClasses;
 
-  static TreeMap<String, String> definedClassToClassificationMap = new TreeMap<>();
+  static TreeMap<String, String> definedClassToClassificationMap;
 
   public UMLModelClassifications() {
 
+	  classClassificationMap = new TreeMap<>();
+	  definedClassToClassificationMap = new TreeMap<>();
+	  
     // Initialize the maps
     initMapDeclaration();
     initMapProcess();

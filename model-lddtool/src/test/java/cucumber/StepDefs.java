@@ -21,10 +21,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class connects the feature files with the Cucumber test code
  */
 public class StepDefs {
+	private static final Logger LOG = LoggerFactory.getLogger(StepDefs.class);
+	
     // The values of these variables should come from a row in the table in the
     // feature file.
     private String inputDirectory;
@@ -201,6 +206,7 @@ public class StepDefs {
         this.inputDirectory = null;
         this.outputDirectory = null;
         this.commandArgs = null;
+        System.setProperty(org.slf4j.simple.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
     }
 
     /**
