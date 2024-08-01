@@ -64,12 +64,12 @@ class WriteMappingFile extends Object {
   static final String INSIGHT_NUANCE_COLUMN = "INSIGHT_NUANCE";
   static final String MSL_NUANCE_COLUMN = "MSL_NUANCE";
 
-  static String[] column_keywords =
+  static final String[] COLUMN_KEYWORDS =
       {PARENT_COLUMN, CLASS_COLUMN, ATTR_COLUMN, XPATH_FULL_COLUMN, XPATH_SHORT_COLUMN,
           PDS3_KEYWORD_COLUMN, PDS3_GROUP_COLUMN, ODL_KEYWORD_COLUMN, ODL_GROUP_COLUMN,
           VICAR_KEYWORD_COLUMN, VICAR_GROUP_COLUMN, INSIGHT_NUANCE_COLUMN, MSL_NUANCE_COLUMN};
 
-  int[] columns = new int[column_keywords.length];
+  final int[] columns = new int[COLUMN_KEYWORDS.length];
 
   // write the mapping file
   public void writeMappingFile(String registrationAuthority, ArrayList<String> inputFileName)
@@ -406,8 +406,8 @@ class WriteMappingFile extends Object {
     int total_column = 0;
     while (tokenizer.hasMoreTokens()) {
       String tok = tokenizer.nextToken();
-      for (int i = 0; i < column_keywords.length; i++) {
-        if (tok.equalsIgnoreCase(column_keywords[i])) {
+      for (int i = 0; i < COLUMN_KEYWORDS.length; i++) {
+        if (tok.equalsIgnoreCase(COLUMN_KEYWORDS[i])) {
           columns[total_column] = i;
           total_column++;
         }

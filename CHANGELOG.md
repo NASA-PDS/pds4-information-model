@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-07-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -9,13 +9,20 @@
 - Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
 - Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
 
+**Improvements:**
+
+- \[namespace-registry\] add new namespace `vikinglander` [\#794](https://github.com/NASA-PDS/pds4-information-model/issues/794)
+
 **Defects:**
 
+- Lack of object initialization in the code leads to infinite when trying to run main more than once [\#801](https://github.com/NASA-PDS/pds4-information-model/issues/801) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Unable to build LDDs for 1E00 [\#776](https://github.com/NASA-PDS/pds4-information-model/issues/776) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
+- Create new LDDTool Cucumber scenario to support diffs to expected outputs [\#787](https://github.com/NASA-PDS/pds4-information-model/issues/787)
 - Complete CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
+- Identify key concepts we want to capture for each ontology object [\#778](https://github.com/NASA-PDS/pds4-information-model/issues/778)
 - Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
 - Initial Implementation of Cucumber Framework for LDDTool Tests [\#714](https://github.com/NASA-PDS/pds4-information-model/issues/714)
 

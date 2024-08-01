@@ -32,6 +32,7 @@ package gov.nasa.pds.model.plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 // import org.apache.commons.lang.WordUtils;
@@ -514,6 +515,63 @@ public abstract class DOMInfoModel extends Object {
     texSectionFormats.add("\\section");
     texSectionFormats.add("\\subsection");
     texSectionFormats.add("\\subsubsection");
+  }
+  
+  static public void reset() {
+	  master11179AdminArr = null;
+	  master11179AdminMap = null;
+	  master11179AdminMapId = null;
+	  fundamentalStructures = null;
+	  masterMetaAttribute = null;
+	  masterDOMClassArr = new ArrayList<>();
+	  masterDOMClassMap = new TreeMap<>();
+	  masterDOMClassIdMap = new TreeMap<>();
+	  masterDOMClassTitleMap = new TreeMap<>();
+	  masterDOMUserClass = null;
+	  masterDOMAttrArr = new ArrayList<>();
+	  masterDOMAttrMap = new TreeMap<>();
+	  masterDOMAttrIdMap = new TreeMap<>();
+	  userDOMClassAttrIdMap = new TreeMap<>();
+	  userSingletonDOMClassAttrIdMap = new TreeMap<>();
+	  masterDOMPropArr = new ArrayList<>();
+	  masterDOMPropMap = new TreeMap<>();
+	  masterDOMPropIdMap = new TreeMap<>();
+	  masterDOMRuleArr = new ArrayList<>();
+	  masterDOMRuleMap = new TreeMap<>();
+	  masterDOMRuleIdMap = new TreeMap<>();
+	  masterDOMRuleNewArr = null;
+	  masterDOMRuleNewMap = null;
+	  masterDOMDataTypeArr = new ArrayList<>();
+	  masterDOMDataTypeMap = new TreeMap<>();
+	  masterDOMDataTypeTitleMap = new TreeMap<>();
+	  masterDOMUnitArr = new ArrayList<>();
+	  masterDOMUnitMap = new TreeMap<>();
+	  masterDOMUnitTitleMap = new TreeMap<>();
+	  master11179DataDict = null;
+	  masterDOMUseCaseArr = new ArrayList<>();
+	  masterDOMUseCaseMap = new TreeMap<>();
+	  masterDOMUseCaseIdMap = new TreeMap<>();
+	  masterPropertyMapsMap = new TreeMap<>();
+	  masterPropertyMapsArr = new ArrayList<>();
+	  cdDOMAttrMap = new TreeMap<>();
+	  decDOMAttrMap = new TreeMap<>();
+	  LDDToolSingletonDOMClass = null;
+	  attrIsInactiveArr = null;
+	  sfDisciplineFacetDefnMap = new TreeMap<>();
+	  classConcept = null;
+	  dataConcept = null;
+	  dataTypePDS4ProtegeMap = null;
+	  rawValueTypeMap = null;
+	  metricConceptMap = null;
+	  dataTypeToConceptMap = null;
+	  cdID2CDTitleMap = null;
+	  cdTitle2CDIDMap = null;
+	  decID2DECTitleMap = null;
+	  decTitle2DECIDMap = null;
+	  masterValueMeaningMap = null;
+	  parsedClassMap = null;
+	  parsedProtAttrArr = null;
+	  parsedProtAttrMap = null;
   }
 
   /**********************************************************************************************************
@@ -1332,8 +1390,9 @@ public abstract class DOMInfoModel extends Object {
   /**
    * print all classes
    */
-  static void domWriter(ArrayList<DOMClass> classArr, String lFileName) throws java.io.IOException {
-    prDOMWriter =
+  static void domWriter(ArrayList<DOMClass> classArr, String lFileName) throws IOException {
+    try {
+	  prDOMWriter =
         new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));
     prDOMWriter.println("\ndebug - domWriter - classArr.size():" + classArr.size());
     for (Iterator<DOMClass> i = classArr.iterator(); i.hasNext();) {
@@ -1344,7 +1403,11 @@ public abstract class DOMInfoModel extends Object {
     // write DOMRules
     prDOMWriter.println("\ndebug - domWriter - masterDOMRuleArr.size():" + masterDOMRuleArr.size());
     printRulesAllDebug(masterDOMRuleArr, prDOMWriter);
-    prDOMWriter.close();
+    } catch (IOException e) {
+    	throw e;
+    } finally {
+    	prDOMWriter.close();
+    }
   }
 
   static void domClassWriter(DOMClass objClass, PrintWriter prDOMWriter, String lFileName) {

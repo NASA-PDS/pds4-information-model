@@ -38,11 +38,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import jdk.internal.org.jline.utils.Log;
+
 // This code writes the information model to XML schema, attempting to replicate the class
 // hierarchy.
 // It is written to a single schema file (single namespace).
 
 class XML4LabelSchemaDOM extends Object {
+	private static final Logger LOG = LoggerFactory.getLogger(XML4LabelSchemaDOM.class);
+	
   PrintWriter prXML;
   ArrayList<String> allAttrTypeIdArr = new ArrayList<>();
   TreeMap<String, DOMProp> allAttrTypeMap = new TreeMap<>();
@@ -1070,6 +1077,7 @@ class XML4LabelSchemaDOM extends Object {
   // write the XML Schema data types
   public void writeXMLDataTypes(SchemaFileDefn lSchemaFileDefn, PrintWriter prXML)
       throws java.io.IOException {
+
     // Sort the data types
     TreeMap<String, DOMClass> sortDataTypeMap = new TreeMap<>();
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {

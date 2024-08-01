@@ -119,6 +119,31 @@ public class LDDDOMParser extends Object {
 
   public LDDDOMParser() {
 
+	  classMap = new TreeMap<>();
+	  classMapLocal = new TreeMap<>();
+	  classArr = new ArrayList<>();
+
+	  attrArr = new ArrayList<>();
+	  attrMap = new TreeMap<>();
+	  attrMapLocal = new TreeMap<>();
+
+	  attrArrResolved = new ArrayList<>();
+
+	  LDDDOMPropArr = new ArrayList<>();
+
+	  ruleArr = new ArrayList<>();
+	  ruleMap = new TreeMap<>();
+	  ruleReferenceArr = new ArrayList<>();
+
+	  propertyMapsArr = new ArrayList<>();
+	  propertyMapsMap = new TreeMap<>();
+
+	  lddErrorMsg = new ArrayList<>();
+	  lLDDValArrExtUpdDefnClassMap = new TreeMap<>();
+
+	  lComment = "TBD_lComment";
+	  lRegAuthId = DMDocument.registrationAuthorityIdentifierValue;
+	  
     // initialize the concept arrays
     initializeConceptArrs();
   }
