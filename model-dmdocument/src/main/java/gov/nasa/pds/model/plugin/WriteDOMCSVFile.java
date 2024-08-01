@@ -35,11 +35,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.TreeMap;
 
 class WriteDOMCSVFiles extends Object {
-  static final String DELM_BEGIN = "\"", DELM_MID = "\",\"", DELM_END = "\"";
-  TreeMap<String, TermEntryDefn> termEntryMap;
+  private static final String DELM_BEGIN = "\"", DELM_MID = "\",\"", DELM_END = "\"";
 
   public WriteDOMCSVFiles() {
     return;

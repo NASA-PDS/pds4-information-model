@@ -58,6 +58,7 @@ class ClassPropertiesBase extends Object{
 	static boolean isFuseki = false;
 
 	public ClassPropertiesBase () {
+		isFuseki = false;
 		iri = "TBD_iri";
 		identifier = "TBD_identifier";
 		versionId = "TBD_versionId";

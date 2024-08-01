@@ -34,14 +34,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Driver for getting document
  *
  */
 public class ExportModels extends Object {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ExportModels.class);
 
   public ExportModels() {
-
   }
 
   /**********************************************************************************************************
@@ -49,7 +53,6 @@ public class ExportModels extends Object {
    ***********************************************************************************************************/
 
   public void writeAllArtifacts() throws java.io.IOException {
-
     // check if the export/ directory exists; if not create it
     DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/");
 
@@ -184,8 +187,7 @@ public class ExportModels extends Object {
     return;
   }
 
-  public void writeLDDArtifacts() throws java.io.IOException {
-
+  public void writeLDDArtifacts() throws java.io.IOException {	  
     // check if the export directory exists; if not create it
     DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/");
 
@@ -225,7 +227,7 @@ public class ExportModels extends Object {
     XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM();
     xml4LabelSchemaDOM.writeXMLSchemaFiles(DMDocument.masterLDDSchemaFileDefn, lLDDDOMClassArr);
     DMDocument
-        .registerMessage("0>info " + "writeAllArtifacts - XML Schema - lSchemaFileDefn.identifier:"
+        .registerMessage("0>info " + "writeLDDArtifacts - XML Schema - lSchemaFileDefn.identifier:"
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
 
     // write schematron file
@@ -233,7 +235,7 @@ public class ExportModels extends Object {
     WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron();
     writeDOMSchematron.writeSchematronFile(DMDocument.masterLDDSchemaFileDefn, lLDDDOMClassMap);
     DMDocument
-        .registerMessage("0>info " + "writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:"
+        .registerMessage("0>info " + "writeLDDArtifacts - Schematron - lSchemaFileDefn.identifier:"
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
 
     // write label file for XML Schema and Schematron
@@ -257,7 +259,7 @@ public class ExportModels extends Object {
     	  DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
     	  WriteDOMDDJSONFileLib writeDOMDDJSONFileLib = new WriteDOMDDJSONFileLib();
     	  writeDOMDDJSONFileLib.writeJSONFile(DMDocument.masterPDSSchemaFileDefn);
-    	  DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+    	  DMDocument.registerMessage("0>info " + "writeLDDArtifacts - JSON Done");
       }
 
     // write the Info Spec file
