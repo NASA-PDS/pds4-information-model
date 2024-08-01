@@ -836,6 +836,9 @@ public class DMDocument extends Object {
 
 	    // set exposed elements
 	    setexposedElementFlag();
+	    
+	    // set exposed attributes
+	    setexposedAttributeFlag();
   }
   
   static private void reset() {
