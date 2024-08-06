@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-01)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-06)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -11,6 +11,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace juice [\#803](https://github.com/NASA-PDS/pds4-information-model/issues/803)
 - \[namespace-registry\] add new namespace `vikinglander` [\#794](https://github.com/NASA-PDS/pds4-information-model/issues/794)
 
 **Defects:**
