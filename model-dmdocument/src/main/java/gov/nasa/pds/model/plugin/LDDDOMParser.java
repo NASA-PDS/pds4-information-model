@@ -53,6 +53,7 @@ import org.xml.sax.SAXException;
  */
 
 public class LDDDOMParser extends Object {
+	
   // Schema File Definition
   SchemaFileDefn gSchemaFileDefn;
 
@@ -1592,7 +1593,7 @@ public class LDDDOMParser extends Object {
             || (lDOMProp.localIdentifier.compareTo("XSAny#") == 0)) {
           continue;
         }
-
+        
         DOMAttr lDOMAttr = getLocalOrExternAttr(lSchemaFileDefn, lDOMClass, lDOMProp);
         if (lDOMAttr != null) {
 
@@ -1634,6 +1635,7 @@ public class LDDDOMParser extends Object {
               + lDOMProp.referenceType);
         }
       }
+      
       for (Iterator<DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
@@ -1763,9 +1765,11 @@ public class LDDDOMParser extends Object {
   // return a local or external attribute
   private DOMAttr getLocalOrExternAttr(SchemaFileDefn lSchemaFileDefn, DOMClass lDOMClass,
       DOMProp lDOMProp) {
+	  
+
     // will be looking for something like "0001_NASA_PDS_1.pds.USER.standard_deviation"
     String lLocalIdentifier = lDOMProp.localIdentifier;
-    
+        
     // check if attribute is an LDD attribute or an external added in an earlier iteration
     DOMAttr lDOMAttr = attrMapLocal.get(lLocalIdentifier);
     if (lDOMAttr == null) {
@@ -1779,6 +1783,7 @@ public class LDDDOMParser extends Object {
         lLDDExtNS = lLocalIdentifier.substring(0, lStringInd);
       }
       lLDDExtNS = lLDDExtNS.toLowerCase();
+      // e.g., 0001_NASA_PDS_1.all.USER.pds.kernel_type
       String lAttrIdentifier =
           DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
               DMDocument.masterUserClassName, lLDDExtNS, lLDDExtTitle);
@@ -1800,6 +1805,15 @@ public class LDDDOMParser extends Object {
         && (lDOMAttr.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0)
         && (!DMDocument.LDDImportNameSpaceIdNCArr.contains(lDOMAttr.nameSpaceIdNC))) {
       DMDocument.LDDImportNameSpaceIdNCArr.add(lDOMAttr.nameSpaceIdNC);
+    }
+    
+    // validate that referenced attribute is exposed
+    if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
+    	if (lDOMAttr.isEnumerated) {
+            DMDocument.registerMessage("2>error Attribute: " + " - The referenced enumerated attribute " + lLocalIdentifier + " must be exposed.");
+    	} else {
+    		DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " + lLocalIdentifier + " is not exposed.");
+    	}
     }
 
     // clone the USER or LDD attribute for use as a Resolved attribute
@@ -2805,31 +2819,42 @@ public class LDDDOMParser extends Object {
       getPartialMatches(lDOMAttr, numMatches, maxMatches);
     }
   }
+  
+  public void validateAssociationCardinalities(String lMinCard, String lMaxCard,
+	      String lLocalIdentifier) {
+	    if (lMinCard != null) {
+	        try {
+	        	lCardMinI = Integer.valueOf(lMinCard);
+	        	lCardMin = lMinCard;
+	        } catch (NumberFormatException e) {
+	        	lCardMinI = 0;
+	        	lCardMin = "0";
+	        	DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	        			+ " - Minimum occurrences is invalid: " + lMinCard);
+	        }
+	    }
 
-  private void validateAssociationCardinalities(String lMinCard, String lMaxCard,
-      String lLocalIdentifier) {
-    if (DMDocument.isInteger(lMinCard)) {
-      lCardMin = lMinCard;
-      lCardMinI = new Integer(lMinCard);
-    } else {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Minimum occurrences is invalid: " + lMinCard);
-    }
-    if ((lMaxCard.compareTo("*") == 0) || (lMaxCard.compareTo("unbounded") == 0)) {
-      lCardMax = "*";
-      lCardMaxI = 9999999;
-    } else if (DMDocument.isInteger(lMaxCard)) {
-      lCardMax = lMaxCard;
-      lCardMaxI = new Integer(lMaxCard);
-    } else {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Maximum occurrences is invalid: " + lMaxCard);
-    }
-    if (lCardMaxI < lCardMinI) {
-      DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
-          + " - Maximum occurrences is less than minimum occurrences");
-    }
-  }
+	    if (lMaxCard != null) {
+	    	if ((lMaxCard.compareTo("*") == 0) || (lMaxCard.compareTo("unbounded") == 0)) {
+	    		lCardMax = "*";
+	    		lCardMaxI = 9999999;
+	    	} else {
+	    		try {
+	    			lCardMaxI = Integer.valueOf(lMaxCard);
+	    			lCardMax = lMaxCard;
+	    		} catch (NumberFormatException e) {
+	    			lCardMaxI = 0;
+	    			lCardMax = "0";
+	    			DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    					+ " - Maximum occurrences is invalid: " + lMaxCard);
+	    		}
+	    	}
+	    	if (lCardMaxI < lCardMinI) {
+	    		DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    				+ " - Maximum occurrences is less than minimum occurrences");
+	    	}
+	    }
+}
 
   // print one line
   public void printLine(int lLevel, String lLeftPart, String lRightPart) {

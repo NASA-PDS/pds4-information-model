@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="./PDS4_PDS_1N00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="./PDS4_GEOM_1N00_1970.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/rings/v1/PDS4_RINGS_1E00_1A00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:geom="http://pds.nasa.gov/pds4/geom/v1"
+ xmlns:rings="http://pds.nasa.gov/pds4/rings/v1"
+ xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 ./PDS4_PDS_1N00.xsd
+                     http://pds.nasa.gov/pds4/geom/v1 ./PDS4_GEOM_1N00_1970.xsd
+                     http://pds.nasa.gov/pds4/rings/v1 https://pds.nasa.gov/pds4/rings/v1/PDS4_RINGS_1E00_1A00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:uranus_occ_u5_lco_250cm:data:2200nm_counts-v-time_rings_egress</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Uranus Ring Egress Occultation of Star u5 (UCAC2 25775788) Observed from the LCO 250cm Telescope</title>
+        <information_model_version>1.23.0.0</information_model_version>
+        <product_class>Product_Observational</product_class>
+        <Citation_Information>
+            <author_list>French, Richard G.; McGhee-French, Colleen A.; Gordon, Mitchell K.</author_list>
+            <publication_year>2020</publication_year>
+            <keyword>uranus rings</keyword>
+            <keyword>uranus rings stellar occultation</keyword>
+            <keyword>uranus rings stellar occultation radial profile</keyword>
+            <keyword>digitized strip chart</keyword>
+            <description>Derived normalized signal vs. time from the egress ring occultation of star u5 (UCAC2 25775788) observed by the LCO 250cm Telescope.</description>
+        </Citation_Information>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2021-04-04</modification_date>
+                <version_id>1.0</version_id>
+                <description>Initial version</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    <Observation_Area>
+        <comment>Original data recorded on strip chart, later digitized to extract a time series lightcurve.</comment>
+        <Time_Coordinates>
+            <start_date_time>1978-04-10T06:12:36.7275Z</start_date_time>
+            <stop_date_time>1978-04-10T06:21:24.5625Z</stop_date_time>
+        </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Calibrated</processing_level>
+            <description>This is the time series (normalized stellar flux vs. time) for the occultation of star u5 (UCAC2 25775788) by the rings of Uranus.</description>
+            <Science_Facets>
+                <wavelength_range>Infrared</wavelength_range>
+                <discipline_name>Ring-Moon Systems</discipline_name>
+                <facet1>Ring Occultation Profile</facet1>
+            </Science_Facets>
+        </Primary_Result_Summary>
+        <Investigation_Area>
+            <name>Earth-based Observations of Uranus System Stellar Occultations</name>
+            <type>Observing Campaign</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:investigation:observing_campaign.earth-based-uranus-stellar-occultations</lid_reference>
+                <reference_type>data_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>LCO 250cm Telescope</name>
+            <Observing_System_Component>
+                <name>Las Campanas Observatory</name>
+                <type>Host</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:facility:observatory.las_campanas</lid_reference>
+                    <reference_type>is_facility</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Irenee du Pont 2.5m Telescope</name>
+                <type>Telescope</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:telescope:las_campanas.ireneedupont_2m5</lid_reference>
+                    <reference_type>is_telescope</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Generic InSb High Speed Photometer</name>
+                <type>Instrument</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:multi-host.generic_insp_hsp</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+        </Observing_System>
+        <Target_Identification>
+            <name>Uranus Rings</name>
+            <alternate_designation>Uranian Ring System</alternate_designation>
+            <type>Ring</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:ring.uranus.rings</lid_reference>
+                <reference_type>data_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Discipline_Area>
+            <geom:Geometry>
+                <geom:SPICE_Kernel_Files>
+                    <geom:SPICE_Kernel_Identification>
+                        <!-- This kernel_type value should fail -->
+                        <geom:kernel_type>FOO</geom:kernel_type>
+                        <geom:spice_kernel_file_name>ura111.bsp</geom:spice_kernel_file_name>
+                    </geom:SPICE_Kernel_Identification>
+                    <geom:SPICE_Kernel_Identification>
+                        <geom:kernel_type>SPK</geom:kernel_type>
+                        <geom:spice_kernel_file_name>vgr2.ura111.bsp</geom:spice_kernel_file_name>
+                    </geom:SPICE_Kernel_Identification>
+                    <geom:SPICE_Kernel_Identification>
+                        <geom:kernel_type>SPK</geom:kernel_type>
+                        <geom:spice_kernel_file_name>earthstns_itrf93_040916.bsp</geom:spice_kernel_file_name>
+                    </geom:SPICE_Kernel_Identification>
+                    <geom:SPICE_Kernel_Identification>
+                        <geom:kernel_type>BPC</geom:kernel_type>
+                        <geom:spice_kernel_file_name>earth_720101_031229.bpc</geom:spice_kernel_file_name>
+                    </geom:SPICE_Kernel_Identification>
+                    <geom:SPICE_Kernel_Identification>
+                        <geom:kernel_type>LSK</geom:kernel_type>
+                        <geom:spice_kernel_file_name>naif0012.tls</geom:spice_kernel_file_name>
+                    </geom:SPICE_Kernel_Identification>
+                    <geom:comment>These kernel files were used in the generation of the products in the parent bundle. Some or all of them may not have been used directly in the generation of this product.</geom:comment>
+                </geom:SPICE_Kernel_Files>
+            </geom:Geometry>
+            <rings:Ring_Moon_Systems>
+                <rings:Occultation_Time_Series>
+                    <rings:occultation_type>stellar</rings:occultation_type>
+                    <rings:occultation_direction>both</rings:occultation_direction>
+                    <rings:time_series_direction>egress</rings:time_series_direction>
+                    <rings:planetary_occultation_flag>N</rings:planetary_occultation_flag>
+                    <rings:data_quality_score>fair</rings:data_quality_score>
+                    <rings:ring_plane>equator</rings:ring_plane>
+                    <rings:star_name>UCAC2 25775788</rings:star_name>
+                    <rings:fresnel_scale unit="km">1.71</rings:fresnel_scale>
+                    <rings:projected_star_diameter unit="km">0.6000</rings:projected_star_diameter>
+                    <rings:sigma_projected_star_diameter unit="km">0.0900</rings:sigma_projected_star_diameter>
+                    <rings:fractional_error_star_counts>0.025000000</rings:fractional_error_star_counts>
+                    <rings:time_constant_type>single pole</rings:time_constant_type>
+                    <rings:time_constant unit="s">0.10000</rings:time_constant>
+                    <rings:sigma_time_constant unit="s">0.00500</rings:sigma_time_constant>
+                    <rings:minimum_wavelength unit="nm">2000.00000</rings:minimum_wavelength>
+                    <rings:maximum_wavelength unit="nm">2400.00000</rings:maximum_wavelength>
+                    <rings:reference_time_utc unit="s">1978-04-10T00:00:00.0000Z</rings:reference_time_utc>                      
+                    <rings:minimum_observed_event_time unit="s">22356.7275</rings:minimum_observed_event_time>
+                    <rings:maximum_observed_event_time unit="s">22884.5625</rings:maximum_observed_event_time>
+                    <rings:observed_event_start_tdb unit="s">-685691194.0869</rings:observed_event_start_tdb>  
+                    <rings:observed_event_stop_tdb unit="s">-685690666.2519</rings:observed_event_stop_tdb>                           
+                    <rings:earth_received_start_time_utc unit="s">1978-04-10T06:12:36.7275Z</rings:earth_received_start_time_utc>
+                    <rings:earth_received_stop_time_utc unit="s">1978-04-10T06:21:24.5625Z</rings:earth_received_stop_time_utc>
+                    <rings:minimum_ring_radius unit="km">42134.37081</rings:minimum_ring_radius>
+                    <rings:maximum_ring_radius unit="km">51374.86328</rings:maximum_ring_radius>
+                    <rings:minimum_ring_longitude unit="deg">137.3619</rings:minimum_ring_longitude>
+                    <rings:maximum_ring_longitude unit="deg">147.7060</rings:maximum_ring_longitude>
+                    <rings:minimum_observed_ring_azimuth unit="deg">323.7428</rings:minimum_observed_ring_azimuth>
+                    <rings:maximum_observed_ring_azimuth unit="deg">334.0870</rings:maximum_observed_ring_azimuth>
+                    <rings:observed_ring_elevation unit="deg">-57.32465</rings:observed_ring_elevation>
+                    <rings:light_source_incidence_angle unit="deg">32.67535</rings:light_source_incidence_angle>
+                </rings:Occultation_Time_Series>
+            </rings:Ring_Moon_Systems>
+        </Discipline_Area>
+    </Observation_Area>
+    <Reference_List>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_support:document:earth-based-uranus-stellar-occultations-user-guide</lid_reference>
+            <reference_type>data_to_document</reference_type>
+            <comment>The Users Guide for all of the Earth-based Uranus system occultations.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:data:2200nm_counts-v-time_occult_ingress</lid_reference>
+            <reference_type>data_to_calibrated_product</reference_type>
+            <comment>Normalized counts vs. time for ingress portion of the entire occcultion.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:data:2200nm_counts-v-time_occult_egress</lid_reference>
+            <reference_type>data_to_calibrated_product</reference_type>
+            <comment>Normalized counts vs. time for egress portion of the entire occcultion.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:browse:2200nm_obs_geom</lid_reference>            
+            <reference_type>data_to_browse</reference_type>
+            <comment>Diagram of the Uranus system showing the occultation track.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:browse:2200nm_earth</lid_reference>            
+            <reference_type>data_to_browse</reference_type>
+            <comment>Diagram of the view of the Earth from Uranus at mid-occultation Time.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:browse:2200nm_alt</lid_reference>
+            <reference_type>data_to_browse</reference_type>
+            <comment>Plot of the altitude (in degrees) of Uranus and the sun relative to the horizon over the duration of the occulation.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:browse:2200nm_counts-v-time_rings_egress</lid_reference>
+            <reference_type>data_to_browse</reference_type>
+            <comment>Low resolution plot of the egress counts vs. time for the ring occcultion.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_u5_lco_250cm:browse:2200nm_counts-v-time_normalization</lid_reference>
+            <reference_type>data_to_browse</reference_type>
+            <comment>Illustrates some of the processing steps involved in normalizing a time-series occultation light curve from counts per second to units of stellar flux.</comment>
+        </Internal_Reference>
+       <Internal_Reference>
+            <lid_reference>urn:nasa:pds:uranus_occ_support</lid_reference>
+            <reference_type>data_to_resource</reference_type>
+            <comment>The support bundle for all of the Earth-based Uranus system occultations.</comment>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lidvid_reference>urn:nasa:pds:uranus_occ_support:data:uranus_occultation_ring_fit_rfrench_20201201::1.0</lidvid_reference>
+            <reference_type>data_to_resource</reference_type>
+            <comment>The fitted model of the ring system upon which the data are based.</comment>
+        </Internal_Reference>
+    </Reference_List>
+    <File_Area_Observational>
+        <File>
+            <file_name>u5_lco_250cm_2200nm_counts-v-time_rings_egress.tab</file_name>
+            <local_identifier>ring-data</local_identifier>
+            <creation_date_time>2021-04-04T17:53:00Z</creation_date_time>
+        </File>
+        <Header>
+            <offset unit="byte">0</offset>
+            <object_length unit="byte">264</object_length>
+            <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+            <description>Provides the column headers, separated by commas, for the data table.</description>
+        </Header>
+        <Table_Character>
+            <offset unit="byte">264</offset>
+            <records>105568</records>
+            <description>This is a calibrated time series of an occultation by rings of Uranus 
+            	  generated from an earth-based stellar occultation. The data are uniformly spaced in time, 
+            	  normalized in units of stellar intensity, and include the equatorial ring plane radius sampled 
+            	  at each time point, computed from an orbit model for the ring system.
+            </description>
+            <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+            <Record_Character>
+                <fields>15</fields>
+                <groups>0</groups>
+                <record_length unit="byte">212</record_length>
+                <Field_Character>
+                    <name>Observed Event Time</name>
+                    <field_number>1</field_number>
+                    <field_location unit="byte">1</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <unit>second</unit> 
+                    <description>The instant at which photons were received at the observer location. It is 
+                        represented in the Universal Coordinated Time system, as a number of elapsed
+                        seconds since the time given by the reference_time_utc attribute specified in this file.
+                        It refers to the middle of the bin.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Observed Event TDB</name>
+                    <field_number>2</field_number>
+                    <field_location unit="byte">19</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <unit>second</unit> 
+                    <description>The instant at which photons were received at the observer location. It is represented 
+                        in the 'Barycentric Dynamical Time' system, as a number of elapsed seconds since the J2000 epoch.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Mean Signal</name>
+                    <field_number>3</field_number>
+                    <field_location unit="byte">37</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <description>Mean counts received by the instrument during this time bin. The background
+                        signal has not been subtracted. Refer to NOTE FLAG for guidance on validity of data.
+                    </description>
+                    <Special_Constants>
+                        <missing_constant>999999999.999999</missing_constant>
+                    </Special_Constants>
+                    <Field_Statistics>
+                        <maximum>999999999.999999</maximum>
+                    </Field_Statistics>
+                </Field_Character>
+                <Field_Character>
+                    <name>Normalized Signal</name>
+                    <field_number>4</field_number>
+                    <field_location unit="byte">55</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">10</field_length>
+                    <description>Normalized signal during this time bin, in units of the unocculted stellar signal, 
+                        such that 1.0 corresponds to the full unocculted star signal and
+                        0.0 corresponds to no counts from the star (a completely opaque ring).
+                        NORMALIZED SIGNAL = (MEAN_SIGNAL - BACKGROUND_MODEL)/(UNOCCULTED STAR MODEL)
+                        This is an approximate normalization, computed using regional polynomial fits.
+                        For high-precision photometry of ring events, use locally computed normalization.
+                    </description>
+                    <Special_Constants>
+                        <missing_constant>999.999999</missing_constant>
+                    </Special_Constants>
+                    <Field_Statistics>
+                        <maximum>999.999999</maximum>
+                    </Field_Statistics>
+                </Field_Character>
+                <Field_Character>
+                    <name>Sky-plane F</name>
+                    <field_number>5</field_number>
+                    <field_location unit="byte">67</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">13</field_length>
+                    <unit>Kilometer</unit>
+                    <description>The east/west component of r sky (positive in the east direction), in km.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Sky-plane G</name>
+                    <field_number>6</field_number>
+                    <field_location unit="byte">82</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">13</field_length>
+                    <unit>Kilometer</unit>
+                    <description>The north/south component of r sky (positive in the north direction), in km.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Sky-plane Radius</name>
+                    <field_number>7</field_number>
+                    <field_location unit="byte">97</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">13</field_length>
+                    <unit>Kilometer</unit>
+                    <description>The length of the radius vector in the plane of the sky measured from the center of the occulting object to the position of the occulted star or spacecraft, in km.
+                    </description>
+                </Field_Character>
+                 <Field_Character>
+                    <name>Ring Radius</name>
+                    <field_number>8</field_number>
+                    <field_location unit="byte">112</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">12</field_length>
+                    <unit>Kilometer</unit>
+                    <description>Radial distance of the occultation intercept point (middle of the bin) from 
+                        the center of the planet, in km. Distances are measured along the equator plane.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Ring Longitude</name>
+                    <field_number>9</field_number>
+                    <field_location unit="byte">126</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">8</field_length>
+                    <unit>Degree</unit>
+                    <description>Inertial longitude on the ring plane corresponding to the midpoint of the bin.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Observed Ring Azimuth</name>
+                    <field_number>10</field_number>
+                    <field_location unit="byte">136</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">9</field_length>
+                    <unit>Degree</unit>
+                    <description>Angle measured at a point in the ring plane, starting from the direction of 
+                        a photon heading to the observer, and ending at the direction of a local radial vector. 
+                        This angle is projected into the ring plane and measured in the prograde direction.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Ring Event TDB</name>
+                    <field_number>11</field_number>
+                    <field_location unit="byte">147</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <unit>second</unit> 
+                    <description>The time at which photons left the ring plane. This time is earlier than the associated 
+                        OBSERVED EVENT TDB by an amount equal to the light travel time. It is represented in the
+                        'Barycentric Dynamical Time' system, as a number of elapsed seconds since the J2000 epoch.
+                    </description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Unocculted Star Model</name>
+                    <field_number>12</field_number>
+                    <field_location unit="byte">165</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <description>Model of the unocculted star signal as a function of ring plane radius. This is necessary 
+                        because of variations in atmospheric transparency and other time-dependent effects.
+                    </description>
+                    <Special_Constants>
+                        <missing_constant>999999999.999999</missing_constant>
+                    </Special_Constants>
+                    <Field_Statistics>
+                        <maximum>999999999.999999</maximum>
+                    </Field_Statistics>
+                </Field_Character>
+                <Field_Character>
+                    <name>Background Model</name>
+                    <field_number>13</field_number>
+                    <field_location unit="byte">183</field_location>
+                    <data_type>ASCII_Real</data_type>
+                    <field_length unit="byte">16</field_length>
+                    <description>Model of the non-stellar background signal (which may vary over the course of the 
+                    	  occultation) due to instrumental offsets applied during the recording and/or sky brightness 
+                    	  and contributions from reflected sunlight from the rings and planet.
+                    </description>
+                   <Special_Constants>
+                        <missing_constant>999999999.999999</missing_constant>
+                    </Special_Constants>
+                    <Field_Statistics>
+                        <maximum>999999999.999999</maximum>
+                    </Field_Statistics>
+                </Field_Character>
+                <Field_Character>
+                    <name>Number Of Samples Per Bin</name>
+                    <field_number>14</field_number>
+                    <field_location unit="byte">201</field_location>
+                    <data_type>ASCII_Integer</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>The number of raw data points per bin.</description>
+                </Field_Character>
+                <Field_Character>
+                    <name>Note Flag</name>
+                    <field_number>15</field_number>
+                    <field_location unit="byte">207</field_location>
+                    <data_type>ASCII_Integer</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>A numerical flag that associates
+                        specific comments with individual data bins. When more than one
+                        comment applies, the values are summed. The values and their
+                        associated comments are:
+                        0: radius and longitude are based on Uranus equatorial plane.
+                        1: radius and longitude are based inclined ring plane model
+                        referred to in metadata associated with file.
+                        2: observed ring occultation event
+                        4: telescope pointed to nearby sky for background level check
+                        8: input signal from time source, not from photometer on telescope
+                        16: line of sight intersects planet
+                        32: dawn/dusk - rapid background level change;
+                        no background or star intensity estimate.
+                        64: unreliable data (e.g., clouds, telescope
+                        guiding error, or instrument adjustment);
+                        no background or star intensity estimate.
+                    </description>
+                </Field_Character>
+            </Record_Character>
+        </Table_Character>
+    </File_Area_Observational>
+</Product_Observational>

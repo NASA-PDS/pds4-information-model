@@ -138,10 +138,13 @@ class MasterDOMInfoModel extends DOMInfoModel {
           // attribute
           
           if (isAttInactive (lDOMAttr.identifier)) continue;
-          
           String lUserAttrIdentifier =
               DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
                   DMDocument.masterUserClassName, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
+          
+          // 555
+          if (DMDocument.exposedAttributeArr.contains(lUserAttrIdentifier)) lDOMAttr.isExposed = true;
+
           DOMInfoModel.userDOMClassAttrIdMap.put(lUserAttrIdentifier, lDOMAttr);
         }
       }
