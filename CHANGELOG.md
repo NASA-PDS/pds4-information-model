@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-06)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-07)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -17,6 +17,7 @@
 **Defects:**
 
 - Lack of object initialization in the code leads to infinite when trying to run main more than once [\#801](https://github.com/NASA-PDS/pds4-information-model/issues/801) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- Validate does not catch incorrect `<kernel_type>`s [\#797](https://github.com/NASA-PDS/pds4-information-model/issues/797) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 - Unable to build LDDs for 1E00 [\#776](https://github.com/NASA-PDS/pds4-information-model/issues/776) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
