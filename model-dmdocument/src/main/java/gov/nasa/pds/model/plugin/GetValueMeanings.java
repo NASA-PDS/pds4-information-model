@@ -949,6 +949,48 @@ class GetValueMeanings extends Object {
         "pds:DD_Attribute/pds:Internal_Reference.reference_type.attribute_to_document",
         "attribute_to_document", "The attribute is associated to a document");
     masterValueMeaningMap.put(lPVD.identifier, lPVD);
+    
+
+    lPVD = new PermValueDefn(
+        "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_target",
+        "data_to_target", "The observational product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_Bundle/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.bundle_to_target",
+        "bundle_to_target", "The bundle product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_Collection/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.collection_to_target",
+        "collection_to_target", "The collection product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_Browse/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.browse_to_target",
+        "browse_to_target", "The browse product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_External/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.external_to_target",
+        "external_to_target", "The external product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_Native/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.native_to_target",
+        "native_to_target", "The native product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_SPICE_Kernel/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.data_to_target",
+        "data_to_target", "The SPICE kernel product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
+    lPVD = new PermValueDefn(
+        "pds:Product_XML_Schema/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference.reference_type.schema_to_target",
+        "schema_to_target", "The XML schema product is associated to a target product");
+    masterValueMeaningMap.put(lPVD.identifier, lPVD);
+
 
     return;
   }
