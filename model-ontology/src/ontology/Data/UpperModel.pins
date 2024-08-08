@@ -1,4 +1,4 @@
-; Wed Aug 07 20:30:28 EDT 2024
+; Thu Aug 08 12:01:13 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1600,12 +1600,12 @@
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004864.101] of  Schematron_Assert
 
 	(assertMsg " must be set to one of the following values ")
-	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = (' browse_to_target')")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('browse_to_target')")
 	(assertType "EVERY")
 	(attrTitle "reference_type")
 	(identifier "reference_type")
 	(specMesg "TBD")
-	(testValArr " browse_to_target"))
+	(testValArr "browse_to_target"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
 
