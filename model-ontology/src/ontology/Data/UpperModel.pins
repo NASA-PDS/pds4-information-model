@@ -1,4 +1,4 @@
-; Mon Jun 24 20:07:52 EDT 2024
+; Thu Aug 08 12:01:13 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1582,6 +1582,31 @@
 		"ancillary_to_document"
 		"ancillary_to_browse"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004864] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004864.101])
+	(identifier "pds:Product_Browse/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Browse/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004864.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('browse_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "browse_to_target"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Browse%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -1837,6 +1862,31 @@
 	(specMesg "TBD")
 	(testValArr "bundle_to_investigation"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004862] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004862.101])
+	(identifier "pds:Product_Bundle/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Bundle/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004862.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('bundle_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "bundle_to_target"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area.100002531] of  Schematron_Rule
 
 	(alwaysInclude "true")
@@ -2085,6 +2135,31 @@
 	(identifier "reference_type")
 	(specMesg "TBD")
 	(testValArr "collection_to_investigation"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004863] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004863.101])
+	(identifier "pds:Product_Collection/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Collection/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004863.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('collection_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "collection_to_target"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area.100002535] of  Schematron_Rule
 
@@ -2480,6 +2555,31 @@
 		"document_to_target"
 		"document_to_data"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004865] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004865.101])
+	(identifier "pds:Product_External/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_External/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004865.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('external_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "external_to_target"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -2578,6 +2678,31 @@
 	(identifier "reference_type")
 	(specMesg "TBD")
 	(testValArr "product_to_license"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004866] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004866.101])
+	(identifier "pds:Product_Native/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Native/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004866.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('native_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "native_to_target"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Native%2Fpds%3AIdentification_Area%2Fpds%3ALicense_Information%2Fpds%3AInternal_Reference.100002548] of  Schematron_Rule
 
@@ -2827,6 +2952,31 @@
 	(specMesg "TBD")
 	(testValArr "data_to_target"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004861] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004861.101])
+	(identifier "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_Observational/pds:Observation_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004861.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('data_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "data_to_target"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002553] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -2944,6 +3094,31 @@
 	(identifier "x")
 	(specMesg "In Product_SPICE_Kernel the Time_Coordinates, Investigation_Area, Target_Identification, and Observing_System classes must be present"))
 
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004867] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004867.101])
+	(identifier "pds:Product_SPICE_Kernel/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_SPICE_Kernel/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_SPICE_Kernel%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004867.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('data_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "data_to_target"))
+
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Thumbnail%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002529] of  Schematron_Rule
 
 	(alwaysInclude "false")
@@ -2996,6 +3171,31 @@
 	(identifier "reference_type")
 	(specMesg "TBD")
 	(testValArr "update_to_collection"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_XML_Schema%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004868] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "reference_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Internal_Reference")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_XML_Schema%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004868.101])
+	(identifier "pds:Product_XML_Schema/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Product_XML_Schema/pds:Context_Area/pds:Target_Identification/pds:Reference_List/pds:Internal_Reference"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_XML_Schema%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100004868.101] of  Schematron_Assert
+
+	(assertMsg " must be set to one of the following values ")
+	(assertStmt "every $ref in (pds:reference_type) satisfies $ref = ('schema_to_target')")
+	(assertType "EVERY")
+	(attrTitle "reference_type")
+	(identifier "reference_type")
+	(specMesg "TBD")
+	(testValArr "schema_to_target"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Zipped%2Fpds%3AInternal_Reference.100002558] of  Schematron_Rule
 
@@ -3961,6 +4161,9 @@
 )
 
 ([upper_110812b_Class0] of  %3APAL-CONSTRAINT
+)
+
+([UpperModel_bundle_to_target_Class16] of  Schematron_Assert
 )
 
 ([Waves] of  Group_Facet2
