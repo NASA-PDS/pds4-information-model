@@ -838,7 +838,8 @@ public class DMDocument extends Object {
 	    setexposedElementFlag();
 	    
 	    // set exposed attributes
-	    setexposedAttributeFlag();
+	    // 555 commented out until DDWG approves the impact of the fix
+//	    setexposedAttributeFlag();
   }
   
   static private void reset() {
@@ -1099,6 +1100,10 @@ public class DMDocument extends Object {
     exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
+    
+    // 555 added back in until DDWG approves impact of the fix
+    exposedElementArr.add("0001_NASA_PDS_1.pds.DD_Class.pds.local_identifier");
+    exposedElementArr.add("0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier");
   }
   
   static void setexposedAttributeFlag() {

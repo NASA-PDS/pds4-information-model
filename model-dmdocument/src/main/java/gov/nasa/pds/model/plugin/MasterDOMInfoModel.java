@@ -142,8 +142,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
               DOMInfoModel.getAttrIdentifier(DMDocument.masterUserClassNamespaceIdNC,
                   DMDocument.masterUserClassName, lDOMAttr.nameSpaceIdNC, lDOMAttr.title);
           
-          // 555
-          if (DMDocument.exposedAttributeArr.contains(lUserAttrIdentifier)) lDOMAttr.isExposed = true;
+          	// 555 commented out until DDWG approves impact of the fix
+//          if (DMDocument.exposedAttributeArr.contains(lUserAttrIdentifier)) lDOMAttr.isExposed = true;
 
           DOMInfoModel.userDOMClassAttrIdMap.put(lUserAttrIdentifier, lDOMAttr);
         }
