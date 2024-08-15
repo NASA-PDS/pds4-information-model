@@ -838,8 +838,7 @@ public class DMDocument extends Object {
 	    setexposedElementFlag();
 	    
 	    // set exposed attributes
-	    // 555 commented out until DDWG approves the impact of the fix
-//	    setexposedAttributeFlag();
+	    setexposedAttributeFlag();
   }
   
   static private void reset() {
@@ -1100,21 +1099,18 @@ public class DMDocument extends Object {
     exposedElementArr.add("0001_NASA_PDS_1.pds.Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.Local_Internal_Reference");
     exposedElementArr.add("0001_NASA_PDS_1.pds.External_Reference");
-    
-    // 555 added back in until DDWG approves impact of the fix
-    exposedElementArr.add("0001_NASA_PDS_1.pds.DD_Class.pds.local_identifier");
-    exposedElementArr.add("0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier");
   }
   
   static void setexposedAttributeFlag() {
     // the set of attributes that will be externalized (defined as xs:Element)
     exposedAttributeArr = new ArrayList<>();
-    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.comment");
-    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.description");
+// 555 commented out until DDWG addresses impact of using ref:
+//    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.comment");
+//    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.description");
     exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.local_identifier");
     exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.logical_identifier");
-    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.name");
-    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.kernel_type");
+//    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.name");
+//    exposedAttributeArr.add("0001_NASA_PDS_1.all.USER.pds.kernel_type");
   }
 
   static void setRegistryAttrFlag() {
