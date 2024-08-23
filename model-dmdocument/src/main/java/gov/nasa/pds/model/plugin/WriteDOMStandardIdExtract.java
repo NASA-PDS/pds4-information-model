@@ -59,7 +59,7 @@ class WriteDOMStandardIdExtract extends Object {
 
   public void writeExtractFileBegin() throws java.io.IOException {
     // Write the files consisting of individual classes
-    String lFileName = DMDocument.outputDirPath + "export/" + "StandardId" + "_"
+    String lFileName = DMDocument.getOutputDirPath() + "export/" + "StandardId" + "_"
         + DOMInfoModel.lab_version_id + ".txt";
     prPVL =
         new PrintWriter(new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));

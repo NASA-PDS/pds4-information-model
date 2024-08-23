@@ -35,6 +35,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Parses a Protege Frames file (.pont or .pins) and creates an array of tokens. parse - open file,
@@ -71,9 +72,9 @@ public class ProtFramesParser extends Object {
 
     try {
       PBReader = new InputStreamReader(new FileInputStream(new File(fname)), "UTF-8");
-      DMDocument.registerMessage("0>info " + "Found required file: " + fname);
+      Utility.registerMessage("0>info " + "Found required file: " + fname);
     } catch (Exception e) {
-      DMDocument.registerMessage("3>error " + "Could not find required file: " + fname);
+      Utility.registerMessage("3>error " + "Could not find required file: " + fname);
       return false;
     }
     if (!getTokens()) {

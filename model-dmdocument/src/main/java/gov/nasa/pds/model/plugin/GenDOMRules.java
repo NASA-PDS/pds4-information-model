@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 class GenDOMRules extends Object {
   TreeMap <String, DeprecatedDefn> lUnitIdDeprecatedMap = new TreeMap <String, DeprecatedDefn> ();
@@ -808,7 +809,7 @@ class GenDOMRules extends Object {
         parentChildrenRelationMap.put(lDOMClass.identifier, lParentChildrenRelation);
         lParentClassIdArr.add(lDOMClass.identifier);
       } else {
-        DMDocument.registerMessage("1>error "
+        Utility.registerMessage("1>error "
             + "Duplicate Found - Adding Extern Class to parentChildrenRelationMap - lDOMClass.identifier:"
             + lDOMClass.identifier);
       }

@@ -31,10 +31,6 @@
 package gov.nasa.pds.model.plugin;
 
 import java.io.File;
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -67,7 +63,7 @@ public abstract class AbstractGenerationPlugin extends AbstractMojo {
       getLog().info("Writing artifacts from those sources to ‘" + this.target + "’");
       File d = new File(this.target);
       d.mkdirs();
-      DMDocument.outputDirPath = d.toString() + "/";
+      // DMDocument.outputDirPath = d.toString() + "/";
       this.generateArtifacts();
     } catch (RuntimeException ex) {
       throw ex;

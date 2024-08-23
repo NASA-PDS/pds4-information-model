@@ -40,6 +40,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 
 /**
@@ -95,11 +96,11 @@ public class XMLDocParserDomMDPTNConfig extends Object {
     // get the root element
     Element lRootElem = dom.getDocumentElement();
     if (lRootElem != null) {
-      DMDocument.registerMessage("0>info " + "Found required file: " + DMDocument.dataDirPath
+      Utility.registerMessage("0>info " + "Found required file: " + DMDocument.dataDirPath
           + "MDPTNConfigClassDisp.xml");
       getRecord(lRootElem);
     } else {
-      DMDocument.registerMessage("3>error " + "Did not find required file: "
+      Utility.registerMessage("3>error " + "Did not find required file: "
           + DMDocument.dataDirPath + "MDPTNConfigClassDisp.xml");
     }
   }
@@ -217,7 +218,7 @@ public class XMLDocParserDomMDPTNConfig extends Object {
         classDisposition.intSteward = lSteward;
         classDispositionMap.put(lNameValue, classDisposition);
       } else if (!DMDocument.LDDToolFlag) {
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "1>error " + "Duplicate class exists - Class Identifier:" + lNameValue);
       }
     }

@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Driver for getting document
@@ -86,7 +87,7 @@ public class GetDOMModelDoc extends Object {
         lobjectid.getProtPinsGlossary(modelId, DMDocument.dataDirPath + lModelInfo.filename);
       }
     }
-    DMDocument.registerMessage("0>info " + "GetDOMModelDoc Done");
+    Utility.registerMessage("0>info " + "GetDOMModelDoc Done");
   }
 
   /**********************************************************************************************************

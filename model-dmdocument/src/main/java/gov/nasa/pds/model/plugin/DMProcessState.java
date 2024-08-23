@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 public class DMProcessState {
 
@@ -445,7 +446,7 @@ public class DMProcessState {
   public void setRelativeFileSpecCCSDSCSV(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecCCSDSCSV, 1120);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/CSV/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/CSV/");
     }
     return;
   }
@@ -465,7 +466,7 @@ public class DMProcessState {
   public void setRelativeFileSpecDDDocXML(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDDDocXML, 1150);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/DD/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/DD/");
     }
     return;
   }
@@ -485,7 +486,7 @@ public class DMProcessState {
   public void setRelativeFileSpecModelRDF(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecModelRDF, 1190);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/rdf/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/rdf/");
     }
     return;
   }
@@ -493,7 +494,7 @@ public class DMProcessState {
   public void setRelativeFileSpecOWLRDF_DOM(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecOWLRDF_DOM, 1210);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/owl/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/owl/");
     }
     return;
   }
@@ -501,7 +502,7 @@ public class DMProcessState {
   public void setRelativeFileSpecSKOSTTL_DOM(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecSKOSTTL_DOM, 1230);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/skos/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/skos/");
     }
     return;
   }
@@ -509,7 +510,7 @@ public class DMProcessState {
   public void setRelativeFileSpecOWLRDFTTL(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecOWLRDF_DOM, 1231);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/owl/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/owl/");
     }
     return;
   }
@@ -517,7 +518,7 @@ public class DMProcessState {
   public void setRelativeFileSpecOWLRDF(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecOWLRDF_DOM, 1232);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/owl/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/owl/");
     }
     return;
   }
@@ -525,7 +526,7 @@ public class DMProcessState {
   public void setRelativeFileSpecUMLXMI(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecUMLXMI, 1240);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/xmi/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/xmi/");
     }
     return;
   }
@@ -533,7 +534,7 @@ public class DMProcessState {
   public void setRelativeFileSpecUMLXMI2(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecUMLXMI2, 1250);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/xmi/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/xmi/");
     }
     return;
   }
@@ -541,7 +542,7 @@ public class DMProcessState {
   public void setRelativeFileSpecAttrDefn(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecAttrDefn, 1300);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/defnAttr/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/defnAttr/");
     }
     return;
   }
@@ -549,7 +550,7 @@ public class DMProcessState {
   public void setRelativeFileSpecClassDefn(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecClassDefn, 1310);
     if (lSchemaFileDefn.isLDD) {
-      DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/defnClass/");
+      Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/defnClass/");
     }
     return;
   }

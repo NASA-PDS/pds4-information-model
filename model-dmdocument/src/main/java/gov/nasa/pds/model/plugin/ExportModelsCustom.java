@@ -31,6 +31,7 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.*;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /** Driver for Customized Document Writers
  *
@@ -46,7 +47,7 @@ public class ExportModelsCustom extends Object {
 ***********************************************************************************************************/
 
 	public void writeArtifacts (boolean lLDDToolFlag, SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {	 
-		DMDocument.registerMessage ("0>info " + "ExportModelsCustom - Specification Done");
+		Utility.registerMessage ("0>info " + "ExportModelsCustom - Specification Done");
 						
 		// need to pass SchemaFileDefn to get namespace; set static for now.
 		// SchemaFileDefn lSchemaFileDefn;
@@ -61,7 +62,7 @@ public class ExportModelsCustom extends Object {
 				DMDocument.dmProcessState.setRelativeFileSpecDDDocXML (DMDocument.masterLDDSchemaFileDefn);
 				WriteDOMDocBookAnon lWriteDOMDocBooks  = new WriteDOMDocBookAnon (); 
 				lWriteDOMDocBooks.writeDocBooks(DMDocument.masterPDSSchemaFileDefn);
-				DMDocument.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBooks - One Per LDD -  Done");
+				Utility.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBooks - One Per LDD -  Done");
 			}
 		}
 		
@@ -94,7 +95,7 @@ public class ExportModelsCustom extends Object {
 	    ArrayList<DOMClass> domSortClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());	
 		WriteDOMCSVFileClassHier writeDOMCSVFileClassHier = new WriteDOMCSVFileClassHier ();
 		writeDOMCSVFileClassHier.writeDOMCSVFile (domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
-	    DMDocument.registerMessage ("0>info " + "writeAllArtifacts - WriteDOMCSVFileClassHier Done");
+	    Utility.registerMessage ("0>info " + "writeAllArtifacts - WriteDOMCSVFileClassHier Done");
 
 	    // print out the histogram for the DEC concepts
 	    /*

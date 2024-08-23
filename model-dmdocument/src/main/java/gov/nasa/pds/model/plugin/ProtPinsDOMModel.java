@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Creates the in memory protege Upper pins model (e.g. Discipline Facets)
@@ -154,7 +155,7 @@ class ProtPinsDOMModel extends Object {
         "Discipline_Facets", DMDocument.masterNameSpaceIdNCLC, "discipline_name");
     DOMAttr lDOMAttrDiscipline = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
     if (lDOMAttrDiscipline == null) {
-      DMDocument.registerMessage("1>error " + "Missing discipline_name - lAttrId:" + lAttrId);
+      Utility.registerMessage("1>error " + "Missing discipline_name - lAttrId:" + lAttrId);
       return;
     }
 
@@ -178,7 +179,7 @@ class ProtPinsDOMModel extends Object {
             DMDocument.masterNameSpaceIdNCLC, "facet1");
         DOMAttr lDOMAttrFacet1 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
         if (lDOMAttrFacet1 == null) {
-          DMDocument.registerMessage("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
+          Utility.registerMessage("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
           continue;
         }
         lDOMAttrFacet1.isEnumerated = true;
@@ -200,7 +201,7 @@ class ProtPinsDOMModel extends Object {
             DMDocument.masterNameSpaceIdNCLC, "facet2");
         DOMAttr lDOMAttrFacet2 = DOMInfoModel.masterDOMAttrIdMap.get(lAttrId);
         if (lDOMAttrFacet2 == null) {
-          DMDocument.registerMessage("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
+          Utility.registerMessage("1>error " + "Missing facet2 - lAttrId:" + lAttrId);
           continue;
         }
         lDOMAttrFacet2.isEnumerated = true;
@@ -298,7 +299,7 @@ class ProtPinsDOMModel extends Object {
               lAssertDefn.testValArr = lValArr;
             }
           } else {
-            DMDocument.registerMessage(
+            Utility.registerMessage(
                 "1>error " + "getRulesPins - Assert Statement Not Found - lAssertId:" + lAssertId);
           }
         }
@@ -339,7 +340,7 @@ class ProtPinsDOMModel extends Object {
       return "TBD_" + lKey;
     }
     if (lValArr.size() > 1) {
-      DMDocument.registerMessage("1>error " + "getSingletonValue - ProtPinsModel - lKey:" + lKey);
+      Utility.registerMessage("1>error " + "getSingletonValue - ProtPinsModel - lKey:" + lKey);
     }
     return lValArr.get(0);
   }

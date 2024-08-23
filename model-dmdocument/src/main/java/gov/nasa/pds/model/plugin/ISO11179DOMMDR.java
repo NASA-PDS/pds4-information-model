@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 class ISO11179DOMMDR extends Object {
   TreeMap<String, String> hashCodedPersmissibleValueMap;
@@ -175,7 +176,7 @@ class ISO11179DOMMDR extends Object {
       } else {
 	    if (lAttr.title.compareTo("%3ANAME") != 0) {
 		    if (! DOMInfoModel.isAttInactive (lAttr.identifier)) {
-		        DMDocument.registerMessage("1>error " + "11179 data dictionary attribute is missing for overwrite - Identifier:" + lInstId);
+		        Utility.registerMessage("1>error " + "11179 data dictionary attribute is missing for overwrite - Identifier:" + lInstId);
 		    }
 	    }
       }
@@ -394,7 +395,7 @@ class ISO11179DOMMDR extends Object {
     	  lDOMClass.setIsInactive(true);
     	  if (lDOMClass.title.compareTo("USER") != 0) {
     		  if (! DOMInfoModel.isAttInactive (lDOMClass.identifier)) {
-    	   		  DMDocument.registerMessage("1>error " + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
+    	   		  Utility.registerMessage("1>error " + "11179 data dictionary class is missing for overwrite - Identifier:" + lInstId);
     		  }
     	  }
       }

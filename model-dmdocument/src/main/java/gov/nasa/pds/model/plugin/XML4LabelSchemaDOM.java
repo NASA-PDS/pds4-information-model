@@ -40,7 +40,7 @@ import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import gov.nasa.pds.model.plugin.util.Utility;
 import jdk.internal.org.jline.utils.Log;
 
 // This code writes the information model to XML schema, attempting to replicate the class
@@ -70,7 +70,7 @@ class XML4LabelSchemaDOM extends Object {
   public void writeXMLSchemaFiles(SchemaFileDefn lSchemaFileDefn,
       ArrayList<DOMClass> lInputClassArr) throws java.io.IOException {
 
-    DMDocument.registerMessage("0>info " + "writeXMLSchemaFiles - lSchemaFileDefn.identifier:"
+    Utility.registerMessage("0>info " + "writeXMLSchemaFiles - lSchemaFileDefn.identifier:"
         + lSchemaFileDefn.identifier);
 
     // get the classes
@@ -161,7 +161,7 @@ class XML4LabelSchemaDOM extends Object {
     }
 
     // Write the classes
-    DMDocument.registerMessage("0>info "
+    Utility.registerMessage("0>info "
         + "writeXMLSchemaFiles - Write Classes - classHierMap.size():" + classHierMap.size());
     ArrayList<DOMClass> lClassArr = new ArrayList<>(classHierMap.values());
     for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
@@ -320,10 +320,10 @@ class XML4LabelSchemaDOM extends Object {
     }
     prXML.println("  <" + pNS + "schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"");
 
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeXMLSchemaFileHeader - lSchemaFileDefn.nameSpaceIdNC:"
             + lSchemaFileDefn.nameSpaceIdNC);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeXMLSchemaFileHeader - DMDocument.masterNameSpaceIdNCLC:"
             + DMDocument.masterNameSpaceIdNCLC);
 
@@ -385,7 +385,7 @@ class XML4LabelSchemaDOM extends Object {
               lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
               lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
               lNameSpaceIdNCDIR = DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCDir;
-              DMDocument.registerMessage("1>warning "
+              Utility.registerMessage("1>warning "
                   + "config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
             }
           }

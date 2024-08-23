@@ -42,13 +42,13 @@ public class DOMMsgDefn extends Object {
   static TreeMap<String, String> messageLevelTitleMap = new TreeMap<>();
   static TreeMap<String, String> messagePrefixMap = new TreeMap<>();
 
-  Integer msgOrder;
-  String msgTypeLevel;
-  String msgPrefix;
-  String msgOrgText;
-  String msgCleanText;
-  String msgGroupTitle;
-  String nameSpaceIdNCLC;
+  private Integer msgOrder;
+  private String msgTypeLevel;
+  private String msgPrefix;
+  private String msgOrgText;
+  private String msgCleanText;
+  private String msgGroupTitle;
+  private String nameSpaceIdNCLC;
 
   public DOMMsgDefn() {
     // messageLevelArr is initialized (init()) when masterDOMMsgDefn is created in DMDocument
@@ -141,5 +141,85 @@ public class DOMMsgDefn extends Object {
     // fatal errors
     messageLevelArr.add("3>error");
     messageLevelArr.add("4>error");
+  }
+
+  public static ArrayList<String> getMessageLevelArr() {
+    return messageLevelArr;
+  }
+
+  public static void setMessageLevelArr(ArrayList<String> messageLevelArr) {
+    DOMMsgDefn.messageLevelArr = messageLevelArr;
+  }
+
+  public static TreeMap<String, String> getMessageLevelTitleMap() {
+    return messageLevelTitleMap;
+  }
+
+  public static void setMessageLevelTitleMap(TreeMap<String, String> messageLevelTitleMap) {
+    DOMMsgDefn.messageLevelTitleMap = messageLevelTitleMap;
+  }
+
+  public static TreeMap<String, String> getMessagePrefixMap() {
+    return messagePrefixMap;
+  }
+
+  public static void setMessagePrefixMap(TreeMap<String, String> messagePrefixMap) {
+    DOMMsgDefn.messagePrefixMap = messagePrefixMap;
+  }
+
+  public Integer getMsgOrder() {
+    return msgOrder;
+  }
+
+  public void setMsgOrder(Integer msgOrder) {
+    this.msgOrder = msgOrder;
+  }
+
+  public String getMsgTypeLevel() {
+    return msgTypeLevel;
+  }
+
+  public void setMsgTypeLevel(String msgTypeLevel) {
+    this.msgTypeLevel = msgTypeLevel;
+  }
+
+  public String getMsgPrefix() {
+    return msgPrefix;
+  }
+
+  public void setMsgPrefix(String msgPrefix) {
+    this.msgPrefix = msgPrefix;
+  }
+
+  public String getMsgOrgText() {
+    return msgOrgText;
+  }
+
+  public void setMsgOrgText(String msgOrgText) {
+    this.msgOrgText = msgOrgText;
+  }
+
+  public String getMsgCleanText() {
+    return msgCleanText;
+  }
+
+  public void setMsgCleanText(String msgCleanText) {
+    this.msgCleanText = msgCleanText;
+  }
+
+  public String getMsgGroupTitle() {
+    return msgGroupTitle;
+  }
+
+  public void setMsgGroupTitle(String msgGroupTitle) {
+    this.msgGroupTitle = msgGroupTitle;
+  }
+
+  public String getNameSpaceIdNCLC() {
+    return nameSpaceIdNCLC;
+  }
+
+  public void setNameSpaceIdNCLC(String nameSpaceIdNCLC) {
+    this.nameSpaceIdNCLC = nameSpaceIdNCLC;
   }
 }

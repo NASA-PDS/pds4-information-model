@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1G00.sch"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1E00.sch"?>
 
 <Ingest_LDD 
  xmlns="http://pds.nasa.gov/pds4/pds/v1"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 
-                     https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1G00.xsd">
+                     https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1E00.xsd">
 
     <name>Geometry Dictionary Full</name>
-    <ldd_version_id>1.9.7.0</ldd_version_id>
+    <ldd_version_id>1.9.1.0</ldd_version_id>
     <dictionary_type>Discipline</dictionary_type>
     <full_name>Edward A. Guinness</full_name>
     <steward_id>geo</steward_id>
     <namespace_id>geom</namespace_id>
-    <comment>
+    <comment> 
         Build with: lddtool -pl ingest_file >log_file
            add J switch if a JSON file is needed.
            
@@ -238,29 +238,9 @@
         Version 1.9.1.0?? 2020-12-16
         - Added enumerated value to coordinate_space_frame_type to support Mars2020.
         - Added class Device_Pose to Articulation_Device_Parameters to support Mars 2020.
-        Version 1.9.2.0 2021-03-30
-        - Added enumerated value to coordinate_space_frame_type to support Mars2020.
-        Version 1.9.x.0 2021-04-22
-        - Added three enumerated values (ROVER_FRAME, TOOL_FRAME, and Tool_Frame)
-               to coordinate_space_frame_type to support Mars2020.
-        Version 1.9.3.0 2021-07-13
-        - Added yet another enumerated value (TURRET_FRAME and title case version)
-               to coordinate_space_frame_type to support Mars2020.
-        Version 1.9.3.0 2021-04-27
-        - Added seven enumerated values in upper/lower case (PIXL_TOOL, WHEEL_RF, WHEEL_LF, WHEEL_RR, 
-               WHEEL_LR, WHEEL_RM, WHEEL_LM) to coordinate_space_frame_type for Mars2020.
-        - fixed typo traget -> target
-        Version 1.9.5.0 2022-01-06
-        - Added ORBITAL (upper and title case) to coordinate_space_frame_type for Mars2020.
-        Version 1.9.6.0 2022-05-20
-        - Added AEGIS_* (1 to 5) to coordinate_space_frame_type for Mars2020.
-        Version 1.9.7.0 2023-10-12
-        - Made the Display_Direction class optional and updated the definition. Added the 
-        Quaternion_Plus_To_From class to the main Geometry_Orbiter class to support
-           migration of NEAR data.
     </comment>
-    
-    <last_modification_date_time>2023-10-12</last_modification_date_time>
+
+    <last_modification_date_time>2020-12-16</last_modification_date_time>
 
 <!-- Attributes -->
     
@@ -2687,11 +2667,6 @@
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
-             <value>DRILL_BIT_TIP</value>
-             <value_meaning>Frame centered on the tip of the drill.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
              <value>HELI_G_FRAME</value>
              <value_meaning>Helicopter frame defined attached to the ground at takeoff.</value_meaning>
             </DD_Permissible_Value>
@@ -2727,19 +2702,8 @@
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
-             <value>MCZ_CAL_PRIMARY</value>
-             <value_meaning>Primary Mastcam-Z calibration target.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>MEDA_RDS</value>
-                <value_meaning>Radiation and Dust Sensor for the MEDA instruments.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>ORBITAL</value>
-                <value_meaning>A surface frame for use with orbital images, where the origin is defined
-                    relative to the equator and prime meridan or another orbital frame.</value_meaning>
+                <value>MCZ_CAL_PRIMARY</value>
+                <value_meaning>Primary Mastcam-Z calibration target.</value_meaning>
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
@@ -2751,17 +2715,7 @@
              <value>PIXL_SENSOR_FRAME</value>
              <value_meaning>Frame describing the movable sensor head of the PIXL instrument.</value_meaning>
             </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>PIXL_TOOL</value>
-             <value_meaning>Frame for PIXL instrument.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>ROVER_FRAME</value>
-             <value_meaning>Frame that is attached to the rover and moves with the rover (in both position and orientation). Often synonymous with ROVER_NAV_FRAME.</value_meaning>
-            </DD_Permissible_Value>
-
+            
             <DD_Permissible_Value>
              <value>ROVER_MECH_FRAME</value>
              <value_meaning>Frame generally similar to ROVER_NAV_FRAME  but with different origin and possibly axis orientation that is more conducive to mechanical operations ("MECH" for "Mechanical").  The origin is typically (but not necessarily) tied to a specific bit of hardware.</value_meaning>
@@ -2786,89 +2740,9 @@
              <value>SITE_FRAME</value>
              <value_meaning>Instance of LOCAL_LEVEL_FRAME that is fixed to the ground. Used for local operations to reduce error propagation due to position uncertainty.</value_meaning>
             </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>SUN</value>
-             <value_meaning>Frame centered on the sun. Generally used for pointing instruments at the sun,
-                    rather than 3D position.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>TOOL_FRAME</value>
-             <value_meaning>Tool frame is used to indicate the frame associated with the currently selected (or activated) "tool", in contexts where the specific frame is unknown or does not matter.  "Tools" are typically devices on an arm such as a drill, microscopic imager, contact spectrometer, etc.</value_meaning>
-            </DD_Permissible_Value>
 
-            <DD_Permissible_Value>
-             <value>TURRET_FRAME</value>
-             <value_meaning>Frame based on a turret mechanism.</value_meaning>
-            </DD_Permissible_Value>
+<!-- Title case value names  -->
 
-            <DD_Permissible_Value>
-             <value>WHEEL_RF</value>
-             <value_meaning>Frame for right front wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>WHEEL_LF</value>
-             <value_meaning>Frame for left front wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>WHEEL_RR</value>
-             <value_meaning>Frame for right rear wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>WHEEL_LR</value>
-             <value_meaning>Frame for left rear wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>WHEEL_RM</value>
-             <value_meaning>Frame for right middle wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>WHEEL_LM</value>
-             <value_meaning>Frame for left middle wheel.</value_meaning>
-            </DD_Permissible_Value>
-
-            <!-- Title case value names  -->
-            <DD_Permissible_Value>
-                <value>AEGIS_1</value>
-                <value_meaning>AEGIS target number 1. AEGIS is a component of rover software
-                    that selects targets for further investigation based on user defined
-                    parameters.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>AEGIS_2</value>
-                <value_meaning>AEGIS target number 2. AEGIS is a component of rover software
-                    that selects targets for further investigation based on user defined
-                    parameters.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>AEGIS_3</value>
-                <value_meaning>AEGIS target number 3. AEGIS is a component of rover software
-                    that selects targets for further investigation based on user defined
-                    parameters.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>AEGIS_4</value>
-                <value_meaning>AEGIS target number 4. AEGIS is a component of rover software
-                    that selects targets for further investigation based on user defined
-                    parameters.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-                <value>AEGIS_5</value>
-                <value_meaning>AEGIS target number 5. AEGIS is a component of rover software
-                    that selects targets for further investigation based on user defined
-                    parameters.</value_meaning>
-            </DD_Permissible_Value>
-            
             <DD_Permissible_Value>
              <value>APXS_Frame</value>
              <value_meaning>Frame defining the APXS instrument on a movable arm.</value_meaning>
@@ -3005,12 +2879,6 @@
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
-                <value>Orbital</value>
-                <value_meaning>A surface frame for use with orbital images, where the origin is defined
-                    relative to the equator and prime meridan or another orbital frame.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
              <value>PIXL_Base_Frame</value>
              <value_meaning>Frame describing the base of the PIXL instrument.</value_meaning>
             </DD_Permissible_Value>
@@ -3018,11 +2886,6 @@
             <DD_Permissible_Value>
              <value>PIXL_Sensor_Frame</value>
              <value_meaning>Frame describing the movable sensor head of the PIXL instrument.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>PIXL_Tool</value>
-             <value_meaning>Frame for PIXL instrument.</value_meaning>
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
@@ -3051,7 +2914,7 @@
             </DD_Permissible_Value>
             
             <DD_Permissible_Value>
-             <value>RSM_Head_Frame</value>
+             <value>RSM_Head_FramE</value>
              <value_meaning>Frame defining a Remote Sensing Mast.</value_meaning>
             </DD_Permissible_Value>
             
@@ -3059,49 +2922,7 @@
              <value>Site_Frame</value>
              <value_meaning>Instance of LOCAL_LEVEL_FRAME that is fixed to the ground. Used for local operations to reduce error propagation due to position uncertainty.</value_meaning>
             </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>Tool_Frame</value>
-             <value_meaning>Tool frame is used to indicate the frame associated with the currently selected (or activated) "tool", in contexts where the specific frame is unknown or does not matter.  "Tools" are typically devices on an arm such as a drill, microscopic imager, contact spectrometer, etc.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>Turret_Frame</value>
-             <value_meaning>Frame based on a turret mechanism.</value_meaning>
-            </DD_Permissible_Value>
-
-            <DD_Permissible_Value>
-             <value>Wheel_RF</value>
-             <value_meaning>Frame for right front wheel.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>Wheel_LF</value>
-             <value_meaning>Frame for left front wheel.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>Wheel_RR</value>
-             <value_meaning>Frame for right rear wheel.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>Wheel_LR</value>
-             <value_meaning>Frame for left rear wheel.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>Wheel_RM</value>
-             <value_meaning>Frame for right middle wheel.</value_meaning>
-            </DD_Permissible_Value>
-            
-            <DD_Permissible_Value>
-             <value>Wheel_LM</value>
-             <value_meaning>Frame for left middle wheel.</value_meaning>
-            </DD_Permissible_Value>
-
         </DD_Value_Domain>
-
     </DD_Attribute>
     
     <DD_Attribute>
@@ -4987,7 +4808,7 @@
         <local_identifier>target_name</local_identifier>
         <nillable_flag>false</nillable_flag>
         <submitter_name>Bob Deen</submitter_name>
-        <definition>Specifies the name of the target location for items in this class.</definition>
+        <definition>Specifies the name of the traget location for items in this class.</definition>
         <DD_Value_Domain>
             <enumeration_flag>false</enumeration_flag>
             <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
@@ -6012,13 +5833,7 @@
         <version_id>1.0</version_id>
         <local_identifier>Display_Direction</local_identifier>
         <submitter_name>Elizabeth Rye</submitter_name>
-        <definition>Note: For all image objects, the expectation is that the 
-        image orientation will be given using the disp:Display_Direction 
-        class. In the unusual case where an image object does not have 
-        an associated disp:Display_Direction class, then, and only then,    
-        Display_Direction class defined here should be present.
-        	
-        The Display_Direction class specifies which two 
+        <definition>The Display_Direction class specifies which two 
         of the dimensions of an Array object should be displayed and how
         they should be displayed in the vertical (line) and horizontal 
         (sample) dimensions of a display device. This class is essentially 
@@ -6211,16 +6026,9 @@
         <local_identifier>Image_Display_Geometry</local_identifier>
         <submitter_name>Mitchell K. Gordon</submitter_name>
         <definition>Image_Display_Geometry class provides an unambiguous description 
-            of the orientation of the image contents. This class assumes an image 
-            is displayed as described by a disp:Display_Direction class elsewhere 
-            in the label. In the unusual case where an image object does not have 
-            an associated disp:Display_Direction class, then, and only then, the   
-            optionalgeom:Display_Direction class in this class should be present.
-            
-            Coupled with the information in the associated Display_Direction class, 
-            any one of the Object_Orientation_* classes should allow unambiguous 
-            orientation of the contents of the image. 
-            
+            of the orientation of the image contents. Given an image, displayed as 
+            described by the Display_Direction class, any one of the Object_Orientation_* 
+            classes should allow unambiguous orientation of the contents of the image. 
             The Local_Internal_Reference class is used to identify the object to which this
             instance of the Image_Display_Geometry class applies, and must be used if 
             there is more than one instance of Image_Display_Geometry in the label. The 
@@ -6249,7 +6057,7 @@
         <DD_Association>
             <identifier_reference>Display_Direction</identifier_reference>
             <reference_type>component_of</reference_type>
-            <minimum_occurrences>0</minimum_occurrences>
+            <minimum_occurrences>1</minimum_occurrences>
             <maximum_occurrences>1</maximum_occurrences>
         </DD_Association>
         <DD_Association>
@@ -8811,7 +8619,7 @@
 
     <DD_Class>
         <name>Geometry_Orbiter</name>
-        <version_id>2.0</version_id>
+        <version_id>1.0</version_id>
         <local_identifier>Geometry_Orbiter</local_identifier>
         <submitter_name>Mitchell K. Gordon</submitter_name>
         <definition>The Geometry_Orbiter class is a container for geometric information 
@@ -8882,12 +8690,6 @@
         </DD_Association>
         <DD_Association>
             <identifier_reference>Vectors</identifier_reference>
-            <reference_type>component_of</reference_type>
-            <minimum_occurrences>0</minimum_occurrences>
-            <maximum_occurrences>1</maximum_occurrences>
-        </DD_Association>
-        <DD_Association>
-            <identifier_reference>Quaternion_Plus_To_From</identifier_reference>
             <reference_type>component_of</reference_type>
             <minimum_occurrences>0</minimum_occurrences>
             <maximum_occurrences>1</maximum_occurrences>

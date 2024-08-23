@@ -31,6 +31,7 @@
 package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 public class DOMProp extends ISOClassOAIS11179 {
 
@@ -122,7 +123,7 @@ public class DOMProp extends ISOClassOAIS11179 {
 	        } catch (NumberFormatException e) {
 	        	cardMinI = 0;
 	        	cardMin = "0";
-	  	      DMDocument.registerMessage(
+	  	      Utility.registerMessage(
 	  		          "1>error " + "DomProp " + " - Minimum cardinality is invalid: " + lCardMin);
 	        }
 	    }
@@ -138,12 +139,12 @@ public class DOMProp extends ISOClassOAIS11179 {
 	    		} catch (NumberFormatException e) {
 	    			cardMaxI = 0;
 		        	cardMax = "0";
-	    			DMDocument.registerMessage(
+	    			Utility.registerMessage(
 	    					"1>error " + "DomProp " + " - Maximum cardinality is invalid: " + lCardMax);
 	    		}
 	    	}
 	    	if (cardMaxI < cardMinI) {
-	    		DMDocument.registerMessage(
+	    		Utility.registerMessage(
 	    				"1>error " + "DomProp " + " - Maximum cardinality is less than minimum cardinality");
 	    	}
 	    }
