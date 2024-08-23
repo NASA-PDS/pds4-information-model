@@ -1808,13 +1808,14 @@ public class LDDDOMParser extends Object {
     }
     
     // validate that referenced attribute is exposed
-    if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
-    	if (lDOMAttr.isEnumerated) {
-            DMDocument.registerMessage("2>error Attribute: " + " - The referenced enumerated attribute " + lLocalIdentifier + " must be exposed.");
-    	} else {
-    		DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " + lLocalIdentifier + " is not exposed.");
-    	}
-    }
+	// 555 commented out until DDWG approves impact of the fix
+//    if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
+//    	if (lDOMAttr.isEnumerated) {
+//            DMDocument.registerMessage("2>warning Attribute: " + " - The referenced enumerated attribute " + lLocalIdentifier + " is not exposed.");
+//    	} else {
+//    		DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " + lLocalIdentifier + " is not exposed.");
+//    	}
+//    }
 
     // clone the USER or LDD attribute for use as a Resolved attribute
     // returns rdfIdentifier = "TBD_rdfIdentifier"

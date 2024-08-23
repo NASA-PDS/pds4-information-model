@@ -1,4 +1,4 @@
-; Thu Aug 08 12:01:13 EDT 2024
+; Wed Aug 14 12:29:19 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -144,6 +144,29 @@
 	(attrTitle "nilReason")
 	(identifier "nilReason")
 	(specMesg "The 'nilReason' attribute must be used in conjunction with xsi:nil=\"true\""))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.geom%3ASPICE_Kernel_Identification%2Fgeom%3Akernel_type.100004870] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "geom")
+	(attrTitle "kernel_type")
+	(classNameSpaceNC "geom")
+	(classSteward "geom")
+	(classTitle "SPICE_Kernel_Identification")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.geom%3ASPICE_Kernel_Identification%2Fgeom%3Akernel_type.100004870.101])
+	(identifier "geom:SPICE_Kernel_Identification/geom:kernel_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "geom:SPICE_Kernel_Identification/geom:kernel_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.geom%3ASPICE_Kernel_Identification%2Fgeom%3Akernel_type.100004870.101] of  Schematron_Assert
+
+	(assertMsg "The attribute geom:SPICE_Kernel_Identification/geom:kernel_type must be equal to one of the following values 'CK', 'DBK', 'DSK', 'EK', 'FK', 'IK', 'LSK', 'MK', 'PCK', 'SCLK', 'SPK'.")
+	(assertStmt ". = ('CK', 'DBK', 'DSK', 'EK', 'FK', 'IK', 'LSK', 'MK', 'PCK', 'SCLK', 'SPK')")
+	(assertType "RAW")
+	(attrTitle "kernel_type")
+	(identifier "kernel_type"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
 
