@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 // Write the PDS4 Data Dictionary DocBook file.
 
@@ -143,14 +144,14 @@ class WriteDOMDocBook extends Object {
     }
 
     // print out the class and attribute counts
-    DMDocument.registerMessage("0>info " + "DD DocBook Class Counts");
+    Utility.registerMessage("0>info " + "DD DocBook Class Counts");
     Set<String> set9 = classClassificationMap.keySet();
     Iterator<String> iter9 = set9.iterator();
     while (iter9.hasNext()) {
       String lId = iter9.next();
       ClassClassificationDefnDOM lClassClassificationDefnDOM = classClassificationMap.get(lId);
       if (lClassClassificationDefnDOM != null) {
-        DMDocument.registerMessage("0>info " + " - namespace: " + lId + "   size: "
+        Utility.registerMessage("0>info " + " - namespace: " + lId + "   size: "
             + lClassClassificationDefnDOM.classArr.size());
         if (lClassClassificationDefnDOM.classArr.size() > 0) {
           if (!(lId.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
@@ -167,14 +168,14 @@ class WriteDOMDocBook extends Object {
       }
     }
 
-    DMDocument.registerMessage("0>info " + "DD DocBook Attribute Counts");
+    Utility.registerMessage("0>info " + "DD DocBook Attribute Counts");
     Set<String> set92 = classClassificationMap.keySet();
     Iterator<String> iter92 = set92.iterator();
     while (iter92.hasNext()) {
       String lId = iter92.next();
       AttrClassificationDefnDOM lAttrClassificationDefnDOM = attrClassificationMap.get(lId);
       if (lAttrClassificationDefnDOM != null) {
-        DMDocument.registerMessage("0>info " + " - namespace: " + lId + "   size: "
+        Utility.registerMessage("0>info " + " - namespace: " + lId + "   size: "
             + lAttrClassificationDefnDOM.attrArr.size());
       }
     }

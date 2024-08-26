@@ -33,9 +33,9 @@ package gov.nasa.pds.model.plugin;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Driver for getting document
@@ -54,20 +54,20 @@ public class ExportModels extends Object {
 
   public void writeAllArtifacts() throws java.io.IOException {
     // check if the export/ directory exists; if not create it
-    DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/");
+    Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/");
 
     // write the model specification
     DMDocument.dmProcessState.setRelativeFileSpecModelSpec_DOM(DMDocument.masterPDSSchemaFileDefn);
     WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo);
     writeDOMSpecification.printArtifacts();
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - Specification Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - Specification Done");
 
     // write the label schema - new version 4
     DMDocument.dmProcessState.setRelativeFileSpecXMLSchema(DMDocument.masterPDSSchemaFileDefn);
     XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM();
     xml4LabelSchemaDOM.writeXMLSchemaFiles(DMDocument.masterPDSSchemaFileDefn,
         DOMInfoModel.masterDOMClassArr);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeAllArtifacts - XML Schema - lSchemaFileDefn.identifier:"
             + DMDocument.masterPDSSchemaFileDefn.identifier + " - Done");
 
@@ -76,7 +76,7 @@ public class ExportModels extends Object {
     WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron();
     writeDOMSchematron.writeSchematronFile(DMDocument.masterPDSSchemaFileDefn,
         DOMInfoModel.masterDOMClassMap);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeAllArtifacts - Schematron - lSchemaFileDefn.identifier:"
             + DMDocument.masterPDSSchemaFileDefn.identifier + " - Done");
 
@@ -84,7 +84,7 @@ public class ExportModels extends Object {
     DMDocument.dmProcessState.setRelativeFileSpecXMLLabel(DMDocument.masterPDSSchemaFileDefn);
     WriteCoreXMLSchemaLabel writeCoreXMLSchemaLabel = new WriteCoreXMLSchemaLabel();
     writeCoreXMLSchemaLabel.writeFile(DMDocument.masterPDSSchemaFileDefn);
-    DMDocument.registerMessage(
+    Utility.registerMessage(
         "0>info " + "writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:"
             + DMDocument.masterPDSSchemaFileDefn.identifier + " - Done");
 
@@ -92,7 +92,7 @@ public class ExportModels extends Object {
     DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterPDSSchemaFileDefn);
     WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
     lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
 
     // write the custom files
     if (DMDocument.exportCustomFileFlag) {
@@ -104,21 +104,13 @@ public class ExportModels extends Object {
     // write the DOM RDF
     WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
     writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
 
     // write the DOM PDS4 DD CSV file
     WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles();
     ArrayList<DOMClass> domSortClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());
     writeDOMCSVFiles.writeDOMCSVFile(domSortClassArr, DMDocument.masterPDSSchemaFileDefn, null);
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - DD CSV Done");
-
-    // write the 11179 DD pins file
-    // WriteDOM11179DDPinsFile lWriteDOM11179DDPinsFile = new WriteDOM11179DDPinsFile ();
-    // lWriteDOM11179DDPinsFile.writePINSFile
-    // (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);
-    // lWriteDOM11179DDPinsFile.writePINSFile
-    // (DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);
-    // DMDocument.registerMessage ("0>info " + "writeAllArtifacts - DD Pins File Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - DD CSV Done");
 
     // write the 11179 DD pins file - Plus Class Version
     WriteDOM11179DDPinsFilePClass lWriteDOM11179DDPinsFilePClass =
@@ -127,25 +119,19 @@ public class ExportModels extends Object {
         .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);
     lWriteDOM11179DDPinsFilePClass
         .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeAllArtifacts - DD Pins *** plus class *** File Done");
-
-    // write the 11179 DOM JSON file - requires DOMInfoModel to be executed
-//    DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
-//    WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
-//    writeDOMDDJSONFile.writeJSONFile();
-//    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
     
     // write the 11179 DOM JSON file - requires DOMInfoModel to be executed
     DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
     WriteDOMDDJSONFileLib writeDOMDDJSONFileLib = new WriteDOMDDJSONFileLib();
     writeDOMDDJSONFileLib.writeJSONFile(DMDocument.masterPDSSchemaFileDefn);
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
     
 
     // write the 11179 DD Data Element Definition XML Files
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - Class Defn Done");
-    DMDocument.registerMessage("0>info " + "writeAllArtifacts - Attr Defn Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - Class Defn Done");
+    Utility.registerMessage("0>info " + "writeAllArtifacts - Attr Defn Done");
 
     // write the 11179 DOM DD Data Element Definition XML Files
     WriteDDProductDOMAttrDefinitions writeDDProductDOMAttrDefinitions =
@@ -158,22 +144,19 @@ public class ExportModels extends Object {
         new WriteDDProductDOMClassDefinitions();
     writeDDProductDOMClassDefinitions.writeDDProductDOMClassDefnFiles(
         DMDocument.masterPDSSchemaFileDefn, DMDocument.sTodaysDate);
-    DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Class Defn Done");
-    DMDocument.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Attr Defn Done");
+    Utility.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Class Defn Done");
+    Utility.registerMessage("0>info " + "writeAllDOMArtifacts - DOM Attr Defn Done");
     
 	// write the OWL/RDF/TTL output in TTL format (IM Classification)
     if (DMDocument.exportOWLRDFTTLFileFlag) {
     	String lClassificationType = "TBD_default";   // default
     	lClassificationType = "";   // default
     	lClassificationType = "PDS4.All.Products.Class.Prop"; // works
-    	//	lClassificationType = "EIMEntity";   // works
-    	//	lClassificationType = "PDS4.LDD.All";   
-    	//	lClassificationType = "OAISIF";
     	ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
     	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
     	WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
     	writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-    	DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
+    	Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
     }
     
 	// write the OWL/RDF output in RDF format (IM Export)
@@ -181,7 +164,7 @@ public class ExportModels extends Object {
     	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
 		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
 		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn);
-		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
+		Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
     }
 
     return;
@@ -189,7 +172,7 @@ public class ExportModels extends Object {
 
   public void writeLDDArtifacts() throws java.io.IOException {	  
     // check if the export directory exists; if not create it
-    DMDocument.checkCreateDirectory(DMDocument.outputDirPath + "export/");
+    Utility.checkCreateDirectory(DMDocument.getOutputDirPath() + "export/");
 
     // DOM
     ArrayList<DOMClass> lLDDDOMClassArr = new ArrayList<>();
@@ -212,7 +195,7 @@ public class ExportModels extends Object {
       DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterLDDSchemaFileDefn);
       WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
       lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-      DMDocument.registerMessage("0>info " + "writeLDDArtifacts - DD DocBook Done");
+      Utility.registerMessage("0>info " + "writeLDDArtifacts - DD DocBook Done");
     }
 
     // write the custom files
@@ -226,7 +209,7 @@ public class ExportModels extends Object {
     DMDocument.dmProcessState.setRelativeFileSpecXMLSchema(DMDocument.masterLDDSchemaFileDefn);
     XML4LabelSchemaDOM xml4LabelSchemaDOM = new XML4LabelSchemaDOM();
     xml4LabelSchemaDOM.writeXMLSchemaFiles(DMDocument.masterLDDSchemaFileDefn, lLDDDOMClassArr);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeLDDArtifacts - XML Schema - lSchemaFileDefn.identifier:"
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
 
@@ -234,7 +217,7 @@ public class ExportModels extends Object {
     DMDocument.dmProcessState.setRelativeFileSpecSchematron(DMDocument.masterLDDSchemaFileDefn);
     WriteDOMSchematron writeDOMSchematron = new WriteDOMSchematron();
     writeDOMSchematron.writeSchematronFile(DMDocument.masterLDDSchemaFileDefn, lLDDDOMClassMap);
-    DMDocument
+    Utility
         .registerMessage("0>info " + "writeLDDArtifacts - Schematron - lSchemaFileDefn.identifier:"
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
 
@@ -242,24 +225,16 @@ public class ExportModels extends Object {
     DMDocument.dmProcessState.setRelativeFileSpecXMLLabel(DMDocument.masterLDDSchemaFileDefn);
     WriteCoreXMLSchemaLabel writeCoreXMLSchemaLabel = new WriteCoreXMLSchemaLabel();
     writeCoreXMLSchemaLabel.writeFile(DMDocument.masterLDDSchemaFileDefn);
-    DMDocument.registerMessage(
+    Utility.registerMessage(
         "0>info " + "writeAllArtifacts - Schema Label - lSchemaFileDefn.identifier:"
             + DMDocument.masterLDDSchemaFileDefn.identifier + " - Done");
-
-    // write the 11179 JSON file
-//    if (DMDocument.exportJSONFileFlag || DMDocument.exportJSONFileAllFlag) {
-//      DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterLDDSchemaFileDefn);
-//      WriteDOMDDJSONFile writeDOMDDJSONFile = new WriteDOMDDJSONFile();
-//      writeDOMDDJSONFile.writeJSONFile();
-//      DMDocument.registerMessage("0>info " + "writeAllArtifacts - JSON Done");
-//    }
     
     // write the 11179 DOM JSON file
       if (DMDocument.exportJSONFileFlag) {
     	  DMDocument.dmProcessState.setRelativeFileSpecDOMModelJSON(DMDocument.masterPDSSchemaFileDefn);
     	  WriteDOMDDJSONFileLib writeDOMDDJSONFileLib = new WriteDOMDDJSONFileLib();
     	  writeDOMDDJSONFileLib.writeJSONFile(DMDocument.masterPDSSchemaFileDefn);
-    	  DMDocument.registerMessage("0>info " + "writeLDDArtifacts - JSON Done");
+    	  Utility.registerMessage("0>info " + "writeLDDArtifacts - JSON Done");
       }
 
     // write the Info Spec file
@@ -268,7 +243,7 @@ public class ExportModels extends Object {
           .setRelativeFileSpecModelSpec_DOM(DMDocument.masterLDDSchemaFileDefn);
       WriteDOMSpecification writeDOMSpecification = new WriteDOMSpecification(DMDocument.docInfo);
       writeDOMSpecification.printArtifacts();
-      DMDocument.registerMessage("0>info " + "writeLDDArtifacts - Info Model Spec Done");
+      Utility.registerMessage("0>info " + "writeLDDArtifacts - Info Model Spec Done");
     }
     
 	// write the OWL/RDF/TTL output in TTL format (IM Classification)
@@ -281,7 +256,7 @@ public class ExportModels extends Object {
 		ClassAttrPropClassification lCAPC = new ClassAttrPropClassification (lClassificationType);
 		WriteDOMRDFTTLFile writeDOMRDFTTLFile = new WriteDOMRDFTTLFile ();
 		writeDOMRDFTTLFile.writeDOMRDFTTLFile (lClassificationType, lCAPC);
-		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
+		Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF/TTL output in TTL format (IM Classification) - Done");
 	}    
 	
 	// write the OWL/RDF output in RDF format (IM Export)
@@ -289,7 +264,7 @@ public class ExportModels extends Object {
 		DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterLDDSchemaFileDefn);
 		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
 		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterLDDSchemaFileDefn);
-		DMDocument.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
+		Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
 	}
 	
 	// *** To be deprecated ***
@@ -298,7 +273,7 @@ public class ExportModels extends Object {
 		// write the terminological entry files
 		WriteDOMTermEntryJSON writeDOMTermEntryJSON = new WriteDOMTermEntryJSON ();
 		writeDOMTermEntryJSON.WriteDOMTermEntries (DMDocument.masterPDSSchemaFileDefn);
-		DMDocument.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done");
+		Utility.registerMessage ("0>info " + "WriteDOMTermEntryJSON -  Done");
 	}
 
     return;

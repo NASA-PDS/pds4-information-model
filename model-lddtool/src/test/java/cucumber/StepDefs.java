@@ -1,16 +1,11 @@
 package cucumber;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -20,9 +15,13 @@ import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 /**
  * This class connects the feature files with the Cucumber test code
@@ -32,8 +31,8 @@ public class StepDefs {
 	
     // The values of these variables should come from a row in the table in the
     // feature file.
-    private String inputDirectory;
-    private String outputDirectory;
+    private static String inputDirectory;
+    private static String outputDirectory;
     private String commandArgs;
 
     /**
@@ -41,17 +40,25 @@ public class StepDefs {
      * @param args the command arguments
      * @return a String array containing the resolved command arguments
      */
-    private String[] resolveArgumentStrings(String[] args) {
+    private static String[] resolveArgumentStrings(String[] args) {
         String[] resolvedArgs = new String[args.length];
         int argIndex = 0;
-        // Replace the placeholders with actual values
-        for (String temp : args) {
-            String resolvedToken = temp.replace("{inputDirectory}", this.inputDirectory)
-                                       .replace("{outputDirectory}", this.outputDirectory)
-                                       .replace("%20", " ");
-            resolvedArgs[argIndex++] = resolvedToken;
+        
+    	LOG.info("inputDirectory: " + inputDirectory);
+    	LOG.info("outputDirectory: " + outputDirectory);
+        if (inputDirectory != null && outputDirectory != null) {
+	        // Replace the placeholders with actual values
+	        for (String temp : args) {
+	        	
+	            String resolvedToken = temp.replace("{inputDirectory}", inputDirectory)
+	                                       .replace("{outputDirectory}", outputDirectory)
+	                                       .replace("%20", " ");
+	            resolvedArgs[argIndex++] = resolvedToken;
+	        }
+	        return resolvedArgs;
+        } else {
+        	return args;
         }
-        return resolvedArgs;
     }
 
     /**
@@ -62,6 +69,7 @@ public class StepDefs {
      * @throws IOException if an I/O error occurs
      */
     private static void moveGeneratedFiles(String sourceDir, String targetDir, String pattern) throws IOException {
+    	LOG.info("moveGeneratedFiles");
         File source = new File(sourceDir);
         File target = new File(targetDir);
 
@@ -203,8 +211,8 @@ public class StepDefs {
      */
     @Before
     public void setUp() {
-        this.inputDirectory = null;
-        this.outputDirectory = null;
+        inputDirectory = null;
+        outputDirectory = null;
         this.commandArgs = null;
         System.setProperty(org.slf4j.simple.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
     }
@@ -216,9 +224,11 @@ public class StepDefs {
      * @param commandArgs the command arguments
      */
     @Given("the directories {string}, {string}, and command arguments {string}")
-    public void test_directories_and_command_arguments(String inputDirectory, String outputDirectory, String commandArgs) {
-        this.inputDirectory = inputDirectory;
-        this.outputDirectory = outputDirectory;
+    public void test_directories_and_command_arguments(String inDir, String outDir, String commandArgs) {
+        inputDirectory = inDir;
+        outputDirectory = outDir;
+        LOG.debug("inputDirectory: " + inputDirectory);
+        LOG.debug("outputDirectory: " + outputDirectory);
         this.commandArgs = commandArgs;
     }
 
@@ -227,24 +237,7 @@ public class StepDefs {
      */
     @When("lddtool is run")
     public void run_lddtool() {
-        String[] args = resolveArgumentStrings(this.commandArgs.split("\\s+"));  // resolve the commandArgs into a String array
-        String actualResponse;
-        try {
-            // run lddtool with the commandArgs and capture the output
-            actualResponse = LddToolRunner.runLddTool(args);
-
-            // create an output file from the lddtool output and save it to target/generated-files directory
-            createOutputFile(actualResponse, this.outputDirectory + "/lddtool-output.txt");
-
-            // move lddtool-generated files to target/generated-files directory
-            moveGeneratedFiles(".", this.outputDirectory + "/", "PDS4_");
-        } catch (RuntimeException ex) {
-            throw ex;
-        } catch (Throwable ex) {
-            throw new RuntimeException("DMDocument error", ex);
-        }
-        args = null;
-        actualResponse = null;
+    	exec_lddtool(this.commandArgs, this.outputDirectory);
     }
 
     /**
@@ -316,8 +309,8 @@ public class StepDefs {
         
         // Read the content of the actual and expected output files by line
         try {
-            actualLines = Files.readAllLines(Paths.get(this.outputDirectory, actualOutputFile));
-            expectedLines = Files.readAllLines(Paths.get(this.inputDirectory, expectedOutputFile));
+            actualLines = Files.readAllLines(Paths.get(outputDirectory, actualOutputFile));
+            expectedLines = Files.readAllLines(Paths.get(inputDirectory, expectedOutputFile));
         } catch (IOException ex) {
             throw new RuntimeException("Failed to read file", ex);
         }
@@ -333,14 +326,35 @@ public class StepDefs {
         expectedLines = null;
         excludeList = null;
     }
+    
+    public static void exec_lddtool(String commandArgs, String outputDir) {
+        String[] args = resolveArgumentStrings(commandArgs.split("\\s+"));  // resolve the commandArgs into a String array
+        String actualResponse;
+        try {
+            // run lddtool with the commandArgs and capture the output
+            actualResponse = LddToolRunner.runLddTool(args, outputDir);
+
+            // create an output file from the lddtool output and save it to target/generated-files directory
+            createOutputFile(actualResponse, outputDir + "/lddtool-output.txt");
+
+            // move lddtool-generated files to target/generated-files directory
+            // moveGeneratedFiles(".", outputDir + "/", "PDS4_");
+        } catch (RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex) {
+            throw new RuntimeException("DMDocument error", ex);
+        }
+        args = null;
+        actualResponse = null;
+    }
 
     /*
      * This method is called after each test case to clean up the test environment
      */
     @After
     public void tearDown() {
-        this.inputDirectory = null;
-        this.outputDirectory = null;
+        inputDirectory = null;
+        outputDirectory = null;
         this.commandArgs = null;
     }
 }

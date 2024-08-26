@@ -37,6 +37,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 class WriteDOMSchematron extends Object {
   PrintWriter prSchematron;
@@ -83,14 +84,14 @@ class WriteDOMSchematron extends Object {
                 || lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.attrNameSpaceNC) == 0))) continue;
       } else if (lSchemaFileDefn.isLDD) {
         // write an LDD schemtron
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "2>info " + "Found LDD - lSchemaFileDefn.isMission:" + lSchemaFileDefn.isMission);
         if (!(lRule.isMissionOnly && lSchemaFileDefn.isMission)
             || !((lSchemaFileDefn.nameSpaceIdNC.compareTo(lRule.classNameSpaceNC) == 0
                 && lSchemaFileDefn.stewardArr.contains(lRule.classSteward))
                 || (lRule.classTitle.compareTo(DMDocument.LDDToolSingletonClassTitle) == 0))) continue;
       } else {
-        DMDocument.registerMessage("1>warning "
+        Utility.registerMessage("1>warning "
             + "Write Schematron - Invalid governance in SchemaFileDefn  - lSchemaFileDefn.identifier:"
             + lSchemaFileDefn.identifier);
       }
@@ -270,7 +271,7 @@ class WriteDOMSchematron extends Object {
             lVersionNSId = DMDocument.masterPDSSchemaFileDefn.ns_version_id;
             lNameSpaceURL = DMDocument.masterPDSSchemaFileDefn.nameSpaceURL;
             lNameSpaceIdNCDIR = DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNCDir;
-            DMDocument.registerMessage("1>warning "
+            Utility.registerMessage("1>warning "
                 + "config.properties file entry is missing for namespace id:" + lNameSpaceIdNC);
           }
         }

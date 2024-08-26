@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 public class DOMAttr extends ISOClassOAIS11179 {
   String sort_identifier; // lAttr.title + "_" + lAttr.steward + "_" + lAttr.className + "_" +
@@ -256,7 +257,7 @@ public class DOMAttr extends ISOClassOAIS11179 {
       if (lOldStr != null) {
         lDomStrArr.add(lOldStr);
       } else {
-        DMDocument.registerMessage("1>error " + "InitStringArr - Null DomStr");
+        Utility.registerMessage("1>error " + "InitStringArr - Null DomStr");
       }
     }
   }

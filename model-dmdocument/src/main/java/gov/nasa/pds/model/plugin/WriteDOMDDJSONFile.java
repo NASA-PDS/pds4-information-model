@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Writes the PDS4 DOM DD content to a JSON file
@@ -307,7 +308,7 @@ class WriteDOMDDJSONFile extends Object {
           lDOMPropGroup.domObjectArr.add(lDOMObject);
         }
       } else {
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "1>error " + "WriteDOMDDJSONFile - Failed to find DOMObject - lDOMProp.identifier: "
                 + lDOMProp.identifier);
       }

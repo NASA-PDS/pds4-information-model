@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.StringTokenizer;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Writes terminological map to the ./map directory
@@ -135,10 +136,10 @@ class WriteMappingFile extends Object {
         bReader.close();
       } catch (FileNotFoundException ex) {
         // file does not exist
-        DMDocument.registerMessage("1>error " + "csv file does not exist.");
+        Utility.registerMessage("1>error " + "csv file does not exist.");
       } catch (IOException ex) {
         // I/O error
-        DMDocument.registerMessage("1>error " + "input file IO Exception.");
+        Utility.registerMessage("1>error " + "input file IO Exception.");
       }
 
     } // end while

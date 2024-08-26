@@ -36,6 +36,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 class MasterDOMInfoModel extends DOMInfoModel {
   static String attrNameClassWord;
@@ -99,11 +100,11 @@ class MasterDOMInfoModel extends DOMInfoModel {
             if (classNotFound) {
               classNotFound = false;
               lAttr.attrParentClass = lParentClass;
-              DMDocument.registerMessage("1>warning "
+              Utility.registerMessage("1>warning "
                   + "set attributes parent class - lAttr.identifier:" + lAttr.identifier
                   + " - using first found - lClassMember.identifier:" + lParentClass.identifier);
             } else {
-              DMDocument.registerMessage("1>warning "
+              Utility.registerMessage("1>warning "
                   + "set attributes parent class - lAttr.identifier:" + lAttr.identifier
                   + " - also found - lClassMember.identifier:" + lParentClass.identifier);
             }
@@ -111,7 +112,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
         }
         if (classNotFound) {
           lAttr.attrParentClass = DOMInfoModel.masterDOMUserClass;
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "1>warning " + "set attributes parent class - lAttr.identifier:" + lAttr.identifier
                   + " - parent class not found, using USER - lClassMember.identifier:"
                   + lParentClass.identifier);
@@ -218,7 +219,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
         lClass.subClassOfTitle = lSupClass.title;
         lClass.subClassOfIdentifier = lSupClass.identifier;
       } else {
-        DMDocument.registerMessage("1>error "
+        Utility.registerMessage("1>error "
             + "missing superClass in master while trying to set subClassOf - lClass.identifier:"
             + lClass.identifier + " -  lClass.subClassOfTitle:" + lClass.subClassOfTitle);
       }
@@ -241,7 +242,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
       // recurse up the subClassOf chain, getting the super class array
       while (lSuperClass != null && !lSuperClass.isUSERClass) {
         if (lSuperClassArr.contains(lSuperClass)) {
-          DMDocument.registerMessage("1>error "
+          Utility.registerMessage("1>error "
               + "Found cycle in superclass hierarchy - SuperClass.title:" + lSuperClass.title);
           break;
         }
@@ -296,7 +297,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // init the class hierarchy levels array (classes higher in in the tree are first)
     lClassHierLevelsArr = new ArrayList<>(lClassHierLevelsMap.values());
 
-    DMDocument.registerMessage("0>info " + "getAttrAssocArr Done");
+    Utility.registerMessage("0>info " + "getAttrAssocArr Done");
   }
 
   // 012 - remove URI Attribute
@@ -806,78 +807,78 @@ class MasterDOMInfoModel extends DOMInfoModel {
     }
 
     if (lAttr.valueType.compareTo(lSuperAttr.valueType) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.valueType:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.valueType:"
           + lSuperAttr.valueType + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.cardMin.compareTo(lSuperAttr.cardMin) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.cardMin:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.cardMin:"
           + lSuperAttr.cardMin + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.cardMax.compareTo(lSuperAttr.cardMax) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.cardMax:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.cardMax:"
           + lSuperAttr.cardMax + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.definition.compareTo(lSuperAttr.definition) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.description:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.description:"
           + lSuperAttr.definition + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.minimum_characters.compareTo(lSuperAttr.minimum_characters) != 0) {
-      DMDocument.registerMessage("1>warning "
+      Utility.registerMessage("1>warning "
           + "isRestrictedAttribute lSuperAttr.minimum_characters:" + lSuperAttr.minimum_characters
           + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.maximum_characters.compareTo(lSuperAttr.maximum_characters) != 0) {
-      DMDocument.registerMessage("1>warning "
+      Utility.registerMessage("1>warning "
           + "isRestrictedAttribute lSuperAttr.maximum_characters:" + lSuperAttr.maximum_characters
           + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.minimum_value.compareTo(lSuperAttr.minimum_value) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.minimum_value:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.minimum_value:"
           + lSuperAttr.minimum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.maximum_value.compareTo(lSuperAttr.maximum_value) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.maximum_value:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.maximum_value:"
           + lSuperAttr.maximum_value + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.nameSpaceIdNC.compareTo(lSuperAttr.nameSpaceIdNC) != 0) {
-      DMDocument.registerMessage("1>warning "
+      Utility.registerMessage("1>warning "
           + "isRestrictedAttribute lSuperAttr.attrNameSpaceIdNC:" + lSuperAttr.nameSpaceIdNC
           + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.pattern.compareTo(lSuperAttr.pattern) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.pattern:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.pattern:"
           + lSuperAttr.pattern + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.default_unit_id.compareTo(lSuperAttr.default_unit_id) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.default_unit_id:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.default_unit_id:"
           + lSuperAttr.default_unit_id + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (lAttr.format.compareTo(lSuperAttr.format) != 0) {
-      DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.format:"
+      Utility.registerMessage("1>warning " + "isRestrictedAttribute lSuperAttr.format:"
           + lSuperAttr.format + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
       return true;
     }
     if (!isAttribute) { // if association we need to check the standard values.
       if (lAttr.valArr.size() != lSuperAttr.valArr.size()) {
-        DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lAttr.valArr.size():"
+        Utility.registerMessage("1>warning " + "isRestrictedAttribute lAttr.valArr.size():"
             + lAttr.valArr.size() + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
         return true;
       }
       for (Iterator<String> i = lAttr.valArr.iterator(); i.hasNext();) {
         String lVal = i.next();
         if (!lSuperAttr.valArr.contains(lVal)) {
-          DMDocument.registerMessage("1>warning " + "isRestrictedAttribute lAttr.lVal" + lVal
+          Utility.registerMessage("1>warning " + "isRestrictedAttribute lAttr.lVal" + lVal
               + "   lSuperAttr.rdfIdentifier:" + lSuperAttr.rdfIdentifier);
           return true;
         }
@@ -1333,11 +1334,11 @@ class MasterDOMInfoModel extends DOMInfoModel {
         + "DD_Attribute_Full.pds.attribute_concept");
 
     if (lAttr == null) {
-      DMDocument.registerMessage("1>error " + "system attribute - attribute_concept - MISSING");
+      Utility.registerMessage("1>error " + "system attribute - attribute_concept - MISSING");
       return;
     }
     if ((lAttr.valArr == null) || (lAttr.valArr.size() < 1)) {
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "1>error " + "system attribute - attribute_concept - NO PERMISSIBLE VALUES");
       return;
     }
@@ -1357,11 +1358,11 @@ class MasterDOMInfoModel extends DOMInfoModel {
         + "DD_Value_Domain_Full.pds.conceptual_domain");
 
     if (lAttr == null) {
-      DMDocument.registerMessage("1>error " + "system attribute - conceptual_domain - MISSING");
+      Utility.registerMessage("1>error " + "system attribute - conceptual_domain - MISSING");
       return;
     }
     if ((lAttr.valArr == null) || (lAttr.valArr.size() < 1)) {
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "1>error " + "system attribute - conceptual_domain - NO PERMISSIBLE VALUES");
       return;
     }
@@ -1385,10 +1386,10 @@ class MasterDOMInfoModel extends DOMInfoModel {
         if (lDataType != null) {
           lAttr.xmlBaseDataType = lDataType.xml_schema_base_type;
         } else {
-          DMDocument.registerMessage("1>error "
+          Utility.registerMessage("1>error "
               + "SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing - lAttr.identifier:"
               + lAttr.identifier);
-          DMDocument.registerMessage("1>error "
+          Utility.registerMessage("1>error "
               + "SetMasterAttrXMLBaseDataTypeFromDataType - Data Type is missing - lAttr.valueType:"
               + lAttr.valueType);
         }
@@ -1404,7 +1405,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
       if (lAttr.isAttribute) {
         DOMDataType lValueType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lAttr.valueType);
         if (lValueType == null) {
-          DMDocument.registerMessage("1>error "
+          Utility.registerMessage("1>error "
               + "Could not find a value type for this attribute while checking for attribute overrides - Name:"
               + lAttr.identifier + "   Value Type:" + lAttr.valueType);
         } else {
@@ -1514,7 +1515,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
             boolean isEquivalent = true;
             if (lAttr1.valueType.compareTo(lAttr2.valueType) != 0) {
               isEquivalent = false;
-              DMDocument.registerMessage("1>error "
+              Utility.registerMessage("1>error "
                   + "hasAttributeOverride2 - valueType is not equivalent - attribute identifier:"
                   + lAttr2.identifier);
             }
@@ -1541,13 +1542,13 @@ class MasterDOMInfoModel extends DOMInfoModel {
               isEquivalentAll = true;
               break;
             }
-            DMDocument.registerMessage(
+            Utility.registerMessage(
                 "1>warning " + "sethasAttributeOverride - attributes are not equivalent:"
                     + lAttr1.identifier + " - " + lAttr2.identifier);
             isEquivalentAll = isEquivalentAll && isEquivalent;
           }
           if (!isEquivalentAll) {
-            DMDocument.registerMessage("1>error "
+            Utility.registerMessage("1>error "
                 + "sethasAttributeOverride - attribute is not equivalent - Setting unique name - attribute identifier:"
                 + lAttr1.identifier);
             lAttr1.XMLSchemaName = lAttr1.parentClassTitle + "_" + lAttr1.title;
@@ -1580,11 +1581,11 @@ class MasterDOMInfoModel extends DOMInfoModel {
             if (lClassMember.title.compareTo(lTitle) == 0) {
               if (firstClassFound == null) {
                 firstClassFound = lClassMember;
-                DMDocument.registerMessage("1>warning "
+                Utility.registerMessage("1>warning "
                     + "get class using attribute value array - lAttr.identifier:" + lProp.identifier
                     + " - using first found - lClassMember.identifier:" + lClassMember.identifier);
               } else {
-                DMDocument.registerMessage("1>warning "
+                Utility.registerMessage("1>warning "
                     + "get class using attribute value array - lAttr.identifier:" + lProp.identifier
                     + " - also found - lClassMember.identifier:" + lClassMember.identifier);
               }
@@ -1672,7 +1673,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
 
   // CheckDataTypes
   public void CheckDataTypes() {
-    DMDocument.registerMessage("0>info " + "CheckDataTypes");
+    Utility.registerMessage("0>info " + "CheckDataTypes");
     TreeMap<String, DOMAttr> lTreeMap = new TreeMap<>();
     for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
       DOMAttr lAttr = i.next();
@@ -1684,21 +1685,21 @@ class MasterDOMInfoModel extends DOMInfoModel {
     String pTitle = "", pDataType = "", pRDFId = "";
     for (Iterator<DOMAttr> j = lAttrArr.iterator(); j.hasNext();) {
       DOMAttr lAttr = j.next();
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "0>info " + "CheckDataTypes data types not equal - lAttr.title:" + lAttr.title);
       if (lAttr.title.compareTo(pTitle) == 0) {
         if (lAttr.valueType.compareTo(pDataType) == 0) {
           continue;
         }
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "0>info " + "CheckDataTypes data types not equal - lAttr.title:" + lAttr.title);
-        DMDocument
+        Utility
             .registerMessage("0>info " + "CheckDataTypes data types not equal - pRDFId:" + pRDFId);
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "0>info " + "CheckDataTypes data types not equal - pDataType:" + pDataType);
-        DMDocument.registerMessage("0>info "
+        Utility.registerMessage("0>info "
             + "CheckDataTypes data types not equal - lAttr.rdfIdentifier:" + lAttr.rdfIdentifier);
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "0>info " + "CheckDataTypes data types not equal - lAttr.valueType:" + lAttr.valueType);
       } else {
         pTitle = lAttr.title;
@@ -1743,7 +1744,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
    * constraints would cause multiple simpleType definitions ***
    */
   static public void checkSameNameOverRide() {
-    DMDocument
+    Utility
         .registerMessage("0>info " + "Checking for attribute consistency - checkSameNameOverRide");
 
     // sort the attributes
@@ -1813,73 +1814,73 @@ class MasterDOMInfoModel extends DOMInfoModel {
 
     if (lAttr1.valueType.compareTo(lAttr2.valueType) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.valueType:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.valueType:"
           + lAttr1.valueType + "   lAttr2.valueType:" + lAttr2.valueType);
     }
     if (lAttr1.minimum_characters.compareTo(lAttr2.minimum_characters) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.minimum_characters:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.minimum_characters:"
           + lAttr1.minimum_characters + "   lAttr2.minimum_characters:"
           + lAttr2.minimum_characters);
     }
     if (lAttr1.maximum_characters.compareTo(lAttr2.maximum_characters) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.maximum_characters:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.maximum_characters:"
           + lAttr1.maximum_characters + "   lAttr2.maximum_characters:"
           + lAttr2.maximum_characters);
     }
     if (lAttr1.minimum_value.compareTo(lAttr2.minimum_value) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.minimum_value:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.minimum_value:"
           + lAttr1.minimum_value + "   lAttr2.minimum_value:" + lAttr2.minimum_value);
     }
     if (lAttr1.maximum_value.compareTo(lAttr2.maximum_value) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.maximum_value:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.maximum_value:"
           + lAttr1.maximum_value + "   lAttr2.maximum_value:" + lAttr2.maximum_value);
     }
     if (lAttr1.pattern.compareTo(lAttr2.pattern) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.pattern:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.pattern:"
           + lAttr1.pattern + "   lAttr2.pattern:" + lAttr2.pattern);
     }
     if (lAttr1.default_unit_id.compareTo(lAttr2.default_unit_id) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.default_unit_id:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.default_unit_id:"
           + lAttr1.default_unit_id + "   lAttr2.default_unit_id:" + lAttr2.default_unit_id);
     }
     if (lAttr1.format.compareTo(lAttr2.format) != 0) {
       isFound = true;
-      DMDocument.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.format:"
+      Utility.registerMessage("0>warning " + "checkForOverRideDetail lAttr1.format:"
           + lAttr1.format + "   lAttr2.format:" + lAttr2.format);
     }
     if (isFound) {
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "0>info " + "checkForOverRideDetail lAttr1.identifier:" + lAttr1.identifier);
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "0>info " + "checkForOverRideDetail lAttr2.identifier:" + lAttr2.identifier);
-      DMDocument.registerMessage("0>info ");
+      Utility.registerMessage("0>info ");
     }
     return;
   }
 
   static public void printOwnedAttrAssocArr(DOMClass lClass, String lTitle) {
-    DMDocument.registerMessage("0>info " + "ownedAttrAssocArr - " + lTitle + " - "
+    Utility.registerMessage("0>info " + "ownedAttrAssocArr - " + lTitle + " - "
         + "lClass.identifier:" + lClass.identifier);
     for (Iterator<DOMProp> j = lClass.ownedAttrAssocArr.iterator(); j.hasNext();) {
       DOMProp lProp = j.next();
-      DMDocument.registerMessage("0>info " + "  - lProp.classOrder:" + lProp.classOrder);
+      Utility.registerMessage("0>info " + "  - lProp.classOrder:" + lProp.classOrder);
     }
   }
 
   static public void printAllAttrAssocArr(DOMClass lClass, String lTitle) {
-    DMDocument.registerMessage("0>info ");
-    DMDocument.registerMessage("0>info " + "allAttrAssocArr - " + lTitle + " - "
+    Utility.registerMessage("0>info ");
+    Utility.registerMessage("0>info " + "allAttrAssocArr - " + lTitle + " - "
         + "lClass.identifier:" + lClass.identifier);
     for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
       DOMProp lProp = j.next();
-      DMDocument.registerMessage("0>info " + " - lProp.identifier:" + lProp.identifier);
-      DMDocument.registerMessage("0>info " + " - lProp.classOrder:" + lProp.classOrder);
+      Utility.registerMessage("0>info " + " - lProp.identifier:" + lProp.identifier);
+      Utility.registerMessage("0>info " + " - lProp.classOrder:" + lProp.classOrder);
     }
   }
 }

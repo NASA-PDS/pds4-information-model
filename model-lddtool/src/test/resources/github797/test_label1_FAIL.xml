@@ -3,16 +3,13 @@
     schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <?xml-model href="./PDS4_GEOM_1N00_1970.sch"
     schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="https://pds.nasa.gov/pds4/rings/v1/PDS4_RINGS_1E00_1A00.sch"
-    schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:geom="http://pds.nasa.gov/pds4/geom/v1"
  xmlns:rings="http://pds.nasa.gov/pds4/rings/v1"
  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 ./PDS4_PDS_1N00.xsd
-                     http://pds.nasa.gov/pds4/geom/v1 ./PDS4_GEOM_1N00_1970.xsd
-                     http://pds.nasa.gov/pds4/rings/v1 https://pds.nasa.gov/pds4/rings/v1/PDS4_RINGS_1E00_1A00.xsd">
+                     http://pds.nasa.gov/pds4/geom/v1 ./PDS4_GEOM_1N00_1970.xsd">
     <Identification_Area>
         <logical_identifier>urn:nasa:pds:uranus_occ_u5_lco_250cm:data:2200nm_counts-v-time_rings_egress</logical_identifier>
         <version_id>1.0</version_id>
@@ -100,7 +97,7 @@
             <geom:Geometry>
                 <geom:SPICE_Kernel_Files>
                     <geom:SPICE_Kernel_Identification>
-                        <!-- This kernel_type value should fail -->
+                        <!-- Bad kernel_type #1 -->
                         <geom:kernel_type>FOO</geom:kernel_type>
                         <geom:spice_kernel_file_name>ura111.bsp</geom:spice_kernel_file_name>
                     </geom:SPICE_Kernel_Identification>
@@ -112,6 +109,7 @@
                         <geom:kernel_type>SPK</geom:kernel_type>
                         <geom:spice_kernel_file_name>earthstns_itrf93_040916.bsp</geom:spice_kernel_file_name>
                     </geom:SPICE_Kernel_Identification>
+                    <!-- Bad kernel_type #2 -->
                     <geom:SPICE_Kernel_Identification>
                         <geom:kernel_type>BPC</geom:kernel_type>
                         <geom:spice_kernel_file_name>earth_720101_031229.bpc</geom:spice_kernel_file_name>
@@ -123,41 +121,6 @@
                     <geom:comment>These kernel files were used in the generation of the products in the parent bundle. Some or all of them may not have been used directly in the generation of this product.</geom:comment>
                 </geom:SPICE_Kernel_Files>
             </geom:Geometry>
-            <rings:Ring_Moon_Systems>
-                <rings:Occultation_Time_Series>
-                    <rings:occultation_type>stellar</rings:occultation_type>
-                    <rings:occultation_direction>both</rings:occultation_direction>
-                    <rings:time_series_direction>egress</rings:time_series_direction>
-                    <rings:planetary_occultation_flag>N</rings:planetary_occultation_flag>
-                    <rings:data_quality_score>fair</rings:data_quality_score>
-                    <rings:ring_plane>equator</rings:ring_plane>
-                    <rings:star_name>UCAC2 25775788</rings:star_name>
-                    <rings:fresnel_scale unit="km">1.71</rings:fresnel_scale>
-                    <rings:projected_star_diameter unit="km">0.6000</rings:projected_star_diameter>
-                    <rings:sigma_projected_star_diameter unit="km">0.0900</rings:sigma_projected_star_diameter>
-                    <rings:fractional_error_star_counts>0.025000000</rings:fractional_error_star_counts>
-                    <rings:time_constant_type>single pole</rings:time_constant_type>
-                    <rings:time_constant unit="s">0.10000</rings:time_constant>
-                    <rings:sigma_time_constant unit="s">0.00500</rings:sigma_time_constant>
-                    <rings:minimum_wavelength unit="nm">2000.00000</rings:minimum_wavelength>
-                    <rings:maximum_wavelength unit="nm">2400.00000</rings:maximum_wavelength>
-                    <rings:reference_time_utc unit="s">1978-04-10T00:00:00.0000Z</rings:reference_time_utc>                      
-                    <rings:minimum_observed_event_time unit="s">22356.7275</rings:minimum_observed_event_time>
-                    <rings:maximum_observed_event_time unit="s">22884.5625</rings:maximum_observed_event_time>
-                    <rings:observed_event_start_tdb unit="s">-685691194.0869</rings:observed_event_start_tdb>  
-                    <rings:observed_event_stop_tdb unit="s">-685690666.2519</rings:observed_event_stop_tdb>                           
-                    <rings:earth_received_start_time_utc unit="s">1978-04-10T06:12:36.7275Z</rings:earth_received_start_time_utc>
-                    <rings:earth_received_stop_time_utc unit="s">1978-04-10T06:21:24.5625Z</rings:earth_received_stop_time_utc>
-                    <rings:minimum_ring_radius unit="km">42134.37081</rings:minimum_ring_radius>
-                    <rings:maximum_ring_radius unit="km">51374.86328</rings:maximum_ring_radius>
-                    <rings:minimum_ring_longitude unit="deg">137.3619</rings:minimum_ring_longitude>
-                    <rings:maximum_ring_longitude unit="deg">147.7060</rings:maximum_ring_longitude>
-                    <rings:minimum_observed_ring_azimuth unit="deg">323.7428</rings:minimum_observed_ring_azimuth>
-                    <rings:maximum_observed_ring_azimuth unit="deg">334.0870</rings:maximum_observed_ring_azimuth>
-                    <rings:observed_ring_elevation unit="deg">-57.32465</rings:observed_ring_elevation>
-                    <rings:light_source_incidence_angle unit="deg">32.67535</rings:light_source_incidence_angle>
-                </rings:Occultation_Time_Series>
-            </rings:Ring_Moon_Systems>
         </Discipline_Area>
     </Observation_Area>
     <Reference_List>
@@ -214,7 +177,7 @@
     </Reference_List>
     <File_Area_Observational>
         <File>
-            <file_name>u5_lco_250cm_2200nm_counts-v-time_rings_egress.tab</file_name>
+            <file_name>No.Data</file_name>
             <local_identifier>ring-data</local_identifier>
             <creation_date_time>2021-04-04T17:53:00Z</creation_date_time>
         </File>

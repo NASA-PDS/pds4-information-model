@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Driver for getting document
@@ -584,7 +585,7 @@ public class WriteDOMSpecification extends Object {
                 lAnchorString = lClass.anchorString;
               } else {
                 // error
-                DMDocument.registerMessage("1>error "
+                Utility.registerMessage("1>error "
                     + "printTableRow2 - Component Class is missing - lClassId:" + lClassId);
               }
             } else {

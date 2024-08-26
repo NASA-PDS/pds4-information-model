@@ -1,12 +1,10 @@
 package cucumber;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
-import java.security.Permission;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import gov.nasa.pds.model.plugin.DMDocument;
 
 /**
@@ -29,15 +27,18 @@ public class LddToolRunner {
      * @return the output of lddtool
      * @throws Throwable if an error occurs while running lddtool
      */
-    public static String runLddTool(String[] args) throws Throwable {
+    public static String runLddTool(String[] args, String outDirectory) throws Throwable {
         String output = null; // output of lddtool
         try {
-        	LOG.info("Run LDDTool");
         	setupStreams(); // Redirect System.out and System.err to capture them
+            File f = new File(outDirectory);
+            f.mkdirs();
+            DMDocument.setOutputDirPath(outDirectory + File.separatorChar);
             DMDocument.run(args);
             output = outContent.toString();
         } catch (Exception e) {
             // Throw an exception if an error occurs while setting the SecurityManager
+        	e.printStackTrace();
             throw new Exception("An error occurred while setting the SecurityManager in runLddTool", e);
         } finally {
             restoreStreams(); // Restore the original System.out and System.err

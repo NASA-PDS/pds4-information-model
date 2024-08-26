@@ -32,7 +32,7 @@ package gov.nasa.pds.model.plugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 public class SchemaFileDefn {
   // identifier is the namespace id, without colon, and in caps; it must be unique within the PDS
@@ -281,11 +281,12 @@ public class SchemaFileDefn {
 
     // set the relative file spec now that we have a version id
     relativeFileSpecModelSpec_DOM =
-        DMDocument.outputDirPath + "index" + "_" + lab_version_id + ".html";
+        DMDocument.getOutputDirPath() + "index" + "_" + lab_version_id + ".html";
     if (!isLDD) {
-      relativeFileSpecXMLSchema = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId
+      relativeFileSpecXMLSchema = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
           + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
-      relativeFileSpecSchematron = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId
+      relativeFileSpecSchematron =
+          DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
           + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
       relativeFileNameXMLSchema =
           DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xsd";
@@ -293,20 +294,20 @@ public class SchemaFileDefn {
           + lFileNameIMVersionId + "_" + lab_version_id + ".xsd";
       relativeFileNameSchematron =
           DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".sch";
-      relativeFileSpecXMLLabel = DMDocument.outputDirPath + "SchemaXML4/" + DMDocument.mastModelId
+      relativeFileSpecXMLLabel = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
           + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".xml";
-      relativeFileSpecDOMModelJSON = DMDocument.outputDirPath + "export/JSON/"
+      relativeFileSpecDOMModelJSON = DMDocument.getOutputDirPath() + "export/"
           + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_" + lab_version_id + ".JSON";
-      relativeFileSpecDDCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId
+      relativeFileSpecDDCSV = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
           + "_" + nameSpaceIdNCUC + "_" + lab_version_id;
-      relativeFileSpecCCSDSCSV = DMDocument.outputDirPath + "export/csv/" + DMDocument.mastModelId
+      relativeFileSpecCCSDSCSV = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
           + "_" + nameSpaceIdNCUC + "_CCSDS" + "_" + lab_version_id;
     } else {
       relativeFileSpecXMLSchema =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
       relativeFileSpecSchematron =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
       relativeFileNameXMLSchema = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
           + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xsd";
@@ -315,51 +316,54 @@ public class SchemaFileDefn {
       relativeFileNameSchematron = DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
           + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".sch";
       relativeFileSpecXMLLabel =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".xml";
       relativeFileSpecDOMModelJSON =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".JSON";
       relativeFileSpecLDDPontMerge =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".pont";
       relativeFileSpecReportTXT =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id + ".txt";
       relativeFileSpecDDCSV =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_" + lab_version_id;
       relativeFileSpecCCSDSCSV =
-          DMDocument.outputDirPath + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
+          DMDocument.getOutputDirPath() + DMDocument.mastModelId + "_" + nameSpaceIdNCUC + "_"
               + DMDocument.masterPDSSchemaFileDefn.lab_version_id + "_CCSDS" + "_" + lab_version_id;
     }
 
-    relativeFileSpecDDDocXML = DMDocument.outputDirPath + "export/DD/" + DMDocument.mastModelId
+    relativeFileSpecDDDocXML = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "DD" + "_" + lab_version_id + ".xml";
-    relativeFileSpecDDProtPins = DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen_"
+    relativeFileSpecDDProtPins = DMDocument.getOutputDirPath() + "export/" + "dd11179_Gen_"
         + DMDocument.masterTodaysDateyymmdd + ".pins";
     relativeFileSpecDDProtPinsSN =
-        DMDocument.outputDirPath + "Model_DataDictionary/" + "dd11179_Gen" + ".pins";
-    relativeFileSpecModelRDF = DMDocument.outputDirPath + "export/rdf/" + DMDocument.mastModelId
+        DMDocument.getOutputDirPath() + "export/" + "dd11179_Gen" + ".pins";
+    relativeFileSpecModelRDF = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "MODEL" + "_" + lab_version_id + ".rdf";
-    relativeFileSpecOWLRDF_DOM = DMDocument.outputDirPath + "export/owl/" + DMDocument.mastModelId
+    relativeFileSpecOWLRDF_DOM = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";
-    relativeFileSpecSKOSTTL_DOM = DMDocument.outputDirPath + "export/skos/" + DMDocument.mastModelId
+    relativeFileSpecSKOSTTL_DOM = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "SKOS" + "_" + lab_version_id + ".ttl";
-    relativeFileSpecUMLXMI = DMDocument.outputDirPath + "export/xmi/" + DMDocument.mastModelId + "_"
+    relativeFileSpecUMLXMI =
+        DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId + "_"
         + nameSpaceIdNCUC + "_" + "XMI" + "_clean" + "_" + lab_version_id + ".xmi";
-    relativeFileSpecUMLXMI2 = DMDocument.outputDirPath + "export/xmi/" + DMDocument.mastModelId
+    relativeFileSpecUMLXMI2 = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "XMI" + "_wNames" + "_" + lab_version_id + ".xmi";
-    relativeFileSpecModelPVL = DMDocument.outputDirPath + "export/pvl/" + DMDocument.mastModelId
+    relativeFileSpecModelPVL = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "PVL" + "_" + lab_version_id + "_";
-    relativeFileSpecModelRIM1 = DMDocument.outputDirPath + "export/rim/" + DMDocument.mastModelId
+    relativeFileSpecModelRIM1 = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "RIM1" + "_" + lab_version_id + ".txt";
-    relativeFileSpecModelRIM3 = DMDocument.outputDirPath + "export/rim/" + DMDocument.mastModelId
+    relativeFileSpecModelRIM3 = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "RIM3" + "_" + lab_version_id + ".txt";
-    relativeFileSpecModelRIM4 = DMDocument.outputDirPath + "export/rim/" + DMDocument.mastModelId
+    relativeFileSpecModelRIM4 = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "RIM4" + "_" + lab_version_id + ".txt";
-    relativeFileSpecAttrDefn = DMDocument.outputDirPath + "export/defnAttr/";
-    relativeFileSpecClassDefn = DMDocument.outputDirPath + "export/defnClass/";
+    relativeFileSpecAttrDefn = DMDocument.getOutputDirPath() + "export/defnAttr/";
+    relativeFileSpecClassDefn = DMDocument.getOutputDirPath() + "export/defnClass/";
+    Utility.checkCreateDirectory(relativeFileSpecAttrDefn);
+    Utility.checkCreateDirectory(relativeFileSpecClassDefn);
     return;
   }
   

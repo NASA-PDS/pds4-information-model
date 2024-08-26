@@ -47,6 +47,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
  * Parses an XML document - Local_DD
@@ -151,32 +152,32 @@ public class LDDDOMParser extends Object {
   public void getLocalDD() throws java.io.IOException {
     // parse the xml file and get the dom object
     parseXmlFile(gSchemaFileDefn);
-    DMDocument.registerMessage("0>info getLocalDD.parseXmlFile() Done");
+    Utility.registerMessage("0>info getLocalDD.parseXmlFile() Done");
 
     // process the dom document for classes, attributes, etc
     parseDocument(gSchemaFileDefn);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument() Done");
   }
 
   public void getLocalDDPhase2() {
     // resolve component references (cross namespace DD_Association references)
     resolveComponentsReferences(gSchemaFileDefn);
-    DMDocument.registerMessage("0>info resolveComponentsReferences() Done");
+    Utility.registerMessage("0>info resolveComponentsReferences() Done");
 
     // validate parsed header
     validateParsedHeader(gSchemaFileDefn);
-    DMDocument.registerMessage("0>info getLocalDD.validateParsedHeader() Done");
+    Utility.registerMessage("0>info getLocalDD.validateParsedHeader() Done");
   }
 
   public void getLocalDDPhase3() {
     // add the LDD artifacts to the master
     addLDDtoMaster();
-    DMDocument.registerMessage("0>info getLocalDD.addLDDtoMaster() Done");
+    Utility.registerMessage("0>info getLocalDD.addLDDtoMaster() Done");
 
     validateNoNestedExposedClasses();
-    DMDocument.registerMessage("0>info getLocalDD.validateNoNestedExposedClasses() Done");
+    Utility.registerMessage("0>info getLocalDD.validateNoNestedExposedClasses() Done");
 
-    DMDocument.registerMessage("0>info getLocalDD Done");
+    Utility.registerMessage("0>info getLocalDD Done");
   }
 
   private void parseXmlFile(SchemaFileDefn lSchemaFileDefn) {
@@ -225,13 +226,13 @@ public class LDDDOMParser extends Object {
       // default - set settings to the pds configuration setting if the namespace is not found in
       // config file
       lConfigSchemaFileDefn = DMDocument.masterPDSSchemaFileDefn;
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "2>warning Init: " + " - Config.Properties Namespace Id Not Found:" + lNameSpaceIdNC);
     } else {
-      DMDocument.registerMessage(
+      Utility.registerMessage(
           "2>info Init: " + " - Config.Properties Namespace Id Found:" + lNameSpaceIdNC);
     }
-    DMDocument.registerMessage("2>info Init: " + " - Config.Properties Namespace Id Using:"
+    Utility.registerMessage("2>info Init: " + " - Config.Properties Namespace Id Using:"
         + lConfigSchemaFileDefn.identifier);
 
     // finally set namespace id and add this LDD to LDDSchemaFileSortMap
@@ -257,20 +258,20 @@ public class LDDDOMParser extends Object {
     if (ldictionaryType.compareTo("Common") == 0) {
       lSchemaFileDefn.setDictionaryType("Discipline");
       DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
-      DMDocument.registerMessage("2>warning Init: " + " - LDD Dictionary_Type Found:"
+      Utility.registerMessage("2>warning Init: " + " - LDD Dictionary_Type Found:"
           + ldictionaryType + "  Defaulting to Discipline");
     } else if (ldictionaryType.compareTo("Discipline") == 0) {
       lSchemaFileDefn.setDictionaryType("Discipline");
       DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
-      DMDocument.registerMessage("2>info Init: " + " - LDD Dictionary_Type is " + ldictionaryType);
+      Utility.registerMessage("2>info Init: " + " - LDD Dictionary_Type is " + ldictionaryType);
     } else if (ldictionaryType.compareTo("Mission") == 0) {
       lSchemaFileDefn.setDictionaryType("Mission");
       DMDocument.LDDToolSingletonClassTitle = "Mission_Area";
-      DMDocument.registerMessage("2>info Init: " + " - LDD Dictionary_Type is " + ldictionaryType);
+      Utility.registerMessage("2>info Init: " + " - LDD Dictionary_Type is " + ldictionaryType);
     } else {
       lSchemaFileDefn.setDictionaryType("Discipline");
       DMDocument.LDDToolSingletonClassTitle = "Discipline_Area";
-      DMDocument.registerMessage("2>error Init: " + " - LDD Dictionary_Type not Found:"
+      Utility.registerMessage("2>error Init: " + " - LDD Dictionary_Type not Found:"
           + ldictionaryType + "  Defaulting to Discipline");
     }
 
@@ -310,57 +311,57 @@ public class LDDDOMParser extends Object {
 
     // get the LDD attributes
     getAttributes(lSchemaFileDefn, docEle);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.getAttributes() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.getAttributes() Done");
 
     //	get the LDD attributes Extended
 	getAttributesExtended (lSchemaFileDefn, docEle);
-	DMDocument.registerMessage ("0>info getLocalDD.parseDocument.getAttributesExtended() Done");
+	Utility.registerMessage ("0>info getLocalDD.parseDocument.getAttributesExtended() Done");
 	
     // get the LDD classes
     getClass(lSchemaFileDefn, docEle);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.getClass() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.getClass() Done");
 
     // get the LDD rules
     getRule(lSchemaFileDefn, docEle);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.getRule() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.getRule() Done");
 
     // get the LDD property map
     getPropMap(docEle);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.getPropMap() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.getPropMap() Done");
   }
 
   private void resolveComponentsReferences(SchemaFileDefn lSchemaFileDefn) {
 
     // get the component for the LDD association
     resolveComponentsForAssociation(lSchemaFileDefn);
-    DMDocument
+    Utility
         .registerMessage("0>info getLocalDD.parseDocument.resolveComponentsForAssociation() Done");
 
     // scan DD_Rule to determine if any external namespaces are referenced
     scanRulesForExternalNamespaces(lSchemaFileDefn);
-    DMDocument
+    Utility
         .registerMessage("0>info getLocalDD.parseDocument.scanRulesForExternalNamespaces() Done");
 
     validateReservedNames(lSchemaFileDefn);
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.validateReservedNames() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.validateReservedNames() Done");
 
     validateAttributeUsed();
-    DMDocument.registerMessage("0>info getLocalDD.parseDocument.validateAttributeUsed() Done");
+    Utility.registerMessage("0>info getLocalDD.parseDocument.validateAttributeUsed() Done");
 
     validateNoDuplicateNames();
-    DMDocument.registerMessage("0>info parseDocument.validateNoDuplicateNames() Done");
+    Utility.registerMessage("0>info parseDocument.validateNoDuplicateNames() Done");
 
     validateTypeAttributes(lSchemaFileDefn.isMission);
-    DMDocument.registerMessage("0>info parseDocument.validateTypeAttributes() Done");
+    Utility.registerMessage("0>info parseDocument.validateTypeAttributes() Done");
 
     validateNoUnitsAttributes();
-    DMDocument.registerMessage("0>info parseDocument.validateNoUnitsAttributes() Done");
+    Utility.registerMessage("0>info parseDocument.validateNoUnitsAttributes() Done");
 
     validateNilRequiredAttributes();
-    DMDocument.registerMessage("0>info parseDocument.validateNilRequiredAttributes() Done");
+    Utility.registerMessage("0>info parseDocument.validateNilRequiredAttributes() Done");
 
     validateEnumeratedFlags();
-    DMDocument.registerMessage("0>info parseDocument.validateEnumeratedFlags() Done");
+    Utility.registerMessage("0>info parseDocument.validateEnumeratedFlags() Done");
   }
 
   private void printClassDebug(String lLable, String lIdentifier) {
@@ -613,7 +614,7 @@ public class LDDDOMParser extends Object {
             lTermEntry.isPreferred = true;
           }
         } else {
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "2>error Terminological Entry: " + "The <language> attribute is missing.");
         }
       }
@@ -661,7 +662,7 @@ public class LDDDOMParser extends Object {
           termEntryQueryModelMap.put(termEntryId, lTermEntryQMObject);
 
         } else {
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "2>error Terminological Entry: " + "The <language> attribute is missing.");
         }
       }
@@ -825,7 +826,7 @@ public class LDDDOMParser extends Object {
         if (lLocalIdentifierArr.size() == 0) {
           lLocalIdentifierArr = getXMLValueArr("local_identifier", lAssocElem);  // old identifier reference
           if (lLocalIdentifierArr.size() == 0) {
-            DMDocument.registerMessage("2>error Association - Reference_Type: " + lReferenceType
+            Utility.registerMessage("2>error Association - Reference_Type: " + lReferenceType
                 + " - No identifiers were provided for this association.");
             continue;
           }
@@ -839,12 +840,12 @@ public class LDDDOMParser extends Object {
         } else if ((lReferenceType.compareTo("parent_of") == 0)) {
           lIsAttribute = false;
           if (lLocalIdentifierArr.size() != 1) {
-            DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+            Utility.registerMessage("2>error Association: " + lLocalIdentifier
                 + " -  The reference_type 'parent_of' is allowed only one parent");
             continue;
           }
         } else {
-          DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+          Utility.registerMessage("2>error Association: " + lLocalIdentifier
               + " - Invalid reference type: " + lReferenceType);
           continue;
         }
@@ -1035,13 +1036,13 @@ public class LDDDOMParser extends Object {
       if (lDOMPropExternal != null) {
         finishInitDOMAttr(lDOMAttrExt, lDOMAttrExternal, lDOMPropExternal);
       } else {
-        DMDocument.registerMessage("2>error Association: " + lDOMAttrExternalId
+        Utility.registerMessage("2>error Association: " + lDOMAttrExternalId
             + " - Could not find referenced property - Query Model 1");
       }
     } else // *** for qmsre process, when referencing external namespaces, e.g., msn, the attributes
            // are not present locally. Need some other solution. ***
     if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
-      DMDocument.registerMessage("2>error Association: " + lDOMAttrExternalId
+      Utility.registerMessage("2>error Association: " + lDOMAttrExternalId
           + " - Could not find referenced attribute - Query Model 2");
     }
 
@@ -1630,7 +1631,7 @@ public class LDDDOMParser extends Object {
         // *** for qmsre process, when referencing external namespaces, e.g., msn, the attributes
         // are not present locally. Need some other solution. ***
         if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
-          DMDocument.registerMessage("2>error Association: " + lDOMProp.localIdentifier
+          Utility.registerMessage("2>error Association: " + lDOMProp.localIdentifier
               + " - Could not find referenced attribute - Reference Type: "
               + lDOMProp.referenceType);
         }
@@ -1694,7 +1695,7 @@ public class LDDDOMParser extends Object {
               lDOMClass.ownedAttrAssocNSTitleArr.add(lDOMProp.nsTitle);
             }
           } else {
-            DMDocument.registerMessage("2>error Association: " + lDOMProp.localIdentifier
+            Utility.registerMessage("2>error Association: " + lDOMProp.localIdentifier
                 + " - Missing Component - Reference Type: " + lDOMProp.referenceType);
           }
 
@@ -1708,7 +1709,7 @@ public class LDDDOMParser extends Object {
             lDOMClass.subClassOfIdentifier = lDOMParentClass.identifier;
             lDOMClass.subClassOf = lDOMParentClass;
           } else {
-            DMDocument.registerMessage(
+            Utility.registerMessage(
                 "2>error Association: " + lDOMProp.identifier + " - Missing Class: "
                     + lDOMProp.localIdentifier + " - Reference Type: " + lDOMProp.referenceType);
           }
@@ -1792,7 +1793,7 @@ public class LDDDOMParser extends Object {
         // *** for qmsre process, when referencing external namespaces, e.g., msn, the attributes
         // are not present locally. Need some other solution. ***
         if (lSchemaFileDefn.nameSpaceIdNC.compareTo("qmsre") != 0) {
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "2>error Class:" + lDOMClass.identifier + "  Association:" + lDOMProp.localIdentifier
                   + "  Attribute: " + lLocalIdentifier + " - Missing Attribute");
         }
@@ -1809,13 +1810,16 @@ public class LDDDOMParser extends Object {
     
     // validate that referenced attribute is exposed
 	// 555 commented out until DDWG approves impact of the fix
-//    if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
-//    	if (lDOMAttr.isEnumerated) {
-//            DMDocument.registerMessage("2>warning Attribute: " + " - The referenced enumerated attribute " + lLocalIdentifier + " is not exposed.");
-//    	} else {
-//    		DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " + lLocalIdentifier + " is not exposed.");
-//    	}
-//    }
+    // if (lDOMAttr.nameSpaceIdNC.compareTo("pds") == 0 && ! lDOMAttr.isExposed) {
+    // if (lDOMAttr.isEnumerated) {
+    // DMDocument.registerMessage("2>warning Attribute: " + " - The referenced enumerated attribute
+    // " + lLocalIdentifier + " is not exposed.");
+    // } else {
+    // DMDocument.registerMessage("2>warning Attribute: " + " - The referenced attribute " +
+    // lLocalIdentifier + " is not exposed.");
+    // }
+    // }
+
 
     // clone the USER or LDD attribute for use as a Resolved attribute
     // returns rdfIdentifier = "TBD_rdfIdentifier"
@@ -1875,7 +1879,7 @@ public class LDDDOMParser extends Object {
       lLDDValArrExtUpdDefnClassMap.put(lLocalIdentifier, lComponentDOMClass.title);
       return lComponentDOMClass;
     }
-    DMDocument.registerMessage("2>error Class:" + lDOMClass.identifier + "  Association:"
+    Utility.registerMessage("2>error Class:" + lDOMClass.identifier + "  Association:"
         + lDOMProp.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Component Class");
     return null;
   }
@@ -1905,7 +1909,7 @@ public class LDDDOMParser extends Object {
       }
       return lParentDOMClass;
     }
-    DMDocument.registerMessage("2>error Class:" + lDOMClass.identifier + "  Association:"
+    Utility.registerMessage("2>error Class:" + lDOMClass.identifier + "  Association:"
         + lDOMProp.localIdentifier + "  Class:" + lLocalIdentifier + " - Missing Parent Class");
     return null;
   }
@@ -1966,12 +1970,12 @@ public class LDDDOMParser extends Object {
       // the value of the attribute local_identifier is irrelevant even if it is a reference to a
       // foreign namespace
       if (DMDocument.reservedClassNames.contains(lDOMClass.title)) {
-        DMDocument.registerMessage("2>error Class: "
+        Utility.registerMessage("2>error Class: "
             + " - No local dictionary may define a class called " + lDOMClass.title + ".");
       }
       Character lFirstChar = lDOMClass.title.charAt(0);
       if (!Character.isUpperCase(lFirstChar)) {
-        DMDocument.registerMessage("2>error Class: " + " - The class " + lDOMClass.title
+        Utility.registerMessage("2>error Class: " + " - The class " + lDOMClass.title
             + " must begin with an upper case letter.");
       }
 
@@ -1982,7 +1986,7 @@ public class LDDDOMParser extends Object {
     }
 
     if ((!hasAtLeastOneElementDefined) && numClasses > 0) {
-      DMDocument.registerMessage(lSchemaFileDefn.nameSpaceIdNCLC, "2>error NameSpaceId:"
+      Utility.registerMessage(lSchemaFileDefn.nameSpaceIdNCLC, "2>error NameSpaceId:"
           + lSchemaFileDefn.nameSpaceId
           + " - At least one class must be defined as an xs:Element. (<element_flag> set to \"true\")");
     } else {
@@ -1994,13 +1998,13 @@ public class LDDDOMParser extends Object {
       DOMAttr lDOMAttr = i.next();
 
       if (DMDocument.reservedAttrNames.contains(lDOMAttr.title)) {
-        DMDocument.registerMessage("2>error Attribute: "
+        Utility.registerMessage("2>error Attribute: "
             + " - No local dictionary may define an attribute called " + lDOMAttr.title + ".");
       }
 
       Character lFirstChar = lDOMAttr.title.charAt(0);
       if (!Character.isLowerCase(lFirstChar)) {
-        DMDocument.registerMessage("2>error Attribute: " + " - The attribute " + lDOMAttr.title
+        Utility.registerMessage("2>error Attribute: " + " - The attribute " + lDOMAttr.title
             + " must begin with a lower case letter.");
       }
     }
@@ -2027,7 +2031,7 @@ public class LDDDOMParser extends Object {
         }
       }
       if (!foundReferenceTypeDef) {
-        DMDocument.registerMessage("2>error Class: "
+        Utility.registerMessage("2>error Class: "
             + " - At least one value for pds:local_reference_type or pds:reference_type must be defined for "
             + lRuleXPath + ".");
       }
@@ -2074,7 +2078,7 @@ public class LDDDOMParser extends Object {
       // DMDocument.registerMessage ("2>warning Attribute: <" +
       // (attrMapLocal.get(lAttrLocalIdentifier)).title + "> - This local attribute was not used in
       // an Association.");
-      DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+      Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
           + "> - This local attribute was not used in an Association.");
     }
     return;
@@ -2088,7 +2092,7 @@ public class LDDDOMParser extends Object {
     for (Iterator<DOMClass> i = classArr.iterator(); i.hasNext();) {
       DOMClass lDOMClass = i.next();
       if (lNameArr.contains(lDOMClass.title)) {
-        DMDocument.registerMessage("2>warning Class: <" + lDOMClass.title
+        Utility.registerMessage("2>warning Class: <" + lDOMClass.title
             + "> - The class name is duplicated in this local data dictionary.");
       } else {
         lNameArr.add(lDOMClass.title);
@@ -2099,7 +2103,7 @@ public class LDDDOMParser extends Object {
     for (Iterator<DOMAttr> i = attrArr.iterator(); i.hasNext();) {
       DOMAttr lDOMAttr = i.next();
       if (lNameArr.contains(lDOMAttr.title)) {
-        DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
             + "> - The attribute name is duplicated in this local data dictionary.");
       } else {
         lNameArr.add(lDOMAttr.title);
@@ -2117,12 +2121,12 @@ public class LDDDOMParser extends Object {
           || lDOMAttr.title.compareTo("type") == 0) {
         if (lDOMAttr.domPermValueArr.size() < 1) {
           if (isMission) {
-            DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+            Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
                 + "> - The 'type' attribute must have at least one permissible value.");
           } else {
             // DMDocument.registerMessage ("2>error Attribute: <" + lDOMAttr.title + "> - The 'type'
             // attribute must have at least one permissible value.");
-            DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+            Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
                 + "> - The 'type' attribute must have at least one permissible value.");
           }
         }
@@ -2138,7 +2142,7 @@ public class LDDDOMParser extends Object {
       DOMAttr lDOMAttr = i.next();
       if (lDOMAttr.isEnumerated) {
         if (lDOMAttr.domPermValueArr.isEmpty()) {
-          DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+          Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
               + "> - An attribute with the enumeration_flag = true must have at least one permissible value.");
         } else {
           // DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An
@@ -2148,7 +2152,7 @@ public class LDDDOMParser extends Object {
         // DMDocument.registerMessage ("2>warning Attribute: <" + lDOMAttr.title + "> - An attribute
         // with the enumeration_flag = false - NO Problem");
       } else {
-        DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
             + "> - An attribute with the enumeration_flag = false must not have any permissible values.");
       }
     }
@@ -2172,7 +2176,7 @@ public class LDDDOMParser extends Object {
         foundFlag = true;
       }
       if (foundFlag) {
-        DMDocument.registerMessage("2>warning Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>warning Attribute: <" + lDOMAttr.title
             + "> - The terms 'unit', 'units', 'unit_of_measure' should not be used as the rightmost part of an attribute's name.");
       }
     }
@@ -2198,7 +2202,7 @@ public class LDDDOMParser extends Object {
           }
         }
         if (!foundFlag) {
-          DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+          Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
               + "> - A 'nillable' attribute was found that is not a required attribute in at least one class.");
         }
       }
@@ -2227,7 +2231,7 @@ public class LDDDOMParser extends Object {
       if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
         DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
         if (lCompClass.isExposed) {
-          DMDocument.registerMessage("2>warning Class: <" + lCompClass.title
+          Utility.registerMessage("2>warning Class: <" + lCompClass.title
               + "> - An exposed class was found nested within another exposed class. Nested exposed classes should only be present if there is a specific requirement to expose the additional class.");
         }
         checkAllSubclasses(lCompClass);
@@ -2301,11 +2305,11 @@ public class LDDDOMParser extends Object {
       DOMClass lDOMClass = i.next();
       if (DOMInfoModel.masterDOMClassIdMap.containsKey(lDOMClass.identifier)) {
         // an ldd class is a duplicate of a master class; replace the master with the LDD version
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "2>warning Found duplicate class - lClass.identifier:" + lDOMClass.identifier);
         if (DOMInfoModel.masterDOMClassMap.containsKey(lDOMClass.rdfIdentifier)) {
           DOMInfoModel.masterDOMClassMap.remove(lDOMClass.rdfIdentifier);
-          DMDocument
+          Utility
               .registerMessage("2>warning Found duplicate class - REPLACED - lClass.rdfIdentifier:"
                   + lDOMClass.rdfIdentifier);
         }
@@ -2338,14 +2342,14 @@ public class LDDDOMParser extends Object {
         if (DOMInfoModel.masterDOMAttrIdMap.containsKey(lDOMAttr.identifier)) {
           // an ldd attribute is a duplicate of a master attribute; replace the master with the LDD
           // version
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "2>warning Found duplicate attribute - lDOMAttr.identifier:" + lDOMAttr.identifier);
           if (DOMInfoModel.masterDOMAttrMap.containsKey(lDOMAttr.rdfIdentifier)) {
             DOMInfoModel.masterDOMAttrMap.remove(lDOMAttr.rdfIdentifier);
-            DMDocument.registerMessage(
+            Utility.registerMessage(
                 "2>warning Found duplicate attribute - REPLACED - lDOMAttr.rdfIdentifier:"
                     + lDOMAttr.rdfIdentifier);
-            DMDocument.registerMessage(
+            Utility.registerMessage(
                 "2>error Found duplicate attribute - REPLACED Failed - lDOMAttr.rdfIdentifier:"
                     + lDOMAttr.rdfIdentifier);
           }
@@ -2372,11 +2376,11 @@ public class LDDDOMParser extends Object {
       if (DOMInfoModel.masterDOMPropIdMap.containsKey(lDOMProp.identifier)) {
         // an ldd association is a duplicate of a master association; replace the master with the
         // LDD version
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "2>warning Found duplicate attribute - lDOMProp.identifier:" + lDOMProp.identifier);
         if (DOMInfoModel.masterDOMPropMap.containsKey(lDOMProp.rdfIdentifier)) {
           DOMInfoModel.masterDOMPropMap.remove(lDOMProp.rdfIdentifier);
-          DMDocument.registerMessage(
+          Utility.registerMessage(
               "2>warning Found duplicate attribute - REPLACED - lDOMProp.rdfIdentifier:"
                   + lDOMProp.rdfIdentifier);
         }
@@ -2419,7 +2423,7 @@ public class LDDDOMParser extends Object {
         lRule.setRDFIdentifier();
         DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
       } else {
-        DMDocument.registerMessage(
+        Utility.registerMessage(
             "2>warning Found duplicate attribute - lAttr.identifier:" + lRule.identifier);
       }
     }
@@ -2711,11 +2715,11 @@ public class LDDDOMParser extends Object {
 
   private void validateParsedHeader(SchemaFileDefn lSchemaFileDefn) {
     if (lRegAuthId.compareTo(DMDocument.registrationAuthorityIdentifierValue) != 0) {
-      DMDocument
+      Utility
           .registerMessage("2>error Header: " + " - Invalid Registration Authority: " + lRegAuthId);
     }
     if (lSchemaFileDefn.nameSpaceIdNC.compareTo("pds") == 0) {
-      DMDocument.registerMessage("2>error Header: "
+      Utility.registerMessage("2>error Header: "
           + " - Master namespace is not allowed as a local data dictionary namespace:"
           + lSchemaFileDefn.nameSpaceIdNC);
     }
@@ -2744,26 +2748,26 @@ public class LDDDOMParser extends Object {
     int numMatches = 0, maxMatches = 7;
     DOMDataType lDOMDataType = DOMInfoModel.masterDOMDataTypeTitleMap.get(lDOMAttr.valueType);
     if (lDOMDataType == null) {
-      DMDocument.registerMessage("2>error Attribute: <" + lDOMAttr.title
+      Utility.registerMessage("2>error Attribute: <" + lDOMAttr.title
           + "> - Invalid Data Type. Data Type: " + lDOMAttr.valueType);
     } else {
       if (lDOMAttr.minimum_value.indexOf("TBD") != 0) {
-        DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
             + "> - The default minimum value provided by the attribute's data type is being overridden with "
             + lDOMAttr.minimum_value);
       }
       if (lDOMAttr.maximum_value.indexOf("TBD") != 0) {
-        DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
             + "> - The default maximum value provided by the attribute's data type is being overridden with "
             + lDOMAttr.maximum_value);
       }
       if (lDOMAttr.minimum_characters.indexOf("TBD") != 0) {
-        DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
             + "> - The default minimum characters provided by the attribute's data type is being overridden with "
             + lDOMAttr.minimum_characters);
       }
       if (lDOMAttr.maximum_characters.indexOf("TBD") != 0) {
-        DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
             + "> - The default maximum characters provided by the attribute's data type is being overridden with "
             + lDOMAttr.maximum_characters);
       }
@@ -2797,7 +2801,7 @@ public class LDDDOMParser extends Object {
     if (!(lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0)) {
       DOMUnit lUnit = DOMInfoModel.masterDOMUnitMap.get(lDOMAttr.unit_of_measure_type);
       if (lUnit == null) {
-        DMDocument.registerMessage("2>warning Attribute2 <: " + lDOMAttr.title
+        Utility.registerMessage("2>warning Attribute2 <: " + lDOMAttr.title
             + " - Invalid Unit of Measure Type: " + lDOMAttr.unit_of_measure_type);
       }
     }
@@ -2810,7 +2814,7 @@ public class LDDDOMParser extends Object {
       DOMAttr lMAttr = i.next();
       // if (lMAttr.title.compareTo(lAttr.title) == 0) {
       if ((!lMAttr.isFromLDD) && lMAttr.title.compareTo(lDOMAttr.title) == 0) {
-        DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+        Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
             + "> - This local attribute has a duplicate in the PDS4 data dictionary.");
         isExact = true;
         numMatches++;
@@ -2830,7 +2834,7 @@ public class LDDDOMParser extends Object {
 	        } catch (NumberFormatException e) {
 	        	lCardMinI = 0;
 	        	lCardMin = "0";
-	        	DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	        	Utility.registerMessage("2>error Association: " + lLocalIdentifier
 	        			+ " - Minimum occurrences is invalid: " + lMinCard);
 	        }
 	    }
@@ -2846,12 +2850,12 @@ public class LDDDOMParser extends Object {
 	    		} catch (NumberFormatException e) {
 	    			lCardMaxI = 0;
 	    			lCardMax = "0";
-	    			DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    			Utility.registerMessage("2>error Association: " + lLocalIdentifier
 	    					+ " - Maximum occurrences is invalid: " + lMaxCard);
 	    		}
 	    	}
 	    	if (lCardMaxI < lCardMinI) {
-	    		DMDocument.registerMessage("2>error Association: " + lLocalIdentifier
+	    		Utility.registerMessage("2>error Association: " + lLocalIdentifier
 	    				+ " - Maximum occurrences is less than minimum occurrences");
 	    	}
 	    }
@@ -2893,7 +2897,7 @@ public class LDDDOMParser extends Object {
           String lTitleUpper = lMAttr.title.toUpperCase();
           if (lTitleUpper.indexOf(lClassWord) > -1) {
             if (lTitleUpper.indexOf(lDescriptor) > -1) {
-              DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+              Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
                   + "> - PDS4 data dictionary attribute with similar name. - Matched attribute: <"
                   + lMAttr.title + ">");
               numMatches++;
@@ -2912,7 +2916,7 @@ public class LDDDOMParser extends Object {
           }
           String lTitleUpper = lMAttr.title.toUpperCase();
           if (lTitleUpper.indexOf(lDescriptor) > -1) {
-            DMDocument.registerMessage("2>info Attribute: <" + lDOMAttr.title
+            Utility.registerMessage("2>info Attribute: <" + lDOMAttr.title
                 + "> - PDS4 data dictionary attribute with similar name. - Matched attribute: <"
                 + lMAttr.title + ">");
             numMatches++;
