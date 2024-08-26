@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-23)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-08-26)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -23,6 +23,7 @@
 
 **Other closed issues:**
 
+- Add validate testing to support automated integration testing [\#808](https://github.com/NASA-PDS/pds4-information-model/issues/808)
 - Create new LDDTool Cucumber scenario to support diffs to expected outputs [\#787](https://github.com/NASA-PDS/pds4-information-model/issues/787)
 - Complete CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
 - Identify key concepts we want to capture for each ontology object [\#778](https://github.com/NASA-PDS/pds4-information-model/issues/778)
