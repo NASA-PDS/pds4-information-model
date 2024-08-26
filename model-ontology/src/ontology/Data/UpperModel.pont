@@ -1,4 +1,4 @@
-; Wed Aug 14 12:29:18 EDT 2024
+; Mon Aug 26 12:54:11 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5267,6 +5267,10 @@
 ;+		(allowed-classes Axis_Array)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
+
+(defclass Array_1D_Spectrum "The Array 1D Spectrum class is an extension of the Array 1D class and defines a one dimensional spectrum."
+	(is-a Array_1D)
+	(role concrete))
 
 (defclass File "The File class consists of attributes that describe a file in a data store."
 	(is-a Tagged_Digital_Object)
