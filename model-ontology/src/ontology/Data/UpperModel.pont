@@ -1,4 +1,4 @@
-; Mon Aug 26 12:54:11 EDT 2024
+; Mon Aug 26 19:35:40 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10181,7 +10181,7 @@
 	(multislot has_tagged_data_object
 ;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
 		(type INSTANCE)
-;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array Encoded_Audio Encoded_Video)
+;+		(allowed-classes Array_2D_Map Array_2D_Image Stream_Text Array_2D_Spectrum Array_3D_Image Table_Binary Array_3D_Movie Array_3D_Spectrum Table_Character Header Table_Delimited Encoded_Header Array_3D Array_2D XSChoice%23 Array_1D Array Encoded_Audio Encoded_Video Array_1D_Spectrum)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot has_composite_structure
