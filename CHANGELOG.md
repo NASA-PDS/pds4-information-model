@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-09-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-10-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -8,6 +8,7 @@
 
 - CCB-7: Missing schematron rule - bundle\_to\_targets [\#795](https://github.com/NASA-PDS/pds4-information-model/issues/795)
 - Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
+- As a data provider, I want to add additional content to Investigation context products [\#765](https://github.com/NASA-PDS/pds4-information-model/issues/765)
 - Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
 
 **Improvements:**
@@ -28,6 +29,7 @@
 - Complete CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
 - Identify key concepts we want to capture for each ontology object [\#778](https://github.com/NASA-PDS/pds4-information-model/issues/778)
 - Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
+- Generate WebHelp for all Discipline and Mission LDDs [\#759](https://github.com/NASA-PDS/pds4-information-model/issues/759)
 - Initial Implementation of Cucumber Framework for LDDTool Tests [\#714](https://github.com/NASA-PDS/pds4-information-model/issues/714)
 
 ## [v15.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v15.1.0) (2024-05-24)
