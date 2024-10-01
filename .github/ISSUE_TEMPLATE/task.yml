@@ -1,7 +1,7 @@
 name: Task
 description: "Low level task or action that is often too granular for testing, but helps towards progress on an Epic or parent story"
-labels: "B15.0,i&t.skip,task"
-projects: "NASA-PDS/9"
+labels: "B15.1,i&t.skip,task"
+projects: "NASA-PDS/14"
 
 body:
   - type: textarea
