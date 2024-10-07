@@ -1,4 +1,4 @@
-; Wed Aug 28 11:13:39 EDT 2024
+; Tue Sep 03 20:58:20 EDT 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11511,7 +11511,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a magnitude of quantity of chemically unique and identifiable particles (atoms, molecules, ions, etc.)."
+(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a unit in which a quantity of chemically unique and identifiable particles (atoms, molecules, ions, etc is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11533,7 +11533,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Angle "Units_of_Angle is a magnitude of angle."
+(defclass Units_of_Angle "Units_of_Angle is a unit in which angle is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11555,7 +11555,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Area "Units_of_Area is a magnitude of area."
+(defclass Units_of_Area "Units_of_Area is a unit in which area is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11577,7 +11577,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Angular_Velocity "Units_of_Angular_Velocity is a magnitude of speed of rotation."
+(defclass Units_of_Angular_Velocity "Units_of_Angular_Velocity is a unit in which angular velocity is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11599,7 +11599,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Frequency "Units_of_Frequency is a magnitude of frequency."
+(defclass Units_of_Frequency "Units_of_Frequency is a unit in which frequency is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11621,7 +11621,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Length "Units_of_Length is a magnitude of length."
+(defclass Units_of_Length "Units_of_Length is a unit in which length is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11643,7 +11643,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Mass "Units_of_Mass is a magnitude of mass."
+(defclass Units_of_Mass "Units_of_Mass is a unit in which mass is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11665,7 +11665,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Misc "Units_of_Misc provides an assortment of derived units."
+(defclass Units_of_Misc "Units_of_Misc provides an assortment of derived units. These are not all interchangeable with each other, so care should be taken to govern which units are appropriate for a given context."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11687,7 +11687,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_None "Units_of_None indicates that no unit of measure applies."
+(defclass Units_of_None "Units_of_None indicates that no unit of measure applies and/or that the quantity is dimensionless."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11731,7 +11731,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Radiance "Units_of_Radiance is a magnitude of radiance."
+(defclass Units_of_Radiance "Units_of_Radiance is a unit in which radiance is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11753,7 +11753,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Rates "Units_of_Rate is a magnitude of change."
+(defclass Units_of_Rates "Units_of_Rates provides an assortment of units in which change is measured. These are not all interchangeable with each other, so care should be taken to govern which units are appropriate for a given context."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11797,7 +11797,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Solid_Angle "Units_of_Solid_Angle is a magnitude of a solid angle."
+(defclass Units_of_Solid_Angle "Units_of_Solid_Angle is a unit in which solid angle is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11819,7 +11819,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Storage "Units_of_Storage is an amount of computer storage."
+(defclass Units_of_Storage "Units_of_Storage is a unit in which amount of computer storage is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11841,7 +11841,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Temperature "Units_of_Temperature is a magnitude of temperature."
+(defclass Units_of_Temperature "Units_of_Temperature is a unit in which temperature is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11863,7 +11863,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Time "Units_of_Time is a magnitude of time."
+(defclass Units_of_Time "Units_of_Time is a unit in which time is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11885,7 +11885,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Velocity "Units_of_Velocity is a magnitude of velocity."
+(defclass Units_of_Velocity "Units_of_Velocity is a unit in which velocity is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11907,7 +11907,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Volume "Units_of_Volume is a magnitude of volume."
+(defclass Units_of_Volume "Units_of_Volume is a unit in which volume is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11929,7 +11929,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Voltage "Units_of_Voltage is a magnitude of voltage."
+(defclass Units_of_Voltage "Units_of_Voltage is a unit in which voltage, also known as electrical potential, is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11951,7 +11951,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Optical_Path_Length "Units_of_Optical_Path_Length is a magnitude of optical path length."
+(defclass Units_of_Optical_Path_Length "Units_of_Optical_Path_Length is a unit in which optical path length is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11973,7 +11973,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Frame_Rate "Units_of_Frame_Rate is a magnitude of change."
+(defclass Units_of_Frame_Rate "Units_of_Frame_Rate is a unit in which frame rate is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -11995,7 +11995,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Acceleration "Units_of_Acceleration is a magnitude of acceleration."
+(defclass Units_of_Acceleration "Units_of_Acceleration is a unit in which acceleration is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12017,7 +12017,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Wavenumber "Units_of_Wavenumber is the number of waves that occur per unit distance, i.e., inverse length"
+(defclass Units_of_Wavenumber "Units_of_Wavenumber is a unit in which the number of waves that occur per unit distance (i.e., inverse length) is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12039,7 +12039,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Spectral_Irradiance "A measure of the power of radiation at a particular frequency or wavelength that passes through a unit area."
+(defclass Units_of_Spectral_Irradiance "Units_of_Spectral_Irradiance is a unit in which the power of radiation at a particular frequency or wavelength that passes through a unit area is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12061,7 +12061,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Spectral_Radiance "A measure of the power of radiation at a particular frequency or wavelength that passes through a unit area and a unit solid angle in a specified direction."
+(defclass Units_of_Spectral_Radiance "Units_of_Spectral_Radiance is a unit in which the power of radiation at a particular frequency or wavelength that passes through a unit area and a unit solid angle in a specified direction is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12083,7 +12083,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Current "Units_of_Current is a magnitude of current."
+(defclass Units_of_Current "Units_of_Current is a unit in which electrical current is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12105,7 +12105,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Scale_Linear "The class Units_of_Pixel_Scale_Linear provides the units in which a pixel scale is defined in a linear context. Pixel scale, in terms of linear units, is the inverse distance represented by one pixel in an image, typically expressed as pixel per unit length (0.125 pixel/m , 0.5 pixel/km)."
+(defclass Units_of_Pixel_Scale_Linear "Units_of_Pixel_Scale_Linear is a unit in which pixel scale is measured in a linear context. Pixel scale, in terms of linear units, is the inverse distance represented by one pixel in an image, typically expressed as pixel per unit length (0.125 pixel/m , 0.5 pixel/km)."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12127,7 +12127,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Scale_Angular "The class Units_of_Pixel_Scale_Angular provides the units in which a pixel scale is defined in an angular context. Pixel scale, in terms of angular units, indicates the angular size of a pixel typically expressed as pixel per unit angle (e.g., 0.125 pixel/deg , 0.5 pixel/arcsec)."
+(defclass Units_of_Pixel_Scale_Angular "Units_of_Pixel_Scale_Angular is a unit in which pixel scale is measured in an angular context. Pixel scale, in terms of angular units, indicates the angular size of a pixel typically expressed as pixel per unit angle (e.g., 0.125 pixel/deg , 0.5 pixel/arcsec)."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12149,7 +12149,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Resolution_Linear "The class Units_of_Pixel_Resolution_Linear provides the units in which pixel resolution is defined in an linear context. Linear pixel resolution, the inverse of linear pixel scale, indicates the linear size of a pixel typically expressed in terms of a length per single pixel (e.g., 6.5 m/pixel, 1.0 km/pixel)."
+(defclass Units_of_Pixel_Resolution_Linear "Units_of_Pixel_Resolution_Linear is a unit in which pixel resolution is measured in a linear context. Linear pixel resolution, the inverse of linear pixel scale, indicates the linear size of a pixel typically expressed in terms of a length per single pixel (e.g., 6.5 m/pixel, 1.0 km/pixel)."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12171,7 +12171,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Resolution_Angular "The class Units_of_Pixel_Resolution_Angular provides the units in which pixel resolution is defined in an angular context. Angular pixel resolution, the inverse of angular pixel scale, indicates the angular size subtended by a single pixel (e.g., 6.5 deg/pixel, 1.0 arcsec/pixel)."
+(defclass Units_of_Pixel_Resolution_Angular "Units_of_Pixel_Resolution_Angular is a unit in which pixel resolution is measured in an angular context. Angular pixel resolution, the inverse of angular pixel scale, indicates the angular size subtended by a single pixel."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12193,7 +12193,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Scale_Map "The class Units_of_Pixel_Scale_Map provides the units for pixel scale in a cartographic context. Map pixel scale is the inverse distance represented by one pixel in a digital map, expressed as pixel per unit length in terms of surface distance. For example, 4 pixel/deg image on Venus = 4 pixel/deg image on Mars = 1440x720 pixels. Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
+(defclass Units_of_Pixel_Scale_Map "Units_of_Pixel_Scale_Map is a unit in which pixel scale is measured in a cartographic context. Map pixel scale is the inverse distance represented by one pixel in a digital map, expressed as pixel per unit length in terms of surface distance. For example, 4 pixel/deg image on Venus = 4 pixel/deg image on Mars = 1440x720 pixels. Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12215,7 +12215,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Pixel_Resolution_Map "The class Units_of_Pixel_Resolution_Map provides the units for pixel resolution in a cartographic context. Map pixel resolution indicates the size of a pixel in a digital map expressed in terms of surface distance per single pixel. This value is dependent on the definition of the map projection or radius to the object. (e.g., 6.5 m/pixel, 1.0 km/pixel) Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
+(defclass Units_of_Pixel_Resolution_Map "Units_of_Pixel_Resolution_Map is a unit in which pixel resolution is measured in a cartographic context. Map pixel resolution indicates the size of a pixel in a digital map expressed in terms of surface distance per single pixel. This value is dependent on the definition of the map projection or radius to the object. (e.g., 6.5 m/pixel, 1.0 km/pixel) Note: In a cartographic context, degree is interpreted as a surface distance measured in degrees of latitude or longitude."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12237,7 +12237,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Energy "Units_of_Energy is a magnitude of energy."
+(defclass Units_of_Energy "Units_of_Energy is a unit in which energy is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12259,7 +12259,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Gmass "Units_of_Gmass is a product of the universal gravitational constant and the mass of one specified body"
+(defclass Units_of_Gmass "Units_of_Gmass is a unit in which a product of the universal gravitational constant and the mass of one specified body is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12281,7 +12281,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Force "Units_of_Force is a magnitude of force."
+(defclass Units_of_Force "Units_of_Force is a unit in which force is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12303,7 +12303,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Power "Units_of_Power is a magnitude of power."
+(defclass Units_of_Power "Units_of_Power is a unit in which power is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
@@ -12325,7 +12325,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Mass_Density "Units_of_Mass_Density is a magnitude of mass density."
+(defclass Units_of_Mass_Density "Units_of_Mass_Density is a unit in which mass density is measured."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
