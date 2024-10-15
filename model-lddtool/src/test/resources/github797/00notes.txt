@@ -1,0 +1,46 @@
+This should give 1 ERROR for bad valud for kernel_type, but it adds 2 more for:
+  pds:kernel_type (which should be correct) instead of
+  geom:kernel_type
+
+
+% validate -x *.xsd -S *.sch -t u5.xml
+PDS Validate Tool Report
+Configuration:
+   Version     3.6.0-SNAPSHOT
+   Date        2024-10-14T20:44:11Z
+Parameters:
+   Targets                        [file:/Users/rchen/Desktop/797/u5.xml]
+   User Specified Schemas         [file:/Users/rchen/Desktop/797/00PDS4_PDS_1M00.xsd, file:/Users/rchen/Desktop/797/PDS4_GEOM_1M00_1970.xsd]
+   User Specified Schematrons     [file:/Users/rchen/Desktop/797/00PDS4_PDS_1M00.sch, file:/Users/rchen/Desktop/797/PDS4_GEOM_1M00_1970.sch]
+   Severity Level                 WARNING
+   Recurse Directories            true
+   File Filters Used              [*.xml, *.XML]
+   Data Content Validation        on
+   Product Level Validation       on
+   Max Errors                     100000
+   Registered Contexts File       /Users/rchen/PDS4tools/validate/resources/registered_context_products.json
+Product Level Validation Results
+  FAIL: file:/Users/rchen/Desktop/797/u5.xml
+      ERROR  [error.label.schema]   line 88, 42: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://pds.nasa.gov/pds4/pds/v1":kernel_type}'. One of '{"http://pds.nasa.gov/pds4/geom/v1":kernel_type, "http://pds.nasa.gov/pds4/geom/v1":spice_kernel_file_name}' is expected.
+      ERROR  [error.label.schema]   line 92, 42: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://pds.nasa.gov/pds4/pds/v1":kernel_type}'. One of '{"http://pds.nasa.gov/pds4/geom/v1":kernel_type, "http://pds.nasa.gov/pds4/geom/v1":spice_kernel_file_name}' is expected.
+      ERROR  [error.label.schematron]   line 92, 42: The attribute geom:SPICE_Kernel_Identification/pds:kernel_type must be equal to one of the following values 'CK', 'DBK', 'DSK', 'EK', 'FK', 'IK', 'LSK', 'MK', 'PCK', 'SCLK', 'SPK'.
+        1 product validation(s) completed
+Summary:
+  1 product(s)
+  3 error(s)
+  0 warning(s)
+  Product Validation Summary:
+    0          product(s) passed
+    1          product(s) failed
+    0          product(s) skipped
+    1          product(s) total
+  Referential Integrity Check Summary:
+    0          check(s) passed
+    0          check(s) failed
+    0          check(s) skipped
+    0          check(s) total
+  Message Types:
+    2            error.label.schema
+    1            error.label.schematron
+End of Report
+Completed execution in 1997 ms
