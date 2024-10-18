@@ -41,7 +41,7 @@ import java.util.TreeMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import gov.nasa.pds.model.plugin.util.Utility;
-import jdk.internal.org.jline.utils.Log;
+
 
 // This code writes the information model to XML schema, attempting to replicate the class
 // hierarchy.

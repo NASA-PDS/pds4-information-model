@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" 
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Collection
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://pds.nasa.gov/pds4/pds/v1
+  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd
+  ">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:im795:data</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Galileo Jupiter Star Scanner Derived Data Collection</title>
+    <information_model_version>1.23.0.0</information_model_version>
+    <product_class>Product_Collection</product_class>
+    <Citation_Information>
+      <publication_year>2024</publication_year>
+      <description>This collection contains data on the instantaneous         
+        flux of 1.5 to 30 MeV electrons in the Jovian environment. It is        
+        able to measure fluxes of ~1 x 105 electrons cm-2 sec-1 or greater      
+        which generally means the data are usable inside of about 12 and        
+        rarely as far out as 16.5 Jovian Radii (RJ).</description>
+      <List_Author>
+        <Person>
+          <given_name>Paul D.</given_name>
+          <family_name>Fieseler</family_name>
+          <sequence_number>1</sequence_number>
+          <Affiliation>
+            <organization_name>California Institute of Technology</organization_name>
+            <organization_rorid>https://ror.org/05dxps055</organization_rorid>
+            <sequence_number>1</sequence_number>
+          </Affiliation>
+        </Person>
+      </List_Author>
+    </Citation_Information>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2024-06-21</modification_date>
+        <version_id>1.0</version_id>
+        <description>This is the original version of this collection in PDS4. 
+          It was migrated to PDS4 from the PDS3 data set GO-J-SSD-5-DDR-STAR-SENSOR-V1.0.</description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Context_Area>
+    <Time_Coordinates>
+      <start_date_time>1995-12-07T00:01:00.000Z</start_date_time>
+      <stop_date_time>2003-09-21T18:40:00.000Z</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Derived</processing_level>
+      <Science_Facets>
+        <discipline_name>Particles</discipline_name>
+        <facet1>Electrons</facet1>
+        <facet2>Energetic</facet2>
+      </Science_Facets>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>Galileo</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.galileo</lid_reference>
+        <reference_type>collection_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>Galileo Orbiter</name>
+        <type>Host</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.go</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Galileo Orbiter Star Scanner</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:go.ssd</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+        <Target_Identification>
+            <name>Jupiter</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.jupiter</lid_reference>
+                <reference_type>collection_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Target_Identification>
+            <name>Io</name>
+            <type>Satellite</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:satellite.jupiter.io</lid_reference>
+                <reference_type>data_to_target</reference_type>  <!--RChen should fail-->
+            </Internal_Reference>
+        </Target_Identification>
+  </Context_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:galileo-ssd-jup-derived:document:data-desc</lid_reference>
+      <reference_type>collection_to_document</reference_type>
+    </Internal_Reference>
+    <Source_Product_External>
+      <external_source_product_identifier>GO-J-SSD-5-DDR-STAR-SENSOR-V1.0</external_source_product_identifier>
+      <reference_type>data_to_derived_source_product</reference_type>
+      <doi>10.17189/1519686</doi>
+      <curating_facility>PDS Planetary Plasma Interactions Node</curating_facility>
+      <description>This is the first version of this product converted to PDS4. The DOI provided
+        references the PDS3 source data set.</description>
+    </Source_Product_External>
+  </Reference_List>
+  <Collection>
+    <collection_type>Data</collection_type>
+    <description>This collection contains data on the instantaneous         
+      flux of 1.5 to 30 MeV electrons in the Jovian environment. It is        
+      able to measure fluxes of ~1 x 105 electrons cm-2 sec-1 or greater      
+      which generally means the data are usable inside of about 12 and        
+      rarely as far out as 16.5 Jovian Radii (RJ).</description>
+  </Collection>
+  <File_Area_Inventory>
+    <File>
+      <file_name>collection_data-star-sensor_1.0.csv</file_name>
+      <creation_date_time>2020-04-08T00:00:00.000Z</creation_date_time>
+      <!--file_size unit="byte">2380</file_size-->
+      <!--md5_checksum>4d33d707d6e719314e8a5b6ff1b2d0bf</md5_checksum-->
+    </File>
+    <Inventory>
+      <offset unit="byte">0</offset>
+      <parsing_standard_id>PDS DSV 1</parsing_standard_id>
+      <records>1</records>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+      <field_delimiter>Comma</field_delimiter>
+      <Record_Delimited>
+        <fields>2</fields>
+        <groups>0</groups>
+        <maximum_record_length unit="byte">257</maximum_record_length>
+        <Field_Delimited>
+          <name>Member Status</name>
+          <field_number>1</field_number>
+          <data_type>ASCII_String</data_type>
+          <maximum_field_length unit="byte">1</maximum_field_length>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LIDVID_LID</name>
+          <field_number>2</field_number>
+          <data_type>ASCII_LIDVID_LID</data_type>
+          <maximum_field_length unit="byte">255</maximum_field_length>
+        </Field_Delimited>
+      </Record_Delimited>
+      <reference_type>inventory_has_member_product</reference_type>
+    </Inventory>
+  </File_Area_Inventory>
+</Product_Collection>

@@ -43,9 +43,7 @@ public class StepDefs {
     private static String[] resolveArgumentStrings(String[] args) {
         String[] resolvedArgs = new String[args.length];
         int argIndex = 0;
-        
-    	LOG.info("inputDirectory: " + inputDirectory);
-    	LOG.info("outputDirectory: " + outputDirectory);
+
         if (inputDirectory != null && outputDirectory != null) {
 	        // Replace the placeholders with actual values
 	        for (String temp : args) {
