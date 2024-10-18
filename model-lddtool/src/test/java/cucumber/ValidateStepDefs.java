@@ -2,10 +2,8 @@ package cucumber;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,12 +28,14 @@ public class ValidateStepDefs {
   private static final Logger LOG = LoggerFactory.getLogger(ValidateStepDefs.class);
   private static final String DEFAULT_REPORT_FILENAME = "report_{testDir}.json";
   private static final String DEFAULT_VALIDATE_ARGS =
-      "--update-context-products --report-style json --skip-content-validation --report-file {reportDir}/"
+      "--disable-context-mismatch-warnings --report-style json --skip-content-validation --report-file {reportDir}/"
           + DEFAULT_REPORT_FILENAME + " ";
+  private static final String VALIDATE_UPDATE_CONTEXT_ARG = "--update-context-products";
+  private static final String VALIDATE_CONFIG_FILE = "registered_context_products.json";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
-  
-  
+
+
   // For some strange reason, cucumber suppresses the printing of log output
   // unless the following parameters are added at command line:
   // Assuming slf4j-simple-1.7.28.jar exist in target/validate-1.25.0-SNAPSHOT/lib
@@ -69,8 +69,6 @@ public class ValidateStepDefs {
   private String commandArgs;
   private String refOutputValue;
 
-  private boolean createManifestFileFlag = false;
-
   /**
    * @throws java.lang.Exception
    */
@@ -79,11 +77,13 @@ public class ValidateStepDefs {
     FileUtils.forceMkdir(this.outputData); // Create directory if one does not already exist.
     System.setProperty("resources.home", TestConstants.TEST_OUT_DIR);
     this.launcher = new ValidateLauncher();
+    initContextProductsJson(TestConstants.TEST_OUT_DIR, this.launcher);
+    System.setProperty("resources.home", TestConstants.TEST_OUT_DIR);
     this.refOutputValue = DEFAULT_REPORT_FILENAME;
     this.reportDir = TestConstants.TEST_OUT_DIR;
     this.resourceDir = TestConstants.TEST_DATA_DIR;
-    
-    
+
+
   }
 
   /**
@@ -98,49 +98,10 @@ public class ValidateStepDefs {
     CrossLabelFileAreaReferenceChecker.reset();
   }
 
-  private void createManifestFileDo(String testPath) {
-    // Function create a manifest file if the flag createManifestFileFlag it true.
-    // The file is normally used when --target-manifest is used in the command line.
-    // As of 10/13/2020, there is only one test github50 uses the manifest file.
-
-    if (this.createManifestFileFlag) {
-      try {
-        String outFilePath = TestConstants.TEST_OUT_DIR;
-        String manifestFile = outFilePath + File.separator + "target-manifest.xml";
-        String manifestText = testPath + File.separator + "ele_evt_12hr_orbit_2011-2012.xml\n"
-            + testPath + File.separator + "ele_evt_8hr_orbit_2012-2013.xml";
-        BufferedWriter writerManifest = new BufferedWriter(new FileWriter(manifestFile));
-        writerManifest.write(manifestText);
-        writerManifest.close();
-      } catch (Exception e) {
-        e.printStackTrace();
-        fail("Test Failed Due To Exception: " + e.getMessage());
-      }
-    }
-  }
-
-  private void createCatalogFileDo(String catFile, String testPath, boolean forceFlag) {
-    // Function create a catalog file if the flag createManifestFileFlag it true.
-    // The file is normally used when --target-manifest is used in the command line.
-    // As of 10/13/2020, there is only one test github50 uses the manifest file.
-    if ((this.createManifestFileFlag) || (forceFlag)) {
-      try {
-        // Create catalog file
-        String catText = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<!--\n"
-            + "<!DOCTYPE catalog PUBLIC \"-//OASIS//DTD XML Catalogs V1.1//EN\" \"http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd\">\n"
-            + "-->\n" + "<catalog xmlns=\"urn:oasis:names:tc:entity:xmlns:xml:catalog\">\n"
-            + "    <rewriteURI uriStartString=\"http://pds.nasa.gov/pds4\" rewritePrefix=\"file://"
-            + testPath + "\" />\n"
-            + "    <rewriteURI uriStartString=\"https://pds.nasa.gov/pds4\" rewritePrefix=\"file://"
-            + testPath + "\" />\n" + "</catalog>";
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(catFile));
-        writer.write(catText);
-        writer.close();
-      } catch (Exception e) {
-        e.printStackTrace();
-        fail("Test Failed Due To Exception: " + e.getMessage());
-      }
+  void initContextProductsJson(String basedir, ValidateLauncher launcher) throws Exception {
+    LOG.info("Initializing context products config file for Validate");
+    if (!(new File(basedir + File.separator + VALIDATE_CONFIG_FILE).isFile())) {
+      launcher.processMain(new String[] {VALIDATE_UPDATE_CONTEXT_ARG});
     }
   }
 
@@ -166,8 +127,8 @@ public class ValidateStepDefs {
       totalCount += count;
     }
 
-    LOG.debug("getMessageCountBasedOnProblemType: problemEnum, totalCount " + problemEnum
-        + " " + Integer.toString(totalCount));
+    LOG.debug("getMessageCountBasedOnProblemType: problemEnum, totalCount " + problemEnum + " "
+        + Integer.toString(totalCount));
 
     return (totalCount);
   }
@@ -185,7 +146,7 @@ public class ValidateStepDefs {
     // "-r target/test/report_github50_1.json -s, json, --no-data-check
     // --target-manifest target/test/target-manifest.xml
 
-	  
+
     String array1[] = getDefaultValidateArguments(commandArgs);
     String[] args = new String[array1.length];
     int argIndex = 0;
@@ -193,15 +154,15 @@ public class ValidateStepDefs {
     for (String temp : array1) {
       resolvedToken = temp.replace("{reportDir}", this.reportDir);
       resolvedToken = resolvedToken.replace("{testDir}", this.testDir);
-      resolvedToken = resolvedToken.replace("{outDir}", TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
+      resolvedToken = resolvedToken.replace("{outDir}",
+          TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
       resolvedToken = resolvedToken.replace("{resourceDir}", this.resourceDir);
       resolvedToken = resolvedToken.replace("%20", " ");
       args[argIndex++] = resolvedToken;
     }
 
     LOG.debug("resolveArgumentStrings() commandArgs = [" + commandArgs + "]");
-    LOG
-        .info("args = [" + Arrays.toString(args) + "]");
+    LOG.info("args = [" + Arrays.toString(args) + "]");
     LOG.debug("resolveArgumentStrings() this.reportDir = [" + this.reportDir + "]");
     LOG.debug("resolveArgumentStrings() this.resourceDir = [" + this.resourceDir + "]");
     LOG.debug("resolveArgumentStrings() this.testName = [" + this.testName + "]");
@@ -231,15 +192,18 @@ public class ValidateStepDefs {
     StepDefs.exec_lddtool(DEFAULT_CORE_ARGS,
         TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
   }
-  
+
   @Given("a new LDD is generated using the IngestLDDs {string}")
   public void generate_ldd(String ingestLDDFilename) throws Exception {
-    String ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + this.testDir
-        + File.separator + ingestLDDFilename;
-    StepDefs.exec_lddtool(DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath,
-        TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
+    if (!ingestLDDFilename.equals("")) {
+      String ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + this.testDir
+          + File.separator + ingestLDDFilename;
+      LOG.info("Generating LDD from " + ingestLDDFilename);
+      StepDefs.exec_lddtool(DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath,
+          TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
+    }
   }
-  
+
   @When("execute validate command with {string} as arguments")
   public void execute_a_validate_command(String commandArgs) {
     // Write code here that turns the phrase above into concrete actions
@@ -335,41 +299,41 @@ public class ValidateStepDefs {
       i++;
     }
   }
-  
+
   private String getAbsolutePath(String path) throws Exception {
-	    String finalPath = "";
-	    File testFile = new File(path);
-	    if (!testFile.isAbsolute()) {
-	      finalPath = System.getProperty("user.dir") + "/" + path;
-	    } else {
-	      finalPath = path;
-	    }
+    String finalPath = "";
+    File testFile = new File(path);
+    if (!testFile.isAbsolute()) {
+      finalPath = System.getProperty("user.dir") + "/" + path;
+    } else {
+      finalPath = path;
+    }
 
-	    if (!(new File(finalPath)).exists()) {
-	      throw new Exception("Path does not exist: " + finalPath);
-	    }
+    if (!(new File(finalPath)).exists()) {
+      throw new Exception("Path does not exist: " + finalPath);
+    }
 
-	    return finalPath;
-	  }
+    return finalPath;
+  }
 
-      private String[] getDefaultValidateArguments(String commandArgs) throws URISyntaxException {
-        List<String> argsList = new ArrayList<String>();
-        String[] args = DEFAULT_VALIDATE_ARGS.concat(this.commandArgs).split("\\s+");
-        
-        // Get schema
-        String[] schemas = Utility
-            .getFilepaths(TestConstants.TEST_OUT_DIR + File.separatorChar + this.testDir, ".xsd");
+  private String[] getDefaultValidateArguments(String commandArgs) throws URISyntaxException {
+    List<String> argsList = new ArrayList<String>();
+    String[] args = DEFAULT_VALIDATE_ARGS.concat(this.commandArgs).split("\\s+");
 
-        // Get schematron
-        String[] schematrons = Utility
-            .getFilepaths(TestConstants.TEST_OUT_DIR + File.separatorChar + this.testDir, ".sch");
+    // Get schema
+    String[] schemas = Utility
+        .getFilepaths(TestConstants.TEST_OUT_DIR + File.separatorChar + this.testDir, ".xsd");
+
+    // Get schematron
+    String[] schematrons = Utility
+        .getFilepaths(TestConstants.TEST_OUT_DIR + File.separatorChar + this.testDir, ".sch");
 
 
-        Collections.addAll(argsList, args);
-        Collections.addAll(argsList, new String[] {"--schema"});
-        Collections.addAll(argsList, schemas);
-        Collections.addAll(argsList, new String[] {"--schematron"});
-        Collections.addAll(argsList, schematrons);
-        return Arrays.copyOf(argsList.toArray(), argsList.size(), String[].class);
-      }
+    Collections.addAll(argsList, args);
+    Collections.addAll(argsList, new String[] {"--schema"});
+    Collections.addAll(argsList, schemas);
+    Collections.addAll(argsList, new String[] {"--schematron"});
+    Collections.addAll(argsList, schematrons);
+    return Arrays.copyOf(argsList.toArray(), argsList.size(), String[].class);
+  }
 }
