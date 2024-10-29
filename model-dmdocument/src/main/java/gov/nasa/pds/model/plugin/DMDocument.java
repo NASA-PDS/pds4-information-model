@@ -309,7 +309,8 @@ public class DMDocument extends Object {
   static Integer lMessageFatalErrorCount = 0;
 
   // Property List for Config.Properties
-  static Properties props = new Properties();
+  static Properties configProps = new Properties();
+  static Properties nameSpaceProps = new Properties();
 
   static ArrayList<String> propertyMapFileName = new ArrayList<>();
 
@@ -345,6 +346,7 @@ public class DMDocument extends Object {
 	  
 	    // get the command line arguments using argparse4j
 	    Namespace argparse4jNamespace = getArgumentParserNamespace(args);
+	    String nameSpaceDataDirPath = null;
 
 	    // process first set of arguments
 	    // this must be done before config file processing
@@ -357,6 +359,7 @@ public class DMDocument extends Object {
 	      sysDataHome = sysDataHome.replace('\\', '/');
 	      parentDir = sysDataHome + "/";
 	      dataDirPath = parentDir;
+	      nameSpaceDataDirPath = dataDirPath;
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
 	      // IMTool runs ignore the -V option
 	      if (LDDToolFlag && alternateIMVersionFlag) {
@@ -375,12 +378,13 @@ public class DMDocument extends Object {
 	      sysUserDir = sysUserDir.replace('\\', '/');
 	      parentDir = sysUserDir;
 	      String dirExt = "/model-ontology/src/ontology/Data/";
-//	      if (debugFlag) dirExt = "/bin/../Data/";
 	      dataDirPath = parentDir + dirExt;
+	      nameSpaceDataDirPath = dataDirPath;
 	      if (debugFlag) {
 	          parentDir = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology";
 	    	  dataDirPath = System.getProperty("user.home") + "/git/pds4-information-model/model-ontology/src/ontology/Data/";
-	      }
+		      nameSpaceDataDirPath = dataDirPath;
+		  }
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
 	      // IMTool runs ignore the -V option
 	      if (LDDToolFlag && alternateIMVersionFlag) {
@@ -391,91 +395,87 @@ public class DMDocument extends Object {
 	    }
 	    Utility.registerMessage("0>info - Parent Directory:" + parentDir);
 	    Utility.registerMessage("0>info - IM Directory Path:" + dataDirPath);
+	    Utility.registerMessage("0>info - NS Directory Path:" + nameSpaceDataDirPath);
 	    Utility.registerMessage("0>info - IM Versions Available:" + alternateIMVersionArr);
-
+	    
 	    // read the configuration file and initialize key attributes; SchemaFileDefn map is initialized
 	    // below (setupNameSpaceInfoAll)
 	    // "props" are used again below in setupNameSpaceInfoAll)
-	    String configInputFile = dataDirPath + "config.properties";
+	    String configInputFileSpecName = dataDirPath + "config.properties";
 	    String configInputStr;
-	    File configFile = new File(configInputFile);
-	    FileReader reader = null;
-	    try {
-	      reader = new FileReader(configFile);
-	      // Properties props = new Properties();
-	      props.load(reader);
-	      configInputStr = props.getProperty("infoModelVersionId");
-	      if (configInputStr != null) {
-	        infoModelVersionId = configInputStr;
-	      }
-	      configInputStr = props.getProperty("schemaLabelVersionId");
-	      if (configInputStr != null) {
-	        schemaLabelVersionId = configInputStr;
-	      }
-	      configInputStr = props.getProperty("pds4BuildId");
-	      if (configInputStr != null) {
-	        pds4BuildId = configInputStr;
-	      }
-	      configInputStr = props.getProperty("imSpecDocTitle");
-	      if (configInputStr != null) {
-	        imSpecDocTitle = configInputStr;
-	      }
-	      configInputStr = props.getProperty("imSpecDocAuthor");
-	      if (configInputStr != null) {
-	        imSpecDocAuthor = configInputStr;
-	      }
-	      configInputStr = props.getProperty("imSpecDocSubTitle");
-	      if (configInputStr != null) {
-	        imSpecDocSubTitle = configInputStr;
-	      }
-	      configInputStr = props.getProperty("ddDocTitle");
-	      if (configInputStr != null) {
-	        ddDocTitle = configInputStr;
-	      }
-	      configInputStr = props.getProperty("debugFlag");
-	      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
-	        debugFlag = true;
-	      }
-	      // configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
-	      configInputStr = props.getProperty("mastRegAuthId");
-	      if (configInputStr != null) {
-	        registrationAuthorityIdentifierValue = configInputStr;
-	        registeredByValue = "RA_" + registrationAuthorityIdentifierValue;
-	      }
-	      configInputStr = props.getProperty("ddDocTeam");
-	      if (configInputStr != null) {
-	        ddDocTeam = configInputStr;
-	      }
-	      configInputStr = props.getProperty("pds4ModelFlag");
-	      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
-	        pds4ModelFlag = true;
-	      }
-	      configInputStr = props.getProperty("mastModelId");
-	      if (configInputStr != null) {
-	        mastModelId = configInputStr;
-	      }
+      configProps = getConfigProperties(configInputFileSpecName);
+      configInputStr = configProps.getProperty("infoModelVersionId");
+      if (configInputStr != null) {
+        infoModelVersionId = configInputStr;
+      }
+      configInputStr = configProps.getProperty("schemaLabelVersionId");
+      if (configInputStr != null) {
+        schemaLabelVersionId = configInputStr;
+      }
+      configInputStr = configProps.getProperty("pds4BuildId");
+      if (configInputStr != null) {
+        pds4BuildId = configInputStr;
+      }
+      configInputStr = configProps.getProperty("imSpecDocTitle");
+      if (configInputStr != null) {
+        imSpecDocTitle = configInputStr;
+      }
+      configInputStr = configProps.getProperty("imSpecDocAuthor");
+      if (configInputStr != null) {
+        imSpecDocAuthor = configInputStr;
+      }
+      configInputStr = configProps.getProperty("imSpecDocSubTitle");
+      if (configInputStr != null) {
+        imSpecDocSubTitle = configInputStr;
+      }
+      configInputStr = configProps.getProperty("ddDocTitle");
+      if (configInputStr != null) {
+        ddDocTitle = configInputStr;
+      }
+      configInputStr = configProps.getProperty("debugFlag");
+      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
+        debugFlag = true;
+      }
+      // configInputStr= props.getProperty("lSchemaFileDefn.pds.regAuthId");
+      configInputStr = configProps.getProperty("mastRegAuthId");
+      if (configInputStr != null) {
+        registrationAuthorityIdentifierValue = configInputStr;
+        registeredByValue = "RA_" + registrationAuthorityIdentifierValue;
+      }
+      configInputStr = configProps.getProperty("ddDocTeam");
+      if (configInputStr != null) {
+        ddDocTeam = configInputStr;
+      }
+      configInputStr = configProps.getProperty("pds4ModelFlag");
+      if (configInputStr != null && configInputStr.compareTo("true") == 0) {
+        pds4ModelFlag = true;
+      }
+      configInputStr = configProps.getProperty("mastModelId");
+      if (configInputStr != null) {
+        mastModelId = configInputStr;
+      }
 
-	      configInputStr = props.getProperty("toolVersionId");
-	      if (configInputStr != null) {
-	        DMDocVersionId = LDDToolVersionId = configInputStr;
-	      }
-	      configInputStr = props.getProperty("buildDate");
-	      if (configInputStr != null) {
-	        buildDate = configInputStr;
-	      }
-	    } catch (FileNotFoundException ex) {
-	      // file does not exist
-	      Utility.registerMessage("3>error Configuration file does not exist. [config.properties]");
-	    } catch (IOException ex) {
-	      // I/O error
-	      Utility.registerMessage("3>error Configuration file IO Exception. [config.properties]");
-	    } finally {
-	    	try {
-	    		reader.close();
-	    	} catch (IOException|NullPointerException e) {
-	    		// Do nothing
-	    	}
-	    }
+      configInputStr = configProps.getProperty("toolVersionId");
+      if (configInputStr != null) {
+        DMDocVersionId = LDDToolVersionId = configInputStr;
+      }
+      configInputStr = configProps.getProperty("buildDate");
+      if (configInputStr != null) {
+        buildDate = configInputStr;
+      }
+//	    } catch (FileNotFoundException ex) {
+//	      // file does not exist
+//	      Utility.registerMessage("3>error Configuration file does not exist. [config.properties]");
+//	    } catch (IOException ex) {
+//	      // I/O error
+//	      Utility.registerMessage("3>error Configuration file IO Exception. [config.properties]");
+//	    } finally {
+//	    	try {
+//	    		reader.close();
+//	    	} catch (IOException|NullPointerException e) {
+//	    		// Do nothing
+//	    	}
+//	    }
 
 	    // process second set of arguments
 	    processArgumentParserNamespacePhase2(argparse4jNamespace);
@@ -496,7 +496,10 @@ public class DMDocument extends Object {
 	    // intialize the masterAllSchemaFileSortMap - all namespaces in config.properties file
 	    // set up the Master Schema Information for both normal and LDD processing (dirpath, namespaces,
 	    // etc)
-	    setupNameSpaceInfoAll(props);
+	    
+	    String nsConfigInputFileSpecName = nameSpaceDataDirPath + "config.properties";
+	    Properties nameSpaceConfigProps = getConfigProperties(nsConfigInputFileSpecName);	    
+	    setupNameSpaceInfoAll(nameSpaceConfigProps);
 
 	    // output the context info
 	    if (!LDDToolFlag) {
@@ -554,6 +557,30 @@ public class DMDocument extends Object {
    * 
    * @throws IOException
    ***********************************************************************************************************/
+  
+  // get the config.properties file
+  static private Properties getConfigProperties (String configInputFileSpecName) {
+	  Properties properties = new Properties();
+	    File configFile = new File(configInputFileSpecName);
+	    FileReader reader = null;
+	    try {
+	      reader = new FileReader(configFile);
+	      properties.load(reader);
+	    } catch (FileNotFoundException ex) {
+	      // file does not exist
+	      Utility.registerMessage("3>error Configuration file does not exist. [config.properties]");
+	    } catch (IOException ex) {
+	      // I/O error
+	      Utility.registerMessage("3>error Configuration file IO Exception. [config.properties]");
+	    } finally {
+	    	try {
+	    		reader.close();
+	    	} catch (IOException|NullPointerException e) {
+	    		// Do nothing
+	    	}
+	    }
+	  return properties;
+  }
 
   static private void cleanupLDDInputFileName(SchemaFileDefn lSchemaFileDefn) throws IOException {
     String lSourceFileSpec = lSchemaFileDefn.sourceFileName;
@@ -693,7 +720,8 @@ public class DMDocument extends Object {
 	  lMessageWarningCount = 0;
 	  lMessageErrorCount = 0;
 	  lMessageFatalErrorCount = 0;
-	  props = new Properties();
+	  configProps = new Properties();
+	  nameSpaceProps = new Properties();
 	  propertyMapFileName = new ArrayList<>();
 	  
 	// process state for used flags, files, and directories
