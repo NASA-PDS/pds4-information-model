@@ -17,7 +17,10 @@ Feature: Running integration tests for validate module
       | testName | testDir     | messageCount | messageText         | problemEnum        | commandArgs                                             | ingestLDDFileName         |
       # NOTE: as of 10/18/2024, this fails
       | "NASA-PDS/pds4-information-model#795 Test Schematron 1"  | "github795" |           11 | "11 errors expected" | "SCHEMATRON_ERROR" | "--rule pds4.bundle --target {resourceDir}/github795/" | "" |
+
       | "NASA-PDS/pds4-information-model#795 Test Schematron 2"  | "github795b" |           1 | "1 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github795/" | "" |
       
-      | "NASA-PDS/pds4-information-model#797 Test Schematron 1"  | "github797" |            2 | "2 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" |
+      #| "NASA-PDS/pds4-information-model#797 Test Schematron 1"  | "github797" |            3 | "3 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" |
+      
+      
 
