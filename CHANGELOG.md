@@ -1,15 +1,17 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-06)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
 **Requirements:**
 
+- CCB-38: Added mrad/pixel to Units\_of\_Pixel\_Resolution\_Angular [\#829](https://github.com/NASA-PDS/pds4-information-model/issues/829)
+- CCB-24: Replaced all of the unit\_id standard value definitions [\#824](https://github.com/NASA-PDS/pds4-information-model/issues/824)
 - CCB-7: Missing schematron rule - bundle\_to\_targets [\#795](https://github.com/NASA-PDS/pds4-information-model/issues/795)
-- Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
+- CCB-26: Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
 - As a data provider, I want to add additional content to Investigation context products \(mission phases, alias details, modification details\) [\#765](https://github.com/NASA-PDS/pds4-information-model/issues/765)
-- Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
+- CCB-16: Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
 
 **Improvements:**
 
@@ -18,6 +20,8 @@
 
 **Defects:**
 
+- Tests fail when there are multiple tests with multiple schemas/schematrons [\#822](https://github.com/NASA-PDS/pds4-information-model/issues/822) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- Regression in schematron improvements for references \(\#795\) [\#819](https://github.com/NASA-PDS/pds4-information-model/issues/819) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 - LDDTool does not resolve the JUICE namespaces with IM 1J00 [\#818](https://github.com/NASA-PDS/pds4-information-model/issues/818) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Lack of object initialization in the code leads to infinite when trying to run main more than once [\#801](https://github.com/NASA-PDS/pds4-information-model/issues/801) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - GEOM LDD schematron rules are not executing as expected `<kernel_type>` validation [\#797](https://github.com/NASA-PDS/pds4-information-model/issues/797) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
@@ -28,7 +32,7 @@
 - Add validate testing to support automated integration testing [\#808](https://github.com/NASA-PDS/pds4-information-model/issues/808)
 - Create new LDDTool Cucumber scenario to support diffs to expected outputs [\#787](https://github.com/NASA-PDS/pds4-information-model/issues/787)
 - Add current LDDTool tests to existing Cucumber Framework [\#786](https://github.com/NASA-PDS/pds4-information-model/issues/786)
-- Complete CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
+- CCB-18: Complete JIRA-CCB-325 lien implementation for Browse and Ancillary products [\#784](https://github.com/NASA-PDS/pds4-information-model/issues/784)
 - Identify key concepts we want to capture for each ontology object [\#778](https://github.com/NASA-PDS/pds4-information-model/issues/778)
 - Rings Ontology: Complete 1st draft for distribution [\#774](https://github.com/NASA-PDS/pds4-information-model/issues/774)
 - Stage the PDS4 Information Model V 1.23.0.0 \(1N00\) for Build 15.0 [\#772](https://github.com/NASA-PDS/pds4-information-model/issues/772)
