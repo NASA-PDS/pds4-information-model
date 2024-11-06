@@ -28,9 +28,8 @@ public class ValidateStepDefs {
   private static final Logger LOG = LoggerFactory.getLogger(ValidateStepDefs.class);
   private static final String DEFAULT_REPORT_FILENAME = "report_{testDir}.json";
   private static final String DEFAULT_VALIDATE_ARGS =
-      "--disable-context-mismatch-warnings --report-style json --skip-content-validation --report-file {reportDir}/"
+      "--disable-context-mismatch-warnings --report-style json --skip-content-validation --skip-context-validation --report-file {reportDir}/"
           + DEFAULT_REPORT_FILENAME + " ";
-  private static final String VALIDATE_UPDATE_CONTEXT_ARG = "--update-context-products";
   private static final String VALIDATE_CONFIG_FILE = "registered_context_products.json";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
@@ -77,8 +76,7 @@ public class ValidateStepDefs {
     FileUtils.forceMkdir(this.outputData); // Create directory if one does not already exist.
     System.setProperty("resources.home", TestConstants.TEST_OUT_DIR);
     this.launcher = new ValidateLauncher();
-    initContextProductsJson(TestConstants.TEST_OUT_DIR, this.launcher);
-    System.setProperty("resources.home", TestConstants.TEST_OUT_DIR);
+    System.setProperty("resources.home", TestConstants.RESOURCES_DIR + File.pathSeparator + VALIDATE_CONFIG_FILE);
     this.refOutputValue = DEFAULT_REPORT_FILENAME;
     this.reportDir = TestConstants.TEST_OUT_DIR;
     this.resourceDir = TestConstants.TEST_DATA_DIR;
@@ -96,13 +94,6 @@ public class ValidateStepDefs {
     // which causes problem for subsequent tests.
     // get rid of the cross references
     CrossLabelFileAreaReferenceChecker.reset();
-  }
-
-  void initContextProductsJson(String basedir, ValidateLauncher launcher) throws Exception {
-    LOG.info("Initializing context products config file for Validate");
-    if (!(new File(basedir + File.separator + VALIDATE_CONFIG_FILE).isFile())) {
-      launcher.processMain(new String[] {VALIDATE_UPDATE_CONTEXT_ARG});
-    }
   }
 
   private int getMessageCountBasedOnProblemType(String problemEnum, JsonObject reportJson) {
