@@ -211,9 +211,7 @@ public class ValidateStepDefs {
       // [], we have to
       // convert this.commandArgs into an array of strings.
       String[] args = this.resolveArgumentStrings(commandArgs);
-
       this.launcher.processMain(args);
-
       this.tearDown();
 
       // Will do the compare of the report in another function.
@@ -248,8 +246,9 @@ public class ValidateStepDefs {
               + this.refOutputValue);
 
       // Compare the count from this test with the this.messageCount from test table.
-      assertEquals(count, this.messageCount, this.messageText + " " + reportJson.toString());
-
+      assertEquals(this.messageCount, count, this.messageText + " " + reportJson.toString());
+      assertEquals(0, this.getMessageCountBasedOnProblemType("INTERNAL_ERROR,ARRAY_INTERNAL_ERROR,TABLE_INTERNAL_ERROR", reportJson),
+          "Required that internal errors do not occur.");
     } catch (ExitException e) {
       assertEquals(0, e.status, "Exit status");
     } catch (Exception e) {

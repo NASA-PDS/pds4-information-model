@@ -20,7 +20,7 @@ Feature: Running integration tests for validate module
 
       | "NASA-PDS/pds4-information-model#795 Test Schematron 2"  | "github795b" |           1 | "1 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github795b/" | "" |
       
-      #| "NASA-PDS/pds4-information-model#797 Test Schematron 1"  | "github797" |            3 | "3 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" |
+      | "NASA-PDS/pds4-information-model#797 Test Schematron 1"  | "github797" |            3 | "3 errors expected" | "SCHEMATRON_ERROR" | "--target {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" |
       
       
 
