@@ -1,4 +1,4 @@
-; Thu Nov 07 18:16:15 EST 2024
+; Fri Nov 08 17:54:28 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -285,92 +285,6 @@
 	(attrTitle "sequence_number")
 	(identifier "sequence_number")
 	(specMesg "The sequence number of the second axis of an Array_2D_Image must be set to 2."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516] of  Schematron_Rule
-
-	(alwaysInclude "true")
-	(attrNameSpaceNC "pds")
-	(attrTitle "lidvid_reference")
-	(classNameSpaceNC "pds")
-	(classSteward "pds")
-	(classTitle "Internal_Reference")
-	(has_Schematron_Assert
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.101]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.102]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.103]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.104]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.105]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.106])
-	(identifier "pds:Bundle_Member_Entry")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(schematronAssign
-		"name=\"lid_num_colons\" value=\"string-length(pds:lid_reference) - string-length(translate(pds:lid_reference, ':', ''))\""
-		"name=\"lidvid_num_colons\" value=\"string-length(pds:lidvid_reference) - string-length(translate(pds:lidvid_reference, ':', ''))\""
-		"name=\"lid_required_colons\" value=\"4\""
-		"name=\"lidvid_required_colons\" value=\"6\""
-		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
-		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
-		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
-		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
-		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
-		"name=\"urn_kari\" value=\"'urn:kari:kpds:'\"")
-	(type "TBD_type")
-	(xpath "pds:Bundle_Member_Entry"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.101] of  Schematron_Assert
-
-	(assertMsg "The number of colons found in lid_reference: (<sch:value-of select=\"$lid_num_colons\"/>) is inconsistent with the number expected: <sch:value-of select=\"$lid_required_colons\"/>.")
-	(assertStmt "if (pds:lid_reference) then ($lid_num_colons eq $lid_required_colons) else true()")
-	(assertType "RAW")
-	(attrTitle "lid_reference")
-	(identifier "lid_reference")
-	(specMesg "The number of colons found in the lid_reference is inconsistent with the number expected."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.102] of  Schematron_Assert
-
-	(assertMsg "The number of colons found in lidvid_reference: (<sch:value-of select=\"$lidvid_num_colons\"/>) is inconsistent with the number expected: <sch:value-of select=\"$lidvid_required_colons\"/>.")
-	(assertStmt "if (pds:lidvid_reference) then ($lidvid_num_colons eq $lidvid_required_colons) else true()")
-	(assertType "RAW")
-	(attrTitle "lidvid_reference")
-	(identifier "lidvid_reference")
-	(specMesg "The number of colons found in the lidvid_reference is inconsistent with the number expected."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.103] of  Schematron_Assert
-
-	(assertMsg "The value of the attribute lid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>")
-	(assertStmt "if (pds:lid_reference) then starts-with(pds:lid_reference, $urn_nasa) or starts-with(pds:lid_reference, $urn_esa) or starts-with(pds:lid_reference, $urn_jaxa) or starts-with(pds:lid_reference, $urn_ros) or starts-with(pds:lid_reference, $urn_isro) or starts-with(pds:lid_reference, $urn_kari) else true()")
-	(assertType "RAW")
-	(attrTitle "lid_reference")
-	(identifier "lid_reference")
-	(specMesg "The value of the attribute lid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.104] of  Schematron_Assert
-
-	(assertMsg "The value of the attribute lidvid_reference must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>")
-	(assertStmt "if (pds:lidvid_reference) then starts-with(pds:lidvid_reference, $urn_nasa) or starts-with(pds:lidvid_reference, $urn_esa) or starts-with(pds:lidvid_reference, $urn_jaxa) or starts-with(pds:lidvid_reference, $urn_ros) or starts-with(pds:lidvid_reference, $urn_isro) or starts-with(pds:lidvid_reference, $urn_kari) else true()")
-	(assertType "RAW")
-	(attrTitle "lidvid_reference")
-	(identifier "lidvid_reference")
-	(specMesg "The value of the attribute lidvid_reference must start with either: 'urn:nasa:pds:', 'urn:esa:psa:', 'urn:jaxa:darts:', 'urn:ros:rssa:', or 'urn:isro:isda:'."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.105] of  Schematron_Assert
-
-	(assertMsg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id")
-	(assertStmt "if (pds:lid_reference) then not(contains(pds:lid_reference,'::')) else true()")
-	(assertType "RAW")
-	(attrTitle "lid_reference")
-	(identifier "lid_reference")
-	(specMesg "The value of the attribute lid_reference must not include a value that contains '::' followed by version id."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ABundle_Member_Entry.100002516.106] of  Schematron_Assert
-
-	(assertMsg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id")
-	(assertStmt "if (pds:lidvid_reference) then contains(pds:lidvid_reference,'::') else true()")
-	(assertType "RAW")
-	(attrTitle "lidvid_reference")
-	(identifier "lidvid_reference")
-	(specMesg "The value of the attribute lidvid_reference must include a value that contains '::' followed by version id."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517] of  Schematron_Rule
 
