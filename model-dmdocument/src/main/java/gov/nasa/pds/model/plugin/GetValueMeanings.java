@@ -99,6 +99,9 @@ class GetValueMeanings extends Object {
     lPVD = new PermValueDefn("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_10",
         "bundle_has_miscellaneous_collection", "The bundle has a miscellaneous collection member");
     masterValueMeaningMap.put(lPVD.identifier, lPVD);
+    lPVD = new PermValueDefn("0001_NASA_PDS_1.Bundle_Member_Entry.reference_type_<Value>_11",
+    	"bundle_has_external_collection", "The bundle has an external collection member");
+	masterValueMeaningMap.put(lPVD.identifier, lPVD);
 
     lPVD = new PermValueDefn("0001_NASA_PDS_1.DD_Association.reference_type_<Value>_1",
         "attribute_of", "The referenced attribute is a member of this class");

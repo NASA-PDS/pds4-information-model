@@ -1,4 +1,4 @@
-; Tue Nov 05 15:41:23 EST 2024
+; Thu Nov 07 18:16:15 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -167,65 +167,6 @@
 	(assertType "RAW")
 	(attrTitle "kernel_type")
 	(identifier "kernel_type"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
-
-	(alwaysInclude "true")
-	(attrNameSpaceNC "pds")
-	(attrTitle "logical_identifier")
-	(classNameSpaceNC "pds")
-	(classSteward "pds")
-	(classTitle "Identification_Area")
-	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101])
-	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(type "TBD_type")
-	(xpath "/*[not(contains(name(), 'External') or contains(name(), 'Ingest') or contains(name(), 'Bundle') or contains(name(), 'Collection'))]/pds:Identification_Area/pds:logical_identifier"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101] of  Schematron_Assert
-
-	(assertMsg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\"/>).")
-	(assertStmt "string-length(.) - string-length(translate(., ':', '')) eq 5")
-	(assertType "RAW")
-	(attrTitle "logical_identifier")
-	(identifier "logical_identifier")
-	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\""))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513] of  Schematron_Rule
-
-	(alwaysInclude "true")
-	(attrNameSpaceNC "pds")
-	(attrTitle "logical_identifier")
-	(classNameSpaceNC "pds")
-	(classSteward "pds")
-	(classTitle "Identification_Area")
-	(has_Schematron_Assert
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102])
-	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier_external")
-	(isMissionOnly "false")
-	(roleId "TBD_roleId")
-	(type "TBD_type")
-	(xpath "/*[contains(name(), 'External')]/pds:Identification_Area/pds:logical_identifier"))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101] of  Schematron_Assert
-
-	(assertMsg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:productID...\"/>).")
-	(assertStmt "string-length(.) - string-length(translate(., ':', '')) lt 4")
-	(assertType "RAW")
-	(attrTitle "logical_identifier")
-	(identifier "logical_identifier")
-	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:productID...\"/>)."))
-
-([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3A%2FProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102] of  Schematron_Assert
-
-	(assertMsg "The parent-value of the attribute logical_identifier must start with 'urn:'/>.")
-	(assertStmt "starts-with(., 'urn:')")
-	(assertType "RAW")
-	(attrTitle "logical_identifier")
-	(identifier "logical_identifier")
-	(specMesg "The parent-value of the attribute logical_identifier must start with 'urn:'/>."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray.100004548] of  Schematron_Rule
 
@@ -980,18 +921,18 @@
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.101]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.102]
 		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103]
-		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104])
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.105])
 	(identifier "pds:Identification_Area")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(schematronAssign
-		"name=\"urn_nasa\" value=\"'urn:nasa:pds:'\""
-		"name=\"urn_esa\" value=\"'urn:esa:psa:'\""
-		"name=\"urn_ros\" value=\"'urn:ros:rssa:'\""
-		"name=\"urn_jaxa\" value=\"'urn:jaxa:darts:'\""
-		"name=\"urn_isro\" value=\"'urn:isro:isda:'\""
-		"name=\"parentObj\" value=\"local-name(/*) = 'Product_External'\""
-		"name=\"urn_kari\" value=\"'urn:kari:kpds:'\"")
+		"name=\"LID\" value=\"string(pds:logical_identifier)\""
+		"name=\"agencyPrefixes\" value=\"'(urn:nasa:pds:, urn:esa:psa:, urn:ros:rssa:, urn:jaxa:darts:, urn:isro:isda:, urn:kari:kpds:)'\""
+		"name=\"thisPrefix\" value=\"string-join((subsequence(tokenize($LID,':'),1,3),''),':')\""
+		"name=\"prodExternal\" value=\"local-name(/*) = 'Product_External'\""
+		"name=\"bundExternal\" value=\"//pds:bundle_type = 'External'\""
+		"name=\"collExternal\" value=\"//pds:collection_type = 'External'\"")
 	(type "TBD_type")
 	(xpath "pds:Identification_Area"))
 
@@ -1002,34 +943,43 @@
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The attribute pds:product_class must match the name of the product's class."))
+	(specMesg "The attribute pds:product_class must match parent product class."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.102] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute logical_identifier must only contain lower-case letters")
-	(assertStmt "pds:logical_identifier eq lower-case(pds:logical_identifier)")
+	(assertMsg "An archive product pds:logical_identifier must begin with one of <sch:value-of select=\"$agencyPrefixes\"/>.")
+	(assertStmt "if (not ($prodExternal or $bundExternal or $collExternal)) then (contains($agencyPrefixes, $thisPrefix)) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The value of the attribute logical_identifier must only contain lower-case letters."))
+	(specMesg "An archive product pds:logical_identifier must begin with an Agency Prefix."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.103] of  Schematron_Assert
 
-	(assertMsg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>")
-	(assertStmt "if (not ($parentObj) and pds:logical_identifier) then starts-with(pds:logical_identifier, $urn_nasa) or starts-with(pds:logical_identifier, $urn_esa) or starts-with(pds:logical_identifier, $urn_jaxa) or starts-with(pds:logical_identifier, $urn_ros) or starts-with(pds:logical_identifier, $urn_isro) or starts-with(pds:logical_identifier, $urn_kari) else true()")
+	(assertMsg "The pds:logical_identifier of a pds:Product_External may not begin with any of <sch:value-of select=\"$agencyPrefixes\"/>.")
+	(assertStmt "if ($prodExternal) then (not (contains($agencyPrefixes, $thisPrefix))) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The parent-value of the attribute logical_identifier must start with either: <sch:value-of select=\"$urn_nasa\"/> or <sch:value-of select=\"$urn_esa\"/> or <sch:value-of select=\"$urn_jaxa\"/> or <sch:value-of select=\"$urn_ros\"/> or <sch:value-of select=\"$urn_isro\"/> or <sch:value-of select=\"$urn_kari\"/>"))
+	(specMesg "The pds:logical_identifier of a pds:Product_External may not begin with any Agency Prefix."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.104] of  Schematron_Assert
 
-	(assertMsg "The value of the attribute logical_identifier must not include a value that contains '::'")
-	(assertStmt "if (pds:logical_identifier) then not(contains(pds:logical_identifier,'::')) else true()")
+	(assertMsg "The pds:logical_identifier of a pds:Product_Bundle with pds:bundle_type of \"External\" may not begin with any of <sch:value-of select=\"$agencyPrefixes\"/>.")
+	(assertStmt "if ($bundExternal) then (not (contains($agencyPrefixes, $thisPrefix))) else true()")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "The value of the attribute logical_identifier must not include a value that contains '::'."))
+	(specMesg "The pds:logical_identifier of a pds:Product_Bundle with pds:bundle_type of \"External\" may not begin with any Agency Prefix."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100002521.105] of  Schematron_Assert
+
+	(assertMsg "The pds:logical_identifier of a pds:Product_Collection with pds:collection_type of \"External\" may not begin with any of <sch:value-of select=\"$agencyPrefixes\"/>.")
+	(assertStmt "if ($collExternal) then (not (contains($agencyPrefixes, $thisPrefix))) else true()")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The pds:logical_identifier of a pds:Product_Collection with pds:collection_type of \"External\" may not begin with any Agency Prefix."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521] of  Schematron_Rule
 
@@ -1972,19 +1922,19 @@
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(schematronAssign
-		"name=\"num_colons\" value=\"string-length(.) - string-length(translate(., ':', ''))\""
-		"name=\"required_colons\" value=\"3\"")
+		"name=\"num_segments\" value=\"count(tokenize(.,':'))\""
+		"name=\"required_segments\" value=\"4\"")
 	(type "TBD_type")
 	(xpath "pds:Product_Bundle/pds:Identification_Area/pds:logical_identifier"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002532.101] of  Schematron_Assert
 
-	(assertMsg "In Product_Bundle, the number of colons found: (<sch:value-of select=\"$num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_colons\"/>).")
-	(assertStmt "$num_colons eq $required_colons")
+	(assertMsg "In Product_Bundle, the number of segments found: (<sch:value-of select=\"$num_segments\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_segments\"/>).")
+	(assertStmt "$num_segments eq $required_segments")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "In Product_Bundle the number of colons in logical_identifier is valid."))
+	(specMesg "In Product_Bundle, the number of segments found is inconsistent with the number expected."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Bundle%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002533] of  Schematron_Rule
 
@@ -2246,19 +2196,19 @@
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
 	(schematronAssign
-		"name=\"num_colons\" value=\"string-length(.) - string-length(translate(., ':', ''))\""
-		"name=\"required_colons\" value=\"4\"")
+		"name=\"num_segments\" value=\"count(tokenize(.,':'))\""
+		"name=\"required_segments\" value=\"5\"")
 	(type "TBD_type")
 	(xpath "pds:Product_Collection/pds:Identification_Area/pds:logical_identifier"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002536.101] of  Schematron_Assert
 
-	(assertMsg "In Product_Collection, the number of colons found: (<sch:value-of select=\"$num_colons\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_colons\"/>).")
-	(assertStmt "$num_colons eq $required_colons")
+	(assertMsg "In Product_Collection, the number of segments found: (<sch:value-of select=\"$num_segments\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_segments\"/>).")
+	(assertStmt "$num_segments eq $required_segments")
 	(assertType "RAW")
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
-	(specMesg "In Product_Collection, the number of colons found in logical identifier is validated."))
+	(specMesg "In Product_Collection, the number of segments found is inconsistent with the number expected."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Collection%2Fpds%3AReference_List%2Fpds%3AInternal_Reference.100002537] of  Schematron_Rule
 
@@ -2824,6 +2774,68 @@
 	(identifier "reference_type")
 	(specMesg "TBD")
 	(testValArr "product_to_license"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101])
+	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "/*[not(contains(name(), 'External') or contains(name(), 'Ingest') or contains(name(), 'Bundle') or contains(name(), 'Collection'))]/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002512.101] of  Schematron_Assert
+
+	(assertMsg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\".")
+	(assertStmt "count(tokenize(.,':'))=6")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "pds:logical_identifier must have the form \"urn:agencyId:authorityId:bundleID:collectionID:productID\".."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513] of  Schematron_Rule
+
+	(alwaysInclude "true")
+	(attrNameSpaceNC "pds")
+	(attrTitle "logical_identifier")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102])
+	(identifier "pds:/Product_Observational/pds:Identification_Area/pds:logical_identifier_external")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(schematronAssign
+		"name=\"num_segments\" value=\"count(tokenize(.,':'))\""
+		"name=\"required_segments\" value=\"6\"")
+	(type "TBD_type")
+	(xpath "/*[contains(name(), 'External')]/pds:Identification_Area/pds:logical_identifier"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.101] of  Schematron_Assert
+
+	(assertMsg "In Product_External, the number of segments found: (<sch:value-of select=\"$num_segments\"/>) is inconsistent with the number expected: (<sch:value-of select=\"$required_segments\"/>).")
+	(assertStmt "$num_segments eq $required_segments")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "In Product_External, the number of segments found is inconsistent with the number expected."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AIdentification_Area%2Fpds%3Alogical_identifier.100002513.102] of  Schematron_Assert
+
+	(assertMsg "The parent-value of the attribute logical_identifier must start with 'urn:'/>.")
+	(assertStmt "starts-with(., 'urn:')")
+	(assertType "RAW")
+	(attrTitle "logical_identifier")
+	(identifier "logical_identifier")
+	(specMesg "The parent-value of the attribute logical_identifier must start with 'urn:'/>."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_Observational%2Fpds%3AObservation_Area%2Fpds%3AInvestigation_Area.100002547] of  Schematron_Rule
 
