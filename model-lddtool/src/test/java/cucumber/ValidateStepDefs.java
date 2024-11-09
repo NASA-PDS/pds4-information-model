@@ -30,7 +30,6 @@ public class ValidateStepDefs {
   private static final String DEFAULT_VALIDATE_ARGS =
       "--disable-context-mismatch-warnings --report-style json --skip-content-validation --skip-context-validation --report-file {reportDir}/"
           + DEFAULT_REPORT_FILENAME + " ";
-  private static final String VALIDATE_CONFIG_FILE = "registered_context_products.json";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
 
