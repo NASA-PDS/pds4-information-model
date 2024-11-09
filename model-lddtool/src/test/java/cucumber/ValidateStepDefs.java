@@ -74,9 +74,8 @@ public class ValidateStepDefs {
   void setUp() throws Exception {
     this.outputData = new File(TestConstants.TEST_OUT_DIR);
     FileUtils.forceMkdir(this.outputData); // Create directory if one does not already exist.
-    System.setProperty("resources.home", TestConstants.TEST_OUT_DIR);
+    System.setProperty("resources.home", TestConstants.RESOURCES_DIR);
     this.launcher = new ValidateLauncher();
-    System.setProperty("resources.home", TestConstants.RESOURCES_DIR + File.pathSeparator + VALIDATE_CONFIG_FILE);
     this.refOutputValue = DEFAULT_REPORT_FILENAME;
     this.reportDir = TestConstants.TEST_OUT_DIR;
     this.resourceDir = TestConstants.TEST_DATA_DIR;
