@@ -10,7 +10,7 @@
         file:///Users/jpadams/proj/pds/pdsen/workspace/pds4-information-model/export/PDS4_PDS_1N00.xsd
     ">
     <Identification_Area>
-        <logical_identifier>urn:bull:shiite:ha:ha:french23_occult_pred</logical_identifier>
+        <logical_identifier>urn:bull:shiite:french23_occult_pred</logical_identifier>
         <version_id>1.0</version_id>
         <title>Occultation Predictions from R. G. French and D. Souami (2023)</title>
         <information_model_version>1.23.0.0</information_model_version>
@@ -54,7 +54,7 @@
             <type>Satellite</type>
             <Internal_Reference>
                 <lid_reference>urn:nasa:pds:context:target:satellite.jupiter.io</lid_reference>
-                <reference_type>data_to_target</reference_type>  <!--RChen should fail-->
+                <reference_type>external_to_target</reference_type>  <!--RChen should fail-->
             </Internal_Reference>
         </Target_Identification>
     </Context_Area>
