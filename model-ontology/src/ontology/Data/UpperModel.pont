@@ -1,4 +1,4 @@
-; Tue Nov 05 15:41:23 EST 2024
+; Fri Nov 08 17:54:28 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10097,7 +10097,7 @@
 	(single-slot reference_type
 ;+		(comment "The reference_type attribute provides the name of the association.")
 		(type STRING)
-;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection" "bundle_has_miscellaneous_collection")
+;+		(value "bundle_has_browse_collection" "bundle_has_calibration_collection" "bundle_has_data_collection" "bundle_has_document_collection" "bundle_has_geometry_collection" "bundle_has_spice_kernel_collection" "bundle_has_schema_collection" "bundle_has_member_collection" "bundle_has_context_collection" "bundle_has_miscellaneous_collection" "bundle_has_external_collection")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot lidvid_reference
