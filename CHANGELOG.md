@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-11)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
@@ -10,6 +10,7 @@
 - CCB-42: Add Array\_1D\_Spectrum to File\_Area\_Ancillary, File\_Area\_Browse, and File\_Area\_Observational\_Supplemental [\#831](https://github.com/NASA-PDS/pds4-information-model/issues/831)
 - CCB-38: Added mrad/pixel to Units\_of\_Pixel\_Resolution\_Angular [\#829](https://github.com/NASA-PDS/pds4-information-model/issues/829)
 - CCB-24: Replaced all of the unit\_id standard value definitions [\#824](https://github.com/NASA-PDS/pds4-information-model/issues/824)
+- CCB-29: Incorrect schematron rules for Bundle \(type:External\), Collection \(type:External\), and Product\_External logical\_identifiers [\#816](https://github.com/NASA-PDS/pds4-information-model/issues/816)
 - CCB-7: Missing schematron rule - bundle\_to\_targets [\#795](https://github.com/NASA-PDS/pds4-information-model/issues/795)
 - CCB-26: Fix definition of Units\_of\_Amount\_of\_Substance [\#782](https://github.com/NASA-PDS/pds4-information-model/issues/782)
 - CCB-16: Allow micro amps and nano amps as units of current [\#753](https://github.com/NASA-PDS/pds4-information-model/issues/753)
