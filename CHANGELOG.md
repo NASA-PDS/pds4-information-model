@@ -1,12 +1,11 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-11)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-12)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
 
 **Requirements:**
 
-- CCB-24: Replaced all of the unit\_id standard value definitions. [\#832](https://github.com/NASA-PDS/pds4-information-model/issues/832)
 - CCB-42: Add Array\_1D\_Spectrum to File\_Area\_Ancillary, File\_Area\_Browse, and File\_Area\_Observational\_Supplemental [\#831](https://github.com/NASA-PDS/pds4-information-model/issues/831)
 - CCB-38: Added mrad/pixel to Units\_of\_Pixel\_Resolution\_Angular [\#829](https://github.com/NASA-PDS/pds4-information-model/issues/829)
 - CCB-24: Replaced all of the unit\_id standard value definitions [\#824](https://github.com/NASA-PDS/pds4-information-model/issues/824)
@@ -22,6 +21,7 @@
 
 **Defects:**
 
+- emrsp namespaces are configured to be produced as https: [\#834](https://github.com/NASA-PDS/pds4-information-model/issues/834) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Tests fail when there are multiple tests with multiple schemas/schematrons [\#822](https://github.com/NASA-PDS/pds4-information-model/issues/822) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Regression in schematron improvements for references \(\#795\) [\#819](https://github.com/NASA-PDS/pds4-information-model/issues/819) [[s.critical](https://github.com/NASA-PDS/pds4-information-model/labels/s.critical)]
 - LDDTool does not resolve the JUICE namespaces with IM 1J00 [\#818](https://github.com/NASA-PDS/pds4-information-model/issues/818) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
