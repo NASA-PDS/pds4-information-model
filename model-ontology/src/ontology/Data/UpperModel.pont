@@ -1,4 +1,4 @@
-; Fri Nov 08 17:54:28 EST 2024
+; Wed Nov 13 14:47:11 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12079,7 +12079,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "W*m**-2*sr**-1*Hz**-1" "W*m**-2*sr**-1*nm**-1" "W*m**-2*sr**-1*um**-1" "W*m**-3*sr**-1" "uW*cm**-2*sr**-1*um**-1" "W/m**2/sr/Hz" "W/m**2/sr/nm" "W/m**2/sr/μm" "W/m**3/sr" "μW/cm**2/sr/μm")
+;+		(value "W*m**-2*sr**-1*Hz**-1" "W*m**-2*sr**-1*nm**-1" "W*m**-2*sr**-1*um**-1" "W*m**-3*sr**-1" "uW*cm**-2*sr**-1*um**-1" "W/m**2/sr/Hz" "W/m**2/sr/nm" "W/m**2/sr/μm" "W/m**3/sr" "μW/cm**2/sr/μm" "W/cm**2/sr/μm")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
