@@ -1,4 +1,4 @@
-; Wed Nov 13 17:41:42 EST 2024
+; Thu Nov 14 08:20:46 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -308,6 +308,7 @@
 	(assertMsg "The presence of \"pds:doi\" requires at least one of either \"List_Author\" or \"List_Editor\" classes.")
 	(assertStmt "if (pds:doi) then (pds:author_list or pds:editor_list or pds:List_Author or pds:List_Editor) else true()")
 	(assertType "RAW")
+	(attrTitle "author_list")
 	(identifier "Citation_Information")
 	(specMesg "The presence of \"pds:doi\" requires at least one of either \"List_Author\" or \"List_Editor\" classes."))
 
@@ -316,6 +317,7 @@
 	(assertMsg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes.")
 	(assertStmt "\"if ((pds:author_list or pds:editor_list) and (pds:List_Author or pds:List_Editor)) then false() else true()")
 	(assertType "RAW")
+	(attrTitle "author_list")
 	(identifier "Citation_Information")
 	(specMesg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes."))
 

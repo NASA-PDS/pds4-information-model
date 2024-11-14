@@ -1,4 +1,4 @@
-; Wed Nov 13 17:41:42 EST 2024
+; Thu Nov 14 08:20:46 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class10147]
-		[UpperModel_ProjectKB_Class10148]
-		[UpperModel_ProjectKB_Class10149]
-		[UpperModel_ProjectKB_Class10150]))
+		[UpperModel_ProjectKB_Class10151]
+		[UpperModel_ProjectKB_Class10152]
+		[UpperModel_ProjectKB_Class10153]
+		[UpperModel_ProjectKB_Class10154]))
 
 ([CLSES_TAB] of  Widget
 
@@ -841,22 +841,22 @@
 ([UpperModel_ProjectKB_Class10] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class10147] of  String
+([UpperModel_ProjectKB_Class10151] of  String
 
 	(name "ChangeLog")
 	(string_value "date"))
 
-([UpperModel_ProjectKB_Class10148] of  String
+([UpperModel_ProjectKB_Class10152] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([UpperModel_ProjectKB_Class10149] of  String
+([UpperModel_ProjectKB_Class10153] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([UpperModel_ProjectKB_Class10150] of  String
+([UpperModel_ProjectKB_Class10154] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
