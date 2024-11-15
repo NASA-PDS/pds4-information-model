@@ -1,4 +1,4 @@
-; Wed Nov 13 14:47:11 EST 2024
+; Fri Nov 15 18:04:59 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -285,6 +285,21 @@
 	(attrTitle "sequence_number")
 	(identifier "sequence_number")
 	(specMesg "The sequence number of the second axis of an Array_2D_Image must be set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "axis_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Axis_Array")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AArray_2D_Image.100002513.101])
+	(identifier "pds:Citation_Information")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Citation_Information"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517] of  Schematron_Rule
 
