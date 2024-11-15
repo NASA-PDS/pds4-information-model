@@ -1,4 +1,4 @@
-; Fri Nov 15 18:04:59 EST 2024
+; Fri Nov 15 18:28:58 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class10108]
-		[UpperModel_ProjectKB_Class10109]
-		[UpperModel_ProjectKB_Class10110]
-		[UpperModel_ProjectKB_Class10111]))
+		[UpperModel_ProjectKB_Class127]
+		[UpperModel_ProjectKB_Class128]
+		[UpperModel_ProjectKB_Class129]
+		[UpperModel_ProjectKB_Class130]))
 
 ([CLSES_TAB] of  Widget
 
@@ -423,9 +423,6 @@
 	(x 0)
 	(y 120))
 
-([KB_500319_Class0] of  Map
-)
-
 ([KB_663782_Class0] of  Map
 )
 
@@ -550,6 +547,9 @@
 
 	(name "instances_file_name")
 	(string_value "UpperModel.pins"))
+
+([KB_893422_Class0] of  Map
+)
 
 ([PAL_FORM_WIDGET] of  Widget
 
@@ -841,26 +841,6 @@
 ([UpperModel_ProjectKB_Class10] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class10108] of  String
-
-	(name "ChangeLog")
-	(string_value "date"))
-
-([UpperModel_ProjectKB_Class10109] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([UpperModel_ProjectKB_Class10110] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([UpperModel_ProjectKB_Class10111] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
 ([UpperModel_ProjectKB_Class11] of  Widget
 
 	(is_hidden TRUE)
@@ -870,11 +850,31 @@
 ([UpperModel_ProjectKB_Class12] of  Property_List
 )
 
+([UpperModel_ProjectKB_Class127] of  String
+
+	(name "ChangeLog")
+	(string_value "date"))
+
+([UpperModel_ProjectKB_Class128] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([UpperModel_ProjectKB_Class129] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
 ([UpperModel_ProjectKB_Class13] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [UpperModel_ProjectKB_Class14])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([UpperModel_ProjectKB_Class130] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
 ([UpperModel_ProjectKB_Class14] of  Property_List
 )
