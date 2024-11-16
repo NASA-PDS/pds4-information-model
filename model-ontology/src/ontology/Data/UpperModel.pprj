@@ -1,4 +1,4 @@
-; Fri Nov 15 18:28:58 EST 2024
+; Fri Nov 15 19:30:52 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class127]
-		[UpperModel_ProjectKB_Class128]
-		[UpperModel_ProjectKB_Class129]
-		[UpperModel_ProjectKB_Class130]))
+		[UpperModel_ProjectKB_Class135]
+		[UpperModel_ProjectKB_Class136]
+		[UpperModel_ProjectKB_Class137]
+		[UpperModel_ProjectKB_Class138]))
 
 ([CLSES_TAB] of  Widget
 
@@ -850,28 +850,28 @@
 ([UpperModel_ProjectKB_Class12] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class127] of  String
-
-	(name "ChangeLog")
-	(string_value "date"))
-
-([UpperModel_ProjectKB_Class128] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([UpperModel_ProjectKB_Class129] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
 ([UpperModel_ProjectKB_Class13] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [UpperModel_ProjectKB_Class14])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
 
-([UpperModel_ProjectKB_Class130] of  String
+([UpperModel_ProjectKB_Class135] of  String
+
+	(name "ChangeLog")
+	(string_value "date"))
+
+([UpperModel_ProjectKB_Class136] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([UpperModel_ProjectKB_Class137] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([UpperModel_ProjectKB_Class138] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
