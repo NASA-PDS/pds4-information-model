@@ -220,7 +220,11 @@ This requirement is not impacted by the current version
 
 
 This requirement is not impacted by the current version
-## CCB-24: Replaced all of the unit_id standard value definitions. ([#832](https://github.com/NASA-PDS/pds4-information-model/issues/832)) 
+## CCB-10: Schematron/Schema Version Conflict (PDS-JIRA-366) ([#838](https://github.com/NASA-PDS/pds4-information-model/issues/838)) 
+
+
+This requirement is not impacted by the current version
+## CCB-19: Never finished CCB-325 documentation updates (Title: Support for video and audio as product observational) ([#839](https://github.com/NASA-PDS/pds4-information-model/issues/839)) 
 
 
 This requirement is not impacted by the current version
