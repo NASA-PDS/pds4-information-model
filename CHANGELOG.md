@@ -1,5 +1,13 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-19)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.2...«unknown»)
+
+**Requirements:**
+
+- CCB-27: DOI requires at least an author or editor [\#823](https://github.com/NASA-PDS/pds4-information-model/issues/823)
+
 ## [v15.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.2) (2024-11-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...v15.2.2)
