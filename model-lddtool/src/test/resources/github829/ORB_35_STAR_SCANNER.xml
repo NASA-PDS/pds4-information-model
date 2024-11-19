@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1M00.sch" 
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" 
     schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="http://pds.nasa.gov/pds4/mission/vikinglander/v1/PDS4_VIKINGLANDER_1M00_1000.sch"
+<?xml-model href="https://pds.nasa.gov/pds4/mission/hst/v1/PDS4_HST_1N00_1100.sch" 
     schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 <Product_Observational
    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+   xmlns:hst="http://pds.nasa.gov/pds4/mission/lucy/v1"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:vikinglander="http://pds.nasa.gov/pds4/mission/vikinglander/v1"
    xsi:schemaLocation="
       http://pds.nasa.gov/pds4/pds/v1
-         https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1M00.xsd
-      http://pds.nasa.gov/pds4/mission/vikinglander/v1
-         https://pds.nasa.gov/pds4/mission/vikinglander/v1/PDS4_VIKINGLANDER_1M00_1000.xsd" >
+      https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd
+      http://pds.nasa.gov/pds4/mission/hst/v1
+      https://pds.nasa.gov/pds4/mission/hst/v1/PDS4_HST_1N00_1100.xsd">
     <Identification_Area>
         <logical_identifier>urn:nasa:pds:im795:data:orb_35_star_scanner</logical_identifier>
         <version_id>1.0</version_id>
@@ -27,6 +28,18 @@
  Star Scanner data relate to instantaneous flux of electrons in the           
  Jovian environment. A more complete description of the data can be          
  found in the document data description</description>
+            <List_Author>
+                <Person>
+                <given_name>Paul D.</given_name>
+                <family_name>Fieseler</family_name>
+                <sequence_number>1</sequence_number>
+                <Affiliation>
+                    <organization_name>California Institute of Technology</organization_name>
+                    <organization_rorid>https://ror.org/05dxps055</organization_rorid>
+                    <sequence_number>1</sequence_number>
+                </Affiliation>
+            </Person>
+            </List_Author>
         </Citation_Information>
         <Modification_History>
             <Modification_Detail>
@@ -43,6 +56,15 @@
             <start_date_time>2003-09-18T12:50:00.000Z</start_date_time>
             <stop_date_time>2003-09-21T18:40:00.000Z</stop_date_time>
         </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Derived</processing_level>
+            <Science_Facets>
+                <discipline_name>Particles</discipline_name>
+                <facet1>Electrons</facet1>
+                <facet2>Energetic</facet2>
+            </Science_Facets>
+        </Primary_Result_Summary>
         <Investigation_Area>
             <name>Galileo</name>
             <type>Mission</type>
@@ -52,6 +74,14 @@
             </Internal_Reference>
         </Investigation_Area>
         <Observing_System>
+            <Observing_System_Component>
+                <name>Galileo Orbiter Star Scanner</name>
+                <type>Instrument</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:go.ssd</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
             <Observing_System_Component>
                 <name>Galileo Orbiter</name>
                 <type>Host</type>
@@ -70,12 +100,62 @@
             </Internal_Reference>
         </Target_Identification>
         <Mission_Area>
-            <vikinglander:Viking_Lander_Parameters>
-                <vikinglander:Observation_Information>
-                    <vikinglander:observation_name>testtesttesttest</vikinglander:observation_name>
-                </vikinglander:Observation_Information>
-            </vikinglander:Viking_Lander_Parameters>
-        </Mission_Area>
+          <hst:HST_Parameters>
+            <hst:Program_Parameters>
+              <hst:mast_observation_id>n4wl01xqq</hst:mast_observation_id>
+              <hst:hst_proposal_id>7885</hst:hst_proposal_id>
+              <hst:hst_pi_name>Hammel, Heidi B.</hst:hst_pi_name>
+              <hst:visit_id>01</hst:visit_id>
+            </hst:Program_Parameters>
+            <hst:Instrument_Parameters>
+              <hst:instrument_id>NICMOS</hst:instrument_id>
+              <hst:channel_id>NIC1</hst:channel_id>
+              <hst:detector_id>NIC1</hst:detector_id>
+              <hst:observation_type>IMAGING</hst:observation_type>
+            </hst:Instrument_Parameters>
+            <hst:Pointing_Parameters>
+              <hst:hst_target_name>URANUS</hst:hst_target_name>
+              <hst:moving_target_flag>true</hst:moving_target_flag>
+              <hst:moving_target_keyword>PLANET</hst:moving_target_keyword>  <!-- 1 of 2 -->
+              <hst:moving_target_keyword>URANUS</hst:moving_target_keyword>  <!-- 2 of 2 -->
+              <hst:moving_target_description>STD=URANUS</hst:moving_target_description>
+              <hst:aperture_name>NIC1-FIX</hst:aperture_name>
+              <hst:proposed_aperture_name>NIC1-FIX</hst:proposed_aperture_name>
+              <hst:targeted_detector_id>NIC1</hst:targeted_detector_id>
+            </hst:Pointing_Parameters>
+            <hst:Tracking_Parameters>
+              <hst:fine_guidance_sensor_lock_type>FINE</hst:fine_guidance_sensor_lock_type>
+              <hst:gyroscope_mode>3</hst:gyroscope_mode>
+            </hst:Tracking_Parameters>
+            <hst:Exposure_Parameters>
+              <hst:exposure_duration unit="s">191.896</hst:exposure_duration>
+              <hst:exposure_type>NORMAL</hst:exposure_type>
+            </hst:Exposure_Parameters>
+            <hst:Wavelength_Filter_Grating_Parameters>
+              <hst:filter_name>F170M</hst:filter_name>
+              <hst:center_filter_wavelength unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:center_filter_wavelength>
+              <hst:bandwidth unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:bandwidth>
+              <hst:spectral_resolution unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:spectral_resolution>
+            </hst:Wavelength_Filter_Grating_Parameters>
+            <hst:Operational_Parameters>
+              <hst:instrument_mode_id>MULTIACCUM</hst:instrument_mode_id>
+              <hst:gain_setting xsi:nil="true" nilReason="inapplicable"></hst:gain_setting>
+              <hst:coronagraph_flag>false</hst:coronagraph_flag>
+              <hst:cosmic_ray_split_count>1</hst:cosmic_ray_split_count>
+              <hst:repeat_exposure_count>1</hst:repeat_exposure_count>
+              <hst:subarray_flag>false</hst:subarray_flag>
+              <hst:binning_mode>1</hst:binning_mode>
+              <hst:plate_scale unit="mrad/pixel">4.2e-05</hst:plate_scale> . <!--RChen new value in 1M00-->
+            </hst:Operational_Parameters>
+            <hst:Processing_Parameters>
+              <hst:mast_pipeline_version_id>OPUS 2008_5c</hst:mast_pipeline_version_id>
+              <hst:hst_quality_id>OK</hst:hst_quality_id>
+              <hst:hst_quality_comment>
+                NO APPARENT PROBLEMS.
+              </hst:hst_quality_comment>
+            </hst:Processing_Parameters>
+          </hst:HST_Parameters>
+	</Mission_Area>
     </Observation_Area>
     <Reference_List>
         <Internal_Reference>
