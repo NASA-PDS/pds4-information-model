@@ -1,4 +1,4 @@
-; Wed Nov 13 14:47:11 EST 2024
+; Fri Nov 15 19:30:51 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -285,6 +285,41 @@
 	(attrTitle "sequence_number")
 	(identifier "sequence_number")
 	(specMesg "The sequence number of the second axis of an Array_2D_Image must be set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "author_list")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Citation_Information")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635.102])
+	(identifier "pds:Citation_Information")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Citation_Information"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635.101] of  Schematron_Assert
+
+	(assertMsg "The presence of \"pds:doi\" requires at least one of either \"List_Author\" or \"List_Editor\" classes.")
+	(assertStmt "if (pds:doi) then (pds:author_list or pds:editor_list or pds:List_Author or pds:List_Editor) else true()")
+	(assertType "RAW")
+	(attrTitle "author_list")
+	(identifier "author_list")
+	(specMesg "The presence of \"pds:doi\" requires at least one of either \"List_Author\" or \"List_Editor\" classes."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635.102] of  Schematron_Assert
+
+	(assertMsg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes.")
+	(assertStmt "if ((pds:author_list or pds:editor_list) and (pds:List_Author or pds:List_Editor)) then false() else true()")
+	(assertType "RAW")
+	(attrTitle "author_list")
+	(identifier "author_list")
+	(specMesg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information%2Fpds%3Adescription.100002517] of  Schematron_Rule
 

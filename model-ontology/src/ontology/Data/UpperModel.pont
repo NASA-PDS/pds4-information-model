@@ -1,4 +1,4 @@
-; Wed Nov 13 14:47:11 EST 2024
+; Fri Nov 15 19:30:51 EST 2024
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11511,7 +11511,7 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a unit in which a quantity of chemically unique and identifiable particles (atoms, molecules, ions, etc is measured."
+(defclass Units_of_Amount_Of_Substance "Units_of_Amount_Of_Substance is a magnitude of quantity of chemically unique and identifiable particles (atoms, molecules, ions, etc.)."
 	(is-a Unit_Of_Measure)
 	(role concrete)
 	(single-slot type
