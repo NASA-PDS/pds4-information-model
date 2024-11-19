@@ -16,8 +16,8 @@
         <information_model_version>1.23.0.0</information_model_version>
         <product_class>Product_External</product_class>
         <Citation_Information>
-            <!--author_list>French, R.G.; Souami, D.</author_list-->
-            <!--editor_list>Mace, M.J.T.; Gordon, M.K.; Tiscareno, M.S.</editor_list-->
+            <author_list>French, R.G.; Souami, D.</author_list>
+            <editor_list>Mace, M.J.T.; Gordon, M.K.; Tiscareno, M.S.</editor_list>
             <publication_year>2023</publication_year>
             <doi>10.17189/m9sk-g963</doi>
             <keyword>jupiter</keyword>
