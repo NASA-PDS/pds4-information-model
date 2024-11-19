@@ -1,12 +1,15 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-12)
+## [release/15.2.2](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.2.2) (2024-11-17)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.1.0...release/15.2.2)
 
 **Requirements:**
 
+- CCB-19: Never finished CCB-325 documentation updates \(Title: Support for video and audio as product observational\) [\#839](https://github.com/NASA-PDS/pds4-information-model/issues/839)
+- CCB-10: Schematron/Schema Version Conflict \(PDS-JIRA-366\) [\#838](https://github.com/NASA-PDS/pds4-information-model/issues/838)
 - CCB-42: Add Array\_1D\_Spectrum to File\_Area\_Ancillary, File\_Area\_Browse, and File\_Area\_Observational\_Supplemental [\#831](https://github.com/NASA-PDS/pds4-information-model/issues/831)
+- CCB-47: Add permissible value W/cm\*\*2/sr/μm to Units\_of\_Spectral\_Radiance [\#830](https://github.com/NASA-PDS/pds4-information-model/issues/830)
 - CCB-38: Added mrad/pixel to Units\_of\_Pixel\_Resolution\_Angular [\#829](https://github.com/NASA-PDS/pds4-information-model/issues/829)
 - CCB-24: Replaced all of the unit\_id standard value definitions [\#824](https://github.com/NASA-PDS/pds4-information-model/issues/824)
 - CCB-29: Incorrect schematron rules for Bundle \(type:External\), Collection \(type:External\), and Product\_External logical\_identifiers [\#816](https://github.com/NASA-PDS/pds4-information-model/issues/816)

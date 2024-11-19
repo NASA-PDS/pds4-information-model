@@ -37,7 +37,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>gov.nasa</groupId>
     <artifactId>pds</artifactId>
-    <version>1.17.0</version>
+    <version>1.18.0</version>
   </parent>
   
    <properties>
@@ -46,7 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>15.2.0-SNAPSHOT</version>
+  <version>15.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>PDS4 Information Model</name>

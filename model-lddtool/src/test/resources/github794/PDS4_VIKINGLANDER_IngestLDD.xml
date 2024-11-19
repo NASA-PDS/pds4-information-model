@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model 
+    href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1L00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Ingest_LDD 
+  xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1L00.xsd">
+  <name>Viking Lander</name>
+  <ldd_version_id>1.0.0.0</ldd_version_id>
+  <dictionary_type>Mission</dictionary_type>
+  <full_name>E Guinness</full_name>
+  <steward_id>geo</steward_id>
+  <namespace_id>vikinglander</namespace_id>
+  <comment>
+    The Viking Lander mission dictionary contains classes and attributes specific
+    to the Viking Lander mission and its instruments.
+    
+    Viking Lander version 1.0.0.0 
+    PDS Build 1.21.0.0
+    
+    Built with LDDTool -plJ -V xxxx PDS4_VIKINGLANDER_IngestLDD.xml
+    
+    xxxx is the model version, for example 1L00
+     
+    2024-07-05 GEO/JGW Minor typo fixes.
+    
+    2024-06-30 GEO/EAG Initial version with classes for general observation attributes and specific lander
+    image attributes.
+
+  </comment>
+  <last_modification_date_time>2024-07-05</last_modification_date_time>
+  
+  <!-- Hierarchy of classes and attributes
+    <vikinglander:Viking_Lander_Parameters>
+       <vikinglander:Observation_Information>  </>
+          <vikinglander:product_type_name> </>
+          <vikinglander:mission_phase_name> </>
+          [ <vikinglander:sol_number>  </> ]
+          OR 
+          [ <vikinglander:start_sol_number>  </>
+            <vikinglander:stop_sol_number> </> ]
+          <vikinglander:native_time> </>
+          <vikinglander:local_hour> </>
+          <vikinglander:observation_name> </>
+       </vikinglander:Observation_Information> </>
+       <vikinglander:Image_Parameters>
+               diode_name
+               start_scan_azimuth
+               stop_scan_azimuth
+               mirror_center_elevation
+               sampling_interval
+               offset_number
+               gain_number
+               psa_temperature
+               scan_rate
+               start_rescan_sample
+               total_rescan_samples
+               missing_scans
+               data_path_type
+               dust_flag          
+       </vikinglander:Image_Parameters>   
+    </vikinglander:Viking_Lander_Parameters>
+  -->
+  <!-- Begin definitions of attributes in the Viking Lander Mission Data Dictionary. -->
+  <!-- Attribute Definitions for the Observation_Information class
+        In alphabetical order, the attributes are:
+    
+       local_hour                 optional
+       mission_phase_name         optional
+       native_time                optional
+       observation_name           optional
+       product_type_name          optional
+       sol_number                 optional: use either start/stop_sol_number or sol_number
+       start_sol_number           optional: use either start/stop_sol_number or sol_number
+       stop_sol_number            optional: use either start/stop_sol_number or sol_number
+        -->
+
+  <DD_Attribute>
+    <name>local_hour</name>
+    <version_id>1.0</version_id>
+    <local_identifier>local_hour</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The hour and fraction hour within a sol that an observation
+       began assuming a sol has 24 hours.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.0</minimum_value>
+      <maximum_value>24.0</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>mission_phase_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>mission_phase_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The mission_phase_name identifies a time period 
+      within the mission.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <DD_Permissible_Value>
+        <value>Primary_Mission</value>
+        <value_meaning>The Viking Lander 1 spacecraft separated from the VO1 orbiter and
+          descended to the Martian surface on July 20, 1976. The Viking Lander 2 spacecraft
+          separated from the VO2 orbiter and descended to the Martian surface on
+          September 3, 1976. The Primary Mission
+          ended at the start of the solar conjunction in November 15, 1976.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Extended_Mission</value>
+        <value_meaning>The Viking Extended Mission began after solar conjunction. The
+          two lander spacecraft analyzed additional soil samples and dug three
+          deep holes in the surface. All four spacecraft monitored the planet
+          through the cycle of seasons. During the winter season, the landers
+          operated in an automatic manner designed to allow the spacecraft to
+          survive the cold temperatures and still return some data. Dates: 1976-11-15
+          to 1978-05-31.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Continuation_Mission</value>
+        <value_meaning>Lander activities consisted of measurements by the imaging,
+          meteorology, and XRFS instruments operating in a fully automated manner.
+          Dates: 1978-05-31 to 1979-02-26.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Interim_Period</value>
+        <value_meaning>
+          The Interim Period mission phase occurred during the time of the Voyager
+          2 encounter with Jupiter. Thus, communications to and from the Viking
+          spacecraft were limited. The landers continued to operate in an
+          automated manner making imaging and meteorology observations. A final
+          VL2 surface sampler sequence was conducted during this mission phase as
+          an engineering test in the cold temperatures of mid winter.
+          Dates: 1979-02-26 to 1979-07-19.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Survey_Mission</value>
+        <value_meaning>The plan for the landers was to collect image and
+          meteorology data for as long as possible. Because VL2 no longer had a
+          direct downlink capability, it meant that VL2 could return data only
+          as long as VO1 provided a relay link, once every seven weeks.
+          Communications with VL2 ended on April 11, 1980 after its batteries
+          could no longer hold a charge. VL2 operated on the surface of Mars
+          for 1281 sols. Dates: 1979-07-19 to 1980-08-07.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>Completion_Mission</value>
+        <value_meaning> 
+          Viking Lander 1 continued to operated in its automatic mode during the
+          Completion Mission. The observation sequences were cyclic. VL1 returned
+          via direct downlink image and meteorology data about once a week with
+          image sequences repeating every 37 sols. The VL1 high-gain antenna was
+          programmed to track the Earth until December, 1994. However,
+          communications were lost in November 1982 after a command sequence
+          uplink. Dates: 1980-08-07 to 1982-11-19.
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>native_time</name>
+    <version_id>1.0</version_id>
+    <local_identifier>native_time</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Native time is the local lander time given
+      as a sol number followed by hours, minutes, and seconds past
+      local midnight on that sol. Sol 0 is day of landing. The Viking project
+      used the format of sol number, hour, minute, and second for local lander time
+      with times in a sol extending beyond 24 hours. This usage is different from the
+      usage by recent Mars rover missions and PDS standard for local time. 
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>observation_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>observation_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>A short note that describes the observation.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>product_type_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>product_type_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The product_type_name identifies a group of data products within
+      a collection that have some property in common, such as processing level,
+      resolution, or instrument-specific setting.
+    </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <DD_Permissible_Value>
+        <value>event_mode</value>
+        <value_meaning>The seismometer acquired data in event mode.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>high_rate</value>
+        <value_meaning>The seismometer acquired data in high rate mode.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>detector_temperature</value>
+        <value_meaning>Temperature of Labeled Release beta detector
+          given in degrees celsius.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>head-end_temperature</value>
+        <value_meaning>Temperature of Labeled Release head-end assembly
+          sensor given in degrees celsius.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>radioactivity_counts</value>
+        <value_meaning>Radioactivity counts of a Labeled Release cycle.</value_meaning>
+      </DD_Permissible_Value>
+ <!-- Others for imaging -->
+      <DD_Permissible_Value>
+        <value>high_resolution_singlet</value>
+        <value_meaning>Single image sequence acquired with the high resolution pixel spacing (0.04 deg.)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>low_resolution_singlet</value>
+        <value_meaning>Single image sequence acquired with the low resolution pixel spacing (0.12 deg.)</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>color_triplet</value>
+        <value_meaning>Image is part of a three image sequence acquired with one of the
+          color diodes.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>infrared_triplet</value>
+        <value_meaning>Image is part of a three image sequence acquired with one of the
+          infrared diodes.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>calibration_level_3</value>
+        <value_meaning>Calibration data acquired with an internal light source at level 3 (highest).</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>calibration_level_2</value>
+        <value_meaning>Calibration data acquired with an internal light source at level 2.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>calibration_level_1</value>
+        <value_meaning>Calibration data acquired with an internal light source at level 1.</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>calibration_level_0</value>
+        <value_meaning>Calibration data acquired with an internal light source at level 0 (lowest).</value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>scan_verification</value>
+        <value_meaning>Calibration data acquired to test the scanning of the VL camera.</value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>sol_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>sol_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Sol_number is the number of the Mars day on which an observation was
+      acquired. Landing day is Sol 0.
+    </definition>
+    <comment>See comment for start_sol_number.</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>2238</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>start_sol_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>start_sol_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Start_sol_number is the number of the Mars day on which a 
+      multiple-day observation was begun. Landing day is Sol 0.</definition>
+    <comment>Start/stop_sol_number are provided as an alternative
+      to sol_number for observations
+      that cross one or more sol boundaries. </comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>2238</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>stop_sol_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>stop_sol_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Stop_sol_number is the number of the Mars day on which a
+      multiple-day observation was ended. Landing day is Sol 0.</definition>
+    <comment>Start/stop_sol_number are provided as an alternative
+      to sol_number for observations
+      that cross one or more sol boundaries.</comment>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>2238</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <!-- End Attribute Definitions for the Observation_Information class -->
+  
+  <!-- Begin Image_Parameters attribute definitions in the order that they appear in the class -->
+  
+  <DD_Attribute>
+    <name>diode_name</name>
+    <version_id>1.0</version_id>
+    <local_identifier>diode_name</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Name for one of the twelve photodiode in a VL camera. </definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <DD_Permissible_Value>
+        <value>bb1</value>
+        <value_meaning>One of four broadband high-resolution diodes. BB1 had the shortest
+          in focus distance. It was used for imaging close to the lander.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>bb2</value>
+        <value_meaning>One of four broadband high-resolution diodes. BB2 had an intermediate
+          in focus distance.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>bb3</value>
+        <value_meaning>One of four broadband high-resolution diodes. BB3 had an intermediate
+          in focus distance. 
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>bb4</value>
+        <value_meaning>One of four broadband high-resolution diodes. BB4 had the longest
+          in focus distance. It was used for imaging objects further from the lander.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>survey</value>
+        <value_meaning>A broadband low-resolution diode. The Survey diode was used
+          to take images that covered a large area at low resolution.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>blue</value>
+        <value_meaning>A low-resolution diode with a passband centered at blue wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>green</value>
+        <value_meaning>A low-resolution diode with a passband centered at green wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>red</value>
+        <value_meaning>A low-resolution diode with a passband centered at red wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ir1</value>
+        <value_meaning>One of three low-resolution diodes with a passband centered at Infrared wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ir2</value>
+        <value_meaning>One of three low-resolution diodes with a passband centered at Infrared wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>ir3</value>
+        <value_meaning>One of three low-resolution diodes with a passband centered at Infrared wavelengths.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>sun</value>
+        <value_meaning>A broadband high-resolution diode with a filter designed for
+          imaging the Sun without saturating the DN range.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>undefined</value>
+        <value_meaning>This value indicates a calibration sequence was collected using
+          all the diodes.
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>scan_start_azimuth</name>
+    <version_id>1.0</version_id>
+    <local_identifier>start_scan_azimuth</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Beginning azimuth of an image scan. Values are in the camera-aligned camera coordinate
+      system (CACCS). This zero azimuth for each camera generally points towards the other camera.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.0</minimum_value>
+      <maximum_value>360.0</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+      <specified_unit_id>degree</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>scan_stop_azimuth</name>
+    <version_id>1.0</version_id>
+    <local_identifier>stop_scan_azimuth</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Ending azimuth of an image scan. Values are in the camera-aligned camera coordinate
+      system (CACCS). This zero azimuth for each camera generally points towards the other camera.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.0</minimum_value>
+      <maximum_value>360.0</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+      <specified_unit_id>degree</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>mirror_center_elevation</name>
+    <version_id>1.0</version_id>
+    <local_identifier>mirror_center_elevation</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The commanded center elevation of the scanning mirror used for an image. Zero
+      elevation is generally pointed toward the horizon with negative values below and positive values above.
+      Note that actual center elevation may be different for some non-nominal imaging
+      modes.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>-60.0</minimum_value>
+      <maximum_value>40.0</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+      <specified_unit_id>degree</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>sampling_interval</name>
+    <version_id>1.0</version_id>
+    <local_identifier>sampling_interval</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The spacing in degrees between pixels within a scan line and between scan lines.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <minimum_value>0.00</minimum_value>
+      <maximum_value>0.12</maximum_value>
+      <unit_of_measure_type>Units_of_Angle</unit_of_measure_type>
+      <specified_unit_id>degree</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>offset_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>offset_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>One of 32 offset settings used in the conversion of photodiode voltage to DN.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>31</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>gain_number</name>
+    <version_id>1.0</version_id>
+    <local_identifier>gain_number</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>One of six gain settings used in the conversion of photodiode voltage to DN.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>5</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>psa_temperature</name>
+    <version_id>1.0</version_id>
+    <local_identifier>psa_temperature</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The temperature of the photosensor array (PSA) measured during the acquisition
+      of an VL image.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Real</value_data_type>
+      <unit_of_measure_type>Units_of_Temperature</unit_of_measure_type>
+      <specified_unit_id>degC</specified_unit_id>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>scan_rate</name>
+    <version_id>1.0</version_id>
+    <local_identifier>scan_rate</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The VL camera system has two rates of data collection - 16,000 or 250 bps.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>250</minimum_value>
+      <maximum_value>16000</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>rescan_start_sample</name>
+    <version_id>1.0</version_id>
+    <local_identifier>start_rescan_sample</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The VL camera could collect data without advancing the azimuth. This was called rescan,
+      i.e., repeating the same vertical scan of data. This sometimes happened at the end of image
+      and sometimes was commanded to repeat vertical scans.
+      Start_rescan_sample is the sample value where rescan starts in an image. This value is zero
+      if there was no rescan.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+      <maximum_value>10000</maximum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>rescan_total_samples</name>
+    <version_id>1.0</version_id>
+    <local_identifier>total_rescan_samples</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The VL camera could collect data without advancing the azimuth. This was called rescan,
+      i.e., repeating the same vertical scan of data. This sometimes happened at the end of image
+      and sometimes was commanded to repeat vertical scans.
+      Total_rescan_samples is the total number of rescan scans in an image. This value is zero
+      if there was no rescan.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>missing_scans</name>
+    <version_id>1.0</version_id>
+    <local_identifier>missing_scans</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>Sometimes vertical scans of data were lost in transmission to Earth or there were
+      errors in the telemetry such that scans could not be extracted from the downlink. 
+      Missing_scans is the number of vertical lines that are missing from an image. A value of zero 
+      means no scans were lost.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Integer</value_data_type>
+      <minimum_value>0</minimum_value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>downlink_path</name>
+    <version_id>1.0</version_id>
+    <local_identifier>downlink_path</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The data transmission path from the cameras to Earth. The path could be
+      recorded for later transmission or transmitted in realtime as the camera scanned.
+      The data could be sent either by a UHF link to an orbiter or S-band link directly 
+      to Earth.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <DD_Permissible_Value>
+        <value>recorded_uhf_link</value>
+        <value_meaning>Image recorded to Lander tape and transmitted by UHF relay to Earth.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>recorded_s-band_link</value>
+        <value_meaning>Image recorded to Lander tape and transmitted directly to Earth on S-Band link.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>realtime_uhf_link</value>
+        <value_meaning>Image transmitted by UHF relay to Earth while being acquired.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>realtime_s-band_link</value>
+        <value_meaning>Image transmitted direcly to Earth on S-Band link while being acquired.
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <DD_Attribute>
+    <name>dust_flag</name>
+    <version_id>1.0</version_id>
+    <local_identifier>dust_flag</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>A flag indicating whether a dust sequence was done with an image.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>true</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Preserved</value_data_type>
+      <DD_Permissible_Value>
+        <value>true</value>
+        <value_meaning>A dust sequence was done.
+        </value_meaning>
+      </DD_Permissible_Value>
+      <DD_Permissible_Value>
+        <value>false</value>
+        <value_meaning>No dust sequence was done.
+        </value_meaning>
+      </DD_Permissible_Value>
+    </DD_Value_Domain>
+  </DD_Attribute>
+  
+  <!-- End of Image_Parameters attribute definitions -->
+  
+  <!-- *** Begin Class Definitions *** -->
+  <!-- Observation_Information Class Definition -->
+  <!-- Attributes are in the order required in the label:
+         product_type_name
+         mission_phase_name
+         sol_number OR (start_sol_number AND stop_sol_number)
+         observation_name
+         TBD
+    -->
+  <DD_Class>
+    <name>Observation_Information</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Observation_Information</local_identifier>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The Observation_Information class provides information about a 
+      Viking Lander science observation.</definition>
+    <abstract_flag>false</abstract_flag>
+    <element_flag>false</element_flag>
+    <DD_Association>
+      <identifier_reference>product_type_name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>mission_phase_name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>*</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>native_time</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>sol_number</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>start_sol_number</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>stop_sol_number</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>local_hour</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>observation_name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+  <!-- End of Observation_Information Class Definition -->
+  
+  <!-- Begin the Image_Parameters Class Definition -->
+  <DD_Class>
+    <name>Image_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Image_Parameters</local_identifier>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>This class provides a set of parameters that describe a Viking Lander
+      image.</definition>
+    <abstract_flag>false</abstract_flag>
+    <element_flag>false</element_flag>
+    <DD_Association>
+      <identifier_reference>diode_name</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>start_scan_azimuth</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>stop_scan_azimuth</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>mirror_center_elevation</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>sampling_interval</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>offset_number</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>gain_number</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>psa_temperature</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>scan_rate</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>start_rescan_sample</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>total_rescan_samples</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>missing_scans</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>downlink_path</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>dust_flag</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+    
+<!-- End of definition of Image_Parameters class -->
+
+  <!-- Begin definition of Viking_Lander_Parameters container class -->
+  <DD_Class>
+    <name>Viking_Lander_Parameters</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Viking_Lander_Parameters</local_identifier>
+    <submitter_name>E Guinness</submitter_name>
+    <definition>The Viking_Lander_Parameters class is a superclass containing
+      all Viking Lander mission classes.</definition>
+    <abstract_flag>false</abstract_flag>
+    <element_flag>true</element_flag>
+    <DD_Association>
+      <identifier_reference>Observation_Information</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
+      <identifier_reference>Image_Parameters</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>0</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+  <!-- End of definitions of classes and attributes in the Viking Lander Mission Data Dictionary. -->
+  
+  <!-- *** Beginning of rule statements *** -->
+
+  <!-- Rules for time values SOL for all Viking Lander Product_Observational labels -->
+  
+  <DD_Rule>
+    <local_identifier>vl_time_rules</local_identifier>
+    <rule_context>/pds:Product_Observational/pds:Observation_Area/pds:Mission_Area/vikinglander:Observation_Information</rule_context>
+   
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>if (
+        (vikinglander:sol_number and (vikinglander:start_sol_number or vikinglander:stop_sol_number)) 
+                      or 
+                      (not(vikinglander:sol_number)
+                      and not(vikinglander:start_sol_number) 
+                      and not(vikinglander:stop_sol_number)
+                       )
+                     ) then false() else true() 
+      </rule_test>
+      <rule_message>vikinglander:error:solnumber_rule_0: The vikinglander:Observation_Information class must include either the attribute
+        vikinglander:sol_number or the pair of attributes vikinglander:start_sol_number and vikinglander:stop_sol_number.</rule_message>
+      <rule_description>Either sol_number or the pair start_sol_number and stop_sol_number must be present.</rule_description>
+    </DD_Rule_Statement>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>if ( 
+        ( (vikinglander:start_sol_number) and (not(vikinglander:stop_sol_number)) ) 
+                      or 
+                      ( (vikinglander:stop_sol_number) and (not(vikinglander:start_sol_number)) ) 
+                     ) then false() else true() 
+      </rule_test>
+      <rule_message>vikinglander:error:solnumber_rule_1: If either of the pair vikinglander:start_sol_number and vikinglander:stop_sol_number is
+        present, then both must be present.</rule_message>
+      <rule_description>If either of the pair start_sol_number and stop_sol_number is present, then both must be
+        present.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+  
+  <!--  End of specific rules for time values SOL -->
+
+  <!-- End of rule statements -->
+
+</Ingest_LDD>

@@ -95,6 +95,18 @@
             energetic electron flux derived data from the attitude
             control system star scanner in the Jovian environment.</description>
     </Bundle>
+    <File_Area_Text>
+      <File>
+         <file_name>readme_notes.txt</file_name>
+         <creation_date_time>2024-01-01</creation_date_time>
+      </File>
+      <Stream_Text>
+         <name>ReadMe</name>
+         <offset unit="byte">0</offset>
+         <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+         <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+      </Stream_Text>
+   </File_Area_Text>
     <Bundle_Member_Entry>
         <lidvid_reference>urn:nasa:pds:im795:browse::1.0</lidvid_reference>
         <member_status>Primary</member_status>

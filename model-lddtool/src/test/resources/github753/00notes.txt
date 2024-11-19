@@ -1,5 +1,5 @@
 I assume I should get the IngestLDD file from
-https://github.com/pds-data-dictionaries/ldd-vikinglander/blob/main/src/PDS4_VIKINGLANDER_IngestLDD.xml
+https://github.com/pds-data-dictionaries/ldd-hst
 
 
 % validate -x *xsd -S *sch -t ORB_35_STAR_SCANNER.xml
