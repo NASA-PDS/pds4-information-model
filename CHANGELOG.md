@@ -1,8 +1,16 @@
 # Changelog
 
-## [release/15.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.2.3) (2024-11-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-20)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.2...release/15.2.3)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...«unknown»)
+
+**Defects:**
+
+- Download links broken for lddtool for online documentation  [\#846](https://github.com/NASA-PDS/pds4-information-model/issues/846) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+
+## [v15.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.3) (2024-11-20)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.2...v15.2.3)
 
 **Requirements:**
 
