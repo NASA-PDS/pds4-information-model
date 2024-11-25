@@ -1,8 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-20)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-11-25)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace `LCROSS` [\#845](https://github.com/NASA-PDS/pds4-information-model/issues/845)
+- Add `Product_Native` test case for \#795 back to test suite [\#825](https://github.com/NASA-PDS/pds4-information-model/issues/825)
 
 **Defects:**
 
