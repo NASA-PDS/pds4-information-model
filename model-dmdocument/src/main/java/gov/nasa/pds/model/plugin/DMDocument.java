@@ -477,7 +477,7 @@ public class DMDocument extends Object {
 //	    	}
 //	    }
 
-	    // process second set of arguments; exit is return=false
+	    // process second set of arguments; exit if return=false
 	    if (! processArgumentParserNamespacePhase2(argparse4jNamespace))
 	    	return;
 
@@ -1238,6 +1238,7 @@ public class DMDocument extends Object {
     return namespace;
   }
 
+  // process -p, -l, and -V to determine IM Version to use
   static void processArgumentParserNamespacePhase1(Namespace ns) {
 
     // handle processing flags
@@ -1267,6 +1268,7 @@ public class DMDocument extends Object {
     return;
   }
 
+  // process remaining arguments, for -v (version) return false to exit application 
   static boolean processArgumentParserNamespacePhase2(Namespace ns) {
 
     // handle the request for version
