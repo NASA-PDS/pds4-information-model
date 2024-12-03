@@ -1227,13 +1227,13 @@ public class DMDocument extends Object {
       namespace = parser.parseArgs(args);
     } catch (HelpScreenException e) {
       System.out.println(">>  INFO Exit(0)");
-      parser.printHelp();
-      throw e;
+      // the library prints the help message internally so no need for parser.printHelp()
+      System.exit(0);
     } catch (ArgumentParserException e) {
       System.out.println(">>  ERROR Invalid argument list");
       parser.printHelp();
       System.out.println(">>  INFO  Exit(1)");
-      throw e;
+      System.exit(1);
     }
     return namespace;
   }
