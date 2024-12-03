@@ -477,8 +477,9 @@ public class DMDocument extends Object {
 //	    	}
 //	    }
 
-	    // process second set of arguments
-	    processArgumentParserNamespacePhase2(argparse4jNamespace);
+	    // process second set of arguments; exit if return=false
+	    if (! processArgumentParserNamespacePhase2(argparse4jNamespace))
+	    	return;
 
 	    // check the files
 	    checkRequiredFiles();
@@ -1237,6 +1238,7 @@ public class DMDocument extends Object {
     return namespace;
   }
 
+  // process -p, -l, and -V to determine IM Version to use
   static void processArgumentParserNamespacePhase1(Namespace ns) {
 
     // handle processing flags
@@ -1266,7 +1268,8 @@ public class DMDocument extends Object {
     return;
   }
 
-  static void processArgumentParserNamespacePhase2(Namespace ns) {
+  // process remaining arguments, for -v (version) return false to exit application 
+  static boolean processArgumentParserNamespacePhase2(Namespace ns) {
 
     // handle the request for version
     Boolean vFlag = ns.getBoolean("v");
@@ -1278,7 +1281,7 @@ public class DMDocument extends Object {
       System.out.println("Build Date: " + buildDate);
       System.out.println("Configured IM Versions: " + alternateIMVersionArr);
       System.out.println(" ");
-      return;
+      return false;
     }
 
     // validate the input arguments
@@ -1364,6 +1367,7 @@ public class DMDocument extends Object {
       LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
       masterLDDSchemaFileDefn = lLDDSchemaFileDefn; // the last Ingest_LDD named is the master.
     }
+    return true;
   }
 
   static void printErrorMessages() {
