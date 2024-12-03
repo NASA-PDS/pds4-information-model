@@ -21,15 +21,23 @@
 For this tutorial, we are using test data from [github753.tar.gz](https://github.com/user-attachments/files/17998198/github753.tar.gz). This is a duplicate of the data at https://github.com/NASA-PDS/pds4-information-model/tree/main/model-lddtool/src/test/resources/github753, but provides a good example for creating a new test case.
 
 * Create new directory with the test data like `model-lddtool/src/test/resources/github753b`. NOTE: This test data should include, at minimum, the applicable XML label(s), some "data" file associated this this label (it can be 0 bytes), and any necessary IngestLDDs for applicable discipline or mission dictionaries.
+* Create new "test suite" for this tutorial by copy pasting these lines to the bottom of the file and renaming `@v15.2.x` to `@my_tutorial`:
+```
+    @my_tutorial
+#note: 'mvn test' choks if problem enum is blank or "" even if 0 messages
+    Examples: 
+| testId | testName | testDir     | messageCount | messageText         | problemEnum        | commandArgs                                             | ingestLDDFileName         |
+```
 * Add new line(s) for test cases to `src/test/resources/features/validate.feature`: (NOTE: This feature file is organized by minor versions, 15.2.x, 15.3.x, etc. based upon the next expected minor version. If the next minor version is not included create a new section of the document. Contact Jordan for more details if needed.)
-  * **testId** - this should be the GitHub reference to the applicable Github ticket, e.g. NASA-PDS/pds4-information-model#753
-  * **testName** - title for the test that would be useful from someone trying to review a test plan with that title, e.g. `Test new Current units nA, microA`
-  * **testDir** - directory under `odel-lddtool/src/test/resources/` where your test data exists. In this case, `github753b`
-  * **messageCount** - number of expected errors or warnings 
-  * **messageText** - the expected output should match very closely to messageCount, e.g. `4 errors expected`, `8 warnings expected` (not sure how this is really used or why we have this right now...)
-  * **problemEnum** - `totalErrors`, `totalWarnings`, or specific error you expect from validate output
+* 
+  * **testId** - this should be the GitHub reference to the applicable Github ticket. For this use case, that should be set to `NASA-PDS/pds4-information-model#753`
+  * **testName** - title for the test that would be useful from someone trying to review a test plan with that title.  For this use case, that should be set to `My test for new Current units nA, microA`
+  * **testDir** - directory under `odel-lddtool/src/test/resources/` where your test data exists.  For this use case, that should be set to `github753b`
+  * **messageCount** - number of expected errors or warnings. For this use case, that should be set to `0` (success).
+  * **messageText** - the expected output should match very closely to messageCount, e.g. `4 errors expected`, `8 warnings expected` (not sure how this is really used or why we have this right now...). For this use case, that should be set to `0 errors expected` (success).
+  * **problemEnum** - `totalErrors`, `totalWarnings`, or specific error you expect from validate output. For this use case, that should be set to `SCHEMATRON_ERROR`
     * for specific error, search [Validate ProblemTypes](https://github.com/NASA-PDS/validate/blob/main/src/main/java/gov/nasa/pds/tools/validate/ProblemType.java) for the error identifier, and put the ALL CAPS value in the file, e.g. for `error.label.schematron`, if I search the file I see this line `SCHEMATRON_ERROR("error.label.schematron")`, so the problemEnum value == `SCHEMATRON_ERROR`
-  * **commandArgs** - these are the Validate Tool command-line arguments. By default, the following are already included for validate under the hood of the test code: 
+  * **commandArgs** - these are the Validate Tool command-line arguments. For this example, let's set the target directory `--target {resourceDir}/github753/pc__d139.xml`. By default, the following are already included for validate under the hood of the test code: 
     * `--disable-context-mismatch-warnings`
     * `--report-style json`
     * `--skip-content-validation`
@@ -38,6 +46,6 @@ For this tutorial, we are using test data from [github753.tar.gz](https://github
 * Now run the test(s):
   * Via Eclipse: right-click `Run as` -> `Cucumber Feature`
   * Via Maven (replace with applicable tag for this build):
-    * bash: `mvn test -Dcucumber.filter.tags='@v15.2.x'`
+    * bash: `mvn test -Dcucumber.filter.tags='@my_tutorial'`
     * tcsh: `mvn test  -Dcucumber.filter.tags='@v15.2.x'`
  
