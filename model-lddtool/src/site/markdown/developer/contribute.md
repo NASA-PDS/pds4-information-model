@@ -46,5 +46,5 @@ For this tutorial, we are using test data from [github753.tar.gz](https://github
   * Via Eclipse: right-click `Run as` -> `Cucumber Feature`
   * Via Maven (replace with applicable tag for this build):
     * bash: `mvn clean test -Dcucumber.filter.tags='@my_tutorial'`
-    * tcsh: `mvn clean test  -Dcucumber.filter.tags='@my_tutorial'`
+    * tcsh and Windows: `mvn clean test  -Dcucumber.filter.tags="@my_tutorial"`
  
