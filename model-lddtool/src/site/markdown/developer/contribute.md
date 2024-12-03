@@ -24,7 +24,6 @@ For this tutorial, we are using test data from [github753.tar.gz](https://github
 * Create new "test suite" for this tutorial by copy pasting these lines to the bottom of the file and renaming `@v15.2.x` to `@my_tutorial`:
 ```
     @my_tutorial
-#note: 'mvn test' choks if problem enum is blank or "" even if 0 messages
     Examples: 
 | testId | testName | testDir     | messageCount | messageText         | problemEnum        | commandArgs                                             | ingestLDDFileName         |
 ```
