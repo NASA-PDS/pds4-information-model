@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-12-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-12-07)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...«unknown»)
 
