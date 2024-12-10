@@ -343,9 +343,15 @@ public class DMDocument extends Object {
    */
   public static void run(String[] args) throws Throwable {
 	  init();
-	  
-	    // get the command line arguments using argparse4j
-	    Namespace argparse4jNamespace = getArgumentParserNamespace(args);
+
+	  // get the command line arguments using argparse4j
+	  Namespace argparse4jNamespace = null;
+	  try {
+		  argparse4jNamespace = getArgumentParserNamespace(args);
+	  } catch (Throwable e) {
+		  return;
+	  }
+
 	    String nameSpaceDataDirPath = null;
 
 	    // process first set of arguments
@@ -1142,7 +1148,7 @@ public class DMDocument extends Object {
     registryAttr.add("version_id");
   }
 
-  static Namespace getArgumentParserNamespace(String args[]) throws ArgumentParserException {
+  static Namespace getArgumentParserNamespace(String args[]) throws Throwable {
     parser = ArgumentParsers.newFor("LDDTool").build().defaultHelp(true).version(LDDToolVersionId)
         .description("LDDTool process control:");
 
@@ -1226,13 +1232,12 @@ public class DMDocument extends Object {
     try {
       namespace = parser.parseArgs(args);
     } catch (HelpScreenException e) {
-      System.out.println(">>  INFO Exit(0)");
-      parser.printHelp();
+      // the library prints the help message internally so no need for parser.printHelp()
       throw e;
     } catch (ArgumentParserException e) {
       System.out.println(">>  ERROR Invalid argument list");
+      lMessageFatalErrorCount++;
       parser.printHelp();
-      System.out.println(">>  INFO  Exit(1)");
       throw e;
     }
     return namespace;
