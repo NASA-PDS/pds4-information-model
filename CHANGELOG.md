@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-12-07)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-12-10)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...«unknown»)
 
@@ -11,8 +11,13 @@
 
 **Defects:**
 
+- lddtool -h returns expected information twice and then error messages  [\#849](https://github.com/NASA-PDS/pds4-information-model/issues/849) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool -v creates/overwrites output directory and files [\#848](https://github.com/NASA-PDS/pds4-information-model/issues/848) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
-- Download links broken for lddtool for online documentation  [\#846](https://github.com/NASA-PDS/pds4-information-model/issues/846) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- Download links broken for lddtool for online documentation  [\#846](https://github.com/NASA-PDS/pds4-information-model/issues/846) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+**Other closed issues:**
+
+- Migrate initial prototype from Jupyter to a new Github repo [\#389](https://github.com/NASA-PDS/pds4-information-model/issues/389)
 
 ## [v15.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.3) (2024-11-20)
 
