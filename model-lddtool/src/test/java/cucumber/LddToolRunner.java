@@ -34,12 +34,14 @@ public class LddToolRunner {
             File f = new File(outDirectory);
             f.mkdirs();
             DMDocument.setOutputDirPath(outDirectory + File.separatorChar);
-            DMDocument.run(args);
+            boolean success = DMDocument.run(args);
+
             output = outContent.toString();
-        } catch (Exception e) {
-            // Throw an exception if an error occurs while setting the SecurityManager
-        	e.printStackTrace();
-            throw new Exception("An error occurred while setting the SecurityManager in runLddTool", e);
+
+            if (!success) {
+              throw new RuntimeException(
+                  "LDDTool failed execution. See execution logs: \n" + output);
+            }
         } finally {
             restoreStreams(); // Restore the original System.out and System.err
             clearStreams(); // Clear the captured output and error streams

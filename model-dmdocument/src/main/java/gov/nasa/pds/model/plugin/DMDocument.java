@@ -324,9 +324,9 @@ public class DMDocument extends Object {
    * @throws Throwable
    */
   public static void main(String[] args) throws Throwable {
-	  run(args);
+	boolean success = run(args);
     
-    if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+    if (!success) {
       System.out.println("");
       System.out.println(">>  INFO Exit(1)");
       System.exit(1);
@@ -341,7 +341,7 @@ public class DMDocument extends Object {
  * @throws Throwable 
  * @throws IOException 
    */
-  public static void run(String[] args) throws Throwable {
+  public static boolean run(String[] args) throws Throwable {
 	  init();
 
 	  // get the command line arguments using argparse4j
@@ -349,7 +349,7 @@ public class DMDocument extends Object {
 	  try {
 		  argparse4jNamespace = getArgumentParserNamespace(args);
 	  } catch (Throwable e) {
-		  return;
+		  return false;
 	  }
 
 	    String nameSpaceDataDirPath = null;
@@ -469,23 +469,10 @@ public class DMDocument extends Object {
       if (configInputStr != null) {
         buildDate = configInputStr;
       }
-//	    } catch (FileNotFoundException ex) {
-//	      // file does not exist
-//	      Utility.registerMessage("3>error Configuration file does not exist. [config.properties]");
-//	    } catch (IOException ex) {
-//	      // I/O error
-//	      Utility.registerMessage("3>error Configuration file IO Exception. [config.properties]");
-//	    } finally {
-//	    	try {
-//	    		reader.close();
-//	    	} catch (IOException|NullPointerException e) {
-//	    		// Do nothing
-//	    	}
-//	    }
 
 	    // process second set of arguments; exit if return=false
 	    if (! processArgumentParserNamespacePhase2(argparse4jNamespace))
-	    	return;
+	    	return false;
 
 	    // check the files
 	    checkRequiredFiles();
@@ -556,7 +543,14 @@ public class DMDocument extends Object {
 	    Utility.registerMessage("0>info Next UID: " + DOMInfoModel.getNextUId());
 	    printErrorMessages();
 	    
+	    boolean success = true;
+	    if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+	      success = false;
+	    }
+	    
 	    reset();
+	    
+	    return success;
   }
 
   /**********************************************************************************************************

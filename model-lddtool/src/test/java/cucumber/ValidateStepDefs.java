@@ -18,6 +18,8 @@ import gov.nasa.pds.model.plugin.util.Utility;
 import gov.nasa.pds.tools.validate.CrossLabelFileAreaReferenceChecker;
 import gov.nasa.pds.tools.validate.ProblemType;
 import gov.nasa.pds.validate.ValidateLauncher;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -57,15 +59,22 @@ public class ValidateStepDefs {
 
   // The values of these variables should come from a row in the table in the
   // feature file.
+  private String testId;
   private String testName;
   private String testDir;
+  private String pds4Version;
   private int messageCount;
-  private String messageText;
   private String problemEnum;
   private String resourceDir;
   private String reportDir;
   private String commandArgs;
   private String refOutputValue;
+
+
+  @Before
+  public void before(Scenario scenario) {
+    this.testId = scenario.getName();
+  }
 
   /**
    * @throws java.lang.Exception
@@ -78,7 +87,6 @@ public class ValidateStepDefs {
     this.refOutputValue = DEFAULT_REPORT_FILENAME;
     this.reportDir = TestConstants.TEST_OUT_DIR;
     this.resourceDir = TestConstants.TEST_DATA_DIR;
-
 
   }
 
@@ -167,18 +175,22 @@ public class ValidateStepDefs {
     this.reportDir = this.reportDir + File.separatorChar + testDir;
   }
 
-  @Given("expected error\\/warning count {int} with expected error\\/warning text of {string} with expected error from ValidateProblems enumeration {string}")
-  public void with_test_property(int messageCount, String messageText, String problemEnum) {
+  @Given("expected error\\/warning count {int} with expected error from ValidateProblems enumeration {string}")
+  public void with_test_property(int messageCount, String problemEnum) {
     this.messageCount = messageCount;
-    this.messageText = messageText;
     this.problemEnum = problemEnum;
     LOG.debug("with_test_property:messageCount [" + Integer.toString(messageCount)
-        + "], messageText [" + messageText + "]");
+        + "]");
   }
 
-  @Given("the latest PDS4 schema\\/schematron is generated")
-  public void generate_pds4_schema() throws Exception {
-    StepDefs.exec_lddtool(DEFAULT_CORE_ARGS,
+  @Given("the latest PDS4 schema\\/schematron is generated for IM Version {string}")
+  public void generate_pds4_schema(String pds4Version) throws Exception {
+    String lddtoolArgs = DEFAULT_CORE_ARGS;
+    this.pds4Version = pds4Version;
+    if (!this.pds4Version.equals("")) {
+      lddtoolArgs += " -V " + this.pds4Version;
+    }
+    StepDefs.exec_lddtool(lddtoolArgs,
         TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
   }
 
@@ -187,8 +199,13 @@ public class ValidateStepDefs {
     if (!ingestLDDFilename.equals("")) {
       String ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + this.testDir
           + File.separator + ingestLDDFilename;
+
+      String lddtoolArgs = DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath;
+      if (!this.pds4Version.equals("")) {
+        lddtoolArgs += " -V " + this.pds4Version;
+      }
       LOG.info("Generating LDD from " + ingestLDDFilename);
-      StepDefs.exec_lddtool(DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath,
+      StepDefs.exec_lddtool(lddtoolArgs,
           TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
     }
   }
@@ -244,7 +261,9 @@ public class ValidateStepDefs {
               + this.refOutputValue);
 
       // Compare the count from this test with the this.messageCount from test table.
-      assertEquals(this.messageCount, count, this.messageText + " " + reportJson.toString());
+      assertEquals(this.messageCount, count,
+          this.testId + " failed. " + "Expected: " + this.messageCount
+              + " errors/warnings. Actual: " + count);
       assertEquals(0, this.getMessageCountBasedOnProblemType("INTERNAL_ERROR,ARRAY_INTERNAL_ERROR,TABLE_INTERNAL_ERROR", reportJson),
           "Required that internal errors do not occur.");
     } catch (ExitException e) {
