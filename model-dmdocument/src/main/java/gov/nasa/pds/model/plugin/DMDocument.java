@@ -1152,10 +1152,10 @@ public class DMDocument extends Object {
     parser = ArgumentParsers.newFor("LDDTool").build().defaultHelp(true).version(LDDToolVersionId)
         .description("LDDTool process control:");
 
-    parser.addArgument("-p", "--PDS4 processing").dest("p").type(Boolean.class).nargs(1)
+    parser.addArgument("-p", "--pds4").dest("p").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Set the context to PDS4");
 
-    parser.addArgument("-l", "--LDD").dest("l").type(Boolean.class).nargs(1)
+    parser.addArgument("-l", "--ldd").dest("l").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Process one or more local data dictionary input files");
 
@@ -1163,17 +1163,17 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Omit the term \"mission\" from the namespace of a dictionary");
 
-    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
+    parser.addArgument("-D", "--datadict").dest("D").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
 
-    parser.addArgument("-J", "--JSON").dest("J").type(Boolean.class).nargs(1)
+    parser.addArgument("-J", "--json").dest("J").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the data dictionary to a JSON formatted file");
 
     parser.addArgument("-m", "--merge").dest("m").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Generate file to merge the local dictionary into the master dictionary");
 
-    parser.addArgument("-M", "--Mission").dest("M").type(Boolean.class).nargs(1)
+    parser.addArgument("-M", "--mission").dest("M").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help(
             "This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool Usage document for more information on how to provide this information.");
 
@@ -1181,46 +1181,29 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Write nuance property maps to LDD schema annotation in JSON");
 
-    parser.addArgument("-N", "--Namespace").dest("N").type(Boolean.class).nargs(1)
+    parser.addArgument("-N", "--namespace").dest("N").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Print the list of configured namespaces to the log");
 
-    /*
-     * parser.addArgument("-t", "--Annotate") .dest("t") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Annotate Definition");
-     */
-
-    /*
-     * parser.addArgument("-a", "--Attr Element") .dest("a") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Element Definition (Attribute)");
-     */
-
-	parser.addArgument("-1", "--IM Spec").dest("1").type(Boolean.class).nargs(1)
+	parser.addArgument("-1", "--im_specification").dest("1").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Write the Information Model Specification for an LDD");
 	
-    parser.addArgument("-T", "--TermMap").dest("T").type(Boolean.class).nargs(1)
+    parser.addArgument("-T", "--termmap").dest("T").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Terminological mapping to alternate names");
 
-    parser.addArgument("-O", "--OWL/RDF/TTL") .dest("O") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-O", "--ttl") .dest("O") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("OWL/RDF/TTL output in TTL format (IM Classification)");
 
-    parser.addArgument("-o", "--OWL/RDF") .dest("o") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-o", "--rdf") .dest("o") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("OWL/RDF output in RDF format (IM Export)");
 
-    parser.addArgument("-C", "--Custom") .dest("C") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-C", "--custom") .dest("C") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("Customized processing and reporting");
-
-     // The following are hidden and temporarily deprecated
-
-    /*
-     * parser.addArgument("-f", "--Check") .dest("f") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Check File Name");
-     */
 
     parser.addArgument("-v", "--version").dest("v").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
-    parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
+    parser.addArgument("-V", "--pds4_version").dest("V").type(String.class)
         .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
