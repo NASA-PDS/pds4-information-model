@@ -1,8 +1,20 @@
 # Changelog
 
-## [release/15.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.2.4) (2025-01-06)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-08)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...release/15.2.4)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
+
+**Requirements:**
+
+- As a user, I want to generate the core PDS4 IM for a specific version of PDS4 [\#860](https://github.com/NASA-PDS/pds4-information-model/issues/860)
+
+**Improvements:**
+
+- Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
+
+## [v15.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.4) (2025-01-07)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...v15.2.4)
 
 **Improvements:**
 
