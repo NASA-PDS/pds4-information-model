@@ -7050,24 +7050,6 @@
       <minimum_occurrences>0</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
-    <DD_Association>
-      <identifier_reference>img.Exposure</identifier_reference>
-      <reference_type>component_of</reference_type>
-      <minimum_occurrences>0</minimum_occurrences>
-      <maximum_occurrences>1</maximum_occurrences>
-    </DD_Association>
-    <DD_Association>
-      <identifier_reference>img.Subframe</identifier_reference>
-      <reference_type>component_of</reference_type>
-      <minimum_occurrences>0</minimum_occurrences>
-      <maximum_occurrences>1</maximum_occurrences>
-    </DD_Association>
-    <DD_Association>
-      <identifier_reference>img.High_Dynamic_Range</identifier_reference>
-      <reference_type>component_of</reference_type>
-      <minimum_occurrences>0</minimum_occurrences>
-      <maximum_occurrences>1</maximum_occurrences>
-    </DD_Association>
   </DD_Class>
   <DD_Class>  <name>SuperCam_Ancillary_Header</name>
     <version_id>1.0</version_id>

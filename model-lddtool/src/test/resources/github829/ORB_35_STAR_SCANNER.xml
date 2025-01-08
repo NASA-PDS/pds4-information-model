@@ -6,7 +6,7 @@
 
 <Product_Observational
    xmlns="http://pds.nasa.gov/pds4/pds/v1"
-   xmlns:hst="http://pds.nasa.gov/pds4/mission/lucy/v1"
+   xmlns:hst="http://pds.nasa.gov/pds4/mission/hst/v1"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="
       http://pds.nasa.gov/pds4/pds/v1
@@ -145,7 +145,7 @@
               <hst:repeat_exposure_count>1</hst:repeat_exposure_count>
               <hst:subarray_flag>false</hst:subarray_flag>
               <hst:binning_mode>1</hst:binning_mode>
-              <hst:plate_scale unit="mrad/pixel">4.2e-05</hst:plate_scale> . <!--RChen new value in 1M00-->
+              <hst:plate_scale unit="mrad/pixel">4.2e-05</hst:plate_scale> <!--RChen new value in 1M00-->
             </hst:Operational_Parameters>
             <hst:Processing_Parameters>
               <hst:mast_pipeline_version_id>OPUS 2008_5c</hst:mast_pipeline_version_id>
