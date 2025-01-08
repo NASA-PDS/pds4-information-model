@@ -23,6 +23,7 @@
 
 **Defects:**
 
+- Exit codes no longer working as expected [\#857](https://github.com/NASA-PDS/pds4-information-model/issues/857) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Issue trying to generate schemas 1E00 and 1D00 [\#852](https://github.com/NASA-PDS/pds4-information-model/issues/852) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - lddtool -h returns expected information twice and then error messages  [\#849](https://github.com/NASA-PDS/pds4-information-model/issues/849) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool -v creates/overwrites output directory and files [\#848](https://github.com/NASA-PDS/pds4-information-model/issues/848) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
