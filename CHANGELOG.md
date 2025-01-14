@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-08)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-14)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -11,6 +11,10 @@
 **Improvements:**
 
 - Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
+
+**Other closed issues:**
+
+- Update cucumber test code to support testing of \#852 [\#856](https://github.com/NASA-PDS/pds4-information-model/issues/856)
 
 ## [v15.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.4) (2025-01-07)
 
