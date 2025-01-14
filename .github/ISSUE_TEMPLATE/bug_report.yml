@@ -47,7 +47,6 @@ body:
         2.
         3.
         ...
-      render: bash
  
   - type: textarea
     id: environment
@@ -58,7 +57,6 @@ body:
         - Version of this software [e.g. vX.Y.Z]
         - Operating System: [e.g. MacOSX with Docker Desktop vX.Y]
         ...
-      render: bash
 
   - type: textarea
     id: version
