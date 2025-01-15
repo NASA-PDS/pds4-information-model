@@ -254,7 +254,7 @@ public class GetDOMModel extends Object {
       // phase one - parse the Ingest_LDD
       for (Iterator<SchemaFileDefn> i = DMDocument.LDDSchemaFileSortArr.iterator(); i.hasNext();) {
         SchemaFileDefn lSchemaFileDefn = i.next();
-        LDDDOMParser lLDDDOMParser = new LDDDOMParser();
+        LDDDOMParser lLDDDOMParser = new LDDDOMParser(DMDocument.masterDOMInfoModel.getInitDOMClassMap(), DMDocument.masterDOMInfoModel.getInitDOMAttrMap(), DMDocument.masterDOMInfoModel.getInitDOMPropArr(), DMDocument.masterDOMInfoModel.getInitDOMRuleMap());
         DMDocument.LDDDOMModelArr.add(lLDDDOMParser);
         DMDocument.primaryLDDDOMModel = lLDDDOMParser; // last in array is the primary.
         lLDDDOMParser.gSchemaFileDefn = lSchemaFileDefn; // the schema definition file for this
@@ -591,6 +591,21 @@ public class GetDOMModel extends Object {
       return valarr.get(0);
     }
     return null;
+  }
+  
+  public void dumpMaster (String title) {
+	    // 555 debug
+	    ArrayList<DOMClass> dispClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());
+	    ArrayList<String> dispClassRDFIdArr = new ArrayList<>();
+	    ArrayList<String> dispClassIdArr = new ArrayList<>();
+	    for (DOMClass lClass : dispClassArr) {
+	      if (lClass.isFromLDD) {
+	    	  dispClassRDFIdArr.add(lClass.rdfIdentifier);
+	    	  dispClassIdArr.add(lClass.identifier);
+	      }
+	    }
+	    System.out.println("\ndebug DMDocument - " + title + " - dispClassRDFIdArr:" + dispClassRDFIdArr);
+	    System.out.println("debug DMDocument - " + title + " - dispClassIdArr:" + dispClassIdArr);    
   }
 
   public void printInst(HashMap<String, InstDefn> instMap) throws Throwable {
