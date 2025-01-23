@@ -166,7 +166,7 @@ public class StepDefs {
 
         // Check if the directory exists and is a valid directory
         if (!directory.exists() || !directory.isDirectory()) {
-            throw new IllegalArgumentException("The provided path is not a valid directory: " + directoryPath);
+            throw new FileNotFoundException("The provided path is not a valid directory: " + directoryPath);
         }
 
         // Filter the files based on the extension
@@ -175,7 +175,7 @@ public class StepDefs {
 
         // Check if the file is found
         if (matchingFiles == null || matchingFiles.length == 0) {
-            throw new FileNotFoundException("No file found with extension: " + fileExtension);
+        	throw new FileNotFoundException("No file found with extension: " + fileExtension);
         }
 
         // Check if multiple files are found
@@ -225,8 +225,8 @@ public class StepDefs {
     public void test_directories_and_command_arguments(String inDir, String outDir, String commandArgs) {
         inputDirectory = inDir;
         outputDirectory = outDir;
-        LOG.debug("inputDirectory: " + inputDirectory);
-        LOG.debug("outputDirectory: " + outputDirectory);
+        LOG.debug("inputDirectory: {}", inputDirectory);
+        LOG.debug("outputDirectory: {}", outputDirectory);
         this.commandArgs = commandArgs;
     }
 
@@ -235,94 +235,119 @@ public class StepDefs {
      */
     @When("lddtool is run")
     public void run_lddtool() {
-    	exec_lddtool(this.commandArgs, this.outputDirectory);
+    	exec_lddtool(this.commandArgs, outputDirectory);
     }
 
     /**
-     * This method is called after each test case to compare the actual output with the expected output
+     * This method is called after each test case to compare the actual output with the expected
+     * output
+     * 
      * @param assertType the type of assertion to perform
      * @param output the expected output
      * @param actualOutputFile the source of the actual output
      */
     @Then("the produced output from lddtool command should {string} {string} in {string} file")
-    public void output_should_match_expected_response(String assertType, String output, String actualOutputFile) {
-        String actualResponse = null;
+    public void output_should_match_expected_response(String assertType, String output,
+        String actualOutputFile) {
+      String actualResponse = null;
 
-        // If the actual output file starts with a dot, find the file with the specified extension in the output directory
-        if (actualOutputFile.startsWith(".")) {
-            try { 
-                actualOutputFile = findFileByExtension(this.outputDirectory, actualOutputFile);
-            } catch (Exception ex) {
-                throw new RuntimeException("Failed to find file", ex);
-            }
-        }
-
-        // Read the content of the actual output file
-        actualOutputFile = this.outputDirectory + "/" + actualOutputFile;
+      // If the actual output file starts with a dot, find the file with the specified extension in
+      // the output directory
+      if (actualOutputFile.startsWith(".")) {
         try {
-            actualResponse = readFileContent(actualOutputFile);
-        } catch (IOException ex) {
-            throw new RuntimeException("Failed to read file", ex);
+          actualOutputFile = findFileByExtension(outputDirectory, actualOutputFile);
+        } catch (Exception ex) {
+          throw new RuntimeException("Failed to find file", ex);
         }
+      }
 
-        // Perform the assertion based on the assertType
-        switch (assertType) {
-            case "contain":
-                assertTrue(actualResponse.contains(output),
-                "Output: " + output + "\nActual response:\n" + actualResponse);
-                break;
-            case "not contain":
-                assertFalse(actualResponse.contains(output),
-                "Output: " + output + "\nActual response:\n" + actualResponse);
-                break;
-            default:
-                throw new RuntimeException("Invalid assert type: " + assertType);
-        }
+      // Read the content of the actual output file
+      actualOutputFile = Paths.get(outputDirectory, actualOutputFile).toString();
+      try {
+        actualResponse = readFileContent(actualOutputFile);
+      } catch (IOException ex) {
+        throw new RuntimeException("Failed to read file", ex);
+      }
 
-        actualResponse = null;
-        actualOutputFile = null;
-        output = null;
+      // Perform the assertion based on the assertType
+      switch (assertType) {
+        case "contain":
+          assertTrue(actualResponse.contains(output),
+              "Output: " + output + "\nActual response:\n" + actualResponse);
+          break;
+        case "not contain":
+          assertFalse(actualResponse.contains(output),
+              "Output: " + output + "\nActual response:\n" + actualResponse);
+          break;
+        default:
+          throw new RuntimeException("Invalid assert type: " + assertType);
+      }
+
+      actualResponse = null;
+      actualOutputFile = null;
+      output = null;
     }
 
     /**
-     * This method is called after each test case to compare the actual-generated file with the expected file
+     * This method is called after each test case to compare the actual-generated file with the
+     * expected file
+     * 
      * @param actualOutputFile the source of the actual output
      * @param expectedOutputFile the source of the expected output
      * @param excludeStrings the lines to exclude from the comparison
      */
     @Then("the contents of file {string} should match {string} except for lines containing comma-separated strings in {string}")
-    public void output_should_match_expected_file(String actualOutputFile, String expectedOutputFile, String excludeStrings) {
-        List<String> actualLines;
-        List<String> expectedLines;
-        List<String> excludeList = Arrays.asList(excludeStrings.split(",")); // convert the excludeStrings to a list of strings
-        
-        // If the actual output file starts with a dot, find the file with the specified extension in the output directory
-        if (actualOutputFile.startsWith(".")) {
-            try { 
-                actualOutputFile = findFileByExtension(this.outputDirectory, actualOutputFile);
-            } catch (Exception ex) {
-                throw new RuntimeException("Failed to find file", ex);
-            }
-        }
-        
-        // Read the content of the actual and expected output files by line
-        try {
-            actualLines = Files.readAllLines(Paths.get(outputDirectory, actualOutputFile));
-            expectedLines = Files.readAllLines(Paths.get(inputDirectory, expectedOutputFile));
-        } catch (IOException ex) {
-            throw new RuntimeException("Failed to read file", ex);
-        }
+    public void output_should_match_expected_file(String actualOutputFile,
+        String expectedOutputFile, String excludeStrings) throws IOException {
+      List<String> actualLines = null;
+      List<String> expectedLines = null;
+      List<String> excludeList = null;
 
+      if (!excludeStrings.equals("")) {
+        excludeList = Arrays.asList(excludeStrings.split(",")); // convert the excludeStrings to a
+                                                                // list of strings
+      }
+
+      // Check if the comparison is for the core IM, and if so, append /export to the actual path
+      String pattern = "(PDS4_PDS_[A-Z0-9]+\\.(xsd|sch|JSON)|dd.*\\.pins)";
+      if (expectedOutputFile.matches(pattern)) {
+        outputDirectory = Paths.get(outputDirectory, "export").toString();
+      }
+
+      // If the actual output file starts with a dot, find the file with the specified extension in
+      // the output directory
+      if (actualOutputFile.startsWith(".")) {
+        try {
+          actualOutputFile = findFileByExtension(outputDirectory, actualOutputFile);
+        } catch (Exception ex) {
+          throw new RuntimeException("Failed to find file", ex);
+        }
+      }
+
+      // Read the content of the actual and expected output files by line
+      try {
+        actualLines =
+            Files.readAllLines(Paths.get(outputDirectory, actualOutputFile).toAbsolutePath());
+        expectedLines =
+            Files.readAllLines(Paths.get(inputDirectory, expectedOutputFile).toAbsolutePath());
+      } catch (IOException ex) {
+        throw new RuntimeException("Failed to read file", ex);
+      }
+
+      if (excludeList != null) {
         // Filter the lines based on the excludeStrings
         actualLines = filterLines(actualLines, excludeList);
+        System.out.println(actualLines.size());
         expectedLines = filterLines(expectedLines, excludeList);
+      }
 
-        // Perform the assertion
-        assertEquals(expectedLines, actualLines);
+      // Perform the assertion
+      assertEquals(expectedLines, actualLines);
 
-        actualLines = null;
-        expectedLines = null;
-        excludeList = null;
+
+      actualLines = null;
+      expectedLines = null;
+      excludeList = null;
     }
     
     public static void exec_lddtool(String commandArgs, String outputDir) {
