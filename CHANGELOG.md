@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-14)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -10,6 +10,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "ama" [\#868](https://github.com/NASA-PDS/pds4-information-model/issues/868)
 - Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
 
 **Other closed issues:**
