@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-23)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-28)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -12,6 +12,10 @@
 
 - \[namespace-registry\] add new namespace "ama" [\#868](https://github.com/NASA-PDS/pds4-information-model/issues/868)
 - Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
+
+**Defects:**
+
+- LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
