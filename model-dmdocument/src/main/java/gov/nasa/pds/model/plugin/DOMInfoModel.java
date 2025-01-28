@@ -69,6 +69,12 @@ public abstract class DOMInfoModel extends Object {
   static ArrayList<String> masterMetaAttribute;
 
   // ==========================================================
+  
+  // LDDParser classes
+  private TreeMap<String, DOMClass> initDOMClassMap = new TreeMap<>();
+  private TreeMap<String, DOMAttr> initDOMAttrMap = new TreeMap<>();
+  private ArrayList<DOMProp> initDOMPropArr = new ArrayList<>();
+  private TreeMap<String, DOMRule> initDOMRuleMap = new TreeMap<>();
 
   // global classes
   static ArrayList<DOMClass> masterDOMClassArr = new ArrayList<>();
@@ -577,7 +583,53 @@ public abstract class DOMInfoModel extends Object {
   /**********************************************************************************************************
    * getters and setters
    ***********************************************************************************************************/
+  
+  // getters and setters for the raw LDDParser classes, attributes, properties, and rules
+  public TreeMap<String, DOMClass> getInitDOMClassMap() {
+    return initDOMClassMap;
+  }
+  
+  public ArrayList <DOMClass> getInitDOMClassArr() {
+    return new ArrayList <> (getInitDOMClassMap().values());
+  }
+  
+  public TreeMap<String, DOMAttr> getInitDOMAttrMap() {
+    return initDOMAttrMap;
+  }
+  
+  public ArrayList <DOMAttr> getInitDOMAttrArr() {
+    return new ArrayList <> (getInitDOMAttrMap().values());
+  }
+  
+  public ArrayList <DOMProp> getInitDOMPropArr() {
+    return initDOMPropArr;
+  }
+  
+  public TreeMap<String, DOMRule> getInitDOMRuleMap() {
+    return initDOMRuleMap;
+  }
+  
+  public ArrayList <DOMRule> getInitDOMRuleArr() {
+    return new ArrayList <> (getInitDOMRuleMap().values());
+  }
 
+  public void setInitDOMClassMap(String id, DOMClass lDOMClass) {
+    initDOMClassMap.put(id, lDOMClass);
+  }  
+
+  public void setInitDOMAttrMap(String id, DOMAttr lDOMAttr) {
+    initDOMAttrMap.put(id, lDOMAttr);
+  }  
+
+  public void setInitDOMPropArr(DOMProp lDOMProp) {
+    initDOMPropArr.add(lDOMProp);
+  }  
+
+  public void setInitDOMRuleMap(String id, DOMRule lDOMRule) {
+    initDOMRuleMap.put(id, lDOMRule);
+  }
+  
+  // getters and setters to be refactored
   static public ArrayList<DOMClass> getMasterDOMClassArr() {
     return masterDOMClassArr;
   }
