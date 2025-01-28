@@ -1458,6 +1458,16 @@ public class DMDocument extends Object {
   public static String getOutputDirPath() {
     return outputDirPath;
   }
+  
+  public static SchemaFileDefn getMasterPDSSchemaFileDefn() {
+    return masterPDSSchemaFileDefn;
+  }
+  
+  public static String getMasterNameSpaceIdNCLC() {
+    return masterNameSpaceIdNCLC;
+  }
+  
+  // masterNameSpaceIdNCLC
 
   public static void setOutputDirPath(String outputDirPath) {
     DMDocument.outputDirPath = outputDirPath;

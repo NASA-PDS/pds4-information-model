@@ -54,8 +54,8 @@ class WriteDOMDocBook extends Object {
   ArrayList<AttrClassificationDefnDOM> attrClassificationArr;
 
   // Miscellaneous
-  String writtenNamespaceIds = DMDocument.masterPDSSchemaFileDefn.identifier + " v"
-      + DMDocument.masterPDSSchemaFileDefn.versionId;
+  String writtenNamespaceIds = DMDocument.getMasterPDSSchemaFileDefn().identifier + " v"
+      + DMDocument.getMasterPDSSchemaFileDefn().versionId;
 
   // Insert zero-width space characters (&#x200B;) in text strings; form break points for the lines.
 
@@ -68,7 +68,7 @@ class WriteDOMDocBook extends Object {
     if (!DMDocument.LDDToolFlag) {
       // only the common dictionary (pds)
       lSchemaFileDefnToWriteArr = new ArrayList<>();
-      lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
+      lSchemaFileDefnToWriteArr.add(DMDocument.getMasterPDSSchemaFileDefn());
     } else {
       // intialize array to capture namespaces to be written
       ArrayList<String> lDDNamespaceArr = new ArrayList<>();
@@ -76,9 +76,9 @@ class WriteDOMDocBook extends Object {
 
       // first get the common dictionary
       ArrayList<SchemaFileDefn> tempSchemaFileDefnToWriteArr = new ArrayList<>();
-      tempSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
-      lSchemaFileDefnToWriteArr.add(DMDocument.masterPDSSchemaFileDefn);
-      lDDNamespaceArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
+      tempSchemaFileDefnToWriteArr.add(DMDocument.getMasterPDSSchemaFileDefn());
+      lSchemaFileDefnToWriteArr.add(DMDocument.getMasterPDSSchemaFileDefn());
+      lDDNamespaceArr.add(DMDocument.getMasterPDSSchemaFileDefn().nameSpaceIdNC);
 
       // now add all the LDDs that are stacked for this run
       tempSchemaFileDefnToWriteArr = new ArrayList<>(DMDocument.LDDSchemaFileSortMap.values());
@@ -91,8 +91,7 @@ class WriteDOMDocBook extends Object {
     }
 
     // System.out.println("");
-    for (Iterator<SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
-      SchemaFileDefn lSchemaFileDefn = i.next();
+    for (SchemaFileDefn lSchemaFileDefn: lSchemaFileDefnToWriteArr) {
       classClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC,
           new ClassClassificationDefnDOM(lSchemaFileDefn.nameSpaceIdNC));
       attrClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC,
@@ -113,8 +112,7 @@ class WriteDOMDocBook extends Object {
 
     // classify attributes and classes
     // get the class classification maps
-    for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
+    for (DOMClass lClass: DOMInfoModel.getMasterDOMClassArr()) {
       if (lClass.isInactive) {
         continue;
       }
@@ -122,15 +120,13 @@ class WriteDOMDocBook extends Object {
     }
 
     // get the classification arrays
-    for (Iterator<ClassClassificationDefnDOM> i = classClassificationArr.iterator(); i.hasNext();) {
-      ClassClassificationDefnDOM lClassClassificationDefn = i.next();
+    for (ClassClassificationDefnDOM lClassClassificationDefn: classClassificationArr) {
       lClassClassificationDefn.classArr =
           new ArrayList<>(lClassClassificationDefn.classMap.values());
     }
 
     // get the attribute classification maps
-    for (Iterator<DOMAttr> i = DOMInfoModel.masterDOMAttrArr.iterator(); i.hasNext();) {
-      DOMAttr lAttr = i.next();
+    for (DOMAttr lAttr: DOMInfoModel.getMasterDOMAttrArr()) {
       if (lAttr.isInactive) {
         continue;
       }
@@ -138,8 +134,7 @@ class WriteDOMDocBook extends Object {
     }
 
     // get the classification arrays
-    for (Iterator<AttrClassificationDefnDOM> i = attrClassificationArr.iterator(); i.hasNext();) {
-      AttrClassificationDefnDOM lAttrClassificationDefn = i.next();
+    for (AttrClassificationDefnDOM lAttrClassificationDefn: attrClassificationArr) {
       lAttrClassificationDefn.attrArr = new ArrayList<>(lAttrClassificationDefn.attrMap.values());
     }
 
@@ -154,7 +149,7 @@ class WriteDOMDocBook extends Object {
         Utility.registerMessage("0>info " + " - namespace: " + lId + "   size: "
             + lClassClassificationDefnDOM.classArr.size());
         if (lClassClassificationDefnDOM.classArr.size() > 0) {
-          if (!(lId.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
+          if (!(lId.compareTo(DMDocument.getMasterNameSpaceIdNCLC()) == 0
               || lId.compareTo("pds.product") == 0 || lId.compareTo("pds.ops") == 0
               || lId.compareTo("pds.support") == 0 || lId.compareTo("pds.other") == 0
               || lId.compareTo("other") == 0)) {
@@ -191,7 +186,7 @@ class WriteDOMDocBook extends Object {
     ClassClassificationDefnDOM lClassClassificationDefn =
         classClassificationMap.get(lClass.nameSpaceIdNC);
     if (lClassClassificationDefn != null) {
-      if (lClass.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
+      if (lClass.nameSpaceIdNC.compareTo(DMDocument.getMasterNameSpaceIdNCLC()) == 0) {
         // i.e., the Common directory, pds
         if (lClass.steward.compareTo("ops") == 0) {
           lClassClassificationDefn = classClassificationMap.get("pds.ops");
@@ -236,7 +231,7 @@ class WriteDOMDocBook extends Object {
   // print DocBook File
   public void writeDocBook(SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
     String lFileName = lSchemaFileDefn.relativeFileSpecDDDocXML;
-    String lLabelVersionId = "_" + DMDocument.masterPDSSchemaFileDefn.lab_version_id;
+    String lLabelVersionId = "_" + DMDocument.getMasterPDSSchemaFileDefn().lab_version_id;
     String lDOMLabelVersionId = lLabelVersionId;
     lFileName = DMDocument.replaceString(lFileName, lLabelVersionId, lDOMLabelVersionId);
     PrintWriter prDocBook =
@@ -244,13 +239,12 @@ class WriteDOMDocBook extends Object {
     writeHeader(prDocBook);
 
     // write the Common dictionary
-    writeClassSection(DMDocument.masterNameSpaceIdNCLC, prDocBook);
-    writeAttrSection(DMDocument.masterNameSpaceIdNCLC, prDocBook);
+    writeClassSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
+    writeAttrSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
 
     // write the LDDs
-    for (Iterator<SchemaFileDefn> i = lSchemaFileDefnToWriteArr.iterator(); i.hasNext();) {
-      SchemaFileDefn lSchemaFileDefnToWrite = i.next();
-      if (lSchemaFileDefnToWrite.nameSpaceIdNCLC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0) {
+    for (SchemaFileDefn lSchemaFileDefnToWrite: lSchemaFileDefnToWriteArr) {
+      if (lSchemaFileDefnToWrite.nameSpaceIdNCLC.compareTo(DMDocument.getMasterNameSpaceIdNCLC()) == 0) {
         continue; // skip master namespace
       }
       ClassClassificationDefnDOM lClassClassificationDefn =
@@ -270,8 +264,8 @@ class WriteDOMDocBook extends Object {
     }
 
     // write the Data Types and Units
-    writeDataTypeSection(DMDocument.masterNameSpaceIdNCLC, prDocBook);
-    writeUnitsSection(DMDocument.masterNameSpaceIdNCLC, prDocBook);
+    writeDataTypeSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
+    writeUnitsSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
     writeFooter(prDocBook);
     prDocBook.close();
     return;
@@ -287,8 +281,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("        <chapter>");
       prDocBook.println("           <title>Product Classes in the common namespace.</title>");
       prDocBook.println("           <para>These classes define the products.</para>");
-      for (Iterator<DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-        DOMClass lClass = j.next();
+      for (DOMClass lClass: lClassClassificationDefn.classArr) {
         writeClass(lClass, prDocBook);
       }
       prDocBook.println("        </chapter>");
@@ -301,8 +294,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("           <title>Support classes in the common namespace.</title>");
       prDocBook.println(
           "           <para>The classes in this section are used by the product classes.</para>");
-      for (Iterator<DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-        DOMClass lClass = j.next();
+      for (DOMClass lClass: lClassClassificationDefn.classArr) {
         writeClass(lClass, prDocBook);
       }
       prDocBook.println("        </chapter>");
@@ -316,8 +308,7 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("        <chapter>");
         prDocBook.println("           <title>OPS catalog classes in the common namespace.</title>");
         prDocBook.println("           <para>These classes support operations. </para>");
-        for (Iterator<DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-          DOMClass lClass = j.next();
+        for (DOMClass lClass: lClassClassificationDefn.classArr) {
           writeClass(lClass, prDocBook);
         }
         prDocBook.println("        </chapter>");
@@ -340,8 +331,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId
         + " namespace.</title>");
     prDocBook.println("           <para>These classes comprise the namespace.</para>");
-    for (Iterator<DOMClass> j = lClassClassificationDefn.classArr.iterator(); j.hasNext();) {
-      DOMClass lClass = j.next();
+    for (DOMClass lClass: lClassClassificationDefn.classArr) {
       writeClass(lClass, prDocBook);
     }
     prDocBook.println("        </chapter>");
@@ -364,8 +354,7 @@ class WriteDOMDocBook extends Object {
         + " namespace.</title>");
     prDocBook.println("           <para>These attributes are used by the classes in the "
         + lAttrClassificationDefn.namespaceId + " namespace. </para>");
-    for (Iterator<DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-      DOMAttr lAttr = j.next();
+    for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
       writeAttr(lAttr, prDocBook);
     }
     prDocBook.println("        </chapter>");
@@ -427,8 +416,7 @@ class WriteDOMDocBook extends Object {
     lClassArr.add(lClass);
     lValueString = "";
     lValueDel = "";
-    for (Iterator<DOMClass> i = lClassArr.iterator(); i.hasNext();) {
-      DOMClass lHierClass = i.next();
+    for (DOMClass lHierClass: lClassArr) {
       lValueString += lValueDel + getClassLink(lHierClass);
       lValueDel = " :: ";
     }
@@ -440,8 +428,7 @@ class WriteDOMDocBook extends Object {
     // determine the type and number of class members (attributes and classes)
     int attrCount = 0, assocCount = 0;
     if (lClass.allAttrAssocArr != null) {
-      for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
-        DOMProp lProp = i.next();
+      for (DOMProp lProp: lClass.allAttrAssocArr) {
         if (lProp.isAttribute) {
           attrCount++;
         } else {
@@ -465,8 +452,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("                    <entry>" + getPrompt("Value") + "</entry>");
       prDocBook.println("                </row>");
 
-      for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-        DOMProp lProp = j.next();
+      for (DOMProp lProp: lClass.allAttrAssocArr) {
         if (!lProp.isAttribute) {
           continue;
         }
@@ -475,8 +461,7 @@ class WriteDOMDocBook extends Object {
         lValueDel = "";
         if (!(lAttr.domPermValueArr == null || lAttr.domPermValueArr.size() == 0)) {
           lValueString = "";
-          for (Iterator<DOMProp> k = lAttr.domPermValueArr.iterator(); k.hasNext();) {
-            DOMProp lDOMProp = k.next();
+          for (DOMProp lDOMProp: lAttr.domPermValueArr) {
             if (!(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
               continue;
             }
@@ -518,8 +503,7 @@ class WriteDOMDocBook extends Object {
       TreeMap<String, TreeMap<String, DOMClass>> lPropMemberClassMap = new TreeMap<>();
 
       int lSeqNumI = 1000;
-      for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
-        DOMProp lDOMProp = j.next();
+      for (DOMProp lDOMProp: lClass.allAttrAssocArr) {
         if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
           DOMClass lMemberDOMClass = (DOMClass) lDOMProp.hasDOMObject;
           TreeMap<String, DOMClass> lMemberClassMap = lPropMemberClassMap.get(lDOMProp.title);
@@ -540,16 +524,14 @@ class WriteDOMDocBook extends Object {
 
       // write the member classes
       ArrayList<String> lPropOrderArr = new ArrayList<>(lPropOrderMap.values());
-      for (Iterator<String> j = lPropOrderArr.iterator(); j.hasNext();) {
-        String lDOMPropTitle = j.next();
+      for (String lDOMPropTitle: lPropOrderArr) {
         TreeMap<String, DOMClass> lMemberClassMap = lPropMemberClassMap.get(lDOMPropTitle);
         String lCardString = lPropCardMap.get(lDOMPropTitle);
         if (lCardString != null && lMemberClassMap != null) {
           ArrayList<DOMClass> lMemberClassArr = new ArrayList<>(lMemberClassMap.values());
           lValueString = "";
           lValueDel = "";
-          for (Iterator<DOMClass> k = lMemberClassArr.iterator(); k.hasNext();) {
-            DOMClass lMemberClass = k.next();
+          for (DOMClass lMemberClass: lMemberClassArr) {
             lValueString += lValueDel + getClassLink(lMemberClass);
             lValueDel = ", ";
           }
@@ -569,8 +551,7 @@ class WriteDOMDocBook extends Object {
     lValueString = "";
     lValueDel = "";
     if (!(lRefClassArr == null || lRefClassArr.isEmpty())) {
-      for (Iterator<DOMClass> i = lRefClassArr.iterator(); i.hasNext();) {
-        DOMClass lRefClass = i.next();
+      for (DOMClass lRefClass: lRefClassArr) {
         lValueString += lValueDel + getClassLink(lRefClass);
         lValueDel = ", ";
       }
@@ -597,14 +578,13 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("");
 
     AttrClassificationDefnDOM lAttrClassificationDefn =
-        attrClassificationMap.get(DMDocument.masterNameSpaceIdNCLC);
+        attrClassificationMap.get(DMDocument.getMasterNameSpaceIdNCLC());
     if (lAttrClassificationDefn != null) {
       prDocBook.println("        <chapter>");
       prDocBook.println("           <title>Attributes in the common namespace.</title>");
       prDocBook.println(
           "           <para>These attributes are used by the classes in the common namespace. </para>");
-      for (Iterator<DOMAttr> j = lAttrClassificationDefn.attrArr.iterator(); j.hasNext();) {
-        DOMAttr lAttr = j.next();
+      for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
         writeAttr(lAttr, prDocBook);
       }
       prDocBook.println("        </chapter>");
@@ -729,8 +709,7 @@ class WriteDOMDocBook extends Object {
           + getPrompt("Value Meaning") + "</entry>");
       prDocBook.println("                </row>");
 
-      for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
-        DOMProp lProp = j.next();
+      for (DOMProp lProp: lAttr.domPermValueArr) {
         if (!(lProp.hasDOMObject instanceof DOMPermValDefn)) {
           continue;
         }
@@ -772,8 +751,7 @@ class WriteDOMDocBook extends Object {
     }
     if (!(lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty())) {
 
-      for (Iterator<PermValueExtDefn> i = lAttr.permValueExtArr.iterator(); i.hasNext();) {
-        PermValueExtDefn lPermValueExt = i.next();
+      for (PermValueExtDefn lPermValueExt: lAttr.permValueExtArr) {
         if (lPermValueExt.permValueExtArr == null || lPermValueExt.permValueExtArr.isEmpty()) {
           continue;
         }
@@ -786,8 +764,7 @@ class WriteDOMDocBook extends Object {
             + getPrompt("Value Meaning") + "</entry>");
         prDocBook.println("                </row>");
 
-        for (Iterator<PermValueDefn> j = lPermValueExt.permValueExtArr.iterator(); j.hasNext();) {
-          PermValueDefn lPermValueDefn = j.next();
+        for (PermValueDefn lPermValueDefn: lPermValueExt.permValueExtArr) {
           prDocBook.println("                <row>");
           prDocBook.println("                    <entry></entry>");
           prDocBook.println(
@@ -822,8 +799,7 @@ class WriteDOMDocBook extends Object {
 
     // Sort the data types
     TreeMap<String, DOMClass> sortDataTypeMap = new TreeMap<>();
-    for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
+    for (DOMClass lClass: DOMInfoModel.getMasterDOMClassArr()) {
       if (lClass.isInactive || (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0)
           || !lClass.isDataType) {
         continue;
@@ -845,9 +821,7 @@ class WriteDOMDocBook extends Object {
     // Write the data types
     String lSchemaBaseType = "None", lMinChar = "None", lMaxChar = "None", lMinVal = "None",
         lMaxVal = "None";
-    for (Iterator<DOMClass> i = sortDataTypeArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
-
+    for (DOMClass lClass: sortDataTypeArr) {
       lSchemaBaseType = "None";
       lMinChar = "None";
       lMaxChar = "None";
@@ -897,8 +871,7 @@ class WriteDOMDocBook extends Object {
           String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
           if (lVal != null) {
             // if not null there there are one or more patterns
-            for (Iterator<String> k = lAttr.valArr.iterator(); k.hasNext();) {
-              String lPattern = k.next();
+            for (String lPattern: lAttr.valArr) {
               lPatternArr.add(lPattern);
             }
           }
@@ -961,8 +934,7 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
             + getPrompt("Pattern") + "</entry>");
         prDocBook.println("                </row>");
-        for (Iterator<String> k = lPatternArr.iterator(); k.hasNext();) {
-          String lPattern = k.next();
+        for (String lPattern: lPatternArr) {
           prDocBook.println("                <row>");
           prDocBook.println("                    <entry>" + "</entry>");
           prDocBook
@@ -998,8 +970,7 @@ class WriteDOMDocBook extends Object {
     // get the units
     ArrayList<DOMProp> lDOMPermValueArr;
     TreeMap<String, DOMClass> sortUnitsMap = new TreeMap<>();
-    for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
+    for (DOMClass lClass: DOMInfoModel.getMasterDOMClassArr()) {
       if (lClass.isInactive || (lNameSpaceIdNC.compareTo(lClass.nameSpaceIdNC) != 0)
           || !lClass.isUnitOfMeasure) {
         continue;
@@ -1017,8 +988,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
     prDocBook.println("       <para>These classes define the units of measure. </para>");
 
-    for (Iterator<DOMClass> i = sortUnitsArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
+    for (DOMClass lClass: sortUnitsArr) {
       lDOMPermValueArr = new ArrayList<>();
       for (DOMProp lProp : lClass.allAttrAssocArr) {
         DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
@@ -1062,8 +1032,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("                </row>");
 
       if (!lDOMPermValueArr.isEmpty()) {
-        for (Iterator<DOMProp> k = lDOMPermValueArr.iterator(); k.hasNext();) {
-          DOMProp lDOMProp = k.next();
+        for (DOMProp lDOMProp: lDOMPermValueArr) {
           if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
             DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
             prDocBook.println("                <row>");
@@ -1113,12 +1082,12 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("    <info>");
     prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
     prDocBook.println("        <subtitle>Abridged - Version "
-        + DMDocument.masterPDSSchemaFileDefn.ont_version_id + "</subtitle>");
+        + DMDocument.getMasterPDSSchemaFileDefn().ont_version_id + "</subtitle>");
     prDocBook.println("        <author>");
     prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
     prDocBook.println("        </author>");
     prDocBook.println("        <releaseinfo>Generated from Information Model Version "
-        + DMDocument.masterPDSSchemaFileDefn.ont_version_id + " on " + DMDocument.sTodaysDate
+        + DMDocument.getMasterPDSSchemaFileDefn().ont_version_id + " on " + DMDocument.sTodaysDate
         + "</releaseinfo>");
     prDocBook.println(
         "        <releaseinfo>Contains namespace ids: " + writtenNamespaceIds + "</releaseinfo>");
@@ -1365,7 +1334,7 @@ class WriteDOMDocBook extends Object {
 
   private String getDataTypeLink(String lDataType) {
     String lLink = DMDocument.registrationAuthorityIdentifierValue + "."
-        + DMDocument.masterNameSpaceIdNCLC + "." + lDataType;
+        + DMDocument.getMasterNameSpaceIdNCLC() + "." + lDataType;
     int lLinkI = lLink.hashCode();
     lLink = "N" + Integer.toString(lLinkI);
     // String lDataTypeWrap = DMDocument.replaceString(lDataType, "_", "_&#x200B;");
@@ -1377,7 +1346,7 @@ class WriteDOMDocBook extends Object {
       return "None";
     }
     String lLink = DMDocument.registrationAuthorityIdentifierValue + "."
-        + DMDocument.masterNameSpaceIdNCLC + "." + lUnitId;
+        + DMDocument.getMasterNameSpaceIdNCLC() + "." + lUnitId;
     int lLinkI = lLink.hashCode();
     lLink = "N" + Integer.toString(lLinkI);
     return "<link linkend=\"" + lLink + "\">" + lUnitId + "</link>";
@@ -1386,17 +1355,16 @@ class WriteDOMDocBook extends Object {
   private String getCardinality(int lCardMin, int lCardMax) {
     String pCardMax = "Unbounded";
     if (lCardMax != 9999999) {
-      pCardMax = (new Integer(lCardMax)).toString();
+      pCardMax = Integer.toString(lCardMax);
     }
-    String pCardMin = (new Integer(lCardMin)).toString();
+    String pCardMin = Integer.toString(lCardMin);
     return pCardMin + ".." + pCardMax;
   }
 
   // return all classes that reference this class
   private ArrayList<DOMClass> getClassReferences(DOMClass lTargetClass) {
     ArrayList<DOMClass> refClassArr = new ArrayList<>();
-    for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
-      DOMClass lClass = i.next();
+    for (DOMClass lClass: DOMInfoModel.getMasterDOMClassArr()) {
       if (lClass.isInactive) {
         continue;
       }
