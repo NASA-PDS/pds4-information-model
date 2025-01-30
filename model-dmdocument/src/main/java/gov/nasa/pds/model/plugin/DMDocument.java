@@ -162,8 +162,7 @@ public class DMDocument extends Object {
                                          // DOMPermvalues
   // alternate IM Version
   // if no option "V" is provided on the command line, then the default is the current IM version.
-  static boolean alternateIMVersionFlag = false;
-  static String alternateIMVersion = buildIMVersionFolderId; // default
+  static String runIMVersion = buildIMVersionFolderId; // default
   // allowed alternate IM versions
   static ArrayList<String> alternateIMVersionArr;
 
@@ -367,11 +366,8 @@ public class DMDocument extends Object {
 	      dataDirPath = parentDir;
 	      nameSpaceDataDirPath = dataDirPath;
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
-	      // IMTool runs ignore the -V option
-	      if (LDDToolFlag && alternateIMVersionFlag) {
-	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-	            dataDirPath = parentDir + alternateIMVersion + "/";
-	        }
+	      if (runIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	          dataDirPath = parentDir + runIMVersion + "/";
 	      }
 	    } else {
 	      Utility.registerMessage("0>info - Property data.home is null");   
@@ -392,12 +388,9 @@ public class DMDocument extends Object {
 		      nameSpaceDataDirPath = dataDirPath;
 		  }
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
-	      // IMTool runs ignore the -V option
-	      if (LDDToolFlag && alternateIMVersionFlag) {
-	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-	          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
-	        }
-	       }
+	      if (runIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	    	  dataDirPath = parentDir + "/Data/" + runIMVersion + "/";
+	      }
 	    }
 	    Utility.registerMessage("0>info - Parent Directory:" + parentDir);
 	    Utility.registerMessage("0>info - IM Directory Path:" + dataDirPath);
@@ -680,8 +673,7 @@ public class DMDocument extends Object {
 	                                         // DOMPermvalues
 	  // alternate IM Version
 	  // if no option "V" is provided on the command line, then the default is the current IM version.
-	  alternateIMVersionFlag = false;
-	  alternateIMVersion = buildIMVersionFolderId; // default
+	  runIMVersion = buildIMVersionFolderId; // default
 
 	  // import export file flags
 	  exportJSONFileFlag = false; // LDDTool, set by -J option
@@ -1242,9 +1234,7 @@ public class DMDocument extends Object {
                                                              // IM
       if (alternateIMVersionArr.contains(altVersion)) { // is it an allowed prior version; was
                                                         // validated in argument parser
-        alternateIMVersion = altVersion;
-        dmProcessState.setalternateIMVersionFlag();
-        alternateIMVersionFlag = true;
+        runIMVersion = altVersion;
       }
     }
     return;
@@ -1422,7 +1412,7 @@ public class DMDocument extends Object {
     System.out.println("");
     System.out.println("Input:");
     System.out.println("");
-    System.out.println("     - IM Version: " + alternateIMVersion);
+    System.out.println("     - IM Version: " + runIMVersion);
 
     for (String processFlagName : dmProcessState.getSortedProcessFlagNameArr()) {
       System.out.println("     - " + processFlagName + ": true");
