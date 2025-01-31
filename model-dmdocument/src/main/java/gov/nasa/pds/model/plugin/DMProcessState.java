@@ -292,6 +292,11 @@ public class DMProcessState {
     return;
   }
 
+  public void setalternateIMVersionFlag() {
+    processFlagMap.put("IM Version", 1040);
+    return;
+  }
+
   public void setmapToolFlag() {
     processFlagMap.put("Map Tool Flag", 1050);
     return;

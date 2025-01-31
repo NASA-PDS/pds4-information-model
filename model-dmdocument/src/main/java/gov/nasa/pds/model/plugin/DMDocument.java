@@ -1235,6 +1235,7 @@ public class DMDocument extends Object {
       if (alternateIMVersionArr.contains(altVersion)) { // is it an allowed prior version; was
                                                         // validated in argument parser
         runIMVersion = altVersion;
+        dmProcessState.setalternateIMVersionFlag();
       }
     }
     return;
