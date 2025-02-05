@@ -128,14 +128,6 @@ public class DMProcessState {
     return false;
   }
 
-  public Boolean getalternateIMVersionFlag() {
-    Integer lProcessOrder = processFlagMap.get("IM Version");
-    if (lProcessOrder != null) {
-      return true;
-    }
-    return false;
-  }
-
   public Boolean getmapToolFlag() {
     Integer lProcessOrder = processFlagMap.get("Map Tool Flag");
     if (lProcessOrder != null) {
