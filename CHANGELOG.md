@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-01-28)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-02-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -16,6 +16,7 @@
 **Defects:**
 
 - LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- `-V` flag does not work when attempting to generate core IM [\#859](https://github.com/NASA-PDS/pds4-information-model/issues/859) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
