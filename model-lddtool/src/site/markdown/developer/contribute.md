@@ -20,6 +20,8 @@
 ### Tutorial
 For this tutorial, we are using test data from [github753.tar.gz](https://github.com/user-attachments/files/17998198/github753.tar.gz). This is a duplicate of the data at https://github.com/NASA-PDS/pds4-information-model/tree/main/model-lddtool/src/test/resources/github753, but provides a good example for creating a new test case.
 
+A recording of a meeting where we went through tutorial can be [found here](https://jpl365prod-my.sharepoint.com/:v:/r/personal/jordan_h_padams_jpl_nasa_gov/Documents/Recordings/Cucumber%20Testing%20Tutorial-20241203_120337-Meeting%20Recording.mp4?csf=1&web=1&e=S79Vwy&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) (requires JPL login).
+
 * Create new directory with the test data like `model-lddtool/src/test/resources/github753b`. NOTE: This test data should include, at minimum, the applicable XML label(s), some "data" file associated this this label (it can be 0 bytes), and any necessary IngestLDDs for applicable discipline or mission dictionaries.
 * Create new "test suite" for this tutorial by copy pasting these lines to the bottom of the file and renaming `@v15.2.x` to `@my_tutorial`:
 ```
@@ -45,6 +47,6 @@ For this tutorial, we are using test data from [github753.tar.gz](https://github
 * Now run the test(s):
   * Via Eclipse: right-click `Run as` -> `Cucumber Feature`
   * Via Maven (replace with applicable tag for this build):
-    * bash: `mvn test -Dcucumber.filter.tags='@my_tutorial'`
-    * tcsh: `mvn test  -Dcucumber.filter.tags='@v15.2.x'`
+    * bash: `mvn clean test -Dcucumber.filter.tags='@my_tutorial'`
+    * tcsh and Windows: `mvn clean test  -Dcucumber.filter.tags="@my_tutorial"`
  

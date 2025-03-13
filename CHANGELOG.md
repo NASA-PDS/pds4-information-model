@@ -1,8 +1,31 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2024-12-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-04)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
+
+**Requirements:**
+
+- As a user, I want to generate the core PDS4 IM for a specific version of PDS4 [\#860](https://github.com/NASA-PDS/pds4-information-model/issues/860)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "ama" [\#868](https://github.com/NASA-PDS/pds4-information-model/issues/868)
+- Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
+
+**Defects:**
+
+- LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- Unable to run \>1 cucumber test with LDDs [\#866](https://github.com/NASA-PDS/pds4-information-model/issues/866) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- `-V` flag does not work when attempting to generate core IM [\#859](https://github.com/NASA-PDS/pds4-information-model/issues/859) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+**Other closed issues:**
+
+- Update cucumber test code to support testing of \#852 [\#856](https://github.com/NASA-PDS/pds4-information-model/issues/856)
+
+## [v15.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.4) (2025-01-07)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.3...v15.2.4)
 
 **Improvements:**
 
@@ -11,8 +34,15 @@
 
 **Defects:**
 
+- Exit codes no longer working as expected [\#857](https://github.com/NASA-PDS/pds4-information-model/issues/857) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- Issue trying to generate schemas 1E00 and 1D00 [\#852](https://github.com/NASA-PDS/pds4-information-model/issues/852) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- lddtool -h returns expected information twice and then error messages  [\#849](https://github.com/NASA-PDS/pds4-information-model/issues/849) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool -v creates/overwrites output directory and files [\#848](https://github.com/NASA-PDS/pds4-information-model/issues/848) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
-- Download links broken for lddtool for online documentation  [\#846](https://github.com/NASA-PDS/pds4-information-model/issues/846) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
+- Download links broken for lddtool for online documentation  [\#846](https://github.com/NASA-PDS/pds4-information-model/issues/846) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+
+**Other closed issues:**
+
+- Migrate initial prototype from Jupyter to a new Github repo [\#389](https://github.com/NASA-PDS/pds4-information-model/issues/389)
 
 ## [v15.2.3](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.3) (2024-11-20)
 

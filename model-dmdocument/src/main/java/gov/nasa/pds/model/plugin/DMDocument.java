@@ -162,8 +162,7 @@ public class DMDocument extends Object {
                                          // DOMPermvalues
   // alternate IM Version
   // if no option "V" is provided on the command line, then the default is the current IM version.
-  static boolean alternateIMVersionFlag = false;
-  static String alternateIMVersion = buildIMVersionFolderId; // default
+  static String runIMVersion = buildIMVersionFolderId; // default
   // allowed alternate IM versions
   static ArrayList<String> alternateIMVersionArr;
 
@@ -324,9 +323,9 @@ public class DMDocument extends Object {
    * @throws Throwable
    */
   public static void main(String[] args) throws Throwable {
-	  run(args);
+	boolean success = run(args);
     
-    if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+    if (!success) {
       System.out.println("");
       System.out.println(">>  INFO Exit(1)");
       System.exit(1);
@@ -341,11 +340,17 @@ public class DMDocument extends Object {
  * @throws Throwable 
  * @throws IOException 
    */
-  public static void run(String[] args) throws Throwable {
+  public static boolean run(String[] args) throws Throwable {
 	  init();
-	  
-	    // get the command line arguments using argparse4j
-	    Namespace argparse4jNamespace = getArgumentParserNamespace(args);
+
+	  // get the command line arguments using argparse4j
+	  Namespace argparse4jNamespace = null;
+	  try {
+		  argparse4jNamespace = getArgumentParserNamespace(args);
+	  } catch (Throwable e) {
+		  return false;
+	  }
+
 	    String nameSpaceDataDirPath = null;
 
 	    // process first set of arguments
@@ -361,11 +366,8 @@ public class DMDocument extends Object {
 	      dataDirPath = parentDir;
 	      nameSpaceDataDirPath = dataDirPath;
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
-	      // IMTool runs ignore the -V option
-	      if (LDDToolFlag && alternateIMVersionFlag) {
-	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-	            dataDirPath = parentDir + alternateIMVersion + "/";
-	        }
+	      if (runIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	          dataDirPath = parentDir + runIMVersion + "/";
 	      }
 	    } else {
 	      Utility.registerMessage("0>info - Property data.home is null");   
@@ -386,12 +388,9 @@ public class DMDocument extends Object {
 		      nameSpaceDataDirPath = dataDirPath;
 		  }
 	      // if this is an LDDTool run then an alternate path is allowed (option "V")
-	      // IMTool runs ignore the -V option
-	      if (LDDToolFlag && alternateIMVersionFlag) {
-	        if (alternateIMVersion.compareTo(buildIMVersionFolderId) != 0) {
-	          dataDirPath = parentDir + "/Data/" + alternateIMVersion + "/";
-	        }
-	       }
+	      if (runIMVersion.compareTo(buildIMVersionFolderId) != 0) {
+	    	  dataDirPath = parentDir + "/Data/" + runIMVersion + "/";
+	      }
 	    }
 	    Utility.registerMessage("0>info - Parent Directory:" + parentDir);
 	    Utility.registerMessage("0>info - IM Directory Path:" + dataDirPath);
@@ -463,23 +462,10 @@ public class DMDocument extends Object {
       if (configInputStr != null) {
         buildDate = configInputStr;
       }
-//	    } catch (FileNotFoundException ex) {
-//	      // file does not exist
-//	      Utility.registerMessage("3>error Configuration file does not exist. [config.properties]");
-//	    } catch (IOException ex) {
-//	      // I/O error
-//	      Utility.registerMessage("3>error Configuration file IO Exception. [config.properties]");
-//	    } finally {
-//	    	try {
-//	    		reader.close();
-//	    	} catch (IOException|NullPointerException e) {
-//	    		// Do nothing
-//	    	}
-//	    }
 
 	    // process second set of arguments; exit if return=false
 	    if (! processArgumentParserNamespacePhase2(argparse4jNamespace))
-	    	return;
+	    	return false;
 
 	    // check the files
 	    checkRequiredFiles();
@@ -550,7 +536,14 @@ public class DMDocument extends Object {
 	    Utility.registerMessage("0>info Next UID: " + DOMInfoModel.getNextUId());
 	    printErrorMessages();
 	    
+	    boolean success = true;
+	    if (lMessageErrorCount > 0 || lMessageFatalErrorCount > 0) {
+	      success = false;
+	    }
+	    
 	    reset();
+	    
+	    return success;
   }
 
   /**********************************************************************************************************
@@ -680,8 +673,7 @@ public class DMDocument extends Object {
 	                                         // DOMPermvalues
 	  // alternate IM Version
 	  // if no option "V" is provided on the command line, then the default is the current IM version.
-	  alternateIMVersionFlag = false;
-	  alternateIMVersion = buildIMVersionFolderId; // default
+	  runIMVersion = buildIMVersionFolderId; // default
 
 	  // import export file flags
 	  exportJSONFileFlag = false; // LDDTool, set by -J option
@@ -1142,14 +1134,14 @@ public class DMDocument extends Object {
     registryAttr.add("version_id");
   }
 
-  static Namespace getArgumentParserNamespace(String args[]) throws ArgumentParserException {
+  static Namespace getArgumentParserNamespace(String args[]) throws Throwable {
     parser = ArgumentParsers.newFor("LDDTool").build().defaultHelp(true).version(LDDToolVersionId)
         .description("LDDTool process control:");
 
-    parser.addArgument("-p", "--PDS4 processing").dest("p").type(Boolean.class).nargs(1)
+    parser.addArgument("-p", "--pds4").dest("p").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Set the context to PDS4");
 
-    parser.addArgument("-l", "--LDD").dest("l").type(Boolean.class).nargs(1)
+    parser.addArgument("-l", "--ldd").dest("l").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Process one or more local data dictionary input files");
 
@@ -1157,17 +1149,17 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Omit the term \"mission\" from the namespace of a dictionary");
 
-    parser.addArgument("-D", "--DataDict").dest("D").type(Boolean.class).nargs(1)
+    parser.addArgument("-D", "--datadict").dest("D").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the Data Dictionary DocBook file");
 
-    parser.addArgument("-J", "--JSON").dest("J").type(Boolean.class).nargs(1)
+    parser.addArgument("-J", "--json").dest("J").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the data dictionary to a JSON formatted file");
 
     parser.addArgument("-m", "--merge").dest("m").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Generate file to merge the local dictionary into the master dictionary");
 
-    parser.addArgument("-M", "--Mission").dest("M").type(Boolean.class).nargs(1)
+    parser.addArgument("-M", "--mission").dest("M").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help(
             "This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool Usage document for more information on how to provide this information.");
 
@@ -1175,46 +1167,29 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue())
         .help("Write nuance property maps to LDD schema annotation in JSON");
 
-    parser.addArgument("-N", "--Namespace").dest("N").type(Boolean.class).nargs(1)
+    parser.addArgument("-N", "--namespace").dest("N").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Print the list of configured namespaces to the log");
 
-    /*
-     * parser.addArgument("-t", "--Annotate") .dest("t") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Annotate Definition");
-     */
-
-    /*
-     * parser.addArgument("-a", "--Attr Element") .dest("a") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Element Definition (Attribute)");
-     */
-
-	parser.addArgument("-1", "--IM Spec").dest("1").type(Boolean.class).nargs(1)
+	parser.addArgument("-1", "--im_specification").dest("1").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Write the Information Model Specification for an LDD");
 	
-    parser.addArgument("-T", "--TermMap").dest("T").type(Boolean.class).nargs(1)
+    parser.addArgument("-T", "--termmap").dest("T").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Terminological mapping to alternate names");
 
-    parser.addArgument("-O", "--OWL/RDF/TTL") .dest("O") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-O", "--ttl") .dest("O") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("OWL/RDF/TTL output in TTL format (IM Classification)");
 
-    parser.addArgument("-o", "--OWL/RDF") .dest("o") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-o", "--rdf") .dest("o") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("OWL/RDF output in RDF format (IM Export)");
 
-    parser.addArgument("-C", "--Custom") .dest("C") .type(Boolean.class) .nargs(1)
+    parser.addArgument("-C", "--custom") .dest("C") .type(Boolean.class) .nargs(1)
         .action(Arguments.storeTrue()) .help("Customized processing and reporting");
-
-     // The following are hidden and temporarily deprecated
-
-    /*
-     * parser.addArgument("-f", "--Check") .dest("f") .type(Boolean.class) .nargs(1)
-     * .action(Arguments.storeTrue()) .help("Check File Name");
-     */
 
     parser.addArgument("-v", "--version").dest("v").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
-    parser.addArgument("-V", "--IM Version").dest("V").type(String.class)
+    parser.addArgument("-V", "--pds4_version").dest("V").type(String.class)
         .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
@@ -1226,13 +1201,12 @@ public class DMDocument extends Object {
     try {
       namespace = parser.parseArgs(args);
     } catch (HelpScreenException e) {
-      System.out.println(">>  INFO Exit(0)");
-      parser.printHelp();
+      // the library prints the help message internally so no need for parser.printHelp()
       throw e;
     } catch (ArgumentParserException e) {
       System.out.println(">>  ERROR Invalid argument list");
+      lMessageFatalErrorCount++;
       parser.printHelp();
-      System.out.println(">>  INFO  Exit(1)");
       throw e;
     }
     return namespace;
@@ -1260,9 +1234,8 @@ public class DMDocument extends Object {
                                                              // IM
       if (alternateIMVersionArr.contains(altVersion)) { // is it an allowed prior version; was
                                                         // validated in argument parser
-        alternateIMVersion = altVersion;
+        runIMVersion = altVersion;
         dmProcessState.setalternateIMVersionFlag();
-        alternateIMVersionFlag = true;
       }
     }
     return;
@@ -1440,7 +1413,7 @@ public class DMDocument extends Object {
     System.out.println("");
     System.out.println("Input:");
     System.out.println("");
-    System.out.println("     - IM Version: " + alternateIMVersion);
+    System.out.println("     - IM Version: " + runIMVersion);
 
     for (String processFlagName : dmProcessState.getSortedProcessFlagNameArr()) {
       System.out.println("     - " + processFlagName + ": true");
@@ -1476,6 +1449,16 @@ public class DMDocument extends Object {
   public static String getOutputDirPath() {
     return outputDirPath;
   }
+  
+  public static SchemaFileDefn getMasterPDSSchemaFileDefn() {
+    return masterPDSSchemaFileDefn;
+  }
+  
+  public static String getMasterNameSpaceIdNCLC() {
+    return masterNameSpaceIdNCLC;
+  }
+  
+  // masterNameSpaceIdNCLC
 
   public static void setOutputDirPath(String outputDirPath) {
     DMDocument.outputDirPath = outputDirPath;

@@ -59,24 +59,24 @@ public class LDDDOMParser extends Object {
   SchemaFileDefn gSchemaFileDefn;
 
   // initialize the class structures
-  static TreeMap<String, DOMClass> classMap = new TreeMap<>();
-  static TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
-  static ArrayList<DOMClass> classArr = new ArrayList<>();
+  private TreeMap<String, DOMClass> classMap;
+  private TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
+  private ArrayList<DOMClass> classArr;
 
   // initialize the attribute structures
-  static ArrayList<DOMAttr> attrArr = new ArrayList<>();
-  static TreeMap<String, DOMAttr> attrMap = new TreeMap<>();
-  static TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
+  private ArrayList<DOMAttr> attrArr;
+  private TreeMap<String, DOMAttr> attrMap;
+  private TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
 
   // initialize the resolved properties (after LDD Attr or Class has been mapped to a class)
   static ArrayList<DOMProp> attrArrResolved = new ArrayList<>();
 
   // initialize the Property structures
-  static ArrayList<DOMProp> LDDDOMPropArr = new ArrayList<>();
+  private ArrayList<DOMProp> LDDDOMPropArr = new ArrayList<>();
 
   // initialize the Rule structures
-  static ArrayList<DOMRule> ruleArr = new ArrayList<>();
-  static TreeMap<String, DOMRule> ruleMap = new TreeMap<>();
+  private ArrayList<DOMRule> ruleArr = new ArrayList<>();
+  private TreeMap<String, DOMRule> ruleMap = new TreeMap<>();
 
   // initialize the Reference
   static ArrayList<RuleReferenceTypeDefn> ruleReferenceArr = new ArrayList<>();
@@ -118,24 +118,33 @@ public class LDDDOMParser extends Object {
   String lCardMax;
   int lCardMaxI;
 
-  public LDDDOMParser() {
+  public LDDDOMParser(TreeMap<String, DOMClass> classMap, TreeMap<String, DOMAttr> attrMap, ArrayList<DOMProp> LDDDOMPropArr, TreeMap<String, DOMRule> ruleMap) {
 
-	  classMap = new TreeMap<>();
-	  classMapLocal = new TreeMap<>();
-	  classArr = new ArrayList<>();
+	  // get model class Map and concat new classes
+	  this.classMap = classMap;
+	  this.classArr = new ArrayList<>(classMap.values());
+	  for (DOMClass lDOMClass : classArr) {
+		  this.classMapLocal.put(lDOMClass.localIdentifier, lDOMClass);
+	  }
 
-	  attrArr = new ArrayList<>();
-	  attrMap = new TreeMap<>();
-	  attrMapLocal = new TreeMap<>();
+	  // get model attribute Map and concat new attributes
+	  this.attrMap = attrMap;
+	  this.attrArr = new ArrayList<>(attrMap.values());
+	  for (DOMAttr lDOMAttr : attrArr) {
+		  this.attrMapLocal.put(lDOMAttr.lddLocalIdentifier, lDOMAttr);
+	  }	  
 
 	  attrArrResolved = new ArrayList<>();
 
-	  LDDDOMPropArr = new ArrayList<>();
+	  // get model property Map and concat new properties
+	  this.LDDDOMPropArr = LDDDOMPropArr;
 
-	  ruleArr = new ArrayList<>();
-	  ruleMap = new TreeMap<>();
+	  // get model rule Map and concat new rules
+	  this.ruleMap = ruleMap;
+	  this.ruleArr =  new ArrayList<>(ruleMap.values());
 	  ruleReferenceArr = new ArrayList<>();
 
+	  // init Property Map array and tree map
 	  propertyMapsArr = new ArrayList<>();
 	  propertyMapsMap = new TreeMap<>();
 
