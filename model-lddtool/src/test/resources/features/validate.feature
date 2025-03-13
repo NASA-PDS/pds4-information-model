@@ -28,9 +28,3 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#829  | "new unit mrad/pixels"          | "github829"  |           0 | "0 errors expected" | "SCHEMATRON_ERROR" | "-t {resourceDir}/github829/ORB_35_STAR_SCANNER.xml" | "PDS4_HST_IngestLDD.xml" |
 | NASA-PDS/pds4-information-model#831  | "add Array_1D_Spectrum"         | "github831"  |           0 | "0 errors expected" | "SCHEMATRON_ERROR" | "-t {resourceDir}/github831/" | "" |
       
-
-    @my_tutorial
-#note: 'mvn test' choks if problem enum is blank or "" even if 0 messages
-    Examples: 
-| testId                                | testName                                      | testDir       | messageCount | messageText         | problemEnum        | commandArgs                                                         | ingestLDDFileName |
-| NASA-PDS/pds4-information-model#753b  | "new Current units nA microA now available"   | "github753b"  |           0  | "0 errors expected" | "totalErrors"      | "--target {resourceDir}/github753b/ --skip-content-validation"      | "PDS4_MARS2020_IngestLDD.xml" |
