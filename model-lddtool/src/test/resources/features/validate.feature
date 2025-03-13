@@ -15,6 +15,8 @@ Feature: pds4_information_model_validate_integration
     @v15.2.x
     Examples: 
 | testId                               | testName                        | testDir     | messageCount         | problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version |
+#Note that the 6 errors in #752 will be corrected after IM v1.N
+| NASA-PDS/pds4-information-model#752  | "Update Constraints on Author/Editor Lists (JIRA-CCB-356)"   | "github752"  |           6 | "6 errors expected" | "SCHEMATRON_ERROR" | "-t {resourceDir}/github752" | "" |
 | NASA-PDS/pds4-information-model#753  | "new Current units nA microA"   | "github753"  |           0  | "totalErrors" | "-t {resourceDir}/github753/pc__d139.xml" | "PDS4_MARS2020_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#784a | "Encoded_Video for Product_Ancillary" | "github784a" |           0 | "totalErrors" | "-t {resourceDir}/github784/FUV2017032anc.xml" | "" | "" |
 | NASA-PDS/pds4-information-model#784b | "Encoded_Video for Product_Browse" | "github784b" |           0  | "totalErrors" | "-t {resourceDir}/github784/FUV2017032brw.xml" | "" | "" |
