@@ -1,0 +1,2048 @@
+<?xml version="1.0"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1M00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="PDS4_HST_1M00_2000_edited.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- RMS HST Product-Label pipeline version 1.0 (2024-07-17) -->
+<!-- RMS PdsTemplate module version 1.0 (2023-06-26) -->
+
+<Product_Observational
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:hst="http://pds.nasa.gov/pds4/mission/hst/v2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1M00_edited.xsd
+                      http://pds.nasa.gov/pds4/mission/hst/v2 PDS4_HST_1M00_2000.xsd">
+
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:hst_7885:data_nicmos_raw:n4wl01xqq</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>
+      n4wl01xqq_raw.fits: Raw NICMOS data from HST Program 7885.
+    </title>
+    <information_model_version>1.22.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2024-08-06</modification_date>
+        <version_id>1.0</version_id>
+        <description>
+          This is the initial PDS4 version of this data product.
+
+          This FITS file was retrieved from MAST on 2024-06-20. It was originally produced
+          by MAST on or around 2009-03-01, using version OPUS 2008_5c of their HST
+          processing software.
+
+          Migration to the PDS4 standard was carried out by the PDS Ring-Moon Systems Node
+          using their HST migration pipeline version 1.0 (2024-07-17) and XML labeling
+          software version 1.0 (2023-06-26).
+        </description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+
+  <Observation_Area>
+    <comment>
+      This is a copy of HST file "n4wl01xqq_raw.fits" as obtained from the Mikulski
+      Archive for Space Telescopes (MAST) on 2024-06-20. The file was produced by MAST on
+      or around 2009-03-01, using version OPUS 2008_5c of their HST processing pipeline.
+    </comment>
+
+    <Time_Coordinates>
+      <start_date_time>1998-08-05T01:41:08Z</start_date_time>
+      <stop_date_time>1998-08-05T01:44:20Z</stop_date_time>
+    </Time_Coordinates>
+
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Raw</processing_level>
+      <description>
+        n4wl01xqq_raw.fits: Raw NICMOS data from HST Program 7885.
+      </description>
+      <Science_Facets>
+        <wavelength_range>Near Infrared</wavelength_range>
+        <wavelength_range>Infrared</wavelength_range>
+        <discipline_name>Ring-Moon Systems</discipline_name>
+      </Science_Facets>
+    </Primary_Result_Summary>
+
+    <Investigation_Area>
+      <name>HST observing program 7885</name>
+      <type>Individual Investigation</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:individual.hst_07885</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+
+    <Observing_System>
+      <Observing_System_Component>
+        <name>Hubble Space Telescope</name>
+        <type>Host</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.hst</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Near-Infrared Camera and Multi-Object Spectrometer</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:hst.nicmos</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+
+    <Target_Identification>
+      <name>Uranus</name>
+      <type>Planet</type>
+      <description>
+        NAIF ID: 799
+      </description>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:target:planet.uranus</lid_reference>
+        <reference_type>data_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+
+    <Mission_Area>
+      <hst:HST_Parameters>
+        <hst:Program_Parameters>
+          <hst:mast_observation_id>n4wl01xqq</hst:mast_observation_id>
+          <hst:hst_proposal_id>7885</hst:hst_proposal_id>
+          <hst:hst_pi_name>Hammel, Heidi B.</hst:hst_pi_name>
+          <hst:visit_id>01</hst:visit_id>
+        </hst:Program_Parameters>
+        <hst:Instrument_Parameters>
+          <hst:instrument_id>NICMOS</hst:instrument_id>
+
+          <hst:channel_id>NIC1</hst:channel_id>
+          <hst:detector_id>NIC1</hst:detector_id>
+          <hst:observation_type>IMAGING</hst:observation_type>
+        </hst:Instrument_Parameters>
+        <hst:Pointing_Parameters>
+          <hst:hst_target_name>URANUS</hst:hst_target_name>
+          <hst:moving_target_flag>true</hst:moving_target_flag>
+          <hst:moving_target_keyword>PLANET</hst:moving_target_keyword>  <!-- 1 of 2 -->
+          <hst:moving_target_keyword>URANUS</hst:moving_target_keyword>  <!-- 2 of 2 -->
+          <hst:moving_target_description>STD=URANUS</hst:moving_target_description>
+          <hst:aperture_name>NIC1-FIX</hst:aperture_name>
+          <hst:proposed_aperture_name>NIC1-FIX</hst:proposed_aperture_name>
+          <hst:targeted_detector_id>NIC1</hst:targeted_detector_id>
+        </hst:Pointing_Parameters>
+        <hst:Tracking_Parameters>
+          <hst:fine_guidance_sensor_lock_type>FINE</hst:fine_guidance_sensor_lock_type>
+          <hst:gyroscope_mode>3</hst:gyroscope_mode>
+        </hst:Tracking_Parameters>
+        <hst:Exposure_Parameters>
+          <hst:exposure_duration unit="s">191.896</hst:exposure_duration>
+          <hst:exposure_type>NORMAL</hst:exposure_type>
+        </hst:Exposure_Parameters>
+        <hst:Wavelength_Filter_Grating_Parameters>
+          <hst:filter_name>F170M</hst:filter_name>
+          <hst:center_filter_wavelength unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:center_filter_wavelength>
+          <hst:bandwidth unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:bandwidth>
+          <hst:spectral_resolution unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:spectral_resolution>
+        </hst:Wavelength_Filter_Grating_Parameters>
+        <hst:Operational_Parameters>
+          <hst:instrument_mode_id>MULTIACCUM</hst:instrument_mode_id>
+          <hst:gain_setting xsi:nil="true" nilReason="inapplicable"></hst:gain_setting>
+          <hst:coronagraph_flag>false</hst:coronagraph_flag>
+          <hst:cosmic_ray_split_count>1</hst:cosmic_ray_split_count>
+          <hst:repeat_exposure_count>1</hst:repeat_exposure_count>
+          <hst:subarray_flag>false</hst:subarray_flag>
+          <hst:binning_mode>1</hst:binning_mode>
+          <hst:plate_scale unit="mrad/pixel">4.2e-05</hst:plate_scale>
+        </hst:Operational_Parameters>
+        <hst:Processing_Parameters>
+          <hst:mast_pipeline_version_id>OPUS 2008_5c</hst:mast_pipeline_version_id>
+          <hst:hst_quality_id>OK</hst:hst_quality_id>
+          <hst:hst_quality_comment>
+            NO APPARENT PROBLEMS.
+          </hst:hst_quality_comment>
+        </hst:Processing_Parameters>
+      </hst:HST_Parameters>
+    </Mission_Area>
+  </Observation_Area>
+
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:hst-support:document:nicmos-dhb</lid_reference>
+      <reference_type>data_to_document</reference_type>
+      <comment>Data Handbook for NICMOS</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:hst-support:document:nicmos-ihb</lid_reference>
+      <reference_type>data_to_document</reference_type>
+      <comment>Instrument Handbook for NICMOS</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:browse_nicmos_raw:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_browse</reference_type>
+      <comment>Full-resolution browse product</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_jif:n4wl01xqj::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqj_jif.fits: NICMOS 2-D jitter histogram image for the associated "_jit"
+        file (n4wl01xqj_jit.fits,
+        urn:nasa:pds:hst_7885:miscellaneous_nicmos_jit:n4wl01xqj::1:0) from HST Program
+        7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_jit:n4wl01xqj::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqj_jit.fits: NICMOS pointing jitter table for this NICMOS/NIC1 observation
+        from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:data_nicmos_cal:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_calibrated_product</reference_type>
+      <comment>
+        n4wl01xqq_cal.fits: Calibrated version of the associated "_raw" NICMOS/NIC1 data
+        file (n4wl01xqq_raw.fits, urn:nasa:pds:hst_7885:data_nicmos_raw:n4wl01xqq::1:0)
+        from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:data_nicmos_ima:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_ima.fits: Intermediate NICMOS MULTIACCUM data file for HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_spt:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_spt.fits: Support, planning, and telemetry data for this NICMOS/NIC1
+        observation from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_trl:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_trl.fits: Trailer file with processing log for this NICMOS/NIC1
+        observation from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+  </Reference_List>
+
+  <File_Area_Observational>
+    <File>
+      <file_name>n4wl01xqq_raw.fits</file_name>
+      <creation_date_time>2024-06-20T23:23:56Z</creation_date_time>
+      <md5_checksum>0c5247cf1cd8e6ccfb29453592fa7810</md5_checksum>
+    </File>
+
+    <Header>
+      <name>PRIMARY FITS header</name>
+      <local_identifier>fits_header_0</local_identifier>
+      <offset unit="byte">0</offset>
+      <object_length unit="byte">25920</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        Primary FITS header. No data object is associated with this FITS header.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #1 ("SCI_1")</name>
+      <local_identifier>fits_header_1</local_identifier>
+      <offset unit="byte">25920</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #1 ("SCI_1").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #1 ("SCI_1")</name>
+      <local_identifier>fits_data_object_1</local_identifier>
+      <offset unit="byte">34560</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #1 ("SCI_1"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #2 ("ERR_1")</name>
+      <local_identifier>fits_header_2</local_identifier>
+      <offset unit="byte">167040</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #2 ("ERR_1"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_1 image, HDU[1].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #3 ("DQ_1")</name>
+      <local_identifier>fits_header_3</local_identifier>
+      <offset unit="byte">172800</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #3 ("DQ_1"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_1 image,
+        HDU[1].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #4 ("SAMP_1")</name>
+      <local_identifier>fits_header_4</local_identifier>
+      <offset unit="byte">178560</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #4 ("SAMP_1"): Array containing the number of input samples used to
+        compute each sample of the SCI_1 image, HDU[1].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 19.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #5 ("TIME_1")</name>
+      <local_identifier>fits_header_5</local_identifier>
+      <offset unit="byte">184320</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #5 ("TIME_1"): Array containing the effective integration time of each
+        sample in the science SCI_1 image, HDU[1].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        191.89592.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #6 ("SCI_2")</name>
+      <local_identifier>fits_header_6</local_identifier>
+      <offset unit="byte">190080</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #6 ("SCI_2").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #6 ("SCI_2")</name>
+      <local_identifier>fits_data_object_6</local_identifier>
+      <offset unit="byte">198720</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #6 ("SCI_2"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #7 ("ERR_2")</name>
+      <local_identifier>fits_header_7</local_identifier>
+      <offset unit="byte">331200</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #7 ("ERR_2"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_2 image, HDU[6].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #8 ("DQ_2")</name>
+      <local_identifier>fits_header_8</local_identifier>
+      <offset unit="byte">336960</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #8 ("DQ_2"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_2 image,
+        HDU[6].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #9 ("SAMP_2")</name>
+      <local_identifier>fits_header_9</local_identifier>
+      <offset unit="byte">342720</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #9 ("SAMP_2"): Array containing the number of input samples used to
+        compute each sample of the SCI_2 image, HDU[6].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 18.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #10 ("TIME_2")</name>
+      <local_identifier>fits_header_10</local_identifier>
+      <offset unit="byte">348480</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #10 ("TIME_2"): Array containing the effective integration time of
+        each sample in the science SCI_2 image, HDU[6].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        175.90284.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #11 ("SCI_3")</name>
+      <local_identifier>fits_header_11</local_identifier>
+      <offset unit="byte">354240</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #11 ("SCI_3").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #11 ("SCI_3")</name>
+      <local_identifier>fits_data_object_11</local_identifier>
+      <offset unit="byte">362880</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #11 ("SCI_3"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #12 ("ERR_3")</name>
+      <local_identifier>fits_header_12</local_identifier>
+      <offset unit="byte">495360</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #12 ("ERR_3"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_3 image, HDU[11].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #13 ("DQ_3")</name>
+      <local_identifier>fits_header_13</local_identifier>
+      <offset unit="byte">501120</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #13 ("DQ_3"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_3 image,
+        HDU[11].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #14 ("SAMP_3")</name>
+      <local_identifier>fits_header_14</local_identifier>
+      <offset unit="byte">506880</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #14 ("SAMP_3"): Array containing the number of input samples used to
+        compute each sample of the SCI_3 image, HDU[11].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 17.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #15 ("TIME_3")</name>
+      <local_identifier>fits_header_15</local_identifier>
+      <offset unit="byte">512640</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #15 ("TIME_3"): Array containing the effective integration time of
+        each sample in the science SCI_3 image, HDU[11].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        159.90976.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #16 ("SCI_4")</name>
+      <local_identifier>fits_header_16</local_identifier>
+      <offset unit="byte">518400</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #16 ("SCI_4").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #16 ("SCI_4")</name>
+      <local_identifier>fits_data_object_16</local_identifier>
+      <offset unit="byte">527040</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #16 ("SCI_4"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #17 ("ERR_4")</name>
+      <local_identifier>fits_header_17</local_identifier>
+      <offset unit="byte">659520</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #17 ("ERR_4"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_4 image, HDU[16].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #18 ("DQ_4")</name>
+      <local_identifier>fits_header_18</local_identifier>
+      <offset unit="byte">665280</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #18 ("DQ_4"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_4 image,
+        HDU[16].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #19 ("SAMP_4")</name>
+      <local_identifier>fits_header_19</local_identifier>
+      <offset unit="byte">671040</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #19 ("SAMP_4"): Array containing the number of input samples used to
+        compute each sample of the SCI_4 image, HDU[16].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 16.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #20 ("TIME_4")</name>
+      <local_identifier>fits_header_20</local_identifier>
+      <offset unit="byte">676800</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #20 ("TIME_4"): Array containing the effective integration time of
+        each sample in the science SCI_4 image, HDU[16].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        143.91668.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #21 ("SCI_5")</name>
+      <local_identifier>fits_header_21</local_identifier>
+      <offset unit="byte">682560</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #21 ("SCI_5").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #21 ("SCI_5")</name>
+      <local_identifier>fits_data_object_21</local_identifier>
+      <offset unit="byte">691200</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #21 ("SCI_5"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #22 ("ERR_5")</name>
+      <local_identifier>fits_header_22</local_identifier>
+      <offset unit="byte">823680</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #22 ("ERR_5"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_5 image, HDU[21].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #23 ("DQ_5")</name>
+      <local_identifier>fits_header_23</local_identifier>
+      <offset unit="byte">829440</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #23 ("DQ_5"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_5 image,
+        HDU[21].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #24 ("SAMP_5")</name>
+      <local_identifier>fits_header_24</local_identifier>
+      <offset unit="byte">835200</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #24 ("SAMP_5"): Array containing the number of input samples used to
+        compute each sample of the SCI_5 image, HDU[21].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 15.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #25 ("TIME_5")</name>
+      <local_identifier>fits_header_25</local_identifier>
+      <offset unit="byte">840960</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #25 ("TIME_5"): Array containing the effective integration time of
+        each sample in the science SCI_5 image, HDU[21].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        127.9236.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #26 ("SCI_6")</name>
+      <local_identifier>fits_header_26</local_identifier>
+      <offset unit="byte">846720</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #26 ("SCI_6").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #26 ("SCI_6")</name>
+      <local_identifier>fits_data_object_26</local_identifier>
+      <offset unit="byte">855360</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #26 ("SCI_6"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #27 ("ERR_6")</name>
+      <local_identifier>fits_header_27</local_identifier>
+      <offset unit="byte">987840</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #27 ("ERR_6"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_6 image, HDU[26].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #28 ("DQ_6")</name>
+      <local_identifier>fits_header_28</local_identifier>
+      <offset unit="byte">993600</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #28 ("DQ_6"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_6 image,
+        HDU[26].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #29 ("SAMP_6")</name>
+      <local_identifier>fits_header_29</local_identifier>
+      <offset unit="byte">999360</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #29 ("SAMP_6"): Array containing the number of input samples used to
+        compute each sample of the SCI_6 image, HDU[26].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 14.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #30 ("TIME_6")</name>
+      <local_identifier>fits_header_30</local_identifier>
+      <offset unit="byte">1005120</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #30 ("TIME_6"): Array containing the effective integration time of
+        each sample in the science SCI_6 image, HDU[26].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        111.93052.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #31 ("SCI_7")</name>
+      <local_identifier>fits_header_31</local_identifier>
+      <offset unit="byte">1010880</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #31 ("SCI_7").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #31 ("SCI_7")</name>
+      <local_identifier>fits_data_object_31</local_identifier>
+      <offset unit="byte">1019520</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #31 ("SCI_7"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #32 ("ERR_7")</name>
+      <local_identifier>fits_header_32</local_identifier>
+      <offset unit="byte">1152000</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #32 ("ERR_7"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_7 image, HDU[31].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #33 ("DQ_7")</name>
+      <local_identifier>fits_header_33</local_identifier>
+      <offset unit="byte">1157760</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #33 ("DQ_7"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_7 image,
+        HDU[31].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #34 ("SAMP_7")</name>
+      <local_identifier>fits_header_34</local_identifier>
+      <offset unit="byte">1163520</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #34 ("SAMP_7"): Array containing the number of input samples used to
+        compute each sample of the SCI_7 image, HDU[31].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 13.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #35 ("TIME_7")</name>
+      <local_identifier>fits_header_35</local_identifier>
+      <offset unit="byte">1169280</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #35 ("TIME_7"): Array containing the effective integration time of
+        each sample in the science SCI_7 image, HDU[31].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        95.93744.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #36 ("SCI_8")</name>
+      <local_identifier>fits_header_36</local_identifier>
+      <offset unit="byte">1175040</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #36 ("SCI_8").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #36 ("SCI_8")</name>
+      <local_identifier>fits_data_object_36</local_identifier>
+      <offset unit="byte">1183680</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #36 ("SCI_8"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #37 ("ERR_8")</name>
+      <local_identifier>fits_header_37</local_identifier>
+      <offset unit="byte">1316160</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #37 ("ERR_8"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_8 image, HDU[36].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #38 ("DQ_8")</name>
+      <local_identifier>fits_header_38</local_identifier>
+      <offset unit="byte">1321920</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #38 ("DQ_8"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_8 image,
+        HDU[36].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #39 ("SAMP_8")</name>
+      <local_identifier>fits_header_39</local_identifier>
+      <offset unit="byte">1327680</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #39 ("SAMP_8"): Array containing the number of input samples used to
+        compute each sample of the SCI_8 image, HDU[36].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 12.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #40 ("TIME_8")</name>
+      <local_identifier>fits_header_40</local_identifier>
+      <offset unit="byte">1333440</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #40 ("TIME_8"): Array containing the effective integration time of
+        each sample in the science SCI_8 image, HDU[36].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        79.94436.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #41 ("SCI_9")</name>
+      <local_identifier>fits_header_41</local_identifier>
+      <offset unit="byte">1339200</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #41 ("SCI_9").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #41 ("SCI_9")</name>
+      <local_identifier>fits_data_object_41</local_identifier>
+      <offset unit="byte">1347840</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #41 ("SCI_9"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #42 ("ERR_9")</name>
+      <local_identifier>fits_header_42</local_identifier>
+      <offset unit="byte">1480320</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #42 ("ERR_9"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_9 image, HDU[41].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #43 ("DQ_9")</name>
+      <local_identifier>fits_header_43</local_identifier>
+      <offset unit="byte">1486080</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #43 ("DQ_9"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_9 image,
+        HDU[41].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #44 ("SAMP_9")</name>
+      <local_identifier>fits_header_44</local_identifier>
+      <offset unit="byte">1491840</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #44 ("SAMP_9"): Array containing the number of input samples used to
+        compute each sample of the SCI_9 image, HDU[41].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 11.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #45 ("TIME_9")</name>
+      <local_identifier>fits_header_45</local_identifier>
+      <offset unit="byte">1497600</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #45 ("TIME_9"): Array containing the effective integration time of
+        each sample in the science SCI_9 image, HDU[41].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        63.95128.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #46 ("SCI_10")</name>
+      <local_identifier>fits_header_46</local_identifier>
+      <offset unit="byte">1503360</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #46 ("SCI_10").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #46 ("SCI_10")</name>
+      <local_identifier>fits_data_object_46</local_identifier>
+      <offset unit="byte">1512000</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #46 ("SCI_10"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #47 ("ERR_10")</name>
+      <local_identifier>fits_header_47</local_identifier>
+      <offset unit="byte">1644480</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #47 ("ERR_10"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_10 image, HDU[46].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #48 ("DQ_10")</name>
+      <local_identifier>fits_header_48</local_identifier>
+      <offset unit="byte">1650240</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #48 ("DQ_10"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_10
+        image, HDU[46].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #49 ("SAMP_10")</name>
+      <local_identifier>fits_header_49</local_identifier>
+      <offset unit="byte">1656000</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #49 ("SAMP_10"): Array containing the number of input samples used to
+        compute each sample of the SCI_10 image, HDU[46].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 10.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #50 ("TIME_10")</name>
+      <local_identifier>fits_header_50</local_identifier>
+      <offset unit="byte">1661760</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #50 ("TIME_10"): Array containing the effective integration time of
+        each sample in the science SCI_10 image, HDU[46].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 47.9582.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #51 ("SCI_11")</name>
+      <local_identifier>fits_header_51</local_identifier>
+      <offset unit="byte">1667520</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #51 ("SCI_11").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #51 ("SCI_11")</name>
+      <local_identifier>fits_data_object_51</local_identifier>
+      <offset unit="byte">1676160</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #51 ("SCI_11"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #52 ("ERR_11")</name>
+      <local_identifier>fits_header_52</local_identifier>
+      <offset unit="byte">1808640</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #52 ("ERR_11"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_11 image, HDU[51].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #53 ("DQ_11")</name>
+      <local_identifier>fits_header_53</local_identifier>
+      <offset unit="byte">1814400</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #53 ("DQ_11"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_11
+        image, HDU[51].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #54 ("SAMP_11")</name>
+      <local_identifier>fits_header_54</local_identifier>
+      <offset unit="byte">1820160</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #54 ("SAMP_11"): Array containing the number of input samples used to
+        compute each sample of the SCI_11 image, HDU[51].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 9.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #55 ("TIME_11")</name>
+      <local_identifier>fits_header_55</local_identifier>
+      <offset unit="byte">1825920</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #55 ("TIME_11"): Array containing the effective integration time of
+        each sample in the science SCI_11 image, HDU[51].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        31.96512.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #56 ("SCI_12")</name>
+      <local_identifier>fits_header_56</local_identifier>
+      <offset unit="byte">1831680</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #56 ("SCI_12").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #56 ("SCI_12")</name>
+      <local_identifier>fits_data_object_56</local_identifier>
+      <offset unit="byte">1840320</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #56 ("SCI_12"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #57 ("ERR_12")</name>
+      <local_identifier>fits_header_57</local_identifier>
+      <offset unit="byte">1972800</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #57 ("ERR_12"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_12 image, HDU[56].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #58 ("DQ_12")</name>
+      <local_identifier>fits_header_58</local_identifier>
+      <offset unit="byte">1978560</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #58 ("DQ_12"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_12
+        image, HDU[56].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #59 ("SAMP_12")</name>
+      <local_identifier>fits_header_59</local_identifier>
+      <offset unit="byte">1984320</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #59 ("SAMP_12"): Array containing the number of input samples used to
+        compute each sample of the SCI_12 image, HDU[56].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 8.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #60 ("TIME_12")</name>
+      <local_identifier>fits_header_60</local_identifier>
+      <offset unit="byte">1990080</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #60 ("TIME_12"): Array containing the effective integration time of
+        each sample in the science SCI_12 image, HDU[56].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        15.97204.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #61 ("SCI_13")</name>
+      <local_identifier>fits_header_61</local_identifier>
+      <offset unit="byte">1995840</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #61 ("SCI_13").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #61 ("SCI_13")</name>
+      <local_identifier>fits_data_object_61</local_identifier>
+      <offset unit="byte">2004480</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #61 ("SCI_13"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #62 ("ERR_13")</name>
+      <local_identifier>fits_header_62</local_identifier>
+      <offset unit="byte">2136960</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #62 ("ERR_13"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_13 image, HDU[61].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #63 ("DQ_13")</name>
+      <local_identifier>fits_header_63</local_identifier>
+      <offset unit="byte">2142720</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #63 ("DQ_13"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_13
+        image, HDU[61].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #64 ("SAMP_13")</name>
+      <local_identifier>fits_header_64</local_identifier>
+      <offset unit="byte">2148480</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #64 ("SAMP_13"): Array containing the number of input samples used to
+        compute each sample of the SCI_13 image, HDU[61].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 7.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #65 ("TIME_13")</name>
+      <local_identifier>fits_header_65</local_identifier>
+      <offset unit="byte">2154240</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #65 ("TIME_13"): Array containing the effective integration time of
+        each sample in the science SCI_13 image, HDU[61].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        7.978448.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #66 ("SCI_14")</name>
+      <local_identifier>fits_header_66</local_identifier>
+      <offset unit="byte">2160000</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #66 ("SCI_14").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #66 ("SCI_14")</name>
+      <local_identifier>fits_data_object_66</local_identifier>
+      <offset unit="byte">2168640</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #66 ("SCI_14"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #67 ("ERR_14")</name>
+      <local_identifier>fits_header_67</local_identifier>
+      <offset unit="byte">2301120</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #67 ("ERR_14"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_14 image, HDU[66].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #68 ("DQ_14")</name>
+      <local_identifier>fits_header_68</local_identifier>
+      <offset unit="byte">2306880</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #68 ("DQ_14"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_14
+        image, HDU[66].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #69 ("SAMP_14")</name>
+      <local_identifier>fits_header_69</local_identifier>
+      <offset unit="byte">2312640</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #69 ("SAMP_14"): Array containing the number of input samples used to
+        compute each sample of the SCI_14 image, HDU[66].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 6.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #70 ("TIME_14")</name>
+      <local_identifier>fits_header_70</local_identifier>
+      <offset unit="byte">2318400</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #70 ("TIME_14"): Array containing the effective integration time of
+        each sample in the science SCI_14 image, HDU[66].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 3.9846.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #71 ("SCI_15")</name>
+      <local_identifier>fits_header_71</local_identifier>
+      <offset unit="byte">2324160</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #71 ("SCI_15").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #71 ("SCI_15")</name>
+      <local_identifier>fits_data_object_71</local_identifier>
+      <offset unit="byte">2332800</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #71 ("SCI_15"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #72 ("ERR_15")</name>
+      <local_identifier>fits_header_72</local_identifier>
+      <offset unit="byte">2465280</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #72 ("ERR_15"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_15 image, HDU[71].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #73 ("DQ_15")</name>
+      <local_identifier>fits_header_73</local_identifier>
+      <offset unit="byte">2471040</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #73 ("DQ_15"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_15
+        image, HDU[71].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #74 ("SAMP_15")</name>
+      <local_identifier>fits_header_74</local_identifier>
+      <offset unit="byte">2476800</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #74 ("SAMP_15"): Array containing the number of input samples used to
+        compute each sample of the SCI_15 image, HDU[71].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 5.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #75 ("TIME_15")</name>
+      <local_identifier>fits_header_75</local_identifier>
+      <offset unit="byte">2482560</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #75 ("TIME_15"): Array containing the effective integration time of
+        each sample in the science SCI_15 image, HDU[71].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        1.990624.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #76 ("SCI_16")</name>
+      <local_identifier>fits_header_76</local_identifier>
+      <offset unit="byte">2488320</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #76 ("SCI_16").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #76 ("SCI_16")</name>
+      <local_identifier>fits_data_object_76</local_identifier>
+      <offset unit="byte">2496960</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #76 ("SCI_16"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #77 ("ERR_16")</name>
+      <local_identifier>fits_header_77</local_identifier>
+      <offset unit="byte">2629440</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #77 ("ERR_16"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_16 image, HDU[76].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #78 ("DQ_16")</name>
+      <local_identifier>fits_header_78</local_identifier>
+      <offset unit="byte">2635200</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #78 ("DQ_16"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_16
+        image, HDU[76].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #79 ("SAMP_16")</name>
+      <local_identifier>fits_header_79</local_identifier>
+      <offset unit="byte">2640960</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #79 ("SAMP_16"): Array containing the number of input samples used to
+        compute each sample of the SCI_16 image, HDU[76].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 4.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #80 ("TIME_16")</name>
+      <local_identifier>fits_header_80</local_identifier>
+      <offset unit="byte">2646720</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #80 ("TIME_16"): Array containing the effective integration time of
+        each sample in the science SCI_16 image, HDU[76].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.993.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #81 ("SCI_17")</name>
+      <local_identifier>fits_header_81</local_identifier>
+      <offset unit="byte">2652480</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #81 ("SCI_17").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #81 ("SCI_17")</name>
+      <local_identifier>fits_data_object_81</local_identifier>
+      <offset unit="byte">2661120</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #81 ("SCI_17"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #82 ("ERR_17")</name>
+      <local_identifier>fits_header_82</local_identifier>
+      <offset unit="byte">2793600</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #82 ("ERR_17"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_17 image, HDU[81].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #83 ("DQ_17")</name>
+      <local_identifier>fits_header_83</local_identifier>
+      <offset unit="byte">2799360</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #83 ("DQ_17"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_17
+        image, HDU[81].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #84 ("SAMP_17")</name>
+      <local_identifier>fits_header_84</local_identifier>
+      <offset unit="byte">2805120</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #84 ("SAMP_17"): Array containing the number of input samples used to
+        compute each sample of the SCI_17 image, HDU[81].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 3.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #85 ("TIME_17")</name>
+      <local_identifier>fits_header_85</local_identifier>
+      <offset unit="byte">2810880</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #85 ("TIME_17"): Array containing the effective integration time of
+        each sample in the science SCI_17 image, HDU[81].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        0.604656.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #86 ("SCI_18")</name>
+      <local_identifier>fits_header_86</local_identifier>
+      <offset unit="byte">2816640</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #86 ("SCI_18").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #86 ("SCI_18")</name>
+      <local_identifier>fits_data_object_86</local_identifier>
+      <offset unit="byte">2825280</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #86 ("SCI_18"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #87 ("ERR_18")</name>
+      <local_identifier>fits_header_87</local_identifier>
+      <offset unit="byte">2957760</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #87 ("ERR_18"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_18 image, HDU[86].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #88 ("DQ_18")</name>
+      <local_identifier>fits_header_88</local_identifier>
+      <offset unit="byte">2963520</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #88 ("DQ_18"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_18
+        image, HDU[86].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #89 ("SAMP_18")</name>
+      <local_identifier>fits_header_89</local_identifier>
+      <offset unit="byte">2969280</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #89 ("SAMP_18"): Array containing the number of input samples used to
+        compute each sample of the SCI_18 image, HDU[86].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 2.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #90 ("TIME_18")</name>
+      <local_identifier>fits_header_90</local_identifier>
+      <offset unit="byte">2975040</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #90 ("TIME_18"): Array containing the effective integration time of
+        each sample in the science SCI_18 image, HDU[86].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of
+        0.302328.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #91 ("SCI_19")</name>
+      <local_identifier>fits_header_91</local_identifier>
+      <offset unit="byte">2980800</offset>
+      <object_length unit="byte">8640</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #91 ("SCI_19").
+      </description>
+    </Header>
+
+    <Array_2D_Image>
+      <name>FITS data object #91 ("SCI_19")</name>
+      <local_identifier>fits_data_object_91</local_identifier>
+      <offset unit="byte">2989440</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>
+        FITS data object #91 ("SCI_19"): Raw NIC1 image.
+      </description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>count</unit>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>256</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D_Image>
+
+    <Header>
+      <name>FITS header #92 ("ERR_19")</name>
+      <local_identifier>fits_header_92</local_identifier>
+      <offset unit="byte">3121920</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #92 ("ERR_19"): Array containing the uncertainty (sigma) for each
+        corresponding sample in the SCI_19 image, HDU[91].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #93 ("DQ_19")</name>
+      <local_identifier>fits_header_93</local_identifier>
+      <offset unit="byte">3127680</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #93 ("DQ_19"): Array containing the data quality mask as a bit-encoded
+        array of flags representing known status or problem conditions of the SCI_19
+        image, HDU[91].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #94 ("SAMP_19")</name>
+      <local_identifier>fits_header_94</local_identifier>
+      <offset unit="byte">3133440</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #94 ("SAMP_19"): Array containing the number of input samples used to
+        compute each sample of the SCI_19 image, HDU[91].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 1.0.
+      </description>
+    </Header>
+
+    <Header>
+      <name>FITS header #95 ("TIME_19")</name>
+      <local_identifier>fits_header_95</local_identifier>
+      <offset unit="byte">3139200</offset>
+      <object_length unit="byte">5760</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>
+        FITS header #95 ("TIME_19"): Array containing the effective integration time of
+        each sample in the science SCI_19 image, HDU[91].
+
+        Note that this FITS header describes a pseudo-array with a fixed value of 0.0.
+      </description>
+    </Header>
+
+  </File_Area_Observational>
+</Product_Observational>
