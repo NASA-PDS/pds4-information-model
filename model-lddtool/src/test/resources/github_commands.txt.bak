@@ -1,0 +1,3 @@
+﻿
+
+D:\GitHub_projects\pds4-information-model>mvn clean test -Dcucumber.filter.tags="@my_tutorial"

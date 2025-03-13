@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Bundle xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:gbo.sdss-moc.phot</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>SDSS MOVING OBJECT CATALOG</title>
+    <information_model_version>1.23.0.0</information_model_version>
+    <product_class>Product_Bundle</product_class>
+    <Citation_Information>
+      <author_list>Ivezic, Z.;Juric, M.;Lupton, R.H.;Tabachnik, S.;Quinn, T.; The SDSS Collaboration</author_list>
+      <publication_year>2010</publication_year>
+      <description>The Sloan Digital Sky Survey (SDSS)     
+        Moving Object Catalog 4th release lists astrometric and photometric   
+        data for moving objects detected in the SDSS.  The catalog includes   
+        various identification parameters, SDSS astrometric measurements (five
+        SDSS magnitudes and their errors), and orbital elements for previously
+        cataloged asteroids.  The data set also includes a list of the runs   
+        from which data are included, and filter response curves.</description>
+      <List_Author>
+        <Person>
+          <display_full_name>Zeljko Ivezic</display_full_name>
+          <given_name>Zeljko</given_name>
+          <family_name>Ivezic</family_name>
+          <person_orcid>http://orcid.org/0000-0001-5250-2633</person_orcid>
+          <sequence_number>1</sequence_number>
+        </Person>
+        <Person>
+          <display_full_name>Mario Juric</display_full_name>
+          <given_name>Mario</given_name>
+          <family_name>Juric</family_name>
+          <person_orcid>http://orcid.org/0000-0003-1996-9252</person_orcid>
+          <sequence_number>2</sequence_number>
+        </Person>
+        <Person>
+          <display_full_name>Robert H. Lupton</display_full_name>
+          <given_name>Robert</given_name>
+          <family_name>Lupton</family_name>
+          <person_orcid>http://orcid.org/0000-0003-1666-0962</person_orcid>
+          <sequence_number>3</sequence_number>
+        </Person>
+        <Person>
+          <display_full_name>Serge Tabachnik</display_full_name>
+          <given_name>Serge</given_name>
+          <family_name>Tabachnik</family_name>
+          <sequence_number>4</sequence_number>
+        </Person>
+        <Person>
+          <display_full_name>Thomas Quinn</display_full_name>
+          <given_name>Thomas</given_name>
+          <family_name>Quinn</family_name>
+          <person_orcid>http://orcid.org/0000-0003-3163-579X</person_orcid>
+          <sequence_number>5</sequence_number>
+        </Person>
+      </List_Author>
+       <List_Author>
+         <Organization>
+           <organization_name>JPL</organization_name>
+           <sequence_number>1</sequence_number>
+           <Parent_Organization>
+             <parent_organization_name>The SDSS Collaboration</parent_organization_name>
+             <sequence_number>1</sequence_number>            
+           </Parent_Organization>           
+         </Organization>         
+       </List_Author>      
+    </Citation_Information>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2020-02-28</modification_date>
+        <version_id>1.0</version_id>
+        <description>Migrated from EAR-A-I0035-3-SDSSMOC-V3.0</description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Context_Area>
+    <Time_Coordinates>
+      <start_date_time>1998-09-19Z</start_date_time>
+      <stop_date_time>2007-03-14Z</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Calibrated</processing_level>
+      <Science_Facets>
+        <wavelength_range>Visible</wavelength_range>
+        <wavelength_range>Near Infrared</wavelength_range>
+        <discipline_name>Flux Measurements</discipline_name>
+        <facet1>Photometry</facet1>
+      </Science_Facets>
+      <Science_Facets>
+        <wavelength_range>Visible</wavelength_range>
+        <wavelength_range>Near Infrared</wavelength_range>
+        <discipline_name>Small Bodies</discipline_name>
+        <facet1>Dynamical Properties</facet1>
+      </Science_Facets>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>No Specific Investigation</name>
+      <type>Individual Investigation</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:individual.none</lid_reference>
+        <reference_type>bundle_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>SDSS Photometric Camera</name>
+        <type>Instrument</type>
+        <description>The description for SDSS Photometric Camera can be found in the document collection
+for this bundle.</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:apache_point.sdss2m5.sdss_photometric</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>2.5-m SDSS Ritchey-Chretien altazimuth reflector at Apache Point Observatory</name>
+        <type>Telescope</type>
+        <description>The description for 2.5-m SDSS Ritchey-Chretien altazimuth reflector at Apache Point
+                     Observatory can be found in the document collection for this bundle.</description>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Multiple Asteroids</name>
+      <type>Asteroid</type>
+    </Target_Identification>
+    <Target_Identification>
+      <name>Calibration Target</name>
+      <type>Calibration Field</type>
+    </Target_Identification>
+  </Context_Area>
+  <Bundle>
+    <bundle_type>Archive</bundle_type>
+  </Bundle>
+  <File_Area_Text>
+    <File>
+      <file_name>test_file_img_bundle_gbo_1.txt</file_name>
+      <file_size unit="byte">2</file_size>
+    </File>
+    <Stream_Text>
+      <name>test_file_readme.txt</name>
+      <offset unit="byte">0</offset>
+      <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+    </Stream_Text>    
+  </File_Area_Text>
+  <Bundle_Member_Entry>
+    <lidvid_reference>urn:nasa:pds:gbo.sdss-moc.phot:data::1.0</lidvid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lidvid_reference>urn:nasa:pds:gbo.sdss-moc.phot:document::1.0</lidvid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_document_collection</reference_type>
+  </Bundle_Member_Entry>
+</Product_Bundle>

@@ -1,0 +1,44 @@
+I assume I should get the IngestLDD file from
+https://github.com/pds-data-dictionaries/ldd-hst
+
+
+% validate -x *xsd -S *sch -t ORB_35_STAR_SCANNER.xml
+Configuration:
+   Version     3.6.0-SNAPSHOT
+   Date        2024-10-14T21:11:53Z
+Parameters:
+   Targets                      [file:/Users/rchen/Desktop/794/ORB_35_STAR_SCANNER.xml]
+   Severity Level               WARNING
+   Recurse Directories          true
+   File Filters Used            [*.xml, *.XML]
+   Data Content Validation      on
+   Product Level Validation     on
+   Max Errors                   100000
+   Registered Contexts File     /Users/rchen/PDS4tools/validate/resources/registered_context_products.json
+Product Level Validation Results
+  PASS: file:/Users/rchen/Desktop/794/ORB_35_STAR_SCANNER.xml
+        1 product validation(s) completed
+Summary:
+  1 product(s)
+  0 error(s)
+  0 warning(s)
+  Product Validation Summary:
+    1          product(s) passed
+    0          product(s) failed
+    0          product(s) skipped
+    1          product(s) total
+  Referential Integrity Check Summary:
+    0          check(s) passed
+    0          check(s) failed
+    0          check(s) skipped
+    0          check(s) total
+End of Report
+Completed execution in 2379 ms
+% 
+% 
+% grep vikinglander: ORB_35_STAR_SCANNER.xml
+            <vikinglander:Viking_Lander_Parameters>
+                <vikinglander:Observation_Information>
+                    <vikinglander:observation_name>testtesttesttest</vikinglander:observation_name>
+                </vikinglander:Observation_Information>
+            </vikinglander:Viking_Lander_Parameters>
