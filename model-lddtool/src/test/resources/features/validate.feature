@@ -26,7 +26,6 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#797  | "test schematron for kernel_type checks"                     | "github797"  |           3 | "SCHEMATRON_ERROR" | "-t {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#829  | "Added mrad/pixel to Units_of_Pixel_Resolution_Angular"      | "github829"  |           6 |  "6 errors expected" | "-t {resourceDir}/github829" | "PDS4_HST_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#831  | "add Array_1D_Spectrum"                                      | "github831"  |           0 |  "totalErrors" | "-t {resourceDir}/github831/" | "" | "" |
-| NASA-PDS/pds4-information-model#837  | "Incorrect SCH rules for type:External"                      | "github837"  |           3 |  "totalErrors" | "-t {resourceDir}/github837/" | "" | "" |
 
 # Primary check is that LDDTool executes successfully, which it did not before
 # | NASA-PDS/pds4-information-model#852a  | "bug generating LDDs for 1C00"   | "github852"  |           0  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
