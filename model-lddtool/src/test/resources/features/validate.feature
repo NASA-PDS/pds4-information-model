@@ -15,6 +15,7 @@ Feature: pds4_information_model_validate_integration
     @v15.2.x
 <<<<<<< HEAD
     Examples: 
+<<<<<<< HEAD
 | testId                               | testName                        | testDir     | messageCount         | problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version |
 | NASA-PDS/pds4-information-model#753  | "new Current units nA microA"   | "github753"  |           0  | "totalErrors" | "-t {resourceDir}/github753/pc__d139.xml" | "PDS4_MARS2020_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#784a | "Encoded_Video for Product_Ancillary" | "github784a" |           0 | "totalErrors" | "-t {resourceDir}/github784/FUV2017032anc.xml" | "" | "" |
