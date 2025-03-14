@@ -13,6 +13,7 @@ Feature: pds4_information_model_validate_integration
     # NOTE: The following flags are prepended to the execution by default: --disable-context-mismatch-warnings --report-style json --skip-content-validation --report-file {reportDir}/
     
     @v15.2.x
+<<<<<<< HEAD
     Examples: 
 | testId                               | testName                        | testDir     | messageCount         | problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version |
 | NASA-PDS/pds4-information-model#753  | "new Current units nA microA"   | "github753"  |           0  | "totalErrors" | "-t {resourceDir}/github753/pc__d139.xml" | "PDS4_MARS2020_IngestLDD.xml" | "" |
@@ -29,3 +30,4 @@ Feature: pds4_information_model_validate_integration
 # | NASA-PDS/pds4-information-model#852a  | "bug generating LDDs for 1C00"   | "github852"  |           0  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
 #| NASA-PDS/pds4-information-model#852b  | "bug generating LDDs for 1D00"   | "github852"  |           2  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896b.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
 #| NASA-PDS/pds4-information-model#852c  | "bug generating LDDs for 1E00"   | "github852"  |           2  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896c.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
+
