@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <?xml-model href="https://pds.nasa.gov/pds4/mission/lcross/v1/PDS4_LCROSS_1D00_1000.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1D00_1720.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="https://pds.nasa.gov/pds4/disp/v1/PDS4_DISP_1900.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
     xmlns:lcross="http://pds.nasa.gov/pds4/mission/lcross/v1"
@@ -10,9 +8,7 @@
     xmlns:disp="http://pds.nasa.gov/pds4/disp/v1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.xsd
-    http://pds.nasa.gov/pds4/mission/lcross/v1  https://pds.nasa.gov/pds4/mission/lcross/v1/PDS4_LCROSS_1D00_1000.xsd
-    http://pds.nasa.gov/pds4/geom/v1            https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1D00_1720.xsd
-    http://pds.nasa.gov/pds4/disp/v1            https://pds.nasa.gov/pds4/disp/v1/PDS4_DISP_1900.xsd">
+    http://pds.nasa.gov/pds4/mission/lcross/v1  https://pds.nasa.gov/pds4/mission/lcross/v1/PDS4_LCROSS_1D00_1000.xsd">
     <Identification_Area>
         <logical_identifier>urn:nasa:pds:lcross_impactor:data_nir2:lcross_nir2_cal_20090622162743896</logical_identifier>
         <version_id>1.0</version_id>
@@ -82,21 +78,6 @@
                 </lcross:NIR_Instrument_State>
             </lcross:LCROSS_Parameters>
         </Mission_Area>
-        
-        <Discipline_Area>
-          <disp:Display_Settings>         
-            <Local_Internal_Reference>    
-              <local_identifier_reference>Image_Object</local_identifier_reference>          
-              <local_reference_type>display_settings_to_array</local_reference_type>         
-            </Local_Internal_Reference>   
-            <disp:Display_Direction>      
-              <disp:horizontal_display_axis>Sample</disp:horizontal_display_axis>            
-              <disp:horizontal_display_direction>Left to Right</disp:horizontal_display_direction>            
-              <disp:vertical_display_axis>Line</disp:vertical_display_axis> 
-              <disp:vertical_display_direction>Top to Bottom</disp:vertical_display_direction>                
-            </disp:Display_Direction>     
-          </disp:Display_Settings>
-        </Discipline_Area>
         
     </Observation_Area>
     <File_Area_Observational>

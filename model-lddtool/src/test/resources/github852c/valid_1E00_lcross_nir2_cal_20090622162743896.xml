@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/mission/lcross/v1/PDS4_LCROSS_1D00_1000.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:lcross="http://pds.nasa.gov/pds4/mission/lcross/v1"
+    xmlns:geom="http://pds.nasa.gov/pds4/geom/v1"
+    xmlns:disp="http://pds.nasa.gov/pds4/disp/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1D00.xsd
+    http://pds.nasa.gov/pds4/mission/lcross/v1  https://pds.nasa.gov/pds4/mission/lcross/v1/PDS4_LCROSS_1D00_1000.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:lcross_impactor:data_nir2:lcross_nir2_cal_20090622162743896</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>LCROSS NIR2 Calibrated Image: lcross_nir2_cal_20090622162743896</title>
+        <information_model_version>1.14.0.0</information_model_version>
+        <product_class>Product_Observational</product_class>
+        <Modification_History>            
+            <Modification_Detail>           
+                <modification_date>2020-08-28</modification_date>               
+                <version_id>1.0</version_id>  
+                <description>Initial version migrated from PDS3.</description>  
+            </Modification_Detail>          
+        </Modification_History>           
+    </Identification_Area>
+    <Observation_Area>
+        <Time_Coordinates>
+            <start_date_time>2009-06-22T16:27:43.880Z</start_date_time>
+            <stop_date_time>2009-06-22T16:27:43.896Z</stop_date_time>
+        </Time_Coordinates>
+        <Investigation_Area>              
+            <name>Lunar Crater Observation and Sensing Satellite</name>      
+            <type>Mission</type>            
+            <Internal_Reference>            
+                <lid_reference>urn:nasa:pds:context:investigation:mission.lunar_crater_observation_and_sensing_satellite</lid_reference>           
+                <reference_type>data_to_investigation</reference_type>          
+            </Internal_Reference>           
+        </Investigation_Area>             
+        <Observing_System>                                                                                                        
+            <Observing_System_Component>                                                                                            
+                <name>Lunar Crater Observation and Sensing Satellite</name>                                                                                    
+                <type>Spacecraft</type>                                                                                               
+                <Internal_Reference>                                                                                                  
+                    <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.lcross</lid_reference>                              
+                    <reference_type>is_instrument_host</reference_type>                                                                 
+                </Internal_Reference>                                                                                                 
+            </Observing_System_Component>                                                                                           
+            <Observing_System_Component>                                                                                            
+                <name>Near Infrared Camera 2</name>                                                                                          
+                <type>Instrument</type>                                                                                               
+                <Internal_Reference>                                                                                                  
+                    <lid_reference>urn:nasa:pds:context:instrument:nir2.lcross</lid_reference>                                        
+                    <reference_type>is_instrument</reference_type>                                                                      
+                </Internal_Reference>                                                                                                 
+            </Observing_System_Component>                                                                                           
+        </Observing_System>                
+        <Target_Identification>           
+            <name>Calibration</name>               
+            <type>Calibrator</type>                 
+        </Target_Identification>
+        
+        <Mission_Area>
+            <lcross:LCROSS_Parameters>
+                <lcross:Mission_Parameters>
+                <lcross:product_type>Calibrated Image</lcross:product_type>
+                <lcross:producer_institution_name>Ames Research Center</lcross:producer_institution_name>
+                <lcross:mission_phase_name>Starfield</lcross:mission_phase_name>
+                <lcross:spacecraft_clock_start_count>000002650520880</lcross:spacecraft_clock_start_count>
+                <lcross:spacecraft_clock_stop_count>000002650520896</lcross:spacecraft_clock_stop_count>
+                <lcross:instrument_temperature unit="degC">20.91</lcross:instrument_temperature>
+                <lcross:instrument_temperature_count>3064</lcross:instrument_temperature_count>
+                </lcross:Mission_Parameters>
+                <lcross:NIR_Instrument_State>
+                    <lcross:enhancement_mode>Off</lcross:enhancement_mode>
+                    <lcross:operating_setting_value>15</lcross:operating_setting_value>
+                    <lcross:integration_time unit="ms">16240</lcross:integration_time>
+                    <lcross:gain_value>18</lcross:gain_value>
+                </lcross:NIR_Instrument_State>
+            </lcross:LCROSS_Parameters>
+        </Mission_Area>
+        
+    </Observation_Area>
+    <File_Area_Observational>
+        <File>           
+            <file_name>lcross_nir2_cal_20090622162743896.img</file_name>
+            <creation_date_time>2009-06-22T16:27:43.896</creation_date_time>    
+        </File>   
+        <Array_2D_Image>
+            <local_identifier>Image_Object</local_identifier>
+            <offset unit="byte">0</offset>
+            <axes>2</axes>
+            <axis_index_order>Last Index Fastest</axis_index_order>
+            <Element_Array>
+                <data_type>IEEE754LSBSingle</data_type>
+                <unit>WATT*M**-2*SR**-1</unit>
+                <scaling_factor>1</scaling_factor>
+                <value_offset>0</value_offset>
+            </Element_Array>
+            <Axis_Array>
+                <axis_name>Line</axis_name>
+                <elements>486</elements>
+                <sequence_number>1</sequence_number>
+            </Axis_Array>
+            <Axis_Array>
+                <axis_name>Sample</axis_name>
+                <elements>720</elements>
+                <sequence_number>2</sequence_number>
+            </Axis_Array>
+        </Array_2D_Image>
+    </File_Area_Observational>
+    
+    <File_Area_Observational_Supplemental>               
+        <File>           
+            <file_name>lcross_nir2_cal_20090622162743896.lbl</file_name>   
+        </File>          
+        <Stream_Text>    
+            <offset unit="byte">0</offset>  
+            <parsing_standard_id>PDS3</parsing_standard_id>  
+            <description>Original PDS3 label</description>   
+            <record_delimiter>Carriage-Return Line-Feed</record_delimiter>    
+        </Stream_Text>   
+    </File_Area_Observational_Supplemental>
+</Product_Observational>
