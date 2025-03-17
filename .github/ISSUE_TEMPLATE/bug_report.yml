@@ -2,6 +2,7 @@ name: Bug report
 description: Report a bug to help us improve
 title: <system feature> <is not/does not> <expected behaviour>
 labels: "bug,needs:triage"
+type: "Bug"
 projects: "NASA-PDS/6"
 assignees: jordanpadams
 
@@ -13,8 +14,8 @@ body:
       description: Have you checked for duplicate issue tickets?
       multiple: false
       options:
-        - "Yes - I've already checked"
         - "No - I haven't checked"
+        - "Yes - I've already checked"
     validations:
       required: yes
   - type: textarea
@@ -81,6 +82,18 @@ body:
     attributes:
       value: |
         ## For Internal Dev Team To Complete
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: To be filled out by Engineering Node Team
+      value: |
+          **Given** <!-- a condition -->
+          **When I perform** <!-- an action -->
+          **Then I expect** <!-- the result -->
+    validations:
+      required: false
 
   - type: textarea
     id: details
