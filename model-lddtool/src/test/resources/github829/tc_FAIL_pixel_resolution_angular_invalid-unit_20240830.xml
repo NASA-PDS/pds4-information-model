@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="PDS4_HST_1N00_1010.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- RMS HST Product-Label pipeline version 1.0 (2024-07-17) -->
+<!-- RMS PdsTemplate module version 1.0 (2023-06-26) -->
+
+<Product_Observational
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:hst="http://pds.nasa.gov/pds4/mission/hst/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1N00.xsd
+                      http://pds.nasa.gov/pds4/mission/hst/v1 PDS4_HST_1N00_1010.xsd">
+
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:hst_7885:data_nicmos_raw:n4wl01xqq</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>
+      n4wl01xqq_raw.fits: Raw NICMOS data from HST Program 7885.
+    </title>
+    <information_model_version>1.23.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2024-08-06</modification_date>
+        <version_id>1.0</version_id>
+        <description>
+          This is the initial PDS4 version of this data product.
+
+          This FITS file was retrieved from MAST on 2024-06-20. It was originally produced
+          by MAST on or around 2009-03-01, using version OPUS 2008_5c of their HST
+          processing software.
+
+          Migration to the PDS4 standard was carried out by the PDS Ring-Moon Systems Node
+          using their HST migration pipeline version 1.0 (2024-07-17) and XML labeling
+          software version 1.0 (2023-06-26).
+        </description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+
+  <Observation_Area>
+    <comment>
+      This is a copy of HST file "n4wl01xqq_raw.fits" as obtained from the Mikulski
+      Archive for Space Telescopes (MAST) on 2024-06-20. The file was produced by MAST on
+      or around 2009-03-01, using version OPUS 2008_5c of their HST processing pipeline.
+    </comment>
+
+    <Time_Coordinates>
+      <start_date_time>1998-08-05T01:41:08Z</start_date_time>
+      <stop_date_time>1998-08-05T01:44:20Z</stop_date_time>
+    </Time_Coordinates>
+
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Raw</processing_level>
+      <description>
+        n4wl01xqq_raw.fits: Raw NICMOS data from HST Program 7885.
+      </description>
+      <Science_Facets>
+        <wavelength_range>Near Infrared</wavelength_range>
+        <wavelength_range>Infrared</wavelength_range>
+        <discipline_name>Ring-Moon Systems</discipline_name>
+      </Science_Facets>
+    </Primary_Result_Summary>
+
+    <Investigation_Area>
+      <name>MARS PATHFINDER</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lidvid_reference>urn:nasa:pds:context:investigation:mission.mars_pathfinder::1.0</lidvid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+
+    <Observing_System>
+      <Observing_System_Component>
+        <name>Hubble Space Telescope</name>
+        <type>Host</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.hst</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Near Infrared Camera and Multi-Object Spectrometer</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:hst.nicmos</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+
+    <Target_Identification>
+      <name>Uranus</name>
+      <type>Planet</type>
+      <description>
+        NAIF ID: 799
+      </description>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:target:planet.uranus</lid_reference>
+        <reference_type>data_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+
+    <Mission_Area>
+      <hst:HST_Parameters>
+        <hst:Program_Parameters>
+          <hst:mast_observation_id>n4wl01xqq</hst:mast_observation_id>
+          <hst:hst_proposal_id>7885</hst:hst_proposal_id>
+          <hst:hst_pi_name>Hammel, Heidi B.</hst:hst_pi_name>
+          <hst:visit_id>01</hst:visit_id>
+        </hst:Program_Parameters>
+        <hst:Instrument_Parameters>
+          <hst:instrument_id>NICMOS</hst:instrument_id>
+
+          <hst:channel_id>NIC1</hst:channel_id>
+          <hst:detector_id>NIC1</hst:detector_id>
+          <hst:observation_type>IMAGING</hst:observation_type>
+        </hst:Instrument_Parameters>
+        <hst:Pointing_Parameters>
+          <hst:hst_target_name>URANUS</hst:hst_target_name>
+          <hst:moving_target_flag>true</hst:moving_target_flag>
+          <hst:moving_target_keyword>PLANET</hst:moving_target_keyword>  <!-- 1 of 2 -->
+          <hst:moving_target_keyword>URANUS</hst:moving_target_keyword>  <!-- 2 of 2 -->
+          <hst:moving_target_description>STD=URANUS</hst:moving_target_description>
+          <hst:aperture_name>NIC1-FIX</hst:aperture_name>
+          <hst:proposed_aperture_name>NIC1-FIX</hst:proposed_aperture_name>
+          <hst:targeted_detector_id>NIC1</hst:targeted_detector_id>
+        </hst:Pointing_Parameters>
+        <hst:Tracking_Parameters>
+          <hst:fine_guidance_sensor_lock_type>FINE</hst:fine_guidance_sensor_lock_type>
+          <hst:gyroscope_mode>3</hst:gyroscope_mode>
+        </hst:Tracking_Parameters>
+        <hst:Exposure_Parameters>
+          <hst:exposure_duration unit="s">191.896</hst:exposure_duration>
+          <hst:exposure_type>NORMAL</hst:exposure_type>
+        </hst:Exposure_Parameters>
+        <hst:Wavelength_Filter_Grating_Parameters>
+          <hst:filter_name>F170M</hst:filter_name>
+          <hst:center_filter_wavelength unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:center_filter_wavelength>
+          <hst:bandwidth unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:bandwidth>
+          <hst:spectral_resolution unit="micrometer" xsi:nil="true" nilReason="inapplicable"></hst:spectral_resolution>
+        </hst:Wavelength_Filter_Grating_Parameters>
+        <hst:Operational_Parameters>
+          <hst:instrument_mode_id>MULTIACCUM</hst:instrument_mode_id>
+          <hst:gain_setting xsi:nil="true" nilReason="inapplicable"></hst:gain_setting>
+          <hst:coronagraph_flag>false</hst:coronagraph_flag>
+          <hst:cosmic_ray_split_count>1</hst:cosmic_ray_split_count>
+          <hst:repeat_exposure_count>1</hst:repeat_exposure_count>
+          <hst:subarray_flag>false</hst:subarray_flag>
+          <hst:binning_mode>1</hst:binning_mode>
+          <!-- invalid <unit> -->
+          <hst:plate_scale unit="mrad/pixels">4.2e-05</hst:plate_scale>
+        </hst:Operational_Parameters>
+        <hst:Processing_Parameters>
+          <hst:mast_pipeline_version_id>OPUS 2008_5c</hst:mast_pipeline_version_id>
+          <hst:hst_quality_id>OK</hst:hst_quality_id>
+          <hst:hst_quality_comment>
+            NO APPARENT PROBLEMS.
+          </hst:hst_quality_comment>
+        </hst:Processing_Parameters>
+      </hst:HST_Parameters>
+    </Mission_Area>
+  </Observation_Area>
+
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:hst-support:document:nicmos-dhb</lid_reference>
+      <reference_type>data_to_document</reference_type>
+      <comment>Data Handbook for NICMOS</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:hst-support:document:nicmos-ihb</lid_reference>
+      <reference_type>data_to_document</reference_type>
+      <comment>Instrument Handbook for NICMOS</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:browse_nicmos_raw:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_browse</reference_type>
+      <comment>Full-resolution browse product</comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_jif:n4wl01xqj::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqj_jif.fits: NICMOS 2-D jitter histogram image for the associated "_jit"
+        file (n4wl01xqj_jit.fits,
+        urn:nasa:pds:hst_7885:miscellaneous_nicmos_jit:n4wl01xqj::1:0) from HST Program
+        7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_jit:n4wl01xqj::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqj_jit.fits: NICMOS pointing jitter table for this NICMOS/NIC1 observation
+        from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:data_nicmos_cal:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_calibrated_product</reference_type>
+      <comment>
+        n4wl01xqq_cal.fits: Calibrated version of the associated "_raw" NICMOS/NIC1 data
+        file (n4wl01xqq_raw.fits, urn:nasa:pds:hst_7885:data_nicmos_raw:n4wl01xqq::1:0)
+        from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:data_nicmos_ima:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_ima.fits: Intermediate NICMOS MULTIACCUM data file for HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_spt:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_spt.fits: Support, planning, and telemetry data for this NICMOS/NIC1
+        observation from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:hst_7885:miscellaneous_nicmos_trl:n4wl01xqq::1.0</lidvid_reference>
+      <reference_type>data_to_resource</reference_type>
+      <comment>
+        n4wl01xqq_trl.fits: Trailer file with processing log for this NICMOS/NIC1
+        observation from HST Program 7885.
+      </comment>
+    </Internal_Reference>
+  </Reference_List>
+
+  <File_Area_Observational>
+    <File>
+      <file_name>i943630r_2.raw</file_name>
+      <local_identifier>i943630r_2.raw</local_identifier>
+      <creation_date_time>2009-05-04T13:46:30.115Z</creation_date_time>
+      <file_size unit="byte">126976</file_size>
+      <records>256</records>      
+    </File>
+    
+    <Array_2D_Image>
+      <local_identifier>MPFL-M-IMP_IMG_GRAYSCALE</local_identifier>
+      <offset unit="byte">0</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      
+      <Element_Array>
+        <data_type>UnsignedMSB2</data_type>
+        <unit>data number</unit>
+        <scaling_factor>1</scaling_factor>
+        <value_offset>0</value_offset>
+      </Element_Array>           
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>248</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>256</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+      
+    </Array_2D_Image>    
+  </File_Area_Observational>
+</Product_Observational>
