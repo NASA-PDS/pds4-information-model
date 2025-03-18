@@ -31,10 +31,9 @@ Feature: pds4_information_model_validate_integration
     @v15.3.x
     Examples: 
 | testId                               | testName                        | testDir     | messageCount         | problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version |
-| NASA-PDS/pds4-information-model#752  | "TO BE REPLACED WITH NEW TESTS FOR 15.3.x"                 | "github752"  |           6 | "6 errors expected" | "SCHEMATRON_ERROR" | "-t {resourceDir}/github752" | "" |
 # Primary check is that LDDTool executes successfully, which it did not before
-# | NASA-PDS/pds4-information-model#852a  | "bug generating LDDs for 1C00"   | "github852"  |           0  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
-#| NASA-PDS/pds4-information-model#852b  | "bug generating LDDs for 1D00"   | "github852"  |           2  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896b.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
-#| NASA-PDS/pds4-information-model#852c  | "bug generating LDDs for 1E00"   | "github852"  |           2  | "totalErrors" | "-t {resourceDir}/github852/lcross_nir2_cal_20090622162743896c.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
+| NASA-PDS/pds4-information-model#852a  | "Test fix for bug generating LDDs for 1C00"   | "github852a"  |           0  | "totalErrors" | "-t {resourceDir}/github852a/valid_1C00_lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1C00" |
+# | NASA-PDS/pds4-information-model#852b  | "Test fix for bug generating LDDs for 1D00"   | "github852b"  |           0  | "totalErrors" | "-t {resourceDir}/github852b/valid_1D00_lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1D00" |
+| NASA-PDS/pds4-information-model#852c  | "Test fix for bug generating LDDs for 1E00"   | "github852c"  |           0  | "totalErrors" | "-t {resourceDir}/github852c/valid_1E00_lcross_nir2_cal_20090622162743896.xml" | "PDS4_LCROSS_IngestLDD_1000.xml" | "1E00" |
 
 

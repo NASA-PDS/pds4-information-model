@@ -1,4 +1,4 @@
-; Sun Mar 31 15:49:59 PDT 2019
+; Wed Mar 05 19:36:49 EST 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -5239,19 +5239,20 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Product_Dictionary "The Product_Dictionary describes the components of a dictionary product which includes as a minimum an Ingest_LDD file. It may also include a schema (.xsd) file, a Schematron (.sch) file, and any other file output by LDDTool."
+(defclass Product_Ingest_LDD "The Product_Ingest_LDD describes the components of a dictionary product which includes the Ingest_LDD file."
 	(is-a Product)
 	(role concrete)
 	(single-slot product_data_object
 ;+		(comment "The product_data_object association is a relationship to a data object.")
 		(type INSTANCE)
-;+		(allowed-classes Dictionary)
+;+		(allowed-classes Ingest_LDD_File_Desc)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot file_area
+	(single-slot file_area
 ;+		(comment "The file_area association is a relationship to File Area")
 		(type INSTANCE)
-;+		(allowed-classes File_Area_XML_Schema)
+;+		(allowed-classes File_Area_Ingest_LDD)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
@@ -6059,6 +6060,21 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
+(defclass File_Area_Ingest_LDD "The File_Area_Ingest_LDD class describes a file that contains the Ingest_LDD file, the source document that defines a Local Data Dictionary (LDD)."
+	(is-a File_Area)
+	(role concrete)
+	(multislot has_tagged_data_object
+;+		(comment "The has_tagged_data_object association is a relationship to any tagged_digital_object or tagged_nondigital_object.")
+		(type INSTANCE)
+;+		(allowed-classes Ingest_LDD_File)
+		(create-accessor read-write))
+	(single-slot has_File
+;+		(comment "The has_File association is a relationship to File.")
+		(type INSTANCE)
+;+		(allowed-classes File)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
 (defclass Science_Facets "The Science_Facets class contains the science-related search facets.  It is optional and may be repeated if an product has facets related to, for example, two different disciplines (as defined by the discipline_name facet). Note that Science_Facets was modeled with Discipline_Facets as a component and Discipline_Facets was modeled with Group_Facet1 and Group_Facet2 as components. This dependency hierarchy was flattened and only Science_Facets exists in the schema."
 	(is-a Product_Components)
 	(role concrete)
@@ -6492,6 +6508,16 @@
 ;+		(comment "The record_delimiter attribute provides the character or characters used to indicate the end of a record.")
 		(type STRING)
 ;+		(value "Carriage-Return Line-Feed" "carriage-return line-feed")
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Ingest_LDD_File "The Ingest_LDD_File class is the source document for defining a Local Data Dictionary (LDD)."
+	(is-a Parsable_Byte_Stream)
+	(role concrete)
+	(single-slot parsing_standard_id
+;+		(comment "The parsing_standard_id attribute provides the formal name of a standard used for the structure of a Parsable Byte Stream digital object.")
+		(type STRING)
+;+		(value "PDS4 Ingest_LDD Class - IM V1.12.0.0 - XML")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -7974,7 +8000,7 @@
 	(is-a TNDO_Context)
 	(role concrete))
 
-(defclass Dictionary "The Dictionary class provides a description of a local data dictionary."
+(defclass Ingest_LDD_File_Desc "The Ingest_LDD_File_Desc class provides a description of the Ingest_LDD file."
 	(is-a TNDO_Context)
 	(role concrete)
 	(single-slot description
@@ -8591,14 +8617,6 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
-
-(defclass Cartography_Group "The Cartography Group class is a placeholder for soon forthcoming Imaging cartography classes."
-	(is-a TNDO_Supplemental)
-	(role concrete))
-
-(defclass Rings "The Rings class is an abstract class used to identify the RINGS namespace."
-	(is-a TNDO_Supplemental)
-	(role concrete))
 
 (defclass DD_Attribute_Full "The DD_Attribute_Full class provides a more complete definition of an attribute in the data dictionary."
 	(is-a TNDO_Supplemental)
