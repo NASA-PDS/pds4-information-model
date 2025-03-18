@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-04)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -10,11 +10,14 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespaces for vex, smart1, and giotto [\#876](https://github.com/NASA-PDS/pds4-information-model/issues/876)
+- Archive all PDS Policy documents [\#872](https://github.com/NASA-PDS/pds4-information-model/issues/872)
 - \[namespace-registry\] add new namespace "ama" [\#868](https://github.com/NASA-PDS/pds4-information-model/issues/868)
 - Update command-line arguments to be in line with standard best practices [\#861](https://github.com/NASA-PDS/pds4-information-model/issues/861)
 
 **Defects:**
 
+- lddtool `-V` flag outputs invalid schemas for 1C00 [\#874](https://github.com/NASA-PDS/pds4-information-model/issues/874) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Unable to run \>1 cucumber test with LDDs [\#866](https://github.com/NASA-PDS/pds4-information-model/issues/866) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - `-V` flag does not work when attempting to generate core IM [\#859](https://github.com/NASA-PDS/pds4-information-model/issues/859) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
