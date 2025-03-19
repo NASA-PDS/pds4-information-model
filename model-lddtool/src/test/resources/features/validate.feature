@@ -24,7 +24,7 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#795a | "reference_type Failures for all Data Types"                               | "github795"  |          10 | "SCHEMATRON_ERROR,INTERNAL_ERROR" | "-R pds4.bundle -t {resourceDir}/github795" | "" | "" |
 | NASA-PDS/pds4-information-model#795b | "reference_type Failures for Product_External"                             | "github795b" |           2 | "SCHEMATRON_ERROR" | "-t {resourceDir}/github795b/occultation_prediction_som_manifest.xml" | "" | "" |
 | NASA-PDS/pds4-information-model#797  | "test schematron for kernel_type checks"                                   | "github797"  |           3 | "SCHEMATRON_ERROR" | "-t {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" | "" |
-| NASA-PDS/pds4-information-model#829  | "added mrad/pixel to Units_of_Pixel_Resolution_Angular (JIRA-CCB-38)"      | "github829"  |           7 |  "totalErrors" | "-t {resourceDir}/github829" | "PDS4_HST_IngestLDD.xml" | "" |
+| NASA-PDS/pds4-information-model#829  | "added mrad/pixel to Units_of_Pixel_Resolution_Angular (JIRA-CCB-38)"      | "github829"  |           5 |  "totalErrors" | "-t {resourceDir}/github829" | "PDS4_HST_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#831  | "add Array_1D_Spectrum (JIRA-CCB-42)"                                      | "github831"  |           0 |  "totalErrors" | "-t {resourceDir}/github831/" | "" | "" |
 | NASA-PDS/pds4-information-model#837  | "Incorrect SCH rules for type:External (JIRA-CCB-29)"                      | "github837"  |           2 |  "totalErrors" | "-t {resourceDir}/github837/" | "" | "" |
 
