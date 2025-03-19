@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+
+<Product_Document
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:cassini.rss.raw.gwe:document:test_file_1</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Test Document with author_list and Simple Citation_Information</title>
+    <information_model_version>1.23.0.0</information_model_version>
+    <product_class>Product_Document</product_class>
+    <Citation_Information>
+      <author_list>Frank, Louis A.; Ackerson, Kent L.</author_list>
+      <publication_year>2023</publication_year>
+      <description>
+            This is a two-character test document having a label with attribute author_list and simple class Citation_Information.
+            This example illustrates use of author_list in PDS4 IM v1.20.0.0.
+      </description>
+    </Citation_Information>
+  </Identification_Area>
+  
+  <Document>
+    <document_name>
+      Test Document with author_list and Simple Citation_Information
+    </document_name>
+    <publication_date>2023-09-29</publication_date>
+    <description>
+        This is a two-character test document having a label with attribute author_list and simple class Citation_Information. 
+        This example illustrates use of author_list in PDS4 IM v1.20.0.0.
+    </description>
+    <Document_Edition>
+       <edition_name>First</edition_name>
+       <language>English</language>
+       <files>1</files>
+       <Document_File>
+         <file_name>test_file_1.txt</file_name>
+         <file_size unit="byte">2</file_size>
+         <document_standard_id>7-Bit ASCII Text</document_standard_id>
+       </Document_File>
+     </Document_Edition>
+  </Document>
+  
+</Product_Document>

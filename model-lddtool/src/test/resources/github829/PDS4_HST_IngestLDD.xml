@@ -1,38 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1L00.sch"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch"?>
 
 <Ingest_LDD 
   xmlns="http://pds.nasa.gov/pds4/pds/v1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
   xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
-                      https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1L00.xsd">
+                      https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
 
     <name>Hubble Space Telescope Mission Dictionary</name>
-    <ldd_version_id>1.1.0</ldd_version_id>
+    <ldd_version_id>1.0.1</ldd_version_id>
     <dictionary_type>Mission</dictionary_type>
     <full_name>Matthew S. Tiscareno</full_name>
     <steward_id>rings</steward_id>
     <namespace_id>hst</namespace_id>
     <comment>
-      Note: Several pre-release versions are tagged within the ldd-hst repo
-      on GitHub.  These were written between 2020 and 2024 by Mark Showalter
-      and Mitch Gordon.
+      Note: Several pre-release versions are tagged within the ldd-hst repo on GitHub.
+      These were written between 2020 and 2024 by Mark Showalter and Mitch Gordon.
       
       version 1.0  2024-04-15
       - Initial release version
 
       version 1.0.1  2024-05-31
       - Update ldd_version_id value, pds4_versions, and current IM version
-
-      version 1.1.0  2024-09-19
-      - Add units to plate_scale (although this is backwards-incompatible, 
-      we are not incrementing a major version because this LDD is still
-      under development)
       
     </comment>
-    <last_modification_date_time>2024-09-19</last_modification_date_time>
+    <last_modification_date_time>2024-05-31</last_modification_date_time>
 
+    <!-- ============================================ -->
+    <!-- Attribute plate_scale                        -->
+    <!--   - modify the <unit_of_measure> for testing -->
+    <!-- ============================================ -->
+    
+    <DD_Attribute>
+        <name>plate_scale</name>
+        <version_id>1.0</version_id>
+        <local_identifier>plate_scale</local_identifier>
+        <nillable_flag>true</nillable_flag>
+        <submitter_name>Mark R. Showalter</submitter_name>
+        <definition>
+            This attribute indicates approximate spatial size of one pixel in the data
+            product, in units of arcseconds per pixel. For a few HST data products, this is
+            the value of FITS keyword PLATESC. For other HST instruments, we provide the
+            value if it can be readily determined. In cases where a product contains data
+            from detectors with different plate scales, it is the smallest value.
+
+            For non-imaging instruments, this attribute should be nil with nilReason = "inapplicable".
+        </definition>
+        <DD_Value_Domain>
+            <enumeration_flag>false</enumeration_flag>
+            <value_data_type>ASCII_Real</value_data_type>
+            <!-- modify unit_of_measure -->
+            <unit_of_measure_type>Units_of_Pixel_Resolution_Angular</unit_of_measure_type>
+            
+        </DD_Value_Domain>
+    </DD_Attribute>
+    
 <!--      Observing program attributes     -->
 
 <!-- Attribute mast_observation_id -->
@@ -694,7 +717,7 @@
         </definition>
         <DD_Value_Domain>
             <enumeration_flag>false</enumeration_flag>
-            <value_data_type>ASCII_String</value_data_type>
+            <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
         </DD_Value_Domain>
     </DD_Attribute>
 
@@ -1186,6 +1209,7 @@
     </DD_Attribute>
 
 <!-- Attribute plate_scale -->
+    <!--
     <DD_Attribute>
         <name>plate_scale</name>
         <version_id>1.0</version_id>
@@ -1204,10 +1228,10 @@
         <DD_Value_Domain>
             <enumeration_flag>false</enumeration_flag>
             <value_data_type>ASCII_Real</value_data_type>
-            <unit_of_measure_type>Units_of_Pixel_Resolution_Angular</unit_of_measure_type>
         </DD_Value_Domain>
     </DD_Attribute>
-
+    -->
+    
 <!-- Attribute mast_pipeline_version_id -->
     <DD_Attribute>
         <name>mast_pipeline_version_id</name>

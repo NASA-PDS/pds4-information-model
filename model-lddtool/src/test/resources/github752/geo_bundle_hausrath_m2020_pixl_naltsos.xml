@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Bundle xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:hausrath_m2020_pixl_naltsos</logical_identifier>
+    <version_id>1.1</version_id>
+    <title>An Examination of Soil Crusts on the Floor of Jezero crater, Mars</title>
+    <information_model_version>1.23.0.0</information_model_version>
+    <product_class>Product_Bundle</product_class>
+    <Citation_Information>
+      <author_list>Hausrath, E. M.</author_list>
+      <editor_list>VanBommel, S. J.</editor_list>
+      <publication_year>2022</publication_year>      
+      <doi>10.17189/vnph-f562</doi>
+      <description>
+        An Examination of Soil Crusts on the Floor of Jezero crater, Mars
+      </description>
+      <List_Author>
+        <Person>
+          <display_full_name>E. M. Hausrath</display_full_name>
+          <given_name>Elizabeth M.</given_name>
+          <family_name>Hausrath</family_name>
+          <person_orcid>http://orcid.org/0000-0002-5520-1622</person_orcid>
+          <sequence_number>1</sequence_number>
+          <Affiliation>
+            <organization_name>University of Nevada, Las Vegas</organization_name>
+            <organization_rorid>123</organization_rorid>
+            <sequence_number>1</sequence_number>
+          </Affiliation>
+        </Person>
+      </List_Author>
+      <List_Editor>
+        <Person>
+          <display_full_name>S. J. VanBommel</display_full_name>
+          <given_name>Scott J.</given_name>
+          <family_name>VanBommel</family_name>
+          <person_orcid>http://orcid.org/0000-0002-6565-0827</person_orcid>
+          <sequence_number>1</sequence_number>
+          <Affiliation>
+            <organization_name>Washington University</organization_name>
+            <organization_rorid>123</organization_rorid>
+            <sequence_number>1</sequence_number>        	  
+          </Affiliation>
+        </Person>
+      </List_Editor>      
+    </Citation_Information>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2022-06-23</modification_date>
+        <version_id>1.0</version_id>
+        <description>Version 1</description>
+      </Modification_Detail>
+      <Modification_Detail>
+        <modification_date>2023-03-14</modification_date>
+        <version_id>1.1</version_id>
+        <description>Version 1.1. Revised External_Reference in all XML labels.</description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Context_Area>
+    <Time_Coordinates>
+      <start_date_time>2021-06-26T00:00:00Z</start_date_time>
+      <stop_date_time>2021-06-28T23:59:59Z</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Derived</processing_level>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>Perseverance</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.mars2020</lid_reference>
+        <reference_type>bundle_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>Mars 2020</name>
+        <type>Host</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.mars2020</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Planetary Instrument for X-ray Lithochemistry (PIXL)</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:mars2020.pixl</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Mars</name>
+      <type>Planet</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
+        <reference_type>bundle_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+  </Context_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:hausrath_m2020_pixl_naltsos:document:supporting_information</lid_reference>
+      <reference_type>bundle_to_document</reference_type>
+    </Internal_Reference>
+    <External_Reference>
+      <doi>10.1029/2022JE007433</doi>
+      <reference_text>
+        Hausrath, E. M. et al. (2023), An Examination of Soil Crusts on the Floor of Jezero crater, Mars, Journal of Geophysical 
+        Research: Planets, doi:10.1029/2022JE007433.
+     </reference_text>
+    </External_Reference>
+  </Reference_List>
+  <Bundle>
+    <bundle_type>Archive</bundle_type>
+  </Bundle>
+  <File_Area_Text>
+    <File>
+      <file_name>test_file_geo_bundel_hausrath_1.txt</file_name>
+      <file_size unit="byte">2</file_size>
+    </File>
+    <Stream_Text>
+      <name>test_file_readme.txt</name>
+      <offset unit="byte">0</offset>
+      <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+    </Stream_Text>    
+  </File_Area_Text>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:hausrath_m2020_pixl_naltsos:document</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_document_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:hausrath_m2020_pixl_naltsos:data</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>
+</Product_Bundle>
