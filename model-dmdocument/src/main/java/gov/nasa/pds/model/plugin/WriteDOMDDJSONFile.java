@@ -70,7 +70,7 @@ class WriteDOMDDJSONFile extends Object {
       PrintWriter prDDPins = new PrintWriter(
           new OutputStreamWriter(new FileOutputStream(new File(lFileName)), "UTF-8"));
       printPDDPHdr(DMDocument.masterLDDSchemaFileDefn, prDDPins);
-      if (!DMDocument.exportJSONFileAllFlag) {
+      if (!DMDocument.includeAllNamespacesFlag) {
         printPDDPBody(DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC, prDDPins);
       } else {
         printPDDPBody("all", prDDPins);

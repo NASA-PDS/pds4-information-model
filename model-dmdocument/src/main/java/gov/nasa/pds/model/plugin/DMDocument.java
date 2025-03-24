@@ -168,7 +168,7 @@ public class DMDocument extends Object {
 
   // import export file flags
   static boolean exportJSONFileFlag = false; // LDDTool, set by -J option
-  static boolean exportJSONFileAllFlag = false; // LDDTool, set by -6 option *** Not Currently Used - Deprecate? ***
+  static boolean includeAllNamespacesFlag = false; // LDDTool, set by --include-all-namespaces
   static boolean exportSpecFileFlag = false;
   static boolean exportDDFileFlag = false;
   static boolean exportTermMapFileFlag = false;
@@ -677,7 +677,7 @@ public class DMDocument extends Object {
 
 	  // import export file flags
 	  exportJSONFileFlag = false; // LDDTool, set by -J option
-	  exportJSONFileAllFlag = false; // LDDTool, set by -6 option *** Not Currently Used - Deprecate? ***
+	  includeAllNamespacesFlag = false; // LDDTool, set --include-all-namespaces
 	  exportSpecFileFlag = false;
 	  exportDDFileFlag = false;
 	  exportTermMapFileFlag = false;
@@ -1154,6 +1154,9 @@ public class DMDocument extends Object {
 
     parser.addArgument("-J", "--json").dest("J").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Write the data dictionary to a JSON formatted file");
+    
+    parser.addArgument("-a", "--include-all-namespaces").dest("a").type(Boolean.class).nargs(1)
+    	.action(Arguments.storeTrue()).help("Include all namespaces in the JSON output (only valid with --json)");
 
     parser.addArgument("-m", "--merge").dest("m").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
@@ -1303,6 +1306,11 @@ public class DMDocument extends Object {
     if (JFlag) {
       dmProcessState.setexportJSONFileFlag();
       exportJSONFileFlag = true;
+    }
+    Boolean AFlag = ns.getBoolean("a");
+    if (AFlag) {
+      dmProcessState.setIncludeAllNamespacesFlag();
+      includeAllNamespacesFlag = true;
     }
     Boolean n1Flag = ns.getBoolean("1");
     if (n1Flag) {

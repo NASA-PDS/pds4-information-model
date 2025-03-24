@@ -55,36 +55,44 @@ class WriteDOMDDJSONFileLib {
 	ArrayList <String> selectNamespaceArr = new ArrayList <> ();
 
 	public WriteDOMDDJSONFileLib() {
+		// start with the the Common (pds) namespace
 		selectNamespaceArr.add(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC);
 		return;
 	}
   
 	// write the JSON file
 	public void writeJSONFile(SchemaFileDefn lSchemaFileDefn) throws java.io.IOException {
-		if (!DMDocument.LDDToolFlag) {	// write Common Dictionary to JSON file
-
+		if (!DMDocument.LDDToolFlag) {
+			// write Common Dictionary to JSON file
 			// get the level 0 JSON Object with name=null and value=empty JSON Array
 			JSONArray jsonArrayLevel0 = (JSONArray) getJSONArrayLevel1 (lSchemaFileDefn);
 			if (jsonArrayLevel0 != null) {
 
 				// write the JSON object
 				String lFileName = lSchemaFileDefn.relativeFileSpecDOMModelJSON;	
-//				lFileName = lFileName.replace(".JSON", "_NEW2.JSON");
 				writeJson(jsonArrayLevel0, lFileName);
 			}
 
 		} else {
-			// add all LDD namespaces for this run
-			selectNamespaceArr.addAll(DMDocument.LDDImportNameSpaceIdNCArr);
+			
+			// set file name for the JSON file - use LDD name
+			String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
+			
+			// check if all LDDs are to be included
+			if (DMDocument.includeAllNamespacesFlag) {
+				// add all LDD namespaces for this run
+				lFileName = lFileName.replace(".JSON", "_All.JSON");
+				selectNamespaceArr.addAll(DMDocument.LDDImportNameSpaceIdNCArr);
+			} else {
+				// add only the primary LDD in the run
+				selectNamespaceArr.add(DMDocument.masterLDDSchemaFileDefn.nameSpaceIdNC);
+			}
 
 			// get the level 0 JSON Object with name=null and value=empty JSON Array
 			JSONArray jsonArrayLevel0 = (JSONArray) getJSONArrayLevel1 (lSchemaFileDefn);
-			//  	  	System.out.println("debug writeJSONFile LDD - jsonArrayLevel0:" + jsonArrayLevel0);
 			if (jsonArrayLevel0 != null) {
 
 				// write the JSON file for the LDD
-				String lFileName = DMDocument.masterLDDSchemaFileDefn.relativeFileSpecDOMModelJSON;
-//				lFileName = lFileName.replace(".JSON", "_NEW3.JSON");
 				writeJson(jsonArrayLevel0, lFileName);
 			}
 		}
