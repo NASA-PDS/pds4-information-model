@@ -662,8 +662,8 @@ public class DMDocument extends Object {
 
 	  LDDToolVersionId = "0.0.0";
 	  buildDate = "";
-	  buildIMVersionId = "1.23.0.0";
-	  buildIMVersionFolderId = "1N00";
+	  buildIMVersionId = "1.24.0.0";
+	  buildIMVersionFolderId = "1O00";
 	  classVersionIdDefault = "1.0.0.0";
 	  PDS4MergeFlag = false; // create protege output; not currently used
 	  LDDAttrElementFlag = false; // if true, write XML elements for attributes
