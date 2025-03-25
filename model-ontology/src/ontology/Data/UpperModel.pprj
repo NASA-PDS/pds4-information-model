@@ -1,4 +1,4 @@
-; Thu Mar 06 16:50:29 EST 2025
+; Tue Mar 25 11:50:15 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class85]
-		[UpperModel_ProjectKB_Class86]
-		[UpperModel_ProjectKB_Class87]
-		[UpperModel_ProjectKB_Class88]))
+		[UpperModel_ProjectKB_Class73]
+		[UpperModel_ProjectKB_Class74]
+		[UpperModel_ProjectKB_Class75]
+		[UpperModel_ProjectKB_Class76]))
 
 ([CLSES_TAB] of  Widget
 
@@ -423,7 +423,7 @@
 	(x 0)
 	(y 120))
 
-([KB_467810_Class0] of  Map
+([KB_270468_Class0] of  Map
 )
 
 ([KB_663782_Class0] of  Map
@@ -832,328 +832,328 @@
 ([UpperModel_171209c_1910_ChangeLog_ProjectKB_Class82] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class1] of  Widget
+([UpperModel_250325_ProjectKB_Class1] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class2])
+	(property_list [UpperModel_250325_ProjectKB_Class2])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormsTab"))
 
-([UpperModel_ProjectKB_Class10] of  Property_List
+([UpperModel_250325_ProjectKB_Class10] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class11] of  Widget
+([UpperModel_250325_ProjectKB_Class11] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class12])
+	(property_list [UpperModel_250325_ProjectKB_Class12])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.cls.OWLClassesTab"))
 
-([UpperModel_ProjectKB_Class12] of  Property_List
+([UpperModel_250325_ProjectKB_Class12] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class13] of  Widget
+([UpperModel_250325_ProjectKB_Class13] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class14])
+	(property_list [UpperModel_250325_ProjectKB_Class14])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
 
-([UpperModel_ProjectKB_Class14] of  Property_List
+([UpperModel_250325_ProjectKB_Class14] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class15] of  Widget
+([UpperModel_250325_ProjectKB_Class15] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class16])
+	(property_list [UpperModel_250325_ProjectKB_Class16])
 	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
-([UpperModel_ProjectKB_Class16] of  Property_List
+([UpperModel_250325_ProjectKB_Class16] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class17] of  Widget
+([UpperModel_250325_ProjectKB_Class17] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class18])
+	(property_list [UpperModel_250325_ProjectKB_Class18])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
-([UpperModel_ProjectKB_Class18] of  Property_List
+([UpperModel_250325_ProjectKB_Class18] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class19] of  Widget
+([UpperModel_250325_ProjectKB_Class19] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class20])
+	(property_list [UpperModel_250325_ProjectKB_Class20])
 	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
 
-([UpperModel_ProjectKB_Class2] of  Property_List
+([UpperModel_250325_ProjectKB_Class2] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class20] of  Property_List
+([UpperModel_250325_ProjectKB_Class20] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class21] of  Widget
+([UpperModel_250325_ProjectKB_Class21] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class22])
+	(property_list [UpperModel_250325_ProjectKB_Class22])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
 
-([UpperModel_ProjectKB_Class22] of  Property_List
+([UpperModel_250325_ProjectKB_Class22] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class23] of  Widget
+([UpperModel_250325_ProjectKB_Class23] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class24])
+	(property_list [UpperModel_250325_ProjectKB_Class24])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadatatab.OWLMetadataTab"))
 
-([UpperModel_ProjectKB_Class24] of  Property_List
+([UpperModel_250325_ProjectKB_Class24] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class25] of  Widget
+([UpperModel_250325_ProjectKB_Class25] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class26])
+	(property_list [UpperModel_250325_ProjectKB_Class26])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
 
-([UpperModel_ProjectKB_Class26] of  Property_List
+([UpperModel_250325_ProjectKB_Class26] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class27] of  Widget
+([UpperModel_250325_ProjectKB_Class27] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class28])
+	(property_list [UpperModel_250325_ProjectKB_Class28])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.individuals.OWLIndividualsTab"))
 
-([UpperModel_ProjectKB_Class28] of  Property_List
+([UpperModel_250325_ProjectKB_Class28] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class29] of  Widget
+([UpperModel_250325_ProjectKB_Class29] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class30])
+	(property_list [UpperModel_250325_ProjectKB_Class30])
 	(widget_class_name "uk.ac.man.cs.mig.coode.debugger.test.DebuggerTestTab"))
 
-([UpperModel_ProjectKB_Class3] of  Widget
+([UpperModel_250325_ProjectKB_Class3] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class4])
+	(property_list [UpperModel_250325_ProjectKB_Class4])
 	(widget_class_name "org.protege.owl.mm.portability.protege3.MappingMasterTab"))
 
-([UpperModel_ProjectKB_Class30] of  Property_List
+([UpperModel_250325_ProjectKB_Class30] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class31] of  Widget
+([UpperModel_250325_ProjectKB_Class31] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class32])
+	(property_list [UpperModel_250325_ProjectKB_Class32])
 	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
 
-([UpperModel_ProjectKB_Class32] of  Property_List
+([UpperModel_250325_ProjectKB_Class32] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class33] of  Widget
+([UpperModel_250325_ProjectKB_Class33] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class34])
+	(property_list [UpperModel_250325_ProjectKB_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
 
-([UpperModel_ProjectKB_Class34] of  Property_List
+([UpperModel_250325_ProjectKB_Class34] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class35] of  Widget
+([UpperModel_250325_ProjectKB_Class35] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class36])
+	(property_list [UpperModel_250325_ProjectKB_Class36])
 	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
 
-([UpperModel_ProjectKB_Class36] of  Property_List
+([UpperModel_250325_ProjectKB_Class36] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class37] of  Widget
+([UpperModel_250325_ProjectKB_Class37] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class38])
+	(property_list [UpperModel_250325_ProjectKB_Class38])
 	(widget_class_name "TGViztab.TGVizTab"))
 
-([UpperModel_ProjectKB_Class38] of  Property_List
+([UpperModel_250325_ProjectKB_Class38] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class39] of  Widget
+([UpperModel_250325_ProjectKB_Class39] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class40])
+	(property_list [UpperModel_250325_ProjectKB_Class40])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.properties.OWLPropertiesTab"))
 
-([UpperModel_ProjectKB_Class4] of  Property_List
+([UpperModel_250325_ProjectKB_Class4] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class40] of  Property_List
+([UpperModel_250325_ProjectKB_Class40] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class41] of  Widget
+([UpperModel_250325_ProjectKB_Class41] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class42])
+	(property_list [UpperModel_250325_ProjectKB_Class42])
 	(widget_class_name "uk.ac.man.ac.mig.coode.individuals.ui.OWLDLIndividualsTab"))
 
-([UpperModel_ProjectKB_Class42] of  Property_List
+([UpperModel_250325_ProjectKB_Class42] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class43] of  Widget
+([UpperModel_250325_ProjectKB_Class43] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class44])
+	(property_list [UpperModel_250325_ProjectKB_Class44])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
 
-([UpperModel_ProjectKB_Class44] of  Property_List
+([UpperModel_250325_ProjectKB_Class44] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class45] of  Widget
+([UpperModel_250325_ProjectKB_Class45] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class46])
+	(property_list [UpperModel_250325_ProjectKB_Class46])
 	(widget_class_name "edu.stanford.smi.protegex.evaluation.MetaAnalysis"))
 
-([UpperModel_ProjectKB_Class46] of  Property_List
+([UpperModel_250325_ProjectKB_Class46] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class47] of  Widget
+([UpperModel_250325_ProjectKB_Class47] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class48])
+	(property_list [UpperModel_250325_ProjectKB_Class48])
 	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
 
-([UpperModel_ProjectKB_Class48] of  Property_List
+([UpperModel_250325_ProjectKB_Class48] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class49] of  Widget
+([UpperModel_250325_ProjectKB_Class49] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class50])
+	(property_list [UpperModel_250325_ProjectKB_Class50])
 	(widget_class_name "se.liu.ida.JessTab.JessTab"))
 
-([UpperModel_ProjectKB_Class5] of  Widget
+([UpperModel_250325_ProjectKB_Class5] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class6])
+	(property_list [UpperModel_250325_ProjectKB_Class6])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([UpperModel_ProjectKB_Class50] of  Property_List
+([UpperModel_250325_ProjectKB_Class50] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class51] of  Widget
+([UpperModel_250325_ProjectKB_Class51] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class52])
+	(property_list [UpperModel_250325_ProjectKB_Class52])
 	(widget_class_name "edu.stanford.smi.protegex.changeanalysis.ChangeAnalysisTab"))
 
-([UpperModel_ProjectKB_Class52] of  Property_List
+([UpperModel_250325_ProjectKB_Class52] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class53] of  Widget
+([UpperModel_250325_ProjectKB_Class53] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class54])
+	(property_list [UpperModel_250325_ProjectKB_Class54])
 	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
 
-([UpperModel_ProjectKB_Class54] of  Property_List
+([UpperModel_250325_ProjectKB_Class54] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class55] of  Widget
+([UpperModel_250325_ProjectKB_Class55] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class56])
+	(property_list [UpperModel_250325_ProjectKB_Class56])
 	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
 
-([UpperModel_ProjectKB_Class56] of  Property_List
+([UpperModel_250325_ProjectKB_Class56] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class57] of  Widget
+([UpperModel_250325_ProjectKB_Class57] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class58])
+	(property_list [UpperModel_250325_ProjectKB_Class58])
 	(widget_class_name "script.ProtegeScriptTab"))
 
-([UpperModel_ProjectKB_Class58] of  Property_List
+([UpperModel_250325_ProjectKB_Class58] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class59] of  Widget
+([UpperModel_250325_ProjectKB_Class59] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class60])
+	(property_list [UpperModel_250325_ProjectKB_Class60])
 	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
 
-([UpperModel_ProjectKB_Class6] of  Property_List
+([UpperModel_250325_ProjectKB_Class6] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class60] of  Property_List
+([UpperModel_250325_ProjectKB_Class60] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class61] of  Widget
+([UpperModel_250325_ProjectKB_Class61] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class62])
+	(property_list [UpperModel_250325_ProjectKB_Class62])
 	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
 
-([UpperModel_ProjectKB_Class62] of  Property_List
+([UpperModel_250325_ProjectKB_Class62] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class63] of  Widget
+([UpperModel_250325_ProjectKB_Class63] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class64])
+	(property_list [UpperModel_250325_ProjectKB_Class64])
 	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
 
-([UpperModel_ProjectKB_Class64] of  Property_List
+([UpperModel_250325_ProjectKB_Class64] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class65] of  Widget
+([UpperModel_250325_ProjectKB_Class65] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class66])
+	(property_list [UpperModel_250325_ProjectKB_Class66])
 	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
 
-([UpperModel_ProjectKB_Class66] of  Property_List
+([UpperModel_250325_ProjectKB_Class66] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class67] of  Widget
+([UpperModel_250325_ProjectKB_Class67] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class68])
+	(property_list [UpperModel_250325_ProjectKB_Class68])
 	(widget_class_name "ezpal.EZPalTab"))
 
-([UpperModel_ProjectKB_Class68] of  Property_List
+([UpperModel_250325_ProjectKB_Class68] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class7] of  Widget
+([UpperModel_250325_ProjectKB_Class7] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class8])
+	(property_list [UpperModel_250325_ProjectKB_Class8])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
 
-([UpperModel_ProjectKB_Class8] of  Property_List
+([UpperModel_250325_ProjectKB_Class8] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class85] of  String
+([UpperModel_250325_ProjectKB_Class9] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [UpperModel_250325_ProjectKB_Class10])
+	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
+
+([UpperModel_ProjectKB_Class73] of  String
 
 	(name "ChangeLog")
 	(string_value "date"))
 
-([UpperModel_ProjectKB_Class86] of  String
+([UpperModel_ProjectKB_Class74] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([UpperModel_ProjectKB_Class87] of  String
+([UpperModel_ProjectKB_Class75] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([UpperModel_ProjectKB_Class88] of  String
+([UpperModel_ProjectKB_Class76] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
-
-([UpperModel_ProjectKB_Class9] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [UpperModel_ProjectKB_Class10])
-	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
