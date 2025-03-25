@@ -1,4 +1,4 @@
-; Thu Mar 06 16:50:29 EST 2025
+; Tue Mar 25 11:50:15 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12271,13 +12271,13 @@
 	(single-slot specified_unit_id
 ;+		(comment "The specified_unit_id attribute provides the unit chosen for maximum_value, minimum_value, and permissible_value.")
 		(type STRING)
-;+		(value "km**3s**-2")
+;+		(value "km**3/s**2")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "km**3s**-2")
+;+		(value "km**3/s**2")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
