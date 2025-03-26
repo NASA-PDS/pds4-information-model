@@ -18,8 +18,8 @@ Feature: pds4_information_model_validate_integration
     @v15.2.x
     Examples: 
 | testId                               | testName                                                                   | testDir      | messageCount| problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version |
-#Note that the 6 errors in #752 will be corrected after IM v1.N
-| NASA-PDS/pds4-information-model#752  | "Update Constraints on Author/Editor Lists (gitHub-CCB-356)"               | "github752"  |           6 | "totalErrors" | "-t {resourceDir}/github752/geo_bundle_hausrath_m2020_pixl_naltsos.xml {resourceDir}/github752/geo_bundle_mex_marsis_optim.xml {resourceDir}/github752/geo_pixl_edr_sis.xml {resourceDir}/github752/img_bundle_gbo.sdss-moc.phot.xml {resourceDir}/github752/ppi_TECH_DOC.xml {resourceDir}/github752/ppi_bundle-voyager2.pws.wf.xml {resourceDir}/github752/test_case_collection_20240122.xml {resourceDir}/github752/test_file_1_only_author_20240122.xml {resourceDir}/github752/test_file_2_list_author_20240122.xml {resourceDir}/github752/test_file_5_20240122.xml {resourceDir}/github752/test_file_ror_20240122.xml" | "" | "" |
+#Note that the errors in #752 will be corrected in the next version of the IM; see readme
+| NASA-PDS/pds4-information-model#752  | "Update Constraints on Author/Editor Lists (gitHub-CCB-15/356)"            | "github752"  |           6 | "totalErrors"      | "-t {resourceDir}/github752/geo_bundle_hausrath_m2020_pixl_naltsos.xml {resourceDir}/github752/geo_bundle_mex_marsis_optim.xml {resourceDir}/github752/geo_pixl_edr_sis.xml {resourceDir}/github752/img_bundle_gbo.sdss-moc.phot.xml {resourceDir}/github752/ppi_TECH_DOC.xml {resourceDir}/github752/ppi_bundle-voyager2.pws.wf.xml {resourceDir}/github752/test_case_collection_20240122.xml {resourceDir}/github752/test_file_1_only_author_20240122.xml {resourceDir}/github752/test_file_2_list_author_20240122.xml {resourceDir}/github752/test_file_5_20240122.xml {resourceDir}/github752/test_file_ror_20240122.xml" | "" | "" |
 | NASA-PDS/pds4-information-model#753  | "added nA & microA to Units_of_Current (gitHub-CCB-16)"                    | "github753"  |           0 | "totalErrors"      | "-t {resourceDir}/github753/pc__d139.xml" | "PDS4_MARS2020_IngestLDD.xml" | "" |
 | NASA-PDS/pds4-information-model#784a | "Encoded_Video for Product_Ancillary (gitHub-CCB-325)"                     | "github784a" |           0 | "totalErrors"      | "-t {resourceDir}/github784/FUV2017032anc.xml" | "" | "" |
 | NASA-PDS/pds4-information-model#784b | "Encoded_Video for Product_Browse (gitHub-CCB-325)"                        | "github784b" |           0 | "totalErrors"      | "-t {resourceDir}/github784/FUV2017032brw.xml" | "" | "" |
@@ -27,9 +27,11 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#795a | "reference_type Failures for all Data Types"                               | "github795"  |          10 | "SCHEMATRON_ERROR,INTERNAL_ERROR" | "-R pds4.bundle -t {resourceDir}/github795" | "" | "" |
 | NASA-PDS/pds4-information-model#795b | "reference_type Failures for Product_External"                             | "github795b" |           2 | "SCHEMATRON_ERROR" | "-t {resourceDir}/github795b/occultation_prediction_som_manifest.xml" | "" | "" |
 | NASA-PDS/pds4-information-model#797  | "test schematron for kernel_type checks"                                   | "github797"  |           3 | "SCHEMATRON_ERROR" | "-t {resourceDir}/github797/test_label1_FAIL.xml {resourceDir}/github797/u5.xml" | "PDS4_GEOM_IngestLDD.xml" | "" |
-| NASA-PDS/pds4-information-model#829  | "added mrad/pixel to Units_of_Pixel_Resolution_Angular (gitHub-CCB-38)"    | "github829"  |           5 |  "totalErrors" | "-t {resourceDir}/github829/" | "PDS4_HST_IngestLDD.xml" | "" |
-| NASA-PDS/pds4-information-model#831  | "add Array_1D_Spectrum (gitHub-CCB-42)"                                    | "github831"  |           0 |  "totalErrors" | "-t {resourceDir}/github831/" | "" | "" |
-| NASA-PDS/pds4-information-model#837  | "Incorrect SCH rules for type:External (gitHub-CCB-29)"                    | "github837"  |           2 |  "totalErrors" | "-t {resourceDir}/github837/" | "" | "" |
+| NASA-PDS/pds4-information-model#829  | "added mrad/pixel to Units_of_Pixel_Resolution_Angular (gitHub-CCB-38)"    | "github829"  |           5 |  "totalErrors"     | "-t {resourceDir}/github829/" | "PDS4_HST_IngestLDD.xml" | "" |
+| NASA-PDS/pds4-information-model#831  | "add Array_1D_Spectrum (gitHub-CCB-42)"                                    | "github831"  |           0 |  "totalErrors"     | "-t {resourceDir}/github831/" | "" | "" |
+| NASA-PDS/pds4-information-model#837  | "Incorrect SCH rules for type:External (gitHub-CCB-29)"                    | "github837"  |           2 |  "totalErrors"     | "-t {resourceDir}/github837/" | "" | "" |
+| NASA-PDS/pds4-information-model#894  | "Additional schematron rules to check reference_type (gitHub-CCB-7)"       | "github894"  |          13 |  "totalErrors"     |  "-t {resourceDir}/github894/"  | "" | "" |
+
 
     @v15.3.x
     Examples: 
