@@ -92,7 +92,7 @@
     
     <File_Area_Native>
         <File>
-            <file_name>test_file_1.txt</file_name>            
+            <file_name>test_file_1.seed</file_name>            
             <creation_date_time>2023-10-13T16:35:45</creation_date_time> 
             <file_size unit="byte">2</file_size> 
             <comment>
