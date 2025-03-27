@@ -2,6 +2,7 @@
 CCB#7: modifications to SCH:
 
     
+
 Product Level Validation Results
 
   FAIL: file:/D:/WINWORD/Data_Prep_HandBook/aaaVer_9_20130225/Build_SCR_xlsx/Build_1N_SCR_testing_20241016/CCB-7_Product_Bundle_reference_type/test_case_browse_ref_FAIL_20240318.xml
@@ -73,13 +74,11 @@ Product Level Validation Results
       WARNING  [warning.label.schematron]   line 18, 26: pds:Citation_Information/pds:author_list is deprecated and should not be used.
       WARNING  [warning.label.schematron]   line 19, 26: pds:Citation_Information/pds:editor_list is deprecated and should not be used.
       ERROR  [error.label.schematron]   line 72, 33: The attribute reference_type must be set to one of the following values 'data_to_target'.
-      WARNING  [warning.label.context_ref_mismatch]   line 63: Context reference name mismatch. Value: 'APSS TWINS' Expected one of: '[Auxiliary Payload Sensor Subsystem Temperatures and Wind Sensor for InSight]'
         13 product validation(s) completed
 
   PASS: file:/D:/WINWORD/Data_Prep_HandBook/aaaVer_9_20130225/Build_SCR_xlsx/Build_1N_SCR_testing_20241016/CCB-7_Product_Bundle_reference_type/test_case_SPICE_VALID_20240318.xml
       WARNING  [warning.label.schematron]   line 18, 26: pds:Citation_Information/pds:author_list is deprecated and should not be used.
       WARNING  [warning.label.schematron]   line 19, 26: pds:Citation_Information/pds:editor_list is deprecated and should not be used.
-      WARNING  [warning.label.context_ref_mismatch]   line 63: Context reference name mismatch. Value: 'APSS TWINS' Expected one of: '[Auxiliary Payload Sensor Subsystem Temperatures and Wind Sensor for InSight]'
         14 product validation(s) completed
 
   FAIL: file:/D:/WINWORD/Data_Prep_HandBook/aaaVer_9_20130225/Build_SCR_xlsx/Build_1N_SCR_testing_20241016/CCB-7_Product_Bundle_reference_type/test_case_xml_schema_FAIL_20240318.xml
@@ -93,7 +92,7 @@ Summary:
 
   16 product(s)
   13 error(s)
-  24 warning(s)
+  22 warning(s)
 
   Product Validation Summary:
     6          product(s) passed
@@ -110,7 +109,6 @@ Summary:
   Message Types:
     9            error.label.schematron
     4            error.validation.internal_error
-    2            warning.label.context_ref_mismatch
     22           warning.label.schematron
 
 End of Report
