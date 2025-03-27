@@ -57,7 +57,7 @@
         <Observing_System>
             <name>Insight</name>
             <Observing_System_Component>
-                <name>APSS TWINS</name>
+                <name>Auxiliary Payload Sensor Subsystem Temperatures and Wind Sensor for InSight</name>
                 <type>Instrument</type>
                 <Internal_Reference>
                     <lid_reference>urn:nasa:pds:context:instrument:apss-twins.insight</lid_reference>
@@ -71,7 +71,7 @@
             <type>Planet</type>
             <Internal_Reference>
                 <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
-                <!-- valid value is "native_to_target -->
+                <!-- valid value is "data_to_target -->
                 <reference_type>data_to_target</reference_type>
             </Internal_Reference>
         </Target_Identification>
