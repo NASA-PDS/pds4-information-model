@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="https://pds.nasa.gov/pds4/msn/v1/PDS4_MSN_1K00_1300.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
 
 <Product_Collection
    xmlns="http://pds.nasa.gov/pds4/pds/v1"
-    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+   xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="
-      http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">      
+   xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
    
    <Identification_Area>
       <logical_identifier>urn:nasa:pds:cassini-mag-cal:data-shm-scirate-asc</logical_identifier>
       <version_id>1.0</version_id>
       <title>Cassini Scalar Helium MAG Calibrated Science ASCII Data Collection</title>
-      <information_model_version>1.23.0.0</information_model_version>
+      <information_model_version>1.24.0.0</information_model_version>
       <product_class>Product_Collection</product_class>
       <Citation_Information>
-         <author_list>Alphabet Inc.</author_list>                 
+         <!--
+         <author_list>Frank, Louis A.; Ackerson, Kent L.; Alphabet Inc.</author_list>    
+         <editor_list>Doe III, John; Jet Propulsion Laboratory</editor_list>
+         -->
          <publication_year>2023</publication_year>
          <doi>10.17189/pg4n-f845</doi>
          <description>
@@ -26,17 +27,65 @@
          
          <List_Author>
             <Organization>
-               <organization_name>Space Radiation Laboratory</organization_name>
-               <organization_rorid>jpl</organization_rorid>
-               <sequence_number>1</sequence_number>                               
-                <Parent_Organization>
+               <organization_name>test</organization_name>
+               <Parent_Organization>
                   <parent_organization_name>Alphabet Inc.</parent_organization_name>
                   <parent_organization_rorid>https://ror.org/02e9yx751</parent_organization_rorid>
-                  <sequence_number>1</sequence_number>                  
+                  <sequence_number>1</sequence_number>                        
                </Parent_Organization>
-             </Organization>
+            </Organization>
+            <Person>
+               <display_full_name>Louis A. Frank</display_full_name>
+               <given_name>Louis A..</given_name>
+               <family_name>Frank</family_name>
+               <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+               <sequence_number>2</sequence_number>
+               <Affiliation>
+                  <organization_name>Jet Propulsion Laboratory</organization_name>
+                  <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                  <sequence_number>1</sequence_number>
+               </Affiliation>
+            </Person>        
+            <Person>
+               <display_full_name>Kent L. Ackerson</display_full_name>
+               <given_name>Kent L..</given_name>
+               <family_name>Ackerson</family_name>
+               <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+               <sequence_number>3</sequence_number>
+               <Affiliation>
+                  <organization_name>Jet Propulsion Laboratory</organization_name>
+                  <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                  <sequence_number>1</sequence_number>
+               </Affiliation>
+            </Person> 
          </List_Author>
-         <List_Contributor>
+         <List_Editor>
+            <Organization>
+               <organization_name>Jet Propulsion Laboratory</organization_name>
+               <organization_rorid>https://ror.org/027k65916</organization_rorid>
+               <Parent_Organization>
+                  <parent_organization_name>
+                     National Aeronautics and Space Administration
+                  </parent_organization_name>
+                  <parent_organization_rorid>https://ror.org/027ka1x80</parent_organization_rorid>
+                  <sequence_number>1</sequence_number>                                               
+               </Parent_Organization>
+            </Organization>
+            <Person>
+               <display_full_name>John Doe III</display_full_name>
+               <given_name>John III</given_name>
+               <family_name>Doe</family_name>
+               <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+               <sequence_number>1</sequence_number>
+               <Affiliation>
+                  <organization_name>Jet Propulsion Laboratory</organization_name>
+                  <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                  <sequence_number>1</sequence_number>                        
+               </Affiliation>
+            </Person>
+         </List_Editor> 
+
+       <List_Contributor>
             <Person>
                <contributor_type>DataCollector</contributor_type>
                <display_full_name>Enrico Fermi, Jr.</display_full_name>
@@ -51,7 +100,8 @@
                <family_name>Alzate Lopera</family_name>
                <sequence_number>2</sequence_number>                                 
             </Person>
-         </List_Contributor>         
+         </List_Contributor>
+
       </Citation_Information>
       <Modification_History>
          <Modification_Detail>
@@ -136,6 +186,7 @@
          <type>Plasma Stream</type>
          <Internal_Reference>
             <lid_reference>urn:nasa:pds:context:target:plasma_stream.solar_wind</lid_reference>
+            <!-- valid value:  collection_to_target-->            
             <reference_type>collection_to_target</reference_type>
          </Internal_Reference>
       </Target_Identification>
@@ -171,7 +222,7 @@
       <File>
          <file_name>test_case_collection_1.csv</file_name>
          <file_size unit="byte">75</file_size>
-       </File>
+      </File>
       <Inventory>
          <offset unit="byte">0</offset>
          <parsing_standard_id>PDS DSV 1</parsing_standard_id>
