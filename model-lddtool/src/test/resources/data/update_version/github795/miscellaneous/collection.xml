@@ -11,7 +11,7 @@
         <logical_identifier>urn:nasa:pds:im795:misc</logical_identifier>
         <version_id>1.0</version_id>
         <title>Apollo Seismic Data Collection in SEED Format</title>
-        <information_model_version>1.23.0.0</information_model_version>
+        <information_model_version>1.24.0.0</information_model_version>
         <product_class>Product_Collection</product_class>
         <Citation_Information>
             <!--author_list>Nunn, C.</author_list-->

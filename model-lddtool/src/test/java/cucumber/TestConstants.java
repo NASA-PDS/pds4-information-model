@@ -5,7 +5,7 @@ import java.io.File;
 public final class TestConstants {
 
   public static final String TEST_DATA_DIR =
-      System.getProperty("user.dir") + File.separator + "src/test/resources";
+      System.getProperty("user.dir") + File.separator + "src/test/resources/data";
   public static final String TEST_OUT_DIR =
       System.getProperty("user.dir") + File.separator + "target/test";
   public static final String EXAMPLE_DIR =

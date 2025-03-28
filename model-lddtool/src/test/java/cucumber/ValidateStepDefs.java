@@ -159,7 +159,10 @@ public class ValidateStepDefs {
       resolvedToken = resolvedToken.replace("{testDir}", this.testDir);
       resolvedToken = resolvedToken.replace("{outDir}",
           TestConstants.TEST_OUT_DIR + File.separator + this.testDir);
-      resolvedToken = resolvedToken.replace("{resourceDir}", this.resourceDir);
+      resolvedToken =
+          resolvedToken.replace("{resourcePinnedVersionDir}", this.resourcePinnedVersionDir);
+      resolvedToken =
+          resolvedToken.replace("{resourceUpdateVersionDir}", this.resourceUpdateVersionDir);
       resolvedToken = resolvedToken.replace("%20", " ");
       args[argIndex++] = resolvedToken;
     }
