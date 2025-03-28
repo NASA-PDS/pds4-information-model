@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-28)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -25,6 +25,7 @@
 
 **Other closed issues:**
 
+- Stage the PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#879](https://github.com/NASA-PDS/pds4-information-model/issues/879)
 - Update cucumber test code to support testing of \#852 [\#856](https://github.com/NASA-PDS/pds4-information-model/issues/856)
 
 ## [v15.2.4](https://github.com/NASA-PDS/pds4-information-model/tree/v15.2.4) (2025-01-07)
