@@ -34,7 +34,7 @@ public class ValidateStepDefs {
           + DEFAULT_REPORT_FILENAME + " ";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
-  private static final String PINNED_VERSION_DIR = "pinnged_version";
+  private static final String PINNED_VERSION_DIR = "pinned_version";
   private static final String UPDATE_VERSION_DIR = "update_version";
 
 
@@ -93,6 +93,7 @@ public class ValidateStepDefs {
         TestConstants.TEST_DATA_DIR + File.separator + UPDATE_VERSION_DIR;
     this.resourcePinnedVersionDir =
         TestConstants.TEST_DATA_DIR + File.separator + PINNED_VERSION_DIR;
+    LOG.info("FOOOOBAR: " + this.resourcePinnedVersionDir);
 
   }
 
@@ -170,7 +171,10 @@ public class ValidateStepDefs {
     LOG.debug("resolveArgumentStrings() commandArgs = [" + commandArgs + "]");
     LOG.info("args = [" + Arrays.toString(args) + "]");
     LOG.debug("resolveArgumentStrings() this.reportDir = [" + this.reportDir + "]");
-    LOG.debug("resolveArgumentStrings() this.resourceDir = [" + this.resourceDir + "]");
+    LOG.debug("resolveArgumentStrings() this.resourcePinnedVersionDir = ["
+        + this.resourcePinnedVersionDir + "]");
+    LOG.debug("resolveArgumentStrings() this.resourceUpdateVersionDir = ["
+        + this.resourceUpdateVersionDir + "]");
     LOG.debug("resolveArgumentStrings() this.testName = [" + this.testName + "]");
 
     return (args);
@@ -206,9 +210,18 @@ public class ValidateStepDefs {
   @Given("a new LDD is generated using the IngestLDDs {string}")
   public void generate_ldd(String ingestLDDFilename) throws Exception {
     if (!ingestLDDFilename.equals("")) {
-      String ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + this.testDir
-          + File.separator + ingestLDDFilename;
-
+      LOG.info(this.resourcePinnedVersionDir);
+      String ingestLDDPath =
+          TestConstants.TEST_DATA_DIR + File.separator + PINNED_VERSION_DIR + File.separator
+              + this.testDir + File.separator + ingestLDDFilename;
+      LOG.info("FOOO " + ingestLDDPath);
+      // Check if the path exists
+      File file = new File(ingestLDDPath);
+      if (!file.isFile() || !file.exists()) {
+        ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + UPDATE_VERSION_DIR
+            + File.separator + this.testDir + File.separator + ingestLDDFilename;
+      }
+      LOG.info("BARR " + ingestLDDPath);
       String lddtoolArgs = DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath;
       if (!this.pds4Version.equals("")) {
         lddtoolArgs += " -V " + this.pds4Version;
