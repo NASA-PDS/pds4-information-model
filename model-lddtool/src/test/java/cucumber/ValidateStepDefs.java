@@ -34,6 +34,8 @@ public class ValidateStepDefs {
           + DEFAULT_REPORT_FILENAME + " ";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
+  private static final String PINNED_VERSION_DIR = "pinnged_version";
+  private static final String UPDATE_VERSION_DIR = "update_version";
 
 
   // For some strange reason, cucumber suppresses the printing of log output
@@ -65,7 +67,8 @@ public class ValidateStepDefs {
   private String pds4Version;
   private int messageCount;
   private String problemEnum;
-  private String resourceDir;
+  private String resourcePinnedVersionDir;
+  private String resourceUpdateVersionDir;
   private String reportDir;
   private String commandArgs;
   private String refOutputValue;
@@ -86,7 +89,10 @@ public class ValidateStepDefs {
     this.launcher = new ValidateLauncher();
     this.refOutputValue = DEFAULT_REPORT_FILENAME;
     this.reportDir = TestConstants.TEST_OUT_DIR;
-    this.resourceDir = TestConstants.TEST_DATA_DIR;
+    this.resourceUpdateVersionDir =
+        TestConstants.TEST_DATA_DIR + File.separator + UPDATE_VERSION_DIR;
+    this.resourcePinnedVersionDir =
+        TestConstants.TEST_DATA_DIR + File.separator + PINNED_VERSION_DIR;
 
   }
 
