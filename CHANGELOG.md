@@ -6,6 +6,7 @@
 
 **Requirements:**
 
+- CCB-43: Repair Incorrectly Formed Enumerated Value for Units\_of\_Gmass [\#891](https://github.com/NASA-PDS/pds4-information-model/issues/891)
 - As a user, I want to generate the core PDS4 IM for a specific version of PDS4 [\#860](https://github.com/NASA-PDS/pds4-information-model/issues/860)
 
 **Improvements:**
