@@ -11,7 +11,7 @@
         <logical_identifier>urn:nasa:pds:cassini-mag-cal:data-shm-scirate-asc:native</logical_identifier>
         <version_id>3.2</version_id>
         <title>APSS TWINS Data</title>
-        <information_model_version>1.23.0.0</information_model_version>
+        <information_model_version>1.24.0.0</information_model_version>
         <product_class>Product_SPICE_Kernel</product_class>
 
         <Citation_Information>

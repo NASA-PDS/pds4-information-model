@@ -13,7 +13,7 @@
         <logical_identifier>urn:nasa:pds:system_bundle:xml_schema:pds-xml_schema_1.20.0.0</logical_identifier>
         <version_id>1.26</version_id>
         <title>PDS4 XML Schema - PDS V1.20.0.0</title>
-        <information_model_version>1.23.0.0</information_model_version>
+        <information_model_version>1.24.0.0</information_model_version>
         <product_class>Product_XML_Schema</product_class>
         <Modification_History>
             <Modification_Detail>
