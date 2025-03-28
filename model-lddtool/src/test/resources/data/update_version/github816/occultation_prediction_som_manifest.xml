@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:///Users/jpadams/proj/pds/pdsen/workspace/pds4-information-model/export/PDS4_PDS_1N00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_External
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://pds.nasa.gov/pds4/pds/v1
+        file:///Users/jpadams/proj/pds/pdsen/workspace/pds4-information-model/export/PDS4_PDS_1N00.xsd
+    ">
+    <Identification_Area>
+        <logical_identifier>urn:bull:shiite:french23_occult_pred</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Occultation Predictions from R. G. French and D. Souami (2023)</title>
+        <information_model_version>1.24.0.0</information_model_version>
+        <product_class>Product_External</product_class>
+        <Citation_Information>
+            <!--author_list>French, R.G.; Souami, D.</author_list-->
+            <!--editor_list>Mace, M.J.T.; Gordon, M.K.; Tiscareno, M.S.</editor_list-->
+            <publication_year>2023</publication_year>
+            <doi>10.17189/m9sk-g963</doi>
+            <keyword>jupiter</keyword>
+            <keyword>saturn</keyword>
+            <keyword>uranus</keyword>
+            <keyword>neptune</keyword>
+            <keyword>titan</keyword>
+            <keyword>triton</keyword>
+            <description>
+                Supplementary Online Material (SOM) for Occultation Predictions, 
+                R. G. French and D. Souami (2023)
+            </description>
+        </Citation_Information>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2023-06-29</modification_date>
+                <version_id>1.0</version_id>
+                <description>Initial version.</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+
+    <Context_Area>
+        <Target_Identification>
+            <name>Jupiter</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.jupiter</lid_reference>
+                <reference_type>external_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Target_Identification>
+            <name>Io</name>
+            <type>Satellite</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:satellite.jupiter.io</lid_reference>
+                <reference_type>external_to_target</reference_type>  <!--RChen should fail-->
+            </Internal_Reference>
+        </Target_Identification>
+    </Context_Area>
+
+    <Reference_List>
+        <External_Reference>
+            <doi>10.3847/PSJ/aced50</doi>
+            <reference_text>R.G. French, D. Souami, Earth-based Stellar Occultation Predictions for Jupiter, Saturn, Uranus, Neptune, Titan, and Triton: 2023-2050 
+                2023, PSJ, 4</reference_text> 
+            <description>Journal article providing details on the occultation prediction files included
+                in this collection.</description>
+        </External_Reference>
+    </Reference_List>
+    <File_Area_External>
+        <File>
+            <file_name>occultation_prediction_som_manifest.tif</file_name>
+            <creation_date_time>2023-10-13T16:35:45</creation_date_time> 
+            <!--file_size unit="byte">3084963</file_size--> 
+            <comment>
+                Text file containing a list of all the files present in the 
+                Supplementary Online Material (SOM) for Occultation Predictions, 
+                R. G. French and D. Souami (2023)
+            </comment>
+        </File>
+        <Encoded_External>
+            <offset unit="byte">0</offset>
+            <encoding_standard_id>TIFF</encoding_standard_id> 
+        </Encoded_External> 
+    </File_Area_External>
+</Product_External>

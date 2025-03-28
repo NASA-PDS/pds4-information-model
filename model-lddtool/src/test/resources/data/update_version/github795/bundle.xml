@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:///Users/jpadams/proj/pds/pdsen/workspace/pds4-information-model/export/PDS4_PDS_1N00.sch" 
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Bundle
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    http://pds.nasa.gov/pds4/pds/v1
+    file:///Users/jpadams/proj/pds/pdsen/workspace/pds4-information-model/export/PDS4_PDS_1N00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:im795</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Galileo Jupiter Star Scanner Derived Bundle</title>
+        <information_model_version>1.24.0.0</information_model_version>
+        <product_class>Product_Bundle</product_class>
+        <Citation_Information>
+            <publication_year>2024</publication_year>
+            <doi>10.17189/rhv1-6074</doi>
+            <description>This bundle contains measurements of          
+                energetic electron flux derived data from the attitude
+                control system star scanner in the Jovian environment.</description>
+            <List_Author>
+                <Person>
+                    <given_name>Paul D.</given_name>
+                    <family_name>Fieseler</family_name>
+                    <sequence_number>1</sequence_number>
+                    <Affiliation>
+                        <organization_name>California Institute of Technology</organization_name>
+                        <organization_rorid>https://ror.org/05dxps055</organization_rorid>
+                        <sequence_number>1</sequence_number>
+                    </Affiliation>
+                </Person>
+            </List_Author>
+        </Citation_Information>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2024-06-21</modification_date>
+                <version_id>1.0</version_id>
+                <description>The data in this bundle were released previously as part of the following PDS3 data sets:
+                    GO-J-SSD-5-DDR-STAR-SENSOR-V1.0 (DOI:10.17189/1519707), released 2000-10-01</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    <Context_Area>
+        <Time_Coordinates>
+            <start_date_time>1995-12-07T00:01:00.000Z</start_date_time>
+            <stop_date_time>2003-09-21T18:40:00.000Z</stop_date_time>
+        </Time_Coordinates>
+        <Investigation_Area>
+            <name>Galileo</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:investigation:mission.galileo</lid_reference>
+                <reference_type>bundle_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <Observing_System_Component>
+                <name>Galileo Orbiter</name>
+                <type>Host</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.go</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Galileo Orbiter Star Scanner</name>
+                <type>Instrument</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:go.ssd</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component> 
+        </Observing_System>
+        <Target_Identification>
+            <name>Jupiter</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.jupiter</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Target_Identification>
+            <name>Io</name>
+            <type>Satellite</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:satellite.jupiter.io</lid_reference>
+                <reference_type>data_to_target</reference_type>  <!--RChen should fail-->
+            </Internal_Reference>
+        </Target_Identification>
+    </Context_Area>
+    <Bundle>
+        <bundle_type>Archive</bundle_type>
+        <description>This bundle contains measurements of          
+            energetic electron flux derived data from the attitude
+            control system star scanner in the Jovian environment.</description>
+    </Bundle>
+    <File_Area_Text>
+      <File>
+         <file_name>readme_notes.txt</file_name>
+         <creation_date_time>2024-01-01</creation_date_time>
+      </File>
+      <Stream_Text>
+         <name>ReadMe</name>
+         <offset unit="byte">0</offset>
+         <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+         <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+      </Stream_Text>
+   </File_Area_Text>
+    <Bundle_Member_Entry>
+        <lidvid_reference>urn:nasa:pds:im795:browse::1.0</lidvid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_browse_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lidvid_reference>urn:nasa:pds:im795:calib.spk::1.0</lidvid_reference>
+        <member_status>Primary</member_status> 
+        <reference_type>bundle_has_spice_kernel_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lidvid_reference>urn:nasa:pds:im795:data::1.0</lidvid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_data_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lidvid_reference>urn:nasa:pds:im795:misc::1.0</lidvid_reference>
+        <member_status>Primary</member_status> 
+        <reference_type>bundle_has_miscellaneous_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lidvid_reference>urn:nasa:pds:im795:xml_schema::1.0</lidvid_reference>
+        <member_status>Primary</member_status> 
+        <reference_type>bundle_has_spice_kernel_collection</reference_type>
+    </Bundle_Member_Entry>
+</Product_Bundle>

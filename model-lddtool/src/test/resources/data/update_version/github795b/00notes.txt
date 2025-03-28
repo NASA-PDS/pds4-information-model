@@ -1,0 +1,41 @@
+There should be 1 ERROR
+
+
+validate -x 795b/*xsd -S 795b/*sch -t 795b/occultation_prediction_som_manifest.xml
+PDS Validate Tool Report
+Configuration:
+   Version     3.6.0-SNAPSHOT
+   Date        2024-10-14T20:28:21Z
+Parameters:
+   Targets                        [file:/Users/rchen/Desktop/795b/occultation_prediction_som_manifest.xml]
+   User Specified Schemas         [file:/Users/rchen/Desktop/795b/PDS4_PDS_1N00.xsd]
+   User Specified Schematrons     [file:/Users/rchen/Desktop/795b/PDS4_PDS_1N00.sch]
+   Severity Level                 WARNING
+   Recurse Directories            true
+   File Filters Used              [*.xml, *.XML]
+   Data Content Validation        on
+   Product Level Validation       on
+   Max Errors                     100000
+   Registered Contexts File       /Users/rchen/PDS4tools/validate/resources/registered_context_products.json
+Product Level Validation Results
+  FAIL: file:/Users/rchen/Desktop/795b/occultation_prediction_som_manifest.xml
+      ERROR  [error.label.schematron]   line 55, 33: The attribute reference_type must be set to one of the following values 'external_to_target'.
+        1 product validation(s) completed
+Summary:
+  1 product(s)
+  1 error(s)
+  0 warning(s)
+  Product Validation Summary:
+    0          product(s) passed
+    1          product(s) failed
+    0          product(s) skipped
+    1          product(s) total
+  Referential Integrity Check Summary:
+    0          check(s) passed
+    0          check(s) failed
+    0          check(s) skipped
+    0          check(s) total
+  Message Types:
+    1            error.label.schematron
+End of Report
+Completed execution in 1686 ms
