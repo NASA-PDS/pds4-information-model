@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+
+<Product_Browse xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1N00.xsd">
+    
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:insight_cameras:browse:d000m5226t492849479edr_f0000_0427m</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Insight INSIGHT DEPLOYMENT CAMERA BROWSE product - d000m5226t492849479edr_f0000_0427m</title>
+        <information_model_version>1.23.0.0</information_model_version>
+        <product_class>Product_Browse</product_class>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2015-11-02</modification_date>
+                <version_id>1.0</version_id>
+                <description>Initial version</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    
+    <Context_Area>
+        <Time_Coordinates>
+            <start_date_time>2018-11-30T14:42:35.755Z</start_date_time>
+            <stop_date_time>2022-08-27T12:06:02.784Z</stop_date_time>
+        </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Derived</processing_level>
+            <Science_Facets>
+                <domain>Atmosphere</domain>
+                <domain>Surface</domain>
+                <discipline_name>Atmospheres</discipline_name>
+                <facet1>Meteorology</facet1>
+            </Science_Facets>
+        </Primary_Result_Summary>
+        <Investigation_Area>
+            <name>Insight</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:investigation:mission.insight</lid_reference>        
+                <reference_type>bundle_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>Insight</name>
+            <Observing_System_Component>
+                <name>Auxiliary Payload Sensor Subsystem Temperatures and Wind Sensor for InSight</name>
+                <type>Instrument</type>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:apss-twins.insight</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>            
+        </Observing_System>
+        <Target_Identification>
+            <name>Mars</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
+                <reference_type>browse_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+    </Context_Area>
+    
+    <Reference_List>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:insight_cameras:data:d000m5226t492849479edr_f0000_0427m</lid_reference>
+            <reference_type>browse_to_data</reference_type>
+            <comment>This is a reference to the full resolution data file corresponding to this browse
+                image.</comment>
+        </Internal_Reference>
+    </Reference_List>
+    
+    <File_Area_Browse>
+        <File>
+            <file_name>test_file_1.png</file_name>
+            <local_identifier>BROWSE_FILE</local_identifier>
+            <creation_date_time>2015-11-02</creation_date_time>
+            <file_size unit="byte">129</file_size>
+         </File>
+        <Encoded_Image>
+            <local_identifier>BROWSE_IMAGE</local_identifier>
+            <offset unit="byte">0</offset>
+            <encoding_standard_id>PNG</encoding_standard_id>
+        </Encoded_Image>
+    </File_Area_Browse>
+    
+</Product_Browse>

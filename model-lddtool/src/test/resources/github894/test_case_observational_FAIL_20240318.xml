@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  PDS4_PDS_1N00.xsd">
+    
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:example.dph.sampleproducts:exampleproducts:array2d_image.mpfl-m-imp-2-edr-v1.0</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>MARS
+        	 PATHFINDER LANDER Experiment</title>
+        <information_model_version>1.23.0.0</information_model_version>
+        <product_class>Product_Observational</product_class>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2012-01-10</modification_date>
+                <version_id>1.0</version_id>
+                <description>
+                    extracted metadata from PDS3 catalog and
+                    modified to comply with PDS4 Information Model
+                </description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    
+    <Observation_Area>
+        <comment>Observational Intent</comment>
+        <Time_Coordinates>
+            <start_date_time>1997-07-07T23:48:33.4421Z</start_date_time>
+            <stop_date_time nilReason="unknown" xsi:nil="true"></stop_date_time>
+        </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Derived</processing_level>
+            <description>
+                This is where a generic description of the product goes            
+            </description>
+        </Primary_Result_Summary>
+        <Investigation_Area>
+            <name>MARS PATHFINDER</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lidvid_reference>urn:nasa:pds:context:investigation:mission.mars_pathfinder::1.0</lidvid_reference>
+                <reference_type>data_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>Observing System for MPFL+IMP</name>
+            <Observing_System_Component>
+                <name>MARS PATHFINDER LANDER</name>
+                <type>Spacecraft</type>
+                <description>The instrument host for this observing system was the Mars Path Finder Lander (MPFL) spacecraft</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.mpfl</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+
+        </Observing_System>       
+        <Target_Identification>
+            <name>MARS</name>
+            <type>Planet</type>
+            <description>The target observed was: MARS</description>
+            <Internal_Reference>
+                <lidvid_reference>urn:nasa:pds:context:target:planet.mars::1.0</lidvid_reference>
+                <!-- valid value is 'data_to_target -->                
+                <reference_type>data2_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        
+        <!-- ============================================================ -->
+        <!-- Reference the attributes that were imported from the         -->
+        <!-- local dictionary (using the local namespace (dph)            -->
+        <!-- ============================================================ -->                   
+        <Mission_Area>
+        </Mission_Area>
+        <Discipline_Area>         
+        </Discipline_Area>
+    </Observation_Area>
+  
+    <Reference_List>
+        <Internal_Reference>
+            <lidvid_reference>urn:nasa:pds:context:investigation:mission.mpfl::1.0</lidvid_reference>
+            <reference_type>data_to_associate</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.mpfl</lid_reference>
+            <reference_type>data_to_associate</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:instrument.imp.mpfl</lid_reference>
+            <reference_type>data_to_associate</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
+            <reference_type>data_to_associate</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:node:node.imaging</lid_reference>
+            <reference_type>data_to_associate</reference_type>
+        </Internal_Reference>
+    </Reference_List>
+    
+    <File_Area_Observational>
+        <File>
+            <file_name>test_case_i943630r_2.raw</file_name>
+            <local_identifier>i943630r.raw</local_identifier>
+            <creation_date_time>2009-05-04T13:46:30.115Z</creation_date_time>
+            <file_size unit="byte">126976</file_size>
+            <records>256</records>      
+        </File>
+        
+        <Array_2D_Image>
+            <local_identifier>MPFL-M-IMP_IMG_GRAYSCALE</local_identifier>
+            <offset unit="byte">0</offset>
+            <axes>2</axes>
+            <axis_index_order>Last Index Fastest</axis_index_order>
+            
+            <Element_Array>
+                <data_type>UnsignedMSB2</data_type>
+                <unit>data number</unit>
+                <scaling_factor>1</scaling_factor>
+                <value_offset>0</value_offset>
+            </Element_Array>           
+            <Axis_Array>
+                <axis_name>Line</axis_name>
+                <elements>248</elements>
+                <sequence_number>1</sequence_number>
+            </Axis_Array>
+            <Axis_Array>
+                <axis_name>Sample</axis_name>
+                <elements>256</elements>
+                <sequence_number>2</sequence_number>
+            </Axis_Array>
+            
+        </Array_2D_Image>    
+    </File_Area_Observational>
+    
+</Product_Observational>
