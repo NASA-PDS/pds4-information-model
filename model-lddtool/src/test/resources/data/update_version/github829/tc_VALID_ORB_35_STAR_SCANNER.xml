@@ -17,7 +17,7 @@
         <logical_identifier>urn:nasa:pds:im795:data:orb_35_star_scanner</logical_identifier>
         <version_id>1.0</version_id>
         <title>Galileo SSD Derived Electron Flux at Jupiter and Jupiter Data for Orbit 35 2003-09-18 - 2003-09-21</title>
-        <information_model_version>1.23.0.0</information_model_version>
+        <information_model_version>1.24.0.0</information_model_version>
         <product_class>Product_Observational</product_class>
         <Citation_Information>
             <publication_year>2024</publication_year>
@@ -177,7 +177,7 @@
     </Reference_List>
     <File_Area_Observational>
         <File>
-            <file_name>ORB_35_STAR_SCANNER.TAB</file_name>
+            <file_name>ORB_35_STAR_SCANNER2.TAB</file_name>
             <creation_date_time>2004-02-03T00:00:00.000Z</creation_date_time>
             <file_size unit="byte">28315</file_size>
             <md5_checksum>1eda831e0fd34f7a63bdf97fa14d411f</md5_checksum>

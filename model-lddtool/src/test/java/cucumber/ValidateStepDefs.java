@@ -93,7 +93,6 @@ public class ValidateStepDefs {
         TestConstants.TEST_DATA_DIR + File.separator + UPDATE_VERSION_DIR;
     this.resourcePinnedVersionDir =
         TestConstants.TEST_DATA_DIR + File.separator + PINNED_VERSION_DIR;
-    LOG.info("FOOOOBAR: " + this.resourcePinnedVersionDir);
 
   }
 
@@ -214,14 +213,12 @@ public class ValidateStepDefs {
       String ingestLDDPath =
           TestConstants.TEST_DATA_DIR + File.separator + PINNED_VERSION_DIR + File.separator
               + this.testDir + File.separator + ingestLDDFilename;
-      LOG.info("FOOO " + ingestLDDPath);
       // Check if the path exists
       File file = new File(ingestLDDPath);
       if (!file.isFile() || !file.exists()) {
         ingestLDDPath = TestConstants.TEST_DATA_DIR + File.separator + UPDATE_VERSION_DIR
             + File.separator + this.testDir + File.separator + ingestLDDFilename;
       }
-      LOG.info("BARR " + ingestLDDPath);
       String lddtoolArgs = DEFAULT_LDDTOOL_ARGS + " " + ingestLDDPath;
       if (!this.pds4Version.equals("")) {
         lddtoolArgs += " -V " + this.pds4Version;

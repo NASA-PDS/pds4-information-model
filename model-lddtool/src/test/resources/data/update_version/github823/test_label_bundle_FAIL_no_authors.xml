@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+
+<Product_Bundle
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1N00.xsd">
+  
+  <Identification_Area>
+    <!--
+    <logical_identifier>urn:nasa:pds:insight_twins</logical_identifier>
+    <logical_identifier>urn:kari:kpds:insight_twins</logical_identifier>
+      -->
+    <logical_identifier>urn:ros:rssa:insight_twins</logical_identifier>
+    
+    <version_id>3.2</version_id>
+    <title>APSS TWINS Data</title>
+    <information_model_version>1.24.0.0</information_model_version>
+    <product_class>Product_Bundle</product_class>
+    <Citation_Information>
+      
+      <!-- Deprecated attributes: -->
+      <!--
+      <author_list>asd</author_list>
+      <editor_list>asda</editor_list>
+      -->
+      <publication_year>2019</publication_year>
+      <doi>10.17189/pg4n-f845</doi>
+      
+      <keyword>Mars</keyword>
+      <keyword>weather</keyword>
+      <keyword>meteorology</keyword>
+      <keyword>environment</keyword>
+      <keyword>wind</keyword>
+      <description>
+        Insight Auxiliary Payload Sensor Subsystem (APSS) Temperatures and Wind Sensor for Insight (TWINS) Archive Bundle
+      </description>
+      
+      <!-- preferred classes -->
+      <!--
+      <List_Author>
+        <Organization>
+          <organization_name>acs</organization_name>
+        </Organization>
+      </List_Author>
+
+      <List_Editor>
+        <Organization>
+          <organization_name>qwe</organization_name>
+        </Organization>
+      </List_Editor>
+      -->
+      
+      <List_Contributor>
+        <Person>
+          <contributor_type>DataCollector</contributor_type>
+          <display_full_name>Enrico Fermi, Jr.</display_full_name>
+          <given_name>Enrico, Jr.</given_name>
+          <family_name>Fermi</family_name>
+          <sequence_number>1</sequence_number>                                 
+        </Person>
+        <Person>
+          <contributor_type>Producer</contributor_type>
+          <display_full_name>Lord Andres Felipe Alzate Lopera, Jr.</display_full_name>
+          <given_name>Andres Felipe, Jr.</given_name>
+          <family_name>Alzate Lopera</family_name>
+          <sequence_number>2</sequence_number>                                 
+        </Person>
+      </List_Contributor>
+    </Citation_Information>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2019-05-09</modification_date>
+        <version_id>1.0</version_id>
+        <description>First release</description>
+      </Modification_Detail>
+      <Modification_Detail>
+        <modification_date>2019-06-12</modification_date>
+	<version_id>2.0</version_id>
+	<description>Added data_calibrated and data_derived collections</description>
+      </Modification_Detail>
+      <Modification_Detail>
+        <modification_date>2019-09-10</modification_date>
+	<version_id>3.0</version_id>
+	<description>Added ancillary data collection</description>
+      </Modification_Detail>
+      <Modification_Detail>
+        <modification_date>2022-09-12</modification_date>
+        <version_id>3.1</version_id>
+        <description>Updated citation information</description>
+      </Modification_Detail>
+      <Modification_Detail>
+        <modification_date>2023-06-04</modification_date>
+        <version_id>3.2</version_id>
+        <description>Added context information and references</description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Context_Area>
+    <Time_Coordinates>
+      <start_date_time>2018-11-30T14:42:35.755Z</start_date_time>
+      <stop_date_time>2022-08-27T12:06:02.784Z</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Derived</processing_level>
+      <Science_Facets>
+        <domain>Atmosphere</domain>
+        <domain>Surface</domain>
+        <discipline_name>Atmospheres</discipline_name>
+        <facet1>Meteorology</facet1>
+      </Science_Facets>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>Insight</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <!--
+         <lid_reference>urn:kari:kpds:context:investigation:mission.insight</lid_reference>
+       -->
+        <lid_reference>urn:nasa:pds:context:investigation:mission.insight</lid_reference>        
+        
+        <reference_type>bundle_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <name>Insight</name>
+      <Observing_System_Component>
+        <name>Auxiliary Payload Sensor Subsystem Temperatures and Wind Sensor for InSight</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:apss-twins.insight</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+
+    </Observing_System>
+    <Target_Identification>
+      <name>Mars</name>
+      <type>Planet</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
+        <!-- invalid value; should be bundle_to_target -->
+        <reference_type>data_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+  </Context_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:insight_twins:document:twinsps_dp_sis</lid_reference>
+      <reference_type>bundle_to_document</reference_type>
+    </Internal_Reference>
+    <External_Reference>
+      <doi>10.1007/s11214-018-0570-x</doi>
+      <reference_text>
+        Banfield, D., Rodriguez-Manfredi, J.A., Russell, C.T. et al. InSight
+        Auxiliary Payload Sensor Suite (APSS). Space Sci Rev 215, 4 (2019)
+      </reference_text>
+    </External_Reference>
+  </Reference_List>
+  <Bundle>
+    <bundle_type>Archive</bundle_type>
+  </Bundle>
+  <Bundle_Member_Entry>
+    <!--
+    <lid_reference>urn:nasa:pds:insight_twins:data_raw</lid_reference>
+    <lid_reference>urn:kari:kpds:insight_twins:data_raw</lid_reference>
+    -->
+    <lid_reference>urn:ros:rssa:insight_twins:data_raw</lid_reference>
+    
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight_twins:data_calibrated</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight_twins:data_derived</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight_twins:document</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_document_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight_twins:context</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_context_collection</reference_type>
+  </Bundle_Member_Entry>
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight_twins:xml_schema</lid_reference>
+    <member_status>Primary</member_status>
+    <reference_type>bundle_has_schema_collection</reference_type>
+  </Bundle_Member_Entry>  
+  <Bundle_Member_Entry>
+    <lid_reference>urn:nasa:pds:insight-ifg-mars:data-sc-engineering</lid_reference>
+    <member_status>Secondary</member_status>
+    <reference_type>bundle_has_data_collection</reference_type>
+  </Bundle_Member_Entry>  
+</Product_Bundle>
