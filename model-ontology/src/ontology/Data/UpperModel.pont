@@ -1,4 +1,4 @@
-; Tue Mar 25 11:50:15 EDT 2025
+; Fri Apr 04 16:45:13 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4854,7 +4854,7 @@
 	(single-slot encoding_standard_id
 ;+		(comment "The encoding_standard_id attribute provides the formal name of a standard used for the structure of an Encoded Byte Stream digital object.")
 		(type STRING)
-;+		(value "JPEG" "GIF" "TIFF" "PDF" "PNG" "PDF/A" "J2C")
+;+		(value "JPEG" "GIF" "TIFF" "PDF" "PNG" "PDF/A" "J2C" "JP2")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
