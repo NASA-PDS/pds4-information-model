@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1O00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1O00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>MRO MARS HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT REDUCED DATA RECORD EQUIRECTANGULAR PROJECTION</title>
+    <information_model_version>1.24.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Alias_List>
+      <Alias>
+        <alternate_id>/HiRISE/Users/rod/pds4_sample_data_workfiles/RDR/ESP_043896_2055/ESP_043896_2055_RED.tif</alternate_id>
+        <comment>Original filename at PDS4 archive, on-line at HiRISE Node</comment>
+      </Alias>
+    </Alias_List>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2024-07-17</modification_date>
+        <version_id>1.0</version_id>
+        <description>This PDS4 detached label for HiRISE map projected 
+          "Reduced Data Record" product.
+        </description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>2015-12-07T21:26:02.757Z</start_date_time>
+      <stop_date_time>2015-12-07T21:26:04.637Z</stop_date_time>
+      <local_true_solar_time>15.01252</local_true_solar_time>
+      <solar_longitude unit="deg">78.493145</solar_longitude>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Derived</processing_level>
+      <description>Calibrated, mosaicked and map-projected HiRISE observation of the target in GeoTIFF format</description>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>MARS RECONNAISSANCE ORBITER</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.mars_reconnaissance_orbiter</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+        <comment>This is the PDS4 logical identifier for MRO</comment>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:hirise.mro</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Mars</name>
+      <type>Planet</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:target:planet.mars</lid_reference>
+        <reference_type>data_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+    <Mission_Area>
+    </Mission_Area>
+    <Discipline_Area>
+    </Discipline_Area>
+  </Observation_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:mro_hirise:collection_naming_tbd:hirise_rdr_sis</lid_reference>
+      <reference_type>data_to_document</reference_type>
+      <comment>documentation and citation(s) for this data product</comment>
+    </Internal_Reference>
+    <External_Reference>
+      <doi>10.1029/2005JE002605</doi>
+      <reference_text>McEwen, Alfred S. ; Eliason, Eric M. ; Bergstrom, James W. ; 
+        Bridges, Nathan T. ; Hansen, Candice J. ; Delamere, W. Alan ; Grant, John A. ; 
+        Gulick, Virginia C. ; Herkenhoff, Kenneth E. ; Keszthelyi, Laszlo ; 
+        Kirk, Randolph L. ; Mellon, Michael T. ; Squyres, Steven W. ; Thomas, Nicolas ; 
+        Weitz, Catherine M. (2007) Mars Reconnaissance Orbiter's High Resolution Imaging Science 
+        Experiment (HiRISE) Journal of Geophysical Research, Volume 112, Issue E5
+      </reference_text>
+      <description>instrument overview</description>
+    </External_Reference>
+  </Reference_List>
+  <File_Area_Observational>
+    <File>
+      <file_name>ESP_043896_2055_RED_3.tif</file_name>
+      <local_identifier>DATA_FILE</local_identifier>
+      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
+      <file_size unit="byte">1184018549</file_size>
+    </File>
+    <Header>
+      <offset unit="byte">0</offset>
+      <object_length unit="byte">152747</object_length>
+      <parsing_standard_id>TIFF 6.0</parsing_standard_id>
+      <description>TIFF/GeoTIFF header. The TIFF/GeoTIFF format is used throughout the geospatial and science communities to share geographic image data. </description>
+    </Header>
+    <Array_3D_Image>
+      <local_identifier>Array_2D_Image</local_identifier>
+      <offset unit="byte">152747</offset>
+      <axes>3</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <Element_Array>
+        <data_type>UnsignedLSB2</data_type>
+        <scaling_factor>8.30305496949213998e-05</scaling_factor>
+        <value_offset>0.112092366553879996</value_offset>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Band</axis_name>
+        <elements>1</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>25319</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>23379</elements>
+        <sequence_number>3</sequence_number>
+      </Axis_Array>
+      <Special_Constants>
+        <missing_constant>0</missing_constant>
+        <invalid_constant>0</invalid_constant>
+        <high_instrument_saturation>1022</high_instrument_saturation>
+        <high_representation_saturation>1023</high_representation_saturation>
+        <low_instrument_saturation>2</low_instrument_saturation>
+        <low_representation_saturation>1</low_representation_saturation>
+      </Special_Constants>
+    </Array_3D_Image>
+    
+  </File_Area_Observational>
+  <File_Area_Observational_Supplemental>
+    <File>
+      <file_name>ESP_043896_2055_RED_3.LBL</file_name>
+      <comment>Original PDS3 label for this data product</comment>
+    </File>
+    <Stream_Text>
+      <offset unit="byte">0</offset>
+      <parsing_standard_id>PDS3</parsing_standard_id>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+    </Stream_Text>
+  </File_Area_Observational_Supplemental>
+  <File_Area_Observational_Supplemental>
+    <File>
+      <file_name>ESP_043896_2055_RED_3.JP2</file_name>
+      <comment>Original PDS3 product, a JPEG2000 encoded image</comment>
+    </File>
+    <Encoded_Image>
+      <offset unit="byte">0</offset>
+      <!-- test 'JP2' as new enumerated value -->
+      <!-- invalid value -->
+      <encoding_standard_id>JP3</encoding_standard_id>
+    </Encoded_Image>
+  </File_Area_Observational_Supplemental>
+</Product_Observational>
