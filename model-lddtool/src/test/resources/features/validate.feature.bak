@@ -39,7 +39,7 @@ Feature: pds4_information_model_validate_integration
 #  -- the test cases will be run in a later Build; once the error in Validate is fixed; see readme
 #| NASA-PDS/pds4-information-model#894b  | "test cases for SEED and ASCII_FILE_NAME (CCB-7)"                  | "github894b" |          6 |  "totalErrors"     | "-t {resourceUpdateVersionDir}/github894b/test_case_external_ref_FAIL_20240318.xml {resourceUpdateVersionDir}/github894b/test_case_external_ref_VALID_20240318.xml {resourceUpdateVersionDir}/github894b/test_case_native_ref_FAIL_202403318.xml {resourceUpdateVersionDir}/github894b/test_case_native_ref_VALID_202403318.xml"  | "" | "" |
 | NASA-PDS/pds4-information-model#898  | "Nnot throwing a warning when validating Author/Editor Lists"        | "github898"  |          1 |  "totalErrors"     | "-t {resourceUpdateVersionDir}/github898/test_file_ror.xml"  | "" | "" |
-| NASA-PDS/pds4-information-model#905  | "Added JP2 as permissible value for encoding_standard_id"            | "github905"  |          6 |  "totalErrors"     | "-t {resourceUpdateVersionDir}/github905/test_case_Fail_invalid-value_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Fail_null-value_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Valid_20241024.xml"  | "" | "" |
+| NASA-PDS/pds4-information-model#905  | "Added JP2 as permissible value for encoding_standard_id"            | "github905"  |          2 |  "totalErrors"     | "-t {resourceUpdateVersionDir}/github905/test_case_Fail_invalid-value_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Fail_null-value_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Valid_20241024.xml"  | "" | "" |
 
     @v15.3.x
     Examples: 
