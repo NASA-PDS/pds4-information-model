@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-03-31)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-11)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -11,6 +11,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace sln, slim, hisaki, and mmx [\#882](https://github.com/NASA-PDS/pds4-information-model/issues/882)
 - \[namespace-registry\] add new namespaces for vex, smart1, and giotto [\#876](https://github.com/NASA-PDS/pds4-information-model/issues/876)
 - Archive all PDS Policy documents [\#872](https://github.com/NASA-PDS/pds4-information-model/issues/872)
 - \[namespace-registry\] add new namespace "ama" [\#868](https://github.com/NASA-PDS/pds4-information-model/issues/868)
