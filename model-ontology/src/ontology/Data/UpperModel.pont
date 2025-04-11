@@ -1,4 +1,4 @@
-; Fri Apr 04 16:45:13 EDT 2025
+; Fri Apr 11 12:44:51 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8012,27 +8012,6 @@
 (defclass DD_Class "The DD_Class class defines a class for a data dictionary."
 	(is-a TNDO_Supplemental)
 	(role concrete)
-	(multislot terminological_entry
-;+		(comment "The terminological_entry association is a relationship to Terminological_Entry.")
-		(type INSTANCE)
-;+		(allowed-classes Terminological_Entry)
-		(create-accessor read-write))
-	(single-slot submitter_name
-;+		(comment "The submitter_name attribute provides the name of the author, who submits the item to the steward.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot data_object
-;+		(comment "The data_object association is a relationship to Data Object.")
-		(type INSTANCE)
-;+		(allowed-classes Conceptual_Object)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot definition
-;+		(comment "The definition attribute provides a statement, picture in words, or account that defines the term.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot version_id
 ;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
 		(type STRING)
@@ -8042,11 +8021,6 @@
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
 		(type STRING)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot element_flag
-;+		(comment "The element flag attribute indicates whether or not the class is defined as a xs:element in XML Schema.")
-		(type STRING)
-;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot internal_reference
 ;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
@@ -8068,6 +8042,37 @@
 		(type INSTANCE)
 ;+		(allowed-classes DD_Association DD_Association_External DD_Associate_External_Class XSChoice%23)
 		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot terminological_entry
+;+		(comment "The terminological_entry association is a relationship to Terminological_Entry.")
+		(type INSTANCE)
+;+		(allowed-classes Terminological_Entry)
+		(create-accessor read-write))
+	(single-slot submitter_name
+;+		(comment "The submitter_name attribute provides the name of the author, who submits the item to the steward.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot data_object
+;+		(comment "The data_object association is a relationship to Data Object.")
+		(type INSTANCE)
+;+		(allowed-classes Conceptual_Object)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot definition
+;+		(comment "The definition attribute provides a statement, picture in words, or account that defines the term.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot element_flag
+;+		(comment "The element flag attribute indicates whether or not the class is defined as a xs:element in XML Schema.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Band_Bin "The Band_Bin class specifies the characteristics of an individual spectral band in a spectral qube."
