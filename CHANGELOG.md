@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-11)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-15)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
 **Requirements:**
 
+- CCB-54: Allow comment for DD\_Class [\#907](https://github.com/NASA-PDS/pds4-information-model/issues/907)
 - CCB-43: Repair Incorrectly Formed Enumerated Value for Units\_of\_Gmass [\#891](https://github.com/NASA-PDS/pds4-information-model/issues/891)
 - As a user, I want to generate the core PDS4 IM for a specific version of PDS4 [\#860](https://github.com/NASA-PDS/pds4-information-model/issues/860)
 
