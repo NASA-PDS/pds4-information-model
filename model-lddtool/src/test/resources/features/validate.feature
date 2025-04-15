@@ -51,3 +51,4 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#905   | "Added JP2 permissible value for encoding_standard_id. (CCB-48)"   | "github905"  |           4 |  "SCHEMA_ERROR,SCHEMATRON_ERROR"     | "-t {resourceUpdateVersionDir}/github905/test_case_Valid_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Fail_invalid-value_20241024.xml {resourceUpdateVersionDir}/github905/test_case_Fail_null-value_20241024.xml"  | "" | "" |
 | NASA-PDS/pds4-information-model#907   | "Allow comment for DD_Class (CCB-54)"                              | "github907"  |           0 |  "totalErrors" | "-t {resourceUpdateVersionDir}/github907/PASS-PDS4_PARTICLE_IngestLDD-20250213.xml"  | "" | "" |
 
+
