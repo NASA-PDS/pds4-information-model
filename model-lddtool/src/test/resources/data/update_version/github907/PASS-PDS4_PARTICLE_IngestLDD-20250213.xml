@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model
+    href="PDS4_PDS_1O00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- PDS4 Local Data Dictionary Ingest File -->
+
+<Ingest_LDD
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://pds.nasa.gov/pds4/pds/v1 
+        PDS4_PDS_1N00-ccb54-20250213.xsd">
+
+	<name>Particle</name>
+	<ldd_version_id>2.0.2.0</ldd_version_id>
+	<dictionary_type>Discipline</dictionary_type>
+	<full_name>Joseph Mafi</full_name>
+	<steward_id>ppi</steward_id>
+	<namespace_id>particle</namespace_id>
+	<comment>
+		This is an Ingest LDD file for the Particle Discipline Local Data Dictionary. It contains attributes 
+		that may be used to help identify particle parameters included in a PDS4 product to supplement the 
+		information provided in the Primary_Result_Summary and in order to support enhanced data discovery.
+		
+		Modification History:
+		
+		1.0.0.0 (Todd King)
+		   - Initial version. Included classes for defining relationships between multidimensional data 
+		     objects (subsequently moved to the Multidimensional dictionary).
+		     
+		1.1.0.0 (Todd King)
+		
+		2.0.0.0 (J. Mafi, 2021-02-24):
+		   - Removed classes related to multidimensional data objects.
+		   - Added particle data parameter description attributes and classes.
+		   
+		2.0.1.0 (J. Mafi, 2021-06-24):
+		   - Updated to IM V.1.16.0.0
+		   - Added permissible value "Energy Flux" to 
+		     Particle_Observation/Particle_Parameter/particle_measurement_type
+		
+		2.0.2.0 (J. Mafi, 2024-09-27):
+		   - Added permissible value "Density Profile" to
+		     Particle_Observation/Particle_Parameter/particle_measurement_type
+	</comment>
+	<last_modification_date_time>2024-09-27T23:00:00Z</last_modification_date_time>
+
+	<DD_Attribute>
+		<name>particle_type</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.particle_type</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The particle_type attribute indicates the type of particle being described.</definition>
+		<DD_Value_Domain>
+			<enumeration_flag>true</enumeration_flag>
+			<value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+			<DD_Permissible_Value>
+				<value>Electrons</value>
+				<value_meaning>Electrons are subatomic particles with a negative electrical charge.</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Ions</value>
+				<value_meaning>Ions are particles with an electrical charge.</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Neutrals</value>
+				<value_meaning>Neutrals are particles with no net electrical charge.</value_meaning>
+			</DD_Permissible_Value>
+		</DD_Value_Domain>
+	</DD_Attribute>
+	
+	<DD_Attribute>
+		<name>energy_range_minimum</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.energy_range_minimum</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The energy_range_minimum attribute indicates the lowest measured energy for the described particle_type.</definition>
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		<DD_Value_Domain>
+			<enumeration_flag>false</enumeration_flag>
+			<value_data_type>ASCII_Real</value_data_type>
+			<unit_of_measure_type>Units_of_Energy</unit_of_measure_type>
+		</DD_Value_Domain>
+	</DD_Attribute>
+	
+	<DD_Attribute>
+		<name>energy_range_maximum</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.energy_range_maximum</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The energy_range_minimum attribute indicates the highest measured energy for the described particle_type.</definition>
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		<DD_Value_Domain>
+			<enumeration_flag>false</enumeration_flag>
+			<value_data_type>ASCII_Real</value_data_type>
+			<unit_of_measure_type>Units_of_Energy</unit_of_measure_type>
+		</DD_Value_Domain>
+	</DD_Attribute>
+	
+	<DD_Attribute>
+		<name>particle_measurement_type</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.particle_measurement_type</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The particle_measurement_type attribute indicates the type of particle measurement parameters.</definition>
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		<DD_Value_Domain>
+			<enumeration_flag>true</enumeration_flag>
+			<value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+			<DD_Permissible_Value>
+				<value>Counts</value>
+				<value_meaning>Sensor particle detections (may include both raw and corrected counts)</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Count Rate</value>
+				<value_meaning>Particle detections per accumulation interval</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Flux</value>
+				<value_meaning>Particle detections per time per area</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Energy Spectra</value>
+				<value_meaning>Particle distribution of energy</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Mass Spectra</value>
+				<value_meaning>Particle distribution of mass-to-charge ratio</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Density</value>
+				<value_meaning>Particle number or mass density</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Thermal Pressure</value>
+				<value_meaning>Pressure due to the thermal motion of the particles</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Dynamic Pressure</value>
+				<value_meaning>Pressure due to the kinetic motion of the particles</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Temperature</value>
+				<value_meaning>Particle distribution temperature</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Velocity</value>
+				<value_meaning>Particle bulk or vector velocity</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Distribution Function</value>
+				<value_meaning>Particle distribution</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Pitch Angle Distribution</value>
+				<value_meaning>Particle distribution organized by magnetic-field direction</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Time of Flight</value>
+				<value_meaning>Particle mass distribution determined by particle's measured momentum and time it take to travel between two sensors</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Composition</value>
+				<value_meaning>Distribution of particle types</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Pulse Height Analysis</value>
+				<value_meaning>Particle energy spectra over a specified time interval</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Energy Flux</value>
+				<value_meaning>Particle energy per unit area per time. This value should be used for differential and integral energy flux as well.</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Density Profile</value>
+				<value_meaning>Particle density by altitude</value_meaning>
+			</DD_Permissible_Value>			
+		</DD_Value_Domain>
+	</DD_Attribute>
+	
+	<DD_Attribute>
+		<name>ion_type</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.ion_type</local_identifier>
+		<nillable_flag>false</nillable_flag>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The ion_type attribute indicates the types of ions measured.</definition>
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		<DD_Value_Domain>
+			<enumeration_flag>true</enumeration_flag>
+			<value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+			<DD_Permissible_Value>
+				<value>Proton</value>
+				<value_meaning>Positively charged subatomic particle</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Alpha</value>
+				<value_meaning>Positively charged particle consisting of two protons and two neutrons</value_meaning>
+			</DD_Permissible_Value>
+			<DD_Permissible_Value>
+				<value>Heavy</value>
+				<value_meaning>Ions with a higher atomic number than helium</value_meaning>
+			</DD_Permissible_Value>
+		</DD_Value_Domain>
+	</DD_Attribute>
+	
+	<DD_Class>
+		<name>Particle_Parameter</name>
+		<version_id>1.0</version_id>
+		<local_identifier>particle.Particle_Parameter</local_identifier>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The Particle_Parameter class contains metadata identifying specific particle science parameters.</definition>
+		<!-- add comment attribute as optional -->
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		<element_flag>false</element_flag>
+		<DD_Association>
+			<identifier_reference>particle.particle_type</identifier_reference>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<identifier_reference>particle.particle_measurement_type</identifier_reference>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		<DD_Association>
+			<identifier_reference>particle.ion_type</identifier_reference>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>*</maximum_occurrences>
+		</DD_Association>
+	</DD_Class>
+	
+	<DD_Class>
+		<name>Particle_Observation</name>
+		<version_id>2.0</version_id>
+		<local_identifier>particle.Particle_Observation</local_identifier>
+		<submitter_name>J. Mafi</submitter_name>
+		<definition>The Particle_Observation class is the container for particle discipline related metadata elements.</definition>
+		<!--
+		<comment>
+			1.0 (jmafi) Initial Version
+		</comment>
+		-->
+		<abstract_flag>false</abstract_flag>
+        <element_flag>true</element_flag> 
+		
+		<DD_Association>
+			<identifier_reference>particle.energy_range_minimum</identifier_reference>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		
+		<DD_Association>
+			<identifier_reference>particle.energy_range_maximum</identifier_reference>
+			<reference_type>attribute_of</reference_type>
+			<minimum_occurrences>0</minimum_occurrences>
+			<maximum_occurrences>1</maximum_occurrences>
+		</DD_Association>
+		
+		<DD_Association>
+			<identifier_reference>particle.Particle_Parameter</identifier_reference>
+			<reference_type>component_of</reference_type>
+			<minimum_occurrences>1</minimum_occurrences>
+			<maximum_occurrences>*</maximum_occurrences>
+		</DD_Association>
+		
+	</DD_Class>
+
+</Ingest_LDD>
