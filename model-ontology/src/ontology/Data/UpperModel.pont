@@ -1,4 +1,4 @@
-; Fri Apr 11 12:44:51 EDT 2025
+; Wed Apr 16 11:32:58 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11463,7 +11463,7 @@
 	(single-slot funding_source
 ;+		(comment "The funding_source attribute provides the identifier for an agency or other entity that provided financial assistance in the poroduction of the archival data.")
 		(type STRING)
-;+		(value "NASA" "NSF" "RAS")
+;+		(value "NASA" "NSF" "RAS" "ESA")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot funding_acknowledgement_text
