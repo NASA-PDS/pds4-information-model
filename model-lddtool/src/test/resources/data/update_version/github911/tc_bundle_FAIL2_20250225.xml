@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1O00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Bundle 
+    xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="     http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1O00.xsd">
+    
+    <Identification_Area>
+        <logical_identifier>urn:jaxa:darts:hyb2_nirs3</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Hayabusa2 NIRS3 Bundle</title>
+        <information_model_version>1.24.0.0</information_model_version>
+        <product_class>Product_Bundle</product_class>
+        <Citation_Information>
+            <publication_year>2021</publication_year>
+            <doi>10.17597/ISAS.DARTS/HYB2-00400</doi>
+            <keyword>Hayabusa2</keyword>
+            <keyword>NIRS3</keyword>
+            <keyword>Spectrometer</keyword>
+            <keyword>(162173) Ryugu</keyword>
+            <description>This bundle collects all the operational data products produced by the Hayabusa2 NIRS3 instrument.</description>
+            <Funding_Acknowledgement>
+                <!-- invalid value -->
+                <funding_source>JAXA</funding_source>
+                <funding_acknowledgement_text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </funding_acknowledgement_text>
+            </Funding_Acknowledgement>
+            <List_Author>
+                <Person>
+                    <given_name>Kohei</given_name>
+                    <family_name>Kitazato</family_name>
+                    <sequence_number>1</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Takahiro</given_name>
+                    <family_name>Iwata</family_name>
+                    <sequence_number>2</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Masanao</given_name>
+                    <family_name>Abe</family_name>
+                    <sequence_number>3</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Makiko</given_name>
+                    <family_name>Ohtake</family_name>
+                    <sequence_number>4</sequence_number>
+                </Person>
+            </List_Author>
+            <List_Editor>
+                <Person>
+                    <given_name>Shin-ya</given_name>
+                    <family_name>Murakami</family_name>
+                    <sequence_number>1</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Yukio</given_name>
+                    <family_name>Yamamoto</family_name>
+                    <sequence_number>2</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>M. Katherine</given_name>
+                    <family_name>Crombie</family_name>
+                    <sequence_number>3</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Yoshiaki</given_name>
+                    <family_name>Ishihara</family_name>
+                    <sequence_number>4</sequence_number>
+                </Person>
+            </List_Editor>
+        </Citation_Information>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2021-02-19</modification_date>
+                <version_id>1.0</version_id>
+                <description>Initial release</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    <Context_Area>
+        <Time_Coordinates>
+            <start_date_time>2014-12-03T04:22:04Z</start_date_time>
+            <stop_date_time xsi:nil="true" nilReason="unknown"></stop_date_time>
+        </Time_Coordinates>
+        <Investigation_Area>
+            <name>Hayabusa2 Asteroid Sample Return Mission</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lid_reference>urn:jaxa:darts:context:investigation:mission.hyb2</lid_reference>
+                <reference_type>bundle_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>Hayabusa2 Spacecraft</name>
+            <Observing_System_Component>
+                <name>Hayabusa2</name>
+                <type>Host</type>
+                <description>Hayabusa2 Spacecraft</description>
+                <Internal_Reference>
+                    <lid_reference>urn:jaxa:darts:context:instrument_host:spacecraft.hyb2</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Near InfraRed Spectrometer (NIRS3)</name>
+                <type>Instrument</type>
+                <Internal_Reference>
+                    <lid_reference>urn:jaxa:darts:context:instrument:hyb2.nirs3</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+        </Observing_System>
+        <Target_Identification>
+            <name>(162173) Ryugu</name>
+            <type>Asteroid</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:asteroid.162173_ryugu</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Target_Identification>
+            <name>Earth</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.earth</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+        <Target_Identification>
+            <name>Moon</name>
+            <type>Satellite</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:satellite.earth.moon</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+    </Context_Area>
+    <Bundle>
+        <bundle_type>Archive</bundle_type>
+    </Bundle>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:jaxa:darts:hyb2_nirs3:calibration</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_calibration_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:jaxa:darts:hyb2_nirs3:data_ancillary</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_data_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:jaxa:darts:hyb2_nirs3:data_calibrated</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_data_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:jaxa:darts:hyb2_nirs3:data_raw</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_data_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:jaxa:darts:hyb2_nirs3:document</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_document_collection</reference_type>
+    </Bundle_Member_Entry>
+</Product_Bundle>
