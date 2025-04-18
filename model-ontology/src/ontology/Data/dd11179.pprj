@@ -1,4 +1,4 @@
-; Fri Apr 18 11:56:02 EDT 2025
+; Fri Apr 18 12:14:48 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class167]
-		[dd11179_ProjectKB_Class168]
-		[dd11179_ProjectKB_Class169]))
+		[dd11179_ProjectKB_Class274]
+		[dd11179_ProjectKB_Class275]
+		[dd11179_ProjectKB_Class276]))
 
 ([CLSES_TAB] of  Widget
 
@@ -369,17 +369,17 @@
 	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class10])
 	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
 
-([dd11179_ProjectKB_Class167] of  String
+([dd11179_ProjectKB_Class274] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([dd11179_ProjectKB_Class168] of  String
+([dd11179_ProjectKB_Class275] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([dd11179_ProjectKB_Class169] of  String
+([dd11179_ProjectKB_Class276] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
