@@ -1,4 +1,4 @@
-; Wed Apr 16 11:32:58 EDT 2025
+; Fri Apr 18 11:40:10 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12832,6 +12832,12 @@
 ;+		(value "dir1/dir2/")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[a-zA-Z0-9]([a-zA-Z0-9]|[-]|[_]|[/])*/")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
@@ -12853,7 +12859,7 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:token")
+;+		(value "xsd:string")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -12866,6 +12872,12 @@
 ;+		(value "file_name.file_extension")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(single-slot pattern
+;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
+		(type STRING)
+;+		(value "[a-zA-Z0-9]([a-zA-Z0-9]|[-]|[_]|[.])*[.][a-zA-Z0-9]+")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
 	(single-slot maximum_characters
 ;+		(comment "The maximum_characters attribute provides the upper, inclusive bound on the number of characters.")
 		(type STRING)
@@ -12887,7 +12899,7 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:token")
+;+		(value "xsd:string")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 

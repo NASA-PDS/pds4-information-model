@@ -1,4 +1,4 @@
-; Wed Apr 16 11:42:39 EDT 2025
+; Fri Apr 18 12:33:08 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class296]
-		[dd11179_ProjectKB_Class297]
-		[dd11179_ProjectKB_Class298]))
+		[dd11179_ProjectKB_Class207]
+		[dd11179_ProjectKB_Class208]
+		[dd11179_ProjectKB_Class209]))
 
 ([CLSES_TAB] of  Widget
 
@@ -36,350 +36,350 @@
 
 	(name ":CREATOR"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class1] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class1] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class2])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class2])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class10] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class10] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class11] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class11] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class12])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class12])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.cls.OWLClassesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class12] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class12] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class13] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class13] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class14])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class14])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class14] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class14] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class15] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class15] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class16])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class16])
 	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class16] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class16] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class17] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class17] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class18])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class18])
 	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class18] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class18] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class19] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class19] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class20])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class20])
 	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class2] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class2] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class20] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class20] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class21] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class21] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class22])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class22])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class22] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class22] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class23] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class23] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class24])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class24])
 	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class24] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class24] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class25] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class25] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class26])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class26])
 	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class26] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class26] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class27] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class27] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class28])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class28])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class28] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class28] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class29] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class29] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class30])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class30])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadatatab.OWLMetadataTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class3] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class3] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class4])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class4])
 	(widget_class_name "org.protege.owl.mm.portability.protege3.MappingMasterTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class30] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class30] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class31] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class31] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class32])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class32])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class32] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class32] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class33] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class33] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class34])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class34])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.individuals.OWLIndividualsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class34] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class34] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class35] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class35] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class36])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class36])
 	(widget_class_name "uk.ac.man.cs.mig.coode.debugger.test.DebuggerTestTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class36] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class36] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class37] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class37] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class38])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class38])
 	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class38] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class38] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class39] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class39] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class40])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class40])
 	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class4] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class4] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class40] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class40] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class41] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class41] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class42])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class42])
 	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class42] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class42] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class43] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class43] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class44])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class44])
 	(widget_class_name "TGViztab.TGVizTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class44] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class44] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class45] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class45] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class46])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class46])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.properties.OWLPropertiesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class46] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class46] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class47] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class47] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class48])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class48])
 	(widget_class_name "uk.ac.man.ac.mig.coode.individuals.ui.OWLDLIndividualsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class48] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class48] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class49] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class49] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class50])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class50])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class5] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class5] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class6])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class6])
 	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class50] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class50] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class51] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class51] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class52])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class52])
 	(widget_class_name "edu.stanford.smi.protegex.evaluation.MetaAnalysis"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class52] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class52] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class53] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class53] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class54])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class54])
 	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class54] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class54] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class55] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class55] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class56])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class56])
 	(widget_class_name "se.liu.ida.JessTab.JessTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class56] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class56] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class57] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class57] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class58])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class58])
 	(widget_class_name "edu.stanford.smi.protegex.changeanalysis.ChangeAnalysisTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class58] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class58] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class59] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class59] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class60])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class60])
 	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class6] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class6] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class60] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class60] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class61] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class61] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class62])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class62])
 	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class62] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class62] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class63] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class63] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class64])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class64])
 	(widget_class_name "script.ProtegeScriptTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class64] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class64] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class65] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class65] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class66])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class66])
 	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class66] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class66] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class67] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class67] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class68])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class68])
 	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class68] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class68] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class69] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class69] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class70])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class70])
 	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class7] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class7] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class8])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class8])
 	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class70] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class70] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class71] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class71] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class72])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class72])
 	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class72] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class72] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class73] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class73] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class74])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class74])
 	(widget_class_name "ezpal.EZPalTab"))
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class74] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class74] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class8] of  Property_List
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class8] of  Property_List
 )
 
-([dd11179_250416_FundingAcknowledgement_ProjectKB_Class9] of  Widget
+([dd11179_250418_FileName_DirectoryPath_ProjectKB_Class9] of  Widget
 
 	(is_hidden TRUE)
-	(property_list [dd11179_250416_FundingAcknowledgement_ProjectKB_Class10])
+	(property_list [dd11179_250418_FileName_DirectoryPath_ProjectKB_Class10])
 	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
 
-([dd11179_ProjectKB_Class296] of  String
+([dd11179_ProjectKB_Class207] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([dd11179_ProjectKB_Class297] of  String
+([dd11179_ProjectKB_Class208] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([dd11179_ProjectKB_Class298] of  String
+([dd11179_ProjectKB_Class209] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
@@ -522,10 +522,10 @@
 	(name "instances_file_name")
 	(string_value "dd11179.pins"))
 
-([KB_860773_Class0] of  Map
+([KB_236585_Class0] of  Map
 )
 
-([KB_980374_Class0] of  Map
+([KB_860773_Class0] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
