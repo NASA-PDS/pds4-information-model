@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1O00.sch" 
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Document xmlns="http://pds.nasa.gov/pds4/pds/v1"
+   xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1O00.xsd">
+   
+   <Identification_Area>
+      <logical_identifier>urn:nasa:pds:example.dph.sampleproducts:exampleproducts:documentproduct.phx-m-meca-4-nirdr-v1.0</logical_identifier>
+      <version_id>1.0</version_id>
+      <title>Phoenix Project Software Interface Specification 
+         (SIS) MECA Non-Imaging Reduced Data Record (RDR)
+      </title>
+      <information_model_version>1.24.0.0</information_model_version>
+      <product_class>Product_Document</product_class>
+      <Citation_Information>
+         <publication_year>2013</publication_year>
+         <description>
+            This document represents an example / sample as documented in the DPH.      
+         </description>
+      </Citation_Information>      
+      <Modification_History>
+         <Modification_Detail>
+            <modification_date>2012-01-10</modification_date>
+            <version_id>1.0</version_id>
+            <description>
+               extracted metadata from PDS3 catalog and
+               modified to comply with PDS4 Information Model
+            </description>
+         </Modification_Detail>
+      </Modification_History>
+   </Identification_Area>
+   
+   <Context_Area>
+      <comment>
+         Phoenix Project Software Interface Specification 
+         (SIS) MECA Non-Imaging Reduced Data Record (RDR)
+      </comment>
+   </Context_Area>
+
+   <Reference_List>
+      <Internal_Reference>
+         <lid_reference>urn:nasa:pds:node:node.sbn</lid_reference>
+         <reference_type>document_to_associate</reference_type>
+      </Internal_Reference>
+   </Reference_List>
+   
+   <Document>
+      <acknowledgement_text>unk</acknowledgement_text>
+      <publication_date nilReason="unknown" xsi:nil="true"></publication_date>
+      <document_editions>2</document_editions>
+      <description>
+         The MECA Non-Imaging Reduced Data Record Software Interface 
+         Specification, which describes the MECA AFM, TECP, and WCL 
+         derived data products in detail.
+      </description>
+      <Document_Edition>
+         <edition_name>PDF version</edition_name>
+         <language>English</language>
+         <files>1</files>
+         <description>PDF instance of the document</description>
+         <Document_File>
+            <!-- ============================================================ -->
+            <!-- BEGIN: NEW rule to check if values in <file> match SR        -->
+            <!--  • The file_name must not begin or end with a dash           -->
+            <!--      or underscore or period (e.g., -test.txt-).             --> 
+            <!--  • The file name must include at least one period followed   --> 
+            <!--      by an extension.                                        -->
+            <!--  • The file name must be constructed from the character set  -->
+            <!--   A-Z				     ASCII 0x41 through 0x5A,               -->
+            <!--   a-z				     ASCII 0x61 through 0x7A,               -->
+            <!--   0-9				     ASCII 0x30 through 0x39,               -->
+            <!--   dash “-” 			 ASCII 0x2D,                             -->
+            <!--   underscore “_”	ASCII 0x5F, and                           -->
+            <!--   period “.”			ASCII 0x2E.                             -->
+            <!-- ============================================================ -->             
+            <!-- illegal character -->
+            <file_name>meca$_rdr_sis.pdf</file_name>
+            <local_identifier>document.meca_rdr_sis.pdf</local_identifier>
+            <creation_date_time>2009-05-06T14:52:12.759</creation_date_time>
+            <file_size unit="byte">1383245</file_size>
+            <md5_checksum>6081daf194e3f495bda20709215e81d5</md5_checksum>
+            <!-- ============================================================ -->
+            <!-- BEGIN: NEW rule to check if values in <directory_path_name>  -->
+            <!--        match SR                                              -->
+            <!--  • The directory_path_name must not begin or end with a dash -->
+            <!--      or underscore.                                          --> 
+            <!--  • The directory_path_name cannot contain '../'              -->
+            <!--  • The file name must be constructed from the character set  -->
+            <!--   A-Z				     ASCII 0x41 through 0x5A,               -->
+            <!--   a-z				     ASCII 0x61 through 0x7A,               -->
+            <!--   0-9				     ASCII 0x30 through 0x39,               -->
+            <!--   dash “-” 			 ASCII 0x2D,                             -->
+            <!--   underscore “_”	ASCII 0x5F, and                           -->
+            <!--   period “.”			ASCII 0x2E.                             -->
+            <!--   slash “/”			ASCII 0x2E.                              -->
+            <!--                                                              -->
+            <!--   Note that the above character set doesn't include '/'      -->
+            <!--      - added '/' in advance of DDWG approval                 -->
+            <!--      - modified '../' to './' in advance of DDWG approval    -->
+            <!--          to dis-allow both variations                        -->
+            <!-- ============================================================ -->  
+            <!-- illegal character '.' -->           
+            <directory_path_name>meca.rdr_sis/</directory_path_name>
+            <document_standard_id>PDF/A</document_standard_id>
+          </Document_File>
+      </Document_Edition>
+
+      <Document_Edition>
+         <edition_name>HTML version</edition_name>
+         <starting_point_identifier>document.meca_rdr_sis.htm</starting_point_identifier>
+         <language>English</language>         
+         <files>23</files>
+         <description>HTML instance of the document</description>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>!meca_rdr_sis.htm</file_name>
+            <local_identifier>document.meca_rdr_sis.htm</local_identifier>
+            <creation_date_time>2009-05-06T14:51:56.650</creation_date_time>
+            <file_size unit="byte">1394524</file_size>
+            <md5_checksum>9ec93910737001a96c02eadeca5a993d</md5_checksum>
+            <document_standard_id>HTML</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>image001.gif@</file_name>
+            <local_identifier>document.image001.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:53:50.443</creation_date_time>
+            <file_size unit="byte">3377</file_size>
+            <md5_checksum>90f90d0af232a0091ed1f01047dee490</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>image002%.gif</file_name>
+            <local_identifier>document.image002.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:00.662</creation_date_time>
+            <file_size unit="byte">28714</file_size>
+            <md5_checksum>c30a88a2f04accf8b69a9f25ff10e59c</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>image#003.jpg</file_name>
+            <local_identifier>document.image003.jpg</local_identifier>
+            <creation_date_time>2009-05-06T14:54:04.255</creation_date_time>
+            <file_size unit="byte">6490</file_size>
+            <md5_checksum>17a65f02e0f1d5cf739574866c3bb388</md5_checksum>
+            <!-- valid directory_path_name -->                                   
+            <directory_path_name>test/meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>JPEG</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>image004*.gif</file_name>
+            <local_identifier>document.image004.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:07.427</creation_date_time>
+            <file_size unit="byte">364</file_size>
+            <md5_checksum>eb4a408e3da860bde1f56cbc758a99eb</md5_checksum>
+            <!-- valid directory_path_name -->                                   
+            <directory_path_name>test/meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- illegal character -->
+            <file_name>image005.*gif</file_name>
+            <local_identifier>document.image005.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:10.911</creation_date_time>
+            <file_size unit="byte">66785</file_size>
+            <md5_checksum>a2e13c9193494492d66a97559794901d</md5_checksum>
+            <!-- valid directory_path_name -->                                   
+            <directory_path_name>test/meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must include at least 1 period -->
+            <file_name>image006gif</file_name>
+            <local_identifier>document.image006.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:21.317</creation_date_time>
+            <file_size unit="byte">1611</file_size>
+            <md5_checksum>7b37140411fb7750342e6b9e1f334ab7</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with dash -->
+            <file_name>-image007.gif</file_name>
+            <local_identifier>document.image007.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:23.942</creation_date_time>
+            <file_size unit="byte">59446</file_size>
+            <md5_checksum>7217a308bfe2f34cffd57881247cb449</md5_checksum>
+            <directory_path_name>test/meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not end with dash -->
+            <file_name>image008.gif-</file_name>
+            <local_identifier>document.image008.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:26.817</creation_date_time>
+            <file_size unit="byte">14465</file_size>
+            <md5_checksum>8b9dc96e2afadd3e40aeb5b2adf9f329</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with dash and not end in dash -->
+            <file_name>-image009.gif-</file_name>
+            <local_identifier>document.image009.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:30.629</creation_date_time>
+            <file_size unit="byte">16458</file_size>
+            <md5_checksum>bf0610fae153c374f9e07ed8b549b15f</md5_checksum>
+            <directory_path_name>test/meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with underscore -->
+            <file_name>_image010.gif</file_name>
+            <local_identifier>document.image010.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:35.426</creation_date_time>
+            <file_size unit="byte">28151</file_size>
+            <md5_checksum>ad079cd14065777e580df8e9d7de75b4</md5_checksum>
+            <!-- valid directory_path_name -->                                   
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not end with underscore -->
+            <file_name>image011.gif_</file_name>
+            <local_identifier>document.image011.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:44.207</creation_date_time>
+            <file_size unit="byte">29514</file_size>
+            <md5_checksum>d4cd47c3cbc2b514e4e31720fdda1491</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with underscore and not end in underscore -->
+            <file_name>_image012.gif_</file_name>
+            <local_identifier>document.image012.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:47.926</creation_date_time>
+            <file_size unit="byte">44177</file_size>
+            <md5_checksum>92f1cd0126bac54334be8b3db06b19b4</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with period -->
+            <file_name>.image013.gif</file_name>
+            <local_identifier>document.image013.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:50.973</creation_date_time>
+            <file_size unit="byte">926</file_size>
+            <md5_checksum>22df66f3d4385b44d63ca3608e72e4b5</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not end with period -->
+            <file_name>image014.gif.</file_name>
+            <local_identifier>document.image014.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:54:54.769</creation_date_time>
+            <file_size unit="byte">1177</file_size>
+            <md5_checksum>f795402211529d48bb1fa647e22a55d3</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- must not start with period and mot end in period -->
+            <file_name>.image015gif.</file_name>
+            <local_identifier>document.image015.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:55:00.753</creation_date_time>
+            <file_size unit="byte">13816</file_size>
+            <md5_checksum>b51a5731dd6dcbf5920878e9d600a7b0</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- cannot be a directory_path_name -->
+            <file_name>/parent/child/image016.jpg</file_name>
+            <local_identifier>document.image016.jpg</local_identifier>
+            <creation_date_time>2009-05-06T14:55:03.878</creation_date_time>
+            <file_size unit="byte">7667</file_size>
+            <md5_checksum>fc3f2bdc4c37a4bb4fd024cf1c2ed9bb</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>JPEG</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- cannot be a directory_path_name -->
+            <file_name>parent/child/image017.gif</file_name>
+            <local_identifier>document.image017.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:55:07.316</creation_date_time>
+            <file_size unit="byte">26193</file_size>
+            <md5_checksum>5f088023e8f022e6bf1acb53aa2ad179</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- file_name must be unique -->
+            <file_name>image018.gif</file_name>
+            <local_identifier>document.image018.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:55:12.050</creation_date_time>
+            <file_size unit="byte">35605</file_size>
+            <md5_checksum>2a5586c8cde5454a7a90efe54570d4b8</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <!-- file_name must be unique -->
+            <file_name>image018.gif</file_name>
+            <local_identifier>document.image019.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:55:14.941</creation_date_time>
+            <file_size unit="byte">24961</file_size>
+            <md5_checksum>9d07e67118bcd00462dba9f313425c94</md5_checksum>
+            <!-- valid directory_path_name -->
+            <directory_path_name>meca_rdr_sis_files/test/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>
+         <Document_File>
+            <file_name>image020.gif</file_name>
+            <local_identifier>document.image020.gif</local_identifier>
+            <creation_date_time>2009-05-06T14:55:18.378</creation_date_time>
+            <file_size unit="byte">10409</file_size>
+            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
+            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
+            <document_standard_id>GIF</document_standard_id>
+         </Document_File>      
+      </Document_Edition>     
+      <List_Author>
+         <Person>
+            <given_name>Susan</given_name>
+            <family_name>Slavney</family_name>
+         </Person>
+      </List_Author>
+   </Document>
+</Product_Document>
