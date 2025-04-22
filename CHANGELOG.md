@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-16)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-22)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
 **Requirements:**
 
+- CCB-13 Ensure file\_name and directory\_path\_name adhere to SR [\#912](https://github.com/NASA-PDS/pds4-information-model/issues/912)
 - CCB-55: Funding\_Ackowledgement class enhancement \(funding\_source and funding\_acknowledgement\_text\) [\#910](https://github.com/NASA-PDS/pds4-information-model/issues/910)
 - CCB-54: Allow comment for DD\_Class [\#907](https://github.com/NASA-PDS/pds4-information-model/issues/907)
 - CCB-43: Repair Incorrectly Formed Enumerated Value for Units\_of\_Gmass [\#891](https://github.com/NASA-PDS/pds4-information-model/issues/891)
