@@ -1,4 +1,4 @@
-; Wed Apr 16 11:32:58 EDT 2025
+; Fri Apr 18 11:40:11 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -573,6 +573,34 @@
 	(attrTitle "unit_of_measure_type")
 	(identifier "unit_of_measure_type")
 	(specMesg "TBD_SpecMesg"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADocument.100004872] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "file_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Document")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADocument.100004872.101])
+	(identifier "pds:Document")
+	(isMissionOnly "false")
+	(roleId "warning")
+	(schematronAssign
+		"name=\"count_file_name\" value=\"count(//pds:file_name)\""
+		"name=\"distinct_file_name\" value=\"count(distinct-values(//pds:file_name))\""
+		"name=\"difference_file_name\" value=\"$count_file_name - $distinct_file_name\"")
+	(type "TBD_type")
+	(xpath "pds:Document"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ADocument.100004872.101] of  Schematron_Assert
+
+	(assertMsg "The number of instances of 'file_name' is: '<sch:value-of select=\"$count_file_name\"/>'. The number of distinct instances of 'file_name' is: '<sch:value-of select=\"$distinct_file_name\"/>'. The number of duplicate instances of 'file_name' is: '<sch:value-of select=\"$difference_file_name\"/>'.")
+	(assertStmt "$count_file_name eq $distinct_file_name")
+	(assertType "RAW")
+	(attrTitle "file_name")
+	(identifier "file_name")
+	(specMesg "The file name must be unique within a directory."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AField_Binary.100002518] of  Schematron_Rule
 
