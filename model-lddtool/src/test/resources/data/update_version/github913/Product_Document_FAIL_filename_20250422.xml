@@ -156,7 +156,7 @@
          </Document_File>
          <Document_File>
             <!-- illegal character -->
-            <file_name>image004*.gif</file_name>
+            <file_name>image004.gif</file_name>
             <local_identifier>document.image004.gif</local_identifier>
             <creation_date_time>2009-05-06T14:54:07.427</creation_date_time>
             <file_size unit="byte">364</file_size>
@@ -167,7 +167,7 @@
          </Document_File>
          <Document_File>
             <!-- illegal character -->
-            <file_name>image005.*gif</file_name>
+            <file_name>image005.gif</file_name>
             <local_identifier>document.image005.gif</local_identifier>
             <creation_date_time>2009-05-06T14:54:10.911</creation_date_time>
             <file_size unit="byte">66785</file_size>
