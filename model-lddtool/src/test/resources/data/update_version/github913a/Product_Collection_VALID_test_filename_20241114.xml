@@ -124,11 +124,8 @@
   </Collection>
   <File_Area_Inventory>
     <File>
-      <!-- legal file_name -->     
-      <file_name>Collection-data-venus_1.0.csv</file_name>
-      <creation_date_time>2023-08-24T17:13:32</creation_date_time>
-      <file_size unit="byte">67</file_size>
-      <md5_checksum>49b2bb6ae2da17edd182067ab68142cc</md5_checksum>
+      <file_name>test_case_collection_1.csv</file_name>
+      <file_size unit="byte">75</file_size>
     </File>
     <Inventory>
       <offset unit="byte">0</offset>
@@ -139,7 +136,7 @@
       <Record_Delimited>
         <fields>2</fields>
         <groups>0</groups>
-        <maximum_record_length unit="byte">257</maximum_record_length>
+        <maximum_record_length unit="byte">259</maximum_record_length>               
         <Field_Delimited>
           <name>Member Status</name>
           <field_number>1</field_number>
@@ -150,7 +147,7 @@
           <name>LIDVID_LID</name>
           <field_number>2</field_number>
           <data_type>ASCII_LIDVID_LID</data_type>
-          <maximum_field_length unit="byte">255</maximum_field_length>
+          <maximum_field_length unit="byte">255</maximum_field_length>    
         </Field_Delimited>
       </Record_Delimited>
       <reference_type>inventory_has_member_product</reference_type>
