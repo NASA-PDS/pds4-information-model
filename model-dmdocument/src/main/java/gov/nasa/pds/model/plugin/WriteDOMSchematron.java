@@ -114,6 +114,7 @@ class WriteDOMSchematron extends Object {
   }
 
   // write the schematron rules
+  // 555 TBD clean up assertMsg
   public void writeSchematronRuleClasses(SchemaFileDefn lSchemaFileDefn,
       ArrayList<DOMRule> lRuleArr, PrintWriter prSchematron) {
     // write class based assertions
@@ -140,12 +141,14 @@ class WriteDOMSchematron extends Object {
         prSchematron.println("      <sch:let " + lLetAssign + "/>");
       }
       for (DOMAssert lAssert : lRule.assertArr) {
-        if (lAssert.assertType.compareTo("RAW") == 0) {
+       	String warningStr = "";
+      	if (lAssert.assertType.indexOf("WARN") > 0) warningStr = " role=\"WARN\"";
+        if (lAssert.assertType.indexOf("RAW") == 0) {
           if (lAssert.assertMsg.indexOf("TBD") == 0) {
-            prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"/>");
+            prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"" + warningStr + "/>");
             prSchematron.println("        <title>" + getRuleTitle(lRule, lAssert) + "</title>");
           } else {
-            prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\">");
+            prSchematron.println("      <sch:assert test=\"" + lAssert.assertStmt + "\"" + warningStr + ">");
             prSchematron.println("        <title>" + getRuleTitle(lRule, lAssert) + "</title>");
           }
           prSchematron.println("        " + lAssert.assertMsg + "</sch:assert>");
