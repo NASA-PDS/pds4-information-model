@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-22)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-23)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -22,6 +22,7 @@
 
 **Defects:**
 
+- Schematron is not throwning a warning when validating Author/Editor Lists [\#898](https://github.com/NASA-PDS/pds4-information-model/issues/898)
 - lddtool `-V` flag outputs invalid schemas for 1C00 [\#874](https://github.com/NASA-PDS/pds4-information-model/issues/874) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Unable to run \>1 cucumber test with LDDs [\#866](https://github.com/NASA-PDS/pds4-information-model/issues/866) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
