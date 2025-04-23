@@ -1,4 +1,4 @@
-; Fri Apr 18 11:40:11 EDT 2025
+; Wed Apr 23 11:00:43 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -316,7 +316,7 @@
 
 	(assertMsg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes.")
 	(assertStmt "if ((pds:author_list or pds:editor_list) and (pds:List_Author or pds:List_Editor)) then false() else true()")
-	(assertType "RAW")
+	(assertType "RAW WARN")
 	(attrTitle "author_list")
 	(identifier "author_list")
 	(specMesg "The pds:List_Author and pds:List_Editor classes should not be used in conjunction with the deprecated pds:author_list and pds:editor_list attributes."))
