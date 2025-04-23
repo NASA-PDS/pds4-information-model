@@ -1127,7 +1127,7 @@ public class WriteDOMSpecification extends Object {
         if (!((lRule.classTitle.compareTo(lAttr.parentClassTitle) == 0)
             && lAssert.attrTitle.compareTo(lAttr.title) == 0)
             || (lAssert.assertMsg.indexOf("TBD") == 0) || (lAssert.specMesg.indexOf("TBD") == 0)
-            || (lAssert.assertType.compareTo("RAW") != 0)) {
+            || (lAssert.assertType.indexOf("RAW") != 0)) {
           continue;
         }
 
