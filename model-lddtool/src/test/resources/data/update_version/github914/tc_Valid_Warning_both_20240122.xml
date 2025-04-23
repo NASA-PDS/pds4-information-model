@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1O00.sch" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
+
+<Product_Document
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1O00.xsd">
+    
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:cassini.rss.raw.gwe:document:test_file_6</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Test Document with List_Author/Organization and Complex Citation_Information</title>
+        <information_model_version>1.24.0.0</information_model_version>
+        <product_class>Product_Document</product_class>
+
+        <Citation_Information>
+            <author_list>Frank, Louis A.; Ackerson, Kent L.; Alphabet Inc.</author_list>    
+            <editor_list>Doe III, John; Jet Propulsion Laboratory</editor_list>            
+            <publication_year>2023</publication_year>
+            <description>
+                This is a two-character test document having a label with List_Author/Organization and 
+                complex class Citation_Information with contributors.
+            </description>
+            <List_Author>
+                <Organization>
+                    <organization_name>Space Radiation Laboratory</organization_name>
+                    <organization_rorid>jpl</organization_rorid>
+                    <sequence_number>1</sequence_number>                               
+                    
+                    <Parent_Organization>
+                        <parent_organization_name>Alphabet Inc.</parent_organization_name>
+                        <parent_organization_rorid>https://ror.org/02e9yx751</parent_organization_rorid>
+                        <sequence_number>1</sequence_number>                        
+                    </Parent_Organization>
+                </Organization>
+                <Person>
+                    <display_full_name>Louis A. Frank</display_full_name>
+                    <given_name>Louis A..</given_name>
+                    <family_name>Frank</family_name>
+                    <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+                    <sequence_number>2</sequence_number>
+                    <Affiliation>
+                        <organization_name>Jet Propulsion Laboratory</organization_name>
+                        <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                        <sequence_number>1</sequence_number>
+                    </Affiliation>
+                </Person>        
+                <Person>
+                    <display_full_name>Kent L. Ackerson</display_full_name>
+                    <given_name>Kent L..</given_name>
+                    <family_name>Ackerson</family_name>
+                    <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+                    <sequence_number>3</sequence_number>
+                    <Affiliation>
+                        <organization_name>Jet Propulsion Laboratory</organization_name>
+                        <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                        <sequence_number>1</sequence_number>
+                    </Affiliation>
+                </Person> 
+            </List_Author>
+            <List_Editor>
+                <Person>
+                    <display_full_name>John Doe III</display_full_name>
+                    <given_name>John III</given_name>
+                    <family_name>Doe</family_name>
+                    <person_orcid>http://orcid.org/0000-0001-5109-0000</person_orcid>
+                    <sequence_number>1</sequence_number>
+                    <Affiliation>
+                        <organization_name>Jet Propulsion Laboratory</organization_name>
+                        <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                        <sequence_number>1</sequence_number>                        
+                    </Affiliation>
+                </Person>
+            </List_Editor>                    
+            <List_Editor>
+                <Organization>
+                    <organization_name>Jet Propulsion Laboratory</organization_name>
+                    <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                    <sequence_number>2</sequence_number>                    
+                    <Parent_Organization>
+                        <parent_organization_name>
+                            National Aeronautics and Space Administration
+                        </parent_organization_name>
+                        <parent_organization_rorid>https://ror.org/027ka1x80</parent_organization_rorid>
+                        <sequence_number>1</sequence_number>                                               
+                    </Parent_Organization>
+                 </Organization>
+            </List_Editor>                                
+            <List_Contributor>
+                <Person>
+                    <contributor_type>DataCollector</contributor_type>
+                    <display_full_name>Enrico Fermi, Jr.</display_full_name>
+                    <given_name>Enrico, Jr.</given_name>
+                    <family_name>Fermi</family_name>
+                </Person>
+                <Person>
+                    <contributor_type>Producer</contributor_type>
+                    <display_full_name>Andres Felipe Alzate Lopera</display_full_name>
+                    <given_name>Andres Felipe</given_name>
+                    <family_name>Alzate Lopera</family_name>
+                </Person>
+            </List_Contributor>            
+        </Citation_Information>       
+    </Identification_Area>
+    
+    <Document>
+        <document_name>
+            Test Document with List_Author/Organization and complex Citation_Information
+        </document_name>
+        <publication_date>2023-10-09</publication_date>
+        <description>
+            This is a two-character test document having a label with List_Author/Organization and 
+            complex class Citation_Information with contributors.
+        </description>
+        <Document_Edition>
+            <edition_name>First</edition_name>
+            <language>English</language>
+            <files>1</files>
+            <Document_File>
+                <file_name>test_file_5_ror.txt</file_name>
+                <file_size unit="byte">2</file_size>
+                <document_standard_id>7-Bit ASCII Text</document_standard_id>
+            </Document_File>
+        </Document_Edition>
+        <List_Author>
+            <Organization>
+                <organization_name>Alphabet Inc.</organization_name>
+                <organization_rorid>02e9yx751</organization_rorid>
+            </Organization>
+        </List_Author>        
+    </Document>
+    
+</Product_Document>
+
