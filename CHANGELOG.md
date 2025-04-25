@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-23)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-04-25)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...«unknown»)
 
@@ -14,6 +14,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new JAXA namespaces for BepiColombo MMO instruments [\#906](https://github.com/NASA-PDS/pds4-information-model/issues/906)
 - \[namespace-registry\] add new namespace sln, slim, hisaki, and mmx [\#882](https://github.com/NASA-PDS/pds4-information-model/issues/882)
 - \[namespace-registry\] add new namespaces for vex, smart1, and giotto [\#876](https://github.com/NASA-PDS/pds4-information-model/issues/876)
 - Archive all PDS Policy documents [\#872](https://github.com/NASA-PDS/pds4-information-model/issues/872)
@@ -22,7 +23,8 @@
 
 **Defects:**
 
-- Schematron is not throwning a warning when validating Author/Editor Lists [\#898](https://github.com/NASA-PDS/pds4-information-model/issues/898)
+- Schematron is not throwing a warning when validating Author/Editor Lists [\#898](https://github.com/NASA-PDS/pds4-information-model/issues/898)
+- lddtool -V flag outputs invalid schemas for 1D00  [\#885](https://github.com/NASA-PDS/pds4-information-model/issues/885) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool `-V` flag outputs invalid schemas for 1C00 [\#874](https://github.com/NASA-PDS/pds4-information-model/issues/874) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - LDDTool does not propertly generate the All LDD Data Dictionary [\#867](https://github.com/NASA-PDS/pds4-information-model/issues/867) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Unable to run \>1 cucumber test with LDDs [\#866](https://github.com/NASA-PDS/pds4-information-model/issues/866) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
@@ -31,6 +33,7 @@
 
 **Other closed issues:**
 
+- Develop script to update the IM Version for test data [\#899](https://github.com/NASA-PDS/pds4-information-model/issues/899)
 - Stage the PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#879](https://github.com/NASA-PDS/pds4-information-model/issues/879)
 - Update cucumber test code to support testing of \#852 [\#856](https://github.com/NASA-PDS/pds4-information-model/issues/856)
 
