@@ -43,8 +43,8 @@ public class DOMProp extends ISOClassOAIS11179 {
   String sortKeyIMSPec; // sort key for IM Specification Dictionary - Title/Steward/Class/Steward
 
   DOMClass attrParentClass; // class instance that this object is a member of
-  ISOClassOAIS11179 hasDOMObject; // OVERRIDE - allows only one object (class, attribute,
-                                  // permissible value, etc, but no DOMProp
+  ISOClassOAIS11179 domObject; // OVERRIDE - allows only one object (class, attribute,
+                               // permissible value, etc, but no DOMProp
   ArrayList<String> valArr; // the protege values, either attributes or class titles
 
   String localIdentifier; // local_identifier (the or first local identifier in the Association set)
@@ -77,7 +77,7 @@ public class DOMProp extends ISOClassOAIS11179 {
     classOrder = "9999";
     sortKeyIMSPec = "TBD_sortKeyIMSPec";
     attrParentClass = null;
-    hasDOMObject = null;
+    domObject = null;
     valArr = new ArrayList<>();
 
     localIdentifier = "TBD_localIdentifier";
@@ -169,12 +169,12 @@ public class DOMProp extends ISOClassOAIS11179 {
   public void setSortKey() {
     String lMemberTitle = "TBD_lMemberTitle";
     String lMemberSteward = "TBD_lMemberSteward";
-    if (hasDOMObject != null) {
-      if (hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) hasDOMObject;
+    if (domObject != null) {
+      if (domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) domObject;
         lMemberTitle = lDOMAttr.title;
         lMemberSteward = lDOMAttr.steward;
-      } else if (hasDOMObject instanceof DOMClass) {
+      } else if (domObject instanceof DOMClass) {
         lMemberTitle = title;
         lMemberSteward = steward;
       } else {
