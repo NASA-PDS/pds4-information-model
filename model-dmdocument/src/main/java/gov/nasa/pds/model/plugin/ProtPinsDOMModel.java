@@ -169,7 +169,7 @@ class ProtPinsDOMModel extends Object {
       DOMProp lDOMProp = new DOMProp();
       lDOMProp.initDOMPermValProp(lDOMPermVal);
       lDOMAttrDiscipline.domPermValueArr.add(lDOMProp);
-      lDOMProp.hasDOMObject = lDOMPermVal;
+      lDOMProp.domObject = lDOMPermVal;
 
       // update facet1 values
       for (Iterator<SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet1Arr.iterator(); j
@@ -191,7 +191,7 @@ class ProtPinsDOMModel extends Object {
         DOMProp lDOMPropFacet1 = new DOMProp();
         lDOMPropFacet1.initDOMPermValProp(lDOMPermValFacet1);
         lDOMAttrFacet1.domPermValueArr.add(lDOMPropFacet1);
-        lDOMPropFacet1.hasDOMObject = lDOMPermValFacet1;
+        lDOMPropFacet1.domObject = lDOMPermValFacet1;
       }
       // update facet2 values
       for (Iterator<SFGroupFacetDefn> j = lSFDisciplineFacetDefn.groupFacet2Arr.iterator(); j
@@ -213,7 +213,7 @@ class ProtPinsDOMModel extends Object {
         DOMProp lDOMPropFacet2 = new DOMProp();
         lDOMPropFacet2.initDOMPermValProp(lDOMPermValFacet2);
         lDOMAttrFacet2.domPermValueArr.add(lDOMPropFacet2);
-        lDOMPropFacet2.hasDOMObject = lDOMPermValFacet2;
+        lDOMPropFacet2.domObject = lDOMPermValFacet2;
       }
     }
     return;

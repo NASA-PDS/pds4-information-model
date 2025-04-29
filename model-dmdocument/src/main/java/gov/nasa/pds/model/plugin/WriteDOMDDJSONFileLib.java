@@ -312,7 +312,7 @@ class WriteDOMDDJSONFileLib {
 		DOMPropGroup lDOMPropGroupSort = new DOMPropGroup();
 		String pGroupName = "NULL";
 		for (DOMProp lDOMProp : lClass.allAttrAssocArr) {
-			ISOClassOAIS11179 lDOMObject = lDOMProp.hasDOMObject;
+			ISOClassOAIS11179 lDOMObject = lDOMProp.domObject;
 			String lPropType = "C";
 			if (lDOMProp.isAttribute) lPropType = "A";
 			String lSortOrder = lPropType + lDOMProp.classOrder + "-" + lDOMObject.identifier;
@@ -431,8 +431,8 @@ class WriteDOMDDJSONFileLib {
 		// scan the PermissibleValue and create the array
 		JSONArray jsonPermissibleValueList = new JSONArray ();
 		for (DOMProp lDOMProp : lDOMAttr.domPermValueArr) {
-			if ((lDOMProp.hasDOMObject == null) || !(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) continue;
-			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+			if ((lDOMProp.domObject == null) || !(lDOMProp.domObject instanceof DOMPermValDefn)) continue;
+			DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
 			JSONObject jsonObjectPermissibleValue = (JSONObject) getNameValuePair ("PermissibleValue", getValuePermissibleValue (lDOMPermValDefn ));
 			jsonPermissibleValueList.add(jsonObjectPermissibleValue);
 		}
@@ -559,8 +559,8 @@ class WriteDOMDDJSONFileLib {
 			
 			// scan through all owned attributes of the class
 			for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 					
 					// skip attribute with no terminological entry map
 					if (lDOMAttr.termEntryMap == null || lDOMAttr.termEntryMap.isEmpty() ) continue;
@@ -766,15 +766,15 @@ class WriteDOMDDJSONFileLib {
 
       // get all QM attributes
       for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.domObject;
 
           // get all QM PV for this QM attribute
           for (DOMProp lDOMPropPV : lDOMAttrQM.domPermValueArr) {
 
-            if (lDOMPropPV.hasDOMObject != null
-                && lDOMPropPV.hasDOMObject instanceof DOMPermValDefn) {
-              DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.hasDOMObject;
+            if (lDOMPropPV.domObject != null
+                && lDOMPropPV.domObject instanceof DOMPermValDefn) {
+              DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.domObject;
 
               // for one PV print all QM term entrires
               ArrayList<TermEntryDefn> lPVQMTermEntryDefnArr =

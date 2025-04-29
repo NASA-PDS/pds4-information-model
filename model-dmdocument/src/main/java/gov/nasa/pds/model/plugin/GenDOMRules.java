@@ -374,8 +374,8 @@ class GenDOMRules extends Object {
     ArrayList<DOMClass> lBooleanClassArr = new ArrayList<>();
     for (DOMClass lClass : lSelectClassArr) {
       for (DOMProp lDOMProp : lClass.allAttrAssocArr) {
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           if (lDOMAttr.valueType.compareTo("ASCII_Boolean") == 0) {
             lBooleanClassArr.add(lClass);
             continue;
@@ -402,8 +402,8 @@ class GenDOMRules extends Object {
         lRule.classNameSpaceNC = lClass.nameSpaceIdNC;
         lRule.classSteward = lClass.steward;
         for (DOMProp lDOMProp : lClass.allAttrAssocArr) {
-          if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
             if (lDOMAttr.valueType.compareTo("ASCII_Boolean") != 0) {
               continue;
             }
@@ -724,8 +724,8 @@ class GenDOMRules extends Object {
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           if (lDOMAttr.unit_of_measure_type == null
               || lDOMAttr.unit_of_measure_type.indexOf("TBD") == 0) {
             continue;

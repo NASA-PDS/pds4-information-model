@@ -248,14 +248,14 @@ public class DOMClass extends ISOClassOAIS11179 {
 	  // iterate through the owned attributes - via their properties
       for (DOMProp lDOMProp : ownedAttrArr) {
     	  lDOMProp.isInactive = lIsInactive;
-    	  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-    		  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+    	  if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+    		  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
     		  lDOMAttr.isInactive = lIsInactive;
     		  
     		  // iterate through the permissible values - via their properties
     		  for (DOMProp lDOMProp2 : lDOMAttr.domPermValueArr) {
-    			  if (lDOMProp2.hasDOMObject != null && lDOMProp2.hasDOMObject instanceof DOMPermValDefn) {
-    				  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp2.hasDOMObject;
+    			  if (lDOMProp2.domObject != null && lDOMProp2.domObject instanceof DOMPermValDefn) {
+    				  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp2.domObject;
     				  lDOMPermVal.isInactive = lIsInactive;
     			  }
     		  }

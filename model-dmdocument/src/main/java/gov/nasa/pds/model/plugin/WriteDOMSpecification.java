@@ -516,7 +516,7 @@ public class WriteDOMSpecification extends Object {
     // sort the local attributes
     for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
-      lPropSortMap.put(lProp.hasDOMObject.rdfIdentifier, lProp);
+      lPropSortMap.put(lProp.domObject.rdfIdentifier, lProp);
     }
     // System.out.println("printTableRow:"+ lPropSortMap.size());
     // process the local attributes
@@ -528,7 +528,7 @@ public class WriteDOMSpecification extends Object {
         lRegistrationStatus = DMDocument.Literal_DEPRECATED;
       }
 
-      DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+      DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
       phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle()
           + lRegistrationStatus + "</a>";
       String cmin = lDOMAttr.cardMin; // get min card
@@ -565,10 +565,10 @@ public class WriteDOMSpecification extends Object {
 
         DOMProp lDOMProp = k.next();
 
-        if (!(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+        if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
           phvalue = "&nbsp;";
         } else {
-          DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.domObject;
           value = permVal.value;
           if (!value.isEmpty()) {
             String lAnchorString = lDOMAttr.anchorString;
@@ -632,7 +632,7 @@ public class WriteDOMSpecification extends Object {
     String lastProp = "&nbsp;";
     for (Iterator<DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
-      DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;
+      DOMClass lDOMClass = (DOMClass) lProp.domObject;
       phtitle = "&nbsp;";
       phcard = "&nbsp;";
       phindicator = "&nbsp;";
@@ -750,7 +750,7 @@ public class WriteDOMSpecification extends Object {
       for (Iterator<DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
 
-        ISOClassOAIS11179 lISOClass = lProp.hasDOMObject;
+        ISOClassOAIS11179 lISOClass = lProp.domObject;
 
         DOMClass lDOMClass = (DOMClass) lISOClass;
         if (lDOMClass.identifier.compareTo(lClassId) != 0) {
@@ -763,7 +763,7 @@ public class WriteDOMSpecification extends Object {
       }
       for (Iterator<DOMProp> j = lClass.inheritedAssocArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        ISOClassOAIS11179 lISOClass = lProp.hasDOMObject;
+        ISOClassOAIS11179 lISOClass = lProp.domObject;
         DOMClass lDOMClass = (DOMClass) lISOClass;
         if (lDOMClass.identifier.compareTo(lClassId) != 0) {
           continue;
@@ -806,9 +806,9 @@ public class WriteDOMSpecification extends Object {
     boolean fflag, altflag;
     String phtitle, desc, altlist;
 
-    if (lProp.hasDOMObject != null) {
-      if (lProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+    if (lProp.domObject != null) {
+      if (lProp.domObject instanceof DOMAttr) {
+        DOMAttr lAttr = (DOMAttr) lProp.domObject;
         if (!lAttr.isInactive) {
           if (lAttr.isUsedInClass || includeAllAttrFlag) {
 
@@ -907,7 +907,7 @@ public class WriteDOMSpecification extends Object {
     String phtype;
 
     if (prop.isAttribute) {
-      DOMAttr lAttr = (DOMAttr) prop.hasDOMObject;
+      DOMAttr lAttr = (DOMAttr) prop.domObject;
       if (lAttr.valueType.indexOf("TBD") == 0) {
         return;
       }
@@ -1010,11 +1010,11 @@ public class WriteDOMSpecification extends Object {
     for (Iterator<DOMProp> i = lValClassArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
 
-      if (!(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+      if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
         phvalue = "&nbsp;";
 
       } else {
-        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.domObject;
         if (lPermValueDefn.value.compareTo("...") == 0) {
           elipflag = true;
         } else if (lPermValueDefn.value.compareTo("2147483647") == 0) {

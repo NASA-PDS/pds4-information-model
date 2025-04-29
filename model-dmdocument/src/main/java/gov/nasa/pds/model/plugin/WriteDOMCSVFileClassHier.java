@@ -93,8 +93,8 @@ class WriteDOMCSVFileClassHier extends Object {
 	  
 	  // navigate the class component properties to gather up all the component classes
 	  for (DOMProp lDOMProp : lRootDOMClass.ownedAssocArr) {
-		  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-			  DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;  
+		  if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+			  DOMClass lDOMClass = (DOMClass) lDOMProp.domObject;  
 			  ClassAttrValueStruct classAttrValueStruct = new ClassAttrValueStruct ();
 			  classAttrValueStructMap.put(getNextItemOrderNumber(), classAttrValueStruct);
 			  classAttrValueStruct.classTitle = lDOMClass.title;
@@ -120,8 +120,8 @@ class WriteDOMCSVFileClassHier extends Object {
 	  allAttr.addAll(lClass.ownedAttrArr);
 	  allAttr.addAll(lClass.inheritedAttrArr);
 	  for (DOMProp lDOMProp : allAttr) {
-		  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-			  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+		  if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+			  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 			  String sortKey = lDOMProp.classOrder + "_" + lClass.title;
 			  sortedDOMAttrMap.put(sortKey, lDOMAttr);
 		  }
@@ -143,8 +143,8 @@ class WriteDOMCSVFileClassHier extends Object {
 			  classAttrValueStruct.classLevel = classLevel;
 			  
 			  for (DOMProp lDOMProp2 : lDOMAttr.domPermValueArr) {
-				  if ((lDOMProp2.hasDOMObject == null) || !(lDOMProp2.hasDOMObject instanceof DOMPermValDefn)) continue;
-				  DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp2.hasDOMObject;
+				  if ((lDOMProp2.domObject == null) || !(lDOMProp2.domObject instanceof DOMPermValDefn)) continue;
+				  DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp2.domObject;
 				  
 				  if (! classAttrValueStruct.isFirst) {
 					  classAttrValueStruct = new ClassAttrValueStruct ();

@@ -126,7 +126,7 @@ class WriteDOMStandardIdExtract extends Object {
       if (!lProp.isAttribute) {
         continue;
       }
-      lAttr = (DOMAttr) lProp.hasDOMObject;
+      lAttr = (DOMAttr) lProp.domObject;
       if (lAttr.title.indexOf("standard_id") < 0) {
         continue;
       }

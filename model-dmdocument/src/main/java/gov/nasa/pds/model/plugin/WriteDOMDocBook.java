@@ -456,16 +456,16 @@ class WriteDOMDocBook extends Object {
         if (!lProp.isAttribute) {
           continue;
         }
-        DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+        DOMAttr lAttr = (DOMAttr) lProp.domObject;
         lValueString = "None";
         lValueDel = "";
         if (!(lAttr.domPermValueArr == null || lAttr.domPermValueArr.size() == 0)) {
           lValueString = "";
           for (DOMProp lDOMProp: lAttr.domPermValueArr) {
-            if (!(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+            if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
               continue;
             }
-            DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+            DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.domObject;
             lValueString += lValueDel + getValueLink(lAttr, getValue(lPermValueDefn.value));
             lValueDel = ", ";
           }
@@ -504,8 +504,8 @@ class WriteDOMDocBook extends Object {
 
       int lSeqNumI = 1000;
       for (DOMProp lDOMProp: lClass.allAttrAssocArr) {
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-          DOMClass lMemberDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+          DOMClass lMemberDOMClass = (DOMClass) lDOMProp.domObject;
           TreeMap<String, DOMClass> lMemberClassMap = lPropMemberClassMap.get(lDOMProp.title);
           if (lMemberClassMap != null) {
             lMemberClassMap.put(lMemberDOMClass.title, lMemberDOMClass);
@@ -710,10 +710,10 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("                </row>");
 
       for (DOMProp lProp: lAttr.domPermValueArr) {
-        if (!(lProp.hasDOMObject instanceof DOMPermValDefn)) {
+        if (!(lProp.domObject instanceof DOMPermValDefn)) {
           continue;
         }
-        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.hasDOMObject;
+        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
         if (lPermValueDefn.value.compareTo("...") == 0) {
           continue;
         }
@@ -830,7 +830,7 @@ class WriteDOMDocBook extends Object {
       lPatternArr = new ArrayList<>();
 
       for (DOMProp lProp : lClass.ownedAttrArr) {
-        DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+        DOMAttr lAttr = (DOMAttr) lProp.domObject;
         if (lAttr.title.compareTo("xml_schema_base_type") == 0) {
           lSchemaBaseType = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
           if (lSchemaBaseType == null) {
@@ -991,7 +991,7 @@ class WriteDOMDocBook extends Object {
     for (DOMClass lClass: sortUnitsArr) {
       lDOMPermValueArr = new ArrayList<>();
       for (DOMProp lProp : lClass.allAttrAssocArr) {
-        DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+        DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
         if (lDOMAttr.title.compareTo("unit_id") == 0) {
           if (lDOMAttr.domPermValueArr != null) {
             lDOMPermValueArr = lDOMAttr.domPermValueArr;
@@ -1033,8 +1033,8 @@ class WriteDOMDocBook extends Object {
 
       if (!lDOMPermValueArr.isEmpty()) {
         for (DOMProp lDOMProp: lDOMPermValueArr) {
-          if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
             prDocBook.println("                <row>");
             prDocBook.println("                    <entry>" + "</entry>");
             prDocBook.println(
@@ -1370,7 +1370,7 @@ class WriteDOMDocBook extends Object {
       }
       if (lClass.title.compareTo(DMDocument.TopLevelAttrClassName) != 0) {
         for (DOMProp lProp : lClass.ownedAssocArr) {
-          DOMClass lCompClass = (DOMClass) lProp.hasDOMObject;
+          DOMClass lCompClass = (DOMClass) lProp.domObject;
 
           if (lTargetClass == lCompClass) {
             if (!refClassArr.contains(lClass)) {
@@ -1379,7 +1379,7 @@ class WriteDOMDocBook extends Object {
           }
         }
         for (DOMProp lProp : lClass.inheritedAssocArr) {
-          DOMClass lCompClass = (DOMClass) lProp.hasDOMObject;
+          DOMClass lCompClass = (DOMClass) lProp.domObject;
 
           if (lTargetClass == lCompClass) {
             if (!refClassArr.contains(lClass)) {

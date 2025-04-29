@@ -644,7 +644,7 @@ class XML4LabelSchemaDOM extends Object {
   public void writeClassAttribute(DOMClass lClass, DOMProp lProp, PrintWriter prXML)
       throws java.io.IOException {
     // capture the data types that are used; will write only those used.
-    ISOClassOAIS11179 lDOMObject = lProp.hasDOMObject;
+    ISOClassOAIS11179 lDOMObject = lProp.domObject;
     DOMAttr lAttr = (DOMAttr) lDOMObject;
     String lValueType = lAttr.valueType;
     if (lValueType == null) {
@@ -759,7 +759,7 @@ class XML4LabelSchemaDOM extends Object {
     }
 
     // get each associated class
-    DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
+    DOMClass lAssocClass = (DOMClass) lProp.domObject;
 
     if (!DMDocument.omitClass.contains(lAssocClass.title)) {
       if (lAssocClass.title.compareTo("Discipline_Facets") == 0) {
@@ -951,7 +951,7 @@ class XML4LabelSchemaDOM extends Object {
     ArrayList<DOMProp> lPropArr = new ArrayList<>(allAttrTypeMap.values());
     for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
-      DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+      DOMAttr lAttr = (DOMAttr) lProp.domObject;
       if (lAttr.nameSpaceIdNC.compareTo(lSchemaFileDefn.nameSpaceIdNC) != 0) {
         continue;
       }
@@ -1125,7 +1125,7 @@ class XML4LabelSchemaDOM extends Object {
         for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
           DOMProp lProp = j.next();
           if (lProp.title.compareTo("xml_schema_base_type") == 0) {
-            DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+            DOMAttr lAttr = (DOMAttr) lProp.domObject;
             String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
             if (lVal != null) {
               lRestrictionClassName = DMDocument.replaceString(lVal, "xsd:", "");
@@ -1141,7 +1141,7 @@ class XML4LabelSchemaDOM extends Object {
       // use attribute list sorted by classOrder
       for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+        DOMAttr lAttr = (DOMAttr) lProp.domObject;
         if (lProp.title.compareTo("character_constraint") == 0) {
           String lVal = DOMInfoModel.getSingletonAttrValue(lAttr.valArr);
           if (lVal != null) {
@@ -1234,8 +1234,8 @@ class XML4LabelSchemaDOM extends Object {
       // use attribute list sorted by classOrder
       for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+        if (lProp.domObject != null && lProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
           if (lDOMAttr != null) {
             if (lDOMAttr.title.compareTo("unit_id") == 0) {
               ArrayList<String> lValArr = DOMInfoModel.getMultipleValue(lDOMAttr.valArr);

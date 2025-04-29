@@ -182,15 +182,15 @@ class WriteUML25XMIFile extends Object {
         DOMProp lProp = j.next();
         if (lProp != null) {
           if (lProp.title.indexOf("__Method") > -1) {
-            if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMClass) {
-              DOMClass lMethodClass = (DOMClass) lProp.hasDOMObject;
+            if (lProp.domObject != null && lProp.domObject instanceof DOMClass) {
+              DOMClass lMethodClass = (DOMClass) lProp.domObject;
               prXMLXMI.println(
                   "          <ownedOperation xmi:type='uml:Operation' xmi:id='" + lMethodClass.title
                       + "' name='" + lMethodClass.title + "' visibility='public'/>");
             }
           } else if (lProp.title.indexOf("has_") > -1) {
-            if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMClass) {
-              DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
+            if (lProp.domObject != null && lProp.domObject instanceof DOMClass) {
+              DOMClass lAssocClass = (DOMClass) lProp.domObject;
               Assoc lAssoc = new Assoc();
               lAssoc.assocId = lProp.title + getNextUUID();
               lAssoc.prop1Id = lProp.title + getNextUUID();
@@ -238,8 +238,8 @@ class WriteUML25XMIFile extends Object {
         DOMProp lProp = j.next();
         if (lProp != null) {
           if (lProp.title.indexOf("__Method") > -1) {
-            if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMClass) {
-              DOMClass lMethodClass = (DOMClass) lProp.hasDOMObject;
+            if (lProp.domObject != null && lProp.domObject instanceof DOMClass) {
+              DOMClass lMethodClass = (DOMClass) lProp.domObject;
               prXMLXMI.println(
                   "          <ownedOperation xmi:type='uml:Operation' xmi:id='" + lMethodClass.title
                       + "' name='" + lMethodClass.title + "' visibility='public'>");
@@ -258,9 +258,9 @@ class WriteUML25XMIFile extends Object {
                     }
                     // System.out.println("debug FOUND ParmProp - lParmProp.identifier:" +
                     // lParmProp.identifier);
-                    if (lParmProp.hasDOMObject != null
-                        && lParmProp.hasDOMObject instanceof DOMClass) {
-                      DOMClass lParmClass = (DOMClass) lParmProp.hasDOMObject;
+                    if (lParmProp.domObject != null
+                        && lParmProp.domObject instanceof DOMClass) {
+                      DOMClass lParmClass = (DOMClass) lParmProp.domObject;
                       // System.out.println("debug FOUND ParmClass - lParmClass.identifier:" +
                       // lParmClass.identifier);
                       // prXMLXMI.println(" <ownedParameter xmi:type=\"cmof:Parameter\" xmi:id=\"" +

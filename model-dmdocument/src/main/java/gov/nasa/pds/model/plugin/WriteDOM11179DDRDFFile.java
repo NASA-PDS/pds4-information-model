@@ -141,7 +141,7 @@ class WriteDOM11179DDRDFFile extends Object {
         + lAttr.dataConcept + "\"/>");
     if (lAttr.isEnumerated) {
       for (DOMProp lProp : lAttr.domPermValueArr) {
-        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.hasDOMObject;
+        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
         int lValueHashCodeI = lPermValueDefn.value.hashCode();
         String lValueHashCodeS = Integer.toString(lValueHashCodeI);
         pr11179.println("  <" + kbId + "containedIn1 rdf:resource=\"&pdsns;"
@@ -175,7 +175,7 @@ class WriteDOM11179DDRDFFile extends Object {
   private void printAttrISOPVVM(DOMAttr lAttr, PrintWriter pr11179) {
     for (DOMProp lProp : lAttr.domPermValueArr) {
       // for each standard value
-      DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.hasDOMObject;
+      DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
 
       int lValueHashCodeI = lPermValueDefn.value.hashCode();
       String lValueHashCodeS = Integer.toString(lValueHashCodeI);

@@ -119,7 +119,7 @@ class WriteDDProductDOMClassDefinitions extends Object {
     for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
       DOMProp lProp = j.next();
       if (!(lProp.isAttribute)) {
-        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;
+        DOMClass lDOMClass = (DOMClass) lProp.domObject;
         String lClassLID = DMDocument.registrationAuthorityIdentifierValue + ":"
             + lDOMClass.nameSpaceIdNC + ":" + lDOMClass.title;
         lClassLID = "urn:nasa:pds:context:class:" + lClassLID;
@@ -133,7 +133,7 @@ class WriteDDProductDOMClassDefinitions extends Object {
             .println("           <maximum_occurrences>" + lProp.cardMax + "</maximum_occurrences>");
         prDDReg.println("        </DD_Association>");
       } else {
-        DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+        DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
 
         prDDReg.println("        <DD_Association>");
         String lAttrLID = DMDocument.registrationAuthorityIdentifierValue + ":"

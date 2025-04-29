@@ -345,8 +345,8 @@ class WriteDOMRDFOWLFile extends Object {
     // attributes are defined as classes.
     for (Iterator<DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         gDOMAttrArr.add(lDOMAttr);
         gAttrIdArr.add(lDOMAttr.identifier);
         prDDPins.println("      <rdfs:subClassOf>");
@@ -364,8 +364,8 @@ class WriteDOMRDFOWLFile extends Object {
     // write the PDS4 associations as "has_class" properties on PDS4 classes
     for (Iterator<DOMProp> j = lDOMClass.ownedAssocArr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lDOMClass2 = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lDOMClass2 = (DOMClass) lDOMProp.domObject;
         if ((lDOMClass2.identifier.indexOf("PDS3") > -1)
             || !((lDOMClass2.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) == 0
                 || lDOMClass2.nameSpaceIdNC.compareTo("all") == 0)
@@ -442,8 +442,8 @@ class WriteDOMRDFOWLFile extends Object {
     // write the permissible values as properties
     for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-        DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+        DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
         if (lDOMPermValDefn.identifier.indexOf("PDS3") > -1) {
           if (lDOMPermValDefn.identifier.indexOf("Product") > -1) {
             continue;
@@ -610,8 +610,8 @@ class WriteDOMRDFOWLFile extends Object {
     prDDPins.println("              , " + formValue("associationList") + ": [");
     for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         if (isFirst) {
           prDDPins.println("             {" + formValue("association") + ": {");
           isFirst = false;
@@ -644,10 +644,10 @@ class WriteDOMRDFOWLFile extends Object {
     prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");
     for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if ((lDOMProp.hasDOMObject == null) || !(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+      if ((lDOMProp.domObject == null) || !(lDOMProp.domObject instanceof DOMPermValDefn)) {
         continue;
       }
-      DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+      DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.domObject;
 
       if (isFirst) {
         prDDPins.println("              {" + formValue("PermissibleValue") + ": {");

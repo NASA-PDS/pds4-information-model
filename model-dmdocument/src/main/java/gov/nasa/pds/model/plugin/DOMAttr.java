@@ -553,8 +553,8 @@ public class DOMAttr extends ISOClassOAIS11179 {
     TreeMap<String, DOMProp> lOrderedDOMPropMap = new TreeMap<>();
     for (Iterator<DOMProp> i = domPermValueArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-        DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+        DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.domObject;
         lOrderedDOMPermValMap.put(lDOMPermVal.value, lDOMPermVal);
         lOrderedDOMPropMap.put(lDOMPermVal.value, lDOMProp);
       }

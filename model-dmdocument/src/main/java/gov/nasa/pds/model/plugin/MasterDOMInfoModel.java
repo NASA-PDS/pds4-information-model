@@ -133,8 +133,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
 
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           // the namespace of the USER class for any attribute is the same as the namespace of the
           // attribute
           
@@ -172,8 +172,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
             // for each attribute of the class
             for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
               DOMProp lDOMProp = j.next();
-              if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-                DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+              if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+                DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
                 if (lDOMAttr != null) {
                   // set the default_unit_id
                   if (lDOMAttr.title.compareTo("specified_unit_id") == 0) {
@@ -327,8 +327,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
         // and the parent attribute is not inherited.
         for (Iterator<DOMProp> j = lChildClass.ownedAttrArr.iterator(); j.hasNext();) {
           DOMProp lChildProp = j.next();
-          if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lChildAttr = (DOMAttr) lChildProp.hasDOMObject;
+          if (lChildProp.domObject != null && lChildProp.domObject instanceof DOMAttr) {
+            DOMAttr lChildAttr = (DOMAttr) lChildProp.domObject;
             lChildClass.ownedAttrAssocNSTitleArr.add(lChildAttr.nsTitle);
             lChildClass.ownedAttrAssocNSTitleMap.put(lChildAttr.nsTitle, lChildAttr);
             lChildClass.ownedTestedAttrAssocNSTitleArr.add(lChildAttr.nsTitle);
@@ -338,8 +338,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
         // ditto for associations
         for (Iterator<DOMProp> j = lChildClass.ownedAssocArr.iterator(); j.hasNext();) {
           DOMProp lChildProp = j.next();
-          if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMClass) {
-            DOMClass lMemberChildClass = (DOMClass) lChildProp.hasDOMObject;
+          if (lChildProp.domObject != null && lChildProp.domObject instanceof DOMClass) {
+            DOMClass lMemberChildClass = (DOMClass) lChildProp.domObject;
             lChildClass.ownedAttrAssocNSTitleArr.add(lMemberChildClass.nsTitle);
             lChildClass.ownedTestedAttrAssocNSTitleArr.add(lMemberChildClass.nsTitle);
             lChildClass.ownedPropNSTitleMap.put(lMemberChildClass.nsTitle, lChildProp);
@@ -371,8 +371,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // inherit all owned attributes of the parent class
     for (Iterator<DOMProp> i = lParentClass.ownedAttrArr.iterator(); i.hasNext();) {
       DOMProp lParentProp = i.next();
-      if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lParentAttr = (DOMAttr) lParentProp.hasDOMObject;
+      if (lParentProp.domObject != null && lParentProp.domObject instanceof DOMAttr) {
+        DOMAttr lParentAttr = (DOMAttr) lParentProp.domObject;
 
         // has parent attribute been checked
         if (!lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
@@ -409,8 +409,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // inherit all inherited attributes of the parent class
     for (Iterator<DOMProp> i = lParentClass.inheritedAttrArr.iterator(); i.hasNext();) {
       DOMProp lParentProp = i.next();
-      if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lParentAttr = (DOMAttr) lParentProp.hasDOMObject;
+      if (lParentProp.domObject != null && lParentProp.domObject instanceof DOMAttr) {
+        DOMAttr lParentAttr = (DOMAttr) lParentProp.domObject;
 
         // has parent attribute been checked
         if (!lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lParentAttr.nsTitle)) {
@@ -448,8 +448,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // inherit all owned classes of the parent class
     for (Iterator<DOMProp> i = lParentClass.ownedAssocArr.iterator(); i.hasNext();) {
       DOMProp lParentProp = i.next();
-      if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lMemberParentClass = (DOMClass) lParentProp.hasDOMObject;
+      if (lParentProp.domObject != null && lParentProp.domObject instanceof DOMClass) {
+        DOMClass lMemberParentClass = (DOMClass) lParentProp.domObject;
 
         // has parent attribute been checked
         if (!lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
@@ -482,8 +482,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     // inherit all inherited attributes of the parent class
     for (Iterator<DOMProp> i = lParentClass.inheritedAssocArr.iterator(); i.hasNext();) {
       DOMProp lParentProp = i.next();
-      if (lParentProp.hasDOMObject != null && lParentProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lMemberParentClass = (DOMClass) lParentProp.hasDOMObject;
+      if (lParentProp.domObject != null && lParentProp.domObject instanceof DOMClass) {
+        DOMClass lMemberParentClass = (DOMClass) lParentProp.domObject;
 
         // has parent attribute been checked
         if (!lChildClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberParentClass.nsTitle)) {
@@ -578,12 +578,12 @@ class MasterDOMInfoModel extends DOMInfoModel {
         for (Iterator<DOMProp> k = lDOMClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
           DOMProp lDOMProp = k.next();
           String lIdentifier;
-          if (lDOMProp.hasDOMObject != null) {
-            if (lDOMProp.hasDOMObject instanceof DOMAttr) {
-              DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null) {
+            if (lDOMProp.domObject instanceof DOMAttr) {
+              DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.domObject;
               lIdentifier = lMemDOMAttr.nameSpaceId + lMemDOMAttr.title;
             } else {
-              DOMClass lMemDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+              DOMClass lMemDOMClass = (DOMClass) lDOMProp.domObject;
               lIdentifier = lMemDOMClass.nameSpaceId + lMemDOMClass.title;
             }
             if (!lMemberAttrAssocIDTopDownArr.contains(lIdentifier)) {
@@ -601,12 +601,12 @@ class MasterDOMInfoModel extends DOMInfoModel {
         for (Iterator<DOMProp> k = lDOMClass.ownedAttrAssocArr.iterator(); k.hasNext();) {
           DOMProp lDOMProp = k.next();
           String lIdentifier;
-          if (lDOMProp.hasDOMObject != null) {
-            if (lDOMProp.hasDOMObject instanceof DOMAttr) {
-              DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null) {
+            if (lDOMProp.domObject instanceof DOMAttr) {
+              DOMAttr lMemDOMAttr = (DOMAttr) lDOMProp.domObject;
               lIdentifier = lMemDOMAttr.nameSpaceId + lMemDOMAttr.title;
             } else {
-              DOMClass lMemDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+              DOMClass lMemDOMClass = (DOMClass) lDOMProp.domObject;
               lIdentifier = lMemDOMClass.nameSpaceId + lMemDOMClass.title;
             }
             if (!lMemberAttrAssocIdBottomUpArr.contains(lIdentifier)) {
@@ -643,8 +643,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
       lOwnedInheritedAttributes.addAll(lClass.inheritedAttrArr);
       for (Iterator<DOMProp> j = lOwnedInheritedAttributes.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           if (lDOMAttr != null && lDOMAttr.isEnumerated) {
             if (!allEnumAttrIdArr.contains(lDOMAttr.identifier)) {
               allEnumAttrIdArr.add(lDOMAttr.identifier);
@@ -664,16 +664,16 @@ class MasterDOMInfoModel extends DOMInfoModel {
         // first get the identifiers of the owned attributes of the super class
         for (Iterator<DOMProp> k = lDOMSuperClass.ownedAttrArr.iterator(); k.hasNext();) {
           DOMProp lDOMProp = k.next();
-          if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
             lSuperOwnedAttrAssocArr.add(lDOMAttr.nameSpaceId + lDOMAttr.title);
           }
         }
         // second get the identifiers of the owned associations of the super class
         for (Iterator<DOMProp> k = lDOMSuperClass.ownedAssocArr.iterator(); k.hasNext();) {
           DOMProp lDOMProp = k.next();
-          if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-            DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+          if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+            DOMClass lDOMClass = (DOMClass) lDOMProp.domObject;
             lSuperOwnedAttrAssocArr.add(lDOMClass.nameSpaceId + lDOMClass.title);
           }
         }
@@ -682,14 +682,14 @@ class MasterDOMInfoModel extends DOMInfoModel {
       // assoc from the super classes
       for (Iterator<DOMProp> j = lClass.ownedAttrAssocArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null) {
-          if (lDOMProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null) {
+          if (lDOMProp.domObject instanceof DOMAttr) {
+            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
             if (!lSuperOwnedAttrAssocArr.contains(lDOMAttr.nameSpaceId + lDOMAttr.title)) {
               lClass.ownedAttrAssocNOArr.add(lDOMProp);
             }
-          } else if (lDOMProp.hasDOMObject instanceof DOMClass) {
-            DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+          } else if (lDOMProp.domObject instanceof DOMClass) {
+            DOMClass lDOMClass = (DOMClass) lDOMProp.domObject;
             if (!lSuperOwnedAttrAssocArr.contains(lDOMClass.nameSpaceId + lDOMClass.title)) {
               lClass.ownedAttrAssocNOArr.add(lDOMProp);
             }
@@ -723,8 +723,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
         // the class is an extension if any owned attribute is inherited from its parent class
         for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
           DOMProp lChildProp = j.next();
-          if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lChildAttr = (DOMAttr) lChildProp.hasDOMObject;
+          if (lChildProp.domObject != null && lChildProp.domObject instanceof DOMAttr) {
+            DOMAttr lChildAttr = (DOMAttr) lChildProp.domObject;
 
             // is the owned attribute (nsTitle) inherited from its parent class
             if (!lParentClass.ownedTestedAttrAssocNSTitleArr.contains(lChildAttr.nsTitle)) {
@@ -740,9 +740,9 @@ class MasterDOMInfoModel extends DOMInfoModel {
               boolean testTrue = false;
               for (Iterator<DOMProp> k = lParentClass.ownedAttrArr.iterator(); k.hasNext();) {
                 DOMProp lParentProp = k.next();
-                if (lParentProp.hasDOMObject != null
-                    && lParentProp.hasDOMObject instanceof DOMAttr) {
-                  DOMAttr lParentAttr = (DOMAttr) lChildProp.hasDOMObject;
+                if (lParentProp.domObject != null
+                    && lParentProp.domObject instanceof DOMAttr) {
+                  DOMAttr lParentAttr = (DOMAttr) lChildProp.domObject;
                   testTrue = isRestrictedAttribute(true, lChildAttr, lParentAttr);
                 }
               }
@@ -756,8 +756,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
         // the child class is an extension if any association owned by the child is inherited
         for (Iterator<DOMProp> j = lClass.ownedAssocArr.iterator(); j.hasNext();) {
           DOMProp lChildProp = j.next();
-          if (lChildProp.hasDOMObject != null && lChildProp.hasDOMObject instanceof DOMClass) {
-            DOMClass lMemberChildClass = (DOMClass) lChildProp.hasDOMObject;
+          if (lChildProp.domObject != null && lChildProp.domObject instanceof DOMClass) {
+            DOMClass lMemberChildClass = (DOMClass) lChildProp.domObject;
             // is child nsTitle inherited from the parent
             if (!lParentClass.ownedTestedAttrAssocNSTitleArr.contains(lMemberChildClass.nsTitle)) {
               // the child class is restricted since an owned attribute in this class is not
@@ -787,8 +787,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     ArrayList<String> lAttrTitleArr = new ArrayList<>();
     for (Iterator<DOMProp> j = iClass.ownedAttrArr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         lAttrTitleArr.add(lDOMAttr.title);
       }
     }
@@ -946,15 +946,15 @@ class MasterDOMInfoModel extends DOMInfoModel {
       DOMClass lClass = i.next();
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           lDOMAttr.isUsedInClass = true;
         }
       }
       for (Iterator<DOMProp> j = lClass.inheritedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           lDOMAttr.isUsedInClass = true;
         }
         // DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
@@ -997,9 +997,9 @@ class MasterDOMInfoModel extends DOMInfoModel {
       // iterate through the owned attribute properties and the attributes
       for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
         lDOMProp.isInactive = lDOMClass.isInactive;
-        if (lDOMProp.hasDOMObject != null) {
-          if (lDOMProp.hasDOMObject instanceof DOMAttr) {
-            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null) {
+          if (lDOMProp.domObject instanceof DOMAttr) {
+            DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
             lDOMAttr.isInactive = lDOMClass.isInactive;
           }
         }
@@ -1034,8 +1034,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
 
 		  // iterate through the owned/inherited attributes for deprecated attributes
 		  for (DOMProp lDOMProp : attrPropArr) {
-			  if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-				  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+			  if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+				  DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 				  if (lDOMAttr.isInactive) continue;
 			      
 			      // handle inherited attributes
@@ -1059,8 +1059,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
 				  // iterate through the permissible values for deprecated values
 				  if (lDOMAttr.domPermValueArr != null && lDOMAttr.domPermValueArr.size() > 0) {
 					  for (DOMProp lDOMValueProp : lDOMAttr.domPermValueArr) {
-						  if (lDOMValueProp.hasDOMObject != null && lDOMValueProp.hasDOMObject instanceof DOMPermValDefn) {
-							  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMValueProp.hasDOMObject;
+						  if (lDOMValueProp.domObject != null && lDOMValueProp.domObject instanceof DOMPermValDefn) {
+							  DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMValueProp.domObject;
 							  if (lDOMPermVal.isInactive || !lDOMPermVal.isDeprecated) continue;
 						      String deprecatedValueTitle = xPathClassTitle + "." + lDOMAttr.title;
 							  DeprecatedDefn deprecatedValueDefn = new DeprecatedDefn(deprecatedValueTitle,
@@ -1282,8 +1282,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
       }
 
       for (DOMProp lDOMProp : lDOMAttr.domPermValueArr) {
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
           if (lDOMPermValDefn.isDeprecated) {
             lDOMPermValDefn.registrationStatus = "Retired";
             lDOMAttr.hasRetiredValue = true;
@@ -1573,7 +1573,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
             DOMInfoModel.getClassIdentifier(lProp.nameSpaceIdNC, lTitle);
         DOMClass lClassMember = DOMInfoModel.masterDOMClassIdMap.get(lClassMemberIdentifier);
         if (lClassMember != null) {
-          lProp.hasDOMObject = lClassMember;
+          lProp.domObject = lClassMember;
         } else {
           DOMClass firstClassFound = null;
           for (Iterator<DOMClass> k = DOMInfoModel.masterDOMClassArr.iterator(); k.hasNext();) {
@@ -1592,7 +1592,7 @@ class MasterDOMInfoModel extends DOMInfoModel {
             }
           }
           if (firstClassFound != null) {
-            lProp.hasDOMObject = firstClassFound;
+            lProp.domObject = firstClassFound;
           }
         }
       }

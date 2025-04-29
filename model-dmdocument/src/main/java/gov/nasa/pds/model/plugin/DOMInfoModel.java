@@ -1175,8 +1175,8 @@ public abstract class DOMInfoModel extends Object {
     // get all local attributes
     for (Iterator<DOMProp> i = lClass.ownedAttrArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         if (!lAttrArr.contains(lDOMAttr)) {
           lAttrArr.add(lDOMAttr);
         }
@@ -1186,8 +1186,8 @@ public abstract class DOMInfoModel extends Object {
     // get all inherited attributes
     for (Iterator<DOMProp> i = lClass.inheritedAttrArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         if (!lAttrArr.contains(lDOMAttr)) {
           lAttrArr.add(lDOMAttr);
         }
@@ -1197,8 +1197,8 @@ public abstract class DOMInfoModel extends Object {
     // get all local associations
     for (Iterator<DOMProp> i = lClass.ownedAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lCompClass = (DOMClass) lDOMProp.domObject;
         if (!visitedClass.contains(lCompClass)) {
           visitedClass.add(lCompClass);
           getAllAttrRecurse(lAttrArr, visitedClass, lCompClass);
@@ -1209,8 +1209,8 @@ public abstract class DOMInfoModel extends Object {
     // get all inherited associations
     for (Iterator<DOMProp> i = lClass.inheritedAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lCompClass = (DOMClass) lDOMProp.domObject;
         if (!visitedClass.contains(lCompClass)) {
           visitedClass.add(lCompClass);
           getAllAttrRecurse(lAttrArr, visitedClass, lCompClass);
@@ -1363,8 +1363,8 @@ public abstract class DOMInfoModel extends Object {
     // get owned and inherited associated classes
     for (Iterator<DOMProp> i = lClass.ownedAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lAssocClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lAssocClass = (DOMClass) lDOMProp.domObject;
         DOMAssocClassDefn lAssocClassGroup = new DOMAssocClassDefn(lAssocClass.title,
             lDOMProp.cardMinI, lDOMProp.cardMaxI, lAssocClass);
         lAssocClassGroupMap.put(lAssocClassGroup.identifier, lAssocClassGroup);
@@ -1372,8 +1372,8 @@ public abstract class DOMInfoModel extends Object {
     }
     for (Iterator<DOMProp> i = lClass.inheritedAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lAssocClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lAssocClass = (DOMClass) lDOMProp.domObject;
         DOMAssocClassDefn lAssocClassGroup = new DOMAssocClassDefn(lAssocClass.title,
             lDOMProp.cardMinI, lDOMProp.cardMaxI, lAssocClass);
         lAssocClassGroupMap.put(lAssocClassGroup.identifier, lAssocClassGroup);
@@ -1611,8 +1611,8 @@ public abstract class DOMInfoModel extends Object {
       DOMProp lDOMProp = i.next();
       prDOMWriter.println("\n    ownedAttrArr prop:" + lDOMProp.identifier);
       prDOMWriter.println("                 prop:" + lDOMProp.rdfIdentifier);
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         DOMAttrWriter(lDOMAttr, prDOMWriter);
       }
     }
@@ -1623,8 +1623,8 @@ public abstract class DOMInfoModel extends Object {
       DOMProp lDOMProp = i.next();
       prDOMWriter.println("\n    ownedAssocArr prop:" + lDOMProp.identifier);
       prDOMWriter.println("                  prop:" + lDOMProp.rdfIdentifier);
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lDOMClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lDOMClass = (DOMClass) lDOMProp.domObject;
         prDOMWriter.println("                 class:" + lDOMClass.identifier);
         prDOMWriter.println("                 class:" + lDOMClass.rdfIdentifier);
       }
@@ -1732,8 +1732,8 @@ public abstract class DOMInfoModel extends Object {
     if (attr.domPermValueArr != null && attr.domPermValueArr.size() > 0) {
       for (Iterator<DOMProp> j = attr.domPermValueArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-          DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+          DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.domObject;
           prDOMWriter.println("          lDOMPermVal.value:" + lDOMPermVal.value
               + "  lDOMPermVal.isInactive:" + lDOMPermVal.isInactive + "  lDOMPermVal.isDeprecated:"
               + lDOMPermVal.isDeprecated + "  lDOMPermVal.registrationStatus:"

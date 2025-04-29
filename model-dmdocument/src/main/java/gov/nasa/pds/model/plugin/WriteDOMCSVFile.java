@@ -134,8 +134,8 @@ class WriteDOMCSVFiles extends Object {
     pIdentifier = classSortField;
     for (Iterator<DOMProp> j = allAttr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         String pMinVal = lDOMAttr.getMinimumValue(true, true);
         String pMaxVal = lDOMAttr.getMaximumValue(true, true);
         String pMinChar = lDOMAttr.getMinimumCharacters(true, true);
@@ -162,11 +162,11 @@ class WriteDOMCSVFiles extends Object {
 
         for (Iterator<DOMProp> i = lDOMAttr.domPermValueArr.iterator(); i.hasNext();) {
           DOMProp lDOMProp2 = i.next();
-          if ((lDOMProp2.hasDOMObject == null)
-              || !(lDOMProp2.hasDOMObject instanceof DOMPermValDefn)) {
+          if ((lDOMProp2.domObject == null)
+              || !(lDOMProp2.domObject instanceof DOMPermValDefn)) {
             continue;
           }
-          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp2.hasDOMObject;
+          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp2.domObject;
           String lValue = lDOMPermValDefn.value;
           if (lValue.length() > 20) {
             lValue = lValue.substring(0, 20);

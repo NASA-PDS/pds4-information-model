@@ -171,11 +171,11 @@ class WriteDOM11179DDPinsFilePClass extends Object {
           // get the permissible value instance identifiers
           for (Iterator<DOMProp> j = lDOMAttr.domPermValueArr.iterator(); j.hasNext();) {
             DOMProp lDOMProp = j.next();
-            if (!(lDOMProp.hasDOMObject != null
-                && lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+            if (!(lDOMProp.domObject != null
+                && lDOMProp.domObject instanceof DOMPermValDefn)) {
               continue;
             }
-            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
             if (isNewLine) {
               prDDPins.println("");
             }
@@ -237,10 +237,10 @@ class WriteDOM11179DDPinsFilePClass extends Object {
       if (lDOMAttr.isEnumerated) {
         for (Iterator<DOMProp> j = lDOMAttr.domPermValueArr.iterator(); j.hasNext();) {
           DOMProp lDOMProp = j.next();
-          if (!(lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+          if (!(lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn)) {
             continue;
           }
-          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
           if (lDOMPermValDefn != null) {
             int lHashCodeI = lDOMPermValDefn.value.hashCode();
             String lHashCodeS = Integer.toString(lHashCodeI);

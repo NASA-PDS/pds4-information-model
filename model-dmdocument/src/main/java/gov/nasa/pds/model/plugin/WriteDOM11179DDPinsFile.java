@@ -149,11 +149,11 @@ class WriteDOM11179DDPinsFile extends Object {
             // System.out.println("debug printPDDPVD - domPermValueArr lDOMProp -
             // lDOMProp.lDOMProp:" + lDOMProp.identifier);
 
-            if (!(lDOMProp.hasDOMObject != null
-                && lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+            if (!(lDOMProp.domObject != null
+                && lDOMProp.domObject instanceof DOMPermValDefn)) {
               continue;
             }
-            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+            DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
 
             // System.out.println("debug printPDDPVD - lDOMPermValDefn -
             // lDOMPermValDefn.identifier:" + lDOMPermValDefn.identifier);
@@ -217,10 +217,10 @@ class WriteDOM11179DDPinsFile extends Object {
       if (lDOMAttr.isEnumerated) {
         for (Iterator<DOMProp> j = lDOMAttr.domPermValueArr.iterator(); j.hasNext();) {
           DOMProp lDOMProp = j.next();
-          if (!(lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+          if (!(lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn)) {
             continue;
           }
-          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
           if (lDOMPermValDefn != null) {
             int lHashCodeI = lDOMPermValDefn.value.hashCode();
             String lHashCodeS = Integer.toString(lHashCodeI);

@@ -169,7 +169,7 @@ class WriteLODSKOSFileDOM extends Object {
           continue;
         }
 
-        DOMClass lDOMClass = (DOMClass) lProp.hasDOMObject;
+        DOMClass lDOMClass = (DOMClass) lProp.domObject;
 
         prDDPins.println("  " + "skos:semanticRelation" + " " + "pds:" + lDOMClass.title + ";");
       }
@@ -200,7 +200,7 @@ class WriteLODSKOSFileDOM extends Object {
     for (Iterator<DOMProp> j = lPropArr.iterator(); j.hasNext();) {
       DOMProp lProp = j.next();
 
-      DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+      DOMAttr lAttr = (DOMAttr) lProp.domObject;
 
       if (!lAttr.isAttribute) {
         continue;
@@ -230,7 +230,7 @@ class WriteLODSKOSFileDOM extends Object {
     prDDPins.println("              , " + formValue("associationList") + ": [");
     for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
-      DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+      DOMAttr lAttr = (DOMAttr) lProp.domObject;
       if (isFirst) {
         prDDPins.println("             {" + formValue("association") + ": {");
         isFirst = false;

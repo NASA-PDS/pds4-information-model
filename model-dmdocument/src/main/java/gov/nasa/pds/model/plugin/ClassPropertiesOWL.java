@@ -146,8 +146,8 @@ class ClassPropertiesOWL extends ClassPropertiesBase{
 		if (allAttrArr != null && allAttrArr.size() > 0) {
 			for (Iterator<DOMProp> j = allAttrArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 					ClassPropAttr lClassPropClass = new ClassPropAttr (lDOMClass, lDOMProp, lDOMAttr);
 					theClassPropAttrArr.add(lClassPropClass);
 				}
@@ -165,8 +165,8 @@ class ClassPropertiesOWL extends ClassPropertiesBase{
 		if (allAssocArr != null && allAssocArr.size() > 0) {
 			for (Iterator<DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-					DOMClass lMethodClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+					DOMClass lMethodClass = (DOMClass) lDOMProp.domObject;
 					ClassPropClass lClassPropClass = new ClassPropClass (lDOMClass, lDOMProp, lMethodClass);
 					theClassPropClassArr.add(lClassPropClass);
 				}

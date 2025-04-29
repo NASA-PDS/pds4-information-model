@@ -79,8 +79,8 @@ class WriteDOMTermEntryJSON extends Object {
 			
 			// scan through all owned attributes of the class
 			for (DOMProp lDOMProp : lDOMClass.ownedAttrArr) {
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+					DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 					
 					// skip attribute with no terminological entry map
 					if (lDOMAttr.termEntryMap == null || lDOMAttr.termEntryMap.isEmpty() ) continue;

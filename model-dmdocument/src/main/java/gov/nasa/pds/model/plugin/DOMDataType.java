@@ -193,8 +193,8 @@ public class DOMDataType extends ISOClassOAIS11179 {
     // for each attribute of the class
     for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 
         // set the character_constraint
         if (lDOMAttr.title.compareTo("character_constraint") == 0) {

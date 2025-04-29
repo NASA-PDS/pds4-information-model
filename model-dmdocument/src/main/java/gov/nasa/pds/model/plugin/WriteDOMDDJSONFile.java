@@ -286,7 +286,7 @@ class WriteDOMDDJSONFile extends Object {
     String pGroupName = "NULL";
     for (Iterator<DOMProp> i = lClass.allAttrAssocArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      ISOClassOAIS11179 lDOMObject = lDOMProp.hasDOMObject;
+      ISOClassOAIS11179 lDOMObject = lDOMProp.domObject;
       if (lDOMObject != null) {
         String lPropType = "C";
         if (lDOMProp.isAttribute) {
@@ -508,10 +508,10 @@ class WriteDOMDDJSONFile extends Object {
     prDDPins.println("          , " + formValue("PermissibleValueList") + ": [");
     for (Iterator<DOMProp> i = lAttr.domPermValueArr.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if ((lDOMProp.hasDOMObject == null) || !(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+      if ((lDOMProp.domObject == null) || !(lDOMProp.domObject instanceof DOMPermValDefn)) {
         continue;
       }
-      DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+      DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
       prDDPins.println("            " + delimiter1 + "{" + formValue("PermissibleValue") + ": {");
       delimiter1 = ", ";
       prDDPins.println("                  " + formValue("value") + ": "
@@ -722,8 +722,8 @@ class WriteDOMDDJSONFile extends Object {
         if (!j.hasNext()) {
           hasNextQMAttr = false;
         }
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttrQM = (DOMAttr) lDOMProp.domObject;
 
           // get all QM PV for this QM attribute
           boolean hasNextQMPV = true;
@@ -732,9 +732,9 @@ class WriteDOMDDJSONFile extends Object {
             if (!m.hasNext()) {
               hasNextQMPV = false;
             }
-            if (lDOMPropPV.hasDOMObject != null
-                && lDOMPropPV.hasDOMObject instanceof DOMPermValDefn) {
-              DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.hasDOMObject;
+            if (lDOMPropPV.domObject != null
+                && lDOMPropPV.domObject instanceof DOMPermValDefn) {
+              DOMPermValDefn lPVQM = (DOMPermValDefn) lDOMPropPV.domObject;
 
               // for one PV print all QM term entrires
               ArrayList<TermEntryDefn> lPVQMTermEntryDefnArr =

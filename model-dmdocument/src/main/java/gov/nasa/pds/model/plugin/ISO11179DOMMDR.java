@@ -265,8 +265,8 @@ class ISO11179DOMMDR extends Object {
         if (lAttr.domPermValueArr != null && lAttr.domPermValueArr.size() > 0) {
           for (Iterator<DOMProp> j = lAttr.domPermValueArr.iterator(); j.hasNext();) {
             DOMProp lDOMProp = j.next();
-            if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-              DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+            if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+              DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.domObject;
 
               // title:vm.0001_NASA_PDS_1.pds.DD_Class_Full.steward_id.111209
               String lKey =

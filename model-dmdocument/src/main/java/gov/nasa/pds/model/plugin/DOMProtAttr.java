@@ -317,7 +317,7 @@ public class DOMProtAttr extends ISOClassOAIS11179 {
         DOMProp lDOMProp = createDOMProp(lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle,
             lDOMAttr.nameSpaceIdNC, lDOMAttr.title + lValue);
         lDOMAttr.domPermValueArr.add(lDOMProp);
-        lDOMProp.hasDOMObject = lDOMPermVal;
+        lDOMProp.domObject = lDOMPermVal;
       }
     }
   }

@@ -63,8 +63,8 @@ class WriteDDProductDOMAttrDefinitions extends Object {
 
       for (Iterator<DOMProp> j = lDOMArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        if (lProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lProp.hasDOMObject;
+        if (lProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
           if (lDOMAttr.title.compareTo("%3ANAME") == 0) {
             continue;
           }
@@ -176,11 +176,11 @@ class WriteDDProductDOMAttrDefinitions extends Object {
         for (Iterator<DOMProp> k = lAttr.domPermValueArr.iterator(); k.hasNext();) {
           DOMProp lDOMProp = k.next();
 
-          if ((lDOMProp.hasDOMObject == null)
-              || !(lDOMProp.hasDOMObject instanceof DOMPermValDefn)) {
+          if ((lDOMProp.domObject == null)
+              || !(lDOMProp.domObject instanceof DOMPermValDefn)) {
             continue;
           }
-          DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMProp.domObject;
           String lValue = lDOMPermVal.value;
           if (lValue != null) {
             prDDReg.println("            <DD_Permissible_Value_Full>");

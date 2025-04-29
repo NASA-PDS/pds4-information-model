@@ -272,13 +272,13 @@ class WriteDOMRDFTTLFile extends Object{
 		}
 		for (Iterator <DOMProp> j = lClassPropertiesOWL.theClass.ownedAttrArr.iterator(); j.hasNext();) {
 			DOMProp lDOMProp = (DOMProp) j.next();
-			if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {					
-				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+			if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {					
+				DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
 				if (lDOMAttr.title.compareTo("type") == 0) {
 					for (Iterator <DOMProp> k = lDOMAttr.domPermValueArr.iterator(); k.hasNext();) {
 						DOMProp lDOMPropPermValue = (DOMProp) k.next();
-						if (lDOMPropPermValue.hasDOMObject != null && lDOMPropPermValue.hasDOMObject instanceof DOMPermValDefn) {
-							DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMPropPermValue.hasDOMObject;
+						if (lDOMPropPermValue.domObject != null && lDOMPropPermValue.domObject instanceof DOMPermValDefn) {
+							DOMPermValDefn lDOMPermVal = (DOMPermValDefn) lDOMPropPermValue.domObject;
 
 							// note that this creates a ClassPropertiesOWL with a null DOMClass					
 							ClassPropertiesOWL lClassPropertiesPermVal = new ClassPropertiesOWL (lDOMPermVal, lClassPropertiesOWL);

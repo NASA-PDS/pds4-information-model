@@ -384,8 +384,8 @@ public class LDDDOMParser extends Object {
         "\ndebug label:" + lLable + "  printClassDebug lClass.identifier:" + lClass.identifier);
     for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
       DOMProp lDOMProp = j.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         System.out.println("debug printClassDebug lDOMAttr.identifier:" + lDOMAttr.identifier);
       }
     }
@@ -716,7 +716,7 @@ public class LDDDOMParser extends Object {
         DOMProp lDOMProp = new DOMProp();
         lDOMProp.initForPermValue(lDOMAttr.classNameSpaceIdNC, lDOMAttr.parentClassTitle,
             lDOMAttr.nameSpaceIdNC, lDOMAttr.title, lValue);
-        lDOMProp.hasDOMObject = lDOMPermVal;
+        lDOMProp.domObject = lDOMPermVal;
         lDOMAttr.domPermValueArr.add(lDOMProp);
       }
     }
@@ -1012,7 +1012,7 @@ public class LDDDOMParser extends Object {
             DOMProp lDOMPropPVExt = new DOMProp();
             lDOMPropPVExt.initForPermValue(lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title,
                 lDOMAttrExt.nameSpaceIdNC, lIngestLDDAttrName, lValue);
-            lDOMPropPVExt.hasDOMObject = lDOMPermValExt;
+            lDOMPropPVExt.domObject = lDOMPermValExt;
 
             lDOMAttrExt.domPermValueArr.add(lDOMPropPVExt);
             pvCount++;
@@ -1101,7 +1101,7 @@ public class LDDDOMParser extends Object {
     lDOMPropAttrExt.cardMaxI = lCardMaxI;
 
     // add attribute to property
-    lDOMPropAttrExt.hasDOMObject = lDOMAttrExt; // e.g.,
+    lDOMPropAttrExt.domObject = lDOMAttrExt; // e.g.,
                                                 // geom.Frame_Identification_Base.geom.reference_type
 
     // update property arrays with new DOMProp
@@ -1195,7 +1195,7 @@ public class LDDDOMParser extends Object {
             DOMProp lDOMPropPVExt = new DOMProp();
             lDOMPropPVExt.initForPermValue(lDOMClassBase.nameSpaceIdNC, lDOMClassBase.title,
                 lDOMAttrExt.nameSpaceIdNC, lIngestLDDAttrName, lValue);
-            lDOMPropPVExt.hasDOMObject = lDOMPermValExt;
+            lDOMPropPVExt.domObject = lDOMPermValExt;
             lDOMAttrExt.domPermValueArr.add(lDOMPropPVExt);
             pvCount++;
           }
@@ -1626,7 +1626,7 @@ public class LDDDOMParser extends Object {
           lDOMProp.attrParentClass = lDOMClass;
 
           // add the attribute to the property
-          lDOMProp.hasDOMObject = lDOMAttr;
+          lDOMProp.domObject = lDOMAttr;
 
           // add the association (AttrDefn) to the resolved attribute array
           attrArrResolved.add(lDOMProp);
@@ -1674,7 +1674,7 @@ public class LDDDOMParser extends Object {
             // add the associated class
             // if (! isChoiceOrAny) {
             lDOMProp.valArr.add(lDOMClassComponent.title);
-            lDOMProp.hasDOMObject = lDOMClassComponent;
+            lDOMProp.domObject = lDOMClassComponent;
             lDOMClassComponent.hasDOMPropInverse = lDOMProp;
 
             // get all block headers and components
@@ -2237,8 +2237,8 @@ public class LDDDOMParser extends Object {
     allAssocArr.addAll(lClass.ownedAssocArr);
     allAssocArr.addAll(lClass.inheritedAssocArr);
     for (DOMProp lDOMProp : allAssocArr) {
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lCompClass = (DOMClass) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {
+        DOMClass lCompClass = (DOMClass) lDOMProp.domObject;
         if (lCompClass.isExposed) {
           Utility.registerMessage("2>warning Class: <" + lCompClass.title
               + "> - An exposed class was found nested within another exposed class. Nested exposed classes should only be present if there is a specific requirement to expose the additional class.");
@@ -2346,8 +2346,8 @@ public class LDDDOMParser extends Object {
     // *** Attribute Merge ***
     for (Iterator<DOMProp> i = attrArrResolved.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         if (DOMInfoModel.masterDOMAttrIdMap.containsKey(lDOMAttr.identifier)) {
           // an ldd attribute is a duplicate of a master attribute; replace the master with the LDD
           // version
@@ -2442,8 +2442,8 @@ public class LDDDOMParser extends Object {
     // iterate through the LDD attribute array
     for (Iterator<DOMProp> i = attrArrResolved.iterator(); i.hasNext();) {
       DOMProp lDOMProp = i.next();
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
         DOMAttr lLDDUserAttribute = lDOMAttr.lddUserAttribute;
         if ((lLDDUserAttribute == null) || (lDOMAttr.valueType.indexOf("TBD") != 0)) {
           continue;
@@ -3209,8 +3209,8 @@ public class LDDDOMParser extends Object {
       printProtegeClassBegin(lDOMClass.title, lDOMClass.definition, lDOMClass.subClassOfTitle);
       for (Iterator<DOMProp> j = lDOMClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lDOMProp = j.next();
-        if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+        if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+          DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
           printProtegePontAttr(lDOMAttr);
         }
       }
@@ -3312,8 +3312,8 @@ public class LDDDOMParser extends Object {
     System.out.println(
         "\n----------------------------------------------------------------------------------------");
     System.out.println("debug  dump - " + note + " - lDOMProp.identifier" + lDOMProp.identifier);
-    if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMAttr) {
-      DOMAttr lDOMAttr = (DOMAttr) lDOMProp.hasDOMObject;
+    if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
+      DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
       printDebugAttribute(lDOMAttr, "Attribute");
     }
   }
@@ -3329,9 +3329,9 @@ public class LDDDOMParser extends Object {
       DOMProp lDOMProp = j.next();
       System.out.println("debug  dump - " + note + " - lDOMProp.identifier:" + lDOMProp.identifier);
       System.out
-          .println("debug  dump - " + note + " - lDOMProp.hasDOMObject :" + lDOMProp.hasDOMObject);
-      if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMPermValDefn) {
-        DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.hasDOMObject;
+          .println("debug  dump - " + note + " - lDOMProp.hasDOMObject :" + lDOMProp.domObject);
+      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
+        DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
         System.out
             .println("debug  dump - " + note + " - lDOMPermValDefn.value:" + lDOMPermValDefn.value);
       }

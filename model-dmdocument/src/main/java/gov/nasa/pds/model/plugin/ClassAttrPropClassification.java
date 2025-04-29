@@ -138,8 +138,8 @@ public class ClassAttrPropClassification {
 		if (lDOMClass.inheritedAssocArr != null && lDOMClass.inheritedAssocArr.size() > 0) allAssocArr.addAll(lDOMClass.inheritedAssocArr);
 		if (allAssocArr != null && allAssocArr.size() > 0) {
 			for (DOMProp lDOMProp : allAssocArr) {
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {					
-					DOMClass lDOMMemberClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {					
+					DOMClass lDOMMemberClass = (DOMClass) lDOMProp.domObject;
 					if (! memberDOMClassesIdArr.contains(lDOMMemberClass.identifier)) {
 						memberDOMClassesIdArr.add(lDOMMemberClass.identifier);
 						memberDOMClassesArr.add(lDOMMemberClass);
@@ -224,8 +224,8 @@ public class ClassAttrPropClassification {
 		if (allAssocArr != null && allAssocArr.size() > 0) {
 			for (Iterator <DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
 				DOMProp lDOMProp = (DOMProp) j.next();
-				if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {					
-					DOMClass lDOMMemberClass = (DOMClass) lDOMProp.hasDOMObject;
+				if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {					
+					DOMClass lDOMMemberClass = (DOMClass) lDOMProp.domObject;
 					if (lDOMMemberClass.isInactive) continue;
 					if (lDOMMemberClass.isDeprecated) continue;
 					
@@ -594,8 +594,8 @@ public class ClassAttrPropClassification {
 			if (allAssocArr != null && allAssocArr.size() > 0) {
 				for (Iterator <DOMProp> j = allAssocArr.iterator(); j.hasNext();) {
 					DOMProp lDOMProp = (DOMProp) j.next();
-					if (lDOMProp.hasDOMObject != null && lDOMProp.hasDOMObject instanceof DOMClass) {					
-						DOMClass lDOMMemberClass = (DOMClass) lDOMProp.hasDOMObject;
+					if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMClass) {					
+						DOMClass lDOMMemberClass = (DOMClass) lDOMProp.domObject;
 						RelationshipProperties lRelationshipProperties = new RelationshipProperties (lDOMClass, lDOMProp, lDOMMemberClass, classPropertiesIdOWLMap);					
 						if (lRelationshipProperties.lidvid != null) {
 							relationshipPropertiesArr.add(lRelationshipProperties);

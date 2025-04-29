@@ -128,7 +128,7 @@ public class GetDOMModel extends Object {
             if (lDOMAttr != null
                 && DOMInfoModel.masterDOMAttrMap.get(lDOMAttr.rdfIdentifier) == null) {
               DOMInfoModel.masterDOMAttrMap.put(lDOMAttr.rdfIdentifier, lDOMAttr);
-              lDOMProp.hasDOMObject = lDOMAttr;
+              lDOMProp.domObject = lDOMAttr;
               lDOMAttr.hasDOMPropInverse = lDOMProp;
               lDOMProp.isInactive = lClass.isInactive;
               lDOMAttr.isInactive = lClass.isInactive;
@@ -163,7 +163,7 @@ public class GetDOMModel extends Object {
             DOMClass lDOMClass = (DOMClass) lDOMPropComp.domComp;
             if (lDOMClass != null
                 && DOMInfoModel.masterDOMClassMap.get(lDOMClass.rdfIdentifier) != null) {
-              lDOMProp.hasDOMObject = lDOMClass;
+              lDOMProp.domObject = lDOMClass;
               lDOMClass.hasDOMPropInverse = lDOMProp;
               
               lDOMProp.isInactive = lClass.isInactive;
@@ -562,16 +562,16 @@ public class GetDOMModel extends Object {
 
       for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+        if (lProp.domObject != null && lProp.domObject instanceof DOMAttr) {
+          DOMAttr lAttr = (DOMAttr) lProp.domObject;
           lAttr.isUsedInClass = true;
         }
       }
 
       for (Iterator<DOMProp> j = lClass.inheritedAttrArr.iterator(); j.hasNext();) {
         DOMProp lProp = j.next();
-        if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMAttr) {
-          DOMAttr lAttr = (DOMAttr) lProp.hasDOMObject;
+        if (lProp.domObject != null && lProp.domObject instanceof DOMAttr) {
+          DOMAttr lAttr = (DOMAttr) lProp.domObject;
           lAttr.isUsedInClass = true;
         }
       }

@@ -115,8 +115,8 @@ class WriteDocCSV extends Object {
     int itemNum = 0;
     for (Iterator<DOMProp> j = lClass.allAttrAssocArr.iterator(); j.hasNext();) {
       DOMProp lProp = j.next();
-      if (lProp.hasDOMObject != null && lProp.hasDOMObject instanceof DOMClass) {
-        DOMClass lAssocClass = (DOMClass) lProp.hasDOMObject;
+      if (lProp.domObject != null && lProp.domObject instanceof DOMClass) {
+        DOMClass lAssocClass = (DOMClass) lProp.domObject;
 
         // System.out.println("\ndebug writeClass lProp.identifier:" + lProp.identifier);
         // System.out.println(" lAssocClass.identifier:" + lAssocClass.identifier);
