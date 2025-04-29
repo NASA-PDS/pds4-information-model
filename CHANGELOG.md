@@ -1,8 +1,8 @@
 # Changelog
 
-## [release/15.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.3.0) (2025-04-25)
+## [v15.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v15.3.0) (2025-04-28)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...release/15.3.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.2.4...v15.3.0)
 
 **Requirements:**
 
