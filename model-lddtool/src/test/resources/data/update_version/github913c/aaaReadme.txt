@@ -1,6 +1,23 @@
 
 CCB#13: Ensure file_name and directory_path_name adhere to SR; #913
    -- Validate works on Windows; but fails on github / linux ?   
+        --  Note there is a discrepancy between Validate on Windows and github on the expected errors
+              -- Windows (see below) indicates 28 errors
+              -- github / linux indicates 29 errors
+                   -- NASA-PDS/pds4-information-model#913c failed. Expected: 28 errors/warnings. Actual: 29 ==> expected: <28> but was: <29>        
+
+              -- from report_github913c.json:     
+							  "summary": {
+							    "totalProducts": 1,
+							    "totalErrors": 28,
+							    "totalWarnings": 1,
+							    "productValidation": {
+							      "passed": "0",
+							      "failed": "1",
+							      "skipped": "0",
+							      "total": "1"
+							    },                   
+
    -- see #913a and #913b
    
     <xs:simpleType name="ASCII_Directory_Path_Name">
