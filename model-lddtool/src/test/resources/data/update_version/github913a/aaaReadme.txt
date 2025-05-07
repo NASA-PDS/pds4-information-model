@@ -1,5 +1,5 @@
 
-CCB#13: Added permissible value "ESA" to Funding_Acknowledgement funding_source #911
+CCB#13: Ensure file_name and directory_path_name adhere to SR; #913
    -- modifications to XSD:
    
     <xs:simpleType name="ASCII_Directory_Path_Name">
