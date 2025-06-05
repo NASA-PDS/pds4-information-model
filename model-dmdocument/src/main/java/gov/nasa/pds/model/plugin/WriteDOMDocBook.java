@@ -470,11 +470,13 @@ class WriteDOMDocBook extends Object {
             lValueDel = ", ";
           }
         }
+        String choiceIndicator = "";
+        if (lProp.isChoice) choiceIndicator = " - Choice";
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry></entry>");
         prDocBook.println("                    <entry>" + getAttrLink(lAttr) + "</entry>");
         prDocBook.println("                    <entry>"
-            + getValue(getCardinality(lAttr.cardMinI, lAttr.cardMaxI)) + "</entry>");
+            + getValue(getCardinality(lAttr.cardMinI, lAttr.cardMaxI)) + choiceIndicator + "</entry>");
         prDocBook.println("                    <entry>" + lValueString + "</entry>");
         prDocBook.println("                </row>");
       }
@@ -516,8 +518,10 @@ class WriteDOMDocBook extends Object {
             lMemberClassMap = new TreeMap<>();
             lMemberClassMap.put(lMemberDOMClass.title, lMemberDOMClass);
             lPropMemberClassMap.put(lDOMProp.title, lMemberClassMap);
+            String choiceIndicator = "";
+            if (lDOMProp.isChoice) choiceIndicator = " - Choice";
             lPropCardMap.put(lDOMProp.title,
-                getValue(getCardinality(lDOMProp.cardMinI, lDOMProp.cardMaxI)));
+                getValue((getCardinality(lDOMProp.cardMinI, lDOMProp.cardMaxI)) + choiceIndicator));
           }
         }
       }
@@ -535,6 +539,7 @@ class WriteDOMDocBook extends Object {
             lValueString += lValueDel + getClassLink(lMemberClass);
             lValueDel = ", ";
           }
+
           prDocBook.println("                <row>");
           prDocBook.println("                    <entry></entry>");
           prDocBook
