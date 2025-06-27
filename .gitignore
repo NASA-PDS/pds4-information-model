@@ -62,6 +62,8 @@
 # Temporary files
 *~
 src/test/temp/
+export/
+lddtool-*SNAPSHOT/
 
 # other stuff
 *.xpr
@@ -83,3 +85,4 @@ validate_stack_traces*
 
 # VSCode stuff
 .vscode/
+/.metadata/
