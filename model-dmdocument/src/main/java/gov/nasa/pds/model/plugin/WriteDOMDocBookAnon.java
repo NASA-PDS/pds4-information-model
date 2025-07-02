@@ -348,7 +348,6 @@ class WriteDOMDocBookAnon extends Object {
         prDocBook.println("                <row>");
         prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ") + getValue(lClass.nameSpaceIdNC) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Steward: ") + getValue(getEIMSteward (lClass.steward)) + "</entry>");
-        prDocBook.println("                    <entry>" + getPrompt("Role: ") + getValue(lClass.role) + "</entry>");
         prDocBook.println("                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
         prDocBook.println("                </row>");
         prDocBook.println("");

@@ -271,9 +271,7 @@ class ProtPontDOMModel extends DOMInfoModel {
           type = 0;
           break;
         case 10: // role
-          lClass.role = token;
-          // lClass.isAbstract = false;
-          if (lClass.role.compareTo("abstract") == 0) {
+          if (token.compareTo("abstract") == 0) {
             lClass.isAbstract = true;
           }
           type = 0;

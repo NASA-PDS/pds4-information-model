@@ -62,7 +62,6 @@ class MasterDOMInfoModel extends DOMInfoModel {
     lClass.definition = "The root class.";
     lClass.steward = DMDocument.masterNameSpaceIdNCLC;
     lClass.title = lTitle;
-    lClass.role = "abstract";
     lClass.isAbstract = true;
     lClass.isUSERClass = true;
     lClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
@@ -160,7 +159,8 @@ class MasterDOMInfoModel extends DOMInfoModel {
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
       if (lClass.isUnitOfMeasure) {
-        if (lClass.role.compareTo("concrete") == 0) {
+//        if (lClass.role.compareTo("concrete") == 0) {
+        if (! lClass.isAbstract) {
           DOMUnit lUnit = DOMInfoModel.masterDOMUnitMap.get(lClass.title);
           if (lUnit == null) {
             // the unit does not exist, add it

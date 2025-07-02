@@ -37,7 +37,6 @@ import java.util.TreeMap;
 public class DOMClass extends ISOClassOAIS11179 {
 
   String section; // section of the info model specification document for this class
-  String role; // abstract or concrete
   String xPath; // class xpath
   String docSecType; // the title of the class below USER, for each class's class hierarchy
   String rootClass; // RDF identifier
@@ -114,7 +113,6 @@ public class DOMClass extends ISOClassOAIS11179 {
 
   public DOMClass() {
     section = "TBD_section";
-    role = "TBD_role";
     xPath = "TBD_xPath";
     docSecType = "TBD_type";
     rootClass = "TBD_root_class";
