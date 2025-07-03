@@ -404,8 +404,10 @@ class WriteDOMDocBook extends Object {
         + getValue(lClass.nameSpaceIdNC) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Steward: ")
         + getValue(lClass.steward) + "</entry>");
+    String classRole = "concrete";
+    if (lClass.isAbstract) classRole = "abstract";
     prDocBook.println(
-        "                    <entry>" + getPrompt("Role: ") + getValue(lClass.role) + "</entry>");
+          "                    <entry>" + getPrompt("Role: ") + getValue(classRole) + "</entry>");
     prDocBook.println(
         "                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
     prDocBook.println("                </row>");

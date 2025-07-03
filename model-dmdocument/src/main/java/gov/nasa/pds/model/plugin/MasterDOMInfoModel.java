@@ -62,7 +62,6 @@ class MasterDOMInfoModel extends DOMInfoModel {
     lClass.definition = "The root class.";
     lClass.steward = DMDocument.masterNameSpaceIdNCLC;
     lClass.title = lTitle;
-    lClass.role = "abstract";
     lClass.isAbstract = true;
     lClass.isUSERClass = true;
     lClass.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
@@ -156,11 +155,10 @@ class MasterDOMInfoModel extends DOMInfoModel {
   // 010 - set the master unitOfMeasure
   public void setMasterUnitOfMeasure() {
     // iterate through the classes and create a sorted array
-    // *** cool code
     for (Iterator<DOMClass> i = DOMInfoModel.masterDOMClassArr.iterator(); i.hasNext();) {
       DOMClass lClass = i.next();
       if (lClass.isUnitOfMeasure) {
-        if (lClass.role.compareTo("concrete") == 0) {
+        if (! lClass.isAbstract) {
           DOMUnit lUnit = DOMInfoModel.masterDOMUnitMap.get(lClass.title);
           if (lUnit == null) {
             // the unit does not exist, add it
@@ -1089,23 +1087,17 @@ class MasterDOMInfoModel extends DOMInfoModel {
 	// get the order of the original deprecated ArrayList - deprecatedObjects2
 	TreeMap <String, String> deprecatedObjectsTitleMap = new TreeMap <> ();
     TreeMap <String, DeprecatedDefn> deprecatedObjectsNewMap = new TreeMap <> ();
-    ArrayList<String> titles20Arr = new ArrayList <> ();
-    ArrayList<String> seqNum20Arr = new ArrayList <> ();
     int seqNum = 1000;
     for (DeprecatedDefn lDeprecatedDefn2 : DMDocument.deprecatedObjects2) {
     	seqNum += 10;
     	String seqNumStr = String.valueOf(seqNum);
     	String normTitle = getNormalizedTitle(lDeprecatedDefn2);
     	deprecatedObjectsTitleMap.put(normTitle, seqNumStr);
-    	seqNum20Arr.add(seqNumStr);
-    	titles20Arr.add(normTitle);
     }
     
     // add odd deprecations - not in protege entity model
-    ArrayList<String> titles1Arr = new ArrayList <> ();
     for (DeprecatedDefn lDeprecatedDefn : deprecatedObjectsArr) {
     	String normTitle = getNormalizedTitle(lDeprecatedDefn);
-    	titles1Arr.add(normTitle);
     	String newSeqno = deprecatedObjectsTitleMap.get(normTitle);
     	if (newSeqno == null) {
     		newSeqno = "9999";

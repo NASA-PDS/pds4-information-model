@@ -52,20 +52,6 @@ public class ExportModelsCustom extends Object {
 		// need to pass SchemaFileDefn to get namespace; set static for now.
 		// SchemaFileDefn lSchemaFileDefn;
 		
-//		System.out.println("debug ExportModelsCustom lLDDToolFlag:" + lLDDToolFlag);
-//		System.out.println("debug ExportModelsCustom DMDocument.exportDDFileFlag:" + DMDocument.exportDDFileFlag);
-//		System.out.println("debug ExportModelsCustom DMDocument.exportCustomFileFlag:" + DMDocument.exportCustomFileFlag);
-		
-		// write the doc book files - one per namespace id
-		if (lLDDToolFlag) {
-			if (DMDocument.exportDDFileFlag) {
-				DMDocument.dmProcessState.setRelativeFileSpecDDDocXML (DMDocument.masterLDDSchemaFileDefn);
-				WriteDOMDocBookAnon lWriteDOMDocBooks  = new WriteDOMDocBookAnon (); 
-				lWriteDOMDocBooks.writeDocBooks(DMDocument.masterPDSSchemaFileDefn);
-				Utility.registerMessage ("0>info " + "writeLDDArtifacts - DD DocBooks - One Per LDD -  Done");
-			}
-		}
-		
 	    // write the standard id extract file
 	    // WriteDOMStandardIdExtract writeDOMStandardIdExtract = new WriteDOMStandardIdExtract();
 		// writeDOMStandardIdExtract.writeExtractFile();
