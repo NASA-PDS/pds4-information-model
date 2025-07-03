@@ -186,10 +186,6 @@ public class LDDDOMParser extends Object {
     validateNoNestedExposedClasses();
     Utility.registerMessage("0>info getLocalDD.validateNoNestedExposedClasses() Done");
 
-//	555 Commented out until review by DDWG
-//    validateNoAbstractClassIsExposed();
-//    Utility.registerMessage("0>info getLocalDD.validateNoAbstractClassIsExposed() Done");
-
     Utility.registerMessage("0>info getLocalDD Done");
   }
 
@@ -2251,19 +2247,6 @@ public class LDDDOMParser extends Object {
       }
     }
     return;
-  }
-  
-  private void validateNoAbstractClassIsExposed() {
-	  // scan for abstract classes
-	  for (DOMClass lDOMClass: DOMInfoModel.getMasterDOMClassArr()) {
-		  if (lDOMClass.isAbstract) {
-			  if (lDOMClass.isExposed) {
-				  Utility.registerMessage("2>warning Class: <" + lDOMClass.title
-						  + "> - An abstract class should not be exposed (element_flag=true).");
-			  }
-		  }
-	  }
-	  return;
   }
 
   private ArrayList<Element> getAssocElemFromClassDefn(Element elem) {
