@@ -186,8 +186,9 @@ public class LDDDOMParser extends Object {
     validateNoNestedExposedClasses();
     Utility.registerMessage("0>info getLocalDD.validateNoNestedExposedClasses() Done");
 
-    validateNoAbstractClassIsExposed();
-    Utility.registerMessage("0>info getLocalDD.validateNoAbstractClassIsExposed() Done");
+//	555 Commented out until review by DDWG
+//    validateNoAbstractClassIsExposed();
+//    Utility.registerMessage("0>info getLocalDD.validateNoAbstractClassIsExposed() Done");
 
     Utility.registerMessage("0>info getLocalDD Done");
   }
