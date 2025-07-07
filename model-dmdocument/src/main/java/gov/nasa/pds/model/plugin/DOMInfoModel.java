@@ -1494,7 +1494,6 @@ public abstract class DOMInfoModel extends Object {
 
 
     prDOMWriter.println("  section:" + objClass.section);
-    prDOMWriter.println("  role:" + objClass.role);
     prDOMWriter.println("  xPath:" + objClass.xPath);
     prDOMWriter.println("  docSecType:" + objClass.docSecType);
     prDOMWriter.println("  rootClass:" + objClass.rootClass);

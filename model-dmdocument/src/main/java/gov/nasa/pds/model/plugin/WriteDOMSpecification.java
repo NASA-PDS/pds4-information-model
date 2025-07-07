@@ -366,9 +366,7 @@ public class WriteDOMSpecification extends Object {
     }
 
     String prole = "Abstract";
-    if (lClass.role.compareTo("concrete") == 0) {
-      prole = "Concrete";
-    }
+    if (! lClass.isAbstract) prole = "Concrete";
     prhtml.println("<a name=\"" + lClassAnchorString + "\">" + "&nbsp;&nbsp;" + "</a>"); // needed
                                                                                          // to link
                                                                                          // from
