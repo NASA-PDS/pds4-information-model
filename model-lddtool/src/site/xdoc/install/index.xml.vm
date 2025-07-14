@@ -49,7 +49,7 @@
     </section>
 
     <section name="Unpacking the Package">
-      <p>Download the <i>lddtool</i> package from <a href="https://github.com/NASA-PDS/pds4-information-model/releases/download/${project.version}/" target="_blank">Github</a> (<a href="index.html#PDS4_Standards_and_LDDTool_Versions">past versions</a>). The distribution is available in identical zip or tar/gzip packages. The installation directory may vary from environment to environment but in UNIX-based environments it is typical to install software packages in the <i>/usr/local</i> directory and in Windows-based environments it is typical to install software packages in the <i>C:\Program Files</i> directory. Unpack the distribution file with one of the following commands:
+      <p>Download the <i>lddtool</i> package from <a href="https://github.com/NASA-PDS/pds4-information-model/releases/tag/${project.version}/" target="_blank">Github</a> (<a href="index.html#PDS4_Standards_and_LDDTool_Versions">past versions</a>). The distribution is available in identical zip or tar/gzip packages. The installation directory may vary from environment to environment but in UNIX-based environments it is typical to install software packages in the <i>/usr/local</i> directory and in Windows-based environments it is typical to install software packages in the <i>C:\Program Files</i> directory. Unpack the distribution file with one of the following commands:
       </p>
 
       <source>
