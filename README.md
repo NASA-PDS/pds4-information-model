@@ -66,6 +66,9 @@ To add additional tests:
 | "NASA-PDS/pds4-information-model#738 LDDTool is not creating valid URL for KPLO" | "src/test/resources" | "github738"   | "-lpJ {resourceDirectory}/{testDirectory}/PDS4_KPLO_IngestLDD.xml" | "0 error(s)"     |
 ```
 
+#### Update For New IM Version
+See https://github.com/NASA-PDS/pds4-information-model/tree/main/bin#update-for-new-im
+
 ### Update Site Documentation
 
 To update the site documentation, see each components `src/site` directory (this is common for all Java Maven software):
