@@ -1,8 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-07-07)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-07-14)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
+
+**Requirements:**
+
+- As a data provider, I want to be able to use "Space" as a delimiter in the `Table_Delimited` class [\#673](https://github.com/NASA-PDS/pds4-information-model/issues/673)
 
 **Defects:**
 
@@ -13,6 +17,7 @@
 - Refactoring that came out of \#924 investigation [\#929](https://github.com/NASA-PDS/pds4-information-model/issues/929)
 - Release PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#918](https://github.com/NASA-PDS/pds4-information-model/issues/918)
 - Complete initial Planetary Systems Ontology and context products [\#779](https://github.com/NASA-PDS/pds4-information-model/issues/779)
+- Update the writer for the anonymous version of the Data Dictionary [\#654](https://github.com/NASA-PDS/pds4-information-model/issues/654)
 
 ## [v15.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v15.3.0) (2025-04-28)
 
