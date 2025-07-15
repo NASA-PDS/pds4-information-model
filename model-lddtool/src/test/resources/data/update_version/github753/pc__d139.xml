@@ -13,7 +13,7 @@
     <logical_identifier>urn:nasa:pds:mars2020_pixl:data_raw_ancillary:pc__d139t0654668483_000eso_n001000000000045301100__j01</logical_identifier>
     <version_id>1.0</version_id>
     <title>Mars 2020 PIXL Raw Data Product: pc__d139t0654668483_000eso_n001000000000045301100__j01</title>
-    <information_model_version>1.24.0.0</information_model_version>
+    <information_model_version>1.25.0.0</information_model_version>
     <product_class>Product_Observational</product_class>
     <Modification_History>
       <Modification_Detail>

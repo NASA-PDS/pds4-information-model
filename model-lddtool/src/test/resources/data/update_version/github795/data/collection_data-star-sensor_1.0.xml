@@ -12,7 +12,7 @@
     <logical_identifier>urn:nasa:pds:im795:data</logical_identifier>
     <version_id>1.0</version_id>
     <title>Galileo Jupiter Star Scanner Derived Data Collection</title>
-    <information_model_version>1.24.0.0</information_model_version>
+    <information_model_version>1.25.0.0</information_model_version>
     <product_class>Product_Collection</product_class>
     <Citation_Information>
       <publication_year>2024</publication_year>

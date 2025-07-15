@@ -9,7 +9,7 @@
     <logical_identifier>urn:nasa:pds:voyager2.pws.wf</logical_identifier>
     <version_id>1.0</version_id>
     <title>Voyager 2 Plasma Wave Science, Uncalibrated Waveforms, Entire Mission Bundle</title>
-    <information_model_version>1.24.0.0</information_model_version>
+    <information_model_version>1.25.0.0</information_model_version>
     <product_class>Product_Bundle</product_class>
     
     <Citation_Information>
