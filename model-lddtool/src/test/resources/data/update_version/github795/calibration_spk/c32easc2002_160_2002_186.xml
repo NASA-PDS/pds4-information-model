@@ -12,7 +12,7 @@
             <logical_identifier>urn:nasa:pds:im795:calib.spk:c32easc2002_160_2002_186</logical_identifier>
             <version_id>1.0</version_id>
             <title>Cassini Spacecraft and Planetary Ephemeris Kernel Covering 2002-06-09T15:48:55.815Z to 2004-07-04T23:58:55.816Z</title>
-            <information_model_version>1.24.0.0</information_model_version>
+            <information_model_version>1.25.0.0</information_model_version>
             <product_class>Product_SPICE_Kernel</product_class>
             <Citation_Information>
                 <!--author_list>Simpson, R. A.; Verma, A. K.</author_list-->

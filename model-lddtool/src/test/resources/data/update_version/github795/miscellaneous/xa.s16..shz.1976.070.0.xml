@@ -11,7 +11,7 @@
     <logical_identifier>urn:nasa:pds:im795:misc:xa.s16..shz.1976.070.0</logical_identifier>
     <version_id>1.0</version_id>
     <title>Apollo Passive Seismic Experiment data in MiniSEED format</title>
-    <information_model_version>1.24.0.0</information_model_version>
+    <information_model_version>1.25.0.0</information_model_version>
     <product_class>Product_Native</product_class>
     <Modification_History>
       <Modification_Detail>

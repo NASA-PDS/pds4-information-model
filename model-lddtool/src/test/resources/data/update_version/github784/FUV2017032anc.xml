@@ -9,7 +9,7 @@
     <logical_identifier>urn:nasa:pds:cassini-uvis_titan-library:document:fuv2017_032_13_13_02_uvis_259ti_cloud001_iss__animation</logical_identifier>
     <version_id>1.0</version_id>
     <title>animation of the geometry for observation FUV2017_032_13_13_02_UVIS_259TI_CLOUD001_ISS_combined</title>
-    <information_model_version>1.24.0.0</information_model_version>
+    <information_model_version>1.25.0.0</information_model_version>
     <product_class>Product_Ancillary</product_class>
     <Citation_Information>
       <publication_year>2023</publication_year>
