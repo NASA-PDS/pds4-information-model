@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-07-14)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-07-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -14,6 +14,7 @@
 
 **Other closed issues:**
 
+- Stage the PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#933](https://github.com/NASA-PDS/pds4-information-model/issues/933)
 - Refactoring that came out of \#924 investigation [\#929](https://github.com/NASA-PDS/pds4-information-model/issues/929)
 - Release PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#918](https://github.com/NASA-PDS/pds4-information-model/issues/918)
 - Complete initial Planetary Systems Ontology and context products [\#779](https://github.com/NASA-PDS/pds4-information-model/issues/779)
