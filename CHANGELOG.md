@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-07-18)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-08-01)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -8,8 +8,13 @@
 
 - As a data provider, I want to be able to use "Space" as a delimiter in the `Table_Delimited` class [\#673](https://github.com/NASA-PDS/pds4-information-model/issues/673)
 
+**Improvements:**
+
+- \[namespace-registry\] add new namespace "dscovr" [\#935](https://github.com/NASA-PDS/pds4-information-model/issues/935)
+
 **Defects:**
 
+- Current WebHelp documentation \(1O00/1.24.0.0\) does not reflect latest Rings LDD [\#938](https://github.com/NASA-PDS/pds4-information-model/issues/938) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Generated LDD documentation does not handle xs:choice right [\#916](https://github.com/NASA-PDS/pds4-information-model/issues/916) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
