@@ -39,6 +39,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -57,6 +60,10 @@ public class LDDDOMParser extends Object {
 	
   // Schema File Definition
   SchemaFileDefn gSchemaFileDefn;
+  
+  // regex to validate version id
+  String regex = "([0-9]+)(\\.){1}([0-9]+)";
+  Pattern pattern = Pattern.compile(regex);
 
   // initialize the class structures
   private TreeMap<String, DOMClass> classMap;
@@ -724,6 +731,7 @@ public class LDDDOMParser extends Object {
 
   private void getClass(SchemaFileDefn lSchemaFileDefn, Element docEle) {
     // get a nodelist of <DD_Class> elements
+	  
     NodeList n2 = docEle.getElementsByTagName("DD_Class");
     if (n2 != null && n2.getLength() > 0) {
       for (int i = 0; i < n2.getLength(); i++) {
@@ -744,8 +752,19 @@ public class LDDDOMParser extends Object {
           lDOMClass.subModelId = "UpperModel"; // *** this was added to allow the IM Spec to be
                                                // written
           lDOMClass.steward = lSchemaFileDefn.stewardId;
+          
+          // get version id
+          String lVersionIdValue = getTextValue(el, "version_id");
+          if (lVersionIdValue != null) {
+            Matcher matcher = pattern.matcher(lVersionIdValue);
+            if (matcher.matches()) {
+            	lDOMClass.versionId = lVersionIdValue;
+            }
+          }
 
           String lDescription = getTextValue(el, "definition");
+          
+          // 555 deprecate TBD
           // escape any user provided values of "TBD"
           if (lDescription.indexOf("TBD") == 0) {
             lDescription = "_" + lDescription;
