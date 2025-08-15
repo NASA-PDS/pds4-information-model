@@ -387,11 +387,14 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
     prDocBook.println("            <thead>");
     prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
+//    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
+   	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
     // prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
         + getValue(lClass.versionId) + "</entry>");
+    prDocBook.println("                    <entry>" + getPrompt("IM Version Id: ")
+    + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
     prDocBook.println("            <tbody>");
@@ -623,13 +626,12 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
     prDocBook.println("            <thead>");
     prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
+    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getAttrAnchor(lAttr) + getValue(lAttr.title)
         + lRegistrationStatusInsert + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
-        + getValue("1.0.0.0") + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue(lAttr.versionId) +
-    // "</entry>");
+    prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue(lAttr.versionId) + "</entry>");
+    prDocBook.println("                    <entry>" + getPrompt("IM Version Id: ")
+    + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");    
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
     prDocBook.println("            <tbody>");

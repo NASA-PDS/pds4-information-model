@@ -151,6 +151,7 @@ class ProtPontDOMModel extends DOMInfoModel {
           lProtAttr.title = attrTitle;
           // lProtAttr.definition = definition; This is set below after parsing comment.
           // lProtAttr.versionId = versionId; This is set from dictionary.
+          lProtAttr.versionId = "1.0.0.0"; // default
           // lProtAttr.sequenceId = sequenceId; This is set from dictionary.
           // lProtAttr.registrationStatus = registrationStatus; This is set from DMDocument.
           lProtAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
@@ -187,6 +188,7 @@ class ProtPontDOMModel extends DOMInfoModel {
           lProtAttr.title = attrTitle;
           // lProtAttr.definition = definition; This is set below after parsing comment.
           // lProtAttr.versionId = versionId; This is set from dictionary.
+          lProtAttr.versionId = "1.0.0.0"; // default
           // lProtAttr.sequenceId = sequenceId; This is set from dictionary.
           // lProtAttr.registrationStatus = registrationStatus; This is set from DMDocument.
           lProtAttr.regAuthId = DMDocument.registrationAuthorityIdentifierValue;
