@@ -387,10 +387,8 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
     prDocBook.println("            <thead>");
     prDocBook.println("                <row>");
-//    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
    	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
         + getValue(lClass.versionId) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("IM Version Id: ")
@@ -902,8 +900,6 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("                <row>");
       prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
           + getPrompt("Name: ") + getValue(lClass.title) + "</entry>");
-      // prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") +
-      // "</entry>");
       prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
           + getValue(lClass.versionId) + "</entry>");
       prDocBook.println("                </row>");
@@ -1023,8 +1019,6 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("                <row>");
       prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
           + getPrompt("Name:  ") + getValue(lClass.title) + "</entry>");
-      // prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue("1.0.0.0") +
-      // "</entry>");
       prDocBook.println("                    <entry>" + getPrompt("Version Id:  ")
           + getValue(lClass.versionId) + "</entry>");
       prDocBook.println("                </row>");

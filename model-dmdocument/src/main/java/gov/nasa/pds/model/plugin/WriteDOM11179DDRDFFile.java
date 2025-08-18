@@ -277,7 +277,7 @@ class WriteDOM11179DDRDFFile extends Object {
       pr11179.println("	 " + kbId + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
       // pr11179.println(" " + kbId + "versionIdentifier=\"" +
       // lConceptualDomainAttr.versionIdentifierValue + "\"");
-      pr11179.println("	 " + kbId + "versionIdentifier=\"" + "1.0.0.0" + "\"");
+      pr11179.println("	 " + kbId + "versionIdentifier=\"" + DMDocument.versionIdDefault + "\"");
       pr11179.println("	 rdfs:label=\"" + lIndexDefn.identifier + "\">");
 
       for (Iterator<String> j = lIndexDefn.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
@@ -330,7 +330,7 @@ class WriteDOM11179DDRDFFile extends Object {
       pr11179.println("	 " + kbId + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
       // pr11179.println(" " + kbId + "versionIdentifier=\"" +
       // lConceptualDomainAttr.versionIdentifierValue + "\"");
-      pr11179.println("	 " + kbId + "versionIdentifier=\"" + "1.0.0.0" + "\"");
+      pr11179.println("	 " + kbId + "versionIdentifier=\"" + DMDocument.versionIdDefault + "\"");
       pr11179.println("	 rdfs:label=\"" + lIndexDefn.identifier + "\">");
 
       for (Iterator<DOMAttr> j = lIndexDefn.getSortedIdentifier1Arr().iterator(); j.hasNext();) {

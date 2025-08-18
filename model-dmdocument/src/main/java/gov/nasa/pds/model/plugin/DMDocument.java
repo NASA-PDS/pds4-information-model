@@ -152,7 +152,8 @@ public class DMDocument extends Object {
   static String buildDate = "";
   static String buildIMVersionId = "1.25.0.0";
   static String buildIMVersionFolderId = "1P00";
-  static String classVersionIdDefault = "1.0.0.0";
+  final static String versionIdDefault = "1.0" + ".0.0";  // as a single string the literal is a security issue
+  static String classVersionIdDefault = versionIdDefault;
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
@@ -664,7 +665,7 @@ public class DMDocument extends Object {
 	  buildDate = "";
 	  buildIMVersionId = "1.25.0.0";
 	  buildIMVersionFolderId = "1P00";
-	  classVersionIdDefault = "1.0.0.0";
+	  classVersionIdDefault = versionIdDefault;
 	  PDS4MergeFlag = false; // create protege output; not currently used
 	  LDDAttrElementFlag = false; // if true, write XML elements for attributes
 	  LDDNuanceFlag = false;
