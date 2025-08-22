@@ -70,7 +70,7 @@ class WriteDOMDocBook extends Object {
       lSchemaFileDefnToWriteArr = new ArrayList<>();
       lSchemaFileDefnToWriteArr.add(DMDocument.getMasterPDSSchemaFileDefn());
     } else {
-      // intialize array to capture namespaces to be written
+      // initialize array to capture namespaces to be written
       ArrayList<String> lDDNamespaceArr = new ArrayList<>();
       lSchemaFileDefnToWriteArr = new ArrayList<>();
 
@@ -90,7 +90,6 @@ class WriteDOMDocBook extends Object {
       }
     }
 
-    // System.out.println("");
     for (SchemaFileDefn lSchemaFileDefn: lSchemaFileDefnToWriteArr) {
       classClassificationMap.put(lSchemaFileDefn.nameSpaceIdNC,
           new ClassClassificationDefnDOM(lSchemaFileDefn.nameSpaceIdNC));
@@ -387,11 +386,13 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
     prDocBook.println("            <thead>");
     prDocBook.println("                <row>");
-   	    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
+   	prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
-        + getValue(lClass.versionId) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("IM Version Id: ")
+    String versionIdLiteral = "DD Version: ";
+    if (lClass.getNameSpaceIdNC().compareTo("pds") != 0) versionIdLiteral = "LDD Version: ";   	
+   	prDocBook.println("                    <entry>" + getPrompt(versionIdLiteral)
+    + getValue(DMDocument.masterLDDSchemaFileDefn.versionId) + "</entry>");
+    prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
     + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
@@ -399,6 +400,8 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("                <row>");
     prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
         + getPrompt("Description:") + getValue(lClass.definition) + "</entry>");
+//    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
+//    	+ getValue(lClass.versionId) + "</entry>");
     prDocBook.println("                </row>");
     prDocBook.println("                <row>");
     prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ")
@@ -567,8 +570,6 @@ class WriteDOMDocBook extends Object {
       lValueString = "None";
     }
     prDocBook.println("                <row>");
-    // prDocBook.println(" <entry namest=\"c1\" nameend=\"c4\" align=\"left\">" +
-    // getPrompt("Referenced from: ") + getValue(lValueString) + "</entry>");
     prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
         + getPrompt("Referenced from: ") + lValueString + "</entry>");
     prDocBook.println("                </row>");
@@ -627,43 +628,35 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getAttrAnchor(lAttr) + getValue(lAttr.title)
         + lRegistrationStatusInsert + "</entry>");
-    prDocBook.println(" <entry>" + getPrompt("Version Id: ") + getValue(lAttr.versionId) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("IM Version Id: ")
+    String versionIdLiteral = "DD Version: ";
+    if (lAttr.getNameSpaceIdNC().compareTo("pds") != 0) versionIdLiteral = "LDD Version: ";
+    prDocBook.println(" <entry>" + getPrompt(versionIdLiteral)
+    + getValue(DMDocument.masterLDDSchemaFileDefn.versionId) + "</entry>");
+    prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
     + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");    
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
     prDocBook.println("            <tbody>");
+    
     prDocBook.println("                <row>");
     prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
         + getPrompt("Description: ") + getValue(lAttr.definition) + "</entry>");
+//    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
+//    + getValue(lAttr.versionId) + "</entry>");
     prDocBook.println("                </row>");
     prDocBook.println("                <row>");
-    // prDocBook.println(" <entry>" + getPrompt("Namespace Id: ") +
-    // getValue(lAttr.attrNameSpaceIdNC) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ")
         + getValue(lAttr.getNameSpaceIdNC()) + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Steward: ") + getValue(lAttr.steward) +
-    // "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Steward: ")
         + getValue(lAttr.getSteward()) + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Class Name: ") + getValueBreak(lAttr.className) +
-    // "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Class Name: ") + getClassLink(lParentClass) +
-    // "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Class Name: ")
         + getClassLink(lAttr.attrParentClass) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("Type: ")
         + getDataTypeLink(lAttr.valueType) + "</entry>");
     prDocBook.println("                </row>");
+    
+    
     prDocBook.println("                <row>");
-    // prDocBook.println(" <entry>" + getPrompt("Minimum Value: ") +
-    // getValueReplaceTBDWithNone(lAttr.minimum_value) + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Maximum Value: ") +
-    // getValueReplaceTBDWithNone(lAttr.maximum_value) + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Minimum Characters: ") +
-    // getValueReplaceTBDWithNone(lAttr.minimum_characters) + "</entry>");
-    // prDocBook.println(" <entry>" + getPrompt("Maximum Characters: ") +
-    // getValueReplaceTBDWithNone(lAttr.maximum_characters) + "</entry>");
 
     prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ")
         + getValueReplaceTBDWithNone(lAttr.getMinimumValue(true, false)) + "</entry>");
@@ -692,8 +685,6 @@ class WriteDOMDocBook extends Object {
         "                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
     prDocBook.println(
         "                    <entry>" + getPrompt("Nillable: ") + lAttr.isNilable + "</entry>");
-    // prDocBook.println(" <entry namest=\"c3\" nameend=\"c4\" >" + getPrompt("Pattern: ") +
-    // getValueReplaceTBDWithNone(lAttr.pattern) + "</entry>");
     prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >"
         + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.getPattern(true)) + "</entry>");
     prDocBook.println("                </row>");
@@ -776,8 +767,6 @@ class WriteDOMDocBook extends Object {
           prDocBook.println("                    <entry></entry>");
           prDocBook.println(
               "                    <entry>" + getValueBreak(lPermValueDefn.value) + "</entry>");
-          // prDocBook.println(" <entry>" + getValueAnchor(lAttr, lPermValueDefn.value) +
-          // getValueBreak (lPermValueDefn.value) + "</entry>");
           prDocBook
               .println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
                   + getValue(lPermValueDefn.value_meaning) + "</entry>");
@@ -800,9 +789,6 @@ class WriteDOMDocBook extends Object {
     prDocBook
         .println("      <!-- =====================Part4a Begin=========================== -->");
     prDocBook.println("");
-    // prDocBook.println(" <chapter>");
-    // prDocBook.println(" <title>Data Types in the common namespace.</title>");
-    // prDocBook.println(" <para>These classes define the data types. </para>");
 
     // Sort the data types
     TreeMap<String, DOMClass> sortDataTypeMap = new TreeMap<>();
@@ -968,9 +954,6 @@ class WriteDOMDocBook extends Object {
     prDocBook
         .println("      <!-- =====================Part4b Begin=========================== -->");
     prDocBook.println("");
-    // prDocBook.println(" <chapter>");
-    // prDocBook.println(" <title>Units of Measure in the common namespace.</title>");
-    // prDocBook.println(" <para>These classes define the units of measure. </para>");
 
     // get the units
     ArrayList<DOMProp> lDOMPermValueArr;
@@ -1221,7 +1204,6 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("                </para>");
     prDocBook.println("            </sect1>");
     prDocBook.println("        </chapter>");
-    // prDocBook.println(" </part>");
     prDocBook.println("");
     return;
   }
@@ -1232,9 +1214,6 @@ class WriteDOMDocBook extends Object {
   }
 
   private String getPrompt(String lPrompt) {
-    // return "<emphasis role=\"italic\">" + "<emphasis role=\"bold\">" + lPrompt + "</emphasis>" +
-    // "</emphasis>";
-    // return "<emphasis role=\"italic\">" + lPrompt + "</emphasis>";
     return "<emphasis>" + lPrompt + "</emphasis>";
   }
 
@@ -1255,12 +1234,6 @@ class WriteDOMDocBook extends Object {
   }
 
   private String getValueAnchor(DOMAttr lAttr, String lValue) {
-    // String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." +
-    // lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "."
-    // + lAttr.title + "." + lValue;
-    // String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." +
-    // lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC +
-    // "." + lAttr.title + "." + lValue;
     String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "."
         + lAttr.classNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC
         + "." + lAttr.title + "." + lValue;
@@ -1283,12 +1256,6 @@ class WriteDOMDocBook extends Object {
   }
 
   private String getAttrAnchor(DOMAttr lAttr) {
-    // String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." +
-    // lAttr.attrNameSpaceIdNC + "." + lAttr.parentClassTitle + "." + lAttr.attrNameSpaceIdNC + "."
-    // + lAttr.title;
-    // String lAnchor = DMDocument.registrationAuthorityIdentifierValue + "." +
-    // lAttr.attrNameSpaceIdNC + "." + lAttr.attrParentClass.title + "." + lAttr.attrNameSpaceIdNC +
-    // "." + lAttr.title;
     String lAnchor =
         DMDocument.registrationAuthorityIdentifierValue + "." + lAttr.classNameSpaceIdNC + "."
             + lAttr.attrParentClass.title + "." + lAttr.nameSpaceIdNC + "." + lAttr.title;
@@ -1407,7 +1374,6 @@ class WriteDOMDocBook extends Object {
   }
 
   // locally defined classes for classifying classes and attributes
-
   public class ClassClassificationDefnDOM {
     String identifier;
     String namespaceId;

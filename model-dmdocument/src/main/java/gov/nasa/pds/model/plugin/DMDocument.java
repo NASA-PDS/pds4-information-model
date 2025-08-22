@@ -1340,6 +1340,14 @@ public class DMDocument extends Object {
     	dmProcessState.setExportCustomFileFlag();
     	exportCustomFileFlag = true;
     }
+    
+    // init masterLDDSchemaFileDefn with dummy LDD; PDS4_Common_IngestLDD.xml does not exist
+    masterLDDSchemaFileDefn = new SchemaFileDefn("PDS4_Common_IngestLDD.xml");
+    masterLDDSchemaFileDefn.sourceFileName = "PDS4_Common_IngestLDD.xml";
+    masterLDDSchemaFileDefn.isActive = false;
+    masterLDDSchemaFileDefn.isLDD = false;
+    masterLDDSchemaFileDefn.labelVersionId = versionIdDefault;
+    masterLDDSchemaFileDefn.versionId = infoModelVersionId;
 
     // get the LDDIngest file names
     for (String fileName : ns.<String>getList("fileNameArr")) {
