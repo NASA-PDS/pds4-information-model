@@ -238,8 +238,8 @@ class WriteDOMDocBook extends Object {
     writeHeader(prDocBook);
 
     // write the Common dictionary
-    writeClassSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
-    writeAttrSection(DMDocument.getMasterNameSpaceIdNCLC(), prDocBook);
+    writeClassSection(DMDocument.getMasterNameSpaceIdNCLC(), lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
+    writeAttrSection(DMDocument.getMasterNameSpaceIdNCLC(), lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
 
     // write the LDDs
     for (SchemaFileDefn lSchemaFileDefnToWrite: lSchemaFileDefnToWriteArr) {
@@ -250,14 +250,14 @@ class WriteDOMDocBook extends Object {
           classClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
       if (lClassClassificationDefn != null) {
         if (lClassClassificationDefn.classArr.size() > 0) {
-          writeClassSection(lClassClassificationDefn, prDocBook);
+          writeClassSection(lClassClassificationDefn, lSchemaFileDefnToWrite.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
         }
       }
       AttrClassificationDefnDOM lAttrClassificationDefn =
           attrClassificationMap.get(lSchemaFileDefnToWrite.nameSpaceIdNCLC);
       if (lAttrClassificationDefn != null) {
         if (lAttrClassificationDefn.attrArr.size() > 0) {
-          writeAttrSection(lAttrClassificationDefn, prDocBook);
+          writeAttrSection(lAttrClassificationDefn, lSchemaFileDefnToWrite.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
         }
       }
     }
@@ -270,7 +270,7 @@ class WriteDOMDocBook extends Object {
     return;
   }
 
-  private void writeClassSection(String lNameSpaceId, PrintWriter prDocBook) {
+  private void writeClassSection(String lNameSpaceId,  String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     prDocBook.println("");
     prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
     prDocBook.println("");
@@ -281,7 +281,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println("           <title>Product Classes in the common namespace.</title>");
       prDocBook.println("           <para>These classes define the products.</para>");
       for (DOMClass lClass: lClassClassificationDefn.classArr) {
-        writeClass(lClass, prDocBook);
+        writeClass(lClass, lddVersionId, imVersionId, prDocBook);
       }
       prDocBook.println("        </chapter>");
       prDocBook.println("");
@@ -294,7 +294,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println(
           "           <para>The classes in this section are used by the product classes.</para>");
       for (DOMClass lClass: lClassClassificationDefn.classArr) {
-        writeClass(lClass, prDocBook);
+        writeClass(lClass, lddVersionId, imVersionId, prDocBook);
       }
       prDocBook.println("        </chapter>");
       prDocBook.println("");
@@ -308,7 +308,7 @@ class WriteDOMDocBook extends Object {
         prDocBook.println("           <title>OPS catalog classes in the common namespace.</title>");
         prDocBook.println("           <para>These classes support operations. </para>");
         for (DOMClass lClass: lClassClassificationDefn.classArr) {
-          writeClass(lClass, prDocBook);
+          writeClass(lClass, lddVersionId, imVersionId, prDocBook);
         }
         prDocBook.println("        </chapter>");
         prDocBook.println("");
@@ -319,7 +319,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("");
   }
 
-  private void writeClassSection(ClassClassificationDefnDOM lClassClassificationDefn,
+  private void writeClassSection(ClassClassificationDefnDOM lClassClassificationDefn, String lddVersionId, String imVersionId, 
       PrintWriter prDocBook) {
     prDocBook.println("");
     prDocBook.println(
@@ -331,7 +331,7 @@ class WriteDOMDocBook extends Object {
         + " namespace.</title>");
     prDocBook.println("           <para>These classes comprise the namespace.</para>");
     for (DOMClass lClass: lClassClassificationDefn.classArr) {
-      writeClass(lClass, prDocBook);
+      writeClass(lClass, lddVersionId, imVersionId, prDocBook);
     }
     prDocBook.println("        </chapter>");
     prDocBook.println("");
@@ -342,7 +342,7 @@ class WriteDOMDocBook extends Object {
   }
 
   private void writeAttrSection(AttrClassificationDefnDOM lAttrClassificationDefn,
-      PrintWriter prDocBook) {
+		  String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     prDocBook.println("");
     prDocBook.println(
         "      <!-- ===================== LDD Attribute Begin =========================== -->");
@@ -354,7 +354,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("           <para>These attributes are used by the classes in the "
         + lAttrClassificationDefn.namespaceId + " namespace. </para>");
     for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
-      writeAttr(lAttr, prDocBook);
+      writeAttr(lAttr, lddVersionId, imVersionId, prDocBook);
     }
     prDocBook.println("        </chapter>");
     prDocBook.println("");
@@ -364,7 +364,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("");
   }
 
-  private void writeClass(DOMClass lClass, PrintWriter prDocBook) {
+  private void writeClass(DOMClass lClass, String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     String lValueString = "";
     String lValueDel = "";
     String lRegistrationStatus = "Active";
@@ -388,12 +388,12 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("                <row>");
    	prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
-    String versionIdLiteral = "DD Version: ";
-    if (lClass.getNameSpaceIdNC().compareTo("pds") != 0) versionIdLiteral = "LDD Version: ";   	
-   	prDocBook.println("                    <entry>" + getPrompt(versionIdLiteral)
-    + getValue(DMDocument.masterLDDSchemaFileDefn.versionId) + "</entry>");
+    String lddVersionIdLiteral = "DD Version: ";
+    if (lClass.getNameSpaceIdNC().compareTo("pds") != 0) lddVersionIdLiteral = "LDD Version: ";   	
+   	prDocBook.println("                    <entry>" + getPrompt(lddVersionIdLiteral)
+    + getValue(lddVersionId) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
-    + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");
+    + getValue(imVersionId) + "</entry>");
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
     prDocBook.println("            <tbody>");
@@ -581,7 +581,7 @@ class WriteDOMDocBook extends Object {
     return;
   }
 
-  private void writeAttrSection(String lNameSpaceId, PrintWriter prDocBook) {
+  private void writeAttrSection(String lNameSpaceId, String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     prDocBook.println("");
     prDocBook.println("      <!-- =====================Part3 Begin=========================== -->");
     prDocBook.println("");
@@ -594,7 +594,7 @@ class WriteDOMDocBook extends Object {
       prDocBook.println(
           "           <para>These attributes are used by the classes in the common namespace. </para>");
       for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
-        writeAttr(lAttr, prDocBook);
+        writeAttr(lAttr, lddVersionId, imVersionId, prDocBook);
       }
       prDocBook.println("        </chapter>");
       prDocBook.println("");
@@ -604,7 +604,7 @@ class WriteDOMDocBook extends Object {
     prDocBook.println("");
   }
 
-  private void writeAttr(DOMAttr lAttr, PrintWriter prDocBook) {
+  private void writeAttr(DOMAttr lAttr, String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     String lRegistrationStatus = "Active";
     String lRegistrationStatusInsert = "";
     if (lAttr.registrationStatus.compareTo("Retired") == 0) {
@@ -631,9 +631,9 @@ class WriteDOMDocBook extends Object {
     String versionIdLiteral = "DD Version: ";
     if (lAttr.getNameSpaceIdNC().compareTo("pds") != 0) versionIdLiteral = "LDD Version: ";
     prDocBook.println(" <entry>" + getPrompt(versionIdLiteral)
-    + getValue(DMDocument.masterLDDSchemaFileDefn.versionId) + "</entry>");
+    + getValue(lddVersionId) + "</entry>");
     prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
-    + getValue(DMDocument.masterPDSSchemaFileDefn.ont_version_id) + "</entry>");    
+    + getValue(imVersionId) + "</entry>");    
     prDocBook.println("                </row>");
     prDocBook.println("            </thead>");
     prDocBook.println("            <tbody>");

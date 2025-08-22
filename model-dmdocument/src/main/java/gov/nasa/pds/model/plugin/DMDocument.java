@@ -1346,7 +1346,7 @@ public class DMDocument extends Object {
     masterLDDSchemaFileDefn.sourceFileName = "PDS4_Common_IngestLDD.xml";
     masterLDDSchemaFileDefn.isActive = false;
     masterLDDSchemaFileDefn.isLDD = false;
-    masterLDDSchemaFileDefn.labelVersionId = versionIdDefault;
+    masterLDDSchemaFileDefn.labelVersionId = schemaLabelVersionId;
     masterLDDSchemaFileDefn.versionId = infoModelVersionId;
 
     // get the LDDIngest file names
