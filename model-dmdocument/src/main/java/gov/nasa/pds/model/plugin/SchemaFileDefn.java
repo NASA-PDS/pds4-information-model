@@ -342,7 +342,7 @@ public class SchemaFileDefn {
     relativeFileSpecDDProtPinsSN =
         DMDocument.getOutputDirPath() + "export/" + "dd11179_Gen" + ".pins";
     relativeFileSpecModelRDF = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
-        + "_" + nameSpaceIdNCUC + "_" + "MODEL" + "_" + lab_version_id + ".rdf";
+        + "_" + nameSpaceIdNCUC + "_" + "RDF" + "_" + lab_version_id + ".rdf";
     relativeFileSpecOWLRDF_DOM = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
         + "_" + nameSpaceIdNCUC + "_" + "OWL" + "_" + lab_version_id + ".rdf";
     relativeFileSpecSKOSTTL_DOM = DMDocument.getOutputDirPath() + "export/" + DMDocument.mastModelId
