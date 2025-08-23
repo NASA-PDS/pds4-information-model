@@ -84,7 +84,7 @@ public class DOMUnit extends ISOClassOAIS11179 {
   public void createDOMUnitSingletons(String lId, DOMClass lClass) {
     // rdfIdentifier = "TBD";
     identifier = lId;
-    versionId = DMDocument.versionIdDefault;
+    versionId = DMDocument.VERSION_ID_DEFAULT;
     pds4Identifier =
         DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, lClass.title);
     title = this.identifier;

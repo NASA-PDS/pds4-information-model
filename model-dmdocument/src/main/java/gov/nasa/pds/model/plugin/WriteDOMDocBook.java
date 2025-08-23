@@ -238,8 +238,8 @@ class WriteDOMDocBook extends Object {
     writeHeader(prDocBook);
 
     // write the Common dictionary
-    writeClassSection(DMDocument.getMasterNameSpaceIdNCLC(), lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
-    writeAttrSection(DMDocument.getMasterNameSpaceIdNCLC(), lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
+    writeClassSection(lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
+    writeAttrSection(lSchemaFileDefn.versionId, DMDocument.masterPDSSchemaFileDefn.ont_version_id, prDocBook);
 
     // write the LDDs
     for (SchemaFileDefn lSchemaFileDefnToWrite: lSchemaFileDefnToWriteArr) {
@@ -270,52 +270,51 @@ class WriteDOMDocBook extends Object {
     return;
   }
 
-  private void writeClassSection(String lNameSpaceId,  String lddVersionId, String imVersionId, PrintWriter prDocBook) {
+  private void writeClassSection(String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     prDocBook.println("");
-    prDocBook.println("      <!-- =====================Part2 Begin=========================== -->");
+    prDocBook.println("   <!-- =====================Part2 Begin=========================== -->");
     prDocBook.println("");
 
     ClassClassificationDefnDOM lClassClassificationDefn = classClassificationMap.get("pds.product");
     if (lClassClassificationDefn != null) {
-      prDocBook.println("        <chapter>");
-      prDocBook.println("           <title>Product Classes in the common namespace.</title>");
-      prDocBook.println("           <para>These classes define the products.</para>");
+      prDocBook.println("  <chapter>");
+      prDocBook.println("     <title>Product Classes in the common namespace.</title>");
+      prDocBook.println("     <para>These classes define the products.</para>");
       for (DOMClass lClass: lClassClassificationDefn.classArr) {
         writeClass(lClass, lddVersionId, imVersionId, prDocBook);
       }
-      prDocBook.println("        </chapter>");
+      prDocBook.println("  </chapter>");
       prDocBook.println("");
     }
 
     lClassClassificationDefn = classClassificationMap.get("pds.support");
     if (lClassClassificationDefn != null) {
-      prDocBook.println("        <chapter>");
-      prDocBook.println("           <title>Support classes in the common namespace.</title>");
+      prDocBook.println("  <chapter>");
+      prDocBook.println("     <title>Support classes in the common namespace.</title>");
       prDocBook.println(
           "           <para>The classes in this section are used by the product classes.</para>");
       for (DOMClass lClass: lClassClassificationDefn.classArr) {
         writeClass(lClass, lddVersionId, imVersionId, prDocBook);
       }
-      prDocBook.println("        </chapter>");
+      prDocBook.println("  </chapter>");
       prDocBook.println("");
-
     }
 
     if (!DMDocument.importJSONAttrFlag) { // if a JSON run, dont write the following
       lClassClassificationDefn = classClassificationMap.get("pds.ops");
       if (lClassClassificationDefn != null) {
-        prDocBook.println("        <chapter>");
-        prDocBook.println("           <title>OPS catalog classes in the common namespace.</title>");
-        prDocBook.println("           <para>These classes support operations. </para>");
+        prDocBook.println("  <chapter>");
+        prDocBook.println("     <title>OPS catalog classes in the common namespace.</title>");
+        prDocBook.println("     <para>These classes support operations. </para>");
         for (DOMClass lClass: lClassClassificationDefn.classArr) {
           writeClass(lClass, lddVersionId, imVersionId, prDocBook);
         }
-        prDocBook.println("        </chapter>");
+        prDocBook.println("  </chapter>");
         prDocBook.println("");
       }
     }
 
-    prDocBook.println("      <!-- =====================Part2 End=========================== -->");
+    prDocBook.println("   <!-- =====================Part2 End=========================== -->");
     prDocBook.println("");
   }
 
@@ -326,14 +325,14 @@ class WriteDOMDocBook extends Object {
         "      <!-- ===================== LDD Class Begin =========================== -->");
     prDocBook.println("");
 
-    prDocBook.println("        <chapter>");
-    prDocBook.println("           <title>Classes in the " + lClassClassificationDefn.namespaceId
+    prDocBook.println("  <chapter>");
+    prDocBook.println("     <title>Classes in the " + lClassClassificationDefn.namespaceId
         + " namespace.</title>");
-    prDocBook.println("           <para>These classes comprise the namespace.</para>");
+    prDocBook.println("     <para>These classes comprise the namespace.</para>");
     for (DOMClass lClass: lClassClassificationDefn.classArr) {
       writeClass(lClass, lddVersionId, imVersionId, prDocBook);
     }
-    prDocBook.println("        </chapter>");
+    prDocBook.println("  </chapter>");
     prDocBook.println("");
 
     prDocBook
@@ -348,15 +347,15 @@ class WriteDOMDocBook extends Object {
         "      <!-- ===================== LDD Attribute Begin =========================== -->");
     prDocBook.println("");
 
-    prDocBook.println("        <chapter>");
-    prDocBook.println("           <title>Attributes in the " + lAttrClassificationDefn.namespaceId
+    prDocBook.println("  <chapter>");
+    prDocBook.println("     <title>Attributes in the " + lAttrClassificationDefn.namespaceId
         + " namespace.</title>");
-    prDocBook.println("           <para>These attributes are used by the classes in the "
+    prDocBook.println("     <para>These attributes are used by the classes in the "
         + lAttrClassificationDefn.namespaceId + " namespace. </para>");
     for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
       writeAttr(lAttr, lddVersionId, imVersionId, prDocBook);
     }
-    prDocBook.println("        </chapter>");
+    prDocBook.println("  </chapter>");
     prDocBook.println("");
 
     prDocBook.println(
@@ -374,63 +373,33 @@ class WriteDOMDocBook extends Object {
       lRegistrationStatusInsert = " " + DMDocument.Literal_DEPRECATED;
     }
     prDocBook.println("<sect1>");
-    prDocBook.println("    <title>" + getClassAnchor(lClass) + getValue(lClass.title)
+    prDocBook.println(" <title>" + getClassAnchor(lClass) + getValue(lClass.title)
         + lRegistrationStatusInsert + "</title>");
     prDocBook.println("");
     prDocBook.println("<para>");
-    prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
-    prDocBook.println("        <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
-    prDocBook.println("            <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <thead>");
-    prDocBook.println("                <row>");
-   	prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
+    prDocBook.println(" <informaltable frame=\"all\" colsep=\"1\">");
+    prDocBook.println("  <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
+    prDocBook.println("   <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <thead>");
+    prDocBook.println("    <row>");
+   	prDocBook.println("     <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getValue(lClass.title) + lRegistrationStatusInsert + "</entry>");
     String lddVersionIdLiteral = "DD Version: ";
     if (lClass.getNameSpaceIdNC().compareTo("pds") != 0) lddVersionIdLiteral = "LDD Version: ";   	
-   	prDocBook.println("                    <entry>" + getPrompt(lddVersionIdLiteral)
+   	prDocBook.println("     <entry>" + getPrompt(lddVersionIdLiteral)
     + getValue(lddVersionId) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
+    prDocBook.println("     <entry>" + getPrompt("IM Version: ")
     + getValue(imVersionId) + "</entry>");
-    prDocBook.println("                </row>");
-    prDocBook.println("            </thead>");
-    prDocBook.println("            <tbody>");
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
-        + getPrompt("Description:") + getValue(lClass.definition) + "</entry>");
-//    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
-//    	+ getValue(lClass.versionId) + "</entry>");
-    prDocBook.println("                </row>");
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ")
-        + getValue(lClass.nameSpaceIdNC) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Steward: ")
-        + getValue(lClass.steward) + "</entry>");
-    String classRole = "concrete";
-    if (lClass.isAbstract) classRole = "abstract";
-    prDocBook.println(
-          "                    <entry>" + getPrompt("Role: ") + getValue(classRole) + "</entry>");
-    prDocBook.println(
-        "                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
-    prDocBook.println("                </row>");
-    prDocBook.println("");
-
-    // write hierarchy
-    ArrayList<DOMClass> lClassArr = new ArrayList<>(lClass.superClassHierArr);
-    lClassArr.add(lClass);
-    lValueString = "";
-    lValueDel = "";
-    for (DOMClass lHierClass: lClassArr) {
-      lValueString += lValueDel + getClassLink(lHierClass);
-      lValueDel = " :: ";
-    }
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
-        + getPrompt("Class Hierarchy: ") + lValueString + "</entry>");
-    prDocBook.println("                </row>");
-
+    prDocBook.println("    </row>");
+    prDocBook.println("   </thead>");
+    prDocBook.println("   <tbody>");
+    
+    // write the class body
+    writeClassBody(lClass, lddVersionId, imVersionId, lRegistrationStatus, prDocBook);
+    
     // determine the type and number of class members (attributes and classes)
     int attrCount = 0, assocCount = 0;
     if (lClass.allAttrAssocArr != null) {
@@ -442,29 +411,82 @@ class WriteDOMDocBook extends Object {
         }
       }
     }
+    
+    // write the class attributes
+    writeClassAttr (lClass, lddVersionId, imVersionId, attrCount, prDocBook);
+    
+    // write the class associations (member classes)
+    writeClassAssoc (lClass, lddVersionId, imVersionId, assocCount, prDocBook);
+    
+    // write the class references
+    writeClassRef (lClass, lddVersionId, imVersionId, prDocBook);
+    
+    // close section, paragraph, etc
+    prDocBook.println("   </tbody>");
+    prDocBook.println("  </tgroup>");
+    prDocBook.println("  </informaltable>");
+    prDocBook.println("</para>");
+    prDocBook.println("</sect1> ");
+    return;
+  }
+  
+  private void writeClassBody(DOMClass lClass, String lddVersionId, String imVersionId, String lRegistrationStatus, PrintWriter prDocBook) {
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+        + getPrompt("Description:") + getValue(lClass.definition) + "</entry>");
+    prDocBook.println("    </row>");
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry>" + getPrompt("Namespace Id: ")
+        + getValue(lClass.nameSpaceIdNC) + "</entry>");
+    prDocBook.println("     <entry>" + getPrompt("Steward: ")
+        + getValue(lClass.steward) + "</entry>");
+    String classRole = "concrete";
+    if (lClass.isAbstract) classRole = "abstract";
+    prDocBook.println(
+          "                    <entry>" + getPrompt("Role: ") + getValue(classRole) + "</entry>");
+    prDocBook.println(
+        "                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
+    prDocBook.println("    </row>");
+    prDocBook.println("");
 
+    // write hierarchy
+    ArrayList<DOMClass> lClassArr = new ArrayList<>(lClass.superClassHierArr);
+    lClassArr.add(lClass);
+    String lValueString = "";
+    String lValueDel = "";
+    for (DOMClass lHierClass: lClassArr) {
+      lValueString += lValueDel + getClassLink(lHierClass);
+      lValueDel = " :: ";
+    }
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+        + getPrompt("Class Hierarchy: ") + lValueString + "</entry>");
+    prDocBook.println("    </row>");
+  }
+
+  private void writeClassAttr(DOMClass lClass, String lddVersionId, String imVersionId, int attrCount, PrintWriter prDocBook) {
     // write the attributes
     if (attrCount == 0) {
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("No Attributes") + "</entry>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("No Attributes") + "</entry>");
       prDocBook.println(
           "                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\"></entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    </row>");
     } else {
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("Attribute(s)") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Name") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Cardinality") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Value") + "</entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("Attribute(s)") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Name") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Cardinality") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Value") + "</entry>");
+      prDocBook.println("    </row>");
 
       for (DOMProp lProp: lClass.allAttrAssocArr) {
         if (!lProp.isAttribute) {
           continue;
         }
         DOMAttr lAttr = (DOMAttr) lProp.domObject;
-        lValueString = "None";
-        lValueDel = "";
+        String lValueString = "None";
+        String lValueDel = "";
         if (!(lAttr.domPermValueArr == null || lAttr.domPermValueArr.size() == 0)) {
           lValueString = "";
           for (DOMProp lDOMProp: lAttr.domPermValueArr) {
@@ -478,32 +500,34 @@ class WriteDOMDocBook extends Object {
         }
         String choiceIndicator = "";
         if (lProp.isChoice) choiceIndicator = " - Choice";
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry></entry>");
-        prDocBook.println("                    <entry>" + getAttrLink(lAttr) + "</entry>");
-        prDocBook.println("                    <entry>"
+        prDocBook.println("    <row>");
+        prDocBook.println("     <entry></entry>");
+        prDocBook.println("     <entry>" + getAttrLink(lAttr) + "</entry>");
+        prDocBook.println("     <entry>"
             + getValue(getCardinality(lAttr.cardMinI, lAttr.cardMaxI)) + choiceIndicator + "</entry>");
-        prDocBook.println("                    <entry>" + lValueString + "</entry>");
-        prDocBook.println("                </row>");
+        prDocBook.println("     <entry>" + lValueString + "</entry>");
+        prDocBook.println("    </row>");
       }
     }
+  }
 
+  private void writeClassAssoc(DOMClass lClass, String lddVersionId, String imVersionId, int assocCount, PrintWriter prDocBook) {
     // write the associations
     if (assocCount == 0) {
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("No Associations") + "</entry>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("No Associations") + "</entry>");
       prDocBook.println(
           "                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\"></entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    </row>");
     } else {
 
       // write the associations
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("Association(s)") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Name") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Cardinality") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Class") + "</entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("Association(s)") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Name") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Cardinality") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("Class") + "</entry>");
+      prDocBook.println("    </row>");
 
       // first get array of member classes for this association
       TreeMap<String, String> lPropOrderMap = new TreeMap<>();
@@ -539,28 +563,30 @@ class WriteDOMDocBook extends Object {
         String lCardString = lPropCardMap.get(lDOMPropTitle);
         if (lCardString != null && lMemberClassMap != null) {
           ArrayList<DOMClass> lMemberClassArr = new ArrayList<>(lMemberClassMap.values());
-          lValueString = "";
-          lValueDel = "";
+          String lValueString = "";
+          String lValueDel = "";
           for (DOMClass lMemberClass: lMemberClassArr) {
             lValueString += lValueDel + getClassLink(lMemberClass);
             lValueDel = ", ";
           }
 
-          prDocBook.println("                <row>");
-          prDocBook.println("                    <entry></entry>");
+          prDocBook.println("    <row>");
+          prDocBook.println("     <entry></entry>");
           prDocBook
               .println("                    <entry>" + getValueBreak(lDOMPropTitle) + "</entry>");
-          prDocBook.println("                    <entry>" + lCardString + "</entry>");
-          prDocBook.println("                    <entry>" + lValueString + "</entry>");
-          prDocBook.println("                </row>");
+          prDocBook.println("     <entry>" + lCardString + "</entry>");
+          prDocBook.println("     <entry>" + lValueString + "</entry>");
+          prDocBook.println("    </row>");
         }
       }
     }
-
-    // write the references
+   }
+  
+  // write the references
+  private void writeClassRef(DOMClass lClass, String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     ArrayList<DOMClass> lRefClassArr = getClassReferences(lClass);
-    lValueString = "";
-    lValueDel = "";
+    String lValueString = "";
+    String lValueDel = "";
     if (!(lRefClassArr == null || lRefClassArr.isEmpty())) {
       for (DOMClass lRefClass: lRefClassArr) {
         lValueString += lValueDel + getClassLink(lRefClass);
@@ -569,38 +595,32 @@ class WriteDOMDocBook extends Object {
     } else {
       lValueString = "None";
     }
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
         + getPrompt("Referenced from: ") + lValueString + "</entry>");
-    prDocBook.println("                </row>");
-    prDocBook.println("            </tbody>");
-    prDocBook.println("        </tgroup>");
-    prDocBook.println("        </informaltable>");
-    prDocBook.println("</para>");
-    prDocBook.println("</sect1> ");
-    return;
-  }
-
-  private void writeAttrSection(String lNameSpaceId, String lddVersionId, String imVersionId, PrintWriter prDocBook) {
+    prDocBook.println("    </row>");
+  }  
+  
+  private void writeAttrSection(String lddVersionId, String imVersionId, PrintWriter prDocBook) {
     prDocBook.println("");
-    prDocBook.println("      <!-- =====================Part3 Begin=========================== -->");
+    prDocBook.println("   <!-- =====================Part3 Begin=========================== -->");
     prDocBook.println("");
 
     AttrClassificationDefnDOM lAttrClassificationDefn =
         attrClassificationMap.get(DMDocument.getMasterNameSpaceIdNCLC());
     if (lAttrClassificationDefn != null) {
-      prDocBook.println("        <chapter>");
-      prDocBook.println("           <title>Attributes in the common namespace.</title>");
+      prDocBook.println("  <chapter>");
+      prDocBook.println("     <title>Attributes in the common namespace.</title>");
       prDocBook.println(
           "           <para>These attributes are used by the classes in the common namespace. </para>");
       for (DOMAttr lAttr: lAttrClassificationDefn.attrArr) {
         writeAttr(lAttr, lddVersionId, imVersionId, prDocBook);
       }
-      prDocBook.println("        </chapter>");
+      prDocBook.println("  </chapter>");
       prDocBook.println("");
     }
 
-    prDocBook.println("      <!-- =====================Part3 End=========================== -->");
+    prDocBook.println("   <!-- =====================Part3 End=========================== -->");
     prDocBook.println("");
   }
 
@@ -613,174 +633,179 @@ class WriteDOMDocBook extends Object {
     }
     prDocBook.println("<sect1>");
 
-    prDocBook.println("    <title>" + getValue(lAttr.title) + "  in  "
+    prDocBook.println(" <title>" + getValue(lAttr.title) + "  in  "
         + getClassLink(lAttr.attrParentClass) + lRegistrationStatusInsert + "</title>");
     prDocBook.println("");
     prDocBook.println("<para>");
-    prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
-    prDocBook.println("        <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
-    prDocBook.println("            <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
-    prDocBook.println("            <thead>");
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
+    prDocBook.println(" <informaltable frame=\"all\" colsep=\"1\">");
+    writeAttrBody(lAttr, lddVersionId, imVersionId, lRegistrationStatus, lRegistrationStatusInsert, prDocBook);
+    writeAttrPermVal(lAttr, lddVersionId, imVersionId, lRegistrationStatus, lRegistrationStatusInsert, prDocBook);
+    prDocBook.println("  </informaltable>");    
+    prDocBook.println("</para>");
+    prDocBook.println("</sect1> ");
+    prDocBook.println("");
+  }
+  
+  private void writeAttrBody(DOMAttr lAttr, String lddVersionId, String imVersionId, String lRegistrationStatus, String lRegistrationStatusInsert, PrintWriter prDocBook) {
+    prDocBook.println("  <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
+    prDocBook.println("   <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
+    prDocBook.println("   <thead>");
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry namest=\"c1\" nameend=\"c2\" align=\"left\">"
         + getPrompt("Name: ") + getAttrAnchor(lAttr) + getValue(lAttr.title)
         + lRegistrationStatusInsert + "</entry>");
     String versionIdLiteral = "DD Version: ";
     if (lAttr.getNameSpaceIdNC().compareTo("pds") != 0) versionIdLiteral = "LDD Version: ";
     prDocBook.println(" <entry>" + getPrompt(versionIdLiteral)
     + getValue(lddVersionId) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("IM Version: ")
+    prDocBook.println("     <entry>" + getPrompt("IM Version: ")
     + getValue(imVersionId) + "</entry>");    
-    prDocBook.println("                </row>");
-    prDocBook.println("            </thead>");
-    prDocBook.println("            <tbody>");
+    prDocBook.println("    </row>");
+    prDocBook.println("   </thead>");
+    prDocBook.println("   <tbody>");
     
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
         + getPrompt("Description: ") + getValue(lAttr.definition) + "</entry>");
-//    prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
-//    + getValue(lAttr.versionId) + "</entry>");
-    prDocBook.println("                </row>");
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry>" + getPrompt("Namespace Id: ")
+    prDocBook.println("    </row>");
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry>" + getPrompt("Namespace Id: ")
         + getValue(lAttr.getNameSpaceIdNC()) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Steward: ")
+    prDocBook.println("     <entry>" + getPrompt("Steward: ")
         + getValue(lAttr.getSteward()) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Class Name: ")
+    prDocBook.println("     <entry>" + getPrompt("Class Name: ")
         + getClassLink(lAttr.attrParentClass) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Type: ")
+    prDocBook.println("     <entry>" + getPrompt("Type: ")
         + getDataTypeLink(lAttr.valueType) + "</entry>");
-    prDocBook.println("                </row>");
+    prDocBook.println("    </row>");
     
     
-    prDocBook.println("                <row>");
+    prDocBook.println("    <row>");
 
-    prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ")
+    prDocBook.println("     <entry>" + getPrompt("Minimum Value: ")
         + getValueReplaceTBDWithNone(lAttr.getMinimumValue(true, false)) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ")
+    prDocBook.println("     <entry>" + getPrompt("Maximum Value: ")
         + getValueReplaceTBDWithNone(lAttr.getMaximumValue(true, false)) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ")
+    prDocBook.println("     <entry>" + getPrompt("Minimum Characters: ")
         + getValueReplaceTBDWithNone(lAttr.getMinimumCharacters(true, false)) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ")
+    prDocBook.println("     <entry>" + getPrompt("Maximum Characters: ")
         + getValueReplaceTBDWithNone(lAttr.getMaximumCharacters(true, false)) + "</entry>");
-    prDocBook.println("                </row>");
+    prDocBook.println("    </row>");
 
 
-    prDocBook.println("                <row>");
-    prDocBook.println("                    <entry>" + getPrompt("Unit of Measure Type: ")
+    prDocBook.println("    <row>");
+    prDocBook.println("     <entry>" + getPrompt("Unit of Measure Type: ")
         + getUnitIdLink(lAttr.unit_of_measure_type) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Default Unit Id: ")
+    prDocBook.println("     <entry>" + getPrompt("Default Unit Id: ")
         + getValueReplaceTBDWithNone(lAttr.default_unit_id) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Attribute Concept: ")
+    prDocBook.println("     <entry>" + getPrompt("Attribute Concept: ")
         + getValueReplaceTBDWithNone(lAttr.classConcept) + "</entry>");
-    prDocBook.println("                    <entry>" + getPrompt("Conceptual Domain: ")
+    prDocBook.println("     <entry>" + getPrompt("Conceptual Domain: ")
         + getValueReplaceTBDWithNone(lAttr.dataConcept) + "</entry>");
-    prDocBook.println("                </row>");
+    prDocBook.println("    </row>");
 
-    prDocBook.println("                <row>");
+    prDocBook.println("    <row>");
     prDocBook.println(
         "                    <entry>" + getPrompt("Status: ") + lRegistrationStatus + "</entry>");
     prDocBook.println(
         "                    <entry>" + getPrompt("Nillable: ") + lAttr.isNilable + "</entry>");
-    prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" >"
+    prDocBook.println("     <entry namest=\"c3\" nameend=\"c4\" >"
         + getPrompt("Pattern: ") + getValueReplaceTBDWithNone(lAttr.getPattern(true)) + "</entry>");
-    prDocBook.println("                </row>");
+    prDocBook.println("    </row>");
     prDocBook.println("");
-
+  }
+  
+  private void writeAttrPermVal(DOMAttr lAttr, String lddVersionId, String imVersionId, String lRegistrationStatus, String lRegistrationStatusInsert, PrintWriter prDocBook) {
     if (lAttr.domPermValueArr == null || lAttr.domPermValueArr.size() == 0) {
-      prDocBook.println("                <row>");
-      prDocBook
-          .println("                    <entry>" + getPrompt("Permissible Value(s)") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("No Values") + "</entry>");
-      prDocBook.println(
-          "                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\"></entry>");
-      prDocBook.println("                </row>");
-    } else {
-      prDocBook.println("                <row>");
-      prDocBook
-          .println("                    <entry>" + getPrompt("Permissible Value(s)") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Value") + "</entry>");
-      prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
-          + getPrompt("Value Meaning") + "</entry>");
-      prDocBook.println("                </row>");
+        prDocBook.println("    <row>");
+        prDocBook
+            .println("                    <entry>" + getPrompt("Permissible Value(s)") + "</entry>");
+        prDocBook.println("     <entry>" + getPrompt("No Values") + "</entry>");
+        prDocBook.println(
+            "                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\"></entry>");
+        prDocBook.println("    </row>");
+      } else {
+        prDocBook.println("    <row>");
+        prDocBook
+            .println("                    <entry>" + getPrompt("Permissible Value(s)") + "</entry>");
+        prDocBook.println("     <entry>" + getPrompt("Value") + "</entry>");
+        prDocBook.println("     <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
+            + getPrompt("Value Meaning") + "</entry>");
+        prDocBook.println("    </row>");
 
-      for (DOMProp lProp: lAttr.domPermValueArr) {
-        if (!(lProp.domObject instanceof DOMPermValDefn)) {
-          continue;
-        }
-        DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
-        if (lPermValueDefn.value.compareTo("...") == 0) {
-          continue;
-        }
-        lRegistrationStatusInsert = "";
-        if (lPermValueDefn.registrationStatus.compareTo("Retired") == 0) {
-          lRegistrationStatusInsert = " - " + DMDocument.Literal_DEPRECATED;
-        }
+        for (DOMProp lProp: lAttr.domPermValueArr) {
+          if (!(lProp.domObject instanceof DOMPermValDefn)) {
+            continue;
+          }
+          DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
+          if (lPermValueDefn.value.compareTo("...") == 0) {
+            continue;
+          }
+          lRegistrationStatusInsert = "";
+          if (lPermValueDefn.registrationStatus.compareTo("Retired") == 0) {
+            lRegistrationStatusInsert = " - " + DMDocument.Literal_DEPRECATED;
+          }
 
-        String lDependValue = lAttr.valueDependencyMap.get(lPermValueDefn.value);
-        String lDependClause = "";
-        if (lDependValue != null) {
-          lDependClause = " (" + lDependValue + ")";
-        }
+          String lDependValue = lAttr.valueDependencyMap.get(lPermValueDefn.value);
+          String lDependClause = "";
+          if (lDependValue != null) {
+            lDependClause = " (" + lDependValue + ")";
+          }
 
-        String lValueMeaning = lPermValueDefn.value_meaning;
-        if (lValueMeaning == null) {
-          lValueMeaning = "TBD_value_meaning";
-        }
+          String lValueMeaning = lPermValueDefn.value_meaning;
+          if (lValueMeaning == null) {
+            lValueMeaning = "TBD_value_meaning";
+          }
 
-        if (lAttr.title.compareTo("pattern") == 0) {
-          if ((lValueMeaning == null) || (lValueMeaning.indexOf("TBD") == 0)) {
-            lValueMeaning = "";
+          if (lAttr.title.compareTo("pattern") == 0) {
+            if ((lValueMeaning == null) || (lValueMeaning.indexOf("TBD") == 0)) {
+              lValueMeaning = "";
+            }
+          }
+          prDocBook.println("    <row>");
+          prDocBook.println("     <entry></entry>");
+          prDocBook.println(
+              "                    <entry>" + getValueAnchor(lAttr, getValue(lPermValueDefn.value))
+                  + getValueBreak(getValue(lPermValueDefn.value)) + getValue(lDependClause)
+                  + lRegistrationStatusInsert + "</entry>");
+          prDocBook.println("     <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
+              + getValue(lValueMeaning) + "</entry>");
+          prDocBook.println("    </row>");
+        }
+      }
+      if (!(lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty())) {
+
+        for (PermValueExtDefn lPermValueExt: lAttr.permValueExtArr) {
+          if (lPermValueExt.permValueExtArr == null || lPermValueExt.permValueExtArr.isEmpty()) {
+            continue;
+          }
+          prDocBook.println("    <row>");
+          prDocBook.println("     <entry>"
+              + getPrompt("Extended Value(s) for: " + getValueBreak(lPermValueExt.xpath))
+              + "</entry>");
+          prDocBook.println("     <entry>" + getPrompt("Value") + "</entry>");
+          prDocBook.println("     <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
+              + getPrompt("Value Meaning") + "</entry>");
+          prDocBook.println("    </row>");
+
+          for (PermValueDefn lPermValueDefn: lPermValueExt.permValueExtArr) {
+            prDocBook.println("    <row>");
+            prDocBook.println("     <entry></entry>");
+            prDocBook.println(
+                "                    <entry>" + getValueBreak(lPermValueDefn.value) + "</entry>");
+            prDocBook
+                .println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
+                    + getValue(lPermValueDefn.value_meaning) + "</entry>");
+            prDocBook.println("    </row>");
           }
         }
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry></entry>");
-        prDocBook.println(
-            "                    <entry>" + getValueAnchor(lAttr, getValue(lPermValueDefn.value))
-                + getValueBreak(getValue(lPermValueDefn.value)) + getValue(lDependClause)
-                + lRegistrationStatusInsert + "</entry>");
-        prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
-            + getValue(lValueMeaning) + "</entry>");
-        prDocBook.println("                </row>");
       }
-    }
-    if (!(lAttr.permValueExtArr == null || lAttr.permValueExtArr.isEmpty())) {
 
-      for (PermValueExtDefn lPermValueExt: lAttr.permValueExtArr) {
-        if (lPermValueExt.permValueExtArr == null || lPermValueExt.permValueExtArr.isEmpty()) {
-          continue;
-        }
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry>"
-            + getPrompt("Extended Value(s) for: " + getValueBreak(lPermValueExt.xpath))
-            + "</entry>");
-        prDocBook.println("                    <entry>" + getPrompt("Value") + "</entry>");
-        prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
-            + getPrompt("Value Meaning") + "</entry>");
-        prDocBook.println("                </row>");
-
-        for (PermValueDefn lPermValueDefn: lPermValueExt.permValueExtArr) {
-          prDocBook.println("                <row>");
-          prDocBook.println("                    <entry></entry>");
-          prDocBook.println(
-              "                    <entry>" + getValueBreak(lPermValueDefn.value) + "</entry>");
-          prDocBook
-              .println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
-                  + getValue(lPermValueDefn.value_meaning) + "</entry>");
-          prDocBook.println("                </row>");
-        }
-      }
-    }
-
-    prDocBook.println("            </tbody>");
-    prDocBook.println("        </tgroup>");
-    prDocBook.println("        </informaltable>");
-    prDocBook.println("</para>");
-    prDocBook.println("</sect1> ");
-    prDocBook.println("");
+      prDocBook.println("   </tbody>");
+      prDocBook.println("  </tgroup>");
   }
 
   private void writeDataTypeSection(String lNameSpaceIdNC, PrintWriter prDocBook) {
@@ -807,9 +832,9 @@ class WriteDOMDocBook extends Object {
       return;
     }
 
-    prDocBook.println("    <chapter>");
-    prDocBook.println("       <title>Data Types in the common namespace.</title>");
-    prDocBook.println("       <para>These classes define the data types. </para>");
+    prDocBook.println(" <chapter>");
+    prDocBook.println("    <title>Data Types in the common namespace.</title>");
+    prDocBook.println("    <para>These classes define the data types. </para>");
 
     // Write the data types
     String lSchemaBaseType = "None", lMinChar = "None", lMaxChar = "None", lMinVal = "None",
@@ -876,80 +901,79 @@ class WriteDOMDocBook extends Object {
           .println("    <title>" + getClassAnchor(lClass) + getValue(lClass.title) + "</title>");
       prDocBook.println("");
       prDocBook.println("<para>");
-      prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
-      prDocBook.println("        <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
-      prDocBook.println("            <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <thead>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
+      prDocBook.println(" <informaltable frame=\"all\" colsep=\"1\">");
+      prDocBook.println("  <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
+      prDocBook.println("   <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <thead>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
           + getPrompt("Name: ") + getValue(lClass.title) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Version Id: ")
+      prDocBook.println("     <entry>" + getPrompt("Version Id: ")
           + getValue(lClass.versionId) + "</entry>");
-      prDocBook.println("                </row>");
-      prDocBook.println("            </thead>");
-      prDocBook.println("            <tbody>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+      prDocBook.println("    </row>");
+      prDocBook.println("   </thead>");
+      prDocBook.println("   <tbody>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
           + getPrompt("Description ") + getValue(lClass.definition) + "</entry>");
-      prDocBook.println("                </row>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("Schema Base Type:  ")
+      prDocBook.println("    </row>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("Schema Base Type:  ")
           + getValueReplaceTBDWithNone(lSchemaBaseType) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("") + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("") + "</entry>");
-      prDocBook.println("                </row>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + getPrompt("Minimum Value: ")
+      prDocBook.println("     <entry>" + getPrompt("") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("") + "</entry>");
+      prDocBook.println("     <entry>" + getPrompt("") + "</entry>");
+      prDocBook.println("    </row>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + getPrompt("Minimum Value: ")
           + getValueReplaceTBDWithNone(lMinVal) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Maximum Value: ")
+      prDocBook.println("     <entry>" + getPrompt("Maximum Value: ")
           + getValueReplaceTBDWithNone(lMaxVal) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Minimum Characters: ")
+      prDocBook.println("     <entry>" + getPrompt("Minimum Characters: ")
           + getValueReplaceTBDWithNone(lMinChar) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Maximum Characters: ")
+      prDocBook.println("     <entry>" + getPrompt("Maximum Characters: ")
           + getValueReplaceTBDWithNone(lMaxChar) + "</entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    </row>");
 
       if (lPatternArr == null || lPatternArr.isEmpty()) {
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry>" + "</entry>");
-        prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
+        prDocBook.println("    <row>");
+        prDocBook.println("     <entry>" + "</entry>");
+        prDocBook.println("     <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
             + getPrompt("No Pattern") + "</entry>");
-        prDocBook.println("                </row>");
+        prDocBook.println("    </row>");
       } else {
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry>" + "</entry>");
-        prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
+        prDocBook.println("    <row>");
+        prDocBook.println("     <entry>" + "</entry>");
+        prDocBook.println("     <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
             + getPrompt("Pattern") + "</entry>");
-        prDocBook.println("                </row>");
+        prDocBook.println("    </row>");
         for (String lPattern: lPatternArr) {
-          prDocBook.println("                <row>");
-          prDocBook.println("                    <entry>" + "</entry>");
+          prDocBook.println("    <row>");
+          prDocBook.println("     <entry>" + "</entry>");
           prDocBook
               .println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
                   + getValue(lPattern) + "</entry>");
-          prDocBook.println("                </row>");
+          prDocBook.println("    </row>");
         }
       }
 
       prDocBook.println("");
-      prDocBook.println("            </tbody>");
-      prDocBook.println("        </tgroup>");
-      prDocBook.println("        </informaltable>");
+      prDocBook.println("   </tbody>");
+      prDocBook.println("  </tgroup>");
+      prDocBook.println("  </informaltable>");
       prDocBook.println("</para>");
       prDocBook.println("</sect1> ");
     }
-    prDocBook.println("    </chapter>");
+    prDocBook.println(" </chapter>");
     prDocBook.println("");
-    prDocBook.println("      <!-- ===================== Part4a End=========================== -->");
+    prDocBook.println("   <!-- ===================== Part4a End=========================== -->");
     prDocBook.println("");
   }
 
   private void writeUnitsSection(String lNameSpaceIdNC, PrintWriter prDocBook) {
-    ArrayList<String> lPatternArr = new ArrayList<>();
     prDocBook.println("");
     prDocBook
         .println("      <!-- =====================Part4b Begin=========================== -->");
@@ -972,9 +996,9 @@ class WriteDOMDocBook extends Object {
       return;
     }
 
-    prDocBook.println("    <chapter>");
-    prDocBook.println("       <title>Units of Measure in the common namespace.</title>");
-    prDocBook.println("       <para>These classes define the units of measure. </para>");
+    prDocBook.println(" <chapter>");
+    prDocBook.println("    <title>Units of Measure in the common namespace.</title>");
+    prDocBook.println("    <para>These classes define the units of measure. </para>");
 
     for (DOMClass lClass: sortUnitsArr) {
       lDOMPermValueArr = new ArrayList<>();
@@ -992,37 +1016,37 @@ class WriteDOMDocBook extends Object {
           .println("    <title>" + getClassAnchor(lClass) + getValue(lClass.title) + "</title>");
       prDocBook.println("");
       prDocBook.println("<para>");
-      prDocBook.println("    <informaltable frame=\"all\" colsep=\"1\">");
-      prDocBook.println("        <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
-      prDocBook.println("            <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
-      prDocBook.println("            <thead>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
+      prDocBook.println(" <informaltable frame=\"all\" colsep=\"1\">");
+      prDocBook.println("  <tgroup cols=\"4\" align=\"left\" colsep=\"1\" rowsep=\"1\">");
+      prDocBook.println("   <colspec colnum=\"1\" colname=\"c1\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"2\" colname=\"c2\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"3\" colname=\"c3\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <colspec colnum=\"4\" colname=\"c4\" colwidth=\"1.0*\"/>");
+      prDocBook.println("   <thead>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry namest=\"c1\" nameend=\"c3\" align=\"left\">"
           + getPrompt("Name:  ") + getValue(lClass.title) + "</entry>");
-      prDocBook.println("                    <entry>" + getPrompt("Version Id:  ")
+      prDocBook.println("     <entry>" + getPrompt("Version Id:  ")
           + getValue(lClass.versionId) + "</entry>");
-      prDocBook.println("                </row>");
-      prDocBook.println("            </thead>");
-      prDocBook.println("            <tbody>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
+      prDocBook.println("    </row>");
+      prDocBook.println("   </thead>");
+      prDocBook.println("   <tbody>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry namest=\"c1\" nameend=\"c4\" align=\"left\">"
           + getPrompt("Description: ") + getValue(lClass.definition) + "</entry>");
-      prDocBook.println("                </row>");
-      prDocBook.println("                <row>");
-      prDocBook.println("                    <entry>" + "</entry>");
-      prDocBook.println("                    <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
+      prDocBook.println("    </row>");
+      prDocBook.println("    <row>");
+      prDocBook.println("     <entry>" + "</entry>");
+      prDocBook.println("     <entry namest=\"c2\" nameend=\"c4\" align=\"left\">"
           + getPrompt("Unit Id") + "</entry>");
-      prDocBook.println("                </row>");
+      prDocBook.println("    </row>");
 
       if (!lDOMPermValueArr.isEmpty()) {
         for (DOMProp lDOMProp: lDOMPermValueArr) {
           if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMPermValDefn) {
             DOMPermValDefn lDOMPermValDefn = (DOMPermValDefn) lDOMProp.domObject;
-            prDocBook.println("                <row>");
-            prDocBook.println("                    <entry>" + "</entry>");
+            prDocBook.println("    <row>");
+            prDocBook.println("     <entry>" + "</entry>");
             prDocBook.println(
                 "                    <entry>" + getValue(lDOMPermValDefn.value) + "</entry>");
             String lValueMeaning = lDOMPermValDefn.value_meaning;
@@ -1032,30 +1056,30 @@ class WriteDOMDocBook extends Object {
             prDocBook
                 .println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
                     + getValue(lValueMeaning) + "</entry>");
-            prDocBook.println("                </row>");
+            prDocBook.println("    </row>");
           }
         }
       } else {
-        prDocBook.println("                <row>");
-        prDocBook.println("                    <entry>" + "</entry>");
-        prDocBook.println("                    <entry>" + "None" + "</entry>");
-        prDocBook.println("                    <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
+        prDocBook.println("    <row>");
+        prDocBook.println("     <entry>" + "</entry>");
+        prDocBook.println("     <entry>" + "None" + "</entry>");
+        prDocBook.println("     <entry namest=\"c3\" nameend=\"c4\" align=\"left\">"
             + getValue("") + "</entry>");
-        prDocBook.println("                </row>");
+        prDocBook.println("    </row>");
       }
 
       prDocBook.println("");
-      prDocBook.println("            </tbody>");
-      prDocBook.println("        </tgroup>");
-      prDocBook.println("        </informaltable>");
+      prDocBook.println("   </tbody>");
+      prDocBook.println("  </tgroup>");
+      prDocBook.println("  </informaltable>");
       prDocBook.println("</para>");
       prDocBook.println("</sect1> ");
     }
 
     // finalize Part 4
-    prDocBook.println("         </chapter>");
+    prDocBook.println("   </chapter>");
     prDocBook.println("");
-    prDocBook.println("      <!-- ===================== Part4b End=========================== -->");
+    prDocBook.println("   <!-- ===================== Part4b End=========================== -->");
     prDocBook.println("");
   }
 
@@ -1064,146 +1088,144 @@ class WriteDOMDocBook extends Object {
     prDocBook.println(
         "<?xml-model href=\"http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng\" schematypens=\"http://relaxng.org/ns/structure/1.0\"?>");
     prDocBook.println("<book xmlns=\"http://docbook.org/ns/docbook\"");
-    prDocBook.println("    xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
-    prDocBook.println("    <info>");
-    prDocBook.println("        <title>" + DMDocument.ddDocTitle + "</title>");
-    prDocBook.println("        <subtitle>Abridged - Version "
+    prDocBook.println(" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"5.0\">");
+    prDocBook.println(" <info>");
+    prDocBook.println("  <title>" + DMDocument.ddDocTitle + "</title>");
+    prDocBook.println("  <subtitle>Abridged - Version "
         + DMDocument.getMasterPDSSchemaFileDefn().ont_version_id + "</subtitle>");
-    prDocBook.println("        <author>");
-    prDocBook.println("            <orgname>" + DMDocument.ddDocTeam + "</orgname>");
-    prDocBook.println("        </author>");
-    prDocBook.println("        <releaseinfo>Generated from Information Model Version "
+    prDocBook.println("  <author>");
+    prDocBook.println("   <orgname>" + DMDocument.ddDocTeam + "</orgname>");
+    prDocBook.println("  </author>");
+    prDocBook.println("  <releaseinfo>Generated from Information Model Version "
         + DMDocument.getMasterPDSSchemaFileDefn().ont_version_id + " on " + DMDocument.sTodaysDate
         + "</releaseinfo>");
     prDocBook.println(
-        "        <releaseinfo>Contains namespace ids: " + writtenNamespaceIds + "</releaseinfo>");
-    prDocBook.println("        <date>" + DMDocument.sTodaysDate + "</date>");
-    prDocBook.println("    </info>");
-    prDocBook.println("        ");
-    prDocBook.println("        <chapter>");
-    prDocBook.println("            <title>Introduction</title>");
+        "    <releaseinfo>Contains namespace ids: " + writtenNamespaceIds + "</releaseinfo>");
+    prDocBook.println("  <date>" + DMDocument.sTodaysDate + "</date>");
+    prDocBook.println(" </info>");
+    prDocBook.println("  ");
+    prDocBook.println("  <chapter>");
+    prDocBook.println("   <title>Introduction</title>");
     prDocBook.println(
-        "            <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
-    prDocBook.println("            <para>");
-    prDocBook.println("            </para>");
-    prDocBook.println("            <sect1>");
-    prDocBook.println("                <title>Audience</title>");
+        "    <para>The Data Dictionary defines the organization and components of product labels. Components of a product label include classes and their attributes.</para>");
+    prDocBook.println("   <para>");
+    prDocBook.println("   </para>");
+    prDocBook.println("   <sect1>");
+    prDocBook.println("    <title>Audience</title>");
     prDocBook.println(
-        "                <para>The Data Dictionary - Abridged - has been abstracted from the unabridged version with the needs of data providers and data end users in mind. It contains full definitions but not all the fine detail or repetition necessary to support the underlying Information Model.</para>");
-    prDocBook.println("                <para>");
-    prDocBook.println("                </para>");
-    prDocBook.println("            </sect1>");
-    prDocBook.println("            <sect1>");
-    prDocBook.println("                <title>Acknowledgements</title>");
+        "    <para>The Data Dictionary - Abridged - has been abstracted from the unabridged version with the needs of data providers and data end users in mind. It contains full definitions but not all the fine detail or repetition necessary to support the underlying Information Model.</para>");
+    prDocBook.println("    <para>");
+    prDocBook.println("    </para>");
+    prDocBook.println("   </sect1>");
+    prDocBook.println("   <sect1>");
+    prDocBook.println("    <title>Acknowledgements</title>");
     prDocBook.println(
-        "                <para>The Data Dictionary and the Information Model is a joint effort involving discipline experts functioning as a data design working group.</para>");
-    prDocBook.println("                <para>");
-    prDocBook.println("                </para>");
-    prDocBook.println("            </sect1>");
-    prDocBook.println("            <sect1>");
-    prDocBook.println("                <title>Scope</title>");
+        "    <para>The Data Dictionary and the Information Model is a joint effort involving discipline experts functioning as a data design working group.</para>");
+    prDocBook.println("    <para>");
+    prDocBook.println("    </para>");
+    prDocBook.println("   </sect1>");
+    prDocBook.println("   <sect1>");
+    prDocBook.println("    <title>Scope</title>");
     prDocBook.println(
-        "                <para>The Data Dictionary defines the common and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
-    prDocBook.println("                <para>");
-    prDocBook.println("                </para>");
-    prDocBook.println("            </sect1>");
-    prDocBook.println("            <sect1>");
-    prDocBook.println("                <title>Applicable Documents</title>");
-    prDocBook.println("                <para>");
-    prDocBook
-        .println("                    <emphasis role=\"bold\">Controlling Documents</emphasis>");
+        "    <para>The Data Dictionary defines the common and discipline level classes and attributes used to create product labels. It also defines the meta-attributes (i.e. attributes about attributes) used to define attributes. This abridged version includes only one entry for each attribute where the unabridge version includes an entry for each use of an attribute in a class.</para>");
+    prDocBook.println("    <para>");
+    prDocBook.println("    </para>");
+    prDocBook.println("   </sect1>");
+    prDocBook.println("   <sect1>");
+    prDocBook.println("    <title>Applicable Documents</title>");
+    prDocBook.println("    <para>");
+    prDocBook.println("     <emphasis role=\"bold\">Controlling Documents</emphasis>");
     prDocBook.println("");
-    prDocBook.println("                    <itemizedlist>");
-    prDocBook.println("                        <listitem>");
-    prDocBook.println("                            <para>");
+    prDocBook.println("     <itemizedlist>");
+    prDocBook.println("         <listitem>");
+    prDocBook.println("             <para>");
     prDocBook.println(
-        "                                Information Model Specification - The Information Model is used as the source for class, attribute, and data type definitions. The model is presented in document format as the Information Model Specification.");
-    prDocBook.println("                            </para>");
-    prDocBook.println("                        </listitem>");
-    prDocBook.println("                        <listitem>");
-    prDocBook.println("                            <para>");
+        "    Information Model Specification - The Information Model is used as the source for class, attribute, and data type definitions. The model is presented in document format as the Information Model Specification.");
+    prDocBook.println("             </para>");
+    prDocBook.println("         </listitem>");
+    prDocBook.println("         <listitem>");
+    prDocBook.println("             <para>");
     prDocBook.println(
-        "                                ISO/IEC 11179:3 Registry Metamodel and Basic Attributes Specification, 2003. - The ISO/IEC 11179 specification provides the schema for the data dictionary.");
-    prDocBook.println("                            </para>");
-    prDocBook.println("                        </listitem>");
-    prDocBook.println("                    </itemizedlist>");
+        "    ISO/IEC 11179:3 Registry Metamodel and Basic Attributes Specification, 2003. - The ISO/IEC 11179 specification provides the schema for the data dictionary.");
+    prDocBook.println("             </para>");
+    prDocBook.println("         </listitem>");
+    prDocBook.println("     </itemizedlist>");
     if (!DMDocument.importJSONAttrFlag) {
-      prDocBook
-          .println("                    <emphasis role=\"bold\">Reference Documents</emphasis>");
-      prDocBook.println("                    <itemizedlist>");
-      prDocBook.println("                        <listitem>");
-      prDocBook.println("                            <para>");
+      prDocBook.println("     <emphasis role=\"bold\">Reference Documents</emphasis>");
+      prDocBook.println("     <itemizedlist>");
+      prDocBook.println("         <listitem>");
+      prDocBook.println("             <para>");
       prDocBook.println(
-          "                                Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
-      prDocBook.println("                            </para>");
-      prDocBook.println("                        </listitem>");
-      prDocBook.println("                        ");
-      prDocBook.println("                    </itemizedlist>");
+          "    Planetary Science Data Dictionary - The online version of the PDS3 data dictionary was used as the source for a few data elements being carried over from the PDS3 data standards.");
+      prDocBook.println("             </para>");
+      prDocBook.println("         </listitem>");
+      prDocBook.println("         ");
+      prDocBook.println("     </itemizedlist>");
     }
-    prDocBook.println("                </para>");
-    prDocBook.println("            </sect1>");
-    prDocBook.println("            <sect1>");
-    prDocBook.println("                <title>Terminology</title>");
+    prDocBook.println("    </para>");
+    prDocBook.println("   </sect1>");
+    prDocBook.println("   <sect1>");
+    prDocBook.println("    <title>Terminology</title>");
     prDocBook.println(
-        "                <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
+        "    <para>This document uses very specific engineering terminology to describe the various structures involved.  It is particularly important that readers who have absorbed the Standards Reference bear in mind that terms which are familiar in that context can have very different meanings in the present document. </para>");
     prDocBook.println(
-        "                <para>Following are some definitions of essential terms used throughout this document.</para>");
-    prDocBook.println("                <itemizedlist>");
-    prDocBook.println("                    <listitem>");
+        "    <para>Following are some definitions of essential terms used throughout this document.</para>");
+    prDocBook.println("    <itemizedlist>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, 'color' and 'length' are possible attributes. </para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>An <emphasis role=\"italic\">attribute</emphasis> is a property or characteristic that provides a unit of information. For example, 'color' and 'length' are possible attributes. </para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic - a template from which individual members of the family may be constructed.");
-    prDocBook.println("                        </para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">class</emphasis> is a set of attributes (including a name) which defines a family.  A class is generic - a template from which individual members of the family may be constructed.");
+    prDocBook.println("         </para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">conceptual object</emphasis> is an object which is intangible (and, because it is intangible, does not fit into a digital archive).  Examples of 'conceptual objects' include the Cassini mission and NASA's strategic plan for solar system exploration.  Note that a PDF describing the Cassini mission is a digital object, not a conceptual object (nor a component of a conceptual object). </para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">data element</emphasis> is a unit of data for which the definition, identification, representation and <emphasis role=\"italic\">permissible values</emphasis> are specified by means of a set of attributes. For example, the concept of a <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis> is used to indicate whether the lamp used for onboard camera calibration was turned on or off during the capture of an image. The <emphasis role=\"italic\"> data element</emphasis> aspect of this concept is the named attribute (or data element)  <emphasis role=\"italic\">calibration_lamp_state_flag</emphasis>.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">data object</emphasis> is a physical, conceptual, or digital object.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data - for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">digital object</emphasis> is an object which is real data - for example, a binary image of a redwood tree or an ASCII table of atmospheric composition versus altitude.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para><emphasis role=\"italic\">Formal</emphasis> as used in the definition of attributes that are names indicates that an established procedure was involved in creating the name.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para><emphasis role=\"italic\">Formal</emphasis> as used in the definition of attributes that are names indicates that an established procedure was involved in creating the name.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">unique identifier</emphasis> is a special type of identifier used to provide a reference number which is unique in a context.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">unique identifier</emphasis> is a special type of identifier used to provide a reference number which is unique in a context.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para><emphasis role=\"italic\">Local</emphasis> refers to the context within a single label.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para><emphasis role=\"italic\">Local</emphasis> refers to the context within a single label.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para><emphasis role=\"italic\">Logical</emphasis> as used in the definition of logical identifier indicates that the identifier logically groups a set of objects. </para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para><emphasis role=\"italic\">Logical</emphasis> as used in the definition of logical identifier indicates that the identifier logically groups a set of objects. </para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                    <listitem>");
+        "      <para>A <emphasis role=\"italic\">physical object</emphasis> is an object which is physical or tangible (and, therefore, does not itself fit into a digital archive).  Examples of 'physical objects' include the planet Saturn and the Venus Express magnetometer.  Note that an ASCII file describing Saturn is a digital object, not a physical object (nor a component of a physical object).  </para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("     <listitem>");
     prDocBook.println(
-        "                        <para>A <emphasis role=\"italic\">resource</emphasis> is the target (referent) of any Uniform Resource Identifier; the thing to which a URI points.</para>");
-    prDocBook.println("                    </listitem>");
-    prDocBook.println("                </itemizedlist>");
+        "      <para>A <emphasis role=\"italic\">resource</emphasis> is the target (referent) of any Uniform Resource Identifier; the thing to which a URI points.</para>");
+    prDocBook.println("     </listitem>");
+    prDocBook.println("    </itemizedlist>");
     prDocBook.println("");
-    prDocBook.println("                <para>");
-    prDocBook.println("                </para>");
-    prDocBook.println("            </sect1>");
-    prDocBook.println("        </chapter>");
+    prDocBook.println("    <para>");
+    prDocBook.println("    </para>");
+    prDocBook.println("   </sect1>");
+    prDocBook.println("  </chapter>");
     prDocBook.println("");
     return;
   }
