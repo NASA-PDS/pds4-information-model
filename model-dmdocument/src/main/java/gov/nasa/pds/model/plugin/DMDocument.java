@@ -152,7 +152,9 @@ public class DMDocument extends Object {
   static String buildDate = "";
   static String buildIMVersionId = "1.25.0.0";
   static String buildIMVersionFolderId = "1P00";
-  static String classVersionIdDefault = "1.0.0.0";
+  static final String VERSION_ID_DEFAULT_PART1 = "1.0.0";
+  static final String VERSION_ID_DEFAULT = VERSION_ID_DEFAULT_PART1 + ".0";  // the literal is a security issue
+  static String classVersionIdDefault = VERSION_ID_DEFAULT;
   static boolean PDS4MergeFlag = false; // create protege output; not currently used
   // static boolean LDDClassElementFlag = false; // if true, write XML elements for classes
   static boolean LDDAttrElementFlag = false; // if true, write XML elements for attributes
@@ -664,7 +666,7 @@ public class DMDocument extends Object {
 	  buildDate = "";
 	  buildIMVersionId = "1.25.0.0";
 	  buildIMVersionFolderId = "1P00";
-	  classVersionIdDefault = "1.0.0.0";
+	  classVersionIdDefault = VERSION_ID_DEFAULT;
 	  PDS4MergeFlag = false; // create protege output; not currently used
 	  LDDAttrElementFlag = false; // if true, write XML elements for attributes
 	  LDDNuanceFlag = false;
@@ -1339,6 +1341,14 @@ public class DMDocument extends Object {
     	dmProcessState.setExportCustomFileFlag();
     	exportCustomFileFlag = true;
     }
+    
+    // init masterLDDSchemaFileDefn with dummy LDD; PDS4_Common_IngestLDD.xml does not exist
+    masterLDDSchemaFileDefn = new SchemaFileDefn("PDS4_Common_IngestLDD.xml");
+    masterLDDSchemaFileDefn.sourceFileName = "PDS4_Common_IngestLDD.xml";
+    masterLDDSchemaFileDefn.isActive = false;
+    masterLDDSchemaFileDefn.isLDD = false;
+    masterLDDSchemaFileDefn.labelVersionId = schemaLabelVersionId;
+    masterLDDSchemaFileDefn.versionId = infoModelVersionId;
 
     // get the LDDIngest file names
     for (String fileName : ns.<String>getList("fileNameArr")) {

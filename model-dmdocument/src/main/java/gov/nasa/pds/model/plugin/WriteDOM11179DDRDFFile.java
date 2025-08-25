@@ -38,7 +38,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 class WriteDOM11179DDRDFFile extends Object {
-  String kbId = "kb:";
+  static final String NSID = "kb:";
+  static final String VERSION_IDENTIFIER = "versionIdentifier";
 
   public WriteDOM11179DDRDFFile() {
     return;
@@ -69,33 +70,33 @@ class WriteDOM11179DDRDFFile extends Object {
       if (!(lAttr.isUsedInClass && lAttr.isAttribute)) {
         continue;
       }
-      pr11179.println("<" + kbId + "DataElement rdf:about=\"&kb;" + lAttr.deDataIdentifier + "\"");
-      pr11179.println("	 " + kbId + "dataIdentifier=\"" + lAttr.deDataIdentifier + "\"");
-      pr11179.println("	 " + kbId + "versionIdentifier=\"" + lAttr.versionIdentifierValue + "\"");
+      pr11179.println("<" + NSID + "DataElement rdf:about=\"&kb;" + lAttr.deDataIdentifier + "\"");
+      pr11179.println("	 " + NSID + "dataIdentifier=\"" + lAttr.deDataIdentifier + "\"");
+      pr11179.println("	 " + NSID + VERSION_IDENTIFIER + "=\"" + lAttr.versionIdentifierValue + "\"");
       pr11179.println("	 rdfs:label=\"" + lAttr.deDataIdentifier + "\">");
       pr11179.println(
-          "	<" + kbId + "registeredBy rdf:resource=\"&kb;" + lAttr.registeredByValue + "\"/>");
-      // pr11179.println(" <" + kbId + "typedBy rdf:resource=\"&kb;RC_ZZTEMP\"/>");
+          "	<" + NSID + "registeredBy rdf:resource=\"&kb;" + lAttr.registeredByValue + "\"/>");
+      // pr11179.println(" <" + KB_NS + "typedBy rdf:resource=\"&kb;RC_ZZTEMP\"/>");
       pr11179.println(
-          "	<" + kbId + "steward rdf:resource=\"&kb;" + DMDocument.stewardValue + "\"/>");
+          "	<" + NSID + "steward rdf:resource=\"&kb;" + DMDocument.stewardValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "submitter rdf:resource=\"&kb;" + DMDocument.submitterValue + "\"/>");
-      pr11179.println("	<" + kbId + "terminologicalEntry rdf:resource=\"&kb;"
+          "	<" + NSID + "submitter rdf:resource=\"&kb;" + DMDocument.submitterValue + "\"/>");
+      pr11179.println("	<" + NSID + "terminologicalEntry rdf:resource=\"&kb;"
           + lAttr.teDataIdentifier + "\"/>");
-      pr11179.println("	<" + kbId + "administrationRecord rdf:resource=\"&kb;"
+      pr11179.println("	<" + NSID + "administrationRecord rdf:resource=\"&kb;"
           + lAttr.administrationRecordValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "expressedBy rdf:resource=\"&kb;" + "DEC_" + lAttr.classConcept + "\"/>");
+          "	<" + NSID + "expressedBy rdf:resource=\"&kb;" + "DEC_" + lAttr.classConcept + "\"/>");
       if (lAttr.isEnumerated) {
         pr11179.println(
-            "	<" + kbId + "representing rdf:resource=\"&kb;" + lAttr.evdDataIdentifier + "\"/>");
+            "	<" + NSID + "representing rdf:resource=\"&kb;" + lAttr.evdDataIdentifier + "\"/>");
       } else {
         pr11179.println(
-            "	<" + kbId + "representing rdf:resource=\"&kb;" + lAttr.nevdDataIdentifier + "\"/>");
+            "	<" + NSID + "representing rdf:resource=\"&kb;" + lAttr.nevdDataIdentifier + "\"/>");
       }
-      pr11179.println("	<" + kbId + "registrationAuthorityIdentifier rdf:resource=\"&kb;"
+      pr11179.println("	<" + NSID + "registrationAuthorityIdentifier rdf:resource=\"&kb;"
           + lAttr.registrationAuthorityIdentifierValue + "\"/>");
-      pr11179.println("</" + kbId + "DataElement>");
+      pr11179.println("</" + NSID + "DataElement>");
       pr11179.println(" ");
 
       // print VD
@@ -114,57 +115,55 @@ class WriteDOM11179DDRDFFile extends Object {
   private void printAttrISOVD(DOMAttr lAttr, PrintWriter pr11179) {
 
     if (lAttr.isEnumerated) {
-      pr11179.println("<" + kbId + "EnumeratedValueDomain rdf:about=\"&pdsns;"
+      pr11179.println("<" + NSID + "EnumeratedValueDomain rdf:about=\"&pdsns;"
           + lAttr.evdDataIdentifier + "\"");
     } else {
-      pr11179.println("<" + kbId + "NonEnumeratedValueDomain rdf:about=\"&pdsns;"
+      pr11179.println("<" + NSID + "NonEnumeratedValueDomain rdf:about=\"&pdsns;"
           + lAttr.nevdDataIdentifier + "\"");
     }
 
-    pr11179.println("  " + kbId + "dataIdentifier=\"" + lAttr.dataIdentifier + "\"");
-    pr11179.println("  " + kbId + "versionIdentifier=\"" + lAttr.versionIdentifierValue + "\"");
-    // pr11179.println(" " + kbId + "maximumCharacterQuantity=\"255\"");
+    pr11179.println("  " + NSID + "dataIdentifier=\"" + lAttr.dataIdentifier + "\"");
+    pr11179.println("  " + NSID + VERSION_IDENTIFIER + "=\"" + lAttr.versionIdentifierValue + "\"");
 
-    pr11179.println("  " + kbId + "maximumCharacterQuantity=\"" + lAttr.maximum_characters + "\"");
-    pr11179.println("  " + kbId + "minimumCharacterQuantity=\"" + lAttr.minimum_characters + "\"");
-    pr11179.println("  " + kbId + "maximumValue=\"" + lAttr.maximum_value + "\"");
-    pr11179.println("  " + kbId + "minimumValue=\"" + lAttr.minimum_value + "\"");
-    pr11179.println("  " + kbId + "pattern=\"" + DOMInfoModel.escapeXMLChar(lAttr.pattern) + "\"");
-    pr11179.println("  " + kbId + "valueDomainFormat=\"" + lAttr.format + "\"");
-    // pr11179.println(" " + kbId + "unitOfMeasure=\"" + lAttr.unit_of_measure_type + "\"");
-    pr11179.println("  " + kbId + "defaultUnitId=\"" + lAttr.default_unit_id + "\"");
+    pr11179.println("  " + NSID + "maximumCharacterQuantity=\"" + lAttr.maximum_characters + "\"");
+    pr11179.println("  " + NSID + "minimumCharacterQuantity=\"" + lAttr.minimum_characters + "\"");
+    pr11179.println("  " + NSID + "maximumValue=\"" + lAttr.maximum_value + "\"");
+    pr11179.println("  " + NSID + "minimumValue=\"" + lAttr.minimum_value + "\"");
+    pr11179.println("  " + NSID + "pattern=\"" + DOMInfoModel.escapeXMLChar(lAttr.pattern) + "\"");
+    pr11179.println("  " + NSID + "valueDomainFormat=\"" + lAttr.format + "\"");
+    pr11179.println("  " + NSID + "defaultUnitId=\"" + lAttr.default_unit_id + "\"");
 
     pr11179.println("  rdfs:label=\"" + lAttr.dataIdentifier + "\">");
     pr11179.println(
-        "  <" + kbId + "representedBy1 rdf:resource=\"&pdsns;" + lAttr.deDataIdentifier + "\"/>");
-    pr11179.println("  <" + kbId + "representedBy2 rdf:resource=\"&pdsns;" + "CD_"
+        "  <" + NSID + "representedBy1 rdf:resource=\"&pdsns;" + lAttr.deDataIdentifier + "\"/>");
+    pr11179.println("  <" + NSID + "representedBy2 rdf:resource=\"&pdsns;" + "CD_"
         + lAttr.dataConcept + "\"/>");
     if (lAttr.isEnumerated) {
       for (DOMProp lProp : lAttr.domPermValueArr) {
         DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lProp.domObject;
         int lValueHashCodeI = lPermValueDefn.value.hashCode();
         String lValueHashCodeS = Integer.toString(lValueHashCodeI);
-        pr11179.println("  <" + kbId + "containedIn1 rdf:resource=\"&pdsns;"
+        pr11179.println("  <" + NSID + "containedIn1 rdf:resource=\"&pdsns;"
             + lAttr.pvDataIdentifier + "_" + lValueHashCodeS + "\"/>");
       }
     }
-    pr11179.println("  <" + kbId + "datatype rdf:resource=\"&pdsns;" + lAttr.valueType + "\"/>");
-    pr11179.println("  <" + kbId + "unitOfMeasure rdf:resource=\"&pdsns;"
+    pr11179.println("  <" + NSID + "datatype rdf:resource=\"&pdsns;" + lAttr.valueType + "\"/>");
+    pr11179.println("  <" + NSID + "unitOfMeasure rdf:resource=\"&pdsns;"
         + lAttr.unit_of_measure_type + "\"/>");
     pr11179.println(
-        "  <" + kbId + "registeredBy rdf:resource=\"&pdsns;" + lAttr.registeredByValue + "\"/>");
-    pr11179.println("  <" + kbId + "steward rdf:resource=\"&pdsns;" + lAttr.steward + "\"/>");
-    pr11179.println("  <" + kbId + "submitter rdf:resource=\"&pdsns;" + lAttr.submitter + "\"/>");
-    pr11179.println("  <" + kbId + "terminologicalEntry rdf:resource=\"&pdsns;"
+        "  <" + NSID + "registeredBy rdf:resource=\"&pdsns;" + lAttr.registeredByValue + "\"/>");
+    pr11179.println("  <" + NSID + "steward rdf:resource=\"&pdsns;" + lAttr.steward + "\"/>");
+    pr11179.println("  <" + NSID + "submitter rdf:resource=\"&pdsns;" + lAttr.submitter + "\"/>");
+    pr11179.println("  <" + NSID + "terminologicalEntry rdf:resource=\"&pdsns;"
         + lAttr.teDataIdentifier + "\"/>");
-    pr11179.println("  <" + kbId + "administrationRecord rdf:resource=\"&pdsns;"
+    pr11179.println("  <" + NSID + "administrationRecord rdf:resource=\"&pdsns;"
         + lAttr.administrationRecordValue + "\"/>");
-    pr11179.println("  <" + kbId + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
+    pr11179.println("  <" + NSID + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
         + lAttr.registrationAuthorityIdentifierValue + "\"/>");
     if (lAttr.isEnumerated) {
-      pr11179.println("</" + kbId + "EnumeratedValueDomain>");
+      pr11179.println("</" + NSID + "EnumeratedValueDomain>");
     } else {
-      pr11179.println("</" + kbId + "NonEnumeratedValueDomain>");
+      pr11179.println("</" + NSID + "NonEnumeratedValueDomain>");
     }
     pr11179.println(" ");
   }
@@ -191,26 +190,26 @@ class WriteDOM11179DDRDFFile extends Object {
       }
 
       // Permissible Values
-      pr11179.println("<" + kbId + "PermissibleValue rdf:about=\"&pdsns;" + lAttr.pvDataIdentifier
+      pr11179.println("<" + NSID + "PermissibleValue rdf:about=\"&pdsns;" + lAttr.pvDataIdentifier
           + "_" + lValueHashCodeS + "\"");
-      pr11179.println("	 " + kbId + "beginDate=\"" + lPermValueDefn.value_begin_date + "\"");
-      pr11179.println("	 " + kbId + "endDate=\"" + lPermValueDefn.value_end_date + "\"");
-      pr11179.println("	 " + kbId + "value=\"" + lPermValueDefn.value + "\"");
+      pr11179.println("	 " + NSID + "beginDate=\"" + lPermValueDefn.value_begin_date + "\"");
+      pr11179.println("	 " + NSID + "endDate=\"" + lPermValueDefn.value_end_date + "\"");
+      pr11179.println("	 " + NSID + "value=\"" + lPermValueDefn.value + "\"");
       pr11179.println("	 rdfs:label=\"" + lAttr.pvDataIdentifier + "_" + lValueHashCodeS + "\">");
       pr11179.println(
-          "	<" + kbId + "containing1 rdf:resource=\"&pdsns;" + lAttr.evdDataIdentifier + "\"/>");
-      pr11179.println("	<" + kbId + "usedIn rdf:resource=\"&pdsns;" + lAttr.vmDataIdentifier + "_"
+          "	<" + NSID + "containing1 rdf:resource=\"&pdsns;" + lAttr.evdDataIdentifier + "\"/>");
+      pr11179.println("	<" + NSID + "usedIn rdf:resource=\"&pdsns;" + lAttr.vmDataIdentifier + "_"
           + lMeaningHashCodeS + "\"/>");
-      pr11179.println("</" + kbId + "PermissibleValue>");
+      pr11179.println("</" + NSID + "PermissibleValue>");
       pr11179.println(" ");
 
       // Value Meanings
-      pr11179.println("<" + kbId + "ValueMeaning rdf:about=\"&pdsns;" + lAttr.vmDataIdentifier + "_"
+      pr11179.println("<" + NSID + "ValueMeaning rdf:about=\"&pdsns;" + lAttr.vmDataIdentifier + "_"
           + lMeaningHashCodeS + "\"");
-      pr11179.println("	 " + kbId + "beginDate=\"" + lPermValueDefn.value_begin_date + "\"");
-      pr11179.println("	 " + kbId + "description=\""
+      pr11179.println("	 " + NSID + "beginDate=\"" + lPermValueDefn.value_begin_date + "\"");
+      pr11179.println("	 " + NSID + "description=\""
           + DOMInfoModel.escapeXMLChar(lPermValueDefn.value_meaning) + "\"");
-      pr11179.println("	 " + kbId + "endDate=\"" + lPermValueDefn.value_end_date + "\"");
+      pr11179.println("	 " + NSID + "endDate=\"" + lPermValueDefn.value_end_date + "\"");
       pr11179.println(
           "	 rdfs:label=\"" + lAttr.vmDataIdentifier + "_" + lMeaningHashCodeS + "\"/>");
       pr11179.println(" ");
@@ -224,43 +223,43 @@ class WriteDOM11179DDRDFFile extends Object {
 
     // Designation
     pr11179.println(
-        "<" + kbId + "Designation rdf:about=\"" + kbId + "" + lAttr.desDataIdentifier + "\"");
-    pr11179.println("	 " + kbId + "designationName=\"" + lAttr.dataIdentifier + "\"");
-    // pr11179.println(" " + kbId + "isPreferred=\"" + lAttr.desIsPreferred + "\"");
-    pr11179.println("	 " + kbId + "isPreferred=\"" + "TRUE" + "\"");
+        "<" + NSID + "Designation rdf:about=\"" + NSID + "" + lAttr.desDataIdentifier + "\"");
+    pr11179.println("	 " + NSID + "designationName=\"" + lAttr.dataIdentifier + "\"");
+    // pr11179.println(" " + KB_NS + "isPreferred=\"" + lAttr.desIsPreferred + "\"");
+    pr11179.println("	 " + NSID + "isPreferred=\"" + "TRUE" + "\"");
     pr11179.println("	 rdfs:label=\"" + lAttr.desDataIdentifier + "\"/>");
     pr11179.println(" ");
 
     // Definition
-    pr11179.println("<" + kbId + "Definition rdf:about=\"&pdsns;" + lAttr.defDataIdentifier + "\"");
-    // pr11179.println(" " + kbId + "isPreferred=\"" + lTE.defIsPreferred + "\"");
-    pr11179.println("	 " + kbId + "isPreferred=\"" + "TRUE" + "\"");
+    pr11179.println("<" + NSID + "Definition rdf:about=\"&pdsns;" + lAttr.defDataIdentifier + "\"");
+    // pr11179.println(" " + KB_NS + "isPreferred=\"" + lTE.defIsPreferred + "\"");
+    pr11179.println("	 " + NSID + "isPreferred=\"" + "TRUE" + "\"");
     pr11179.println("	 rdfs:label=\"" + lAttr.defDataIdentifier + "\">");
-    pr11179.println("	<" + kbId + "definitionText>" + DOMInfoModel.escapeXMLChar(lAttr.definition)
-        + "</" + kbId + "definitionText>");
-    pr11179.println("</" + kbId + "Definition>");
+    pr11179.println("	<" + NSID + "definitionText>" + DOMInfoModel.escapeXMLChar(lAttr.definition)
+        + "</" + NSID + "definitionText>");
+    pr11179.println("</" + NSID + "Definition>");
     pr11179.println(" ");
 
     // Language Section
     pr11179.println(
-        "<" + kbId + "LanguageSection rdf:about=\"&pdsns;" + lAttr.lsDataIdentifier + "\"");
+        "<" + NSID + "LanguageSection rdf:about=\"&pdsns;" + lAttr.lsDataIdentifier + "\"");
     pr11179.println("	 rdfs:label=\"" + lAttr.lsDataIdentifier + "\">");
     pr11179.println(
-        "	<" + kbId + "definition rdf:resource=\"&pdsns;" + lAttr.defDataIdentifier + "\"/>");
+        "	<" + NSID + "definition rdf:resource=\"&pdsns;" + lAttr.defDataIdentifier + "\"/>");
     pr11179.println(
-        "	<" + kbId + "designation rdf:resource=\"&pdsns;" + lAttr.desDataIdentifier + "\"/>");
-    pr11179.println("	<" + kbId + "sectionLanguage rdf:resource=\"&pdsns;" + "Englsh" + "\"/>");
-    pr11179.println("</" + kbId + "LanguageSection>");
+        "	<" + NSID + "designation rdf:resource=\"&pdsns;" + lAttr.desDataIdentifier + "\"/>");
+    pr11179.println("	<" + NSID + "sectionLanguage rdf:resource=\"&pdsns;" + "Englsh" + "\"/>");
+    pr11179.println("</" + NSID + "LanguageSection>");
     pr11179.println(" ");
 
     // Terminological Entry
     pr11179.println(
-        "<" + kbId + "TerminologicalEntry rdf:about=\"&pdsns;" + lAttr.teDataIdentifier + "\"");
+        "<" + NSID + "TerminologicalEntry rdf:about=\"&pdsns;" + lAttr.teDataIdentifier + "\"");
     pr11179.println("  rdfs:label=\"" + lAttr.teDataIdentifier + "\">");
     pr11179.println(
-        "  <" + kbId + "partioning rdf:resource=\"&pdsns;" + lAttr.lsDataIdentifier + "\"/>");
-    pr11179.println("  <" + kbId + "administeredItemContext rdf:resource=\"&pdsns;NASA_PDS\"/>");
-    pr11179.println("</" + kbId + "TerminologicalEntry>");
+        "  <" + NSID + "partioning rdf:resource=\"&pdsns;" + lAttr.lsDataIdentifier + "\"/>");
+    pr11179.println("  <" + NSID + "administeredItemContext rdf:resource=\"&pdsns;NASA_PDS\"/>");
+    pr11179.println("</" + NSID + "TerminologicalEntry>");
     pr11179.println(" ");
   }
 
@@ -273,46 +272,39 @@ class WriteDOM11179DDRDFFile extends Object {
       DOMIndexDefn lIndexDefn = i.next();
 
       String lCDId = "CD" + "." + lIndexDefn.identifier;
-      pr11179.println("<" + kbId + "ConceptualDomain rdf:about=\"&pdsns;" + lCDId + "\"");
-      pr11179.println("	 " + kbId + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
-      // pr11179.println(" " + kbId + "versionIdentifier=\"" +
-      // lConceptualDomainAttr.versionIdentifierValue + "\"");
-      pr11179.println("	 " + kbId + "versionIdentifier=\"" + "1.0.0.0" + "\"");
+      pr11179.println("<" + NSID + "ConceptualDomain rdf:about=\"&pdsns;" + lCDId + "\"");
+      pr11179.println("	 " + NSID + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
+      pr11179.println("	 " + NSID + VERSION_IDENTIFIER + "=\"" + DMDocument.VERSION_ID_DEFAULT + "\"");
       pr11179.println("	 rdfs:label=\"" + lIndexDefn.identifier + "\">");
 
       for (Iterator<String> j = lIndexDefn.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
         String lVal = j.next();
-        pr11179.println("	<" + kbId + "having rdf:resource=\"&pdsns;" + "DEC." + lVal + "\"/>");
+        pr11179.println("	<" + NSID + "having rdf:resource=\"&pdsns;" + "DEC." + lVal + "\"/>");
       }
       for (Iterator<DOMAttr> j = lIndexDefn.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
         DOMAttr lAttr = j.next();
         if (lAttr.isEnumerated) {
-          pr11179.println("	<" + kbId + "representing2 rdf:resource=\"&pdsns;"
+          pr11179.println("	<" + NSID + "representing2 rdf:resource=\"&pdsns;"
               + lAttr.evdDataIdentifier + "\"/>");
         } else {
-          pr11179.println("	<" + kbId + "representing2 rdf:resource=\"&pdsns;"
+          pr11179.println("	<" + NSID + "representing2 rdf:resource=\"&pdsns;"
               + lAttr.nevdDataIdentifier + "\"/>");
         }
       }
 
-      /*
-       * for (Iterator <String> i = lCD.containedIn2Arr.iterator(); i.hasNext();) { String lval =
-       * (String) i.next(); pr11179.println("	<" + kbId + "containedIn2 rdf:resource=\"&pdsns;" +
-       * lval + "\"/>"); }
-       */
-      pr11179.println("	<" + kbId + "administrationRecord rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "administrationRecord rdf:resource=\"&pdsns;"
           + DMDocument.administrationRecordValue + "\"/>");
-      pr11179.println("	<" + kbId + "registeredBy rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "registeredBy rdf:resource=\"&pdsns;"
           + DMDocument.registeredByValue + "\"/>");
-      pr11179.println("	<" + kbId + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
           + DMDocument.registrationAuthorityIdentifierValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "steward rdf:resource=\"&pdsns;" + DMDocument.stewardValue + "\"/>");
+          "	<" + NSID + "steward rdf:resource=\"&pdsns;" + DMDocument.stewardValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "submitter rdf:resource=\"&pdsns;" + DMDocument.submitterValue + "\"/>");
-      pr11179.println("	<" + kbId + "terminologicalEntry rdf:resource=\"&pdsns;" + "TE."
+          "	<" + NSID + "submitter rdf:resource=\"&pdsns;" + DMDocument.submitterValue + "\"/>");
+      pr11179.println("	<" + NSID + "terminologicalEntry rdf:resource=\"&pdsns;" + "TE."
           + lIndexDefn.identifier + "\"/>");
-      pr11179.println("</" + kbId + "ConceptualDomain>");
+      pr11179.println("</" + NSID + "ConceptualDomain>");
       pr11179.println(" ");
     }
   }
@@ -326,43 +318,41 @@ class WriteDOM11179DDRDFFile extends Object {
       DOMIndexDefn lIndexDefn = i.next();
 
       String lDECId = "DEC" + "." + lIndexDefn.identifier;
-      pr11179.println("<" + kbId + "DataElementConcept rdf:about=\"&pdsns;" + lDECId + "\"");
-      pr11179.println("	 " + kbId + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
-      // pr11179.println(" " + kbId + "versionIdentifier=\"" +
-      // lConceptualDomainAttr.versionIdentifierValue + "\"");
-      pr11179.println("	 " + kbId + "versionIdentifier=\"" + "1.0.0.0" + "\"");
+      pr11179.println("<" + NSID + "DataElementConcept rdf:about=\"&pdsns;" + lDECId + "\"");
+      pr11179.println("	 " + NSID + "dataIdentifier=\"" + lIndexDefn.identifier + "\"");
+      pr11179.println("	 " + NSID + VERSION_IDENTIFIER + "=\"" + DMDocument.VERSION_ID_DEFAULT + "\"");
       pr11179.println("	 rdfs:label=\"" + lIndexDefn.identifier + "\">");
 
       for (Iterator<DOMAttr> j = lIndexDefn.getSortedIdentifier1Arr().iterator(); j.hasNext();) {
         DOMAttr lAttr = j.next();
         pr11179.println(
-            "	<" + kbId + "expressing rdf:resource=\"&pdsns;" + lAttr.deDataIdentifier + "\"/>");
+            "	<" + NSID + "expressing rdf:resource=\"&pdsns;" + lAttr.deDataIdentifier + "\"/>");
       }
 
       for (Iterator<String> j = lIndexDefn.getSortedIdentifier2Arr().iterator(); j.hasNext();) {
         String lVal = j.next();
         pr11179
-            .println("	<" + kbId + "specifying rdf:resource=\"&pdsns;" + "CD." + lVal + "\"/>");
+            .println("	<" + NSID + "specifying rdf:resource=\"&pdsns;" + "CD." + lVal + "\"/>");
       }
 
       /*
        * for (Iterator <String> i = lCD.containedIn2Arr.iterator(); i.hasNext();) { String lval =
-       * (String) i.next(); pr11179.println("	<" + kbId + "containedIn2 rdf:resource=\"&pdsns;" +
+       * (String) i.next(); pr11179.println("	<" + KB_NS + "containedIn2 rdf:resource=\"&pdsns;" +
        * lval + "\"/>"); }
        */
-      pr11179.println("	<" + kbId + "administrationRecord rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "administrationRecord rdf:resource=\"&pdsns;"
           + DMDocument.administrationRecordValue + "\"/>");
-      pr11179.println("	<" + kbId + "registeredBy rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "registeredBy rdf:resource=\"&pdsns;"
           + DMDocument.registeredByValue + "\"/>");
-      pr11179.println("	<" + kbId + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
+      pr11179.println("	<" + NSID + "registrationAuthorityIdentifier rdf:resource=\"&pdsns;"
           + DMDocument.registrationAuthorityIdentifierValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "steward rdf:resource=\"&pdsns;" + DMDocument.stewardValue + "\"/>");
+          "	<" + NSID + "steward rdf:resource=\"&pdsns;" + DMDocument.stewardValue + "\"/>");
       pr11179.println(
-          "	<" + kbId + "submitter rdf:resource=\"&pdsns;" + DMDocument.submitterValue + "\"/>");
-      pr11179.println("	<" + kbId + "terminologicalEntry rdf:resource=\"&pdsns;" + "TE."
+          "	<" + NSID + "submitter rdf:resource=\"&pdsns;" + DMDocument.submitterValue + "\"/>");
+      pr11179.println("	<" + NSID + "terminologicalEntry rdf:resource=\"&pdsns;" + "TE."
           + lIndexDefn.identifier + "\"/>");
-      pr11179.println("</" + kbId + "DataElementConcept>");
+      pr11179.println("</" + NSID + "DataElementConcept>");
       pr11179.println(" ");
     }
   }
