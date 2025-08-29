@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.25.0.0 - Wed Jul 30 17:10:42 EDT 2025 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.25.0.0 - Fri Aug 29 14:24:00 EDT 2025 -->
   <!-- Generated from the PDS4 Information Model Version 1.25.0.0 - System Build 16.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1020,9 +1020,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Header/pds:parsing_standard_id">
-      <sch:assert test=". = ('7-Bit ASCII Text', 'CDF 3.4 ISTP/IACG', 'CDF 3.5 ISTP/IACG', 'CDF 3.6 ISTP/IACG', 'CDF 3.7 ISTP/IACG', 'CDF 3.8 ISTP/IACG', 'FITS 3.0', 'FITS 4.0', 'ISIS2', 'ISIS2 History Label', 'ISIS3', 'PDS DSV 1', 'PDS ODL 2', 'PDS3', 'Pre-PDS3', 'TIFF 6.0', 'UTF-8 Text', 'VICAR1', 'VICAR2')">
+      <sch:assert test=". = ('7-Bit ASCII Text', 'CDF 3.4 ISTP/IACG', 'CDF 3.5 ISTP/IACG', 'CDF 3.6 ISTP/IACG', 'CDF 3.7 ISTP/IACG', 'CDF 3.8 ISTP/IACG', 'CDF 3.9 ISTP/IACG', 'FITS 3.0', 'FITS 4.0', 'ISIS2', 'ISIS2 History Label', 'ISIS3', 'PDS DSV 1', 'PDS ODL 2', 'PDS3', 'Pre-PDS3', 'TIFF 6.0', 'UTF-8 Text', 'VICAR1', 'VICAR2')">
         <title>pds:Header/pds:parsing_standard_id/pds:parsing_standard_id</title>
-        The attribute pds:Header/pds:parsing_standard_id must be equal to one of the following values '7-Bit ASCII Text', 'CDF 3.4 ISTP/IACG', 'CDF 3.5 ISTP/IACG', 'CDF 3.6 ISTP/IACG', 'CDF 3.7 ISTP/IACG', 'CDF 3.8 ISTP/IACG', 'FITS 3.0', 'FITS 4.0', 'ISIS2', 'ISIS2 History Label', 'ISIS3', 'PDS DSV 1', 'PDS ODL 2', 'PDS3', 'Pre-PDS3', 'TIFF 6.0', 'UTF-8 Text', 'VICAR1', 'VICAR2'.</sch:assert>
+        The attribute pds:Header/pds:parsing_standard_id must be equal to one of the following values '7-Bit ASCII Text', 'CDF 3.4 ISTP/IACG', 'CDF 3.5 ISTP/IACG', 'CDF 3.6 ISTP/IACG', 'CDF 3.7 ISTP/IACG', 'CDF 3.8 ISTP/IACG', 'CDF 3.9 ISTP/IACG', 'FITS 3.0', 'FITS 4.0', 'ISIS2', 'ISIS2 History Label', 'ISIS3', 'PDS DSV 1', 'PDS ODL 2', 'PDS3', 'Pre-PDS3', 'TIFF 6.0', 'UTF-8 Text', 'VICAR1', 'VICAR2'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
