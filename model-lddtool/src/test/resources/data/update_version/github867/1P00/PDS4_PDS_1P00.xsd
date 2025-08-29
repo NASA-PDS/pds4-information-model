@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.25.0.0 - Wed Jul 30 17:10:42 EDT 2025 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.25.0.0 - Mon Aug 25 10:45:56 EDT 2025 -->
   <!-- Generated from the PDS4 Information Model Version 1.25.0.0 - System Build 16.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
