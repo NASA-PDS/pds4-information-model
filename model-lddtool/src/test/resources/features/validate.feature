@@ -56,3 +56,8 @@ Feature: pds4_information_model_validate_integration
 # Note there is a discrepancy between Validate on Windows and github; see readme
 #| NASA-PDS/pds4-information-model#913c  | "Fails validate - directory_path_name adhere to SR (CCB-13)"       | "github913c" |          28 |  "totalErrors" | "-t {resourceUpdateVersionDir}/github913c/Product_Document_FAIL_pathname_20250422.xml"  | "" | "" |
 | NASA-PDS/pds4-information-model#914   | "No warning when validating Author/Editor Lists (CCB-15)"          | "github914"  |           0 |  "totalErrors" | "-t {resourceUpdateVersionDir}/github914/tc_Valid_Contributor_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Editor_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Warning_Author_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Warning_both_20240122.xml"  | "" | "" |
+
+    @v15.4.x
+    Examples: 
+| testId                                  | testName                                                         | testDir      | messageCount| problemEnum         | commandArgs                                                                    | ingestLDDFileName               | pds4Version |
+| NASA-PDS/pds4-information-model#944   | "Modified pattern for funding_year. (CCB-59)"                      | "github944"  |           2 |  "SCHEMA_ERROR"     | "-t {resourceUpdateVersionDir}/github944/test_case_Valid_20241024.xml {resourceUpdateVersionDir}/github944/tc_VALID_funding_year_20250829.xml {resourceUpdateVersionDir}/github944/tc_FAIL_funding_year_20250829.xml {resourceUpdateVersionDir}/github944/tc_FAIL_funding_year_alpha_20250829"  | "" | "" |

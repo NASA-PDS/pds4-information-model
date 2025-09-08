@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1P00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Bundle 
+	xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1P00.xsd">
+	
+    <Identification_Area>
+        <logical_identifier>urn:esa:psa:bc_mpo_mag</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>BepiColombo MPO-MAG bundle</title>
+        <information_model_version>1.25.0.0</information_model_version>
+        <product_class>Product_Bundle</product_class>
+        <Citation_Information>
+            <publication_year>2020</publication_year>
+            <keyword>magnetometer</keyword>
+            <keyword>mpo-mag</keyword>
+            <keyword>BepiColombo</keyword>
+            <keyword>magnetic field</keyword>
+            <keyword>Mercury</keyword>
+            <description>The BepiColombo MPO MAG bundle contains all data and contextual information
+for the MPO-MAG dual magnetometer onboard the Mercury Planetary Orbiter of the BepiColombo mission</description>
+            <Funding_Acknowledgement>
+                <funding_source>ESA</funding_source>
+                <!-- valid within range of years -->
+                <funding_year>2025</funding_year>
+                <funding_acknowledgement_text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </funding_acknowledgement_text>
+            </Funding_Acknowledgement>
+            <List_Author>
+                <Person>
+                    <given_name>Daniel</given_name>
+                    <family_name>Heyner</family_name>
+                    <sequence_number>1</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Ingo</given_name>
+                    <family_name>Richter</family_name>
+                    <sequence_number>2</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Hans-Ulrich</given_name>
+                    <family_name>Auster</family_name>
+                    <sequence_number>3</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Gerhard</given_name>
+                    <family_name>Berghofer</family_name>
+                    <sequence_number>4</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>David</given_name>
+                    <family_name>Fischer</family_name>
+                    <sequence_number>5</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Johannes</given_name>
+                    <family_name>Mieth</family_name>
+                    <sequence_number>6</sequence_number>
+                </Person>
+                <Person>
+                    <given_name>Karl-Heinz</given_name>
+                    <family_name>Glassmeier</family_name>
+                    <sequence_number>7</sequence_number>
+                </Person>
+            </List_Author>
+        </Citation_Information>
+        <Modification_History>
+        	<Modification_Detail>
+        		<modification_date>2025-02-21</modification_date>
+        		<version_id>1.0</version_id>
+        		<description>Master bundle file automatically created by the PSA PDS4 Delivery Packager</description>
+        	</Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    <Context_Area>
+ 
+        <Time_Coordinates>
+            <start_date_time nilReason="inapplicable">2018-10-20T01:45:00.000Z</start_date_time>
+            <stop_date_time nilReason="inapplicable">2028-12-31T23:59:59Z</stop_date_time>
+        </Time_Coordinates>
+
+        <Investigation_Area>
+            <name>BepiColombo</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lid_reference>urn:esa:psa:context:investigation:mission.bc</lid_reference>
+                <reference_type>bundle_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        
+        <Observing_System>
+            
+            <name>BepiColombo MPO-MAG</name>
+
+            <Observing_System_Component>
+                <name>Mercury Planetary Orbiter</name>
+                <type>Host</type>
+                <Internal_Reference>
+                    <lid_reference>urn:esa:psa:context:instrument_host:spacecraft.mpo</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            
+            <Observing_System_Component>
+                <name>MPO-MAG</name>
+                <type>Instrument</type>
+                <description>Mercury Magnetometer</description>
+                <Internal_Reference>
+                    <lid_reference>urn:esa:psa:context:instrument:mpo.mag</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            
+        </Observing_System>
+        
+        
+        <Target_Identification>
+            <name>EARTH</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.earth</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+
+        <Target_Identification>
+            <name>SOLAR WIND</name>
+            <type>Plasma Stream</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:plasma_stream.solar_wind</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+
+        <Target_Identification>
+            <name>VENUS</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.venus</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+
+        <Target_Identification>
+            <name>MERCURY</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lid_reference>urn:nasa:pds:context:target:planet.mercury</lid_reference>
+                <reference_type>bundle_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+
+    </Context_Area>
+
+    <Bundle>
+        <bundle_type>Archive</bundle_type>
+        <description>This is the archive bundle for BepiColombo MPO MAG</description>
+    </Bundle>
+
+
+    <File_Area_Text>
+        <File>
+            <file_name>readme.txt</file_name>
+            <creation_date_time>2020-06-01</creation_date_time>
+            <file_size unit="byte">2575</file_size>
+            <md5_checksum>eef3253bd60d3ce1b19ed851039bc1e0</md5_checksum>
+            <comment>A brief introduction to the contents of the bundle</comment>
+        </File>
+        <Stream_Text>
+            <name>BepiColombo MPO MAG bundle</name>
+            <offset unit="byte">0</offset>
+            <parsing_standard_id>UTF-8 Text</parsing_standard_id>
+            <description>This "read me" file describes the bundle</description>
+            <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+        </Stream_Text>
+    </File_Area_Text>
+
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:browse_calibrated::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_browse_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:calibration_files::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_calibration_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:data_calibrated::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_data_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:data_derived::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_data_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:data_partially_processed::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_data_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:data_raw::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_data_collection</reference_type>
+	</Bundle_Member_Entry>
+	<Bundle_Member_Entry>
+		<lidvid_reference>urn:esa:psa:bc_mpo_mag:document::1.0</lidvid_reference>
+		<member_status>Primary</member_status>
+		<reference_type>bundle_has_document_collection</reference_type>
+	</Bundle_Member_Entry>
+</Product_Bundle>
