@@ -1,11 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-08-01)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-08)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
 **Requirements:**
 
+- CCB-59: funding\_year only allows the value "9999" [\#946](https://github.com/NASA-PDS/pds4-information-model/issues/946)
+- As a user, I want to easily identify which IM and LDD version the WebHelp documentation is for [\#939](https://github.com/NASA-PDS/pds4-information-model/issues/939)
 - As a data provider, I want to be able to use "Space" as a delimiter in the `Table_Delimited` class [\#673](https://github.com/NASA-PDS/pds4-information-model/issues/673)
 
 **Improvements:**
