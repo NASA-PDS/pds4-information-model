@@ -60,4 +60,5 @@ Feature: pds4_information_model_validate_integration
     @v15.4.x
     Examples: 
 | testId                                  | testName                                                         | testDir      | messageCount| problemEnum         | commandArgs                                                                    | ingestLDDFileName               | pds4Version |
+| NASA-PDS/pds4-information-model#942   | "Added new permissible value for parsing_standard_id (CCB-60)"     | "github942"  |           1 |  "SCHEMATRON_ERROR" | "-t {resourceUpdateVersionDir}/github942/tc_Valid_new_value_20250828.xml {resourceUpdateVersionDir}/github942/tc_Fail_invalid-value_20250828.xml"  | "" | "" |
 | NASA-PDS/pds4-information-model#944   | "Modified pattern for funding_year. (CCB-59)"                      | "github944"  |           2 |  "SCHEMA_ERROR"     | "-t {resourceUpdateVersionDir}/github944/test_case_Valid_20241024.xml {resourceUpdateVersionDir}/github944/tc_VALID_funding_year_20250829.xml {resourceUpdateVersionDir}/github944/tc_FAIL_funding_year_20250829.xml {resourceUpdateVersionDir}/github944/tc_FAIL_funding_year_alpha_20250829"  | "" | "" |
