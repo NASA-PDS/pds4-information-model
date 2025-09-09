@@ -25,6 +25,7 @@
 - Stage the PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#933](https://github.com/NASA-PDS/pds4-information-model/issues/933)
 - Refactoring that came out of \#924 investigation [\#929](https://github.com/NASA-PDS/pds4-information-model/issues/929)
 - Release PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#918](https://github.com/NASA-PDS/pds4-information-model/issues/918)
+- Small Bodies Ontology - Complete 1st draft for distribution [\#780](https://github.com/NASA-PDS/pds4-information-model/issues/780)
 - Complete initial Planetary Systems Ontology and context products [\#779](https://github.com/NASA-PDS/pds4-information-model/issues/779)
 - Update the writer for the anonymous version of the Data Dictionary [\#654](https://github.com/NASA-PDS/pds4-information-model/issues/654)
 
