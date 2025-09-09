@@ -2,7 +2,7 @@ name: PDS4 Standards Change Request
 description: "Tasks related to PDS4 Standards Change Request in design and implementation queue"
 title: 'CCB-xxx: Copy SCR title here'
 labels: "p.must-have, pending-scr, requirement, sprint-backlogs, B16"
-projects: "NASA-PDS/6, NASA-PDS/14"
+projects: "NASA-PDS/6, NASA-PDS/18"
 assignees: jshughes,jordanpadams
 
 body:
