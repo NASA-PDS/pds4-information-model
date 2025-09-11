@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.25.0.0 - Fri Aug 29 14:24:00 EDT 2025 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.25.0.0 - Thu Sep 11 16:33:38 EDT 2025 -->
   <!-- Generated from the PDS4 Information Model Version 1.25.0.0 - System Build 16.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -2786,6 +2786,55 @@
       <sch:assert test="pds:record_delimiter != 'carriage-return line-feed'">
         <title>pds:Transfer_Manifest role="warning"/pds:Transfer_Manifest.record_delimiter</title>
         The value carriage-return line-feed for attribute Transfer_Manifest.record_delimiter is deprecated and should not be used.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Transfer_Manifest/pds:Record_Character">
+      <sch:assert test="(count(pds:Field_Character) eq 2)">
+        <title>pds:Transfer_Manifest/pds:Record_Character/Transfer_Manifest</title>
+        pds:Transfer_Manifest.pds:Record_Character.pds:Field_Character does not match the expected number of instances (2).</sch:assert>
+      <sch:assert test="pds:fields eq '2'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/name</title>
+        The attribute pds:fields must be equal to '2'.</sch:assert>
+      <sch:assert test="pds:groups eq '0'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/name</title>
+        The attribute pds:groups must be equal to '0'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]">
+      <sch:assert test="pds:name eq 'LIDVID'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]/name</title>
+        The first field of a Transfer_Manifest must have name set to 'LIDVID'.</sch:assert>
+      <sch:assert test="pds:field_number eq '1'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]/field_number</title>
+        The first field of a Transfer_Manifest must have field_number set to 1.</sch:assert>
+      <sch:assert test="pds:field_location eq '1'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]/field_location</title>
+        The first field of a Transfer_Manifest must have field_location set to 1.</sch:assert>
+      <sch:assert test="pds:data_type eq 'ASCII_LIDVID'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]/data_type</title>
+        The first field of a Transfer_Manifest must have data type set to 'ASCII_LIDVID'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]">
+      <sch:assert test="(pds:name eq 'File Specification')">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]/name</title>
+        The second field of a Transfer_Manifest must have name set to 'File Specification'.</sch:assert>
+      <sch:assert test="pds:field_number eq '2'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]/field_number</title>
+        The second field of a Transfer_Manifest must have field_number set to 2.</sch:assert>
+      <sch:assert test="pds:data_type eq 'ASCII_File_Specification_Name'">
+        <title>pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]/data_type</title>
+        The second field of a Transfer_Manifest must have data type set to ASCII_File_Specification_Name.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Transfer_Manifest/pds:offset">
+      <sch:assert test=". = '0'">
+        <title>pds:Transfer_Manifest/pds:offset/offset</title>
+        The attribute pds:Transfer_Manifest/pds:offset must be equal to '0'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
