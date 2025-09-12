@@ -1,4 +1,4 @@
-; Mon Aug 25 10:11:43 EDT 2025
+; Thu Sep 11 16:23:24 EDT 2025
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -3913,6 +3913,193 @@
 	(attrTitle "stop_date_time")
 	(identifier "stop_date_time")
 	(specMesg "TBD"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest.100004881] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "offset")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Transfer_Manifest")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest.100004881.102])
+	(identifier "pds:Transfer_Manifest/pds:offset")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Transfer_Manifest/pds:offset"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest.100004881.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:Transfer_Manifest/pds:offset must be equal to '0'.")
+	(assertStmt ". = '0'")
+	(assertType "RAW")
+	(attrTitle "offset")
+	(identifier "offset")
+	(specMesg "The attribute pds:Transfer_Manifest/pds:offset must be equal to '0'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3Afield_delimiter.100004885.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:Transfer_Manifest/pds:field_delimiter must ONLY be equal to the value 'Comma'.")
+	(assertStmt ". = ('Comma')")
+	(assertType "RAW")
+	(attrTitle "field_delimiter")
+	(identifier "field_delimiter")
+	(specMesg "The attribute pds:Transfer_Manifest/pds:field_delimiter must ONLY be equal to the value 'Comma'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character.100004883] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Record_Character")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Character")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.100]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.102])
+	(identifier "pds:Transfer_Manifest/pds:Record_Character")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Transfer_Manifest/pds:Record_Character"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Field_Character")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Character")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.100]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.102]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.103])
+	(identifier "pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[1]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.100] of  Schematron_Assert
+
+	(assertMsg "The first field of a Transfer_Manifest must have name set to 'LIDVID'.")
+	(assertStmt "pds:name eq 'LIDVID'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The first field of a Transfer_Manifest must have name set to 'LIDVID'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.101] of  Schematron_Assert
+
+	(assertMsg "The first field of a Transfer_Manifest must have field_number set to 1.")
+	(assertStmt "pds:field_number eq '1'")
+	(assertType "RAW")
+	(attrTitle "field_number")
+	(identifier "field_number")
+	(specMesg "The first field of a Transfer_Manifest must have field_number set to 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.102] of  Schematron_Assert
+
+	(assertMsg "The first field of a Transfer_Manifest must have field_location set to 1.")
+	(assertStmt "pds:field_location eq '1'")
+	(assertType "RAW")
+	(attrTitle "field_location")
+	(identifier "field_location")
+	(specMesg "The first field of a Transfer_Manifest must have field_location set to 1."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B1%5D.100004882.103] of  Schematron_Assert
+
+	(assertMsg "The first field of a Transfer_Manifest must have data type set to 'ASCII_LIDVID'.")
+	(assertStmt "pds:data_type eq 'ASCII_LIDVID'")
+	(assertType "RAW")
+	(attrTitle "data_type")
+	(identifier "data_type")
+	(specMesg "The first field of a Transfer_Manifest must have data type set to 'ASCII_LIDVID'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "Field_Character")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Record_Character")
+	(has_Schematron_Assert
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.100]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.101]
+		[http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.102])
+	(identifier "pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Transfer_Manifest/pds:Record_Character/pds:Field_Character[2]"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.100] of  Schematron_Assert
+
+	(assertMsg "The second field of a Transfer_Manifest must have name set to 'File Specification'.")
+	(assertStmt "(pds:name eq 'File Specification')")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The second field of a Transfer_Manifest must have name set to 'File Specification'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.101] of  Schematron_Assert
+
+	(assertMsg "The second field of a Transfer_Manifest must have field_number set to 2.")
+	(assertStmt "pds:field_number eq '2'")
+	(assertType "RAW")
+	(attrTitle "field_number")
+	(identifier "field_number")
+	(specMesg "The second field of an Transfer_Manifest must have field_number set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.102] of  Schematron_Assert
+
+	(assertMsg "The second field of a Transfer_Manifest must have data type set to ASCII_File_Specification_Name.")
+	(assertStmt "pds:data_type eq 'ASCII_File_Specification_Name'")
+	(assertType "RAW")
+	(attrTitle "data_type")
+	(identifier "data_type")
+	(specMesg "The second field of a Transfer_Manifest must have data type set to ASCII_File_Specification_Name."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Character%2Fpds%3AField_Character%5B2%5D.100004884.104] of  Schematron_Assert
+
+	(assertMsg "The second field of an Transfer_Manifest must have maximum_field_length set to 255.")
+	(assertStmt "pds:maximum_field_length eq '255'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The second field of an Transfer_Manifest must have maximum_field_length set to 255."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.100] of  Schematron_Assert
+
+	(assertMsg "pds:Transfer_Manifest.pds:Record_Character.pds:Field_Character does not match the expected number of instances (2).")
+	(assertStmt "(count(pds:Field_Character) eq 2)")
+	(assertType "RAW")
+	(attrTitle "Transfer_Manifest")
+	(identifier "Transfer_Manifest")
+	(specMesg "pds:Transfer_Manifest.pds:Record_Character.pds:Field_Character does not match the expected number of instances (2)."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.101] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:fields must be equal to '2'.")
+	(assertStmt "pds:fields eq '2'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The attribute pds:fields must be equal to '2'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ATransfer_Manifest%2Fpds%3ARecord_Delimited.100004883.102] of  Schematron_Assert
+
+	(assertMsg "The attribute pds:groups must be equal to '0'.")
+	(assertStmt "pds:groups eq '0'")
+	(assertType "RAW")
+	(attrTitle "name")
+	(identifier "name")
+	(specMesg "The attribute pds:groups must be equal to '0'."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AUniformly_Sampled.100002556] of  Schematron_Rule
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1P00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_SIP xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1P00.xsd">
+    
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:test:test:test</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Test</title>
+        <information_model_version>1.25.0.0</information_model_version>
+        <product_class>Product_SIP</product_class>
+    </Identification_Area>
+    <Information_Package_Component>
+        <Internal_Reference>
+            <lidvid_reference>urn:nasa:pds:test:test:test::1.0</lidvid_reference>
+            <reference_type>package_has_bundle</reference_type>
+        </Internal_Reference>
+        <File_Area_Transfer_Manifest>
+            <File>
+                <file_name>test-manifest.txt</file_name>
+            </File>
+            <Transfer_Manifest>
+                <offset unit="byte">0</offset>
+                <records>225</records>
+                <record_delimiter>Line-Feed</record_delimiter>
+                <Record_Character>
+                    <fields>2</fields>
+                    <groups>0</groups>
+                    <record_length unit="byte">166</record_length>
+                    <Field_Character>
+                        <!-- Invalid name (should be "LIDVID") -->
+                        <name>LID_LIDVID</name>
+                        <field_number>1</field_number>
+                        <field_location unit="byte">1</field_location>
+                        <data_type>ASCII_LIDVID</data_type>
+                        <field_length unit="byte">81</field_length>
+                    </Field_Character>
+                    <Field_Character>
+                        <!-- Invalid name (should be File Specification) -->
+                        <name>File Spec</name>
+                        <field_number>2</field_number>
+                        <field_location unit="byte">83</field_location>
+                        <data_type>ASCII_File_Specification_Name</data_type>
+                        <field_length unit="byte">83</field_length>
+                    </Field_Character>
+                </Record_Character>
+            </Transfer_Manifest>
+        </File_Area_Transfer_Manifest>
+    </Information_Package_Component>
+    <Submission_Information_Package>
+        <description>This is a test transfer manifest file.</description>
+    </Submission_Information_Package>
+</Product_SIP>
