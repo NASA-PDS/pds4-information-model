@@ -498,6 +498,7 @@ public class WriteDOMSpecification extends Object {
     }
   }
 
+
   /**
    * Print a table row
    *
@@ -506,68 +507,132 @@ public class WriteDOMSpecification extends Object {
     TreeMap<String, DOMProp> lPropSortMap = new TreeMap<>();
     String phRelation = relation;
     String phtitle;
-    String phcard;
-    String phvalue;
+//    String phcard;
     String phindicator = "&nbsp;";
     boolean firstflag = true;
 
     // sort the local attributes
-    for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
-      DOMProp lProp = i.next();
+    for (DOMProp lProp: lPropArr) {
       lPropSortMap.put(lProp.domObject.rdfIdentifier, lProp);
     }
-    // System.out.println("printTableRow:"+ lPropSortMap.size());
-    // process the local attributes
+    
+    // Process each sorted DOMProp
     ArrayList<DOMProp> lSortPropArr = new ArrayList<>(lPropSortMap.values());
-    for (Iterator<DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
-      DOMProp lProp = i.next();
+    for (DOMProp lProp: lSortPropArr) {
       String lRegistrationStatus = "";
-      if (lProp.registrationStatus.compareTo("Retired") == 0) {
-        lRegistrationStatus = DMDocument.Literal_DEPRECATED;
-      }
+      if (lProp.registrationStatus.compareTo("Retired") == 0) lRegistrationStatus = DMDocument.Literal_DEPRECATED;
 
       DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
       phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle()
           + lRegistrationStatus + "</a>";
-      String cmin = lDOMAttr.cardMin; // get min card
-      String cmax = lDOMAttr.cardMax; // get max card
-      String cardval = cmin + ".." + cmax;
-      if (cardval.compareTo("1..0") == 0) {
-        cardval = "none";
-      }
-      if (lProp.isRestrictedInSubclass) { // attribute is restricted in a subclass as opposed to
-                                          // restricted relative to the attribute in the "USER"
-                                          // class
-        phindicator += "R";
-      }
-      if (cmin.compareTo(cmax) == 0) {
-        cardval = cmin;
-      }
-      phcard = cardval;
-      phvalue = "";
+//      String cmin = lDOMAttr.cardMin; // get min card
+//      String cmax = lDOMAttr.cardMax; // get max card
+//      String phcard = cmin + ".." + cmax;
+//      if (phcard.compareTo("1..0") == 0) phcard = "none";
+      
+      String cmin = lDOMAttr.cardMin;
+      String cmax = lDOMAttr.cardMax;
+      String phcard = cmin.equals(cmax) ? cmin : (cmin + ".." + cmax);
+      if (phcard.equals("1..0")) phcard = "none";
 
-      ArrayList<DOMProp> lValClassArr = new ArrayList<>(lDOMAttr.domPermValueArr);
+      
+      // attribute is restricted in a subclass as opposed to
+      // restricted relative to the attribute in the "USER" class
+      if (lProp.isRestrictedInSubclass) phindicator += "R";
+      
+      
+      // 555
+	  ArrayList<DOMProp> lValClassArr = new ArrayList<>(lDOMAttr.domPermValueArr);
       if (lValClassArr.isEmpty()) {
-        // System.out.println("attribute value array is empty");
         String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
         DOMProp lDummyClass = new DOMProp();
         lDummyClass.rdfIdentifier = lClassRdfIdentifier;
         lDummyClass.title = "dummy";
         lValClassArr.add(lDummyClass);
       }
-      // System.out.println("getting values - size is "+ lValClassArr.size());
-      Iterator<DOMProp> k = lValClassArr.iterator();
-      String value;
-      // System.out.println("Attr - "+ lProp.identifier+ "--" + lProp.classNameSpaceIdNC);
-      while (k.hasNext()) {
+      
+      // 555
+      for (DOMProp lDOMProp : lValClassArr) {
+          String phvalue = printPermissibleValues(lDOMAttr, lProp, lDOMProp);
+          printHTMLTableRow(phRelation, phtitle, phcard, phvalue, phindicator);
+          firstflag = false;
+          phRelation = phtitle = phcard = phindicator = phvalue = "&nbsp;";
+      }
+      
+      
+      
+//      if (cmin.compareTo(cmax) == 0) cardval = cmin;
+//      phcard = cardval;
+//      firstflag = printPermissibleValues (lDOMAttr, phRelation, phtitle, phcard, phindicator);
+//      // clear fields
+//      phRelation = "&nbsp;";
+//      phtitle = "&nbsp;";
+//      phcard = "&nbsp;";
+//      phindicator = "&nbsp;";  
+    }
+    
+    
+    
+    if (firstflag) {
+      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+    }
+  }
+  
+  // 555
+  
+  private String printPermissibleValues(DOMAttr attr, DOMProp prop, DOMProp valueProp) {
+	    if (!(valueProp.domObject instanceof DOMPermValDefn)) {
+	        return "&nbsp;";
+	    }
 
-        DOMProp lDOMProp = k.next();
+	    DOMPermValDefn permVal = (DOMPermValDefn) valueProp.domObject;
+	    String value = permVal.value;
+	    if (value.isEmpty()) {
+	        return "&nbsp;";
+	    }
 
+	    String anchorString = attr.anchorString;
+
+	    // Special handling for known attribute types
+	    if ("data_type".equals(attr.title) || 
+	        "value_data_type".equals(attr.getTitle()) || 
+	        "unit_of_measure_type".equals(attr.getTitle()) || 
+	        "product_class".equals(attr.getTitle())) {
+	        
+	        String classId = DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, value);
+	        DOMClass domClass = DOMInfoModel.masterDOMClassIdMap.get(classId);
+	        if (domClass != null) {
+	            anchorString = domClass.anchorString;
+	        } else {
+	            Utility.registerMessage("1>error printTableRow2 - Component Class is missing - lClassId:" + classId);
+	        }
+	    } else {
+	        anchorString = ("value_" + attr.classNameSpaceIdNC + "_" + attr.parentClassTitle + "_" 
+	                      + prop.nameSpaceIdNC + "_" + attr.getTitle() + "_" + value).toLowerCase();
+	    }
+
+	    return "<a href=\"#" + anchorString + "\">" + replaceString(value, "μ", "&mu;") + "</a>";
+	}  
+
+  /* 555
+  private boolean printPermissibleValues (DOMAttr lDOMAttr, String phRelation, String phtitle, String phcard, String phindicator) {
+      boolean emptyFlag = true;
+      String phvalue = "&nbsp;";
+//	  ArrayList<DOMProp> lValClassArr = new ArrayList<>(lDOMAttr.domPermValueArr);
+//      if (lValClassArr.isEmpty()) {
+//        String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
+//        DOMProp lDummyClass = new DOMProp();
+//        lDummyClass.rdfIdentifier = lClassRdfIdentifier;
+//        lDummyClass.title = "dummy";
+//        lValClassArr.add(lDummyClass);
+//      }
+       
+      for (DOMProp lDOMProp: lValClassArr) {        
         if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
           phvalue = "&nbsp;";
         } else {
           DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.domObject;
-          value = permVal.value;
+          String value = permVal.value;
           if (!value.isEmpty()) {
             String lAnchorString = lDOMAttr.anchorString;
 
@@ -589,7 +654,7 @@ public class WriteDOMSpecification extends Object {
             } else {
               lAnchorString =
                   ("value_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_"
-                      + lProp.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value)
+                      + lDOMAttr.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value)
                           .toLowerCase();
             }
             String lValue = replaceString(value, "μ", "&mu;");
@@ -599,18 +664,133 @@ public class WriteDOMSpecification extends Object {
           }
         }
         printHTMLTableRow(phRelation, phtitle, phcard, phvalue, phindicator);
-        firstflag = false;
+        emptyFlag = false;
+        // 555 why are these needed here
         phRelation = "&nbsp;";
         phtitle = "&nbsp;";
         phcard = "&nbsp;";
         phindicator = "&nbsp;";
         phvalue = "&nbsp;";
       }
-    }
-    if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
-    }
-  }
+      return emptyFlag;
+  }  */  
+  
+  
+  
+  
+//  /**
+//   * Print a table row
+//   *
+//   */
+//  private void printTableRow2(ArrayList<DOMProp> lPropArr, String relation) {
+//    TreeMap<String, DOMProp> lPropSortMap = new TreeMap<>();
+//    String phRelation = relation;
+//    String phtitle;
+//    String phcard;
+//    String phvalue;
+//    String phindicator = "&nbsp;";
+//    boolean firstflag = true;
+//
+//    // sort the local attributes
+//    for (Iterator<DOMProp> i = lPropArr.iterator(); i.hasNext();) {
+//      DOMProp lProp = i.next();
+//      lPropSortMap.put(lProp.domObject.rdfIdentifier, lProp);
+//    }
+//    // System.out.println("printTableRow:"+ lPropSortMap.size());
+//    // process the local attributes
+//    ArrayList<DOMProp> lSortPropArr = new ArrayList<>(lPropSortMap.values());
+//    for (Iterator<DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
+//      DOMProp lProp = i.next();
+//      String lRegistrationStatus = "";
+//      if (lProp.registrationStatus.compareTo("Retired") == 0) {
+//        lRegistrationStatus = DMDocument.Literal_DEPRECATED;
+//      }
+//
+//      DOMAttr lDOMAttr = (DOMAttr) lProp.domObject;
+//      phtitle = "<a href=\"#" + lDOMAttr.anchorString + "\">" + lDOMAttr.getTitle()
+//          + lRegistrationStatus + "</a>";
+//      String cmin = lDOMAttr.cardMin; // get min card
+//      String cmax = lDOMAttr.cardMax; // get max card
+//      String cardval = cmin + ".." + cmax;
+//      if (cardval.compareTo("1..0") == 0) {
+//        cardval = "none";
+//      }
+//      if (lProp.isRestrictedInSubclass) { // attribute is restricted in a subclass as opposed to
+//                                          // restricted relative to the attribute in the "USER"
+//                                          // class
+//        phindicator += "R";
+//      }
+//      if (cmin.compareTo(cmax) == 0) {
+//        cardval = cmin;
+//      }
+//      phcard = cardval;
+//      phvalue = "";
+//
+//      ArrayList<DOMProp> lValClassArr = new ArrayList<>(lDOMAttr.domPermValueArr);
+//      if (lValClassArr.isEmpty()) {
+//        // System.out.println("attribute value array is empty");
+//        String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
+//        DOMProp lDummyClass = new DOMProp();
+//        lDummyClass.rdfIdentifier = lClassRdfIdentifier;
+//        lDummyClass.title = "dummy";
+//        lValClassArr.add(lDummyClass);
+//      }
+//      // System.out.println("getting values - size is "+ lValClassArr.size());
+//      Iterator<DOMProp> k = lValClassArr.iterator();
+//      String value;
+//      // System.out.println("Attr - "+ lProp.identifier+ "--" + lProp.classNameSpaceIdNC);
+//      while (k.hasNext()) {
+//
+//        DOMProp lDOMProp = k.next();
+//
+//        if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
+//          phvalue = "&nbsp;";
+//        } else {
+//          DOMPermValDefn permVal = (DOMPermValDefn) lDOMProp.domObject;
+//          value = permVal.value;
+//          if (!value.isEmpty()) {
+//            String lAnchorString = lDOMAttr.anchorString;
+//
+//            // check for data types, unit of measure, etc
+//            if (lDOMAttr.title.compareTo("data_type") == 0
+//                || lDOMAttr.getTitle().compareTo("value_data_type") == 0
+//                || lDOMAttr.getTitle().compareTo("unit_of_measure_type") == 0
+//                || lDOMAttr.getTitle().compareTo("product_class") == 0) {
+//              String lClassId =
+//                  DOMInfoModel.getClassIdentifier(DMDocument.masterNameSpaceIdNCLC, value);
+//              DOMClass lClass = DOMInfoModel.masterDOMClassIdMap.get(lClassId);
+//              if (lClass != null) {
+//                lAnchorString = lClass.anchorString;
+//              } else {
+//                // error
+//                Utility.registerMessage("1>error "
+//                    + "printTableRow2 - Component Class is missing - lClassId:" + lClassId);
+//              }
+//            } else {
+//              lAnchorString =
+//                  ("value_" + lDOMAttr.classNameSpaceIdNC + "_" + lDOMAttr.parentClassTitle + "_"
+//                      + lProp.nameSpaceIdNC + "_" + lDOMAttr.getTitle() + "_" + value)
+//                          .toLowerCase();
+//            }
+//            String lValue = replaceString(value, "μ", "&mu;");
+//            phvalue = "<a href=\"#" + lAnchorString + "\">" + lValue + "</a>";
+//          } else {
+//            phvalue = "&nbsp;";
+//          }
+//        }
+//        printHTMLTableRow(phRelation, phtitle, phcard, phvalue, phindicator);
+//        firstflag = false;
+//        phRelation = "&nbsp;";
+//        phtitle = "&nbsp;";
+//        phcard = "&nbsp;";
+//        phindicator = "&nbsp;";
+//        phvalue = "&nbsp;";
+//      }
+//    }
+//    if (firstflag) {
+//      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+//    }
+//  }
 
   private void printAssoc(ArrayList<DOMProp> lPropArr, String relation) {
     String phRelation = relation;
