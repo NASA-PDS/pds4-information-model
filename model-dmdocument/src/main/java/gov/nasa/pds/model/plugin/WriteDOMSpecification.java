@@ -64,6 +64,10 @@ public class WriteDOMSpecification extends Object {
   Date rTodaysDate;
   String sTodaysDate;
   ArrayList<String> itemNum;
+  private static final String VALUE_LITERAL = "value";
+  private static final String NBSP = "&nbsp;";
+  private static final String RESTRICTED_INDICATOR = "&nbsp;R";
+
 
   PrintWriter prhtml;
 
@@ -439,15 +443,15 @@ public class WriteDOMSpecification extends Object {
           ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 
       String phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
-      printHTMLTableRow(phRelation, indent + phtitle, "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, indent + phtitle, NBSP, NBSP, NBSP);
       indent = indent + ". ";
       if (firstflag) {
         firstflag = false;
-        phRelation = "&nbsp;";
+        phRelation = NBSP;
       }
     }
     if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, "none", NBSP, NBSP, NBSP);
     }
   }
 
@@ -474,14 +478,14 @@ public class WriteDOMSpecification extends Object {
           ("class_" + lClass.nameSpaceIdNC + "_" + lClass.getTitle()).toLowerCase();
 
       String phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lClass.getTitle() + "</a>";
-      printHTMLTableRow(phRelation, phtitle, "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, phtitle, NBSP, NBSP, NBSP);
       if (firstflag) {
         firstflag = false;
-        phRelation = "&nbsp;";
+        phRelation = NBSP;
       }
     }
     if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, "none", NBSP, NBSP, NBSP);
     }
   }
 
@@ -493,7 +497,7 @@ public class WriteDOMSpecification extends Object {
     TreeMap<String, DOMProp> lPropSortMap = new TreeMap<>();
     String phRelation = relation;
     String phtitle;
-    String phindicator = "&nbsp;";
+    String phindicator = NBSP;
     boolean firstflag = true;
 
     // sort the local attributes
@@ -517,8 +521,7 @@ public class WriteDOMSpecification extends Object {
       
       // attribute is restricted in a subclass as opposed to
       // restricted relative to the attribute in the "USER" class
-      if (lProp.isRestrictedInSubclass) phindicator += "R";
-      
+      if (lProp.isRestrictedInSubclass) phindicator = RESTRICTED_INDICATOR;
 	  ArrayList<DOMProp> lValClassArr = new ArrayList<>(lDOMAttr.domPermValueArr);
       if (lValClassArr.isEmpty()) {
         String lClassRdfIdentifier = DMDocument.rdfPrefix + "." + "UNK" + "." + "DUMMY";
@@ -532,23 +535,23 @@ public class WriteDOMSpecification extends Object {
           String phvalue = printPermissibleValues(lDOMAttr, lProp, lDOMProp);
           printHTMLTableRow(phRelation, phtitle, phcard, phvalue, phindicator);
           firstflag = false;
-          phRelation = phtitle = phcard = phindicator = phvalue = "&nbsp;";
+          phRelation = phtitle = phcard = phindicator = phvalue = NBSP;
       } 
     }
     if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, "none", NBSP, NBSP, NBSP);
     }
   }
   
   private String printPermissibleValues(DOMAttr attr, DOMProp prop, DOMProp valueProp) {
 	    if (!(valueProp.domObject instanceof DOMPermValDefn)) {
-	        return "&nbsp;";
+	        return NBSP;
 	    }
 
 	    DOMPermValDefn permVal = (DOMPermValDefn) valueProp.domObject;
 	    String value = permVal.value;
 	    if (value.isEmpty()) {
-	        return "&nbsp;";
+	        return NBSP;
 	    }
 
 	    String anchorString = attr.anchorString;
@@ -567,7 +570,7 @@ public class WriteDOMSpecification extends Object {
 	            Utility.registerMessage("1>error printTableRow - Component Class is missing - lClassId:" + classId);
 	        }
 	    } else {
-	    	anchorString = getAnchorString (Arrays.asList("value", attr.classNameSpaceIdNC, attr.parentClassTitle, prop.nameSpaceIdNC, attr.getTitle(), value));         
+	    	anchorString = getAnchorString (Arrays.asList(VALUE_LITERAL, attr.classNameSpaceIdNC, attr.parentClassTitle, prop.nameSpaceIdNC, attr.getTitle(), value));         
 	    }
 
 	    return "<a href=\"#" + anchorString + "\">" + replaceString(value, "μ", "&mu;") + "</a>";
@@ -576,9 +579,9 @@ public class WriteDOMSpecification extends Object {
   private void printAssoc(ArrayList<DOMProp> lPropArr, String relation) {
     String phRelation = relation;
     String phtitle;
-    String phcard = "&nbsp;";
-    String phvalue = "&nbsp;";
-    String phindicator = "&nbsp;";
+    String phcard = NBSP;
+    String phvalue = NBSP;
+    String phindicator = NBSP;
     boolean firstflag = true;
 
     TreeMap<String, DOMProp> lPropSortMap = new TreeMap<>();
@@ -588,13 +591,13 @@ public class WriteDOMSpecification extends Object {
       lPropSortMap.put(lProp.rdfIdentifier, lProp);
     }
     ArrayList<DOMProp> lSortPropArr = new ArrayList<>(lPropSortMap.values());
-    String lastProp = "&nbsp;";
+    String lastProp = NBSP;
     for (Iterator<DOMProp> i = lSortPropArr.iterator(); i.hasNext();) {
       DOMProp lProp = i.next();
       DOMClass lDOMClass = (DOMClass) lProp.domObject;
-      phtitle = "&nbsp;";
-      phcard = "&nbsp;";
-      phindicator = "&nbsp;";
+      phtitle = NBSP;
+      phcard = NBSP;
+      phindicator = NBSP;
       if (lProp.isRestrictedInSubclass) { // attribute is restricted in a subclass as opposed to
                                           // restricted relative to the attribute in the "USER"
                                           // class
@@ -624,19 +627,19 @@ public class WriteDOMSpecification extends Object {
         cardval = cmin;
       }
 
-      if (phtitle.compareTo("&nbsp;") != 0) {
+      if (phtitle.compareTo(NBSP) != 0) {
         phcard = cardval;
       }
       lastProp = lProp.title;
 
       printHTMLTableRow(phRelation, phtitle, phcard, phvalue, phindicator);
       firstflag = false;
-      phRelation = "&nbsp;";
+      phRelation = NBSP;
 
     }
 
     if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, "none", NBSP, NBSP, NBSP);
     }
   }
 
@@ -683,13 +686,13 @@ public class WriteDOMSpecification extends Object {
           ("class_" + lClass.nameSpaceIdNC + "_" + lClass.title).toLowerCase();
 
       phtitle = "<a href=\"#" + lClassAnchorString + "\">" + lClass.title + "</a>";
-      printHTMLTableRow(phRelation, phtitle, "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, phtitle, NBSP, NBSP, NBSP);
       firstflag = false;
-      phRelation = "&nbsp;";
-      phtitle = "&nbsp;";
+      phRelation = NBSP;
+      phtitle = NBSP;
     }
     if (firstflag) {
-      printHTMLTableRow(phRelation, "none", "&nbsp;", "&nbsp;", "&nbsp;");
+      printHTMLTableRow(phRelation, "none", NBSP, NBSP, NBSP);
     }
   }
 
@@ -965,7 +968,7 @@ public class WriteDOMSpecification extends Object {
       DOMProp lDOMProp = i.next();
 
       if (!(lDOMProp.domObject instanceof DOMPermValDefn)) {
-        phvalue = "&nbsp;";
+        phvalue = NBSP;
 
       } else {
         DOMPermValDefn lPermValueDefn = (DOMPermValDefn) lDOMProp.domObject;
@@ -989,7 +992,7 @@ public class WriteDOMSpecification extends Object {
           if (lDependValue != null) {
             lDependClause = " (" + lDependValue + ")";
           }
-          String lValueAnchorString = getAnchorString (Arrays.asList("value", lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
+          String lValueAnchorString = getAnchorString (Arrays.asList(VALUE_LITERAL, lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
           String lValue = replaceString(lPermValueDefn.value, "μ", "&mu;");
           String lValueMeaning = replaceString(lPermValueDefn.value_meaning, "μ", "&mu;");
           if (lAttr.title.compareTo("pattern") == 0
@@ -1049,7 +1052,7 @@ public class WriteDOMSpecification extends Object {
         if (lPermValueDefn.value.compareTo("...") == 0) {
           elipflag = true;
         } else {
-          String lValueAnchorString = getAnchorString (Arrays.asList("value", lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
+          String lValueAnchorString = getAnchorString (Arrays.asList(VALUE_LITERAL, lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
           phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + "</b></a>"
               + " - " + lPermValueDefn.value_meaning;
           prhtml.println(" - " + phvalue + "<br>");
