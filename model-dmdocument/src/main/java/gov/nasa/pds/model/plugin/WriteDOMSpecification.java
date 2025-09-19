@@ -35,11 +35,13 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import gov.nasa.pds.model.plugin.util.Utility;
@@ -565,8 +567,7 @@ public class WriteDOMSpecification extends Object {
 	            Utility.registerMessage("1>error printTableRow - Component Class is missing - lClassId:" + classId);
 	        }
 	    } else {
-	        anchorString = ("value_" + attr.classNameSpaceIdNC + "_" + attr.parentClassTitle + "_" 
-	                      + prop.nameSpaceIdNC + "_" + attr.getTitle() + "_" + value).toLowerCase();
+	    	anchorString = getAnchorString (Arrays.asList("value", attr.classNameSpaceIdNC, attr.parentClassTitle, prop.nameSpaceIdNC, attr.getTitle(), value));         
 	    }
 
 	    return "<a href=\"#" + anchorString + "\">" + replaceString(value, "μ", "&mu;") + "</a>";
@@ -988,10 +989,7 @@ public class WriteDOMSpecification extends Object {
           if (lDependValue != null) {
             lDependClause = " (" + lDependValue + ")";
           }
-          String lValueAnchorString =
-              ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_"
-                  + lAttr.nameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value)
-                      .toLowerCase();
+          String lValueAnchorString = getAnchorString (Arrays.asList("value", lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
           String lValue = replaceString(lPermValueDefn.value, "μ", "&mu;");
           String lValueMeaning = replaceString(lPermValueDefn.value_meaning, "μ", "&mu;");
           if (lAttr.title.compareTo("pattern") == 0
@@ -1051,10 +1049,7 @@ public class WriteDOMSpecification extends Object {
         if (lPermValueDefn.value.compareTo("...") == 0) {
           elipflag = true;
         } else {
-          String lValueAnchorString =
-              ("value_" + lAttr.classNameSpaceIdNC + "_" + lAttr.parentClassTitle + "_"
-                  + lAttr.nameSpaceIdNC + "_" + lAttr.title + "_" + lPermValueDefn.value)
-                      .toLowerCase();
+          String lValueAnchorString = getAnchorString (Arrays.asList("value", lAttr.classNameSpaceIdNC, lAttr.parentClassTitle, lAttr.nameSpaceIdNC, lAttr.getTitle(), lPermValueDefn.value));
           phvalue = "<a name=\"" + lValueAnchorString + "\"><b>" + lPermValueDefn.value + "</b></a>"
               + " - " + lPermValueDefn.value_meaning;
           prhtml.println(" - " + phvalue + "<br>");
@@ -1138,6 +1133,17 @@ public class WriteDOMSpecification extends Object {
    * miscellaneous routines
    ***********************************************************************************************************/
 
+  /**
+   * Get Anchor String
+   */
+  public String getAnchorString(List<String> valueArr) {
+    List<String> lowerCaseValues = new ArrayList<>(valueArr.size());
+    for (String value : valueArr) {
+        lowerCaseValues.add(value.toLowerCase());
+    }
+    return String.join("_", lowerCaseValues);
+  }
+  
   /**
    * Get Slot Value
    */
