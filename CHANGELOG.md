@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-12)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-22)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -18,11 +18,13 @@
 
 **Defects:**
 
+- PDS4 Instrument class \(Product\_Context\) lists attributes that cannot be used [\#951](https://github.com/NASA-PDS/pds4-information-model/issues/951) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Current WebHelp documentation \(1O00/1.24.0.0\) does not reflect latest Rings LDD [\#938](https://github.com/NASA-PDS/pds4-information-model/issues/938) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Generated LDD documentation does not handle xs:choice right [\#916](https://github.com/NASA-PDS/pds4-information-model/issues/916) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
+- Fix the SonarQube "Brain Method" finding associated with \#930 [\#937](https://github.com/NASA-PDS/pds4-information-model/issues/937)
 - Stage the PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#933](https://github.com/NASA-PDS/pds4-information-model/issues/933)
 - Refactoring that came out of \#924 investigation [\#929](https://github.com/NASA-PDS/pds4-information-model/issues/929)
 - Release PDS4 Information Model V 1.24.0.0 \(1O00\) for Build 15.1 [\#918](https://github.com/NASA-PDS/pds4-information-model/issues/918)
