@@ -42,6 +42,9 @@ clipper,clipper,The Europa Clipper mission dictionary contains classes that desc
 clps,clps,"The Commercial Lunar Payload Services Mission Dictionary (clps) contains classes, attributes and rules specific to the CLPS missions and their instruments.",Mission,Jennifer Ward,jgward at wustl.edu,2023-03-28,
 dart,dart,"This namespace provides classes specific to the NASA DART mission and, potentially, the concurrent LICIACube mission.",Mission,Ben Hirsch,bhirsch1 at umd.edu,2021-08-18,
 dscovr,DSCOVR Mission,The DSCOVR Mission Data Dictionary contains classes and attributes that describe data products from the DSCOVR (Deep Space Climate Observatory) mission.,Mission,Bob Deen,Bob.Deen at jpl.nasa.gov,2025-07-30,
+galileo,Galileo,"The Galileo Mission Dictionary (galileo) contains classes, attributes and rules specific to the Galileo Mission and its instruments.",Mission,"Jesse Stone
+Beatrice Mueller","jstone at psi.edu
+mueller at psi.edu",2025-09-23,
 hisaki,Hisaki (SPRINT-A),Namespace for the Hisaki dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26,
 hst,Hubble Space Telescope,Namespace for the Hubble Space Telescope Mission Dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-26,
 hyb2,Hayabusa 2,This is the Hayabusa2 Mission Specific Data Dictionary.,Mission,Yukio Yamamoto,yamamoto.yukio at jaxa.jp,2020-12-28,
