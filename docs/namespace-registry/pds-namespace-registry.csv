@@ -1,4 +1,4 @@
-Last Update,9/23/2025,,,,,,
+Last Update,9/24/2025,,,,,,
 Namespace Id (1),Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date,
 Common,,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03,
@@ -29,6 +29,7 @@ particle,Particle,The Particle dictionary contains classes that describe the com
 pds,PDS Operations,Namespace for the Operations dictionary.,Discipline,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03,
 ppi,,Namespace for the PPI node's dictionary.,Discipline,Joseph Mafi,jmafi at igpp.ucla.edu,2012-04-03,
 proc,Processing Information,The Processing_Information Dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.,Discipline,Trent Hare,thare at usgs.gov,2019-09-26,
+prov,Provenance,"The purpose of the ""prov"" LDD is to provide a PDS4 ""Discipline_Area"" insert for capturing provenance information.",Discipline,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2025-09-24,
 rings,Rings,The Rings Dictionary contains classes supporting planetary ring observations including ring-specific geometric parameters.,Discipline,Mitchel Gordon,mgordon at seti.org,2012-04-03,
 sb,Small Bodies Node Dictionary,"This dictionary will provide classes to support the documentation, support, discovery, and reuse of data from, by, and for small bodies research.",Discipline,Anne Raugh,araugh at umd.edu,2023-01-17,
 sp,Spectral,"The Spectral (sp) Discipline Dictionary contains classes for defining the spectral bin characteristics (in wavelength, frequency, or wave number) of a data product.",Discipline,Anne Raugh,araugh at umd.edu,2013-11-11,
