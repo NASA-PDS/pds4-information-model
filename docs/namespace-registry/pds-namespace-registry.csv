@@ -1,4 +1,4 @@
-Last Update,9/23/2025,,,,,,
+Last Update,9/24/2025,,,,,,
 Namespace Id (1),Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date,
 Common,,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03,
@@ -29,6 +29,7 @@ particle,Particle,The Particle dictionary contains classes that describe the com
 pds,PDS Operations,Namespace for the Operations dictionary.,Discipline,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03,
 ppi,,Namespace for the PPI node's dictionary.,Discipline,Joseph Mafi,jmafi at igpp.ucla.edu,2012-04-03,
 proc,Processing Information,The Processing_Information Dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.,Discipline,Trent Hare,thare at usgs.gov,2019-09-26,
+prov,Provenance,"The purpose of the ""prov"" LDD is to provide a PDS4 ""Discipline_Area"" insert for capturing provenance information.",Discipline,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2025-09-24,
 rings,Rings,The Rings Dictionary contains classes supporting planetary ring observations including ring-specific geometric parameters.,Discipline,Mitchel Gordon,mgordon at seti.org,2012-04-03,
 sb,Small Bodies Node Dictionary,"This dictionary will provide classes to support the documentation, support, discovery, and reuse of data from, by, and for small bodies research.",Discipline,Anne Raugh,araugh at umd.edu,2023-01-17,
 sp,Spectral,"The Spectral (sp) Discipline Dictionary contains classes for defining the spectral bin characteristics (in wavelength, frequency, or wave number) of a data product.",Discipline,Anne Raugh,araugh at umd.edu,2013-11-11,
@@ -42,6 +43,9 @@ clipper,clipper,The Europa Clipper mission dictionary contains classes that desc
 clps,clps,"The Commercial Lunar Payload Services Mission Dictionary (clps) contains classes, attributes and rules specific to the CLPS missions and their instruments.",Mission,Jennifer Ward,jgward at wustl.edu,2023-03-28,
 dart,dart,"This namespace provides classes specific to the NASA DART mission and, potentially, the concurrent LICIACube mission.",Mission,Ben Hirsch,bhirsch1 at umd.edu,2021-08-18,
 dscovr,DSCOVR Mission,The DSCOVR Mission Data Dictionary contains classes and attributes that describe data products from the DSCOVR (Deep Space Climate Observatory) mission.,Mission,Bob Deen,Bob.Deen at jpl.nasa.gov,2025-07-30,
+galileo,Galileo,"The Galileo Mission Dictionary (galileo) contains classes, attributes and rules specific to the Galileo Mission and its instruments.",Mission,"Jesse Stone
+Beatrice Mueller","jstone at psi.edu
+mueller at psi.edu",2025-09-23,
 hisaki,Hisaki (SPRINT-A),Namespace for the Hisaki dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26,
 hst,Hubble Space Telescope,Namespace for the Hubble Space Telescope Mission Dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-26,
 hyb2,Hayabusa 2,This is the Hayabusa2 Mission Specific Data Dictionary.,Mission,Yukio Yamamoto,yamamoto.yukio at jaxa.jp,2020-12-28,
