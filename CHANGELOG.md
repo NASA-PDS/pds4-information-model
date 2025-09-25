@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-25)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -14,6 +14,9 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "prov" [\#958](https://github.com/NASA-PDS/pds4-information-model/issues/958)
+- \[namespace-registry\] add new namespace "galileo" [\#956](https://github.com/NASA-PDS/pds4-information-model/issues/956)
+- \[namespace-registry\] add new namespace "galileo" [\#953](https://github.com/NASA-PDS/pds4-information-model/issues/953)
 - \[namespace-registry\] add new namespace "dscovr" [\#935](https://github.com/NASA-PDS/pds4-information-model/issues/935)
 
 **Defects:**
