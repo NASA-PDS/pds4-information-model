@@ -280,13 +280,13 @@ class WriteDOMDDJSONFileLib {
 			jsonObjectAssoc.put(formatValue("isAttribute"), formatBooleanValue(true));
 			
 			// get component list, the attributes identifiers
-			jsonObjectAssoc.put(null, getValueClassList (lDOMPropGroup));
+			jsonObjectAssoc.put("attributeId", getValueClassList (lDOMPropGroup));
 		} else {
 			jsonObjectAssoc.put(formatValue("assocType"), formatValue("component_of"));
 			jsonObjectAssoc.put(formatValue("isAttribute"), formatBooleanValue(false));
 			
 			// get component list, the classes identifiers
-			jsonObjectAssoc.put(null, getValueClassList (lDOMPropGroup));
+			jsonObjectAssoc.put("classId", getValueClassList (lDOMPropGroup));
 		}
 		return jsonObjectAssoc;
 	}	
