@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-25)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-30)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -22,6 +22,7 @@
 **Defects:**
 
 - PDS4 Instrument class \(Product\_Context\) lists attributes that cannot be used [\#951](https://github.com/NASA-PDS/pds4-information-model/issues/951) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
+- LDD generator is not generating valid LDDs [\#947](https://github.com/NASA-PDS/pds4-information-model/issues/947) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 - Current WebHelp documentation \(1O00/1.24.0.0\) does not reflect latest Rings LDD [\#938](https://github.com/NASA-PDS/pds4-information-model/issues/938) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Generated LDD documentation does not handle xs:choice right [\#916](https://github.com/NASA-PDS/pds4-information-model/issues/916) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
