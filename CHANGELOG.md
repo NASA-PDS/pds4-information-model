@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-09-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-06)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -29,6 +29,7 @@
 **Other closed issues:**
 
 - Cleanup the Namespace Registry [\#954](https://github.com/NASA-PDS/pds4-information-model/issues/954)
+- Fix C Maintainability Rating on WriteDOM11179DDRDFFile [\#943](https://github.com/NASA-PDS/pds4-information-model/issues/943)
 - Fix the SonarQube "Brain Method" finding associated with \#930 [\#937](https://github.com/NASA-PDS/pds4-information-model/issues/937)
 - Stage the PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#933](https://github.com/NASA-PDS/pds4-information-model/issues/933)
 - Refactoring that came out of \#924 investigation [\#929](https://github.com/NASA-PDS/pds4-information-model/issues/929)
