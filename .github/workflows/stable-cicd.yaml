@@ -67,6 +67,12 @@ jobs:
                     key: pds-${{runner.os}}-mvn-${{hashFiles('**/pom.xml')}}
                     # To restore a set of files, we only need to match a prefix of the saved key.
                     restore-keys: pds-${{runner.os}}-mvn-
+
+            -
+                name: ∫ Smoke Tests with Discipline LDDs
+                run: |
+                    test/smoke-tests.sh
+
             -
                 name: 🤠 Roundup
                 uses: NASA-PDS/roundup-action@stable
@@ -83,10 +89,6 @@ jobs:
                     CODE_SIGNING_KEY: ${{secrets.CODE_SIGNING_KEY}}
                     ADMIN_GITHUB_TOKEN: ${{secrets.ADMIN_GITHUB_TOKEN}}
 
-            -
-                name: ∫ Smoke Tests with Discipline LDDs
-                run: |
-                    test/smoke-tests.sh
 
 ...
 
