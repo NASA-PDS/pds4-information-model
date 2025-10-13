@@ -32,7 +32,7 @@ jobs:
 
         strategy:
             matrix:
-                java-version: [11, 17]
+                java-version: [17]
 
         steps:
             -
