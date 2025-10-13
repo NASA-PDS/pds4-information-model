@@ -69,9 +69,9 @@ mkdocs build
 # Output will be in export/docs/site/
 
 # Option B: Serve locally with live reload
-python3 -m http.server 8000
+mkdocs serve
 
-# Then open http://localhost:8000 in your browser
+# Then open http://localhost:8000 in your browser (usually http://127.0.0.1:8000)
 # Ctrl+C to exit
 
 # When done, deactivate the virtual environment
