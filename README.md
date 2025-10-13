@@ -29,6 +29,9 @@ For operational installation of LDDTool, see the deployed documentation for inst
 
 For development installation, use maven:
 
+**Requirements:**
+- OpenJDK 17 or higher
+
 ```console
 $ # Package the software
 $ mvn clean package
