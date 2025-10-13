@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-06)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-13)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -14,6 +14,7 @@
 
 **Improvements:**
 
+- Upgrade to Java 17 for compatibility with validate dependency [\#968](https://github.com/NASA-PDS/pds4-information-model/issues/968)
 - \[namespace-registry\] add new namespace "prov" [\#958](https://github.com/NASA-PDS/pds4-information-model/issues/958)
 - \[namespace-registry\] add new namespace "galileo" [\#956](https://github.com/NASA-PDS/pds4-information-model/issues/956)
 - \[namespace-registry\] add new namespace "galileo" [\#953](https://github.com/NASA-PDS/pds4-information-model/issues/953)
