@@ -71,7 +71,7 @@
   </Observation_Area>   
     <File_Area_Observational>
     <File>
-      <file_name>vl0axrat_valid-2.tab</file_name>
+      <file_name>vl0axrat_delim_valid.tab</file_name>
       <creation_date_time>1998-05-11T18:00:00</creation_date_time>
     </File>
     <Table_Delimited>
