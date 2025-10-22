@@ -212,9 +212,8 @@ public class SchemaFileDefn {
   }
   
   //set ns_version_id
-  public void setNameSpaceVersionId(String ns_version_id) {
-	  this.ns_version_id = ns_version_id;
-	  return;
+  public void setNameSpaceVersionId(String nsVersionId) {
+	  this.ns_version_id = nsVersionId;
   }
 
   //get identifier_version_id
