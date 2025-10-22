@@ -450,7 +450,6 @@ public class DMProcessState {
   public void setRelativeFileSpecDDCSV(SchemaFileDefn lSchemaFileDefn) {
     writtenFilesMap.put(lSchemaFileDefn.relativeFileSpecDDCSV, 1110);
     // checkCreateDirectory not needed, file is in root directory
-    return;
   }
 
   public void setRelativeFileSpecCCSDSCSV(SchemaFileDefn lSchemaFileDefn) {
