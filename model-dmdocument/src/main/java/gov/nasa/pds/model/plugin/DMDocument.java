@@ -721,9 +721,6 @@ public class DMDocument extends Object {
 	  
 	// process state for used flags, files, and directories
 	    dmProcessState = new DMProcessState();
-	    
-	    // System.out.println("Debug main 240515");
-
 	    PDSOptionalFlag = false;
 	    LDDToolFlag = false;
 	    // Secondary LDD Models
@@ -1177,6 +1174,10 @@ public class DMDocument extends Object {
     parser.addArgument("-N", "--namespace").dest("N").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Print the list of configured namespaces to the log");
 
+    parser.addArgument("-s", "--namespace-version").dest("s").type(String.class)
+    	.choices("1", "2", "3", "4", "5", "6", "7", "8", "9")
+    	.help("Override default namespace version number (one-digit string 1–9). Defaults to major version number of LDD (e.g., LDD v2.0.0.0 -> namespace https://url.com/ldd/v2).");    
+
 	parser.addArgument("-1", "--im_specification").dest("1").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Write the Information Model Specification for an LDD");
@@ -1295,6 +1296,14 @@ public class DMDocument extends Object {
       dmProcessState.setprintNamespaceFlag();
       printNamespaceFlag = true;
     }
+    
+    String lOverrideNameSpaceVersion = ns.getString("s");
+    if (lOverrideNameSpaceVersion != null) {
+    	if (! lOverrideNameSpaceVersion.matches("[1-9]")) {
+    		lOverrideNameSpaceVersion = "1";
+    	}
+    	dmProcessState.setOverrideNameSpaceVersionFlag(lOverrideNameSpaceVersion);	
+    }    
 
     Boolean dFlag = ns.getBoolean("d");
     if (dFlag) {
@@ -1360,6 +1369,7 @@ public class DMDocument extends Object {
       LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
       masterLDDSchemaFileDefn = lLDDSchemaFileDefn; // the last Ingest_LDD named is the master.
     }
+    masterLDDSchemaFileDefn.isMasterLDD = true; // the last Ingest_LDD named is the master.
     return true;
   }
 

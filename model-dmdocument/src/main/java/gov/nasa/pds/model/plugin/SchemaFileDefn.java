@@ -78,6 +78,7 @@ public class SchemaFileDefn {
 
   // isLDD indicates an LDD schema
   boolean isLDD;
+  boolean isMasterLDD; 
 
   // isDiscipline indicates a discipline schema
   boolean isDiscipline;
@@ -149,6 +150,7 @@ public class SchemaFileDefn {
     governanceLevel = "TBD_governanceLevel";
     isMaster = false;
     isLDD = false;
+    isMasterLDD = false;
     isDiscipline = false;
     isMission = false;
     relativeFileSpecModelSpec_DOM = "TBD_relativeFileSpecModelSpec_DOM";
@@ -207,6 +209,12 @@ public class SchemaFileDefn {
   //get ns_version_id
   public String getNameSpaceVersionId() {
 	  return ns_version_id;
+  }
+  
+  //set ns_version_id
+  public void setNameSpaceVersionId(String ns_version_id) {
+	  this.ns_version_id = ns_version_id;
+	  return;
   }
 
   //get identifier_version_id

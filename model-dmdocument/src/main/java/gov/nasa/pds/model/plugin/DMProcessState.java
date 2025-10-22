@@ -45,6 +45,9 @@ public class DMProcessState {
   // written files map
   TreeMap<String, Integer> writtenFilesMap;
   TreeMap<Integer, String> writtenFilesSortMap;
+  
+  // variables
+  private String overrideNameSpaceVersion;
 
   public DMProcessState() {
     // init the process flag map
@@ -52,6 +55,7 @@ public class DMProcessState {
     processFlagSortMap = new TreeMap<>();
     writtenFilesMap = new TreeMap<>();
     writtenFilesSortMap = new TreeMap<>();
+    overrideNameSpaceVersion = "1";  // default
   }
 
   // - getters -
@@ -174,6 +178,14 @@ public class DMProcessState {
       return true;
     }
     return false;
+  }
+
+  public String getOverrideNameSpaceVersionFlag() {
+    Integer lProcessOrder = processFlagMap.get("Override Namespace Version");
+    if (lProcessOrder != null) {
+      return overrideNameSpaceVersion;
+    }
+    return null;
   }
 
   public Boolean getLDDAttrElementFlag() {
@@ -326,7 +338,13 @@ public class DMProcessState {
     processFlagMap.put("Print Namespace Flag", 1100);
     return;
   }
-
+  
+  public void setOverrideNameSpaceVersionFlag(String overrideNameSpaceVersion) {
+    processFlagMap.put("Override Namespace Version", 1105);
+    this.overrideNameSpaceVersion = overrideNameSpaceVersion;
+    return;
+  }
+  
   public void setLDDAttrElementFlag() {
     processFlagMap.put("Attr Element Flag", 1110);
     return;
