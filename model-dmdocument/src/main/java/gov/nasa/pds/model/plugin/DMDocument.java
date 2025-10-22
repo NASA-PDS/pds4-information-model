@@ -349,7 +349,7 @@ public class DMDocument extends Object {
 	  Namespace argparse4jNamespace = null;
 	  try {
 		  argparse4jNamespace = getArgumentParserNamespace(args);
-	  } catch (Throwable e) {
+	  } catch (Exception e) {
 		  return false;
 	  }
 
@@ -1135,7 +1135,7 @@ public class DMDocument extends Object {
     registryAttr.add("version_id");
   }
 
-  static Namespace getArgumentParserNamespace(String args[]) throws ArgumentParserException {
+  static Namespace getArgumentParserNamespace(String[] args) throws ArgumentParserException, HelpScreenException {
     parser = ArgumentParsers.newFor("LDDTool").build().defaultHelp(true).version(LDDToolVersionId)
         .description("LDDTool process control:");
 
