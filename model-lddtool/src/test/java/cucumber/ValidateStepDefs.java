@@ -29,9 +29,11 @@ public class ValidateStepDefs {
 
   private static final Logger LOG = LoggerFactory.getLogger(ValidateStepDefs.class);
   private static final String DEFAULT_REPORT_FILENAME = "report_{testDir}.json";
-  private static final String DEFAULT_VALIDATE_ARGS =
-      "--disable-context-mismatch-warnings --report-style json --skip-content-validation --skip-context-validation --report-file {reportDir}/"
-          + DEFAULT_REPORT_FILENAME + " ";
+  private static final String DEFAULT_VALIDATE_ARGS_BASE =
+      "--disable-context-mismatch-warnings --report-style json ";
+  private static final String DEFAULT_VALIDATE_SKIP_CONTENT = "--skip-content-validation ";
+  private static final String DEFAULT_VALIDATE_ARGS_SUFFIX =
+      "--skip-context-validation --report-file {reportDir}/" + DEFAULT_REPORT_FILENAME + " ";
   private static final String DEFAULT_CORE_ARGS = "-p";
   private static final String DEFAULT_LDDTOOL_ARGS = "-lp";
   private static final String PINNED_VERSION_DIR = "pinned_version";
@@ -72,6 +74,7 @@ public class ValidateStepDefs {
   private String reportDir;
   private String commandArgs;
   private String refOutputValue;
+  private boolean enableContentValidation;
 
 
   @Before
@@ -193,6 +196,12 @@ public class ValidateStepDefs {
     this.problemEnum = problemEnum;
     LOG.debug("with_test_property:messageCount [" + Integer.toString(messageCount)
         + "]");
+  }
+
+  @Given("content validation is enabled {string}")
+  public void content_validation_is_enabled(String enableContentValidation) {
+    this.enableContentValidation = enableContentValidation.equalsIgnoreCase("true");
+    LOG.debug("content_validation_is_enabled: " + this.enableContentValidation);
   }
 
   @Given("the latest PDS4 schema\\/schematron is generated for IM Version {string}")
@@ -348,7 +357,15 @@ public class ValidateStepDefs {
 
   private String[] getDefaultValidateArguments(String commandArgs) throws URISyntaxException {
     List<String> argsList = new ArrayList<String>();
-    String[] args = DEFAULT_VALIDATE_ARGS.concat(this.commandArgs).split("\\s+");
+    
+    // Build validate args conditionally based on enableContentValidation
+    String validateArgs = DEFAULT_VALIDATE_ARGS_BASE;
+    if (!this.enableContentValidation) {
+      validateArgs += DEFAULT_VALIDATE_SKIP_CONTENT;
+    }
+    validateArgs += DEFAULT_VALIDATE_ARGS_SUFFIX;
+    
+    String[] args = validateArgs.concat(this.commandArgs).split("\\s+");
 
     // Get schema
     String[] schemas = Utility
