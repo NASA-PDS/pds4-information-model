@@ -13,4 +13,5 @@ detect-secrets scan . \
                --exclude-files 'model-lddtool/src/main/resources/.*' \
                --exclude-files '\.metadata/*' \
                --exclude-files 'model-lddtool/src/test/.*' \
-               --exclude-files 'docs/namespace-registry/.*' > .secrets.baseline
+               --exclude-files 'docs/namespace-registry/.*' \
+               --exclude-files '\.vscode.*' > .secrets.baseline
