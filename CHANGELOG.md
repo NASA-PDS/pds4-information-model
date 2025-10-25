@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-13)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-24)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
@@ -29,6 +29,7 @@
 
 **Other closed issues:**
 
+- CCB-28: As a user, I want validate to allow delimited tables with whitespace-only numeric fields [\#967](https://github.com/NASA-PDS/pds4-information-model/issues/967)
 - Cleanup the Namespace Registry [\#954](https://github.com/NASA-PDS/pds4-information-model/issues/954)
 - Fix C Maintainability Rating on WriteDOM11179DDRDFFile [\#943](https://github.com/NASA-PDS/pds4-information-model/issues/943)
 - Fix the SonarQube "Brain Method" finding associated with \#930 [\#937](https://github.com/NASA-PDS/pds4-information-model/issues/937)
