@@ -205,7 +205,7 @@ You can view the version number for the executable:
 
     LDDTool Version: ${project.version}
     Built with IM Version: 1.25.0.0 (1P00)
-    Build Date: 2025-XX-XX XX:XX:XX
+    Build Date: ${build.date}  # or 'YYYY-MM-DD HH:MM:SS' if no macro available
     Configured IM Versions: [1P00, 1O00, 1N00, 1M00, 1L00, 1K00, 1J00, 1I00, 1H00, 1G00, 1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
 
 If this does not execute successfully, please return to the installation guide and ensure the software was installed correctly, or contact [PDS Operator](mailto:pds-operator@jpl.nasa.gov) for assistance.
