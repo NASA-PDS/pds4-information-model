@@ -2,67 +2,218 @@
 Usage
 =====
 
-* [Running LDDTool on the Example Files](#Running_LDDTool_on_the_Example_Files)
+* [Quick Start](#Quick_Start)
+* [Command-Line Reference](#Command-Line_Reference)
+    * [Required Flags](#Required_Flags)
+    * [Output Generation Flags](#Output_Generation_Flags)
+    * [Processing Modification Flags](#Processing_Modification_Flags)
+    * [Information Flags](#Information_Flags)
+    * [IM Version Selection](#IM_Version_Selection)
+* [Common Use Cases](#Common_Use_Cases)
+    * [Generate Master PDS4 Schemas](#Generate_Master_PDS4_Schemas)
+    * [Process Local Data Dictionary](#Process_Local_Data_Dictionary)
+    * [Generate with Specific IM Version](#Generate_with_Specific_IM_Version)
+    * [Generate JSON Output](#Generate_JSON_Output)
+    * [Generate Multiple Output Formats](#Generate_Multiple_Output_Formats)
+* [Running LDDTool on Example Files](#Running_LDDTool_on_Example_Files)
     * [Expected Results](#Expected_Results)
     * [Checking for Success](#Checking_for_Success)
 * [Generating Discipline LDDs](#Generating_Discipline_LDDs)
 * [Generating Mission LDDs](#Generating_Mission_LDDs)
-* [Generate LDD with Specific PDS4 Version](#Generate_LDD_with_Specific_PDS4_Version)
 * [Common Errors](#Common_Errors)
 
-Once installed you can view the usage information as follows:
+---
 
-    $ lddtool-${project.version}/bin/lddtool -h
+Quick Start
+-----------
 
-    Usage: lddtool -pl [OPTION]... FILE1 FILE2 ...
-    Parse a local data dictionary definition file and generate PDS4 data standard files.
+LDDTool is the command-line interface for the PDS4 Information Model document generation tool (DMDocument.jar). It processes Ingest_LDD XML files to generate PDS4 schemas, documentation, and data dictionaries.
 
-    Example: lddtool -pl  inputFileName
+**Basic syntax:**
 
-    Process control:
-      -p, --PDS4      Set the context to PDS4
-      -l, --LDD       Process a local data dictionary input file
-      -D, --DataDict  Write the Data Dictionary DocBook file.
-      -J, --JSON      Write the data dictionary to a JSON formatted file.
-      -m, --merge     Generate file to merge the local dictionary into the master dictionary
-      -M, --Mission   This option has no effect starting with PDS4 IM Version 1.14.0.0. See the LDDTool Usage document for more information on how to provide this information.
-      -n, --nuance    Write nuance property maps to LDD schema annotation in JSON
-      -N, --Namespace Print the list of configured namespaces to the log
-      -1, --IM Spec   Write the Information Model Specification for an LDD.
-      -v, --version   Returns the LDDTool version number
-      -h, --help      Print this message
+    $ lddtool-${project.version}/bin/lddtool [OPTIONS] [INPUT_FILES...]
 
-      -V, --IM Version - E.g., -V 1D00.
-            The configured IM Versions are:[1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
+**Most common usage:**
 
-    Input control:
-      FILE provides the file name of an input file. The file name extension .xml is assumed.
-        If there are more than one file, the first files are considered references
-        for the last file. The last file is considered the primary local data dictionary.
+    # Generate master PDS4 schemas for the current IM version
+    $ lddtool -p
 
-    Output control:
-      FILE is used to provide the file name for the output files. The file name extensions are distinct.
-      .xsd -- XML Schema file
-      .sch -- schematron file
-      .xml -- label file
-      .csv -- data dictionary information in csv formatted file.
-      .JSON -- dump of model in JSON format.
-      .txt -- process report in text format
-      .pont -- ontology file for merge
+    # Process a local data dictionary with JSON output
+    $ lddtool -lpJ PDS4_EXAMPLE_IngestLDD.xml
+
+    # Generate with a specific IM version
+    $ lddtool -lpJ -V 1O00 PDS4_EXAMPLE_IngestLDD.xml
+
+**Get help or version information:**
+
+    $ lddtool -h
+    $ lddtool -v
+
+---
+
+Command-Line Reference
+----------------------
+
+### Required Flags
+
+| Flag | Long Form | Description |
+|------|-----------|-------------|
+| `-p` | `--pds4` | **Required for all operations.** Set the processing context to PDS4. This flag must be present for any LDDTool operation. |
+
+### Output Generation Flags
+
+These flags control what output files are generated:
+
+| Flag | Long Form | Description |
+|------|-----------|-------------|
+| `-l` | `--ldd` | Process one or more local data dictionary (LDD) input files. Use this when you have Ingest_LDD XML files to process. Without this flag, LDDTool generates the master PDS4 schemas. |
+| `-J` | `--json` | Generate JSON output file containing the data dictionary in JSON format. This is useful for programmatic access to the dictionary data. |
+| `-a` | `--include-all-namespaces` | Include all configured namespaces in the JSON output. Only valid when used with `-J`. By default, JSON output includes only the processed namespace; this flag includes all known namespaces. |
+| `-D` | `--datadict` | Generate the Data Dictionary DocBook file. This produces documentation in DocBook XML format. |
+| `-1` | `--im-specification` | Generate the Information Model Specification document for the LDD. This produces a detailed specification document. |
+| `-T` | `--termmap` | Generate terminological mapping to alternate names. This maps PDS4 terms to their equivalents in other standards or naming conventions. |
+| `-O` | `--ttl` | Generate OWL/RDF output in TTL (Turtle) format for IM Classification. This is used for semantic web applications and ontology work. |
+| `-o` | `--rdf` | Generate OWL/RDF output in RDF/XML format for IM Export. This provides the information model in semantic web format. |
+| `-C` | `--custom` | Enable customized processing and reporting. This triggers specialized processing logic for specific use cases. |
+
+**Note:** Multiple output flags can be combined in a single command (e.g., `-lpJD` to process an LDD and generate both JSON and DocBook outputs).
+
+### Processing Modification Flags
+
+These flags modify how LDDTool processes the input:
+
+| Flag | Long Form | Description |
+|------|-----------|-------------|
+| `-d` | `--discipline` | Omit the term "mission" from the namespace designation. Use this when creating discipline-level dictionaries (e.g., for imaging, cartography) rather than mission-specific dictionaries. |
+| `-n` | `--nuance` | Write nuance property maps to LDD schema annotation in JSON format. This includes additional metadata about attributes in the generated schema annotations. |
+| `-m` | `--merge` | Generate files needed to merge the local dictionary into the master dictionary. This is used by the PDS EN team when integrating community LDDs. |
+| `-M` | `--mission` | **Deprecated as of IM v1.14.0.0.** This flag is no longer used. Mission vs. discipline designation is now handled through the Ingest_LDD file's `dictionary_type` attribute. |
+
+### Information Flags
+
+These flags display information and then exit:
+
+| Flag | Long Form | Description |
+|------|-----------|-------------|
+| `-v` | `--version` | Display LDDTool version information including the build date and configured IM versions, then exit. |
+| `-N` | `--namespace` | Print the list of all configured namespaces to the log, then exit. This shows all discipline and mission namespaces known to LDDTool. |
+| `-h` | `--help` | Display usage information, then exit. |
+
+### IM Version Selection
+
+| Flag | Long Form | Description |
+|------|-----------|-------------|
+| `-V <version>` | `--pds4-version <version>` | Specify which PDS4 Information Model version to use. If not specified, uses the current build version. |
+
+**Supported IM Versions:**
+
+LDDTool supports all IM versions back to 1B00
+
+**Example:**
+
+    $ lddtool -lpJ -V 1N00 PDS4_IMG_IngestLDD.xml
+
+### Input Files
+
+    FILE1 FILE2 ...
+
+One or more Ingest_LDD XML files to process. The `.xml` extension is assumed if not provided.
+
+**Multiple file behavior:**
+- When multiple files are specified, the first files are considered reference dictionaries
+- The last file is treated as the primary local data dictionary
+- This allows you to process an LDD that depends on classes/attributes from another LDD
+
+### Output Files
+
+LDDTool generates output files with the following extensions:
+
+| Extension | Description |
+|-----------|-------------|
+| `.xsd` | XML Schema file defining the dictionary's classes and attributes |
+| `.sch` | Schematron rule file for validation constraints |
+| `.xml` | Label file documenting the schema (should be customized before archiving) |
+| `.csv` | CSV-formatted data dictionary for easy review |
+| `.json` | JSON-formatted dump of the model (when `-J` flag is used) |
+| `.txt` | Process report showing what was generated and any warnings/errors |
+| `.pont` | Ontology file for merging (when `-m` flag is used) |
+
+---
+
+Common Use Cases
+----------------
+
+### Generate Master PDS4 Schemas
+
+Generate the core PDS4 schemas for the current IM version:
+
+    $ lddtool -p
+
+This creates all the master PDS4 schemas without processing any local dictionaries. Output goes to the `PDS4_PDS_1P00/` directory (or appropriate version directory).
+
+### Process Local Data Dictionary
+
+Process an Ingest_LDD file to generate schemas for a local dictionary:
+
+    $ lddtool -lp PDS4_IMG_IngestLDD.xml
+
+This generates:
+- XSD schema file
+- Schematron validation file
+- Label file
+- CSV data dictionary
+- Process report
+
+### Generate with Specific IM Version
+
+Generate an LDD using an older IM version:
+
+    $ lddtool -lpJ -V 1N00 PDS4_GEOM_IngestLDD.xml
+
+This is useful when you need to maintain compatibility with a specific IM version or generate schemas for archival purposes.
+
+### Generate JSON Output
+
+Generate JSON representation of the data dictionary:
+
+    $ lddtool -lpJ PDS4_CART_IngestLDD.xml
+
+Include all namespaces in JSON output:
+
+    $ lddtool -lpJa PDS4_CART_IngestLDD.xml
+
+### Generate Multiple Output Formats
+
+Combine flags to generate multiple outputs in one run:
+
+    $ lddtool -lpJD1 PDS4_SPECTRAL_IngestLDD.xml
+
+This generates:
+- Standard outputs (XSD, SCH, XML, CSV, TXT)
+- JSON output (`-J`)
+- DocBook documentation (`-D`)
+- IM Specification document (`-1`)
+
+---
+
+Version Information
+-------------------
 
 You can view the version number for the executable:
 
     $ lddtool-${project.version}/bin/lddtool -v
 
-    LDDTool Version: 10.1.0
-    Built with IM Version: 1.15.0.0
-    Build Date: 2020-07-27 16:17:50
-    Configured IM Versions: [1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
+    LDDTool Version: ${project.version}
+    Built with IM Version: 1.25.0.0 (1P00)
+    Build Date: 2025-XX-XX XX:XX:XX
+    Configured IM Versions: [1P00, 1O00, 1N00, 1M00, 1L00, 1K00, 1J00, 1I00, 1H00, 1G00, 1F00, 1E00, 1D00, 1C00, 1B10, 1B00]
 
-If this does not execute successfully, please return to the installation guide and ensure the software was installed correctly, or contact (PDS Operator)[mailto:pds-operator@jpl.nasa.gov] for assistance.
+If this does not execute successfully, please return to the installation guide and ensure the software was installed correctly, or contact [PDS Operator](mailto:pds-operator@jpl.nasa.gov) for assistance.
 
-Running LDDTool on the Example Files
-------------------------------------
+---
+
+Running LDDTool on Example Files
+---------------------------------
 
 To test out running LDDTool, download an existing LDD from the [PDS Data Dictionaries repo](https://github.com/pds-data-dictionaries/). A couple examples:
 
@@ -131,43 +282,75 @@ investigated.
 
 Once you've verified expected output, you should be good to go.
 
+---
 
 Generating Discipline LDDs
 --------------------------
 
 A discipline level LDD is generated by running LDDTool on a data
-dictionary definition file that has the attribute "dictionary_type"
-set to the value "Discipline". Instructions and examples of how
-to create a data dictionary definition file (aka IngestLDD.xml)
-can be found at the SBN PDS4 Wiki.
+dictionary definition file that has the attribute `dictionary_type`
+set to the value "Discipline".
 
-* Creating the Ingest LDD Dictionary Input File - https://sbnwiki.astro.umd.edu/wiki/Creating_the_Ingest_LDD_Dictionary_Input_File
+**Basic command:**
 
+    $ lddtool -lpd PDS4_EXAMPLE_IngestLDD.xml
+
+The `-d` flag indicates this is a discipline dictionary (omits "mission" from namespace).
+
+**Instructions for creating Ingest_LDD files:**
+
+See the [Creating the Ingest LDD Dictionary Input File](creating-ingest-ldd.html) guide for complete instructions and examples on creating data dictionary definition files (Ingest_LDD.xml files).
+
+---
 
 Generating Mission LDDs
 -----------------------
 
 A mission level LDD is generated by running LDDTool on a data
-dictionary definition file that has the attribute "dictionary_type"
-set to the value "Misison". Instructions and examples of how
-to create a data dictionary definition file (aka IngestLDD.xml)
-can be found at the SBN PDS4 Wiki.
+dictionary definition file that has the attribute `dictionary_type`
+set to the value "Mission" (note: the documentation previously said "Misison" which was a typo).
 
-* Creating the Ingest LDD Dictionary Input File - https://sbnwiki.astro.umd.edu/wiki/Creating_the_Ingest_LDD_Dictionary_Input_File
+**Basic command:**
 
+    $ lddtool -lp PDS4_MISSION_IngestLDD.xml
 
-Generate LDD with Specific PDS4 Version
-----------------------------------------
+Mission dictionaries do not use the `-d` flag, as they are mission-specific by definition.
+
+**Instructions for creating Ingest_LDD files:**
+
+See the [Creating the Ingest LDD Dictionary Input File](creating-ingest-ldd.html) guide for complete instructions and examples on creating data dictionary definition files (Ingest_LDD.xml files).
+
+---
+
+Generating LDDs with Specific PDS4 Versions
+--------------------------------------------
 
 LDDTool is a reflection of the PDS4 Information Model (IM), and in turn, has a major build in sync with the [PDS4 Build Schedule](https://pds.nasa.gov/datastandards/about/) (every 6 months).
 
-By default, LDDTool builds with the latest version of the IM. As of LDDTool v12.0.0, it can now generate LDDs for older versions of the IM using the -V flag.
+By default, LDDTool builds with the latest version of the IM (currently 1P00 / IM v1.25.0.0). As of LDDTool v12.0.0, it can generate LDDs for older versions of the IM using the `-V` flag.
 
-      -V, --IM Version - E.g., -V 1D00
+**Syntax:**
 
+      -V <version>, --pds4-version <version>
+
+**Example:**
+
+      $ lddtool -lpJ -V 1N00 PDS4_IMG_IngestLDD.xml
+
+This generates the IMG LDD using IM version 1N00 (Build 14.0, September 2024) instead of the current version.
+
+**When to use older IM versions:**
+- Maintaining compatibility with existing data products validated against a specific IM version
+- Generating schemas for archival purposes
+- Supporting missions that haven't yet upgraded to the latest IM version
+- Testing dictionary changes across multiple IM versions
+
+See the [IM Version Selection](#IM_Version_Selection) section above for the complete list of supported versions.
+
+---
 
 Common Errors
----------------
+-------------
 
 The common failures encountered at this point come from system
 references not resolving. Here are the most likely suspects:
