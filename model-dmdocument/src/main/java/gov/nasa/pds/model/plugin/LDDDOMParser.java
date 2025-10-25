@@ -308,6 +308,15 @@ public class LDDDOMParser extends Object {
     }
 
     lSchemaFileDefn.setVersionIds(); // set variations of versions and all filenames
+    
+    // LDD version id might override the default IM version id
+    // https://url.com/ldd/v2 vs https://url.com/ldd/v1
+    if (lSchemaFileDefn.isMasterLDD) {
+    	String overrideNameSpaceVersion = DMDocument.dmProcessState.getOverrideNameSpaceVersionFlag();
+    	if (overrideNameSpaceVersion != null) {
+    		lSchemaFileDefn.setNameSpaceVersionId(overrideNameSpaceVersion);
+    	}
+    }
 
     String lStewardId = getTextValue(docEle, "steward_id");
     if (!(lStewardId == null || (lStewardId.indexOf("TBD") == 0))) {
@@ -379,25 +388,6 @@ public class LDDDOMParser extends Object {
     validateEnumeratedFlags();
     Utility.registerMessage("0>info parseDocument.validateEnumeratedFlags() Done");
   }
-
-  private void printClassDebug(String lLable, String lIdentifier) {
-    DOMClass lClass = classMap.get(lIdentifier);
-    if (lClass == null) {
-      System.out.println("\ndebug label:" + lLable
-          + "  printClassDebug INVALID IDENTIFIER lIdentifier:" + lIdentifier);
-      return;
-    }
-    System.out.println(
-        "\ndebug label:" + lLable + "  printClassDebug lClass.identifier:" + lClass.identifier);
-    for (Iterator<DOMProp> j = lClass.ownedAttrArr.iterator(); j.hasNext();) {
-      DOMProp lDOMProp = j.next();
-      if (lDOMProp.domObject != null && lDOMProp.domObject instanceof DOMAttr) {
-        DOMAttr lDOMAttr = (DOMAttr) lDOMProp.domObject;
-        System.out.println("debug printClassDebug lDOMAttr.identifier:" + lDOMAttr.identifier);
-      }
-    }
-  }
-
 	
 	// get the list of all DD_Attribute nodes
 	private void getAttributes (SchemaFileDefn lSchemaFileDefn, Element docEle) {			
@@ -2305,7 +2295,6 @@ public class LDDDOMParser extends Object {
           && (lNode.getNodeName().indexOf(tagName) == 0)) {
         Element lElement = (Element) lNode;
         String lVal = lElement.getFirstChild().getNodeValue();
-        // System.out.println("debug getXMLValueArr - local_identifier:" + lVal);
         if (lVal != null && lVal.length() > 0) {
           lValArr.add(lVal);
         }
@@ -3014,7 +3003,6 @@ public class LDDDOMParser extends Object {
 
   public String getDescriptorWord(boolean isValue, String deName) {
     String lDENameUpper = deName.toUpperCase();
-    // System.out.println("debug getDescriptorWord lDENameUpper:" + lDENameUpper);
     String lDescriptorWord = lDENameUpper;
     String lTerm = lDENameUpper;
     int lDENameUpperLen = lDENameUpper.length();
