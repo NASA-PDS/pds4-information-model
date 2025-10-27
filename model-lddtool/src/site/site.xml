@@ -63,6 +63,18 @@
   <version/>
 
   <body>
+    <head>
+      <![CDATA[<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1K210DS5W"></script>]]>
+      <![CDATA[
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q1K210DS5W');
+      </script>
+      ]]>
+    </head>
+
     <links>
       <item name="PDS4 Local Data Dictionary Tool" href="index.html" />
     </links>
@@ -71,6 +83,7 @@
       <item name="About LDDTool " href="index.html"/>
       <item name="Installation" href="install/index.html"/>
       <item name="Usage" href="usage/index.html"/>
+      <item name="Creating Ingest LDDs" href="usage/creating-ingest-ldd.html"/>
       <item name="Support" href="index.html#Support"/>
     </menu>
 
