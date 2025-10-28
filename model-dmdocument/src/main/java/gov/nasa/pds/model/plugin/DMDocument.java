@@ -1173,11 +1173,11 @@ public class DMDocument extends Object {
 
     parser.addArgument("-N", "--namespace").dest("N").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Print the list of configured namespaces to the log");
-
-    parser.addArgument("-s", "--namespace-version").dest("s").type(String.class)
-    	.choices("1", "2", "3", "4", "5", "6", "7", "8", "9")
-    	.help("Override default namespace version number (one-digit string 1–9). Defaults to major version number of LDD (e.g., LDD v2.0.0.0 -> namespace https://url.com/ldd/v2).");    
-
+    
+    parser.addArgument("-s", "--namespace-version").dest("s").type(Integer.class)
+    .help("Specify the namespace version number (positive integer). Required when using -s or --namespace-version.")
+    .action(Arguments.store());
+    
 	parser.addArgument("-1", "--im_specification").dest("1").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Write the Information Model Specification for an LDD");
@@ -1297,12 +1297,13 @@ public class DMDocument extends Object {
       printNamespaceFlag = true;
     }
     
-    String lOverrideNameSpaceVersion = ns.getString("s");
-    if (lOverrideNameSpaceVersion != null) {
-    	if (! lOverrideNameSpaceVersion.matches("[1-9]")) {
-    		lOverrideNameSpaceVersion = "1";
-    	}
-    	dmProcessState.setOverrideNameSpaceVersionFlag(lOverrideNameSpaceVersion);	
+    Integer lOverrideNameSpaceVersionInt = ns.getInt("s");
+    if (lOverrideNameSpaceVersionInt != null) {
+        if (lOverrideNameSpaceVersionInt <= 0) {
+        	lOverrideNameSpaceVersionInt = 1;
+        }
+        // Convert to string
+        dmProcessState.setOverrideNameSpaceVersionFlag(String.valueOf(lOverrideNameSpaceVersionInt));
     }    
 
     Boolean dFlag = ns.getBoolean("d");
