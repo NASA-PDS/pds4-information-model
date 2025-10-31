@@ -349,7 +349,7 @@ public class DMDocument extends Object {
 	  Namespace argparse4jNamespace = null;
 	  try {
 		  argparse4jNamespace = getArgumentParserNamespace(args);
-	  } catch (Throwable e) {
+	  } catch (Exception e) {
 		  return false;
 	  }
 
@@ -721,9 +721,6 @@ public class DMDocument extends Object {
 	  
 	// process state for used flags, files, and directories
 	    dmProcessState = new DMProcessState();
-	    
-	    // System.out.println("Debug main 240515");
-
 	    PDSOptionalFlag = false;
 	    LDDToolFlag = false;
 	    // Secondary LDD Models
@@ -1138,7 +1135,7 @@ public class DMDocument extends Object {
     registryAttr.add("version_id");
   }
 
-  static Namespace getArgumentParserNamespace(String args[]) throws Throwable {
+  static Namespace getArgumentParserNamespace(String[] args) throws ArgumentParserException {
     parser = ArgumentParsers.newFor("LDDTool").build().defaultHelp(true).version(LDDToolVersionId)
         .description("LDDTool process control:");
 
@@ -1176,7 +1173,11 @@ public class DMDocument extends Object {
 
     parser.addArgument("-N", "--namespace").dest("N").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue()).help("Print the list of configured namespaces to the log");
-
+    
+    parser.addArgument("-s", "--namespace-version").dest("s").type(Integer.class)
+    .help("Specify the namespace version number (positive integer). Required when using -s or --namespace-version.")
+    .action(Arguments.store());
+    
 	parser.addArgument("-1", "--im_specification").dest("1").type(Boolean.class).nargs(1)
         .action(Arguments.storeTrue())
         .help("Write the Information Model Specification for an LDD");
@@ -1295,6 +1296,15 @@ public class DMDocument extends Object {
       dmProcessState.setprintNamespaceFlag();
       printNamespaceFlag = true;
     }
+    
+    Integer lOverrideNameSpaceVersionInt = ns.getInt("s");
+    if (lOverrideNameSpaceVersionInt != null) {
+        if (lOverrideNameSpaceVersionInt <= 0) {
+        	lOverrideNameSpaceVersionInt = 1;
+        }
+        // Convert to string
+        dmProcessState.setOverrideNameSpaceVersionFlag(String.valueOf(lOverrideNameSpaceVersionInt));
+    }    
 
     Boolean dFlag = ns.getBoolean("d");
     if (dFlag) {
@@ -1360,6 +1370,7 @@ public class DMDocument extends Object {
       LDDSchemaFileSortArr.add(lLDDSchemaFileDefn);
       masterLDDSchemaFileDefn = lLDDSchemaFileDefn; // the last Ingest_LDD named is the master.
     }
+    masterLDDSchemaFileDefn.isMasterLDD = true; // the last Ingest_LDD named is the master.
     return true;
   }
 

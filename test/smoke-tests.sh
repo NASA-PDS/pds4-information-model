@@ -11,17 +11,17 @@ if [ ! -f model-lddtool/target/lddtool*.tar.gz ]; then
 fi
 
 # Cleanup
-rm -fr ldd-repo/ lddtool-pkg/
+rm -fr ldd-repo/ ldd-repo-template/ lddtool-pkg/
 
 # Unpack lddtool
 mkdir lddtool-pkg
 tar -xvzf model-lddtool/target/lddtool*.tar.gz -C lddtool-pkg/
 
 echo "Test 1: ldd-template"
-git clone https://github.com/pds-data-dictionaries/ldd-template.git ldd-repo/
+git clone https://github.com/pds-data-dictionaries/ldd-template.git ldd-repo-template/
 
 # Run lddtool
-lddtool-pkg/lddtool*/bin/lddtool -lpJ ldd-repo/src/*IngestLDD.xml
+lddtool-pkg/lddtool*/bin/lddtool -lpJ ldd-repo-template/src/*IngestLDD.xml
 
 if [ $? -ne 0 ]; then
     echo "Test 1: FAILED"
@@ -30,7 +30,6 @@ fi
 echo "Test 1: SUCCESS"
 
 echo "Test 2: ldd-cart"
-rm -fr ldd-repo
 git clone https://github.com/pds-data-dictionaries/ldd-cart.git ldd-repo/
 
 cd ldd-repo/; git submodule update --init --force --remote; cd ..
@@ -65,5 +64,32 @@ if [ $count -ne 18 ]; then
     exit 1
 fi
 echo "Test 4: SUCCESS"
+
+# File count check
+echo "Test 5: Test -s option. https://github.com/NASA-PDS/pds4-information-model/issues/948"
+lddtool-pkg/lddtool*/bin/lddtool -lpJ -s 1000 ldd-repo-template/src/*IngestLDD.xml
+if [ $? -ne 0 ]; then
+    echo "Test 5: FAILED"
+    exit $?
+fi
+
+egrep '<sch:ns uri="http://pds.nasa.gov/pds4/example/v1000" prefix="example"/>' PDS4_EXAMPLE_*.sch > tmp.txt
+lines=$(wc -l tmp.txt | awk '{print $1}')
+
+if [ $lines -ne 1 ]; then
+    echo "Test 5: FAILED"
+    exit $?
+fi
+
+egrep 'http://pds.nasa.gov/pds4/example/v1000' PDS4_EXAMPLE_*.xsd > tmp.txt
+lines=$(wc -l tmp.txt | awk '{print $1}')
+
+if [ $lines -ne 2 ]; then
+    echo "Test 5: FAILED"
+    exit $?
+fi
+
+# Check if the output schema uses namespace with the applicable version
+echo "Test 5: SUCCESS"
 
 exit $?
