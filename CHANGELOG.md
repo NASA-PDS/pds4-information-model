@@ -1,8 +1,16 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-10-27)
+## [15.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/15.4.0) (2025-10-31)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/15.4.0...15.4.0)
+
+**Requirements:**
+
+- As a user, I want to override the default namespace version used by LDDTool [\#948](https://github.com/NASA-PDS/pds4-information-model/issues/948)
+
+## [release/15.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.4.0) (2025-10-31)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...release/15.4.0)
 
 **Requirements:**
 
