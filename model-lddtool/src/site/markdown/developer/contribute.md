@@ -27,7 +27,7 @@ A recording of a meeting where we went through tutorial can be [found here](http
 ```
     @my_tutorial
     Examples: 
-| testId | testName | testDir     | messageCount | messageText         | problemEnum        | commandArgs                                             | ingestLDDFileName         |
+| testId | testName | testDir     | messageCount | problemEnum        | commandArgs                                             | ingestLDDFileName         | pds4Version | enableContentValidation |
 ```
 * Add new line(s) for test cases to `src/test/resources/features/validate.feature`: (NOTE: This feature file is organized by minor versions, 15.2.x, 15.3.x, etc. based upon the next expected minor version. If the next minor version is not included create a new section of the document. Contact Jordan for more details if needed.)
 * 
@@ -35,15 +35,17 @@ A recording of a meeting where we went through tutorial can be [found here](http
   * **testName** - title for the test that would be useful from someone trying to review a test plan with that title.  For this use case, that should be set to `My test for new Current units nA, microA`
   * **testDir** - directory under `odel-lddtool/src/test/resources/` where your test data exists.  For this use case, that should be set to `github753b`
   * **messageCount** - number of expected errors or warnings. For this use case, that should be set to `0` (success).
-  * **messageText** - the expected output should match very closely to messageCount, e.g. `4 errors expected`, `8 warnings expected` (not sure how this is really used or why we have this right now...). For this use case, that should be set to `0 errors expected` (success).
-  * **problemEnum** - `totalErrors`, `totalWarnings`, or specific error you expect from validate output. For this use case, that should be set to `SCHEMATRON_ERROR`
+  * **problemEnum** - `totalErrors`, `totalWarnings`, or specific error you expect from validate output. For this use case, that should be set to `totalErrors`
     * for specific error, search [Validate ProblemTypes](https://github.com/NASA-PDS/validate/blob/main/src/main/java/gov/nasa/pds/tools/validate/ProblemType.java) for the error identifier, and put the ALL CAPS value in the file, e.g. for `error.label.schematron`, if I search the file I see this line `SCHEMATRON_ERROR("error.label.schematron")`, so the problemEnum value == `SCHEMATRON_ERROR`
   * **commandArgs** - these are the Validate Tool command-line arguments. For this example, let's set the target directory `--target {resourceDir}/github753/pc__d139.xml`. By default, the following are already included for validate under the hood of the test code: 
     * `--disable-context-mismatch-warnings`
     * `--report-style json`
-    * `--skip-content-validation`
+    * `--skip-content-validation` (unless `enableContentValidation` is set to `"true"`)
+    * `--skip-context-validation`
     * `--report-file {reportDir}/...`
   * **ingestLDDFileName** - the IngestLDD filenames you would like to have LDDTool generate the schema/schmematron for testing. These files should be in the test directory created earlier.
+  * **pds4Version** - the PDS4 Information Model version to use (e.g., `"1C00"`, `"1D00"`). Leave empty (`""`) to use the latest version.
+  * **enableContentValidation** - set to `"true"` to enable content validation for this test case (e.g., when testing table content validation). Default is `"false"`.
 * Now run the test(s):
   * Via Eclipse: right-click `Run as` -> `Cucumber Feature`
   * Via Maven (replace with applicable tag for this build):
