@@ -1,20 +1,13 @@
 # Changelog
 
-## [15.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/15.4.0) (2025-10-31)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-11-03)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/15.4.0...15.4.0)
-
-**Requirements:**
-
-- As a user, I want to override the default namespace version used by LDDTool [\#948](https://github.com/NASA-PDS/pds4-information-model/issues/948)
-
-## [release/15.4.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/15.4.0) (2025-10-31)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...release/15.4.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...«unknown»)
 
 **Requirements:**
 
 - CCB-62: Transfer\_Manifest class should enforce data types for its two mandatory columns [\#949](https://github.com/NASA-PDS/pds4-information-model/issues/949)
+- As a user, I want to override the default namespace version used by LDDTool [\#948](https://github.com/NASA-PDS/pds4-information-model/issues/948)
 - CCB-59: funding\_year only allows the value "9999" [\#946](https://github.com/NASA-PDS/pds4-information-model/issues/946)
 - CCB-60:  New permissible value for File\_Area\_Observational.Header.parsing\_standard\_id: "CDF 3.9 ISTP/IACG" [\#945](https://github.com/NASA-PDS/pds4-information-model/issues/945)
 - As a user, I want to easily identify which IM and LDD version the WebHelp documentation is for [\#939](https://github.com/NASA-PDS/pds4-information-model/issues/939)
