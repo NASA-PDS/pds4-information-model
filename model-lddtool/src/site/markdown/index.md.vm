@@ -1,0 +1,33 @@
+# About LDDTool
+
+The PDS4 Local Data Dictionary Tool (LDDTool) parses a local data dictionary definition file and generates PDS4 data standard files. A local data dictionary at the discipline level is required to be ingested. A dictionary at the mission level can optionally be ingested. These new dictionaries augment the common model and have their own stewards and unique namespaces. The audience includes personnel at PDS discipline and data nodes, principal investigators and their staffs, and ground data system engineers. The tool will be most useful to people who have prior experience with the PDS Information Model and modeling practices.
+
+## PDS4 Standards and LDDTool Versions
+
+LDDTool is currently not backwards compatible with older versions of the PDS4 Standards.
+
+The following lists all previous versions of LDDTool. It is recommended you use the latest version of the PDS4 Standard and LDDTool wherever possible, however, the versions below will tie the applicable PDS4 Standards version to the necessary LDDTool Version.
+
+If you are unsure of what version to use for the version of the information model you are using, please contact the [PDS Operator](mailto:pds_operator@jpl.nasa.gov) for assistance at pds_operator@jpl.nasa.gov.
+
+**NOTE: As of LDDTool v12.0.0 (October 2020), the software supports generating LDDs with past versions of the PDS4 Information Model. You are encouraged to use the latest version of LDDTool to ensure you receive the latest enhancements to the software.**
+
+| PDS4 Standards Version | Applicable LDDTool Version |
+|------------------------|----------------------------|
+| 1.13.0.0 (1D00) and greater | [current](https://github.com/NASA-PDS/pds4-information-model/releases/download/v${project.version}/lddtool-${project.version}-bin.tar.gz) |
+| 1.12.0.0 (1C00) | [9.1.0](https://pds-engineering.jpl.nasa.gov/development/pds4/9.1.0/model/model-lddtool/index.html) |
+| 1.11.0.0 (1B00) | [9.0.0](https://pds-engineering.jpl.nasa.gov/development/pds4/9.0.0/model/model-lddtool/index.html) |
+| 1.10.0.0 (1A00) | [8.1.0](https://pds-engineering.jpl.nasa.gov/development/pds4/8.1.0/model/model-lddtool/index.html) |
+| 1.9.0.0 (1900) | [8.0.0](https://pds-engineering.jpl.nasa.gov/development/pds4/8.0.0/model/model-lddtool/index.html) |
+| 1.8.0.0 (1800) | [7.1.0](https://pds-engineering.jpl.nasa.gov/development/pds4/7.1.0/model/model-lddtool/index.html) |
+| 1.7.0.0 (1700) | [7.0.0](https://pds-engineering.jpl.nasa.gov/development/pds4/7.0.0/model/model-lddtool/index.html) |
+| Earlier versions | For earlier versions or questions, please email [pds-operator@jpl.nasa.gov](mailto:pds-operator@jpl.nasa.gov) for assistance. |
+
+## Support
+
+**_Found a bug?_** Or **_want a new feature?_** We would love your feedback and contributions. Here are some links to our public Github repository for submitting issues, contributing documentation, or code updates:
+
+- Issue Tracker: <https://github.com/NASA-PDS/pds4-information-model/issues>
+- Source Code: <https://github.com/NASA-PDS/pds4-information-model/>
+
+Any other additional feedback, please contact us at [pds_operator@jpl.nasa.gov](mailto:pds_operator@jpl.nasa.gov).

@@ -1,5 +1,37 @@
 # Creating the Ingest LDD Dictionary Input File
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+  - [Recommended Tools](#recommended-tools)
+- [Basic Structure and Strategies](#basic-structure-and-strategies)
+  - [File Organization](#file-organization)
+  - [Naming Conventions](#naming-conventions)
+  - [Grouping Attributes into Classes](#grouping-attributes-into-classes)
+  - [Documentation Requirements](#documentation-requirements)
+- [Complexity Considerations](#complexity-considerations)
+  - [Keep It Simple](#keep-it-simple)
+  - [Cross-Namespace Dependencies](#cross-namespace-dependencies)
+- [Filling Out the Ingest_LDD Class](#filling-out-the-ingest_ldd-class)
+  - [Required Attributes](#required-attributes)
+  - [Key Attributes Explained](#key-attributes-explained)
+- [Filling Out the DD_Attribute Class](#filling-out-the-dd_attribute-class)
+  - [Enumerated Attributes](#enumerated-attributes)
+  - [Value Data Types](#value-data-types)
+  - [Units of Measure](#units-of-measure)
+- [Filling Out the DD_Class Class](#filling-out-the-dd_class-class)
+  - [DD_Association Cardinality](#dd_association-cardinality)
+  - [Referencing External Namespaces](#referencing-external-namespaces)
+- [Advanced Techniques](#advanced-techniques)
+  - [Schematron Rules (DD_Rule)](#schematron-rules-dd_rule)
+  - [Choice Lists](#choice-lists)
+  - [Restricting External Attributes](#restricting-external-attributes)
+- [Best Practices Summary](#best-practices-summary)
+- [Common Mistakes to Avoid](#common-mistakes-to-avoid)
+- [Getting Help](#getting-help)
+- [Additional Resources](#additional-resources)
+
 ## Overview
 
 The Ingest LDD Dictionary Input File serves as the configuration input for LDDTool, which generates XSD Schema and Schematron files for PDS4 local dictionaries. This guide helps you create well-structured, maintainable local data dictionaries.

@@ -1,0 +1,56 @@
+# Operation
+
+This document describes how to run the LDDTool program.
+
+Note: The command-line examples in this section have been broken into multiple lines for readability. The commands should be reassembled into a single line prior to execution.
+
+## Tool Execution
+
+The execution steps are as follows:
+
+1. The input XML document is parsed and the contents are converted into SKOS records.
+2. The records are written out to a SKOS output file.
+3. The records are also written out to a PropertyMap file in XML format.
+
+### Command-Line Options
+
+The following table describes the command-line options available.
+
+Valid options are:
+
+| Command-Line Option | Description |
+|---------------------|-------------|
+| -f, --file | indicates input file name(s) to follow. |
+| -h, --help | Print this message. |
+
+### Execute Termmap
+
+**If the host platform is a Mac or Unix system, type the following commands:**
+
+```
+cd  ./model-termmap-${project.version}/bin
+
+termmap -f [inputfilename] > termmap.log
+```
+
+**If the host platform is a Windows system, type the following commands:**
+
+```
+cd .\model-termmap-${project.version}\bin
+
+termmap.bat -f [inputfilename] > termmap.log
+```
+
+**Note:** The input file to termmap is an XML document. The file name must be in the form:
+
+```
+PDS4_<namespace_id>_<steward_id>_<value_type>_MAP_<version_id>.CSV
+   e.g. PDS4_INSIGHT_DEEN_PDS3_MAP_1A00.CSV
+       <value_types> can be {PDS3, VICR, NUANCE, ....}
+```
+
+The output files written by termmap are:
+- an XML SKOS file
+- an XML PropertyMap file
+
+All output files are generated in the "map" directory under current directory. They bear the same name as the input file name.
