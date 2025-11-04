@@ -59,7 +59,7 @@ Feature: pds4_information_model_validate_integration
 #| NASA-PDS/pds4-information-model#913c  | "Fails validate - directory_path_name adhere to SR (CCB-13)"       | "github913c" |          28 |  "totalErrors" | "-t {resourceUpdateVersionDir}/github913c/Product_Document_FAIL_pathname_20250422.xml"  | "" | "" |
 | NASA-PDS/pds4-information-model#914   | "No warning when validating Author/Editor Lists (CCB-15)"          | "github914"  |           0 |  "totalErrors" | "-t {resourceUpdateVersionDir}/github914/tc_Valid_Contributor_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Editor_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Warning_Author_20240122.xml {resourceUpdateVersionDir}/github914/tc_Valid_Warning_both_20240122.xml"  | "" | "" | "false" |
 
-    @v15.4.x
+    @v16.0.x
     Examples: 
 | testId                                  | testName                                                             | testDir      | messageCount| problemEnum         | commandArgs                                                                    | ingestLDDFileName               | pds4Version | enableContentValidation |
 | NASA-PDS/pds4-information-model#942   | "Added new permissible value for parsing_standard_id (CCB-60)"         | "github942"  |           1 |  "SCHEMATRON_ERROR" | "-t {resourceUpdateVersionDir}/github942/tc_Valid_new_value_20250828.xml {resourceUpdateVersionDir}/github942/tc_Fail_invalid-value_20250828.xml"  | "" | "" | "false" |
