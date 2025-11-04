@@ -49,7 +49,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
   <groupId>gov.nasa.pds</groupId>
   <artifactId>model</artifactId>
-  <version>15.4.0-SNAPSHOT</version>
+  <version>16.0.0</version>
   <packaging>pom</packaging>
 
   <name>PDS4 Information Model</name>
