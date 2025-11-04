@@ -69,11 +69,6 @@ jobs:
                     restore-keys: pds-${{runner.os}}-mvn-
 
             -
-                name: ∫ Smoke Tests with Discipline LDDs
-                run: |
-                    test/smoke-tests.sh
-
-            -
                 name: 🤠 Roundup
                 uses: NASA-PDS/roundup-action@stable
                 with:
@@ -89,6 +84,11 @@ jobs:
                     CODE_SIGNING_KEY: ${{secrets.CODE_SIGNING_KEY}}
                     ADMIN_GITHUB_TOKEN: ${{secrets.ADMIN_GITHUB_TOKEN}}
 
+
+            -
+                name: ∫ Smoke Tests with Discipline LDDs
+                run: |
+                    test/smoke-tests.sh
 
 ...
 
