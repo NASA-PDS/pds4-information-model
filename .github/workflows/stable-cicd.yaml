@@ -90,6 +90,23 @@ jobs:
                 run: |
                     test/smoke-tests.sh
 
+            -
+                name: 📦 Generate Core LDD Artifacts
+                run: |
+                    ./bin/generate-core-ldd.sh
+
+            -
+                name: 🚀 Upload Core LDD to Release
+                run: |
+                    # Get the release tag from the current ref
+                    RELEASE_TAG=${GITHUB_REF#refs/tags/}
+                    ZIP_FILE=$(ls PDS4_PDS_*.zip)
+
+                    echo "Uploading $ZIP_FILE to release $RELEASE_TAG"
+                    gh release upload "$RELEASE_TAG" "$ZIP_FILE" --clobber
+                env:
+                    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
 ...
 
 # -*- mode: yaml; indent: 4; fill-column: 120; coding: utf-8 -*-
