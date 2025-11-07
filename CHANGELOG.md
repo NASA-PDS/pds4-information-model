@@ -1,5 +1,17 @@
 # Changelog
 
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-11-07)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
+
+**Improvements:**
+
+- \[namespace-registry\] add new namespace phoenix [\#976](https://github.com/NASA-PDS/pds4-information-model/issues/976)
+
+**Other closed issues:**
+
+- Release PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#963](https://github.com/NASA-PDS/pds4-information-model/issues/963)
+
 ## [v16.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.0.0) (2025-11-04)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v15.3.0...v16.0.0)
