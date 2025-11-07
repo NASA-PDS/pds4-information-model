@@ -72,6 +72,7 @@ neas,Near Earth Asteroid Scout,Namespace for the Near Earth Asteroid Scout dicti
 nh,New Horizons Primary and Extended Missions,Namespace for the New Horizons Primary and Extended Missions dictionary.,Mission,Adeline Gicquel,agicquel at umd.edu,2022-03-23,
 ody,2001 Mars Odyssey,Namespace for the 2001 Mars Odyssey dictionary.,Mission,Daniel Politte,politte at wunder.wustl.edu,2022-06-01,
 orex,OSIRIS-Rex ,Namespace for the OSIRIS-Rex dictionary.,Mission,Carol Neese ,neese at psi.edu,2014-05-12,
+phoenix,Mars Phoenix,The Mars Phoenix Mission Dictionary (phoenix) contains classes and attributes specific to the Phoenix mission and its instruments.,Mission,Jennifer Ward,jgward at wustl.edu,2025-11-05,
 psyche,Psyche mission,Namespace for the Psyche dictionary.,Mission,Carol Neese ,neese at psi.edu,2023-03-29,
 slim,Smart Lander for Investigating Moon,Namespace for the Smart Lander for Investigating Moon (SLIM) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26,
 sln, Kaguya (SELENE),Namespace for the Kaguya (SELENE) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26,
