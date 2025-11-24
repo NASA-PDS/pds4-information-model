@@ -1,7 +1,7 @@
 name: PDS Namespace Request
 description: Tasks related to the PDS Namespace Registry, i.e. add new namespace ID
 title: '[namespace-registry] add new namespace <proposed namespace ID here>'
-labels: enhancement, p.must-have, skip-i&t
+labels: enhancement, p.must-have, i&t.skip
 projects: "NASA-PDS/6"
 assignees: c-suh, jshughes
 
