@@ -1,0 +1,24 @@
+name: "[internal] Release Theme"
+description: "Release theme epic that describes a high-level task to be delivered in a release."
+labels: "i&t.skip,theme,Epic,B17"
+type: "Theme"
+projects: "NASA-PDS/6,NASA-PDS/22"
+
+body:
+  - type: dropdown
+    id: check
+    attributes:
+      label: Are you sure this is not a new requirement or bug?
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 💡 Description
+      description: Enter description here. Make it detailed enough someone could actually know what you are doing, but if you spend too much time on this, it probably deserves it's own story.
+      placeholder: Tell us what is up
+    validations:
+      required: true
