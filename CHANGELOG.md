@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2025-11-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-01-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
@@ -26,7 +26,7 @@
 - As a user, I want to override the default namespace version used by LDDTool [\#948](https://github.com/NASA-PDS/pds4-information-model/issues/948)
 - CCB-59: funding\_year only allows the value "9999" [\#946](https://github.com/NASA-PDS/pds4-information-model/issues/946)
 - CCB-60:  New permissible value for File\_Area\_Observational.Header.parsing\_standard\_id: "CDF 3.9 ISTP/IACG" [\#945](https://github.com/NASA-PDS/pds4-information-model/issues/945)
-- As a user, I want to easily identify which IM and LDD version the WebHelp documentation is for [\#939](https://github.com/NASA-PDS/pds4-information-model/issues/939)
+- As a user, I want to know both the IM and LDD version applicable to a given attribute/class in the WebHelp documentation [\#939](https://github.com/NASA-PDS/pds4-information-model/issues/939)
 - As a data provider, I want to be able to use "Space" as a delimiter in the `Table_Delimited` class [\#673](https://github.com/NASA-PDS/pds4-information-model/issues/673)
 
 **Improvements:**
