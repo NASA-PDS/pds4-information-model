@@ -1,19 +1,29 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-01-10)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-02-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
 - CCB-7: Additional schematron rules to check Target\_Identification.Internal\_Reference.reference\_type [\#894](https://github.com/NASA-PDS/pds4-information-model/issues/894)
+- Adopt Provenance LDD for Superseded LIDs - CCB-21 \(CCB-367\) [\#663](https://github.com/NASA-PDS/pds4-information-model/issues/663)
 
 **Improvements:**
 
+- Improve PROV LDD with controlled vocabulary [\#991](https://github.com/NASA-PDS/pds4-information-model/issues/991)
+- Complete documentation for PROV LDD [\#990](https://github.com/NASA-PDS/pds4-information-model/issues/990)
 - \[namespace-registry\] add new namespace phoenix [\#976](https://github.com/NASA-PDS/pds4-information-model/issues/976)
+
+**Defects:**
+
+- The `contributor_type` `DataCurator` has a typo / misdefined [\#982](https://github.com/NASA-PDS/pds4-information-model/issues/982) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
 
+- Make the test cases for the PROV LDD conformant to Regression Test Data Rules [\#993](https://github.com/NASA-PDS/pds4-information-model/issues/993)
+- B13.1 PDS4 Information Model [\#989](https://github.com/NASA-PDS/pds4-information-model/issues/989)
+- Stage the PDS4 Information Model Version 1.26.0.0 \(1.Q.0.0\) for Update [\#988](https://github.com/NASA-PDS/pds4-information-model/issues/988)
 - Release PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#963](https://github.com/NASA-PDS/pds4-information-model/issues/963)
 
 ## [v16.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.0.0) (2025-11-04)
