@@ -1,4 +1,4 @@
-; Fri Aug 29 14:10:25 EDT 2025
+; Tue Jan 20 15:04:00 EST 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class158]
-		[dd11179_ProjectKB_Class159]
-		[dd11179_ProjectKB_Class160]))
+		[dd11179_ProjectKB_Class10204]
+		[dd11179_ProjectKB_Class10205]
+		[dd11179_ProjectKB_Class10206]))
 
 ([CLSES_TAB] of  Widget
 
@@ -44,6 +44,21 @@
 
 ([dd11179_ProjectKB_Class10] of  Property_List
 )
+
+([dd11179_ProjectKB_Class10204] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([dd11179_ProjectKB_Class10205] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([dd11179_ProjectKB_Class10206] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
 ([dd11179_ProjectKB_Class11] of  Widget
 
@@ -69,23 +84,8 @@
 	(property_list [dd11179_ProjectKB_Class16])
 	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
-([dd11179_ProjectKB_Class158] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([dd11179_ProjectKB_Class159] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
 ([dd11179_ProjectKB_Class16] of  Property_List
 )
-
-([dd11179_ProjectKB_Class160] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
 
 ([dd11179_ProjectKB_Class17] of  Widget
 
@@ -522,10 +522,10 @@
 	(name "instances_file_name")
 	(string_value "dd11179.pins"))
 
-([KB_860773_Class0] of  Map
+([KB_232113_Class0] of  Map
 )
 
-([KB_874586_Class0] of  Map
+([KB_860773_Class0] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List

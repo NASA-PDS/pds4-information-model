@@ -10,7 +10,7 @@
         <logical_identifier>urn:nasa:pds:test:test:test</logical_identifier>
         <version_id>1.0</version_id>
         <title>Test</title>
-        <information_model_version>1.25.0.0</information_model_version>
+        <information_model_version>1.26.0.0</information_model_version>
         <product_class>Product_SIP</product_class>
     </Identification_Area>
     <Information_Package_Component>

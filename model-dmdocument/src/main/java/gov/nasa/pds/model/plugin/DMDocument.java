@@ -150,8 +150,8 @@ public class DMDocument extends Object {
 
   static String LDDToolVersionId = "0.0.0";
   static String buildDate = "";
-  static String buildIMVersionId = "1.25.0.0";
-  static String buildIMVersionFolderId = "1P00";
+  static String buildIMVersionId = "1.26.0.0";
+  static String buildIMVersionFolderId = "1Q00";
   static final String VERSION_ID_DEFAULT_PART1 = "1.0.0";
   static final String VERSION_ID_DEFAULT = VERSION_ID_DEFAULT_PART1 + ".0";  // the literal is a security issue
   static String classVersionIdDefault = VERSION_ID_DEFAULT;
@@ -664,8 +664,8 @@ public class DMDocument extends Object {
 
 	  LDDToolVersionId = "0.0.0";
 	  buildDate = "";
-	  buildIMVersionId = "1.25.0.0";
-	  buildIMVersionFolderId = "1P00";
+	  buildIMVersionId = "1.26.0.0";
+	  buildIMVersionFolderId = "1Q00";
 	  classVersionIdDefault = VERSION_ID_DEFAULT;
 	  PDS4MergeFlag = false; // create protege output; not currently used
 	  LDDAttrElementFlag = false; // if true, write XML elements for attributes
@@ -730,7 +730,8 @@ public class DMDocument extends Object {
 
 	    // The current version is included to allow for -V currentIMVersion
 	    alternateIMVersionArr = new ArrayList<>();
-	    alternateIMVersionArr.add("1P00"); // current
+	    alternateIMVersionArr.add("1Q00"); // current
+	    alternateIMVersionArr.add("1P00");
 	    alternateIMVersionArr.add("1O00");
 	    alternateIMVersionArr.add("1N00");
 	    alternateIMVersionArr.add("1M00");
@@ -1198,7 +1199,7 @@ public class DMDocument extends Object {
         .action(Arguments.storeTrue()).help("Returns the LDDTool version number");
 
     parser.addArgument("-V", "--pds4_version").dest("V").type(String.class)
-        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00", "1O00", "1P00")
+        .choices("1B00", "1B10", "1C00", "1D00", "1E00", "1F00", "1G00", "1H00", "1I00", "1J00", "1K00", "1L00", "1M00", "1N00", "1O00", "1P00", "1Q00")
         .setDefault(buildIMVersionFolderId).help("Set the IM Version");
 
     parser.addArgument("fileNameArr").dest("fileNameArr").nargs("*")
