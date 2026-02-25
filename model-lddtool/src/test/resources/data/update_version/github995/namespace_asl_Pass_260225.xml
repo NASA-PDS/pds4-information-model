@@ -13,7 +13,7 @@
     <logical_identifier>urn:nasa:pds:context:investigation:mission.insight</logical_identifier>
     <version_id>3.2</version_id>
     <title>InSight Lander</title>
-    <information_model_version>1.25.0.0</information_model_version>
+    <information_model_version>1.26.0.0</information_model_version>
     <product_class>Product_Context</product_class>
   </Identification_Area>
   <Discipline_Area>
