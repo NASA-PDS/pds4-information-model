@@ -14,7 +14,7 @@
 
 	<name>Particle</name>
 	<ldd_version_id>1.0.1.0</ldd_version_id>
-	<dictionary_type>Mission</dictionary_type>
+	<dictionary_type>Discipline</dictionary_type>
 	<full_name>Joseph Mafi</full_name>
 	<steward_id>ops</steward_id>
 	<namespace_id>ops</namespace_id>
