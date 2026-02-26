@@ -68,6 +68,5 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model #967a  | "Allow delimited tables with whitespace-only numeric fields - Delimited Table Check (CCB-28)"  | "github967"  |           0 |  "totalErrors"      | "--target {resourceUpdateVersionDir}/github967/tc_vl0axrat_table_delimited_valid.xml"  | "" | "" | "true" | 
 | NASA-PDS/pds4-information-model #967b  | "Allow delimited tables with whitespace-only numeric fields - Character Table Check (CCB-28)"  | "github967"  |           0 |  "totalErrors"      | "--target {resourceUpdateVersionDir}/github967/tc_vl0axrat_table_char_valid.xml"  | "" | "" | "true" | 
 | NASA-PDS/pds4-information-model#994   | "new namespace ops"                                                    | "github994"  |           0 | "totalErrors"      | "-t {resourceUpdateVersionDir}/github994/namespace_ops_Pass_260225.xml" | "PDS4_PARTICLE_IngestLDD_ops.xml" | "" | "false" |
-| NASA-PDS/pds4-information-model#995   | "new namespace asl"                                                    | "github995"  |           0 | "totalErrors"      | "-t {resourceUpdateVersionDir}/github995/namespace_asl_Pass_260225.xml" | "PDS4_PARTICLE_IngestLDD_asl.xml" | "" | "false" |
 
 
