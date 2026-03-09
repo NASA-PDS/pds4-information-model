@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-02-18)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
@@ -11,6 +11,8 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace "asl" [\#995](https://github.com/NASA-PDS/pds4-information-model/issues/995)
+- \[namespace-registry\] add new namespace "ops" [\#994](https://github.com/NASA-PDS/pds4-information-model/issues/994)
 - Improve PROV LDD with controlled vocabulary [\#991](https://github.com/NASA-PDS/pds4-information-model/issues/991)
 - Complete documentation for PROV LDD [\#990](https://github.com/NASA-PDS/pds4-information-model/issues/990)
 - \[namespace-registry\] add new namespace phoenix [\#976](https://github.com/NASA-PDS/pds4-information-model/issues/976)
