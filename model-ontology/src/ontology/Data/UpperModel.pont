@@ -1,4 +1,4 @@
-; Tue Jan 20 14:52:23 EST 2026
+; Mon Mar 09 20:33:10 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -103,6 +103,10 @@
 		(create-accessor read-write))
 	(multislot id_reference
 ;+		(comment "The id_reference provides the identifier of an object in a one  directional relationship.")
+		(type STRING)
+		(create-accessor read-write))
+	(multislot funding_identifier
+;+		(comment "The funder_identifier attribute provides a unique alphanumeric identifier associated with an organization or individual that has provided funding.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot white_space
@@ -858,6 +862,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(multislot funding_award_program
+		(type STRING)
+		(create-accessor read-write))
 	(multislot highest_detectable_opacity
 ;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
 		(type FLOAT)
@@ -951,6 +958,11 @@
 	(multislot revision_comment
 ;+		(comment "The revision comment attribute provides notes on the revision of the product.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_Funder_Identifier
+;+		(comment "The has_Funder_Identifier association is a relationship to has_Funder_Identifier.")
+		(type INSTANCE)
+;+		(allowed-classes Funder_Identifier)
 		(create-accessor read-write))
 	(single-slot vertical_display_axis
 ;+		(comment "The vertical_display_axis attribute identifies, by name, the axis of an Array %28or Array subclass%29 that is intended to be displayed in the vertical or 'line' dimension on a display device. The value of this attribute must match the value of one, and only one, axis_name attribute in an Axis_Array class of the associated Array.")
@@ -2116,6 +2128,10 @@
 ;+		(allowed-classes)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot funding_program_name
+;+		(comment "The funding_program_name attribute provides the name of a program through which the funding source provided the funding award.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot altitude
 ;+		(comment "The altitude attribute provides the height of anything above a given reference plane.")
 		(type FLOAT)
@@ -2495,6 +2511,10 @@
 ;+		(comment "The local_attribute_id provides the identifier of an attribute and indicates membership in a class.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot funding_identifier_type
+;+		(comment "The funder_identifier_type attribute provides an externally maintained identifier that reliably, unambiguously, and permanently connects the funder’s name with its citable research, publications, grants, and other information.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot programmers_manual_id
 ;+		(comment "The programmers manual id attribute provides an identifier to a document giving instruction about the programming of the software.")
 		(type STRING)
@@ -2626,6 +2646,11 @@
 ;+		(comment "The transfer_object_id is an NSSDC provided identifier for the digital information object within a SIP that is to be preserved in an AIP.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot funder_identifier
+;+		(comment "The funder_identifier attribute provides a unique alphanumeric identifier associated with an organization or individual that has provided funding.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot geometry_reference
 ;+		(comment "The geometry reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
@@ -2788,7 +2813,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot funding_source
-;+		(comment "The funding_source attribute provides the identifier for an agency or other entity that provided financial assistance in the poroduction of the archival data.")
+;+		(comment "The funding_source attribute provides the name of an organization or individual that provided financial assistance in the production of the archival data.")
 		(type STRING)
 		(create-accessor read-write))
 	(single-slot product_type
@@ -4404,7 +4429,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot funding_year
-;+		(comment "The funding_year attribute provides the year that funding was awarded.")
+;+		(comment "The funding_year attribute indicates the program year that funding was awarded. For data not associated with a specific program, it indicates initial year that the funding was announced or awarded.")
 		(type STRING)
 		(create-accessor read-write))
 	(multislot enumeration_flag
@@ -4594,6 +4619,10 @@
 ;+		(comment "The has_document_file association is a relationship to a document file.")
 		(type INSTANCE)
 ;+		(allowed-classes Document_File)
+		(create-accessor read-write))
+	(multislot funding_award_title
+;+		(comment "The funding_award_title attribute provides the title of the proposal under which the funding was awarded.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot easternmost_longitude
 ;+		(comment "This attribute is used in the image map projection. Under review. xxx E. Rye xxx")
@@ -11455,24 +11484,38 @@
 (defclass Funding_Acknowledgement "The Funding_Acknowledgement class cites a funding source which supported production of the archival data."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
+	(single-slot funding_award_program
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_award_title
+;+		(comment "The funding_award_title attribute provides the title of the proposal under which the funding was awarded.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_Funder_Identifier
+;+		(comment "The has_Funder_Identifier association is a relationship to has_Funder_Identifier.")
+		(type INSTANCE)
+;+		(allowed-classes Funder_Identifier)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot funding_award
 ;+		(comment "The funding_award attribute provides a unique alphanumeric identifier of the funding award within the funding_source.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot funding_source
-;+		(comment "The funding_source attribute provides the identifier for an agency or other entity that provided financial assistance in the poroduction of the archival data.")
+;+		(comment "The funding_source attribute provides the name of an organization or individual that provided financial assistance in the production of the archival data.")
 		(type STRING)
-;+		(value "NASA" "NSF" "RAS" "ESA")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot funding_acknowledgement_text
 ;+		(comment "The funding_acknowledgement_text attribute provides a text description of the relationship between the funding source and the archival data.")
 		(type STRING)
-;+		(cardinality 1 1)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot funding_year
-;+		(comment "The funding_year attribute provides the year that funding was awarded.")
+;+		(comment "The funding_year attribute indicates the program year that funding was awarded. For data not associated with a specific program, it indicates initial year that the funding was announced or awarded.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
@@ -11494,6 +11537,41 @@
 ;+		(comment "The internal_reference association is a relationship to Internal_Reference.")
 		(type INSTANCE)
 ;+		(allowed-classes Internal_Reference)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Funder_Identifier "The Funder_Identifier class provides an identifier associated with an organization or individual that provided financial assistance in the production of the archival data."
+	(is-a Tagged_NonDigital_Child)
+	(role concrete)
+	(single-slot funding_award_title
+;+		(comment "The funding_award_title attribute provides the title of the proposal under which the funding was awarded.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_source
+;+		(comment "The funding_source attribute provides the name of an organization or individual that provided financial assistance in the production of the archival data.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot funding_identifier_type
+;+		(comment "The funder_identifier_type attribute provides an externally maintained identifier that reliably, unambiguously, and permanently connects the funder’s name with its citable research, publications, grants, and other information.")
+		(type STRING)
+;+		(value "Crossref funder ID" "GRID" "ISNI" "ORCID" "RORID" "Other")
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot funding_program_name
+;+		(comment "The funding_program_name attribute provides the name of a program through which the funding source provided the funding award.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_year
+;+		(comment "The funding_year attribute indicates the program year that funding was awarded. For data not associated with a specific program, it indicates initial year that the funding was announced or awarded.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_identifier
+;+		(comment "The funder_identifier attribute provides a unique alphanumeric identifier associated with an organization or individual that has provided funding.")
+		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
