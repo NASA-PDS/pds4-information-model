@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="PDS4_PDS_1O00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="PDS4_PDS_1Q00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <Product_Bundle 
     xmlns="http://pds.nasa.gov/pds4/pds/v1" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="     http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1O00.xsd">
+    xsi:schemaLocation="     http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1Q00.xsd">
     
     <Identification_Area>
         <logical_identifier>urn:jaxa:darts:hyb2_nirs3</logical_identifier>
@@ -20,15 +20,22 @@
             <keyword>(162173) Ryugu</keyword>
             <description>This bundle collects all the operational data products produced by the Hayabusa2 NIRS3 instrument.</description>
             <Funding_Acknowledgement>
-                <!-- invalid value -->
-                <funding_source>JAXA</funding_source>
-                <funding_acknowledgement_text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                <!-- invalid funding_identifier value -->
+                <funding_source>Funding Source</funding_source>
+                <funding_program_name>Program Name</funding_program_name>
+                <funding_year>2026</funding_year>
+                <funding_award>Award</funding_award>
+                <funding_award_title>Award Title</funding_award_title>
+                <funding_acknowledgement_text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
                     laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
-                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </funding_acknowledgement_text>
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</funding_acknowledgement_text>
+                <Funder_Identifier>
+                    <funding_identifier>宇宙科学研究所</funding_identifier>
+                    <funding_identifier_type>ORCID</funding_identifier_type>
+                    <comment>Comment</comment>
+                </Funder_Identifier>
             </Funding_Acknowledgement>
             <List_Author>
                 <Person>
