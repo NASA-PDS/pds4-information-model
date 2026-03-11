@@ -1,4 +1,4 @@
-; Mon Mar 09 20:33:10 EDT 2026
+; Wed Mar 11 10:03:19 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -861,9 +861,6 @@
 ;+		(comment "The packet_map_mask attribute is a binary or hexadecimal number identifying which of a data file's expected packets were actually received.  The digits correspond positionally with the relative packet numbers of the data file.  The bits are to be read left to right; i.e., the first %28left-most%29 digit of the number corresponds to the first packet of the data file.  A bit value of 1 indicates that the packet was received; a value of 0 indicates that it was not received.")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot funding_award_program
-		(type STRING)
 		(create-accessor read-write))
 	(multislot highest_detectable_opacity
 ;+		(comment "highest_detectable_opacity indicates the sensitivity of a ring occultation data set to nearly opaque rings. It specifies the rough value for the largest normal ring opacity that can be detected in the data at the resolution provided, incorporating both statistical effects and calibration uncertainties. Strongly recommended in labels of ring occultation observations. Not intended as a value for a table field.")
@@ -11484,10 +11481,6 @@
 (defclass Funding_Acknowledgement "The Funding_Acknowledgement class cites a funding source which supported production of the archival data."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
-	(single-slot funding_award_program
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
 	(single-slot funding_award_title
 ;+		(comment "The funding_award_title attribute provides the title of the proposal under which the funding was awarded.")
 		(type STRING)
@@ -11511,6 +11504,11 @@
 		(create-accessor read-write))
 	(single-slot funding_acknowledgement_text
 ;+		(comment "The funding_acknowledgement_text attribute provides a text description of the relationship between the funding source and the archival data.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot funding_program_name
+;+		(comment "The funding_program_name attribute provides the name of a program through which the funding source provided the funding award.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
@@ -11543,29 +11541,14 @@
 (defclass Funder_Identifier "The Funder_Identifier class provides an identifier associated with an organization or individual that provided financial assistance in the production of the archival data."
 	(is-a Tagged_NonDigital_Child)
 	(role concrete)
-	(single-slot funding_award_title
-;+		(comment "The funding_award_title attribute provides the title of the proposal under which the funding was awarded.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot funding_source
-;+		(comment "The funding_source attribute provides the name of an organization or individual that provided financial assistance in the production of the archival data.")
-		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot funding_identifier_type
 ;+		(comment "The funder_identifier_type attribute provides an externally maintained identifier that reliably, unambiguously, and permanently connects the funder’s name with its citable research, publications, grants, and other information.")
 		(type STRING)
 ;+		(value "Crossref funder ID" "GRID" "ISNI" "ORCID" "RORID" "Other")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot funding_program_name
-;+		(comment "The funding_program_name attribute provides the name of a program through which the funding source provided the funding award.")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot funding_year
-;+		(comment "The funding_year attribute indicates the program year that funding was awarded. For data not associated with a specific program, it indicates initial year that the funding was announced or awarded.")
+	(single-slot comment
+;+		(comment "The comment attribute is a character string expressing one or more remarks or thoughts relevant to the object.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
