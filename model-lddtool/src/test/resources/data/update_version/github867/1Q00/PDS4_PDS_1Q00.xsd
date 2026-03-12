@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.26.0.0 - Tue Feb 03 15:53:52 EST 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.26.0.0 - Wed Mar 11 10:21:37 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -1762,6 +1762,20 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="Funder_Identifier">
+    <xs:annotation>
+      <xs:documentation>The Funder_Identifier class provides an
+        identifier associated with an organization or individual that
+        provided financial assistance in the production of the archival
+        data.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="funding_identifier" type="pds:funding_identifier" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="funding_identifier_type" type="pds:funding_identifier_type" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="comment" type="pds:comment" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="Funding_Acknowledgement">
     <xs:annotation>
       <xs:documentation>The Funding_Acknowledgement class cites a
@@ -1770,9 +1784,12 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="funding_source" type="pds:funding_source" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="funding_program_name" type="pds:funding_program_name" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="funding_year" type="pds:funding_year" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="funding_award" type="pds:funding_award" minOccurs="0" maxOccurs="1"> </xs:element>
-      <xs:element name="funding_acknowledgement_text" type="pds:funding_acknowledgement_text" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="funding_award_title" type="pds:funding_award_title" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="funding_acknowledgement_text" type="pds:funding_acknowledgement_text" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Funder_Identifier" type="pds:Funder_Identifier" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -5276,12 +5293,22 @@
 	   </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="funding_source">
+  <xs:simpleType name="funding_award_title">
     <xs:annotation>
-      <xs:documentation>The funding_source attribute provides the
-        identifier for an agency or other entity that provided financial
-        assistance in the poroduction of the archival
-        data.</xs:documentation>
+      <xs:documentation>The funding_award_title attribute provides the
+        title of the proposal under which the funding was
+        awarded.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:UTF8_Text_Collapsed">
+     <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="funding_identifier">
+    <xs:annotation>
+      <xs:documentation>The funder_identifier attribute provides a
+        unique alphanumeric identifier associated with an organization
+        or individual that has provided funding.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Short_String_Collapsed">
      <xs:minLength value="1"/>
@@ -5289,10 +5316,51 @@
 	   </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="funding_identifier_type">
+    <xs:annotation>
+      <xs:documentation>The funder_identifier_type attribute provides an
+        externally maintained identifier that reliably, unambiguously,
+        and permanently connects the funder’s name with its citable
+        research, publications, grants, and other
+        information.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="funding_program_name">
+    <xs:annotation>
+      <xs:documentation>The funding_program_name attribute provides the
+        name of a program through which the funding source provided the
+        funding award.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="funding_source">
+    <xs:annotation>
+      <xs:documentation>The funding_source attribute provides the name
+        of an organization or individual that provided financial
+        assistance in the production of the archival
+        data.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:UTF8_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="funding_year">
     <xs:annotation>
-      <xs:documentation>The funding_year attribute provides the year
-        that funding was awarded.</xs:documentation>
+      <xs:documentation>The funding_year attribute indicates the program
+        year that funding was awarded. For data not associated with a
+        specific program, it indicates initial year that the funding was
+        announced or awarded.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Short_String_Collapsed">
     	<xs:pattern value='[0-9]{4}'/>
