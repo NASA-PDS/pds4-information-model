@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
+- CCB-72: New enumerated values for funding\_source [\#997](https://github.com/NASA-PDS/pds4-information-model/issues/997)
 - CCB-7: Additional schematron rules to check Target\_Identification.Internal\_Reference.reference\_type [\#894](https://github.com/NASA-PDS/pds4-information-model/issues/894)
 - Adopt Provenance LDD for Superseded LIDs - CCB-21 \(CCB-367\) [\#663](https://github.com/NASA-PDS/pds4-information-model/issues/663)
 
