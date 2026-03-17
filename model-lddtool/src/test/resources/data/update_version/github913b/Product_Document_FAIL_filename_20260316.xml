@@ -106,121 +106,61 @@
  
          <Document_File>
             <file_name>image004.gif</file_name>
-            <local_identifier>image004.gif</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>
          
          <Document_File>
             <file_name>image006gif</file_name>
-            <local_identifier>image006.gif</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>-image007.gif</file_name>
-            <local_identifier>document.file3.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>image008.gif-</file_name>
-            <local_identifier>document.file4.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc-.txt</file_name>
-            <local_identifier>document.file5.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc_.txt</file_name>
-            <local_identifier>document.file6.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc..txt</file_name>
-            <local_identifier>document.file7.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc.txt</file_name>
-            <local_identifier>document.file8.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc.t-xt</file_name>
-            <local_identifier>document.file9.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc.t_xt</file_name>
-            <local_identifier>document.file10.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>abc.txt-</file_name>
-            <local_identifier>document.file11.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
          <Document_File>
             <file_name>parent/child.gif</file_name>
-            <local_identifier>document.file12.html</local_identifier>
-            <creation_date_time>2026-03-16T00:00:00.000</creation_date_time>
-            <file_size unit="byte">10409</file_size>
-            <md5_checksum>26477e4879edbb0da602a77f701aa25b</md5_checksum>
-            <directory_path_name>meca_rdr_sis_files/</directory_path_name>
             <document_standard_id>HTML</document_standard_id>
          </Document_File>         
          
