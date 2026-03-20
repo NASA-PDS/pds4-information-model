@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Wed Mar 11 10:21:37 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Wed Mar 18 11:38:24 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -2646,9 +2646,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Target/pds:type">
-      <sch:assert test=". = ('Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object')">
+      <sch:assert test=". = ('Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Interstellar Object', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object')">
         <title>pds:Target/pds:type/pds:type</title>
-        The attribute pds:Target/pds:type must be equal to one of the following values 'Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object'.</sch:assert>
+        The attribute pds:Target/pds:type must be equal to one of the following values 'Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Interstellar Object', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
@@ -2678,9 +2678,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Target_Identification/pds:type">
-      <sch:assert test=". = ('Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object')">
+      <sch:assert test=". = ('Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Interstellar Object', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object')">
         <title>pds:Target_Identification/pds:type/pds:type</title>
-        The attribute pds:Target_Identification/pds:type must be equal to one of the following values 'Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object'.</sch:assert>
+        The attribute pds:Target_Identification/pds:type must be equal to one of the following values 'Asteroid', 'Astrophysical', 'Calibration', 'Calibration Field', 'Calibrator', 'Centaur', 'Comet', 'Dust', 'Dwarf Planet', 'Equipment', 'Exoplanet System', 'Galaxy', 'Globular Cluster', 'Interstellar Object', 'Laboratory Analog', 'Lunar Sample', 'Magnetic Field', 'Meteorite', 'Meteoroid', 'Meteoroid Stream', 'Nebula', 'Open Cluster', 'Planet', 'Planetary Nebula', 'Planetary System', 'Plasma Cloud', 'Plasma Stream', 'Ring', 'Sample', 'Satellite', 'Sky', 'Star', 'Star Cluster', 'Synthetic Sample', 'Terrestrial Sample', 'Trans-Neptunian Object'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
