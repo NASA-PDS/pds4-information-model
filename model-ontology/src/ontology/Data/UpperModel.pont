@@ -1,4 +1,4 @@
-; Wed Mar 11 10:03:19 EDT 2026
+; Mon Mar 23 11:57:59 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -12896,7 +12896,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "[a-zA-Z0-9]([a-zA-Z0-9]|[-]|[_]|[/])*/")
+;+		(value "([A-Za-z0-9]([A-Za-z0-9_-]*[A-Za-z0-9])?/)+")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -12920,7 +12920,7 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:string")
+;+		(value "xsd:token")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
@@ -12936,7 +12936,7 @@
 	(single-slot pattern
 ;+		(comment "The pattern attribute provides a symbolic instruction for forming values.")
 		(type STRING)
-;+		(value "[a-zA-Z0-9]([a-zA-Z0-9]|[-]|[_]|[.])*[.][a-zA-Z0-9]+")
+;+		(value "[a-zA-Z0-9](([a-zA-Z0-9\\-_.]*[a-zA-Z0-9])|)\\.[a-zA-Z0-9](([a-zA-Z0-9\\-_]*[a-zA-Z0-9])|)")
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot maximum_characters
@@ -12960,7 +12960,7 @@
 	(single-slot xml_schema_base_type
 ;+		(comment "The xml schema base type attribute provides the data type needed for the XML schema implementation.")
 		(type STRING)
-;+		(value "xsd:string")
+;+		(value "xsd:token")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
