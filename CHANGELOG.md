@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-23)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-24)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
+- CCB-75: Add new value for object type  - "Interstellar Object" [\#1002](https://github.com/NASA-PDS/pds4-information-model/issues/1002)
 - CCB-68: ASCII\_File\_Name and ASCII\_Directory\_Path\_Name are using malformed regex expressions [\#1000](https://github.com/NASA-PDS/pds4-information-model/issues/1000)
 - CCB-72: New enumerated values for funding\_source [\#997](https://github.com/NASA-PDS/pds4-information-model/issues/997)
 - CCB-7: Additional schematron rules to check Target\_Identification.Internal\_Reference.reference\_type [\#894](https://github.com/NASA-PDS/pds4-information-model/issues/894)
