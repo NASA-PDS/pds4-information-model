@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1Q00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1Q00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>MRO MARS HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT REDUCED DATA RECORD EQUIRECTANGULAR PROJECTION</title>
+    <information_model_version>1.26.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>2015-12-07T21:26:02.757Z</start_date_time>
+      <stop_date_time>2015-12-07T21:26:04.637Z</stop_date_time>
+    </Time_Coordinates>
+    <Investigation_Area>
+      <name>MARS RECONNAISSANCE ORBITER</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.mars_reconnaissance_orbiter</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT</name>
+        <type>Instrument</type>
+      </Observing_System_Component>
+    </Observing_System>
+    
+    <!--  =================================================================  -->
+    <!--  BEGIN: Test for invalid value                                      -->
+    <!--  CCB-75                                                             -->
+    <!--                                                                     -->
+    <!--  Invalid Test                                                       -->
+    <!--                                                                     -->
+    <!--  =================================================================  -->
+    
+    <Target_Identification>
+      <name>Not A Real Target Type</name>
+      <type>NotARealTargetType</type>
+    </Target_Identification>
+    <Mission_Area>
+    </Mission_Area>
+    <Discipline_Area>
+    </Discipline_Area>
+  </Observation_Area>
+  <File_Area_Observational>
+    <File>
+      <file_name>ESP_043896_2055_RED2.tif</file_name>
+      <local_identifier>DATA_FILE</local_identifier>
+      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
+      <file_size unit="byte">1184018549</file_size>
+    </File>
+    <Array_3D_Image>
+      <local_identifier>Array_2D_Image</local_identifier>
+      <offset unit="byte">152747</offset>
+      <axes>3</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <Element_Array>
+        <data_type>UnsignedLSB2</data_type>
+        <scaling_factor>8.30305496949213998e-05</scaling_factor>
+        <value_offset>0.112092366553879996</value_offset>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Band</axis_name>
+        <elements>1</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>25319</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>23379</elements>
+        <sequence_number>3</sequence_number>
+      </Axis_Array>
+    </Array_3D_Image>
+  </File_Area_Observational>
+</Product_Observational>
