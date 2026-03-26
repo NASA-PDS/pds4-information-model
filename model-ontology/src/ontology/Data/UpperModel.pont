@@ -1,4 +1,4 @@
-; Tue Mar 24 09:40:48 EDT 2026
+; Thu Mar 26 14:15:23 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2841,6 +2841,10 @@
 ;+		(comment "The orbit_number attribute provides the number of the orbital revolution of one body around another.")
 		(type STRING)
 		(create-accessor read-write))
+	(multislot resource_subtype
+;+		(comment "The resource_subtype attribute indicates the sub type of the resource.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot contains_primary_member
 ;+		(comment "The contains_primary_member attribute indicates whether a collection contains products that are primary members of the collection.")
 		(type SYMBOL)
@@ -3924,6 +3928,10 @@
 ;+		(comment "The field_location attribute provides the starting byte for a field within a record or group, counting from '1'.")
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot resource_type
+;+		(comment "The resource_type attribute indicates the type of the resource.")
+		(type STRING)
 		(create-accessor read-write))
 	(multislot has_manifest
 ;+		(comment "The has_manifest association is a relationship to a manifest.")
@@ -6628,6 +6636,55 @@
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass UpperModel_Class1
+	(is-a TNDO_Context)
+	(role concrete))
+
+(defclass Archive_Resource "The Archive_Resource class describes tools and services that enable access to, use of, and interaction with PDS4 data."
+	(is-a TNDO_Context)
+	(role concrete)
+	(single-slot description
+;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot release_date
+;+		(comment "The release_date attribute provides the date that the product was released.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot version_id
+;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot resource_type
+;+		(comment "The resource_type attribute indicates the type of the resource.")
+		(type STRING)
+;+		(value "Software and Tools" "Service" "Library")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot interface_type
+;+		(comment "The interface type attribute identifies the class of interconnection provided.")
+		(type STRING)
+;+		(value "REST API" "GraphQL API" "File Transfer" "Streaming Interface" "Query Endpoint" "GUI Interface" "CLI Interface")
+		(create-accessor read-write))
+	(multislot resource_subtype
+;+		(comment "The resource_subtype attribute indicates the sub type of the resource.")
+		(type STRING)
+;+		(value "Authoring Tool" "Command Line Utility" "Desktop Application" "Notebook Environment" "Scientific Analysis Tool" "Search Tool" "Transformation Tool" "Validation Tool" "Visualization Tool" "Web Application" "Workflow Engine")
+		(create-accessor read-write))
+	(multislot url
+;+		(comment "The url attribute provides a Uniform Resource Identifier (URI) that specifies where a resource is available and the mechanism for retrieving it.")
+		(type STRING)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass TNDO_Context_PDS3 "The Tagged NonDigital Object (TNDO) Context PDS3 class is an abstract class for the PDS3 context class hierarchy."
@@ -9625,6 +9682,22 @@
 		(type INSTANCE)
 ;+		(allowed-classes Context_Area)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Product_Resource "The Product Resource class defines a product for registering PDS4 resources including Software and Tools, Services, and Libraries."
+	(is-a Product)
+	(role concrete)
+	(single-slot reference_list
+;+		(comment "The reference_list association is a relationship to Reference_List.")
+		(type INSTANCE)
+;+		(allowed-classes Reference_List)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot product_data_object
+;+		(comment "The product_data_object association is a relationship to a data object.")
+		(type INSTANCE)
+;+		(allowed-classes Archive_Resource)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Product_Components "The Product Component class is an abstract class for the components of the Product class."
