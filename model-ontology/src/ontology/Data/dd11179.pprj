@@ -1,4 +1,4 @@
-; Fri Mar 27 13:45:04 EDT 2026
+; Fri Mar 27 14:29:29 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class417]
-		[dd11179_ProjectKB_Class418]
-		[dd11179_ProjectKB_Class419]))
+		[dd11179_ProjectKB_Class420]
+		[dd11179_ProjectKB_Class421]
+		[dd11179_ProjectKB_Class422]))
 
 ([CLSES_TAB] of  Widget
 
@@ -198,23 +198,23 @@
 	(property_list [dd11179_ProjectKB_Class42])
 	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
 
-([dd11179_ProjectKB_Class417] of  String
+([dd11179_ProjectKB_Class42] of  Property_List
+)
+
+([dd11179_ProjectKB_Class420] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([dd11179_ProjectKB_Class418] of  String
+([dd11179_ProjectKB_Class421] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([dd11179_ProjectKB_Class419] of  String
+([dd11179_ProjectKB_Class422] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
-
-([dd11179_ProjectKB_Class42] of  Property_List
-)
 
 ([dd11179_ProjectKB_Class43] of  Widget
 
