@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Tue Mar 24 09:49:42 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Fri Mar 27 13:45:57 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -90,6 +90,27 @@
       <sch:assert test=". = ('Aircraft', 'Balloon', 'Suborbital Rocket')">
         <title>pds:Airborne/pds:type/pds:type</title>
         The attribute pds:Airborne/pds:type must be equal to one of the following values 'Aircraft', 'Balloon', 'Suborbital Rocket'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Archive_Resource/pds:interface_type">
+      <sch:assert test=". = ('CLI Interface', 'File Transfer', 'GUI Interface', 'GraphQL API', 'Query Endpoint', 'REST API', 'Streaming Interface')">
+        <title>pds:Archive_Resource/pds:interface_type/pds:interface_type</title>
+        The attribute pds:Archive_Resource/pds:interface_type must be equal to one of the following values 'CLI Interface', 'File Transfer', 'GUI Interface', 'GraphQL API', 'Query Endpoint', 'REST API', 'Streaming Interface'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Archive_Resource/pds:resource_subtype">
+      <sch:assert test=". = ('Authoring Tool', 'Command Line Utility', 'Desktop Application', 'Notebook Environment', 'Scientific Analysis Tool', 'Search Tool', 'Transformation Tool', 'Validation Tool', 'Visualization Tool', 'Web Application', 'Workflow Engine')">
+        <title>pds:Archive_Resource/pds:resource_subtype/pds:resource_subtype</title>
+        The attribute pds:Archive_Resource/pds:resource_subtype must be equal to one of the following values 'Authoring Tool', 'Command Line Utility', 'Desktop Application', 'Notebook Environment', 'Scientific Analysis Tool', 'Search Tool', 'Transformation Tool', 'Validation Tool', 'Visualization Tool', 'Web Application', 'Workflow Engine'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Archive_Resource/pds:resource_type">
+      <sch:assert test=". = ('Library', 'Service', 'Software and Tools')">
+        <title>pds:Archive_Resource/pds:resource_type/pds:resource_type</title>
+        The attribute pds:Archive_Resource/pds:resource_type must be equal to one of the following values 'Library', 'Service', 'Software and Tools'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

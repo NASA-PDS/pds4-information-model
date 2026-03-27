@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.26.0.0 - Tue Mar 24 09:49:42 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.26.0.0 - Fri Mar 27 13:45:57 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -136,6 +136,24 @@
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Archive_Resource">
+    <xs:annotation>
+      <xs:documentation>The Archive_Resource class describes tools and
+        services that enable access to, use of, and interaction with
+        PDS4 data.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="pds:name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="version_id" type="pds:version_id" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="url" type="pds:url" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="release_date" type="pds:release_date" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="resource_type" type="pds:resource_type" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="resource_subtype" type="pds:resource_subtype" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="interface_type" type="pds:interface_type" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="description" type="pds:description" minOccurs="1" maxOccurs="1"> </xs:element>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="Array">
@@ -2891,6 +2909,22 @@
         <xs:sequence>
           <xs:element name="Reference_List" type="pds:Reference_List" minOccurs="0" maxOccurs="1"> </xs:element>
           <xs:element name="File_Area_Binary" type="pds:File_Area_Binary" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Product_Resource">
+    <xs:annotation>
+      <xs:documentation>The Product Resource class defines a product for
+        registering PDS4 resources including Software and Tools,
+        Services, and Libraries.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="pds:Product">
+        <xs:sequence>
+          <xs:element name="Archive_Resource" type="pds:Archive_Resource" minOccurs="1" maxOccurs="1"> </xs:element>
+          <xs:element name="Reference_List" type="pds:Reference_List" minOccurs="0" maxOccurs="1"> </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -6985,9 +7019,8 @@
       <xs:documentation>The release_date attribute provides the date
         that the product was released.</xs:documentation>
     </xs:annotation>
-    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
-     <xs:minLength value="1"/>
-     <xs:maxLength value="255"/>
+    <xs:restriction base="pds:ASCII_Date_Time_YMD">
+  <!-- format="YYYY-MM-DDTHH:MM:SS.SSSSSS(Z)" -->
 	   </xs:restriction>
   </xs:simpleType>
 
@@ -7001,6 +7034,28 @@
     	<xs:pattern value='[0-9]+'/>
      <xs:minInclusive value="1"/>
      <xs:maxInclusive value="18446744073709551615"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="resource_subtype">
+    <xs:annotation>
+      <xs:documentation>The resource_subtype attribute indicates the sub
+        type of the resource.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="resource_type">
+    <xs:annotation>
+      <xs:documentation>The resource_type attribute indicates the type
+        of the resource.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
 	   </xs:restriction>
   </xs:simpleType>
 
@@ -8017,7 +8072,6 @@
         notation.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Short_String_Collapsed">
-    	<xs:pattern value='([0-9]+)(\.){1}([0-9]+)'/>
      <xs:minLength value="1"/>
      <xs:maxLength value="255"/>
 	   </xs:restriction>
