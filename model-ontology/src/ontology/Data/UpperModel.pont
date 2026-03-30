@@ -1,4 +1,4 @@
-; Fri Mar 27 21:02:27 EDT 2026
+; Mon Mar 30 18:49:30 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4908,7 +4908,7 @@
 	(single-slot encoding_standard_id
 ;+		(comment "The encoding_standard_id attribute provides the formal name of a standard used for the structure of an Encoded Byte Stream digital object.")
 		(type STRING)
-;+		(value "SEED 2.4")
+;+		(value "SEED 2.4" "MSSS Original Data Record Mini Header" "MSSS Original Data Record Payload Data")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
