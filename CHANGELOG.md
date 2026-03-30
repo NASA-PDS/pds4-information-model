@@ -9,6 +9,7 @@
 - CCB-75: Add new value for object type  - "Interstellar Object" [\#1002](https://github.com/NASA-PDS/pds4-information-model/issues/1002)
 - CCB-68: ASCII\_File\_Name and ASCII\_Directory\_Path\_Name are using malformed regex expressions [\#1000](https://github.com/NASA-PDS/pds4-information-model/issues/1000)
 - CCB-72: New enumerated values for funding\_source [\#997](https://github.com/NASA-PDS/pds4-information-model/issues/997)
+- As a Data Steward, I want to be able to collect metadata about PDS4 online resources [\#931](https://github.com/NASA-PDS/pds4-information-model/issues/931)
 - CCB-7: Additional schematron rules to check Target\_Identification.Internal\_Reference.reference\_type [\#894](https://github.com/NASA-PDS/pds4-information-model/issues/894)
 - Adopt Provenance LDD for Superseded LIDs - CCB-21 \(CCB-367\) [\#663](https://github.com/NASA-PDS/pds4-information-model/issues/663)
 
