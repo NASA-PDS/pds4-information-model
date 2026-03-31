@@ -1,4 +1,4 @@
-; Tue Mar 31 10:00:41 EDT 2026
+; Tue Mar 31 10:53:53 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -11906,7 +11906,7 @@
 	(single-slot unit_id
 ;+		(comment "The unit_id attribute provides a character or character string which serves as an abbreviation for, or symbol representing, a unit of measure.")
 		(type STRING)
-;+		(value "kilobits/s" "counts/bin")
+;+		(value "kilobits/s" "counts/bin" "day**-1")
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
