@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Mon Mar 30 18:56:24 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Wed Apr 01 10:26:02 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -791,9 +791,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Encoded_Native/pds:encoding_standard_id">
-      <sch:assert test=". = ('MSSS Original Data Record Mini Header', 'MSSS Original Data Record Payload Data', 'SEED 2.4')">
+      <sch:assert test=". = ('MSSS Original Data Record Mini Header', 'MSSS Original Data Record Payload Data', 'Nikon Electronic Format (NEF)', 'SEED 2.4')">
         <title>pds:Encoded_Native/pds:encoding_standard_id/pds:encoding_standard_id</title>
-        The attribute pds:Encoded_Native/pds:encoding_standard_id must be equal to one of the following values 'MSSS Original Data Record Mini Header', 'MSSS Original Data Record Payload Data', 'SEED 2.4'.</sch:assert>
+        The attribute pds:Encoded_Native/pds:encoding_standard_id must be equal to one of the following values 'MSSS Original Data Record Mini Header', 'MSSS Original Data Record Payload Data', 'Nikon Electronic Format (NEF)', 'SEED 2.4'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
