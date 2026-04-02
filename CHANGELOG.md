@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-04-02)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
+- CCB-58: New Product\_Native values for MSL/Mastcam [\#1003](https://github.com/NASA-PDS/pds4-information-model/issues/1003)
 - CCB-75: Add new value for object type  - "Interstellar Object" [\#1002](https://github.com/NASA-PDS/pds4-information-model/issues/1002)
 - CCB-68: ASCII\_File\_Name and ASCII\_Directory\_Path\_Name are using malformed regex expressions [\#1000](https://github.com/NASA-PDS/pds4-information-model/issues/1000)
 - CCB-72: New enumerated values for funding\_source [\#997](https://github.com/NASA-PDS/pds4-information-model/issues/997)
