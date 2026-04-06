@@ -65,6 +65,12 @@ src/test/temp/
 export/
 lddtool-*SNAPSHOT/
 
+# Python virtual environments
+venv/
+.venv/
+env/
+.env/
+
 # other stuff
 *.xpr
 *.swp
