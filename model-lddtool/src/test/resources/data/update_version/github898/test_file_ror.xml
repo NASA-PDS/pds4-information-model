@@ -71,7 +71,21 @@
                         <sequence_number>1</sequence_number>                        
                     </Affiliation>
                 </Person>
-            </List_Editor>                               
+            </List_Editor>                    
+            <List_Editor>
+                <Organization>
+                    <organization_name>Jet Propulsion Laboratory</organization_name>
+                    <organization_rorid>https://ror.org/027k65916</organization_rorid>
+                    <sequence_number>2</sequence_number>                    
+                    <Parent_Organization>
+                        <parent_organization_name>
+                            National Aeronautics and Space Administration
+                        </parent_organization_name>
+                        <parent_organization_rorid>https://ror.org/027ka1x80</parent_organization_rorid>
+                        <sequence_number>1</sequence_number>                                               
+                    </Parent_Organization>
+                 </Organization>
+            </List_Editor>                                
             <List_Contributor>
                 <Person>
                     <contributor_type>DataCollector</contributor_type>
