@@ -29,20 +29,7 @@
                         <sequence_number>1</sequence_number>
                     </Affiliation>
                 </Person>
-            </List_Author>
-            <List_Author>
-                <Person>
-                    <display_full_name>S. Algermissen</display_full_name>
-                    <given_name>Stirling</given_name>
-                    <family_name>Algermissen</family_name>
-                    <sequence_number>2</sequence_number>
-                    <Affiliation>
-                        <organization_name>Jet Propulsion Laboratory</organization_name>
-                        <organization_rorid>https://ror.org/027k65916</organization_rorid>
-                        <sequence_number>1</sequence_number>
-                    </Affiliation>
-                </Person>
-            </List_Author>            
+            </List_Author>           
       </Citation_Information>
         <Modification_History>
             <Modification_Detail>
@@ -120,17 +107,6 @@
                 </Affiliation>
             </Person>
         </List_Author>
-        <List_Author>
-            <Person>
-                <display_full_name>S. Algermissen</display_full_name>
-                <given_name>Stirling</given_name>
-                <family_name>Algermissen</family_name>
-                <sequence_number>2</sequence_number>
-                <Affiliation>
-                    <organization_name>Jet Propulsion Laboratory</organization_name>
-                    <organization_rorid>https://ror.org/027k65916</organization_rorid>
-                </Affiliation>
-            </Person>
-        </List_Author>         
+         
     </Document>
 </Product_Document>
