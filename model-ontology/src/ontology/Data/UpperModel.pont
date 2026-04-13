@@ -1,4 +1,4 @@
-; Tue Mar 31 10:53:53 EDT 2026
+; Fri Apr 03 14:28:16 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7480,10 +7480,11 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot has_list_author
+	(single-slot has_list_author
 ;+		(comment "The has_List_Author association is a relationship to List_Author.")
 		(type INSTANCE)
 ;+		(allowed-classes List_Author)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
@@ -7529,15 +7530,22 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot has_list_editor
+;+		(comment "The has_list_editor association is a relationship to List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Editor)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_list_author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot acknowledgement_text
 ;+		(comment "The acknowledgement_text attribute is a character string which recognizes another's contribution, authority, or right.")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_List_Author_or_List_Editor
-;+		(comment "The has_List_Author_or_List_Editor association is a relationship to either List_Author or List_Editor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Author List_Editor XSChoice%23)
 		(create-accessor read-write))
 	(single-slot document_name
 ;+		(comment "The document_title attribute provides the full name of the published document. This optional attribute is used only if the title in the identification area of the document product is not sufficient.")
@@ -9934,25 +9942,33 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot has_list_editor
+;+		(comment "The has_list_editor association is a relationship to List_Editor.")
+		(type INSTANCE)
+;+		(allowed-classes List_Editor)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot description
 ;+		(comment "The description attribute provides a short (5KB or less) description of the product as a whole.")
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(multislot has_list_contributor
+	(single-slot has_list_author
+;+		(comment "The has_List_Author association is a relationship to List_Author.")
+		(type INSTANCE)
+;+		(allowed-classes List_Author)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_list_contributor
 ;+		(comment "The has_List_Contributor association is a relationship to List_Contributor.")
 		(type INSTANCE)
 ;+		(allowed-classes List_Contributor)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot editor_list
 ;+		(comment "The editor_list attribute contains a semi-colon-separated list of names of people to be cited as editors of the associated product. The general format for individual names is: SURNAME, GIVEN NAME(s). Initials may be used in lieu of given name(s). If the name contains a suffix (\"Jr.\", \"Sr.\", \"III\", etc.), the suffix is placed before the comma (,) -- e.g., Johnson Jr., Earl P.  Do not include the word \"and\" before the final author.  All authors should be listed explicitly - do not elide the list using \"et al\".")
 		(type STRING)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot has_List_Author_or_List_Editor
-;+		(comment "The has_List_Author_or_List_Editor association is a relationship to either List_Author or List_Editor.")
-		(type INSTANCE)
-;+		(allowed-classes List_Author List_Editor XSChoice%23)
 		(create-accessor read-write))
 	(multislot keyword
 ;+		(comment "The keyword attribute provides one or more words to be used for  keyword search.")

@@ -55,17 +55,7 @@
           <person_orcid>http://orcid.org/0000-0003-3163-579X</person_orcid>
           <sequence_number>5</sequence_number>
         </Person>
-      </List_Author>
-       <List_Author>
-         <Organization>
-           <organization_name>JPL</organization_name>
-           <sequence_number>1</sequence_number>
-           <Parent_Organization>
-             <parent_organization_name>The SDSS Collaboration</parent_organization_name>
-             <sequence_number>1</sequence_number>            
-           </Parent_Organization>           
-         </Organization>         
-       </List_Author>      
+      </List_Author>    
     </Citation_Information>
     <Modification_History>
       <Modification_Detail>
