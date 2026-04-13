@@ -1,11 +1,15 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-04-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-04-13)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
+- CCB-86: List\_Author and similar list classes should have cardinality 0:1 instead of 0:M [\#1007](https://github.com/NASA-PDS/pds4-information-model/issues/1007)
+- CCB-85: Expand definition of DataCurator to account for non-PDS archivists and for cloud storage [\#1006](https://github.com/NASA-PDS/pds4-information-model/issues/1006)
+- CCB-80: Support NEF as a Native format for Artemis [\#1005](https://github.com/NASA-PDS/pds4-information-model/issues/1005)
+- CCB-79: Add enumerated value day\*\*-1 to Units\_of\_Rates [\#1004](https://github.com/NASA-PDS/pds4-information-model/issues/1004)
 - CCB-58: New Product\_Native values for MSL/Mastcam [\#1003](https://github.com/NASA-PDS/pds4-information-model/issues/1003)
 - CCB-75: Add new value for object type  - "Interstellar Object" [\#1002](https://github.com/NASA-PDS/pds4-information-model/issues/1002)
 - CCB-68: ASCII\_File\_Name and ASCII\_Directory\_Path\_Name are using malformed regex expressions [\#1000](https://github.com/NASA-PDS/pds4-information-model/issues/1000)
@@ -24,6 +28,7 @@
 
 **Defects:**
 
+- Regression tests for \#837 and \#894 have inaccurate expected error counts [\#1012](https://github.com/NASA-PDS/pds4-information-model/issues/1012) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - The `contributor_type` `DataCurator` has a typo / misdefined [\#982](https://github.com/NASA-PDS/pds4-information-model/issues/982) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
