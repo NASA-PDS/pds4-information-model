@@ -1,8 +1,8 @@
 name: "[internal] Task"
 description: "Low level task or action that is often too granular for testing, but helps towards progress on an Epic or parent story"
-labels: "B17,i&t.skip,task"
+labels: "B18,i&t.skip,task"
 type: "Task"
-projects: ["NASA-PDS/6", "NASA-PDS/22"]
+projects: ["NASA-PDS/6"]
 
 body:
   - type: dropdown
