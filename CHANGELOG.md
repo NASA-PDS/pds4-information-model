@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-04-13)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-04-14)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
+- CCB-88: Broken link to the PDS Policy on Packed Data in the Standards Reference [\#1008](https://github.com/NASA-PDS/pds4-information-model/issues/1008)
 - CCB-86: List\_Author and similar list classes should have cardinality 0:1 instead of 0:M [\#1007](https://github.com/NASA-PDS/pds4-information-model/issues/1007)
 - CCB-85: Expand definition of DataCurator to account for non-PDS archivists and for cloud storage [\#1006](https://github.com/NASA-PDS/pds4-information-model/issues/1006)
 - CCB-80: Support NEF as a Native format for Artemis [\#1005](https://github.com/NASA-PDS/pds4-information-model/issues/1005)
