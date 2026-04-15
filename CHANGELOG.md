@@ -22,6 +22,7 @@
 **Improvements:**
 
 - \[namespace-registry\] add new namespace apex [\#1025](https://github.com/NASA-PDS/pds4-information-model/issues/1025)
+- \[namespace-registry\] add new namespace cots\_camera [\#998](https://github.com/NASA-PDS/pds4-information-model/issues/998)
 - \[namespace-registry\] add new namespace "asl" [\#995](https://github.com/NASA-PDS/pds4-information-model/issues/995)
 - \[namespace-registry\] add new namespace "ops" [\#994](https://github.com/NASA-PDS/pds4-information-model/issues/994)
 - Improve PROV LDD with controlled vocabulary [\#991](https://github.com/NASA-PDS/pds4-information-model/issues/991)
