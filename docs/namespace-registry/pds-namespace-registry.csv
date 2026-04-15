@@ -36,7 +36,7 @@ sp,Spectral,"The Spectral (sp) Discipline Dictionary contains classes for defini
 speclib,Spectral Library,"The Spectral Library Data Dictionary defines the metadata terms that describe laboratory spectral measurements, including classification of the samples measured.",Discipline,Susie Slavney,slavney at wunder.wustl.edu,2017-05-15,
 survey,Survey,"The Survey dictionary provides classes, attributes, and rules for describing the circumstances surrounding sky survey observations.",Discipline,Jesse Stone,jstone at psi.edu,2020-10-06,
 Mission,,,,,,,
-apex,APEX Mission,The APEX Mission Dictionary (apex) contains classes attributes and rules specific to the APEX mission.,Mission,Carol Neese,neese at psi.edu,2026-04-15,
+apex,APEX Mission,"The APEX Mission Dictionary (apex) contains classes, attributes and rules specific to the APEX mission.",Mission,Carol Neese,neese at psi.edu,2026-04-15,
 apollo,Apollo,"The Apollo Mission Dictionary (apollo) contains classes, attributes and rules specific to the Apollo missions and their instruments.",Mission,Jennifer Ward,jgward at wustl.edu,2022-08-18,
 asl,Mars Missions Analogue Sample Library,Mars Missions Analogue Sample Library metadata,Mission,Thomas Cornet,thomas.cornet at esa.int,2026-02-18,
 bopps,Balloon Observation Platform for Planetary Science,Namespace for the BOPPS dictionary.,Mission,Anne Raugh,araugh at umd.edu,2015-03-26,
