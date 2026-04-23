@@ -93,7 +93,7 @@ jobs:
             -
                 name: 📦 Generate Core LDD Artifacts
                 run: |
-                    ./bin/generate-core-ldd.sh
+                    ./scripts/generate-core-ldd.sh
 
             -
                 name: 🚀 Upload Core LDD to Release
