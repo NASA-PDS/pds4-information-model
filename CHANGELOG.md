@@ -1,12 +1,8 @@
 # Changelog
 
-## [release/16.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.1.0) (2026-04-15)
+## [release/16.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.1.0) (2026-04-22)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/16.2.0...release/16.1.0)
-
-## [release/16.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.2.0) (2026-04-15)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...release/16.2.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...release/16.1.0)
 
 **Requirements:**
 
@@ -287,11 +283,7 @@
 
 ## [l](https://github.com/NASA-PDS/pds4-information-model/tree/l) (2023-09-14)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.3.0...l)
-
-## [release/14.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.3.0) (2023-09-14)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...release/14.3.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...l)
 
 **Requirements:**
 
@@ -349,19 +341,11 @@
 
 ## [v14.2.1](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.1) (2023-04-05)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.2.1...v14.2.1)
-
-## [release/14.2.1](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.1) (2023-04-05)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0...release/14.2.1)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.0...v14.2.1)
 
 ## [v14.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.2.0) (2023-03-30)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/release/14.2.0...v14.2.0)
-
-## [release/14.2.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/14.2.0) (2023-03-30)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...release/14.2.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.1.2...v14.2.0)
 
 **Requirements:**
 
