@@ -12,7 +12,7 @@
         http://pds.nasa.gov/pds4/pds/v1 
         http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1Q00.xsd ">
 
-	<name>Particle</name>
+	<name>Audio_Video</name>
 	<ldd_version_id>1.0.0.0</ldd_version_id>
 	<dictionary_type>Discipline</dictionary_type>
 	<full_name>Audio_Video</full_name>
@@ -33,7 +33,7 @@
 	<DD_Attribute>
 		<name>particle_type</name>
 		<version_id>1.0</version_id>
-		<local_identifier>particle.particle_type</local_identifier>
+		<local_identifier>av.particle_type</local_identifier>
 		<nillable_flag>false</nillable_flag>
 		<submitter_name>C. Neese</submitter_name>
 		<definition>The particle_type attribute indicates the type of particle being described.</definition>
@@ -50,14 +50,14 @@
 	<DD_Class>
 		<name>Particle_Observation</name>
 		<version_id>2.0</version_id>
-		<local_identifier>particle.Particle_Observation</local_identifier>
+		<local_identifier>av.Particle_Observation</local_identifier>
 		<submitter_name>C. Neese</submitter_name>
 		<definition>The Particle_Observation class is the container for particle discipline related metadata elements.</definition>
 		<abstract_flag>false</abstract_flag>
 		<element_flag>true</element_flag> 
 		
 		<DD_Association>
-			<identifier_reference>particle.particle_type</identifier_reference>
+			<identifier_reference>av.particle_type</identifier_reference>
 			<reference_type>attribute_of</reference_type>
 			<minimum_occurrences>0</minimum_occurrences>
 			<maximum_occurrences>1</maximum_occurrences>

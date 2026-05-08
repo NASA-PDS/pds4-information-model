@@ -16,6 +16,7 @@
     <information_model_version>1.26.0.0</information_model_version>
     <product_class>Product_Context</product_class>
   </Identification_Area>
+  <!-- Uses cloned Particle_Observation terms from the AV namespace ingest test to verify namespace wiring. -->
   <Discipline_Area>
     <av:Particle_Observation>
       <av:particle_type>Electrons</av:particle_type>
