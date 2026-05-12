@@ -28,7 +28,7 @@ nucspec,Nuclear Spectroscopy,"The Nuclear Spectroscopy dictionary provides class
 ops,PDS Operations,"Operations metadata appended to PDS4 metadata in order to support PDS Core Services, such as the Registry.",Discipline,Sophia Conover,sophia.n.conover at jpl.nasa.gov,2012-04-03,
 particle,Particle,The Particle dictionary contains classes that describe the composition of multidimensional particle data consisting of Array (and Array subclass) data objects.,Discipline,Joseph Mafi,jmafi at igpp.ucla.edu,2015-04-24,
 ppi,,Namespace for the PPI node's dictionary.,Discipline,Joseph Mafi,jmafi at igpp.ucla.edu,2012-04-03,
-radar,Radar,Namespace for the Radar dictionary.,Discipline,,,,
+radar,Radar,Describes the circumstances surrounding radar observations.,Discipline,Beatrice Mueller,mueller at psi.edu,2021-10-20,
 proc,Processing Information,The Processing_Information Dictionary contains detailed information regarding the history of processing performed on data product(s) in order to produce the current product.,Discipline,Trent Hare,thare at usgs.gov,2019-09-26,
 prov,Provenance,"The purpose of the ""prov"" LDD is to provide a PDS4 ""Discipline_Area"" insert for capturing provenance information.",Discipline,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2025-09-24,
 rings,Rings,The Rings Dictionary contains classes supporting planetary ring observations including ring-specific geometric parameters.,Discipline,Mitchel Gordon,mgordon at seti.org,2012-04-03,
