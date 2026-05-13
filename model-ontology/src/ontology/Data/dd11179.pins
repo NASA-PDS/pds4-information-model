@@ -1,4 +1,4 @@
-; Tue Mar 24 09:48:32 EDT 2026
+; Fri Apr 03 14:45:17 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -555,6 +555,13 @@
 		[EVD.0001_NASA_PDS_1.pds.Agency.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Alias.pds.alternate_id]
 		[NEVD.0001_NASA_PDS_1.pds.Alias.pds.alternate_title]
+		[EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.name]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date]
+		[EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype]
+		[EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.url]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id]
 		[EVD.0001_NASA_PDS_1.pds.Array.pds.axis_index_order]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.axis_name]
 		[EVD.0001_NASA_PDS_1.pds.Bundle.pds.bundle_type]
@@ -1250,6 +1257,7 @@
 	(representing2
 		[NEVD.0001_NASA_PDS_1.pds.Agency.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Alias.pds.comment]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Array.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.unit]
 		[NEVD.0001_NASA_PDS_1.pds.Bundle.pds.description]
@@ -1753,6 +1761,126 @@
 	(steward [TBD_steward])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.priority_order])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.description])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.url])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url])
+	(versionIdentifier "1.26"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  DataElement
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id])
 	(versionIdentifier "1.26"))
 
 ([DE.0001_NASA_PDS_1.pds.Array.pds.axes] of  DataElement
@@ -18813,6 +18941,14 @@
 		[DE.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[DE.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.name]
 		[DE.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.priority_order]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id]
 		[DE.0001_NASA_PDS_1.pds.Array_1D.pds.axes]
 		[DE.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[DE.0001_NASA_PDS_1.pds.Axis_Array.pds.unit]
@@ -19585,6 +19721,51 @@
 ([DEF.0001_NASA_PDS_1.pds.Archival_Information_Package] of  Definition
 
 	(definitionText "The Archival Information Package %28AIP%29 class defines an Information Package consisting of the Content Information and the associated Preservation Description Information %28PDI%29, which is preserved within an archive that conforms to the Open Archive Information System %28OAIS%29 Reference Model.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource] of  Definition
+
+	(definitionText "The Archive_Resource class describes tools and services that enable access to, use of, and interaction with PDS4 data.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  Definition
+
+	(definitionText "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  Definition
+
+	(definitionText "The interface type attribute identifies the class of interconnection provided.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  Definition
+
+	(definitionText "The name attribute provides a word or combination of words by which the object is known.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  Definition
+
+	(definitionText "The release_date attribute provides the date that the product was released.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  Definition
+
+	(definitionText "The resource_subtype attribute indicates the sub type of the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  Definition
+
+	(definitionText "The resource_type attribute indicates the type of the resource.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  Definition
+
+	(definitionText "The url attribute provides a Uniform Resource Identifier %28URI%29 that specifies where a resource is available and the mechanism for retrieving it.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  Definition
+
+	(definitionText "The version_id attribute provides the version of the product, expressed in the PDS %5Bm.n%5D notation.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Archive_Support_Object] of  Definition
@@ -24192,6 +24373,11 @@
 	(definitionText "The Product Proxy PDS3 class defines a product with enough information to register a PDS3 data product.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Product_Resource] of  Definition
+
+	(definitionText "The Product Resource class defines a product for registering PDS4 resources including Software and Tools, Services, and Libraries.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Product_Service] of  Definition
 
 	(definitionText "The Product Service class defines a product for registering services. Service descriptions from this product are used to register services as intrinsic registry objects.")
@@ -27320,6 +27506,51 @@
 ([DES.0001_NASA_PDS_1.pds.Archival_Information_Package] of  Designation
 
 	(designationName "Archival_Information_Package")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource] of  Designation
+
+	(designationName "Archive_Resource")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  Designation
+
+	(designationName "description")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  Designation
+
+	(designationName "interface_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  Designation
+
+	(designationName "name")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  Designation
+
+	(designationName "release_date")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  Designation
+
+	(designationName "resource_subtype")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  Designation
+
+	(designationName "resource_type")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  Designation
+
+	(designationName "url")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  Designation
+
+	(designationName "version_id")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Archive_Support_Object] of  Designation
@@ -31927,6 +32158,11 @@
 	(designationName "Product_Proxy_PDS3")
 	(isPreferred TRUE))
 
+([DES.0001_NASA_PDS_1.pds.Product_Resource] of  Designation
+
+	(designationName "Product_Resource")
+	(isPreferred TRUE))
+
 ([DES.0001_NASA_PDS_1.pds.Product_Service] of  Designation
 
 	(designationName "Product_Service")
@@ -34927,6 +35163,93 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Airborne.pds.type])
 	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1221883385]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1776722447]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1210015828]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.-1064123101]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.987919917]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.444584878]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.180879035])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1323435489]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.534326293]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1765959436]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-373920946]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.366942405]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1069504784]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.583598159]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1126326049]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-582251692]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1434681788]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-192165437])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.1830861979]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.-646160747]
+		[pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.349046553])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -39569,7 +39892,11 @@
 ([EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id] of  EnumeratedValueDomain
 
 	(administrationRecord [DD_1.26.0.0])
-	(containedIn1 [pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.1771795273])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.281667208]
+		[pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.-403135126]
+		[pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.2091637036]
+		[pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.1771795273])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id")
 	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
@@ -40084,6 +40411,7 @@
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.-2060739161]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1024776647]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.2104209397]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1517809054]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.176543050]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.379437380]
 		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.209560638]
@@ -43636,6 +43964,7 @@
 	(administrationRecord [DD_1.26.0.0])
 	(containedIn1
 		[pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1018730052]
+		[pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600]
 		[pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139])
 	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id")
 	(datatype [UTF8_Short_String_Collapsed])
@@ -45250,6 +45579,111 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.priority_order])
 	(representedBy2 [CD_TBD_dataConcept])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.description")
+	(datatype [UTF8_Text_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description])
+	(representedBy2 [CD_Text])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.name")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date")
+	(datatype [ASCII_Date_Time_YMD])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.url")
+	(datatype [ASCII_AnyURI])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.26"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -59872,6 +60306,27 @@
 	(used "Y")
 	(versionIdentifier "1.0.0.0"))
 
+([OC.0001_NASA_PDS_1.pds.Archive_Resource] of  ObjectClass
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "OC.0001_NASA_PDS_1.pds.Archive_Resource")
+	(isDataType "false")
+	(isDeprecated "false")
+	(isInactive "false")
+	(isRegistryClass "false")
+	(isSchema1Class "false")
+	(isTDO "false")
+	(isUnitOfMeasure "false")
+	(isVacuous "false")
+	(nameSpaceIdNC "pds")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(section "#17")
+	(steward [pds])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource])
+	(used "Y")
+	(versionIdentifier "1.0.0.0"))
+
 ([OC.0001_NASA_PDS_1.pds.Archive_Support_Object] of  ObjectClass
 
 	(administrationRecord [DD_1.26.0.0])
@@ -64996,6 +65451,27 @@
 	(used "Y")
 	(versionIdentifier "1.0.0.0"))
 
+([OC.0001_NASA_PDS_1.pds.Product_Resource] of  ObjectClass
+
+	(administrationRecord [DD_1.26.0.0])
+	(dataIdentifier "OC.0001_NASA_PDS_1.pds.Product_Resource")
+	(isDataType "false")
+	(isDeprecated "false")
+	(isInactive "false")
+	(isRegistryClass "true")
+	(isSchema1Class "true")
+	(isTDO "false")
+	(isUnitOfMeasure "false")
+	(isVacuous "false")
+	(nameSpaceIdNC "pds")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(section "#17")
+	(steward [ops])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Product_Resource])
+	(used "Y")
+	(versionIdentifier "1.0.0.0"))
+
 ([OC.0001_NASA_PDS_1.pds.Product_Service] of  ObjectClass
 
 	(administrationRecord [DD_1.26.0.0])
@@ -68536,6 +69012,78 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
 
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1080")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.description")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1070")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1010")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.name")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1040")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1060")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1050")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1030")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.url")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
 ([PR.0001_NASA_PDS_1.pds.Array.pds.associated_Special_Constants.Special_Constants] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
@@ -70993,20 +71541,11 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
 
-([PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_List_Author_or_List_Editor.List_Author] of  Property
+([PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_author.List_Author] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_List_Author_or_List_Editor.List_Author")
-	(registeredBy [RA_0001_NASA_PDS_1])
-	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
-	(versionIdentifier "1.26"))
-
-([PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_List_Author_or_List_Editor.List_Editor] of  Property
-
-	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_List_Author_or_List_Editor.List_Editor")
+	(classOrder "1062")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_author.List_Author")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
@@ -71014,8 +71553,17 @@
 ([PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_contributor.List_Contributor] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
+	(classOrder "1066")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_contributor.List_Contributor")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_editor.List_Editor] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1064")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Citation_Information.pds.has_list_editor.List_Editor")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
@@ -72661,7 +73209,7 @@
 ([PR.0001_NASA_PDS_1.pds.Document.pds.data_object.Digital_Object] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "1100")
+	(classOrder "1130")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.data_object.Digital_Object")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
@@ -72715,26 +73263,26 @@
 ([PR.0001_NASA_PDS_1.pds.Document.pds.has_document_edition.Document_Edition] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "1095")
+	(classOrder "1100")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.has_document_edition.Document_Edition")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
 
-([PR.0001_NASA_PDS_1.pds.Document.pds.has_List_Author_or_List_Editor.List_Author] of  Property
+([PR.0001_NASA_PDS_1.pds.Document.pds.has_list_author.List_Author] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.has_List_Author_or_List_Editor.List_Author")
+	(classOrder "1110")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.has_list_author.List_Author")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
 
-([PR.0001_NASA_PDS_1.pds.Document.pds.has_List_Author_or_List_Editor.List_Editor] of  Property
+([PR.0001_NASA_PDS_1.pds.Document.pds.has_list_editor.List_Editor] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
-	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.has_List_Author_or_List_Editor.List_Editor")
+	(classOrder "1120")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Document.pds.has_list_editor.List_Editor")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
@@ -77662,6 +78210,24 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.26"))
 
+([PR.0001_NASA_PDS_1.pds.Product_Resource.pds.product_data_object.Archive_Resource] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1020")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Product_Resource.pds.product_data_object.Archive_Resource")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
+([PR.0001_NASA_PDS_1.pds.Product_Resource.pds.reference_list.Reference_List] of  Property
+
+	(administrationRecord [DD_1.26.0.0])
+	(classOrder "1030")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Product_Resource.pds.reference_list.Reference_List")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.26"))
+
 ([PR.0001_NASA_PDS_1.pds.Product_Service.pds.file_area.File_Area_Service_Description] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
@@ -78871,7 +79437,7 @@
 ([PR.0001_NASA_PDS_1.pds.Software.pds.data_object.Digital_Object] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "1090")
+	(classOrder "1100")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Software.pds.data_object.Digital_Object")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
@@ -78889,7 +79455,7 @@
 ([PR.0001_NASA_PDS_1.pds.Software.pds.has_list_author.List_Author] of  Property
 
 	(administrationRecord [DD_1.26.0.0])
-	(classOrder "9999")
+	(classOrder "1090")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Software.pds.has_list_author.List_Author")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
@@ -82143,6 +82709,195 @@
 	(isDeprecated "false")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Airborne.pds.type.1325796367])
 	(value "Balloon"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.-1064123101] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.-1064123101])
+	(value "GraphQL API"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1210015828] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1210015828])
+	(value "GUI Interface"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1221883385] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1221883385])
+	(value "CLI Interface"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1776722447] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1776722447])
+	(value "File Transfer"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.180879035] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.180879035])
+	(value "Streaming Interface"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.444584878] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.444584878])
+	(value "REST API"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.987919917] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.987919917])
+	(value "Query Endpoint"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1126326049] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1126326049])
+	(value "Validation Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1434681788] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1434681788])
+	(value "Web Application"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-192165437] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-192165437])
+	(value "Workflow Engine"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-373920946] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-373920946])
+	(value "Notebook Environment"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-582251692] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-582251692])
+	(value "Visualization Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1069504784] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1069504784])
+	(value "Search Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1323435489] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1323435489])
+	(value "Authoring Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1765959436] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1765959436])
+	(value "Desktop Application"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.366942405] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.366942405])
+	(value "Scientific Analysis Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.534326293] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.534326293])
+	(value "Command Line Utility"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.583598159] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.583598159])
+	(value "Transformation Tool"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.-646160747] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.-646160747])
+	(value "Service"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.1830861979] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.1830861979])
+	(value "Library"))
+
+([pv.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.349046553] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.349046553])
+	(value "Software and Tools"))
 
 ([pv.0001_NASA_PDS_1.pds.Array.pds.axis_index_order.-1365745102] of  PermissibleValue
 
@@ -87976,6 +88731,15 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Image.pds.encoding_standard_id.79369])
 	(value "PNG"))
 
+([pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.-403135126] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.-403135126])
+	(value "MSSS Original Data Record Payload Data"))
+
 ([pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.1771795273] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -87984,6 +88748,24 @@
 	(isDeprecated "false")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.1771795273])
 	(value "SEED 2.4"))
+
+([pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.2091637036] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.2091637036])
+	(value "Nikon Electronic Format %28NEF%29"))
+
+([pv.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.281667208] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.281667208])
+	(value "MSSS Original Data Record Mini Header"))
 
 ([pv.0001_NASA_PDS_1.pds.Encoded_Telemetry.pds.encoding_standard_id.1332121279] of  PermissibleValue
 
@@ -89982,6 +90764,15 @@
 	(isDeprecated "false")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1480918653])
 	(value "Product_File_Repository"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1517809054] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1517809054])
+	(value "Product_Resource"))
 
 ([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.176525752] of  PermissibleValue
 
@@ -95509,6 +96300,15 @@
 	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1018730052])
 	(value "counts%2Fbin"))
 
+([pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600])
+	(value "day**-1"))
+
 ([pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139] of  PermissibleValue
 
 	(beginDate "2009-06-09")
@@ -96823,6 +97623,69 @@
 	(administeredItemContext [NASA_PDS])
 	(definition [DEF.0001_NASA_PDS_1.pds.Archival_Information_Package])
 	(designation [DES.0001_NASA_PDS_1.pds.Archival_Information_Package])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.description])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.description])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.url] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.url])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.url])
+	(sectionLanguage [LI_English]))
+
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.version_id])
 	(sectionLanguage [LI_English]))
 
 ([TE.0001_NASA_PDS_1.pds.Archive_Support_Object] of  TerminologicalEntry
@@ -103272,6 +104135,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Product_Proxy_PDS3])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Product_Resource] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Product_Resource])
+	(designation [DES.0001_NASA_PDS_1.pds.Product_Resource])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Product_Service] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -107700,6 +108570,7 @@
 	(precision "TBD_precision")
 	(unitId
 		"counts%2Fbin"
+		"day**-1"
 		"kilobits%2Fs"))
 
 ([Units_of_Solid_Angle] of  UnitOfMeasure
@@ -107908,6 +108779,132 @@
 
 	(beginDate "2009-06-09")
 	(description "A balloon-borne observatory, typically consisting of a gondola structure carrying one or more telescopes and instruments, borne aloft by an unpowered or minimially powered lighter-than-atmosphere balloon for a limited observing period.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.-1064123101] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides programmatic access to data or services through flexible query-based requests.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1210015828] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides a graphical interface for interacting with data or services.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1221883385] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides a command-line interface for interacting with data or services.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.1776722447] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Enables transfer of data or files between systems or locations.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.180879035] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides continuous or real-time access to data or events.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.444584878] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides programmatic access to data or services through standard web-based requests.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type.987919917] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Supports querying and retrieval of data or information.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1126326049] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Checks data or products for correctness or compliance.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-1434681788] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Accessible through a web browser.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-192165437] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Supports sequencing or automation of tasks.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-373920946] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Provides an interactive environment for working with data and code.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.-582251692] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Presents data in a visual form.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1069504784] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Enables finding or retrieving data or information.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1323435489] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Supports creating or editing data or content.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.1765959436] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Runs locally on a user’s computer.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.366942405] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Supports analysis or interpretation of data.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.534326293] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Operates through a command-line interface.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype.583598159] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Converts or modifies data.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.-646160747] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A Service is a network-accessible interface or endpoint that delivers system functionality or data access in a standardized, often machine-interpretable manner. Services typically operate through APIs, portals, or data delivery mechanisms that support human or automated consumption.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.1830861979] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "A Library is a reusable collection of software components, data structures, or schema definitions designed to be integrated into other software systems. Libraries provide programmatic access to functionality or standards %28e.g., schemas, dictionaries%29 without being standalone applications.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type.349046553] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "Software and Tools are executable applications, utilities, or interactive components, either web-based or standalone, that perform computational, validation, analysis, or transformation tasks. They are designed for direct user interaction and provide functional capabilities that manipulate or interpret data, metadata, or models.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Array.pds.axis_index_order.-1365745102] of  ValueMeaning
@@ -111798,10 +112795,28 @@
 	(description "The Encoded_Image is governed by the standard Portable Network Graphics %28PNG%29, ISO%2FIEC 15948:2004.")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.-403135126] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "For Malin Space Science Systems %28MSSS%29 cameras such as MSL Mastcam, MAHLI, and MARDI, this is the raw, compressed data product as transmitted from the spacecraft. The format is described in urn:nasa:pds:msl_mmm:document:msss_odr_format and urn:nasa:pds:msl_mmm:document:msss_odr_ref_software.")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.1771795273] of  ValueMeaning
 
 	(beginDate "2009-06-09")
 	(description "SEED %28Standard for the Exchange of Earthquake Data%29 is an international standard format for archiving seismic data. The standard is maintained by the International Federation of Digital Seismograph Networks %28FDSN%29. The details of the format are documented in the SEED Reference Manual, version 2.4 %28published: 2009-01%29.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.2091637036] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "NEF is the proprietary RAW format used by Nikon cameras. NEF uses the TIFF format to encode the image using both standard and Nikon-specific metadata tags %28using EXIF - Exchangeable Image File Format%29.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Encoded_Native.pds.encoding_standard_id.281667208] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "For Malin Space Science Systems %28MSSS%29 cameras such as MSL Mastcam, MAHLI, and MARDI, the first 64 bytes of the transmitted raw data product is known as the mini-header and provides enough information to decompress and use the raw data product. The mini-header is described in section 4.4.3 of the MSL MMM Data Products SIS %28urn:nasa:pds:msl_mmm:document:msl_mmm_dpsis%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Encoded_Telemetry.pds.encoding_standard_id.1332121279] of  ValueMeaning
@@ -113136,6 +114151,12 @@
 	(description "This is a product that is described by the class definition Product_File_Repository")
 	(endDate "2019-12-31"))
 
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.1517809054] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This is a product that is described by the class definition Product_Resource")
+	(endDate "2019-12-31"))
+
 ([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class.176525752] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -114123,7 +115144,7 @@
 ([vm.0001_NASA_PDS_1.pds.Person.pds.contributor_type.1313110124] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "he PDS Node or SubNode where the primary copy of the data physically resides.")
+	(description "A person or organization responsible for receiving the data delivery and%2For for long-term maintenance of data integrity.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Person.pds.contributor_type.877145059] of  ValueMeaning
@@ -116818,6 +117839,12 @@
 
 	(beginDate "2009-06-09")
 	(description "counts%2Fbin is an abbreviation for counts per bin.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "day**-1 is an abbreviation for the change per day in a dimensionless quantity.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139] of  ValueMeaning

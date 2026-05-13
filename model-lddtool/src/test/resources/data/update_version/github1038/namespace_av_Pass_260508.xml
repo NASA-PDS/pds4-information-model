@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<?xml-model href="PDS4_PDS_1Q00.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="PDS4_AV_1Q00_1000.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Context
+  xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:av="http://pds.nasa.gov/pds4/av/v1"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1Q00.xsd 
+                      http://pds.nasa.gov/pds4/av/v1 PDS4_AV_1Q00_1000.xsd">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:context:discipline:av</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Audio_Video</title>
+    <information_model_version>1.26.0.0</information_model_version>
+    <product_class>Product_Context</product_class>
+  </Identification_Area>
+  <!-- Uses cloned Particle_Observation terms from the AV namespace ingest test to verify namespace wiring. -->
+  <Discipline_Area>
+    <av:Particle_Observation>
+      <av:particle_type>Electrons</av:particle_type>
+    </av:Particle_Observation>
+  </Discipline_Area>
+  <Investigation>
+    <name>InSight Lander</name>
+    <type>Mission</type>
+    <start_date>2018-05-05</start_date>
+    <stop_date>2022-12-15</stop_date>
+    <description>NASA's InSight Lander mission placed a lander on Mars.</description>
+  </Investigation>
+</Product_Context>

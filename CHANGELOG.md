@@ -1,19 +1,35 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-03-24)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-05-13)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.0...«unknown»)
+
+**Other closed issues:**
+
+- Complete second draft of `ops` LDD [\#1027](https://github.com/NASA-PDS/pds4-information-model/issues/1027)
+
+## [v16.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.1.0) (2026-04-23)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...v16.1.0)
 
 **Requirements:**
 
+- CCB-88: Broken link to the PDS Policy on Packed Data in the Standards Reference [\#1008](https://github.com/NASA-PDS/pds4-information-model/issues/1008)
+- CCB-86: List\_Author and similar list classes should have cardinality 0:1 instead of 0:M [\#1007](https://github.com/NASA-PDS/pds4-information-model/issues/1007)
+- CCB-85: Expand definition of DataCurator to account for non-PDS archivists and for cloud storage [\#1006](https://github.com/NASA-PDS/pds4-information-model/issues/1006)
+- CCB-80: Support NEF as a Native format for Artemis [\#1005](https://github.com/NASA-PDS/pds4-information-model/issues/1005)
+- CCB-79: Add enumerated value day\*\*-1 to Units\_of\_Rates [\#1004](https://github.com/NASA-PDS/pds4-information-model/issues/1004)
+- CCB-58: New Product\_Native values for MSL/Mastcam [\#1003](https://github.com/NASA-PDS/pds4-information-model/issues/1003)
 - CCB-75: Add new value for object type  - "Interstellar Object" [\#1002](https://github.com/NASA-PDS/pds4-information-model/issues/1002)
 - CCB-68: ASCII\_File\_Name and ASCII\_Directory\_Path\_Name are using malformed regex expressions [\#1000](https://github.com/NASA-PDS/pds4-information-model/issues/1000)
-- CCB-72: New enumerated values for funding\_source [\#997](https://github.com/NASA-PDS/pds4-information-model/issues/997)
+- As a Data Steward, I want to be able to collect metadata about PDS4 online resources [\#931](https://github.com/NASA-PDS/pds4-information-model/issues/931)
 - CCB-7: Additional schematron rules to check Target\_Identification.Internal\_Reference.reference\_type [\#894](https://github.com/NASA-PDS/pds4-information-model/issues/894)
 - Adopt Provenance LDD for Superseded LIDs - CCB-21 \(CCB-367\) [\#663](https://github.com/NASA-PDS/pds4-information-model/issues/663)
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace apex [\#1025](https://github.com/NASA-PDS/pds4-information-model/issues/1025)
+- \[namespace-registry\] add new namespace cots\_camera [\#998](https://github.com/NASA-PDS/pds4-information-model/issues/998)
 - \[namespace-registry\] add new namespace "asl" [\#995](https://github.com/NASA-PDS/pds4-information-model/issues/995)
 - \[namespace-registry\] add new namespace "ops" [\#994](https://github.com/NASA-PDS/pds4-information-model/issues/994)
 - Improve PROV LDD with controlled vocabulary [\#991](https://github.com/NASA-PDS/pds4-information-model/issues/991)
@@ -22,6 +38,7 @@
 
 **Defects:**
 
+- Regression tests for \#837 and \#894 have inaccurate expected error counts [\#1012](https://github.com/NASA-PDS/pds4-information-model/issues/1012) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - The `contributor_type` `DataCurator` has a typo / misdefined [\#982](https://github.com/NASA-PDS/pds4-information-model/issues/982) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
 **Other closed issues:**
@@ -269,7 +286,11 @@
 
 ## [v14.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v14.3.0) (2023-09-18)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...v14.3.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/l...v14.3.0)
+
+## [l](https://github.com/NASA-PDS/pds4-information-model/tree/l) (2023-09-14)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v14.2.4...l)
 
 **Requirements:**
 

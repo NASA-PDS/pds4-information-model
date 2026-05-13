@@ -1,8 +1,8 @@
 name: "[internal] Release Theme"
 description: "Release theme epic that describes a high-level task to be delivered in a release."
-labels: "i&t.skip,theme,Epic,B17"
+labels: "i&t.skip,theme,Epic,needs:triage"
 type: "Theme"
-projects: "NASA-PDS/6,NASA-PDS/22"
+projects: "NASA-PDS/6"
 
 body:
   - type: dropdown

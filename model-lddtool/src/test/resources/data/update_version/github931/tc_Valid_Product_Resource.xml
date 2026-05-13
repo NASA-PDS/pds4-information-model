@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1Q00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Resource xmlns="http://pds.nasa.gov/pds4/pds/v1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1Q00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:resources:resources:opus</logical_identifier>
+        <version_id>3.0</version_id>
+        <title>OPUS3</title>
+        <information_model_version>1.26.0.0</information_model_version>
+        <product_class>Product_Resource</product_class>
+    </Identification_Area>
+    <Archive_Resource>
+        <name>PDS OPUS</name>
+        <version_id>3.0 </version_id>
+        <url>http://pds-rings.seti.org/search/</url>
+        <release_date>2026</release_date>
+        <resource_type>Service</resource_type>
+        <resource_type>Software and Tools</resource_type>
+        <resource_subtype>Search Tool</resource_subtype>
+        <resource_subtype>Visualization Tool</resource_subtype>
+        <resource_subtype>Web Application</resource_subtype>
+        <interface_type>GUI Interface</interface_type>
+        <description>Outer Planets Unified Search (OPUS) is a web-based search and visualization tool that enables users to query, browse, and download planetary science data from multiple missions and instruments, particularly those associated with the outer planets. OPUS provides interactive filtering, metadata exploration, and preview capabilities for data archived in the Planetary Data System.</description>
+    </Archive_Resource>
+    <Reference_List>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:node:rings</lid_reference>
+            <reference_type>service_to_node</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:planet.jupiter</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:planet.saturn</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:planet.uranus</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:planet.neptune</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:ring.saturn</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:ring.jupiter</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:ring.uranus</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:target:ring.neptune</lid_reference>
+            <reference_type>service_to_target</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:investigation:mission.cassini-huygens</lid_reference>
+            <reference_type>service_to_investigation</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:investigation:mission.voyager_1</lid_reference>
+            <reference_type>service_to_investigation</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:investigation:mission.voyager_2</lid_reference>
+            <reference_type>service_to_investigation</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:investigation:mission.galileo</lid_reference>
+            <reference_type>service_to_investigation</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:investigation:mission.new_horizons</lid_reference>
+            <reference_type>service_to_investigation</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:co_iss</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:co_vims</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:co_uvis</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:co_rss</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:vg1_iss</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:vg2_iss</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:go_ssi</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:nh_lorri</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:instrument:nh_mvic</lid_reference>
+            <reference_type>service_to_instrument</reference_type>
+        </Internal_Reference>        
+    </Reference_List>
+</Product_Resource>

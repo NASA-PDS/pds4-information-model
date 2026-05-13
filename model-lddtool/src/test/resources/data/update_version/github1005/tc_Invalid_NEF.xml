@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1Q00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Native xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:pds="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1Q00.xsd">
+  
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>NEF Test Cases</title>
+    <information_model_version>1.26.0.0</information_model_version>
+    <product_class>Product_Native</product_class>
+  </Identification_Area>
+  <Context_Area>
+    <Mission_Area>
+    </Mission_Area>
+    <Discipline_Area>
+    </Discipline_Area>
+  </Context_Area>
+  <Reference_List>
+  <Internal_Reference>
+    <lidvid_reference>urn:nasa:pds:xxx:yyy:zzz::1.0</lidvid_reference>
+    <reference_type>native_to_archival</reference_type>
+  </Internal_Reference>
+  </Reference_List>
+  <File_Area_Native>
+    <File>
+      <file_name>ESP_043896_2055_RED.tif</file_name>
+      <local_identifier>DATA_FILE</local_identifier>
+      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
+      <file_size unit="byte">1184018549</file_size>
+    </File>
+    
+    <!--  ================================================================= -->
+    <!--  BEGIN: Test for existing standard value                           -->
+    <!--  CCB-80                                                            -->
+    <!--                                                                    -->
+    <!--  Invalid Test                                                      -->
+    <!--                                                                    -->
+    <!--  ================================================================= -->
+    
+    
+    <Encoded_Native>
+      <offset unit="byte">100</offset>
+      <encoding_standard_id>Nikon Electronic Format</encoding_standard_id>
+    </Encoded_Native>
+  </File_Area_Native>
+</Product_Native>
