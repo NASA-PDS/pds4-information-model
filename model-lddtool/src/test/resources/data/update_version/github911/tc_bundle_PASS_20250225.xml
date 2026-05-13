@@ -27,8 +27,8 @@ for the MPO-MAG dual magnetometer onboard the Mercury Planetary Orbiter of the B
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
                     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</funding_acknowledgement_text>
                 <Funder_Identifier>
-                    <funding_identifier>Identifier</funding_identifier>
-                    <funding_identifier_type>Other</funding_identifier_type>
+                    <funder_identifier>Identifier</funder_identifier>
+                    <funder_identifier_type>Other</funder_identifier_type>
                     <comment>Comment</comment>
                 </Funder_Identifier>
             </Funding_Acknowledgement>

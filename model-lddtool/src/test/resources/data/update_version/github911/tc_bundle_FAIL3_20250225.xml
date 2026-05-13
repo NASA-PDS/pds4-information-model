@@ -15,7 +15,7 @@
             <publication_year>2020</publication_year>
             <description>The BepiColombo MPO MAG bundle</description>
             <Funding_Acknowledgement>
-                <!-- omitted funding_identifier attribute -->
+                <!-- omitted funder_identifier attribute -->
                 <funding_source>Funding Source</funding_source>
                 <funding_program_name>Program Name</funding_program_name>
                 <funding_year>2026</funding_year>
@@ -23,7 +23,7 @@
                 <funding_award_title>Award Title</funding_award_title>
                 <funding_acknowledgement_text>Lorem ipsum dolor sit amet</funding_acknowledgement_text>
                 <Funder_Identifier>
-                    <funding_identifier_type>Other</funding_identifier_type>
+                    <funder_identifier_type>Other</funder_identifier_type>
                     <comment>Comment</comment>
                 </Funder_Identifier>  
             </Funding_Acknowledgement>
