@@ -4,6 +4,11 @@
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.0...«unknown»)
 
+**Improvements:**
+
+- \[namespace-registry\] add new namespace BOPPS [\#1040](https://github.com/NASA-PDS/pds4-information-model/issues/1040)
+- \[namespace-registry\] add new namespace AV [\#1038](https://github.com/NASA-PDS/pds4-information-model/issues/1038)
+
 **Other closed issues:**
 
 - Complete second draft of `ops` LDD [\#1027](https://github.com/NASA-PDS/pds4-information-model/issues/1027)
