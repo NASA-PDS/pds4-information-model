@@ -1,21 +1,8 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-05-13)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-05-14)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.0...«unknown»)
-
-**Improvements:**
-
-- \[namespace-registry\] add new namespace BOPPS [\#1040](https://github.com/NASA-PDS/pds4-information-model/issues/1040)
-- \[namespace-registry\] add new namespace AV [\#1038](https://github.com/NASA-PDS/pds4-information-model/issues/1038)
-
-**Other closed issues:**
-
-- Complete second draft of `ops` LDD [\#1027](https://github.com/NASA-PDS/pds4-information-model/issues/1027)
-
-## [v16.1.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.1.0) (2026-04-23)
-
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...v16.1.0)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...«unknown»)
 
 **Requirements:**
 
@@ -33,6 +20,8 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace BOPPS [\#1040](https://github.com/NASA-PDS/pds4-information-model/issues/1040)
+- \[namespace-registry\] add new namespace AV [\#1038](https://github.com/NASA-PDS/pds4-information-model/issues/1038)
 - \[namespace-registry\] add new namespace apex [\#1025](https://github.com/NASA-PDS/pds4-information-model/issues/1025)
 - \[namespace-registry\] add new namespace cots\_camera [\#998](https://github.com/NASA-PDS/pds4-information-model/issues/998)
 - \[namespace-registry\] add new namespace "asl" [\#995](https://github.com/NASA-PDS/pds4-information-model/issues/995)
@@ -43,6 +32,7 @@
 
 **Defects:**
 
+- Radar namespace is not present in namespace registry [\#1042](https://github.com/NASA-PDS/pds4-information-model/issues/1042) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Regression tests for \#837 and \#894 have inaccurate expected error counts [\#1012](https://github.com/NASA-PDS/pds4-information-model/issues/1012) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - The `contributor_type` `DataCurator` has a typo / misdefined [\#982](https://github.com/NASA-PDS/pds4-information-model/issues/982) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 
@@ -52,6 +42,7 @@
 - B13.1 PDS4 Information Model [\#989](https://github.com/NASA-PDS/pds4-information-model/issues/989)
 - Stage the PDS4 Information Model Version 1.26.0.0 \(1.Q.0.0\) for Update [\#988](https://github.com/NASA-PDS/pds4-information-model/issues/988)
 - Release PDS4 Information Model V 1.25.0.0 \(1P00\) for Build 16.0 [\#963](https://github.com/NASA-PDS/pds4-information-model/issues/963)
+- Complete second draft of `ops` LDD [\#1027](https://github.com/NASA-PDS/pds4-information-model/issues/1027)
 
 ## [v16.0.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.0.0) (2025-11-04)
 
