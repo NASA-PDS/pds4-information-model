@@ -12878,6 +12878,36 @@
   (submitter [Submitter_PDS])
   (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Update_Entry.pds.full_name])
   (versionIdentifier "1.26"))
+([DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of DataElement
+  (administrationRecord [DD_1.26.0.0])
+  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier")
+  (expressedBy 
+    [DEC_TBD_classConcept])
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representing 
+    [NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier])
+  (isDeprecated "false")
+  (isNillable "false")
+  (steward [TBD_steward])
+  (submitter [Submitter_PDS])
+  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier])
+  (versionIdentifier "1.26"))
+([DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of DataElement
+  (administrationRecord [DD_1.26.0.0])
+  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type")
+  (expressedBy 
+    [DEC_TBD_classConcept])
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representing 
+    [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (isDeprecated "false")
+  (isNillable "false")
+  (steward [TBD_steward])
+  (submitter [Submitter_PDS])
+  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (versionIdentifier "1.26"))
 ([DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text] of DataElement
   (administrationRecord [DD_1.26.0.0])
   (dataIdentifier "DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text")
@@ -12922,36 +12952,6 @@
   (steward [TBD_steward])
   (submitter [Submitter_PDS])
   (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award_title])
-  (versionIdentifier "1.26"))
-([DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of DataElement
-  (administrationRecord [DD_1.26.0.0])
-  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier")
-  (expressedBy 
-    [DEC_TBD_classConcept])
-  (registeredBy [RA_0001_NASA_PDS_1])
-  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
-  (representing 
-    [NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier])
-  (isDeprecated "false")
-  (isNillable "false")
-  (steward [TBD_steward])
-  (submitter [Submitter_PDS])
-  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier])
-  (versionIdentifier "1.26"))
-([DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of DataElement
-  (administrationRecord [DD_1.26.0.0])
-  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type")
-  (expressedBy 
-    [DEC_TBD_classConcept])
-  (registeredBy [RA_0001_NASA_PDS_1])
-  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
-  (representing 
-    [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (isDeprecated "false")
-  (isNillable "false")
-  (steward [TBD_steward])
-  (submitter [Submitter_PDS])
-  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
   (versionIdentifier "1.26"))
 ([DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_program_name] of DataElement
   (administrationRecord [DD_1.26.0.0])
@@ -37786,6 +37786,135 @@
   (unitOfMeasure [TBD_unit_of_measure_type])
   (defaultUnitId "TBD_default_unit_id")
   (versionIdentifier "1.26"))
+([NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of NonEnumeratedValueDomain
+  (administrationRecord [DD_1.26.0.0])
+  (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier")
+  (datatype [ASCII_Short_String_Collapsed])
+  (maximumCharacterQuantity "TBD_maximum_characters")
+  (minimumCharacterQuantity "TBD_minimum_characters")
+  (maximumValue "TBD_maximum_value")
+  (minimumValue "TBD_minimum_value")
+  (pattern "TBD_pattern")
+  (valueDomainFormat "TBD_format")
+  (registeredBy RA_0001_NASA_PDS_1)
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representedBy [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier])
+  (representedBy2 [CD_Short_String])
+  (steward [Steward_PDS])
+  (submitter [Submitter_PDS])
+  (unitOfMeasure [TBD_unit_of_measure_type])
+  (defaultUnitId "TBD_default_unit_id")
+  (versionIdentifier "1.26"))
+([EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of EnumeratedValueDomain
+  (administrationRecord [DD_1.26.0.0])
+  (containedIn1 
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.344225372]
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2196294]
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2256997]
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.75467739]
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.76517104]
+    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.78163344])
+  (dataIdentifier "EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type")
+  (datatype [ASCII_Short_String_Collapsed])
+  (maximumCharacterQuantity "TBD_maximum_characters")
+  (minimumCharacterQuantity "TBD_minimum_characters")
+  (maximumValue "TBD_maximum_value")
+  (minimumValue "TBD_minimum_value")
+  (pattern "TBD_pattern")
+  (valueDomainFormat "TBD_format")
+  (registeredBy RA_0001_NASA_PDS_1)
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representedBy [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (representedBy2 [CD_Short_String])
+  (steward [Steward_PDS])
+  (submitter [Submitter_PDS])
+  (unitOfMeasure [TBD_unit_of_measure_type])
+  (defaultUnitId "TBD_default_unit_id")
+  (versionIdentifier "1.26"))
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.344225372] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.344225372])
+  (value "Crossref funder ID"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.344225372] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier is a Crossref funder ID, listed in the Open Funder Registry."))
+ 
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2196294] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2196294])
+  (value "GRID"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2196294] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier is from the Global Research Identifier Database %28GRID%29."))
+ 
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2256997] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2256997])
+  (value "ISNI"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.2256997] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier is an International Standard Name Identifier %28ISNI%29."))
+ 
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.75467739] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.75467739])
+  (value "ORCID"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.75467739] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier is an Open Researcher and Contributor ID %28ORCID%29."))
+ 
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.76517104] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.76517104])
+  (value "Other"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.76517104] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier_type does not match one of the enumerated values for this attribute."))
+ 
+([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.78163344] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.78163344])
+  (value "RORID"))
+ 
+([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type.78163344] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (endDate "2019-12-31")
+  (description "The funder_identifier is a Research Organization Registry ID %28RORID%29."))
+ 
 ([NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.26.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text")
@@ -37843,135 +37972,6 @@
   (unitOfMeasure [TBD_unit_of_measure_type])
   (defaultUnitId "TBD_default_unit_id")
   (versionIdentifier "1.26"))
-([NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of NonEnumeratedValueDomain
-  (administrationRecord [DD_1.26.0.0])
-  (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier")
-  (datatype [ASCII_Short_String_Collapsed])
-  (maximumCharacterQuantity "TBD_maximum_characters")
-  (minimumCharacterQuantity "TBD_minimum_characters")
-  (maximumValue "TBD_maximum_value")
-  (minimumValue "TBD_minimum_value")
-  (pattern "TBD_pattern")
-  (valueDomainFormat "TBD_format")
-  (registeredBy RA_0001_NASA_PDS_1)
-  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
-  (representedBy [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier])
-  (representedBy2 [CD_Short_String])
-  (steward [Steward_PDS])
-  (submitter [Submitter_PDS])
-  (unitOfMeasure [TBD_unit_of_measure_type])
-  (defaultUnitId "TBD_default_unit_id")
-  (versionIdentifier "1.26"))
-([EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of EnumeratedValueDomain
-  (administrationRecord [DD_1.26.0.0])
-  (containedIn1 
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.344225372]
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2196294]
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2256997]
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.75467739]
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.76517104]
-    [pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.78163344])
-  (dataIdentifier "EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type")
-  (datatype [ASCII_Short_String_Collapsed])
-  (maximumCharacterQuantity "TBD_maximum_characters")
-  (minimumCharacterQuantity "TBD_minimum_characters")
-  (maximumValue "TBD_maximum_value")
-  (minimumValue "TBD_minimum_value")
-  (pattern "TBD_pattern")
-  (valueDomainFormat "TBD_format")
-  (registeredBy RA_0001_NASA_PDS_1)
-  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
-  (representedBy [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (representedBy2 [CD_Short_String])
-  (steward [Steward_PDS])
-  (submitter [Submitter_PDS])
-  (unitOfMeasure [TBD_unit_of_measure_type])
-  (defaultUnitId "TBD_default_unit_id")
-  (versionIdentifier "1.26"))
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.344225372] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.344225372])
-  (value "Crossref funder ID"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.344225372] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier is a Crossref funder ID, listed in the Open Funder Registry."))
- 
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2196294] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2196294])
-  (value "GRID"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2196294] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier is from the Global Research Identifier Database %28GRID%29."))
- 
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2256997] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2256997])
-  (value "ISNI"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.2256997] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier is an International Standard Name Identifier %28ISNI%29."))
- 
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.75467739] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.75467739])
-  (value "ORCID"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.75467739] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier is an Open Researcher and Contributor ID %28ORCID%29."))
- 
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.76517104] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.76517104])
-  (value "Other"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.76517104] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier_type does not match one of the enumerated values for this attribute."))
- 
-([pv.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.78163344] of PermissibleValue
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (isDeprecated "false")
-  (usedIn [vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.78163344])
-  (value "RORID"))
- 
-([vm.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type.78163344] of ValueMeaning
-  (beginDate "2009-06-09")
-  (containing1 [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (endDate "2019-12-31")
-  (description "The funder_identifier is a Research Organization Registry ID %28RORID%29."))
- 
 ([NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_program_name] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.26.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_program_name")
@@ -75679,16 +75679,16 @@
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1030")
   (versionIdentifier "1.26"))
-([PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of Property
+([PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of Property
   (administrationRecord [DD_1.26.0.0])
-  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier")
+  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier")
   (registeredBy [RA_0001_NASA_PDS_1])
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1010")
   (versionIdentifier "1.26"))
-([PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of Property
+([PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of Property
   (administrationRecord [DD_1.26.0.0])
-  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type")
+  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type")
   (registeredBy [RA_0001_NASA_PDS_1])
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1020")
@@ -81896,8 +81896,8 @@
     [NEVD.0001_NASA_PDS_1.pds.File.pds.file_name]
     [NEVD.0001_NASA_PDS_1.pds.File.pds.local_identifier]
     [NEVD.0001_NASA_PDS_1.pds.File.pds.md5_checksum]
-    [NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier]
-    [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type]
+    [NEVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier]
+    [EVD.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type]
     [NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award]
     [NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_program_name]
     [NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_source]
@@ -84063,8 +84063,8 @@
     [DE.0001_NASA_PDS_1.pds.File.pds.file_URL]
     [DE.0001_NASA_PDS_1.pds.File.pds.local_identifier]
     [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.comment]
-    [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier]
-    [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type]
+    [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier]
+    [DE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type]
     [DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text]
     [DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award]
     [DE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award_title]
@@ -90413,27 +90413,27 @@
 ([DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.comment] of Designation
   (designationName "comment")
   (isPreferred "TRUE"))
-([TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of TerminologicalEntry
+([TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of TerminologicalEntry
   (administeredItemContext [NASA_PDS])
-  (definition [DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier])
-  (designation [DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier])
+  (definition [DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier])
+  (designation [DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier])
   (sectionLanguage [LI_English]))
-([DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of Definition
+([DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of Definition
   (definitionText "The funder_identifier attribute provides a unique alphanumeric identifier associated with an organization or individual that has provided funding.")
   (isPreferred "TRUE"))
-([DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier] of Designation
-  (designationName "funding_identifier")
+([DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier] of Designation
+  (designationName "funder_identifier")
   (isPreferred "TRUE"))
-([TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of TerminologicalEntry
+([TE.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of TerminologicalEntry
   (administeredItemContext [NASA_PDS])
-  (definition [DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
-  (designation [DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type])
+  (definition [DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
+  (designation [DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type])
   (sectionLanguage [LI_English]))
-([DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of Definition
+([DEF.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of Definition
   (definitionText "The funder_identifier_type attribute provides an externally maintained identifier that reliably, unambiguously, and permanently connects the funder’s name with its citable research, publications, grants, and other information.")
   (isPreferred "TRUE"))
-([DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funding_identifier_type] of Designation
-  (designationName "funding_identifier_type")
+([DES.0001_NASA_PDS_1.pds.Funder_Identifier.pds.funder_identifier_type] of Designation
+  (designationName "funder_identifier_type")
   (isPreferred "TRUE"))
 ([TE.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_acknowledgement_text] of TerminologicalEntry
   (administeredItemContext [NASA_PDS])

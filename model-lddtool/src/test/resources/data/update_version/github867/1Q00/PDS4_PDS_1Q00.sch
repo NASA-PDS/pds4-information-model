@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Fri Apr 03 14:46:49 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.26.0.0 - Wed May 13 12:19:27 MDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.26.0.0 - System Build 16.1	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -953,10 +953,10 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
-    <sch:rule context="pds:Funder_Identifier/pds:funding_identifier_type">
+    <sch:rule context="pds:Funder_Identifier/pds:funder_identifier_type">
       <sch:assert test=". = ('Crossref funder ID', 'GRID', 'ISNI', 'ORCID', 'Other', 'RORID')">
-        <title>pds:Funder_Identifier/pds:funding_identifier_type/pds:funding_identifier_type</title>
-        The attribute pds:Funder_Identifier/pds:funding_identifier_type must be equal to one of the following values 'Crossref funder ID', 'GRID', 'ISNI', 'ORCID', 'Other', 'RORID'.</sch:assert>
+        <title>pds:Funder_Identifier/pds:funder_identifier_type/pds:funder_identifier_type</title>
+        The attribute pds:Funder_Identifier/pds:funder_identifier_type must be equal to one of the following values 'Crossref funder ID', 'GRID', 'ISNI', 'ORCID', 'Other', 'RORID'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
