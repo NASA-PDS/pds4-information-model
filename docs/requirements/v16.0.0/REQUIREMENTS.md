@@ -336,3 +336,27 @@ This requirement is not impacted by the current version
 
 
 This requirement is not impacted by the current version
+## [documentation] CCB-68: Update ASCII_File_Name and ASCII_Directory_Path_Name [documentation] ([#1032](https://github.com/NASA-PDS/pds4-information-model/issues/1032)) 
+
+
+This requirement is not impacted by the current version
+## [documentation] CCB-58: New Product_Native values for MSL/Mastcam ([#1033](https://github.com/NASA-PDS/pds4-information-model/issues/1033)) 
+
+
+This requirement is not impacted by the current version
+## [documentation] CCB-79 : Add enumerated value day**-1 to Units_of_Rates ([#1034](https://github.com/NASA-PDS/pds4-information-model/issues/1034)) 
+
+
+This requirement is not impacted by the current version
+## [documentation] CCB-80: Support NEF as a Native format for Artemis ([#1035](https://github.com/NASA-PDS/pds4-information-model/issues/1035)) 
+
+
+This requirement is not impacted by the current version
+## As an LDD designer, I want an app that converts a UML like template to an Ingest_LDD file. ([#1036](https://github.com/NASA-PDS/pds4-information-model/issues/1036)) 
+
+
+This requirement is not impacted by the current version
+## CCB-63: International characters / Unicode support for names ([#1037](https://github.com/NASA-PDS/pds4-information-model/issues/1037)) 
+
+
+This requirement is not impacted by the current version
