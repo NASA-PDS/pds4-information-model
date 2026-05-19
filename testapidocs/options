@@ -17,10 +17,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'PDS4 Information Model 16.1.2 Test API'
+'PDS4 Information Model 16.1.3 Test API'
 -link
 '../apidocs'
 -use
 -version
 -windowtitle
-'PDS4 Information Model 16.1.2 Test API'
+'PDS4 Information Model 16.1.3 Test API'
