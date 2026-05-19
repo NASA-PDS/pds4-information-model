@@ -98,8 +98,12 @@ jobs:
             -
                 name: 🚀 Upload Core LDD to Release
                 run: |
-                    # Get the release tag from the current ref
-                    RELEASE_TAG=${GITHUB_REF#refs/tags/}
+                    # Get the release tag from the current ref (e.g., release/16.1.2)
+                    TRIGGER_TAG=${GITHUB_REF#refs/tags/}
+                    
+                    # Convert 'release/X.Y.Z' to 'vX.Y.Z' to match what Roundup creates
+                    RELEASE_TAG="v${TRIGGER_TAG#release/}"
+          
                     ZIP_FILE=$(ls PDS4_PDS_*.zip)
 
                     echo "Uploading $ZIP_FILE to release $RELEASE_TAG"
