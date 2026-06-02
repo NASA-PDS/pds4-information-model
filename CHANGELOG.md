@@ -1,8 +1,23 @@
 # Changelog
 
-## [release/16.1.3](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.1.3) (2026-05-19)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-06-02)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...release/16.1.3)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
+
+**Requirements:**
+
+- \[documentation\] CCB-80: Support NEF as a Native format for Artemis [\#1035](https://github.com/NASA-PDS/pds4-information-model/issues/1035)
+- \[documentation\] CCB-79 : Add enumerated value day\*\*-1 to Units\_of\_Rates [\#1034](https://github.com/NASA-PDS/pds4-information-model/issues/1034)
+- \[documentation\] CCB-58: New Product\_Native values for MSL/Mastcam [\#1033](https://github.com/NASA-PDS/pds4-information-model/issues/1033)
+- \[documentation\] CCB-68: Update ASCII\_File\_Name and ASCII\_Directory\_Path\_Name \[documentation\] [\#1032](https://github.com/NASA-PDS/pds4-information-model/issues/1032)
+
+**Defects:**
+
+- lddtool generates confusing error message for Local\_Internal\_Reference [\#1049](https://github.com/NASA-PDS/pds4-information-model/issues/1049) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
+
+## [v16.1.3](https://github.com/NASA-PDS/pds4-information-model/tree/v16.1.3) (2026-05-19)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.0.0...v16.1.3)
 
 **Requirements:**
 
