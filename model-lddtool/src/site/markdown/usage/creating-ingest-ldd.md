@@ -470,6 +470,20 @@ Define custom validation constraints beyond basic structure:
 - Cross-element validation
 - Conditional requirements
 
+**When you see a "Missing DD_Rule Assert" error:**
+
+If `lddtool` reports that a `DD_Rule` Assert is missing for
+`pds:Local_Internal_Reference` or `pds:Internal_Reference`, add a `DD_Rule`
+whose `rule_context` targets the class path shown in the message:
+
+- `<namespace>:<Class>/pds:Local_Internal_Reference` and constrain
+  `pds:local_reference_type`
+- `<namespace>:<Class>/pds:Internal_Reference` and constrain
+  `pds:reference_type`
+
+This ensures each internal-reference context has at least one rule that limits
+allowed reference type values.
+
 ### Choice Lists
 
 Allow users to choose between different elements:

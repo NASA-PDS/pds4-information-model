@@ -2049,9 +2049,13 @@ public class LDDDOMParser extends Object {
         }
       }
       if (!foundReferenceTypeDef) {
+        String lReferenceType = "pds:reference_type";
+        if (lRuleReferenceType.isLocal) {
+          lReferenceType = "pds:local_reference_type";
+        }
         Utility.registerMessage("2>error Class: "
-            + " - At least one value for pds:local_reference_type or pds:reference_type must be defined for "
-            + lRuleXPath + ".");
+            + " - Missing DD_Rule Assert for " + lRuleXPath + ". Define a DD_Rule with rule_context '"
+            + lRuleXPath + "' and an Assert that constrains " + lReferenceType + ".");
       }
     }
     return;
