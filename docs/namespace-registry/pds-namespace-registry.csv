@@ -1,5 +1,6 @@
 ﻿Last Update,6/3/2026,,,,,
-Namespace Id,Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date
+Namespace Id,Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date
+
 Common,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,4/3/2012
 International,,,,,,
@@ -107,7 +108,6 @@ bc_mmo_mgf,BepiColombo MGF,Namespace for the BepiColombo MGF schema.,Mission,Shi
 bc_mmo_mppe,BepiColombo MPPE,Namespace for the BepiColombo MPPE schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,4/14/2025
 bc_mmo_mdm,BepiColombo MDM,Namespace for the BepiColombo MDM schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,4/14/2025
 bc_mmo_spm,BepiColombo SPM,Namespace for the BepiColombo SPM schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,4/14/2025
-chan1,Chandrayaan-1,Chandrayaan-1 mission dictionary,Mission,Susan Slavney,slavney at wunder.wustl.edu,10/7/2020
 ,,,,, ,11/19/2019
 em16,ExoMars16,Namespace for the ExoMars16 schema.,Mission,ExoMars16 Science Operations Centre,tlim at sciops.esa.int,11/19/2019
 em16_tgo_acs,ExoMars16,Namespace for the ExoMars16 ACS Instrument schema.,Mission,ExoMars16 Science Operations Centre,dcoia at sciops.esa.int,11/19/2019
