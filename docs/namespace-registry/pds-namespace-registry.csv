@@ -57,7 +57,7 @@ galileo,Galileo,"The Galileo Mission Dictionary (galileo) contains classes, attr
 hisaki,Hisaki (SPRINT-A),Namespace for the Hisaki dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
 hst,Hubble Space Telescope,Namespace for the Hubble Space Telescope Mission Dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-26
 hyb2,Hayabusa 2,This is the Hayabusa2 Mission Specific Data Dictionary.,Mission,Yukio Yamamoto,yamamoto.yukio at jaxa.jp,2020-12-28
-iras,Infrared Astronomical Satellite,Namespace for the Infrared Astronomical Satellite.,Mission,Kristina Lopez,klope at psi.edi,2022-06-23
+iras,Infrared Astronomical Satellite,Namespace for the Infrared Astronomical Satellite.,Mission,Kristina Lopez,klope at psi.edu,2022-06-23
 kplo,Korea Pathfinder Lunar Orbiter,Namespace for the Korea Pathfinder Lunar Orbiter(KPLO).,Mission,Eunhyeuk Kim ,eunhyeuk at kari.re.kr,2021-08-18
 insight,Insight,Namespace for the Insight dictionary.,Mission,Jennifer Ward,jgward at wustl.edu,2015-04-25
 ladee,LADEE,Namespace for the Atmospheres Node's LADEE dictionary.,Mission,Lyle Huber,lhuber at nmsu.edu,2014-07-17
