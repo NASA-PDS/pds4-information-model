@@ -7,8 +7,8 @@ This script reads pds-namespace-registry.csv and creates:
 - pds-namespace-registry.pdf
 
 Requirements:
-    Python 3.13+
-    pip install openpyxl reportlab
+    Python 3.9+
+    pip install --quiet 'openpyxl~=3.1.5' 'reportlab~=4.5.1'
 """
 
 from __future__ import annotations
@@ -21,13 +21,12 @@ from pathlib import Path
 # Third-party imports
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from openpyxl.utils import get_column_letter
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, PageBreak
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.enums import TA_LEFT
 
 
@@ -48,8 +47,8 @@ def create_xlsx(csv_rows: list[list[str]], output_path: Path) -> None:
     ws.title = "Sheet1"
 
     # Define styles
-    # Header row style (rows 1 and 2) - dark gray background, bold, white text
-    header_font = Font(name='Calibri', size=12, bold=True, color="000000")
+    # Header row style (rows 1 and 2) - gray background, bold
+    header_font = Font(name='Calibri', size=12, bold=True)
     header_fill = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
     header_alignment = Alignment(vertical='top', wrap_text=True)
 
@@ -70,9 +69,6 @@ def create_xlsx(csv_rows: list[list[str]], output_path: Path) -> None:
         bottom=Side(style='thin', color='000000')
     )
 
-    # Track which rows are section headers
-    section_header_rows = []
-
     # Write data
     for row_idx, csv_row in enumerate(csv_rows, start=1):
         # Ensure we have exactly 7 columns
@@ -80,10 +76,7 @@ def create_xlsx(csv_rows: list[list[str]], output_path: Path) -> None:
             csv_row.append('')
 
         # Check if this row is a section header
-        is_section_header = False
-        if csv_row and csv_row[0].strip() in ['Common', 'International', 'Discipline', 'Mission', 'Held For Future Use']:
-            is_section_header = True
-            section_header_rows.append(row_idx)
+        is_section_header = bool(csv_row) and csv_row[0].strip() in ['Common', 'International', 'Discipline', 'Mission', 'Held For Future Use']
 
         for col_idx, value in enumerate(csv_row[:7], start=1):
             cell = ws.cell(row=row_idx, column=col_idx)
@@ -240,8 +233,8 @@ def create_pdf(csv_rows: list[list[str]], output_path: Path) -> None:
 def main() -> int:
     """Main function to generate both XLSX and PDF files."""
     # Check Python version
-    if sys.version_info < (3, 8):
-        print("Error: Python 3.8 or higher is required")
+    if sys.version_info < (3, 9):
+        print("Error: Python 3.9 or higher is required")
         print(f"Current version: {sys.version}")
         return 1
 
