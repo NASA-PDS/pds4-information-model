@@ -1,0 +1,60 @@
+name: Generate PDS Namespace Registry PDF and XLSX Files
+
+# Trigger when pds-namespace-registry.csv is changed on main branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/namespace-registry/pds-namespace-registry.csv'
+  workflow_dispatch:  # Allow manual trigger from Actions tab
+
+jobs:
+  generate-files:
+    runs-on: ubuntu-latest
+
+    # Grant write permissions to push changes back
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch at least the immediate parents for PR context
+          fetch-depth: 2
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet 'openpyxl~=3.1.5' 'reportlab~=4.5.1'
+
+      - name: Run generation script
+        run: |
+          python scripts/generate-namespace-registry-files.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain docs/namespace-registry/)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push generated files
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/namespace-registry/pds-namespace-registry.xlsx docs/namespace-registry/pds-namespace-registry.pdf
+          git commit -m "Auto-generate namespace registry files from CSV [skip ci]"
+          git push
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: namespace-registry-files
+          path: |
+            docs/namespace-registry/pds-namespace-registry.xlsx
+            docs/namespace-registry/pds-namespace-registry.pdf
+          retention-days: 90
