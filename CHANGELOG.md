@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-06-15)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-06-30)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -19,6 +19,8 @@
 **Other closed issues:**
 
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
+- Scrub namespace registry config vs. csv to ensure it is an exact one-to-one mapping [\#1043](https://github.com/NASA-PDS/pds4-information-model/issues/1043)
+- CCB-212: Add Modification\_History to Ingest\_LDD [\#115](https://github.com/NASA-PDS/pds4-information-model/issues/115)
 
 ## [v16.1.3](https://github.com/NASA-PDS/pds4-information-model/tree/v16.1.3) (2026-05-19)
 
