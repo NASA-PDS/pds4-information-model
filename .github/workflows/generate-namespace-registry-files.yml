@@ -18,10 +18,21 @@ jobs:
       contents: write
 
     steps:
+      - name: Check for admin token
+        run: |
+          if [ -z "${{ secrets.ADMIN_GITHUB_TOKEN }}" ]; then
+            echo "::error::ADMIN_GITHUB_TOKEN secret is not set. This token is required to bypass branch protection rules."
+            echo "::error::Please add the ADMIN_GITHUB_TOKEN secret to the repository settings."
+            echo "::error::See .github/workflows/README_ADMIN_TOKEN_SETUP.md for setup instructions."
+            exit 1
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Fetch at least the immediate parents for PR context
+          # Use admin token to bypass branch protection rules
+          token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          # Fetch at least the immediate parents for context
           fetch-depth: 2
 
       - name: Install dependencies
@@ -44,11 +55,11 @@ jobs:
       - name: Commit and push generated files
         if: steps.changes.outputs.has_changes == 'true'
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "pdsen-ci@jpl.nasa.gov"
+          git config --local user.name "PDSEN CI Bot"
           git add docs/namespace-registry/pds-namespace-registry.xlsx docs/namespace-registry/pds-namespace-registry.pdf
-          git commit -m "Auto-generate namespace registry files from CSV [skip ci]"
-          git push
+          git commit -m "Auto-generated namespace registry files from CSV by PDSEN CI Bot [skip ci]"
+          git push origin HEAD:${{github.ref_name}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
