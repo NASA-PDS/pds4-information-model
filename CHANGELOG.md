@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-06-30)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-07-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -13,6 +13,7 @@
 
 **Defects:**
 
+- Automated generation of PDS Namespace Registry files from CSV update fails [\#1056](https://github.com/NASA-PDS/pds4-information-model/issues/1056) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool generates confusing error message for Local\_Internal\_Reference [\#1049](https://github.com/NASA-PDS/pds4-information-model/issues/1049) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - ldd-prov test cases are failing [\#1047](https://github.com/NASA-PDS/pds4-information-model/issues/1047) [[s.high](https://github.com/NASA-PDS/pds4-information-model/labels/s.high)]
 
@@ -20,6 +21,7 @@
 
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
 - Scrub namespace registry config vs. csv to ensure it is an exact one-to-one mapping [\#1043](https://github.com/NASA-PDS/pds4-information-model/issues/1043)
+- Complete third draft of `ops` LDD v1.0 [\#1028](https://github.com/NASA-PDS/pds4-information-model/issues/1028)
 - CCB-212: Add Modification\_History to Ingest\_LDD [\#115](https://github.com/NASA-PDS/pds4-information-model/issues/115)
 
 ## [v16.1.3](https://github.com/NASA-PDS/pds4-information-model/tree/v16.1.3) (2026-05-19)
