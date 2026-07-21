@@ -10,7 +10,7 @@
     <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
     <version_id>1.0</version_id>
     <title>MSSS Test Cases</title>
-    <information_model_version>1.26.0.0</information_model_version>
+    <information_model_version>1.27.0.0</information_model_version>
     <product_class>Product_Native</product_class>
   </Identification_Area>
   <Context_Area>
