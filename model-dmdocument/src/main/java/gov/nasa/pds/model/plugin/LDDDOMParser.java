@@ -2451,7 +2451,7 @@ public class LDDDOMParser extends Object {
         DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
       } else {
         Utility.registerMessage(
-            "2>warning Found duplicate attribute - lAttr.identifier:" + lRule.identifier);
+            "2>warning Found duplicate rule - lRule.identifier:" + lRule.identifier);
       }
     }
   }
