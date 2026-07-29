@@ -1375,68 +1375,66 @@ public class LDDDOMParser extends Object {
 	      }
 	      lLocalContextMap.put(lContext, lLocalIdentifier);
 
-        DOMRule lDOMRule = new DOMRule(lContext);
-        lDOMRule.setRDFIdentifier();
+	      DOMRule lDOMRule = new DOMRule(lContext);
+	      lDOMRule.setRDFIdentifier();
 
-        if (ruleMap.get(lDOMRule.rdfIdentifier) == null) {
-          ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
-          ruleArr.add(lDOMRule);
-          lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.attrTitle = "Rule";
-          lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.classSteward = lSchemaFileDefn.stewardId;
-          lDOMRule.xpath = lContext;
-
-          // get the let assign values
-          lValueArr = getXMLValueArr("rule_assign", el);
-          if (!(lValueArr == null || lValueArr.isEmpty())) {
-            lDOMRule.letAssignArr = lValueArr;
-          }
-
-          // get the rule statements
-          ArrayList<Element> lElementStmtArr = getElement("DD_Rule_Statement", el);
-          for (Iterator<Element> j = lElementStmtArr.iterator(); j.hasNext();) {
-            Element lElement = j.next();
-
-            DOMAssert lDOMAssertDefn = new DOMAssert("Rule");
-            lDOMRule.assertArr.add(lDOMAssertDefn);
-
-            String lValue3 = getTextValue(lElement, "rule_type");
-            if (!(lValue3 == null || (lValue3.indexOf("TBD") == 0))) {
-              if (lValue3.compareTo("Assert") == 0) {
-                lDOMAssertDefn.assertType = "RAW";
-              } else if (lValue3.compareTo("Assert Every") == 0) {
-                lDOMAssertDefn.assertType = "EVERY";
-              } else if (lValue3.compareTo("Assert If") == 0) {
-                lDOMAssertDefn.assertType = "IF";
-              } else if (lValue3.compareTo("Report") == 0) {
-                lDOMAssertDefn.assertType = "REPORT";
-              }
-            }
-
-            String lValue4 = getTextValue(lElement, "rule_test");
-            if (!(lValue4 == null || (lValue4.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.assertStmt = lValue4;
-            }
-
-            String lValue5 = getTextValue(lElement, "rule_message");
-            if (!(lValue5 == null || (lValue5.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.assertMsg = lValue5;
-            }
-
-            String lValue6 = getTextValue(lElement, "rule_description");
-            if (!(lValue6 == null || (lValue6.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.specMesg = lValue6;
-            }
-
-            // get the statement values
-            lValueArr = getXMLValueArr("rule_value", lElement);
-            if (!(lValueArr == null || lValueArr.isEmpty())) {
-              lDOMAssertDefn.testValArr = lValueArr;
-            }
-          }
-        }
+	      ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
+	      ruleArr.add(lDOMRule);
+	      lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.attrTitle = "Rule";
+	      lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.classSteward = lSchemaFileDefn.stewardId;
+	      lDOMRule.xpath = lContext;
+	
+	      // get the let assign values
+	      lValueArr = getXMLValueArr("rule_assign", el);
+	      if (!(lValueArr == null || lValueArr.isEmpty())) {
+	        lDOMRule.letAssignArr = lValueArr;
+	      }
+	
+	      // get the rule statements
+	      ArrayList<Element> lElementStmtArr = getElement("DD_Rule_Statement", el);
+	      for (Iterator<Element> j = lElementStmtArr.iterator(); j.hasNext();) {
+	        Element lElement = j.next();
+	
+	        DOMAssert lDOMAssertDefn = new DOMAssert("Rule");
+	        lDOMRule.assertArr.add(lDOMAssertDefn);
+	
+	        String lValue3 = getTextValue(lElement, "rule_type");
+	        if (!(lValue3 == null || (lValue3.indexOf("TBD") == 0))) {
+	          if (lValue3.compareTo("Assert") == 0) {
+	            lDOMAssertDefn.assertType = "RAW";
+	          } else if (lValue3.compareTo("Assert Every") == 0) {
+	            lDOMAssertDefn.assertType = "EVERY";
+	          } else if (lValue3.compareTo("Assert If") == 0) {
+	            lDOMAssertDefn.assertType = "IF";
+	          } else if (lValue3.compareTo("Report") == 0) {
+	            lDOMAssertDefn.assertType = "REPORT";
+	          }
+	        }
+	
+	        String lValue4 = getTextValue(lElement, "rule_test");
+	        if (!(lValue4 == null || (lValue4.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.assertStmt = lValue4;
+	        }
+	
+	        String lValue5 = getTextValue(lElement, "rule_message");
+	        if (!(lValue5 == null || (lValue5.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.assertMsg = lValue5;
+	        }
+	
+	        String lValue6 = getTextValue(lElement, "rule_description");
+	        if (!(lValue6 == null || (lValue6.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.specMesg = lValue6;
+	        }
+	
+	        // get the statement values
+	        lValueArr = getXMLValueArr("rule_value", lElement);
+	        if (!(lValueArr == null || lValueArr.isEmpty())) {
+	          lDOMAssertDefn.testValArr = lValueArr;
+	        }
+	      }
       }
     }
   }
