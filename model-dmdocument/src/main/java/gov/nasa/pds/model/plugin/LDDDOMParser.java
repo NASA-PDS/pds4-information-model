@@ -1347,25 +1347,33 @@ public class LDDDOMParser extends Object {
   }
 
   private void getRule(SchemaFileDefn lSchemaFileDefn, Element docEle) {
-    ArrayList<String> lValueArr = new ArrayList<>();
+	  ArrayList<String> lValueArr = new ArrayList<>();
+	  // rule_context values seen in THIS Ingest_LDD; first rule for a context wins
+	  TreeMap<String, String> lLocalContextMap = new TreeMap<>();
 
-    // get a nodelist of <DD_Class> elements
-    NodeList n2 = docEle.getElementsByTagName("DD_Rule");
-    if (n2 != null && n2.getLength() > 0) {
-      for (int i = 0; i < n2.getLength(); i++) {
-        // get the elements
-        Element el = (Element) n2.item(i);
-        String lLocalIdentifier = "TBD_lLocalIdentifier";
-        String lValue1 = getTextValue(el, "local_identifier");
-        if (!(lValue1 == null || (lValue1.indexOf("TBD") == 0))) {
-          lLocalIdentifier = lValue1;
-        }
+	  NodeList n2 = docEle.getElementsByTagName("DD_Rule");
+	  if (n2 != null && n2.getLength() > 0) {
+	    for (int i = 0; i < n2.getLength(); i++) {
+	      Element el = (Element) n2.item(i);
+	      String lLocalIdentifier = "TBD_lLocalIdentifier";
+	      String lValue1 = getTextValue(el, "local_identifier");
+	      if (!(lValue1 == null || (lValue1.indexOf("TBD") == 0))) { lLocalIdentifier = lValue1; }
 
-        String lContext = "TBD_lContext";
-        String lValue2 = getTextValue(el, "rule_context");
-        if (!(lValue2 == null || (lValue2.indexOf("TBD") == 0))) {
-          lContext = lValue2;
-        }
+	      String lContext = "TBD_lContext";
+	      String lValue2 = getTextValue(el, "rule_context");
+	      if (!(lValue2 == null || (lValue2.indexOf("TBD") == 0))) { lContext = lValue2; }
+	      
+	      // in a single Ingest_LDD, rules are not merged: keep the first, reject the rest
+	      String lFirstLocalIdentifier = lLocalContextMap.get(lContext);
+	      if (lFirstLocalIdentifier != null) {
+	        Utility.registerMessage("2>error Rule: <" + lLocalIdentifier
+	            + "> - The rule_context '" + lContext + "' is already used by rule <"
+	            + lFirstLocalIdentifier + "> in this local data dictionary."
+	            + " Rules are not merged; only the first rule is used."
+	            + " Combine the DD_Rule_Statements into a single DD_Rule.");
+	        continue;                          // discard the duplicate - first rule wins
+	      }
+	      lLocalContextMap.put(lContext, lLocalIdentifier);
 
         DOMRule lDOMRule = new DOMRule(lContext);
         lDOMRule.setRDFIdentifier();
