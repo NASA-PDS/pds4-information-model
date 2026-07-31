@@ -70,6 +70,7 @@ Feature: <testId>
     Examples:
       | testId                                  | testName                                                                            | inputDirectory                                      | outputDirectory                     | commandArgs                                                    | assertType    | output        | actualOutputFile     |
       | "NASA-PDS/pds4-information-model#1059a" | "NASA-PDS/pds4-information-model#1059a prov Ingest_LDD processes with warning"      | "src/test/resources/data/update_version/github1059" | "target/generated-files/github1059" | "-lp {inputDirectory}/PDS4_PROVRuleTest_IngestLDD_warning.xml" | "contain"     | ">>> WARNING" | "lddtool-output.txt" |
+      | "NASA-PDS/pds4-information-model#1059b" | "NASA-PDS/pds4-information-model#1059b prov Ingest_LDD processes with no warning"   | "src/test/resources/data/update_version/github1059" | "target/generated-files/github1059" | "-lp {inputDirectory}/PDS4_PROVRuleTest_IngestLDD_pass.xml"    | "not contain" | ">>> WARNING" | "lddtool-output.txt" |
       
       
           
