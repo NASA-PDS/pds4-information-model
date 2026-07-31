@@ -50,6 +50,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
@@ -166,11 +168,12 @@ public class LDDDOMParser extends Object {
   }
 
   public void getLocalDD() throws java.io.IOException {
-    // parse the xml file and get the dom object
-    parseXmlFile(gSchemaFileDefn);
+    if (!parseXmlFile(gSchemaFileDefn)) {
+      throw new IOException(
+          "Could not parse Ingest_LDD file: " + gSchemaFileDefn.LDDToolInputFileName);
+    }
     Utility.registerMessage("0>info getLocalDD.parseXmlFile() Done");
 
-    // process the dom document for classes, attributes, etc
     parseDocument(gSchemaFileDefn);
     Utility.registerMessage("0>info getLocalDD.parseDocument() Done");
   }
@@ -196,21 +199,29 @@ public class LDDDOMParser extends Object {
     Utility.registerMessage("0>info getLocalDD Done");
   }
 
-  private void parseXmlFile(SchemaFileDefn lSchemaFileDefn) {
-    // get the factory
+  private boolean parseXmlFile(SchemaFileDefn lSchemaFileDefn) {
+    String lFileName = lSchemaFileDefn.LDDToolInputFileName;
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     try {
-      // Using factory get an instance of document builder
       DocumentBuilder db = dbf.newDocumentBuilder();
-      // parse using builder to get DOM representation of the XML file
-      dom = db.parse(lSchemaFileDefn.LDDToolInputFileName);
-    } catch (ParserConfigurationException pce) {
-      pce.printStackTrace();
+      dom = db.parse(lFileName);
+      return true;
+    } catch (SAXParseException spe) {
+      Utility.registerMessage("3>error Could not parse Ingest_LDD file: " + lFileName
+          + " [line " + spe.getLineNumber() + ", column " + spe.getColumnNumber() + "] "
+          + spe.getMessage());
     } catch (SAXException se) {
-      se.printStackTrace();
+      Utility.registerMessage("3>error Could not parse Ingest_LDD file: " + lFileName
+          + " - " + se.getMessage());
+    } catch (ParserConfigurationException pce) {
+      Utility.registerMessage("3>error Could not configure the XML parser for Ingest_LDD file: "
+          + lFileName + " - " + pce.getMessage());
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      Utility.registerMessage("3>error Could not read Ingest_LDD file: " + lFileName
+          + " - " + ioe.getMessage());
     }
+    dom = null;
+    return false;
   }
 
   private void parseDocument(SchemaFileDefn lSchemaFileDefn) {
