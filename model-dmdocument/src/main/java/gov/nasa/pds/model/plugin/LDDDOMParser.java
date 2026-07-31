@@ -1366,7 +1366,7 @@ public class LDDDOMParser extends Object {
 	      // in a single Ingest_LDD, rules are not merged: keep the first, reject the rest
 	      String lFirstLocalIdentifier = lLocalContextMap.get(lContext);
 	      if (lFirstLocalIdentifier != null) {
-	        Utility.registerMessage("2>error Rule: <" + lLocalIdentifier
+	        Utility.registerMessage("2>warning Rule: <" + lLocalIdentifier
 	            + "> - The rule_context '" + lContext + "' is already used by rule <"
 	            + lFirstLocalIdentifier + "> in this local data dictionary."
 	            + " Rules are not merged; only the first rule is used."
