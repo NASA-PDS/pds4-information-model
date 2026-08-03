@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-07-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-07-28)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -19,6 +19,7 @@
 
 **Other closed issues:**
 
+- Stage the PDS4 Information Model V 1.27.0.0 \(1R00\) for Build 18 [\#1058](https://github.com/NASA-PDS/pds4-information-model/issues/1058)
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
 - Scrub namespace registry config vs. csv to ensure it is an exact one-to-one mapping [\#1043](https://github.com/NASA-PDS/pds4-information-model/issues/1043)
 - Complete third draft of `ops` LDD v1.0 [\#1028](https://github.com/NASA-PDS/pds4-information-model/issues/1028)
