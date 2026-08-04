@@ -50,6 +50,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import gov.nasa.pds.model.plugin.util.Utility;
 
 /**
@@ -166,11 +168,12 @@ public class LDDDOMParser extends Object {
   }
 
   public void getLocalDD() throws java.io.IOException {
-    // parse the xml file and get the dom object
-    parseXmlFile(gSchemaFileDefn);
+    if (!parseXmlFile(gSchemaFileDefn)) {
+      throw new IOException(
+          "Could not parse Ingest_LDD file: " + gSchemaFileDefn.LDDToolInputFileName);
+    }
     Utility.registerMessage("0>info getLocalDD.parseXmlFile() Done");
 
-    // process the dom document for classes, attributes, etc
     parseDocument(gSchemaFileDefn);
     Utility.registerMessage("0>info getLocalDD.parseDocument() Done");
   }
@@ -196,21 +199,29 @@ public class LDDDOMParser extends Object {
     Utility.registerMessage("0>info getLocalDD Done");
   }
 
-  private void parseXmlFile(SchemaFileDefn lSchemaFileDefn) {
-    // get the factory
+  private boolean parseXmlFile(SchemaFileDefn lSchemaFileDefn) {
+    String lFileName = lSchemaFileDefn.LDDToolInputFileName;
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     try {
-      // Using factory get an instance of document builder
       DocumentBuilder db = dbf.newDocumentBuilder();
-      // parse using builder to get DOM representation of the XML file
-      dom = db.parse(lSchemaFileDefn.LDDToolInputFileName);
-    } catch (ParserConfigurationException pce) {
-      pce.printStackTrace();
+      dom = db.parse(lFileName);
+      return true;
+    } catch (SAXParseException spe) {
+      Utility.registerMessage("3>error Could not parse Ingest_LDD file: " + lFileName
+          + " [line " + spe.getLineNumber() + ", column " + spe.getColumnNumber() + "] "
+          + spe.getMessage());
     } catch (SAXException se) {
-      se.printStackTrace();
+      Utility.registerMessage("3>error Could not parse Ingest_LDD file: " + lFileName
+          + " - " + se.getMessage());
+    } catch (ParserConfigurationException pce) {
+      Utility.registerMessage("3>error Could not configure the XML parser for Ingest_LDD file: "
+          + lFileName + " - " + pce.getMessage());
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      Utility.registerMessage("3>error Could not read Ingest_LDD file: " + lFileName
+          + " - " + ioe.getMessage());
     }
+    dom = null;
+    return false;
   }
 
   private void parseDocument(SchemaFileDefn lSchemaFileDefn) {
@@ -1347,88 +1358,94 @@ public class LDDDOMParser extends Object {
   }
 
   private void getRule(SchemaFileDefn lSchemaFileDefn, Element docEle) {
-    ArrayList<String> lValueArr = new ArrayList<>();
+	  ArrayList<String> lValueArr = new ArrayList<>();
+	  // rule_context values seen in THIS Ingest_LDD; first rule for a context wins
+	  TreeMap<String, String> lLocalContextMap = new TreeMap<>();
 
-    // get a nodelist of <DD_Class> elements
-    NodeList n2 = docEle.getElementsByTagName("DD_Rule");
-    if (n2 != null && n2.getLength() > 0) {
-      for (int i = 0; i < n2.getLength(); i++) {
-        // get the elements
-        Element el = (Element) n2.item(i);
-        String lLocalIdentifier = "TBD_lLocalIdentifier";
-        String lValue1 = getTextValue(el, "local_identifier");
-        if (!(lValue1 == null || (lValue1.indexOf("TBD") == 0))) {
-          lLocalIdentifier = lValue1;
-        }
+	  NodeList n2 = docEle.getElementsByTagName("DD_Rule");
+	  if (n2 != null && n2.getLength() > 0) {
+	    for (int i = 0; i < n2.getLength(); i++) {
+	      Element el = (Element) n2.item(i);
+	      String lLocalIdentifier = "TBD_lLocalIdentifier";
+	      String lValue1 = getTextValue(el, "local_identifier");
+	      if (!(lValue1 == null || (lValue1.indexOf("TBD") == 0))) { lLocalIdentifier = lValue1; }
 
-        String lContext = "TBD_lContext";
-        String lValue2 = getTextValue(el, "rule_context");
-        if (!(lValue2 == null || (lValue2.indexOf("TBD") == 0))) {
-          lContext = lValue2;
-        }
+	      String lContext = "TBD_lContext";
+	      String lValue2 = getTextValue(el, "rule_context");
+	      if (!(lValue2 == null || (lValue2.indexOf("TBD") == 0))) { lContext = lValue2; }
+	      
+	      // in a single Ingest_LDD, rules are not merged: keep the first, reject the rest
+	      String lFirstLocalIdentifier = lLocalContextMap.get(lContext);
+	      if (lFirstLocalIdentifier != null) {
+	        Utility.registerMessage("2>warning Rule: <" + lLocalIdentifier
+	            + "> - The rule_context '" + lContext + "' is already used by rule <"
+	            + lFirstLocalIdentifier + "> in this local data dictionary."
+	            + " Rules are not merged; only the first rule is used."
+	            + " Combine the DD_Rule_Statements into a single DD_Rule.");
+	        continue;                          // discard the duplicate - first rule wins
+	      }
+	      lLocalContextMap.put(lContext, lLocalIdentifier);
 
-        DOMRule lDOMRule = new DOMRule(lContext);
-        lDOMRule.setRDFIdentifier();
+	      DOMRule lDOMRule = new DOMRule(lContext);
+	      lDOMRule.setRDFIdentifier();
 
-        if (ruleMap.get(lDOMRule.rdfIdentifier) == null) {
-          ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
-          ruleArr.add(lDOMRule);
-          lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.attrTitle = "Rule";
-          lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
-          lDOMRule.classSteward = lSchemaFileDefn.stewardId;
-          lDOMRule.xpath = lContext;
-
-          // get the let assign values
-          lValueArr = getXMLValueArr("rule_assign", el);
-          if (!(lValueArr == null || lValueArr.isEmpty())) {
-            lDOMRule.letAssignArr = lValueArr;
-          }
-
-          // get the rule statements
-          ArrayList<Element> lElementStmtArr = getElement("DD_Rule_Statement", el);
-          for (Iterator<Element> j = lElementStmtArr.iterator(); j.hasNext();) {
-            Element lElement = j.next();
-
-            DOMAssert lDOMAssertDefn = new DOMAssert("Rule");
-            lDOMRule.assertArr.add(lDOMAssertDefn);
-
-            String lValue3 = getTextValue(lElement, "rule_type");
-            if (!(lValue3 == null || (lValue3.indexOf("TBD") == 0))) {
-              if (lValue3.compareTo("Assert") == 0) {
-                lDOMAssertDefn.assertType = "RAW";
-              } else if (lValue3.compareTo("Assert Every") == 0) {
-                lDOMAssertDefn.assertType = "EVERY";
-              } else if (lValue3.compareTo("Assert If") == 0) {
-                lDOMAssertDefn.assertType = "IF";
-              } else if (lValue3.compareTo("Report") == 0) {
-                lDOMAssertDefn.assertType = "REPORT";
-              }
-            }
-
-            String lValue4 = getTextValue(lElement, "rule_test");
-            if (!(lValue4 == null || (lValue4.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.assertStmt = lValue4;
-            }
-
-            String lValue5 = getTextValue(lElement, "rule_message");
-            if (!(lValue5 == null || (lValue5.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.assertMsg = lValue5;
-            }
-
-            String lValue6 = getTextValue(lElement, "rule_description");
-            if (!(lValue6 == null || (lValue6.indexOf("TBD") == 0))) {
-              lDOMAssertDefn.specMesg = lValue6;
-            }
-
-            // get the statement values
-            lValueArr = getXMLValueArr("rule_value", lElement);
-            if (!(lValueArr == null || lValueArr.isEmpty())) {
-              lDOMAssertDefn.testValArr = lValueArr;
-            }
-          }
-        }
+	      ruleMap.put(lDOMRule.rdfIdentifier, lDOMRule);
+	      ruleArr.add(lDOMRule);
+	      lDOMRule.nameSpaceIdNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.attrNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.attrTitle = "Rule";
+	      lDOMRule.classNameSpaceNC = lSchemaFileDefn.nameSpaceIdNC;
+	      lDOMRule.classSteward = lSchemaFileDefn.stewardId;
+	      lDOMRule.xpath = lContext;
+	
+	      // get the let assign values
+	      lValueArr = getXMLValueArr("rule_assign", el);
+	      if (!(lValueArr == null || lValueArr.isEmpty())) {
+	        lDOMRule.letAssignArr = lValueArr;
+	      }
+	
+	      // get the rule statements
+	      ArrayList<Element> lElementStmtArr = getElement("DD_Rule_Statement", el);
+	      for (Iterator<Element> j = lElementStmtArr.iterator(); j.hasNext();) {
+	        Element lElement = j.next();
+	
+	        DOMAssert lDOMAssertDefn = new DOMAssert("Rule");
+	        lDOMRule.assertArr.add(lDOMAssertDefn);
+	
+	        String lValue3 = getTextValue(lElement, "rule_type");
+	        if (!(lValue3 == null || (lValue3.indexOf("TBD") == 0))) {
+	          if (lValue3.compareTo("Assert") == 0) {
+	            lDOMAssertDefn.assertType = "RAW";
+	          } else if (lValue3.compareTo("Assert Every") == 0) {
+	            lDOMAssertDefn.assertType = "EVERY";
+	          } else if (lValue3.compareTo("Assert If") == 0) {
+	            lDOMAssertDefn.assertType = "IF";
+	          } else if (lValue3.compareTo("Report") == 0) {
+	            lDOMAssertDefn.assertType = "REPORT";
+	          }
+	        }
+	
+	        String lValue4 = getTextValue(lElement, "rule_test");
+	        if (!(lValue4 == null || (lValue4.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.assertStmt = lValue4;
+	        }
+	
+	        String lValue5 = getTextValue(lElement, "rule_message");
+	        if (!(lValue5 == null || (lValue5.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.assertMsg = lValue5;
+	        }
+	
+	        String lValue6 = getTextValue(lElement, "rule_description");
+	        if (!(lValue6 == null || (lValue6.indexOf("TBD") == 0))) {
+	          lDOMAssertDefn.specMesg = lValue6;
+	        }
+	
+	        // get the statement values
+	        lValueArr = getXMLValueArr("rule_value", lElement);
+	        if (!(lValueArr == null || lValueArr.isEmpty())) {
+	          lDOMAssertDefn.testValArr = lValueArr;
+	        }
+	      }
       }
     }
   }
@@ -2445,7 +2462,7 @@ public class LDDDOMParser extends Object {
         DOMInfoModel.masterDOMRuleMap.put(lRule.rdfIdentifier, lRule);
       } else {
         Utility.registerMessage(
-            "2>warning Found duplicate attribute - lAttr.identifier:" + lRule.identifier);
+            "2>warning Found duplicate rule - lRule.identifier:" + lRule.identifier);
       }
     }
   }
