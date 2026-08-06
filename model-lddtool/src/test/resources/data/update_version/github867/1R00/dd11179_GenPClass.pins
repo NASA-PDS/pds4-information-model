@@ -64541,7 +64541,9 @@
   (containedIn1 
     [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1018730052]
     [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600]
-    [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139])
+    [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1649635866]
+    [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139]
+    [pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.106133660])
   (dataIdentifier "EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id")
   (datatype [UTF8_Short_String_Collapsed])
   (maximumCharacterQuantity "255")
@@ -64587,6 +64589,20 @@
   (endDate "2019-12-31")
   (description "day**-1 is an abbreviation for the change per day in a dimensionless quantity."))
  
+([pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1649635866] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1649635866])
+  (value "gigabits%2Fs"))
+ 
+([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1649635866] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
+  (endDate "2019-12-31")
+  (description "gigabits%2Fs is an abbreviation for gigabits per second"))
+ 
 ([pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1523544139] of PermissibleValue
   (beginDate "2009-06-09")
   (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
@@ -64600,6 +64616,20 @@
   (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
   (endDate "2019-12-31")
   (description "kilobits%2Fs is an abbreviation for kilobits per second."))
+ 
+([pv.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.106133660] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.106133660])
+  (value "megabits%2Fs"))
+ 
+([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.106133660] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id])
+  (endDate "2019-12-31")
+  (description "megabits%2Fs is an abbreviation for megabits per second"))
  
 ([EVD.0001_NASA_PDS_1.pds.Units_of_Solid_Angle.pds.unit_id] of EnumeratedValueDomain
   (administrationRecord [DD_1.27.0.0])
@@ -101513,7 +101543,7 @@
 	(measureName "Units_of_Rates")
 	(defaultUnitId "counts%2Fbin")
 	(precision "TBD_precision")
-	(unitId "counts%2Fbin" "day**-1" "kilobits%2Fs"))
+	(unitId "counts%2Fbin" "day**-1" "gigabits%2Fs" "kilobits%2Fs" "megabits%2Fs"))
 ([Units_of_Solid_Angle] of UnitOfMeasure
 	(measureName "Units_of_Solid_Angle")
 	(defaultUnitId "sr")
