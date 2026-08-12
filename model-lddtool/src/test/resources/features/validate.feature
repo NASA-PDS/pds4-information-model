@@ -86,7 +86,7 @@ Feature: pds4_information_model_validate_integration
 | NASA-PDS/pds4-information-model#1043e | "reconciled namespaces"                                                | "github1043e" |           0 | "totalErrors"     | "-t {resourceUpdateVersionDir}/github1043e/namespace_mvn_Pass_260618.xml"     | "PDS4_PARTICLE_IngestLDD_mvn.xml"     | "" | "false" |
 | NASA-PDS/pds4-information-model#1043f | "reconciled namespaces"                                                | "github1043f" |           0 | "totalErrors"     | "-t {resourceUpdateVersionDir}/github1043f/namespace_orex_Pass_260618.xml"    | "PDS4_PARTICLE_IngestLDD_orex.xml"    | "" | "false" |
 
-    @v18.0.x
+    @v16.2.x
     Examples: 
 | testId                                | testName                                                               | testDir       | messageCount| problemEnum         | commandArgs                                                                                                                                                                                                                                                                                 | ingestLDDFileName                            | pds4Version | enableContentValidation |
 | NASA-PDS/pds4-information-model#1065  | "New units megabits/s and gigabits/s to Units_of_Rates"                | "github1065"  |          3  | "totalErrors"       | "-t {resourceUpdateVersionDir}/github1065/tc_Control_Valid_Unit_kilobits.xml {resourceUpdateVersionDir}/github1065/tc_New_Valid_Unit_megabits.xml {resourceUpdateVersionDir}/github1065/tc_New_Valid_Unit_gigabits.xml {resourceUpdateVersionDir}/github1065/tc_Invalid_Unit_gigabytes.xml" | "PDS4_PARTICLE_IngestLDD_UnitsOfMeasure.xml" | "" | "false" |
