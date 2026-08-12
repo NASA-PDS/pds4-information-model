@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model
+    href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1A00.sch"
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+  <!-- PDS4 Local Data Dictionary Extended Ingest File -->
+
+  <!-- Minimal fixture for the duplicate DD_Rule rule_context test.                            -->
+  <!-- The three DD_Rule definitions at the bottom all declare the same rule_context.          -->
+  <!-- Rules in a single Ingest_LDD are not merged, so this must be reported as an error: the   -->
+  <!-- first rule wins and the other two are discarded. Everything above the rules is only      -->
+  <!-- present to give the rule context something to point at.                                 -->
+
+<Ingest_LDD
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
+                        http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1K00.xsd">
+
+  <name>Provenance</name>
+  <ldd_version_id>1.0.0.0</ldd_version_id>
+  <dictionary_type>Discipline</dictionary_type>
+  <full_name>Steve Hughes</full_name>
+  <steward_id>prov</steward_id>
+  <namespace_id>prov</namespace_id>
+  <comment>
+    Test-only local data dictionary. It defines three rules that share one rule_context so that
+    LDDTool's duplicate rule_context check can be exercised. Not for operational use.
+  </comment>
+  <last_modification_date_time>2026-07-29T12:00:00Z</last_modification_date_time>
+
+
+  <!-- ======= Attribute Definitions ======= -->
+
+  <DD_Attribute>
+    <name>attribute</name>
+    <version_id>1.0</version_id>
+    <local_identifier>attribute</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>The attribute component of an attribute-value pair.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+  <DD_Attribute>
+    <name>value</name>
+    <version_id>1.0</version_id>
+    <local_identifier>value</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>The value component of an attribute-value pair.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <!-- ======= Class Definitions ======= -->
+
+  <DD_Class>
+    <name>Attributes</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Attributes</local_identifier>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>A set of attribute-value pairs. This is the class the three rules target.</definition>
+    <element_flag>false</element_flag>
+
+    <DD_Association>
+      <identifier_reference>attribute</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+
+    <DD_Association>
+      <identifier_reference>value</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+  <DD_Class>
+    <name>Provenance</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Provenance</local_identifier>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>The exposed Discipline_Area insert that carries the Attributes class.</definition>
+    <element_flag>true</element_flag>
+
+    <DD_Association>
+      <identifier_reference>Attributes</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>unbounded</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+
+  <!-- ======= Rule Definitions - three rules, one shared rule_context ======= -->
+
+  <DD_Rule>
+    <local_identifier>duplicate_context_rule_1</local_identifier>
+    <rule_context>//prov:Attributes</rule_context>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>prov:attribute</rule_test>
+      <rule_message>Rule 1: prov:attribute must be present.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>duplicate_context_rule_2</local_identifier>
+    <rule_context>//prov:Attributes</rule_context>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>prov:value</rule_test>
+      <rule_message>Rule 2: prov:value must be present.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>duplicate_context_rule_3</local_identifier>
+    <rule_context>//prov:Attributes</rule_context>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>string-length(prov:value) &gt; 0</rule_test>
+      <rule_message>Rule 3: prov:value must not be empty.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+</Ingest_LDD>

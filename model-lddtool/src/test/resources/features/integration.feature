@@ -59,5 +59,18 @@ Feature: <testId>
       | "NASA-PDS/pds4-information-model#867Ra" | "Check schema for 1R00"                                                         | "src/test/resources/data/update_version/github867/1R00"  | "target/generated-files/github867Ra" | "-p -V 1R00"                                    | "PDS4_PDS_1R00.xsd"             | "PDS4_PDS_1R00.xsd"                   | "PDS4 XML/Schema"                |
       | "NASA-PDS/pds4-information-model#867Rb" | "Check schematron for 1R00"                                                     | "src/test/resources/data/update_version/github867/1R00"  | "target/generated-files/github867Rb" | "-p -V 1R00"                                    | "PDS4_PDS_1R00.sch"             | "PDS4_PDS_1R00.sch"                   | "PDS4 Schematron for Name Space" |
       | "NASA-PDS/pds4-information-model#867Rc" | "Check pins output for 1R00"                                                    | "src/test/resources/data/update_version/github867/1R00"  | "target/generated-files/github867Rc" | "-p -V 1R00"                                    | "dd11179_GenPClass.pins"        | "dd11179_GenPClass.pins"              | ""                               |
+
+      
+  Scenario Outline: Verifying lddtool output against specified assertions
+    Given the directories <inputDirectory>, <outputDirectory>, and command arguments <commandArgs>
+    When lddtool is run
+    Then the produced output from lddtool command should <assertType> <output> in <actualOutputFile> file      
+      
+    @NASA-PDS/pds4-information-model#1059 @B18.0
+    Examples:
+      | testId                                  | testName                                                                            | inputDirectory                                      | outputDirectory                     | commandArgs                                                    | assertType    | output        | actualOutputFile     |
+      | "NASA-PDS/pds4-information-model#1059a" | "NASA-PDS/pds4-information-model#1059a prov Ingest_LDD processes with warning"      | "src/test/resources/data/update_version/github1059" | "target/generated-files/github1059" | "-lp {inputDirectory}/PDS4_PROVRuleTest_IngestLDD_warning.xml" | "contain"     | ">>> WARNING" | "lddtool-output.txt" |
+      | "NASA-PDS/pds4-information-model#1059b" | "NASA-PDS/pds4-information-model#1059b prov Ingest_LDD processes with no warning"   | "src/test/resources/data/update_version/github1059" | "target/generated-files/github1059" | "-lp {inputDirectory}/PDS4_PROVRuleTest_IngestLDD_pass.xml"    | "not contain" | ">>> WARNING" | "lddtool-output.txt" |
+      
       
           
