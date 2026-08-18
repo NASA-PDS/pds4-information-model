@@ -1,4 +1,4 @@
-; Tue Jul 21 14:15:10 EDT 2026
+; Thu Aug 06 14:41:38 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -522,7 +522,7 @@
 	(name "instances_file_name")
 	(string_value "dd11179.pins"))
 
-([KB_288843_Class0] of  Map
+([KB_625254_Class0] of  Map
 )
 
 ([KB_860773_Class0] of  Map
