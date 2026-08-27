@@ -481,6 +481,13 @@ public class DOMAttr extends ISOClassOAIS11179 {
     }
     return lUnitsValueString;
   }
+  
+  //true when the attribute's unit of measure is defined in the master (pds) namespace
+  public boolean isMasterNamespaceUnit(String lUnitOfMeasureType) {
+	  DOMUnit lDOMUnit = DOMInfoModel.masterDOMUnitTitleMap.get(lUnitOfMeasureType);
+	  return lDOMUnit != null
+			  && lDOMUnit.nameSpaceIdNC.compareTo(DMDocument.masterPDSSchemaFileDefn.nameSpaceIdNC) == 0;
+  }
 
   // get the default_unit_id (specified unit) for printing.
   public String getDefaultUnitId(boolean forceBound) {
