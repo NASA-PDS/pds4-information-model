@@ -734,6 +734,16 @@ class GenDOMRules extends Object {
           if (lUnitsValueString == null) {
             continue;
           }
+          
+          // Units referenced from the master (pds) namespace are already constrained by the XML Schema
+          // enumeration on the "unit" attribute type (see XML4LabelSchemaDOM), so a Schematron rule would
+          // only duplicate that validation and report a second error for a single invalid value.
+          // Suppress it for LDD output only.
+          if (DMDocument.LDDToolFlag && !lSchemaFileDefn.isMaster
+        		  && lDOMAttr.isMasterNamespaceUnit(lDOMAttr.unit_of_measure_type)) {
+        	  continue;
+          }
+          
           String lXpath =
               lClass.nameSpaceId + lClass.title + "/" + lClass.nameSpaceId + lDOMAttr.title;
           DOMRule lRule = DOMInfoModel.masterDOMRuleIdMap.get(lXpath);
