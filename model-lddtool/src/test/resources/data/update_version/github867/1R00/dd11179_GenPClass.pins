@@ -18503,6 +18503,21 @@
   (submitter [Submitter_PDS])
   (terminologicalEntry [TE.0001_NASA_PDS_1.pds.ASCII_File_Name.pds.pattern])
   (versionIdentifier "1.27"))
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of DataElement
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
+  (expressedBy 
+    [DEC_TBD_classConcept])
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representing 
+    [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+  (isDeprecated "false")
+  (isNillable "false")
+  (steward [TBD_steward])
+  (submitter [Submitter_PDS])
+  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+  (versionIdentifier "1.27"))
 ([DE.0001_NASA_PDS_1.pds.Person.pds.person_orcid] of DataElement
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "DE.0001_NASA_PDS_1.pds.Person.pds.person_orcid")
@@ -49806,6 +49821,25 @@
   (endDate "2019-12-31")
   (description "TBD_value_meaning"))
  
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of NonEnumeratedValueDomain
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
+  (datatype [ASCII_Boolean])
+  (maximumCharacterQuantity "TBD_maximum_characters")
+  (minimumCharacterQuantity "TBD_minimum_characters")
+  (maximumValue "TBD_maximum_value")
+  (minimumValue "TBD_minimum_value")
+  (pattern "TBD_pattern")
+  (valueDomainFormat "TBD_format")
+  (registeredBy RA_0001_NASA_PDS_1)
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+  (representedBy2 [CD_Boolean])
+  (steward [Steward_PDS])
+  (submitter [Submitter_PDS])
+  (unitOfMeasure [TBD_unit_of_measure_type])
+  (defaultUnitId "TBD_default_unit_id")
+  (versionIdentifier "1.27"))
 ([NEVD.0001_NASA_PDS_1.pds.Person.pds.person_orcid] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Person.pds.person_orcid")
@@ -72238,6 +72272,13 @@
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1010")
   (versionIdentifier "1.27"))
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of Property
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (classOrder "1075")
+  (versionIdentifier "1.27"))
 ([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of Property
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date")
@@ -81368,6 +81409,7 @@
  	(registeredBy [RA_0001_NASA_PDS_1])
  	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (representing2 
+    [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag]
     [NEVD.0001_NASA_PDS_1.pds.DD_Attribute.pds.nillable_flag]
     [NEVD.0001_NASA_PDS_1.pds.DD_Attribute_Full.pds.nillable_flag]
     [NEVD.0001_NASA_PDS_1.pds.DD_Class.pds.abstract_flag]
@@ -84019,6 +84061,7 @@
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description]
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type]
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name]
+    [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag]
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date]
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype]
     [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type]
@@ -87267,6 +87310,17 @@
   (isPreferred "TRUE"))
 ([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of Designation
   (designationName "name")
+  (isPreferred "TRUE"))
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of TerminologicalEntry
+  (administeredItemContext [NASA_PDS])
+  (definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+  (designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+  (sectionLanguage [LI_English]))
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of Definition
+  (definitionText "The abstract_flag attribute indicates whether the resource described by the product is applicable across the entire PDS4 repository.")
+  (isPreferred "TRUE"))
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of Designation
+  (designationName "pds4_wide_applicability_flag")
   (isPreferred "TRUE"))
 ([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of TerminologicalEntry
   (administeredItemContext [NASA_PDS])

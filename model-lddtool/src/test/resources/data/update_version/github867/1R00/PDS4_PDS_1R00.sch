@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Thu Aug 06 14:45:44 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Thu Sep 03 18:13:38 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -90,6 +90,13 @@
       <sch:assert test=". = ('Aircraft', 'Balloon', 'Suborbital Rocket')">
         <title>pds:Airborne/pds:type/pds:type</title>
         The attribute pds:Airborne/pds:type must be equal to one of the following values 'Aircraft', 'Balloon', 'Suborbital Rocket'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Archive_Resource">
+      <sch:assert test="if (pds:pds4_wide_applicability_flag) then pds:pds4_wide_applicability_flag = ('true', 'false') else true()">
+        <title>pds:Archive_Resource/pds:pds4_wide_applicability_flag</title>
+        The attribute pds:pds4_wide_applicability_flag must be equal to one of the following values 'true', 'false'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

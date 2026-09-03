@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Thu Aug 06 14:45:44 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Thu Sep 03 18:13:38 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -153,6 +153,7 @@
       <xs:element name="resource_type" type="pds:resource_type" minOccurs="1" maxOccurs="unbounded"> </xs:element>
       <xs:element name="resource_subtype" type="pds:resource_subtype" minOccurs="0" maxOccurs="unbounded"> </xs:element>
       <xs:element name="interface_type" type="pds:interface_type" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="pds4_wide_applicability_flag" type="pds:pds4_wide_applicability_flag" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="description" type="pds:description" minOccurs="1" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -6653,6 +6654,16 @@
     <xs:restriction base="pds:ASCII_Short_String_Collapsed">
      <xs:minLength value="1"/>
      <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="pds4_wide_applicability_flag">
+    <xs:annotation>
+      <xs:documentation>The abstract_flag attribute indicates whether
+        the resource described by the product is applicable across the
+        entire PDS4 repository.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Boolean">
 	   </xs:restriction>
   </xs:simpleType>
 
