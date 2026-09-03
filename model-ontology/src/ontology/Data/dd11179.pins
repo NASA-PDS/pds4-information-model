@@ -1,4 +1,4 @@
-; Thu Aug 06 14:41:38 EDT 2026
+; Thu Sep 03 18:09:32 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1038,6 +1038,7 @@
 		[EVD.0001_NASA_PDS_1.pds.Airborne.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Alias_Index_Entry.pds.priority_order]
+		[NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag]
 		[NEVD.0001_NASA_PDS_1.pds.Axis_Array.pds.local_identifier]
 		[NEVD.0001_NASA_PDS_1.pds.ChangeLog.pds.%3ANAME]
 		[NEVD.0001_NASA_PDS_1.pds.ChangeLog.pds.date]
@@ -1806,6 +1807,21 @@
 	(steward [TBD_steward])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
+	(versionIdentifier "1.27"))
+
+([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  DataElement
+
+	(administrationRecord [DD_1.27.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
 	(versionIdentifier "1.27"))
 
 ([DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  DataElement
@@ -18944,6 +18960,7 @@
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.description]
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.interface_type]
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name]
+		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag]
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date]
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_subtype]
 		[DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.resource_type]
@@ -19741,6 +19758,11 @@
 ([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  Definition
 
 	(definitionText "The name attribute provides a word or combination of words by which the object is known.")
+	(isPreferred TRUE))
+
+([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  Definition
+
+	(definitionText "The abstract_flag attribute indicates whether the resource described by the product is applicable across the entire PDS4 repository.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  Definition
@@ -27526,6 +27548,11 @@
 ([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.name] of  Designation
 
 	(designationName "name")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  Designation
+
+	(designationName "pds4_wide_applicability_flag")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  Designation
@@ -45624,6 +45651,27 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
 	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.27"))
+
+([NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  NonEnumeratedValueDomain
+
+	(administrationRecord [DD_1.27.0.0])
+	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
+	(datatype [ASCII_Boolean])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+	(representedBy2 [CD_Boolean])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -69038,6 +69086,15 @@
 	(administrationRecord [DD_1.27.0.0])
 	(classOrder "1010")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.name")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
+([PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1075")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
@@ -97683,6 +97740,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.name])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+	(designation [DES.0001_NASA_PDS_1.pds.Archive_Resource.pds.pds4_wide_applicability_flag])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Archive_Resource.pds.release_date] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -117882,13 +117946,13 @@
 ([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.-1649635866] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "gigabits/s is an abbreviation for gigabits per second")
+	(description "gigabits%2Fs is an abbreviation for gigabits per second")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.106133660] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "megabits/s is an abbreviation for megabits per second")
+	(description "megabits%2Fs is an abbreviation for megabits per second")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Units_of_Rates.pds.unit_id.1446121600] of  ValueMeaning
