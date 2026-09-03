@@ -1,4 +1,4 @@
-; Thu Aug 06 14:28:39 EDT 2026
+; Thu Sep 03 17:51:59 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4396,6 +4396,11 @@
 ;+		(comment "The files attribute provides the number of files.")
 		(type INTEGER)
 		(create-accessor read-write))
+	(single-slot pds4_wide_applicability_flag
+;+		(comment "The abstract_flag attribute indicates whether the resource described by the product is applicable across the entire PDS4 repository.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(multislot minimum_ring_longitude
 ;+		(comment "minimum_ring_longitude specifes one boundary for the ring longitude range in the data; normally the smallest value. However, for ranges that cross the prime meridian, the minimum ring longitude will have a value greater than the maximum ring longitude. Values range from 0 to 360 in units of degrees. Required in label files for ring occultation data.")
 		(type FLOAT)
@@ -6648,6 +6653,11 @@
 		(create-accessor read-write))
 	(single-slot version_id
 ;+		(comment "The version_id attribute provides the version of the product, expressed in the PDS [m.n] notation.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot pds4_wide_applicability_flag
+;+		(comment "The abstract_flag attribute indicates whether the resource described by the product is applicable across the entire PDS4 repository.")
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
