@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-08-18)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-03)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -14,6 +14,7 @@
 
 **Defects:**
 
+- LDDTool should not write Schematron rules for Units of Measure [\#1067](https://github.com/NASA-PDS/pds4-information-model/issues/1067) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
 - LDDTool does not error when multiple Schematron rules have the same context [\#1059](https://github.com/NASA-PDS/pds4-information-model/issues/1059) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - Automated generation of PDS Namespace Registry files from CSV update fails [\#1056](https://github.com/NASA-PDS/pds4-information-model/issues/1056) [[s.medium](https://github.com/NASA-PDS/pds4-information-model/labels/s.medium)]
 - lddtool generates confusing error message for Local\_Internal\_Reference [\#1049](https://github.com/NASA-PDS/pds4-information-model/issues/1049) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
@@ -21,6 +22,7 @@
 
 **Other closed issues:**
 
+- LDDTool should not write Schematron rules for Units of Measure [\#1068](https://github.com/NASA-PDS/pds4-information-model/issues/1068)
 - Remove the file MDPTNConfigClassDisp and associated code [\#1063](https://github.com/NASA-PDS/pds4-information-model/issues/1063)
 - Stage the PDS4 Information Model V 1.27.0.0 \(1R00\) for Build 18 [\#1058](https://github.com/NASA-PDS/pds4-information-model/issues/1058)
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
