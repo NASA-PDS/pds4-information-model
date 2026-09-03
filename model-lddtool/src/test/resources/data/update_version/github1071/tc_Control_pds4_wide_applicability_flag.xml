@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Resource xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1R00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:context:resource:autoplot</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Autoplot</title>
+        <information_model_version>1.27.0.0</information_model_version>
+        <product_class>Product_Resource</product_class>
+    </Identification_Area>
+    <Archive_Resource>
+        <name>Autoplot</name>
+        <version_id>1.0</version_id>
+        <url>https://autoplot.org/</url>
+        <resource_type>Software and Tools</resource_type>
+        <resource_subtype>Scientific Analysis Tool</resource_subtype>
+        <resource_subtype>Visualization Tool</resource_subtype>
+        <resource_subtype>Desktop Application</resource_subtype>
+        <resource_subtype>Transformation Tool</resource_subtype>
+        <resource_subtype>Validation Tool</resource_subtype>
+        <interface_type>GUI Interface</interface_type>
+        <description>Autoplot is an interactive data-browsing tool that instantly plots data from a URL or local file. Designed for quick exploration, it reads a wide range of data and metadata formats and automatically generates sensible visualizations to faciliate inspection and understanding of dataset structure and content.</description>
+    </Archive_Resource>
+    <Reference_List>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:node:ppi</lid_reference>
+            <reference_type>service_to_node</reference_type>
+        </Internal_Reference>
+    </Reference_List>
+</Product_Resource>
