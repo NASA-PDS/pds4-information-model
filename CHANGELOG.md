@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-03)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -22,6 +22,7 @@
 
 **Other closed issues:**
 
+- Update Product\_Resource to add pds4\_wide\_applicability\_flag [\#1071](https://github.com/NASA-PDS/pds4-information-model/issues/1071)
 - LDDTool should not write Schematron rules for Units of Measure [\#1068](https://github.com/NASA-PDS/pds4-information-model/issues/1068)
 - Remove the file MDPTNConfigClassDisp and associated code [\#1063](https://github.com/NASA-PDS/pds4-information-model/issues/1063)
 - Stage the PDS4 Information Model V 1.27.0.0 \(1R00\) for Build 18 [\#1058](https://github.com/NASA-PDS/pds4-information-model/issues/1058)
