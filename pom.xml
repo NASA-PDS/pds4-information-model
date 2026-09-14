@@ -42,9 +42,9 @@ POSSIBILITY OF SUCH DAMAGE.
   
    <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-     <maven.compiler.source>17</maven.compiler.source>
-     <maven.compiler.target>17</maven.compiler.target>
-     <maven.compiler.release>17</maven.compiler.release>
+     <maven.compiler.source>25</maven.compiler.source>
+     <maven.compiler.target>25</maven.compiler.target>
+     <maven.compiler.release>25</maven.compiler.release>
    </properties>
 
   <groupId>gov.nasa.pds</groupId>
