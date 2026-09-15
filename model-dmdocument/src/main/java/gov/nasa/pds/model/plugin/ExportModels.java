@@ -89,10 +89,12 @@ public class ExportModels extends Object {
             + DMDocument.masterPDSSchemaFileDefn.identifier + " - Done");
 
     // write the Doc Book
-    DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterPDSSchemaFileDefn);
-    WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
-    lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-    Utility.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
+    if (DMDocument.exportDDFileFlag) {
+    		DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterPDSSchemaFileDefn);
+    		WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
+    		lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
+    		Utility.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
+    }
 
     // write the custom files
     if (DMDocument.exportCustomFileFlag) {
@@ -102,9 +104,11 @@ public class ExportModels extends Object {
     }
 
     // write the DOM RDF
-    WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
-    writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
-    Utility.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
+    if (DMDocument.exportOWLRDFFileFlag) {
+    		WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
+    		writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
+    		Utility.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
+    }
 
     // write the DOM PDS4 DD CSV file
     WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles();
@@ -115,8 +119,6 @@ public class ExportModels extends Object {
     // write the 11179 DD pins file - Plus Class Version
     WriteDOM11179DDPinsFilePClass lWriteDOM11179DDPinsFilePClass =
         new WriteDOM11179DDPinsFilePClass();
-    lWriteDOM11179DDPinsFilePClass
-        .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);
     lWriteDOM11179DDPinsFilePClass
         .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);
     Utility
@@ -161,7 +163,7 @@ public class ExportModels extends Object {
     
 	// write the OWL/RDF output in RDF format (IM Export)
     if (DMDocument.exportOWLRDFFileFlag) {
-    	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
+    		DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
 		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
 		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn);
 		Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
