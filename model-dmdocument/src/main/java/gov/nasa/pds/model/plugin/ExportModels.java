@@ -89,10 +89,12 @@ public class ExportModels extends Object {
             + DMDocument.masterPDSSchemaFileDefn.identifier + " - Done");
 
     // write the Doc Book
-    DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterPDSSchemaFileDefn);
-    WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
-    lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
-    Utility.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
+    if (DMDocument.exportDDFileFlag) {
+    		DMDocument.dmProcessState.setRelativeFileSpecDDDocXML(DMDocument.masterPDSSchemaFileDefn);
+    		WriteDOMDocBook lWriteDOMDocBook = new WriteDOMDocBook();
+    		lWriteDOMDocBook.writeDocBook(DMDocument.masterPDSSchemaFileDefn);
+    		Utility.registerMessage("0>info " + "writeAllArtifacts - DD DocBook Done");
+    }
 
     // write the custom files
     if (DMDocument.exportCustomFileFlag) {
@@ -161,7 +163,7 @@ public class ExportModels extends Object {
     
 	// write the OWL/RDF output in RDF format (IM Export)
     if (DMDocument.exportOWLRDFFileFlag) {
-    	DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
+    		DMDocument.dmProcessState.setRelativeFileSpecOWLRDFTTL (DMDocument.masterPDSSchemaFileDefn);
 		WriteDOMRDFOWLFile writeDOMRDFOWLFile = new WriteDOMRDFOWLFile ();
 		writeDOMRDFOWLFile.writeOWLFile (DMDocument.masterPDSSchemaFileDefn);
 		Utility.registerMessage ("0>info " + "ExportModels - OWL/RDF output in RDF format (IM Export) - Done");
