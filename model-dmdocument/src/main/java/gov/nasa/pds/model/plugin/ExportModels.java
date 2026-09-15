@@ -104,9 +104,11 @@ public class ExportModels extends Object {
     }
 
     // write the DOM RDF
-    WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
-    writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
-    Utility.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
+    if (DMDocument.exportOWLRDFFileFlag) {
+    		WriteDOM11179DDRDFFile writeDOM11179DDRDFFile = new WriteDOM11179DDRDFFile();
+    		writeDOM11179DDRDFFile.printISO11179DDRDF(DMDocument.sTodaysDate);
+    		Utility.registerMessage("0>info " + "writeAllArtifacts - RDF Done");
+    }
 
     // write the DOM PDS4 DD CSV file
     WriteDOMCSVFiles writeDOMCSVFiles = new WriteDOMCSVFiles();
