@@ -118,8 +118,6 @@ public class ExportModels extends Object {
     WriteDOM11179DDPinsFilePClass lWriteDOM11179DDPinsFilePClass =
         new WriteDOM11179DDPinsFilePClass();
     lWriteDOM11179DDPinsFilePClass
-        .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPins);
-    lWriteDOM11179DDPinsFilePClass
         .writePINSFile(DMDocument.masterPDSSchemaFileDefn.relativeFileSpecDDProtPinsSN);
     Utility
         .registerMessage("0>info " + "writeAllArtifacts - DD Pins *** plus class *** File Done");
