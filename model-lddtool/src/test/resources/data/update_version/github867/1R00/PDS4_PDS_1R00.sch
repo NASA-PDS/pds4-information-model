@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Thu Sep 03 18:13:38 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Thu Sep 24 11:32:35 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -2061,9 +2061,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Product_Observational/pds:Reference_List/pds:Internal_Reference">
-      <sch:assert test="every $ref in (pds:reference_type) satisfies $ref = ('data_to_associate', 'data_to_resource', 'data_to_calibration_document', 'data_to_calibration_product', 'data_to_raw_product', 'data_to_calibrated_product', 'data_to_derived_product', 'data_to_geometry', 'data_to_spice_kernel', 'data_to_thumbnail', 'data_to_document', 'data_curated_by_node', 'data_to_browse', 'data_to_ancillary_data', 'data_to_partially_processed_product')">
+      <sch:assert test="every $ref in (pds:reference_type) satisfies $ref = ('data_to_associate', 'data_to_resource', 'data_to_calibration_document', 'data_to_calibration_product', 'data_to_raw_product', 'data_to_calibrated_product', 'data_to_derived_product', 'data_to_geometry', 'data_to_spice_kernel', 'data_to_thumbnail', 'data_to_document', 'data_curated_by_node', 'data_to_browse', 'data_to_ancillary_data', 'data_to_partially_processed_product', 'archival_to_native')">
         <title>pds:Product_Observational/pds:Reference_List/pds:Internal_Reference/reference_type</title>
-        The attribute reference_type must be set to one of the following values 'data_to_associate', 'data_to_resource', 'data_to_calibration_document', 'data_to_calibration_product', 'data_to_raw_product', 'data_to_calibrated_product', 'data_to_derived_product', 'data_to_geometry', 'data_to_spice_kernel', 'data_to_thumbnail', 'data_to_document', 'data_curated_by_node', 'data_to_browse', 'data_to_ancillary_data', 'data_to_partially_processed_product'.</sch:assert>
+        The attribute reference_type must be set to one of the following values 'data_to_associate', 'data_to_resource', 'data_to_calibration_document', 'data_to_calibration_product', 'data_to_raw_product', 'data_to_calibrated_product', 'data_to_derived_product', 'data_to_geometry', 'data_to_spice_kernel', 'data_to_thumbnail', 'data_to_document', 'data_curated_by_node', 'data_to_browse', 'data_to_ancillary_data', 'data_to_partially_processed_product', 'archival_to_native'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
