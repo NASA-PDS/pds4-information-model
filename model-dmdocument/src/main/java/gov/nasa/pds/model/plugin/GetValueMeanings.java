@@ -371,7 +371,11 @@ class GetValueMeanings extends Object {
         "data_to_ancillary_data",
         "The referencing data product requires the referenced data product to provide specific support for its own use. For example, a table with footnotes can be archived as two products: a data table file with a field giving a footnote code number; and a footnotes file sorted by those code numbers. The label of the data table would then reference the footnotes file with an association type of \"data_to_ancillary_data\".");
     masterValueMeaningMap.put(lPVD.identifier, lPVD);
-
+    lPVD = new PermValueDefn(
+            "pds:Product_Observational/pds:Reference_List/pds:Internal_Reference.reference_type.archival_to_native",
+            "archival_to_native",
+            "The native product is associated to an archival product");
+        masterValueMeaningMap.put(lPVD.identifier, lPVD);
     lPVD = new PermValueDefn(
         "pds:Product_Collection/pds:Reference_List/pds:Internal_Reference.reference_type.collection_to_resource",
         "collection_to_resource", "The collection is associated to a resource");
