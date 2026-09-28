@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-09)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-28)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -22,9 +22,12 @@
 
 **Other closed issues:**
 
+- Make DD and RDF File Export Optional in LDDTool core runs [\#1077](https://github.com/NASA-PDS/pds4-information-model/issues/1077)
 - Update Product\_Resource to add pds4\_wide\_applicability\_flag [\#1071](https://github.com/NASA-PDS/pds4-information-model/issues/1071)
+- Upgrade to OpenJDK 25, Oracle Java 17 is EOL [\#1070](https://github.com/NASA-PDS/pds4-information-model/issues/1070)
 - LDDTool should not write Schematron rules for Units of Measure [\#1068](https://github.com/NASA-PDS/pds4-information-model/issues/1068)
 - Remove the file MDPTNConfigClassDisp and associated code [\#1063](https://github.com/NASA-PDS/pds4-information-model/issues/1063)
+- As a CTLI LDD steward, I want Type\_List\_Set to be the only allowed element under Type\_List\_Area to simplify and standardize the data model [\#1061](https://github.com/NASA-PDS/pds4-information-model/issues/1061)
 - Stage the PDS4 Information Model V 1.27.0.0 \(1R00\) for Build 18 [\#1058](https://github.com/NASA-PDS/pds4-information-model/issues/1058)
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
 - Scrub namespace registry config vs. csv to ensure it is an exact one-to-one mapping [\#1043](https://github.com/NASA-PDS/pds4-information-model/issues/1043)
