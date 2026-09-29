@@ -1,4 +1,4 @@
-; Tue Sep 29 15:11:43 EDT 2026
+; Tue Sep 29 16:17:36 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -749,6 +749,8 @@
 		[EVD.0001_NASA_PDS_1.pds.Investigation.pds.type]
 		[NEVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.name]
 		[EVD.0001_NASA_PDS_1.pds.Investigation_Area.pds.type]
+		[EVD.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code]
+		[EVD.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code]
 		[NEVD.0001_NASA_PDS_1.pds.License_Information.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_name]
 		[NEVD.0001_NASA_PDS_1.pds.Mission_PDS3.pds.mission_start_date]
@@ -1091,9 +1093,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.id_reference]
 		[NEVD.0001_NASA_PDS_1.pds.LID_ID_Reference.pds.lid_reference]
 		[NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.definition]
-		[EVD.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code]
 		[NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.preferred_flag]
-		[EVD.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code]
 		[NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.value_utf8]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.comment]
 		[NEVD.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_to]
@@ -40936,7 +40936,6 @@
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3135]
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3139]
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3141]
-		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3142]
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3143]
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3147]
 		[pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3148]
@@ -69616,6 +69615,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
 
+([PR.0001_NASA_PDS_1.pds.Affiliation.pds.has_attribute_extension.Attribute_Extension] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1040")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Affiliation.pds.has_attribute_extension.Attribute_Extension")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
 ([PR.0001_NASA_PDS_1.pds.Affiliation.pds.organization_name] of  Property
 
 	(administrationRecord [DD_1.27.0.0])
@@ -76312,6 +76320,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
 
+([PR.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.has_attribute_extension.Attribute_Extension] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1045")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.has_attribute_extension.Attribute_Extension")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
 ([PR.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.has_Funder_Identifier.Funder_Identifier] of  Property
 
 	(administrationRecord [DD_1.27.0.0])
@@ -77968,6 +77985,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
 
+([PR.0001_NASA_PDS_1.pds.Organization.pds.has_attribute_extension.Attribute_Extension] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1045")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Organization.pds.has_attribute_extension.Attribute_Extension")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
 ([PR.0001_NASA_PDS_1.pds.Organization.pds.has_Parent_Organization.Parent_Organization] of  Property
 
 	(administrationRecord [DD_1.27.0.0])
@@ -78054,6 +78080,15 @@
 	(administrationRecord [DD_1.27.0.0])
 	(classOrder "1030")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Packed_Data_Fields.pds.has_Field_Bit.Field_Bit")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
+([PR.0001_NASA_PDS_1.pds.Parent_Organization.pds.has_attribute_extension.Attribute_Extension] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1040")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Parent_Organization.pds.has_attribute_extension.Attribute_Extension")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
@@ -78333,6 +78368,15 @@
 	(administrationRecord [DD_1.27.0.0])
 	(classOrder "1060")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Person.pds.has_Affiliation.Affiliation")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
+([PR.0001_NASA_PDS_1.pds.Person.pds.has_attribute_extension.Attribute_Extension] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1055")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Person.pds.has_attribute_extension.Attribute_Extension")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
@@ -92790,15 +92834,6 @@
 	(isDeprecated "false")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3141])
 	(value "bg"))
-
-([pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3142] of  PermissibleValue
-
-	(beginDate "2009-06-09")
-	(containing1 [EVD.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code])
-	(endDate "2019-12-31")
-	(isDeprecated "false")
-	(usedIn [vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3142])
-	(value "bh"))
 
 ([pv.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3143] of  PermissibleValue
 
@@ -119560,12 +119595,6 @@
 	(description "Bulgarian")
 	(endDate "2019-12-31"))
 
-([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3142] of  ValueMeaning
-
-	(beginDate "2009-06-09")
-	(description "TBD_value_meaning")
-	(endDate "2019-12-31"))
-
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3143] of  ValueMeaning
 
 	(beginDate "2009-06-09")
@@ -119689,7 +119718,7 @@
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3239] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Modern Greek (1453-)")
+	(description "Modern Greek %281453-%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3241] of  ValueMeaning
@@ -119857,7 +119886,7 @@
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3352] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Interlingua (International Auxiliary Language Association)")
+	(description "Interlingua %28International Auxiliary Language Association%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3355] of  ValueMeaning
@@ -120199,7 +120228,7 @@
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3540] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Occitan (post 1500)")
+	(description "Occitan %28post 1500%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3547] of  ValueMeaning
@@ -120451,7 +120480,7 @@
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3707] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "Tonga (Tonga Islands)")
+	(description "Tonga %28Tonga Islands%29")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.language_code.3710] of  ValueMeaning
@@ -120577,1345 +120606,1345 @@
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2035972] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Adlam script (ISO Number 166).")
+	(description "The associated value is represented in the Adlam script %28ISO Number 166%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2037551] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Afaka script (ISO Number 439).")
+	(description "The associated value is represented in the Afaka script %28ISO Number 439%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2038720] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Caucasian Albanian script (ISO Number 239).")
+	(description "The associated value is represented in the Caucasian Albanian script %28ISO Number 239%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2039909] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ahom or Tai Ahom script (ISO Number 338).")
+	(description "The associated value is represented in the Ahom or Tai Ahom script %28ISO Number 338%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2049074] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Arabic script (ISO Number 160).")
+	(description "The associated value is represented in the Arabic script %28ISO Number 160%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2049086] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Arabic (Nastaliq variant) script (ISO Number 161).")
+	(description "The associated value is represented in the Arabic %28Nastaliq variant%29 script %28ISO Number 161%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2049453] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Imperial Aramaic script (ISO Number 124).")
+	(description "The associated value is represented in the Imperial Aramaic script %28ISO Number 124%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2049458] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Armenian script (ISO Number 230).")
+	(description "The associated value is represented in the Armenian script %28ISO Number 230%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2053494] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Avestan script (ISO Number 134).")
+	(description "The associated value is represented in the Avestan script %28ISO Number 134%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2062876] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Balinese script (ISO Number 360).")
+	(description "The associated value is represented in the Balinese script %28ISO Number 360%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2062919] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Bamum script (ISO Number 435).")
+	(description "The associated value is represented in the Bamum script %28ISO Number 435%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2063103] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Bassa Vah script (ISO Number 259).")
+	(description "The associated value is represented in the Bassa Vah script %28ISO Number 259%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2063126] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Batak script (ISO Number 365).")
+	(description "The associated value is represented in the Batak script %28ISO Number 365%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2066780] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Bengali (Bangla) script (ISO Number 325).")
+	(description "The associated value is represented in the Bengali %28Bangla%29 script %28ISO Number 325%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2066903] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Beria Erfe script (ISO Number 258).")
+	(description "The associated value is represented in the Beria Erfe script %28ISO Number 258%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2069582] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Bhaiksuki script (ISO Number 334).")
+	(description "The associated value is represented in the Bhaiksuki script %28ISO Number 334%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2073364] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Blissymbols script (ISO Number 550).")
+	(description "The associated value is represented in the Blissymbols script %28ISO Number 550%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2076460] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Bopomofo script (ISO Number 285).")
+	(description "The associated value is represented in the Bopomofo script %28ISO Number 285%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2078871] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Brahmi script (ISO Number 300).")
+	(description "The associated value is represented in the Brahmi script %28ISO Number 300%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2078872] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Braille script (ISO Number 570).")
+	(description "The associated value is represented in the Braille script %28ISO Number 570%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2081941] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Buginese script (ISO Number 367).")
+	(description "The associated value is represented in the Buginese script %28ISO Number 367%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2081967] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Buhid script (ISO Number 372).")
+	(description "The associated value is represented in the Buhid script %28ISO Number 372%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2092640] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Chakma script (ISO Number 349).")
+	(description "The associated value is represented in the Chakma script %28ISO Number 349%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2092739] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Unified Canadian Aboriginal Syllabics script (ISO Number 440).")
+	(description "The associated value is represented in the Unified Canadian Aboriginal Syllabics script %28ISO Number 440%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2092853] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Carian script (ISO Number 201).")
+	(description "The associated value is represented in the Carian script %28ISO Number 201%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2099057] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cham script (ISO Number 358).")
+	(description "The associated value is represented in the Cham script %28ISO Number 358%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2099186] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cherokee script (ISO Number 445).")
+	(description "The associated value is represented in the Cherokee script %28ISO Number 445%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2099311] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Chisoi script (ISO Number 298).")
+	(description "The associated value is represented in the Chisoi script %28ISO Number 298%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2099590] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Chorasmian script (ISO Number 109).")
+	(description "The associated value is represented in the Chorasmian script %28ISO Number 109%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2100552] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cirth script (ISO Number 291).")
+	(description "The associated value is represented in the Cirth script %28ISO Number 291%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2106256] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Coptic script (ISO Number 204).")
+	(description "The associated value is represented in the Coptic script %28ISO Number 204%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2107118] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cypro-Minoan script (ISO Number 402).")
+	(description "The associated value is represented in the Cypro-Minoan script %28ISO Number 402%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2107279] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cypriot syllabary script (ISO Number 403).")
+	(description "The associated value is represented in the Cypriot syllabary script %28ISO Number 403%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2115920] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cyrillic script (ISO Number 220).")
+	(description "The associated value is represented in the Cyrillic script %28ISO Number 220%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2115927] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cyrillic (Old Church Slavonic variant) script (ISO Number 221).")
+	(description "The associated value is represented in the Cyrillic %28Old Church Slavonic variant%29 script %28ISO Number 221%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2126604] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Devanagari (Nagari) script (ISO Number 315).")
+	(description "The associated value is represented in the Devanagari %28Nagari%29 script %28ISO Number 315%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2129807] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Dives Akuru script (ISO Number 342).")
+	(description "The associated value is represented in the Dives Akuru script %28ISO Number 342%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2135766] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Dogra script (ISO Number 328).")
+	(description "The associated value is represented in the Dogra script %28ISO Number 328%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2139953] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Deseret (Mormon) script (ISO Number 250).")
+	(description "The associated value is represented in the Deseret %28Mormon%29 script %28ISO Number 250%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2141805] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Duployan shorthand, Duployan stenography script (ISO Number 755).")
+	(description "The associated value is represented in the Duployan shorthand, Duployan stenography script %28ISO Number 755%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2158413] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Egyptian demotic script (ISO Number 70).")
+	(description "The associated value is represented in the Egyptian demotic script %28ISO Number 70%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2158417] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Egyptian hieratic script (ISO Number 60).")
+	(description "The associated value is represented in the Egyptian hieratic script %28ISO Number 60%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2158425] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Egyptian hieroglyphs script (ISO Number 50).")
+	(description "The associated value is represented in the Egyptian hieroglyphs script %28ISO Number 50%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2162502] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Elbasan script (ISO Number 226).")
+	(description "The associated value is represented in the Elbasan script %28ISO Number 226%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2163227] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Elymaic script (ISO Number 128).")
+	(description "The associated value is represented in the Elymaic script %28ISO Number 128%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2170384] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ethiopic (Geʻez) script (ISO Number 430).")
+	(description "The associated value is represented in the Ethiopic %28Geʻez%29 script %28ISO Number 430%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2212009] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Garay script (ISO Number 164).")
+	(description "The associated value is represented in the Garay script %28ISO Number 164%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2215770] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khutsuri (Asomtavruli and Nuskhuri) script (ISO Number 241).")
+	(description "The associated value is represented in the Khutsuri %28Asomtavruli and Nuskhuri%29 script %28ISO Number 241%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2215777] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Georgian (Mkhedruli and Mtavruli) script (ISO Number 240).")
+	(description "The associated value is represented in the Georgian %28Mkhedruli and Mtavruli%29 script %28ISO Number 240%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2222059] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Glagolitic script (ISO Number 225).")
+	(description "The associated value is represented in the Glagolitic script %28ISO Number 225%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2225345] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Gunjala Gondi script (ISO Number 312).")
+	(description "The associated value is represented in the Gunjala Gondi script %28ISO Number 312%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2225351] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Masaram Gondi script (ISO Number 313).")
+	(description "The associated value is represented in the Masaram Gondi script %28ISO Number 313%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2225532] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Gothic script (ISO Number 206).")
+	(description "The associated value is represented in the Gothic script %28ISO Number 206%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2227832] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Grantha script (ISO Number 343).")
+	(description "The associated value is represented in the Grantha script %28ISO Number 343%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2227953] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Greek script (ISO Number 200).")
+	(description "The associated value is represented in the Greek script %28ISO Number 200%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2230998] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Gujarati script (ISO Number 320).")
+	(description "The associated value is represented in the Gujarati script %28ISO Number 320%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2231019] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Gurung Khema script (ISO Number 397).")
+	(description "The associated value is represented in the Gurung Khema script %28ISO Number 397%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2231249] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Gurmukhi script (ISO Number 310).")
+	(description "The associated value is represented in the Gurmukhi script %28ISO Number 310%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241677] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Han with Bopomofo (alias for Han + Bopomofo) script (ISO Number 503).")
+	(description "The associated value is represented in the Han with Bopomofo %28alias for Han %2B Bopomofo%29 script %28ISO Number 503%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241682] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hangul (Hangŭl, Hangeul) script (ISO Number 286).")
+	(description "The associated value is represented in the Hangul %28Hangŭl, Hangeul%29 script %28ISO Number 286%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241684] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Han (Hanzi, Kanji, Hanja) script (ISO Number 500).")
+	(description "The associated value is represented in the Han %28Hanzi, Kanji, Hanja%29 script %28ISO Number 500%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241690] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hanunoo (Hanunóo) script (ISO Number 371).")
+	(description "The associated value is represented in the Hanunoo %28Hanunóo%29 script %28ISO Number 371%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241694] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Han (Simplified variant) script (ISO Number 501).")
+	(description "The associated value is represented in the Han %28Simplified variant%29 script %28ISO Number 501%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241695] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Han (Traditional variant) script (ISO Number 502).")
+	(description "The associated value is represented in the Han %28Traditional variant%29 script %28ISO Number 502%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2241879] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hatran script (ISO Number 127).")
+	(description "The associated value is represented in the Hatran script %28ISO Number 127%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2245165] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hebrew script (ISO Number 125).")
+	(description "The associated value is represented in the Hebrew script %28ISO Number 125%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2249488] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hiragana script (ISO Number 410).")
+	(description "The associated value is represented in the Hiragana script %28ISO Number 410%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2252486] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs) script (ISO Number 80).")
+	(description "The associated value is represented in the Anatolian Hieroglyphs %28Luwian Hieroglyphs, Hittite Hieroglyphs%29 script %28ISO Number 80%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2253214] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Pahawh Hmong script (ISO Number 450).")
+	(description "The associated value is represented in the Pahawh Hmong script %28ISO Number 450%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2253223] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Nyiakeng Puachue Hmong script (ISO Number 451).")
+	(description "The associated value is represented in the Nyiakeng Puachue Hmong script %28ISO Number 451%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2254366] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Han (Traditional variant). with Latin (alias for Hant + Latn) script (ISO Number 504).")
+	(description "The associated value is represented in the Han %28Traditional variant%29. with Latin %28alias for Hant %2B Latn%29 script %28ISO Number 504%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2257939] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Japanese syllabaries (alias for Hiragana + Katakana) script (ISO Number 412).")
+	(description "The associated value is represented in the Japanese syllabaries %28alias for Hiragana %2B Katakana%29 script %28ISO Number 412%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2260902] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Hungarian (Hungarian Runic) script (ISO Number 176).")
+	(description "The associated value is represented in the Old Hungarian %28Hungarian Runic%29 script %28ISO Number 176%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2283668] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Indus (Harappan) script (ISO Number 610).")
+	(description "The associated value is represented in the Indus %28Harappan%29 script %28ISO Number 610%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2289334] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Italic (Etruscan, Oscan, etc.) script (ISO Number 210).")
+	(description "The associated value is represented in the Old Italic %28Etruscan, Oscan, etc.%29 script %28ISO Number 210%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2301241] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Jamo (alias for Jamo subset of Hangul) script (ISO Number 284).")
+	(description "The associated value is represented in the Jamo %28alias for Jamo subset of Hangul%29 script %28ISO Number 284%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2301506] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Javanese script (ISO Number 361).")
+	(description "The associated value is represented in the Javanese script %28ISO Number 361%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2315283] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Japanese (alias for Han + Hiragana + Katakana) script (ISO Number 413).")
+	(description "The associated value is represented in the Japanese %28alias for Han %2B Hiragana %2B Katakana%29 script %28ISO Number 413%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2320604] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Jurchen script (ISO Number 510).")
+	(description "The associated value is represented in the Jurchen script %28ISO Number 510%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2330995] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kayah Li script (ISO Number 357).")
+	(description "The associated value is represented in the Kayah Li script %28ISO Number 357%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2331049] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Katakana script (ISO Number 411).")
+	(description "The associated value is represented in the Katakana script %28ISO Number 411%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2331336] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kawi script (ISO Number 368).")
+	(description "The associated value is represented in the Kawi script %28ISO Number 368%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2337390] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kharoshthi script (ISO Number 305).")
+	(description "The associated value is represented in the Kharoshthi script %28ISO Number 305%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2337762] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khmer script (ISO Number 355).")
+	(description "The associated value is represented in the Khmer script %28ISO Number 355%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2337816] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khojki script (ISO Number 322).")
+	(description "The associated value is represented in the Khojki script %28ISO Number 322%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2338934] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khitan large script script (ISO Number 505).")
+	(description "The associated value is represented in the Khitan large script script %28ISO Number 505%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2338941] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khitan small script script (ISO Number 288).")
+	(description "The associated value is represented in the Khitan small script script %28ISO Number 288%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2343232] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kannada script (ISO Number 345).")
+	(description "The associated value is represented in the Kannada script %28ISO Number 345%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2344631] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Korean (alias for Hangul + Han) script (ISO Number 287).")
+	(description "The associated value is represented in the Korean %28alias for Hangul %2B Han%29 script %28ISO Number 287%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2345196] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kpelle script (ISO Number 436).")
+	(description "The associated value is represented in the Kpelle script %28ISO Number 436%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2346991] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kirat Rai script (ISO Number 396).")
+	(description "The associated value is represented in the Kirat Rai script %28ISO Number 396%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2349130] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Kaithi script (ISO Number 317).")
+	(description "The associated value is represented in the Kaithi script %28ISO Number 317%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2360840] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tai Tham (Lanna) script (ISO Number 351).")
+	(description "The associated value is represented in the Tai Tham %28Lanna%29 script %28ISO Number 351%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2360885] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Lao script (ISO Number 356).")
+	(description "The associated value is represented in the Lao script %28ISO Number 356%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2361031] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Latin (Fraktur variant) script (ISO Number 217).")
+	(description "The associated value is represented in the Latin %28Fraktur variant%29 script %28ISO Number 217%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2361032] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Latin (Gaelic variant) script (ISO Number 216).")
+	(description "The associated value is represented in the Latin %28Gaelic variant%29 script %28ISO Number 216%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2361039] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Latin script (ISO Number 215).")
+	(description "The associated value is represented in the Latin script %28ISO Number 215%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2364595] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Leke script (ISO Number 364).")
+	(description "The associated value is represented in the Leke script %28ISO Number 364%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2364748] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Lepcha (Róng) script (ISO Number 335).")
+	(description "The associated value is represented in the Lepcha %28Róng%29 script %28ISO Number 335%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2368498] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Limbu script (ISO Number 336).")
+	(description "The associated value is represented in the Limbu script %28ISO Number 336%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2368528] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Linear A script (ISO Number 400).")
+	(description "The associated value is represented in the Linear A script %28ISO Number 400%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2368529] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Linear B script (ISO Number 401).")
+	(description "The associated value is represented in the Linear B script %28ISO Number 401%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2368703] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Lisu (Fraser) script (ISO Number 399).")
+	(description "The associated value is represented in the Lisu %28Fraser%29 script %28ISO Number 399%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2374263] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Loma script (ISO Number 437).")
+	(description "The associated value is represented in the Loma script %28ISO Number 437%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2383571] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Lycian script (ISO Number 202).")
+	(description "The associated value is represented in the Lycian script %28ISO Number 202%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2383602] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Lydian script (ISO Number 116).")
+	(description "The associated value is represented in the Lydian script %28ISO Number 116%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390454] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mahajani script (ISO Number 314).")
+	(description "The associated value is represented in the Mahajani script %28ISO Number 314%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390538] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Makasar script (ISO Number 366).")
+	(description "The associated value is represented in the Makasar script %28ISO Number 366%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390634] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mandaic, Mandaean script (ISO Number 140).")
+	(description "The associated value is represented in the Mandaic, Mandaean script %28ISO Number 140%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390639] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Manichaean script (ISO Number 139).")
+	(description "The associated value is represented in the Manichaean script %28ISO Number 139%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390757] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Marchen script (ISO Number 332).")
+	(description "The associated value is represented in the Marchen script %28ISO Number 332%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2390972] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mayan hieroglyphs script (ISO Number 90).")
+	(description "The associated value is represented in the Mayan hieroglyphs script %28ISO Number 90%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2394170] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Medefaidrin (Oberi Okaime, Oberi Ɔkaimɛ) script (ISO Number 265).")
+	(description "The associated value is represented in the Medefaidrin %28Oberi Okaime, Oberi Ɔkaimɛ%29 script %28ISO Number 265%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2394478] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mende Kikakui script (ISO Number 438).")
+	(description "The associated value is represented in the Mende Kikakui script %28ISO Number 438%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2394601] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Meroitic Cursive script (ISO Number 101).")
+	(description "The associated value is represented in the Meroitic Cursive script %28ISO Number 101%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2394613] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Meroitic Hieroglyphs script (ISO Number 100).")
+	(description "The associated value is represented in the Meroitic Hieroglyphs script %28ISO Number 100%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2401555] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Malayalam script (ISO Number 347).")
+	(description "The associated value is represented in the Malayalam script %28ISO Number 347%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2403783] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Modi or Moḍī script (ISO Number 324).")
+	(description "The associated value is represented in the Modi or Moḍī script %28ISO Number 324%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2404091] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mongolian script (ISO Number 145).")
+	(description "The associated value is represented in the Mongolian script %28ISO Number 145%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2404129] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Moon (Moon code, Moon script, Moon type) script (ISO Number 218).")
+	(description "The associated value is represented in the Moon %28Moon code, Moon script, Moon type%29 script %28ISO Number 218%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2407013] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mro, Mru script (ISO Number 264).")
+	(description "The associated value is represented in the Mro, Mru script %28ISO Number 264%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2408619] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Meitei Mayek (Meithei, Meetei) script (ISO Number 337).")
+	(description "The associated value is represented in the Meitei Mayek %28Meithei, Meetei%29 script %28ISO Number 337%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2409808] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Multani script (ISO Number 323).")
+	(description "The associated value is represented in the Multani script %28ISO Number 323%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2413681] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Myanmar (Burmese) script (ISO Number 350).")
+	(description "The associated value is represented in the Myanmar %28Burmese%29 script %28ISO Number 350%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2420217] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Nag Mundari script (ISO Number 295).")
+	(description "The associated value is represented in the Nag Mundari script %28ISO Number 295%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2420425] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Nandinagari script (ISO Number 311).")
+	(description "The associated value is represented in the Nandinagari script %28ISO Number 311%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2420547] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old North Arabian (Ancient North Arabian) script (ISO Number 106).")
+	(description "The associated value is represented in the Old North Arabian %28Ancient North Arabian%29 script %28ISO Number 106%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2420999] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Nabataean script (ISO Number 159).")
+	(description "The associated value is represented in the Nabataean script %28ISO Number 159%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2424545] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Newa, Newar, Newari, Nepāla lipi script (ISO Number 333).")
+	(description "The associated value is represented in the Newa, Newar, Newari, Nepāla lipi script %28ISO Number 333%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2429723] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Naxi Dongba (na²¹ɕi³³ to³³ba²¹, Nakhi Tomba) script (ISO Number 85).")
+	(description "The associated value is represented in the Naxi Dongba %28na²¹ɕi³³ to³³ba²¹, Nakhi Tomba%29 script %28ISO Number 85%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2429816] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Naxi Geba (na²¹ɕi³³ gʌ²¹ba²¹, 'Na-'Khi ²Ggŏ-¹baw, Nakhi Geba) script (ISO Number 420).")
+	(description "The associated value is represented in the Naxi Geba %28na²¹ɕi³³ gʌ²¹ba²¹, %47Na-%47Khi ²Ggŏ-¹baw, Nakhi Geba%29 script %28ISO Number 420%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2430077] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the N’Ko script (ISO Number 165).")
+	(description "The associated value is represented in the N’Ko script %28ISO Number 165%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2437554] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Nüshu script (ISO Number 499).")
+	(description "The associated value is represented in the Nüshu script %28ISO Number 499%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2455588] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ogham script (ISO Number 212).")
+	(description "The associated value is represented in the Ogham script %28ISO Number 212%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2460453] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ol Chiki (Ol Cemet’, Ol, Santali) script (ISO Number 261).")
+	(description "The associated value is represented in the Ol Chiki %28Ol Cemet’, Ol, Santali%29 script %28ISO Number 261%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2462317] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ol Onal script (ISO Number 296).")
+	(description "The associated value is represented in the Ol Onal script %28ISO Number 296%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2466464] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Turkic, Orkhon Runic script (ISO Number 175).")
+	(description "The associated value is represented in the Old Turkic, Orkhon Runic script %28ISO Number 175%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2466891] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Oriya (Odia) script (ISO Number 327).")
+	(description "The associated value is represented in the Oriya %28Odia%29 script %28ISO Number 327%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2467298] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Osage script (ISO Number 219).")
+	(description "The associated value is represented in the Osage script %28ISO Number 219%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2467480] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Osmanya script (ISO Number 260).")
+	(description "The associated value is represented in the Osmanya script %28ISO Number 260%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2469233] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Uyghur script (ISO Number 143).")
+	(description "The associated value is represented in the Old Uyghur script %28ISO Number 143%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2479954] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Palmyrene script (ISO Number 126).")
+	(description "The associated value is represented in the Palmyrene script %28ISO Number 126%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2480223] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Pau Cin Hau script (ISO Number 263).")
+	(description "The associated value is represented in the Pau Cin Hau script %28ISO Number 263%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2482156] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Proto-Cuneiform script (ISO Number 15).")
+	(description "The associated value is represented in the Proto-Cuneiform script %28ISO Number 15%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2483798] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Proto-Elamite script (ISO Number 16).")
+	(description "The associated value is represented in the Proto-Elamite script %28ISO Number 16%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2483984] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Permic script (ISO Number 227).")
+	(description "The associated value is represented in the Old Permic script %28ISO Number 227%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2486334] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Phags-pa script (ISO Number 331).")
+	(description "The associated value is represented in the Phags-pa script %28ISO Number 331%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2486677] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Inscriptional Pahlavi script (ISO Number 131).")
+	(description "The associated value is represented in the Inscriptional Pahlavi script %28ISO Number 131%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2486684] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Psalter Pahlavi script (ISO Number 132).")
+	(description "The associated value is represented in the Psalter Pahlavi script %28ISO Number 132%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2486690] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Book Pahlavi script (ISO Number 133).")
+	(description "The associated value is represented in the Book Pahlavi script %28ISO Number 133%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2486754] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Phoenician script (ISO Number 115).")
+	(description "The associated value is represented in the Phoenician script %28ISO Number 115%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2487788] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Klingon (KLI pIqaD) script (ISO Number 293).")
+	(description "The associated value is represented in the Klingon %28KLI pIqaD%29 script %28ISO Number 293%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2490702] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Miao (Pollard) script (ISO Number 282).")
+	(description "The associated value is represented in the Miao %28Pollard%29 script %28ISO Number 282%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2496535] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Inscriptional Parthian script (ISO Number 130).")
+	(description "The associated value is represented in the Inscriptional Parthian script %28ISO Number 130%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2497160] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Proto-Sinaitic script (ISO Number 103).")
+	(description "The associated value is represented in the Proto-Sinaitic script %28ISO Number 103%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2539595] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ranjana script (ISO Number 303).")
+	(description "The associated value is represented in the Ranjana script %28ISO Number 303%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2548241] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Rejang (Redjang, Kaganga) script (ISO Number 363).")
+	(description "The associated value is represented in the Rejang %28Redjang, Kaganga%29 script %28ISO Number 363%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2552860] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Hanifi Rohingya script (ISO Number 167).")
+	(description "The associated value is represented in the Hanifi Rohingya script %28ISO Number 167%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2553178] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Rongorongo script (ISO Number 620).")
+	(description "The associated value is represented in the Rongorongo script %28ISO Number 620%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2558823] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Runic script (ISO Number 211).")
+	(description "The associated value is represented in the Runic script %28ISO Number 211%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2569363] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Samaritan script (ISO Number 123).")
+	(description "The associated value is represented in the Samaritan script %28ISO Number 123%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2569501] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sarati script (ISO Number 292).")
+	(description "The associated value is represented in the Sarati script %28ISO Number 292%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2569502] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old South Arabian script (ISO Number 105).")
+	(description "The associated value is represented in the Old South Arabian script %28ISO Number 105%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2569611] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Saurashtra script (ISO Number 344).")
+	(description "The associated value is represented in the Saurashtra script %28ISO Number 344%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2572829] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the (Small). Seal script (ISO Number 590).")
+	(description "The associated value is represented in the %28Small%29. Seal script %28ISO Number 590%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2575165] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the SignWriting script (ISO Number 95).")
+	(description "The associated value is represented in the SignWriting script %28ISO Number 95%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2575723] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Shavian (Shaw) script (ISO Number 281).")
+	(description "The associated value is represented in the Shavian %28Shaw%29 script %28ISO Number 281%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2576231] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sharada, Śāradā script (ISO Number 319).")
+	(description "The associated value is represented in the Sharada, Śāradā script %28ISO Number 319%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2576329] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Shuishu script (ISO Number 530).")
+	(description "The associated value is represented in the Shuishu script %28ISO Number 530%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2576758] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Siddham, Siddhaṃ, Siddhamātṛkā script (ISO Number 302).")
+	(description "The associated value is represented in the Siddham, Siddhaṃ, Siddhamātṛkā script %28ISO Number 302%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2576774] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sidetic script (ISO Number 180).")
+	(description "The associated value is represented in the Sidetic script %28ISO Number 180%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2577068] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Khudawadi, Sindhi script (ISO Number 318).")
+	(description "The associated value is represented in the Khudawadi, Sindhi script %28ISO Number 318%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2577072] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sinhala script (ISO Number 348).")
+	(description "The associated value is represented in the Sinhala script %28ISO Number 348%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2582617] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sogdian script (ISO Number 141).")
+	(description "The associated value is represented in the Sogdian script %28ISO Number 141%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2582628] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Sogdian script (ISO Number 142).")
+	(description "The associated value is represented in the Old Sogdian script %28ISO Number 142%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2582955] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sora Sompeng script (ISO Number 398).")
+	(description "The associated value is represented in the Sora Sompeng script %28ISO Number 398%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2583186] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Soyombo script (ISO Number 329).")
+	(description "The associated value is represented in the Soyombo script %28ISO Number 329%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2588600] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sundanese script (ISO Number 362).")
+	(description "The associated value is represented in the Sundanese script %28ISO Number 362%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2588617] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Sunuwar script (ISO Number 274).")
+	(description "The associated value is represented in the Sunuwar script %28ISO Number 274%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2592393] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Syloti Nagri script (ISO Number 316).")
+	(description "The associated value is represented in the Syloti Nagri script %28ISO Number 316%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2592567] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Syriac script (ISO Number 135).")
+	(description "The associated value is represented in the Syriac script %28ISO Number 135%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2592569] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Syriac (Estrangelo variant) script (ISO Number 138).")
+	(description "The associated value is represented in the Syriac %28Estrangelo variant%29 script %28ISO Number 138%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2592574] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Syriac (Western variant) script (ISO Number 137).")
+	(description "The associated value is represented in the Syriac %28Western variant%29 script %28ISO Number 137%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2592578] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Syriac (Eastern variant) script (ISO Number 136).")
+	(description "The associated value is represented in the Syriac %28Eastern variant%29 script %28ISO Number 136%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2598952] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tagbanwa script (ISO Number 373).")
+	(description "The associated value is represented in the Tagbanwa script %28ISO Number 373%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599092] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The assocated value is represented in the Takri, Ṭākrī, Ṭāṅkrī script (ISO Number 321).")
+	(description "The assocated value is represented in the Takri, Ṭākrī, Ṭāṅkrī script %28ISO Number 321%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599110] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tai Le script (ISO Number 353).")
+	(description "The associated value is represented in the Tai Le script %28ISO Number 353%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599126] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the New Tai Lue script (ISO Number 354).")
+	(description "The associated value is represented in the New Tai Lue script %28ISO Number 354%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599148] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tamil script (ISO Number 346).")
+	(description "The associated value is represented in the Tamil script %28ISO Number 346%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599174] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tangut script (ISO Number 520).")
+	(description "The associated value is represented in the Tangut script %28ISO Number 520%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599435] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tai Viet script (ISO Number 359).")
+	(description "The associated value is represented in the Tai Viet script %28ISO Number 359%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2599523] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tai Yo script (ISO Number 380).")
+	(description "The associated value is represented in the Tai Yo script %28ISO Number 380%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2602970] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Telugu script (ISO Number 340).")
+	(description "The associated value is represented in the Telugu script %28ISO Number 340%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2603018] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tengwar script (ISO Number 290).")
+	(description "The associated value is represented in the Tengwar script %28ISO Number 290%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2603979] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tifinagh (Berber) script (ISO Number 120).")
+	(description "The associated value is represented in the Tifinagh %28Berber%29 script %28ISO Number 120%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2604878] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tagalog (Baybayin, Alibata) script (ISO Number 370).")
+	(description "The associated value is represented in the Tagalog %28Baybayin, Alibata%29 script %28ISO Number 370%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2605492] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Thaana script (ISO Number 170).")
+	(description "The associated value is represented in the Thaana script %28ISO Number 170%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2605500] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Thai script (ISO Number 352).")
+	(description "The associated value is represented in the Thai script %28ISO Number 352%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2606503] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tibetan script (ISO Number 330).")
+	(description "The associated value is represented in the Tibetan script %28ISO Number 330%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2606987] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tirhuta script (ISO Number 326).")
+	(description "The associated value is represented in the Tirhuta script %28ISO Number 326%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2611816] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tangsa script (ISO Number 275).")
+	(description "The associated value is represented in the Tangsa script %28ISO Number 275%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2612329] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Todhri script (ISO Number 229).")
+	(description "The associated value is represented in the Todhri script %28ISO Number 229%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2612578] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tolong Siki script (ISO Number 299).")
+	(description "The associated value is represented in the Tolong Siki script %28ISO Number 299%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2612822] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Toto script (ISO Number 294).")
+	(description "The associated value is represented in the Toto script %28ISO Number 294%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2618580] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Tulu-Tigalari script (ISO Number 341).")
+	(description "The associated value is represented in the Tulu-Tigalari script %28ISO Number 341%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2634339] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Ugaritic script (ISO Number 40).")
+	(description "The associated value is represented in the Ugaritic script %28ISO Number 40%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2658603] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Vai script (ISO Number 470).")
+	(description "The associated value is represented in the Vai script %28ISO Number 470%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2666608] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Visible Speech script (ISO Number 280).")
+	(description "The associated value is represented in the Visible Speech script %28ISO Number 280%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2666631] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Vithkuqi script (ISO Number 228).")
+	(description "The associated value is represented in the Vithkuqi script %28ISO Number 228%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2688665] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Warang Citi (Varang Kshiti) script (ISO Number 262).")
+	(description "The associated value is represented in the Warang Citi %28Varang Kshiti%29 script %28ISO Number 262%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2690291] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Wancho script (ISO Number 283).")
+	(description "The associated value is represented in the Wancho script %28ISO Number 283%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2701937] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Woleai script (ISO Number 480).")
+	(description "The associated value is represented in the Woleai script %28ISO Number 480%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2732482] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Old Persian script (ISO Number 30).")
+	(description "The associated value is represented in the Old Persian script %28ISO Number 30%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2735870] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Cuneiform or Sumero-Akkadian script (ISO Number 20).")
+	(description "The associated value is represented in the Cuneiform or Sumero-Akkadian script %28ISO Number 20%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2752347] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Yezidi script (ISO Number 192).")
+	(description "The associated value is represented in the Yezidi script %28ISO Number 192%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2755664] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Yi script (ISO Number 460).")
+	(description "The associated value is represented in the Yi script %28ISO Number 460%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2777915] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Zanabazar Square (Zanabazarin  Dörböljin Useg, Xewtee Dörböljin Bicig, Horizontal Square Script) script (ISO Number 339).")
+	(description "The associated value is represented in the Zanabazar Square %28Zanabazarin  Dörböljin Useg, Xewtee Dörböljin Bicig, Horizontal Square Script%29 script %28ISO Number 339%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2785609] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Code for inherited script script (ISO Number 994).")
+	(description "The associated value is represented in the Code for inherited script script %28ISO Number 994%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2789639] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Mathematical notation script (ISO Number 995).")
+	(description "The associated value is represented in the Mathematical notation script %28ISO Number 995%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2795557] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Symbols (emoji variant) script (ISO Number 993).")
+	(description "The associated value is represented in the Symbols %28emoji variant%29 script %28ISO Number 993%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2795565] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Symbols script (ISO Number 996).")
+	(description "The associated value is represented in the Symbols script %28ISO Number 996%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2800350] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Code for unwritten documents script (ISO Number 997).")
+	(description "The associated value is represented in the Code for unwritten documents script %28ISO Number 997%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2801343] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Code for undetermined script script (ISO Number 998).")
+	(description "The associated value is represented in the Code for undetermined script script %28ISO Number 998%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Language_Tags.pds.script_code.2802336] of  ValueMeaning
 
 	(beginDate "2009-06-09")
-	(description "The associated value is represented in the Code for uncoded script script (ISO Number 999).")
+	(description "The associated value is represented in the Code for uncoded script script %28ISO Number 999%29.")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Local_ID_Reference.pds.id_reference_type.102150552] of  ValueMeaning
