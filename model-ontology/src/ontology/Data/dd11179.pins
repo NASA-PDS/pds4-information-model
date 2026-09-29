@@ -1,4 +1,4 @@
-; Tue Sep 29 16:17:36 EDT 2026
+; Tue Sep 29 16:33:37 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -47638,7 +47638,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Attribute_Extension.pds.attribute_name")
-	(datatype [TBD_value_type])
+	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -47648,7 +47648,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Attribute_Extension.pds.attribute_name])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -54190,7 +54190,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.definition")
-	(datatype [TBD_value_type])
+	(datatype [UTF8_Text_Preserved])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -54200,7 +54200,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Language_Tags.pds.definition])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Text])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -54211,7 +54211,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.preferred_flag")
-	(datatype [TBD_value_type])
+	(datatype [ASCII_Boolean])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -54221,7 +54221,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Language_Tags.pds.preferred_flag])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Boolean])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
@@ -54232,7 +54232,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Language_Tags.pds.value_utf8")
-	(datatype [TBD_value_type])
+	(datatype [UTF8_Text_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -54242,7 +54242,7 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Language_Tags.pds.value_utf8])
-	(representedBy2 [CD_TBD_dataConcept])
+	(representedBy2 [CD_Text])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
 	(unitOfMeasure [TBD_unit_of_measure_type])
