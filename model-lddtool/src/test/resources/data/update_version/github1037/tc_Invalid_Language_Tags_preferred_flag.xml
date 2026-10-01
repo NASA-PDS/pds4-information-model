@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INVALID: Language_Tags/preferred_flag value "yes" is not in the permitted set ('true', 'false').
+     Expected failure: core Schematron
+     Rule: pds:Language_Tags/pds:preferred_flag must be equal to one of the following values
+           'true', 'false' (PDS4_PDS_1R00.sch line 1334).
+     Note: language_code and script_code are valid; preferred_flag is the sole defect.
+     Background: the Schematron rule for pds:Language_Tags/pds:script_code exists in
+     PDS4_PDS_1R00.sch (line 1348) but was empirically found not to fire in the current
+     validator — that gap should be investigated separately. -->
+<?xml-model href="../../source/PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
+                        ../../source/PDS4_PDS_1R00.xsd">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>MRO MARS HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT REDUCED DATA RECORD EQUIRECTANGULAR PROJECTION</title>
+    <information_model_version>1.27.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Citation_Information>
+      <publication_year>2026</publication_year>
+      <description>Invalid: Language_Tags/preferred_flag is set to "yes", which is not
+        a permitted value. Only "true" and "false" are allowed. The language_code
+        and script_code are valid. The invalid preferred_flag is the sole
+        intentional defect.</description>
+      <List_Author>
+        <Person>
+          <given_name>Ivan</given_name>
+          <family_name>Ivanov</family_name>
+          <Attribute_Extension>
+            <attribute_name>family_name</attribute_name>
+            <Language_Tags>
+              <value_utf8>Иван Иванов</value_utf8>
+              <language_code>ru</language_code>
+              <script_code>Cyrl</script_code>
+              <!-- DEFECT: "yes" is not a permitted value; must be "true" or "false" -->
+              <preferred_flag>yes</preferred_flag>
+            </Language_Tags>
+          </Attribute_Extension>
+        </Person>
+      </List_Author>
+    </Citation_Information>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>2015-12-07T21:26:02.757Z</start_date_time>
+      <stop_date_time>2015-12-07T21:26:04.637Z</stop_date_time>
+    </Time_Coordinates>
+    <Investigation_Area>
+      <name>MARS RECONNAISSANCE ORBITER</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.mars_reconnaissance_orbiter</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT</name>
+        <type>Instrument</type>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Mars</name>
+      <type>Planet</type>
+    </Target_Identification>
+    <Mission_Area>
+    </Mission_Area>
+    <Discipline_Area>
+    </Discipline_Area>
+  </Observation_Area>
+  <File_Area_Observational>
+    <File>
+      <file_name>ESP_043896_2055_RED.tif</file_name>
+      <local_identifier>DATA_FILE</local_identifier>
+      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
+      <file_size unit="byte">1184018549</file_size>
+    </File>
+    <Array_1D_Spectrum>
+      <local_identifier>Array_1D_Spectrum</local_identifier>
+      <offset unit="byte">152747</offset>
+      <axes>1</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <Element_Array>
+        <data_type>UnsignedLSB2</data_type>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>23379</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+    </Array_1D_Spectrum>
+  </File_Area_Observational>
+</Product_Observational>
