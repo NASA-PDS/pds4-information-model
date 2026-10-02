@@ -21,4 +21,11 @@
       <epncore:particle_type>Electrons</epncore:particle_type>
     </epncore:Particle_Observation>
   </Discipline_Area>
+  <Investigation>
+    <name>OREX</name>
+    <type>Mission</type>
+    <start_date>2026-01-01</start_date>
+    <stop_date>2030-12-31</stop_date>
+    <description>The OREX mission.</description>
+  </Investigation> 
 </Product_Context>
