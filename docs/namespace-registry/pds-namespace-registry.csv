@@ -1,4 +1,4 @@
-Last Update,2026-06-16,,,,,
+Last Update,2026-09-29,,,,,
 Namespace Id,Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date
 Common,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03
@@ -9,6 +9,7 @@ kpds,KARI Planetary Data System,Namespace for the for the Korea Aerospace Resear
 psa,ESA PSA,Namespace for ESA PSA's dictionary.,Discipline,Tanya Lim,tlim at sciops.esa.int,2015-09-30
 rssa,RSSA (IKI),Namespace for the RSSA (IKI) dictionary.,Discipline,Oleg Batanov,obat at romance.iki.rssi.ru,2017-03-17
 epn,VESPA EPN,Namespace for the VESPA EPN dictionary.,Discipline,Baptiste Cecconi,baptiste.cecconi at observatoiredeparis.psl.eu,2020-10-28
+epncore,EPNCore,"This LDD contains the EPNcore dictionary, as defined in the IVOA specification, with few design adjustments.",Discipline,Baptiste Cecconi,baptiste.cecconi at observatoiredeparis.psl.eu,2026-09-15
 Discipline,,,,,,
 alt,Alternate,Namespace for the PPI Node's Alternate dictionary.,Discipline,Joseph Mafi,jmafi at igpp.ucla.edu,2015-04-24
 ama,Atmospheres Modeling Annex,This LDD provides attributes appropriate to atmospheric modeling products that will reside in the Atmospheres Modeling Annex.,Discipline,Lyle Huber,lhuber at nmsu.edu,2025-01-23
