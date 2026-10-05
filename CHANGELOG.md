@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-01)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -15,6 +15,7 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace epncore [\#1082](https://github.com/NASA-PDS/pds4-information-model/issues/1082)
 - \[namespace-registry\] add new namespace di [\#1079](https://github.com/NASA-PDS/pds4-information-model/issues/1079)
 
 **Defects:**
