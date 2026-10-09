@@ -8,6 +8,7 @@
 
 - CCB-90: Add archival\_to\_native back pointer to reference\_type [\#1076](https://github.com/NASA-PDS/pds4-information-model/issues/1076)
 - CCB-91: Add more units of Rate: megabits/s and gigabits/s [\#1065](https://github.com/NASA-PDS/pds4-information-model/issues/1065)
+- CCB-63: International characters / Unicode support for names - IM Update [\#1037](https://github.com/NASA-PDS/pds4-information-model/issues/1037)
 - \[documentation\] CCB-80: Support NEF as a Native format for Artemis [\#1035](https://github.com/NASA-PDS/pds4-information-model/issues/1035)
 - \[documentation\] CCB-79 : Add enumerated value day\*\*-1 to Units\_of\_Rates [\#1034](https://github.com/NASA-PDS/pds4-information-model/issues/1034)
 - \[documentation\] CCB-58: New Product\_Native values for MSL/Mastcam [\#1033](https://github.com/NASA-PDS/pds4-information-model/issues/1033)
