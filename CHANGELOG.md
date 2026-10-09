@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-05)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -29,6 +29,7 @@
 **Other closed issues:**
 
 - Make DD and RDF File Export Optional in LDDTool core runs [\#1077](https://github.com/NASA-PDS/pds4-information-model/issues/1077)
+- Develop mapping of existing ops: registry metadata to new OPS LDD [\#1073](https://github.com/NASA-PDS/pds4-information-model/issues/1073)
 - Update Product\_Resource to add pds4\_wide\_applicability\_flag [\#1071](https://github.com/NASA-PDS/pds4-information-model/issues/1071)
 - Upgrade to OpenJDK 25, Oracle Java 17 is EOL [\#1070](https://github.com/NASA-PDS/pds4-information-model/issues/1070)
 - LDDTool should not write Schematron rules for Units of Measure [\#1068](https://github.com/NASA-PDS/pds4-information-model/issues/1068)
