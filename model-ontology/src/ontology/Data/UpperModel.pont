@@ -1,4 +1,4 @@
-; Thu Sep 24 10:47:37 EDT 2026
+; Tue Sep 29 15:46:39 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -15,6 +15,10 @@
 ;+		(comment "The mission_objectives_summary attribute describes the major scientific objectives of a planetary mission or project.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot script_code
+;+		(comment "The script_code attributes provides a 4-character ISO 15924 script code.")
+		(type STRING)
 		(create-accessor read-write))
 	(single-slot archive_bundle
 ;+		(comment "The archive bundle association is a relationship to the archive bundle class.")
@@ -2579,6 +2583,10 @@
 		(type STRING)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
+	(multislot value_utf8
+;+		(comment "The value_utf8 attribute provides a single, allowed numerical or UTF-8 string value.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot file_area_LIDVID_Secondary
 ;+		(comment "The file_area association is a relationship to File Area")
 		(type INSTANCE)
@@ -2639,6 +2647,11 @@
 	(multislot funder_identifier
 ;+		(comment "The funder_identifier attribute provides a unique alphanumeric identifier associated with an organization or individual that has provided funding.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_language_tags
+;+		(comment "The has_language_tags association is a relationship to Language_Tags.")
+		(type INSTANCE)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot geometry_reference
 ;+		(comment "The geometry reference attribute provides either the logical_identifier or the logical_identifier plus the version_id for a registry object.")
@@ -3564,6 +3577,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes)
 		(create-accessor read-write))
+	(multislot language_code
+;+		(comment "The language_code attribute provides a 2-character ISO 639-1 language code.")
+		(type STRING)
+		(create-accessor read-write))
 	(single-slot value_offset
 ;+		(comment "The value_offset attribute is the offset to be applied to each stored value in order to recover an original  value. The observed value (Ov) is calculated from the stored value (Sv) thus: Ov = (Sv * scaling_factor) + value_offset. The default value is 0.")
 		(type FLOAT)
@@ -3604,6 +3621,11 @@
 	(multislot ring_event_start_time_utc
 ;+		(comment "ring_event_start_time_utc gives the UTC time corresponding to the earliest time given by ring_event_time or ring_event_tdb in the data table. ring_event_start_time_utc is required for all ring occultation data. ring_event_start_time_utc is required label attribute for all ring occultation data.")
 		(type STRING)
+		(create-accessor read-write))
+	(multislot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes)
 		(create-accessor read-write))
 	(multislot has_type_list_area
 ;+		(comment "The has_type_list_area association is a relationship to Type_List_Area.")
@@ -10734,6 +10756,11 @@
 ;+		(comment "The family_name attribute provides the last name or patronymic (https://en.wikipedia.org/wiki/Personal_name) of the person being identified.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes Attribute_Extension)
 		(create-accessor read-write)))
 
 (defclass Affiliation "The Affiliation class is a container for the child attributes that describe the affiliation of a person."
@@ -10753,6 +10780,12 @@
 ;+		(comment "The organization_name attribute provides the name of the organization being identified. Do not include commas.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes Attribute_Extension)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Organization "The Organization class is a container for the child attributes that describe an organization, institution, or company."
@@ -10782,6 +10815,12 @@
 ;+		(comment "The organization_name attribute provides the name of the organization being identified. Do not include commas.")
 		(type STRING)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes Attribute_Extension)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Parent_Organization "The Parent_Organization class is a container for the child attributes and classes that describe the parent organization."
@@ -10800,6 +10839,12 @@
 	(single-slot parent_organization_rorid
 ;+		(comment "The parent_organization_rorid attribute provides the Research Organization Registry ID of the identified parent organization. The RORID is expressed as a fully formed URI (e.g., https://ror.org/027k65916).")
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes Attribute_Extension)
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
@@ -10893,6 +10938,51 @@
 ;+		(comment "The product_type_name attribute identifies a group of data products within a collection that have some property in common, such as processing level, resolution, or instrument-specific setting.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Language_Tags "The Language_Tags class is a container for the child attributes that describe the lanuage and script used for an attribute value."
+	(is-a Product_Components)
+	(role concrete)
+	(single-slot preferred_flag
+;+		(comment "The preferred_flag indicates whether this entry is  preferred over all other entries.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value_utf8
+;+		(comment "The value_utf8 attribute provides a single, allowed numerical or UTF-8 string value.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot definition
+;+		(comment "The definition attribute provides a statement, picture in words, or account that defines the term.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot script_code
+;+		(comment "The script_code attributes provides a 4-character ISO 15924 script code.")
+		(type STRING)
+;+		(value "Adlm" "Afak" "Aghb" "Ahom" "Arab" "Aran" "Armi" "Armn" "Avst" "Bali" "Bamu" "Bass" "Batk" "Beng" "Berf" "Bhks" "Blis" "Bopo" "Brah" "Brai" "Bugi" "Buhd" "Cakm" "Cans" "Cari" "Cham" "Cher" "Chis" "Chrs" "Cirt" "Copt" "Cpmn" "Cprt" "Cyrl" "Cyrs" "Deva" "Diak" "Dogr" "Dsrt" "Dupl" "Egyd" "Egyh" "Egyp" "Elba" "Elym" "Ethi" "Gara" "Geok" "Geor" "Glag" "Gong" "Gonm" "Goth" "Gran" "Grek" "Gujr" "Gukh" "Guru" "Hanb" "Hang" "Hani" "Hano" "Hans" "Hant" "Hatr" "Hebr" "Hira" "Hluw" "Hmng" "Hmnp" "Hntl" "Hrkt" "Hung" "Inds" "Ital" "Jamo" "Java" "Jpan" "Jurc" "Kali" "Kana" "Kawi" "Khar" "Khmr" "Khoj" "Kitl" "Kits" "Knda" "Kore" "Kpel" "Krai" "Kthi" "Lana" "Laoo" "Latf" "Latg" "Latn" "Leke" "Lepc" "Limb" "Lina" "Linb" "Lisu" "Loma" "Lyci" "Lydi" "Mahj" "Maka" "Mand" "Mani" "Marc" "Maya" "Medf" "Mend" "Merc" "Mero" "Mlym" "Modi" "Mong" "Moon" "Mroo" "Mtei" "Mult" "Mymr" "Nagm" "Nand" "Narb" "Nbat" "Newa" "Nkdb" "Nkgb" "Nkoo" "Nshu" "Ogam" "Olck" "Onao" "Orkh" "Orya" "Osge" "Osma" "Ougr" "Palm" "Pauc" "Pcun" "Pelm" "Perm" "Phag" "Phli" "Phlp" "Phlv" "Phnx" "Piqd" "Plrd" "Prti" "Psin" "Ranj" "Rjng" "Rohg" "Roro" "Runr" "Samr" "Sara" "Sarb" "Saur" "Seal" "Sgnw" "Shaw" "Shrd" "Shui" "Sidd" "Sidt" "Sind" "Sinh" "Sogd" "Sogo" "Sora" "Soyo" "Sund" "Sunu" "Sylo" "Syrc" "Syre" "Syrj" "Syrn" "Tagb" "Takr" "Tale" "Talu" "Taml" "Tang" "Tavt" "Tayo" "Telu" "Teng" "Tfng" "Tglg" "Thaa" "Thai" "Tibt" "Tirh" "Tnsa" "Todr" "Tols" "Toto" "Tutg" "Ugar" "Vaii" "Visp" "Vith" "Wara" "Wcho" "Wole" "Xpeo" "Xsux" "Yezi" "Yiii" "Zanb" "Zinh" "Zmth" "Zsye" "Zsym" "Zxxx" "Zyyy" "Zzzz")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot language_code
+;+		(comment "The language_code attribute provides a 2-character ISO 639-1 language code.")
+		(type STRING)
+;+		(value "aa" "ab" "ae" "af" "ak" "am" "an" "ar" "as" "av" "ay" "az" "ba" "be" "bg" "bi" "bm" "bn" "bo" "br" "bs" "ca" "ce" "ch" "co" "cr" "cs" "cu" "cv" "cy" "da" "de" "dv" "dz" "ee" "el" "en" "eo" "es" "et" "eu" "fa" "ff" "fi" "fj" "fo" "fr" "fy" "ga" "gd" "gl" "gn" "gu" "gv" "ha" "he" "hi" "ho" "hr" "ht" "hu" "hy" "hz" "ia" "id" "ie" "ig" "ii" "ik" "io" "is" "it" "iu" "ja" "jv" "ka" "kg" "ki" "kj" "kk" "kl" "km" "kn" "ko" "kr" "ks" "ku" "kv" "kw" "ky" "la" "lb" "lg" "li" "ln" "lo" "lt" "lu" "lv" "mg" "mh" "mi" "mk" "ml" "mn" "mr" "ms" "mt" "my" "na" "nb" "nd" "ne" "ng" "nl" "nn" "no" "nr" "nv" "ny" "oc" "oj" "om" "or" "os" "pa" "pi" "pl" "ps" "pt" "qu" "rm" "rn" "ro" "ru" "rw" "sa" "sc" "sd" "se" "sg" "si" "sk" "sl" "sm" "sn" "so" "sq" "sr" "ss" "st" "su" "sv" "sw" "ta" "te" "tg" "th" "ti" "tk" "tl" "tn" "to" "tr" "ts" "tt" "tw" "ty" "ug" "uk" "ur" "uz" "ve" "vi" "vo" "wa" "wo" "xh" "yi" "yo" "za" "zh" "zu")
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass Attribute_Extension "The Attribute_Extension class enables the association of additional value representations with and existing attribu"
+	(is-a Product_Components)
+	(role concrete)
+	(multislot has_language_tags
+;+		(comment "The has_language_tags association is a relationship to Language_Tags.")
+		(type INSTANCE)
+;+		(allowed-classes Language_Tags)
+		(create-accessor read-write))
+	(single-slot attribute_name
+;+		(comment "The attribute_name attribute provides the common name by which an attribute is known.")
+		(type STRING)
+;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
 (defclass Tagged_NonDigital_Child "The Tagged NonDigital Child class is an abstract class for the components  of classes in the tagged nondigital object class hierarchy."
@@ -11596,6 +11686,11 @@
 ;+		(comment "The funding_acknowledgement_text attribute provides a text description of the relationship between the funding source and the archival data.")
 		(type STRING)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot has_attribute_extension
+;+		(comment "he has_attribute_extension association is a relationship to Attribute_Extension.")
+		(type INSTANCE)
+;+		(allowed-classes Attribute_Extension)
 		(create-accessor read-write))
 	(single-slot funding_program_name
 ;+		(comment "The funding_program_name attribute provides the name of a program through which the funding source provided the funding award.")

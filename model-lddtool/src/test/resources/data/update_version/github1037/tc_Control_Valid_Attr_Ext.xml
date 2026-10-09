@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../source/PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
+                        ../../source/PDS4_PDS_1R00.xsd">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>MRO MARS HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT REDUCED DATA RECORD EQUIRECTANGULAR PROJECTION</title>
+    <information_model_version>1.27.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Citation_Information>
+      <publication_year>2026</publication_year>
+      <description>Control: all five parent classes (Affiliation, Funding_Acknowledgement,
+        Organization, Parent_Organization, Person) are populated without any
+        Attribute_Extension present. Establishes that the addition of the new
+        class does not disturb existing valid labels.</description>
+      <Funding_Acknowledgement>
+        <funding_source>Test Funding Agency</funding_source>
+      </Funding_Acknowledgement>
+      <List_Author>
+        <Organization>
+          <organization_name>Test Organization</organization_name>
+          <Parent_Organization>
+            <parent_organization_name>Test Parent Organization</parent_organization_name>
+          </Parent_Organization>
+        </Organization>
+        <Person>
+          <given_name>Ivan</given_name>
+          <family_name>Ivanov</family_name>
+          <Affiliation>
+            <organization_name>Test Affiliation Organization</organization_name>
+          </Affiliation>
+        </Person>
+      </List_Author>
+    </Citation_Information>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>2015-12-07T21:26:02.757Z</start_date_time>
+      <stop_date_time>2015-12-07T21:26:04.637Z</stop_date_time>
+    </Time_Coordinates>
+    <Investigation_Area>
+      <name>MARS RECONNAISSANCE ORBITER</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:mission.mars_reconnaissance_orbiter</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT</name>
+        <type>Instrument</type>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Mars</name>
+      <type>Planet</type>
+    </Target_Identification>
+    <Mission_Area>
+    </Mission_Area>
+    <Discipline_Area>
+    </Discipline_Area>
+  </Observation_Area>
+  <File_Area_Observational>
+    <File>
+      <file_name>ESP_043896_2055_RED.tif</file_name>
+      <local_identifier>DATA_FILE</local_identifier>
+      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
+      <file_size unit="byte">1184018549</file_size>
+    </File>
+    <Array_1D_Spectrum>
+      <local_identifier>Array_1D_Spectrum</local_identifier>
+      <offset unit="byte">152747</offset>
+      <axes>1</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <Element_Array>
+        <data_type>UnsignedLSB2</data_type>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>23379</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+    </Array_1D_Spectrum>
+  </File_Area_Observational>
+</Product_Observational>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Thu Sep 24 11:32:35 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Tue Sep 29 16:35:46 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -68,6 +68,7 @@
       <xs:element name="organization_name" type="pds:organization_name" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="organization_rorid" type="pds:organization_rorid" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="sequence_number" type="pds:sequence_number" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Attribute_Extension" type="pds:Attribute_Extension" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -403,6 +404,18 @@
         </xs:sequence>
       </xs:restriction>
     </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Attribute_Extension">
+    <xs:annotation>
+      <xs:documentation>The Attribute_Extension class enables the
+        association of additional value representations with and
+        existing attribu</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attribute_name" type="pds:attribute_name" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="Language_Tags" type="pds:Language_Tags" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="Axis_Array">
@@ -1805,6 +1818,7 @@
       <xs:element name="funding_award" type="pds:funding_award" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="funding_award_title" type="pds:funding_award_title" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="funding_acknowledgement_text" type="pds:funding_acknowledgement_text" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Attribute_Extension" type="pds:Attribute_Extension" minOccurs="0" maxOccurs="unbounded"> </xs:element>
       <xs:element name="Funder_Identifier" type="pds:Funder_Identifier" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -2110,6 +2124,21 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="Language_Tags">
+    <xs:annotation>
+      <xs:documentation>The Language_Tags class is a container for the
+        child attributes that describe the lanuage and script used for
+        an attribute value.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value_utf8" type="pds:value_utf8" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="definition" type="pds:definition" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="language_code" type="pds:language_code" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="script_code" type="pds:script_code" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="preferred_flag" type="pds:preferred_flag" minOccurs="0" maxOccurs="1"> </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="License_Information">
     <xs:annotation>
       <xs:documentation>The license information are describes the
@@ -2387,6 +2416,7 @@
       <xs:element name="organization_name" type="pds:organization_name" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="organization_rorid" type="pds:organization_rorid" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="sequence_number" type="pds:sequence_number" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Attribute_Extension" type="pds:Attribute_Extension" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="Parent_Organization" type="pds:Parent_Organization" minOccurs="0" maxOccurs="unbounded"> </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -2464,6 +2494,7 @@
       <xs:element name="parent_organization_name" type="pds:parent_organization_name" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="parent_organization_rorid" type="pds:parent_organization_rorid" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="sequence_number" type="pds:sequence_number" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Attribute_Extension" type="pds:Attribute_Extension" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -2498,6 +2529,7 @@
       <xs:element name="family_name" type="pds:family_name" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="person_orcid" type="pds:person_orcid" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="sequence_number" type="pds:sequence_number" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="Attribute_Extension" type="pds:Attribute_Extension" minOccurs="0" maxOccurs="unbounded"> </xs:element>
       <xs:element name="Affiliation" type="pds:Affiliation" minOccurs="0" maxOccurs="unbounded"> </xs:element>
     </xs:sequence>
   </xs:complexType>
@@ -5838,6 +5870,17 @@
 	   </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="language_code">
+    <xs:annotation>
+      <xs:documentation>The language_code attribute provides a
+        2-character ISO 639-1 language code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="last_modification_date_time">
     <xs:annotation>
       <xs:documentation>The last_modification_date_time attribute gives
@@ -7301,6 +7344,17 @@
 	   </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="script_code">
+    <xs:annotation>
+      <xs:documentation>The script_code attributes provides a
+        4-character ISO 15924 script code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="sequence_number">
     <xs:annotation>
       <xs:documentation>The sequence_number attribute provides a number
@@ -8059,6 +8113,16 @@
     <xs:restriction base="pds:ASCII_Real">
      <xs:minInclusive value="-1.7976931348623157e308"/>
      <xs:maxInclusive value="1.7976931348623157e308"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="value_utf8">
+    <xs:annotation>
+      <xs:documentation>The value_utf8 attribute provides a single,
+        allowed numerical or UTF-8 string value.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:UTF8_Text_Collapsed">
+     <xs:minLength value="1"/>
 	   </xs:restriction>
   </xs:simpleType>
 
