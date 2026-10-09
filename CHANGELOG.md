@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-09-28)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-09)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -13,6 +13,11 @@
 - \[documentation\] CCB-58: New Product\_Native values for MSL/Mastcam [\#1033](https://github.com/NASA-PDS/pds4-information-model/issues/1033)
 - \[documentation\] CCB-68: Update ASCII\_File\_Name and ASCII\_Directory\_Path\_Name [\#1032](https://github.com/NASA-PDS/pds4-information-model/issues/1032)
 
+**Improvements:**
+
+- \[namespace-registry\] add new namespace epncore [\#1082](https://github.com/NASA-PDS/pds4-information-model/issues/1082)
+- \[namespace-registry\] add new namespace di [\#1079](https://github.com/NASA-PDS/pds4-information-model/issues/1079)
+
 **Defects:**
 
 - LDDTool should not write Schematron rules for Units of Measure [\#1067](https://github.com/NASA-PDS/pds4-information-model/issues/1067) [[s.low](https://github.com/NASA-PDS/pds4-information-model/labels/s.low)]
@@ -24,6 +29,7 @@
 **Other closed issues:**
 
 - Make DD and RDF File Export Optional in LDDTool core runs [\#1077](https://github.com/NASA-PDS/pds4-information-model/issues/1077)
+- Develop mapping of existing ops: registry metadata to new OPS LDD [\#1073](https://github.com/NASA-PDS/pds4-information-model/issues/1073)
 - Update Product\_Resource to add pds4\_wide\_applicability\_flag [\#1071](https://github.com/NASA-PDS/pds4-information-model/issues/1071)
 - Upgrade to OpenJDK 25, Oracle Java 17 is EOL [\#1070](https://github.com/NASA-PDS/pds4-information-model/issues/1070)
 - LDDTool should not write Schematron rules for Units of Measure [\#1068](https://github.com/NASA-PDS/pds4-information-model/issues/1068)
@@ -32,6 +38,7 @@
 - Stage the PDS4 Information Model V 1.27.0.0 \(1R00\) for Build 18 [\#1058](https://github.com/NASA-PDS/pds4-information-model/issues/1058)
 - Automate update of namespace-registry PDF and XLSX when CSV is updated [\#1053](https://github.com/NASA-PDS/pds4-information-model/issues/1053)
 - Scrub namespace registry config vs. csv to ensure it is an exact one-to-one mapping [\#1043](https://github.com/NASA-PDS/pds4-information-model/issues/1043)
+- Complete final draft of ops LDD v1.0 [\#1029](https://github.com/NASA-PDS/pds4-information-model/issues/1029)
 - Complete third draft of `ops` LDD v1.0 [\#1028](https://github.com/NASA-PDS/pds4-information-model/issues/1028)
 - CCB-212: Add Modification\_History to Ingest\_LDD [\#115](https://github.com/NASA-PDS/pds4-information-model/issues/115)
 
