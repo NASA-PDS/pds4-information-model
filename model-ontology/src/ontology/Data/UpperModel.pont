@@ -1,4 +1,4 @@
-; Mon Oct 12 10:28:45 EDT 2026
+; Mon Oct 12 14:49:26 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6183,7 +6183,7 @@
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Instrument_Host "The Instrument Host class provides a description of the physical object upon which an instrument is mounted."
+(defclass Instrument_Host "The Instrument_Host class provides a description of the physical object upon which an instrument is mounted, within which it is contained, or from which it is operated or deployed."
 	(is-a TNDO_Context)
 	(role concrete)
 	(single-slot data_object
