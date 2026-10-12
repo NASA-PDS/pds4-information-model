@@ -1,4 +1,4 @@
-; Tue Sep 29 15:46:39 EDT 2026
+; Mon Oct 12 10:28:45 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -4172,6 +4172,10 @@
 		(type INSTANCE)
 ;+		(allowed-classes Target)
 		(create-accessor read-write))
+	(multislot hosting_model
+;+		(comment "Specifies the hosting model for this instrument. The default if this is omitted is \"single-host\", which indicates a permanent association between the instrument and the host. Other values are \"multi-host\", indicating the instrument may be used by different hosts, and \"no-host\", indicating it is a stand-alone instrument with no host. The context product LID should also indicate multi-host or no-host.")
+		(type STRING)
+		(create-accessor read-write))
 	(multislot type_description
 ;+		(comment "The type_description attribute provides a description of the object's type.")
 		(type STRING)
@@ -6262,6 +6266,12 @@
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
 		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot hosting_model
+;+		(comment "Specifies the hosting model for this instrument. The default if this is omitted is \"single-host\", which indicates a permanent association between the instrument and the host. Other values are \"multi-host\", indicating the instrument may be used by different hosts, and \"no-host\", indicating it is a stand-alone instrument with no host. The context product LID should also indicate multi-host or no-host.")
+		(type STRING)
+;+		(value "single-host" "multi-host" "no-host")
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot subtype
