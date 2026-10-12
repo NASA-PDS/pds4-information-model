@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Tue Sep 29 16:35:46 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Mon Oct 12 11:52:45 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1118,6 +1118,13 @@
       <sch:assert test=". = ('Common', 'Discipline', 'Mission')">
         <title>pds:Ingest_LDD/pds:dictionary_type/pds:dictionary_type</title>
         The attribute pds:Ingest_LDD/pds:dictionary_type must be equal to one of the following values 'Common', 'Discipline', 'Mission'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Instrument/pds:hosting_model">
+      <sch:assert test=". = ('multi-host', 'no-host', 'single-host')">
+        <title>pds:Instrument/pds:hosting_model/pds:hosting_model</title>
+        The attribute pds:Instrument/pds:hosting_model must be equal to one of the following values 'multi-host', 'no-host', 'single-host'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
