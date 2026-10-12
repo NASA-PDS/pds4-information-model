@@ -105557,7 +105557,7 @@
   (designation [DES.0001_NASA_PDS_1.pds.Instrument_Host])
   (sectionLanguage [LI_English]))
 ([DEF.0001_NASA_PDS_1.pds.Instrument_Host] of Definition
-  (definitionText "The Instrument Host class provides a description of the physical object upon which an instrument is mounted.")
+  (definitionText "The Instrument_Host class provides a description of the physical object upon which an instrument is mounted, within which it is contained, or from which it is operated or deployed.")
   (isPreferred "TRUE"))
 ([DES.0001_NASA_PDS_1.pds.Instrument_Host] of Designation
   (designationName "Instrument_Host")
