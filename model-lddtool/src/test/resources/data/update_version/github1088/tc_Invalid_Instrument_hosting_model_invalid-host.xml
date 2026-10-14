@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Context
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ctli="http://pds.nasa.gov/pds4/ctli/v1"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1R00.xsd
+                      http://pds.nasa.gov/pds4/ctli/v1 PDS4_CTLI_2D00_1000.xsd">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:context:instrument:instrument.dummy</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Dummy Instrument</title>
+    <information_model_version>1.27.0.0</information_model_version>
+    <product_class>Product_Context</product_class>
+  </Identification_Area>
+  <Instrument>
+    <name>Dummy Instrument</name>
+    <Type_List_Area>
+      <ctli:Type_List>
+        <ctli:type>Camera</ctli:type>
+      </ctli:Type_List>
+      <hosting_model>invalid-host</hosting_model>
+    </Type_List_Area>
+    <description>Invalid label for testing rejection of an unsupported Instrument.hosting_model value.</description>
+  </Instrument>
+</Product_Context>

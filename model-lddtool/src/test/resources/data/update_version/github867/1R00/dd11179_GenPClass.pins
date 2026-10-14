@@ -13233,6 +13233,21 @@
   (submitter [Submitter_PDS])
   (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Special_Constants.pds.high_representation_saturation])
   (versionIdentifier "1.27"))
+([DE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of DataElement
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "DE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model")
+  (expressedBy 
+    [DEC_TBD_classConcept])
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representing 
+    [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (isDeprecated "false")
+  (isNillable "false")
+  (steward [TBD_steward])
+  (submitter [Submitter_PDS])
+  (terminologicalEntry [TE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (versionIdentifier "1.27"))
 ([DE.0001_NASA_PDS_1.pds.Property_Map.pds.identifier] of DataElement
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "DE.0001_NASA_PDS_1.pds.Property_Map.pds.identifier")
@@ -38421,6 +38436,71 @@
   (unitOfMeasure [TBD_unit_of_measure_type])
   (defaultUnitId "TBD_default_unit_id")
   (versionIdentifier "1.27"))
+([EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of EnumeratedValueDomain
+  (administrationRecord [DD_1.27.0.0])
+  (containedIn1 
+    [pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.1203084732]
+    [pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.2063759924]
+    [pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.-1778253811])
+  (dataIdentifier "EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model")
+  (datatype [ASCII_Short_String_Collapsed])
+  (maximumCharacterQuantity "TBD_maximum_characters")
+  (minimumCharacterQuantity "TBD_minimum_characters")
+  (maximumValue "TBD_maximum_value")
+  (minimumValue "TBD_minimum_value")
+  (pattern "TBD_pattern")
+  (valueDomainFormat "TBD_format")
+  (registeredBy RA_0001_NASA_PDS_1)
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (representedBy [DE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (representedBy2 [CD_Short_String])
+  (steward [Steward_PDS])
+  (submitter [Submitter_PDS])
+  (unitOfMeasure [TBD_unit_of_measure_type])
+  (defaultUnitId "TBD_default_unit_id")
+  (versionIdentifier "1.27"))
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.1203084732] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.1203084732])
+  (value "multi-host"))
+ 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.1203084732] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (description "Indicates the instrument may be used by multiple hosts."))
+ 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.2063759924] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.2063759924])
+  (value "no-host"))
+ 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.2063759924] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (description "Indicates the instrument is stand-alone, with no host."))
+ 
+([pv.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.-1778253811] of PermissibleValue
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (isDeprecated "false")
+  (usedIn [vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.-1778253811])
+  (value "single-host"))
+ 
+([vm.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model.-1778253811] of ValueMeaning
+  (beginDate "2009-06-09")
+  (containing1 [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (endDate "2019-12-31")
+  (description "Default value indicating a permanent association between the instrument and the host."))
+ 
 ([NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.identifier] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Property_Map.pds.identifier")
@@ -82683,6 +82763,13 @@
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1015")
   (versionIdentifier "1.27"))
+([PR.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of Property
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model")
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (classOrder "1055")
+  (versionIdentifier "1.27"))
 ([PR.0001_NASA_PDS_1.pds.Instrument.pds.model_id] of Property
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "PR.0001_NASA_PDS_1.pds.Instrument.pds.model_id")
@@ -88443,6 +88530,7 @@
     [NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name]
     [NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.namespace_id]
     [NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.steward_id]
+    [EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model]
     [NEVD.0001_NASA_PDS_1.pds.Instrument.pds.model_id]
     [NEVD.0001_NASA_PDS_1.pds.Instrument.pds.naif_instrument_id]
     [NEVD.0001_NASA_PDS_1.pds.Instrument.pds.name]
@@ -90619,6 +90707,7 @@
     [DE.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.description]
     [DE.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.ldd_version_id]
     [DE.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.name]
+    [DE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model]
     [DE.0001_NASA_PDS_1.pds.Instrument.pds.subtype]
     [DE.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
     [DE.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
@@ -97541,6 +97630,17 @@
   (isPreferred "TRUE"))
 ([DES.0001_NASA_PDS_1.pds.Instrument.pds.description] of Designation
   (designationName "description")
+  (isPreferred "TRUE"))
+([TE.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of TerminologicalEntry
+  (administeredItemContext [NASA_PDS])
+  (definition [DEF.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (designation [DES.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model])
+  (sectionLanguage [LI_English]))
+([DEF.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of Definition
+  (definitionText "Specifies the hosting model for this instrument. The default if this is omitted is %42single-host%42, which indicates a permanent association between the instrument and the host. Other values are %42multi-host%42, indicating the instrument may be used by different hosts, and %42no-host%42, indicating it is a stand-alone instrument with no host. The context product LID should also indicate multi-host or no-host.")
+  (isPreferred "TRUE"))
+([DES.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model] of Designation
+  (designationName "hosting_model")
   (isPreferred "TRUE"))
 ([TE.0001_NASA_PDS_1.pds.Instrument.pds.model_id] of TerminologicalEntry
   (administeredItemContext [NASA_PDS])
@@ -105457,7 +105557,7 @@
   (designation [DES.0001_NASA_PDS_1.pds.Instrument_Host])
   (sectionLanguage [LI_English]))
 ([DEF.0001_NASA_PDS_1.pds.Instrument_Host] of Definition
-  (definitionText "The Instrument Host class provides a description of the physical object upon which an instrument is mounted.")
+  (definitionText "The Instrument_Host class provides a description of the physical object upon which an instrument is mounted, within which it is contained, or from which it is operated or deployed.")
   (isPreferred "TRUE"))
 ([DES.0001_NASA_PDS_1.pds.Instrument_Host] of Designation
   (designationName "Instrument_Host")
