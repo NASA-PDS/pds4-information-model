@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-12)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-10-14)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -29,6 +29,7 @@
 
 **Other closed issues:**
 
+- CCB-92: Multi-Host Instruments [\#1088](https://github.com/NASA-PDS/pds4-information-model/issues/1088)
 - Make DD and RDF File Export Optional in LDDTool core runs [\#1077](https://github.com/NASA-PDS/pds4-information-model/issues/1077)
 - Develop mapping of existing ops: registry metadata to new OPS LDD [\#1073](https://github.com/NASA-PDS/pds4-information-model/issues/1073)
 - Update Product\_Resource to add pds4\_wide\_applicability\_flag [\#1071](https://github.com/NASA-PDS/pds4-information-model/issues/1071)
