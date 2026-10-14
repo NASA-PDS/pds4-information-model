@@ -697,7 +697,19 @@ class GetValueMeanings extends Object {
         "pds:Product_Document/pds:Reference_List/pds:Internal_Reference.reference_type.document_to_data",
         "document_to_data", "The document is associated to a data product");
     masterValueMeaningMap.put(lPVD.identifier, lPVD);
-
+    lPVD = new PermValueDefn(
+            "pds:Product_Document/pds:Reference_List/pds:Internal_Reference.reference_type.document_to_browse",
+            "document_to_browse", "The document is associated to a browse product");
+        masterValueMeaningMap.put(lPVD.identifier, lPVD);
+    lPVD = new PermValueDefn(
+            "pds:Product_Document/pds:Reference_List/pds:Internal_Reference.reference_type.document_to_document",
+            "document_to_document", "The document is associated to another document product");
+        masterValueMeaningMap.put(lPVD.identifier, lPVD);
+    lPVD = new PermValueDefn(
+            "pds:Product_Document/pds:Reference_List/pds:Internal_Reference.reference_type.document_to_ancillary",
+            "document_to_ancillary", "The document is associated to an ancillary product");
+        masterValueMeaningMap.put(lPVD.identifier, lPVD);
+        
     lPVD = new PermValueDefn(
         "pds:Product_Document/pds:Context_Area/pds:Investigation_Area/pds:Internal_Reference.reference_type.document_to_investigation",
         "document_to_investigation", "The document is associated to an investigation");
