@@ -1,4 +1,4 @@
-; Mon Oct 19 17:40:46 EDT 2026
+; Mon Oct 19 19:16:27 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -975,12 +975,12 @@
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100003101.105] of  Schematron_Assert
 
-	(assertMsg "The context_product_type attribute must be present when product_class is Product_Context and must be absent for all other product classes.")
-	(assertStmt "(pds:product_class = 'Product_Context' and exists(pds:context_product_type)) or (pds:product_class != 'Product_Context' and not(exists(pds:context_product_type)))")
+	(assertMsg "The context_product_type attribute is permitted only when product_class is Product_Context.")
+	(assertStmt "pds:product_class = 'Product_Context' or not(pds:context_product_type)")
 	(assertType "RAW")
 	(attrTitle "context_product_type")
 	(identifier "context_product_type")
-	(specMesg "The context_product_type attribute must be present when product_class is Product_Context and must be absent for all other product classes."))
+	(specMesg "The context_product_type attribute is permitted only when product_class is Product_Context."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521] of  Schematron_Rule
 
