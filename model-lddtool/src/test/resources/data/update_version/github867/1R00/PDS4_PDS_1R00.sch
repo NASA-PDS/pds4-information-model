@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Mon Oct 19 18:14:43 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Mon Oct 19 19:25:43 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1080,9 +1080,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Identification_Area">
-      <sch:assert test="(pds:product_class = 'Product_Context' and exists(pds:context_product_type)) or (pds:product_class != 'Product_Context' and not(exists(pds:context_product_type)))">
+      <sch:assert test="pds:product_class = 'Product_Context' or not(pds:context_product_type)">
         <title>pds:Identification_Area/context_product_type</title>
-        The context_product_type attribute must be present when product_class is Product_Context and must be absent for all other product classes.</sch:assert>
+        The context_product_type attribute is permitted only when product_class is Product_Context.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
