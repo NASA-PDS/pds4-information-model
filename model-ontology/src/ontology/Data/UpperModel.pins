@@ -1,4 +1,4 @@
-; Mon Oct 12 14:49:26 EDT 2026
+; Wed Oct 14 19:08:00 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -2503,7 +2503,10 @@
 		"document_to_instrument_host"
 		"document_to_instrument"
 		"document_to_target"
-		"document_to_data"))
+		"document_to_data"
+		"document_to_browse"
+		"document_to_document"
+		"document_to_ancillary"))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AProduct_External%2Fpds%3AContext_Area%2Fpds%3ATarget_Identification%2Fpds%3AInternal_Reference.100004865] of  Schematron_Rule
 

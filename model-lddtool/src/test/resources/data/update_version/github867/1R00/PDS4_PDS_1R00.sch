@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Mon Oct 12 14:51:44 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Wed Oct 14 19:21:12 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1997,9 +1997,9 @@
   </sch:pattern>
   <sch:pattern>
     <sch:rule context="pds:Product_Document/pds:Reference_List/pds:Internal_Reference">
-      <sch:assert test="every $ref in (pds:reference_type) satisfies $ref = ('document_to_associate', 'document_to_investigation', 'document_to_instrument_host', 'document_to_instrument', 'document_to_target', 'document_to_data')">
+      <sch:assert test="every $ref in (pds:reference_type) satisfies $ref = ('document_to_associate', 'document_to_investigation', 'document_to_instrument_host', 'document_to_instrument', 'document_to_target', 'document_to_data', 'document_to_browse', 'document_to_document', 'document_to_ancillary')">
         <title>pds:Product_Document/pds:Reference_List/pds:Internal_Reference/reference_type</title>
-        The attribute reference_type must be set to one of the following values 'document_to_associate', 'document_to_investigation', 'document_to_instrument_host', 'document_to_instrument', 'document_to_target', 'document_to_data'.</sch:assert>
+        The attribute reference_type must be set to one of the following values 'document_to_associate', 'document_to_investigation', 'document_to_instrument_host', 'document_to_instrument', 'document_to_target', 'document_to_data', 'document_to_browse', 'document_to_document', 'document_to_ancillary'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
