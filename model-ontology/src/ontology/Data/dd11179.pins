@@ -1,4 +1,4 @@
-; Mon Oct 12 11:51:27 EDT 2026
+; Mon Oct 19 16:16:19 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -724,6 +724,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.namespace_id]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD.pds.steward_id]
+		[EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.model_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.naif_instrument_id]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument.pds.name]
@@ -1080,6 +1081,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet1.pds.subfacet1]
 		[EVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.facet2]
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.subfacet2]
+		[EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type]
 		[EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
@@ -1088,7 +1090,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.description]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.ldd_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.Ingest_LDD_File_Desc.pds.name]
-		[EVD.0001_NASA_PDS_1.pds.Instrument.pds.hosting_model]
 		[NEVD.0001_NASA_PDS_1.pds.Instrument_Host.pds.instrument_host_version_id]
 		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.id_reference]
 		[NEVD.0001_NASA_PDS_1.pds.LIDVID_ID_Reference.pds.lidvid_reference]
@@ -9689,6 +9690,21 @@
 	(steward [pds])
 	(submitter [Submitter_PDS])
 	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Header.pds.parsing_standard_id])
+	(versionIdentifier "1.27"))
+
+([DE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  DataElement
+
+	(administrationRecord [DD_1.27.0.0])
+	(dataIdentifier "DE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type")
+	(expressedBy [DEC_TBD_classConcept])
+	(isDeprecated "false")
+	(isNillable "false")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representing [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(steward [TBD_steward])
+	(submitter [Submitter_PDS])
+	(terminologicalEntry [TE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
 	(versionIdentifier "1.27"))
 
 ([DE.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version] of  DataElement
@@ -19177,6 +19193,7 @@
 		[DE.0001_NASA_PDS_1.pds.Group_Facet1.pds.subfacet1]
 		[DE.0001_NASA_PDS_1.pds.Group_Facet2.pds.facet2]
 		[DE.0001_NASA_PDS_1.pds.Group_Facet2.pds.subfacet2]
+		[DE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type]
 		[DE.0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier]
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_label_checksum]
 		[DE.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.aip_lidvid]
@@ -23309,6 +23326,11 @@
 	(definitionText "The identification area consists of attributes that identify and name an object.")
 	(isPreferred TRUE))
 
+([DEF.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  Definition
+
+	(definitionText "The context_product_type attribute provides the name of the entity being described by this Product_Context.")
+	(isPreferred TRUE))
+
 ([DEF.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version] of  Definition
 
 	(definitionText "The information_model_version attribute provides the  version identification of the PDS Information Model on which the label and schema are based.")
@@ -23546,7 +23568,7 @@
 
 ([DEF.0001_NASA_PDS_1.pds.Instrument_Host] of  Definition
 
-	(definitionText "The Instrument Host class provides a description of the physical object upon which an instrument is mounted.")
+	(definitionText "The Instrument_Host class provides a description of the physical object upon which an instrument is mounted, within which it is contained, or from which it is operated or deployed.")
 	(isPreferred TRUE))
 
 ([DEF.0001_NASA_PDS_1.pds.Instrument_Host.pds.description] of  Definition
@@ -31142,6 +31164,11 @@
 ([DES.0001_NASA_PDS_1.pds.Identification_Area] of  Designation
 
 	(designationName "Identification_Area")
+	(isPreferred TRUE))
+
+([DES.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  Designation
+
+	(designationName "context_product_type")
 	(isPreferred TRUE))
 
 ([DES.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version] of  Designation
@@ -40561,6 +40588,41 @@
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(representedBy [DE.0001_NASA_PDS_1.pds.Header.pds.parsing_standard_id])
+	(representedBy2 [CD_Short_String])
+	(steward [Steward_PDS])
+	(submitter [Submitter_PDS])
+	(unitOfMeasure [TBD_unit_of_measure_type])
+	(valueDomainFormat "TBD_format")
+	(versionIdentifier "1.27"))
+
+([EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  EnumeratedValueDomain
+
+	(administrationRecord [DD_1.27.0.0])
+	(containedIn1
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1959135269]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-625191086]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.565760707]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-906018809]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-455618816]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1754976994]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.2433570]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.76517104]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1470925261]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1173130664]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-276420562]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1797038671]
+		[pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1505176374])
+	(dataIdentifier "EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type")
+	(datatype [ASCII_Short_String_Collapsed])
+	(defaultUnitId "TBD_default_unit_id")
+	(maximumCharacterQuantity "TBD_maximum_characters")
+	(maximumValue "TBD_maximum_value")
+	(minimumCharacterQuantity "TBD_minimum_characters")
+	(minimumValue "TBD_minimum_value")
+	(pattern "TBD_pattern")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(representedBy [DE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
 	(representedBy2 [CD_Short_String])
 	(steward [Steward_PDS])
 	(submitter [Submitter_PDS])
@@ -76606,6 +76668,15 @@
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
 
+([PR.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1055")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
 ([PR.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version] of  Property
 
 	(administrationRecord [DD_1.27.0.0])
@@ -91338,6 +91409,123 @@
 	(isDeprecated "false")
 	(usedIn [vm.0001_NASA_PDS_1.pds.Header.pds.parsing_standard_id.69962463])
 	(value "ISIS3"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1173130664] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1173130664])
+	(value "PDS_Guest"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1505176374] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1505176374])
+	(value "Telescope"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1797038671] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1797038671])
+	(value "Target"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-276420562] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-276420562])
+	(value "Resource"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-455618816] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-455618816])
+	(value "Instrument_Host"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-625191086] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-625191086])
+	(value "Airborne"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-906018809] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-906018809])
+	(value "Instrument"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1470925261] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1470925261])
+	(value "PDS_Affiliate"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1754976994] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1754976994])
+	(value "Investigation"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1959135269] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1959135269])
+	(value "Agency"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.2433570] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.2433570])
+	(value "Node"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.565760707] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.565760707])
+	(value "Facility"))
+
+([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.76517104] of  PermissibleValue
+
+	(beginDate "2009-06-09")
+	(containing1 [EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(endDate "2019-12-31")
+	(isDeprecated "false")
+	(usedIn [vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.76517104])
+	(value "Other"))
 
 ([pv.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.-1142473946] of  PermissibleValue
 
@@ -107160,6 +107348,13 @@
 	(designation [DES.0001_NASA_PDS_1.pds.Identification_Area])
 	(sectionLanguage [LI_English]))
 
+([TE.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type] of  TerminologicalEntry
+
+	(administeredItemContext [NASA_PDS])
+	(definition [DEF.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(designation [DES.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type])
+	(sectionLanguage [LI_English]))
+
 ([TE.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version] of  TerminologicalEntry
 
 	(administeredItemContext [NASA_PDS])
@@ -118650,6 +118845,84 @@
 
 	(beginDate "2009-06-09")
 	(description "The Header is governed by the standard Integrated Software for Imagers and Spectrometers %28ISIS%29, USGS Astrogeology ISIS Cube, Version 3.")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1173130664] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a PDS_Guest")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1505176374] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a Telescope")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-1797038671] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a Target")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-276420562] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a Resource")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-455618816] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Instrument_Host")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-625191086] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Airborne")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.-906018809] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Instrument")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1470925261] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a PDS_Affiliate")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1754976994] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Investigation")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.1959135269] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Agency")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.2433570] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a Node")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.565760707] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes a Facility")
+	(endDate "2019-12-31"))
+
+([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type.76517104] of  ValueMeaning
+
+	(beginDate "2009-06-09")
+	(description "This context product describes an Other")
 	(endDate "2019-12-31"))
 
 ([vm.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version.-1142473946] of  ValueMeaning
