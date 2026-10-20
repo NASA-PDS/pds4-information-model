@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Mon Oct 19 19:25:43 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Tue Oct 20 13:55:55 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1079,14 +1079,10 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
-    <sch:rule context="pds:Identification_Area">
-      <sch:assert test="pds:product_class = 'Product_Context' or not(pds:context_product_type)">
-        <title>pds:Identification_Area/context_product_type</title>
-        The context_product_type attribute is permitted only when product_class is Product_Context.</sch:assert>
-    </sch:rule>
-  </sch:pattern>
-  <sch:pattern>
     <sch:rule context="pds:Identification_Area/pds:context_product_type">
+      <sch:assert test="../pds:product_class = 'Product_Context'">
+        <title>pds:Identification_Area/pds:context_product_type/context_product_type</title>
+        The context_product_type attribute is permitted only when product_class is Product_Context.</sch:assert>
       <sch:assert test=". = ('Agency', 'Airborne', 'Facility', 'Instrument', 'Instrument_Host', 'Investigation', 'Node', 'Other', 'PDS_Affiliate', 'PDS_Guest', 'Resource', 'Target', 'Telescope')">
         <title>pds:Identification_Area/pds:context_product_type/pds:context_product_type</title>
         The attribute pds:Identification_Area/pds:context_product_type must be equal to one of the following values 'Agency', 'Airborne', 'Facility', 'Instrument', 'Instrument_Host', 'Investigation', 'Node', 'Other', 'PDS_Affiliate', 'PDS_Guest', 'Resource', 'Target', 'Telescope'.</sch:assert>
