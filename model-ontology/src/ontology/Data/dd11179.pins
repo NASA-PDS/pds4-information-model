@@ -1,4 +1,4 @@
-; Mon Oct 19 16:16:19 EDT 2026
+; Wed Oct 21 14:34:13 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -708,6 +708,7 @@
 		[NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_source]
 		[NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_year]
 		[EVD.0001_NASA_PDS_1.pds.Header.pds.parsing_standard_id]
+		[EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type]
 		[EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.information_model_version]
 		[NEVD.0001_NASA_PDS_1.pds.Identification_Area.pds.logical_identifier]
 		[EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.product_class]
@@ -1081,7 +1082,6 @@
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet1.pds.subfacet1]
 		[EVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.facet2]
 		[NEVD.0001_NASA_PDS_1.pds.Group_Facet2.pds.subfacet2]
-		[EVD.0001_NASA_PDS_1.pds.Identification_Area.pds.context_product_type]
 		[EVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.checksum_type]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_checksum]
 		[NEVD.0001_NASA_PDS_1.pds.Information_Package_Component_Deep_Archive.pds.manifest_url]
@@ -76979,6 +76979,15 @@
 	(administrationRecord [DD_1.27.0.0])
 	(classOrder "1110")
 	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.local_rule.DD_Rule")
+	(registeredBy [RA_0001_NASA_PDS_1])
+	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
+	(versionIdentifier "1.27"))
+
+([PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.modification_history.Modification_History] of  Property
+
+	(administrationRecord [DD_1.27.0.0])
+	(classOrder "1075")
+	(dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.modification_history.Modification_History")
 	(registeredBy [RA_0001_NASA_PDS_1])
 	(registrationAuthorityIdentifier [0001_NASA_PDS_1])
 	(versionIdentifier "1.27"))
