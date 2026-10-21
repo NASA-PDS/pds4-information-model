@@ -82930,6 +82930,13 @@
   (registrationAuthorityIdentifier [0001_NASA_PDS_1])
   (classOrder "1110")
   (versionIdentifier "1.27"))
+([PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.modification_history.Modification_History] of Property
+  (administrationRecord [DD_1.27.0.0])
+  (dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.modification_history.Modification_History")
+  (registeredBy [RA_0001_NASA_PDS_1])
+  (registrationAuthorityIdentifier [0001_NASA_PDS_1])
+  (classOrder "1075")
+  (versionIdentifier "1.27"))
 ([PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name] of Property
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "PR.0001_NASA_PDS_1.pds.Ingest_LDD.pds.name")
