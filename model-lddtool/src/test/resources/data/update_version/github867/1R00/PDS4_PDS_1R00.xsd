@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Wed Oct 14 19:21:12 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Tue Oct 20 13:55:55 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -1925,6 +1925,7 @@
       <xs:element name="title" type="pds:title" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="information_model_version" type="pds:information_model_version" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="product_class" type="pds:product_class" minOccurs="1" maxOccurs="1"> </xs:element>
+      <xs:element name="context_product_type" type="pds:context_product_type" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="Alias_List" type="pds:Alias_List" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="Citation_Information" type="pds:Citation_Information" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="Modification_History" type="pds:Modification_History" minOccurs="0" maxOccurs="1"> </xs:element>
@@ -4631,6 +4632,18 @@
     <xs:annotation>
       <xs:documentation>The container type attribute indicates the
         method used to package the components.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="context_product_type">
+    <xs:annotation>
+      <xs:documentation>The context_product_type attribute provides the
+        name of the entity being described by this
+        Product_Context.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Short_String_Collapsed">
      <xs:minLength value="1"/>

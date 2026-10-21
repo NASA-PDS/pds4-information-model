@@ -1,4 +1,4 @@
-; Wed Oct 14 19:08:00 EDT 2026
+; Tue Oct 20 12:56:53 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -957,6 +957,30 @@
 	(attrTitle "logical_identifier")
 	(identifier "logical_identifier")
 	(specMesg "The pds:logical_identifier of a pds:Product_Collection with pds:collection_type of \"External\" may not begin with any Agency Prefix."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100003101] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "context_product_type")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Identification_Area")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100003101.105])
+	(identifier "pds:Identification_Area/pds:context_product_type")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Identification_Area/pds:context_product_type"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AIdentification_Area.100003101.105] of  Schematron_Assert
+
+	(assertMsg "The context_product_type attribute is permitted only when product_class is Product_Context.")
+	(assertStmt "../pds:product_class = 'Product_Context'")
+	(assertType "RAW")
+	(attrTitle "context_product_type")
+	(identifier "context_product_type")
+	(specMesg "The context_product_type attribute is permitted only when product_class is Product_Context."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AInformation_Package_Component_Deep_Archive%2Fpds%3AInternal_Reference.100002521] of  Schematron_Rule
 

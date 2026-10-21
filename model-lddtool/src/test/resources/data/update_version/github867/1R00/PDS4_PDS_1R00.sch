@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Wed Oct 14 19:21:12 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Tue Oct 20 13:55:55 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -1076,6 +1076,16 @@
       <sch:assert test="if ($collExternal) then (not (contains($agencyPrefixes, $thisPrefix))) else true()">
         <title>pds:Identification_Area/logical_identifier</title>
         The pds:logical_identifier of a pds:Product_Collection with pds:collection_type of "External" may not begin with any of <sch:value-of select="$agencyPrefixes"/>.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Identification_Area/pds:context_product_type">
+      <sch:assert test="../pds:product_class = 'Product_Context'">
+        <title>pds:Identification_Area/pds:context_product_type/context_product_type</title>
+        The context_product_type attribute is permitted only when product_class is Product_Context.</sch:assert>
+      <sch:assert test=". = ('Agency', 'Airborne', 'Facility', 'Instrument', 'Instrument_Host', 'Investigation', 'Node', 'Other', 'PDS_Affiliate', 'PDS_Guest', 'Resource', 'Target', 'Telescope')">
+        <title>pds:Identification_Area/pds:context_product_type/pds:context_product_type</title>
+        The attribute pds:Identification_Area/pds:context_product_type must be equal to one of the following values 'Agency', 'Airborne', 'Facility', 'Instrument', 'Instrument_Host', 'Investigation', 'Node', 'Other', 'PDS_Affiliate', 'PDS_Guest', 'Resource', 'Target', 'Telescope'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

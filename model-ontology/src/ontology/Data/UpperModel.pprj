@@ -1,4 +1,4 @@
-; Wed Oct 14 19:08:00 EDT 2026
+; Tue Oct 20 12:56:53 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class10123]
-		[UpperModel_ProjectKB_Class10124]
-		[UpperModel_ProjectKB_Class10125]
-		[UpperModel_ProjectKB_Class10126]))
+		[UpperModel_ProjectKB_Class127]
+		[UpperModel_ProjectKB_Class128]
+		[UpperModel_ProjectKB_Class129]
+		[UpperModel_ProjectKB_Class130]))
 
 ([CLSES_TAB] of  Widget
 
@@ -39,9 +39,6 @@
 	(label "Instances")
 	(property_list [KB_887149_Instance_94])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
-
-([KB_004255_Class0] of  Map
-)
 
 ([KB_005254_Instance_0] of  Property_List
 
@@ -427,6 +424,9 @@
 	(y 120))
 
 ([KB_663782_Class0] of  Map
+)
+
+([KB_788604_Class0] of  Map
 )
 
 ([KB_887149_Instance_43] of  String
@@ -841,26 +841,6 @@
 ([UpperModel_ProjectKB_Class10] of  Property_List
 )
 
-([UpperModel_ProjectKB_Class10123] of  String
-
-	(name "ChangeLog")
-	(string_value "date"))
-
-([UpperModel_ProjectKB_Class10124] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([UpperModel_ProjectKB_Class10125] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([UpperModel_ProjectKB_Class10126] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
 ([UpperModel_ProjectKB_Class11] of  Widget
 
 	(is_hidden TRUE)
@@ -870,11 +850,31 @@
 ([UpperModel_ProjectKB_Class12] of  Property_List
 )
 
+([UpperModel_ProjectKB_Class127] of  String
+
+	(name "ChangeLog")
+	(string_value "date"))
+
+([UpperModel_ProjectKB_Class128] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([UpperModel_ProjectKB_Class129] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
 ([UpperModel_ProjectKB_Class13] of  Widget
 
 	(is_hidden TRUE)
 	(property_list [UpperModel_ProjectKB_Class14])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([UpperModel_ProjectKB_Class130] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
 ([UpperModel_ProjectKB_Class14] of  Property_List
 )
