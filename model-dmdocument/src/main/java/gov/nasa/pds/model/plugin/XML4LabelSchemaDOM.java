@@ -464,13 +464,45 @@ class XML4LabelSchemaDOM extends Object {
       prXML.println("  <" + pNS + "annotation>");
       prXML.println("    <" + pNS + "documentation>Modification History</" + pNS + "documentation>");
       for (String[] lModificationDetail : lSchemaFileDefn.modificationDetailArr) {
-        prXML.println("    <" + pNS + "documentation>"
+        // wrap the description; continuation lines start in the column after the ": "
+        String lPrefix = "    <" + pNS + "documentation>"
             + escapeXMLText(lModificationDetail[0]) + " ("
-            + escapeXMLText(lModificationDetail[1]) + "): "
-            + escapeXMLText(lModificationDetail[2]) + "</" + pNS + "documentation>");
+            + escapeXMLText(lModificationDetail[1]) + "): ";
+        ArrayList<String> lLineArr = wrapWords(escapeXMLText(lModificationDetail[2]),
+            MOD_HISTORY_LINE_WIDTH - lPrefix.length());
+        String lIndent = " ".repeat(lPrefix.length());
+        for (int i = 0; i < lLineArr.size(); i++) {
+          String lLine = (i == 0 ? lPrefix : lIndent) + lLineArr.get(i);
+          if (i == lLineArr.size() - 1) {
+            lLine += "</" + pNS + "documentation>";
+          }
+          prXML.println(lLine);
+        }
       }
       prXML.println("  </" + pNS + "annotation>");
     }
+  }
+
+  // right-hand boundary for wrapped Modification History lines
+  private static final int MOD_HISTORY_LINE_WIDTH = 120;
+
+  // split single-spaced text into lines of at most lWidth characters, breaking at spaces;
+  // a word longer than lWidth is placed on a line by itself
+  private static ArrayList<String> wrapWords(String lText, int lWidth) {
+    ArrayList<String> lLineArr = new ArrayList<>();
+    StringBuilder lLine = new StringBuilder();
+    for (String lWord : lText.split(" ")) {
+      if (lLine.length() > 0 && lLine.length() + 1 + lWord.length() > lWidth) {
+        lLineArr.add(lLine.toString());
+        lLine.setLength(0);
+      }
+      if (lLine.length() > 0) {
+        lLine.append(' ');
+      }
+      lLine.append(lWord);
+    }
+    lLineArr.add(lLine.toString());
+    return lLineArr;
   }
 
   // escape element text content; quotes need no escaping outside attribute values
