@@ -457,6 +457,25 @@ class XML4LabelSchemaDOM extends Object {
       prXML.println("    </" + pNS + "documentation>");
     }
     prXML.println("  </" + pNS + "annotation>");
+
+    // write the Ingest_LDD Modification_History, if any, last in the header
+    if (DMDocument.LDDToolFlag && !lSchemaFileDefn.modificationDetailArr.isEmpty()) {
+      prXML.println(" ");
+      prXML.println("  <" + pNS + "annotation>");
+      prXML.println("    <" + pNS + "documentation>Modification History</" + pNS + "documentation>");
+      for (String[] lModificationDetail : lSchemaFileDefn.modificationDetailArr) {
+        prXML.println("    <" + pNS + "documentation>"
+            + escapeXMLText(lModificationDetail[0]) + " ("
+            + escapeXMLText(lModificationDetail[1]) + "): "
+            + escapeXMLText(lModificationDetail[2]) + "</" + pNS + "documentation>");
+      }
+      prXML.println("  </" + pNS + "annotation>");
+    }
+  }
+
+  // escape element text content; quotes need no escaping outside attribute values
+  private static String escapeXMLText(String lText) {
+    return lText.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
   }
 
   // write the XML Schema File Footer

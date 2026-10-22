@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!-- PDS4 Local Data Dictionary Ingest File -->
+
+  <!-- Minimal fixture for the Ingest_LDD Modification_History test.                           -->
+  <!-- The Modification_History must be written last in the header of the generated XSD.       -->
+
+<Ingest_LDD
+    xmlns="http://pds.nasa.gov/pds4/pds/v1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
+                        http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1R00.xsd">
+
+  <name>Modification History Test</name>
+  <ldd_version_id>1.1.0.0</ldd_version_id>
+  <dictionary_type>Discipline</dictionary_type>
+  <full_name>Steve Hughes</full_name>
+  <steward_id>prov</steward_id>
+  <namespace_id>prov</namespace_id>
+  <comment>Test-only local data dictionary for the Modification_History header. Not for operational use.</comment>
+  <last_modification_date_time>2026-10-21T12:00:00Z</last_modification_date_time>
+  <Modification_History>
+    <Modification_Detail>
+      <modification_date>2026-07-29</modification_date>
+      <version_id>1.0</version_id>
+      <description>Initial release.</description>
+    </Modification_Detail>
+    <Modification_Detail>
+      <modification_date>2026-10-21</modification_date>
+      <version_id>1.1</version_id>
+      <description>- Added the value attribute &amp; updated the Attributes class.
+				- Corrected the definition of value.</description>
+    </Modification_Detail>
+  </Modification_History>
+
+
+  <!-- ======= Attribute Definitions ======= -->
+
+  <DD_Attribute>
+    <name>value</name>
+    <version_id>9.9</version_id>
+    <local_identifier>value</local_identifier>
+    <nillable_flag>false</nillable_flag>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>The value component of an attribute-value pair.</definition>
+    <DD_Value_Domain>
+      <enumeration_flag>false</enumeration_flag>
+      <value_data_type>ASCII_Short_String_Collapsed</value_data_type>
+      <minimum_characters>1</minimum_characters>
+      <maximum_characters>255</maximum_characters>
+      <unit_of_measure_type>Units_of_None</unit_of_measure_type>
+    </DD_Value_Domain>
+  </DD_Attribute>
+
+
+  <!-- ======= Class Definitions ======= -->
+
+  <DD_Class>
+    <name>Attributes</name>
+    <version_id>1.0</version_id>
+    <local_identifier>Attributes</local_identifier>
+    <submitter_name>Steve Hughes</submitter_name>
+    <definition>The exposed Discipline_Area insert that carries the value attribute.</definition>
+    <element_flag>true</element_flag>
+
+    <DD_Association>
+      <identifier_reference>value</identifier_reference>
+      <reference_type>attribute_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+  </DD_Class>
+
+</Ingest_LDD>

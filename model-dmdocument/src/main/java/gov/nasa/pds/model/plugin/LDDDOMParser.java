@@ -342,6 +342,9 @@ public class LDDDOMParser extends Object {
       lDescription = "TBD_description";
     }
 
+    // get the optional Modification_History from Ingest_LDD
+    getModificationHistory(lSchemaFileDefn, docEle);
+
     // dump the USER attributes
     // InfoModel.dumpAttrDict();
 
@@ -2293,6 +2296,35 @@ public class LDDDOMParser extends Object {
     return lAssocElemArr;
   }
 
+  // get the Modification_History; only direct children of Ingest_LDD are searched since
+  // getTextValue would also match version_id, description, etc. in DD_Attribute and DD_Class
+  private void getModificationHistory(SchemaFileDefn lSchemaFileDefn, Element docEle) {
+    Node lHistNode = docEle.getFirstChild();
+    while (lHistNode != null) {
+      if ((lHistNode.getNodeType() == Node.ELEMENT_NODE)
+          && (lHistNode.getNodeName().compareTo("Modification_History") == 0)) {
+        Node lDetailNode = lHistNode.getFirstChild();
+        while (lDetailNode != null) {
+          if ((lDetailNode.getNodeType() == Node.ELEMENT_NODE)
+              && (lDetailNode.getNodeName().compareTo("Modification_Detail") == 0)) {
+            Element lDetailElement = (Element) lDetailNode;
+            // collapse whitespace so multi-line values are written on one line
+            String lModificationDate =
+                getTextValue(lDetailElement, "modification_date").replaceAll("\\s+", " ").trim();
+            String lVersionId =
+                getTextValue(lDetailElement, "version_id").replaceAll("\\s+", " ").trim();
+            String lDescription =
+                getTextValue(lDetailElement, "description").replaceAll("\\s+", " ").trim();
+            String[] lModificationDetail = {lModificationDate, lVersionId, lDescription};
+            lSchemaFileDefn.modificationDetailArr.add(lModificationDetail);
+          }
+          lDetailNode = lDetailNode.getNextSibling();
+        }
+      }
+      lHistNode = lHistNode.getNextSibling();
+    }
+  }
+
   private String getTextValue(Element ele, String tagName) {
     String textVal = "TBD_Ingest_LDD";
     NodeList nl = ele.getElementsByTagName(tagName);
@@ -2647,6 +2679,10 @@ public class LDDDOMParser extends Object {
     prLocalDD.println("   Namespace Id " + "          " + lSchemaFileDefn.nameSpaceIdNC);
     prLocalDD.println("   Comment" + "                " + lComment);
     prLocalDD.println("   Last Modification Time" + " " + lLastModificationDateTime);
+    for (String[] lModificationDetail : lSchemaFileDefn.modificationDetailArr) {
+      prLocalDD.println("   Modification Detail" + "    " + lModificationDetail[0] + " ("
+          + lModificationDetail[1] + "): " + lModificationDetail[2]);
+    }
     prLocalDD.println("   PDS4 Merge Flag" + "        " + DMDocument.PDS4MergeFlag);
   }
 
