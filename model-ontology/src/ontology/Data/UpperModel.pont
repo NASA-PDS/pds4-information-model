@@ -1,4 +1,4 @@
-; Tue Oct 20 12:56:53 EDT 2026
+; Wed Oct 21 14:20:48 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -8043,6 +8043,12 @@
 ;+		(comment "The local_rule association is a relationship to DD_Rule")
 		(type INSTANCE)
 ;+		(allowed-classes DD_Rule)
+		(create-accessor read-write))
+	(single-slot modification_history
+;+		(comment "The modification_history association is a relationship to Modification_History, a history of changes made to the product.")
+		(type INSTANCE)
+;+		(allowed-classes Modification_History)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot data_object
 ;+		(comment "The data_object association is a relationship to Data Object.")
