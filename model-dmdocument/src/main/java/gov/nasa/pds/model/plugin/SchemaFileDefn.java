@@ -127,8 +127,8 @@ public class SchemaFileDefn {
   // stewarArr is a list of all stewards that share authority over this namespaceid
   ArrayList<String> stewardArr;
 
-  // modificationDetailArr is from the Ingest_LDD Modification_History; one entry per
-  // Modification_Detail as {modification_date, version_id, description}
+  // modificationDetailArr is from the Ingest_LDD Modification_History. It holds one entry
+  // per Modification_Detail: the modification_date, version_id and description, in that order.
   ArrayList<String[]> modificationDetailArr;
 
   public SchemaFileDefn(String id) {

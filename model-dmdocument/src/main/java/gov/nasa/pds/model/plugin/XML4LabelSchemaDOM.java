@@ -129,8 +129,7 @@ class XML4LabelSchemaDOM extends Object {
       writeLDDClassElementDefinition(lSchemaFileDefn, lClassSubArr, prXML);
     }
 
-    // for LDDTool runs and Class flag on, write the xs:element definitions for Classes in all
-    // schemas except the master schema
+    // for LDDTool runs and Class flag on, write the xs:element definitions for Classes
     if (lSchemaFileDefn.isLDD
         && lSchemaFileDefn.nameSpaceIdNC.compareTo(DMDocument.masterNameSpaceIdNCLC) != 0) {
       ArrayList<DOMClass> lClassArr = new ArrayList<>(DOMInfoModel.masterDOMClassMap.values());
@@ -486,17 +485,17 @@ class XML4LabelSchemaDOM extends Object {
   // right-hand boundary for wrapped Modification History lines
   private static final int MOD_HISTORY_LINE_WIDTH = 120;
 
-  // split single-spaced text into lines of at most lWidth characters, breaking at spaces;
-  // a word longer than lWidth is placed on a line by itself
+  // Split single-spaced text into lines of at most lWidth characters, breaking at spaces.
+  // A word longer than lWidth is placed on a line by itself.
   private static ArrayList<String> wrapWords(String lText, int lWidth) {
     ArrayList<String> lLineArr = new ArrayList<>();
     StringBuilder lLine = new StringBuilder();
     for (String lWord : lText.split(" ")) {
-      if (lLine.length() > 0 && lLine.length() + 1 + lWord.length() > lWidth) {
+      if (!lLine.isEmpty() && lLine.length() + 1 + lWord.length() > lWidth) {
         lLineArr.add(lLine.toString());
         lLine.setLength(0);
       }
-      if (lLine.length() > 0) {
+      if (!lLine.isEmpty()) {
         lLine.append(' ');
       }
       lLine.append(lWord);
