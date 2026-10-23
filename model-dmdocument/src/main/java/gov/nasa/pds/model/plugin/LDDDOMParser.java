@@ -72,14 +72,14 @@ public class LDDDOMParser extends Object {
   static final String DESCRIPTION = "description";
 
   // initialize the class structures
-  final private TreeMap<String, DOMClass> classMap;
-  final private TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
-  final private ArrayList<DOMClass> classArr;
+  private final TreeMap<String, DOMClass> classMap;
+  private final TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
+  private final ArrayList<DOMClass> classArr;
 
   // initialize the attribute structures
-  final private ArrayList<DOMAttr> attrArr;
-  final private TreeMap<String, DOMAttr> attrMap;
-  final private TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
+  private final ArrayList<DOMAttr> attrArr;
+  private final TreeMap<String, DOMAttr> attrMap;
+  private final TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
 
   // initialize the resolved properties (after LDD Attr or Class has been mapped to a class)
   static ArrayList<DOMProp> attrArrResolved = new ArrayList<>();
