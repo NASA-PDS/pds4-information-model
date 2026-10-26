@@ -127,6 +127,10 @@ public class SchemaFileDefn {
   // stewarArr is a list of all stewards that share authority over this namespaceid
   ArrayList<String> stewardArr;
 
+  // modificationDetailArr is from the Ingest_LDD Modification_History. It holds one entry
+  // per Modification_Detail: the modification_date, version_id and description, in that order.
+  ArrayList<String[]> modificationDetailArr;
+
   public SchemaFileDefn(String id) {
     identifier = id;
     versionId = "0.0.0.0.n";
@@ -187,6 +191,7 @@ public class SchemaFileDefn {
     LDDToolOutputFileNameNE = "TBD_LDDToolOutputFileNameNE";
     comment = "This XML schema file has been generated from the Information Model.";
     stewardArr = new ArrayList<>();
+    modificationDetailArr = new ArrayList<>();
   }
 
   // getters

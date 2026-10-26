@@ -66,16 +66,20 @@ public class LDDDOMParser extends Object {
   // regex to validate version id
   String regex = "([0-9]+)(\\.){1}([0-9]+)";
   Pattern pattern = Pattern.compile(regex);
+  // XML element name for the version identifier
+  static final String VERSION_ID = "version_id";
+  // XML element name for the description
+  static final String DESCRIPTION = "description";
 
   // initialize the class structures
-  private TreeMap<String, DOMClass> classMap;
-  private TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
-  private ArrayList<DOMClass> classArr;
+  private final TreeMap<String, DOMClass> classMap;
+  private final TreeMap<String, DOMClass> classMapLocal = new TreeMap<>();
+  private final ArrayList<DOMClass> classArr;
 
   // initialize the attribute structures
-  private ArrayList<DOMAttr> attrArr;
-  private TreeMap<String, DOMAttr> attrMap;
-  private TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
+  private final ArrayList<DOMAttr> attrArr;
+  private final TreeMap<String, DOMAttr> attrMap;
+  private final TreeMap<String, DOMAttr> attrMapLocal = new TreeMap<>();
 
   // initialize the resolved properties (after LDD Attr or Class has been mapped to a class)
   static ArrayList<DOMProp> attrArrResolved = new ArrayList<>();
@@ -342,6 +346,9 @@ public class LDDDOMParser extends Object {
       lDescription = "TBD_description";
     }
 
+    // get the optional Modification_History from Ingest_LDD
+    getModificationHistory(lSchemaFileDefn, docEle);
+
     // dump the USER attributes
     // InfoModel.dumpAttrDict();
 
@@ -451,7 +458,7 @@ public class LDDDOMParser extends Object {
 			lDOMAttr.isPDS4 = true;
 			lDOMAttr.isFromLDD = true;
 			lDOMAttr.isExtendedAttribute = isExtendedAttribute;
-			lDOMAttr.versionIdentifierValue = getTextValue(docEle,"version_id");				
+			lDOMAttr.versionIdentifierValue = getTextValue(docEle, VERSION_ID);				
 			lDOMAttr.title = lTitle;
 
 			// at this point lAttr.className is defaulted to the USER class, however it is updated later in association processing if it is owned by a class.
@@ -755,7 +762,7 @@ public class LDDDOMParser extends Object {
           lDOMClass.steward = lSchemaFileDefn.stewardId;
           
           // get version id
-          String lVersionIdValue = getTextValue(el, "version_id");
+          String lVersionIdValue = getTextValue(el, VERSION_ID);
           if (lVersionIdValue != null) {
             Matcher matcher = pattern.matcher(lVersionIdValue);
             if (matcher.matches()) {
@@ -1483,7 +1490,7 @@ public class LDDDOMParser extends Object {
           }
 
           // get the description
-          lValue = getTextValue(lPropMapsElem, "description");
+          lValue = getTextValue(lPropMapsElem, DESCRIPTION);
           if (!(lValue == null || (lValue.indexOf("TBD") == 0))) {
             lPropertyMaps.description = DOMInfoModel.cleanCharString(lValue);
           }
@@ -1540,7 +1547,7 @@ public class LDDDOMParser extends Object {
             }
 
             // get the description
-            lValue = getTextValue(lPropMapElem, "description");
+            lValue = getTextValue(lPropMapElem, DESCRIPTION);
             if (!(lValue == null || (lValue.indexOf("TBD") == 0))) {
               lPropertyMap.description = DOMInfoModel.cleanCharString(lValue);
             }
@@ -2293,6 +2300,35 @@ public class LDDDOMParser extends Object {
     return lAssocElemArr;
   }
 
+  // get the Modification_History; only direct children of Ingest_LDD are searched since
+  // getTextValue would also match version_id, description, etc. in DD_Attribute and DD_Class
+  private void getModificationHistory(SchemaFileDefn lSchemaFileDefn, Element docEle) {
+    Node lHistNode = docEle.getFirstChild();
+    while (lHistNode != null) {
+      if ((lHistNode.getNodeType() == Node.ELEMENT_NODE)
+          && (lHistNode.getNodeName().compareTo("Modification_History") == 0)) {
+        Node lDetailNode = lHistNode.getFirstChild();
+        while (lDetailNode != null) {
+          if ((lDetailNode.getNodeType() == Node.ELEMENT_NODE)
+              && (lDetailNode.getNodeName().compareTo("Modification_Detail") == 0)) {
+            Element lDetailElement = (Element) lDetailNode;
+            // collapse whitespace so multi-line values are written on one line
+            String lModDate =
+                getTextValue(lDetailElement, "modification_date").replaceAll("\\s+", " ").trim();
+            String lModVersionId =
+                getTextValue(lDetailElement, VERSION_ID).replaceAll("\\s+", " ").trim();
+            String lModDescription =
+                getTextValue(lDetailElement, DESCRIPTION).replaceAll("\\s+", " ").trim();
+            String[] lModificationDetail = {lModDate, lModVersionId, lModDescription};
+            lSchemaFileDefn.modificationDetailArr.add(lModificationDetail);
+          }
+          lDetailNode = lDetailNode.getNextSibling();
+        }
+      }
+      lHistNode = lHistNode.getNextSibling();
+    }
+  }
+
   private String getTextValue(Element ele, String tagName) {
     String textVal = "TBD_Ingest_LDD";
     NodeList nl = ele.getElementsByTagName(tagName);
@@ -2647,6 +2683,10 @@ public class LDDDOMParser extends Object {
     prLocalDD.println("   Namespace Id " + "          " + lSchemaFileDefn.nameSpaceIdNC);
     prLocalDD.println("   Comment" + "                " + lComment);
     prLocalDD.println("   Last Modification Time" + " " + lLastModificationDateTime);
+    for (String[] lModificationDetail : lSchemaFileDefn.modificationDetailArr) {
+      prLocalDD.println("   Modification Detail" + "    " + lModificationDetail[0] + " ("
+          + lModificationDetail[1] + "): " + lModificationDetail[2]);
+    }
     prLocalDD.println("   PDS4 Merge Flag" + "        " + DMDocument.PDS4MergeFlag);
   }
 
