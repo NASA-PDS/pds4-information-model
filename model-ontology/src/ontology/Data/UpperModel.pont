@@ -1,4 +1,4 @@
-; Wed Oct 21 14:20:48 EDT 2026
+; Wed Oct 28 17:26:48 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -10988,13 +10988,11 @@
 ;+		(comment "The script_code attributes provides a 4-character ISO 15924 script code.")
 		(type STRING)
 ;+		(value "Adlm" "Afak" "Aghb" "Ahom" "Arab" "Aran" "Armi" "Armn" "Avst" "Bali" "Bamu" "Bass" "Batk" "Beng" "Berf" "Bhks" "Blis" "Bopo" "Brah" "Brai" "Bugi" "Buhd" "Cakm" "Cans" "Cari" "Cham" "Cher" "Chis" "Chrs" "Cirt" "Copt" "Cpmn" "Cprt" "Cyrl" "Cyrs" "Deva" "Diak" "Dogr" "Dsrt" "Dupl" "Egyd" "Egyh" "Egyp" "Elba" "Elym" "Ethi" "Gara" "Geok" "Geor" "Glag" "Gong" "Gonm" "Goth" "Gran" "Grek" "Gujr" "Gukh" "Guru" "Hanb" "Hang" "Hani" "Hano" "Hans" "Hant" "Hatr" "Hebr" "Hira" "Hluw" "Hmng" "Hmnp" "Hntl" "Hrkt" "Hung" "Inds" "Ital" "Jamo" "Java" "Jpan" "Jurc" "Kali" "Kana" "Kawi" "Khar" "Khmr" "Khoj" "Kitl" "Kits" "Knda" "Kore" "Kpel" "Krai" "Kthi" "Lana" "Laoo" "Latf" "Latg" "Latn" "Leke" "Lepc" "Limb" "Lina" "Linb" "Lisu" "Loma" "Lyci" "Lydi" "Mahj" "Maka" "Mand" "Mani" "Marc" "Maya" "Medf" "Mend" "Merc" "Mero" "Mlym" "Modi" "Mong" "Moon" "Mroo" "Mtei" "Mult" "Mymr" "Nagm" "Nand" "Narb" "Nbat" "Newa" "Nkdb" "Nkgb" "Nkoo" "Nshu" "Ogam" "Olck" "Onao" "Orkh" "Orya" "Osge" "Osma" "Ougr" "Palm" "Pauc" "Pcun" "Pelm" "Perm" "Phag" "Phli" "Phlp" "Phlv" "Phnx" "Piqd" "Plrd" "Prti" "Psin" "Ranj" "Rjng" "Rohg" "Roro" "Runr" "Samr" "Sara" "Sarb" "Saur" "Seal" "Sgnw" "Shaw" "Shrd" "Shui" "Sidd" "Sidt" "Sind" "Sinh" "Sogd" "Sogo" "Sora" "Soyo" "Sund" "Sunu" "Sylo" "Syrc" "Syre" "Syrj" "Syrn" "Tagb" "Takr" "Tale" "Talu" "Taml" "Tang" "Tavt" "Tayo" "Telu" "Teng" "Tfng" "Tglg" "Thaa" "Thai" "Tibt" "Tirh" "Tnsa" "Todr" "Tols" "Toto" "Tutg" "Ugar" "Vaii" "Visp" "Vith" "Wara" "Wcho" "Wole" "Xpeo" "Xsux" "Yezi" "Yiii" "Zanb" "Zinh" "Zmth" "Zsye" "Zsym" "Zxxx" "Zyyy" "Zzzz")
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(multislot language_code
 ;+		(comment "The language_code attribute provides a 2-character ISO 639-1 language code.")
 		(type STRING)
 ;+		(value "aa" "ab" "ae" "af" "ak" "am" "an" "ar" "as" "av" "ay" "az" "ba" "be" "bg" "bi" "bm" "bn" "bo" "br" "bs" "ca" "ce" "ch" "co" "cr" "cs" "cu" "cv" "cy" "da" "de" "dv" "dz" "ee" "el" "en" "eo" "es" "et" "eu" "fa" "ff" "fi" "fj" "fo" "fr" "fy" "ga" "gd" "gl" "gn" "gu" "gv" "ha" "he" "hi" "ho" "hr" "ht" "hu" "hy" "hz" "ia" "id" "ie" "ig" "ii" "ik" "io" "is" "it" "iu" "ja" "jv" "ka" "kg" "ki" "kj" "kk" "kl" "km" "kn" "ko" "kr" "ks" "ku" "kv" "kw" "ky" "la" "lb" "lg" "li" "ln" "lo" "lt" "lu" "lv" "mg" "mh" "mi" "mk" "ml" "mn" "mr" "ms" "mt" "my" "na" "nb" "nd" "ne" "ng" "nl" "nn" "no" "nr" "nv" "ny" "oc" "oj" "om" "or" "os" "pa" "pi" "pl" "ps" "pt" "qu" "rm" "rn" "ro" "ru" "rw" "sa" "sc" "sd" "se" "sg" "si" "sk" "sl" "sm" "sn" "so" "sq" "sr" "ss" "st" "su" "sv" "sw" "ta" "te" "tg" "th" "ti" "tk" "tl" "tn" "to" "tr" "ts" "tt" "tw" "ty" "ug" "uk" "ur" "uz" "ve" "vi" "vo" "wa" "wo" "xh" "yi" "yo" "za" "zh" "zu")
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass Attribute_Extension "The Attribute_Extension class enables the association of additional value representations with and existing attribu"
