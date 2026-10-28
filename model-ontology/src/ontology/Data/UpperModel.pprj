@@ -1,4 +1,4 @@
-; Wed Oct 28 18:25:20 EDT 2026
+; Wed Oct 28 18:29:48 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6,10 +6,10 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[UpperModel_ProjectKB_Class151]
-		[UpperModel_ProjectKB_Class152]
-		[UpperModel_ProjectKB_Class153]
-		[UpperModel_ProjectKB_Class154]))
+		[UpperModel_ProjectKB_Class155]
+		[UpperModel_ProjectKB_Class156]
+		[UpperModel_ProjectKB_Class157]
+		[UpperModel_ProjectKB_Class158]))
 
 ([CLSES_TAB] of  Widget
 
@@ -865,22 +865,22 @@
 	(property_list [UpperModel_ProjectKB_Class16])
 	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
-([UpperModel_ProjectKB_Class151] of  String
+([UpperModel_ProjectKB_Class155] of  String
 
 	(name "ChangeLog")
 	(string_value "date"))
 
-([UpperModel_ProjectKB_Class152] of  String
+([UpperModel_ProjectKB_Class156] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([UpperModel_ProjectKB_Class153] of  String
+([UpperModel_ProjectKB_Class157] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([UpperModel_ProjectKB_Class154] of  String
+([UpperModel_ProjectKB_Class158] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))

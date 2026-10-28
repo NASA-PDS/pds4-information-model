@@ -1,4 +1,4 @@
-; Wed Oct 28 18:25:20 EDT 2026
+; Wed Oct 28 18:29:48 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -294,6 +294,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003201.101])
 	(identifier "pds:Affiliation/pds:Attribute_Extension")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -317,6 +318,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003202.101])
 	(identifier "pds:Funding_Acknowledgement/pds:Attribute_Extension")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -340,6 +342,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003203.101])
 	(identifier "pds:Parent_Organization/pds:Attribute_Extension")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -363,6 +366,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003204.101])
 	(identifier "pds:Organization/pds:Attribute_Extension")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
@@ -386,6 +390,7 @@
 	(classNameSpaceNC "pds")
 	(classSteward "pds")
 	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003205.101])
 	(identifier "pds:Person/pds:Attribute_Extension")
 	(isMissionOnly "false")
 	(roleId "TBD_roleId")
