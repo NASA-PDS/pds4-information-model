@@ -38384,7 +38384,7 @@
 ([NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award_title] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award_title")
-  (datatype [UTF8_Text_Collapsed])
+  (datatype [ASCII_Text_Collapsed])
   (maximumCharacterQuantity "TBD_maximum_characters")
   (minimumCharacterQuantity "TBD_minimum_characters")
   (maximumValue "TBD_maximum_value")
@@ -38422,7 +38422,7 @@
 ([NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_source] of NonEnumeratedValueDomain
   (administrationRecord [DD_1.27.0.0])
   (dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_source")
-  (datatype [UTF8_Short_String_Collapsed])
+  (datatype [ASCII_Short_String_Collapsed])
   (maximumCharacterQuantity "TBD_maximum_characters")
   (minimumCharacterQuantity "TBD_minimum_characters")
   (maximumValue "TBD_maximum_value")
