@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Wed Oct 21 14:36:19 EDT 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Thu Oct 29 12:53:45 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -69,6 +69,13 @@
       <sch:assert test="false()">
         <title>pds:ASCII_Date_Time_UTC role="warning"/pds:ASCII_Date_Time_UTC</title>
         pds:ASCII_Date_Time_UTC is deprecated and should not be used.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Affiliation/pds:Attribute_Extension">
+      <sch:assert test="pds:attribute_name = 'organization_name'">
+        <title>pds:Affiliation/pds:Attribute_Extension/attribute_name</title>
+        Attribute_Extension within Affiliation must have attribute_name = 'organization_name'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
@@ -967,6 +974,13 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
+    <sch:rule context="pds:Funding_Acknowledgement/pds:Attribute_Extension">
+      <sch:assert test="pds:attribute_name = ('funding_acknowledgement_text', 'funding_award_title', 'funding_source', 'funding_program_name')">
+        <title>pds:Funding_Acknowledgement/pds:Attribute_Extension/attribute_name</title>
+        Attribute_Extension within Funding_Acknowledgement must have attribute_name equal to one of: funding_acknowledgement_text, funding_award_title, funding_source, funding_program_name.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
     <sch:rule context="pds:Group_Field_Binary">
       <sch:let name="num_fields" value="(pds:fields)"/>
       <sch:let name="num_groups" value="(pds:groups)"/>
@@ -1516,6 +1530,13 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
+    <sch:rule context="pds:Organization/pds:Attribute_Extension">
+      <sch:assert test="pds:attribute_name = 'organization_name'">
+        <title>pds:Organization/pds:Attribute_Extension/attribute_name</title>
+        Attribute_Extension within Organization must have attribute_name = 'organization_name'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
     <sch:rule context="pds:Organization/pds:contributor_type">
       <sch:let name="parentNode" value="local-name(parent::*)"/>
       <sch:let name="parentObj" value="$parentNode = ('List_Contributor')"/>
@@ -1561,6 +1582,13 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
+    <sch:rule context="pds:Parent_Organization/pds:Attribute_Extension">
+      <sch:assert test="pds:attribute_name = 'parent_organization_name'">
+        <title>pds:Parent_Organization/pds:Attribute_Extension/attribute_name</title>
+        Attribute_Extension within Parent_Organization must have attribute_name = 'parent_organization_name'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
     <sch:rule context="pds:Parsable_Byte_Stream/pds:object_length">
       <sch:assert test="@unit = ('byte')">
         <title>pds:Parsable_Byte_Stream/pds:object_length/pds:object_length</title>
@@ -1572,6 +1600,13 @@
       <sch:assert test="@unit = ('byte')">
         <title>pds:Parsable_Byte_Stream/pds:offset/pds:offset</title>
         The attribute @unit must be equal to one of the following values 'byte'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:Person/pds:Attribute_Extension">
+      <sch:assert test="pds:attribute_name = ('display_full_name', 'given_name', 'family_name')">
+        <title>pds:Person/pds:Attribute_Extension/attribute_name</title>
+        Attribute_Extension within Person must have attribute_name equal to one of: display_full_name, given_name, family_name.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

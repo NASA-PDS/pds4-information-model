@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Wed Oct 21 14:36:19 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Thu Oct 29 12:53:45 EDT 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -2137,8 +2137,8 @@
     <xs:sequence>
       <xs:element name="value_utf8" type="pds:value_utf8" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="definition" type="pds:definition" minOccurs="0" maxOccurs="1"> </xs:element>
-      <xs:element name="language_code" type="pds:language_code" minOccurs="1" maxOccurs="unbounded"> </xs:element>
-      <xs:element name="script_code" type="pds:script_code" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="language_code" type="pds:language_code" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="script_code" type="pds:script_code" minOccurs="0" maxOccurs="unbounded"> </xs:element>
       <xs:element name="preferred_flag" type="pds:preferred_flag" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
