@@ -3,11 +3,10 @@
      attribute_name (minOccurs=1).
      Expected failure: core XSD validation error — element Attribute_Extension is
      missing required child element attribute_name. -->
-<?xml-model href="../../source/PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
-                        ../../source/PDS4_PDS_1R00.xsd">
+    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1R00.xsd">
   <Identification_Area>
     <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
     <version_id>1.0</version_id>
@@ -21,11 +20,54 @@
         intentional defect.</description>
       <List_Author>
         <Person>
-          <given_name>Ivan</given_name>
-          <family_name>Ivanov</family_name>
-          <!-- DEFECT: attribute_name (minOccurs=1) is intentionally absent -->
-          <Attribute_Extension/>
+          <display_full_name>Wolfgang Baumjohann</display_full_name>
+          <given_name>Wolfgang</given_name>
+          <family_name>Baumjohann</family_name>
+          <Affiliation>
+            <!-- ERROR: Non-ASCII characters not allowed in organization_name. -->
+            <organization_name>Österreichische Akademie der Wissenschaften</organization_name>
+          </Affiliation>
         </Person>
+        
+        <Person>
+          <display_full_name>Matsuoka Ayako</display_full_name>
+          <given_name>Ayako</given_name>
+          <family_name>Matsuoka</family_name>
+          <person_orcid>0000-0001-5777-9711</person_orcid>
+          <Attribute_Extension>
+            <attribute_name>display_full_name</attribute_name>
+            <Language_Tags>
+              <value_utf8>松岡 彩子</value_utf8>
+              <language_code>ja</language_code>
+              <script_code>Jpan</script_code>
+              <preferred_flag>true</preferred_flag>
+            </Language_Tags>
+          </Attribute_Extension>
+          <Attribute_Extension>
+            <!-- ERROR: Attribute_Extension/attribute_name value limited to 'display_full_name', -->
+            <!--        'given_name', and 'family_name'.                                         -->
+            <attribute_name>person_orcid</attribute_name>
+            <Language_Tags>
+              <value_utf8>0000-0001-5777-9711</value_utf8>
+              <language_code>ja</language_code>
+              <script_code>Jpan</script_code>
+              <preferred_flag>true</preferred_flag>
+            </Language_Tags>
+          </Attribute_Extension>
+          <Affiliation>
+            <organization_name>Kyoto University</organization_name>
+            <organization_rorid>https://ror.org/02kpeqv85</organization_rorid>
+            <Attribute_Extension>
+              <!-- ERROR: Affiliation/Attribute_Extension/attribute_name value limited to     -->
+              <!--        'organization_name'.                                                -->
+              <attribute_name>organization_rorid</attribute_name>
+              <Language_Tags>
+                <value_utf8>https://ror.org/02kpeqv85</value_utf8>
+              </Language_Tags>
+            </Attribute_Extension>
+          </Affiliation>
+        </Person>        
+        
       </List_Author>
     </Citation_Information>
   </Identification_Area>

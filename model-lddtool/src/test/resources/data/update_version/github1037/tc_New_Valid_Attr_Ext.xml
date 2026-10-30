@@ -1,129 +1,329 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../source/PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1
-                        ../../source/PDS4_PDS_1R00.xsd">
-  <Identification_Area>
-    <logical_identifier>urn:nasa:pds:mro_hirise:map_projected_rdr:esp_043896_2055_red</logical_identifier>
-    <version_id>1.0</version_id>
-    <title>MRO MARS HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT REDUCED DATA RECORD EQUIRECTANGULAR PROJECTION</title>
-    <information_model_version>1.27.0.0</information_model_version>
-    <product_class>Product_Observational</product_class>
-    <Citation_Information>
-      <publication_year>2026</publication_year>
-      <description>Valid: Attribute_Extension with Language_Tags present in all five
-        parent classes — Funding_Acknowledgement, Organization, Parent_Organization,
-        Person, and Affiliation — each with one Attribute_Extension and one
-        Language_Tags.</description>
-      <Funding_Acknowledgement>
-        <funding_source>Test Funding Agency</funding_source>
-        <Attribute_Extension>
-          <attribute_name>funding_source</attribute_name>
-          <Language_Tags>
-            <value_utf8>Test Funding Agency</value_utf8>
-            <language_code>en</language_code>
-            <script_code>Latn</script_code>
-          </Language_Tags>
-        </Attribute_Extension>
-      </Funding_Acknowledgement>
-      <List_Author>
-        <Organization>
-          <organization_name>Test Organization</organization_name>
-          <Attribute_Extension>
-            <attribute_name>organization_name</attribute_name>
-            <Language_Tags>
-              <value_utf8>Test Organization</value_utf8>
-              <language_code>en</language_code>
-              <script_code>Latn</script_code>
-            </Language_Tags>
-          </Attribute_Extension>
-          <Parent_Organization>
-            <parent_organization_name>Test Parent Organization</parent_organization_name>
-            <Attribute_Extension>
-              <attribute_name>parent_organization_name</attribute_name>
-              <Language_Tags>
-                <value_utf8>Test Parent Organization</value_utf8>
-                <language_code>en</language_code>
-                <script_code>Latn</script_code>
-              </Language_Tags>
-            </Attribute_Extension>
-          </Parent_Organization>
-        </Organization>
-        <Person>
-          <given_name>Ivan</given_name>
-          <family_name>Ivanov</family_name>
-          <Attribute_Extension>
-            <attribute_name>family_name</attribute_name>
-            <Language_Tags>
-              <value_utf8>Иван Иванов</value_utf8>
-              <language_code>ru</language_code>
-              <script_code>Cyrl</script_code>
-            </Language_Tags>
-          </Attribute_Extension>
-          <Affiliation>
-            <organization_name>Test Affiliation Organization</organization_name>
-            <Attribute_Extension>
-              <attribute_name>organization_name</attribute_name>
-              <Language_Tags>
-                <value_utf8>Test Affiliation Organization</value_utf8>
-                <language_code>en</language_code>
-                <script_code>Latn</script_code>
-              </Language_Tags>
-            </Attribute_Extension>
-          </Affiliation>
-        </Person>
-      </List_Author>
-    </Citation_Information>
-  </Identification_Area>
-  <Observation_Area>
-    <Time_Coordinates>
-      <start_date_time>2015-12-07T21:26:02.757Z</start_date_time>
-      <stop_date_time>2015-12-07T21:26:04.637Z</stop_date_time>
-    </Time_Coordinates>
-    <Investigation_Area>
-      <name>MARS RECONNAISSANCE ORBITER</name>
-      <type>Mission</type>
-      <Internal_Reference>
-        <lid_reference>urn:nasa:pds:context:investigation:mission.mars_reconnaissance_orbiter</lid_reference>
-        <reference_type>data_to_investigation</reference_type>
-      </Internal_Reference>
-    </Investigation_Area>
-    <Observing_System>
-      <Observing_System_Component>
-        <name>HIGH RESOLUTION IMAGING SCIENCE EXPERIMENT</name>
-        <type>Instrument</type>
-      </Observing_System_Component>
-    </Observing_System>
-    <Target_Identification>
-      <name>Mars</name>
-      <type>Planet</type>
-    </Target_Identification>
-    <Mission_Area>
-    </Mission_Area>
-    <Discipline_Area>
-    </Discipline_Area>
-  </Observation_Area>
-  <File_Area_Observational>
-    <File>
-      <file_name>ESP_043896_2055_RED.tif</file_name>
-      <local_identifier>DATA_FILE</local_identifier>
-      <creation_date_time>2015-12-16T15:47:59Z</creation_date_time>
-      <file_size unit="byte">1184018549</file_size>
-    </File>
-    <Array_1D_Spectrum>
-      <local_identifier>Array_1D_Spectrum</local_identifier>
-      <offset unit="byte">152747</offset>
-      <axes>1</axes>
-      <axis_index_order>Last Index Fastest</axis_index_order>
-      <Element_Array>
-        <data_type>UnsignedLSB2</data_type>
-      </Element_Array>
-      <Axis_Array>
-        <axis_name>Sample</axis_name>
-        <elements>23379</elements>
-        <sequence_number>1</sequence_number>
-      </Axis_Array>
-    </Array_1D_Spectrum>
-  </File_Area_Observational>
-</Product_Observational>
+<?xml-model href="PDS4_PDS_1R00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Document 
+  xmlns="http://pds.nasa.gov/pds4/pds/v1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1R00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:esa:psa:bepicolombo-mio:document-mgf:baumjohann-etal-2020</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>The BepiColombo–Mio Magnetometer en Route to Mercury</title>
+        <information_model_version>1.27.0.0</information_model_version>
+        <product_class>Product_Document</product_class>
+        <Citation_Information>
+            <publication_year>2020</publication_year>
+            <doi>10.1007/s11214-020-00754-y</doi>
+            <description>Test label for CCB#63 and CCB#67 including a partially list of authors 
+                for testing purposes.</description>
+            <List_Author>
+                <Person>
+                    <display_full_name>Wolfgang Baumjohann</display_full_name>
+                    <given_name>Wolfgang</given_name>
+                    <family_name>Baumjohann</family_name>
+                    <Affiliation>
+                        <organization_name>Austrian Academy of Sciences</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "de" is a valid value for language_code                 -->
+                        <!--        optional attribute script_code omitted                  -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>Österreichische Akademie der Wissenschaften</value_utf8>
+                                <language_code>de</language_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Matsuoka Ayako</display_full_name>
+                    <given_name>Ayako</given_name>
+                    <family_name>Matsuoka</family_name>
+                  <!-- VALID: "display_full_name" is a valid value for attribute_name -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>display_full_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>松岡 彩子</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "given_name" is a valid value for attribute_name        -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>given_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>彩子</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "family_name" is a valid value for attribute_name       -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>family_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>松岡</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                    <Affiliation>
+                        <organization_name>Kyoto University</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "ja" is a valid value for language_code                 -->
+                        <!--        "Jpan" is a valid value for script_code                 -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>京都大学</value_utf8>
+                                <language_code>ja</language_code>
+                                <script_code>Jpan</script_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Yasuhito Narita</display_full_name>
+                    <given_name>Yasuhito</given_name>
+                    <family_name>Narita</family_name>
+                    <Affiliation>
+                        <organization_name>Austrian Academy of Sciences</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "de" is a valid value for language_code                 -->
+                        <!--        optional attribute script_code omitted                  -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>Österreichische Akademie der Wissenschaften</value_utf8>
+                                <language_code>de</language_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Werner Magnes</display_full_name>
+                    <given_name>Werner</given_name>
+                    <family_name>Magnes</family_name>
+                    <Affiliation>
+                        <organization_name>Austrian Academy of Sciences</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "de" is a valid value for language_code                 -->
+                        <!--        optional attribute script_code omitted                  -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>Österreichische Akademie der Wissenschaften</value_utf8>
+                                <language_code>de</language_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Karl-Heinz Glassmeier</display_full_name>
+                    <given_name>Karl-Heinz</given_name>
+                    <family_name>Glassmeier</family_name>
+                  <!-- VALID: "display_full_name" is a valid value for attribute_name -->
+                  <!--        "de" is a valid value for language_code                 -->
+                  <!--        optional attribute script_code omitted                  -->
+                  <Attribute_Extension>
+                    <attribute_name>display_full_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>Karl-Heinz Glaßmeier</value_utf8>
+                      <language_code>de</language_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "family_name" is a valid value for attribute_name       -->
+                  <!--        "de" is a valid value for language_code                 -->
+                  <!--        optional attribute script_code omitted                  -->
+                  <Attribute_Extension>
+                    <attribute_name>family_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>Glaßmeier</value_utf8>
+                      <language_code>de</language_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                    <Affiliation>
+                        <organization_name>Technical University of Braunschweig</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        optional attribute language_code omitted                -->
+                        <!--        optional attribute script_code omitted                  -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>Technische Universität Braunschweig</value_utf8>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Andre Balogh</display_full_name>
+                    <given_name>Andre</given_name>
+                    <family_name>Balogh</family_name>
+                  
+                  <!-- VALID: "display_full_name" is a valid value for attribute_name -->
+                  <!--        "hu" is a valid value for language_code                 -->
+                  <!--        optional attribute script_code omitted                  -->
+                  <Attribute_Extension>
+                    <attribute_name>display_full_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>André Balogh</value_utf8>
+                      <language_code>hu</language_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "given_name" is a valid value for attribute_name        -->
+                  <!--        "hu" is a valid value for language_code                 -->
+                  <!--        optional attribute script_code omitted                  -->
+                  <Attribute_Extension>
+                    <attribute_name>given_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>André</value_utf8>
+                      <language_code>hu</language_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                    <Affiliation>
+                        <organization_name>Imperial College London</organization_name>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Matsushima Masataka</display_full_name>
+                    <given_name>Masataka</given_name>
+                    <family_name>Matsushima</family_name>
+                  <!-- VALID: "display_full_name" is a valid value for attribute_name -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>display_full_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>松島　政貴</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "given_name" is a valid value for attribute_name        -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>given_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>政貴</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "family_name" is a valid value for attribute_name       -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>family_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>松島</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                    <Affiliation>
+                        <organization_name>Tokyo Institute of Technology</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "ja" is a valid value for language_code                 -->
+                        <!--        "Jpan" is a valid value for script_code                 -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>東京科学大学</value_utf8>
+                                <language_code>ja</language_code>
+                                <script_code>Jpan</script_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+                <Person>
+                    <display_full_name>Shibuya Hidetoshi</display_full_name>
+                    <given_name>Hidetoshi</given_name>
+                    <family_name>Shibuya</family_name>
+                  <!-- VALID: "display_full_name" is a valid value for attribute_name -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>display_full_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>渋谷 秀敏</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "given_name" is a valid value for attribute_name        -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>given_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>秀敏</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                  <!-- VALID: "family_name" is a valid value for attribute_name       -->
+                  <!--        "ja" is a valid value for language_code                 -->
+                  <!--        "Jpan" is a valid value for script_code                 -->
+                  <Attribute_Extension>
+                    <attribute_name>family_name</attribute_name>
+                    <Language_Tags>
+                      <value_utf8>渋谷</value_utf8>
+                      <language_code>ja</language_code>
+                      <script_code>Jpan</script_code>
+                      <preferred_flag>true</preferred_flag>
+                    </Language_Tags>
+                  </Attribute_Extension>
+                    <Affiliation>
+                        <organization_name>Kumamoto University</organization_name>
+                        <!-- VALID: "organization_name" is a valid value for attribute_name -->
+                        <!--        "ja" is a valid value for language_code                 -->
+                        <!--        "Jpan" is a valid value for script_code                 -->
+                        <Attribute_Extension>
+                            <attribute_name>organization_name</attribute_name>
+                            <Language_Tags>
+                                <value_utf8>熊本大学</value_utf8>
+                                <language_code>ja</language_code>
+                                <script_code>Jpan</script_code>
+                                <preferred_flag>true</preferred_flag>
+                            </Language_Tags>
+                        </Attribute_Extension>
+                    </Affiliation>
+                </Person>
+            </List_Author>
+        </Citation_Information>
+    </Identification_Area>
+    <Document>
+        <publication_date>2020-10-28</publication_date>
+        <Document_Edition>
+            <edition_name>PDS Version</edition_name>
+            <language>English</language>
+            <files>1</files>
+            <Document_File>
+                <file_name>baumjohann-etal-2020.pdf</file_name>
+                <document_standard_id>PDF/A</document_standard_id>
+            </Document_File>
+        </Document_Edition>
+    </Document>
+</Product_Document>

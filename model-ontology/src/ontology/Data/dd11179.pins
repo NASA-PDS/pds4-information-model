@@ -1,4 +1,4 @@
-; Wed Oct 21 14:34:13 EDT 2026
+; Thu Oct 29 12:56:02 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -52834,7 +52834,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_award_title")
-	(datatype [UTF8_Text_Collapsed])
+	(datatype [ASCII_Text_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
@@ -52876,7 +52876,7 @@
 
 	(administrationRecord [DD_1.27.0.0])
 	(dataIdentifier "NEVD.0001_NASA_PDS_1.pds.Funding_Acknowledgement.pds.funding_source")
-	(datatype [UTF8_Short_String_Collapsed])
+	(datatype [ASCII_Short_String_Collapsed])
 	(defaultUnitId "TBD_default_unit_id")
 	(maximumCharacterQuantity "TBD_maximum_characters")
 	(maximumValue "TBD_maximum_value")
