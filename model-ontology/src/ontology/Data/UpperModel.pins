@@ -1,4 +1,4 @@
-; Wed Oct 21 14:20:48 EDT 2026
+; Wed Oct 28 18:29:48 EDT 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -285,6 +285,126 @@
 	(attrTitle "sequence_number")
 	(identifier "sequence_number")
 	(specMesg "The sequence number of the second axis of an Array_2D_Image must be set to 2."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003201] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "attribute_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003201.101])
+	(identifier "pds:Affiliation/pds:Attribute_Extension")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Affiliation/pds:Attribute_Extension"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003201.101] of  Schematron_Assert
+
+	(assertMsg "Attribute_Extension within Affiliation must have attribute_name = 'organization_name'.")
+	(assertStmt "pds:attribute_name = 'organization_name'")
+	(assertType "RAW")
+	(attrTitle "attribute_name")
+	(identifier "attribute_name")
+	(specMesg "Attribute_Extension within Affiliation must have attribute_name = 'organization_name'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003202] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "attribute_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003202.101])
+	(identifier "pds:Funding_Acknowledgement/pds:Attribute_Extension")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Funding_Acknowledgement/pds:Attribute_Extension"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003202.101] of  Schematron_Assert
+
+	(assertMsg "Attribute_Extension within Funding_Acknowledgement must have attribute_name equal to one of: funding_acknowledgement_text, funding_award_title, funding_source, funding_program_name.")
+	(assertStmt "pds:attribute_name = ('funding_acknowledgement_text', 'funding_award_title', 'funding_source', 'funding_program_name')")
+	(assertType "RAW")
+	(attrTitle "attribute_name")
+	(identifier "attribute_name")
+	(specMesg "Attribute_Extension within Funding_Acknowledgement must have attribute_name equal to one of: funding_acknowledgement_text, funding_award_title, funding_source, funding_program_name."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003203] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "attribute_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003203.101])
+	(identifier "pds:Parent_Organization/pds:Attribute_Extension")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Parent_Organization/pds:Attribute_Extension"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003203.101] of  Schematron_Assert
+
+	(assertMsg "Attribute_Extension within Parent_Organization must have attribute_name = 'parent_organization_name'.")
+	(assertStmt "pds:attribute_name = 'parent_organization_name'")
+	(assertType "RAW")
+	(attrTitle "attribute_name")
+	(identifier "attribute_name")
+	(specMesg "Attribute_Extension within Parent_Organization must have attribute_name = 'parent_organization_name'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003204] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "attribute_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003204.101])
+	(identifier "pds:Organization/pds:Attribute_Extension")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Organization/pds:Attribute_Extension"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003204.101] of  Schematron_Assert
+
+	(assertMsg "Attribute_Extension within Organization must have attribute_name = 'organization_name'.")
+	(assertStmt "pds:attribute_name = 'organization_name'")
+	(assertType "RAW")
+	(attrTitle "attribute_name")
+	(identifier "attribute_name")
+	(specMesg "Attribute_Extension within Organization must have attribute_name = 'organization_name'."))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003205] of  Schematron_Rule
+
+	(alwaysInclude "false")
+	(attrNameSpaceNC "pds")
+	(attrTitle "attribute_name")
+	(classNameSpaceNC "pds")
+	(classSteward "pds")
+	(classTitle "Attribute_Extension")
+	(has_Schematron_Assert [http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003205.101])
+	(identifier "pds:Person/pds:Attribute_Extension")
+	(isMissionOnly "false")
+	(roleId "TBD_roleId")
+	(type "TBD_type")
+	(xpath "pds:Person/pds:Attribute_Extension"))
+
+([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3AAttribute_Extension_attribute_name_values.100003205.101] of  Schematron_Assert
+
+	(assertMsg "Attribute_Extension within Person must have attribute_name equal to one of: display_full_name, given_name, family_name.")
+	(assertStmt "pds:attribute_name = ('display_full_name', 'given_name', 'family_name')")
+	(assertType "RAW")
+	(attrTitle "attribute_name")
+	(identifier "attribute_name")
+	(specMesg "Attribute_Extension within Person must have attribute_name equal to one of: display_full_name, given_name, family_name."))
 
 ([http%3A%2F%2Fpds.nasa.gov%2Finfomodel%2Fpds%23.pds%3ACitation_Information.100004635] of  Schematron_Rule
 
