@@ -1,4 +1,4 @@
-; Wed Oct 28 18:29:47 EDT 2026
+; Tue Nov 03 10:58:40 EST 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -6498,7 +6498,7 @@
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
-;+		(cardinality 0 1)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot name_
 ;+		(comment "The name attribute provides a word or combination of words by which the object is known.")
@@ -6528,7 +6528,7 @@
 	(single-slot description
 ;+		(comment "The description attribute provides a statement, picture in words, or account that describes or is otherwise relevant to the object.")
 		(type STRING)
-;+		(cardinality 0 1)
+;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot telescope_longitude
 ;+		(comment "The telescope_longitude attribute provides the angular distance of the telescope east (positive), measured by the angle contained between the meridian of the telescope and the reference figure (or datum) prime meridian.")
