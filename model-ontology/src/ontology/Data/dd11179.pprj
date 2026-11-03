@@ -1,4 +1,4 @@
-; Thu Oct 29 12:56:02 EDT 2026
+; Tue Nov 03 12:19:50 EST 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class10158]
-		[dd11179_ProjectKB_Class10159]
-		[dd11179_ProjectKB_Class10160]))
+		[dd11179_ProjectKB_Class75]
+		[dd11179_ProjectKB_Class76]
+		[dd11179_ProjectKB_Class77]))
 
 ([CLSES_TAB] of  Widget
 
@@ -44,21 +44,6 @@
 
 ([dd11179_ProjectKB_Class10] of  Property_List
 )
-
-([dd11179_ProjectKB_Class10158] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([dd11179_ProjectKB_Class10159] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([dd11179_ProjectKB_Class10160] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
 
 ([dd11179_ProjectKB_Class11] of  Widget
 
@@ -375,6 +360,21 @@
 ([dd11179_ProjectKB_Class74] of  Property_List
 )
 
+([dd11179_ProjectKB_Class75] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([dd11179_ProjectKB_Class76] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([dd11179_ProjectKB_Class77] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
 ([dd11179_ProjectKB_Class8] of  Property_List
 )
 
@@ -522,7 +522,7 @@
 	(name "instances_file_name")
 	(string_value "dd11179.pins"))
 
-([KB_424049_Class0] of  Map
+([KB_494685_Class0] of  Map
 )
 
 ([KB_860773_Class0] of  Map
