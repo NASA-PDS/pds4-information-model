@@ -1,11 +1,12 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-02)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-05)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
 **Requirements:**
 
+- CCB-94: Add Modification\_History to Ingest\_LDD [\#1096](https://github.com/NASA-PDS/pds4-information-model/issues/1096)
 - CCB-90: Add archival\_to\_native back pointer to reference\_type [\#1076](https://github.com/NASA-PDS/pds4-information-model/issues/1076)
 - CCB-91: Add more units of Rate: megabits/s and gigabits/s [\#1065](https://github.com/NASA-PDS/pds4-information-model/issues/1065)
 - CCB-63: International characters / Unicode support for names - IM Update [\#1037](https://github.com/NASA-PDS/pds4-information-model/issues/1037)
