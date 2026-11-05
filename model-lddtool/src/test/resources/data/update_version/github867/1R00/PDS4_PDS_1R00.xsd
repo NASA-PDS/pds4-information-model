@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Thu Oct 29 14:04:54 EDT 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Tue Nov 03 12:28:13 EST 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -1243,7 +1243,7 @@
       <xs:element name="type" type="pds:type" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="address" type="pds:address" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="country" type="pds:country" minOccurs="0" maxOccurs="1"> </xs:element>
-      <xs:element name="description" type="pds:description" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="description" type="pds:description" minOccurs="1" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -3778,7 +3778,7 @@
       <xs:element name="telescope_altitude" type="pds:telescope_altitude" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="altitude" type="pds:altitude" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="coordinate_source" type="pds:coordinate_source" minOccurs="0" maxOccurs="1"> </xs:element>
-      <xs:element name="description" type="pds:description" minOccurs="0" maxOccurs="1"> </xs:element>
+      <xs:element name="description" type="pds:description" minOccurs="1" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 

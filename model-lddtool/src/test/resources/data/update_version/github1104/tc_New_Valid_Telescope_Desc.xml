@@ -1,0 +1,21 @@
+<?xml-model href="PDS4_PDS_1R00.sch" 
+    schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Context 
+  xmlns="http://pds.nasa.gov/pds4/pds/v1" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:ctli="http://pds.nasa.gov/pds4/ctli/v2" 
+  xsi:schemaLocation="
+  http://pds.nasa.gov/pds4/pds/v1 PDS4_PDS_1R00.xsd 
+  ">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:context:telescope:telescope.dummy</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Dummy Telescope</title>
+    <information_model_version>1.27.0.0</information_model_version>
+    <product_class>Product_Context</product_class>
+  </Identification_Area>
+  <Telescope>
+    <aperture unit="cm">508</aperture>
+    <description>Valid label for testing a required Telescope description.</description>
+  </Telescope>
+</Product_Context>
