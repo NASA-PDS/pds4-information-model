@@ -925,9 +925,9 @@ class XML4LabelSchemaDOM extends Object {
     }
     prXML.println("      <!-- When creating a context product you must insert a type list. -->");
     prXML.println("      <" + pNS
-        + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"1\" />");
+        + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"unbounded\" />");
     prXML.println("      <!-- <" + pNS
-        + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"1\"> </"
+        + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"unbounded\"> </"
         + pNS + "element> -->");
     xsAnyStmtWritten = true;
     return;
