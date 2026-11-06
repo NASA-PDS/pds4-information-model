@@ -663,7 +663,10 @@ class XML4LabelSchemaDOM extends Object {
       return;
     }
     if ((lClass.title.indexOf("Type_List_Area") > -1)) {
-      writeClassXSAnyTypeList(prXML);
+      if (isVersionAtLeast(DMDocument.masterPDSSchemaFileDefn.versionId, "1.27.0.0"))
+        writeClassXSAnyTypeList(prXML, "unbounded");
+      else 
+        writeClassXSAnyTypeList(prXML, "1");
       downIndentSpaces();
       return;
     }
@@ -687,6 +690,25 @@ class XML4LabelSchemaDOM extends Object {
       choiceBlockOpen = false;
     }
     return;
+  }
+  
+  // Compares two version strings containing any number of dot-separated
+  // numeric components (e.g., "1.30.0.0", "1.29", or "2").
+  public static boolean isVersionAtLeast(String versionA, String versionB) {
+	  String[] a = versionA.split("\\.");
+	  String[] b = versionB.split("\\.");
+
+	  int length = Math.max(a.length, b.length);
+
+	  for (int i = 0; i < length; i++) {
+		  int numA = i < a.length ? Integer.parseInt(a[i]) : 0;
+		  int numB = i < b.length ? Integer.parseInt(b[i]) : 0;
+
+		  if (numA > numB) return true;
+		  if (numA < numB) return false;
+	  }
+
+	  return true; // Versions are equal
   }
 
   // write the attribute as an element definition, a component of the element that represents the
@@ -919,15 +941,15 @@ class XML4LabelSchemaDOM extends Object {
   }
 
   // write the Type List XSAny statements
-  public void writeClassXSAnyTypeList(PrintWriter prXML) throws java.io.IOException {
+  public void writeClassXSAnyTypeList(PrintWriter prXML, String bound) throws java.io.IOException {
     if (xsAnyStmtWritten) {
       return;
     }
     prXML.println("      <!-- When creating a context product you must insert a type list. -->");
     prXML.println("      <" + pNS
-        + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"unbounded\" />");
+        + "any namespace=\"##other\" processContents=\"strict\" minOccurs=\"1\" maxOccurs=\"" + bound +  "\" />");
     prXML.println("      <!-- <" + pNS
-        + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"unbounded\"> </"
+        + "element name=\"Type_List\" type=\"ctli:Type_List\" minOccurs=\"1\" maxOccurs=\"" + bound + "\"> </"
         + pNS + "element> -->");
     xsAnyStmtWritten = true;
     return;
