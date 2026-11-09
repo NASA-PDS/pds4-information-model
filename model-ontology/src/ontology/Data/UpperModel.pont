@@ -1,4 +1,4 @@
-; Tue Nov 03 10:58:40 EST 2026
+; Mon Nov 09 14:50:14 EST 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -1883,6 +1883,11 @@
 ;+		(comment "The min index attribute provides a value that indicates the position of the element at the beginning of a sequence of elements. This value is typically 0 or 1.")
 		(type INTEGER)
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot rule_role
+;+		(comment "The rule_role attribute indicates the severity with which the schematron processor reports a failed rule statement.")
+		(type STRING)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(multislot has_Delimited_Field_Grouped
 ;+		(comment "The has_Delimited_Field_Grouped association is a relationship to the field types for a group.")
@@ -8448,6 +8453,12 @@
 		(type STRING)
 ;+		(value "Report" "Assert Every" "Assert If" "Assert")
 ;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot rule_role
+;+		(comment "The rule_role attribute indicates the severity with which the schematron processor reports a failed rule statement.")
+		(type STRING)
+;+		(value "Error" "Warning")
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
 (defclass Information_Package_Component_Deep_Archive "The Information Package Component Deep Archive class is an Information Package Component for the NASA planetary science deep archive."
