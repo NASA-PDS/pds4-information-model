@@ -1447,6 +1447,19 @@ public class LDDDOMParser extends Object {
 	          lDOMAssertDefn.specMesg = lValue6;
 	        }
 	
+	        // get the optional rule role (severity); the default (none or "Error") reports an error
+	        String lValue7 = getTextValue(lElement, "rule_role");
+	        if (!(lValue7 == null || (lValue7.indexOf("TBD") == 0))) {
+	          lValue7 = lValue7.trim();
+	          if (lValue7.equalsIgnoreCase("Warning")) {
+	            lDOMAssertDefn.roleId = " role=\"warning\"";
+	          } else if (!lValue7.equalsIgnoreCase("Error")) {
+	            Utility.registerMessage("2>warning Rule: <" + lLocalIdentifier
+	                + "> - The rule_role value '" + lValue7
+	                + "' is not valid. Valid values are 'Error' and 'Warning'. The value 'Error' is used.");
+	          }
+	        }
+	
 	        // get the statement values
 	        lValueArr = getXMLValueArr("rule_value", lElement);
 	        if (!(lValueArr == null || lValueArr.isEmpty())) {
