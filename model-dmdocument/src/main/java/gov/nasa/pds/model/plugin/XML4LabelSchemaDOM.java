@@ -49,6 +49,8 @@ import gov.nasa.pds.model.plugin.util.Utility;
 
 class XML4LabelSchemaDOM extends Object {
 	private static final Logger LOG = LoggerFactory.getLogger(XML4LabelSchemaDOM.class);
+	private static final String MIN_PDS4_VERSION = "1.27.0.0";
+	private static final String UNBOUNDED = "unbounded";
 	
   PrintWriter prXML;
   ArrayList<String> allAttrTypeIdArr = new ArrayList<>();
@@ -663,8 +665,8 @@ class XML4LabelSchemaDOM extends Object {
       return;
     }
     if ((lClass.title.indexOf("Type_List_Area") > -1)) {
-      if (isVersionAtLeast(DMDocument.masterPDSSchemaFileDefn.versionId, "1.27.0.0"))
-        writeClassXSAnyTypeList(prXML, "unbounded");
+      if (isVersionAtLeast(DMDocument.masterPDSSchemaFileDefn.versionId, MIN_PDS4_VERSION))
+        writeClassXSAnyTypeList(prXML, UNBOUNDED);
       else 
         writeClassXSAnyTypeList(prXML, "1");
       downIndentSpaces();
@@ -727,7 +729,7 @@ class XML4LabelSchemaDOM extends Object {
     String cmin = lAttr.cardMin;
     String cmax = lAttr.cardMax;
     if (cmax.compareTo("*") == 0) {
-      cmax = "unbounded";
+      cmax = UNBOUNDED;
     }
 
     if ((choiceBlockOpen) && (!lProp.isChoice || lProp.groupName.compareTo(lGroupName) != 0)) {
@@ -742,7 +744,7 @@ class XML4LabelSchemaDOM extends Object {
         cmin = lProp.cardMin;
         cmax = lProp.cardMax;
         if (cmax.compareTo("*") == 0) {
-          cmax = "unbounded";
+          cmax = UNBOUNDED;
         }
       }
       prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\""
@@ -799,7 +801,7 @@ class XML4LabelSchemaDOM extends Object {
     String cmin = lProp.cardMin;
     String cmax = lProp.cardMax;
     if (cmax.compareTo("*") == 0) {
-      cmax = "unbounded";
+      cmax = UNBOUNDED;
     }
 
     if ((choiceBlockOpen) && (!lProp.isChoice || lProp.groupName.compareTo(lGroupName) != 0)) {
@@ -815,7 +817,7 @@ class XML4LabelSchemaDOM extends Object {
         cmin = lProp.cardMin;
         cmax = lProp.cardMax;
         if (cmax.compareTo("*") == 0) {
-          cmax = "unbounded";
+          cmax = UNBOUNDED;
         }
       }
       prXML.println(indentSpaces() + "<" + pNS + "choice minOccurs=\"" + cmin + "\" maxOccurs=\""
@@ -881,13 +883,13 @@ class XML4LabelSchemaDOM extends Object {
         + " maxOccurs=\"" + "1" + "\"> </" + pNS + "element>");
     prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + "subfacet1" + "\"" + ""
         + " type=\"" + lClass.nameSpaceId + "ASCII_Short_String_Collapsed" + "\"" + " minOccurs=\""
-        + "0" + "\"" + " maxOccurs=\"" + "unbounded" + "\"> </" + pNS + "element>");
+        + "0" + "\"" + " maxOccurs=\"" + UNBOUNDED + "\"> </" + pNS + "element>");
     prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + "facet2" + "\"" + "" + " type=\""
         + lClass.nameSpaceId + "ASCII_Short_String_Collapsed" + "\"" + " minOccurs=\"" + "0" + "\""
         + " maxOccurs=\"" + "1" + "\"> </" + pNS + "element>");
     prXML.println(indentSpaces() + "<" + pNS + "element name=\"" + "subfacet2" + "\"" + ""
         + " type=\"" + lClass.nameSpaceId + "ASCII_Short_String_Collapsed" + "\"" + " minOccurs=\""
-        + "0" + "\"" + " maxOccurs=\"" + "unbounded" + "\"> </" + pNS + "element>");
+        + "0" + "\"" + " maxOccurs=\"" + UNBOUNDED + "\"> </" + pNS + "element>");
     return;
   }
 
@@ -941,7 +943,7 @@ class XML4LabelSchemaDOM extends Object {
   }
 
   // write the Type List XSAny statements
-  public void writeClassXSAnyTypeList(PrintWriter prXML, String bound) throws java.io.IOException {
+  public void writeClassXSAnyTypeList(PrintWriter prXML, String bound) {
     if (xsAnyStmtWritten) {
       return;
     }
