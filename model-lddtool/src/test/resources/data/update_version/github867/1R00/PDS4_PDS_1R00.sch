@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Fri Nov 06 18:39:36 EST 2026 -->
+  <!-- PDS4 Schematron for Name Space Id:pds  Version:1.27.0.0 - Wed Nov 11 12:26:03 EST 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 schematron file is an operational deliverable. *** -->
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
@@ -549,6 +549,13 @@
       <sch:assert test=". = ('PDS3', 'PDS4')">
         <title>pds:DD_Class_Full/pds:type/pds:type</title>
         The attribute pds:DD_Class_Full/pds:type must be equal to one of the following values 'PDS3', 'PDS4'.</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
+    <sch:rule context="pds:DD_Rule_Statement/pds:rule_role">
+      <sch:assert test=". = ('Error', 'Warning')">
+        <title>pds:DD_Rule_Statement/pds:rule_role/pds:rule_role</title>
+        The attribute pds:DD_Rule_Statement/pds:rule_role must be equal to one of the following values 'Error', 'Warning'.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

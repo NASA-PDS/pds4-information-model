@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Fri Nov 06 18:39:36 EST 2026 -->
+  <!-- PDS4 XML/Schema for Name Space Id:pds  Version:1.27.0.0 - Wed Nov 11 12:26:03 EST 2026 -->
   <!-- Generated from the PDS4 Information Model Version 1.27.0.0 - System Build 18.0	 -->
   <!-- *** This PDS4 product schema is an operational deliverable. *** -->
   <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -843,6 +843,7 @@
       <xs:element name="rule_message" type="pds:rule_message" minOccurs="1" maxOccurs="1"> </xs:element>
       <xs:element name="rule_description" type="pds:rule_description" minOccurs="0" maxOccurs="1"> </xs:element>
       <xs:element name="rule_value" type="pds:rule_value" minOccurs="0" maxOccurs="unbounded"> </xs:element>
+      <xs:element name="rule_role" type="pds:rule_role" minOccurs="0" maxOccurs="1"> </xs:element>
     </xs:sequence>
   </xs:complexType>
 
@@ -7215,6 +7216,18 @@
     </xs:annotation>
     <xs:restriction base="pds:ASCII_Text_Collapsed">
      <xs:minLength value="1"/>
+	   </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="rule_role">
+    <xs:annotation>
+      <xs:documentation>The rule_role attribute indicates the severity
+        with which the schematron processor reports a failed rule
+        statement.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="pds:ASCII_Short_String_Collapsed">
+     <xs:minLength value="1"/>
+     <xs:maxLength value="255"/>
 	   </xs:restriction>
   </xs:simpleType>
 
