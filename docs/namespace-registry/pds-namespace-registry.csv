@@ -20,7 +20,7 @@ ctli,Common Type List Instrument,The CTLI dictionary provides a set of type valu
 disp,Display,"The Display Dictionary contains classes, attributes, and rules for specifying how arrays (images) as stored, should be displayed to users. For example, defining the vertical display direction 'Bottom to Top' or horizontal direction 'Left to Right' and it can provide guidance on mapping multiband arrays for color display (red, green, and blue) or as a movie sequence (video).",Discipline,Trent Hare,thare at usgs.gov,2013-06-10
 ebt,Earth-Based Telescope,"This namespace will provide observing parameters, provenance, and geometry relevant to ground-based telescopes on Earth and for Earth-orbiting (or Lagrange point) telescopes",Discipline,Ben Hirsch,bhirsch1 at umd.edu,2021-07-21
 geo,Geosciences,Namespace for the Geosciences node's dictionary.,Discipline,Jennifer Ward,jgward at wustl.edu,2012-04-03
-geom,Geometry,"The Geometry Dictionary contains classes, attributes, and rules for specifying the geometry parameters associated with science observations.",Discipline,"Edward Guinness, Mitchell Gordon","guinness at wunder.wustl.edu, mgordon@seti.org",2015-04-30
+geom,Geometry,"The Geometry Dictionary contains classes, attributes, and rules for specifying the geometry parameters associated with science observations.",Discipline,"Edward Guinness, Mitchell Gordon","guinness at wunder.wustl.edu, mgordon at seti.org",2015-04-30
 img,Imaging,"The Imaging Dictionary contains classes, attributes, and rules for specifying the metadata associated with imaging and spectrometer data products.",Discipline,Trent Hare,thare at usgs.gov,2012-04-03
 img_surface,Surface Imaging,"The Surface Imaging Dictionary contains classes, attributes, and rules for specifying the metadata associated with imaging and spectrometer data products of surface missions.",Discipline,Trent Hare,thare at usgs.gov,2019-09-26
 ml,Machine Learning Classifier,Machine Learning Classifier Discipline Local Data Dictionary,Discipline,Mike McAuley,Michael.McAuley at jpl.nasa.gov,2021-05-17
@@ -87,7 +87,7 @@ vco,Venus Climate Orbiter Akatsuki Mission,The Venus Climate Orbiter Akatsuki Mi
 vg1,Voyager 1,Namespace for the Voyager 1 Spacecraft dictionary.,Mission,Joseph Mafi,jmafi at igpp.ucla.edu,2023-10-04
 vg2,Voyager 2,Namespace for the Voyager 2 Spacrcraft dictionary.,Mission,Joseph Mafi,jmafi at igpp.ucla.edu,2023-10-04
 vgr,Voyager,Namespace for the Voyager Mission dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-19
-vikinglander,Viking Lander,The Viking Lander mission dictionary contains classes and attributes specific to the Viking Lander mission and its instruments.,Mission,Jennifer Ward,jgward@wustl.edu,2024-07-16
+vikinglander,Viking Lander,The Viking Lander mission dictionary contains classes and attributes specific to the Viking Lander mission and its instruments.,Mission,Jennifer Ward,jgward at wustl.edu,2024-07-16
 viper,Volatiles Investigating Polar Exploration Rover,The VIPER mission dictionary contains classes and attributes specific to the VIPER mission and its instruments.,Mission,Madison Touran,mnhughes at wustl.edu,2023-04-15
 bc,BepiColombo,Namespace for the BepiColombo schema.,Mission,BepiColombo Science Ground Segment,smartinez at sciops.esa.int,2019-11-19
 bc_mtm_cam,BepiColombo MCAM,Namespace for the BepiColombo MCAM schema.,Mission,BepiColombo Science Ground Segment,Mark.Bentley at esa.int,2019-11-19
