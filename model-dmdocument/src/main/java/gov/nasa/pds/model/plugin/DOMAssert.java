@@ -39,6 +39,7 @@ public class DOMAssert {
   String assertMsg;
   String assertStmt;
   String specMesg; // a cleaned up assertMsg for the DD and Specification
+  String roleId; // Schematron role attribute for the statement, e.g. " role=\"warning\""; "" for none
   ArrayList<String> testValArr;
 
   public DOMAssert(String id) {
@@ -48,6 +49,7 @@ public class DOMAssert {
     assertMsg = "TBD_assertMsg";
     assertStmt = "TBD_assertMsg";
     specMesg = "TBD_specMessage";
+    roleId = "";
     testValArr = new ArrayList<>();
   }
 }
