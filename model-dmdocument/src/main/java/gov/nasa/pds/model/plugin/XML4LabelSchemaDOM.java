@@ -49,6 +49,7 @@ import gov.nasa.pds.model.plugin.util.Utility;
 
 class XML4LabelSchemaDOM extends Object {
 	private static final Logger LOG = LoggerFactory.getLogger(XML4LabelSchemaDOM.class);
+	@SuppressWarnings("java:S1313") // PDS4 version identifier, not an IP address
 	private static final String MIN_PDS4_VERSION = "1.27.0.0";
 	private static final String UNBOUNDED = "unbounded";
 	
