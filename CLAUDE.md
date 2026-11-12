@@ -27,8 +27,8 @@ The project is organized as a parent POM (`pom.xml`) with three child modules:
 3. **model-ontology** - Ontology data container
    - Contains Protégé ontology instances in `src/ontology/Data/`
    - Stores master ontology files: `dd11179.pins`, `DMDocument.pins`, `Glossary.pins`, `UpperModel.pont`
-   - Supports multiple IM versions in versioned subdirectories (1B00, 1C00, ... 1P00, etc.)
-   - Currently on IM version 1.25.0.0 (folder 1P00 as of Build 16.0)
+   - Supports multiple IM versions in versioned subdirectories (1B00, 1C00, ... 1R00, etc.)
+   - Currently on IM version 1.27.0.0 (folder 1R00 as of Build 18)
 
 ### Key Data Flow
 
@@ -41,10 +41,10 @@ The project is organized as a parent POM (`pom.xml`) with three child modules:
 ### Information Model Versions
 
 The system supports multiple PDS4 Information Model versions. The current build version is defined in `DMDocument.java`:
-- `buildIMVersionId = "1.25.0.0"`
-- `buildIMVersionFolderId = "1P00"`
+- `buildIMVersionId = "1.27.0.0"`
+- `buildIMVersionFolderId = "1R00"`
 
-Alternate IM versions (1B00 through 1P00) can be specified using the `-V` flag in LDDTool. Each version has its own data files in `model-ontology/src/ontology/Data/<version>/`.
+Alternate IM versions (1B00 through 1Q00) can be specified using the `-V` flag in LDDTool. Each version has its own data files in `model-ontology/src/ontology/Data/<version>/`.
 
 ## Build Commands
 
@@ -318,7 +318,7 @@ cp -r export/webapp/* docs/
 
 # Commit and push
 git add docs/
-git commit -m "Deploy PDS4 Data Dictionary v1.25.0"
+git commit -m "Deploy PDS4 Data Dictionary v1.27.0"
 git push
 ```
 
