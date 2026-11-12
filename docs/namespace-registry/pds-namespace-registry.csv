@@ -1,4 +1,4 @@
-Last Update,2026-09-29,,,,,
+Last Update,2026-11-12,,,,,
 Namespace Id,Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date
 Common,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03
@@ -37,6 +37,7 @@ prov,Provenance,"The purpose of the ""prov"" LDD is to provide a PDS4 ""Discipli
 radar,Radar,Describes the circumstances surrounding radar observations.,Discipline,Beatrice Mueller,mueller at psi.edu,2021-10-20
 rings,Rings,The Rings Dictionary contains classes supporting planetary ring observations including ring-specific geometric parameters.,Discipline,Mitchel Gordon,mgordon at seti.org,2012-04-03
 rs,Radio Science,Namespace for the Radio Science node's dictionary.,Discipline,Richard Simpson,radiosci at att.net,2012-04-03
+samp,Sample,"The Sample LDD contains classes, attributes, and rules for characterizing returned and analog physical samples.",Discipline,Abigail Knight,alknight at wustl.edu,2026-11-12
 sb,Small Bodies Node Dictionary,"This dictionary will provide classes to support the documentation, support, discovery, and reuse of data from, by, and for small bodies research.",Discipline,Anne Raugh,araugh at umd.edu,2023-01-17
 sp,Spectral,"The Spectral (sp) Discipline Dictionary contains classes for defining the spectral bin characteristics (in wavelength, frequency, or wave number) of a data product.",Discipline,Anne Raugh,araugh at umd.edu,2013-11-11
 speclib,Spectral Library,"The Spectral Library Data Dictionary defines the metadata terms that describe laboratory spectral measurements, including classification of the samples measured.",Discipline,Susie Slavney,slavney at wunder.wustl.edu,2017-05-15
