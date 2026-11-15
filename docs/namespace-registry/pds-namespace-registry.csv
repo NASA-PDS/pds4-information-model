@@ -1,4 +1,4 @@
-Last Update,2026-11-12,,,,,
+Last Update,2026-11-15,,,,,
 Namespace Id,Name,Description,Governance Level,Steward (Contact),Contact Email Address,Registration Date
 Common,,,,,,
 pds,Planetary Data System,Namespace for the PDS's common dictionary.,Common,Steve Hughes,Steve.Hughes at jpl.nasa.gov,2012-04-03
@@ -84,8 +84,6 @@ ody,2001 Mars Odyssey,Namespace for the 2001 Mars Odyssey dictionary.,Mission,Da
 orex,OSIRIS-Rex,Namespace for the OSIRIS-Rex dictionary.,Mission,Carol Neese,neese at psi.edu,2014-05-12
 phoenix,Mars Phoenix,The Mars Phoenix Mission Dictionary (phoenix) contains classes and attributes specific to the Phoenix mission and its instruments.,Mission,Jennifer Ward,jgward at wustl.edu,2025-11-05
 psyche,Psyche mission,Namespace for the Psyche dictionary.,Mission,Carol Neese,neese at psi.edu,2023-03-29
-ro-alice,Rosetta Alice Instrument Dictionary,Classes and attributes specific to the Alice instrument flown aboard the Rosetta Orbiter.,Mission,Anne Raugh,araugh at umd.edu,2026-11-12
-ro-miro,Microwave Instrument for the Rosetta Orbiter (MIRO) Dictionary,Classes and attributes specific to the Rosetta MIRO (Microwave Instrument for the Rosetta Orbiter).,Mission,Anne Raugh,araugh at umd.edu,2026-11-12
 slim,Smart Lander for Investigating Moon,Namespace for the Smart Lander for Investigating Moon (SLIM) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
 sln,Kaguya (SELENE),Namespace for the Kaguya (SELENE) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
 smart1,Small Missions for Advanced Research in Technology Mission,Namespace for the Small Missions for Advanced Research in Technology mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
@@ -151,3 +149,5 @@ juice_rpwi,JUICE RPWI Instrument,Namespace for the JUICE RPWI Instrument schema.
 juice_pephi,JUICE PEPHI Instrument,Namespace for the JUICE PEPHI Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
 juice_peplo,JUICE PEPLO Instrument,Namespace for the JUICE PEPLO Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
 juice_pride,JUICE PRIDE Instrument,Namespace for the JUICE PRIDE Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
+ro_alice,Rosetta Alice Instrument Dictionary,Classes and attributes specific to the Alice instrument flown aboard the Rosetta Orbiter.,Mission,Anne Raugh,araugh at umd.edu,2026-11-15
+ro_miro,Microwave Instrument for the Rosetta Orbiter (MIRO) Dictionary,Classes and attributes specific to the Rosetta MIRO (Microwave Instrument for the Rosetta Orbiter).,Mission,Anne Raugh,araugh at umd.edu,2026-11-15
