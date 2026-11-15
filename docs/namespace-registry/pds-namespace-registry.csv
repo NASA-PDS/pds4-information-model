@@ -48,6 +48,7 @@ apex,APEX Mission,"The APEX Mission Dictionary (apex) contains classes, attribut
 apollo,Apollo,"The Apollo Mission Dictionary (apollo) contains classes, attributes and rules specific to the Apollo missions and their instruments.",Mission,Jennifer Ward,jgward at wustl.edu,2022-08-18
 asl,Mars Missions Analogue Sample Library,Mars Missions Analogue Sample Library metadata,Mission,Thomas Cornet,thomas.cornet at esa.int,2026-02-18
 bopps,Balloon Observation Platform for Planetary Science,Namespace for the BOPPS dictionary.,Mission,Anne Raugh,araugh at umd.edu,2015-03-26
+chan1,Chandrayaan-1,Chandrayaan-1 mission dictionary,Mission,Susan Slavney,slavney at wunder.wustl.edu,2020-10-07
 clementine,Clementine,"The Clementine mission dictionary contains a class with attributes specific to the Deep Space Program Science Experiment, including the Clementine orbiter and its instruments. This dictionary was created for the migration of Clementine data products from PDS3 to PDS4 by Million Concepts (contact M. St. Clair).",Mission,Trent Hare,thare at usgs.gov,2021-05-13
 clipper,clipper,The Europa Clipper mission dictionary contains classes that describe aspects of the Clipper mission and related instruments.,Mission,Trent Hare,thare at usgs.gov,2021-07-08
 clps,clps,"The Commercial Lunar Payload Services Mission Dictionary (clps) contains classes, attributes and rules specific to the CLPS missions and their instruments.",Mission,Jennifer Ward,jgward at wustl.edu,2023-03-28
@@ -56,6 +57,7 @@ dart,dart,"This namespace provides classes specific to the NASA DART mission and
 di,Deep Impact Primary and Extended Missions Dictionary,"Mission dictionary for the primary Deep Impact (DI) mission as well as the two extended missions, Extrasolar Planet Observation and Characterization (EPOCh) and Deep Impact Extended Investigation (DIXI), known jointly as ""EPOXI"".",Mission,Anne Raugh,araugh at umd.edu,2026-09-21
 dscovr,DSCOVR Mission,The DSCOVR Mission Data Dictionary contains classes and attributes that describe data products from the DSCOVR (Deep Space Climate Observatory) mission.,Mission,Bob Deen,Bob.Deen at jpl.nasa.gov,2025-07-30
 galileo,Galileo,"The Galileo Mission Dictionary (galileo) contains classes, attributes and rules specific to the Galileo Mission and its instruments.",Mission,Jesse Stone; Beatrice Mueller,jstone at psi.edu; mueller at psi.edu,2025-09-23
+giotto,Giotto Mission,Namespace for the Giotto Mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
 hisaki,Hisaki (SPRINT-A),Namespace for the Hisaki dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
 hst,Hubble Space Telescope,Namespace for the Hubble Space Telescope Mission Dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-26
 hyb2,Hayabusa 2,This is the Hayabusa2 Mission Specific Data Dictionary.,Mission,Yukio Yamamoto,yamamoto.yukio at jaxa.jp,2020-12-28
@@ -86,7 +88,9 @@ ro-alice,Rosetta Alice Instrument Dictionary,Classes and attributes specific to 
 ro-miro,Microwave Instrument for the Rosetta Orbiter (MIRO) Dictionary,Classes and attributes specific to the Rosetta MIRO (Microwave Instrument for the Rosetta Orbiter).,Mission,Anne Raugh,araugh at umd.edu,2026-11-12
 slim,Smart Lander for Investigating Moon,Namespace for the Smart Lander for Investigating Moon (SLIM) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
 sln,Kaguya (SELENE),Namespace for the Kaguya (SELENE) dictionary.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-03-26
+smart1,Small Missions for Advanced Research in Technology Mission,Namespace for the Small Missions for Advanced Research in Technology mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
 vco,Venus Climate Orbiter Akatsuki Mission,The Venus Climate Orbiter Akatsuki Mission Local Data Dictionary,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-09-14
+vex,Venus Express Mission,Namespace for the Venus Express Mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
 vg1,Voyager 1,Namespace for the Voyager 1 Spacecraft dictionary.,Mission,Joseph Mafi,jmafi at igpp.ucla.edu,2023-10-04
 vg2,Voyager 2,Namespace for the Voyager 2 Spacrcraft dictionary.,Mission,Joseph Mafi,jmafi at igpp.ucla.edu,2023-10-04
 vgr,Voyager,Namespace for the Voyager Mission dictionary.,Mission,Matthew Tiscareno,matt at seti.org,2022-05-19
@@ -112,7 +116,6 @@ bc_mmo_mgf,BepiColombo MGF,Namespace for the BepiColombo MGF schema.,Mission,Shi
 bc_mmo_mppe,BepiColombo MPPE,Namespace for the BepiColombo MPPE schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-04-14
 bc_mmo_mdm,BepiColombo MDM,Namespace for the BepiColombo MDM schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-04-14
 bc_mmo_spm,BepiColombo SPM,Namespace for the BepiColombo SPM schema.,Mission,Shin-ya Murakami,murakami.shinya at jaxa.jp,2025-04-14
-chan1,Chandrayaan-1,Chandrayaan-1 mission dictionary,Mission,Susan Slavney,slavney at wunder.wustl.edu,2020-10-07
 em16,ExoMars16,Namespace for the ExoMars16 schema.,Mission,ExoMars16 Science Operations Centre,tlim at sciops.esa.int,2019-11-19
 em16_tgo_acs,ExoMars16,Namespace for the ExoMars16 ACS Instrument schema.,Mission,ExoMars16 Science Operations Centre,dcoia at sciops.esa.int,2019-11-19
 em16_tgo_cas,ExoMars16,Namespace for the ExoMars16 CaSSIS Instrument schema.,Mission,ExoMars16 Science Operations Centre,tlim at sciops.esa.int,2019-11-19
@@ -148,6 +151,3 @@ juice_rpwi,JUICE RPWI Instrument,Namespace for the JUICE RPWI Instrument schema.
 juice_pephi,JUICE PEPHI Instrument,Namespace for the JUICE PEPHI Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
 juice_peplo,JUICE PEPLO Instrument,Namespace for the JUICE PEPLO Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
 juice_pride,JUICE PRIDE Instrument,Namespace for the JUICE PRIDE Instrument schema.,Mission,JUICE Science Operations Centre,,2024-08-05
-vex,Venus Express Mission,Namespace for the Venus Express Mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
-smart1,Small Missions for Advanced Research in Technology Mission,Namespace for the Small Missions for Advanced Research in Technology mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
-giotto,Giotto Mission,Namespace for the Giotto Mission schema.,Mission,Mark Bentley,Mark.Bentley at esa.int,2025-02-27
