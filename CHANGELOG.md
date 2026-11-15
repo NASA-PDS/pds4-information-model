@@ -1,11 +1,13 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-05)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-15)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
 **Requirements:**
 
+- \[documentation\] CCB-92: Multi-Host Instruments \#1088 [\#1102](https://github.com/NASA-PDS/pds4-information-model/issues/1102)
+- \[documentation\] CCB-90: Add archival\_to\_native back pointer to reference\_type \#1076 [\#1101](https://github.com/NASA-PDS/pds4-information-model/issues/1101)
 - CCB-94: Add Modification\_History to Ingest\_LDD [\#1096](https://github.com/NASA-PDS/pds4-information-model/issues/1096)
 - CCB-90: Add archival\_to\_native back pointer to reference\_type [\#1076](https://github.com/NASA-PDS/pds4-information-model/issues/1076)
 - CCB-91: Add more units of Rate: megabits/s and gigabits/s [\#1065](https://github.com/NASA-PDS/pds4-information-model/issues/1065)
@@ -17,6 +19,9 @@
 
 **Improvements:**
 
+- \[namespace-registry\] add new namespace samp [\#1109](https://github.com/NASA-PDS/pds4-information-model/issues/1109)
+- \[namespace-registry\] add new namespace ro-miro [\#1098](https://github.com/NASA-PDS/pds4-information-model/issues/1098)
+- \[namespace-registry\] add new namespace ro-alice [\#1097](https://github.com/NASA-PDS/pds4-information-model/issues/1097)
 - \[namespace-registry\] add new namespace epncore [\#1082](https://github.com/NASA-PDS/pds4-information-model/issues/1082)
 - \[namespace-registry\] add new namespace di [\#1079](https://github.com/NASA-PDS/pds4-information-model/issues/1079)
 
