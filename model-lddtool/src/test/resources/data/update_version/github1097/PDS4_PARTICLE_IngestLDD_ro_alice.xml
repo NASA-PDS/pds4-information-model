@@ -16,8 +16,8 @@
 	<ldd_version_id>1.0.1.0</ldd_version_id>
 	<dictionary_type>Mission</dictionary_type>
 	<full_name>Joseph Mafi</full_name>
-	<steward_id>ro-miro</steward_id>
-	<namespace_id>ro-miro</namespace_id>
+	<steward_id>ro_alice</steward_id>
+	<namespace_id>ro_alice</namespace_id>
 	<comment>
 		The purpose of this Ingest LDD file is to test new namespaces. It is an edited clone of the Particle LDD.
 
@@ -25,7 +25,7 @@
 
 		## CHANGE LOG ##
 
-		Namespace Test - ro-miro
+		Namespace Test - ro_alice
 
 	</comment>
 	<last_modification_date_time>2026-11-12T00:00:00Z</last_modification_date_time>
