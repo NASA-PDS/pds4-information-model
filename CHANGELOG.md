@@ -1,6 +1,6 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-15)
+## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-16)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
 
@@ -20,8 +20,8 @@
 **Improvements:**
 
 - \[namespace-registry\] add new namespace samp [\#1109](https://github.com/NASA-PDS/pds4-information-model/issues/1109)
-- \[namespace-registry\] add new namespace ro-miro [\#1098](https://github.com/NASA-PDS/pds4-information-model/issues/1098)
-- \[namespace-registry\] add new namespace ro-alice [\#1097](https://github.com/NASA-PDS/pds4-information-model/issues/1097)
+- \[namespace-registry\] add new namespace ro\_miro [\#1098](https://github.com/NASA-PDS/pds4-information-model/issues/1098)
+- \[namespace-registry\] add new namespace ro\_alice [\#1097](https://github.com/NASA-PDS/pds4-information-model/issues/1097)
 - \[namespace-registry\] add new namespace epncore [\#1082](https://github.com/NASA-PDS/pds4-information-model/issues/1082)
 - \[namespace-registry\] add new namespace di [\#1079](https://github.com/NASA-PDS/pds4-information-model/issues/1079)
 
