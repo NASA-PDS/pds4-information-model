@@ -1,4 +1,4 @@
-; Tue Nov 03 12:19:50 EST 2026
+; Mon Nov 09 15:11:11 EST 2026
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[dd11179_ProjectKB_Class75]
-		[dd11179_ProjectKB_Class76]
-		[dd11179_ProjectKB_Class77]))
+		[dd11179_ProjectKB_Class250]
+		[dd11179_ProjectKB_Class251]
+		[dd11179_ProjectKB_Class252]))
 
 ([CLSES_TAB] of  Widget
 
@@ -116,6 +116,21 @@
 	(is_hidden TRUE)
 	(property_list [dd11179_ProjectKB_Class26])
 	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
+
+([dd11179_ProjectKB_Class250] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([dd11179_ProjectKB_Class251] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([dd11179_ProjectKB_Class252] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
 ([dd11179_ProjectKB_Class26] of  Property_List
 )
@@ -360,21 +375,6 @@
 ([dd11179_ProjectKB_Class74] of  Property_List
 )
 
-([dd11179_ProjectKB_Class75] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([dd11179_ProjectKB_Class76] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([dd11179_ProjectKB_Class77] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
 ([dd11179_ProjectKB_Class8] of  Property_List
 )
 
@@ -522,7 +522,7 @@
 	(name "instances_file_name")
 	(string_value "dd11179.pins"))
 
-([KB_494685_Class0] of  Map
+([KB_579695_Class0] of  Map
 )
 
 ([KB_860773_Class0] of  Map
