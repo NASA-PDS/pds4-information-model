@@ -88,6 +88,38 @@ The Planetary Data System's Engineering Node uses [detect-secrets](https://githu
 
 To install, [see the wiki](https://github.com/NASA-PDS/nasa-pds.github.io/wiki/Git-and-Github-Guide#detect-secrets). To update a new `.secrets.baseline` file, run the custom script in the repo to generate the secrets. https://github.com/NASA-PDS/pds4-information-model/tree/main/bin. This is needed because there are numerous additional files that should be ignored in this repo.
 
+### Tagging a Release
+
+Stable releases are built by [Roundup](https://github.com/NASA-PDS/roundup-action) whenever a tag beginning with `release/` is pushed. The workflow is defined in `.github/workflows/stable-cicd.yaml`.
+
+1. **Determine the next version.** Follow [SemVer](https://semver.org/) (`MAJOR.MINOR.PATCH`) and increment from the latest release:
+   - `MAJOR` for incompatible changes
+   - `MINOR` for backward-compatible new functionality
+   - `PATCH` for backward-compatible bug fixes
+
+   The latest release is shown on the [releases page](https://github.com/NASA-PDS/pds4-information-model/releases), or list the existing tags:
+
+   ```bash
+   git fetch --tags
+   git tag --list 'release/*' --sort=-v:refname | head -5
+   ```
+
+2. **Create and push the tag** from an up-to-date `main`. The tag must start with `release/`:
+
+   ```bash
+   VERSION="16.1.2"
+   git checkout main
+   git pull
+   git tag "release/${VERSION}"
+   git push origin "release/${VERSION}"
+   ```
+
+3. **Monitor the build.** Open the [Actions tab](https://github.com/NASA-PDS/pds4-information-model/actions) and watch the "Stable integration & delivery" workflow run for your tag. Roundup deletes the `release/<version>` tag and creates a new `v<version>` tag in its place, so `release/<version>` will no longer exist after the build.
+
+4. **Add release notes.** Once the workflow completes, Roundup creates a GitHub release named `v<version>` (for example, `v16.1.2`) on the [releases page](https://github.com/NASA-PDS/pds4-information-model/releases). Open it and either:
+   - write the release notes by hand, or
+   - generate them with the `generating-release-notes` skill from [pds-agent-skills](https://github.com/NASA-PDS/pds-agent-skills).
+
 ## 💁‍♀️ Usage
 
 See the deployed documentation for usage details for the various components: https://nasa-pds.github.io/pds4-information-model/
