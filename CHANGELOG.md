@@ -1,14 +1,17 @@
 # Changelog
 
-## [«unknown»](https://github.com/NASA-PDS/pds4-information-model/tree/«unknown») (2026-11-17)
+## [release/16.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.3.0) (2026-11-18)
 
-[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...«unknown»)
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...release/16.3.0)
 
 **Requirements:**
 
+- CCB-65: Modify description attribute to be required in Telescope and Facility Context Products [\#1104](https://github.com/NASA-PDS/pds4-information-model/issues/1104)
 - \[documentation\] CCB-92: Multi-Host Instruments \#1088 [\#1102](https://github.com/NASA-PDS/pds4-information-model/issues/1102)
 - \[documentation\] CCB-90: Add archival\_to\_native back pointer to reference\_type \#1076 [\#1101](https://github.com/NASA-PDS/pds4-information-model/issues/1101)
 - CCB-94: Add Modification\_History to Ingest\_LDD [\#1096](https://github.com/NASA-PDS/pds4-information-model/issues/1096)
+- CCB-97: Product type not specified for Product Context [\#1094](https://github.com/NASA-PDS/pds4-information-model/issues/1094)
+- CCB-89: Incomplete set of Internal\_Reference/reference\_type in Product\_Document [\#1092](https://github.com/NASA-PDS/pds4-information-model/issues/1092)
 - CCB-90: Add archival\_to\_native back pointer to reference\_type [\#1076](https://github.com/NASA-PDS/pds4-information-model/issues/1076)
 - CCB-91: Add more units of Rate: megabits/s and gigabits/s [\#1065](https://github.com/NASA-PDS/pds4-information-model/issues/1065)
 - CCB-63: International characters / Unicode support for names - IM Update [\#1037](https://github.com/NASA-PDS/pds4-information-model/issues/1037)
