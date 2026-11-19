@@ -124,6 +124,29 @@ Stable releases are built by [Roundup](https://github.com/NASA-PDS/roundup-actio
 
 See the deployed documentation for usage details for the various components: https://nasa-pds.github.io/pds4-information-model/
 
+### Generating Documentation
+
+LDDTool can generate MkDocs-based documentation for the PDS4 Information Model. For complete instructions on generating and deploying the documentation, see [MKDOCS_DOCUMENTATION.md](MKDOCS_DOCUMENTATION.md).
+
+Quick start:
+```bash
+# Build and extract lddtool
+mvn clean package
+tar -xzf model-lddtool/target/lddtool-*-bin.tar.gz
+
+# Generate documentation
+./lddtool-*/bin/lddtool -pW
+
+# Set up Python virtual environment (first time only)
+cd export/docs
+python3 -m venv venv
+source venv/bin/activate
+pip install mkdocs-material
+
+# Preview documentation
+mkdocs serve  # Open http://localhost:8000
+```
+
 
 ## 👥 Contributing
 
