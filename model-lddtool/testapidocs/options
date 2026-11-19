@@ -4,7 +4,7 @@
 'UTF-8'
 -protected
 --release
-17
+25
 -sourcepath
 '/github/workspace/model-lddtool/src/test/java'
 -author
@@ -17,8 +17,8 @@
 -docencoding
 'UTF-8'
 -doctitle
-'Local Data Dictionary Tool 16.1.3 Test API'
+'Local Data Dictionary Tool 16.3.2 Test API'
 -use
 -version
 -windowtitle
-'Local Data Dictionary Tool 16.1.3 Test API'
+'Local Data Dictionary Tool 16.3.2 Test API'

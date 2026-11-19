@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"gov.nasa.pds.model.plugin"},{"l":"gov.nasa.pds.model.plugin.util"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"gov.nasa.pds.model.model_dmdocument"},{"l":"gov.nasa.pds.model.plugin"},{"l":"gov.nasa.pds.model.plugin.util"}];updateSearchResults();
