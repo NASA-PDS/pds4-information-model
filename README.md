@@ -101,7 +101,7 @@ Stable releases are built by [Roundup](https://github.com/NASA-PDS/roundup-actio
 
    ```bash
    git fetch --tags
-   git tag --list 'release/*' --sort=-v:refname | head -5
+   git tag --list 'v*' --sort=-v:refname | grep -v SNAPSHOT | head -5
    ```
 
 2. **Create and push the tag** from an up-to-date `main`. The tag must start with `release/`:
