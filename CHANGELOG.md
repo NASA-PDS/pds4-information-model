@@ -1,5 +1,9 @@
 # Changelog
 
+## [release/16.3.2](https://github.com/NASA-PDS/pds4-information-model/tree/release/16.3.2) (2026-11-19)
+
+[Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.3.0...release/16.3.2)
+
 ## [v16.3.0](https://github.com/NASA-PDS/pds4-information-model/tree/v16.3.0) (2026-11-18)
 
 [Full Changelog](https://github.com/NASA-PDS/pds4-information-model/compare/v16.1.3...v16.3.0)
